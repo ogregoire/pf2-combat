@@ -53,6 +53,23 @@ describe("promptsFor", () => {
     expect(p!.computation).toContain("DC 15 flat");
   });
 
+  it("covers all twenty faces of the persistent damage flat check with no gap", () => {
+    const [p] = promptsFor({
+      combatantId: "c1",
+      conditions: [{ slug: "persistent-damage", value: 0, formula: "1d6" }],
+      timing: "end",
+    });
+    const faces = new Set<number>();
+    for (const outcome of p!.outcomes) {
+      const match = /^(\d+)(?:–(\d+))?\+?$/.exec(outcome.label);
+      if (!match) throw new Error(`unparseable outcome label: ${outcome.label}`);
+      const from = Number(match[1]);
+      const to = match[2] ? Number(match[2]) : outcome.label.endsWith("+") ? 20 : from;
+      for (let face = from; face <= to; face++) faces.add(face);
+    }
+    expect(faces).toEqual(new Set(Array.from({ length: 20 }, (_, i) => i + 1)));
+  });
+
   it("gives stable ids so acknowledgement survives re-render", () => {
     const args = {
       combatantId: "c1",
