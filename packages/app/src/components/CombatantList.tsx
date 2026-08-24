@@ -1,7 +1,10 @@
 import { useState } from "react";
+import type { Creature, IndexEntry } from "@pf2/schema";
+import { loadCreature } from "../data/creatures.js";
 import { useEncounter } from "../state/store.js";
 import { CombatantRow } from "./CombatantRow.js";
 import { GroupHeader } from "./GroupHeader.js";
+import { QuickAdd } from "./QuickAdd.js";
 
 const inputStyle: React.CSSProperties = {
   fontFamily: "var(--font-mono)",
@@ -103,8 +106,17 @@ function GroupBuilder({
 }
 
 /** The left-pane combatant list — reads the encounter store directly.
- * Entries are already kept sorted by initiative descending by the store. */
-export function CombatantList(): React.ReactElement {
+ * Entries are already kept sorted by initiative descending by the store.
+ * `quickAddEntries`/`loadCreatureFn` feed `<QuickAdd>`, always visible above
+ * the list — both default to the empty catalog/production loader so
+ * existing callers (and tests) that don't pass them keep working. */
+export function CombatantList({
+  quickAddEntries = [],
+  loadCreatureFn = loadCreature,
+}: {
+  quickAddEntries?: IndexEntry[];
+  loadCreatureFn?: (id: string) => Promise<Creature>;
+} = {}): React.ReactElement {
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const group = useEncounter((s) => s.group);
@@ -122,6 +134,8 @@ export function CombatantList(): React.ReactElement {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "3px", padding: "0 8px 12px" }}>
+      <QuickAdd entries={quickAddEntries} loadCreatureFn={loadCreatureFn} />
+
       {selectedIds.length >= 2 && (
         <GroupBuilder selectedIds={selectedIds} onCancel={() => setSelectedIds([])} onCreate={handleCreateGroup} />
       )}

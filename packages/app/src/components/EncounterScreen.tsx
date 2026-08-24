@@ -181,7 +181,10 @@ export function EncounterScreen({
               </button>
             </div>
           </div>
-          <CombatantList />
+          <CombatantList
+            quickAddEntries={catalog.status === "ready" ? catalog.entries : []}
+            loadCreatureFn={loadCreatureFn}
+          />
         </div>
 
         <div data-testid="active-combatant" style={{ display: "flex", flexGrow: 1, minWidth: 0, minHeight: 0 }}>
