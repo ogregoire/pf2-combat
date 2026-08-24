@@ -3,13 +3,16 @@ import type { Creature } from "@pf2/schema";
 import type { FetchFn } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
 import { useCatalog } from "../hooks/useCatalog.js";
+import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import { encounterXp, partyLevelFor } from "../rules/xp.js";
 import { useEncounter } from "../state/store.js";
 import { ActiveCombatant } from "./ActiveCombatant.js";
 import { AddCombatants } from "./AddCombatants.js";
 import { CombatantList } from "./CombatantList.js";
+import { NextButton } from "./NextButton.js";
 import { PartyManager } from "./PartyManager.js";
-import { TurnManager } from "./TurnManager.js";
+import { TurnManager, remainingActionsFor } from "./TurnManager.js";
+import { activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
 
 /** Main.dc.html's top bar: encounter name, the XP award per character (the
  * plain sum of creature XP — GM Core says this never changes with party
@@ -134,13 +137,123 @@ function Drawer({
 
 type DrawerKind = "add" | "party" | null;
 
+/** The list pane's "Initiative" title plus its "+ Add"/"Party" controls —
+ * factored out so both the desktop three-column layout and the narrow
+ * List tab render the exact same header rather than two copies drifting
+ * apart. */
+function CombatantListHeader({ onAdd, onParty }: { onAdd: () => void; onParty: () => void }): React.ReactElement {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px 10px" }}>
+      <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
+        Initiative
+      </div>
+      <div style={{ display: "flex", gap: "6px" }}>
+        <button type="button" onClick={onAdd} style={headerButtonStyle}>
+          + Add
+        </button>
+        <button type="button" onClick={onParty} style={headerButtonStyle}>
+          Party
+        </button>
+      </div>
+    </div>
+  );
+}
+
+type TabKind = "list" | "active" | "turn";
+const TABS: { key: TabKind; label: string }[] = [
+  { key: "list", label: "List" },
+  { key: "active", label: "Active" },
+  { key: "turn", label: "Turn" },
+];
+
+/** The narrow layout's List | Active | Turn switcher, replacing the
+ * three-column row below the 900px breakpoint (see useMediaQuery.ts for why
+ * 900px). The Turn tab carries a badge of the same unacknowledged-prompt
+ * count NextButton shows, since that tab can be off-screen exactly when
+ * something needs the GM's attention on it. */
+function TabBar({
+  active,
+  onChange,
+  turnBadgeCount,
+}: {
+  active: TabKind;
+  onChange: (tab: TabKind) => void;
+  turnBadgeCount: number;
+}): React.ReactElement {
+  return (
+    <div
+      role="tablist"
+      aria-label="Encounter panes"
+      style={{ display: "flex", borderBottom: "1px solid var(--border)", background: "var(--panel)", flexShrink: 0 }}
+    >
+      {TABS.map((tab) => {
+        const isActive = tab.key === active;
+        return (
+          <button
+            key={tab.key}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onChange(tab.key)}
+            style={{
+              fontFamily: "inherit",
+              flexGrow: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "6px",
+              // Comfortably tappable — see the brief's hit-target check.
+              padding: "13px 8px",
+              fontSize: "13px",
+              fontWeight: isActive ? 600 : 400,
+              color: isActive ? "var(--text)" : "var(--text-dim)",
+              background: isActive ? "var(--panel-raised)" : "transparent",
+              border: "none",
+              borderBottom: `2px solid ${isActive ? "var(--accent)" : "transparent"}`,
+              cursor: "pointer",
+            }}
+          >
+            {tab.label}
+            {tab.key === "turn" && turnBadgeCount > 0 && (
+              <span
+                aria-label={`${turnBadgeCount} unacknowledged`}
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "10.5px",
+                  fontWeight: 600,
+                  minWidth: "16px",
+                  padding: "1px 5px",
+                  borderRadius: "999px",
+                  background: "var(--accent-bg)",
+                  color: "var(--accent-text)",
+                  textAlign: "center",
+                }}
+              >
+                {turnBadgeCount}
+              </span>
+            )}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 /** Assembles Main.dc.html's whole screen: the top bar, the three panes each
  * carrying the `data-testid` its own tests key off, and the "+ Add"/"Party"
  * controls that surface `<AddCombatants>` and `<PartyManager>` in a drawer —
  * without this the deployed app would have no way to put a creature or a
  * player into the encounter. The creature catalog loads once, on mount, via
  * `useCatalog`; `fetchFn`/`loadCreatureFn` are injectable so tests can drive
- * the whole add-a-creature loop against fake data instead of the network. */
+ * the whole add-a-creature loop against fake data instead of the network.
+ *
+ * Below the 900px breakpoint (see useMediaQuery.ts), the three-column row
+ * is replaced by List/Active/Turn tabs showing one pane at a time, with a
+ * single NextButton pinned to the bottom of the screen regardless of which
+ * tab is open — advancing the turn is the most frequent action, so it must
+ * never require a tab change. Above the breakpoint this function's output
+ * is byte-for-byte what it always was; the narrow branch is purely
+ * additive. */
 export function EncounterScreen({
   fetchFn,
   loadCreatureFn = loadCreature,
@@ -150,67 +263,117 @@ export function EncounterScreen({
 } = {}): React.ReactElement {
   const catalog = useCatalog(fetchFn);
   const [drawer, setDrawer] = useState<DrawerKind>(null);
+  const narrow = useMediaQuery(NARROW_LAYOUT_QUERY);
+  const [activeTab, setActiveTab] = useState<TabKind>("list");
+
+  const entries = useEncounter((s) => s.encounter.entries);
+  const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
+  const combatants = useEncounter((s) => s.encounter.combatants);
+  const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
+  const activeCombatant = activeCombatantOf(entries, activeEntryIndex, combatants);
+  const unacknowledgedCount = activeCombatant ? unacknowledgedCountFor(activeCombatant, acknowledgedPrompts) : 0;
+  const actionsRemaining = activeCombatant ? remainingActionsFor(activeCombatant) : undefined;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100dvh", background: "var(--bg)", color: "var(--text)" }}>
       <TopBar />
 
-      <div style={{ display: "flex", flexGrow: 1, minHeight: 0 }}>
-        <div
-          data-testid="combatant-list"
-          style={{
-            width: "340px",
-            flexShrink: 0,
-            borderRight: "1px solid var(--border)",
-            display: "flex",
-            flexDirection: "column",
-            background: "var(--panel)",
-            overflowY: "auto",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px 10px" }}>
-            <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-              Initiative
-            </div>
-            <div style={{ display: "flex", gap: "6px" }}>
-              <button type="button" onClick={() => setDrawer("add")} style={headerButtonStyle}>
-                + Add
-              </button>
-              <button type="button" onClick={() => setDrawer("party")} style={headerButtonStyle}>
-                Party
-              </button>
-            </div>
+      {narrow ? (
+        <>
+          <TabBar active={activeTab} onChange={setActiveTab} turnBadgeCount={unacknowledgedCount} />
+
+          {/* jsdom performs no real layout — it can't tell us whether this
+             padding actually clears the fixed bottom bar below in a real
+             browser. This pins the structure (one pane mounted at a time,
+             a single pinned NextButton) rather than pixels. */}
+          <div style={{ flexGrow: 1, minHeight: 0, overflowY: "auto", paddingBottom: "88px" }}>
+            {activeTab === "list" && (
+              <div data-testid="combatant-list" style={{ display: "flex", flexDirection: "column", background: "var(--panel)" }}>
+                <CombatantListHeader onAdd={() => setDrawer("add")} onParty={() => setDrawer("party")} />
+                <CombatantList
+                  quickAddEntries={catalog.status === "ready" ? catalog.entries : []}
+                  loadCreatureFn={loadCreatureFn}
+                />
+              </div>
+            )}
+
+            {activeTab === "active" && (
+              <div data-testid="active-combatant" style={{ display: "flex", flexDirection: "column", minHeight: 0 }}>
+                <ActiveCombatant />
+              </div>
+            )}
+
+            {activeTab === "turn" && (
+              <div data-testid="turn-manager" style={{ display: "flex", flexDirection: "column", minHeight: 0, background: "var(--panel)" }}>
+                {/* showNextButton=false: the pinned bar below is this
+                   layout's single NextButton — TurnManager's own one is
+                   desktop-only, so the Turn tab doesn't show two. */}
+                <TurnManager showNextButton={false} />
+              </div>
+            )}
           </div>
-          <CombatantList
-            quickAddEntries={catalog.status === "ready" ? catalog.entries : []}
-            loadCreatureFn={loadCreatureFn}
-          />
-        </div>
 
-        <div data-testid="active-combatant" style={{ display: "flex", flexGrow: 1, minWidth: 0, minHeight: 0 }}>
-          <ActiveCombatant />
-        </div>
+          <div
+            style={{
+              position: "fixed",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              padding: "10px 14px",
+              background: "var(--panel)",
+              borderTop: "1px solid var(--border)",
+              zIndex: 40,
+            }}
+          >
+            <NextButton unacknowledgedCount={unacknowledgedCount} actionsRemaining={actionsRemaining} />
+          </div>
+        </>
+      ) : (
+        <div style={{ display: "flex", flexGrow: 1, minHeight: 0 }}>
+          <div
+            data-testid="combatant-list"
+            style={{
+              width: "340px",
+              flexShrink: 0,
+              borderRight: "1px solid var(--border)",
+              display: "flex",
+              flexDirection: "column",
+              background: "var(--panel)",
+              overflowY: "auto",
+            }}
+          >
+            <CombatantListHeader onAdd={() => setDrawer("add")} onParty={() => setDrawer("party")} />
+            <CombatantList
+              quickAddEntries={catalog.status === "ready" ? catalog.entries : []}
+              loadCreatureFn={loadCreatureFn}
+            />
+          </div>
 
-        <div
-          data-testid="turn-manager"
-          style={{
-            width: "250px",
-            flexShrink: 0,
-            borderLeft: "1px solid var(--border)",
-            background: "var(--panel)",
-            // No overflow here — the panel itself must not scroll as a
-            // whole (that would drag the round counter and Next button out
-            // of view with it). Height is instead constrained through this
-            // flex chain (display:flex + minHeight:0) down to TurnManager,
-            // whose own ReactionWatch child is the only part that scrolls.
-            display: "flex",
-            flexDirection: "column",
-            minHeight: 0,
-          }}
-        >
-          <TurnManager />
+          <div data-testid="active-combatant" style={{ display: "flex", flexGrow: 1, minWidth: 0, minHeight: 0 }}>
+            <ActiveCombatant />
+          </div>
+
+          <div
+            data-testid="turn-manager"
+            style={{
+              width: "250px",
+              flexShrink: 0,
+              borderLeft: "1px solid var(--border)",
+              background: "var(--panel)",
+              // No overflow here — the panel itself must not scroll as a
+              // whole (that would drag the round counter and Next button out
+              // of view with it). Height is instead constrained through this
+              // flex chain (display:flex + minHeight:0) down to TurnManager,
+              // whose own ReactionWatch child is the only part that scrolls.
+              display: "flex",
+              flexDirection: "column",
+              minHeight: 0,
+            }}
+          >
+            <TurnManager />
+          </div>
         </div>
-      </div>
+      )}
 
       {drawer === "add" && (
         <Drawer title="Add combatants" onClose={() => setDrawer(null)}>

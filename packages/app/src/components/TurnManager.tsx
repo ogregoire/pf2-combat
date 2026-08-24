@@ -9,8 +9,9 @@ import { TurnPrompts, activeCombatantOf, unacknowledgedCountFor } from "./TurnPr
 /** Same pool computation ActionPips/ActionList already make from a
  * combatant's conditions — duplicated locally (as those two already
  * duplicate it from each other) rather than adding a new shared module for
- * three call sites. */
-function remainingActionsFor(combatant: Combatant): number {
+ * three call sites. Exported so EncounterScreen's narrow layout can drive
+ * its own pinned NextButton with the same number. */
+export function remainingActionsFor(combatant: Combatant): number {
   const pool = actionPool({
     slowed: combatant.conditions.find((c) => c.slug === "slowed")?.value ?? 0,
     stunned: combatant.conditions.find((c) => c.slug === "stunned")?.value ?? 0,
@@ -22,8 +23,11 @@ function remainingActionsFor(combatant: Combatant): number {
 /** The right-pane turn manager — Main.dc.html's round/pips/Next/reactions
  * plus TurnAssistant.dc.html's start/end prompts, merged into one panel
  * since both describe the same sidebar. Reads the encounter store directly,
- * same as CombatantList. */
-export function TurnManager(): React.ReactElement {
+ * same as CombatantList. `showNextButton` defaults to true (desktop,
+ * unchanged); EncounterScreen's narrow layout passes false because it pins
+ * its own single NextButton to the bottom of the screen instead — without
+ * this, the Turn tab would show two Next buttons at once. */
+export function TurnManager({ showNextButton = true }: { showNextButton?: boolean } = {}): React.ReactElement {
   const round = useEncounter((s) => s.encounter.round);
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
@@ -46,10 +50,12 @@ export function TurnManager(): React.ReactElement {
 
       <TurnPrompts />
 
-      <NextButton
-        unacknowledgedCount={unacknowledgedCount}
-        actionsRemaining={combatant ? remainingActionsFor(combatant) : undefined}
-      />
+      {showNextButton && (
+        <NextButton
+          unacknowledgedCount={unacknowledgedCount}
+          actionsRemaining={combatant ? remainingActionsFor(combatant) : undefined}
+        />
+      )}
 
       <ReactionWatch />
     </div>
