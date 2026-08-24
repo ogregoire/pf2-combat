@@ -17,6 +17,7 @@ import { verifyDataset } from "./stages/verify.js";
 import { diffDataset, statusOf } from "./report.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
 import { buildConditions, buildGlossary } from "./stages/reference.js";
+import { renderSchemaDoc } from "./docs/schema-doc.js";
 
 export const EXIT = {
   unchanged: 0,
@@ -260,6 +261,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   }
 
   writeJson(manifestPath, nextManifest);
+  writeFileSync(join(dataDir, "SCHEMA.md"), renderSchemaDoc(), "utf8");
 
   io.err(
     `${status}: +${diff.added.length} -${diff.removed.length} ~${diff.modified.length} at ${fetched.ref}\n`,
