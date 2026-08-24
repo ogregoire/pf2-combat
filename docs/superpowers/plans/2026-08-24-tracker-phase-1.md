@@ -133,7 +133,7 @@ export default defineConfig({
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "dist-tsc",
+    "outDir": "dist",
     "rootDir": "src",
     "jsx": "react-jsx",
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
@@ -506,10 +506,15 @@ git commit -m "feat(app): pf2 modifier stacking with auditable ledger"
 - Produces:
   - `type Degree = "critical-success" | "success" | "failure" | "critical-failure"`
   - `degreeOf(total: number, dc: number, naturalRoll?: number): Degree`
-  - `interface DieBands { critSuccess: number | null; success: number | null; failure: number | null; critFailure: number | null }`
-  - `dieBands(modifier: number, dc: number): DieBands` — the lowest natural d20 face producing each degree, or `null` when unreachable on a d20.
+  - `interface DieBand { from: number; to: number }`
+  - `type DieBands = Record<Degree, DieBand | null>`
+  - `dieBands(modifier: number, dc: number): DieBands` — the d20 faces producing each degree, or `null` when that degree is unreachable.
 
-`dieBands` is the whole point of the assistant: the GM reads a face, not an arithmetic problem. It must fold in the natural-20/natural-1 shift, which is what makes "17+ crits" true where naive arithmetic says 27.
+`dieBands` is the whole point of the assistant: the GM reads a face, not an
+arithmetic problem. It is derived by evaluating all twenty faces through
+`degreeOf` rather than by arithmetic on the DC — the natural-20 and natural-1
+shifts apply to *every* degree, not just the critical band, and deriving from
+the one function that knows the rules keeps the two from disagreeing.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -524,7 +529,10 @@ describe("degreeOf", () => {
     expect(degreeOf(31, 21)).toBe("critical-success");
     expect(degreeOf(21, 21)).toBe("success");
     expect(degreeOf(20, 21)).toBe("failure");
-    expect(degreeOf(11, 21)).toBe("failure");
+    expect(degreeOf(12, 21)).toBe("failure");
+    // Exactly ten below the DC is a critical failure — symmetric with the
+    // ten-above rule for critical success.
+    expect(degreeOf(11, 21)).toBe("critical-failure");
     expect(degreeOf(10, 21)).toBe("critical-failure");
   });
 
@@ -539,36 +547,56 @@ describe("degreeOf", () => {
     expect(degreeOf(21, 21, 1)).toBe("failure");
     expect(degreeOf(15, 21, 1)).toBe("critical-failure");
   });
+
+  it("cannot shift past either end of the ladder", () => {
+    expect(degreeOf(60, 21, 20)).toBe("critical-success");
+    expect(degreeOf(1, 21, 1)).toBe("critical-failure");
+  });
 });
 
 describe("dieBands", () => {
-  it("computes the Stag Lord's longsword against AC 21 at +14", () => {
-    // 21 - 14 = 7 to hit; 31 - 14 = 17 to crit; crit-fail needs total <= 11,
-    // i.e. die <= -3, unreachable — so only a natural 1 crit-fails.
+  it("computes the Stag Lord's longsword at +14 against AC 21", () => {
     const b = dieBands(14, 21);
-    expect(b.success).toBe(7);
-    expect(b.critSuccess).toBe(17);
-    expect(b.failure).toBe(2);
-    expect(b.critFailure).toBe(1);
+    expect(b["critical-success"]).toEqual({ from: 17, to: 20 });
+    expect(b.success).toEqual({ from: 7, to: 16 });
+    expect(b.failure).toEqual({ from: 2, to: 6 });
+    expect(b["critical-failure"]).toEqual({ from: 1, to: 1 });
   });
 
-  it("caps the critical band at a natural 20 when arithmetic puts it higher", () => {
-    // +2 vs DC 30: crit would need 38 → die 36. Unreachable except nat 20.
+  it("lets a natural 20 succeed where the arithmetic cannot", () => {
+    // +2 vs DC 30: a natural 20 totals 22, a failure, which the nat-20 shift
+    // raises to a success — but NOT to a critical success.
     const b = dieBands(2, 30);
-    expect(b.critSuccess).toBe(20);
+    expect(b.success).toEqual({ from: 20, to: 20 });
+    expect(b["critical-success"]).toBeNull();
+    expect(b.failure).toEqual({ from: 19, to: 19 });
   });
 
-  it("reports an unreachable success band as null", () => {
+  it("reports unreachable degrees as null", () => {
     const b = dieBands(0, 40);
+    expect(b["critical-success"]).toBeNull();
     expect(b.success).toBeNull();
-    expect(b.critSuccess).toBeNull();
+    expect(b.failure).toEqual({ from: 20, to: 20 });
+    expect(b["critical-failure"]).toEqual({ from: 1, to: 19 });
   });
 
-  it("never lets a band fall below 1 or above 20", () => {
+  it("lets a natural 1 fail where the arithmetic cannot", () => {
+    // +50 vs DC 5: every face crits except a natural 1, which drops one step.
     const b = dieBands(50, 5);
-    expect(b.success).toBe(1);
-    expect(b.critSuccess).toBe(1);
-    expect(b.critFailure).toBe(1);
+    expect(b["critical-success"]).toEqual({ from: 2, to: 20 });
+    expect(b.success).toEqual({ from: 1, to: 1 });
+    expect(b.failure).toBeNull();
+    expect(b["critical-failure"]).toBeNull();
+  });
+
+  it("covers all twenty faces exactly once", () => {
+    const b = dieBands(7, 18);
+    const covered = Object.values(b)
+      .filter((x) => x !== null)
+      .flatMap((x) => Array.from({ length: x!.to - x!.from + 1 }, (_, i) => x!.from + i));
+    expect(covered.sort((p, q) => p - q)).toEqual(
+      Array.from({ length: 20 }, (_, i) => i + 1),
+    );
   });
 });
 ```
@@ -598,8 +626,7 @@ const LADDER: Degree[] = [
 
 const shift = (degree: Degree, steps: number): Degree => {
   const i = LADDER.indexOf(degree);
-  const next = Math.min(LADDER.length - 1, Math.max(0, i + steps));
-  return LADDER[next]!;
+  return LADDER[Math.min(LADDER.length - 1, Math.max(0, i + steps))]!;
 };
 
 export function degreeOf(
@@ -618,47 +645,45 @@ export function degreeOf(
   return degree;
 }
 
-export interface DieBands {
-  critSuccess: number | null;
-  success: number | null;
-  failure: number | null;
-  critFailure: number | null;
+export interface DieBand {
+  from: number;
+  to: number;
 }
 
-const clamp = (face: number): number | null =>
-  face > 20 ? null : Math.max(1, face);
+export type DieBands = Record<Degree, DieBand | null>;
 
 /**
- * The lowest natural d20 face that produces each degree, natural-20 and
- * natural-1 shifts folded in. A natural 20 that would otherwise be a success
- * becomes a critical success, which is why the critical band can start well
- * below the raw arithmetic — and why a 20 always at least succeeds if the
- * roll could succeed at all.
+ * The d20 faces producing each degree, derived by asking `degreeOf` about all
+ * twenty faces rather than by arithmetic on the DC.
+ *
+ * Arithmetic is where this goes wrong: the natural-20 and natural-1 shifts
+ * apply to EVERY degree, not only the critical band, so a face that would
+ * merely fail can succeed on a 20 and a face that would crit can drop to a
+ * plain success on a 1. Deriving from the single function that encodes the
+ * rules means the ladder and the bands can never disagree.
  */
 export function dieBands(modifier: number, dc: number): DieBands {
-  const rawSuccess = clamp(dc - modifier);
-  const rawCrit = clamp(dc + 10 - modifier);
-
-  // A natural 20 bumps one step: if 20 would succeed, 20 crits.
-  const critSuccess =
-    rawCrit === null ? (rawSuccess === null ? null : 20) : rawCrit;
-
-  // A natural 1 drops one step, so face 1 always crit-fails.
-  const rawFailure = clamp(dc - 9 - modifier);
-  const failure = rawFailure === null ? null : Math.max(2, rawFailure);
-
-  return {
-    critSuccess,
-    success: rawSuccess,
-    failure,
-    critFailure: 1,
+  const bands: DieBands = {
+    "critical-success": null,
+    success: null,
+    failure: null,
+    "critical-failure": null,
   };
+
+  for (let face = 1; face <= 20; face += 1) {
+    const degree = degreeOf(face + modifier, dc, face);
+    const held = bands[degree];
+    if (held === null) bands[degree] = { from: face, to: face };
+    else held.to = face;
+  }
+
+  return bands;
 }
 ```
 
 - [ ] **Step 4: Verify**
 
-Run: `npx vitest run packages/app/test/degrees.test.ts` → PASS, 7 tests.
+Run: `npx vitest run packages/app/test/degrees.test.ts` → PASS, 9 tests.
 
 - [ ] **Step 5: Commit**
 
@@ -850,8 +875,10 @@ git commit -m "feat(app): multiple attack penalty and action pool"
   - `type ConditionSlug` — union of the curated slugs.
   - `interface ConditionDef { slug: ConditionSlug; name: string; valued: boolean; modifiers(value: number): Modifier[]; startOfTurn?: "reduce-actions" | "recovery-check"; endOfTurn?: "decrement" | "persistent-damage"; implies?: ConditionSlug[] }`
   - `CONDITIONS: Record<ConditionSlug, ConditionDef>`
-  - `interface AppliedCondition { slug: ConditionSlug; value: number }`
-  - `conditionModifiers(applied: AppliedCondition[], selector: Selector): Modifier[]` where `Selector = "attack" | "ac" | "fortitude" | "reflex" | "will" | "perception" | "skill"`
+  - `interface AppliedCondition { slug: ConditionSlug; value: number; formula?: string }`
+    — `formula` carries persistent damage's dice (`1d6`), which an integer cannot express;
+    `data/conditions.json` marks persistent damage `isValued: false` for exactly this reason.
+  - `conditionModifiers(applied: AppliedCondition[], selector: Selector): Modifier[]` where `Selector = "melee-attack" | "ranged-attack" | "ac" | "fortitude" | "reflex" | "will" | "perception" | "skill"`
 
 The curated set for phase 1, with their mechanical effect:
 
@@ -860,9 +887,9 @@ The curated set for phase 1, with their mechanical effect:
 | off-guard | no | −2 circumstance to AC |
 | frightened | yes | −N status to all checks and DCs; decrements at end of turn |
 | sickened | yes | −N status to all checks and DCs |
-| clumsy | yes | −N status to Dex-based: AC, Reflex |
-| enfeebled | yes | −N status to Str-based: melee attack |
-| stupefied | yes | −N status to Int/Wis/Cha-based and spell DCs |
+| clumsy | yes | −N status to AC, Reflex and ranged attacks (Dex-based) |
+| enfeebled | yes | −N status to melee attacks only (Str-based) |
+| stupefied | yes | −N status to Will and Perception (Int/Wis/Cha-based) |
 | drained | yes | −N status to Fortitude |
 | slowed | yes | start of turn: lose N actions |
 | stunned | yes | start of turn: lose N actions, then reduce |
@@ -871,14 +898,14 @@ The curated set for phase 1, with their mechanical effect:
 | grabbed | no | implies off-guard, immobilized |
 | restrained | no | implies off-guard, immobilized |
 | immobilized | no | no modifier |
-| blinded | no | implies off-guard |
+| blinded | no | no modifier; does NOT confer off-guard (mediated by visibility rules we do not model) |
 | dazzled | no | no modifier in phase 1 |
 | deafened | no | no modifier in phase 1 |
 | fatigued | no | −1 status to AC and saves |
 | doomed | yes | no modifier; lowers the dying threshold |
 | dying | yes | start of turn: recovery check |
 | wounded | yes | no modifier; raises dying on re-entry |
-| persistent-damage | yes | end of turn: roll, then DC 15 flat |
+| persistent-damage | no (carries a `formula`, e.g. `1d6`) | end of turn: roll it, then DC 15 flat to end |
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1390,39 +1417,25 @@ export function resolveStrike(input: StrikeInput): StrikeResolution {
     input.precision !== undefined &&
     input.targetConditions.some((c) => c.slug === input.precision!.when);
 
-  const outcomes: StrikeOutcome[] = [
-    {
-      degree: "critical-success",
-      dieFrom: bands.critSuccess,
-      dieTo: bands.critSuccess === null ? null : 20,
-      damage: damageText(input, true, precisionActive),
-    },
-    {
-      degree: "success",
-      dieFrom: bands.success,
-      dieTo:
-        bands.success === null || bands.critSuccess === null
-          ? 20
-          : bands.critSuccess - 1,
-      damage: damageText(input, false, precisionActive),
-    },
-    {
-      degree: "failure",
-      dieFrom: bands.failure,
-      dieTo:
-        bands.failure === null || bands.success === null
-          ? 20
-          : bands.success - 1,
-      damage: null,
-    },
-    {
-      degree: "critical-failure",
-      dieFrom: bands.critFailure,
-      dieTo:
-        bands.failure === null ? 1 : Math.max(1, bands.failure - 1),
-      damage: null,
-    },
+  const LADDER_ORDER: Degree[] = [
+    "critical-success",
+    "success",
+    "failure",
+    "critical-failure",
   ];
+
+  const outcomes: StrikeOutcome[] = LADDER_ORDER.map((degree) => {
+    const band = bands[degree];
+    const hits = degree === "critical-success" || degree === "success";
+    return {
+      degree,
+      dieFrom: band === null ? null : band.from,
+      dieTo: band === null ? null : band.to,
+      damage: hits
+        ? damageText(input, degree === "critical-success", precisionActive)
+        : null,
+    };
+  });
 
   return { modifier, ledger, effectiveAc, acLedger, outcomes };
 }
@@ -1677,7 +1690,7 @@ describe("promptsFor", () => {
   it("emits persistent damage with its flat check at the end of turn", () => {
     const [p] = promptsFor({
       combatantId: "c1",
-      conditions: [{ slug: "persistent-damage", value: 6 }],
+      conditions: [{ slug: "persistent-damage", value: 0, formula: "1d6" }],
       timing: "end",
     });
     expect(p!.computation).toContain("1d6");
@@ -1798,11 +1811,11 @@ export function promptsFor(input: PromptsInput): Prompt[] {
       prompts.push({
         id, timing: "end", slug: c.slug,
         title: "Persistent damage",
-        computation: `Roll 1d${c.value}, then DC 15 flat check to end it`,
+        computation: `Roll ${c.formula ?? "the persistent damage"}, then DC 15 flat check to end it`,
         derivation: null,
         outcomes: [
           { label: "15+", effect: "the condition ends" },
-          { label: "2–14", effect: "it persists" },
+          { label: "1–14", effect: "it persists" },
         ],
         autoApplied: null,
       });
@@ -2055,7 +2068,7 @@ export function clearCreatureCache(): void {
 
 - [ ] **Step 5: Verify**
 
-Run: `npx vitest run packages/app/test/catalog.test.ts` → PASS, 9 tests.
+Run: `npx vitest run packages/app/test/catalog.test.ts` → PASS, 8 tests.
 
 - [ ] **Step 6: Commit**
 
@@ -2868,7 +2881,7 @@ git commit -m "feat(app): indexeddb persistence with schema migration"
 
 ```tsx
 import { beforeEach, describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { EncounterScreen } from "../src/components/EncounterScreen.js";
 import { useEncounter } from "../src/state/store.js";
@@ -2919,7 +2932,10 @@ describe("EncounterScreen", () => {
     );
     render(<EncounterScreen />);
 
-    await user.hover(screen.getByText("Alpha"));
+    // "Alpha" is the active combatant, so its name renders twice by design —
+    // once in the list, once in the centre stat-block header. Scope the query.
+    const list = within(screen.getByTestId("combatant-list"));
+    await user.hover(list.getByText("Alpha"));
     const amount = screen.getByLabelText("amount");
     await user.clear(amount);
     await user.type(amount, "5");

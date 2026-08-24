@@ -1,0 +1,145 @@
+import { useEncounter } from "../state/store.js";
+import { actionPool } from "../rules/actions.js";
+import { CONDITIONS } from "../rules/conditions.js";
+import { promptsFor, type Prompt } from "../rules/prompts.js";
+import type { Combatant, Entry } from "../state/types.js";
+import { PromptCard } from "./PromptCard.js";
+
+/** The active combatant — first member of the active entry. Groups share a
+ * single turn, so this stands in for "whose turn it is" the same way the
+ * store's own nextTurn() treats the whole entry as one turn. */
+export function activeCombatantOf(
+  entries: Entry[],
+  activeEntryIndex: number,
+  combatants: Record<string, Combatant>,
+): Combatant | undefined {
+  const entry = entries[activeEntryIndex];
+  if (!entry) return undefined;
+  const id = entry.combatantIds[0];
+  if (id === undefined) return undefined;
+  return combatants[id];
+}
+
+function unacknowledged(prompts: Prompt[], acknowledgedPrompts: string[]): Prompt[] {
+  return prompts.filter((p) => !acknowledgedPrompts.includes(p.id));
+}
+
+/** Total outstanding prompts (start + end) for the active combatant — used
+ * by NextButton to show the count without re-deriving promptsFor itself. */
+export function unacknowledgedCountFor(combatant: Combatant, acknowledgedPrompts: string[]): number {
+  const start = promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "start" });
+  const end = promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "end" });
+  return unacknowledged(start, acknowledgedPrompts).length + unacknowledged(end, acknowledgedPrompts).length;
+}
+
+/** The left column of TurnAssistant.dc.html: start-of-turn prompts that need
+ * resolving now, and a preview of what's queued for end of turn. Timing is
+ * derived entirely by the reviewed promptsFor — this component never
+ * re-decides which conditions fire when. */
+export function TurnPrompts(): React.ReactElement | null {
+  const entries = useEncounter((s) => s.encounter.entries);
+  const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
+  const combatants = useEncounter((s) => s.encounter.combatants);
+  const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
+  const acknowledgePrompt = useEncounter((s) => s.acknowledgePrompt);
+  const addCondition = useEncounter((s) => s.addCondition);
+  const removeCondition = useEncounter((s) => s.removeCondition);
+  const spendActions = useEncounter((s) => s.spendActions);
+
+  const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
+  if (!combatant) return null;
+
+  /**
+   * Acknowledging is the GM's only record that a timed effect actually
+   * happened, so it's also the only place that effect gets applied — before
+   * this, nextTurn advanced the round but nothing ever decremented
+   * frightened (the same "Lose 1 action" prompt reappeared forever) and a
+   * stunned value, once its action loss had been read off the pips, was
+   * never cleared.
+   */
+  const handleAcknowledge = (prompt: Prompt): void => {
+    const applied = combatant.conditions.find((c) => c.slug === prompt.slug);
+    if (applied) {
+      if (prompt.timing === "end" && CONDITIONS[prompt.slug].endOfTurn === "decrement") {
+        const next = applied.value - 1;
+        if (next <= 0) removeCondition(combatant.id, prompt.slug);
+        else addCondition(combatant.id, prompt.slug, next);
+      }
+      // Removing stunned here alone used to hand the actions it just took
+      // back — ActionPips/ActionList/NextButton all recompute actionPool
+      // from `conditions` every render, so the moment stunned was gone the
+      // pool read as if it never happened. spendActions makes the loss
+      // permanent for this turn (via actionsSpent, reset at the next
+      // start-of-turn like every other spend) before the condition that
+      // caused it is cleared.
+      if (prompt.timing === "start" && prompt.slug === "stunned") {
+        const pool = actionPool({
+          slowed: combatant.conditions.find((c) => c.slug === "slowed")?.value ?? 0,
+          stunned: applied.value,
+          quickened: combatant.conditions.some((c) => c.slug === "quickened"),
+        });
+        spendActions(combatant.id, pool.lost);
+        removeCondition(combatant.id, "stunned");
+      }
+    }
+    acknowledgePrompt(prompt.id);
+  };
+
+  const startPrompts = unacknowledged(
+    promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "start" }),
+    acknowledgedPrompts,
+  );
+  const endPrompts = unacknowledged(
+    promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "end" }),
+    acknowledgedPrompts,
+  );
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      {startPrompts.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>RESOLVE NOW</span>
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "10.5px",
+                fontWeight: 600,
+                padding: "1px 6px",
+                borderRadius: "2px",
+                background: "var(--accent-bg)",
+                color: "var(--accent-text)",
+              }}
+            >
+              {startPrompts.length} TO RESOLVE
+            </span>
+          </div>
+          {startPrompts.map((p) => (
+            <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} />
+          ))}
+        </div>
+      )}
+
+      {endPrompts.length > 0 && (
+        <div
+          style={{
+            padding: "11px 13px",
+            borderRadius: "5px",
+            background: "var(--panel)",
+            border: "1px dashed var(--border-strong)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+          }}
+        >
+          <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>
+            WAITING FOR END OF TURN — {endPrompts.length} ITEM{endPrompts.length === 1 ? "" : "S"}
+          </span>
+          {endPrompts.map((p) => (
+            <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
