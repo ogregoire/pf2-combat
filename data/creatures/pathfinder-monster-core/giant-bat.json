@@ -1,0 +1,132 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 3,
+    "dex": 2,
+    "int": -4,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An adjacent enemy damages the giant bat</p>\n<hr />\n<p><strong>Effect</strong> The bat makes one or two wing Strikes—one against the triggering creature and one against another adjacent creature.</p>",
+      "frequency": null,
+      "name": "Wing Thrash",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An adjacent enemy damages the giant bat"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A bat can use its hearing as a precise sense at the listed range.</p>",
+      "frequency": null,
+      "name": "Echolocation (Precise) 40 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": []
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "xnpuGO8jEMba9wy5",
+  "gear": [],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/giant-bat",
+  "immunities": [],
+  "languages": [],
+  "level": 2,
+  "name": "Giant Bat",
+  "perception": 11,
+  "publicNotes": "<p>While big bats are certainly not uncommon in dark caves and abandoned ruins and may instill fear in squeamish spelunkers, the so-called giant bat is a true monster, weighing well over 100 pounds and having a wingspan of nearly 15 feet. It primarily eats fruit and bugs, but can be incited to violence through fear or hunger. Giant bat attacks can quickly give rise to rumors of more dangerous monsters—many mistake these massive animals for some sort of demon or vampiric monster. But like other bats, giant bats are simply social and intelligent mammals. They are sometimes used as mounts by smaller humanoids, commonly those who hail from or dwell in mountainous or underground regions.</p>\n<hr />\n<p>A wide range of bats dwell throughout the world. Most of these nocturnal animals are harmless insectivores, but deadly breeds of vampire bats and oversized bats the size of horses pose much more significant threats to adventurers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": "precise",
+      "range": 40,
+      "type": "echolocation"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 8,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

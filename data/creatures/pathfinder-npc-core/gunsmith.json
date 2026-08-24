@@ -1,0 +1,155 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 0,
+    "dex": 3,
+    "int": 2,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The gunsmith is wielding or holding a one-handed firearm and has a free hand</p><hr /><p><strong>Effect</strong> The gunsmith deftly makes a minor modification to a firearm that can be detected with a @Check[perception|against:crafting|rollerRole:target] check opposed by the gunsmith's Crafting DC. If the sabotage is not reversed with a successful Crafting check against the gunsmith's Crafting DC, the firearm automatically misfires the next time it is used (the flat check is an automatic failure; see the Misfires sidebar).</p>",
+      "frequency": null,
+      "name": "Firearm Sabotage",
+      "requirements": "The gunsmith is wielding or holding a one-handed firearm and has a free hand",
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The gunsmith can Interact to reload a firearm without a free hand if they have a firearm in each hand. In addition, each time the gunsmith reloads a firearm, they can attempt a @Check[crafting] check against the hard DC for the firearm's level (@Check[crafting|dc:17|showDC:all] for a dueling pistol). On a success, they gain a +1 circumstance bonus on the next attack roll they make with that firearm before the start of their next turn.</p>",
+      "frequency": null,
+      "name": "Crafty Reload",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving the crafting or maintenance of firearms, the gunsmith is a 6th-level challenge.</p>",
+      "frequency": null,
+      "name": "Firearm Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Firearms that are improperly maintained or subjected to unusual strain can misfire. If a creature attempts to fire a firearm that was fired the previous day or earlier and hasn't been cleaned since, it rolls a @Check[flat|dc:5|showDC:all] before making its attack roll. If it fails this misfire check, the weapon misfires and jams. The attack is an automatic critical failure, and a creature must use an Interact action to clear the jam before the weapon can be reloaded and fired again. Once a creature has spent at least an hour cleaning a weapon, no one needs to roll for a misfire for that weapon until the next day unless an effect says otherwise.</p>",
+      "frequency": null,
+      "name": "Misfires",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dueling Pistol",
+      "traits": [
+        "concealable",
+        "concussive",
+        "fatal-d10",
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "GuYToKMrt5mxxZW6",
+  "gear": [
+    "Artisan's Toolkit (Gunsmithing)",
+    "Dueling Pistol",
+    "Rounds (Dueling Pistol)"
+  ],
+  "hp": 16,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/gunsmith",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 1,
+  "name": "Gunsmith",
+  "perception": 6,
+  "publicNotes": "<p>Even though every gunslinger learns the basics of maintaining and repairing firearms as a part of their training, few would question the expertise of a master gunsmith regarding the weapons by which they live and die. Although professional gunsmiths are rarely found outside of settlements where firearms are common, such as Alkenstar or Dongun Hold, true masters of this specialized craft tend to quickly build reputations for themselves that extend well beyond the borders of whatever region they call home.</p><hr /><p>Although relatively uncommon across much of Golarion, the frequently eccentric but undeniably brilliant minds who create elaborate devices of clockwork, gunpowder, and steam often loom much larger in the public eye than their numbers would suggest.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 4,
+    "crafting": 13,
+    "society": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,191 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 3,
+    "int": -2,
+    "str": 1,
+    "wis": 0
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The water scamp shakes out a seemingly endless supply of water from its fur to put out all fires in a @Template[emanation|distance:5]. The scamp extinguishes all non-magical fires automatically and attempts to counteract magical fires ([[/r 1d20+7 #Counteract]]{+7} counteract modifier).</p>",
+      "frequency": null,
+      "name": "Drench",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The water scamp breathes acid in a @Template[cone|distance:15] that deals @Damage[2d6[acid]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save).</p>\n<p>The water scamp can't use Acid Breath again for [[/gmr 1d4 #Recharge Acid Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Acid Breath",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (While Underwater)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "Fn5ZKPwiaXm242Np",
+  "gear": [],
+  "hp": 20,
+  "hpDetails": "fast healing 2 (while underwater)",
+  "id": "pathfinder-monster-core/water-scamp",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 1,
+  "name": "Water Scamp",
+  "perception": 3,
+  "publicNotes": "<p>Water scamps are marked apart from other scamps by sleek fur that traps a layer of water next to their skin. Although they can fly like their kin and conjure enough water to never dry out, water scamps leave the water only when they must. Although air-breathing scholars consider these scamps quiet and rather skittish, underwater civilizations find their exuberance and playfulness can be overwhelming.</p>\n<hr />\n<p>Elemental scamps are bat-like critters marked by elemental powers. Scamps are dispatched from the Elemental Planes by more powerful residents or called to the Universe by neophyte summoners. All scamps have a hint of magical power due to a lingering connection to their home plane, which they largely use to pull simple pranks.</p>\n<p>Scamps rapidly form a pecking order of cleverness. Humanoids often confuse scamps when meeting such creatures for the first time. These confused scamps usually resort to an escalating series of pranks and mischief, seeing what they can get away with to establish their place in the hierarchy.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid",
+      "value": 3
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Acid Grip",
+          "rank": 2
+        },
+        {
+          "name": "Create Water",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

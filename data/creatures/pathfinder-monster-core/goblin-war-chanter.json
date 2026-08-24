@@ -1,0 +1,184 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 3,
+    "int": 1,
+    "str": 2,
+    "wis": 0
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A goblin ally ends a move action adjacent to the goblin.</p>\n<hr />\n<p><strong>Effect</strong> The goblin war chanter Steps.</p>",
+      "frequency": null,
+      "name": "Goblin Scuttle",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A goblin ally ends a move action adjacent to the goblin."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The war chanter sings annoying goblin songs, distracting foes with silly and repetitive lyrics. The chanter attempts a @Check[performance|traits:auditory,concentrate,linguistic] check against the Will DCs of up to two enemies within @Template[emanation|distance:30]{30 feet}. This has the usual traits and restrictions for a Performance check.</p>\n<hr />\n<p><strong>Critical Success</strong> The target takes a -1 status penalty to Perception checks and Will saves for 1 minute. Effect: Goblin Song (Critical Success)</p>\n<p><strong>Success</strong> As critical success, but the target is affected for only one round. Effect: Goblin Song (Success)</p>\n<p><strong>Critical Failure</strong> The target is temporarily immune to Goblin Song for 1 hour.</p>",
+      "frequency": null,
+      "name": "Goblin Song",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dogslicer",
+      "traits": [
+        "agile",
+        "backstabber",
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-60",
+        "reload-0"
+      ]
+    }
+  ],
+  "foundryId": "wepiUEi2Lxl8j1BH",
+  "gear": [
+    "Arrows",
+    "Dogslicer",
+    "Leather Armor",
+    "Shortbow"
+  ],
+  "hp": 16,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/goblin-war-chanter",
+  "immunities": [],
+  "languages": [
+    "common",
+    "goblin"
+  ],
+  "level": 1,
+  "name": "Goblin War Chanter",
+  "perception": 5,
+  "publicNotes": "<p>While all goblins enjoy singing, goblin war chanters pride themselves on mastering the art of vocal performance. Their ballads and jingles are undeniably catchy, and serve their purpose in battle well, inspiring goblins and distracting foes. Whether they are actually enjoyable is entirely subjective.</p>\n<hr />\n<p>These small humanoids typically have green or gray skin and large heads with wide ears. While some goblins are civilized and have worked hard to be considered upstanding members of humanoid communities, many are impetuous and vicious creatures who delight in wreaking havoc. These goblins think nothing of slaughtering livestock, stealing, or burning down a building purely for momentary delight. They revel in playing malicious tricks on taller humanoids, whom they call \"longshanks.\"</p>\n<p>Goblins are superstitious, with an intense awe of magic and a fascination with fire; goblins who master magic or fire earn great respect from their kin. Most other humanoids find it difficult to understand goblins' outlook: they hate canines but eagerly share their lairs with so-called \"goblin dogs,\" they fearlessly attack larger creatures but are terrified of horses, and they despise vegetables yet consider pickles a delicacy. To a goblin, of course, these are all perfectly sensible life choices.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 6,
+    "deception": 7,
+    "occultism": 4,
+    "performance": 7,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 17,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 2,
+          "rank": 1
+        }
+      ],
+      "spells": [
+        {
+          "name": "Bless",
+          "rank": 1
+        },
+        {
+          "name": "Courageous Anthem",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Soothe",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "goblin",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

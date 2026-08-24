@@ -1,0 +1,335 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 1,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> Darivan takes damage while he's within the Cradle of Lamashtu.</p>\n<p><strong>Effect</strong> Darivan cries out a quick prayer to the Mother of Monsters, and filaments of fungus slither up into his wounded body, healing @Damage[4d6[healing]] points of damage. For the next 4 rounds, Darivan gains regeneration 10; this regeneration can be deactivated by cold iron or spirit damage. Darivan can't activate Bloom Regeneration again for 24 hours.</p>\n<p>Effect: Bloom Regeneration</p>",
+      "frequency": null,
+      "name": "Bloom Regeneration",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": "Darivan takes damage while he's within the Cradle of Lamashtu."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirement</strong> Darivan hasn't attempted a falchion strike yet.</p>\n<p><strong>Effect</strong> Darivan attempts a Strike with a falchion. On a hit, he inflicts an additional @Damage[2d6[bleed]] damage.</p>",
+      "frequency": null,
+      "name": "Bleed for Lamashtu",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When Darivan's bloodline magic activates, his movements become supernaturally graceful and distracting, granting him a +1 status bonus to Diplomacy checks for 1 round or imposing a -1 status penalty on one target's Will saves for 1 round.</p>\n<p>Effect: Darivan's Bloodline Magic</p>",
+      "frequency": null,
+      "name": "Bloodline Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Falchion",
+      "traits": [
+        "forceful",
+        "magical",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "mbAhAq5OyZAv6lq5",
+  "gear": [
+    "Explorer's Yurt",
+    "Falchion",
+    "Leather Armor",
+    "Religious Symbol of Lamashtu (Gold)"
+  ],
+  "hp": 220,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/darivan",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "chthonian",
+    "common",
+    "fey",
+    "orcish"
+  ],
+  "level": 10,
+  "name": "Darivan",
+  "perception": 19,
+  "publicNotes": "<p>Darivan is not the classic image of a Lamashtan cultist. While deeply religious, his magical power stems not from his faith, but from a link to his ancestral past. The favor of a dryad helped his grandfather escape from a brutal life and find a safe new homeland for his people, but Darivan never held patience for that. To Darivan, his sorcerous legacy and his sinister faith are two wholly separate elements, but his recent visions of the bloom of Lamashtu bringing a new swath of monsters to the Stolen Lands has compelled him strongly, showing him how his fey ancestry and his demonic faith can be made stronger.</p>\n<p>In combat, Darivan relies on his spells against ranged foes and his falchion and claw in melee. He activates Bloom Regeneration if an attack reduces him to 100 Hit Points or fewer, then shifts tactics to casting Air Walk and retreating upward to use spells against foes.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 20,
+    "deception": 21,
+    "diplomacy": 19,
+    "intimidation": 21,
+    "nature": 19,
+    "religion": 19,
+    "survival": 19
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Primal Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 4,
+          "rank": 5
+        }
+      ],
+      "spells": [
+        {
+          "name": "Cone of Cold",
+          "rank": 5
+        },
+        {
+          "name": "Crushing Despair",
+          "rank": 5
+        },
+        {
+          "name": "Passwall",
+          "rank": 5
+        },
+        {
+          "name": "Wall of Stone",
+          "rank": 5
+        },
+        {
+          "name": "Air Walk",
+          "rank": 4
+        },
+        {
+          "name": "Shape Stone",
+          "rank": 4
+        },
+        {
+          "name": "Speak with Plants",
+          "rank": 4
+        },
+        {
+          "name": "Vital Beacon",
+          "rank": 4
+        },
+        {
+          "name": "Weapon Storm",
+          "rank": 4
+        },
+        {
+          "name": "Animal Vision",
+          "rank": 3
+        },
+        {
+          "name": "Blindness",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Barkskin",
+          "rank": 2
+        },
+        {
+          "name": "Calm Emotions",
+          "rank": 2
+        },
+        {
+          "name": "Create Food",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Entangle",
+          "rank": 2
+        },
+        {
+          "name": "Glitterdust",
+          "rank": 2
+        },
+        {
+          "name": "Acid Splash",
+          "rank": 1
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Electric Arc",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Longstrider",
+          "rank": 1
+        },
+        {
+          "name": "Pass Without Trace",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Ray of Frost",
+          "rank": 1
+        },
+        {
+          "name": "Shocking Grasp",
+          "rank": 1
+        },
+        {
+          "name": "Spider Sting",
+          "rank": 1
+        },
+        {
+          "name": "Tanglefoot",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    },
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Sorcerer Bloodline Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Nymph's Token",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "dromaar",
+    "human",
+    "humanoid",
+    "orc"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 10
+    }
+  ]
+}

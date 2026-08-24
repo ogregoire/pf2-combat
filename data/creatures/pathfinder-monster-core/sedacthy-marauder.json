@@ -1,0 +1,212 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 3,
+    "int": 0,
+    "str": 6,
+    "wis": 1
+  },
+  "ac": 19,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The marauder takes damage from a creature 20 feet or further away</p>\n<hr />\n<p><strong>Effect</strong> The marauder makes a ranged spear Strike against the triggering creature. This attack doesn't take a range increment penalty if the target is within the second range increment.</p>",
+      "frequency": null,
+      "name": "Vengeful Throw",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The marauder takes damage from a creature 20 feet or further away"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The marauder unleashes a terrifying battle cry. Each enemy in a @Template[emanation|distance:30] must attempt a @Check[will|dc:21] save. Regardless of the results, creatures are temporarily immune for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Immobilized for 1 round and Frightened 3.</p>",
+      "frequency": null,
+      "name": "Challenging Shriek",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The sedacthy makes a jaws Strike. If it hits, an ally of their choice can spend a reaction to make a jaws Strike against the same target. Allies with beaks or similar attacks can use those instead of jaws.</p>",
+      "frequency": null,
+      "name": "Shared Feast",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A sedacthy speaking Thalassic can be understood by any animal that has a swim Speed or the amphibious or aquatic trait. By spending a week regularly interacting with such an animal, the sedacthy can make it permanently helpful.</p>",
+      "frequency": null,
+      "name": "Sea Speech",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>This sense allows a monster to feel vibrations caused by movement through a liquid. It's an imprecise sense with a limited range (listed in the ability). Wavesense functions only if monster and the subject are in the same body of liquid, and only if the subject is moving through the liquid.</p></p>",
+      "frequency": null,
+      "name": "Wavesense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d4",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Spear",
+      "traits": []
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Spear",
+      "traits": [
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "VzkfSgbtsGV79WZH",
+  "gear": [
+    "Breastplate",
+    "Spear"
+  ],
+  "hp": 75,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/sedacthy-marauder",
+  "immunities": [],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 4,
+  "name": "Sedacthy Marauder",
+  "perception": 9,
+  "publicNotes": "<p>Physically imposing sedacthies prove their status by controlling dangerous aquatic creatures like great white sharks and giant moray eels.</p>\n<hr />\n<p>Sedacthies are amphibious, fish-like humanoids who lurk in Golarion's oceans and are known for leading their animal servants ashore to devour air breathers. When an entire fishing village disappears overnight, sedacthies are the first suspects. Sedacthies pride themselves as natural leaders, with ambition limited only by their strict adherence to hierarchy. A sedacthy's station is determined by the strength of the animal servants they press into service, and the mettle they prove during hunts and in battles against outsiders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "wavesense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 14,
+    "intimidation": 13,
+    "survival": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "humanoid",
+    "sedacthy"
+  ],
+  "weaknesses": []
+}

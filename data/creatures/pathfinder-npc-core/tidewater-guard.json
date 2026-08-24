@@ -1,0 +1,180 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 3,
+    "int": -1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The tidewater guard makes a ranged Strike with their trident. If the Strike hits, the guard can haul on the attached line, moving the target up to 30 feet in a straight line toward the iruxi.</p>",
+      "frequency": null,
+      "name": "Reel In",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A tidewater guard can hold their breath for 20 minutes.</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Non-lizardfolk creatures that are in difficult terrain or are in water and lack a swim Speed are Off-Guard to the tidewater guard.</p>",
+      "frequency": null,
+      "name": "Terrain Advantage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The tidewater guard's tridents are specially prepared to be aquadynamic and tethered by ropes. They have the tethered trait, meaning that a wielder who has a free hand can Interact to pull the weapon back into their grasp after they have thrown it as a ranged attack or after it has been disarmed (unless it is being held by another creature).</p>",
+      "frequency": null,
+      "name": "Tethered Tridents",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Trident",
+      "traits": [
+        "tethered"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Trident",
+      "traits": [
+        "tethered",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "3Hv0EXBkCOcSOTfp",
+  "gear": [
+    "Studded Leather Armor",
+    "Trident with 50 feet of line"
+  ],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/tidewater-guard",
+  "immunities": [],
+  "languages": [
+    "common",
+    "iruxi"
+  ],
+  "level": 4,
+  "name": "Tidewater Guard",
+  "perception": 10,
+  "publicNotes": "<p>Iruxi tidewater guards are capable fighters skilled at amphibious attacks and overpowering vessels along any shore. Because lizardfolk settlements are typically constructed partially underwater and partially above, they have need of defenders who can guard from attacks in both environments.</p>\n<p>The special spaulders tidewater guards wear set them apart from other lizardfolk warriors. These protect their shoulders from cutlass and axe strikes, and might be constructed of dragon scales, turtle or giant chiton shells, lacquered wood, or even sea urchin tests. The recipe for the special resin iruxi armorers apply to harden these spaulders is a closely guarded secret, and each iruxi community's supply of the resin is small, precious, and closely guarded.</p><hr /><p>Lizardfolk culture has flowered in recent years. With that revival has come a new generation of iruxis (as they call themselves) more willing to engage with the wider world, bringing with them their society's reverence for the past, facility with nature, and willingness to defend itself.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 11,
+    "athletics": 12,
+    "nature": 10,
+    "stealth": 11,
+    "survival": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "lizardfolk"
+  ],
+  "weaknesses": []
+}

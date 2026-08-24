@@ -1,0 +1,142 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 4,
+    "int": 0,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the umbral gnome scout starts its turn Undetected or Hidden to a creature, that creature is Off-Guard against the umbral gnome scout's attacks until the end of the turn.</p>",
+      "frequency": null,
+      "name": "Hidden Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Light Pick",
+      "traits": [
+        "agile",
+        "fatal-d8"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Sling",
+      "traits": [
+        "propulsive",
+        "range-increment-50",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "63gNd2JNUDcAjYzo",
+  "gear": [
+    "Light Pick",
+    "Sling",
+    "Sling Bullets"
+  ],
+  "hp": 18,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/umbral-gnome-scout",
+  "immunities": [],
+  "languages": [
+    "gnomish",
+    "sakvroth"
+  ],
+  "level": 1,
+  "name": "Umbral Gnome Scout",
+  "perception": 7,
+  "publicNotes": "<p>Umbral gnome scouts patrol the tunnels that lead into their settlements.</p>\n<hr />\n<p>Gnomes are known for being creative and curious. They stand at around 3 feet tall, and their vivid personalities match their naturally vivid hair and eye color. Gnomes possess a natural connection to their ancestral home, the First World. They crave adventure and new experiences to fight off an ancestry-wide affliction known as the Bleaching. Gnomes who fail to dream and innovate begin to slowly lose their color and fall into a deep depression.</p>\n<p>A notable subgroup of gnomes called umbral gnomes typically have gray or brown skin with a stony texture, and thin, pale hair or bald pates. Umbral gnomes are most numerous in the Darklands, where they go by the name drathnelar. Umbral gnomes often attribute these physical changes to the gnome deity regarded as the first of their kind, Nivi Rhombodazzle. Nivi was a surface gnome who traveled deep into the Darklands and was ultimately rewarded with demigodhood when she exchanged a particular gemstone with the dwarven deity, Torag. Nivi is immune to the Bleaching, and umbral gnomes are often immune or resistant to it as well.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "nature": 5,
+    "stealth": 7,
+    "survival": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 6,
+      "dc": 14,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "gnome",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

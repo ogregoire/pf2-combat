@@ -1,0 +1,244 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 3,
+    "int": 6,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 30,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d10+7)[bludgeoning]], @Check[fortitude|dc:29|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC. A creature that fails this save falls Unconscious, and a creature that succeeds is then temporarily immune to falling unconscious from Greater Constrict for 1 minute.</p></p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The quetz couatl has a Medium or smaller creature Grabbed or Restrained in its jaws</p>\n<hr />\n<p><strong>Effect</strong> The quetz couatl moves the creature into its coils, freeing its fangs to make attacks, then uses Greater Constrict against the creature. The quetz couatl can hold as many creatures in its coils as will fit in its space.</p>",
+      "frequency": null,
+      "name": "Wrap in Coils",
+      "requirements": "The quetz couatl has a Medium or smaller creature Grabbed or Restrained in its jaws",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The quetz coatl spreads their multicolored wings and radiant plumage. Each enemy in a @Template[emanation|distance:30] must attempt a @Check[will|dc:29] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and is temporarily immune to Radiant Wings for 24 hours.</p>\n<p><strong>Success</strong> The creature is Dazzled for 1 round.</p>\n<p><strong>Failure</strong> The creature is dazzled for 1 minute.</p>\n<p><strong>Critical Failure</strong> As failure, plus if the creature is unholy, it is also Stunned 3.</p>",
+      "frequency": null,
+      "name": "Radiant Wings",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "incapacitation",
+        "light",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>The monster can cast its at-will spells any number of times without using up spell slots.</p></p>",
+      "frequency": null,
+      "name": "At-Will Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>To unholy creatures, this is a curse instead of a poison and deals spirit damage instead of poison damage</p>\n<hr />\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:29];</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] damage and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d8[poison]] damage, enfeebled 1, and Off-Guard (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[2d10[poison]] damage, Enfeebled 2, and off-guard (1 round)</p>",
+      "frequency": null,
+      "name": "Quetz Couatl Venom",
+      "requirements": null,
+      "traits": [
+        "holy",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab",
+        "quetz-couatl-venom"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "holy",
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "zeK0ii5YaynhtQi0",
+  "gear": [],
+  "hp": 175,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/quetz-coatl",
+  "immunities": [],
+  "languages": [
+    "common",
+    "empyrean",
+    "sussuran",
+    "utopian"
+  ],
+  "level": 10,
+  "name": "Quetz Coatl",
+  "perception": 21,
+  "publicNotes": "<p>These sacred feathered serpents tirelessly serve the powers of knowledge and justice. Some operate directly as messengers and intermediaries of the deities, while others operate independently in aiding the cause of righteousness. Either way, they watch over mortals and try to influence and aid them from the shadows, shifting from plane to plane to spread wisdom and healing where they are needed. Some quetz coatls are worshipped as divinities in remote or isolated societies, and while they do not encourage such veneration, they use the trust placed in them to foster peace and cooperation with others.</p>\n<p>Quetz coatls are typically 10 to 20 feet long and weigh nearly a ton, with iridescent blue and green scales. Their glorious wings of rainbow-hued feathers span 15 feet. They are carnivorous, feeding on birds, mammals, and even the occasional malicious humanoid.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 16,
+    "arcana": 19,
+    "athletics": 19,
+    "diplomacy": 22,
+    "nature": 22,
+    "occultism": 19,
+    "religion": 22,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Interplanar Teleport (Self Only)",
+          "rank": 7
+        },
+        {
+          "name": "Breath of Life",
+          "rank": 5
+        },
+        {
+          "name": "Divine Wrath",
+          "rank": 4
+        },
+        {
+          "name": "Vapor Form",
+          "rank": 4
+        },
+        {
+          "name": "Mind Reading (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Cleanse Affliction",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        },
+        {
+          "name": "Vitality Lash",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "beast",
+    "couatl",
+    "holy"
+  ],
+  "weaknesses": []
+}

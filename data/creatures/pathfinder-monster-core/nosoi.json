@@ -1,0 +1,212 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 3,
+    "int": 1,
+    "str": -1,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The nosoi takes the appearance of a raven or songbird. This doesn't change its Speed or its attack and damage modifiers with its Strikes.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The nosoi croons an entrancing song. Each living or undead creature within a @Template[emanation|distance:60] must attempt a @Check[will|dc:18] save. The effect lasts until the end of the nosoi's next turn, but the nosoi can Sustain it. A creature that succeeds at its save is temporarily immune for 24 hours. Despite being a mental effect, this ability affects mindless undead.</p>\n<p>Psychopomps are immune to this ability.</p>\n<hr />\n<p><strong>Failure</strong> The creature is Fascinated with the nosoi.</p>\n<p><strong>Critical Failure</strong> The creature is fascinated with the nosoi and must spend each of its actions on its turn to move closer to the nosoi as expediently as possible while avoiding obvious dangers. If a fascinated creature is adjacent to the nosoi, it stays still and doesn't act. If the creature is attacked, the fascination ends.</p>",
+      "frequency": null,
+      "name": "Haunting Melody",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "divine",
+        "incapacitation",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
+      "frequency": null,
+      "name": "Lifesense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A nosoi's Strikes have the benefit of a <em>Ghost Touch</em> property rune and deal an additional @Damage[1d6[void]] damage to living creatures or @Damage[1d6[vitality]] damage to undead.</p>",
+      "frequency": null,
+      "name": "Shepherd's Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4-1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "spirit-touch"
+      ],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "finesse",
+        "magical",
+        "reach-0",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "5KstOkXabrOlZaKR",
+  "gear": [],
+  "hp": 18,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/nosoi",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    }
+  ],
+  "languages": [
+    "chthonian",
+    "diabolic",
+    "empyrean",
+    "requian"
+  ],
+  "level": 1,
+  "name": "Nosoi",
+  "perception": 6,
+  "publicNotes": "<p>A nosoi resembles a whippoorwill, sparrow, or other small bird wearing a heavy leather plague doctor's mask. They are the clerks, messengers, and scribes of the Boneyard, witnessing judgments, directing souls, and generally performing the administrative grunt work that keeps the Boneyard functioning. Most nosois are particularly chatty and eager to discuss how important they consider their individual assignments to be.</p>\n<hr />\n<p>Psychopomps are guardians and shepherds of the dead in the Boneyard, the vast plane of graves where mortal souls are judged and sent on to their eternal rewards or damnations. Psychopomps ensure that the dead come to terms with their transition from mortality and are properly sorted into the appropriate afterlife. They also protect souls from being preyed upon by supernatural predators. Nearly all psychopomps wear masks, especially when they're likely to be interacting with mortals, although the types of masks they wear are as varied as the psychopomps themselves. The courts of the Boneyard preside in Requian, a somber yet melodic language spoken slowly with various tonal shifts.</p>\n<p>Many psychopomps are intimately involved with the Boneyard's massive bureaucracy. Few pursue mercy, justice, or personal gain; their duties to Pharasma and her Boneyard are supreme. Nevertheless, individual psychopomps interpret their duties in different ways, which might put them in conflict with mortals or even with each other.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 3
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "lifesense"
+    }
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 6,
+    "performance": 6,
+    "religion": 6,
+    "society": 2,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 16,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Talking Corpse",
+          "rank": 4
+        },
+        {
+          "name": "Invisibility (At Will, Self Only)",
+          "rank": 2
+        },
+        {
+          "name": "Noise Blast",
+          "rank": 2
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "monitor",
+    "psychopomp"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,165 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 2,
+    "int": -1,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature attacks the subject of bodyguard's defense</p><hr /><p><strong>Effect</strong> The bodyguard makes a Strike against the triggering creature.</p>",
+      "frequency": null,
+      "name": "Bodyguard's Reprisal",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature attacks the subject of bodyguard's defense"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The bodyguard grants an adjacent ally a +2 circumstance bonus to AC. This lasts until the start of the bodyguard's next turn or until the ally is no longer adjacent, whichever comes first.</p>\n<p>Effect: Bodyguard's Defense</p>",
+      "frequency": null,
+      "name": "Bodyguard's Defense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greatclub",
+      "traits": [
+        "backswing",
+        "shove"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Sap",
+      "traits": [
+        "agile",
+        "nonlethal"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Sling",
+      "traits": [
+        "propulsive",
+        "range-increment-50",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "3jkmJgV4zwygUqLy",
+  "gear": [
+    "Greatclub",
+    "Sap",
+    "Sling",
+    "Studded Leather Armor"
+  ],
+  "hp": 25,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/bodyguard",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 1,
+  "name": "Bodyguard",
+  "perception": 8,
+  "publicNotes": "<p>Hired to protect someone famous or powerful, bodyguards use intimidation, quick wits, and martial skill to keep their charges safe. Such mercenaries might be auxiliaries to a noble's personal guards, but with special directives to safeguard their patrons.</p><hr /><p>Whether they're hired to wage war, protect a caravan, or infiltrate an impenetrable fortress, there's ample work for mercenaries all over Golarion.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 7,
+    "intimidation": 6,
+    "society": 2
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

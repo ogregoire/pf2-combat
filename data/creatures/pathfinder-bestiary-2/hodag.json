@@ -1,0 +1,186 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 4,
+    "int": -2,
+    "str": 5,
+    "wis": 4
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster is reduced to 0 HP."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The hodag makes two claw Strikes and one jaws Strike in any order.</p>",
+      "frequency": null,
+      "name": "Rip and Tear",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The hodag Strides, then makes a Strike against a target in reach. If it moves at least 20 feet and succeeds at its Strike, the hodag deals damage normally and then attempts an @Check[athletics|defense:fortitude] check against the creature's Fortitude DC to toss the enemy into the air.</p>\n<p>On a success, the tossed creature is thrown 10 feet in a straight line in the direction of the hodag's choice and then lands Prone. If the creature is knocked into a solid object, it takes @Damage[1d6[bludgeoning]] damage as well before landing prone. The hodag can instead toss a creature straight up in the air. The creature lands in the same square where it started, takes @Damage[1d6[bludgeoning]] damage, and lands prone.</p>",
+      "frequency": null,
+      "name": "Toss",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A hodag sweeps the ground behind it with its tail as it moves, obscuring its tracks. The DCs of checks to Track a hodag are increased by 10.</p>",
+      "frequency": null,
+      "name": "Trackless",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "knockdown"
+      ],
+      "kind": "melee",
+      "name": "Spiked Tail",
+      "traits": [
+        "reach-10",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "1QWZDaBoefL5rWkz",
+  "gear": [],
+  "hp": 90,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/hodag",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Hodag",
+  "perception": 14,
+  "publicNotes": "<p>Because they are often described only in drunken retellings of loggers' or miners' tales, hodags are considered by many to exist only in the local folklore of remote areas. However, some individuals have actually encountered these dangerous beasts firsthand, and even fewer have lived to tell their tales.</p>\n<p>Hodags are reptilian creatures the size of bulls. These vicious predators' long claws can tear creatures apart in seconds. Their backs sport dozens of long spines that run from their snouts all the way down the length of their powerful tails. Their wide mouths are full of sharp and twisted rows of teeth not unlike those of a shark. The hodags' rough, scaly hides carry hues of green and brown, allowing them to blend into their forest surroundings where they ambush prey. Only their glowing red eyes reveal their presence, though hodags have learned to use this to their advantage by drawing attention to their eyes in one area, then closing their eyes and stealthily moving to another area to cause their prey to misconstrue their location.</p>\n<p>In the wintertime, when snow and ice blankets a region, hodags grow a foul-smelling coat of greasy, dark-brown fur that sprouts in tufts from between their scales. A typical hodag measures over 10 feet long from snout to tail and weighs upward of 700 pounds.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 15,
+    "stealth": 14,
+    "survival": 12
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

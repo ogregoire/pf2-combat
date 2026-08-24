@@ -1,0 +1,184 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 2,
+    "int": 3,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The wealthy vigilante Activates one of their affixed talismans</p>\n<p><strong>Requirements</strong> The wealthy vigilante has a hand free</p><hr /><p><strong>Effect</strong> As soon as one of their talismans burns out, the wealthy vigilante pulls another from their crimefighting pouches and deftly Affixes it to replace the used talisman.</p>",
+      "frequency": null,
+      "name": "Quick Replace",
+      "requirements": "The wealthy vigilante has a hand free",
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": "The wealthy vigilante Activates one of their affixed talismans"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The wealthy vigilante makes a melee Strike. If the Strike hits, the vigilante can then Shove the target. This Shove uses the same multiple attack penalty as the Strike and doesn't count toward the vigilante's multiple attack penalty, but the vigilante must Stride after the pushed creature. If the Strike misses, the vigilante can Step up to three times, each of which must take it further from the target. The vigilante can Hide if, after the Steps, they have cover or concealment from the target.</p>",
+      "frequency": null,
+      "name": "Calculated Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The wealthy vigilante's support team has spent years tailoring and tuning the vigilante's equipment. Anyone but the vigilante attempting to use the items takes the same drawbacks they would if they were shoddy items. These peculiarities make the items have no value if sold.</p>",
+      "frequency": null,
+      "name": "Custom Gear",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The vigilante goes on patrol with six talismans of 6th level or lower. The typical set includes a Fear Gem and Emerald Grasshopper affixed, with a Dragon Turtle Scale, Effervescent Ampoule, Feather Step Stone, and Iron Cube in storage.</p>",
+      "frequency": null,
+      "name": "Talisman Prepper",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Flintlock Musket",
+      "traits": [
+        "concussive",
+        "fatal-d10",
+        "magical",
+        "range-increment-70",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longsword",
+      "traits": [
+        "magical",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "iexsv5iflfbqj8po",
+  "gear": [
+    "Crimefighting Pouches",
+    "Dragon Turtle Scale",
+    "Effervescent Ampoule",
+    "Emerald Grasshopper (Affixed)",
+    "Fear Gem (Affixed)",
+    "Flintlock Musket",
+    "Healing Potion (Moderate)",
+    "Iron Cube",
+    "Lifting Belt",
+    "Longsword",
+    "Rounds (Flintlock Musket)",
+    "Studded Leather Armor"
+  ],
+  "hp": 120,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/wealthy-vigilante",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Wealthy Vigilante",
+  "perception": 15,
+  "publicNotes": "<p>By night, this member of the nobility dons a false identity to mete out violent, extralegal justice on petty criminals and the downtrodden. They're possessed of unwavering self-righteousness and the best equipment money can buy.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 16,
+    "athletics": 16,
+    "deception": 17,
+    "intimidation": 17,
+    "society": 16,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

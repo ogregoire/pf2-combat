@@ -1,0 +1,176 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 1,
+    "int": 4,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 29,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per turn</p>\n<p><strong>Requirements</strong> The mage knight's most recent action was to cast a non-cantrip spell</p><hr /><p><strong>Effect</strong> The mage knight siphons spell energy into one weapon they're wielding, or into one of their unarmed attacks. Until the end of the turn, the weapon or unarmed attack deals an extra 2d6 force damage and gains the arcane trait if it didn't have it already. If the spell dealt a different type of damage, the Strike deals this type of damage instead</p>",
+      "frequency": {
+        "max": 1,
+        "per": "turn"
+      },
+      "name": "Bespell Strikes",
+      "requirements": "The mage knight's most recent action was to cast a non-cantrip spell",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Requirements</strong> The mage knight hasn't acted yet on this turn</p><hr /><p><strong>Effect</strong> The mage knight expends the power stored in their bonded item (typically their shield). This gives them the ability to cast one prepared spell they prepared today and already cast, without spending a slot.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Drain Bonded Item",
+      "requirements": "The mage knight hasn't acted yet on this turn",
+      "traits": [
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "Reflex +16 Against Damaging Effects",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Mace",
+      "traits": [
+        "magical",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "0cj7cQhgNnLxbUmR",
+  "gear": [
+    "Full Plate",
+    "Mace",
+    "Spellbook",
+    "Steel Shield"
+  ],
+  "hp": 140,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/mage-knight",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 10,
+  "name": "Mage Knight",
+  "perception": 17,
+  "publicNotes": "<p>Though many spellcasters prefer to defend themselves with magic, some recognize that there's no substitute for a suit of steel. Mage knights defy the stereotype that spellcasters are frail, delicate, and passive and instead choose to hold their own in close-quarter combat.</p><hr /><p>A military serves to defend and fight on behalf of nations and can be trained and deployed in various ways.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 22,
+    "athletics": 21
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Wizard Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Energy Absorption",
+          "rank": 4
+        },
+        {
+          "name": "Force Bolt",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

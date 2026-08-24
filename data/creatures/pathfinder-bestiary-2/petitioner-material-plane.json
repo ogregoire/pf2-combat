@@ -1,0 +1,107 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 2,
+    "int": 2,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster is reduced to 0 HP."
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>All petitioners are formed from and personify the nature of the plane on which they manifest, and their statistics are adjusted as summarized below. They also gain any trait associated with creatures from their plane.</p>\n<p><strong>Material Plane</strong> The remnants are among the rarest of petitioners; they appear as plain, bland versions of the ancestry of their mortal lives</p>\n<ul>\n<li><strong>Alignment</strong> any;</li>\n<li><strong>Language</strong> any one spoken in life (such as Common);</li>\n<li><strong>Additional Ability</strong> Ferocity;</li>\n<li><strong>Melee</strong> fist +7, <strong>Damage</strong> 1d8+2 bludgeoning</li>\n</ul>",
+      "frequency": null,
+      "name": "Planar Incarnation - Material Plane",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "wjcBMB7OvCHrnS39",
+  "gear": [],
+  "hp": 22,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/petitioner-material-plane",
+  "immunities": [],
+  "languages": [],
+  "level": 1,
+  "name": "Petitioner (Material Plane)",
+  "perception": 7,
+  "publicNotes": "<p>When a mortal dies, their soul travels to the Boneyard in the Outer Planes where they are judged by Pharasma, the goddess of the dead. Once they have been judged, their soul is sent on to their final reward or punishment in the afterlife, and in the process is transformed into a creature known as a petitioner. This process grants the soul a new body, one whose shape is the result of the prevailing philosophical forces of the plane to which it is sent. The petitioner's memories from their life are typically wiped nearly clean, allowing them to retain only a few hazy fragments akin to half-remembered dreams. Regardless of the petitioner's size, power, or nature in life, they're a Medium creature in their afterlife.</p>\n<p>Existence as a petitioner can last for eons, but this state is not necessarily eternal. Deities, powerful denizens of the Great Beyond, or even the outer planes themselves can further change the petitioner's nature by transforming them into raw quintessence, spiritual essence that is then used to expand a plane's physical manifestation, or by transforming the petitioner into a new form of supernatural life such as a celestial, monitor, or fiend. Should a petitioner die, their body breaks down in a process akin to decay, their nature reverting back to the quintessence or elements that make up their plane. This represents the true end of a soul's journey: their associated life essence travels back to the heart of the Great Beyond to be recycled into the Positive Energy plane, fueling the creation of entirely new souls.</p>\n<p>The remnants are among the rarest of petitioners; they appear as plain, bland versions of the ancestry of their mortal lives.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "petitioner"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,143 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 2,
+    "dex": 4,
+    "int": 0,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Check[reflex|dc:19]</p>\n<p><hr />\n<p>Most monsters that serve as mounts can attempt to buck off unwanted or annoying riders, but most mounts will not use this reaction against a trusted creature unless the mounts are spooked or mistreated.</p>\n<p><strong>Trigger</strong> A creature Mounts or uses the Command an Animal action while riding the monster.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must succeed at a Reflex saving throw against the listed DC or fall off the creature and land Prone. If the save is a critical failure, the triggering creature also takes @Damage[1d6[bludgeoning]] damage in addition to the normal damage for the fall.</p></p>",
+      "frequency": null,
+      "name": "Buck",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The pegasus is Flying without a rider.</p>\n<hr />\n<p><strong>Effect</strong> The pegasus Flies. At any point during the movement, it can allow a willing adjacent creature to Mount it. That creature must use a reaction to do so.</p>",
+      "frequency": null,
+      "name": "Assisted Mount",
+      "requirements": "The pegasus is Flying without a rider.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The pegasus uses 2 move actions, each of which can be either Stride or Fly. It gains a +20-foot circumstance bonus to its Speeds during a Gallop.</p>",
+      "frequency": null,
+      "name": "Gallop",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": []
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "HMfH0CI1CQCXB9Xr",
+  "gear": [],
+  "hp": 55,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/pegasus",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Pegasus",
+  "perception": 12,
+  "publicNotes": "<p>The pegasus is a winged horse prized for its capacity to serve as an aerial mount. Unfortunately for those who desire a saddle-trained pegasus, pegasi are wild creatures and do not readily accept even well-intentioned riders.</p>\n<p>Pegasi actively resist being mounted or controlled by evil creatures, attempting to buck an unwanted rider at every opportunity. A typical pegasus stands 6 feet high at the shoulder, weighs 1,500 pounds, and has a wingspan of 20 feet.</p>\n<p>Pegasi are highly intelligent beasts and have a strong sense of pride and honor. The best way to entreat a pegasus is by speaking to it with grace and offering gifts appropriate to a creature of such majesty. Prospective riders who seek the mount for a worthy cause or virtuous quest have a much easier time coaxing a pegasus into granting its favor. Regardless, a pegasus never accepts a bit or saddle, for reasons both practical (a standard horse saddle interferes with its wings) and purely out of its pride as a free and untamed creature.</p>\n<p>In the wild, pegasi live in small herds and establish territories on remote mountains where they are relatively safe from hunters and foal thieves. They occasionally move to lower ground during foal fledging season. They mature at the same rate as horses and can even breed with other equines, though the outcome of such unions is typically a foal with the traits of its least magical parent. On rare occasions, the interbreeding of a pegasus and a unicorn may result in a winged unicorn with characteristics of both parents and an unrivaled sense of righteousness.</p>\n<p>Some pegasi carry in them the blood of a mighty and heroic ancestor. These champions of pegasus-kind dedicate their long lives to the pursuit of justice. They possess powerful supernatural abilities to aid them in this fight, such as resistance to fire and poison, immunity to petrification, and holy hoof attacks.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 11,
+    "athletics": 10
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 80
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

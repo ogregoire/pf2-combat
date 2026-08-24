@@ -1,0 +1,277 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 4,
+    "int": 7,
+    "str": 5,
+    "wis": 5
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Effect</strong> Vordakai taps into the <em>Oculus of Abaddon's</em> power to cast any arcane spell up to 6th level, even if the spell being cast is not one of his prepared spells.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Drain Oculus",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per day.</p>\n<p><strong>Trigger</strong> Vordakai is about to roll a d20.</p>\n<p><strong>Effect</strong> Vordakai peers into an occluded spectrum of possible futures. He gets a success (but not a critical success) without rolling.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Flash of Insight",
+      "requirements": null,
+      "traits": [
+        "fortune",
+        "occult"
+      ],
+      "trigger": "Vordakai is about to roll a d20."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature casts a spell Vordakai has prepared.</p>\n<p><strong>Effect</strong> Vordakai expends a prepared spell to counter the triggering creature's casting of that same spell. He loses its spell slot as if he had cast the triggering spell. He then attempts to counteract the triggering spell.</p>",
+      "frequency": null,
+      "name": "Counterspell",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature casts a spell Vordakai has prepared."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Vordakai draws out a creature's memories and consumes them, learning bits and pieces of the world through the victim's thoughts. The lich makes a hand Strike against the target; if he hits, he deals @Damage[6d6[void]] damage. The target must attempt a @Check[will|dc:32] save, after which it is temporarily immune to Consume Memories for 24 hours.</p>\n<hr />\n<p><strong>Critical Success</strong> The target takes no additional ill effects.</p>\n<p><strong>Success</strong> The target becomes Stupefied 1 for 1 round.</p>\n<p><strong>Failure</strong> The target becomes stupefied 1 with an unlimited duration. Vordakai gains a +1 status bonus to all skill checks for 1 minute as a result of the consumed memories.</p>\n<p><strong>Critical Failure</strong> As failure, but the target is Stupefied 2 with an unlimited duration. In addition, Vordakai can telepathically learn one specific bit of secret information known by the victim, subject to the GM's discretion.</p>\n<p>Effect: Consume Memories</p>",
+      "frequency": null,
+      "name": "Consume Memories",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "attack",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Vitality",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Sometimes, a lich that remains immobile and insensible for extended periods of time-as Vordakai did after he was imprisoned in his tomb just prior to Earthfall 10,000 years ago-can become atrophied. The exact effects of atrophy vary from lich to lich but always result in a reduction of spellcasting power and damage to their soul cage link.</p>\n<p>In Vordakai's case, he has forgotten much arcane lore and lost a significant amount of his spellcasting ability. At the height of his power, he was a 20th-level wizard, but today, his power has reduced to that of a 12th-level wizard. More troubling to the lich is the fact that he can no longer use a soul cage to rejuvenate-if Vordakai is destroyed, he crumbles to dust, forever dead. Given time, Vordakai could recover his power and regain his rejuvenation ability, but it's unlikely the PCs will give him that chance, as it would take the lich several years to undo the ravages of centuries.</p>",
+      "frequency": null,
+      "name": "Atrophied Lich",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Vordakai's familiar is Horagnamon</p>",
+      "frequency": null,
+      "name": "Familiar",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>60 feet. @Check[will|dc:29]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature damaged by the lich's hand Strike must succeed at a @Check[fortitude|dc:32] save.</p>\n<p>The creature becomes Paralyzed for 1 round on a failure. On a critical failure, the creature is paralyzed permanently, falls Prone, and seems dead. A @Check[medicine|dc:25|name:Diagnose Paralysis|traits:arcane,curse,necromancy|overrideTraits:true] check reveals the victim is alive.</p>",
+      "frequency": null,
+      "name": "Paralyzing Touch",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "curse",
+        "incapacitation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>If a reaction would disrupt Vordakai's spellcasting action, the lich attempts a @Check[flat|dc:15]. On a success, the action isn't disrupted.</p>",
+      "frequency": null,
+      "name": "Steady Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d8",
+          "type": "void"
+        }
+      ],
+      "effects": [
+        "lich-paralyzing-touch"
+      ],
+      "kind": "melee",
+      "name": "Hand",
+      "traits": [
+        "finesse",
+        "magical",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "eAu4SOvMaNISD3RZ",
+  "gear": [
+    "Eclipsed Incantations",
+    "Oculus of Abaddon"
+  ],
+  "hp": 200,
+  "hpDetails": "void healing",
+  "id": "kingmaker-bestiary/vordakai",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "cyclops",
+    "daemonic",
+    "jotun",
+    "necril"
+  ],
+  "level": 12,
+  "name": "Vordakai",
+  "perception": 23,
+  "publicNotes": "<p>At the height of his power well over 10,000 years ago, the original Vordakai was among the most powerful necromancers of the land. When this cyclops tyrant was defeated during the chaos following Earthfall, one of his apprentices claimed his name as well as his greatest treasure, the <em>Oculus of Abaddon</em>. Though he had been the least of the necromancer's apprentices, the new Vordakai was nevertheless a powerful wizard, but it would take more than power to claim the true Vordakai's mantle. Betrayed by followers of the original leader who refused to serve him, the new Vordakai was sealed into his own tomb, and over the passage of eons, the cyclops lich atrophied.</p>\n<p>Although much weakened today, Vordakai remains a dangerous opponent who can devastate a poorly prepared party on his own. Don't be afraid to play Vordakai as arrogant creature-he has existed for longer than most creatures on Golarion, after all, and if he makes arrogant mistakes (such as neglecting to cast spells defensively or provoking Attacks of Opportunity), that not only gives the PCs a chance to survive but also helps to establish the ancient lich as both overconfident and a bit careless from his long period of quiescence. Keep in mind that Vordakai is the most powerful foe the PCs have encountered in the <em>Kingmaker Adventure Path</em> thus far, and in defeating him, they will accomplish something truly legendary.</p>\n<p>If Vordakai has the chance to prepare for battle before combat, he takes 3 rounds to cast Truespeech, Resist Energy (choosing an energy type he knows the PCs favor as a result of watching them via his familiar), and then Mirror Image just before entering battle. Finally, he activates Truesight using the <em>Oculus of Abaddon</em> before entering combat (doing so in the first round of a fight if instead he's caught by surprise by the PCs).</p>\n<p>Once combat begins, Vordakai starts by casting Dominate on the party's strongest healer; if successful, he commands the healer to his side to defend him by attacking anyone who attacks the lich in melee. On subsequent rounds, Vordakai uses ranged magic against the party, casting Vampiric Exsanguination as soon as he's reduced to 100 Hit Points or fewer. When facing only one or two foes, he prefers to attack with Consume Memories followed by a hand Strike, opting to save his spells for an emergency.</p>\n<p>The greatest diminishment of Vordakai's power is represented through the loss of his soul cage-the magical item he initially used to trap his own soul and enable his transformation into a lich in the first place. He cannot create a replacement as long as he remains atrophied, but his arrogance works against him here. Only if he's reduced below 20 Hit Points does he realize that the PCs have a very good chance to defeat him, and if he survives long enough to take a turn after this realization, he casts his 5th-rank Translocate to flee to area C5 of his tomb. If he's able to escape in this way, he'll wait for a few days before returning to his tomb, infuriated if the PCs have released his prisoners and robbed him blind. At this point, Vordakai can become a recurring villain in your campaign!</p>",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "truesight"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 20,
+    "arcana": 25,
+    "athletics": 21,
+    "crafting": 23,
+    "deception": 21,
+    "intimidation": 21,
+    "occultism": 25,
+    "religion": 25
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

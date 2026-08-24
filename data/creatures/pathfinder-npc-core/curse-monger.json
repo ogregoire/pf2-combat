@@ -1,0 +1,306 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 5,
+    "int": 8,
+    "str": 1,
+    "wis": 4
+  },
+  "ac": 35,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The curse monger shares their awful burden with one creature they can see within 120 feet. The target must succeed at a @Check[will|dc:37] save or be afflicted with the same condition as the curse monger's incurable curse for 24 hours. On a critical failure, the curse's value is 2. The curse lasts for 24 hours but can be removed (unlike the incurable curse), and ends if the curse monger dies. This action has the same tradition trait as incurable curse.</p>",
+      "frequency": null,
+      "name": "Share Burden",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "curse"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. The very earth and air around the curse monger are poisoned by the curses that burden their soul. Any creature who enters or starts their turn in the aura must succeed at a @Check[will|dc:31] save or be Doomed 1 (or Doomed 2 on a critical failure). Regardless of the result of its save, the creature is then temporarily immune for 1 hour.</p>",
+      "frequency": null,
+      "name": "Cursed Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "curse",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The curse monger is permanently Clumsy 1, Drained 1, Enfeebled 1, or Stupefied 1 by a curse that can't be removed from them in any way. The GM chooses the condition and decides whether the curse is arcane, divine, occult, or primal.</p>",
+      "frequency": null,
+      "name": "Incurable Curse",
+      "requirements": null,
+      "traits": [
+        "curse"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "2d4+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Sickle",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "lqlrpoxzBoBH6Hw8",
+  "gear": [
+    "Explorer's Clothing",
+    "Scroll of Fly (Rank 4)",
+    "Sickle"
+  ],
+  "hp": 230,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/curse-monger",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "chthonian",
+    "common",
+    "daemonic",
+    "fey"
+  ],
+  "level": 14,
+  "name": "Curse Monger",
+  "perception": 23,
+  "publicNotes": "<p>Oracles who have been consumed by their visions and the divine gifts bestowed upon them turn to more sinister paths, becoming curse mongers. Seeking to rid themselves of the shadows that haunt them, curse mongers lash out and attempt to bind others to their fate.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 25,
+    "deception": 25,
+    "intimidation": 23,
+    "occultism": 29,
+    "stealth": 24
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 29,
+      "dc": 37,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        },
+        {
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 3,
+          "rank": 6
+        },
+        {
+          "max": 3,
+          "rank": 7
+        }
+      ],
+      "spells": [
+        {
+          "name": "Possession",
+          "rank": 7
+        },
+        {
+          "name": "Cursed Metamorphosis",
+          "rank": 6
+        },
+        {
+          "name": "Dominate",
+          "rank": 6
+        },
+        {
+          "name": "Never Mind",
+          "rank": 6
+        },
+        {
+          "name": "Phantasmal Calamity",
+          "rank": 6
+        },
+        {
+          "name": "Spellwrack",
+          "rank": 6
+        },
+        {
+          "name": "False Vision",
+          "rank": 5
+        },
+        {
+          "name": "Mariner's Curse",
+          "rank": 5
+        },
+        {
+          "name": "Wave of Despair",
+          "rank": 5
+        },
+        {
+          "name": "Outcast's Curse",
+          "rank": 4
+        },
+        {
+          "name": "Vision of Death",
+          "rank": 4
+        },
+        {
+          "name": "Hypercognition",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Blood Vendetta",
+          "rank": 2
+        },
+        {
+          "name": "Darkness",
+          "rank": 2
+        },
+        {
+          "name": "Laughing Fit",
+          "rank": 2
+        },
+        {
+          "name": "Paranoia",
+          "rank": 2
+        },
+        {
+          "name": "Bane",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Ill Omen",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        },
+        {
+          "name": "Void Warp",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

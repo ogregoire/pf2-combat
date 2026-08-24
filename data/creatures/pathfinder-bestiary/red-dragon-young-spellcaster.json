@@ -1,0 +1,253 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 1,
+    "int": 1,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 30,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Jaws only</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Jaws Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a blast of flame that deals @Damage[11d6[fire]|options:area-damage] damage in a @Template[cone|distance:40] (@Check[reflex|dc:30|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:27]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Smoke doesn't impair a red dragon's vision; it ignores the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+12",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+12",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "fire",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "oLdrCmarnzd62kA8",
+  "gear": [],
+  "hp": 210,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/red-dragon-young-spellcaster",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic"
+  ],
+  "level": 10,
+  "name": "Red Dragon (Young, Spellcaster)",
+  "perception": 20,
+  "publicNotes": "<p>The largest and most powerful of the chromatic dragons, red dragons are a menace to civilizations everywhere, and their strength is rivaled only by their arrogance. Red dragons see themselves as regents and overlords of all dragonkind. With their crowns of crimson spikes and their command of blistering frame, this is no haughty boast in their eyes-only unquestioned fact.</p>\n<p>Red dragons don't deign to speak with lesser creatures; they simply dominate and burn, enslaving weaker creatures to act as servants and to look after their lairs while the dragons slumber away. They take pleasure in dominating these creatures, and they demand tribute from their supplicants. Those who anger or disappoint end up eaten or reduced to ash. They command their enslaved minions to constantly build onto their lairs, carving out new tunnels and designing cunning traps that ensure the dragon's security.</p>\n<p>Driven by their arrogance, red dragons are the most likely of the chromatic dragons to ravage settlements. They want the world to see them in their rightful place as powerful tyrants, and they delight in threatening all other creatures. They have no qualms about bullying, manipulating, or killing to complete their goals-or simply intimidating others through a public display of brutality and dominance.</p>\n<p>As legendary as the brutishness of red dragons is the magnificence of their hoards of gold. Their lairs are often situated in dangerous places, with volcanoes being a favorite spot, as they find them foreboding and the constant warmth is comfortable. No matter the locale, red dragons sleep on a litter of coins and other treasures, which they zealously guard. Sometimes, the dragon's internal heat causes these precious metals to fuse together.</p>\n<hr />\n<p>While there are many types of dragons, from the powerful planar dragons to the strange esoteric dragons, few dragon varieties are as well-known and as rightly feared as the chromatic dragons. Differentiated by the hue of their scales, each color of dragon unleashes its own flavor of murderous cruelty-be it by claw, tooth, or breath-and unlike most creatures, dragons only become more powerful as they age. Their lust for treasure, food, bloodshed, and control are legendary. Physically powerful with egos to match, these dragons are often morally depraved and act as criminal masterminds, vicious tyrants, or voracious raiders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 15,
+    "arcana": 17,
+    "athletics": 22,
+    "deception": 19,
+    "diplomacy": 19,
+    "intimidation": 21,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 120
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 27,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    }
+  ]
+}

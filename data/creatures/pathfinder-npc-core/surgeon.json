@@ -1,0 +1,176 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 3,
+    "int": 2,
+    "str": 1,
+    "wis": 4
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The surgeon attempts a @Check[medicine|against:fortitude] check against the Fortitude DC of one living creature they can see within 60 feet.</p>\n<p>On a success, the surgeon's melee Strikes deal an extra 1d6 precision damage against that creature (2d6 on a critical success) until 1 minute passes or the surgeon critically hits that creature, whichever comes first.</p>\n<p>Using this action again ends any previous one. A surgeon can target an individual creature no more than once per day with this ability.</p>",
+      "frequency": null,
+      "name": "Medical Malpractice",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the surgeon rolls a critical failure on a check to Treat Disease, Treat Poison, or Treat Wounds, they get a failure instead.</p>",
+      "frequency": null,
+      "name": "Doctor's Hand",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>In medical matters, a surgeon is a 6th-level challenge.</p>",
+      "frequency": null,
+      "name": "Medical Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Bonesaw",
+      "traits": [
+        "trip"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Scalpel",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Scalpel",
+      "traits": [
+        "agile",
+        "finesse",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "oaqt9bociCp9e3Yr",
+  "gear": [
+    "Bonesaw (Functions as a Temple Sword)",
+    "Healer's Tools",
+    "Scalpel"
+  ],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/surgeon",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Surgeon",
+  "perception": 14,
+  "publicNotes": "<p>The surgeon specializes in the physical alteration of the body to prevent the spread of disease, removing necrotic and decaying flesh to help the whole to survive. Few healers know the science of anatomy and physiology better.</p><hr /><p>The world is a dangerous place. Thankfully, there are those who devote their lives to easing the pain and suffering of others.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "crafting": 10,
+    "diplomacy": 8,
+    "medicine": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

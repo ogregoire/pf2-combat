@@ -1,0 +1,149 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature attacks the palace guard's liege, and the liege is within the guard's melee reach</p><hr /><p><strong>Effect</strong> The liege gains a +2 circumstance bonus to AC against the triggering attack, and the palace guard gains a +2 circumstance bonus to attack and damage rolls until the end of their next turn.</p><hr /><p>Effect: Guard's Parry (Guard)</p>\n<p>Effect: Guard's Parry (Liege)</p>",
+      "frequency": null,
+      "name": "Guard's Parry",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature attacks the palace guard's liege, and the liege is within the guard's melee reach"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The palace guard's last action was a successful halberd Strike</p><hr /><p><strong>Effect</strong> The palace guard attempts to Reposition the creature they hit using their halberd's reach. This attempt neither applies nor counts toward the guard's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Crowd Control",
+      "requirements": "The palace guard's last action was a successful halberd Strike",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Perception to Initiative",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Halberd",
+      "traits": [
+        "reach-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "94fOoBeUT8PgTywH",
+  "gear": [
+    "Chain Mail with Palace Insignia",
+    "Halberd",
+    "Manacles (Simple)"
+  ],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/palace-guard",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Palace Guard",
+  "perception": 12,
+  "publicNotes": "<p>Often the younger offspring of minor nobility or those from long lines of trusted staff, palace guards are in charge of defending the royal family and their inner stronghold. Their days consist of guarding doorways, escorting nobles, and keeping those in their charge as safe as possible.</p><hr /><p>The denizens of a noble court are the most powerful people in a civilization, primed with wealth, station, and authority above the common people.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 14,
+    "diplomacy": 8,
+    "intimidation": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

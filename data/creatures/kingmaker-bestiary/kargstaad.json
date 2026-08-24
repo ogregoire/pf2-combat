@@ -1,0 +1,244 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 8,
+    "dex": 6,
+    "int": 4,
+    "str": 10,
+    "wis": 6
+  },
+  "ac": 43,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
+      "traits": [],
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The frost giant breathes out a @Template[cone|distance:15|damaging:yes]{15-foot cone} of freezing moisture that quickly condenses into ice, dealing @Damage[9d6[cold]] damage. Each creature in the cone must attempt a @Check[reflex|dc:41|basic] save.</p>\n<p>A creature that fails its save is also Immobilized and takes @Damage[2d6[cold]] damage at the end of each of its turns until it gets free (Escape DC 41).</p>\n<p>The giant can't use Chill Breath again for [[/gmr 1d4 #Recharge Chill Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Chill Breath",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> Kargstaad isn't Fatigued or raging.</p>\n<hr />\n<p><strong>Effect</strong> Kargstaad gains 25 temporary hit points, deals an extra 12 points of damage with thrown rocks, and deals an extra 6 points of damage with hatchets. He takes a -1 penalty to AC and can't use actions with the concentrate trait (except Seek) unless they also have the rage trait.</p>\n<p>Effect: Rage</p>",
+      "frequency": null,
+      "name": "Rage",
+      "requirements": "Kargstaad isn't Fatigued or raging.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The frost giant makes a single greataxe Strike and compares the attack roll result to the ACs of up to two foes within its reach. This counts as two attacks for the frost giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> Each of Kargstaad's four hands wields a hatchet.</p>\n<hr />\n<p><strong>Effect</strong> Kargstaad Strides up to half his speed, then makes four hatchet Strikes, applying his multiple attack penalty as normal.</p>",
+      "frequency": null,
+      "name": "Hatchet Onslaught",
+      "requirements": "Each of Kargstaad's four hands wields a hatchet.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
+      "frequency": null,
+      "name": "Fast Healing 20",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A frost giant isn't impeded by difficult terrain caused by snow or ice, nor does it need to attempt Acrobatics checks to keep from falling on slippery ice.</p>",
+      "frequency": null,
+      "name": "Ice Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When Kargstaad rolls a success on a Fortitude save, he gets a critical success instead.</p>",
+      "frequency": null,
+      "name": "Juggernaut",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "cold"
+        },
+        {
+          "category": null,
+          "formula": "3d6+18",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "magical",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10 + 18",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "rock"
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "wJDtBtvRtyxtyqHS",
+  "gear": [
+    "Hatchet",
+    "Hide Armor",
+    "Rock",
+    "Sack"
+  ],
+  "hp": 360,
+  "hpDetails": "fast healing 20",
+  "id": "kingmaker-bestiary/kargstaad",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
+  ],
+  "languages": [
+    "aklo",
+    "common",
+    "fey",
+    "jotun"
+  ],
+  "level": 19,
+  "name": "Kargstaad",
+  "perception": 33,
+  "publicNotes": "<p>Frost giants are remorseless marauders who pillage and plunder from those who dare to live near them in desolate, frigid lands. Their clans range from extremely territorial hunters who claim an expanse of tundra and defend it at all costs to nomadic hordes that roam icy slopes in search of settlements to conquer. Frost giant clans are ruled by those who exhibit the greatest ferocity and prowess in battle-massive brutes who proclaim themselves jarl and demand absolute obedience from their followers. If at any time a frost giant wishes to be a jarl, all they must do is issue a challenge to the current jarl and face off in mortal combat, after which the reigning champion continues leading the clan or the victorious challenger assumes control.</p>\n<p>Frost giants live in frostbitten realms, and their appearance is reflective of a people weathered and hardened by relentless snowstorms and freezing temperatures. They often wear metal armor adorned with the furs, skin, teeth, and tusks of slain beasts and heft weapons as long as dining tables. Their flesh ranges from pale blue to shale gray, and their hair is typically a dingy white or dirty yellow color.</p>\n<p>A typical frost giant stands about 15 feet tall and weighs approximately 2,800 pounds.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They are divided into a number of subtypes.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 35
+    },
+    "reflex": {
+      "detail": null,
+      "value": 31
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 39,
+    "crafting": 33,
+    "intimidation": 37,
+    "stealth": 33
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "cold",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 20
+    }
+  ]
+}

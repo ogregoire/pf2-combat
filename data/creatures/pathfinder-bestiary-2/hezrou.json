@@ -1,0 +1,259 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 3,
+    "int": 4,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 31,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The hezrou is grappling a creature</p>\n<hr />\n<p><strong>Effect</strong> Toxic fluids spurt from burst boils and weeping wens on the hezrou's body. A creature Grabbed or Restrained by the hezrou takes @Damage[(2d12+6)[poison]] damage (@Check[fortitude|dc:30|basic] save).</p>",
+      "frequency": null,
+      "name": "Poisonous Pustules",
+      "requirements": "The hezrou is grappling a creature",
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A hezrou revels in the foulness it exudes and becomes distraught when contaminations are purified. The first time in a round when a contamination is purified (such as via purify food and drink) or a toxin is neutralized (such as via neutralize poison) within 30 feet of a hezrou, the demon takes @Damage[6d6[mental]] damage.</p>",
+      "frequency": null,
+      "name": "Purity Vulnerability",
+      "requirements": null,
+      "traits": [
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A creature entering the aura or starting its turn in the aura must succeed at a @Check[fortitude|dc:27] save or become Sickened 1 (plus Slowed 1 for as long as itʼs sickened on a critical failure).</p>\n<p>While within the aura, affected creatures take a -2 circumstance penalty to saves against disease and to recover from the sickened condition. A creature that succeeds at its save is temporarily immune for 1 minute.</p>",
+      "frequency": null,
+      "name": "Stench",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "disease",
+        "olfactory"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "2d12+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "wqiFcGPARy8zmQfd",
+  "gear": [],
+  "hp": 245,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/hezrou",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 11,
+  "name": "Hezrou",
+  "perception": 21,
+  "publicNotes": "<p>Hezrous dwell in the vast and endless Abyssal swamps, mires, and waterways and are equally at home on land and in the water. A hezrou's presence has an obvious effect on nearby flora and water, causing plant life to twist and knot and infusing water with a foul odor and brackish taste-signs much easier to spot on the Material Plane than in the Abyss. Long exposure to this corruption can cause vile transformations and hideous mutations, and entire miserable communities of corrupted creatures sometimes rise in swamplands where a hezrou dwells. Hezrous themselves prefer simple pleasures, and they often waste their considerable intellect in the pursuit of comfortable places to slumber, squealing meals to eat, or objects of beauty to deface. They do not seek out cults to fawn over them but will not turn away those who seek to worship on their own. Hezrous form from the souls of those who abused and polluted their environs or neighbors, either through the introduction of toxins to the region or the insidious spread of drugs and poisons through a society.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "arcana": 21,
+    "athletics": 24,
+    "intimidation": 23,
+    "stealth": 20
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 27,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Paranoia",
+          "rank": 6
+        },
+        {
+          "name": "Abyssal Plague",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Divine Wrath",
+          "rank": 4
+        },
+        {
+          "name": "Divine Wrath (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Gaseous Form",
+          "rank": 4
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "demon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

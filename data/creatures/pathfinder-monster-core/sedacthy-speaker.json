@@ -1,0 +1,244 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 3,
+    "int": 2,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The sedacthy speaker takes damage</p>\n<p><strong>Requirements</strong> The sedacthy speaker has cover from an animal ally</p>\n<hr />\n<p><strong>Effect</strong> The animal takes the damage instead.</p>",
+      "frequency": null,
+      "name": "Speaker's Privilege",
+      "requirements": "The sedacthy speaker has cover from an animal ally",
+      "traits": [],
+      "trigger": "The sedacthy speaker takes damage"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The sedacthy speaker is adjacent to a Large or larger animal ally</p>\n<hr />\n<p><strong>Effect</strong> The speaker gains cover until the start of their next turn or when they're no longer adjacent to the animal, whichever comes first.</p>",
+      "frequency": null,
+      "name": "Animal Shield",
+      "requirements": "The sedacthy speaker is adjacent to a Large or larger animal ally",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The sedacthy shrieks across a range of painfully high tones, dealing @Damage[3d6[sonic],1d6[mental]]{3d6 sonic damage and 1d6 mental damage} to all creatures in a @Template[cone|distance:30], with a @Check[fortitude|dc:23|basic] save. A creature that fails its save is Sickened 1.</p>",
+      "frequency": null,
+      "name": "Painful Cry",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "sonic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The sedacthy makes a jaws Strike. If it hits, an ally of their choice can spend a reaction to make a jaws Strike against the same target. Allies with beaks or similar attacks can use those instead of jaws.</p>",
+      "frequency": null,
+      "name": "Shared Feast",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The speaker is adjacent to an animal ally</p>\n<hr />\n<p><strong>Effect</strong> The speaker and the animal both Swim, ending their movement adjacent to one another.</p>",
+      "frequency": null,
+      "name": "Swim Together",
+      "requirements": "The speaker is adjacent to an animal ally",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The speaker's Strikes deal 1d6 additional damage to creatures that are Frightened or Sickened.</p>",
+      "frequency": null,
+      "name": "Exploit Weakness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A sedacthy speaking Thalassic can be understood by any animal that has a swim Speed or the amphibious or aquatic trait. By spending a week regularly interacting with such an animal, the sedacthy can make it permanently helpful.</p>",
+      "frequency": null,
+      "name": "Sea Speech",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>This sense allows a monster to feel vibrations caused by movement through a liquid. It's an imprecise sense with a limited range (listed in the ability). Wavesense functions only if monster and the subject are in the same body of liquid, and only if the subject is moving through the liquid.</p></p>",
+      "frequency": null,
+      "name": "Wavesense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d4",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Trident",
+      "traits": [
+        "magical"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Trident",
+      "traits": [
+        "magical",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "NAKHn3jzuaZTerir",
+  "gear": [
+    "Trident"
+  ],
+  "hp": 95,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/sedacthy-speaker",
+  "immunities": [],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 6,
+  "name": "Sedacthy Speaker",
+  "perception": 15,
+  "publicNotes": "<p>High-ranking sedacthies are expected to both plan campaigns and wade into battle. These speakers achieve their rank by accumulating several large servants or a single massive creature like a megalodon.</p>\n<hr />\n<p>Sedacthies are amphibious, fish-like humanoids who lurk in Golarion's oceans and are known for leading their animal servants ashore to devour air breathers. When an entire fishing village disappears overnight, sedacthies are the first suspects. Sedacthies pride themselves as natural leaders, with ambition limited only by their strict adherence to hierarchy. A sedacthy's station is determined by the strength of the animal servants they press into service, and the mettle they prove during hunts and in battles against outsiders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "wavesense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 16,
+    "crafting": 14,
+    "diplomacy": 13,
+    "intimidation": 15,
+    "nature": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "humanoid",
+    "sedacthy"
+  ],
+  "weaknesses": []
+}

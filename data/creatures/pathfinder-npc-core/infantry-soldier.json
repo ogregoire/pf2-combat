@@ -1,0 +1,157 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 0,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 18,
+  "acDetails": "(20 with shield raised)",
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The infantry soldier Raises their Shield, but grants the benefit to an adjacent ally and can Shield Block for that ally. Guardian Shield ends early if at any point the ally is no longer adjacent.</p>",
+      "frequency": null,
+      "name": "Guardian Shield",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "8ZkfzgUmN06j4jIu",
+  "gear": [
+    "Bolts",
+    "Chain Mail",
+    "Crossbow",
+    "Shortsword",
+    "Wooden Shield"
+  ],
+  "hp": 28,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/infantry-soldier",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Infantry Soldier",
+  "perception": 8,
+  "publicNotes": "<p>Though low on the military hierarchy, infantry are still highly disciplined warriors, challenging for any ordinary person to face in combat.</p><hr /><p>A military serves to defend and fight on behalf of nations and can be trained and deployed in various ways.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 10,
+    "intimidation": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

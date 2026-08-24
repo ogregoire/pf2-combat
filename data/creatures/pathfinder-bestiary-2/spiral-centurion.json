@@ -1,0 +1,140 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 5,
+    "dex": 6,
+    "int": -5,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 31,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The spiral centurion has not acted yet this turn</p>\n<hr />\n<p><strong>Effect</strong> The spiral centurion Strides up to its Speed. It then gains a +2 circumstance bonus to attack and damage rolls until the end of its turn.</p>",
+      "frequency": null,
+      "name": "Rev Up",
+      "requirements": "The spiral centurion has not acted yet this turn",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The spiral centurion hurls one of its blades with an angled spin to ensure a swooping flight path. The blade deals @Damage[6d6[slashing]] damage to each creature in a @Template[line|distance:40] (@Check[reflex|dc:30|basic] save).</p>\n<p>At the start of the spiral centurion's next turn, the blade swoops around and returns along the same flight path, again dealing @Damage[6d6[slashing]] damage (@Check[reflex|dc:30|basic] save) to each creature along the same line.</p>",
+      "frequency": null,
+      "name": "Hurl Blade",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, blade, @Check[reflex|dc:30|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The spiral centurion spins furiously in place, its blades extended to slice through nearby creatures. It makes up to five melee blade Strikes. No single creature can be targeted by more than one blade Strike during one use of this ability. These attacks count toward the spiral centurion's multiple attack penalty, but the multiple attack penalty doesn't increase until after all the attacks are made.</p>",
+      "frequency": null,
+      "name": "Whirling Death",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A spiral centurion's top-like design makes it susceptible to effects that would cause it to fall prone. The DC of any attempt to knock the spiral centurion Prone is reduced by 5. If the spiral centurion attempts a check or saving throw to resist being knocked prone, it takes a -5 status penalty. A spiral centurion that has been knocked prone can't use any actions other than to attempt to Stand, but it must succeed at a @Check[acrobatics|dc:30] check to do so.</p>",
+      "frequency": null,
+      "name": "Top-Heavy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+12",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Blade",
+      "traits": [
+        "agile",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "q6FDEqLZQVjZfJ3x",
+  "gear": [],
+  "hp": 170,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/spiral-centurion",
+  "immunities": [],
+  "languages": [],
+  "level": 11,
+  "name": "Spiral Centurion",
+  "perception": 20,
+  "publicNotes": "<p>These mechanical constructs were created to serve as guardians in an ancient and bygone era, although exactly who made them and the secrets of their construction have long since been lost to history. From the waist up, they resemble humanoids made of metal, but from the waist down their bodies take the form of spinning metal tops ringed with blades, which excel at cutting down nearby foes. Most spiral centurions can be directed to stand down with a password, although often these command phrases have been lost to the mists of time. In rare cases, a spiral centurion may also wield manufactured weapons or a shield in addition to its built-in weapons, giving it access to additional actions besides those listed below.</p>\n<p>Most spiral centurions are hundreds or even thousands of years old, only staying functional because of the powerful magic used in their creation. Still, millennia of neglect have caused many spiral centurions to develop small glitches or malfunctions.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 23,
+    "athletics": 23
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "mindless"
+  ],
+  "weaknesses": []
+}

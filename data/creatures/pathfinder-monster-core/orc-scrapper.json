@@ -1,0 +1,141 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 2,
+    "int": 0,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster is reduced to 0 HP."
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Javelin",
+      "traits": [
+        "thrown-30"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Orc Knuckle Dagger",
+      "traits": [
+        "agile",
+        "disarm"
+      ]
+    }
+  ],
+  "foundryId": "YReM6QbqwUz3UTP7",
+  "gear": [
+    "Breastplate (Shoddy)",
+    "Javelin",
+    "Orc Knuckle Dagger"
+  ],
+  "hp": 18,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/orc-scrapper",
+  "immunities": [],
+  "languages": [
+    "common",
+    "orcish"
+  ],
+  "level": 0,
+  "name": "Orc Scrapper",
+  "perception": 5,
+  "publicNotes": "<p>Acting as the most common orc combat unit, orc scrappers are ferocious fighters who rely on unrelenting strength, rather than combat experience, to prove their mettle and attempt to rise in the hold's standing.</p>\n<hr />\n<p>Many orcs are forged in the fires of violence and conflict, often from the moment they're born. As they live lives that are frequently cut brutally short, orcs revel in testing their strength against worthy foes, whether by challenging a higher-ranking member of their community for dominance, taming a powerful beast, or slaying a fearsome monster.</p>\n<p>Tall and powerful, with long arms and thickly muscled legs, many orcs top 7 feet in height. Their heavy limbs and broad, almost bow-legged stances combine with a tendency to slouch forward to create an almost contradictory set of circumstances where an orc can tower over other humanoids while simultaneously staring them in the eye. These features, alongside a tendency to scar easily, can make them seem quite intimidating.</p>\n<p>The half-orc dromaars, most commonly born of unions between orcs and humans, are often tested even more harshly than their full orc kin, but those who endure these tests can rise to positions of authority. \"An orc can have what an orc can hold\" is a saying that not only applies to an individual's ability to secure their own destiny and position, but is also likely the root of orcs referring to their communities as holds.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 2
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 5,
+    "intimidation": 2
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "orc"
+  ],
+  "weaknesses": []
+}

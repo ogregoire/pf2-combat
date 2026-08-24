@@ -1,0 +1,133 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 4,
+    "dex": 0,
+    "int": -4,
+    "str": 7,
+    "wis": 2
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, foot, @Check[reflex|dc:24|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature struck by the ankylosaurus's tail must attempt a @Check[fortitude|dc:24] save.</p>\n<p>On a failure, it's Stunned 1; on a critical failure, it's Stunned 3.</p>",
+      "frequency": null,
+      "name": "Punishing Tail",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "punishing-tail"
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "backswing",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "CYt04IKRQeiC9Ly9",
+  "gear": [],
+  "hp": 90,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/ankylosaurus",
+  "immunities": [],
+  "languages": [],
+  "level": 6,
+  "name": "Ankylosaurus",
+  "perception": 12,
+  "publicNotes": "<p>Squat, heavily armored quadrupeds, ankylosauruses are stubborn and irascible. Although they're herbivores, ankylosauruses have been known to attack trespassers simply out of ill temper.</p>\n<p>Ankylosauruses have few natural predators, as their bony hides are covered in spiked nubs that jut in many different directions to discourage larger creatures from biting them. An ankylosaurus is about 30 feet long, 10 feet tall at the shoulder, and weighs over 3 tons.</p>\n<hr />\n<p>Remnants from the world's primeval era, these enormous reptilian animals still exist in large numbers in remote wildernesses or underground in magical Darklands caverns. Lizardfolk, orcs, giants, and other humanoids who live near dinosaurs use the animals as mounts, guards, or hunting beasts. Occasionally, rich nobles will collect dinosaurs to display them in menageries, which almost inevitably leads to cast-offs being nursed back to health by druids and other champions of nature. When dinosaurs establish themselves in regions outside their normal habitats, it's often the result of a large collection being released.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "dinosaur"
+  ],
+  "weaknesses": []
+}

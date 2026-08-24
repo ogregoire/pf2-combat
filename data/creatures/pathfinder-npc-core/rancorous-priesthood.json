@@ -1,0 +1,200 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 2,
+    "int": 2,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 31,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The members of the mob wildly swing their weapons in a chaotic attack at each enemy in a @Template[type:emanation|distance:5] with a @Check[reflex|dc:25|basic|options:area-effect] save. The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d12+2)[slashing]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d12+9)[slashing]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d12+9)[slashing]|options:area-damage] damage</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Wild Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "1",
+      "description": "<p><p>The troop chooses one of the squares it currently occupies and redistributes its squares to any configuration in which all squares are contiguous and within 15 feet of the chosen square. The troop can't share its space with other creatures.</p></p>",
+      "frequency": null,
+      "name": "Form Up",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 130 (3 segments), 65 (2 segments)</p>\n<hr />\n<p><p>Troops are composed of many individuals, represented by four \"segments\" on a battle grid. Each segment is 10 feet on each side and as tall as the individual members of the troop. Segments must remain contiguous. Each one has to share at least 5 feet of one of its edges with another segment—being adjacent on a diagonal isn't sufficient! You can measure flanking, cover, and the like using the center of any segment.</p>\n<p>A troop has two Hit Point thresholds in its HP entry and loses segments as it crosses thresholds. Typically, the higher threshold is at 2/3 of the troop's maximum Hit Points and the lower is at 1/3 of its maximum. Once the troop drops below the higher threshold, it loses one segment, leaving three segments (12 squares) remaining and setting the first threshold as the troop's new maximum Hit Points. This repeats when the troop drops below the lower threshold, leaving two segments (8 squares). At 0 Hit Points, the troop disperses entirely, with the few remaining members surrendering, Fleeing, or easily dispatched, as determined by the GM. Typically the creature who caused the troop to lose a segment decides which to remove, or the GM decides when a specific creature wasn't responsible. To restore lost segments and maximum Hit Points, a troop needs to spend downtime to use long-term treatment on casualties or recruit new members to replace the fallen.</p>\n<p>Troops are typically immune to non-damaging effects that target a single creature, such as a Charm spell or the Demoralize action. An ability that can target 5 or more creatures can target an entire segment, increasing to two segments if it can target 10 or more creatures and to the entire troop if it can target 20 or more creatures. An ability that affects all creatures in a certain range affects all segments in range (make any checks or saves separately for each segment). As examples, an 8th rank <em>charm</em> spell (with 10 targets) can affect two segments, and an ability that Demoralizes all creatures within 30 feet of you would affect all segments that are fully within that range. A non-damaging ability that would prevent a segment from acting, cause them to flee, or otherwise make them unable to function as part of the troop for a round or more removes the segment entirely. The troop loses a number of HP required to bring it to the next threshold. If an ability both deals damage and has a non-damaging effect, apply the damage then the rest of the effect.</p></p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the rancorous priesthood Casts a Spell, their constituent members combine their efforts into casting a more powerful version of the spell than any one member could achieve alone. When Casting a Spell that has an area of a burst, cone, or line and doesn't have a duration, increase the area of that spell. Add 5 feet to the radius of a burst that normally has a radius of at least 10 feet (a burst with a smaller radius is not affected). Add 5 feet to the length of a cone or line that is normally 15 feet long or smaller, and add 10 feet to the length of a larger cone or line.</p>",
+      "frequency": null,
+      "name": "Troop Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "uFQsIRC0zz3sNNIW",
+  "gear": [],
+  "hp": 195,
+  "hpDetails": "thresholds 130 (3 segments), 65 (2 segments)",
+  "id": "pathfinder-npc-core/rancorous-priesthood",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common"
+  ],
+  "level": 11,
+  "name": "Rancorous Priesthood",
+  "perception": 21,
+  "publicNotes": "<p>Followers of Rovagug must usually conceal their devotion to the Rough Beast, hiding in remote cave complexes or abandoned ruins, but they emerge when they sense weakness, gathering together into a destructive, homicidal mob to hunt down priests of rival deities or slaughter entire towns.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 22,
+    "intimidation": 21,
+    "religion": 22
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Cleric Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Destructive Aura",
+          "rank": 4
+        },
+        {
+          "name": "Cry of Destruction",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Divine Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 2,
+          "rank": 6
+        }
+      ],
+      "spells": [
+        {
+          "name": "Divine Immolation",
+          "rank": 5
+        },
+        {
+          "name": "Shadow Blast",
+          "rank": 5
+        },
+        {
+          "name": "Noise Blast",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Divine Lance",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid",
+    "troop",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "area-damage",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "splash-damage",
+      "value": 10
+    }
+  ]
+}

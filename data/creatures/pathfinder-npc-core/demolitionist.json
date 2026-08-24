@@ -1,0 +1,183 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 3,
+    "int": 4,
+    "str": 1,
+    "wis": 0
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">2</span></p><hr /><p>The demolitionist plants a mine in an adjacent square. If a creature moves onto a space with a mine, the mine explodes. This deals @Damage[3d8[fire]] damage to the creature with a @Check[reflex|dc:21|basic] save. The demolitionist can use 2 actions to Plant a Mine to hide the mine, granting it a Stealth DC of 21. Creatures that didn't see the mine as it was planted must actively search for it (using the Search activity while exploring or the Seek action in an encounter).</p>",
+      "frequency": null,
+      "name": "Plant Mine",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The demolitionist quickly throws a stick of dynamite up to 20 feet away that explodes in @Template[type:burst|distance:5]. Creatures within the burst take @Damage[4d4[fire]|options:area-damage] damage with a @Check[reflex|dc:21|basic|options:area-effect] save.</p>",
+      "frequency": null,
+      "name": "Toss Dynamite",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The demolitionist plants a powerful wall charge on a flat surface such as a door or wall. Once the charge is planted, it explodes after 1 minute, dealing @Damage[60[fire]] damage to the surface and ignoring up to 15 of the surface's Hardness. The explosive also deals @Damage[5d6[fire]|options:area-damage] damage to creatures within @Template[burst|distance:30]{30 feet} of the explosive with a @Check[reflex|dc:25|basic|options:area-effect] save.</p>",
+      "frequency": null,
+      "name": "Wall Charge",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the demolitionist is reduced to 0 Hit Points while they have any explosives still in their bag, the remaining explosives detonate, unleashing an explosion of fire upon all creatures in a @Template[type:emanation|distance:30]. Each creature in the area takes @Damage[3d6[fire]|options:area-damage] damage with a @Check[reflex|dc:19|options:area-effect,damaging-effect] save.</p>",
+      "frequency": null,
+      "name": "Explosive Demise",
+      "requirements": null,
+      "traits": [
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The demolitionist can replenish their stock of explosives with 4 hours of downtime.</p>",
+      "frequency": null,
+      "name": "Replenish Explosives",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Light Mace",
+      "traits": [
+        "agile",
+        "finesse",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "ICvWcraGWylA1k9d",
+  "gear": [
+    "Bag of Explosives",
+    "Dynamite",
+    "Leather Armor",
+    "Light Mace",
+    "Mine",
+    "Wall Charge"
+  ],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/demolitionist",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Demolitionist",
+  "perception": 10,
+  "publicNotes": "<p>While most engineers take immense pride in their work constructing something that may survive many lifetimes, the demolitionist takes pride in destroying such pompous things in the most spectacular way possible. Every design has a flaw, and that flaw usually involves large quantities of explosives. Demolitionists are often pragmatic and calculated, taking great care to destroy whatever lies before them as efficiently as possible.</p><hr /><p>Although relatively uncommon across much of Golarion, the frequently eccentric but undeniably brilliant minds who create elaborate devices of clockwork, gunpowder, and steam often loom much larger in the public eye than their numbers would suggest.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 9,
+    "crafting": 12,
+    "intimidation": 10,
+    "thievery": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

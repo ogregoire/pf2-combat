@@ -1,0 +1,207 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 7,
+    "dex": -5,
+    "int": -5,
+    "str": 7,
+    "wis": 0
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d8+7)[bludgeoning],1d6[acid]]{1d8+7 bludgeoning damage plus 1d6 acid damage}, @Check[fortitude|dc:26|basic] save</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A creature that hits the pudding with a metal or wooden weapon must succeed at a @Check[reflex|dc:22] save or the weapon takes @Damage[2d6[acid]] damage (after dealing damage to the black pudding as normal). Thrown weapons and ammunition take this damage automatically with no save.</p>",
+      "frequency": null,
+      "name": "Corrosive Mass",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the pudding hits a creature with its pseudopod, any acid damage is dealt to the creature's armor or clothing as well as the creature.</p>",
+      "frequency": null,
+      "name": "Corrosive Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A black pudding can sense nearby motion through vibration and air movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the black pudding is hit by an attack that would deal slashing or piercing damage and has 10 or more HP, it splits into two identical puddings, each with half the original's HP.</p>\n<p>One pudding is in the same space as the original, and the other appears in an adjacent unoccupied space. If no adjacent space is unoccupied, it automatically pushes creatures and objects out of the way to fill a space (the GM decides if an object or creature is too big or sturdy to push).</p>",
+      "frequency": null,
+      "name": "Split",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The pudding can climb on ceilings and other inverted surfaces, though such surfaces are difficult terrain for it.</p>",
+      "frequency": null,
+      "name": "Suction",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "corrosive-touch",
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Pseudopod",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "saEPHCN5lDiylb5H",
+  "gear": [],
+  "hp": 165,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/black-pudding",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
+  ],
+  "languages": [],
+  "level": 7,
+  "name": "Black Pudding",
+  "perception": 9,
+  "publicNotes": "<p>Most often found below ground, these oozes scour caves for objects to dissolve with their corrosive secretions. This caustic acid is particularly dangerous to creatures that attack a pudding, as it can quickly damage and destroy gear.</p>\n<hr />\n<p>Slimes, molds, and other oozes can be found in dank dungeons and shadowed forests. While not necessarily evil, some grow to enormous sizes and have insatiable appetites.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 18
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "ooze"
+  ],
+  "weaknesses": []
+}

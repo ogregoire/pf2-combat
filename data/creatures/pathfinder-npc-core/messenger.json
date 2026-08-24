@@ -1,0 +1,189 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 3,
+    "int": 0,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "2",
+      "description": "<p>The messenger Interacts to take an item of light Bulk or less held by a willing ally within reach, Strides, then delivers the item to a willing ally in reach at their new location.</p>",
+      "frequency": null,
+      "name": "Special Delivery",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Messengers get a +2 circumstance bonus to @Check[diplomacy|options:dont-shoot-the-messenger] checks to convince another creature not to blame them for any news they deliver.</p>",
+      "frequency": null,
+      "name": "Don't Shoot the Messenger",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Allies traveling with the messenger gain a +5-foot circumstance bonus to travel Speed, to a maximum of the messenger's travel Speed. If they use the Hustle activity, they can Hustle for a minimum of 1 hour instead of the usual amount.</p>",
+      "frequency": null,
+      "name": "Express Messenger",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Messengers can use Society in place of Survival to [[/act sense-direction skill=society]] when they're on a road.</p>",
+      "frequency": null,
+      "name": "Road Runner",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Sling",
+      "traits": [
+        "propulsive",
+        "range-increment-50",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "z1tLeckmpJuStmlx",
+  "gear": [
+    "Dagger",
+    "Satchel of Mail",
+    "Sling",
+    "Sling Bullets"
+  ],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/messenger",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 1,
+  "name": "Messenger",
+  "perception": 6,
+  "publicNotes": "<p>When a message, mail, or package needs to be delivered, messengers make deliveries—typically from large towns and cities or to other towns and cities.</p><hr /><p>Society is built upon the backs of laborers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 5,
+    "diplomacy": 6,
+    "society": 7,
+    "survival": 4
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

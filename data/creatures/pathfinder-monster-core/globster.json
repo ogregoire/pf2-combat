@@ -1,0 +1,165 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 5,
+    "dex": -5,
+    "int": -5,
+    "str": 6,
+    "wis": 0
+  },
+  "ac": 12,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d8+6)[bludgeoning]], @Check[fortitude|dc:22|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A living creature struck by a globster's tendril must attempt a @Check[fortitude|dc:19] save. On a failure, the creature becomes Sickened 1. If the creature is already sickened, the condition value increases by 1, to a maximum of sickened 4.</p>\n<p>Once a creature succeeds at its saving throw, it is temporarily immune for 24 hours.</p>",
+      "frequency": null,
+      "name": "Nauseating Slap",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A globster can survive for 1 hour out of the water, after which it risks drowning and suffocation.</p>",
+      "frequency": null,
+      "name": "Saturated",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet, @Check[fortitude|dc:19]</p>\n<hr />\n<p><p>A creature entering the aura or starting its turn in the area must succeed at a Fortitude save or become Sickened 1 (plus Slowed 1 as long as it's sickened on a critical failure). A creature that succeeds at its save or recovers from being sickened is temporarily immune to all stench auras for 1 minute.</p></p>",
+      "frequency": null,
+      "name": "Stench",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "olfactory"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8 + 6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab",
+        "nauseating-slap"
+      ],
+      "kind": "melee",
+      "name": "Tendril",
+      "traits": []
+    }
+  ],
+  "foundryId": "H9CHNiW18cRFocNO",
+  "gear": [],
+  "hp": 170,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/globster",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [],
+  "level": 5,
+  "name": "Globster",
+  "perception": 9,
+  "publicNotes": "<p>The tide washes ashore all manner of detritus, from harmless seaweed and shells to the rotting corpses of massive aquatic creatures. The globster is often mistaken for such, and this assumption isn't entirely incorrect—these mindless, oozing masses are composed of decaying sea creatures, half-digested and merged into a revolting, reeking heap of blubbery sludge.</p>\n<p>Though mindless, globsters are predators that seek out living quarry. They often huddle on the seafloor, where their own fetid mass attracts scavengers who swiftly become the ooze's next meal. When the tides wash these monsters ashore, they simply shift to hunting land-bound prey. Coastal communities usually notice the smell of a washed-up globster long before they see it. Those sent to investigate often mistake a globster for the carcass of a beached whale before discovering the presumed corpse is very much alive and hungry.</p>\n<p>Sages once believed globsters were undead, undulating wads of rotting flesh driven to feed, but though mindless, they are very much alive. They are attracted to waterside refuse dumps and floating garbage scows and are dimly aware enough to congregate where food is plentiful.</p>\n<p>Since they consist of so much blubber and oily tissue, globsters can be collected for lamp oil, grease, cooking fat, and more. The goo that remains when they decompose works for this purpose, if one can stand the smell. The firmer fat deteriorates quickly, but many an impromptu goblin beach barbecue has deep-fried slabs of it as a delicacy.</p>\n<p>Globsters consume living creatures but digest only a portion of them. The undigested dross accumulates within the globster as it becomes more and more bloated. They carry this fetid mass within their squelching bodies until instinct or injury provokes them to vomit forth a new globster to help devour everything nearby. A globster with enough dross to create a new globster automatically does so as a free action triggered upon taking damage. Treat any encounter with such a globster as though it were against two level 5 creatures, instead of just one. As far as scholars know, this is the only way these creatures can create more of their kind.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [],
+  "size": "large",
+  "skills": {
+    "athletics": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aquatic",
+    "ooze"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity",
+      "value": 10
+    }
+  ]
+}

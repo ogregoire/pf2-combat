@@ -1,0 +1,206 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 3,
+    "int": -3,
+    "str": 2,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": "all-around vision",
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An adjacent creature deals the gibbering mouther slashing damage.</p>\n<hr />\n<p><strong>Effect</strong> The gibbering mouther's wound opens into another maw. It makes a jaws Strike against the triggering creature.</p>",
+      "frequency": null,
+      "name": "Reactive Gnaw",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An adjacent creature deals the gibbering mouther slashing damage."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Check[reflex|dc:22|traits:damaging-effect], @Damage[3d8[piercing]], Escape DC 22, Rupture 8</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of any creatures in its path. Any creature of the monster's size or smaller whose space the monster moves through can attempt a Reflex save with the listed DC to avoid being engulfed. A creature unable to act automatically critically fails this save. If a creature succeeds at its save, it can choose to be either pushed aside (out of the monster's path) or pushed in front of the monster to the end of the monster's movement. The monster can attempt to Engulf the same creature only once in a single use of Engulf. The monster can contain as many creatures as can fit in its space.</p>\n<p>A creature that fails its save is pulled into the monster's body. It is Grabbed, is Slowed 1, and has to hold its breath or start suffocating. The creature takes the listed amount of damage when first engulfed and at the end of each of its turns while it's engulfed. An engulfed creature can get free by Escaping against the listed escape DC. An engulfed creature can attack the monster engulfing it, but only with unarmed attacks or with weapons of light Bulk or less. The engulfing creature is Off-Guard against the attack. If the monster takes piercing or slashing damage equaling or exceeding the listed Rupture value from a single attack or spell, the engulfed creature cuts itself free.\n<p>Effect: Engulf and Swallow Whole</p>\n<p>A creature that gets free by either method can immediately breathe and exits the swallowing monster's space.</p>\n<p>If the monster dies, all creatures it has engulfed are automatically released as the monster's form loses cohesion.</p></p>",
+      "frequency": null,
+      "name": "Engulf",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The gibbering mouther causes stone and earth under its body to grow soft and muddy, remaining so for 1 minute after the mouther moves off the location. A gibbering mouther can move through these areas with ease, but other creatures treat them as difficult terrain.</p>",
+      "frequency": null,
+      "name": "Ground Manipulation",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature that takes damage from a gibbering mouther's spittle must succeed at a @Check[fortitude|dc:22] save or be Dazzled for 1 round (or Blinded for 1 round on a critical failure).</p>",
+      "frequency": null,
+      "name": "Burn Eyes",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>60 feet. Each creature that begins its turn within 60 feet of a gibbering mouther must attempt a @Check[will|dc:19] save. On a failure, they are Confused for 1 round. On a success, they are temporarily immune for 1 minute.</p>",
+      "frequency": null,
+      "name": "Gibbering",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "aura",
+        "emotion",
+        "incapacitation",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "2d8+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d6",
+          "type": "acid"
+        }
+      ],
+      "effects": [
+        "burn-eyes"
+      ],
+      "kind": "ranged",
+      "name": "Spittle",
+      "traits": [
+        "range-30"
+      ]
+    }
+  ],
+  "foundryId": "dEAneTvoPuQXZoLR",
+  "gear": [],
+  "hp": 120,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/gibbering-mouther",
+  "immunities": [],
+  "languages": [
+    "aklo"
+  ],
+  "level": 5,
+  "name": "Gibbering Mouther",
+  "perception": 15,
+  "publicNotes": "<p>Amorphous blobs of yammering mouths and oozing, fleshy sludge, gibbering mouthers are among the strangest creatures found either aboveground or below. Perpetually ravenous, these aberrations are always seeking their next meals, ever eating but never sated. With a nominal intelligence, gibbering mouthers can understand and even speak Aklo, but they do so in an intelligible manner only rarely. Instead, their innumerable mouths constantly jabber and babble in a stream of sound that disrupts the thought patterns of other creatures in the area.</p>\n<p>Where, how, and why gibbering mouthers originated are questions without answers. They share certain similarities with the much more powerful shoggoths, leading to theories that the two creatures share an origin; less charitable scholars have suggested that the gibbering mouther is instead a mortal's attempt to create something akin to a shoggoth-though the question of why remains unanswered. Still others believe gibbering mouthers were sent to the world by the gods as a punishment for some forgotten but surely terrible transgression. Gibbering mouthers themselves have little to say on the matter-at least, not in any sort of sense. Scholars have wasted countless hours in attempts to make sense of gibbering mouthers' noises-studies that put researchers into danger and give results that are contradictory and confusing at best.</p>\n<p>Whatever their origin, gibbering mouthers range the entirety of Golarion. Sightings have been recorded in dungeons below ancient cities and ruins as well as many regions of the deeper Darklands layers of Sekamina and Orv. They are somewhat less common in the upper region of Nar-Voth, perhaps due to the prevalence of settlements that don't tolerate gibbering mouthers' presence.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 12,
+    "athletics": 13
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bludgeoning",
+      "value": 5
+    }
+  ]
+}

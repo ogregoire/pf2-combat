@@ -1,0 +1,220 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 2,
+    "dex": 3,
+    "int": 5,
+    "str": 3,
+    "wis": 5
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The bone prophet animates corpses of snakes, serpentfolk, or similar serpentine creatures within a @Template[emanation|distance:30]. Any flesh on the bodies sloughs off, and they rise as skeletons. The bone prophet can raise one Large creature as a Skeletal Giant or up to three Medium creatures as Skeletal Champions; the equipment and attacks might be different depending on the corpses' possessions. These skeletons have the minion trait and are under the bone prophet's control; the bone prophet can give all these minions the same command with a single action that has the concentrate trait. Any skeletal minions that still remain after 10 minutes crumble to dust.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Raise Serpent",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:26]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d4[poison]] damage and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d4[poison]] damage and enfeebled 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Serpentfolk Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Bone Prophets recover slowly from injuries. When they take physical damage from a critical hit, they gain @Damage[2d4[persistent,bleed]] damage. They take a –2 circumstance penalty to flat checks to recover from persistent damage and saving throws against afflictions.</p>",
+      "frequency": null,
+      "name": "Thin of Blood",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "serpentfolk-venom"
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "magical",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "SMLMW81mKN5VlcVV",
+  "gear": [
+    "Invisibility Potion",
+    "Religious Symbol of Ydersius",
+    "Staff"
+  ],
+  "hp": 115,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/bone-prophet",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "necril",
+    "sakvroth"
+  ],
+  "level": 8,
+  "name": "Bone Prophet",
+  "perception": 15,
+  "publicNotes": "<p>The speakers for the dead known as bone prophets hold an esteemed place as voices for their decapitated god. Burial rites, necromantic rituals, and the delivery of cryptic utterances supposedly whispered to them by Ydersius all fall under the dominion of these priests.</p>\n<hr />\n<p>Before their ancient clash with humanity devastated their civilization, serpentfolk were masters of a sprawling underground empire. Their power was shattered and their god Ydersius decapitated (although not quite slain). The cunning, intelligence, and magical abilities of serpentfolk have diminished from their ancient heights, and most are born without these boons. This is partially the result of cruel genetic meddling among serpentfolk—though the ruling class, zyss, are born with an innate spellcasting ability, their blood runs thin, making them susceptible to wounds. Seen as the failures of the serpentfolk's experiments are the aapophs, who are strong but prone to mutation and lack innate spellcasting.</p>\n<p>Today, the central realm of the Darklands retains the old name of the serpentfolk empire that once dominated this region—Sekamina. This name is also the source of the serpentfolk's Aklo title, sekmin, which they are often called in ancient texts. Serpentfolk dominion had declined before ghouls, gugs, umbral gnomes, and other forces. Yet their recent ventures have brought them back to a stronger place in the Darklands. Many serpentfolk sleeping in torpor in secluded vaults have awakened.</p>\n<p>Zyss serpentfolk tend toward megalomania, with dreams of returning to their place of dominance. Many of their plans hinge on resurrecting Ydersius, their decapitated god. His headless body still thrashes about, mindless, in the Darklands, waiting to be reunited with his lost skull. Serpentfolk numbers are so small that reclaiming their dominance seems a distant dream, especially since their reproduction is slow. Though a parent can birth a dozen young at once, the gestation period lasts up to a decade, and the likelihood that even one will be zyss is low. There's no telling whether a child will be zyss or aapoph, regardless of parentage. A coveted zyss child is just as likely to arise from aapoph parents as from two zyss, and every serpentfolk colony has someone in charge of sorting the young, identifying the earliest signs of magic in them.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": "; +1 status to all saves vs. magic",
+      "value": 19
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "arcana": 15,
+    "deception": 18,
+    "intimidation": 16,
+    "occultism": 17,
+    "religion": 19,
+    "society": 15,
+    "stealth": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dominate",
+          "rank": 6
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Blur (Self Only, At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Illusory Disguise (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "humanoid",
+    "serpentfolk"
+  ],
+  "weaknesses": []
+}

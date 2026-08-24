@@ -1,0 +1,214 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 6,
+    "int": -1,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> The soul eater is adjacent to a Dying creature</p>\n<hr />\n<p><strong>Effect</strong> The soul eater attempts to devour the dying creature's soul. The creature must attempt a @Check[will|dc:25] save. A creature that dies as a result of Drain Soul can't be restored to life except by a spell or ritual of 8th rank or higher. If the soul eater that used Drain Soul on a creature is slain within 100 feet of that creature's corpse and the creature has been dead no longer than 1 minute, the creature's soul returns to its body and is restored to life, leaving the creature Unconscious and dying 1 but no longer Doomed.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature becomes Doomed 1, or increases its doomed value by 1 if it was already doomed.</p>\n<p><strong>Failure</strong> As success, but Doomed 2.</p>\n<p><strong>Critical Failure</strong> As success, but Doomed 3.</p>",
+      "frequency": null,
+      "name": "Drain Soul",
+      "requirements": "The soul eater is adjacent to a Dying creature",
+      "traits": [
+        "death",
+        "divine",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A conjured soul eater forms a mental link with its conjurer. While both are on the same plane, the soul eater knows the location of its conjurer per its find target ability. If the soul eater's target dies before the soul eater can drain its soul, or if the soul eater is defeated (but not destroyed) by the target, the soul eater returns to its conjurer and tries to kill them.</p>",
+      "frequency": null,
+      "name": "Caster Link",
+      "requirements": null,
+      "traits": [
+        "detection",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When a soul eater is conjured to the Material Plane to find a specific creature, it gains the benefits of a 5th-rank Locate spell that isn't blocked by lead or running water. The conjurer must have seen the target and must speak the target's name while conjuring the soul eater in order to grant this ability.</p>",
+      "frequency": null,
+      "name": "Find Target",
+      "requirements": null,
+      "traits": [
+        "detection",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a soul eater hits a creature with its claw Strike, the creature must succeed at a @Check[fortitude|dc:23] save or become Stupefied 1 (Stupefied 2 on a critical failure).</p>\n<p>Further damage dealt by the soul eater increases the stupefied value by 1 on a failed save, to a maximum of stupefied 4. This condition value decreases by 1 each time the creature gets a full night's rest. As long as the creature is stupefied by a soul eater, rest does not decrease any Doomed value that creature might have.</p>",
+      "frequency": null,
+      "name": "Mind-Numbing Touch",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "void"
+        },
+        {
+          "category": null,
+          "formula": "2d6+3",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "mind-numbing-touch"
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "SY8pvLPqc2EgP9Xj",
+  "gear": [],
+  "hp": 80,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/soul-eater",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "daemonic"
+  ],
+  "level": 7,
+  "name": "Soul Eater",
+  "perception": 15,
+  "publicNotes": "<p>Only the most desperate or foolhardy conjurers call upon the aid of these strange fiends from the inky swamps of Abaddon.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "physical",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "intimidation": 15,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

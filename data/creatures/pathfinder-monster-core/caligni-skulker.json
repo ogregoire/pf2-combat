@@ -1,0 +1,173 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 4,
+    "int": -1,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 19,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the caligni skulker dies, their remains dissolve into a @Template[emanation|distance:20] of inky darkness before dissipating. The darkness extinguishes non-magical light sources and attempts to counteract magical light as a 1st-rank effect with a [[/r 1d20+10 #Counteract]]{+10} counteract modifier.</p>\n<p>The skulker's possessions are left in a pile where they died.</p>",
+      "frequency": null,
+      "name": "Final Night",
+      "requirements": null,
+      "traits": [
+        "darkness",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
+      "frequency": null,
+      "name": "Light Blindness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The caligni skulker deals 1d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the caligni skulker Tumbles Through a creature's space, that creature is Off-Guard against the next attack the skulker makes against it before the end of its turn.</p>",
+      "frequency": null,
+      "name": "Tumble Behind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "darkening-poison"
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "darkening-poison"
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "9YPFqikAmURwcTEO",
+  "gear": [
+    "Dagger",
+    "Darkening Poison"
+  ],
+  "hp": 30,
+  "hpDetails": "final night",
+  "id": "pathfinder-monster-core/caligni-skulker",
+  "immunities": [],
+  "languages": [
+    "caligni"
+  ],
+  "level": 2,
+  "name": "Caligni Skulker",
+  "perception": 8,
+  "publicNotes": "<p>Most often found on the surface are caligni skulkers, stealing staple goods and luxuries alike. When pressed into combat by more powerful caligni, skulkers will often be sacrificed in waves to wear down the enemy. Otherwise, skulkers are fairly cautious and prefer to flee unwinnable situations.</p>\n<hr />\n<p>Calignis lurk in subterranean cities, with each caligni growing into a specific role and form determined by supernatural influences in caligni society. Regardless of their size or role, all calignis are gaunt, with pale flesh and white eyes. Many relish the chance to creep above ground at night to steal resources, shadow their surface counterparts, or simply make mischief.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 4,
+    "stealth": 10,
+    "thievery": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "caligni",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

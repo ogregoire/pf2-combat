@@ -1,0 +1,157 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 19,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The kobold egg guardian makes a longspear Strike. If the Strike hits, the target must attempt a @Check[reflex|dc:20] save. On a failure, the creature is Immobilized until the kobold egg guardian moves, attacks with the longspear, or is no longer wielding the longspear.</p>",
+      "frequency": null,
+      "name": "Immobilizing Thrust",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The kobold egg guardian screams and Strides up to their Speed. Each enemy who sees or hears the kobold egg guardian must succeed at a @Check[will|dc:17] save or be Fascinated by the egg guardian for 1 round. On the creature's turn, it must use at least 1 action (or 2 actions on a critical failure) to move closer to the kobold egg guardian (while avoiding obvious dangers). Regardless of the result of the save, targets are then immune to Luring Retreat for 24 hours.</p>",
+      "frequency": null,
+      "name": "Luring Retreat",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longspear",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "m7UKHHTw1WpDCfsL",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Leather Armor",
+    "Longspear"
+  ],
+  "hp": 48,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/kobold-egg-guardian",
+  "immunities": [],
+  "languages": [
+    "common",
+    "sakvroth"
+  ],
+  "level": 3,
+  "name": "Kobold Egg Guardian",
+  "perception": 9,
+  "publicNotes": "<p>Kobold egg guardians are some of the best warriors in a tribe, tasked with protecting the next generation. They pledge to give their lives to protect the tribe's eggs, though not before exhausting all their tricks.</p><hr /><p>Kobolds are drawn to beings and objects of power, establishing their communities near them. Once a warren has been formed, the resident kobolds construct traps and set up ambushes to deter interlopers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 11,
+    "deception": 9,
+    "diplomacy": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "kobold"
+  ],
+  "weaknesses": []
+}

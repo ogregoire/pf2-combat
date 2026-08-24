@@ -1,0 +1,236 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": -2,
+    "dex": 4,
+    "int": 4,
+    "str": -1,
+    "wis": 2
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 Status to Will Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:16]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d4[poison]] damage and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d4[poison]] damage and enfeebled 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Serpentfolk Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Zyss serpentfolk recover slowly from injuries. When they take physical damage from a critical hit, they gain @Damage[1d4[persistent,bleed]] damage. They take a –2 circumstance penalty to flat checks to recover from persistent damage and saving throws against afflictions.</p>",
+      "frequency": null,
+      "name": "Thin of Blood",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "serpentfolk-venom"
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "serpentfolk-venom"
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "serpentfolk-venom"
+      ],
+      "kind": "ranged",
+      "name": "Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-60"
+      ]
+    }
+  ],
+  "foundryId": "0jSkyGbnMiN6kzwH",
+  "gear": [
+    "Arrows",
+    "Dagger",
+    "Shortbow"
+  ],
+  "hp": 25,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/zyss-serpentfolk",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "sakvroth"
+  ],
+  "level": 2,
+  "name": "Zyss Serpentfolk",
+  "perception": 8,
+  "publicNotes": "<p>Even the least among zyss serpentfolk consider themselves greater than any mammal. Their magical abilities, most notably their telepathy, are all the reason they need to hold this view. And it's true enough that the instinctual skill and magic of any zyss is enough to best the average human.</p>\n<hr />\n<p>Before their ancient clash with humanity devastated their civilization, serpentfolk were masters of a sprawling underground empire. Their power was shattered and their god Ydersius decapitated (although not quite slain). The cunning, intelligence, and magical abilities of serpentfolk have diminished from their ancient heights, and most are born without these boons. This is partially the result of cruel genetic meddling among serpentfolk—though the ruling class, zyss, are born with an innate spellcasting ability, their blood runs thin, making them susceptible to wounds. Seen as the failures of the serpentfolk's experiments are the aapophs, who are strong but prone to mutation and lack innate spellcasting.</p>\n<p>Today, the central realm of the Darklands retains the old name of the serpentfolk empire that once dominated this region—Sekamina. This name is also the source of the serpentfolk's Aklo title, sekmin, which they are often called in ancient texts. Serpentfolk dominion had declined before ghouls, gugs, umbral gnomes, and other forces. Yet their recent ventures have brought them back to a stronger place in the Darklands. Many serpentfolk sleeping in torpor in secluded vaults have awakened.</p>\n<p>Zyss serpentfolk tend toward megalomania, with dreams of returning to their place of dominance. Many of their plans hinge on resurrecting Ydersius, their decapitated god. His headless body still thrashes about, mindless, in the Darklands, waiting to be reunited with his lost skull. Serpentfolk numbers are so small that reclaiming their dominance seems a distant dream, especially since their reproduction is slow. Though a parent can birth a dozen young at once, the gestation period lasts up to a decade, and the likelihood that even one will be zyss is low. There's no telling whether a child will be zyss or aapoph, regardless of parentage. A coveted zyss child is just as likely to arise from aapoph parents as from two zyss, and every serpentfolk colony has someone in charge of sorting the young, identifying the earliest signs of magic in them.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": "; +1 status to all saves vs. magic",
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "arcana": 8,
+    "deception": 9,
+    "occultism": 8,
+    "society": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 10,
+      "dc": 18,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Blur (Self Only, At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Illusory Disguise (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "humanoid",
+    "serpentfolk"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,264 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 9,
+    "dex": 4,
+    "int": 5,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 42,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d10+17)[bludgeoning]], @Check[fortitude|dc:40|basic]. On a failed save, a creature that is holding its breath loses [[/gmr 1d4 #Lost rounds of air from Constrict]]{1d4 rounds} worth of air.</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The kraken makes two Strikes with two different arms or tentacles, each limb targeting a different creature. Double Attack counts as two attacks toward the kraken's multiple attack penalty, but the penalty doesn't increase until after both attacks are made.</p>\n<p>If the kraken subsequently uses the Grab action, it Grabs any number of creatures it hit with Double Attack.</p>",
+      "frequency": null,
+      "name": "Double Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The kraken releases a cloud of black, venomous ink in an @Template[emanation|distance:80]. This cloud has no effect outside water.</p>\n<p>Creatures inside the ink cloud are exposed to kraken ink poison and are Undetected while inside the cloud.</p>\n<p>The kraken can't use Ink Cloud again for [[/br 2d6 #Recharge Ink Cloud]]{2d6 rounds}, and the cloud dissipates after 1 minute.</p>",
+      "frequency": null,
+      "name": "Ink Cloud",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The kraken moves through the water up to 280 feet in a straight line without triggering reactions.</p>",
+      "frequency": null,
+      "name": "Jet",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A kraken reshapes the weather within 2 miles of it, with the effect of the Control Weather ritual centered on the kraken and based on its emotional state, at the GM's discretion. If the kraken dies, the weather returns to normal immediately.</p>",
+      "frequency": null,
+      "name": "Altered Weather",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Krakens are immune to this poison</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:39];</p>\n<hr />\n<p><strong>Maximum Duration</strong> 10 rounds</p>\n<p><strong>Stage 1</strong> @Damage[4d6[poison]] damage and Sickened 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[5d6[poison]] damage and Sickened 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Kraken Ink",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d10+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Arm",
+      "traits": [
+        "magical",
+        "reach-40"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+17",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-60",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "bgKwwvO0uDGD7XsG",
+  "gear": [],
+  "hp": 360,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/kraken",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "emotion"
+    }
+  ],
+  "languages": [
+    "common",
+    "thalassic"
+  ],
+  "level": 18,
+  "name": "Kraken",
+  "perception": 34,
+  "publicNotes": "<p>A kraken is an enormous, squid-like leviathan with a cruel intelligence. It hunts ships, whales, and heroes alike. The hatred and envy krakens hold for alghollthus, their rivals, has led many krakens to make their lairs in sunken cities, where they can sift through ancient lore and uncover long-lost arcane secrets.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 35
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 32
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 38,
+    "intimidation": 32,
+    "nature": 35,
+    "stealth": 33
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 32,
+      "dc": 40,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Punishing Winds",
+          "rank": 8
+        },
+        {
+          "name": "Dominate (Animals Only)",
+          "rank": 6
+        },
+        {
+          "name": "Resist Energy",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "aquatic",
+    "beast"
+  ],
+  "weaknesses": []
+}

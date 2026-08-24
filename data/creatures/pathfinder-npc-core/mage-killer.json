@@ -1,0 +1,217 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 5,
+    "int": 1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per hour</p><hr /><p><strong>Effect</strong> The mage killer alters the magical countermeasures in the runes on their armor. They change their resistance to the energy type of their choice (acid, cold, electricity, fire, force, sonic, vitality, or void).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1H"
+      },
+      "name": "Shift Energy Runes",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The mage killer is targeted by a spell</p><hr /><p><strong>Effect</strong> The mage killer gains a +2 circumstance bonus to AC and saving throws against the triggering spell.</p>",
+      "frequency": null,
+      "name": "Spell Dodge",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The mage killer is targeted by a spell"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 10 feet of the mage killer Casts a Spell</p><hr /><p><strong>Effect</strong> The mage killer makes a melee Strike or thrown dagger Strike against the triggering creature. If it hits, the spell is disrupted.</p>",
+      "frequency": null,
+      "name": "Spell Interception",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within 10 feet of the mage killer Casts a Spell"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mage killer Strides twice. If they end their movement within melee reach of at least one enemy, they can make a melee Strike against it.</p>",
+      "frequency": null,
+      "name": "Sudden Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The mage killer's Strikes deal an additional 1d8 mental damage to a creature that has Cast (or attempted to Cast) a Spell within the last round, and on a critical hit, the creature is Stupefied 1 for 1 minute.</p>",
+      "frequency": null,
+      "name": "Magical Static",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "magical-static"
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "magical-static"
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "magical-static"
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "magical-static"
+      ],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "P8Rd7OxbsyH9GmNM",
+  "gear": [
+    "Dagger",
+    "Rapier",
+    "Studded Leather Armor"
+  ],
+  "hp": 145,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/mage-killer",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Mage Killer",
+  "perception": 16,
+  "publicNotes": "<p>Whenever high command needs an enemy spellcaster taken off the board in the midst of battle, they send in a mage killer.</p><hr /><p>Whether they're hired to wage war, protect a caravan, or infiltrate an impenetrable fortress, there's ample work for mercenaries all over Golarion.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "arcana": 13,
+    "athletics": 16,
+    "stealth": 18
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

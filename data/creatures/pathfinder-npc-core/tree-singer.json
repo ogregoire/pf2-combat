@@ -1,0 +1,204 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 3,
+    "int": 2,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 10,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy in the tree singer's Verdant Aria aura (see below) attacks one of the tree singer's allies</p><hr /><p><strong>Effect</strong> Vines and branches to lash out at the attacker, dealing @Damage[3d6[piercing]] damage.</p>",
+      "frequency": null,
+      "name": "Bloodthirsty Plants",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": "An enemy in the tree singer's Verdant Aria aura (see below) attacks one of the tree singer's allies"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The tree singer raises their voice in a haunting melody, creating an aura in a @Template[type:emanation|distance:30]. Plants in the aura seem to come to life, swaying and rustling in response to the music. The tree singer's allies in the aura gain a +2 status bonus to AC and saving throws as the foliage around them shields and defends them from harm.</p>\n<p>The aura lasts until the end of the tree singer's next turn but can be Sustained. It can be Sustained even if the tree singer is polymorphed. The effect ends early if the tree singer stops singing.</p>",
+      "frequency": null,
+      "name": "Verdant Aria",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "aura",
+        "concentrate",
+        "linguistic",
+        "plant",
+        "primal",
+        "wood"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The tree singer can ask questions of, receive answers from, and use the Diplomacy skill with plants and fungus.</p>",
+      "frequency": null,
+      "name": "Plant Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10",
+          "type": "sonic"
+        },
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        },
+        {
+          "category": null,
+          "formula": "2d10",
+          "type": "sonic"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10",
+          "type": "sonic"
+        },
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longspear",
+      "traits": [
+        "magical",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "atFtrrjwkTiFm6hJ",
+  "gear": [
+    "Composite Longbow",
+    "Leather Armor",
+    "Longspear"
+  ],
+  "hp": 220,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/tree-singer",
+  "immunities": [],
+  "languages": [
+    "common",
+    "wildsong"
+  ],
+  "level": 13,
+  "name": "Tree Singer",
+  "perception": 22,
+  "publicNotes": "<p>Singers can speak the words of creation in song, a forgotten art from the First World. Their melodies turn grass into blades and make trees stir. Through their music, plants rise to defend and seek vengeance for nature. Taught by woodland spirits or fey agents of the First World, they master the magic of primal song.</p><hr /><p>A primalist is a wielder of primal energies and magic, sometimes taught by forces of primal power, including powerful elementals or fey of the First World. Primalists protect the natural world, offering strong medicine to those in need while facing suspicion from those who don't understand their ways.</p>\n<p>A great many primalists belong to druidic circles, and even those who aren't members tend to be familiar with the most prominent ones in their homeland.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 23,
+    "diplomacy": 25,
+    "intimidation": 23,
+    "nature": 26,
+    "performance": 27,
+    "survival": 22
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 25,
+      "dc": 33,
+      "name": "Primal Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Cornucopia",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,272 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 3,
+    "int": 2,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The razzle dazzler rolls initiative using Deception or Performance</p><hr /><p><strong>Effect</strong> The razzle dazzler can attempt to [[/act demoralize]] one creature they can see.</p>",
+      "frequency": null,
+      "name": "Daunting Charisma",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The razzle dazzler rolls initiative using Deception or Performance"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The razzle dazzler creates an illusory duplicate of themself in their space that lasts for 1 round. A creature who attacks the razzle dazzler must first attempt a @Check[flat|dc:11]. On a failure, the attack misses the razzle dazzler and destroys the illusion instead, ending this effect.</p>",
+      "frequency": null,
+      "name": "Dazzling Duplicate",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "illusion",
+        "manipulate"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "t3z2RrO7pirntByc",
+  "gear": [
+    "Bolts",
+    "Dagger",
+    "Dueling Cape",
+    "Hand Crossbow"
+  ],
+  "hp": 78,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/razzle-dazzler",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven",
+    "fey",
+    "gnomish"
+  ],
+  "level": 5,
+  "name": "Razzle Dazzler",
+  "perception": 12,
+  "publicNotes": "<p>The razzle dazzler is a particularly beguiling sort of entertainer who specializes in delighting with illusions and showy displays. Whether with their illusory double or some well-timed fireworks, they are exceptionally good at keeping their audiences focused on one display to distract from the secrets that make their magic possible.</p><hr /><p>Because their ancestors came from the First World, gnomes are intrinsically linked to the realm of the fey and crave the mystical and unpredictable. They seek to create daring works of art, voyage to new places, and have experiences they've never had before. Otherwise, they could fall victim to the terrible gnomish illness known as the Bleaching, which not only drains them of their color but of their spirits as well.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "arcana": 10,
+    "deception": 14,
+    "diplomacy": 14,
+    "intimidation": 12,
+    "performance": 14,
+    "thievery": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 15,
+      "dc": 22,
+      "name": "Arcane Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Enthrall",
+          "rank": 3
+        },
+        {
+          "name": "Hypnotize",
+          "rank": 3
+        },
+        {
+          "name": "Illusory Creature",
+          "rank": 2
+        },
+        {
+          "name": "Laughing Fit",
+          "rank": 2
+        },
+        {
+          "name": "Revealing Light",
+          "rank": 2
+        },
+        {
+          "name": "Dizzying Colors",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "gnome",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

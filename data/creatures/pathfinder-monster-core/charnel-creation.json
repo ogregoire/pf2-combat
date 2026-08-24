@@ -1,0 +1,153 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 3,
+    "dex": -1,
+    "int": -5,
+    "str": 5,
+    "wis": 0
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The creation would be affected by an effect with the electricity trait and a creature is in its reach</p>\n<hr />\n<p><strong>Effect</strong> The creation lashes out and tries to grab a nearby creature. The creation attempts an Athletics check to Grapple a creature within reach. The creature also takes @Damage[3d6[electricity]] damage on a success, or @Damage[6d6[electricity]] damage on a critical success.</p>",
+      "frequency": null,
+      "name": "Electric Reflexes",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The creation would be affected by an effect with the electricity trait and a creature is in its reach"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The charnel creation is berserk</p>\n<hr />\n<p><strong>Effect</strong> The charnel creation Strikes with its fist at a –1 circumstance penalty. If it hits, it deals 1d6 extra damage and knocks the target Prone.</p>",
+      "frequency": null,
+      "name": "Berserk Slam",
+      "requirements": "The charnel creation is berserk",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A severely damaged charnel creation has a chance of going berserk. If it has 40 or fewer HP at the start of its turn, the creation must succeed at a @Check[flat|dc:5] or go berserk. A berserk creation wildly attacks the nearest living creature, or the nearest object if no creatures are nearby. A creation loses its immunity to mental effects while berserk.</p>",
+      "frequency": null,
+      "name": "Berserk",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Any time a charnel creation would be affected by an effect with the electricity trait, it loses any Slowed condition it has and gains HP equal to half the damage the spell would have dealt. If the creation starts its turn in an area that deals electricity damage, it gains @Damage[2d4[healing]]{2d4 HP}.</p>",
+      "frequency": null,
+      "name": "Electric Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "GUjtk2h6Yj0NKifF",
+  "gear": [],
+  "hp": 140,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/charnel-creation",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    }
+  ],
+  "languages": [],
+  "level": 8,
+  "name": "Charnel Creation",
+  "perception": 12,
+  "publicNotes": "<p>Made of odd scraps of skin and muscle, a charnel creation is a grotesque parody of life. Though it has no mind, it can still go into a berserk rage when harmed, giving it a faint semblance of emotion. These constructs are often fashioned to guard the secret laboratories, unhallowed funerary grounds, and bloody charnel houses of fleshwarpers and necromancers who feel no compunctions about desecrating corpses for their own ends. Though the first charnel creation is believed to have been a misguided attempt to create life from simple base elements, these monstrosities are far from human. In isolated cases, echoes of a personality might rise in a charnel creation if the brain used as part of its construction belonged to a particularly powerful personality, but such tragic instances are (thankfully) rare in the extreme.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
+      "type": "physical",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "fire"
+      ],
+      "type": "spells",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 19
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "mindless"
+  ],
+  "weaknesses": []
+}

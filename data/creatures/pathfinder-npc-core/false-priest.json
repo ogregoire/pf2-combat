@@ -1,0 +1,164 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 4,
+    "int": 0,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<p><strong>Trigger</strong> The false priest critically fails a Deception or Performance check</p>\n<hr />\n<p><strong>Effect</strong> The false priest Strides.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1H"
+      },
+      "name": "The Jig Is Up",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The false priest critically fails a Deception or Performance check"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The false priest convinces someone of their omnipotence by attempting a Deception check compared to the creature's Will DC.</p>\n<p>If successful, the target gains [[/r 1d8+4 #Temporary Hit Points]]{1d8+4 temporary Hit Points} that last for 1 hour or until the false priest removes them by rebuking the target, whichever occurs first.</p>",
+      "frequency": null,
+      "name": "Fickle Prophecy",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>On the first round of combat, if the false priest rolls Deception or Performance for initiative, creatures that haven't acted yet are Off-Guard to the false priest.</p>",
+      "frequency": null,
+      "name": "Deceiver's Surprise",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The false priest deals an extra 1d6 precision damage to Off-Guard creatures. This increases to 2d6 precision damage against creatures off-guard due to the false priest's Feint or deceiver's surprise.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "OAxxUyACpMlX3q1X",
+  "gear": [
+    "Alchemist's Tools (Used as \"Blessed Items\" to Fool Marks)",
+    "Backpack",
+    "Bolts",
+    "Cloak",
+    "Collection of Fake Relics",
+    "Hand Crossbow",
+    "Rapier",
+    "Religious Symbol (Wooden)",
+    "Studded Leather Armor"
+  ],
+  "hp": 50,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/false-priest",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "False Priest",
+  "perception": 10,
+  "publicNotes": "<p>Belief is perhaps the strongest force in the universe. Instilling belief only to use it against someone in deceit, however, is the purview of a false priest.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 10,
+    "athletics": 8,
+    "deception": 12,
+    "performance": 12,
+    "religion": 8,
+    "society": 6
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

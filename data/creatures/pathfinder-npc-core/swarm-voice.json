@@ -1,0 +1,224 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 1,
+    "int": 3,
+    "str": 2,
+    "wis": 3
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The swarm voice issues orders to move. Each ratfolk from the same warren in a @Template[type:emanation|distance:15] can spend a reaction to Step, Stride, or Take Cover.</p>",
+      "frequency": null,
+      "name": "Advise Swarm",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The swarm voice chitters, creating a terrifying din, and encourages their allies to join in. Each enemy within @Template[emanation|distance:30]{30 feet} must succeed at a @Check[will|dc:19|options:inflicts:frightened] save or be Frightened 1 (or Frightened 2 on a critical failure). An enemy takes a –2 circumstance penalty to its save if it's adjacent to one or more ratfolk allied with the swarm voice. Regardless of the result of a creature's save, it's then temporarily immune for 1 hour.</p>",
+      "frequency": null,
+      "name": "Chittering Terror",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+9 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A swarm voice can end their movement in the same square as an ally that also has this ability. Only two such creatures can share the same space.</p>",
+      "frequency": null,
+      "name": "Swarming",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving negotiation or diplomacy, the swarm voice is a 7th-level challenge.</p>",
+      "frequency": null,
+      "name": "Voice of the Swarm",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1",
+          "type": "acid"
+        },
+        {
+          "category": "splash",
+          "formula": "1",
+          "type": "acid"
+        },
+        {
+          "category": "persistent",
+          "formula": "1d6",
+          "type": "acid"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Alchemical Bomb",
+      "traits": [
+        "bomb",
+        "consumable",
+        "range-20",
+        "splash"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longspear",
+      "traits": [
+        "reach"
+      ]
+    }
+  ],
+  "foundryId": "lpDE9fesv4uLKUQK",
+  "gear": [
+    "Acid Flask (Lesser)",
+    "Bolts",
+    "Crossbow",
+    "Longspear"
+  ],
+  "hp": 45,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/swarm-voice",
+  "immunities": [],
+  "languages": [
+    "common",
+    "ysoki"
+  ],
+  "level": 3,
+  "name": "Swarm Voice",
+  "perception": 9,
+  "publicNotes": "<p>The swarm voice is the secular leader of a ysoki warren or one family in a larger warren. If there is a dispute, the swarm voice resolves it. If there is a negotiation, they orchestrate it. If war is about to break out, they declare it. The swarm voice is the welcoming hand and the iron fist of their colony.</p><hr /><p>Ysoki (or, as outsiders call them, ratfolk) in their warrens have a society that is both stern and democratic, caring and ever vigilant. And at the top is a handful of intimidating and protective figures who make sure the swarm remains safe.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 9,
+    "diplomacy": 17,
+    "intimidation": 15,
+    "performance": 15,
+    "society": 16,
+    "survival": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "ratfolk"
+  ],
+  "weaknesses": []
+}

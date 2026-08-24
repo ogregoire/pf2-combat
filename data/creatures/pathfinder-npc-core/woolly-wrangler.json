@@ -1,0 +1,180 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 3,
+    "int": 0,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The woolly wrangler makes a whip Strike. On a hit, the woolly wrangler can either knock the target Prone or pull it up to 5 feet. If the creature ends this movement adjacent to the wrangler's mount, the mount can make a melee unarmed Strike against the creature as a free action.</p>",
+      "frequency": null,
+      "name": "Wrangling Whip",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Whenever the woolly wrangler rolls a success on a Recall Knowledge check using Nature or Mountain Lore, they get a critical success instead.</p>",
+      "frequency": null,
+      "name": "In Balance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet.</p>\n<p>While the woolly wrangler is mounted on a Huge or Gargantuan creature, the ground near the mount shakes and buckles. Squares in the aura are difficult terrain for Medium or smaller creatures.</p>",
+      "frequency": null,
+      "name": "Uneven Footing",
+      "requirements": null,
+      "traits": [
+        "aura"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greatclub",
+      "traits": [
+        "backswing",
+        "magical",
+        "shove"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+12",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Whip",
+      "traits": [
+        "disarm",
+        "nonlethal",
+        "reach",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "gIjhrY21iwTApvXT",
+  "gear": [
+    "Animal Treats",
+    "Greatclub",
+    "Leather Armor",
+    "Whip"
+  ],
+  "hp": 125,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/woolly-wrangler",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Woolly Wrangler",
+  "perception": 16,
+  "publicNotes": "<p>When a giant, dangerous animal is found, there's always someone who tries to pet it. A woolly wrangler is usually accompanied by an Elephant or Mammoth. They can Command this Animal without needing to succeed at a Nature check.</p><hr /><p>Explorers are often well-equipped and well-trained for any type of hazard and are eager to lead others into the wild.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 14,
+    "intimidation": 14,
+    "nature": 16,
+    "survival": 18
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

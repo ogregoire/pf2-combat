@@ -1,0 +1,164 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 2,
+    "int": 1,
+    "str": 4,
+    "wis": 0
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Trigger</strong> Sir Fredero fails (but doesn't critically fail) a saving throw against a control or emotion effect</p>\n<p><strong>Effect</strong> Sir Fredero rerolls the failed saving throw. He must take the result of this second roll, even if it is worse than the initial failure.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Stubborn Conviction",
+      "requirements": null,
+      "traits": [],
+      "trigger": "Sir Fredero fails (but doesn't critically fail) a saving throw against a control or emotion effect"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Sir Fredero gains an additional reaction at the start of each of his turns that he can use only to perform a Shield Block.</p>",
+      "frequency": null,
+      "name": "Quick Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "sonic"
+        },
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longsword",
+      "traits": [
+        "magical",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "O5EEnXdrKPcODuwh",
+  "gear": [
+    "Composite Shortbow",
+    "Full Plate",
+    "Healing Potion (Moderate)",
+    "Longsword",
+    "Steel Shield"
+  ],
+  "hp": 160,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/sir-fredero-sinnet",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 9,
+  "name": "Sir Fredero Sinnet",
+  "perception": 15,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 19,
+    "deception": 20,
+    "diplomacy": 18,
+    "intimidation": 20,
+    "religion": 17,
+    "society": 18
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

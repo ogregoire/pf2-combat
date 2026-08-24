@@ -1,0 +1,187 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 6,
+    "dex": -5,
+    "int": -5,
+    "str": 6,
+    "wis": 0
+  },
+  "ac": 12,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The tomb jelly splatters some of its substance on a willing undead creature within its reach. The target regains @Damage[5[void,healing]|shortLabel] HP and its melee Strikes get the benefits of tomb curse until the end of its next turn.</p>",
+      "frequency": null,
+      "name": "Bound in Death",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A tomb jelly's acid damages only flesh.</p>",
+      "frequency": null,
+      "name": "Flesh-dissolving Acid",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A tomb jelly can feel nearby motion through vibration and air movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by a tomb jelly's pseudopod takes @Damage[1d6[persistent,void]]{1d6 persistent void damage}. If the creature dies while it has this persistent damage, its corpse is affected by Peaceful Rest, except the tomb jelly can still dissolve its flesh.</p>",
+      "frequency": null,
+      "name": "Tomb Curse",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine",
+        "void"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "tomb-curse"
+      ],
+      "kind": "melee",
+      "name": "Pseudopod",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "C1MfXltrIJRnFaZg",
+  "gear": [],
+  "hp": 150,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/tomb-jelly",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void"
+    }
+  ],
+  "languages": [],
+  "level": 5,
+  "name": "Tomb Jelly",
+  "perception": 7,
+  "publicNotes": "<p>Tomb jellies are animate masses of protoplasm with a sickly combination of yellow, gray, and black hues. Their acidic bodies dissolve flesh but leave other materials, including a victim's gear and bones, intact. Some ancient cultures entombed bodies in stone sarcophagi with tomb jellies to allow the ooze to break down the flesh and clean and polish the bones.</p>\n<hr />\n<p>Slimes, molds, and other oozes can be found in dank dungeons and shadowed forests. While not necessarily evil, some grow to enormous sizes and have insatiable appetites.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "climb",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "ooze"
+  ],
+  "weaknesses": []
+}

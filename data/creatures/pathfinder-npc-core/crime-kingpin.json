@@ -1,0 +1,242 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 3,
+    "dex": 5,
+    "int": 2,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 32,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The kingpin knocks an item out of a creature's grasp using Disarm</p><hr /><p><strong>Effect</strong> The kingpin kicks the weapon up to 20 feet in any direction. If the kingpin kicks the weapon into an ally's square, that ally can catch the weapon as a free action, Releasing anything else they're holding if necessary.</p>",
+      "frequency": null,
+      "name": "Kick Away",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The kingpin knocks an item out of a creature's grasp using Disarm"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy damages the kingpin</p><hr /><p><strong>Effect</strong> The kingpin issues a vendetta against the enemy. Each of the kingpin's allies who hears the command gains a +5 status bonus to their next damage roll against that enemy.</p><hr /><p>Effect: You'll Pay for That</p>",
+      "frequency": null,
+      "name": "You'll Pay for That",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": "An enemy damages the kingpin"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The crime kingpin shouts a command to an ally of their choice. That ally can spend a reaction to Stride and Strike. The ally becomes immune to Kingpin's Command for 24 hours.</p>",
+      "frequency": null,
+      "name": "Kingpin's Command",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The kingpin attempts a rapier Strike followed by a [[/act disarm]] or [[/act grapple]] attempt against the same enemy. These count as one attack for the kingpin's multiple attack penalty, and the penalty doesn't increase until after both attacks.</p>",
+      "frequency": null,
+      "name": "Fencing Brawl",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Bonus on Perception to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The crime kingpin isn't Off-Guard to creatures of 12th level or lower that are Hidden, Undetected, flanking, or using Surprise Attack.</p>",
+      "frequency": null,
+      "name": "Deny Advantage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>Allies in the aura gain a +2 status bonus to saving throws against mental effects.</p>",
+      "frequency": null,
+      "name": "Kingpin's Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The creature's Strikes deal an additional 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Hand Crossbow",
+      "traits": [
+        "magical",
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "mu8X8nr1HvSfdARc",
+  "gear": [
+    "Bolts",
+    "Hand Crossbow",
+    "Healing Potion (Moderate)",
+    "Leather Armor",
+    "Potion of Flying (Standard)",
+    "Rapier"
+  ],
+  "hp": 250,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/crime-kingpin",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 12,
+  "name": "Crime Kingpin",
+  "perception": 22,
+  "publicNotes": "<p>Kingpins build empires from the shadows, ruling their territory ruthlessly and keeping their business private. Most forge connections with the rich and powerful, doing dirty work for politicians and minor nobles in return for influence and favors that can be called in at any time.</p><hr /><p>In the underbelly of society, the lawless reign supreme.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 25,
+    "deception": 24,
+    "diplomacy": 22,
+    "intimidation": 28,
+    "society": 24,
+    "stealth": 23,
+    "thievery": 24
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

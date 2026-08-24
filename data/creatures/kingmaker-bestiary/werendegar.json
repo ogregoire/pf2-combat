@@ -1,0 +1,308 @@
+{
+  "abilityMods": {
+    "cha": 10,
+    "con": 7,
+    "dex": 10,
+    "int": 8,
+    "str": 6,
+    "wis": 6
+  },
+  "ac": 47,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature critically fails a melee attack to hit Werendegar or moves into a space within Werendegar's thorny aura.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must attempt a @Check[reflex|dc:44|traits:damaging-effect] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> The target is Off-Guard until the start of its next turn.</p>\n<p><strong>Failure</strong> The target takes @Damage[3d10[bludgeoning]] damage and is off-guard until the start of its next turn.</p>\n<p><strong>Critical failure</strong> As failure, and the target is knocked Prone.</p>",
+      "frequency": null,
+      "name": "Trip Up",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature critically fails a melee attack to hit Werendegar or moves into a space within Werendegar's thorny aura."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Werendegar changes into his natural form or that of any humanoid. In humanoid form, he loses his thorny aura, and his equipment appears to be trinkets or toys. As a humanoid that lacks claws or fangs, he loses the matching Strike. If he loses his claw Strike, he gains a fist Strike that is identical except that it deals bludgeoning damage.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirement</strong> Werendegar's last action was a success with a Strike that has Disarm in its damage entry.</p>\n<hr />\n<p><strong>Effect</strong> Werendegar knocks a held or carried weapon to the ground in the target's space.</p>",
+      "frequency": null,
+      "name": "Disarm",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Hungersense allows the gimmerling to sense creatures that require food to live.</p>",
+      "frequency": null,
+      "name": "Hungersense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Werendegar deals 4d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>15 feet. Thorny roots and barbed vines writhe and twist in the aura, creating difficult hazardous terrain that inflicts @Damage[4d6[piercing]] damage whenever a non-flying creature moves within the aura.</p>",
+      "frequency": null,
+      "name": "Thorny Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Werendegar ignores difficult terrain, hazardous terrain, and doesn't trigger traps with its movement.</p>",
+      "frequency": null,
+      "name": "Trickster's Step",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d6+16",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "disarm"
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8",
+          "type": "poison"
+        },
+        {
+          "category": null,
+          "formula": "4d8+16",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "electricity"
+        },
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "4d6+16",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "qLfHY6uNUQ99NZei",
+  "gear": [
+    "Chain Mail",
+    "Rapier"
+  ],
+  "hp": 374,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/werendegar",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "elven",
+    "fey",
+    "gnomish"
+  ],
+  "level": 21,
+  "name": "Werendegar",
+  "perception": 35,
+  "publicNotes": "<p>Gimmerlings are small, shapeshifting fey who stage ambushes to sate their endless hunger and childish greed. These cruelly curious fey obsess over finding and making unusual traps and sadistic weapons, and their favorite amusement is se eing these traps sprung or the weapons wielded. When on the Material Plane, they are frequently found in urban areas, particularly slums or other parts of town where they can either go unnoticed or be easily forgotten-and have plenty of victims to choose from.</p>\n<p>A typical gimmerling disguises itself as an endangered child, doing so in hopes of drawing creatures close enough to rob. The gimmerling puts itself in apparent danger using a trap, construct, or bribed ally, or even a coerced monster like a Redcap.</p>\n<p>Because gimmerlings sometimes trade obscure smithing or trapping techniques in exchange for gifts that sate their curiosity, their greed, or their hunger, they have at times been worshipped as minor gods of the forge. Some disciplined gimmerlings work as honored artisans, elite guards, or spies for the demigods known as the Eldest who dwell in the depths of the First World.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 36
+    },
+    "reflex": {
+      "detail": null,
+      "value": 39
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 39,
+    "athletics": 37,
+    "deception": 41,
+    "nature": 39,
+    "society": 35,
+    "stealth": 39,
+    "thievery": 37
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 36,
+      "dc": 44,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Alter Reality",
+          "rank": 10
+        },
+        {
+          "name": "Telepathic Demand",
+          "rank": 9
+        },
+        {
+          "name": "Disappearance",
+          "rank": 8
+        },
+        {
+          "name": "Uncontrollable Dance",
+          "rank": 8
+        },
+        {
+          "name": "Plane Shift",
+          "rank": 7
+        },
+        {
+          "name": "Teleport",
+          "rank": 6
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 20
+    }
+  ]
+}

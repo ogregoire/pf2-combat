@@ -1,0 +1,143 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 2,
+    "int": 2,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The marauder's last action was a successful javelin strike</p><hr /><p><strong>Effect</strong> The marauder reels in a chain connected to the javelin, pulling the target up to 10 feet closer. They then Interact to return the javelin to their hand.</p>",
+      "frequency": null,
+      "name": "Retract",
+      "requirements": "The marauder's last action was a successful javelin strike",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The marauder pulls a release valve on their suit, expelling a pressure wave that deals @Damage[3d6[sonic], 3d6[bludgeoning]] damage (@Check[fortitude|dc:22|basic] save) to all creatures in a @Template[type:emanation|distance:10]. Creatures that fail the save take a –2 circumstance penalty to Acrobatics checks to Balance and Athletics checks to Swim for 1 minute as their inner ear is impaired. Creatures that critically fail the save are also Deafened for 1 minute. The marauder can't use Depth Charge again for [[/gmr 1d4 #Recharge Depth Charge]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Depth Charge",
+      "requirements": null,
+      "traits": [
+        "air",
+        "manipulate",
+        "sonic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The marauder's diving suit is a technological marvel. When sealed, it provides 1 hour of fresh air and protects the wearer from exposure to inhaled threats. Personalized modifications and a need for constant tinkering mean that other creatures are unable to take advantage of the special abilities of the diving suit and treat it as an ordinary suit of half plate.</p>",
+      "frequency": null,
+      "name": "Sealed Diving Suit",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Gauntlet",
+      "traits": [
+        "agile",
+        "free-hand"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Javelin",
+      "traits": [
+        "thrown-30"
+      ]
+    }
+  ],
+  "foundryId": "iJSCvkA3XQgO8GjG",
+  "gear": [
+    "Chain (30 feet)",
+    "Diving Suit (Functions as Half Plate)",
+    "Gauntlet",
+    "Javelin"
+  ],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/subaquatic-marauder",
+  "immunities": [],
+  "languages": [],
+  "level": 5,
+  "name": "Subaquatic Marauder",
+  "perception": 12,
+  "publicNotes": "<p>A new breed of pirate, these raiders strike at unsuspecting ships from beneath the cover of the waves. The bulky, reinforced diving suits they wear also serve as armor and clockwork mechanisms augment their strength.</p><hr /><p>Adventurers may need passage on a swift vessel, or they might face danger from raiders at sea or in coastal settlements.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "crafting": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

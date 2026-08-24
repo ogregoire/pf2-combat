@@ -1,0 +1,251 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 4
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Human with fist +16 for 1d4+7 bludgeoning, or wolf with Speed 40 feet and jaws with Knockdown.</p>\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirement</strong> Kundal damaged a target with his jaws Strike with a previous action this round.</p>\n<hr />\n<p><strong>Effect</strong> Kundal chews the bitten creature as he attempts to overwhelm them by attempting an @Check[athletics|defense:fortitude] check against the bitten creature's Fortitude DC.</p>\n<hr />\n<p><strong>Critical Success</strong> Kundal inflicts @Damage[5d6[piercing]] damage on the target, exposes them to the curse of the werewolf, and can Stride up to half his speed. If his target is Medium or smaller, he drags the target with him into a new adjacent square.</p>\n<p><strong>Success</strong> Kundal inflicts @Damage[5d6[piercing]] damage on the target and exposes them to the curse of the werewolf. He can reposition the target up to five feet into an adjacent square.</p>\n<p><strong>Failure</strong> As success, except only @Damage[2d6[piercing]] damage.</p>\n<p><strong>Critical Failure</strong> Kundal fails to inflict any damage.</p>",
+      "frequency": null,
+      "name": "Rip and Drag",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirement</strong> Kundal rolled Stealth for Initiative, and it's the first round of combat.</p>\n<hr />\n<p><strong>Effect</strong> Kundal Strides up to his speed and then attempts a jaws Strike and a claw Strike against a single adjacent target. Apply his multiple attack penalty to each Strike normally.</p>",
+      "frequency": null,
+      "name": "Ambush Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>This curse affects only humanoids.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:25]</p>\n<hr />\n<p>On each full moon, the cursed creature must succeed at another Fortitude save or turn into a werewolf until dawn.</p>\n<p>The creature is under the GM's control and goes on a rampage for half the night before falling unconscious until dawn.</p>",
+      "frequency": null,
+      "name": "Curse of the Werewolf",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Kundal's moon frenzy functions a bit differently than for typical werecreatures: he doesn't become Large sized, but he does grow much more swift and powerful. His speed increases to 35 feet during moon frenzy and increases the damage of his jaws by +2. In addition, while in moon frenzy, at the start of his turn, Kundal gains an additional reaction that can be used only to make an Attack of Opportunity.</p>",
+      "frequency": null,
+      "name": "Moon Frenzy",
+      "requirements": null,
+      "traits": [
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Kundal can communicate with lupines.</p>",
+      "frequency": null,
+      "name": "Wolf Empathy",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "curse-of-the-werewolf"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "knockdown"
+      ],
+      "kind": "melee",
+      "name": "Wolf Jaws",
+      "traits": []
+    }
+  ],
+  "foundryId": "ZGVQcWl03kBIStS0",
+  "gear": [],
+  "hp": 140,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/kundal",
+  "immunities": [],
+  "languages": [
+    "common",
+    "hallit"
+  ],
+  "level": 7,
+  "name": "Kundal",
+  "perception": 15,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 17,
+    "nature": 11,
+    "stealth": 15,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "human",
+    "humanoid",
+    "werecreature"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "silver",
+      "value": 10
+    }
+  ]
+}

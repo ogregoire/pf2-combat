@@ -1,0 +1,145 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 0,
+    "int": 0,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Creatures that engage in conversation with the pilgrim gain a +1 circumstance bonus to all Recall Knowledge checks and Gather Information checks for 4 hours related to any topics discussed with the pilgrim.</p>",
+      "frequency": null,
+      "name": "Ambulatory Oration",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The pilgrim can use their Religion modifier instead of their Diplomacy modifier to [[/act gather-information skill=religion]] or [[/act make-an-impression skill=religion]] as long as the pilgrim includes their religious teachings.</p>",
+      "frequency": null,
+      "name": "Path of the Faithful",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "zUTlzjTKLyOc8bRM",
+  "gear": [
+    "Explorer's Clothing",
+    "Religious Symbol of Irori",
+    "Walking Stick (Functions as a Staff)"
+  ],
+  "hp": 9,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/pilgrim-of-irori",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": -1,
+  "name": "Pilgrim of Irori",
+  "perception": 5,
+  "publicNotes": "<p>Pilgrims traverse the lands spurred on by some holy reason, be it to visit a sacred place or follow a prophetic vision.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 5,
+    "religion": 5,
+    "society": 4,
+    "survival": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

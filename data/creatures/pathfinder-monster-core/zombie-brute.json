@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": -3,
+    "int": -5,
+    "str": 5,
+    "wis": 0
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><p>The monster can use Push as a free action triggered by a hit with its initial attack.</p></p>",
+      "frequency": null,
+      "name": "Improved Push",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A zombie is permanently Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Slow",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "improved-push"
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "WioQ6rOeMRuTOliY",
+  "gear": [],
+  "hp": 70,
+  "hpDetails": "void healing",
+  "id": "pathfinder-monster-core/zombie-brute",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [],
+  "level": 2,
+  "name": "Zombie Brute",
+  "perception": 4,
+  "publicNotes": "<p>Necromantic augmentations have granted this zombie increased size and power.</p>\n<hr />\n<p>A zombie's only desire is to consume the living. Unthinking and ever-shambling harbingers of death, zombies stop only when they're destroyed.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 11
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "undead",
+    "unholy",
+    "zombie"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "vitality",
+      "value": 10
+    }
+  ]
+}

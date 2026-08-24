@@ -1,0 +1,271 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 6,
+    "dex": 9,
+    "int": 5,
+    "str": 6,
+    "wis": 6
+  },
+  "ac": 41,
+  "acDetails": "all-around vision",
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy damages the archon's ally and both are within 15 feet of the archon</p>\n<hr />\n<p><strong>Effect</strong> The ally gains resistance 20 to all damage against the triggering damage and the archon can make a Strike against the enemy.</p>",
+      "frequency": null,
+      "name": "Archon's Protection",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An enemy damages the archon's ally and both are within 15 feet of the archon"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giylea fixes their gaze on a creature they can see within 30 feet. The target must immediately attempt a @Check[will|dc:37|traits:aura,divine,mental,visual] save against the giylea's all-knowing eyes. If the creature is under any magical effect that disguises it or has altered its shape, the giylea attempts to counter that magical disguise effect (counteract [[/r 1d20+29 #Counteract]]{+29}, 8th rank). After attempting its save, the creature is then temporarily immune until the start of the giylea's next turn.</p>",
+      "frequency": null,
+      "name": "Focus Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The giylea spins furiously, emitting a rain of divine fire. All creatures in a @Template[emanation|distance:60] take @Damage[(12d6)[fire],(5d6)[spirit]]{12d6 fire damage and 5d6 spirit damage} with a @Check[reflex|dc:37|basic] save. The giylea can't use Fiery Spokes for [[/gmr 1d4 #Recharge Fiery Spokes]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Fiery Spokes",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fire",
+        "holy",
+        "spirit"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>When a creature ends its turn in the giylea's aura, it must attempt a @Check[will|dc:34] save. If the creature fails, any Deception check it attempts until the end of its next turn has its result reduced by one degree of success. If a creature is currently disguised or in a shape other than its true form when it fails its save, it also becomes Stupefied 1 until the end of its next turn.</p>",
+      "frequency": null,
+      "name": "All-Knowing Eyes",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "3d12+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Slam",
+      "traits": [
+        "holy",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "category": null,
+          "formula": "7d6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Tongue of Flame",
+      "traits": [
+        "fire",
+        "holy",
+        "magical",
+        "range-30"
+      ]
+    }
+  ],
+  "foundryId": "GmKNb1UIjAkTMDOt",
+  "gear": [],
+  "hp": 230,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/giylea",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
+  ],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean",
+    "utopian"
+  ],
+  "level": 16,
+  "name": "Giylea",
+  "perception": 28,
+  "publicNotes": "<p>Giyleas are known as wheel archons, named for their appearance as a flying, armor-plated wheel of fire with eyes on each spoke. They often serve as advisors due to their ability to see through lies, and they have a legendary intolerance and single-mindedness in the pursuit of the punishment of evil.</p>\n<hr />\n<p>Archons are guardians of Heaven and enemies of corruption. Before gods and their servants set foot in the celestial planes, archons already resided in Heaven, the original inhabitants of the realm. Upon meeting, the archons and divine angels quickly discovered they were of a kind, holding justice and righteousness in their hearts. An alliance was formed, and archons now serve as stalwart allies to all celestials and mortals they find worthy.</p>\n<p>While the first archons coalesced from the immense seven-tiered mountain of Heaven, they choose willing and worthy Heaven-bound souls to join their ranks. These mortals hear and answer the call of a mysterious voice, manifesting in the Garden at the mountain's peak. There they swear to forever serve the cause of justice and transform into their new archon forms.</p>\n<p>Though deeply concerned with defending mortal life and willing to sacrifice themselves in battle against fiends, archons often feel rote and inscrutable to others, and their forms can border on frightening and bizarre. For this reason, they often have issues with interacting with mortals, or with the free spirited azatas. Despite this, archons draw great strength from others, especially those who exemplify virtue.</p>\n<p>Beyond their celestial allies, archons also maintain ancient ties with aeons. The inscrutable factions can still be seen working together to defend longforgotten secrets and enforce rules that predate mortal life. Archons explain these missions as necessary without further elaboration, leaving even their angelic allies frustrated with archons' obstinance.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 31
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "truesight"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 31,
+    "athletics": 30,
+    "intimidation": 29,
+    "religion": 28
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 29,
+      "dc": 37,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Detonate Magic",
+          "rank": 9
+        },
+        {
+          "name": "Divine Decree",
+          "rank": 7
+        },
+        {
+          "name": "Truesight (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Zealous Conviction",
+          "rank": 6
+        },
+        {
+          "name": "Divine Immolation",
+          "rank": 5
+        },
+        {
+          "name": "Scouting Eye",
+          "rank": 5
+        },
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Divine Wrath",
+          "rank": 4
+        },
+        {
+          "name": "Ring of Truth (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Ring of Truth (Constant)",
+          "rank": 3
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "archon",
+    "celestial",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unholy",
+      "value": 15
+    }
+  ]
+}

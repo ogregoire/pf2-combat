@@ -1,0 +1,327 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": -1,
+    "dex": 2,
+    "int": 4,
+    "str": 2,
+    "wis": 3
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p><hr /><p><strong>Effect</strong> The mirror seer causes all surfaces in a @Template[type:burst|distance:30] within 100 feet to become reflective for 1 minute. Every creature in the area or that later enters the area must succeed at a @Check[will|dc:27] save or become Confused by the reflections and refractions. The confusion ends if the creature leaves the area, and the creature can attempt a new save to end the effect at the end of each of its turns. When the effect ends for a creature, that creature becomes temporarily immune for 10 minutes.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Hall of Mirrors",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "illusion",
+        "manipulate",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The mirror seer observes a creature making a Strike, casting a spell of 4th rank or lower, or using a special action (the triggering action must take 2 actions or fewer)</p><hr /><p><strong>Effect</strong> The mirror seer expends a 4th-rank spell slot (or higher) to duplicate the triggering action. This mimicked action occurs immediately after the triggering action, using the triggering creature's statistics unless the mirror seer's are higher. The creature the mirror seer mimicked is then temporarily immune to this ability for 10 minutes.</p>",
+      "frequency": null,
+      "name": "Rightfully Mine",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The mirror seer observes a creature making a Strike, casting a spell of 4th rank or lower, or using a special action (the triggering action must take 2 actions or fewer)"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The mirror seer chooses a creature within 100 feet that can see its own reflection in a mirror. The creature must succeed at a @Check[will|dc:29] save or become Fascinated by their reflection for 1 minute. The creature can attempt a new save to end the effect at the end of each of its turns.</p>",
+      "frequency": null,
+      "name": "A Fairer Face",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "emotion",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The mirror seer accesses power from their wicked benefactor through two mirrors: one full-sized Malefic Mirror in their sanctum and an enchanted hand mirror they can carry on their person.</p><ul><li><strong>Malefic Mirror</strong> The mirror seer must visit the malefic mirror once per day to retain their spellcasting abilities, and they can activate the mirror for special scrying and illusory disguise spells as noted in the mirror's stat block.</li><li><p><strong>Enchanted Hand Mirror</strong> Without their enchanted hand mirror on their person, the mirror seer takes a –2 circumstance penalty to spell attack rolls and DCs and can't cast their 7th-rank spells. If it's not attended by the mirror seer, the hand mirror has AC 10, Hardness 0, and 1 HP.</p></li></ul>",
+      "frequency": null,
+      "name": "Looking Glass Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "magical",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "magical",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "JfAyvn0mKWptD9xr",
+  "gear": [
+    "Dagger",
+    "Enchanted Hand Mirror",
+    "Scroll of False Vision (Rank 5)",
+    "Staff"
+  ],
+  "hp": 140,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/mirror-seer",
+  "immunities": [],
+  "languages": [
+    "common",
+    "diabolic",
+    "fey",
+    "shadowtongue"
+  ],
+  "level": 9,
+  "name": "Mirror Seer",
+  "perception": 16,
+  "publicNotes": "<p>Seeking to be the most powerful and perfect creature in their domain, a mirror seer forges a deal with a nefarious entity for more power. Through a magic mirror called a malefic mirror, they communicate with this entity and spy on the events that unfold in their realm.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 21,
+    "diplomacy": 17,
+    "occultism": 19,
+    "performance": 17,
+    "society": 17,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        },
+        {
+          "max": 2,
+          "rank": 5
+        },
+        {
+          "max": 2,
+          "rank": 7
+        }
+      ],
+      "spells": [
+        {
+          "name": "Scrying",
+          "rank": 6
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Shadow Blast",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Detect Scrying",
+          "rank": 4
+        },
+        {
+          "name": "Peaceful Bubble",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Hypnotize",
+          "rank": 3
+        },
+        {
+          "name": "Locate",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Revealing Light",
+          "rank": 2
+        },
+        {
+          "name": "Status",
+          "rank": 2
+        },
+        {
+          "name": "Alarm",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise (Self Only)",
+          "rank": 1
+        },
+        {
+          "name": "Item Facade",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        },
+        {
+          "name": "Void Warp",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

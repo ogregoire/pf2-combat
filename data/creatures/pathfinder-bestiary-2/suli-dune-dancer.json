@@ -1,0 +1,123 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 2,
+    "int": 1,
+    "str": 2,
+    "wis": 0
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy is about to damage the dune dancer with cold, electricity, or fire, or with a spell that has the air, earth, fire, or water trait</p>\n<hr />\n<p><strong>Effect</strong> The dune dancer gain resistance 2 against the triggering damage</p>",
+      "frequency": null,
+      "name": "Elemental Bulwark",
+      "requirements": null,
+      "traits": [
+        "air",
+        "earth",
+        "fire",
+        "water"
+      ],
+      "trigger": "An enemy is about to damage the dune dancer with cold, electricity, or fire, or with a spell that has the air, earth, fire, or water trait"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Elemental magic fills the dune dancer's body or weapon. The dune dancer chooses one element and makes a melee Strike. The Strike deals an additional [[/r {1d4}]]{1d4 damage} of the indicated type and has the trait corresponding to the element:</p>\n<ul>\n<li><strong>Air</strong> electricity</li>\n<li><strong>Earth</strong> bludgeoning</li>\n<li><strong>Fire</strong> fire</li>\n<li><strong>Water</strong> cold</li>\n</ul>",
+      "frequency": null,
+      "name": "Elemental Assault",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Scimitar",
+      "traits": [
+        "forceful",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "3dlupMwDA9qv1xWS",
+  "gear": [
+    "Scimitar",
+    "Tambourine (Handheld Musical Instrument)"
+  ],
+  "hp": 16,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/suli-dune-dancer",
+  "immunities": [],
+  "languages": [
+    "common",
+    "petran",
+    "pyric",
+    "sussuran",
+    "thalassic"
+  ],
+  "level": 1,
+  "name": "Suli Dune Dancer",
+  "perception": 5,
+  "publicNotes": "<p>Because their genie forebears are native to the Material Plane, sulis are by and large the most common geniekin on the Material Plane. They are often artisans and peace brokers, compelled to try and bring harmony and balance in a world wrought with discord.</p>\n<p>Sulis have a natural charm that often eludes other geniekin, but tend to layer on a level of boastful pride or even arrogance as a personal quirk or humorous facade. Few non-sulis realize that bragging is not simply the symptom of a puffed-up ego for sulis, but instead is a cultural institution easily comparable to human poetry. Sulis' boasts not only glorify themselves, but also secure their companions' and families' accomplishments in history, with the ultimate goal of spinning stories that will be retold for generations. This is especially true for sulis who have lived with other geniekin and have been seen as lesser for not having a strong connection to an Elemental Plane.</p>\n<p>Suli dune dancers are but one way these geniekin seek to integrate with other humanoid societies. They work to hone their skills at boasting to an extent that their claims help to bolster those they travel with. Suli from regions other than deserts adjust their names to match their terrains, but regardless of whether they prefer forests, hills, or arctic plains, their boasts remain as compelling.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 5,
+    "deception": 6,
+    "diplomacy": 7,
+    "occultism": 4,
+    "performance": 7,
+    "society": 4
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid",
+    "suli"
+  ],
+  "weaknesses": []
+}

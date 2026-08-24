@@ -1,0 +1,215 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 8,
+    "dex": 6,
+    "int": 0,
+    "str": 9,
+    "wis": 3
+  },
+  "ac": 42,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Requirements</strong> The wyvern has a creature Grabbed in its tongue.</p>\n<hr />\n<p><strong>Effect</strong> The wyvern moves the creature up to 20 feet closer to it.</p>",
+      "frequency": null,
+      "name": "Reel In",
+      "requirements": "The wyvern has a creature Grabbed in its tongue.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature Grabbed by the wyvern critically fails a skill check to Escape.</p>\n<hr />\n<p><strong>Effect</strong> The wyvern makes a stinger Strike against the triggering creature.</p>",
+      "frequency": null,
+      "name": "Savage",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature Grabbed by the wyvern critically fails a skill check to Escape."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>With incredible force, the barbtongued wyvern whips its tongue and flings barbs from its length. Up to two creatures within 200 feet of the wyvern can be targeted; each creature must attempt a @Check[reflex|dc:40] save. The barbtongued wyvern can't use Pin to the Sky again until its next turn.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> The target takes @Damage[(2d12+3)[piercing]] damage.</p>\n<p><strong>Failure</strong> The target takes @Damage[5d12[piercing]] damage and is pinned in place, fastened to the underlying magical nature of Thousandbreaths by the barbs (even if not adjacent to a solid surface). It is Immobilized until it Escapes. If the creature is under the effects of a spell that would prevent it from being immobilized, Thousandbreaths first attempts a Counteract check against the spell (+27).</p>\n<p><strong>Critical Failure</strong> As failure, but the target takes @Damage[10d12[piercing]] damage and is Slowed 1 until it escapes.</p>",
+      "frequency": null,
+      "name": "Pin to the Sky",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The wyvern's last action was a success with a barbed tongue Strike, or it has a creature Grabbed using this action.</p>\n<hr />\n<p><strong>Effect</strong> If the target was Immobilized by Pin to the Sky, the wyvern first painfully rips it free of the effect, dealing @Damage[4d12[piercing]] damage. Regardless of whether or not the target was previously immobilized, the wyvern Grabs the target until the end of the monster's next turn. The wyvern can't use its tongue to Strike creatures until the Grab ends. Using Ripping Grab extends the duration of the monster's Grab until the end of its next turn for all creatures grabbed by it. A grabbed creature can use the Escape action to get out of the grab, and the Grab ends for a grabbed creature if the barbtongued wyvern moves away from it.</p>",
+      "frequency": null,
+      "name": "Ripping Grab",
+      "requirements": "The wyvern's last action was a success with a barbed tongue Strike, or it has a creature Grabbed using this action.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:40]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[5d12[poison]] damage and Clumsy 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[6d12[poison]] damage and Clumsy 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[7d12[poison]] damage and Clumsy 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Barbtongued Wyvern Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d6+17",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "ripping-grab"
+      ],
+      "kind": "melee",
+      "name": "Barbed Tongue",
+      "traits": [
+        "reach-30"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "3d12+17",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+17",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "barbtongued-wyvern-venom"
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "agile",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "oM1AvORITfhzwrDk",
+  "gear": [],
+  "hp": 330,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/barbtongued-wyvern",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "draconic"
+  ],
+  "level": 18,
+  "name": "Barbtongued Wyvern",
+  "perception": 29,
+  "publicNotes": "<p>A wyvern is a venomous drake with a well-earned reputation for impatience and aggression. As much as 15 feet long and weighing up to 1,000 pounds, a wyvern's resilient body allows it to crash talons-first into large prey without serious risk to itself. A wyvern uses its momentum to stun its target before injecting it with searing venom or carrying it over the side of a nearby cliff. Because a wyvern lacks the strength to haul its prey all the way to its nest intact, it is far more likely to lift and drop its victim over a gully or canyon and let gravity do its work before it descends to pick apart the carcass.</p>\n<p>Conversation is of little interest to a wyvern, as the creature typically speaks only to taunt its prey, issue territorial claims, or demand tribute. Even so, many wyverns enjoy grim humor and tales of violent acts, particularly if those acts were committed by the storyteller. A wyvern properly appeased with meat, entertainment, and treasure sometimes agrees to provide assistance ranging from giving directions to serving as a mount for a powerful humanoid. However, these arrangements rarely last more than a few weeks before the wyvern's pride, malice, or insolence inspires it to flee or even betray its allies. Only the truly cruel can cow a wyvern into servitude for an extended period, as most wyverns are so self-interested that they go out of their way to avoid helping others.</p>\n<hr />\n<p>Ravenous, bestial, and driven by instinct-drakes are primitive draconic monsters who bear a fraction of the terrifying might of their larger cousins but little (if any) of the cunning. While they're weaker, slower, and less inclined toward reason than dragons, drakes are nonetheless a menace to creatures and settlements around them. Their propensity for forming raiding parties-small social groups fittingly called \"rampages\"-makes them all the more dangerous; a single rampage of river drakes can quickly lay waste to a waterside village, and roving rampages of desert drakes are a plague to caravan traders.</p>\n<p>Drakes share a number of physical characteristics that unite them as one species despite their wide variety of habitats and abilities. For example, drakes lack forearms, leaving them only their formidable jaws and thick-scaled tails with which to attack if engaged at melee range. Most drakes would rather avoid close combat, however, preferring to use their breath weapons to wreak havoc in wide swaths from comfortable distances while flying overhead. Finally, all drakes have small reservoirs of their ancestral draconic power that they can tap into to perform incredible feats of speed.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 34
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 27
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 34,
+    "athletics": 35,
+    "stealth": 30
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 100
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dragon"
+  ],
+  "weaknesses": []
+}

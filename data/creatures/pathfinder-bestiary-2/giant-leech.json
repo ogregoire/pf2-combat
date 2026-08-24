@@ -1,0 +1,130 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 3,
+    "dex": 1,
+    "int": -5,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The giant leech has a creature Grabbed or Restrained</p>\n<hr />\n<p><strong>Effect</strong> The giant leech drains blood from the creature it has grabbed. This deals [[/r 2d4]] damage. A creature that has its blood drained by a giant leech is Drained 1 until it receives any kind or amount of healing.</p>",
+      "frequency": null,
+      "name": "Blood Drain",
+      "requirements": "The giant leech has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Mouth",
+      "traits": []
+    }
+  ],
+  "foundryId": "JJKxWVExhUEno9j0",
+  "gear": [],
+  "hp": 32,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/giant-leech",
+  "immunities": [],
+  "languages": [],
+  "level": 2,
+  "name": "Giant Leech",
+  "perception": 5,
+  "publicNotes": "<p>Capable of growing to lengths of nearly 5 feet, giant leeches have circular maws filled with hook-like teeth. They prefer to dwell in stagnant or slow-moving shallow water or in damp, moist undergrowth. Horses and larger animals are their favorite prey, but they won't balk at a chance to latch onto a human- or halfling-sized meal.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "animal"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "salt",
+      "value": 5
+    }
+  ]
+}

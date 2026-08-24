@@ -1,0 +1,194 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": 1,
+    "str": 6,
+    "wis": 6
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The skaveling unleashes a horrifying screech that chills the very bones of those close enough to feel it. The screech can be heard for miles, but each creature in a @Template[emanation|distance:20] must also attempt a @Check[will|dc:22] save.</p>\n<p>The skaveling can't use Bone-Chilling Screech again for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and is temporarily immune to Bone- Chilling Screech for 24 hours.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 2 and Stunned 1 by fear.</p>",
+      "frequency": null,
+      "name": "Bone-Chilling Screech",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A skaveling can use its hearing as a precise sense at the listed range</p>",
+      "frequency": null,
+      "name": "Echolocation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:22]</p>\n<p><strong>Stage 1</strong> carrier with no ill effect (1 day)</p>\n<p><strong>Stage 2</strong> @Damage[2d6[void]] damage and regains half as many Hit Points from all healing (1 day)</p>\n<p><strong>Stage 3</strong> as stage 2 (1 day)</p>\n<p><strong>Stage 4</strong> @Damage[2d6[void]] damage and gains no benefit from healing (1 day)</p>\n<p><strong>Stage 5</strong> as stage 4 (1 day)</p>\n<p><strong>Stage 6</strong> dead, and rises as a ghoul the next midnight</p>",
+      "frequency": null,
+      "name": "Ghoul Fever",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any creature hit by the skaveling's Strikes must attempt a @Check[fortitude|dc:22] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Slowed 1.</p>\n<p><strong>Failure</strong> The creature is Paralyzed. It can attempt a new save at the end of each of its turns, and the DC cumulatively decreases by 1 on each save.</p>",
+      "frequency": null,
+      "name": "Paralysis",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "ghoul-fever",
+        "paralysis"
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": []
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "paralysis"
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "LQL8HU6tISXZwlOw",
+  "gear": [],
+  "hp": 80,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/skaveling",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [],
+  "level": 5,
+  "name": "Skaveling",
+  "perception": 15,
+  "publicNotes": "<p>Hideous necromantic rituals give rise to skavelings, or ghoul bats, monstrosities that are not true ghouls but instead are specifically crafted undead creatures. Their creators are the bloodsucking urdefhans of the Darklands, who create skavelings from giant bats specially raised on diets of toxic fungus and the flesh of ghouls-especially brains harvested from these undead. Upon reaching maturity, these giant bats are ritually slain via the use of cytillesh oil. While this poison simply rots away the flesh of most creatures, one of these specially prepared bats will immediately rise from death as a skaveling after succumbing to its effects.</p>\n<p>Despite its tattered wings and sagging skin, a skaveling is more than capable of flight, even when carrying a creature mounted on its back-urdefhans often use skavelings as mounts in this way. Their intelligence is more advanced than that of the typical giant bat, and in combat they function more as allies than as mere mounts, capable of making their own tactical decisions. Yet even though they can reason and think, skavelings remain loyal to the urdefhans who created them, and they never take actions in a fight that would knowingly put their masters in harm's way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 40,
+      "type": "echolocation"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 13,
+    "intimidation": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "undead"
+  ],
+  "weaknesses": []
+}

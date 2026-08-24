@@ -1,0 +1,158 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 4
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A foe within reach attempts to move away from the Tiger Lord</p>\n<p><strong>Effect</strong> The Tiger Lord Strides up to its Speed, following the foe and keeping it in reach throughout its movement until it stops moving or the Tiger Lord has moved its full Speed.</p>",
+      "frequency": null,
+      "name": "No Escape",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A foe within reach attempts to move away from the Tiger Lord"
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Requirements</strong> The Tiger Lord is not Fatigued or already in a rage</p>\n<p><strong>Trigger</strong> The Tiger Lord suffers damage that reduces its Hit Points to 100 or less.</p>\n<p><strong>Effect</strong> The Tiger Lord flies into a rage that lasts 1 minute. While raging, the Tiger Lord gains a +1 status bonus to attack rolls, gains a +2 status bonus to damage rolls, and takes a -2 status penalty to AC. After the rage, the Tiger Lord is fatigued.</p>",
+      "frequency": null,
+      "name": "Vengeful Rage",
+      "requirements": "The Tiger Lord is not Fatigued or already in a rage",
+      "traits": [],
+      "trigger": "The Tiger Lord suffers damage that reduces its Hit Points to 100 or less."
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The Tiger Lord makes a ranged Strike with a hatchet, then Strides up to twice its speed. If it ends its movement within melee reach of the target of its ranged Strike, it may make a melee Strike against that enemy. If the ranged Strike hit the target, the target is Off-Guard against the melee Strike.</p>",
+      "frequency": null,
+      "name": "Closing Volley",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Battle Axe",
+      "traits": [
+        "magical",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "HkdsqQLNb9XwzYIH",
+  "gear": [
+    "Battle Axe",
+    "Hatchet",
+    "Heavy Wooden Shield",
+    "Hide Armor"
+  ],
+  "hp": 160,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/tiger-lord",
+  "immunities": [],
+  "languages": [
+    "common",
+    "hallit"
+  ],
+  "level": 8,
+  "name": "Tiger Lord",
+  "perception": 18,
+  "publicNotes": "",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 16,
+    "athletics": 18,
+    "intimidation": 16
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

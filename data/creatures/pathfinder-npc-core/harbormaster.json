@@ -1,0 +1,150 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 2,
+    "int": 2,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The harbormaster has endured their share of adverse conditions at sea. Any creature that's in adverse weather or aboard a vessel on rough water is Off-Guard to the harbormaster.</p>",
+      "frequency": null,
+      "name": "Experienced Hand",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Whenever the harbormaster rolls a success on a check to Balance, they get a critical success instead. They're not Off-Guard while Balancing on narrow surfaces and uneven ground.</p>",
+      "frequency": null,
+      "name": "Steady Balance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "vGcspyaP2VOwurMk",
+  "gear": [
+    "Fishing Tackle",
+    "Hatchet",
+    "Ledger",
+    "Manacles (Average)",
+    "Spyglass"
+  ],
+  "hp": 45,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/harbormaster",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Harbormaster",
+  "perception": 6,
+  "publicNotes": "<p>A port must sustain itself on different types of flows: the seaward and coastal flows, marked by the rising and falling of the tides, and the constant flow of trade. A harbormaster is expected to know the former reflexively and encourage the latter within the jurisdictional rules of law.</p><hr /><p>Larger societies rely on those with the authority and the ability to interpret and enforce laws. Some carry out these duties fairly, but others are harsh and cruel, imposing severe punishments on anyone unable to pay for clemency.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 9,
+    "diplomacy": 5,
+    "intimidation": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

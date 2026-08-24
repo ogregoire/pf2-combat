@@ -1,0 +1,271 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 1,
+    "int": 3,
+    "str": 2,
+    "wis": 3
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the therapeutic healer rolls a critical failure on a check to Treat Disease, Treat Poison, or Treat Wounds, they get a failure instead.</p>",
+      "frequency": null,
+      "name": "Doctor's Hand",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the therapeutic healer casts a spell with the healing trait on a creature other than themself, the healer regains HP equal to the spell's rank.</p>",
+      "frequency": null,
+      "name": "Emotionally Invested",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "healing",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When Treating Wounds, the therapeutic healer can treat up to four targets. If they succeed at a DC 20 check to Treat Wounds, they can also reduce the value of one Clumsy, Enfeebled, or Stupefied condition affecting a single patient by 1. They can reduce a Drained or Doomed condition instead if they succeed at a DC 30 check. This can't reduce permanent doomed conditions.</p>",
+      "frequency": null,
+      "name": "Therapeutic Care",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "fh7fcZjLGqih2m9J",
+  "gear": [
+    "Chain Shirt",
+    "Healer's Toolkit (Expanded)",
+    "Staff"
+  ],
+  "hp": 110,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/therapeutic-healer",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 7,
+  "name": "Therapeutic Healer",
+  "perception": 14,
+  "publicNotes": "<p>Some healers feel great empathy for their charges and take great pains to help shoulder their allies' burdens both in and out of combat.</p><hr /><p>The world is a dangerous place. Thankfully, there are those who devote their lives to easing the pain and suffering of others.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 17,
+    "medicine": 17,
+    "occultism": 16,
+    "performance": 15,
+    "society": 14
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Bard Composition Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Hymn of Healing",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        }
+      ],
+      "spells": [
+        {
+          "name": "Veil of Privacy",
+          "rank": 3
+        },
+        {
+          "name": "Cleanse Affliction",
+          "rank": 2
+        },
+        {
+          "name": "Clear Mind",
+          "rank": 2
+        },
+        {
+          "name": "Clear Mind",
+          "rank": 2
+        },
+        {
+          "name": "Status",
+          "rank": 2
+        },
+        {
+          "name": "Translate",
+          "rank": 2
+        },
+        {
+          "name": "Guidance",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Protection",
+          "rank": 1
+        },
+        {
+          "name": "Sanctuary",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Soothe",
+          "rank": 1
+        },
+        {
+          "name": "Soothe",
+          "rank": 1
+        },
+        {
+          "name": "Soothe",
+          "rank": 1
+        },
+        {
+          "name": "Soothe",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

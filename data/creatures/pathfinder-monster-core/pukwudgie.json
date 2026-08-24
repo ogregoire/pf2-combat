@@ -1,0 +1,219 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 3,
+    "dex": 6,
+    "int": 4,
+    "str": 4,
+    "wis": 6
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The pukwudgie takes on the physical form of a giant porcupine or resumes their natural form. In porcupine form, their size changes to Medium, they lose their weapon Strikes, and they gain a quill Strike (+18 for 2d8+6 piercing plus 1d8 persistent poison).</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A creature that hits a pukwudgie with an unarmed Strike or a non-reach melee Strike takes @Damage[3d8[piercing]] damage (@Check[reflex|dc:22|basic] save). On a critical failure, the creature also takes @Damage[1d6[persistent,poison]] from the poisoned quills.</p>\n<hr />\n<p><em>Note: A DC was not provided for this ability by Paizo. The DC present here is a moderate DC for the creature level according to the GM Core creature building Tables</em></p>",
+      "frequency": null,
+      "name": "Defensive Quills",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:25]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage and Stupefied 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]] damage and Stupefied 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[1d6[poison]] damage, Confused, and stupefied 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Pukwudgie Poison",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "pukwudgie-poison"
+      ],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "magical",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "pukwudgie-poison"
+      ],
+      "kind": "ranged",
+      "name": "Hatchet",
+      "traits": [
+        "magical",
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "pukwudgie-poison"
+      ],
+      "kind": "ranged",
+      "name": "Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-60"
+      ]
+    }
+  ],
+  "foundryId": "1ZRHjuGOluR4IUrs",
+  "gear": [
+    "Hatchet",
+    "Shortbow"
+  ],
+  "hp": 100,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/pukwudgie",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven",
+    "fey",
+    "gnomish"
+  ],
+  "level": 7,
+  "name": "Pukwudgie",
+  "perception": 17,
+  "publicNotes": "<p>Pukwudgies go by many names in many regions, but those who know of them agree that defying their mischievous nature provokes their wrath.</p>\n<p>In ancient times, pukwudgies traveled to the Universe from the First World, perhaps in the wake of the gnome emigration. These proud fey are obsessed with displays of respect, and while they first attempted to befriend mortals, each attempt ended in tragedy as the pukwudgies perceived any potential slight as a grave insult. Mortals, fearing these reactions, began to view pukwudgies as dangerous nuisances. Pukwudgies, in turn, began to resent mortals and the gods that favored them.</p>\n<p>At their best, pukwudgies play cruel jokes on mortals they encounter. At their worst, they've been known to kidnap and even kill those who don't treat them with proper respect. Violent fey like twigjacks and redcaps often gather under pukwudgie leadership, much to the pukwudgies' glee.</p>\n<p>Pukwudgies make their villages in the oldest forests, concealed under Mirage spells. They travel freely between the Universe and the First World through tiny portals beneath hills, trees, or stones. No strangers to violence, pukwudgies rarely travel alone and often anoint their quills or weapons with a custom-brewed poison before entering hostile situations.</p>\n<p>Standing about 2 feet tall, a pukwudgie sports sharp quills growing from their head that extends down their back. Their skin tone varies by the region in which they live, ranging from pale gray to brown.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "crafting": 15,
+    "deception": 14,
+    "medicine": 15,
+    "nature": 17,
+    "stealth": 17,
+    "thievery": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Mirage",
+          "rank": 4
+        },
+        {
+          "name": "Unfettered Movement",
+          "rank": 4
+        },
+        {
+          "name": "Wall of Thorns",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility (At Will) (Self Only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 10
+    }
+  ]
+}

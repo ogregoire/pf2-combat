@@ -758,7 +758,8 @@ const SystemSchema = z.object({
     ac: z.object({ value: z.number() }),
     hp: z.object({ max: z.number() }),
     speed: z.object({
-      value: z.number(),
+      // Null means the creature has no land speed at all (the Banshee flies).
+      value: z.number().nullable(),
       otherSpeeds: z
         .array(z.object({ type: z.string(), value: z.number() }))
         .default([]),
@@ -779,7 +780,10 @@ const SystemSchema = z.object({
     reflex: z.object({ value: z.number() }),
     will: z.object({ value: z.number() }),
   }),
-  skills: z.record(z.object({ base: z.number() })).default({}),
+  // A null base marks an upstream data-entry artefact: three NPC Core actors
+  // carry junk keys such as "+6", "athletics+15" and "occultism -1" alongside
+  // their real skills. Those entries are dropped during normalization.
+  skills: z.record(z.object({ base: z.number().nullable() })).default({}),
 });
 
 export interface Defenses {
@@ -809,7 +813,9 @@ export function normalizeDefenses(system: unknown): Defenses {
 
   const skills: Record<string, number> = {};
   for (const name of Object.keys(s.skills).sort()) {
-    skills[name] = s.skills[name]!.base;
+    const base = s.skills[name]!.base;
+    if (base === null) continue;
+    skills[name] = base;
   }
 
   const abilityMods: Record<string, number> = {};
@@ -840,8 +846,12 @@ export function normalizeDefenses(system: unknown): Defenses {
     skills,
     abilityMods,
     speeds: [
-      { type: "land", value: s.attributes.speed.value },
-      ...s.attributes.speed.otherSpeeds,
+      ...(s.attributes.speed.value === null
+        ? []
+        : [{ type: "land", value: s.attributes.speed.value }]),
+      ...[...s.attributes.speed.otherSpeeds].sort((a, b) =>
+        a.type.localeCompare(b.type),
+      ),
     ],
   };
 }
@@ -893,7 +903,7 @@ const akiros = JSON.parse(
 describe("extractTrigger", () => {
   it("pulls the trigger out of a real reaction description", () => {
     const noEscape = akiros.items.find((i: any) => i.name === "No Escape");
-    expect(noEscape.system.trigger).toBeNull();
+    expect(noEscape.system.trigger).toBeUndefined();
     expect(extractTrigger(noEscape.system.description.value)).toBe(
       "An adjacent foe moves away.",
     );
@@ -1354,9 +1364,35 @@ describe("normalizeSpellcasting", () => {
   it("attaches spells to the entry that owns them", () => {
     const entries = normalizeSpellcasting(nyrissa.items);
     const total = entries.reduce((sum, e) => sum + e.spells.length, 0);
-    expect(total).toBe(64);
+    // 64 spell items, 7 of which are rituals with no spellcasting entry.
+    expect(total).toBe(57);
     const spont = entries.find((e) => e.name === "Arcane Spontaneous Spells")!;
     expect(spont.spells.some((s) => s.name === "Wish")).toBe(true);
+  });
+
+  it("excludes rituals, which have no spellcasting entry", () => {
+    const entries = normalizeSpellcasting(nyrissa.items);
+    const all = entries.flatMap((e) => e.spells.map((s) => s.name));
+    for (const ritual of [
+      "Control Weather",
+      "Create Demiplane",
+      "Awaken Animal",
+      "Commune with Nature",
+      "Primal Call",
+      "Geas",
+      "Inveigle",
+    ]) {
+      expect(all).not.toContain(ritual);
+    }
+  });
+
+  it("leaves no non-ritual spell orphaned", () => {
+    const entries = normalizeSpellcasting(nyrissa.items);
+    const attached = entries.reduce((sum, e) => sum + e.spells.length, 0);
+    const castable = nyrissa.items.filter(
+      (i: any) => i.type === "spell" && (i.system.ritual ?? null) === null,
+    ).length;
+    expect(attached).toBe(castable);
   });
 
   it("reads slot maxima", () => {
@@ -1400,6 +1436,7 @@ const SpellItemSchema = z.object({
   system: z.object({
     level: z.object({ value: z.number() }),
     location: z.object({ value: z.string().nullish() }),
+    ritual: z.unknown().nullish(),
   }),
 });
 
@@ -1443,6 +1480,12 @@ export function normalizeSpellcasting(items: unknown[]): SpellcastingEntry[] {
   for (const item of items) {
     const parsed = SpellItemSchema.safeParse(item);
     if (!parsed.success) continue;
+    // Rituals are not cast from a spellcasting entry: upstream gives them a
+    // populated `ritual` block, a cast time in days, and a null location.
+    // Skipping them explicitly means a null location on a NON-ritual spell
+    // stays visible as the broken link it would be.
+    const { ritual } = parsed.data.system;
+    if (ritual !== null && ritual !== undefined) continue;
     const owner = parsed.data.system.location.value;
     if (owner === null || owner === undefined) continue;
     const entry = entries.get(owner);
@@ -1549,11 +1592,21 @@ const CONDITION_LABELS: Record<string, string> = {
   "flat-footed": "Off-Guard",
 };
 
+// Upstream writes both labelled and bare references, and the identifier is a
+// human-readable name that may contain hyphens, spaces, colons and apostrophes
+// (`Item.Off-Guard`, `Item.Interplanar Teleport`). A bare reference renders as
+// its identifier, which is why the name form is safe to display.
+//
+// The document type is NOT always `Item`. Across the real dataset it is Item
+// (11405), Actor (66), Macro (24) and JournalEntry (8) — the last of which
+// nests a further `.JournalEntryPage.<id>` inside the identifier. Every one of
+// those carries a usable label, so the greedy identifier is safe.
 const UUID_PATTERN =
-  /@UUID\[Compendium\.pf2e\.([a-z0-9-]+)\.Item\.([A-Za-z0-9]+)\]\{([^}]*)\}/g;
+  /@UUID\[Compendium\.pf2e\.([a-z0-9-]+)\.([A-Za-z]+)\.([^\]]+)\](?:\{([^}]*)\})?/g;
 
 export interface LinkRef {
   pack: string;
+  docType: string;
   id: string;
   label: string;
 }
@@ -1561,9 +1614,14 @@ export interface LinkRef {
 const remapLabel = (label: string): string =>
   CONDITION_LABELS[label.toLowerCase()] ?? label;
 
+const displayOf = (identifier: string, label: string | undefined): string =>
+  remapLabel(label !== undefined && label !== "" ? label : identifier);
+
 export function resolveLinks(html: string): string {
-  return html.replace(UUID_PATTERN, (_match, _pack, _id, label: string) =>
-    remapLabel(label),
+  return html.replace(
+    UUID_PATTERN,
+    (_match, _pack: string, _docType: string, identifier: string, label?: string) =>
+      displayOf(identifier, label),
   );
 }
 
@@ -1571,10 +1629,12 @@ export function collectLinks(html: string): LinkRef[] {
   const refs: LinkRef[] = [];
   for (const match of html.matchAll(UUID_PATTERN)) {
     const rawPack = match[1] ?? "";
+    const identifier = match[3] ?? "";
     refs.push({
       pack: PACK_ALIASES[rawPack] ?? rawPack,
-      id: match[2] ?? "",
-      label: remapLabel(match[3] ?? ""),
+      docType: match[2] ?? "Item",
+      id: identifier,
+      label: displayOf(identifier, match[4]),
     });
   }
   return refs;
@@ -1646,6 +1706,27 @@ describe("normalizeCreature", () => {
     expect(c.level).toBe(6);
     expect(c.source.remaster).toBe(false);
     expect(c.source.license).toBe("OGL");
+  });
+
+  it("keeps treasure and other carried items in gear", () => {
+    const akiros = normalizeCreature(
+      load("akiros-ismort"),
+      "kingmaker-bestiary",
+      "akiros-ismort",
+    );
+    expect(akiros.gear).toContain("Silver Stag Lord Amulet");
+    expect(akiros.gear).toContain("Gold Pieces");
+  });
+
+  it("keeps gear free of items the other normalizers own", () => {
+    const nyrissa = normalizeCreature(
+      load("nyrissa"),
+      "kingmaker-bestiary",
+      "nyrissa",
+    );
+    expect(nyrissa.gear).not.toContain("Wish");
+    expect(nyrissa.gear).not.toContain("Arcane Spontaneous Spells");
+    expect(nyrissa.gear).not.toContain("First World Lore");
   });
 
   it("carries actions, attacks and spellcasting through", () => {
@@ -1795,7 +1876,20 @@ const ActorSchema = z.object({
   }),
 });
 
-const GEAR_TYPES = new Set(["equipment", "weapon", "armor", "consumable"]);
+// Item types consumed by the dedicated normalizers above, or otherwise not
+// gear. Everything else counts as gear. This is deliberately a deny-list: an
+// allow-list silently drops upstream types nobody thought of, which is exactly
+// how `treasure` items (Akiros Ismort's "Silver Stag Lord Amulet", "Gold
+// Pieces") went missing.
+const NON_GEAR_TYPES = new Set([
+  "action",
+  "melee",
+  "spell",
+  "spellcastingEntry",
+  "condition",
+  "effect",
+  "lore",
+]);
 
 export function normalizeCreature(
   raw: unknown,
@@ -1804,11 +1898,15 @@ export function normalizeCreature(
 ): Creature {
   const actor = ActorSchema.parse(raw);
   const traits = normalizeTraits(actor.system.traits);
+  // Deliberately the RAW system, not `actor.system`: ActorSchema's `system`
+  // sub-schema does not passthrough, so zod has already stripped `attributes`,
+  // `perception`, `saves` and `skills` from the parsed copy. `ActorSchema.parse`
+  // above has already guaranteed `raw.system` exists. Do not "simplify" this.
   const defenses = normalizeDefenses((raw as { system: unknown }).system);
 
   const gear = actor.items
     .map((i) => i as { type?: string; name?: string })
-    .filter((i) => i.type !== undefined && GEAR_TYPES.has(i.type))
+    .filter((i) => i.type !== undefined && !NON_GEAR_TYPES.has(i.type))
     .map((i) => i.name ?? "")
     .filter((n) => n !== "")
     .sort((a, b) => a.localeCompare(b));
@@ -2169,7 +2267,9 @@ export function buildIndexes(creatures: Creature[]): IndexBuild {
       book: c.source.book,
     });
 
-    (bySlug.get(slug) ?? bySlug.set(slug, []).get(slug)!).push(c.id);
+    const sharing = bySlug.get(slug) ?? [];
+    sharing.push(c.id);
+    bySlug.set(slug, sharing);
   }
 
   for (const entries of Object.values(indexes)) {
@@ -2222,7 +2322,7 @@ git commit -m "feat(pf2data): per-book indexes, book catalog and collision detec
 
 **Interfaces:**
 - Consumes: `Pf2DataConfig` (Task 2).
-- Produces: `fetchUpstream(options: FetchOptions): FetchResult` where `FetchOptions = { config: Pf2DataConfig; cacheDir: string; pinnedRef: string | null; useLatest: boolean; run?: RunGit }` and `FetchResult = { ref: string; packsDir: string; langPath: string }`, plus the constant `LANG_PATH = "static/lang/en.json"`. `RunGit = (args: string[], cwd: string) => string` is injected so the stage is testable without touching the network.
+- Produces: `fetchUpstream(options: FetchOptions): FetchResult` where `FetchOptions = { config: Pf2DataConfig; cacheDir: string; pinnedRef: string | null; useLatest: boolean; run?: RunGit }` and `FetchResult = { ref: string; packsDir: string; langPath: string }`, plus the constants `LANG_PATH = "static/lang/en.json"` (where the file is read from) and `LANG_DIR = "static/lang"` (what sparse-checkout is given, because cone mode rejects file patterns). `RunGit = (args: string[], cwd: string) => string` is injected so the stage is testable without touching the network.
 
 Uses `git clone --filter=blob:none --sparse` then `git sparse-checkout set` limited to the allowlisted packs, then `git checkout <ref>`. Without `--latest` it checks out the pinned SHA, which is what makes `update` byte-for-byte idempotent.
 
@@ -2267,7 +2367,7 @@ describe("fetchUpstream", () => {
     const { calls, run } = recorder();
     fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: true, run });
     const sparse = calls.find((c) => c[0] === "sparse-checkout")!;
-    expect(sparse).toContain("static/lang/en.json");
+    expect(sparse).toContain("static/lang");
   });
 
   it("checks out the pinned ref when not using latest", () => {
@@ -2353,6 +2453,14 @@ export interface FetchResult {
 /** Glossary ability text lives here, not in the packs. See Task 18. */
 export const LANG_PATH = "static/lang/en.json";
 
+/**
+ * Sparse-checkout runs in cone mode, which accepts DIRECTORY patterns only:
+ * passing the bare file path above makes git fail with
+ * "fatal: 'static/lang/en.json' is not a directory". The whole directory is
+ * 4 files / ~1 MB, so checking it out wholesale costs nothing.
+ */
+export const LANG_DIR = "static/lang";
+
 const defaultRun: RunGit = (args, cwd) =>
   execFileSync("git", args, { cwd, encoding: "utf8" });
 
@@ -2388,7 +2496,7 @@ export function fetchUpstream(options: FetchOptions): FetchResult {
       "sparse-checkout",
       "set",
       ...config.packs.map((p) => `packs/${p.name}`),
-      LANG_PATH,
+      LANG_DIR,
     ],
     cacheDir,
   );
@@ -2410,7 +2518,7 @@ export function fetchUpstream(options: FetchOptions): FetchResult {
 - [ ] **Step 5: Run test to verify it passes**
 
 Run: `npx vitest run packages/pf2data/test/fetch.test.ts`
-Expected: PASS, 4 tests.
+Expected: PASS, 5 tests.
 
 - [ ] **Step 6: Commit**
 
@@ -2807,6 +2915,13 @@ git commit -m "feat(pf2data): normalize stage and dataset change reporting"
 
 **Interfaces:**
 - Consumes: everything from Tasks 2, 12, 14, 15, 16.
+- **Amended during implementation** (review finding, ruled on): `runCli` takes an
+  optional third parameter `deps: CliDeps = DEFAULT_DEPS`, where
+  `CliDeps = { dataDir: string; cacheDir: string; configPath: string; runGit?: RunGit }`.
+  `DEFAULT_DEPS` reproduces the module-level constants, so production behaviour is
+  unchanged; `runGit` is threaded to `fetchUpstream`'s `run` option. This exists so the
+  CLI contract can be tested against a temp directory with a recording git runner and
+  no network. `readManifest` and `readDataset` were parameterised to match.
 - Produces: `parseArgs(argv: string[]): Command` where `Command = { name: "update"; latest: boolean } | { name: "status" } | { name: "verify" }`, and `runCli(argv: string[], io: CliIo): number` returning the exit code. `CliIo = { out: (s: string) => void; err: (s: string) => void; isTty: boolean }`.
 
 Contract from the spec: JSON to stdout when stdout is not a TTY, prose to stderr always, exit codes `0` / `10` / `20` / `30` / `1`.
@@ -2857,7 +2972,7 @@ Expected: FAIL — cannot resolve `../src/cli.js`.
 
 ```ts
 #!/usr/bin/env -S npx tsx
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
@@ -3054,6 +3169,9 @@ export function runCli(argv: string[], io: CliIo): number {
     nextManifest.generatedAt = new Date().toISOString();
   }
 
+  for (const id of diff.removed) {
+    rmSync(join(DATA_DIR, "creatures", `${id}.json`), { force: true });
+  }
   for (const creature of creatures) {
     writeJson(join(DATA_DIR, "creatures", `${creature.id}.json`), creature);
   }
@@ -3108,7 +3226,7 @@ Expected: PASS, all tests across both packages.
 - [ ] **Step 6: Commit**
 
 ```bash
-git add packages/pf2data/src/cli.ts package.json
+git add packages/pf2data/src/cli.ts packages/pf2data/test/cli.test.ts package.json
 git commit -m "feat(pf2data): cli with structured output and exit codes"
 ```
 
@@ -3128,7 +3246,14 @@ git commit -m "feat(pf2data): cli with structured output and exit codes"
 - Produces:
   - `resolveLocalize(html: string, lang: LangTable): string`, `LangTable = Record<string, string>`
   - `loadGlossaryLang(langFilePath: string): LangTable` — flattens `PF2E.NPC.Abilities.Glossary.*` into dotted keys
-  - `buildConditions(packsDir: string): Condition[]`
+  - `buildConditions(packsDir: string, packs: string[]): Condition[]` — **amended
+    during implementation** (review finding, ruled on): the pack list comes from
+    config (`kind === "conditions"`), mirroring `buildGlossary`. Hardcoding the
+    directory name coupled it to `pf2data.config.json` naming the pack
+    `conditions`; a rename would have skipped sparse-checkout and produced an
+    ENOENT. The CLI also wraps the reference-data reads in the same error
+    boundary as `fetchUpstream`, so a broken cache exits `30` with structured
+    JSON instead of an uncaught stack trace.
   - `buildGlossary(packsDir: string, lang: LangTable, packs: string[]): GlossaryEntry[]`
 
 ```ts
@@ -3458,8 +3583,10 @@ console.log('grab resolved:', !grab.description.includes('@Localize'));
 "
 ```
 
-Expected: roughly 43 conditions with a double-digit valued count, roughly 100
-glossary entries, and `grab resolved: true`.
+Expected (confirmed against the real run): 43 conditions of which 12 are
+valued, 447 glossary entries, and `grab resolved: true`. The 447 figure is
+correct — the two glossary packs really do hold that many files; an earlier
+estimate of ~100 came from a GitHub API listing paginated at 100 items.
 
 - [ ] **Step 6: Commit the dataset**
 
@@ -3474,6 +3601,7 @@ git commit -m "data: initial normalized dataset from foundryvtt/pf2e"
 
 **Files:**
 - Create: `packages/pf2data/src/docs/schema-doc.ts`
+- Modify: `packages/pf2data/src/cli.ts`
 - Create: `AGENTS.md`
 - Create: `data/SCHEMA.md` (generated)
 - Test: `packages/pf2data/test/schema-doc.test.ts`
@@ -3517,7 +3645,7 @@ describe("renderSchemaDoc", () => {
   it("documents the exit codes", () => {
     const doc = renderSchemaDoc();
     expect(doc).toContain("10");
-    expect(doc).toContain("verification failed");
+    expect(doc.toLowerCase()).toContain("verification failed");
   });
 });
 ```

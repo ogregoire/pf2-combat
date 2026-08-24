@@ -1,0 +1,419 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 1,
+    "dex": 3,
+    "int": 6,
+    "str": 4,
+    "wis": 6
+  },
+  "ac": 40,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Circumstance to Skill Checks for Rituals",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A creature that enters or starts its turn in the aura must succeed at a @Check[will|dc:38] save or lose the desire to do anything except rest and relax. Hostile actions taken against creatures affected by the aura end the effect. If a creature in the aura succeeds on their Will save or is the subject of a hostile action, it's temporarily immune to the aura of contentment for 24 hours. The enchanting ritualist can exempt creatures from the aura's effects.</p>",
+      "frequency": null,
+      "name": "Aura of Contentment",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "incapacitation",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Recipients of the ritualist's generosity pay dearly if the ritualist decides to turn against them. The ritualist gets a +4 circumstance bonus to attack rolls against any creature that has willingly participated in or benefited from one of their spells or rituals conducted in the last 12 hours. A creature that didn't help conduct a ritual still qualifies if it benefited in other ways, such as drinking a serving of Fortifying Brew.</p>\n<p>When the enchanting ritualist damages such a creature with a Strike, the target is affected by a 9th-rank Cursed Metamorphosis spell (DC 42). If the Strike was a critical hit, the creature gets a degree of success one worse than it rolled. Once a creature succeeds at a save against this spell, it is temporarily immune for 24 hours.</p>",
+      "frequency": null,
+      "name": "Fool's Feast",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "mental"
+        },
+        {
+          "category": null,
+          "formula": "3d6+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Club",
+      "traits": [
+        "magical"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "mental"
+        },
+        {
+          "category": null,
+          "formula": "3d6+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Club",
+      "traits": [
+        "magical",
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "category": null,
+          "formula": "9d6",
+          "type": "mental"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Enchanting Wisps",
+      "traits": [
+        "magical",
+        "mental",
+        "range-100"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+12",
+          "type": "bludgeoning"
+        },
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "mental"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "ZlA2Cp5e62nE16gD",
+  "gear": [
+    "Bands of Force (Greater)",
+    "Club",
+    "Ornate Ritual Book"
+  ],
+  "hp": 320,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/enchanting-ritualist",
+  "immunities": [],
+  "languages": [
+    "common",
+    "diabolic",
+    "empyrean",
+    "fey"
+  ],
+  "level": 18,
+  "name": "Enchanting Ritualist",
+  "perception": 31,
+  "publicNotes": "<p>Possessing great stores of knowledge on mental magic and rituals, enchanting ritualists can also be solitary and capricious, tricking and transforming their visitors. The GM can change the selection of rituals this NPC knows freely, choosing any rituals of 9th rank or lower.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 34,
+    "deception": 35,
+    "diplomacy": 31,
+    "nature": 34,
+    "occultism": 36,
+    "religion": 34
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 42,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 4,
+          "rank": 5
+        },
+        {
+          "max": 4,
+          "rank": 6
+        },
+        {
+          "max": 4,
+          "rank": 7
+        },
+        {
+          "max": 4,
+          "rank": 8
+        },
+        {
+          "max": 4,
+          "rank": 9
+        }
+      ],
+      "spells": [
+        {
+          "name": "Foresight",
+          "rank": 9
+        },
+        {
+          "name": "Overwhelming Presence",
+          "rank": 9
+        },
+        {
+          "name": "Telepathic Demand",
+          "rank": 9
+        },
+        {
+          "name": "Canticle of Everlasting Grief",
+          "rank": 8
+        },
+        {
+          "name": "Quandary",
+          "rank": 8
+        },
+        {
+          "name": "Spirit Song",
+          "rank": 8
+        },
+        {
+          "name": "Uncontrollable Dance",
+          "rank": 8
+        },
+        {
+          "name": "Mask of Terror",
+          "rank": 7
+        },
+        {
+          "name": "Project Image",
+          "rank": 7
+        },
+        {
+          "name": "Mislead",
+          "rank": 6
+        },
+        {
+          "name": "Repulsion",
+          "rank": 6
+        },
+        {
+          "name": "Truesight",
+          "rank": 6
+        },
+        {
+          "name": "Zealous Conviction",
+          "rank": 6
+        },
+        {
+          "name": "Dreaming Potential",
+          "rank": 5
+        },
+        {
+          "name": "Hallucination",
+          "rank": 5
+        },
+        {
+          "name": "Scouting Eye",
+          "rank": 5
+        },
+        {
+          "name": "Sending",
+          "rank": 5
+        },
+        {
+          "name": "Synesthesia",
+          "rank": 5
+        },
+        {
+          "name": "Truespeech",
+          "rank": 5
+        },
+        {
+          "name": "Wave of Despair",
+          "rank": 5
+        },
+        {
+          "name": "Confusion",
+          "rank": 4
+        },
+        {
+          "name": "Fly",
+          "rank": 4
+        },
+        {
+          "name": "Honeyed Words",
+          "rank": 4
+        },
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Dream Message",
+          "rank": 3
+        },
+        {
+          "name": "Hypnotize",
+          "rank": 3
+        },
+        {
+          "name": "Levitate",
+          "rank": 3
+        },
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Darkvision",
+          "rank": 2
+        },
+        {
+          "name": "See the Unseen",
+          "rank": 2
+        },
+        {
+          "name": "Status",
+          "rank": 2
+        },
+        {
+          "name": "Alarm",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Ill Omen",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,185 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 5,
+    "dex": 4,
+    "int": 2,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 31,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The nightmare Strides or Flies up to triple its Speed. Its hooves burst with intense flame, dealing @Damage[6d6[fire]] damage with a @Check[reflex|dc:30|basic] save to each creature other than the nightmare's rider that the nightmare moves adjacent to during its gallop. Each creature can be affected only once during a single use of Flaming Gallop.</p>",
+      "frequency": null,
+      "name": "Flaming Gallop",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fire",
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Large or smaller, hoof, @Check[reflex|dc:30|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet.</p>\n<p>The nightmare continually exhales black smoke. Creatures within the aura are Concealed to those outside it, and creatures outside the aura are concealed to creatures within it. Nightmares and their riders can see through this smoke.</p>\n<p>A creature that begins its turn in the area must succeed at a @Check[fortitude|dc:28|traits:inhaled,poison] save or be Sickened 2. It's then temporarily immune to being sickened by the smoke for 1 minute. This is an inhaled poison, and the nightmare and its rider are immune to it.</p>",
+      "frequency": null,
+      "name": "Smoke",
+      "requirements": null,
+      "traits": [
+        "aura"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": [
+        "agile",
+        "fire",
+        "magical",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "WG4Tk2k9Lm21CEQv",
+  "gear": [],
+  "hp": 200,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/greater-nightmare",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "daemonic",
+    "diabolic"
+  ],
+  "level": 11,
+  "name": "Greater Nightmare",
+  "perception": 22,
+  "publicNotes": "<p>The enormous greater nightmare is valued for its ability to invade other realities with its rider.</p>\n<hr />\n<p>Nightmares are flaming equine harbingers of death.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 24
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 23,
+    "athletics": 24,
+    "intimidation": 22,
+    "survival": 20
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 60
+    },
+    {
+      "type": "fly",
+      "value": 120
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Interplanar Teleport (Self and Rider Only)",
+          "rank": 7
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "beast",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": []
+}

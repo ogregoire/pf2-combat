@@ -1,0 +1,176 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 4,
+    "int": 0,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An animal within 60 feet of the gamekeeper is killed</p><hr /><p><strong>Effect</strong> The gamekeeper stokes the ire of the wild. Until the end of the gamekeeper's next turn, they and all animals in a @Template[type:emanation|distance:60] gain a +1 status bonus to attack rolls and a +2 status bonus to damage rolls.</p>\n<p>Effect: Sic 'Em!</p>",
+      "frequency": null,
+      "name": "Sic 'Em!",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "mental"
+      ],
+      "trigger": "An animal within 60 feet of the gamekeeper is killed"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the gamekeeper dies, all creatures in a @Template[type:emanation|distance:60] that have damaged the gamekeeper in the last minute must succeed a @Check[will|dc:24] saving throw or be cursed. All animals the cursed creature encounters have an initial attitude toward them that is one step worse. This curse can be removed only by an effect that specifically targets curses.</p>",
+      "frequency": null,
+      "name": "Keeper's Revenge",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The gamekeeper depends on a small pack of dogs or other pack animals suitable for the environment to patrol their area. Creatures that are adjacent to a hostile animal are considered Off-Guard to the gamekeeper.</p>",
+      "frequency": null,
+      "name": "Leader of the Pack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The gamekeeper can Hustle for 30 minutes longer and is not affected by difficult terrain while in their territory.</p>",
+      "frequency": null,
+      "name": "Move It!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Arbalest",
+      "traits": [
+        "backstabber",
+        "magical",
+        "range-increment-110",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Club",
+      "traits": []
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "RQTIsAmhiMkfcgsb",
+  "gear": [
+    "Animal Treats",
+    "Arbalest",
+    "Bolts",
+    "Club"
+  ],
+  "hp": 95,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/gamekeeper",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Gamekeeper",
+  "perception": 14,
+  "publicNotes": "<p>Gamekeepers know every beast that walks, slithers, flies, or swims in their territory and where to find them; try to keep up with the pack if you think you can. The land has chosen these people as guardians, giving them mysterious powers while in their territory. They are prepared to keep balance.</p><hr /><p>Explorers are often well-equipped and well-trained for any type of hazard and are eager to lead others into the wild.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "diplomacy": 11,
+    "intimidation": 13,
+    "nature": 15,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

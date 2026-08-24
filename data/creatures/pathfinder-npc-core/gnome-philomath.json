@@ -1,0 +1,170 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 0,
+    "dex": 1,
+    "int": 3,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 12,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The gnome philomath designates a single item within their sight as an item of interest to their studies. They then gain a +2 circumstance bonus to [[/act disarm options=mind-if-i-borrow-that]] or [[/act steal options=mind-if-i-borrow-that]] that item. They can only designate one item at a time in this way. If they use Mind if I Borrow That? to designate a new item of interest, they lose the bonus with the previous item.</p>",
+      "frequency": null,
+      "name": "Mind if I Borrow That?",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Gnome philomaths can quickly find almost any document in their vast collection. They gain a +8 circumstance bonus to skill checks involving local records and histories.</p>",
+      "frequency": null,
+      "name": "Helpful Hoard",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving local records and histories, the gnome philomath is a 5th-level challenge.</p>",
+      "frequency": null,
+      "name": "Local Records Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "UmzCDlvwqNbF9qwH",
+  "gear": [
+    "Staff",
+    "Writing Set"
+  ],
+  "hp": 7,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/gnome-philomath",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "gnomish"
+  ],
+  "level": -1,
+  "name": "Gnome Philomath",
+  "perception": 5,
+  "publicNotes": "<p>The innate gnomish inclination to revel in new experiences leads gnome philomaths to delve as deeply as they can into the multitudes of knowledge contained within a library. These shrewd observers have encyclopedic memories and tend to surround themselves with piles of documents and trinkets pertaining to whatever subject currently holds their attention. As their interests branch from one topic to the next, a gnome philomath files away their discoveries to be referenced again another day.</p><hr /><p>Because their ancestors came from the First World, gnomes are intrinsically linked to the realm of the fey and crave the mystical and unpredictable. They seek to create daring works of art, voyage to new places, and have experiences they've never had before. Otherwise, they could fall victim to the terrible gnomish illness known as the Bleaching, which not only drains them of their color but of their spirits as well.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 3,
+    "crafting": 1,
+    "society": 4,
+    "thievery": 3
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 0,
+      "dc": 13,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "gnome",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

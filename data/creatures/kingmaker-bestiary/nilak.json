@@ -1,0 +1,205 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 2,
+    "dex": 2,
+    "int": 0,
+    "str": 3,
+    "wis": 4
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>If Nilak's next action is to cast Untamed Form, <em>wild shape's</em> spell rank is 2 lower than normal but she remains transformed for up to 1 hour. She can still Dismiss the form at any time.</p>",
+      "frequency": null,
+      "name": "Form Control",
+      "requirements": null,
+      "traits": [
+        "manipulate",
+        "spellshape"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>If the next action Nilak takes is to Cast a Spell that has a range, increase that spell's range by 30 feet.</p>",
+      "frequency": null,
+      "name": "Reach Spell",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "spellshape"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Poison",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Nilak adds the forms Insect Form and Dinosaur Form to her wild shape list.</p>",
+      "frequency": null,
+      "name": "Wild Shape",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Club",
+      "traits": []
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Club",
+      "traits": [
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    }
+  ],
+  "foundryId": "9nGhRYarE5KkwOwc",
+  "gear": [
+    "Arrows",
+    "Chieftain's Necklace",
+    "Club",
+    "Composite Shortbow",
+    "Leather Armor",
+    "Rare Candles and Incense"
+  ],
+  "hp": 160,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/nilak",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "hallit",
+    "jotun"
+  ],
+  "level": 9,
+  "name": "Nilak",
+  "perception": 19,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 4
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "intimidation": 18,
+    "nature": 15,
+    "occultism": 15,
+    "performance": 18,
+    "religion": 15,
+    "survival": 19
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 28,
+      "name": "Druid Order Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Wild Morph",
+          "rank": 1
+        },
+        {
+          "name": "Wild Shape",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

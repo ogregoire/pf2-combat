@@ -1,0 +1,175 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 7,
+    "dex": 7,
+    "int": -5,
+    "str": 9,
+    "wis": 4
+  },
+  "ac": 42,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The duneshaker solifugid Strides and makes a Strike at the end of that movement. If the duneshaker solifugid began this action Hidden, it remains hidden until after this ability's Strike.</p>",
+      "frequency": null,
+      "name": "Pounce",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p>\n<hr />\n<p><p>A Rend entry lists a Strike the monster has.</p>\n<p><strong>Requirements</strong> The monster hit the same enemy with two consecutive Strikes of the listed type in the same round.</p>\n<hr />\n<p><strong>Effect</strong> The monster automatically deals that Strike's damage again to the enemy.</p></p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The duneshaker solifugid spews toxic barbs at all creatures in a @Template[cone|distance:30]. Each creature within the area takes @Damage[10d6[poison]] damage (@Check[fortitude|dc:39|basic] save). A creature that fails its saving throw is Blinded for [[/gmr 1d6 #rounds]]{1d6 rounds} (or permanently on a critical failure).</p>\n<p>The duneshaker solifugid can't use Venom Spray again for [[/gmr 1d4 #Recharge Venom Spray]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Venom Spray",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Each turn, the first time the duneshaker solifugid is adjacent to a Large or smaller creature during a move action it's using, that creature must succeed at a @Check[reflex|dc:39] save or fall Prone.</p>",
+      "frequency": null,
+      "name": "Earth Shaker",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+17",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d10+17",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "r3yLNfqS00g8sdrT",
+  "gear": [],
+  "hp": 340,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/duneshaker-solifugid",
+  "immunities": [],
+  "languages": [],
+  "level": 18,
+  "name": "Duneshaker Solifugid",
+  "perception": 30,
+  "publicNotes": "<p>The largest solifugids, duneshakers, are so immense that their movements make the terrain around them tremble. They can prey on creatures the size of mammoths or even larger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 31
+    },
+    "reflex": {
+      "detail": null,
+      "value": 33
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 33,
+    "athletics": 35,
+    "stealth": 33
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

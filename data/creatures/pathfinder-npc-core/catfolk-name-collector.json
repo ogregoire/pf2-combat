@@ -1,0 +1,151 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 4,
+    "int": 2,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> Another creature critically succeeds at a check</p><hr /><p><strong>Effect</strong> The name collector honors the achievement with a new name. The creature gets a +1 status bonus on the same check until their next daily preparations. They become temporarily immune for 1 month.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Name the Worthy",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": "Another creature critically succeeds at a check"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The name collector senses spirits, embodied or not (including living creatures, most non-mindless undead, and haunts).</p>",
+      "frequency": null,
+      "name": "Spiritsense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+9",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+9",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Sickle",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "AxB7Sh2Bbt9AcDPp",
+  "gear": [
+    "Leather Armor",
+    "Scroll of Command (Rank 1)",
+    "Scroll of Protection (Rank 1)",
+    "Sickle"
+  ],
+  "hp": 70,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/catfolk-name-collector",
+  "immunities": [],
+  "languages": [
+    "amurrun",
+    "common"
+  ],
+  "level": 6,
+  "name": "Catfolk Name Collector",
+  "perception": 13,
+  "publicNotes": "<p>Name collectors are esteemed touchstones of catfolk culture. They record the adventures of catfolk heroes, speak to spirits, and tell legends about strange and faraway places.</p><hr /><p>Catfolk can be found traveling almost anywhere, and they are quick to settle down for a chat when they encounter fellow travelers. Some trade stories, act as guides, or operate at the fringes of polite society.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "spiritsense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "occultism": 12,
+    "performance": 14,
+    "society": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "catfolk",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

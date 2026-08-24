@@ -1,0 +1,183 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 4,
+    "int": -1,
+    "str": 1,
+    "wis": -1
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A Medium creature within the nuglub's reach leaves a square during its move action</p>\n<hr />\n<p><strong>Effect</strong> The nuglub lashes out at the triggering creature's knees and tries to knock them Prone. The nuglub makes an @Check[acrobatics] check against the creature's Reflex DC. On a success, the target falls and lands prone.</p>",
+      "frequency": null,
+      "name": "Kneecapper",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": "A Medium creature within the nuglub's reach leaves a square during its move action"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A nuglub's Strikes deal an additional 1d6 precision damage to Off-Guard targets, or 1d10 precision damage if the target is Prone.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Bite",
+      "traits": [
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "bpwaqRoO1wYo15T5",
+  "gear": [],
+  "hp": 34,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/nuglub",
+  "immunities": [],
+  "languages": [
+    "sakvroth"
+  ],
+  "level": 2,
+  "name": "Nuglub",
+  "perception": 5,
+  "publicNotes": "<p>The \"towering\" hunchbacked nuglubs are among the largest gremlins, though they're not quite three feet tall. Nuglubs have three glowing blue eyes and black, oily hair on their head and back that covers them like a cloak. Nuglubs enjoy killing with a glee that other gremlins reserve for sabotage. Indeed, they spend long hours preparing ambushes for unwary travelers or plotting the murders of sleeping villagers. Though less technically inclined than their kin, nuglubs do enjoy building traps. They delight in stealthily constructing traps in places their victims consider familiar, such as front doors and the floors around beds. If someone else gets blamed for the mayhem the nuglub creates, all the better.</p>\n<p>In combat, nuglubs focus on targets wearing metal armor. Some attribute this to envy on the part of the nuglubs, who find it difficult to fit armor on their twisted bodies. Nuglubs are particularly talented at causing those nearby to stumble over them and fall prone. Once an enemy falls to the ground, all the nuglubs descend upon the target, biting and scratching until nothing remains.</p>\n<p>Nuglubs rarely gather in groups larger than half a dozen, as quarrels often lead to violence and cannibalism. A lone nuglub who bullies a group of smaller gremlins is more likely to get their way, and thus less likely to attack their allies.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 8,
+    "crafting": 5,
+    "intimidation": 7,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 18,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Shatter",
+          "rank": 2
+        },
+        {
+          "name": "Grease",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Shocking Grasp",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey",
+    "gremlin"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 2
+    }
+  ]
+}

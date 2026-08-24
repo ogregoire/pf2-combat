@@ -1,0 +1,260 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 7,
+    "dex": 5,
+    "int": 3,
+    "str": 7,
+    "wis": 7
+  },
+  "ac": 31,
+  "acDetails": "all-around vision",
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The isqulug expels larvae from the hivemind in its head in a @Template[cone|distance:30]. Creatures in this area take @Damage[6d10[piercing]] damage as the swarm feeds on their flesh (@Check[reflex|dc:30|basic] save). Any creature that takes damage is exposed to isqulugia.</p>\n<p>The isqulug becomes Stupefied 1 for [[/gmr 1d4 #Stupified Duration]]{1d4 rounds}, during which it can't Expel Infestation.</p>",
+      "frequency": null,
+      "name": "Expel Infestation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An isqulug can precisely sense any creature infected with isqulugia within 30 feet, and knows the current stage of the disease.</p>",
+      "frequency": null,
+      "name": "Host Scent",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Isqulugia's Sickened, Slowed, and Paralyzed conditions can't be removed until this affliction is removed</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:30]</p>\n<p><strong>Stage 1</strong> Sickened 1 (1 hour)</p>\n<p><strong>Stage 2</strong> Fatigued and Sickened 2 (1 day)</p>\n<p><strong>Stage 3</strong> fatigued and Slowed 1 (1 day)</p>\n<p><strong>Stage 4</strong> paralyzed (1 day)</p>\n<p><strong>Stage 5</strong> the creature dies, and its body violently transforms into a new isqulug. Wish, similar magic, or a 9th-rank Resurrect ritual can return the victim to life. The new isqulug remains even if the victim is brought back to life.</p>",
+      "frequency": null,
+      "name": "Isqulugia",
+      "requirements": null,
+      "traits": [
+        "disease",
+        "incapacitation",
+        "primal",
+        "virulent"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The isqulug can Squeeze through tight spaces as if it were a Small creature. While Squeezing, it can move at its full Speed. The isqulug can even Squeeze through spaces that typically fit only a Tiny creature, but does so at the standard speed for Squeezing.</p>",
+      "frequency": null,
+      "name": "Malleability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 10 (Deactivated by Cold)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An isqulug ignores difficult terrain that's caused by typical features of swamps.</p>",
+      "frequency": null,
+      "name": "Swamp Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "isqulugia"
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "kElZCC1zMQVftoi9",
+  "gear": [],
+  "hp": 230,
+  "hpDetails": "regeneration 10 (deactivated by cold)",
+  "id": "pathfinder-bestiary-2/isqulug",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
+  ],
+  "languages": [
+    "aklo"
+  ],
+  "level": 11,
+  "name": "Isqulug",
+  "perception": 24,
+  "publicNotes": "<p>The isqulug's appearance, though unsettling, might be its least awful aspect. The creature resembles a bipedal amphibian with tentacles instead of arms and a head composed of an undulant mass of what appear to be shifting, slimy transparent eggs filled with writhing larvae. In truth, these larvae constitute the mind and consciousness of the isqulug-its \"body\" is little more than an organic suit manufactured from the flesh of those it has consumed, analogous to the complex web of a spider or the hive of a colony of bees, but fully capable of movement and violence.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 24
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 22,
+    "athletics": 24,
+    "nature": 22,
+    "survival": 22
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Tangling Creepers",
+          "rank": 6
+        },
+        {
+          "name": "Control Water",
+          "rank": 5
+        },
+        {
+          "name": "Entangle (At will)",
+          "rank": 5
+        },
+        {
+          "name": "Hallucinatory Terrain",
+          "rank": 5
+        },
+        {
+          "name": "Obscuring Mist (At will)",
+          "rank": 5
+        },
+        {
+          "name": "Fly",
+          "rank": 4
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "amphibious"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    }
+  ]
+}

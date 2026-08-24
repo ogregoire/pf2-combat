@@ -1,0 +1,145 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": 2,
+    "int": 1,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The vermin catcher places a rat trap in an adjacent space. Any Small or Medium creature that moves into the space with the trap triggers it and must attempt a @Check[reflex|dc:18|basic] save. On a failure, the creature takes @Damage[1d4[bleed]] damage (@Damage[2d4[bleed]] on a critical failure) and is Immobilized and Off-Guard for 1 round.</p>",
+      "frequency": null,
+      "name": "Giant Rat Trap",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The vermin catcher deals an additional 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Club",
+      "traits": []
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Club",
+      "traits": [
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "kt2U47rXxnfOxvqw",
+  "gear": [
+    "Arsenic",
+    "Club",
+    "Leather Armor",
+    "Rat Trap"
+  ],
+  "hp": 35,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/vermin-catcher",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Vermin Catcher",
+  "perception": 6,
+  "publicNotes": "<p>Paid exterminators keep streets and sewers clear of pests like rats, snakes, weasels, and insects—even giant rats.</p><hr /><p>Society is built upon the backs of laborers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 9,
+    "nature": 6,
+    "stealth": 8,
+    "survival": 6
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

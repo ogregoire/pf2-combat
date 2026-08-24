@@ -1,0 +1,182 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 3,
+    "int": 4,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The necromancer summons two Medium undead entities in different empty squares up to 30 feet away. These undead entities can take the form of zombies, skeletons, or ghosts, chosen by the necromancer. The entities block movement as though they were creatures and can be attacked. Each entity has 1 Hit Point and the same AC and saves as the necromancer. They can't take actions of their own and deteriorate if the necromancer is reduced to 0 Hit Points. The necromancer can have up to four undead entities at any given time. If they call another, the oldest undead entity deteriorates.</p>",
+      "frequency": null,
+      "name": "Undead, Arise!",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "manipulate",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The necromancer has at least one undead entity active</p><hr /><p><strong>Effect</strong> The necromancer commands all their undead entities to attack. Each entity can Stride up to 20 feet into an empty square and make a Strike. The Strike has a +15 attack modifier and deals @Damage[2d12[bludgeoning]|traits:magical] damage (or @Damage[2d12[spirit]|traits:magical]{spirit} damage if the entity is a spirit). The Strike has the magical trait, and no multiple attack penalty applies to it.</p>",
+      "frequency": null,
+      "name": "Undead, Attack!",
+      "requirements": "The necromancer has at least one undead entity active",
+      "traits": [
+        "concentrate",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The necromancer isn't drained and has at least one undead entity active</p><hr /><p><strong>Effect</strong> The necromancer overloads their undead entities with void energy, causing all of them to explode. Each entity is destroyed, dealing @Damage[4d12[void]|options:area-damage] damage to each creature in a @Template[type:emanation|distance:10] with a @Check[fortitude|dc:23|basic|options:area-effect] save. A creature in more than one explosion is damaged only once. The necromancer becomes Drained 1.</p>",
+      "frequency": null,
+      "name": "Wave of Death",
+      "requirements": "The necromancer isn't drained and has at least one undead entity active",
+      "traits": [
+        "concentrate",
+        "manipulate",
+        "occult",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The necromancer emits a scent of putrid rot in a @Template[type:emanation|distance:5]. A living creature that enters or begins its turn in the aura is Sickened 1.</p>",
+      "frequency": null,
+      "name": "Stench of Decay",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "occult",
+        "olfactory"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Light Mace",
+      "traits": [
+        "agile",
+        "finesse",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "BcSzGmSxCn0uWkxU",
+  "gear": [
+    "Hooded Robe",
+    "Light Mace"
+  ],
+  "hp": 65,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/necromancer",
+  "immunities": [],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 5,
+  "name": "Necromancer",
+  "perception": 10,
+  "publicNotes": "<p>Defiling the natural order and spitting in the face of convention, the necromancer remains dutifully committed to understanding what forces await beyond the mortal boundaries of life and death.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 11,
+    "intimidation": 8,
+    "occultism": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 15,
+      "dc": 23,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Void Warp",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

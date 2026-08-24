@@ -1,0 +1,234 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 2,
+    "int": -1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<ul>\n<li><strong>Human</strong>\n<ul>\n<li><strong>Melee</strong> fist +11 <strong>Damage</strong> 1d4+8</li>\n</ul>\n</li>\n<li><strong>Animal</strong>\n<ul>\n<li><strong>Speed</strong> 40 feet</li>\n<li><strong>Melee</strong> jaws with Knockdown</li>\n</ul>\n</li>\n</ul>\n<hr />\n<p>The werecreature changes into its humanoid, hybrid, or animal shape. Each shape has a specific, persistent appearance. A true werecreature's natural form is its hybrid shape.</p>\n<p>In humanoid shape, the werecreature uses its original humanoid size, loses its jaws and claws Strikes, and gains a melee fist Strike that deals bludgeoning damage equal to the slashing damage dealt by its claw.</p>\n<p>In animal shape, its Speed and size change to that of the animal, it gains any special Strike effects of the animal that it didn't already have (such as Grab), and it loses its weapon Strikes.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>This curse affects only humanoids.</p>\n<hr />\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:17]</p>\n<p>On each full moon, the cursed creature must succeed at another Fortitude save or turn into the same kind of werecreature until dawn.</p>\n<p>The creature is under the GM's control and goes on a rampage for half the night before falling unconscious until dawn.</p>",
+      "frequency": null,
+      "name": "Curse of the Werewolf",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a full moon appears in the night sky, the werecreature must enter hybrid form, can't Change Shape thereafter, becomes one size larger, increases its reach by 5 feet, and increases the damage of its jaws by 2.</p>\n<p>When the moon sets or the sun rises, the werecreature returns to humanoid form and is Fatigued for [[/br 2d4 #hours]]{2d4 hours}.</p>\n<p>Effect: Moon Frenzy</p>",
+      "frequency": null,
+      "name": "Moon Frenzy",
+      "requirements": null,
+      "traits": [
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The werewolf's Strikes deal 1d6 extra damage to creatures within reach of at least two of the werewolf's allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The werewolf can communicate with canine creatures.</p>\n<hr />\n<p>The werecreature can ask questions of, receive answers from, and use the Diplomacy skill with animals of its general kind.</p>",
+      "frequency": null,
+      "name": "Wolf Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Battle Axe",
+      "traits": [
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "werecreature-curse-of-the-werecreature"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "Hg7nCvltRBQOiijQ",
+  "gear": [
+    "Arrows",
+    "Battle Axe",
+    "Composite Shortbow",
+    "Studded Leather Armor"
+  ],
+  "hp": 63,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/werewolf",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Werewolf",
+  "perception": 9,
+  "publicNotes": "<p>The curse of the werewolf—known as lycanthropy to many—instills in its carriers the hungry bloodlust and predatory instincts of the wolf. Werewolves tend to dwell on the fringes of society or in small settlements where, in their humanoid forms, they work as laborers, hunters, farmers, or trappers. At night, however, these same villagers transform into violent killers and sadistic stalkers who prey on their neighbors. Werewolves are the quintessential werecreature, and the first that comes to mind when most people speak of such beings.</p>\n<p>Although most werewolves hide their curse by adopting solitary lifestyles, some retain the pack mentality of true wolves. A small group of such werewolves typically forms a family-like pack, with the eldest or most powerful werewolf serving as the leader. New pack mates are hand-chosen and inculcated into the family as its influence grows.</p>\n<hr />\n<p>Werecreatures are humanoids doomed to transform into animals and animalhumanoid hybrids under the light of the full moon. These shapechanging creatures are the result of an ancient primal curse that they can, in turn, transmit through their own bites. Their ability to lurk unseen in the wilds as well as among people, combined with the contagiousness of their condition, makes werecreatures a perennial cause of panicked suspicion.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 9,
+    "survival": 10
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "human",
+    "humanoid",
+    "werecreature"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "silver",
+      "value": 5
+    }
+  ]
+}

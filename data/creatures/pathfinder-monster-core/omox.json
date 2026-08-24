@@ -1,0 +1,298 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 7,
+    "dex": 6,
+    "int": 2,
+    "str": 7,
+    "wis": 4
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature hits the omox with a melee weapon</p>\n<hr />\n<p><strong>Effect</strong> The omox attempts to Disarm the creature. On a critical success, the weapon becomes subsumed within the omox's body rather than falling to the ground. Retrieving the weapon requires Disarming the omox of it.</p>",
+      "frequency": null,
+      "name": "Absorb Weapon",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": "A creature hits the omox with a melee weapon"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The omox has a creature Grabbed or Restrained</p>\n<hr />\n<p><strong>Effect</strong> The demon flows over the creature, covering it in oozing acidic slime. The creature must succeed at a @Check[fortitude|dc:32] save or it becomes Blinded and must hold its breath or begin suffocating. These effects lasts as long as the omox has the creature grabbed or restrained.</p>",
+      "frequency": null,
+      "name": "Smother",
+      "requirements": "The omox has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The omox is in a space of liquid.</p>\n<hr />\n<p><strong>Effect</strong> The omox teleports from its current space to any unoccupied space of liquid within 120 feet.</p>",
+      "frequency": null,
+      "name": "Liquid Leap",
+      "requirements": "The omox is in a space of liquid.",
+      "traits": [
+        "concentrate",
+        "teleportation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An omox embodies filth, and they find the concept of cleanliness abhorrent. An omox subjected to an effect that cleans them, such as the tidy command of Prestidigitation, takes @Damage[2d6[mental]] damage. They also take this damage the first time each round a creature hit by one of the omox's attacks spends actions cleaning off the filth.</p>",
+      "frequency": null,
+      "name": "Cleanly Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by an omox's slime ball must succeed at a @Check[reflex|dc:32] save or take a –10-foot circumstance penalty to its Speeds for 1 minute or until it [[/act escape dc=35]]{Escapes (DC 35)}. On a critical failure, the creature is also Clumsy 1 for the same duration.</p>\n<p>Effect: Slime Trap</p>",
+      "frequency": null,
+      "name": "Slime Trap",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+11",
+          "type": "bludgeoning"
+        },
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "acid"
+        }
+      ],
+      "effects": [
+        "slime-trap"
+      ],
+      "kind": "ranged",
+      "name": "Slime Ball",
+      "traits": [
+        "acid",
+        "brutal",
+        "range-increment-30",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "2d6+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Sludge Tendril",
+      "traits": [
+        "acid",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "hvVFocY8r72XEaqQ",
+  "gear": [],
+  "hp": 395,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/omox",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    }
+  ],
+  "languages": [
+    "chthonian",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 12,
+  "name": "Omox",
+  "perception": 22,
+  "publicNotes": "<p>Seemingly made from living, animated filth, omoxes have no true anatomy, although they generally spend most of their time in roughly humanoid shapes, resembling some grim caricatures of half-melted humanoids. While scholars once believed these foul demons to be a pure, concentrated form of the corruption that suffuses the Outer Rifts and its inhabitants, in truth these demons arise from the souls of those who routinely befouled and polluted their surroundings in life.</p>\n<hr />\n<p>When a sinful mortal soul is judged and sent on to the Outer Rifts, it can become a deadly fiend—a demon. Demons are living incarnations of sin—be they classic sins like wrath or gluttony, or more \"specialized\" depravities like an obsession with torture or the act of treason or treachery. Once formed, a demon's driving goals are twofold—the amassing of personal power, and the corruption of mortal souls to cause them to become tainted by sin. In this way demons ensure a never-ending supply of new demons to bolster their ever-growing ranks in the Outer Rifts.</p>\n<p>Demons are selfish and self-absorbed creatures, and most firmly believe that mortals only play at being more virtuous than fiends. They enjoy tempting mortals into damnation to both indulge their egos and swell their armies. Like many other fiends, one of the great rewards of this manipulation is fulfilling their hunger for souls. In their eyes, the primary use for these souls is to spawn new demons, who can serve as soldiers, slaves, pawns, or even currency for their more powerful masters.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 21,
+    "athletics": 23,
+    "religion": 20,
+    "stealth": 24
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "climb",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 80
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 24,
+      "dc": 32,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Control Water",
+          "rank": 5
+        },
+        {
+          "name": "Toxic Cloud",
+          "rank": 5
+        },
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Create Water (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "demon",
+    "fiend",
+    "ooze",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

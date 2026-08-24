@@ -1,0 +1,301 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 9,
+    "dex": 5,
+    "int": -1,
+    "str": 10,
+    "wis": 6
+  },
+  "ac": 42,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><p>The monster can use Push as a free action triggered by a hit with its initial attack.</p></p>",
+      "frequency": null,
+      "name": "Improved Push 20 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Requirements</strong> The terotricus is in a swamp or forested area</p>\n<hr />\n<p><strong>Effect</strong> The terotricus drains nutrients from nearby trees and undergrowth while simultaneously infesting them with fungal growth. All non-magical plant life (though not plant creatures) within a @Template[emanation|distance:60] withers and sprouts foul mold and slimy mushrooms, removing any cover and concealment provided by trees and undergrowth. In addition, the terotricus regains @Damage[200[healing]]{200 Hit Points} (this is a healing vitality effect).</p>",
+      "frequency": null,
+      "name": "Infest Environs",
+      "requirements": "The terotricus is in a swamp or forested area",
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 25 (Deactivated by Cold)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Plants and fungi are immune.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:40]</p>\n<hr />\n<p><strong>Stage 1</strong> Enfeebled 2 (1 day)</p>\n<p><strong>Stage 2</strong> Enfeebled 4 and Slowed 1 (1 day)</p>\n<p><strong>Stage 3</strong> Controlled by the terotricus (as Dominate; [[/br 5d8 #Duration Controlled]]{5d8 days})</p>\n<p><strong>Stage 4</strong> dead</p>",
+      "frequency": null,
+      "name": "Spore Blight",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>A creature entering the aura or starting its turn there is exposed to spore blight.</p>",
+      "frequency": null,
+      "name": "Spore Cloud",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by a terotricus's spores takes a –10-foot status penalty to all its Speeds for 1 minute. If the Strike was a critical hit, the creature is also Immobilized until it [[/act escape dc=40]]{Escapes (DC 40)}.</p>\n<p>Effect: Sticky Spores</p>",
+      "frequency": null,
+      "name": "Sticky Spores",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 120 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "4d8+8",
+          "type": "poison"
+        }
+      ],
+      "effects": [
+        "spore-blight",
+        "sticky-spores"
+      ],
+      "kind": "ranged",
+      "name": "Spores",
+      "traits": [
+        "brutal",
+        "magical",
+        "range-increment-80",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "4d10+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "improved-grab",
+        "improved-push"
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "3IPLvfez8DzwwNqm",
+  "gear": [],
+  "hp": 370,
+  "hpDetails": "regeneration 25 (deactivated by cold)",
+  "id": "pathfinder-monster-core/terotricus",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "chthonian",
+    "elven",
+    "fey"
+  ],
+  "level": 19,
+  "name": "Terotricus",
+  "perception": 31,
+  "publicNotes": "<p>The legendary terotricus is a massive slime mold that hails from the Outer Rifts. Its collective consciousness encapsulates entire regions, spreading as far as its ever-growing cloud of spores will take it. Once it has seeped into the Universe from the Rifts, a terotricus's agenda is to feed on all living creatures, infecting them with its spores, and its presence can spell doom for any in its way.</p>\n<p>Terotricuses move by rapidly expanding and contracting their slimy \"bodies,\" which are capable of burrowing through soil, gliding across water, and scrabbling up steep slopes. These behemoths of rot don't need to travel to see their plans come to fruition, though; their spores easily latch onto demons and other denizens of the Outer Rifts, who in turn bring this blight to the Universe when the fiends are summoned.</p>\n<p>When a terotricus infects a creature with its spores, web-like fungal growths start appearing on the victim's skin until they cover the entire body, at which point the victim's mind is also subdued and bent to the terotricus's will. The terotricus's favored victims include animals, elves, and fey, though it is happy to infect any creature it can catch. Cults of Treerazer occasionally attempt to make contact with a terotricus, but such acts almost always simply result in a new sect of spore-blighted servants.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 34
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 120,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 37,
+    "deception": 32,
+    "intimidation": 35,
+    "nature": 31,
+    "survival": 31
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fungus",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 15
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 15
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 15
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 10
+    }
+  ]
+}

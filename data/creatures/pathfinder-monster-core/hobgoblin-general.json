@@ -1,0 +1,151 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When it's adjacent to at least two other allies, the hobgoblin general gains a +1 circumstance bonus to AC and saving throws. This bonus increases to +2 to Reflex saves against area effects.</p>",
+      "frequency": null,
+      "name": "Formation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When a hobgoblin general rolls initiative, as long as they can perceive at least one foe, they can yell a mighty battle cry. The hobgoblin general attempts an Intimidate check to [[/act demoralize]] a single foe within 60 feet as a free action. If successful, any ally can, as its first action on its first turn of the combat, Stride up to double its speed as a single action.</p>",
+      "frequency": null,
+      "name": "General's Cry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>On a critical hit, the target of the critical hit is moved 5 feet in a direction of the hobgoblin general's choice.</p>",
+      "frequency": null,
+      "name": "Polearm Critical Specialization",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Shortbow",
+      "traits": [
+        "brutal",
+        "deadly-d10",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Glaive",
+      "traits": [
+        "deadly-d8",
+        "forceful",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "xgKDQB6ZYmAutwAm",
+  "gear": [
+    "Arrows",
+    "Composite Shortbow",
+    "Glaive",
+    "Half Plate"
+  ],
+  "hp": 90,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/hobgoblin-general",
+  "immunities": [],
+  "languages": [
+    "common",
+    "goblin"
+  ],
+  "level": 6,
+  "name": "Hobgoblin General",
+  "perception": 13,
+  "publicNotes": "<p>Hobgoblin generals serve as leaders of entire armies and rulers of hobgoblin settlements. A general does not permit the luxuries of rule to soften them. They lead their forces on the field of battle and view this opportunity to excel in a fight at the head of an army as the true reward for a life spent honing one's skills in battle.</p>\n<hr />\n<p>Hobgoblins may appear to outsiders to be the most civilized of goblinkind, but their civilization is hardly one of kindness and equality-instead, they revel in all that is militaristic, tyrannical, cruel, and destructive. Hobgoblins are singularly devoted to war, and their entire culture is built upon fostering and maintaining conflict while simultaneously proving their superiority in battle. Hobgoblins are highly organized, and they work efficiently and effectively in groups, whether that group is a small raiding party, a roving war band, or a fully regimented army. Hobgoblin rulers require little provocation before declaring war, and more often than not, such wars are waged to gain slaves or territory. Physically, hobgoblins stand about as tall as humans and have gray, ashen skin.</p>\n<p>Hobgoblin society is organized along military lines, and every hobgoblin is effectively a member of the army. Each hobgoblin in a community has a rank in the military hierarchy, and individuals are naturally ambitious and obsessed with advancement. Hobgoblins are constantly expected to prove that they're fearless, ruthless, cunning, and strong. Demonstrating such aptitudes is an individual hobgoblin's best hope for promotion through the ranks, but failure leads only to cruel exploitation at the hands of their superiors. Though brutal, hobgoblin society is a true meritocracy, and all hobgoblins, regardless of age, gender, or birth, wield authority and earn respect from their peers based on their skill in battle. Even those individuals who serve in non-combat roles in hobgoblin society-blacksmiths, builders, cooks, messengers, quartermasters, and the like-know that they perform vital jobs that support the larger hobgoblin army, though they rarely rise above the rank of common soldier. Everyone contributes to the larger whole, ensuring that hobgoblin society is the strongest and most efficient it can be, and anyone who fails to do so is culled from the army and this hobgoblin society as dead weight. Hobgoblins don't usually engage in trade with other races, or even with other hobgoblin tribes, preferring to take what they want by force.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 12,
+    "athletics": 15,
+    "intimidation": 14,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "hobgoblin",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

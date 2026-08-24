@@ -1,0 +1,238 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 2,
+    "dex": 3,
+    "int": 1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> three times per day</p>\n<hr />\n<p><strong>Effect</strong> The korred unleashes an otherworldly laugh. Each non-fey creature within a @Template[burst|distance:30] must attempt a @Check[fortitude|dc:21] save. On a failure, the creature is Slowed 1 for 1 round (or Stunned 1 on a critical failure).</p>",
+      "frequency": {
+        "max": 3,
+        "per": "day"
+      },
+      "name": "Otherworldly Laugh",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "fey",
+        "incapacitation",
+        "primal",
+        "sonic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The korred causes a long, tangled length of their hair to detach from their body and snake out to coil around an adjacent creature. The creature must attempt a @Check[reflex|dc:21] save.</p>\n<p>The korred cannot use Hair Snare again for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The hair wraps around the creature. The creature takes a -10-foot circumstance penalty to all of its Speeds until it Escapes (DC 21) or until the korred uses Hair Snare again (at which point the previous snare drops to the ground, no longer animated).</p>\n<p><strong>Critical Failure</strong> The creature is Immobilized until it Escapes (DC 21) or the korred uses Hair Snare again.</p>",
+      "frequency": null,
+      "name": "Hair Snare",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The korred steps into a block of stone large enough for them to fit inside and instantly teleports to any other stone within 30 feet that has the same minimum size. Once the korred enters the stone, they instantly know the rough locations of other sufficiently large stones within 30 feet. They can exit from the original stone, if they prefer. They can't carry extradimensional spaces with them when they Stone Stride; if the korred attempts to do so, Stone Stride fails.</p>",
+      "frequency": null,
+      "name": "Stone Stride",
+      "requirements": null,
+      "traits": [
+        "earth",
+        "primal",
+        "teleportation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>5 feet. The korred's long, animated hair reaches out and interferes with creatures in the area. The korred can select which targets are affected by their animated hair. An affected creature that ends its turn in the emanation must succeed at a @Check[reflex|dc:18] save or become Clumsy 1 (Clumsy 2 on a critical failure) as long as it remains in the aura.</p>",
+      "frequency": null,
+      "name": "Animated Hair",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Club",
+      "traits": []
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Club",
+      "traits": [
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-20"
+      ]
+    }
+  ],
+  "foundryId": "xIvv8vKBa0YsTEzt",
+  "gear": [
+    "Club",
+    "Pouch",
+    "Rock"
+  ],
+  "hp": 65,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/korred",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 4,
+  "name": "Korred",
+  "perception": 12,
+  "publicNotes": "<p>Korreds are reclusive fey in the form of small, hirsute individuals with long, animated manes of hair. While korreds have a natural affinity and admiration for stones and boulders, they prefer to dwell aboveground in areas of rocky forest or wooded hills rather than in caves. Korreds are a private people who don't take kindly to intruders, and they invariably work to drive off or kill any non-fey who stumble into their territory. Staunchly proud of their hair, korreds choose their minimal attire so as to allow their body hair to flow freely, often wearing only a belt with a pouch for throwing rocks and trimming shears-though this belt and pouch are rarely visible under their wild manes.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 11,
+    "crafting": 11,
+    "deception": 13,
+    "performance": 13,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 11,
+      "dc": 21,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Stone Tell",
+          "rank": 6
+        },
+        {
+          "name": "Shape Stone (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Shatter (At will)",
+          "rank": 4
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 1,
+    "int": 3,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dwarf smith makes a Strike to break a creature's defenses. If the Strike hits and the creature is wearing armor with Hardness 9 or lower, the armor is Broken. This Strike doesn't further damage armor that's already broken.</p>",
+      "frequency": null,
+      "name": "Crack the Shell",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving blacksmithing, the dwarf smith is a 5th-level challenge.</p>",
+      "frequency": null,
+      "name": "Blacksmithing Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The smith spends 1 day tempering a single suit of metallic armor, metallic shield, or metallic weapon. Tempering armor or a shield increases its Hardness by 1. Tempering a weapon grants the weapon a +1 circumstance bonus to damage rolls. Regardless of the item, the tempering remains for 3 days, after which item is temporarily immune to further tempering for 1 week as the technique would otherwise damage it.</p>\n<p>Effect: Temper Armament</p>",
+      "frequency": null,
+      "name": "Temper Armament",
+      "requirements": null,
+      "traits": [
+        "downtime"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Clan Dagger",
+      "traits": [
+        "agile",
+        "parry",
+        "versatile-b"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Light Hammer",
+      "traits": [
+        "agile"
+      ]
+    },
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Light Hammer",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "rY3uqGq5QyvNOU91",
+  "gear": [
+    "Artisan's Toolkit (blacksmithing)",
+    "Clan Dagger",
+    "Leather Apron (Functions as Padded Armor)",
+    "Light Hammer"
+  ],
+  "hp": 12,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/dwarf-smith",
+  "immunities": [],
+  "languages": [
+    "common",
+    "dwarven"
+  ],
+  "level": 0,
+  "name": "Dwarf Smith",
+  "perception": 5,
+  "publicNotes": "<p>Many dwarves become smiths as their attention to detail, lifestyles that keep them close to useful materials such as iron, and a pride in their work all come together to become a brilliant skill set for working with armaments. Though dwarves are capable of smithing most any kind of item, most focus on armaments as a way of creating objects to defend their fellow dwarves.</p><hr /><p>From the dwarven perspective, most things in life are best done correctly, and that means taking one's time. Dwarves are a focused and intentional people, taking years or even decades to ply their trades, doing their best to make every detail perfect. The patience and dedication required for such tasks pays off, and many dwarves become experts in their respective field, trade, or area of focus. Many dwarves uphold traditions, and since dwarven origins trace back to underground life, many still hone skills focused on life underground.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 1
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 6,
+    "crafting": 12,
+    "society": 6
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dwarf",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

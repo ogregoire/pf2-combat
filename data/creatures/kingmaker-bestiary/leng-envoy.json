@@ -1,0 +1,297 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 5,
+    "dex": 6,
+    "int": 9,
+    "str": 5,
+    "wis": 5
+  },
+  "ac": 42,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Requirements</strong> The Leng envoy is holding a musical instrument</p>\n<hr />\n<p><strong>Effect</strong> The envoy plays a melody on its instrument to cast Uncontrollable Dance, Unfathomable Song, or Warp Mind without expending the spell slot and using his music in place of providing the spell's component actions. The spell gains the auditory trait and targets all creatures in a @Template[emanation|distance:60] instead of its usual targets. A creature that succeeds at its Will save against any spell is then temporarily immune from all spells played from the envoy's pipes for 1 minute. Aberrations are immune to this music.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Play the Pipes",
+      "requirements": "The Leng envoy is holding a musical instrument",
+      "traits": [
+        "auditory",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature that takes damage from a denizen's bite must succeed at a @Check[fortitude|dc:40] save or become Clumsy 1. Each time a target fails an additional save against this ability, the condition value increases by 1 (to a maximum of Clumsy 4). This condition value decreases by 1 every 24 hours.</p>",
+      "frequency": null,
+      "name": "Debilitating Bite",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Many denizens of Leng carry strange rubies mined from quarries in Leng. As long as a creature holds a Leng ruby that it willingly accepted as a gift or payment from a denizen of Leng, any denizen of Leng can target that creature with Mind Reading, Outcast's Curse, Phantom Pain, or Warp Mind at a range of 1 mile, and the bearer uses an outcome one degree of success worse than the result of its saving throw against <em>Outcast's Curse</em>.</p>",
+      "frequency": null,
+      "name": "Leng Ruby",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The Leng envoy doesn't need to breathe.</p>",
+      "frequency": null,
+      "name": "No Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A denizen of Leng maintains a connection to Leng at all times, and when away from Leng, they have fast healing 15. They lose this ability on Leng or in areas where planar connections do not function. If killed, their body dissolves into nothingness in [[/gmr 1d4 #Dissolve Body]]{1d4 rounds}, leaving behind their equipment. A slain denizen reforms in Leng; they can be permanently killed only when their planar fast healing doesn't function.</p>\n<hr />\n<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
+      "frequency": null,
+      "name": "Planar Fast Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "debilitating-bite"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "3d6+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Kukri",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "bwEYizrdHs8lmvxE",
+  "gear": [
+    "Kukri",
+    "Leng Ruby",
+    "Pipes"
+  ],
+  "hp": 240,
+  "hpDetails": "planar fast healing 15",
+  "id": "kingmaker-bestiary/leng-envoy",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
+  ],
+  "languages": [
+    "aklo"
+  ],
+  "level": 18,
+  "name": "Leng Envoy",
+  "perception": 31,
+  "publicNotes": "<p>Slavers and raiders from the cold, windswept dimension of Leng, these malevolent humanoids range across reality in ominous black ships capable of sailing beyond the borders of dimensions and planes. Although most denizens of Leng seek slaves and plunder like any pirate, others operate as self-styled ambassadors and merchants, sowing discord with far-ranging plots. While the inscrutable denizens dress themselves in flowing robes, veils, and broad turbans to appear human, their aberrant physiology, when glimpsed, is evident from their crown of stubby horns and tentacled jaws to their furry, goat-like legs.</p>\n<p>Above the fierce captains who command the infamous black ships are an even higher caste of denizens of Leng. These cultists and musicians serve as high priests, laboring to appease the frightening gods who look down upon the Nightmare Realm with cold malice.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits",
+      "value": 20
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 32,
+    "athletics": 29,
+    "deception": 35,
+    "intimidation": 32,
+    "occultism": 35,
+    "stealth": 32,
+    "thievery": 30
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 40,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Unfathomable Song",
+          "rank": 9
+        },
+        {
+          "name": "Uncontrollable Dance",
+          "rank": 8
+        },
+        {
+          "name": "Warp Mind",
+          "rank": 7
+        },
+        {
+          "name": "Mind Probe",
+          "rank": 5
+        },
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Outcast's Curse",
+          "rank": 4
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Hypnotic Pattern",
+          "rank": 3
+        },
+        {
+          "name": "Levitate",
+          "rank": 3
+        },
+        {
+          "name": "Locate",
+          "rank": 3
+        },
+        {
+          "name": "Mirror Image",
+          "rank": 2
+        },
+        {
+          "name": "Chill Touch",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "dream"
+  ],
+  "weaknesses": []
+}

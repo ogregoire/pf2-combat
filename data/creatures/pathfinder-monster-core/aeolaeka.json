@@ -1,0 +1,226 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 7,
+    "dex": 4,
+    "int": 2,
+    "str": 6,
+    "wis": 5
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Until the next time they act, the aeolaeka appears to be a statue. They have an automatic result of 45 on Deception checks and DCs to pass as a statue.</p>",
+      "frequency": null,
+      "name": "Statue",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The aeolaeka conjures churning stones, creating a @Template[line|distance:60] of rolling boulders. Creatures in the line take @Damage[10d6[bludgeoning]] damage with a @Check[reflex|dc:35] save. The area is difficult terrain for 24 hours before the leftover stone crumbles to dust. The aeolaeka can't Liberate the Earth for [[/gmr 1d4 #Recharge Liberate the Earth]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature takes no damage.</p>\n<p><strong>Success</strong> The creature takes half damage.</p>\n<p><strong>Failure</strong> The creature takes full damage and is knocked Prone.</p>\n<p><strong>Critical Failure</strong> The creature takes double damage, is knocked prone, and is Immobilized by the rubble ([[/act escape dc=32]]).</p>",
+      "frequency": null,
+      "name": "Liberate the Earth",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "earth"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An aeolaeka can Burrow through any earthen matter, including rock. When they do so, the aeolaeka moves at their full burrow Speed, leaving no tunnels or signs of their passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense (Precise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Warhammer",
+      "traits": [
+        "holy",
+        "magical",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "6VOX4biqPtAE7y3g",
+  "gear": [
+    "Warhammer"
+  ],
+  "hp": 250,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/aeolaeka",
+  "immunities": [],
+  "languages": [
+    "draconic",
+    "empyrean",
+    "petran"
+  ],
+  "level": 12,
+  "name": "Aeolaeka",
+  "perception": 23,
+  "publicNotes": "<p>Aeolaekas, also known as stone azatas, embody the joy of stone carved by artists' hands or natural forces. Stone is often thought to be steadfast and unchanging, but, when viewed on a grander scale over vast periods of time, it can transform into things as diverse as intricate crystals and fine powder. Aeolaekas are fascinated by the gradual changes found within stone, from sand to diamonds to fossils to towering mountains.</p>\n<p>As a result of their stone affinity, aeolaekas appear less capricious than other azatas—though this is mainly due to them acting on a different geological scale—and some have willingly forged lasting accords or agreements with mortals. Aeolaekas often visit the Plane of Earth, fighting against evil earth elementals, joining jabali festivals, or simply wandering the veins and tunnels of that realm as they bask in its stony wonders. Their stone skin means aeolaekas are sometimes mistaken for statues; they use this fact to hide in plain sight when they don't want their presence known.</p>\n<hr />\n<p>Azatas are manifestations of freedom and unestrained joy—kindly celestials with a penchant for curious exploration, spontaneous revelry, and whimsical quests. Born of good dreams and heartfelt wishes for a better world, they reside in the untamable wilds of Elysium. Azatas are passionate and mercurial, as beautiful and bright as a child's fantasy, but also fiercely loyal to those they hold dear. They act quickly and directly against fiendish and foul influences, but they tend to avoid guiding mortal affairs otherwise, allowing people to choose their own destiny without the meddling of otherworldly forces.</p>\n<p>Azatas reject the dual chains of both duty and tyranny, but also the heavy chains of despair that reality so often inflicts upon those who live in it. This can give them a dubious reputation with other celestials, who consider azatas to be flighty and unreliable, but azatas know that unrelenting self-sacrifice can be just as destructive to the soul as evil. Azatas refuse to compromise the beauty of the world with such banality, instead living without regret and savoring every triumph and agony they encounter upon the way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 25,
+    "diplomacy": 22,
+    "intimidation": 22,
+    "nature": 23
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 24,
+      "dc": 32,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Petrify",
+          "rank": 6
+        },
+        {
+          "name": "Speak with Stones (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Wall of Stone",
+          "rank": 5
+        },
+        {
+          "name": "Weapon Storm",
+          "rank": 4
+        },
+        {
+          "name": "Earthbind (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Locate",
+          "rank": 3
+        },
+        {
+          "name": "Sure Footing",
+          "rank": 2
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "azata",
+    "celestial",
+    "earth",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 15
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unholy",
+      "value": 15
+    }
+  ]
+}

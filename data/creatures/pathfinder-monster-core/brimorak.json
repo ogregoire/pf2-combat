@@ -1,0 +1,255 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 3,
+    "int": 1,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The brimorak spits their boiling blood in a @Template[line|distance:20] that deals @Damage[6d6[fire]|options:area-damage] damage (@Check[reflex|dc:21|basic|options:area-effect]). Creatures that fail the save also fall Prone as they slip in the greasy blood.</p>\n<p>The brimorak can't use Frothing Spew again for [[/gmr 1d4 #Recharge Frothing Spew]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Frothing Spew",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fire",
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per minute</p>\n<hr />\n<p><strong>Effect</strong> The brimorak emits a cloud of thick black smoke in a @Template[burst|distance:10] adjacent to them. The cloud remains for 1 minute. All creatures within the smoke become Concealed, and all creatures outside the smoke become concealed to creatures within it.</p>\n<p>A creature that enters or begins its turn within the smoke it must succeed at a @Check[fortitude|dc:21] save or become Sickened 1 (Sickened 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Fume",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Each time an adjacent creature deals slashing or piercing damage to the brimorak, the attacker is sprayed with the brimorak's boiling blood, which deals @Damage[2d4[fire]] damage (@Check[reflex|dc:19|basic] save).</p>",
+      "frequency": null,
+      "name": "Boiling Blood",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Dousing a brimorak with water, either ordinary water or from a water effect, causes no physical harm to the fiend but deals @Damage[3d6[mental]] damage. Fully immersing the brimorak in water deals @Damage[5d6[mental]] damage per round.</p>",
+      "frequency": null,
+      "name": "Extinguishing Aversion",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A brimorak's hooves and any weapon they wield burst into flame. They can also Interact to create a sword of fire and steel, which dissolves if it leaves their grip.</p>",
+      "frequency": null,
+      "name": "Flaming Weapon",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Smoke doesn't impair a brimorak's vision; they ignore the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 60 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d8+4",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Flaming Sword",
+      "traits": [
+        "magical",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": [
+        "agile",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "6UrgCT8MwC8CeGbu",
+  "gear": [],
+  "hp": 80,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/brimorak",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
+  ],
+  "languages": [
+    "chthonian",
+    "draconic",
+    "empyrean",
+    "pyric"
+  ],
+  "level": 5,
+  "name": "Brimorak",
+  "perception": 12,
+  "publicNotes": "<p>These goat-headed demons have glowing red eyes and flaming hooves. Born from the souls of arsonists, the fiery brimoraks continue the work they pursued in life, as everything they touch quickly burns.</p>\n<p>Brimoraks are ill-tempered even for demons, although their spite turns to glee in the face of a growing fire. Those who have survived encounters with these fiends report that they remember the braying sound of the brimoraks' laughter as clearly as the heat of the flames or the choking scent of smoke.</p><hr /><p>When a sinful mortal soul is judged and sent on to the Outer Rifts, it can become a deadly fiend—a demon. Demons are living incarnations of sin—be they classic sins like wrath or gluttony, or more \"specialized\" depravities like an obsession with torture or the act of treason or treachery. Once formed, a demon's driving goals are twofold—the amassing of personal power, and the corruption of mortal souls to cause them to become tainted by sin. In this way demons ensure a never-ending supply of new demons to bolster their ever-growing ranks in the Outer Rifts.</p>\n<p>Demons are selfish and self-absorbed creatures, and most firmly believe that mortals only play at being more virtuous than fiends. They enjoy tempting mortals into damnation to both indulge their egos and swell their armies. Like many other fiends, one of the great rewards of this manipulation is fulfilling their hunger for souls. In their eyes, the primary use for these souls is to spawn new demons, who can serve as soldiers, slaves, pawns, or even currency for their more powerful masters.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 12,
+    "deception": 11,
+    "religion": 10,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 21,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Ignition",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "demon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 5
+    }
+  ]
+}

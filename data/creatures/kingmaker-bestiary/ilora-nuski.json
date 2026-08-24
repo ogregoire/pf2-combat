@@ -1,0 +1,151 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 3,
+    "dex": 5,
+    "int": 2,
+    "str": 3,
+    "wis": 4
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Requirements</strong> Ilora wields two melee weapons, each in a different hand.</p>\n<p><strong>Effect</strong> Ilora makes two Strikes against her target, one with each of the required weapons. If both hit the same target, combine the damage from the weapons for the purpose of resistances and weaknesses. She applies her multiple attack penalty to each Strike normally.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Twin Takedown",
+      "requirements": "Ilora wields two melee weapons, each in a different hand.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within Ilora's reach critically fails a melee Strike against her</p>\n<p><strong>Requirements</strong> Ilora is benefiting from Twin Parry</p>\n<p><strong>Effect</strong> Ilora attempts a melee Strike or uses a Disarm action against the triggering opponent.</p>",
+      "frequency": null,
+      "name": "Twin Riposte",
+      "requirements": "Ilora is benefiting from Twin Parry",
+      "traits": [],
+      "trigger": "A creature within Ilora's reach critically fails a melee Strike against her"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> Ilora wields two melee weapons, one in each hand</p>\n<p><strong>Effect</strong> Ilora gains a +1 circumstance bonus to AC until the start of her next turn. She loses this bonus if she no longer meets the requirements.</p>\n<p>Effect: Twin Parry</p>",
+      "frequency": null,
+      "name": "Twin Parry",
+      "requirements": "Ilora wields two melee weapons, one in each hand",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Ilora always finds the weak points in her foes' defenses when they're on unfavorable terrain. Enemies are Off-Guard to her if they're in difficult terrain, Restrained, or Immobilized due to natural or magical environmental effects.</p>",
+      "frequency": null,
+      "name": "Nature's Edge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Ilora moves quickly through obstacles. She ignores the effects of nonmagical difficult terrain and treats the hindrances of greater difficult terrain as those of difficult terrain. Within 300 feet of a river bank, she ignores the effects of all nonmagical difficult and greater difficult terrain.</p>",
+      "frequency": null,
+      "name": "Wild Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "XzFifthQr0V5nEJe",
+  "gear": [
+    "Boots of Bounding",
+    "Shortsword",
+    "Studded Leather Armor"
+  ],
+  "hp": 220,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/ilora-nuski",
+  "immunities": [],
+  "languages": [
+    "common",
+    "hallit",
+    "skald"
+  ],
+  "level": 12,
+  "name": "Ilora Nuski",
+  "perception": 22,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 23,
+    "athletics": 21,
+    "nature": 22,
+    "society": 20,
+    "stealth": 25,
+    "survival": 24
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

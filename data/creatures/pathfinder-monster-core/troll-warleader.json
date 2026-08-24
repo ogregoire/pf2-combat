@@ -1,0 +1,226 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 7,
+    "dex": 3,
+    "int": -1,
+    "str": 7,
+    "wis": 1
+  },
+  "ac": 29,
+  "acDetails": "(26 plus all-around vision after Shed Armor)",
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The troll warleader takes electricity or fire damage</p>\n<hr />\n<p><strong>Effect</strong> The warleader uses their Primordial Roar and, if they're aware of the damage's source, can Stride toward it. If the warleader has persistent fire damage, they attempt a @Check[flat|dc:15] to remove it.</p>",
+      "frequency": null,
+      "name": "Furious Roar",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The troll warleader takes electricity or fire damage"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The troll warleader unleashes a bestial roar. Each non-troll creature in a @Template[emanation|distance:100] must attempt a @Check[will|dc:29] save. The creature is then temporarily immune for 10 minutes.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 3.</p>",
+      "frequency": null,
+      "name": "Primordial Roar",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The warleader cuts their armor loose from their flesh. They immediately heal @Damage[60[healing]]{60 Hit Points} in a surge of regeneration as they grow twisted limbs and malformed faces.</p>\n<p>Without their armor, the warleader's AC drops to 26 but they gain All-Around Vision from the new faces.</p>\n<p>Putting the armor back on takes 10 minutes, and this ability can't be used again until 1 hour has passed.</p>",
+      "frequency": null,
+      "name": "Shed Armor",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> The troll warleader is wielding two battle axes</p>\n<hr />\n<p><strong>Effect</strong> The warleader makes a battle axe Strike against each creature in their reach and the bonus from sweep applies to each attack. These attacks count against their multiple attack penalty, but the multiple attack penalty doesn't increase until after all the attacks.</p>",
+      "frequency": null,
+      "name": "Sweeping Axes",
+      "requirements": "The troll warleader is wielding two battle axes",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The forest troll gets a –4 circumstance penalty to their Perception DC against Deception checks.</p>",
+      "frequency": null,
+      "name": "Easily Misled",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 20 (Deactivated by Electricity or Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Battle Axe",
+      "traits": [
+        "magical",
+        "reach-10",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "wJH5BXOWZYEyVB3y",
+  "gear": [
+    "Battle Axe",
+    "Half Plate"
+  ],
+  "hp": 240,
+  "hpDetails": "regeneration 30 (deactivated by acid or fire)",
+  "id": "pathfinder-monster-core/troll-warleader",
+  "immunities": [],
+  "languages": [
+    "jotun"
+  ],
+  "level": 10,
+  "name": "Troll Warleader",
+  "perception": 19,
+  "publicNotes": "<p>Long-lived trolls sometimes force their way through the twin distractions of hunger and pain to learn more about the world around them. To manage their regeneration, they learn to cover themselves in crude armor that slowly becomes integrated with the top layer of their flesh. Marked by this armor and aided by their superior wits, these warleaders gather a variety of trolls to serve them in raiding parties.</p>\n<p>The warleader presented here is a forest troll, but warleaders can be other types of trolls as well. Many of them are adapted to battle tactics that are best suited to their home environments.</p>\n<hr />\n<p>Slavering, cruel, invincible brutes: this is the villager's stock description for the dread monsters known as trolls. The roots of these stories are undoubtedly true. Trolls' flesh endlessly regrows, going so far as to sprout aberrant limbs or additional heads if not pruned, and a bottomless hunger is required to feed such unfettered growth. Even in the process of glutting themselves, however, trolls find opportunities to taunt their prey and inflict petty cruelties.</p>\n<p>A troll's ability to survive is so strong that they believe even the smallest scrap of flesh will slowly regenerate into a new form, suffering as all the powers of the land are gathered to revive them. Despite the pain, trolls speak of this unassailable vitality as a blessing from their creator. Few trolls have heard the laughter of demons who claim that creator cursed the trolls and cast them down from lofty heights, binding them so they could never rise again.</p>\n<p>Trolls prefer to remain solitary, keeping every scrap of food for themselves. In rare instances, an old and powerful troll comes to lead groups of trolls. Such warleaders possess enough cunning to lead their hordes in devastating raids and massacres, and their presence permanently alters the surrounding ecosystem. This link to their environment is an often misunderstood aspect of trollkind, and grows more acute with a troll's age and power. That's not to say trolls are valorous protectors of nature. They're vicious and territorial, and will blight their own territory forever if it means more to eat for a day.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 21,
+    "crafting": 15,
+    "intimidation": 22,
+    "nature": 17,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "giant",
+    "humanoid",
+    "troll",
+    "wood"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

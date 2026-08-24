@@ -1,0 +1,227 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 3,
+    "int": 2,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The chef shouts a flurry of insults and criticisms at either an ally or enemy within 30 feet with the following effects:</p>\n<p><strong>Ally</strong> The chef's assistant is shaken by the barrage of criticism but is determined to work faster and harder. The target becomes Quickened for 1 round but is also Frightened 1. They can use the extra action to Interact, Step, or Stride, or as part of an action or activity to prepare, cook, or serve food.</p>\n<p><strong>Enemy</strong> The target must succeed a @Check[will|dc:18] save or take @Damage[1d6[mental]] damage and become frightened 1 (or @Damage[2d6[mental]] damage and Frightened 2 on a critical failure).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Angry Rant",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The head chef is targeted with a melee attack by an adjacent attacker they can see</p><hr /><p><strong>Effect</strong> The head chef uses Spice Mix against the attacker.</p>",
+      "frequency": null,
+      "name": "Dash of Spice",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The head chef is targeted with a melee attack by an adjacent attacker they can see"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The head chef throws a mixture of irritating spices into an adjacent creature's eyes, causing the creature to be Dazzled until it Interacts to clear its vision.</p>",
+      "frequency": null,
+      "name": "Spice Mix",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+15 to Smell and Taste",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving cooking and taste, the head chef is a 7th-level challenge.</p>",
+      "frequency": null,
+      "name": "Culinary Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The halfling gains a +2 circumstance bonus when using the Seek action to find Hidden or Undetected creatures within 30 feet of them. Whenever the halfling targets a creature that is Concealed or hidden from them, reduce the DC of the flat check to @Check[flat|dc:3] for a concealed target or @Check[flat|dc:9] for a hidden one.</p>",
+      "frequency": null,
+      "name": "Keen Eyes",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Filcher's Fork",
+      "traits": [
+        "agile",
+        "backstabber",
+        "deadly-d6"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Filcher's Fork",
+      "traits": [
+        "agile",
+        "backstabber",
+        "deadly-d6",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hot Frying Pan",
+      "traits": [
+        "fatal-d8"
+      ]
+    }
+  ],
+  "foundryId": "fDUocyyYWJU1grxV",
+  "gear": [
+    "Chef's Hat",
+    "Filcher's Fork",
+    "Frying Pan",
+    "Herbs and Spices"
+  ],
+  "hp": 36,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/halfling-head-chef",
+  "immunities": [],
+  "languages": [
+    "common",
+    "halfling"
+  ],
+  "level": 2,
+  "name": "Halfling Head Chef",
+  "perception": 7,
+  "publicNotes": "<p>Renowned for their culinary expertise, halfling head chefs navigate the complex world of high cuisine with flavorful creations and fiery tempers.</p><hr /><p>Halflings thrive on simple pleasures—having a pint at the pub or warming their feet by the hearth.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "intimidation": 7,
+    "society": 6
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "halfling",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

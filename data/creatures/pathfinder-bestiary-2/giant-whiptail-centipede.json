@@ -1,0 +1,156 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 4,
+    "dex": 2,
+    "int": -5,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 19,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p>Tail Only</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Tail Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giant whiptail centipede Strides or Steps. During this movement, it can pass through spaces as narrow as 5 feet without Squeezing.</p>",
+      "frequency": null,
+      "name": "Undulate",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:19]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d10[poison]] damage and Clumsy 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d10[poison]] damage and Clumsy 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[2d10[poison]] damage and Clumsy 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Whiptail Centipede Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "whiptail-centipede-venom"
+      ],
+      "kind": "melee",
+      "name": "Mandibles",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "knockdown"
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "UTnrcGoCIXR95zKi",
+  "gear": [],
+  "hp": 45,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/giant-whiptail-centipede",
+  "immunities": [],
+  "languages": [],
+  "level": 3,
+  "name": "Giant Whiptail Centipede",
+  "perception": 9,
+  "publicNotes": "<p>Whiptail centipedes are sleek and swift tunnel predators.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 10,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,197 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 4,
+    "int": 0,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round;</p>\n<hr />\n<p><strong>Effect</strong> The scout takes a Stride action and a Swim action, in either order. They ignore difficult terrain from mud, quicksand, and similar terrain during this movement.</p>",
+      "frequency": null,
+      "name": "Wriggling Rush",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The sedacthy makes a jaws Strike. If it hits, an ally of their choice can spend a reaction to make a jaws Strike against the same target. Allies with beaks or similar attacks can use those instead of jaws.</p>",
+      "frequency": null,
+      "name": "Shared Feast",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A sedacthy speaking Thalassic can be understood by any animal that has a swim Speed or the amphibious or aquatic trait. By spending a week regularly interacting with such an animal, the sedacthy can make it permanently helpful.</p>",
+      "frequency": null,
+      "name": "Sea Speech",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>This sense allows a monster to feel vibrations caused by movement through a liquid. It's an imprecise sense with a limited range (listed in the ability). Wavesense functions only if monster and the subject are in the same body of liquid, and only if the subject is moving through the liquid.</p></p>",
+      "frequency": null,
+      "name": "Wavesense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d4",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Spear",
+      "traits": []
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Spear",
+      "traits": [
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "qRUezfNovWdrZtdt",
+  "gear": [
+    "Spear"
+  ],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/sedacthy-scout",
+  "immunities": [],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 2,
+  "name": "Sedacthy Scout",
+  "perception": 9,
+  "publicNotes": "<p>Scouts, usually young sedacthies, ply the ocean in search of animal servants or tread ashore to hunt. Scouts hunting on the surface press crocodiles and snakes into service, while those underwater prefer electric eels and hippocampi.</p>\n<hr />\n<p>Sedacthies are amphibious, fish-like humanoids who lurk in Golarion's oceans and are known for leading their animal servants ashore to devour air breathers. When an entire fishing village disappears overnight, sedacthies are the first suspects. Sedacthies pride themselves as natural leaders, with ambition limited only by their strict adherence to hierarchy. A sedacthy's station is determined by the strength of the animal servants they press into service, and the mettle they prove during hunts and in battles against outsiders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "wavesense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "intimidation": 9,
+    "stealth": 8,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "humanoid",
+    "sedacthy"
+  ],
+  "weaknesses": []
+}

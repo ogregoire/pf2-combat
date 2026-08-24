@@ -1,0 +1,164 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The nixie can duplicate any 1st-rank spell or produce any effect with a power level in line with a 1st-rank spell, but only in response to the request or desire of a non-fey creature. The creature whose desire is granted can never again benefit from that particular nixie's Grant Desire ability.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Grant Desire",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The nixie can use Diplomacy to Make an Impression on and make very simple Requests of aquatic or amphibious animals.</p>",
+      "frequency": null,
+      "name": "Wild Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "LZp7LLcFzDBlrwod",
+  "gear": [],
+  "hp": 25,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/nixie",
+  "immunities": [],
+  "languages": [
+    "fey",
+    "thalassic"
+  ],
+  "level": 1,
+  "name": "Nixie",
+  "perception": 6,
+  "publicNotes": "<p>These aquatic fey often guard ponds, rivers, lakes, and springs, protecting their bucolic homes from the advances of predators and careless humanoids alike. Nixies tend to be reclusive and try to keep their presence hidden from humanoids, hoping trespassers won't give them cause to act. Stories of minor miracles granted by nixies to those they befriend encourage humanoids to seek out these reclusive fey, and ironically make it even more unlikely for a nixie to grant such a boon. On the other hand, if someone approaches a nixie with respect, or even better, a positive attitude that displays just the right amount of humility and easygoing openness, a nixie is far more likely to respond positively to any requests for aid. Often a nixie will ask those who seek their assistance to perform a task for them first; such requests can be minor acts of entertainment (such as telling a rousing story or performing a requested song), but in other cases the nixie might need more significant aid, such as driving off an unwanted local predator or investigating the source of pollution near their home.</p>\n<p>Nixies resort to violence only if no other tactic works. They much prefer solutions that rely upon primal magic to defuse conflicts before they can escalate to bloodshed. In pursuit of such resolutions, nixies rely on their ability to charm individuals and, when they can establish magical influence, encourage intruders to leave peacefully. While some nixies try to confuse intruders and subtly guide them from the area, others use local animals and beasts to scare off trespassers. Occasionally, nixies recruit charmed humanoids to act as protectors or help with a task that is simply too big for them to deal with. If this task is underwater, nixies use their magic to temporarily grant the ability to breathe water to the charmed creature. Only those who manage to befriend a nixie are given invitations to return to swim or dine with the fey, and only the most trusted of allies are granted a minor wish.</p>\n<p>Nixies appear as aquatic humanoids the size of a child, with large eyes, catfish-like whiskers, and webbed fingers and toes. They have scaly skin, pointed ears, and long hair the color of seaweed. Nixies often form small communities, even building underwater societies if their numbers are great enough. In many cultures' folklore, there are stories of nixie nations hidden at the bottom of particularly large lakes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "nature": 5,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Water Breathing",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Hydraulic Push",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "aquatic",
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 3
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A physical ranged attack with a throwing weapon critically fails to hit the juggler</p><hr /><p><strong>Effect</strong> The juggler snatches the weapon from the air and immediately makes a ranged Strike against the attacker using that weapon.</p>",
+      "frequency": null,
+      "name": "Return Throw",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A physical ranged attack with a throwing weapon critically fails to hit the juggler"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The juggler begins juggling up to three items of light or negligible Bulk. They can choose items in their hands or Interact to draw items on their person or pick up unattended items in reach. While juggling, they can Interact to add up to two items to their juggle, though they must drop an item for each one they add. The juggler is wielding all items they juggle, but the only actions they can take that require their hands are Return Throw, Juggling Bounce, Strike using a juggled weapon, Interact to add items to their juggle, or Dismiss to stop juggling.</p>\n<p>When the juggler Dismisses Juggle, they can choose to continue to wield, drop, or stow each juggled item, though they can't wield more items than they have hands. If at any point the juggler isn't wielding any items or becomes Restrained or Unconscious, the juggle ends and the juggler drops all the items.</p>",
+      "frequency": null,
+      "name": "Juggle",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The juggler Strikes with a thrown weapon they're juggling. If the Strike hits, the weapon bounces to a different creature in the weapon's first range increment. The juggler repeats the Strike, which uses the same multiple attack penalty and doesn't increase their multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Juggling Bounce",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving juggling and other circus acts, the juggler is a 5th-level challenge.</p>",
+      "frequency": null,
+      "name": "Juggling Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dart",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Juggling Club",
+      "traits": [
+        "agile"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Juggling Club",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Torch",
+      "traits": [
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "zeu7M3M3wYt9O3M5",
+  "gear": [
+    "Dart",
+    "Juggling Club",
+    "Torch"
+  ],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/juggler",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Juggler",
+  "perception": 9,
+  "publicNotes": "<p>Jugglers are physical performers who master the art of manipulating props. Usually, this involves throwing multiple objects up in a flowing pattern, but some use ricocheting items, spinning items, or other objects to keep them aloft.</p><hr /><p>Performances come in a wide variety of forms, from musical methods like singing and instruments to physical dancing and juggling to simple orating and conversing.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 8,
+    "performance": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

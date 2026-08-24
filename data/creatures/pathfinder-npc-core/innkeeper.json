@@ -1,0 +1,163 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 0,
+    "int": 2,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p><hr /><p><strong>Effect</strong> The innkeeper gives some pertinent advice to a single creature other than themself. For 24 hours, when that creature fails a skill check or saving throw, they can recall this advice and reroll the check, using the second result instead. Once that creature uses this ability, its effect ends. A creature that receives the Innkeeper's Advice is temporarily immune to the ability for 1 month.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Innkeeper's Advice",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "fortune",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The innkeeper's business gives them insight into the neighborhood's happenings. A person can Gather Information from an innkeeper in 30 minutes rather than canvassing an entire neighborhood. Each person can learn gossip from an innkeeper only once per day, and only if the innkeeper is friendly or helpful to that individual. Whatever information the innkeeper knows about a given topic doesn't change if someone else asks the innkeeper about that topic, unless the innkeeper has since learned more.</p>",
+      "frequency": null,
+      "name": "Font of Gossip",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The innkeeper knows how to settle fights that break out. When the innkeeper is fighting in their establishment, their Strikes gain a +1 circumstance bonus to the attack roll, deal an additional 1d4 damage, and gain the nonlethal trait if they don't already have it. The innkeeper can choose not to gain this benefit.</p>",
+      "frequency": null,
+      "name": "Home Base Brawler",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Broom",
+      "traits": [
+        "two-hand-d8"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Pewter Mug",
+      "traits": [
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "BYpxg06tP5hI6CzQ",
+  "gear": [
+    "Broom (Functions as a Staff)",
+    "Innkeeper's Apron (Functions as Leather Armor)",
+    "Ledger",
+    "Pewter Mug"
+  ],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/innkeeper",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 1,
+  "name": "Innkeeper",
+  "perception": 7,
+  "publicNotes": "<p>The sight of an inn is a welcome one to any weary traveler. Innkeepers can often be found cleaning the common room, overseeing the evening meal, or settling in new lodgers. Innkeepers keep an eye on their neighbors' doings and are often excellent sources of information.</p><hr /><p>Society is built upon the backs of laborers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 6,
+    "diplomacy": 6,
+    "society": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

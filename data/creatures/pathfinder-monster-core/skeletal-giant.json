@@ -1,0 +1,204 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 3,
+    "dex": 1,
+    "int": -5,
+    "str": 5,
+    "wis": 0
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The giant makes two Strikes with its glaive against two adjacent foes, both of whom are within its reach. Both attacks count toward the giant's multiple attack penalty, but the penalty doesn't increase until after both attacks.</p>",
+      "frequency": null,
+      "name": "Broad Swipe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The giant Strides and makes a horns Strike with a +4 circumstance bonus to damage.</p>\n<p>If the strike hits, the giant attempts to [[/act demoralize]] the target.</p>",
+      "frequency": null,
+      "name": "Terrifying Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Glaive",
+      "traits": [
+        "deadly-d8",
+        "forceful",
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Horns",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "sEgjgitJmwYYa4mV",
+  "gear": [
+    "Glaive",
+    "Half Plate"
+  ],
+  "hp": 50,
+  "hpDetails": "void healing",
+  "id": "pathfinder-monster-core/skeletal-giant",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [],
+  "level": 3,
+  "name": "Skeletal Giant",
+  "perception": 7,
+  "publicNotes": "<p>The reanimated bones of giants make excellent necromantic thralls.</p>\n<hr />\n<p>Animated skeletons are among the most common types of undead.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 12,
+    "intimidation": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "skeleton",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

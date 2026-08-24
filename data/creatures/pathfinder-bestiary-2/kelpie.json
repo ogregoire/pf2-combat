@@ -1,0 +1,154 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 2,
+    "int": -1,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The kelpie can take on the appearance of any Medium or Large animal of an equine nature (such as a Horse, Hippocampus, or Pony), or any Small or Medium humanoid. This doesn't change its Speeds or its attack and damage modifiers with its Strikes.</p><hr /><p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The kelpie instills an overwhelming attraction to itself within the mind of a single creature within 60 feet. The target perceives the kelpie as a desirable person (if the kelpie is in humanoid form) or a valuable steed (if the kelpie is in equine form) and must attempt a @Check[will|dc:23] saving throw.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and is temporarily immune to Captivating Lure for 24 hours.</p>\n<p><strong>Success</strong> The creature is Stupefied 1 for 1 round and is then temporarily immune to Captivating Lure for 24 hours.</p>\n<p><strong>Failure</strong> The creature is Fascinated, and it must spend each of its actions to move closer to the kelpie as expediently as possible while avoiding obvious dangers. If a captivated creature is adjacent to the kelpie, it either attempts to mount the kelpie (if the kelpie is in equine form) or stays still and doesn't act. If the creature is attacked by the kelpie, or if it can't breathe water and enters an area of water, the creature is freed from captivation at the end of the kelpie's turn.</p>\n<p><strong>Critical Failure</strong> As failure, but the target doesn't consider water a danger and will enter an area of water even if it can't swim or breathe water. If it is attacked by the kelpie or starts to drown, it can attempt a new save at the start of its next turn, but it isn't freed automatically.</p>",
+      "frequency": null,
+      "name": "Captivating Lure",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "emotion",
+        "incapacitation",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "FMU6L5vbiUxa1ZF7",
+  "gear": [],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/kelpie",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "thalassic"
+  ],
+  "level": 4,
+  "name": "Kelpie",
+  "perception": 11,
+  "publicNotes": "<p>Kelpies are malevolent amphibious fey shapechangers intent on luring mortals to their doom. These cruel predators lurk in and around areas of water, slightly preferring freshwater over saltwater. Kelpies lure or drag their prey underwater then drown and devour them, leaving behind only the victim's heart and liver- the only parts of a meal kelpies find unpleasant. Kelpies are fond of magically disguising itself as fine steeds or attractive strangers to draw in victims, but its true appearance takes the form of a hideous equine with slimy, green flesh resembling aquatic plants.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 11,
+    "deception": 14,
+    "stealth": 10
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "swim",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

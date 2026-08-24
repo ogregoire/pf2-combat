@@ -1,0 +1,230 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 3,
+    "int": 2,
+    "str": 3,
+    "wis": 5
+  },
+  "ac": 23,
+  "acDetails": "all-around vision",
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The rhu-chalik invades the mind of a target within 100 feet, sorting the memories into alien structures for transmission. The target must attempt a @Check[will|dc:24] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The target creature is unaffected and temporarily immune to Label Memories for 1 minute.</p>\n<p><strong>Success</strong> The target is unaffected.</p>\n<p><strong>Failure</strong> The target becomes Stupefied 2 for 1 minute as its mind is reorganized to fit the rhu-chalik's needs. If it's already stupefied by this effect, the target instead becomes Confused for 1 minute or until it recovers due to taking damage.</p>\n<p><strong>Critical Failure</strong> As failure, but if the target is already stupefied by Label Memories, they become Paralyzed for 1 minute instead of confused.</p>",
+      "frequency": null,
+      "name": "Label Memories",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> The rhu-chalik is adjacent to a creature Paralyzed due to Label Memories</p>\n<hr />\n<p><strong>Effect</strong> The rhu-chalik copies the creature's consciousness and mentally sends this copied consciousness through the void of space to their waiting masters. The target creature is deeply disoriented by this procedure, becoming Stupefied 2 for 1 day afterward.</p>",
+      "frequency": null,
+      "name": "Transmit Memories",
+      "requirements": "The rhu-chalik is adjacent to a creature Paralyzed due to Label Memories",
+      "traits": [
+        "concentrate",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A rhu-chalik's tendrils secrete an enzyme that causes intense pain. A living creature hit by a tendril Strike must succeed at a @Check[fortitude|dc:24] save or become Sickened 1 from the pain.</p>",
+      "frequency": null,
+      "name": "Excruciating Enzyme",
+      "requirements": null,
+      "traits": [
+        "occult",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A rhu-chalik doesn't breathe and is immune to effects that require breathing (such as inhaled poisons).</p>",
+      "frequency": null,
+      "name": "No Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The rhu-chalik senses a creature's mental essence as a precise sense with the listed range; it cannot sense mindless creatures with thoughtsense.</p>",
+      "frequency": null,
+      "name": "Thoughtsense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "mental"
+        },
+        {
+          "category": null,
+          "formula": "2d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "excruciating-enzyme"
+      ],
+      "kind": "melee",
+      "name": "Tendril",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "yj2nhIS8ZsAJh2l5",
+  "gear": [],
+  "hp": 95,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/rhu-chalik",
+  "immunities": [],
+  "languages": [
+    "aklo"
+  ],
+  "level": 6,
+  "name": "Rhu-Chalik",
+  "perception": 17,
+  "publicNotes": "<p>Also called void wanderers, rhu-chaliks can survive the depths of space indefinitely, passing between worlds over the eons and scouting those planets for the Dominion of the Black. Rhu-chaliks prefer to work alone in order to reduce potential overlap in their mental predations, but sometimes receive assistance from those who believe the transmission of memories is transcendent. The furtive beings are calculating and infinitely patient, seeking only the most exceptional minds to cast beyond the stars to their masters.</p>\n<hr />\n<p>The Dominion of the Black is a conglomeration of deep-space conquerors with a strong presence on Aucturn, the most remote planet in Golarion's solar system. The Dominion has secret outposts all over Golarion; most of its members on the planet are scouts, using their skills to steal brains and identities, gathering information without any consideration for the inhabitants of the worlds they infiltrate.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 13,
+    "deception": 13,
+    "diplomacy": 13,
+    "intimidation": 13,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "fly",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 16,
+      "dc": 24,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Mind Probe",
+          "rank": 5
+        },
+        {
+          "name": "Rewrite Memory",
+          "rank": 4
+        },
+        {
+          "name": "Mind Reading (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility (At Will, Self Only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

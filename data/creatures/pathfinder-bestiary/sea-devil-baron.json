@@ -1,0 +1,212 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 2,
+    "int": 0,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Requirements</strong> The sea devil is not Fatigued or already in a frenzy</p>\n<p><strong>Trigger</strong> The sea devil deals bleed damage to a living creature.</p><hr /><p><strong>Effect</strong> The sea devil flies into a frenzy that lasts 1 minute. While frenzied, the sea devil gains a +1 status bonus to attack rolls with its claws and jaws, gains a +4 status bonus to damage rolls with its claws and jaws, gains 15 temporary HP until the end of the frenzy, and takes a -2 status penalty to AC. The sea devil can't voluntarily stop its frenzy. After its frenzy, the sea devil is Fatigued.</p>",
+      "frequency": null,
+      "name": "Blood Frenzy",
+      "requirements": "The sea devil is not Fatigued or already in a frenzy",
+      "traits": [
+        "rage"
+      ],
+      "trigger": "The sea devil deals bleed damage to a living creature."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The sea devil baron is in a blood frenzy.</p>\n<hr />\n<p><strong>Effect</strong> The sea devil baron unleashes a whirlwind of attacks against its foes, making a single melee Strike with its claws or jaws against each opponent within reach.</p>",
+      "frequency": null,
+      "name": "Hateful Tide",
+      "requirements": "The sea devil baron is in a blood frenzy.",
+      "traits": [
+        "rage"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the sea devil deals piercing or slashing damage, it also deals @Damage[1d4[bleed]] if the target was Off-Guard or if the attack was a critical hit.</p>",
+      "frequency": null,
+      "name": "Bloodletting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The sea devil can communicate telepathically with sharks within range. It can communicate only simple concepts like \"come,\" \"guard,\" or \"attack.\"</p>",
+      "frequency": null,
+      "name": "Shark Commune 150 feet",
+      "requirements": null,
+      "traits": [
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>This sense allows a monster to feel vibrations caused by movement through a liquid. It's an imprecise sense with a limited range (listed in the ability). Wavesense functions only if monster and the subject are in the same body of liquid, and only if the subject is moving through the liquid.</p></p>",
+      "frequency": null,
+      "name": "Wavesense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longspear",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Spear",
+      "traits": [
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "HFbZ580RDOG6Rxz2",
+  "gear": [
+    "Longspear",
+    "Spear"
+  ],
+  "hp": 95,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/sea-devil-baron",
+  "immunities": [],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 6,
+  "name": "Sea Devil Baron",
+  "perception": 13,
+  "publicNotes": "<p>Unlike in many cultures, the highest-ranking sea devils are expected not just to wade into battle alongside their brethren, but to actively lead the campaign.</p>\n<hr />\n<p>Sea devils are horrid, amphibious humanoids who lurk in Golarion's oceans and crawl ashore to steal away victims beneath the veil of darkness. When an entire fishing village disappears overnight, sea devils are the first suspects.</p>\n<p>Far from mindless monstrosities, sea devils are terribly intelligent, with a cunning limited only by their strict adherence to hierarchy. They call themselves \"sahuagin\" but have wholly embraced their enemies' name for their kind as their own. Their cultural militancy enables sea devils to act in concert to perform grand acts of sabotage, marauding, and pillaging, and only the strongest (and most conniving) members of the tribe make it to the top of the social ladder. For all their discipline, however, sea devils are widely known to snap into murderous frenzies at the scent of blood. Even the best-laid plans can fall apart when a sea devil breaks ranks to revel in the spilled blood of their victims, an indulgence that can quickly cause a chain reaction of bloodthirsty ecstasy throughout an entire raiding party. For this reason, sea devils typically capture landborne quarry using nets and ropes, dragging them to the depths of the sea before making even a single incision.</p>\n<p>Among sea devil society, individuals are rewarded based on their performance during hunts and shore excursions, with rebels and outliers quickly culled from the ranks. Every pup is given a fair chance, however, and even the lowest-born sea devil can strive for the rank of commander, general, or perhaps even king or queen. Sea devils in positions of leadership tend to be among the largest, most violent, and most calculating of their kind, and fully realized sea devils are skilled warriors capable of capturing entire villages on their own. The most powerful sea devils are mighty kings and queens who coordinate the activity of lesser sea devils across territories spanning leagues, foiling attempts at their positions via manufactured blood feuds and wars against their numerous enemies ashore and underwater.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "wavesense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 15,
+    "intimidation": 12,
+    "stealth": 12,
+    "survival": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "humanoid",
+    "mutant",
+    "sea-devil"
+  ],
+  "weaknesses": []
+}

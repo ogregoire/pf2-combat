@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 2,
+    "int": -5,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature critically hit by the electric eel's tail must attempt a @Check[fortitude|dc:17] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Stunned 1.</p>\n<p><strong>Failure</strong> The creature is Stunned 2.</p>\n<p><strong>Critical Failure</strong> The creature is Stunned 3.</p>",
+      "frequency": null,
+      "name": "Stunning Shock",
+      "requirements": null,
+      "traits": [
+        "incapacitation"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "electricity"
+        },
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "stunning-shock"
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "gCmfPEfqS60BiuVP",
+  "gear": [],
+  "hp": 18,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/electric-eel",
+  "immunities": [],
+  "languages": [],
+  "level": 1,
+  "name": "Electric Eel",
+  "perception": 4,
+  "publicNotes": "<p>Usually found in freshwater rivers and lakes, an electric eel is not particularly aggressive, but its ability to stun predators and prey alike can be dangerous to larger creatures searching for their next meal. Electric eels are more closely related to catfish than to other eels.</p>\n<hr />\n<p>Although these long, narrow fish share similarities in appearance, eels are a diverse group of creatures.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity",
+      "value": 7
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

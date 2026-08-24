@@ -1,0 +1,156 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 1,
+    "int": -2,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The ooze mephit spits toxic slime in a @Template[cone|distance:15] that deals @Damage[2d6[poison]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save).</p>\n<p>The ooze mephit can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (when touching mud or slime)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "5FcYbQxHehjO4w1d",
+  "gear": [],
+  "hp": 24,
+  "hpDetails": "(fast healing 2 (when touching mud or slime))",
+  "id": "pathfinder-bestiary-2/ooze-mephit",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "petran",
+    "thalassic"
+  ],
+  "level": 1,
+  "name": "Ooze Mephit",
+  "perception": 3,
+  "publicNotes": "<p>Slick in every sense of the word, ooze mephits are unapologetic sycophants, shamelessly flattering anyone they may be able to con a favor out of, although their lack of intelligence and subtlety means that only the most vain or trusting targets fail to see through their honeyed words. Lacking proper bones, these ocher-colored mephits have bodies consisting primarily of ooze and muck. They smell disgusting, and their touch leaves stains that are almost impossible to get out.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "diplomacy": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 17,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Grease",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "earth",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

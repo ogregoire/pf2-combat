@@ -1,0 +1,240 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 7,
+    "dex": 1,
+    "int": 2,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 31,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Damage Reduction</strong> 12</p>\n<hr />\n<p><p><strong>Trigger</strong> An enemy damages the monster's ally, and both are within 15 feet of the monster.</p>\n<hr />\n<p><strong>Effect</strong> The ally gains resistance to all damage against the triggering damage equal to 2 + the monster's level. If the foe is within reach, the monster makes a melee Strike against it.</p></p>",
+      "frequency": null,
+      "name": "Retributive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "1",
+      "description": "<p>A shield archon's hands can change into a <em>+1 Holy Striking spear</em> and a <em>Lesser Sturdy Shield</em> or back into hands.</p>\n<p>Transforming does not restore any HP to the items, and if either the weapon or shield is fully destroyed, the archon loses that hand until it receives a Regenerate spell or similar magic.</p>\n<p>If a shield archon is slain, its weapon and shield can be taken, but they fade into nothingness after 24 hours.</p>",
+      "frequency": null,
+      "name": "Morphic Hands",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Once per day, if an archon sees another creature cast Translocate, it can cast an innate <em>dimension door</em> (heightened to 5th level) within 1 round to attempt to follow that creature to the maximum distance of the archon's <em>dimension door</em>.</p>\n<p>If the archon's <em>dimension door</em> has enough distance, the archon appears the same distance and direction from the creature as before either used <em>dimension door</em>.</p>",
+      "frequency": null,
+      "name": "Archon's Door",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a shield archon uses its Translocate innate spell, it can choose to move into the space of a willing ally it can see within range. If it does so, the ally switches places with the archon, appearing in the space the archon just vacated, as if it too had cast Dimension Door.</p>",
+      "frequency": null,
+      "name": "Courageous Switch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A shield archon's shield is the focal point of its courage and soul. It always has its shield raised without needing to Raise a Shield, and it can use Shield Block as a free action instead of a reaction (Hardness 10, HP 80). A shield archon can trigger its Shield Block free action when an ally within 10 feet is the target of an attack, reducing damage to that ally instead of itself but otherwise following the normal rules of Shield Block.</p>",
+      "frequency": null,
+      "name": "Living Shield",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. Enemies that start their turn in the area or enter it must attempt a @Check[will|dc:27] save.</p>\n<p>On a failure, they take a -1 status penalty to attack rolls, spell rolls, and damage rolls against any other target while in the aura for 24 hours or until they damage the archon, whichever comes first. On a critical failure, they can't use hostile actions against any other target while in the area for 24 hours or until they damage the archon, whichever comes first.</p>\n<p>Regardless of the result, a creature is then temporarily immune to further menacing guardian auras for 24 hours.</p>",
+      "frequency": null,
+      "name": "Menacing Guardian",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Holy Striking Spear",
+      "traits": [
+        "holy",
+        "magical",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "qkWkshBHyTbLP07b",
+  "gear": [
+    "Full Plate",
+    "Spear",
+    "Sturdy Shield (Lesser)"
+  ],
+  "hp": 125,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/shield-archon",
+  "immunities": [],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 10,
+  "name": "Shield Archon",
+  "perception": 19,
+  "publicNotes": "<p>Shield archons defend the fortresses of Heaven against fiendish incursions. They wield their spears and shields in massive formations capable of withstanding any onslaught. Beneath their armor, they are sheathed in skin of steel. Given their tremendous strength and imposing stature, shield archons are ideal guardians of the meek and are sometimes summoned to the Material Plane to ward off the attacks of great numbers of evildoers.</p>\n<hr />\n<p>Archons are guardians of Heaven and enemies of chaos and evil. They openly fight back the spread of fiends but also quietly nurture the seeds of virtue within mortals, teaching the denizens of the Material Plane how to act with honor and integrity, enact just laws, and cast off sin and temptation.</p>\n<p>Archons live in the immense seven-tiered mountain of Heaven. They manifest in the Garden at the mountain's peak from mortal souls who answer a mysterious voice. There they swear to forever serve the cause of justice and transform into their new archon forms. Intensely orderly in their metamorphosis, new archons begin as lantern archons or other lesser forms, transforming into ever-greater archons as their virtue and achievements grow. Each archon represents a particular virtue, such as hope, charity, justice, or courage, and they gain strength in the presence of mortals who exemplify this virtue. Due to their extremely lawful nature, archons sometimes find themselves at odds with azatas.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 21,
+    "diplomacy": 19,
+    "intimidation": 19,
+    "religion": 19,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 27,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Shield Other",
+          "rank": 2
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "True Strike",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "archon",
+    "celestial",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unholy",
+      "value": 10
+    }
+  ]
+}

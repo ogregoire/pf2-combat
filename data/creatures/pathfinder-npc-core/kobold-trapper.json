@@ -1,0 +1,194 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 3,
+    "int": 3,
+    "str": 1,
+    "wis": 2
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The kobold trapper creates a rudimentary trap on a surface in an adjacent square. The trap activates the next time a creature moves adjacent to it. The creature takes 2d6 @Damage[2d6[bludgeoning]]{bludgeoning}, @Damage[2d6[piercing]]{piercing}, or @Damage[2d6[slashing]]{slashing} damage (determined by the trapper when the trap is constructed) with a @Check[reflex|dc:18|basic] save. On a failure, the creature also takes a –5 status penalty to all Speeds for 1 minute. The trap is destroyed when activated or after 8 hours, whichever comes first. A trapper typically carries enough raw materials to make six traps each day.</p>\n<p>Effect: Construct Trap</p>",
+      "frequency": null,
+      "name": "Construct Trap",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Circumstance to All Defenses vs. Traps",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Seek for Traps",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A kobold trapper protects items in their backpack with a booby trap. This booby trap requires a successful @Check[perception|dc:18] check to notice, and two successful @Check[thievery|dc:15] checks to disable.</p>\n<p>Accessing the backpack without disabling the trap destroys its contents, and splinters explode in a @Template[type:burst|distance:10] centered on the backpack, dealing @Damage[3d6[piercing]|options:area-damage] damage (@Check[reflex|dc:15|basic|options:area-effect] save).</p>",
+      "frequency": null,
+      "name": "Booby-Trapped",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Light Hammer",
+      "traits": [
+        "agile"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Light Hammer",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "nDVrJFeatah7dtvy",
+  "gear": [
+    "Backpack",
+    "Bolts",
+    "Crossbow",
+    "Formula Book (Containing formulas for three 1st- or 2nd-level snares)",
+    "Leather Armor",
+    "Light Hammer"
+  ],
+  "hp": 32,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/kobold-trapper",
+  "immunities": [],
+  "languages": [
+    "common",
+    "sakvroth"
+  ],
+  "level": 2,
+  "name": "Kobold Trapper",
+  "perception": 7,
+  "publicNotes": "<p>Kobolds are skillful artisans, always inventing new traps and snares to defend their territory and ambush enemies. Kobold trappers enjoy showing off their crafting prowess on the battlefield.</p><hr /><p>Kobolds are drawn to beings and objects of power, establishing their communities near them. Once a warren has been formed, the resident kobolds construct traps and set up ambushes to deter interlopers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 5,
+    "crafting": 8,
+    "stealth": 7,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "kobold"
+  ],
+  "weaknesses": []
+}

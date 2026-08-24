@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 4,
+    "int": -2,
+    "str": -5,
+    "wis": 2
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Attacks against the shadow are treated as magical if made by a creature who is in magical light or with an object that is in magical light (such as from the Light spell).</p>",
+      "frequency": null,
+      "name": "Light Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The shadow can Hide or end its Sneak in a creature's or object's shadow.</p>",
+      "frequency": null,
+      "name": "Slink in Shadows",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+3",
+          "type": "void"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shadow Hand",
+      "traits": [
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "clzHAfegb9Rn6DOe",
+  "gear": [],
+  "hp": 40,
+  "hpDetails": "void healing",
+  "id": "pathfinder-monster-core/shadow-spawn",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "necril"
+  ],
+  "level": 4,
+  "name": "Shadow Spawn",
+  "perception": 10,
+  "publicNotes": "<p>The mysterious undead known as shadows lurk in dark places and feed on those who stray too far from the light.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [
+        "non-magical"
+      ],
+      "exceptions": [
+        "force",
+        "ghost-touch",
+        "spirit",
+        "vitality"
+      ],
+      "type": "all-damage",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 10,
+    "stealth": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "incorporeal",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

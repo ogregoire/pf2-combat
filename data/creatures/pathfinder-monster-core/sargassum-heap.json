@@ -1,0 +1,173 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 4,
+    "int": -4,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d8+3)[bludgeoning]], @Check[fortitude|dc:23|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>120 feet.</p>\n<p>The sargassum heap constantly produces a field of hallucinogenic spores that causes those affected to see the monster as whatever they desire most. Each creature within the emanation must succeed a @Check[will|dc:22] save or become Fascinated with the sargassum heap and compelled to move toward it on the creature's turn. Creatures fascinated this way are also Off-Guard. If the sargassum heap attacks, the fascinated condition ends only for the creature that is attacked. On a successful save, a creature is temporarily immune to mirage spores for 24 hours.</p>",
+      "frequency": null,
+      "name": "Mirage Spores",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "incapacitation",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>This sense allows a monster to feel vibrations caused by movement through a liquid. It's an imprecise sense with a limited range (listed in the ability). Wavesense functions only if monster and the subject are in the same body of liquid, and only if the subject is moving through the liquid.</p></p>",
+      "frequency": null,
+      "name": "Wavesense (Precise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Tendril",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "2A7jnl9tpmeTBkQy",
+  "gear": [],
+  "hp": 180,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/sargassum-heap",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [],
+  "level": 6,
+  "name": "Sargassum Heap",
+  "perception": 10,
+  "publicNotes": "<p>A sargassum heap is a mass of semi-intelligent seaweed that floats through the ocean, luring in its victims with hallucinogenic spores. Those affected by the spores are drawn towards the heap, envisioning their heart's desire. This might be a lost loved one, a child in need of help, an enchanting mermaid, the promise of dry land, and so on. Once their prey is close enough, the sargassum heap lashes out with its seaweed tendrils and crushes it to death.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "wavesense"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 17,
+    "stealth": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "climb",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 5
+    }
+  ]
+}

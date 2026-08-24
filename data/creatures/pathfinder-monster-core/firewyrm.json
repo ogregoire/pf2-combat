@@ -1,0 +1,198 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 5,
+    "int": -1,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The firewyrm breathes a @Template[cone|distance:30] of fire dealing @Damage[7d6[fire],2d8[persistent,fire]] damage to every creature within the cone (@Check[reflex|dc:28|basic] save).</p>\n<p>The firewyrm can't Breathe Fire again for [[/gmr 1d4 #Recharge Breathe Fire]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Fire",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the firewyrm dies, it explodes, dealing @Damage[6d6[fire]] damage to each creature in a @Template[emanation|distance:10|traits:fire,damaging-effect] (@Check[reflex|dc:28|basic] save).</p>",
+      "frequency": null,
+      "name": "Explosion",
+      "requirements": null,
+      "traits": [
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet. @Damage[4d6[fire]] damage @Check[reflex|dc:25|basic]</p>",
+      "frequency": null,
+      "name": "Intense Heat",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The firewyrm ignores the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Fire Mote",
+      "traits": [
+        "range-increment-60"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "2d8",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d8+11",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "MX2cLbODuo4gECPJ",
+  "gear": [],
+  "hp": 165,
+  "hpDetails": "explosion",
+  "id": "pathfinder-monster-core/firewyrm",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "pyric"
+  ],
+  "level": 9,
+  "name": "Firewyrm",
+  "perception": 16,
+  "publicNotes": "<p>Firewyrms live in tubes of molten lava found throughout the Plane of Fire. These strange environments often connect to volcanoes on mortal worlds, giving firewyrms access to a wide variety of prey.</p>\n<hr />\n<p>Fire elementals are destructive manifestations of the scorching Plane of Fire. Although most fire elementals revel in the chance to experience new kinds of fires away from their home plane, even the most considerate fire elemental can be a danger to humanoids and their property.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 20
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "elemental",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "water",
+      "value": 10
+    }
+  ]
+}

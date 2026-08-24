@@ -1,0 +1,226 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 1,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 29,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per day</p><hr /><p><strong>Effect</strong> The god caller reaches out to local entities for enhanced perception and perspective. The god caller gains lifesense 60 feet and all-around vision for 10 minutes. The god caller can't use this ability again until after propitiating the spirits during their next daily preparation.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Beseech the Spirits",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The god caller uses a team tactic with their eidolon, chosen from the following list, with the listed number of actions and traits.</p><ul><li><strong>Enlarge</strong> <span class=\"action-glyph\">2</span> (concentrate, manipulate) The god caller casts Enlarge on their eidolon even if the eidolon is beyond range or line of effect. The god caller doesn't need to expend a spell slot, and can choose 2nd or 4th rank.</li><li><strong>Tandem Strike</strong> <span class=\"action-glyph\">2</span> The god caller makes a Strike and their eidolon can Strike as a reaction. Both attacks count toward the god caller's multiple attack penalty, but the penalty doesn't increase until both attacks have been made.</li><li><strong>Transfer</strong> <span class=\"action-glyph\">1</span> The god caller transfers 50 HP from themself to their eidolon or vice versa. If the creature losing HP has 50 HP or fewer, this effect transfers as many HP as possible without reducing that creature below 1 HP.</li><li><strong>Transpose</strong> <span class=\"action-glyph\">1</span> (concentrate, manipulate, teleportation) The god caller and their eidolon teleport to swap places.</li></ul>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Tandem Trick",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The god caller causes their eidolon to manifest in a space adjacent to them if it's unmanifested, or to unmanifest and disappear from physical reality if it was already manifested.</p>",
+      "frequency": null,
+      "name": "Manifest Eidolon",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "manipulate",
+        "primal",
+        "teleportation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The god caller fights alongside a mystical ally called an eidolon, most likely the Beast Eidolon. The eidolon has the standard number of actions, uses its normal stat block, and counts toward the encounter's XP budget normally. The eidolon must remain within 100 feet of the god caller, or its physical form will dissolve. The god caller can make their eidolon take form or disappear with the Manifest Eidolon action.</p>",
+      "frequency": null,
+      "name": "Bonded Eidolon",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "War Flail",
+      "traits": [
+        "disarm",
+        "magical",
+        "sweep",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "ADbAoVOiHrRFYtkW",
+  "gear": [
+    "Explorer's Clothing",
+    "Wand of Environmental Endurance (Rank 2)",
+    "War Flail"
+  ],
+  "hp": 150,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/god-caller",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 10,
+  "name": "God Caller",
+  "perception": 19,
+  "publicNotes": "<p>The summoners called god callers have a magical link to eidolons, revered as gods by the people of Sarkoris. Though this NPC is based on Sarkorian god callers, they can be adapted to different types of summoners by changing out the eidolon for another creature and making thematic tweaks to skills and spells.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p><hr /><h2>God Callers and the Divine</h2><p>Some spirits called by god callers of Sarkoris are divine beings capable of granting spells. Consider granting a god caller NPC a cleric focus spell appropriate to one of the god's domains if they worship such a deity (using the same DC and spell attack as their primal spells). For instance, the Stag Mother of the Forest of Stones might grant the savor the sting domain spell from the pain domain.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 20,
+    "intimidation": 21,
+    "nature": 19,
+    "religion": 15,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Primal Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 2,
+          "rank": 4
+        },
+        {
+          "max": 2,
+          "rank": 5
+        }
+      ],
+      "spells": [
+        {
+          "name": "Howling Blizzard",
+          "rank": 5
+        },
+        {
+          "name": "Impaling Spike",
+          "rank": 5
+        },
+        {
+          "name": "Wall of Fire",
+          "rank": 4
+        },
+        {
+          "name": "Weapon Storm",
+          "rank": 4
+        },
+        {
+          "name": "Electric Arc",
+          "rank": 1
+        },
+        {
+          "name": "Gouging Claw",
+          "rank": 1
+        },
+        {
+          "name": "Guidance",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Tangle Vine",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

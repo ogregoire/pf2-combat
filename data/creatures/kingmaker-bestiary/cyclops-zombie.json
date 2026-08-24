@@ -1,0 +1,180 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": -1,
+    "int": -5,
+    "str": 7,
+    "wis": 0
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The zombie hulk makes a hunk of meat Strike and compares the attack roll result to the AC of up to two foes, each of whom must be within the Strike's reach. This attack counts as two attacks for the zombie hulk's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A zombie hulk can throw corpses at foes. While any Medium dead body will do, they sometimes throw Zombie Shamblers, who take just as much damage from being thrown as the target they hit. A thrown shambler lands Prone, but if it's not destroyed, it can rise and use other actions normally.</p>",
+      "frequency": null,
+      "name": "Corpse Throwing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A cyclops zombie is permanently Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Slow",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "8cRXmQ9vd93T0m2N",
+  "gear": [],
+  "hp": 160,
+  "hpDetails": "void healing",
+  "id": "kingmaker-bestiary/cyclops-zombie",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [],
+  "level": 7,
+  "name": "Cyclops Zombie",
+  "perception": 8,
+  "publicNotes": "<p>These towering horrors are animated from the corpses of monstrosities.</p>\n<hr />\n<p>A zombie's only desire is to consume the living. Unthinking and ever-shambling harbingers of death, zombies stop only when they're destroyed.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "critical-hits",
+        "vitality"
+      ],
+      "type": "all-damage",
+      "value": 7
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 18
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "undead",
+    "unholy",
+    "zombie"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits",
+      "value": 14
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "vitality",
+      "value": 10
+    }
+  ]
+}

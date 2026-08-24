@@ -1,0 +1,247 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 3,
+    "int": 1,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ifrit transforms into a Small or Medium fire elemental or reptile, such as a snake. This doesn't affect their statistics but could change the damage type of their Strikes.</p><hr /><p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The ifrit has a hand free</p>\n<hr />\n<p><strong>Effect</strong> The ifrit makes a melee Strike. If the Strike hits, the target is Grabbed in the ifrit's free hand.</p>",
+      "frequency": null,
+      "name": "Combat Grab",
+      "requirements": "The ifrit has a hand free",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ifrit grows flaming wings from their back. They gain a fly Speed of 35 feet for 1 minute. The flames also create an aura in a @Template[emanation|distance:5] around the ifrit.</p>\n<p>Any creature that ends its turn in the aura takes @Damage[2d6[fire]] damage with a @Check[reflex|dc:25|basic] save.</p>",
+      "frequency": null,
+      "name": "Wings of Flame",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the ifrit Grabs or Restrains a creature, that creature takes @Damage[2d6[fire]] damage, and takes 2d6 fire damage at the end of each of its turns until freed.</p>",
+      "frequency": null,
+      "name": "Burning Grasp",
+      "requirements": null,
+      "traits": [
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+11",
+          "type": "bludgeoning"
+        },
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d6+11",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Scimitar",
+      "traits": [
+        "fire",
+        "forceful",
+        "magical",
+        "reach-10",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "oKaewcA4gu3fbSVP",
+  "gear": [
+    "Breastplate",
+    "Scimitar"
+  ],
+  "hp": 175,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/ifrit",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
+  ],
+  "languages": [
+    "common",
+    "pyric"
+  ],
+  "level": 9,
+  "name": "Ifrit",
+  "perception": 17,
+  "publicNotes": "<p>The fierce and unforgiving ifrits hail from the Plane of Fire, where they build metropolises and trade centers that draw extraplanar travelers. Many ifrits are tyrannical or warmongering, and most use their might to accomplish their goals.</p>\n<hr />\n<p>Before mortal history, genies were some of the first creations of the cosmos to possess free will. Formed of elemental matter, they traversed the Universe and the six elemental planes of air, earth, fire, metal, water, and wood. The genies who remained on each elemental plane found their matter replaced with those elements. Genies of metal and wood appear in <em>Pathfinder Rage of Elements</em>.</p>\n<h2>Genie Shuyookhs</h2>\n<p>Older, wiser, and more powerful genies possess greater power and are revered with the title of shuyookh (typically adjusted to \"sheikha\" if the genie is female or \"sheikh\" for a male). Generally at least 5 levels higher than a typical example of their kind, a shuyookh gains additional spells. The basics of shuyookhs appear here in sidebars and are detailed further in <em>Rage of Elements</em>.</p>\n<p>The most wondrous of their powers is their ability to grant wishes three times per year. This is not an innate ability but a ritual practice passed down over time in an attempt to replicate the wish-granting abilities of janns.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "arcana": 14,
+    "athletics": 22,
+    "crafting": 14,
+    "deception": 19,
+    "diplomacy": 17,
+    "intimidation": 19,
+    "society": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 29,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Interplanar Teleport (to Astral Plane, Elemental Planes, or the Universe only)",
+          "rank": 7
+        },
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Ignition",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "elemental",
+    "fire",
+    "genie"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "water",
+      "value": 10
+    }
+  ]
+}

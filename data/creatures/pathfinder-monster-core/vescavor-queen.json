@@ -1,0 +1,240 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 5,
+    "dex": 5,
+    "int": 1,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The vescavor queen causes any number of vescavor swarms within 100 feet to immediately use their reaction to perform the Ravenous Bites action.</p>",
+      "frequency": null,
+      "name": "Feeding Time",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The vescavor queen pulls a creature it has Grabbed or Restrained into a space adjacent to it and makes a jaws Strike with a +2 circumstance bonus.</p>",
+      "frequency": null,
+      "name": "Opportune Snack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The vescavor queen strengthens her swarms. All vescavor swarms within @Template[emanation|distance:100]{100 feet} become Huge and Quickened for 1 minute. Vescavor swarms can only use the extra action each round for the Ravenous Bites action.</p>\n<p>Effect: Chaotic Spawning</p>",
+      "frequency": null,
+      "name": "Chaotic Spawning",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the vescavor queen's spit Strike damages a creature, it takes a –2 status penalty to all saving throws imposed by vescavor swarms for 1 minute.</p>",
+      "frequency": null,
+      "name": "Rage Pheromones",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "1d10+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8",
+          "type": "acid"
+        }
+      ],
+      "effects": [
+        "rage-pheromones"
+      ],
+      "kind": "ranged",
+      "name": "Spit",
+      "traits": [
+        "acid",
+        "magical",
+        "range-increment-30"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "2d4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "magical",
+        "reach-15",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "mOr6eIUhNuggjCKH",
+  "gear": [],
+  "hp": 150,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/vescavor-queen",
+  "immunities": [],
+  "languages": [
+    "chthonian"
+  ],
+  "level": 9,
+  "name": "Vescavor Queen",
+  "perception": 11,
+  "publicNotes": "<p>A vescavor queen is a horrifying sight. Much like their swarms, they resemble an acrid green wasp, but their abdomens are abnormally bloated and covered in acid-leaking spikes; their mouths make up the majority of their face and are filled with large, gnarled teeth, each the size of a human finger. They only possess one pair of arms, each the length of their entire body but abnormally folded and kept close, and their five pairs of wings are unnaturally stacked upon each other in a way that would make flight impossible for any natural creature. These queens ensure that the swarms never end their dreadful march towards wherever food can be found. Not only will they gradually create vescavor swarms, but they can also cause existing swarms to double in number at a moment's notice. These strengthened swarms are also blessed with increased vigor and speed. Moreover, a queen's acidic spit is laced with pheromones that drive her swarms into a rage, which she uses to direct the swarms towards priority targets.</p>\n<p>Occasionally, a powerful fiend will capture a vescavor queen and use her to create swarms in a controlled environment. However, the practice was quickly abandoned. For all the damage these swarms might cause to a fiendish master's enemies, it is rarely worth the cost of keeping the queen and her endless swarms of children fed and under control. Even keeping the queen in one location can be costly and difficult, as it is almost impossible to find a cage that a queen cannot eat her way out of, given sufficient time.</p>\n<hr />\n<p>These gluttonous green vermin travel from the Outer Rifts in an endless search for food. Along the way, these acrid wasps devour everything in sight. Not even the ground itself is spared from their appetite. While any single vescavor is no problem, they travel in swarms to overwhelm anything trying to stop them. In a truly unfortunate situation, several swarms will be gathered and led by a vescavor queen. These queens, while fearsome on their own, can drive their brood into a feeding rage unlike any other. Swarms found without a queen are directionless, destroying anything around them indiscriminately.</p>\n<p>Whenever a vescavor swarm is not eating, it gibbers mind-numbing songs from the fiends' dark world. Adapted to the shrieking jungles of their home plane, they issue a call that confuses and corrupts mortals.</p>\n<p>Philosophers who ponder the Outer Rifts often conjecture as to what kind of soul forms a vescavor. The idea of insect souls being sent to the Outer Rifts is often laughed off but never entirely dismissed. Some assume that they are demons of gluttony, plain and simple. Some of the more creative explanations of vescavor origins posit that all the bits of soul eaten up by attacking demons are what coalesce into these endless swarms. Such an explanation would account for how these endlessly feeding demons also seem to be endless in number.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 20,
+    "athletics": 18,
+    "religion": 16,
+    "stealth": 20,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 3,
+    "int": -1,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The bugbear tormentor makes a dazzling series of attacks with two weapons, using the first attack to throw their foe off-guard against a second attack at a different angle. They make one Strike with each of their two melee weapons, both against the same target. The target is automatically Off-Guard against the second attack. The bugbear tormentor applies their multiple attack penalty to these Strikes normally.</p>",
+      "frequency": null,
+      "name": "Twin Feint",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The bugbear tormentor deals 1d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Sickle",
+      "traits": [
+        "agile",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "httXfBPGseF9csXa",
+  "gear": [
+    "Chain Shirt",
+    "Dagger",
+    "Sickle"
+  ],
+  "hp": 44,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/bugbear-tormentor",
+  "immunities": [],
+  "languages": [
+    "common",
+    "goblin"
+  ],
+  "level": 3,
+  "name": "Bugbear Tormentor",
+  "perception": 8,
+  "publicNotes": "<p>The bugbear tormentor seeks to torture their prey as much through psychological intimidation as through physical harm. The longer a bugbear tormentor can keep their victim alive and terrified, the better they feel.</p>\n<hr />\n<p>These stealthy and cruel goblinoid creatures delight in spreading fear and tormenting their victims. Bugbears are the monsters lurking in the closet and hiding under the bed. Preying on remote farmsteads, bugbears reveal their presence with thumps in the night or creaks of boards to build lurking dread and arouse suspicion and fear.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 9,
+    "intimidation": 7,
+    "stealth": 8,
+    "thievery": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "bugbear",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

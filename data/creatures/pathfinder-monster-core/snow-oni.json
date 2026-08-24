@@ -1,0 +1,271 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 5,
+    "dex": 5,
+    "int": 0,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The snow oni makes two fist Strikes targeting the same creature. If they both hit, the target becomes Slowed 1 for 1 round.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Chilling Combo",
+      "requirements": null,
+      "traits": [
+        "cold"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The snow oni is targeted by a ranged Strike or spell attack roll that doesn't have the fire trait</p>\n<hr />\n<p><strong>Effect</strong> The snow oni creates a reflective blockade of ice, gaining a +4 circumstance bonus to AC against the triggering attack roll. If the attack misses, the snow oni redirects the attack to another creature within 20 feet of the snow oni. The attacker rerolls the attack roll against the new target.</p>",
+      "frequency": null,
+      "name": "Icy Deflection",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The snow oni is targeted by a ranged Strike or spell attack roll that doesn't have the fire trait"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The snow oni can take on the appearance of any Medium or Large humanoid creature. This doesn't change their Speed or their attack and damage bonuses with their Strikes but might change the damage type their Strikes deal (typically to bludgeoning).</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The snow oni calls down a bolt of icy lightning, white as fallen snow. The bolt strikes a location within 60 feet, freezing the air into a cloud of snow that fills a @Template[burst|distance:20] and lasts for 1 minute.</p>\n<p>All creatures within the snow become Concealed, and all creatures outside the snow become concealed to creatures within it. A creature that enters the snow or begins its turn there takes @Damage[15[cold]]{15 cold damage}, with a @Check[fortitude|dc:33|basic] save.</p>",
+      "frequency": null,
+      "name": "Falling Frozen Lightning",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Oni are curiously afraid of beans, especially as the seasons begin to change. If a creature Interacts to throw a handful of beans at the oni, the oni becomes Frightened 2. While frightened this way, their weakness to spirit damage is increased by 5. The oni then becomes immune to bean panic for 24 hours.</p>",
+      "frequency": null,
+      "name": "Bean Panic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Snow doesn't impair the snow oni's vision; they ignore concealment from snowfall.</p>",
+      "frequency": null,
+      "name": "Snow Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "cold"
+        },
+        {
+          "category": null,
+          "formula": "2d8+16",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "3d10+4",
+          "type": "cold"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Ice Dart",
+      "traits": [
+        "cold",
+        "magical",
+        "range-increment-60"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "2d6+16",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "CIQgNHkiUtBQR2NJ",
+  "gear": [],
+  "hp": 290,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/snow-oni",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
+  ],
+  "languages": [
+    "common"
+  ],
+  "level": 13,
+  "name": "Snow Oni",
+  "perception": 26,
+  "publicNotes": "<p>Snow oni maintain their seething temperaments even in their icy homes. The isolation of their environment gives them trappings of asceticism, and many snow oni pursue physical perfection, reveling in the process of turning their bodies into powerful fighting machines. They are just as hedonistic and brutal as any of their brethren, however, and eager to indulge in warm baths, strong drink, and humanoid flesh.</p>\n<p>Like many oni, snow oni possess a third eye in the center of their forehead. This eye gives snow oni a mystical sense that allows them to peer through even the thickest flurries of snow.</p>\n<hr />\n<p>Oni are large, brutal creatures originating in Tian Xia who resemble humanoids with brightly colored skin, tusks, and horns. Though commonly mistaken for fiends, the first oni were originally kami, tutelary nature spirits. These kami suffered a terrible trauma, losing their sacred wards to dramatic disasters or the callousness of others, and as a result transformed into the violent creatures they are today. While some believe that oni can be spiritually placated through proper ritual worship that transforms them back into kami, many of these would-be saviors fall to oni's notorious brute strength, flesh-rending teeth, and command of storms.</p>\n<p>Oni possess the ability to disguise themselves as other humanoids. They are rarely creative in their disguises, often choosing a specific appearance similar to their oni form and sticking with it. This simplicity catches many by surprise, however, as people assume oni are limited to a single alternate form, which is by no means the case.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 24,
+    "athletics": 25,
+    "deception": 27
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 23,
+      "dc": 31,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Invisibility (At Will, Self Only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "cold",
+    "giant",
+    "humanoid",
+    "oni"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "spirit",
+      "value": 15
+    }
+  ]
+}

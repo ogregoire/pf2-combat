@@ -1,0 +1,208 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 0,
+    "dex": 4,
+    "int": 2,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The master of disguise removes their disguise with a dramatic gesture. Any creatures that previously failed to see through the disguise is Off-Guard to the master of disguise until the end of the turn.</p>",
+      "frequency": null,
+      "name": "Shocking Reveal",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The master of disguise creates a disguise and Impersonates. They gain a +5 status bonus to Deception checks to [[/act impersonate]] or to tell a [[/act lie]] that helps them maintain their disguise. When a spell or magical effect tries to read their mind, detect whether they're lying, or reveal their identity, they can attempt a @Check[deception] check against the spell or effect's DC. If they succeed, the effect reveals information appropriate to their cover identity or nothing (the GM determines which).</p>",
+      "frequency": null,
+      "name": "Impeccable Disguise",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 Bonus on Perception to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>At most times, a master of disguise has infiltrated a specific organization, gaining a +2 circumstance bonus to [[/act gather-information]], [[/act impersonate]], [[/act lie]], or [[/act request]] when dealing with its members.</p>",
+      "frequency": null,
+      "name": "Deep Cover",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For social encounters involving impersonation, the master of disguise is a 10th-level challenge.</p>",
+      "frequency": null,
+      "name": "Disguise Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the master of disguise and the creature they're Impersonating are in each others' presence, the genuine creature must Lie if they're vouching for their own identity, and are treated as though they were Impersonating themself if someone Seeks in an attempt to pierce their disguise. The genuine creature can use their Deception modifier, Diplomacy modifier, or a +15 modifier, whichever is highest.</p>",
+      "frequency": null,
+      "name": "Double Take",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The master of disguise deals an additional 3d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "G2AJ9Ya7QG7ebNPO",
+  "gear": [
+    "Dagger",
+    "Disguise Kit (Elite)",
+    "Masquerade Scarf"
+  ],
+  "hp": 110,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/master-of-disguise",
+  "immunities": [],
+  "languages": [
+    "common",
+    "dwarven",
+    "elven",
+    "gnomish",
+    "halfling"
+  ],
+  "level": 7,
+  "name": "Master of Disguise",
+  "perception": 17,
+  "publicNotes": "<p>A master of disguise uses costuming, makeup, and minor illusions to deceive. Some conceal their identity for years, infiltrating organizations under deep cover.</p><hr /><p>In the underbelly of society, the lawless reign supreme.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 18,
+    "diplomacy": 16,
+    "performance": 16,
+    "society": 17,
+    "stealth": 17,
+    "thievery": 15
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

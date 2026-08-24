@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": -1,
+    "int": -2,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The earth mephit breathes rocks in a @Template[cone|distance:15] that deals @Damage[2d6[bludgeoning]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save).</p>\n<p>The earth mephit can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "earth"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (While Underground)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "x23aXeWTo026pMui",
+  "gear": [],
+  "hp": 20,
+  "hpDetails": "fast healing 2 (while underground)",
+  "id": "pathfinder-bestiary/earth-mephit",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "petran"
+  ],
+  "level": 1,
+  "name": "Earth Mephit",
+  "perception": 3,
+  "publicNotes": "<p>Earth mephits are humorless and trudge about their tasks with little enthusiasm. They are somewhat more stout than other mephits, and their dark-brown or gray bodies are always coated with layers of dirt and filth. An earth mephit can fly, just as any other mephit, but the act of flight is uncomfortable and unnerving to them-they rarely ascend higher than 5 feet off the ground if they can help it.</p>\n<hr />\n<p>Mephits-sometimes known as elemental scamps-are little bipedal critters with bat-like wings who serve stronger elementals on the Elemental Planes or neophyte spellcasters who summon them to the Material Plane. All mephits have an inkling of magical power as well as a breath weapon.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "stealth": 2
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "burrow",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 15
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Meld into Stone",
+          "rank": 3
+        },
+        {
+          "name": "Enlarge (Self Only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}

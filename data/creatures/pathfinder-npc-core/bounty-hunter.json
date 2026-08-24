@@ -1,0 +1,155 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 4,
+    "int": 0,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The bounty hunter designates a single creature they can see and hear, or one they're Tracking or Gathering Information about, as their prey. The bounty hunter gains a +2 circumstance bonus to Perception checks to Seek the prey, to Survival checks to Track the prey, and to Diplomacy checks to Gather Information about the prey. This effect lasts until they use Hunt Prey again.</p>",
+      "frequency": null,
+      "name": "Hunt Prey",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The bounty hunter Strides, Steps, or Sneaks, and then Interacts to reload.</p>",
+      "frequency": null,
+      "name": "Running Reload",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The bounty hunter and their allies gain a +1 circumstance bonus on initiative rolls if the opposing side includes their hunted prey.</p>\n<p>Effect: Posse's Edge</p>",
+      "frequency": null,
+      "name": "Posse's Edge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The first time the bounty hunter hits their hunted prey in a round, they deal an additional 1d8 precision damage.</p>",
+      "frequency": null,
+      "name": "Precision Edge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Falchion",
+      "traits": [
+        "forceful",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "dNATu2RQLFYY3hYn",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Falchion",
+    "Manacles (Simple)",
+    "Studded Leather Armor"
+  ],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/bounty-hunter",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Bounty Hunter",
+  "perception": 13,
+  "publicNotes": "<p>Bounty hunters are constantly on the move, whether within city walls or the wilderness, trailing their fugitive quarries for capture... or disposal. Often relying on stealth or deception as much as martial skill, bounty hunters employ a vast array of talents to accomplish their goals and collect the hefty payout.</p><hr /><p>Whether they're hired to wage war, protect a caravan, or infiltrate an impenetrable fortress, there's ample work for mercenaries all over Golarion.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 9,
+    "deception": 10,
+    "diplomacy": 8,
+    "intimidation": 8,
+    "stealth": 12,
+    "survival": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

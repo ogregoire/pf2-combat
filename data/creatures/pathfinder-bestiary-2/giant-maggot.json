@@ -1,0 +1,133 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 3,
+    "dex": -1,
+    "int": -5,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 13,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The giant maggot takes damage</p>\n<hr />\n<p><strong>Effect</strong> The giant maggot regurgitates its rancid, foul meal. All creatures in a @Template[emanation|distance:5] must succeed at a @Check[fortitude|dc:16] save or become Sickened 1 (or Sickened 2 on a critical failure).</p>\n<p>The giant maggot can't use Regurgitation again until it spends at least an hour feeding on a corpse.</p>",
+      "frequency": null,
+      "name": "Regurgitation",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The giant maggot takes damage"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The giant maggot has Grabbed a creature</p>\n<hr />\n<p><strong>Effect</strong> The giant maggot deals @Damage[(1d8+2)[slashing]] damage to the grabbed creature as it chews the creature's flesh (@Check[reflex|dc:19|basic] save).</p>",
+      "frequency": null,
+      "name": "Gnaw Flesh",
+      "requirements": "The giant maggot has Grabbed a creature",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Mandibles",
+      "traits": []
+    }
+  ],
+  "foundryId": "y9D2wh63pBzIyI7i",
+  "gear": [],
+  "hp": 18,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/giant-maggot",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
+  ],
+  "languages": [],
+  "level": 0,
+  "name": "Giant Maggot",
+  "perception": 3,
+  "publicNotes": "<p>Giant flies lay their eggs on the bodies of larger monsters or livestock. When they hatch, these eggs release squirming maggots the size of human children, ravenous young who voraciously consume any flesh in the immediate vicinity-typically starting with the body upon which they were born.</p>\n<hr />\n<p>Giant flies are pony-sized insects that have massive compound eyes and bodies bristling with short, stiff hairs. Their lairs are notorious for the rotting meat they stockpile to lay their eggs into. Their maggot-dens are also prime breeding grounds for virulent diseases.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
+  },
+  "senses": [
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 4
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

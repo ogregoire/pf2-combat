@@ -1,0 +1,298 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 4,
+    "int": 4,
+    "str": 7,
+    "wis": 7
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 30 feet suffers the effects from stage 2 of rupturing venom</p>\n<hr />\n<p><strong>Effect</strong> The chernobue calls out telepathically to the semi-alive toxin, causing it to burst out of the target's body and slither through the air to drain back into one of the chernobue's mouths. The poisoned creature takes @Damage[7d6[bludgeoning]] damage (@Check[fortitude|dc:32|basic] save) as the venom exits its body, but is thereafter cured of rupturing venom, and the chernobue regains an equal number of Hit Points.</p>",
+      "frequency": null,
+      "name": "Recall Venom",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within 30 feet suffers the effects from stage 2 of rupturing venom"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The chernobue's eye pulses and its lid peels back to reveal mind-bending awfulness. Creatures in a @Template[emanation|distance:30] must attempt a @Check[will|dc:32] save, after which they are temporarily immune to further Paralyzing Displays for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Slowed 1 for 1 round.</p>\n<p><strong>Failure</strong> The creature is Paralyzed for [[/gmr 1d4 #rounds]]{1d4 rounds}. It can attempt a new save to end the effect at the end of each of its turns.</p>\n<p><strong>Critical Failure</strong> As failure, but paralyzed for 1 minute.</p>",
+      "frequency": null,
+      "name": "Paralyzing Display",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "emotion",
+        "fear",
+        "incapacitation",
+        "mental",
+        "occult",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A lawful or good creature that begins its turn in this aura's emanation must attempt a @Check[will|dc:29] save or become Sickened 1 (lawful good creatures instead become Sickened 2).</p>",
+      "frequency": null,
+      "name": "Aura of Order's Ruin",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A chernobue takes @Damage[2d10[fire]] damage each time it starts its turn in an area of bright light.</p>",
+      "frequency": null,
+      "name": "Boiled by Light",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The thick, orange venom injected by a chernobue is semi-alive, and as it seethes in a creature's body, it deals poison damage in addition to bludgeoning damage as it ruptures flesh</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:32]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] damage and @Damage[2d6[bludgeoning]] damage (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d6[poison]] damage, @Damage[2d6[bludgeoning]] damage, and Enfeebled 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Rupturing Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "3d10+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "rupturing-venom"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "3d6+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tentacle Mouth",
+      "traits": [
+        "agile",
+        "chaotic",
+        "magical",
+        "reach-15",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "18NInoyRLIrWE0nt",
+  "gear": [],
+  "hp": 220,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/chernobue",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
+  ],
+  "languages": [
+    "chthonian"
+  ],
+  "level": 12,
+  "name": "Chernobue",
+  "perception": 25,
+  "publicNotes": "<p>The chernobue infects all creatures it encounters with itself, spreading pain and calamity wherever it flops and writhes. It sheds ruin and sups on anguish, but a chernobue can sometimes be persuaded to pause for a few moments of conversation if its partner in discourse can keep its attention by providing enough atrocious details. Resembling a tumor-like growth of oily blackness, this vile monstrosity has numerous muscular tentacles, a single glaring baleful eye, and a drooling, toothy maw in the middle of its body.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "cold-iron"
+      ],
+      "type": "physical",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 22,
+    "athletics": 25,
+    "intimidation": 25,
+    "occultism": 22
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 32,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Plane Shift (Self only)",
+          "rank": 7
+        },
+        {
+          "name": "Phantasmal Calamity",
+          "rank": 6
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 6
+        },
+        {
+          "name": "Subconscious Suggestion",
+          "rank": 5
+        },
+        {
+          "name": "Air Walk (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Darkness (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "qlippoth",
+    "unholy"
+  ],
+  "weaknesses": []
+}

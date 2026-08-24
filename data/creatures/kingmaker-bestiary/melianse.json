@@ -1,0 +1,257 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Effect</strong> Melianse can duplicate any 3rd-rank spell or produce any effect with a power level in line with a 3rd-rank spell, but only in response to the request or desire of a non-fey creature. The creature whose desire is granted can never again benefit from Melianse's Grant Desire ability.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Grant Desire",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Melianse can use Diplomacy to Make an Impression on aquatic or amphibious animals and make very simple Requests of them.</p>",
+      "frequency": null,
+      "name": "Wild Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+5",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "RTd4FwqGq8gBjdAO",
+  "gear": [],
+  "hp": 78,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/melianse",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "thalassic"
+  ],
+  "level": 5,
+  "name": "Melianse",
+  "perception": 11,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 11,
+    "diplomacy": 12,
+    "nature": 11,
+    "stealth": 13
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Water Breathing",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Hydraulic Push",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    },
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Primal Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Earthbind",
+          "rank": 3
+        },
+        {
+          "name": "Haste",
+          "rank": 3
+        },
+        {
+          "name": "Wall of Wind",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Glitterdust",
+          "rank": 2
+        },
+        {
+          "name": "Obscuring Mist",
+          "rank": 2
+        },
+        {
+          "name": "Web",
+          "rank": 2
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Goblin Pox",
+          "rank": 1
+        },
+        {
+          "name": "Grease",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Ray of Frost",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Spider Sting",
+          "rank": 1
+        },
+        {
+          "name": "Tanglefoot",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "aquatic",
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

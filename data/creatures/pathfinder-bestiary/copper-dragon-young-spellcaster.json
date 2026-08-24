@@ -1,0 +1,240 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 2,
+    "dex": 3,
+    "int": 2,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the copper dragon's tail uses a move action or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The dragon makes a tail Strike at the creature with a -2 penalty. If it hits, the dragon disrupts the triggering action.</p>",
+      "frequency": null,
+      "name": "Twisting Tail",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within reach of the copper dragon's tail uses a move action or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The copper dragon breathes in one of two ways.</p>\n<p>The dragon can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p><ul><li><strong>Acid</strong> (acid, arcane) The dragon breathes acid in a @Template[line|distance:60] that deals @Damage[8d6[acid]|options:area-damage] damage (@Check[reflex|dc:26|basic|traits:arcane,acid|options:area-effect] save).</li><li><strong>Slowing Gas</strong> (arcane) The dragon breathes a @Template[line|distance:60|traits:arcane,transmutation] of slowing gas. Each creature in the area must succeed at a @Check[fortitude|dc:26|traits:arcane|options:area-effect] save or be Slowed 1 for 1 round (or Slowed 2 on a critical failure).</li></ul>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The dragon's climb speed functions only when climbing stone surfaces.</p>",
+      "frequency": null,
+      "name": "Climb Stone",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:23]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "acid",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "pzG7Od1aHj0DkTzS",
+  "gear": [],
+  "hp": 150,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/copper-dragon-young-spellcaster",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "gnomish"
+  ],
+  "level": 8,
+  "name": "Copper Dragon (Young, Spellcaster)",
+  "perception": 16,
+  "publicNotes": "<p>Capricious and always eager to share a good laugh, copper dragons are among the wiliest of the metallic dragons, but this by no means interferes with their mission to spread freedom in oppressive lands. Copper dragons are hedonists who are quick to indulge in simple pleasures, but they're also sympathetic to other creatures, slow to pass judgment, and careful to always examine a situation from as many perspectives as possible. This philosophy has its drawbacks, however, as copper dragons are susceptible to negative influences and prone to forgiving the less serious evil acts performed by their chromatic cousins and other cruel creatures. Copper dragons also have a difficult time keeping their temper in check once they are roused to anger.</p>\n<p>Copper dragons tend to lair in warm or temperate hills, but due to their nature, they move their lairs every few years. They sometimes live among other people, especially any dwarves who reside nearby. Some copper dragons even worship gods typically worshipped only by humanoids. Among these dragons, worship of Cayden Cailean is most popular, as they see his love of freedom and penchant for alcohol aligning with the typical copper dragon mindset.</p>\n<p>A copper dragon's combat tactics are as unorthodox as its sense of humor, as it is more likely to use mockery and tricks than outright strength to win its battles. As a copper dragon ages, it perfects jokes capable of rendering its foes helpless with laughter.</p>\n<hr />\n<p>Paragons of virtue, nobility, and grace, metallic dragons are benevolent entities revered as mythic beings akin to gods in both their power and majesty. Few have ever seen a metallic dragon firsthand, but tales of their intervention in mortals' lives-and of their passing-always spread far and wide. Named for the way their scales resemble the shining metals humanoids use in commerce, warfare, and industry, these immense beings are diverse in their interests and abilities, and they don't seem to mind being associated with such mundane materials. After all, to compare a gold dragon to a gold coin is like comparing an ocean to a glass of water-though they may seem similar at first glance, the raw power, breadth, and grandeur of one simply overwhelms the other.</p>\n<p>In addition to metallic dragons and their chromatic counterparts, other types of dragons roam the world and the rest of the multiverse. In the legendary lands of Tian Xia on the other side of the globe are the imperial dragons, serpentine beings who protect the cosmic balance and defend their ancient homeland. Outside the Material Plane, primal dragons such as the domineering brine dragon and reclusive cloud dragon shape the nature and goings-on of the Elemental Planes. Countless other types of dragons are sure to exist, including dragons on far-flung planes of existence and, it is rumored, primeval dragons who soar between the stars.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 17,
+    "crafting": 14,
+    "deception": 15,
+    "performance": 16,
+    "society": 16,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 120
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 27,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Grease (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "earth"
+  ],
+  "weaknesses": []
+}

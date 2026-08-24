@@ -1,0 +1,259 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 3,
+    "int": 1,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The nuckelavee breathes a @Template[cone|distance:30] of foulness, dealing @Damage[8d6[void]|options:area-damage] damage to living creatures in the area with a @Check[fortitude|dc:28|basic|options:area-effect] save. A creature that fails also takes @Damage[2d6[bleed]|options:area-damage] damage.</p>\n<p>The nuckelavee can't use Blight Breath again for [[/gmr 1d4 #Recharge Blight Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Blight Breath",
+      "requirements": null,
+      "traits": [
+        "disease",
+        "poison",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:28|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet @Check[will|dc:25]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The target can't recover from the fatigued condition caused by mortasheen until the disease is cured. Mortasheen gains the virulent trait against animals and plants</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:28]</p>\n<hr />\n<p><strong>Stage 1</strong> Carrier with no ill effect (1 day);</p>\n<p><strong>Stage 2</strong> Drained 1 and Fatigued (1 day)</p>\n<p><strong>Stage 3</strong> Drained 2 and fatigued (1 day)</p>\n<p><strong>Stage 4</strong> dead</p>",
+      "frequency": null,
+      "name": "Mortasheen",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Unpolluted fresh water burns a nuckelavee like acid, dealing @Damage[1d6[acid]] damage to it and causing it to be Sickened 2.</p>\n<p>A nuckelavee can't heal from damage when it's in an area that isn't polluted (subject to GM discretion).</p>",
+      "frequency": null,
+      "name": "Purity Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "poison"
+        },
+        {
+          "category": null,
+          "formula": "2d8+12",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "mortasheen"
+      ],
+      "kind": "melee",
+      "name": "Bastard Sword",
+      "traits": [
+        "magical",
+        "reach-10",
+        "two-hand-d12"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "mortasheen"
+      ],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": []
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "poison"
+        },
+        {
+          "category": null,
+          "formula": "2d8+12",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "mortasheen"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "dY1wqHKN6PV4oJ07",
+  "gear": [
+    "Bastard Sword"
+  ],
+  "hp": 190,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/nuckelavee",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
+  ],
+  "languages": [
+    "aklo",
+    "common",
+    "fey"
+  ],
+  "level": 9,
+  "name": "Nuckelavee",
+  "perception": 16,
+  "publicNotes": "<p>When pollution despoils a natural waterway, it draws the dreaded nuckelavee to it from the First World. This spirit of wrath is a grisly sight to behold: a horselike monstrosity with the gnarled upper body of a humanoid growing directly from its back. Further enhancing its awfulness, not a patch of skin exists on the misshapen hybrid form, as though it survived its own flaying.</p>\n<p>When a nuckelavee rides forth from its domain, it wreaks a trail of destruction across the land surrounding its path. Nuckelavees are considered among the cruelest and most monstrous fey, seen by some as just desserts visited upon those who would befoul the waters of their homes. A nuckelavee, however, doesn't discriminate between those who pollute and those who merely have the misfortune to be in the wrong place at the wrong time.</p>\n<p>Despite their vile reputation among humanoids, nuckelavees are generally respectful of their fey counterparts. Once pollution has been cleansed and water fey like naiads return to a body of water, nuckelavees will peacefully withdraw.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 19,
+    "intimidation": 19,
+    "nature": 16,
+    "stealth": 18,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Control Water",
+          "rank": 5
+        },
+        {
+          "name": "Aqueous Orb",
+          "rank": 3
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 10
+    }
+  ]
+}

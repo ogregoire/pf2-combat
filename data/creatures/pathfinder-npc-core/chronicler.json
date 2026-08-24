@@ -1,0 +1,189 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 2,
+    "int": 3,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> The chronicler would gain the Dying condition</p><hr /><p><strong>Effect</strong> The chronicler instead falls Unconscious for [[/gmr 1d4 #hours]]{1d4 hours} or until they regain 1 Hit Point.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Live to Tell the Tale",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The chronicler would gain the Dying condition"
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The chronicler can activate any scroll of a 2nd-rank spell or lower, regardless of its magical tradition.</p>",
+      "frequency": null,
+      "name": "Scroll Mastery",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "qtD7Xa8Mgl0Y63os",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Dagger",
+    "Journal",
+    "Leather Armor",
+    "Maps",
+    "Scroll of Acid Grip (Rank 2)",
+    "Scroll of Heal (Rank 1)",
+    "Staff"
+  ],
+  "hp": 45,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/chronicler",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Chronicler",
+  "perception": 12,
+  "publicNotes": "<p>Exploration means very little if no account of the details exist. Members of adventuring bands cherish chroniclers who record tales of their deeds.</p>\n<hr />\n<p>The world is a wide, open place fraught with peril and adventure. Explorers use their knowledge of nature and survival skills to see every corner of the land.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "nature": 10,
+    "society": 9,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

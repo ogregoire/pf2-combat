@@ -1,0 +1,213 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 6,
+    "dex": 2,
+    "int": -2,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
+      "traits": [],
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p>\n<hr />\n<p><p>A Rend entry lists a Strike the monster has.</p>\n<p><strong>Requirements</strong> The monster hit the same enemy with two consecutive Strikes of the listed type in the same round.</p>\n<hr />\n<p><strong>Effect</strong> The monster automatically deals that Strike's damage again to the enemy.</p></p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 20 (Deactivated by Acid or Sonic)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A cavern troll can burrow through solid stone at a Speed of 10 feet. It can leave a tunnel if it desires.</p>",
+      "frequency": null,
+      "name": "Rock Tunneler",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>If exposed to direct sunlight, a cavern troll immediately becomes Slowed 1 and can't use reactions or Trample. The slowed value increases by 1 each time the cavern troll ends its turn in sunlight. If the cavern troll's actions are reduced to 0 in this way, they become Petrified until they spends at least 1 minute in darkness. Spells like Sunburst that create magical sunlight cannot petrify a cavern troll, but the troll is slowed 1 for [[/gmr 1d4 #rounds]]{1d4 rounds} after being exposed to such an effect.</p>",
+      "frequency": null,
+      "name": "Sunlight Petrification",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "8WAc7n2M4Ks00yvj",
+  "gear": [],
+  "hp": 135,
+  "hpDetails": "regeneration 20 (deactivated by acid or sonic)",
+  "id": "pathfinder-bestiary-2/cavern-troll",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    }
+  ],
+  "languages": [
+    "jotun",
+    "sakvroth"
+  ],
+  "level": 6,
+  "name": "Cavern Troll",
+  "perception": 14,
+  "publicNotes": "<p>Insatiable scavengers stalking the eternal gloom of the Darklands, cavern trolls consume all in their path-even rocks and minerals when more nourishing sustenance is scarce. These rocky goliaths can tunnel through stone with their iron-sharp claws.</p>\n<p>Cavern trolls rarely venture to the surface world, for they have a debilitating vulnerability to sunlight that petrifies them on sustained contact. Unlike common trolls, cavern trolls can regenerate wounds dealt by fire. The crystalline nature of their skin, however, permits sonic attacks to neutralize their signature regeneration.</p>\n<p>As cavern trolls age, their flinty skin becomes studded with small crystals and stones of various composition. Paragons of their kind have toothy maws replete with large, crystalline fangs. A typical cavern troll stands 14 feet in height and weighs about 2,000 pounds.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 16,
+    "intimidation": 14
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "giant",
+    "troll"
+  ],
+  "weaknesses": []
+}

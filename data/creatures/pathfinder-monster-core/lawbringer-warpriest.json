@@ -1,0 +1,153 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 3,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> One of the lawbringer's allies is reduced to 0 Hit Points</p>\n<p><strong>Requirements</strong> The lawbringer has a <em>heal</em> spell prepared</p>\n<hr />\n<p><strong>Effect</strong> Before the ally falls Unconscious or dies, the lawbringer Strides toward them and casts a 2-action Heal spell targeting the ally. The ally remains standing.</p>",
+      "frequency": null,
+      "name": "Responsive Recovery",
+      "requirements": "The lawbringer has a heal spell prepared",
+      "traits": [],
+      "trigger": "One of the lawbringer's allies is reduced to 0 Hit Points"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The lawbringer has a Heal or Harm spell prepared</p>\n<hr />\n<p><strong>Effect</strong> The lawbringer makes a melee Strike and expends a <em>harm</em> or <em>heal</em> spell. On a hit, they cast the 1-action version of the spell to damage the target. The target automatically gets a failure on its save (or a critical failure if the lawbringer's Strike was a critical hit). The spell doesn't have the manipulate trait when cast this way.</p>",
+      "frequency": null,
+      "name": "Channel Smite",
+      "requirements": "The lawbringer has a Heal or Harm spell prepared",
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greatsword",
+      "traits": [
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "xTnBWwbZKbhCfHgJ",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Greatsword",
+    "Half Plate"
+  ],
+  "hp": 64,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/lawbringer-warpriest",
+  "immunities": [],
+  "languages": [
+    "common",
+    "empyrean"
+  ],
+  "level": 5,
+  "name": "Lawbringer Warpriest",
+  "perception": 11,
+  "publicNotes": "<p>Mortals whose ancestry has been influenced by archons are called lawbringers. They may have mortal ancestors who fought alongside archons against the forces of evil and entropy, or they may have been born from a union between an archon and a mortal. Many lawbringers seek adventure to bringing order to the world.</p>\n<hr />\n<p>Many immortals dwell upon the other planes of the Great Beyond. Some are benevolent and kind, like angels. Others are cruel and destructive, like demons. And some fit roles outside of morality, like psychopomps. It's far from unheard of for mortals and immortals alike to become entangled romantically, and the children of such engagements carry a supernatural element in their bloodlines for generations to follow. After the first generation, this otherworldly influence usually lies dormant, but now and then, the influence can manifest strongly in descendants many years later. These inheritors of extraplanar legacies are known collectively as planar scions.</p>\n<h2>Nephilim</h2>\n<p>Nephilim are planar scions with a connection to the planes of the Outer Sphere. Some are obviously tied to realms such as Heaven or Hell, while others are cryptic amalgams of metaphysical traits.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 11,
+    "diplomacy": 11,
+    "medicine": 10,
+    "religion": 12,
+    "society": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Athletic Rush",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid",
+    "nephilim"
+  ],
+  "weaknesses": []
+}

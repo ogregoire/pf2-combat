@@ -1,0 +1,239 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 3,
+    "int": 1,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the dragon's tail takes an action to Strike or attempt a skill check</p>\n<hr />\n<p><strong>Effect</strong> The dragon Strikes with its tail at the triggering creature at a -2 penalty. If it hits, the creature takes a -2 circumstance penalty to the triggering roll.</p>\n<p>Effect: Tail Lash</p>",
+      "frequency": null,
+      "name": "Tail Lash",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within reach of the dragon's tail takes an action to Strike or attempt a skill check"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a spray of acid that deals @Damage[8d6[acid]|options:area-damage] damage in a @Template[line|distance:60] (@Check[reflex|dc:25|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon makes two claw Strikes and one horns Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon recharges its Breath Weapon whenever it scores a critical hit with a Strike.</p>",
+      "frequency": null,
+      "name": "Draconic Momentum",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:23]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+9",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Horns",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "2d10+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "acid",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "v0GZ6zDWhD1Y3xs9",
+  "gear": [],
+  "hp": 125,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/black-dragon-young",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "draconic"
+  ],
+  "level": 7,
+  "name": "Black Dragon (Young)",
+  "perception": 15,
+  "publicNotes": "<p>Murderous tyrants of marshes, swamps, bogs, and fens, black dragons terrorize their domains with intense fervor. Gleefully sadistic, they rule their fetid principalities from a deep cave or otherwise isolated part of the swamp with a mix of lightning-quick raids and subterfuge. Their hatred for other creatures is as acidic as their breath weapons, and they rarely tolerate even other dragons of their kind-except perhaps to mate or temporarily collaborate to take down a mutual enemy.</p>\n<p>Black dragons are amphibious-although they breathe air, their gills also allow them to breathe water. Their frills and fins make them accomplished swimmers, well suited to their wetland environments and submerged lairs. They're immune to the fetid water that comes as a result of their magical ability to corrupt water.</p>\n<p>Black dragon lairs are as foul as their souls. The floors are littered with rotting meat, and plundered treasures line the muck and slime of their dank caves amid twisted roots and creepers. Such places are often crawling with pests, snakes, and slimes. Though they claim natural caverns when they can, they make do with areas of dense, twisted vegetation within a swamp. Black dragon treasure hoards primarily consist of gems and expensive glass work, as valuables of softer substance can't survive the dragon's acidic presence.</p>\n<hr />\n<p>While there are many types of dragons, from the powerful planar dragons to the strange esoteric dragons, few dragon varieties are as well-known and as rightly feared as the chromatic dragons. Differentiated by the hue of their scales, each color of dragon unleashes its own flavor of murderous cruelty-be it by claw, tooth, or breath-and unlike most creatures, dragons only become more powerful as they age. Their lust for treasure, food, bloodshed, and control are legendary. Physically powerful with egos to match, these dragons are often morally depraved and act as criminal masterminds, vicious tyrants, or voracious raiders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 14,
+    "arcana": 12,
+    "athletics": 17,
+    "deception": 15,
+    "intimidation": 15,
+    "stealth": 16
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 100
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "acid",
+    "amphibious",
+    "dragon"
+  ],
+  "weaknesses": []
+}

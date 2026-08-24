@@ -1,0 +1,145 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 2,
+    "int": 3,
+    "str": 1,
+    "wis": 2
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The grave robber carries alchemical vials of specially prepared embalming fluid meant to hinder pursuit by anyone who interrupts their grave-robbing. A creature hit by a grave robber's embalming flask takes a –10-foot penalty to all its Speeds for 1 round. On a critical hit from an embalming flask, the target is also Clumsy 1 for 1 minute.</p>\n<p>Effect: Alchemical Embalming</p>",
+      "frequency": null,
+      "name": "Alchemical Embalming",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": "splash",
+          "formula": "1",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "acid"
+        }
+      ],
+      "effects": [
+        "alchemical-embalming"
+      ],
+      "kind": "ranged",
+      "name": "Embalming Flask",
+      "traits": [
+        "alchemical",
+        "range-increment-20",
+        "splash"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shovel",
+      "traits": []
+    }
+  ],
+  "foundryId": "sYcMzx8RcgaIxyLu",
+  "gear": [
+    "Embalming Flask",
+    "Holy Water",
+    "Shovel"
+  ],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/grave-robber",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 1,
+  "name": "Grave Robber",
+  "perception": 5,
+  "publicNotes": "<p>Many cultures have a tradition of burying their dead with a selection of the deceased's most precious possessions. Such valuables can be easy pickings for those with no respect for—or fear of—the dead.</p><hr /><p>In the underbelly of society, the lawless reign supreme.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "crafting": 6,
+    "deception": 2,
+    "intimidation": 2,
+    "society": 6,
+    "stealth": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "holy",
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

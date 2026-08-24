@@ -1,0 +1,211 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 0,
+    "dex": 2,
+    "int": 2,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> Elga fails or critically fails a saving throw against an effect with the enchantment or linguistics trait</p>\n<p><strong>Effect</strong> Elga rerolls the saving throw and takes the better result.</p>",
+      "frequency": null,
+      "name": "Moment of Solitude",
+      "requirements": null,
+      "traits": [
+        "fortune"
+      ],
+      "trigger": "Elga fails or critically fails a saving throw against an effect with the enchantment or linguistics trait"
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If another creature's reaction would disrupt Elga's spellcasting action, she attempts a @Check[flat|dc:15]. If she succeeds, her action isn't disrupted.</p>",
+      "frequency": null,
+      "name": "Steady Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "owlbear-claw"
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "magical",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "sMCEMlNngFINMX8y",
+  "gear": [
+    "Artisan's Tools",
+    "Healing Potion (Lesser)",
+    "Owlbear Claw",
+    "Staff"
+  ],
+  "hp": 90,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/elga-verniex",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Elga Verniex",
+  "perception": 13,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 12,
+    "crafting": 14,
+    "medicine": 13,
+    "nature": 12,
+    "occultism": 12,
+    "survival": 13
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 24,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Paralyze",
+          "rank": 3
+        },
+        {
+          "name": "Wanderer's Guide",
+          "rank": 3
+        },
+        {
+          "name": "Hideous Laughter",
+          "rank": 2
+        },
+        {
+          "name": "Illusory Creature",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Silence",
+          "rank": 2
+        },
+        {
+          "name": "Alarm",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Know Direction",
+          "rank": 1
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Sanctuary",
+          "rank": 1
+        },
+        {
+          "name": "Sleep",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,268 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 3,
+    "int": 2,
+    "str": 7,
+    "wis": 6
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The interlocutor stares at a creature they can see within 30 feet. The creature must immediately attempt a Will save against glimpse of stolen flesh. In addition, if the creature was already Stunned, on a failed save, it feels its internal organs twist and writhe, and is Clumsy 2 for 1 minute.</p>\n<p>After attempting this save, the creature is then temporarily immune until the start of the interlocutor's next turn.</p>",
+      "frequency": null,
+      "name": "Focus Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>This functions as the Rend ability, dealing claw damage. In addition, if the target is a living creature with organs and muscle, the interlocutor opens a precise wound. Until the creature is restored to its maximum Hit Points, thus closing the wound, Strikes against the creature deal 1d6 extra precision damage.</p>\n<p>Effect: Surgical Rend</p>",
+      "frequency": null,
+      "name": "Surgical Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. When a creature ends its turn in the aura, it sees pieces of its own body amid the interlocutor's form. The creature must succeed at a @Check[will|dc:29] save or become Stunned 1.</p>",
+      "frequency": null,
+      "name": "Glimpse of Stolen Flesh",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A velstrac automatically knows whether a creature it sees has any of the Doomed, Dying, and Wounded conditions, as well as the value of those conditions.</p>",
+      "frequency": null,
+      "name": "Painsight",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 20 (Deactivated by Holy or Silver)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "3d10+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "deadly-2d10",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "Et2784TVZOXIbtM1",
+  "gear": [],
+  "hp": 215,
+  "hpDetails": "regeneration 20 (deactivated by holy or silver)",
+  "id": "pathfinder-bestiary-2/interlocutor",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "shadowtongue"
+  ],
+  "level": 12,
+  "name": "Interlocutor",
+  "perception": 24,
+  "publicNotes": "<p>Interlocutors are the most talented surgeon-sculptors of the velstracs, carving away flesh and replacing it with new body parts of muscle, sinew, and metal. Each interlocutor structures their individual appearance carefully, but all are towering, multi-limbed amalgamations of the strongest limbs, densest bone, and sharpest metal they can find. They continually search for new material to graft to their forms, and their slain foes are rarely found intact, as little is more valuable to interlocutors than a powerful opponent's legs, eyes, or even brain. Interlocutors average 9 feet tall and weigh approximately 800 pounds.</p>\n<hr />\n<p>The search for ultimate sensation through self-mutilation is the horrifying preoccupation of the shadow-dwelling fiends known as velstracs. They transcend their stoic detachment only when inflicting pain and terror upon their victims, practicing new forms of torture, or when turning their agonizing practices back on themselves. Velstracs consider themselves enlightened beings, transcending such limitations as morality or mortal taboos, but their victims know them as emotionless tormentors who inflict sadistic suffering. These fiends claim to seek perfection in thought, form, and action, although they don't recognize any refinement that doesn't require the painful excision of the flesh or spirit.</p>\n<p>Velstracs manifest from the souls of the most extreme masochistic or sadistic mortals who are judged and sent on to the Shadow Plane. They take on forms that suit their vile predilections, ranging from the low-ranking augurs to the maestros of suffering and mutilation called eremites. The process of transformation warps the soul step by step, with other velstracs conveying their new members through untold chambers of pain among the dark reaches of the Shadow Plane.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 25,
+    "crafting": 22,
+    "intimidation": 25,
+    "medicine": 26,
+    "religion": 22,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 23,
+      "dc": 33,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [
+        {
+          "max": 1,
+          "rank": 0
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 1,
+          "rank": 5
+        },
+        {
+          "max": 1,
+          "rank": 7
+        }
+      ],
+      "spells": [
+        {
+          "name": "Plane Shift (Self only) (To the Universe or Netherworld only)",
+          "rank": 7
+        },
+        {
+          "name": "Breath of Life",
+          "rank": 5
+        },
+        {
+          "name": "Restoration",
+          "rank": 4
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Stabilize",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "unholy",
+    "velstrac"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 15
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "silver",
+      "value": 15
+    }
+  ]
+}

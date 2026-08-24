@@ -1,0 +1,221 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 5,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The xill makes two scimitar Strikes against a single target. If both hit, combine their damage for the purpose of the target's resistances and weaknesses. The xill applies its multiple attack penalty to each strike normally.</p>",
+      "frequency": null,
+      "name": "Double Slash",
+      "requirements": null,
+      "traits": [
+        "flourish"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The xill is adjacent to a Unconscious, willing, or Paralyzed creature</p>\n<hr />\n<p><strong>Effect</strong> The xill implants xill eggs in the creature's flesh.</p>",
+      "frequency": null,
+      "name": "Implant",
+      "requirements": "The xill is adjacent to a Unconscious, willing, or Paralyzed creature",
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The Sickened condition from xill eggs doesn't improve on its own until the disease is cured or runs its course. It can be cured with a 10-minute operation that requires a successful @Check[medicine|dc:26|name:Remove Xill Eggs] check and deals @Damage[4d6[slashing]] damage to the host</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:24]</p>\n<p><strong>Maximum Duration</strong> 24 hours</p>\n<p><strong>Stage 1</strong> infested with no ill effect (8 hours)</p>\n<p><strong>Stage 2</strong> Sickened 1 (8 hours)</p>\n<p><strong>Stage 3</strong> Sickened 2 (4 hours)</p>\n<p><strong>Stage 4</strong> Sickened 2 and @Damage[2d6[bleed]] as larval xills burrow out of the body and immediately fade away into the Ethereal Plane (1 hour)</p>",
+      "frequency": null,
+      "name": "Xill Eggs",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by the xill's bite Strike must attempt a @Check[fortitude|dc:24] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and is immune to xill paralysis for 1 minute.</p>\n<p><strong>Success</strong> The creature is Slowed 1 for 1 round.</p>\n<p><strong>Failure</strong> The creature is Paralyzed for 1 round.</p>\n<p><strong>Critical Failure</strong> The creature is paralyzed. It can attempt a new save at the end of each of its turns to recover, and the save DC decreases by 1 each round.</p>",
+      "frequency": null,
+      "name": "Xill Paralysis",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "xill-paralysis"
+      ],
+      "kind": "melee",
+      "name": "Bite",
+      "traits": []
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Longbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Scimitar",
+      "traits": [
+        "forceful",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "cd2IaNGpdmHHZnrN",
+  "gear": [
+    "+1 Longbow",
+    "Arrows",
+    "Breastplate",
+    "Scimitar",
+    "Steel Shield"
+  ],
+  "hp": 100,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/xill",
+  "immunities": [],
+  "languages": [
+    "aklo"
+  ],
+  "level": 6,
+  "name": "Xill",
+  "perception": 15,
+  "publicNotes": "<p>Xills visit the Material Plane, where they're often known as ethereal stalkers, primarily to maraud and to kidnap creatures back to their native Ethereal Plane. These four-armed, warmongering monsters paralyze their victims before implanting them with eggs using an ovipositor normally kept retracted behind their mandibles. Their single-minded drive to expand and conquer is so all-encompassing that while they work together dutifully and without dissent, there is little else in their lives.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 15,
+    "athletics": 14,
+    "deception": 12,
+    "intimidation": 14,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 24,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Plane Shift (To Ethereal Plane or Material Plane only) (Self only)",
+          "rank": 7
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "ethereal"
+  ],
+  "weaknesses": []
+}

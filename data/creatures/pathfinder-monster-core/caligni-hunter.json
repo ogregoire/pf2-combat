@@ -1,0 +1,201 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 5,
+    "int": -1,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each caligni skulker within @Template[emanation|distance:30]{30 feet} of the skulker can Step. Each creeper can benefit from Encircling Command only once per round.</p>",
+      "frequency": null,
+      "name": "Encircling Command",
+      "requirements": null,
+      "traits": [
+        "auditory"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The caligni hunter makes two Strikes against the same target, one with each of their shortswords. The hunter combines the damage of any attacks that hit and applies precision damage, resistances, and weaknesses only once. Both attacks count toward the hunter's multiple attack penalty, but the penalty increases only after both attacks.</p>",
+      "frequency": null,
+      "name": "Double Slice",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>The monster can cast its at-will spells any number of times without using up spell slots.</p></p>",
+      "frequency": null,
+      "name": "At-Will Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the hunter dies, their soul leaves their body in an explosion of spiritual energy. All creatures in a @Template[burst|distance:20] take @Damage[5d6[spirit]] damage (@Check[will|dc:19|basic] save).</p>\n<p>The hunter's possessions are left in a pile where they died.</p>",
+      "frequency": null,
+      "name": "Final Fate",
+      "requirements": null,
+      "traits": [
+        "occult",
+        "spirit"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
+      "frequency": null,
+      "name": "Light Blindness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The caligni hunter deals 1d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "darkening-poison"
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "AcUb8s5fiktYw8Fx",
+  "gear": [
+    "Darkening Poison",
+    "Leather Armor",
+    "Shortsword"
+  ],
+  "hp": 60,
+  "hpDetails": "final fate",
+  "id": "pathfinder-monster-core/caligni-hunter",
+  "immunities": [],
+  "languages": [
+    "caligni",
+    "sakvroth"
+  ],
+  "level": 4,
+  "name": "Caligni Hunter",
+  "perception": 10,
+  "publicNotes": "<p>Although caligni hunters are often pressed into leading their skulker kin, most hunters prefer to wander the Darklands or raid the surface free from those responsibilities. Their preferred assaults are usually done by solo caligni hunters or in small groups of two or three.</p>\n<hr />\n<p>Calignis lurk in subterranean cities, with each caligni growing into a specific role and form determined by supernatural influences in caligni society. Regardless of their size or role, all calignis are gaunt, with pale flesh and white eyes. Many relish the chance to creep above ground at night to steal resources, shadow their surface counterparts, or simply make mischief.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 8,
+    "stealth": 13,
+    "survival": 12,
+    "thievery": 11
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 11,
+      "dc": 19,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Darkness (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "See the Unseen (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "caligni",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

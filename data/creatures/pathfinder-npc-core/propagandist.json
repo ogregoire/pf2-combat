@@ -1,0 +1,270 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 2,
+    "int": 1,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The propagandist offers amnesty and other benefits to all who choose to join them. All enemies who can hear the propagandist must attempt a @Check[will|dc:19] save. If any of the propagandist's allies is currently benefiting from one of the propagandist's bard composition spells, any enemy who is aware of that takes a –2 circumstance penalty to the save.</p><hr /><p><strong>Critical Success</strong> The creature sees through the propagandist's pitch and is temporarily immune for 24 hours.</p>\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The creature's conviction stumbles. Until the end of its next turn, the creature must succeed at a @Check[flat|dc:5] to target the propagandist with a hostile action.</p>\n<p><strong>Critical Failure</strong> The creature finds the propagandist's offer too good to pass up, switching sides in the combat and instantly gaining any benefits the propagandist is currently granting their allies. At the end of each of its turns, the creature can attempt another @Check[will|dc:19] save to snap out of it and rejoin their allies.</p>",
+      "frequency": null,
+      "name": "No Hard Feelings",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The propagandist phrases everything loosely and vaguely enough that, though it's always misleading, none of it is false. The propagandist can use Diplomacy instead of Deception to Create a Diversion or [[/act feint statistic=diplomacy]], and instead of Intimidation to [[/act coerce statistic=diplomacy]]. A creature attempting to Sense Motive against the propagandist gets a result one degree of success worse than they rolled.</p>",
+      "frequency": null,
+      "name": "Nuanced Spin",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "Perception +12 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "uCZmZ9wCwvLA57cp",
+  "gear": [
+    "Dagger",
+    "Lute",
+    "Shortsword",
+    "Writing Set"
+  ],
+  "hp": 40,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/propagandist",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Propagandist",
+  "perception": 10,
+  "publicNotes": "<p>The misleadings, half-facts, and effortless spin propagandists cast over events create proof of whatever their bosses need them to prove.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 11,
+    "performance": 10,
+    "society": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 21,
+      "name": "Bard Composition Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Rallying Anthem",
+          "rank": 2
+        },
+        {
+          "name": "Courageous Anthem",
+          "rank": 1
+        },
+        {
+          "name": "Hymn of Healing",
+          "rank": 1
+        },
+        {
+          "name": "Lingering Composition",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 13,
+      "dc": 21,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 2,
+          "rank": 2
+        }
+      ],
+      "spells": [
+        {
+          "name": "Blistering Invective",
+          "rank": 2
+        },
+        {
+          "name": "Paranoia",
+          "rank": 2
+        },
+        {
+          "name": "Bullhorn",
+          "rank": 1
+        },
+        {
+          "name": "Concordant Choir",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Haunting Hymn",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Sanctuary",
+          "rank": 1
+        },
+        {
+          "name": "Summon Instrument",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

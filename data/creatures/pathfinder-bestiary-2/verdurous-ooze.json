@@ -1,0 +1,220 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 5,
+    "dex": -4,
+    "int": -5,
+    "str": 5,
+    "wis": 0
+  },
+  "ac": 12,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[2d6[bludgeoning],1d6[acid]]{2d6 bludgeoning plus 1d6 acid}, @Check[fortitude|dc:24|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The verdurous ooze adjusts its aura of supernatural vapors to affect living creatures within a @Template[emanation|distance:20], forcing them to attempt a @Check[will|dc:24] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and becomes temporarily immune to Sleep Gas for 24 hours.</p>\n<p><strong>Success</strong> The creature is Stupefied 1 for 1 round.</p>\n<p><strong>Failure</strong> The creature falls Unconscious. If it's still unconscious after 1 minute, it wakes up automatically.</p>\n<p><strong>Critical Failure</strong> The creature falls Unconscious. If it's still unconscious after 1 hour, it wakes up automatically.</p>",
+      "frequency": null,
+      "name": "Sleep Gas",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "mental",
+        "poison",
+        "sleep"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A creature that hits a verdurous ooze with a metal weapon or unarmed attack must attempt a @Check[reflex|dc:21|traits:damaging-effect] save. On a failure, the weapon or creature takes @Damage[2d4[acid]] damage (after dealing damage to the ooze as normal). Thrown weapons take this damage automatically with no save.</p>",
+      "frequency": null,
+      "name": "Corrosive Surface",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet. The verdurous ooze constantly emits supernatural vapors that cause nearby plants to grow rapidly and writhe and grasp at anything and everything within the emanation. This area becomes difficult terrain for non-verdurous ooze creatures. When a creature starts its turn in this aura, it must succeed at a @Check[reflex|dc:21] save or take a -10-foot circumstance penalty to its Speeds until it leaves the emanation.</p>",
+      "frequency": null,
+      "name": "Enliven Foliage",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A verdurous ooze can sense nearby creatures through vibration and air or water movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a verdurous ooze that has 10 or more HP is hit by an attack that would deal piercing or slashing damage, it splits into two identical oozes, each with half the original's HP. One ooze is in the same space as the original, and the other is in an adjacent, unoccupied space. If no adjacent space is unoccupied, it automatically pushes creatures and objects out of the way to fill a space (the GM decides if an object or creature is too big or heavy to push).</p>",
+      "frequency": null,
+      "name": "Split",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A verdurous ooze's acid damages only metal and flesh-not bone, stone, or other materials.</p>",
+      "frequency": null,
+      "name": "Verdurous Ooze Acid",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "2d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Pseudopod",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "zXZrUTQSI0WxAsF5",
+  "gear": [],
+  "hp": 157,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/verdurous-ooze",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
+  ],
+  "languages": [],
+  "level": 6,
+  "name": "Verdurous Ooze",
+  "perception": 8,
+  "publicNotes": "<p>Verdurous oozes are found in temperate forests, warm jungles, or other places where plant life grows in abundance. Unlike many types of oozes, verdurous oozes are not particularly good climbers and have been known to get trapped in natural or artificial chasms. Warlords and wizards sometimes make use of that fact and keep verdurous oozes as guardians in pits around the walls of their fortresses or towers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 15,
+    "stealth": 4
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "ooze"
+  ],
+  "weaknesses": []
+}

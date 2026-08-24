@@ -1,0 +1,228 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 5,
+    "int": 2,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The lurker in light uses a move action</p>\n<p><strong>Requirements</strong> The lurker in light is in an area of bright light</p>\n<hr />\n<p><strong>Effect</strong> The lurker in light becomes Invisible until it enters an area of dim light or darkness, or until it uses a hostile action.</p>",
+      "frequency": null,
+      "name": "Blend with Light",
+      "requirements": "The lurker in light is in an area of bright light",
+      "traits": [
+        "move"
+      ],
+      "trigger": "The lurker in light uses a move action"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The lurker in light has reduced a living creature to 0 Hit Points on this turn or its previous turn and has a Summon Fey innate spell available</p>\n<hr />\n<p><strong>Effect</strong> The lurker in light casts <em>summon fey</em> with only a verbal component, using the act of slaughter to replace the normal material and somatic components for the spell. If the fey creature summoned has the same alignment as the lurker in light, the lurker in light can sustain the <em>summon fey</em> spell for up to 1 hour instead of 1 minute.</p>",
+      "frequency": null,
+      "name": "Ritual Gate",
+      "requirements": "The lurker in light has reduced a living creature to 0 Hit Points on this turn or its previous turn and has a Summon Fey innate spell available",
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature that takes damage from a lurker in light's mote of light must attempt a @Check[will|dc:22] save.</p>\n<hr />\n<p><strong>Success</strong> The creature is unaffected and is temporarily immune to lurker's glow for 24 hours.</p>\n<p><strong>Failure</strong> The creature is lined in golden light for 1 minute and can't be Concealed during this time. If the creature becomes Invisible, it is concealed rather than being Undetected.</p>\n<p><strong>Critical Failure</strong> As failure, but the creature sheds bright light in a 20-foot emanation for the duration of the effect. In addition, the creature is Dazzled on its first turn after failing this save.</p>\n<p>Effect: Lurker's Glow (Critical Failure)</p>",
+      "frequency": null,
+      "name": "Lurker's Glow",
+      "requirements": null,
+      "traits": [
+        "light",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A lurker in light's Strikes deal an additional 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+2",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+2",
+          "type": "force"
+        }
+      ],
+      "effects": [
+        "lurkers-glow"
+      ],
+      "kind": "ranged",
+      "name": "Mote of Light",
+      "traits": [
+        "agile",
+        "magical",
+        "range-increment-10"
+      ]
+    }
+  ],
+  "foundryId": "73qJxJK8ES4Tbp2k",
+  "gear": [],
+  "hp": 72,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/lurker-in-light",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "blinded"
+    }
+  ],
+  "languages": [
+    "aklo",
+    "common",
+    "fey"
+  ],
+  "level": 5,
+  "name": "Lurker In Light",
+  "perception": 13,
+  "publicNotes": "<p>These malicious and strange fey appear as fairies about 2 feet tall, with insectile wings, large eyes, and bulbous heads. They slaughter and cause mischief in a pattern only their alien intellect understands, but they've been seen to take particular umbrage against dwarves, gnomes, and creatures who live in darkness. With their grudges and pursuit of their own wicked and sadistic whims, lurkers in light deftly overturn the conventional wisdom that creatures associated with light are benign and friendly.</p>\n<p>While lurkers in light are fey and have ties to the First World, these creatures are often found elsewhere in the Great Beyond. They are particularly fond of invading the Shadow Plane to bring light to those who dwell there-not to help, but to spread misery and pain among those to whom light is agonizing.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 14,
+    "nature": 11,
+    "occultism": 11,
+    "stealth": 14,
+    "survival": 13
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dimension Door (Only when in bright light, and only to an area in bright light)",
+          "rank": 4
+        },
+        {
+          "name": "Blindness",
+          "rank": 3
+        },
+        {
+          "name": "Searing Light",
+          "rank": 3
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Summon Fey",
+          "rank": 1
+        },
+        {
+          "name": "Summon Fey",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

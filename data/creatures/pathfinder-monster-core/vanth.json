@@ -1,0 +1,271 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": 2,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> three times per day</p>\n<hr />\n<p><strong>Effect</strong> The vanth bestows a curse on a creature by touching it with its scythe. The creature must attempt a @Check[will|dc:25] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected and is temporarily immune to Vanth's Curse for 24 hours.</p>\n<p><strong>Success</strong> The target feels a momentary shudder of doom and is Stupefied 1 for 1 minute by the distracting sensation.</p>\n<p><strong>Failure</strong> The target becomes morose and glum as it accepts its own inevitable fate. For 1 hour, the target is Stupefied 2. Each time the target gains the dying condition, the stupefied condition value increases by 1, to a maximum value of Stupefied 4.</p>\n<p><strong>Critical Failure</strong> As failure, but the effect is permanent.</p>",
+      "frequency": {
+        "max": 3,
+        "per": "day"
+      },
+      "name": "Vanth's Curse",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine",
+        "misfortune"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet @Check[will|dc:22]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A vanth's scythe is its symbol of office and gains a measure of its personal power. This scythe becomes a <em>+1 scythe</em> and is treated as if it were adamantine while the vanth wields it. A vanth whose scythe is taken or destroyed can infuse a new one with an hour of work.</p>",
+      "frequency": null,
+      "name": "Infuse Weapon",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
+      "frequency": null,
+      "name": "Lifesense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A vanth's Strikes affect incorporeal creatures with the effects of a <em>Ghost Touch</em> property rune and deal @Damage[2d6[void]] damage to living creatures and @Damage[2d6[vitality]] damage to undead.</p>",
+      "frequency": null,
+      "name": "Shepherd's Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "spirit-touch"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "spirit-touch"
+      ],
+      "kind": "melee",
+      "name": "Scythe",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "74TxKGaW7RPzTdbm",
+  "gear": [
+    "Scythe"
+  ],
+  "hp": 105,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/vanth",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    }
+  ],
+  "languages": [
+    "chthonian",
+    "diabolic",
+    "empyrean",
+    "requian"
+  ],
+  "level": 7,
+  "name": "Vanth",
+  "perception": 15,
+  "publicNotes": "<p>Protectors of the Boneyard, the stern and resolute guardians of the dead, vanths are psychopomps who resemble skeletons with raven-like wings and a mask resembling a vulture's skull. Vanths carry black scythes to fight against those who would disturb the natural progression of souls, and they consider any visitor to the Boneyard a potential troublemaker. They rarely speak and even more rarely show any emotion other than a grim adherence to duty.</p>\n<p>When the psychopomp armies go to war, vanths serve as front-line soldiers. In particular, daemons continually stage raids on the River of Souls, requiring constant patrol. Implacable warriors, vanths fly in perfect formation. This can backfire, as they often suppress any adaptability they possess as they wage war.</p>\n<hr />\n<p>Psychopomps are guardians and shepherds of the dead in the Boneyard, the vast plane of graves where mortal souls are judged and sent on to their eternal rewards or damnations. Psychopomps ensure that the dead come to terms with their transition from mortality and are properly sorted into the appropriate afterlife. They also protect souls from being preyed upon by supernatural predators. Nearly all psychopomps wear masks, especially when they're likely to be interacting with mortals, although the types of masks they wear are as varied as the psychopomps themselves. The courts of the Boneyard preside in Requian, a somber yet melodic language spoken slowly with various tonal shifts.</p>\n<p>Many psychopomps are intimately involved with the Boneyard's massive bureaucracy. Few pursue mercy, justice, or personal gain; their duties to Pharasma and her Boneyard are supreme. Nevertheless, individual psychopomps interpret their duties in different ways, which might put them in conflict with mortals or even with each other.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "lifesense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 17,
+    "intimidation": 15,
+    "occultism": 13,
+    "religion": 13,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Holy Light",
+          "rank": 3
+        },
+        {
+          "name": "Locate",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility (At Will, Self Only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "monitor",
+    "psychopomp"
+  ],
+  "weaknesses": []
+}

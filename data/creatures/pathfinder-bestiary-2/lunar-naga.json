@@ -1,0 +1,130 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 4,
+    "int": 1,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The lunar naga twists the coils of their serpentine body, causing the starlike motes on their scales to shift and move as they glow brighter, creating a mesmerizing swirl of light and darkness. All creatures within a 30.foot emanation must succeed at a @Check[will|dc:21] save or become Fascinated until the end of the naga's next turn (on a critical failure, fascinated creatures drop whatever items they are carrying as well). The lunar naga can Sustain a Spell on Hypnosis. If the naga moves, affected creatures are compelled to remain within 30 feet of the naga and must spend each of its actions moving closer to the naga as expediently as possible on its next turn. If a creature is unable to end its turn within 30 feet of the naga, the effect ends for that creature.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Hypnosis",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "incapacitation",
+        "mental",
+        "primal",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong>@Check[fortitude|dc:24]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> Stupefied 1 (1 round)</p>\n<p><strong>Stage 2</strong> as stage 1 (1 round)</p>\n<p><strong>Stage 3</strong> Stupefied 2 (1 round)</p>\n<p><strong>Stage 4</strong> Unconscious (1 round). Once a creature falls unconscious from lunar naga venom, they remain asleep for [[/r 1d8 #hours]]{1d8 hours} unless woken.</p>",
+      "frequency": null,
+      "name": "Lunar Naga Venom",
+      "requirements": null,
+      "traits": [
+        "poison",
+        "sleep"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "lunar-naga-venom"
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "DEo5AEY1i9s0kWYZ",
+  "gear": [],
+  "hp": 100,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/lunar-naga",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "empyrean"
+  ],
+  "level": 6,
+  "name": "Lunar Naga",
+  "perception": 16,
+  "publicNotes": "<p>Lunar nagas are skilled diviners and astrologers whose dark scales and white hair sparkle with motes of light that mimic the night skies to which they are forever drawn. While they are less physically imposing than other nagas, they possess a graceful beauty that many find entrancing, even without the help of the naga's inherent magical abilities. Earning a lunar naga's trust is difficult, but not impossible, especially for someone who shares the creature's interest in the celestial sphere.</p>\n<p>As they have no hands, lunar nagas use mage hand to manipulate delicate instruments and fine telescopes to observe the night sky. They track the positions of celestial bodies, recording their discoveries in esoteric journals. At their best, lunar nagas are wise and mysterious beings who seek to expand their knowledge of the cosmos. At their worst, after too much exposure to the unfathomable entities that dwell in the darkness between the stars, they become dark prophets who drive others to commit terrible deeds in the name of abominable masters.</p>\n<p>On Golarion, the lunar nagas of the nation of Nagajor use their abilities to serve many communities as soothsayers. A few have founded observatories in which they and their followers explore the night sky. Some nagas even use their knowledge of the stars as navigators on ships or overland caravans. In the broader world, where people do not give nagas deference as nearly divine rulers, lunar nagas try to avoid contact with outsiders or use their magical powers of disguise to hide their true forms from all but their most worthy allies.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 14,
+    "deception": 15,
+    "diplomacy": 15,
+    "nature": 13,
+    "survival": 14
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

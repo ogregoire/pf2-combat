@@ -1,0 +1,343 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 6,
+    "dex": 5,
+    "int": 5,
+    "str": 9,
+    "wis": 5
+  },
+  "ac": 42,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The crystal dragon damages a creature made of flesh with a jaws Strike</p>\n<p><strong>Frequency</strong> three times per day</p>\n<hr />\n<p><strong>Effect</strong> The dragon embeds transformative crystals in the creature's flesh. The creature must attempt a @Check[fortitude|dc:37] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> The target is Slowed 1 for 1 round as portions of its flesh turn crystalline.</p>\n<p><strong>Failure</strong> The target is Slowed 1 and must attempt a Fortitude save at the end of each of its turns; this ongoing save has the incapacitation trait. On a failed save, the slowed condition value increases by 1 (or by 2 on a critical failure). A successful save reduces the slowed condition value by 1. A creature unable to act due to the slowed condition from Crystallize Flesh is Petrified permanently, transforming into a crystalline statue. The effect ends if the creature is petrified or the slowed condition is removed.</p>\n<p><strong>Critical Failure</strong> As failure, but the target is initially Slowed 2.</p>",
+      "frequency": {
+        "max": 3,
+        "per": "day"
+      },
+      "name": "Crystallize Flesh",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "primal"
+      ],
+      "trigger": "The crystal dragon damages a creature made of flesh with a jaws Strike"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The crystal dragon is targeted by a ranged spell attack roll</p>\n<hr />\n<p><strong>Effect</strong> The crystal dragon adjusts a wing to try to reflect the spell and gains a +4 circumstance bonus to AC against the triggering attack. If the attack misses, the spell is reflected back at the caster, who must roll a second ranged spell attack roll against their own AC to determine if the spell hits them instead.</p>",
+      "frequency": null,
+      "name": "Reflect Spell",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The crystal dragon is targeted by a ranged spell attack roll"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the dragon's tail uses a move action or leaves a square during a move action it's using</p>\n<hr />\n<p><strong>Effect</strong> The dragon makes a tail Strike at the creature with a -2 penalty. If it hits, the dragon disrupts the creature's action.</p>",
+      "frequency": null,
+      "name": "Twisting Tail",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": "A creature within reach of the dragon's tail uses a move action or leaves a square during a move action it's using"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a flurry of piercing crystals that deals @Damage[17d6[piercing]|options:area-damage] damage in a @Template[cone|distance:50] (@Check[reflex|dc:38|basic|options:area-effect] save).</p>\n<p>They can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "primal",
+        "sonic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon makes two claw Strikes and one tail Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon recharges their Breath Weapon whenever they critically hit with a Strike.</p>",
+      "frequency": null,
+      "name": "Draconic Momentum",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The dragon gains 2 reactions at the start of each of their turns.</p>",
+      "frequency": null,
+      "name": "Extra Reaction",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:37]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A swirling vortex of reflected color and light shimmers around the crystal dragon. Creatures in this aura's emanation are Dazzled. Each creature that ends its turn in the emanation must succeed at a @Check[will|dc:34] saving throw or be Stunned 1 (or Stunned 3 on a critical failure). Once a creature succeeds at this save, it is temporarily immune to the stunning effect for 1 minute. The crystal dragon can turn this aura on or off using a single action, which has the concentrate trait, and it can choose not to affect allies.</p>",
+      "frequency": null,
+      "name": "Scintillating Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "concentrate",
+        "incapacitation",
+        "primal",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+17",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+17",
+          "type": "slashing"
+        },
+        {
+          "category": null,
+          "formula": "4d6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+17",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    }
+  ],
+  "foundryId": "wtxNIFVSpVFuYfmI",
+  "gear": [],
+  "hp": 275,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/crystal-dragon-ancient",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "empyrean",
+    "petran",
+    "sakvroth"
+  ],
+  "level": 16,
+  "name": "Crystal Dragon (Ancient)",
+  "perception": 28,
+  "publicNotes": "<p>Good-natured but vain, crystal dragons are beautiful creatures with brilliant hides made of multicolored crystal and gemstone. Their beauty is a source of great pride but is also something of a weakness, as crystal dragons are easily angered by insults about their appearance. Despite their relatively benign natures when compared to other true dragons, crystal dragons can be short tempered and prone to finding insults where none were intended. Although their opinions are changeable, crystal dragons prefer orderly environments and are not fond of sudden interruptions or distractions.</p>\n<p>Crystal dragons build their lairs in underground grottoes, where they cultivate environments of great beauty. Their exacting standards and vivid imaginations mean that they are always working to improve the appearance or layout of some part of their lair. These lairs are unique to each individual crystal dragon, but there are always plenty of reflective surfaces that allow the dragon to observe their own appearance. These range from crystals to reflecting pools to finely crafted mirrors, which are arranged throughout the lair in a pleasing array. Gifts of well-crafted or magical mirrors are an excellent way to curry favor with a crystal dragon.</p>\n<p>Although crystal dragons are easily distracted by their sparkling collections or their vanity, they remain good-hearted creatures at the core and make friends quickly. While a crystal dragon tends to find evil creatures uncouth and unpleasant, any other nearby denizen or inhabitant of their home could become fast friends or beloved pets, depending upon the creature's capacity for conversation (and for providing the frequent praise and compliments that crystal dragons hunger for).</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 30
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 29
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 22,
+    "athletics": 33,
+    "deception": 29,
+    "intimidation": 29,
+    "nature": 27,
+    "stealth": 28,
+    "survival": 26
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 60
+    },
+    {
+      "type": "burrow",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 140
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 29,
+      "dc": 37,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Prismatic Spray",
+          "rank": 7
+        },
+        {
+          "name": "Hypnotic Pattern (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Glitterdust (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Color Spray (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sonic",
+      "value": 15
+    }
+  ]
+}

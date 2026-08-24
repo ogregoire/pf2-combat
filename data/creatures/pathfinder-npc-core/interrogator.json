@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A creature is Grabbed or Restrained by the interrogator</p><hr /><p><strong>Effect</strong> One creature grabbed or restrained by the interrogator takes @Damage[2d6[bludgeoning]] damage with a @Check[fortitude|dc:23|basic] save. If the creature fails its save, it also gains a condition of the interrogator's choice: Clumsy 2 for 1 minute, Enfeebled 2 for 1 minute, or Drained 1.</p>",
+      "frequency": null,
+      "name": "Hobble",
+      "requirements": "A creature is Grabbed or Restrained by the interrogator",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The interrogator Strikes with a slashing melee weapon. If they hit and deal damage, the target takes an additional 1d4 persistent bleed damage and is Frightened 1 (or 2d4 persistent bleed damage and Frightened 2 on a critical hit).</p>\n<p>Each of the interrogator's other enemies in a @Template[type:emanation|distance:30] around the target that witnesses the bloodshed must succeed at a @Check[will|dc:19|traits:emotion,fear,mental,visual] save or be frightened 1. The frightened part of this ability is an emotion, fear, mental, and visual effect.</p>",
+      "frequency": null,
+      "name": "Blood and Fear",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The interrogator's Strikes deal an additional 1d8 mental damage to Frightened creatures.</p>",
+      "frequency": null,
+      "name": "Torment",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dart",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "War Razor",
+      "traits": [
+        "agile",
+        "backstabber",
+        "deadly-d8",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "1V3cvVmMte15i5sJ",
+  "gear": [
+    "Dart",
+    "Healer's Toolkit",
+    "Leather Apron",
+    "War Razor"
+  ],
+  "hp": 90,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/interrogator",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Interrogator",
+  "perception": 13,
+  "publicNotes": "<p>Interrogators use pain and intimidation against prisoners and other helpless victims to force \"confessions.\"</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 15,
+    "intimidation": 13,
+    "medicine": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

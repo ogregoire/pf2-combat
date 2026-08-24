@@ -1,0 +1,238 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 4,
+    "int": 0,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The zebub records everything they see, and though they don't remember all observations, they can pass them along to another creature.</p>\n<p>The zebub replays 10 minutes of witnessed events to a touched willing creature, which receives the memories in a flash of information. By remaining in contact, the zebub can spend additional 3-action activities to replay more information.</p>\n<p>After relaying their visions to another, the zebub can't ever recall those events again.</p>",
+      "frequency": null,
+      "name": "Infernal Eye",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:18]</p>\n<p><strong>Onset</strong> [[/gmr 1d4 #days]]{1d4 days}</p>\n<hr />\n<p><strong>Stage 1</strong> Enfeebled 1 (1 day)</p>\n<p><strong>Stage 2</strong> Enfeebled 2 (1 day)</p>\n<p><strong>Stage 3</strong> Enfeebled 3 (1 day)</p>",
+      "frequency": null,
+      "name": "Cocytan Filth",
+      "requirements": null,
+      "traits": [
+        "disease",
+        "virulent"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The zebub's Strikes deal an additional 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+3",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        }
+      ],
+      "effects": [
+        "cocytan-filth"
+      ],
+      "kind": "melee",
+      "name": "Mandibles",
+      "traits": [
+        "evil",
+        "finesse",
+        "magical",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "wCsfRovcZMZxSdGm",
+  "gear": [],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/zebub",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
+  ],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 3,
+  "name": "Zebub",
+  "perception": 12,
+  "publicNotes": "<p>Zebubs serve as Hell's messengers and spies. Their ability to share what they've seen with other creatures makes them especially useful-not only to other devils, but also to mortal conjurers. Some infernal lords unleash them in enormous, horrid swarms upon unsuspecting lands to debase flesh and land alike while collecting secrets the infernal host might later put to use. Zebubs use any opportunity to manipulate weak-willed or easily tempted mortals into serving the zebubs' whims. While arrogant and deceitful, zebubs lack the cunning and confidence of most devils, and thus their schemes often focus on satisfying self-serving or self-destructive ambitions. Zebubs form from the souls of childish and craven mortals, reshaped by the archdevil Baalzebul in the frozen, filthy wastes of Hell's seventh layer, Cocytus.</p>\n<hr />\n<p>Each type of devil plays a particular role in Hell's bureaucracies and hierarchies, though some have far more specialized functions than others.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "silver"
+      ],
+      "type": "physical",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 10,
+    "arcana": 7,
+    "deception": 8,
+    "religion": 9,
+    "stealth": 10
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 17,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Dimension Door (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Invisibility (At Will) (Self Only)",
+          "rank": 2
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Summon Animal (Swarm creatures only)",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "devil",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 5
+    }
+  ]
+}

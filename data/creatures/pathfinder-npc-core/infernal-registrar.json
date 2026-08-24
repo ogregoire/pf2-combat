@@ -1,0 +1,267 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 2,
+    "int": 5,
+    "str": 2,
+    "wis": 3
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The infernal registrar has the authority to make limited infernal contracts with other mortals. They summon a contract with the legal language they desire. Detecting Hidden clauses in the contract requires a successful @Check[society|dc:43] or a @Check[Legal Lore|dc:38] check. Once signed, the contract vanishes into the infernal filing system in Hell. The infernal registrar cannot grant any boons beyond their own personal power (usually limited to information, advice, or access to elements of the infernal bureaucracy).</p>",
+      "frequency": null,
+      "name": "A Favor for a Favor",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The infernal registrar makes a request to summon a copy of any infernal contract a specific creature has signed. They must know enough information to specifically identify the individual who signed. The infernal registrar attempts a Legal Lore check with a DC equal to a hard DC of the level of the creature in question. The infernal registrar will never promise a successful use of this ability in the agreements they make. Each agreement is typically for one attempt. Any copy summoned is simply a copy, has no impact on the original contract if destroyed or altered, and will vanish if taken more than 20 feet from the infernal registrar.</p><hr /><p><strong>Critical Success</strong> A copy of the contract appears before the infernal registrar after 10 minutes.</p>\n<p><strong>Success</strong> A copy of the contract appears before the infernal registrar after 1 hour.</p>\n<p><strong>Failure</strong> The attempt fails, but the infernal registrar can try again after 24 hours.</p>\n<p><strong>Critical Failure</strong> The attempt fails, and the infernal registrar can't try again for the named creature for 1 year.</p>",
+      "frequency": null,
+      "name": "Request Document",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+14 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 circumstance to all saves vs fear",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving matters of contracts and dealings with Hell, the infernal registrar is an 18th-level challenge.</p>",
+      "frequency": null,
+      "name": "Contract Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The infernal registrar does not fear death, as they have a signed infernal contract for immediate promotion to a mid-ranked devil upon their soul's arrival in Hell. They're immune to all Intimidation checks to Coerce involving threats of death.</p>",
+      "frequency": null,
+      "name": "Death is a Promotion",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Though devils do not respect most mortals, they respect the office of infernal registrar. No creature with the devil trait of 18th level or lower will knowingly and willingly attack an infernal registrar.</p>",
+      "frequency": null,
+      "name": "Friends in Low Places",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The infernal registrar uses their Legal Lore modifier on all Deception checks to Lie.</p>",
+      "frequency": null,
+      "name": "Technically Correct",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "magical",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "4iIpjKl1KThYRTgK",
+  "gear": [
+    "Staff"
+  ],
+  "hp": 180,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/infernal-registrar",
+  "immunities": [],
+  "languages": [
+    "common",
+    "diabolic"
+  ],
+  "level": 10,
+  "name": "Infernal Registrar",
+  "perception": 19,
+  "publicNotes": "<p>The infernal registrar is a mortal representative of Hell's bureaucracy. They can access copies of all infernal contracts signed by a denizen of their world and can navigate the machinations of Hell's many devils. They can grant special access—for a price.</p><hr /><p>Larger societies rely on those with the authority and the ability to interpret and enforce laws. Some carry out these duties fairly, but others are harsh and cruel, imposing severe punishments on anyone unable to pay for clemency.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 22,
+    "diplomacy": 33,
+    "religion": 30,
+    "society": 33
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Banishment",
+          "rank": 5
+        },
+        {
+          "name": "Divine Immolation",
+          "rank": 5
+        },
+        {
+          "name": "Detect Scrying",
+          "rank": 4
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Chilling Darkness",
+          "rank": 3
+        },
+        {
+          "name": "Locate",
+          "rank": 3
+        },
+        {
+          "name": "Ring of Truth",
+          "rank": 3
+        },
+        {
+          "name": "Translate (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Ignition",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid",
+    "unholy"
+  ],
+  "weaknesses": []
+}

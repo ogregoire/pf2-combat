@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 1,
+    "dex": 4,
+    "int": 2,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 29,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The jester blows chalk or face powder in an adjacent enemy's face. The target must make a @Check[fortitude|dc:29] saving throw.</p><hr /><p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> The target is Dazzled for 1 round.</p>\n<p><strong>Failure</strong> target is dazzled and Off-Guard for 1 round.</p>\n<p><strong>Critical Failure</strong> The target is Blinded for 1 round.</p>",
+      "frequency": null,
+      "name": "No Peeking!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The court jester can use Performance instead of Intimidation to [[/act demoralize statistic=performance]].</p>",
+      "frequency": null,
+      "name": "Pointed Joke",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The jester coats their dagger in poison. These daggers inflict an additional @Damage[4d4[persistent,poison]] damage. The poison expires 1 hour after leaving the jester's possession.</p>",
+      "frequency": null,
+      "name": "Poisoned Blade",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+8",
+          "type": "piercing"
+        },
+        {
+          "category": "persistent",
+          "formula": "4d4",
+          "type": "poison"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+8",
+          "type": "piercing"
+        },
+        {
+          "category": "persistent",
+          "formula": "4d4",
+          "type": "poison"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "magical",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "xvZvI0oFFOTaBO6L",
+  "gear": [
+    "Dagger",
+    "Face Paints"
+  ],
+  "hp": 170,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/court-jester",
+  "immunities": [],
+  "languages": [],
+  "level": 10,
+  "name": "Court Jester",
+  "perception": 21,
+  "publicNotes": "<p>Though court jesters are often put-upon as the targets of easy mockery and idle amusements, do not mistake their self-deprecation for weakness. Beneath, the jester hides malice, a sharp tongue, and even sharper knives. They can often be found entertaining the nobles of court or preparing their next japes. During the indiscreet hours of the night, they may be found in the company of servants and spymasters.</p><hr /><p>Performances come in a wide variety of forms, from musical methods like singing and instruments to physical dancing and juggling to simple orating and conversing.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 22,
+    "deception": 19,
+    "diplomacy": 19,
+    "performance": 22,
+    "society": 19,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

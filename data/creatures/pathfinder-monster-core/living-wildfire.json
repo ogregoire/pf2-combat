@@ -1,0 +1,187 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": -2,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The living wildfire's last action was a Strike that dealt fire damage</p>\n<hr />\n<p><strong>Effect</strong> The fire flares, dealing @Damage[3d6[fire]] damage to each creature adjacent to that target with a @Check[reflex|dc:19|basic] save.</p>",
+      "frequency": null,
+      "name": "Spreading Flames",
+      "requirements": "The living wildfire's last action was a Strike that dealt fire damage",
+      "traits": [
+        "fire",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the living wildfire dies, it explodes, dealing @Damage[3d6[fire]] damage to each creature in a @Template[emanation|distance:10|traits:fire,damaging-effect] (@Check[reflex|dc:19|basic] save).</p>",
+      "frequency": null,
+      "name": "Explosion",
+      "requirements": null,
+      "traits": [
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The living wildfire ignores the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+3",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Fire Mote",
+      "traits": [
+        "range-increment-60"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "2d4",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d6+6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tendril",
+      "traits": [
+        "agile",
+        "finesse",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "pVbggIyXxCo8pPue",
+  "gear": [],
+  "hp": 80,
+  "hpDetails": "explosion",
+  "id": "pathfinder-monster-core/living-wildfire",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "pyric"
+  ],
+  "level": 5,
+  "name": "Living Wildfire",
+  "perception": 10,
+  "publicNotes": "<p>Living wildfires appear as humanoids made of living fire, burning everything they come across for the pure joy of it. Summoners take advantage of this joy and the elementals' explosive ends to spread destruction.</p>\n<hr />\n<p>Fire elementals are destructive manifestations of the scorching Plane of Fire. Although most fire elementals revel in the chance to experience new kinds of fires away from their home plane, even the most considerate fire elemental can be a danger to humanoids and their property.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "elemental",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "water",
+      "value": 5
+    }
+  ]
+}

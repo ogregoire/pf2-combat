@@ -1,0 +1,180 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>The gendarme can Disarm instead of Striking.</p>\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The gendarme carefully makes a ranged Strike. If the Strike deals damage, the target must succeed at a @Check[reflex|dc:26] saving throw or fall Prone.</p>",
+      "frequency": null,
+      "name": "Shoot Down",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The gendarme Strides twice and then [[/act demoralize]]{Demoralizes}. On a success, the target is Slowed with a value equal to its Frightened value until it is no longer frightened.</p>",
+      "frequency": null,
+      "name": "Stop in the Name of the Law!",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "linguistic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the gendarme succeeds against a fear effect, they get a critical success instead.</p>",
+      "frequency": null,
+      "name": "Nerves of Steel",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "improved-knockdown"
+      ],
+      "kind": "melee",
+      "name": "Flail",
+      "traits": [
+        "disarm",
+        "magical",
+        "sweep",
+        "trip"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "improved-grab"
+      ],
+      "kind": "melee",
+      "name": "Gauntlet",
+      "traits": [
+        "agile",
+        "free-hand",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "bzRxQ0Z317yeCUE5",
+  "gear": [
+    "Arrows",
+    "Composite Longbow",
+    "Flail",
+    "Gauntlet",
+    "Half Plate"
+  ],
+  "hp": 120,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/gendarme",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Gendarme",
+  "perception": 19,
+  "publicNotes": "<p>Powerful governments retain gendarmes to guard important magistrates, enforce laws protecting national security, reinstate order amid unrest, and capture unusually dangerous criminals. They're also sent to deal with important cases in rural areas without substantial guards of their own.</p><hr /><p>Larger societies rely on those with the authority and the ability to interpret and enforce laws. Some carry out these duties fairly, but others are harsh and cruel, imposing severe punishments on anyone unable to pay for clemency.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 18,
+    "intimidation": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

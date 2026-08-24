@@ -1,0 +1,202 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 Status to All Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A sinspawn can smell creatures that reflect its sin as the scent ability. The GM determines which creatures are appropriately sinful.</p>\n<hr />\n<p><p>Scent involves sensing creatures or objects by smell, and is usually a vague sense. The range is listed in the ability, and it functions only if the creature or object being detected emits an aroma (for instance, incorporeal creatures usually do not exude an aroma).</p>\n<p>If a creature emits a heavy aroma or is upwind, the GM can double or even triple the range of scent abilities used to detect that creature, and the GM can reduce the range if a creature is downwind.</p></p>",
+      "frequency": null,
+      "name": "Sin Scent (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by the jaws of a sinspawn must attempt a @Check[will|dc:18] save as it is assailed by sinful thoughts.</p>\n<hr />\n<p><strong>Critical Success</strong> Unaffected</p>\n<p><strong>Success</strong> Sickened 1</p>\n<p><strong>Failure</strong> Sickened 2</p>\n<p><strong>Critical Failure</strong> sickened 2 plus Clumsy 1 and Enfeebled 1 for 1 minute</p>",
+      "frequency": null,
+      "name": "Sinful Bite",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "sinful-bite"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Maul",
+      "traits": [
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "h4cMwW2K34KheWtD",
+  "gear": [
+    "Maul"
+  ],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/pridespawn",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    }
+  ],
+  "languages": [
+    "aklo"
+  ],
+  "level": 2,
+  "name": "Pridespawn",
+  "perception": 10,
+  "publicNotes": "<p>Sinspawn were created by one of seven ancient wizards known collectively as runelords—each of whom embraced and embodied one of seven sins. The first sinspawn was created by the Runelord of Wrath, utilizing techniques that have since gone on to influence fleshwarping practices. It wasn't long before the technique used to create sinspawn fell into the hands of the other runelords, and while each tried their own hand at crafting variants of their own design, today, sinspawn of wrath remain the most numerous and notorious of their kind.</p>\n<p>Bearing only a vague resemblance to the humanoids from whose flesh they were formed, sinspawn generally appear horrifically emaciated and have unnaturally long arms and digitigrade legs, each with a trio of stubby, taloned digits. Veins bulge across sinspawn's bodies in sanguine patterns that suspiciously resemble twisted runes, and their flesh is pale and hairless. Their heads are elongated, with slits for a nose, red eyes, and disturbing lower jaws that split in half at the chin, revealing pedipalps that end in tiny, three-fingered hands and framing a long, lolling tongue.</p>\n<p>Sinspawn stand 6-1/2 feet tall and typically weigh as much as an emaciated human of their size. They behave in a manner consistent with their associated sin and have physical characteristics that hint at these qualities. For example, greedspawn's veins appear to run with gold, while envyspawn appear even more gaunt than the rest of their kin.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 8,
+    "intimidation": 7,
+    "stealth": 9,
+    "survival": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 2,
+    "int": 0,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Requirement</strong> She wields hatchets in each hand</p>\n<hr />\n<p><strong>Effect</strong> She attacks with both hatchets, making two Strikes at the same target. Apply her multiple attack penalty to each Strike normally.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Hatchet Flurry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Kressle has a violent knack for striking grievous wounds to her opponent's hands. If she scores a critical hit on a target with a hatchet Strike, the target must succeed at a @Check[fortitude|dc:17] save or become Clumsy 1 (or Clumsy 2 on a critical failure). This condition persists until the target receives any amount of healing.</p>",
+      "frequency": null,
+      "name": "Maming Chop",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "UBwmJpIyIV65U7R2",
+  "gear": [
+    "Gold Pieces",
+    "Hatchet",
+    "Healing Potion (Lesser)",
+    "Silver Pieces",
+    "Silver Stag Lord Amulet",
+    "Studded Leather Armor"
+  ],
+  "hp": 22,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/kressle",
+  "immunities": [],
+  "languages": [],
+  "level": 1,
+  "name": "Kressle",
+  "perception": 6,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "intimidation": 7,
+    "nature": 5,
+    "stealth": 7,
+    "survival": 6
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

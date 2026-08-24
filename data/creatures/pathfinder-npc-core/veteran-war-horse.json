@@ -1,0 +1,124 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": 3,
+    "int": -4,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Check[reflex|dc:21]</p>\n<p><hr />\n<p>Most monsters that serve as mounts can attempt to buck off unwanted or annoying riders, but most mounts will not use this reaction against a trusted creature unless the mounts are spooked or mistreated.</p>\n<p><strong>Trigger</strong> A creature Mounts or uses the Command an Animal action while riding the monster.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must succeed at a Reflex saving throw against the listed DC or fall off the creature and land Prone. If the save is a critical failure, the triggering creature also takes @Damage[1d6[bludgeoning]] damage in addition to the normal damage for the fall.</p></p>",
+      "frequency": null,
+      "name": "Buck",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The veteran war horse Strides then [[/act demoralize]]{Demoralizes} an adjacent Medium or smaller creature. When it does, Demoralize loses the auditory trait and gains the visual trait, and it doesn't take a penalty for the veteran war horse not speaking a language.</p>",
+      "frequency": null,
+      "name": "Into the Fray",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The veteran war horse Strides twice. It has a +10-foot circumstance bonus to its Speed during these Strides.</p>",
+      "frequency": null,
+      "name": "Gallop",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "ylxh6qisFZuVWVaf",
+  "gear": [],
+  "hp": 90,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/veteran-war-horse",
+  "immunities": [],
+  "languages": [],
+  "level": 5,
+  "name": "Veteran War Horse",
+  "perception": 10,
+  "publicNotes": "<p>A veteran war horse has not only been extensively trained but has also experienced battle several times. They have grown used to the chaos of war and fearlessly strides forward, striking fear into their enemies. A veteran war horse could accompany a champion, champion of Rovagug, captain of the guard, deific champion, equestrian constable, or orc gamekeeper.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 12,
+    "athletics": 15,
+    "intimidation": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

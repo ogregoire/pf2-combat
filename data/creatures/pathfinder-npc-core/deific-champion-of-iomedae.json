@@ -1,0 +1,251 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 2,
+    "int": 0,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The deific champion's Hit Points are reduced to 0 for the first time that day</p><hr /><p><strong>Effect</strong> The champion presses on, refusing to fail their god. They remain standing with 25 Hit Points.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Will Not Fall",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The deific champion's Hit Points are reduced to 0 for the first time that day"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy damages the deific champion's ally, and both are in the deific champion's aura</p><hr /><p><strong>Effect</strong> The ally gains resistance 14 to all damage against the triggering damage. If the enemy is within reach, the deific champion makes a melee Strike against it. Each ally in the champion's aura can spend a reaction to Strike the target with a –5 penalty.</p>\n<p>Effect: Exalted Retributive Strike</p>",
+      "frequency": null,
+      "name": "Exalted Retributive Strike",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": "An enemy damages the deific champion's ally, and both are in the deific champion's aura"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Effect</strong> The deific champion declares their devotion to their deity and their cause. They Stride, then make a melee Strike. If the Strike hits an enemy, all allies within their champion's aura gain a +2 status bonus to attack rolls and saving throws against fear until the start of the deific champion's next turn.</p>\n<p>Effect: Will Not Falter</p>",
+      "frequency": null,
+      "name": "Will Not Falter",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>In the deific champion's hands, a shield gains the <em>moderate reinforcing rune</em>, giving it Hardness 8, 84 HP, and BT 42.</p>",
+      "frequency": null,
+      "name": "Blessed Shield",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>15 feet.</p>\n<p>Any follower of Iomedae in the aura knows the champion is a champion of Iomedae. At the end of the champion's turn, each ally in the aura reduces its Frightened value by 1. The aura can be suppressed or resumed with a single action, which has the concentrate trait, and ends if the champion falls Unconscious.</p>",
+      "frequency": null,
+      "name": "Champion's Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the champion becomes Frightened, they reduce the condition value by 1 (to a minimum of 0).</p>",
+      "frequency": null,
+      "name": "Champion's Courage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>At the start of each of their turns, the deific champion gains an additional reaction they can only use to make a Reactive Strike or to Shield Block.</p>",
+      "frequency": null,
+      "name": "Deific Reactions",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "magical",
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longsword",
+      "traits": [
+        "magical",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "NZOqqzi4ThvJfpm8",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Full Plate",
+    "Longsword",
+    "Potion of Flying (Standard)",
+    "Religious Symbol of Iomedae",
+    "Steel Shield"
+  ],
+  "hp": 220,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/deific-champion-of-iomedae",
+  "immunities": [],
+  "languages": [
+    "common",
+    "empyrean"
+  ],
+  "level": 12,
+  "name": "Deific Champion of Iomedae",
+  "perception": 19,
+  "publicNotes": "<p>The deific champion is the paragon of champions, representing the truest form of devotion and dedication to a deity.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 25,
+    "diplomacy": 22,
+    "intimidation": 26,
+    "religion": 23
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Divine Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Champion's Sacrifice",
+          "rank": 6
+        },
+        {
+          "name": "Lay on Hands",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "holy",
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

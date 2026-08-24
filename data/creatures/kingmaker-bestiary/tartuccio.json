@@ -1,0 +1,227 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 3,
+    "int": 2,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 19,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per week</p>\n<hr />\n<p><strong>Effect</strong> By performing a ten-minute long incantation, Tartuccio takes on the appearance of any uniquely-appearing Small humanoid. He can't disguise himself as a specific individual. This doesn't change his Speed or his attack and damage modifiers with his Strikes. He can do this again to resume his true form, and must do so before he uses the ability again to assume a different appearance. He reverts to his true form if he is slain.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "P1W"
+      },
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Requirement</strong> Tartuccio is in Tartuk's form</p>\n<p><strong>Trigger</strong> A Sootscale kobold causes Tartuccio harm.</p>\n<hr />\n<p><strong>Effect</strong> Tartuccio (as Tartuk) can Demoralize the kobold who harmed him with a short warning such as \"Old Sharptooth will punish you for your transgressions!\" He gains a +2 circumstance bonus on the Intimidate check to do so.</p>",
+      "frequency": null,
+      "name": "Invoke Old Sharptooth",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "mental"
+      ],
+      "trigger": "A Sootscale kobold causes Tartuccio harm."
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Sickle",
+      "traits": [
+        "agile",
+        "finesse",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "8IYynuqZxDpXZwBE",
+  "gear": [
+    "Sickle",
+    "Wand of Magic Missile (Level 1)"
+  ],
+  "hp": 65,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/tartuccio",
+  "immunities": [],
+  "languages": [
+    "common",
+    "draconic",
+    "fey",
+    "gnomish",
+    "hallit"
+  ],
+  "level": 4,
+  "name": "Tartuccio",
+  "perception": 9,
+  "publicNotes": "<p>Tartuccio likes to think of himself as having been handpicked by King Irovetti of Pitax in his mission to claim the Stolen Lands for himself, but in fact King Irovetti has never met Tartuccio. The gnome grew up in Pitax and, of all that nation's rulers he'd observed, Irovetti impressed him the most with his admiration of art and style. That the king wasn't very supportive of art styles and pursuits he didn't enjoy never even registered in Tartuccio's mind, as his tastes were so similar.</p>\n<p>And so Tartuccio set into motion plans to catch the king's attention, so as to become first his student, then his trusted advisor, and in time his replacement. He even went as far as to seek out, research, and learn a potent magical technique that allowed him to change shape, intending to use this newfound supernatural power to adjust his appearance to be something more pleasing to the king's eye when the time came to petition to become his student. Tartuccio spent months scouring the rumor mills for opportunities, and when he heard of Lady Jamandi's call for heroes to expand into the Stolen Lands, he saw his chance. Tartuccio gathered his supplies and headed east.</p>\n<p>Once the events of Chapter 1 play out, Tartuccio is unsettled by the amount of competition he faces. He travels into the Stolen Lands where he's heard rumors of a kobold settlement that's ripe for the taking, uses his ability to change shape to assume the appearance of an unusual purple kobold, and work the Sootscales into a sort of private army he intends on using to wrest control of the PCs' nation just as they get started. His hopes of using the PCs' kingdom as a stepping-stone are threatened by the untimely conflict with the mitflits of the Old Sycamore, as detailed in Chapter 2.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "crafting": 8,
+    "deception": 12,
+    "intimidation": 10,
+    "occultism": 10,
+    "performance": 12,
+    "society": 10,
+    "stealth": 11,
+    "thievery": 9
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Occult Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Counter Performance",
+          "rank": 1
+        },
+        {
+          "name": "Inspire Courage",
+          "rank": 1
+        },
+        {
+          "name": "Loremaster's Etude",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        }
+      ],
+      "spells": [
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Mirror Image",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Mage Armor",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        },
+        {
+          "name": "True Strike",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "gnome",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

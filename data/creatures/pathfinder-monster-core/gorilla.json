@@ -1,0 +1,131 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 3,
+    "dex": 2,
+    "int": -4,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The gorilla beats its chest in a terrifying display. Creatures within @Template[emanation|distance:30]{30 feet} must attempt a @Check[will|dc:20] save.</p>\n<p>While a creature is Frightened by this ability, it is Off-Guard to the gorilla.</p>\n<hr />\n<p><strong>Critical Success</strong> No effect and temporarily immune for 1 minute.</p>\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The creature is Frightened 1.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 2.</p>",
+      "frequency": null,
+      "name": "Frightening Display",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "PlkRv9NMKq9TShYf",
+  "gear": [],
+  "hp": 45,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/gorilla",
+  "immunities": [],
+  "languages": [],
+  "level": 3,
+  "name": "Gorilla",
+  "perception": 8,
+  "publicNotes": "<p>Gorillas can be territorial creatures, particularly if provoked by hunters or the presence of more dangerous monsters. A gorilla uses its fangs and powerful arms to bite and pummel trespassers with wild abandon.</p>\n<hr />\n<p>While many apes exhibit peaceful or reclusive behavior, gorillas can be territorial, and the megaprimatus is especially aggressive and dangerous.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 11,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

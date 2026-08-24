@@ -1,0 +1,198 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 0,
+    "int": 0,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 29,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The frost giant breathes out a @Template[cone|distance:15] of freezing moisture that quickly condenses into ice, dealing @Damage[4d6[cold]] damage. Each creature in the cone must attempt a @Check[reflex|dc:28|basic] save. A creature that fails its save is also Immobilized and takes @Damage[2d6[cold]] damage at the end of each of its turns until it gets free ([[/act escape dc=28]]).</p>\n<p>The giant can't use Chill Breath again for [[/gmr 1d4 #Recharge Chill Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Chill Breath",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The frost giant makes a single greataxe Strike and compares the attack roll result to the ACs of up to two foes within their reach. This counts as two attacks for the frost giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A frost giant isn't impeded by difficult terrain caused by snow or ice, nor do they need to attempt Acrobatics checks to keep from falling on slippery ice.</p>",
+      "frequency": null,
+      "name": "Ice Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+12",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greataxe",
+      "traits": [
+        "magical",
+        "reach-10",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "3d6",
+          "type": "cold"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Icicle",
+      "traits": [
+        "cold",
+        "primal",
+        "range-120"
+      ]
+    }
+  ],
+  "foundryId": "893mp411SdYren3H",
+  "gear": [
+    "Breastplate",
+    "Greataxe"
+  ],
+  "hp": 150,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/frost-giant",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
+  ],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 9,
+  "name": "Frost Giant",
+  "perception": 17,
+  "publicNotes": "<p>Frost giants are remorseless marauders who pillage and plunder from those who dare to live near them in desolate, frigid lands. Their clans range from extremely territorial hunters who ferociously defend their expanse of tundra to nomadic families that roam icy slopes in search of settlements to conquer. Frost giant clans are ruled by the family member who exhibits the greatest ferocity and prowess in battle—often a massive bully who demands absolute obedience from the rest.</p>\n<p>Frost giants' appearance is reflective of their icy homes, with flesh ranging from a translucent glacial blue to a slushy gray. A typical frost giant stands about 15 feet tall and weighs approximately 2,800 pounds. They often wear metal armor adorned with the furs, skin, teeth, and tusks of slain beasts and heft weapons as long as dining tables. A well-stocked frost giant clan will raise mammoth mounts or press witchwargs into service as hunting companions, but consider their environment too hostile for a soft concept like pets.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They vary widely but are united in their hunger, requiring sustenance of their own element along with the feasts one would expect from such a massive humanoid. Although a simple matter for some giants, more esoteric types find this need a harsh reality. While a massive fistful of ice or snow alongside their meal will satisfy a frost giant, shadow giants hunger for the coagulated shadows of the Netherworld.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 23,
+    "crafting": 18,
+    "intimidation": 18,
+    "nature": 17,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "cold",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 5,
+    "int": 5,
+    "str": 3,
+    "wis": 6
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The jyoti breathes a blast of searing flame infused with vitality energy in a @Template[cone|distance:40] that deals @Damage[8d6[fire],4d6[vitality]|options:area-damage]{8d6 fire damage plus 4d6 vitality damage} to creatures in the area (@Check[reflex|dc:28|basic|options:area-effect] save).</p>\n<p>The jyoti can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Divine Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any weapon a jyoti wields becomes a <em>Flaming Ghost Touch</em> weapon while the jyoti holds it.</p>",
+      "frequency": null,
+      "name": "Infuse Weapons",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Vitality healing effects always heal the jyoti for the maximum amount. It doesn't gain the automatic Hit Points or temporary Hit Points from being on a plane with the positive planar essence.</p>",
+      "frequency": null,
+      "name": "Positive Energy Affinity",
+      "requirements": null,
+      "traits": [
+        "healing"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d12+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Flaming Ghost Touch Longspear",
+      "traits": [
+        "magical",
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d8+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Talon",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "Xb0uY2tg1Cd3kZd0",
+  "gear": [
+    "Longspear"
+  ],
+  "hp": 155,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/jyoti",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
+  ],
+  "languages": [
+    "common",
+    "jyoti"
+  ],
+  "level": 9,
+  "name": "Jyoti",
+  "perception": 21,
+  "publicNotes": "<p>Jyotis are sometimes called \"false phoenixes\" by the ignorant or willful. These avian humanoids are native to the Forge of Creation. They rarely leave this enigmatic realm and view visitors from other planes as stains on the purity of their home. Jyotis particularly distrust divine spellcasters and religious warriors, seeing them as inclined to take credit for manifesting a life force that, from the jyotis' perspective, is as plentiful and ubiquitous as water is to fish.</p>\n<p>Despite their distrust of intruders, jyotis rarely attack unprovoked when their homes are not threatened. They are intolerant, however, of those who intrude on the palaces of crystallized light and captured flame in which they dwell. They often chase even those who come bearing gifts away; few visitors have anything they desire, for what they desire most is to be left alone. The jyotis' full wrath is reserved for natives of the Shadow Plane and the Void. Historically, the promise of battle with the gargoyle-like sceaduinars, whom they consider it their duty to oppose, has been the only thing to lure jyoti armies beyond the Forge of Creation.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 20,
+    "intimidation": 18,
+    "occultism": 20,
+    "society": 18
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Banishment",
+          "rank": 5
+        },
+        {
+          "name": "Breath of Life",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Searing Light",
+          "rank": 3
+        },
+        {
+          "name": "Restoration",
+          "rank": 2
+        },
+        {
+          "name": "Disrupt Undead",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "fire",
+    "humanoid",
+    "vitality"
+  ],
+  "weaknesses": []
+}

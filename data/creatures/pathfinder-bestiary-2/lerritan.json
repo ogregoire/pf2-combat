@@ -1,0 +1,297 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 7,
+    "dex": 5,
+    "int": 2,
+    "str": 10,
+    "wis": 7
+  },
+  "ac": 46,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>A lerritan can break stony scales off its body to throw; these scales reform at the end of each round, so the lerritan is never without a supply of rocks to hurl.</p>\n<hr />\n<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The volcano on the lerritan's back erupts and sends lava bombs raining down in a @Template[emanation|distance:30], dealing @Damage[12d12[fire]] damage.</p>\n<p>Each creature in the area must attempt a @Check[reflex|dc:46|traits:damaging-effect] saving throw. The lava globules quickly cool into heavy stones, transforming the area into greater difficult terrain for non-lerritans.</p>\n<p>The lerritan can't use for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes half damage and is Encumbered for 1 round.</p>\n<p><strong>Failure</strong> The creature takes full damage and is Immobilized (Escape DC 46).</p>\n<p><strong>Critical Failure</strong> The creature takes double damage and is encased in a rocky crust with lava on the inside. The creature is Restrained (Escape DC 46), can't breathe, takes @Damage[3d12[persistent,fire]] damage, and can't recover from this persistent fire damage until freed.</p>",
+      "frequency": null,
+      "name": "Volcanic Eruption",
+      "requirements": null,
+      "traits": [
+        "earth",
+        "fire",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>100 feet. Creatures in the emanation cannot recover from persistent fire damage.</p>",
+      "frequency": null,
+      "name": "Tenacious Flames",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "fire",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "4d10+18",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "reach-25",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "4d6+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    },
+    {
+      "bonus": 40,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "4d12+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Warhammer",
+      "traits": [
+        "magical",
+        "reach-25",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "xfcFXLbadD3KdlHW",
+  "gear": [
+    "+3 Greater Striking Warhammer"
+  ],
+  "hp": 490,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/lerritan",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "jotun",
+    "petran",
+    "pyric"
+  ],
+  "level": 21,
+  "name": "Lerritan",
+  "perception": 35,
+  "publicNotes": "<p>Lerritans are unstoppable giants with skin of volcanic glass and blood of roiling lava. These malicious arsonists would see the world burned to a cinder. They pay homage to Ymeri, the evil elemental demigod of fire, and they bully other fiery creatures. When the urge to immolate grows too great to ignore, lerritans burn forests, destroy villages, and boil rivers, but they avoid large bodies of water.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing",
+      "value": 20
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 38
+    },
+    "reflex": {
+      "detail": null,
+      "value": 34
+    },
+    "will": {
+      "detail": null,
+      "value": 36
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 41,
+    "crafting": 33,
+    "intimidation": 35,
+    "religion": 36,
+    "survival": 38
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 36,
+      "dc": 46,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [
+        {
+          "max": 1,
+          "rank": 0
+        },
+        {
+          "max": 1,
+          "rank": 7
+        },
+        {
+          "max": 1,
+          "rank": 8
+        },
+        {
+          "max": 2,
+          "rank": 9
+        },
+        {
+          "max": 1,
+          "rank": 10
+        }
+      ],
+      "spells": [
+        {
+          "name": "Cataclysm",
+          "rank": 10
+        },
+        {
+          "name": "Fireball",
+          "rank": 9
+        },
+        {
+          "name": "Meteor Swarm",
+          "rank": 9
+        },
+        {
+          "name": "Earthquake",
+          "rank": 8
+        },
+        {
+          "name": "Plane Shift (To the Material Plane, Plane of Fire, or Plane of Earth only)",
+          "rank": 7
+        },
+        {
+          "name": "Produce Flame",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "earth",
+    "elemental",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 20
+    }
+  ]
+}

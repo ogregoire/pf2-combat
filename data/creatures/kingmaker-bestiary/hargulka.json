@@ -1,0 +1,211 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 2,
+    "int": 0,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p>\n<hr />\n<p><p>A Rend entry lists a Strike the monster has.</p>\n<p><strong>Requirements</strong> The monster hit the same enemy with two consecutive Strikes of the listed type in the same round.</p>\n<hr />\n<p><strong>Effect</strong> The monster automatically deals that Strike's damage again to the enemy.</p></p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Hargulka issues an order to his followers. Each ally who hears and understands this command becomes Quickened until the end of that ally's next turn but can use the extra action only to Strike. Hargulka can't issue a Royal Command on his next turn.</p>",
+      "frequency": null,
+      "name": "Royal Command",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "fear",
+        "linguistic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirement</strong> An opponent within reach has Raised a Shield.</p>\n<hr />\n<p><strong>Effect</strong> Hargulka snatches at a foe's shield, pulling it out of the way. He attempts an @Check[athletics|defense:reflex] check against the Reflex DC of an opponent who has Raised a Shield before making a jaws Strike against the opponent. If the Athletics check succeeds, the shield is not considered raised against the jaws Strike. On a critical success, Hargulka pulls the shield out of position, so it is no longer raised until the opponent Raises the Shield again. This counts as two attacks toward Hargulka's multiple attack penalty, but the multiple attack penalty doesn't increase until after the jaws Strike.</p>",
+      "frequency": null,
+      "name": "Shield Rip and Chew",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The lingering effects of Nyrissa's inspiration are stronger than any fear Hargulka faces. Whenever he attempts a saving throw against a fear effect, he treats his actual result as one degree of success better than his rolled result.</p>",
+      "frequency": null,
+      "name": "Dream of Rulership",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 25 (Deactivated by Acid or Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+9",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "sonic"
+        },
+        {
+          "category": null,
+          "formula": "1d8+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Morningstar",
+      "traits": [
+        "magical",
+        "reach-10",
+        "versatile-b"
+      ]
+    }
+  ],
+  "foundryId": "pD5Y7gJtqlr2A4a2",
+  "gear": [
+    "Hide Armor",
+    "Morningstar"
+  ],
+  "hp": 190,
+  "hpDetails": "regeneration 25 (deactivated by acid or fire)",
+  "id": "kingmaker-bestiary/hargulka",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 8,
+  "name": "Hargulka",
+  "perception": 16,
+  "publicNotes": "<p>Before his dreams were invaded and his ambitions enhanced by Nyrissa's eldritch manipulations, Hargulka had already established himself as a leader among trollkind, though his goals never reached beyond bullying his fellow trolls into rampaging the immediate environs for food and wealth to bring back to him as offerings. The notion of becoming a \"king\" never crossed his mind until he had a vivid, unforgettable dream of himself sitting atop a throne and basking in the fear and adoration of not only trolls, but hobgoblins, harpies, and all manner of slavering monsters-creatures who might be viewed as dangerous enemies but, to Hargulka, were now his loyal minions.</p>\n<p>To Hargulka, the PCs' kingdom is rightfully his own. He intends to conquer them, claim their capital for himself, and dine on the flesh and bones of their citizens. Yet despite these violent goals, the troll knows better than to simply attack his enemies mindlessly. Instead, he spends his time working with his loyal trolls to seek out like-minded monsters in the wilds to recruit them to his cause. As a result, the longer Hargulka remains in power, the more dangerous and aggressive the monsters of the Stolen Lands will become!</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 18,
+    "intimidation": 18,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "giant",
+    "troll"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 15
+    }
+  ]
+}

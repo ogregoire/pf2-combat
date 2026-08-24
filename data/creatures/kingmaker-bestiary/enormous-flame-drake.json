@@ -1,0 +1,202 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 2,
+    "int": -1,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> three times per day</p>\n<p><strong>Effect</strong> The flame drake Strides or Flies up to twice its Speed.</p>",
+      "frequency": {
+        "max": 3,
+        "per": "day"
+      },
+      "name": "Speed Surge",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Fangs only</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Fangs Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The flame drake makes two Fangs Strikes and one Tail Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The flame drake expels a ball of flame to a range of 180 feet that explodes in a @Template[burst|distance:20]. Creatures in the burst take @Damage[9d6[fire]] damage (@Check[reflex|dc:26|basic] save).</p>\n<p>The flame drake can't use Fireball Breath again for [[/gmr 1d6 #Recharge Fireball Breath]]{1d6 rounds}.</p>",
+      "frequency": null,
+      "name": "Fireball Breath",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Smoke doesn't impair a flame drake's vision; it ignores Concealment from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": []
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "AA3hdVlJhALthghl",
+  "gear": [],
+  "hp": 140,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/enormous-flame-drake",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "draconic"
+  ],
+  "level": 8,
+  "name": "Enormous Flame Drake",
+  "perception": 16,
+  "publicNotes": "<p>Ravenous, bestial, and driven by instinct-drakes are primitive draconic monsters who bear a fraction of the terrifying might of their larger cousins but little (if any) of the cunning. While they're weaker, slower, and less inclined toward reason than dragons, drakes are nonetheless a menace to creatures and settlements around them. Their propensity for forming raiding parties-small social groups fittingly called \"rampages\"-makes them all the more dangerous; a single rampage of river drakes can quickly lay waste to a waterside village, and roving rampages of desert drakes are a plague to caravan traders.</p>\n<p>Drakes share a number of physical characteristics that unite them as one species despite their wide variety of habitats and abilities. For example, drakes lack forearms, leaving them only their formidable jaws and thick-scaled tails with which to attack if engaged at melee range. Most drakes would rather avoid close combat, however, preferring to use their breath weapons to wreak havoc in wide swaths from comfortable distances while flying overhead. Finally, all drakes have small reservoirs of their ancestral draconic power that they can tap into to perform incredible feats of speed.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 14,
+    "athletics": 18,
+    "stealth": 14,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dragon",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    }
+  ]
+}

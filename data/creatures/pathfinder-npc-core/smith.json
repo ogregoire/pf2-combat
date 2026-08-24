@@ -1,0 +1,150 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 1,
+    "int": 3,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The smith deals an additional 1d6 damage when they hit with a weapon they created.</p>",
+      "frequency": null,
+      "name": "Smith's Fury",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving smithing or other crafting tasks, the smith is a 6th-level challenge.</p>",
+      "frequency": null,
+      "name": "Smithing Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "smiths-fury"
+      ],
+      "kind": "melee",
+      "name": "Light Hammer",
+      "traits": [
+        "agile"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "smiths-fury"
+      ],
+      "kind": "ranged",
+      "name": "Light Hammer",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "0So6avVuyVG7YOfs",
+  "gear": [
+    "Artisan's Toolkit",
+    "Leather Apron",
+    "Light Hammer"
+  ],
+  "hp": 50,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/smith",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Smith",
+  "perception": 5,
+  "publicNotes": "<p>Most smaller communities have at least one smithy where locals and travelers can have horses shod or equipment repaired. Larger settlements and cities often have a variety of smiths, many specializing in blacksmithing, weapon smithing, armor smithing, or even smelting coins in a mint.</p><hr /><p>Expertise is forged through years of effort and often tedious work. Artisans are masters of their craft, able to create works both practical and beautiful.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "crafting": 15,
+    "diplomacy": 5,
+    "society": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

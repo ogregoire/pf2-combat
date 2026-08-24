@@ -1,0 +1,130 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The gravedigger is holding a bull's-eye lantern in one hand and their religious symbol in the other, and the lantern contains oil</p><hr /><p><strong>Effect</strong> The gravedigger recites a brief chant to ignite their lantern with vital energy. Each undead creature in a @Template[type:line|distance:15] takes @Damage[3d6[vitality]|options:area-damage] damage with a @Check[fortitude|dc:14|basic|options:area-effect] save. This action uses all remaining oil in the bull's-eye lantern.</p>",
+      "frequency": null,
+      "name": "Light in the Dark",
+      "requirements": "The gravedigger is holding a bull's-eye lantern in one hand and their religious symbol in the other, and the lantern contains oil",
+      "traits": [
+        "concentrate",
+        "divine",
+        "manipulate",
+        "vitality"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shovel",
+      "traits": []
+    }
+  ],
+  "foundryId": "0t2jNg5tpwWbCYx4",
+  "gear": [
+    "Gravedigger's Garb (Functions as Leather Armor)",
+    "Lantern (Bull's Eye)",
+    "Oil (1 pint)",
+    "Religious Symbol (Wooden) of Pharasma",
+    "Shovel"
+  ],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/gravedigger",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 1,
+  "name": "Gravedigger",
+  "perception": 6,
+  "publicNotes": "<p>An often-overlooked group of laborers, gravediggers have a reputation for being as quiet and grim as their workplace. They're usually strong and tough from their long hours of backbreaking labor, and they tend to have a unique perspective on life and death.</p><hr /><p>Society is built upon the backs of laborers.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void",
+      "value": 2
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 7,
+    "religion": 5,
+    "stealth": 4
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

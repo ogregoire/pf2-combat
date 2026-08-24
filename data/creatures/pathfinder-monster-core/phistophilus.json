@@ -1,0 +1,329 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 4,
+    "int": 7,
+    "str": 3,
+    "wis": 5
+  },
+  "ac": 30,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The contract devil produces an infernal contract for a single living mortal. This contract can grant a wide range of abilities and effects, akin to the power of a Wish ritual but fulfilled to the letter by the contract devil. To receive any of those benefits, the mortal must willingly sign its true name to the contract. At that point, the mortal's soul is bound to the contract devil and Hell.</p>\n<p>While the contract is in effect, the victim can't be restored to life except by <em>wish</em> or similar magic. If the mortal is restored to life by those means, the contract devil knows which mortal came to life and can locate the creature or creatures who restored the mortal to life for 1 year, gaining the effects of a Locate spell with unlimited range. Avoiding the terms of an infernal contract is difficult and often dangerous.</p>",
+      "frequency": null,
+      "name": "Draft Contract",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A contract devil can cast a 10th-rank innate Scrying spell at will, but only to target a creature with which they have a contract.</p>\n<p>The target automatically critically fails its save.</p>",
+      "frequency": null,
+      "name": "Infernal Investment",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The wounds from a contract devil's Strikes resist healing.</p>\n<p>A spellcaster or item attempting to use healing magic on a creature suffering first attempts to counteract infernal wound (DC 29). If it is not counteracted, the healing has no effect.</p>",
+      "frequency": null,
+      "name": "Infernal Wound",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A signed contract carried by a living contract devil (including draped over its horns) is immune to damage from all creatures other than that contract devil. A contract devil is immune to mental effects that would make it destroy, nullify, or alter a contract.</p>",
+      "frequency": null,
+      "name": "Ward Contract",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d6+11",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "grab",
+        "infernal-wound"
+      ],
+      "kind": "melee",
+      "name": "Binding Contract",
+      "traits": [
+        "agile",
+        "disarm",
+        "magical",
+        "reach-10",
+        "trip",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "infernal-wound"
+      ],
+      "kind": "melee",
+      "name": "Horn",
+      "traits": [
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "3QyqHIuAXE3YVLUh",
+  "gear": [],
+  "hp": 150,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/phistophilus",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
+  ],
+  "languages": [
+    "aklo",
+    "chthonian",
+    "common",
+    "diabolic",
+    "draconic",
+    "empyrean",
+    "sakvroth"
+  ],
+  "level": 10,
+  "name": "Phistophilus",
+  "perception": 21,
+  "publicNotes": "<p>Contract devils are clerks, scribes, and bureaucrats of Hell rarely found outside the infernal courts, and then almost always to pursue potential contracts, tempting mortals to sell their souls in exchange for achieving their worldly desires. If a target is desirable enough, a phistophilus can offer contracts for prices seemingly lesser than their soul all at once, though in this case, the devil carefully manipulates the price to drive the signatory toward the forces of Hell anyway. Contract devils are tall creatures with skin tones that range from bronze to crimson and large curving horns extending from their bodies, over which they often drape favored or important contracts.</p>\n<hr />\n<p>Masters of corruption and architects of conquest, devils seek both to tempt mortal life to join in their pursuit of all things profane and to spread tyranny throughout all worlds. The temptations they offer mortals range from great powers granted by the signing of an infernal contract to twisted favors following a whispered pledge to a diabolic patron, or any number of even subtler exchanges. Those who succumb to these temptations find themselves consigned to an afterlife of endless torment in the pits of Hell, wherein the only hope of escape lies in the chance of being promoted to become a devil in the infernal ranks.</p>\n<p>Every devil has a specific role to play in the upkeep of the remorseless bureaucratic machine that is Hell, from soldiers and scholars to inquisitors, lawyers, judges, and executioners. Lowly orts perform subservient labor to more powerful and specialized devils, such as infantry and contract devils, while the greatest nessaris command entire infernal armies.</p>\n<p>Asmodeus stands at the apex of the structure he created, but the layers below him are marked by a constant jockeying for position. Most diabolic plans ultimately serve to improve the schemer's place in the hierarchy.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "silver"
+      ],
+      "type": "physical",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "arcana": 19,
+    "athletics": 19,
+    "deception": 23,
+    "diplomacy": 21,
+    "intimidation": 21,
+    "religion": 19,
+    "society": 19,
+    "stealth": 18
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 23,
+      "dc": 31,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Interplanar Teleport",
+          "rank": 7
+        },
+        {
+          "name": "Scrying (At Will, See Infernal Investment)",
+          "rank": 6
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Mind Probe",
+          "rank": 5
+        },
+        {
+          "name": "Sending (At Will)",
+          "rank": 5
+        },
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Peaceful Bubble",
+          "rank": 4
+        },
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Locate (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Silence",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "devil",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

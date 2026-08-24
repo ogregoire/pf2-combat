@@ -1,0 +1,139 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 1,
+    "dex": 3,
+    "int": -3,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy targets the choker with an attack</p>\n<hr />\n<p><strong>Effect</strong> The choker tries to pull a creature it has Grabbed or Restrained into the path of the attack. The choker attempts an Athletics check, including its bonus to Grapple. If it succeeds against the grabbed or restrained creature's Fortitude DC, the choker redirects the attack to that creature, and the attacker compares its attack roll result against the new target's AC. The choker must move the creature into a space adjacent to itself. The creature must also be moved within the attacker's reach against a melee attack or into a space between itself and the attacker against a ranged attack. The choker can't use this ability to make the attacker target itself, even if it's grabbing or restraining the attacker.</p>",
+      "frequency": null,
+      "name": "Yank",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": "An enemy targets the choker with an attack"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d6+3)[bludgeoning]], @Check[fortitude|dc:19|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the choker starts its turn Hidden from or Undetected by a creature, that creature is Off-Guard against the choker's attacks until the end of the turn.</p>",
+      "frequency": null,
+      "name": "Hidden Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any creature hit by a choker's arm Strike is automatically Grabbed, and the choker begins to strangle the target. The creature is suffocating and can't speak as long as it's strangled. This prevents it from casting spells with a verbal component or activating items with a command component.</p>",
+      "frequency": null,
+      "name": "Strangling Fingers",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "strangling-fingers"
+      ],
+      "kind": "melee",
+      "name": "Arm",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "O69kXMo6shkA606k",
+  "gear": [],
+  "hp": 28,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/choker",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "sakvroth"
+  ],
+  "level": 2,
+  "name": "Choker",
+  "perception": 7,
+  "publicNotes": "<p>With long, cartilaginous limbs and gray skin, chokers easily hide in stony alcoves, rocky fissures, and darkened staircases to ambush their prey. The strange little aberrations prefer to pick off weak and solitary creatures, especially those that wander off from their packs or communities. A choker's long, spongy arms are flexible but deceptively strong. The fingers can tighten rapidly and are ridged with spiky, tooth-like structures that provide an incredible grip. A choker typically strangles its prey to death, then drags the body off or dismembers it using crude tools if the body is too big to carry. If confronted or outnumbered, a choker tries to escape, often compressing into a tight passage to get away. Chokers that encounter humanoids exhibit intense curiosity about their culture, society, and the products of art and industry. This interest isn't very deep-it just results in chokers that like killing people and collecting any of their items that seem sophisticated, such as jewelry, nice clothing, or written texts.</p>\n<p>Chokers sometimes gather in settlements, usually sticking to slums or abandoned structures. These chokers stalk at night, flopping across rooftops, tapping at windows, and scuttling through sewers, gutters, and chimneys to get at prey. An urban choker that finds prey early on its hunt-a wandering pet, a person who is out alone-might spend the rest of the night indulging its curiosity about the products of society. A curious choker might abscond with all sorts of odd items, from tavern signs to library books to roof tiles. A choker usually pilfers only one item at a time, but as its collection grows, it might need to find a larger nest to accommodate its collection, then move its pieces one by one to the new home.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 9,
+    "stealth": 9
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

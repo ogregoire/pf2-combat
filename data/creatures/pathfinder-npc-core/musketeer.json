@@ -1,0 +1,164 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 4,
+    "int": 0,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The musketeer is wielding a single one-handed weapon in one hand and has their other hand free</p><hr /><p><strong>Effect</strong> The musketeer grants a +1 circumstance bonus to AC to themself until the start of their next turn. Allies also gain this bonus while adjacent to the musketeer. If a creature would benefit from more than one creature's One for All ability, the bonus is +2 instead of +1.</p>\n<p>Effect: One for All</p>",
+      "frequency": null,
+      "name": "One for All",
+      "requirements": "The musketeer is wielding a single one-handed weapon in one hand and has their other hand free",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The musketeer is wielding a flintlock musket</p><hr /><p><strong>Effect</strong> The musketeer makes a flintlock musket Strike. If the Strike hits, the target is Off-Guard to melee attacks by the musketeer until the end of the musketeer's next turn. Regardless of whether the Strike hit, the musketeer then Interacts to swap their flintlock musket for their rapier and Strides toward the creature they attacked.</p>",
+      "frequency": null,
+      "name": "Musketeer's Advance",
+      "requirements": "The musketeer is wielding a flintlock musket",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The musketeer deals an extra 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Flintlock Musket",
+      "traits": [
+        "concussive",
+        "fatal-d10",
+        "range-increment-70",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "tGndoQjOV5Mj5Foh",
+  "gear": [
+    "Flintlock Musket",
+    "Leather Armor",
+    "Rapier",
+    "Rounds (Flintlock Musket)"
+  ],
+  "hp": 40,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/musketeer",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Musketeer",
+  "perception": 10,
+  "publicNotes": "<p>Flashy and confident, the musketeer isn't above using dirty tricks to gain the upper hand in a fight. Despite their bravado, musketeers are fiercely loyal to their allies.</p><hr /><p>These lone wolves have an aura of mystery, bravado, and swagger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 11,
+    "athletics": 8,
+    "deception": 8,
+    "intimidation": 10,
+    "stealth": 11,
+    "thievery": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

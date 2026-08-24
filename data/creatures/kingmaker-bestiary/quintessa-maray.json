@@ -1,0 +1,287 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 2,
+    "dex": 4,
+    "int": 2,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 32,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Effect</strong> If Quintessa's next action is to cast a bard cantrip or a bard spell that is 4th level or lower, reduce the number of actions to cast it by 1 (minimum 1 action).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Quickened Casting",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "spellshape"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A critical hit is scored against Lady Quintessa</p>\n<p><strong>Effect</strong> Lady Quintessa exaggerates the impact of the blow, attempting to trick her foes into underestimating her as weak and frail. She makes a Feint attempt against the triggering creature. If she successfully performs her Damsel Act while she has an inspire courage composition active, the duration of that composition increases by 1 round.</p>",
+      "frequency": null,
+      "name": "Damsel Act",
+      "requirements": null,
+      "traits": [
+        "mental"
+      ],
+      "trigger": "A critical hit is scored against Lady Quintessa"
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "magical",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "VEWrS5u71szMrhs4",
+  "gear": [
+    "Chain Shirt",
+    "Dagger",
+    "Mithral Necklace"
+  ],
+  "hp": 145,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/quintessa-maray",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven"
+  ],
+  "level": 11,
+  "name": "Quintessa Maray",
+  "perception": 20,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 19,
+    "deception": 24,
+    "diplomacy": 20,
+    "performance": 22,
+    "society": 21,
+    "stealth": 21,
+    "thievery": 23
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Bard Composition Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Inspire Heroics",
+          "rank": 4
+        },
+        {
+          "name": "Inspire Courage",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Bard Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        },
+        {
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 2,
+          "rank": 6
+        }
+      ],
+      "spells": [
+        {
+          "name": "Feeblemind",
+          "rank": 6
+        },
+        {
+          "name": "Spirit Blast",
+          "rank": 6
+        },
+        {
+          "name": "Hallucination",
+          "rank": 5
+        },
+        {
+          "name": "Sending",
+          "rank": 5
+        },
+        {
+          "name": "Subconscious Suggestion",
+          "rank": 5
+        },
+        {
+          "name": "Confusion",
+          "rank": 4
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Glibness",
+          "rank": 4
+        },
+        {
+          "name": "Haste",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading",
+          "rank": 3
+        },
+        {
+          "name": "Vampiric Touch",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Mirror Image",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Sleep",
+          "rank": 1
+        },
+        {
+          "name": "Soothe",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

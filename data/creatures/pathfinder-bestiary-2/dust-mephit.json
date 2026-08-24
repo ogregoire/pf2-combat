@@ -1,0 +1,164 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 1,
+    "dex": 4,
+    "int": -2,
+    "str": 1,
+    "wis": 0
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dust mephit breathes a cloud of dust in a @Template[cone|distance:15] that deals @Damage[2d6[slashing]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save).</p>\n<p>The dust mephit can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "air",
+        "arcane",
+        "earth"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (in dust or sand)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "m40M5R7wcm5DSVK2",
+  "gear": [],
+  "hp": 16,
+  "hpDetails": "fast healing 2 (in dust or sand)",
+  "id": "pathfinder-bestiary-2/dust-mephit",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "petran",
+    "sussuran"
+  ],
+  "level": 1,
+  "name": "Dust Mephit",
+  "perception": 3,
+  "publicNotes": "<p>Whining and self-important creatures, dust mephits are known for their tendency to pronounce doom and gloom at every opportunity, lamenting every insignificant and minor difficulty as though it were an insurmountable obstacle and making themselves out to be heroes for struggling valiantly against their cruel fates. They tend to be thin and gaunt, with dusky brown and gray skin and wings.</p>\n<hr />\n<p>Mephits are small, weak creatures that serve at the whims of other elemental entities. The mephits presented here are less common than air mephits, earth mephits, and the like, as they are a blend of two different elements rather than focusing on one alone.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [
+        {
+          "max": 1,
+          "rank": 2
+        }
+      ],
+      "spells": [
+        {
+          "name": "Glitterdust",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "air",
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}

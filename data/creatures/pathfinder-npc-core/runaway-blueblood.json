@@ -1,0 +1,153 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 2,
+    "str": 1,
+    "wis": 0
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The runaway blueblood is adjacent to at least one enemy</p><hr /><p><strong>Effect</strong> The runaway blueblood gains the Fleeing condition, gains a +5-foot status bonus to their Speed, and gains a +2 circumstance bonus to their AC against reactions triggered by their movement. The blueblood Strides. The effects last until the end of the blueblood's current turn.</p>",
+      "frequency": null,
+      "name": "\"Courageous\" Retreat",
+      "requirements": "The runaway blueblood is adjacent to at least one enemy",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The runaway blueblood deals an extra 1d6 damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dueling Pistol",
+      "traits": [
+        "concealable",
+        "concussive",
+        "fatal-d10",
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "CxsBGAxeNqzp2568",
+  "gear": [
+    "Clothing (Fine)",
+    "Dueling Pistol",
+    "Rounds (Dueling Pistol)",
+    "Shortsword",
+    "Signet Ring"
+  ],
+  "hp": 45,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/runaway-blueblood",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Runaway Blueblood",
+  "perception": 7,
+  "publicNotes": "<p>Dissatisfied with their privileged upbringing, the runaway blueblood has left the life of luxury behind to forge a new path for themself.</p><hr /><p>These lone wolves have an aura of mystery, bravado, and swagger.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 9,
+    "diplomacy": 9,
+    "society": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

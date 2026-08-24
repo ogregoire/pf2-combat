@@ -1,0 +1,179 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 4,
+    "int": 2,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 36,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The grikkitog hits a creature with a jaws Strike</p>\n<hr />\n<p><strong>Effect</strong> The grikkitog sinks its barbed teeth into the target, which must succeed at a @Check[reflex|dc:34] save or be Immobilized. While immobilized, the victim takes @Damage[3d8[persistent,bleed]] damage and the grikkitog feeds upon its flesh. The creature is immobilized until the grikkitog ends the effect as a free action or the target succeeds at a DC 38 check to Escape.</p>\n<p>The grikkitog can immobilize any number of creatures with these maws.</p>",
+      "frequency": null,
+      "name": "Barbed Maw",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The grikkitog hits a creature with a jaws Strike"
+    },
+    {
+      "category": "interaction",
+      "cost": "3",
+      "description": "<p>The grikkitog implants its core into an adjacent section of earth or stone, melding seamlessly and changing its visual appearance to match the surrounding rock. It's Immobilized but automatically succeeds at its Deception check to Impersonate the stone around it; creatures actively searching for it can still attempt Perception checks against its Deception DC as normal. A grikkitog can release its implantation as a free action, which has the manipulate trait. A grikkitog's infestation aura and manifold vision are only active while implanted.</p>",
+      "frequency": null,
+      "name": "Implant Core",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The grikkitog can Burrow through dirt and stone at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>120 feet.</p>\n<p>While its core is implanted, a grikkitog infests all earth and stone within 120 feet, as long as there is a contiguous physical connection between the earth, including stone objects touching the ground. This effect spreads even if the grikkitog does not have line of effect, though it can affect earth or stone on the surface and exposed to the air only if at least part of its core is exposed as well.</p>\n<p>Within the aura, it can grow maws and eyes everywhere. It can make jaws attacks against any creature, originating from any earth or stone in the aura adjacent to that creature. Determine cover from the origin point of the attack, not from the grikkitog's core.</p>",
+      "frequency": null,
+      "name": "Infestation Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "earth",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>While its core is implanted, the grikkitog can see through the eyes it creates throughout the area of its infestation aura, gaining the benefits of All-Around Vision.</p>",
+      "frequency": null,
+      "name": "Manifold Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d12+14",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "barbed-maw"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "702acAJ1OPRBjcni",
+  "gear": [],
+  "hp": 200,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/grikkitog",
+  "immunities": [],
+  "languages": [
+    "petran"
+  ],
+  "level": 14,
+  "name": "Grikkitog",
+  "perception": 29,
+  "publicNotes": "<p>Grikkitogs, also known as the \"hungry earth,\" are strange parasites from the Plane of Earth that infest earth, rock, and stone in order to feed their endless hunger. A young grikkitog is a formless apparition until it corrupts an earth elemental host, forming the grikkitog's core. A grikkitog can then possess the earth and stone nearby with its voracious essence, forming maws and eyes all around it. These creatures can be particularly dangerous to small creatures that lair within gaps among rocks, as well as mountain climbers searching for the perfect handhold.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
+      "type": "all-damage",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 28,
+    "deception": 27,
+    "survival": 25
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "burrow",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration",
+    "earth"
+  ],
+  "weaknesses": []
+}

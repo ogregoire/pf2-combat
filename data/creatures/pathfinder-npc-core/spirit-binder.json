@@ -1,0 +1,308 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 3,
+    "dex": 3,
+    "int": 5,
+    "str": 1,
+    "wis": 4
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The spirit binder taps into the more nefarious spirits of the Void, becoming something morbid and cruel. For [[/gmr 1d4 #rounds]]{1d4 rounds}, their resistance, aura of spirits, Strikes, and spirit spells change their damage type from spirit damage to void damage and replace their spirit trait with the void trait.</p>",
+      "frequency": null,
+      "name": "Succumb to the Void",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. The spirits bound by a spirit binder swirl around, lashing out at their foes. An enemy that enters or starts its turn in the aura must succeed at a @Check[will|dc:27|options:area-effect,damaging-effect] save or take @Damage[3d6[spirit]|options:area-damage] damage and be Frightened 1 (double damage and Frightened 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Haunting Spirits",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "occult",
+        "spirit"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The spirit binder's scrying spells can target or detect spirits on other planes as though the spirits were in the Universe.</p>",
+      "frequency": null,
+      "name": "Spirit Scrying",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The spirit binder can sense the spirits of creatures, including living creatures, most non-mindless undead, and haunts within the listed range. Since spiritsense detects spiritual essence, not physical bodies, it can detect spirits projected by spells (such as Project Image) or possessing otherwise soulless objects. It can't detect soulless bodies, constructs, or objects, and like most senses, it doesn't penetrate through solid objects.</p>",
+      "frequency": null,
+      "name": "Spiritsense",
+      "requirements": null,
+      "traits": [
+        "detection",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+6",
+          "type": "slashing"
+        },
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "spirit"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Ghost Claw",
+      "traits": [
+        "finesse",
+        "magical",
+        "spirit",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "2d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "3d6",
+          "type": "spirit"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Spirit Pitch",
+      "traits": [
+        "magical",
+        "range-increment-60",
+        "spirit"
+      ]
+    }
+  ],
+  "foundryId": "6OtvMTyXhxUdZI44",
+  "gear": [],
+  "hp": 175,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/spirit-binder",
+  "immunities": [],
+  "languages": [
+    "common",
+    "necril",
+    "shadowtongue"
+  ],
+  "level": 11,
+  "name": "Spirit Binder",
+  "perception": 20,
+  "publicNotes": "<p>Ghosts and other spirits swirl around the spirit binder, creating a constant aura of flickering faces and forms.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
+  },
+  "senses": [
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "spiritsense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 21,
+    "intimidation": 21,
+    "occultism": 22
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 23,
+      "dc": 31,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        },
+        {
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 2,
+          "rank": 6
+        },
+        {
+          "max": 3,
+          "rank": 7
+        }
+      ],
+      "spells": [
+        {
+          "name": "Interplanar Teleport (to or from the Ethereal Plane only)",
+          "rank": 7
+        },
+        {
+          "name": "Dominate",
+          "rank": 6
+        },
+        {
+          "name": "Spirit Blast",
+          "rank": 6
+        },
+        {
+          "name": "Invoke Spirits",
+          "rank": 5
+        },
+        {
+          "name": "Spiritual Guardian",
+          "rank": 5
+        },
+        {
+          "name": "Wave of Despair",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Fly",
+          "rank": 4
+        },
+        {
+          "name": "Talking Corpse",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Ghostly Weapon",
+          "rank": 3
+        },
+        {
+          "name": "Levitate",
+          "rank": 3
+        },
+        {
+          "name": "Darkness",
+          "rank": 2
+        },
+        {
+          "name": "Ghostly Carrier",
+          "rank": 2
+        },
+        {
+          "name": "Peaceful Rest",
+          "rank": 2
+        },
+        {
+          "name": "Bane",
+          "rank": 1
+        },
+        {
+          "name": "Command",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        },
+        {
+          "name": "Void Warp",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

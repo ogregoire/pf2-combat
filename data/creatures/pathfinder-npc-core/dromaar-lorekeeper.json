@@ -1,0 +1,253 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 3,
+    "int": 2,
+    "str": 1,
+    "wis": 2
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the lorekeeper dies, they utter a brief but poignant final story that shakes those nearby to their core. Each creature in a @Template[type:emanation|distance:10] must succeed at a @Check[will|dc:20|options:inflicts:paralyzed] save or be Paralyzed for 1 round.</p>",
+      "frequency": null,
+      "name": "Final Tale",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When performing for crowds of 10 or more, the dromaar lorekeeper gains a +2 circumstance bonus to their @Check[performance|options:spotlight-ready] checks.</p>",
+      "frequency": null,
+      "name": "Spotlight Ready",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10",
+          "type": "sonic"
+        },
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10",
+          "type": "sonic"
+        },
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10",
+          "type": "sonic"
+        },
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "msItO7UjfQfWe9nZ",
+  "gear": [
+    "Dagger",
+    "Lute"
+  ],
+  "hp": 70,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/dromaar-lorekeeper",
+  "immunities": [],
+  "languages": [
+    "common",
+    "orcish"
+  ],
+  "level": 5,
+  "name": "Dromaar Lorekeeper",
+  "perception": 10,
+  "publicNotes": "<p>Lorekeepers are meticulous keepers of the colorful and often misunderstood history of orcs and dromaar. They're jovial wanderers, telling their stories to anyone who will listen.</p><hr /><p>Orcs have a strict moral code encompassing valor and accomplishment, and they cast out those unwilling to follow it. For the last few generations, orcs have been trying to erase the narratives around their culture as being solely focused on war and violence. They invite other races and adventuring parties inside their holds so they may experience the truth of who the orcs are.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 12,
+    "occultism": 11,
+    "performance": 12,
+    "society": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 2,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Enthrall",
+          "rank": 3
+        },
+        {
+          "name": "Heroism",
+          "rank": 3
+        },
+        {
+          "name": "Laughing Fit",
+          "rank": 2
+        },
+        {
+          "name": "Noise Blast",
+          "rank": 2
+        },
+        {
+          "name": "Translate",
+          "rank": 2
+        },
+        {
+          "name": "Bless",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Phantasmal Minion",
+          "rank": 1
+        },
+        {
+          "name": "Summon Instrument",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "dromaar",
+    "human",
+    "humanoid",
+    "orc"
+  ],
+  "weaknesses": []
+}

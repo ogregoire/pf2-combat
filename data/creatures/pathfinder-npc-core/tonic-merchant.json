@@ -1,0 +1,166 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 2,
+    "int": 4,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "2",
+      "description": "<p>The tonic merchant quickly crafts a Antidote (Lesser), Antiplague (Lesser), or Elixir of Life (Minor) and lobs it at a willing or Unconscious ally within 30 feet. The elixir affects the ally as though they imbibed it.</p>\n<p>The tonic merchant can use the rarest materials in their toolkit to improve the item to a Antidote (Moderate), Antiplague (Moderate), or Elixir of Life (Lesser). Afterward, they must spend 10 minutes gathering new ingredients before they can do so again.</p>",
+      "frequency": null,
+      "name": "Healing Bomb",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": "splash",
+          "formula": "2",
+          "type": "acid"
+        },
+        {
+          "category": "persistent",
+          "formula": "2d6",
+          "type": "acid"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Acid Flask (Moderate)",
+      "traits": [
+        "splash",
+        "thrown-30"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "7qpH6PeW97Bjrxox",
+  "gear": [
+    "Acid Flask (Moderate)",
+    "Alchemist's Toolkit",
+    "Dagger",
+    "Formula Book",
+    "Healer's Toolkit"
+  ],
+  "hp": 50,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/tonic-merchant",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Tonic Merchant",
+  "perception": 6,
+  "publicNotes": "<p>This alchemist sells healing potables, but might offer their services without a fee to those truly in need.</p><hr /><p>The world is a dangerous place. Thankfully, there are those who devote their lives to easing the pain and suffering of others.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "crafting": 11,
+    "diplomacy": 9,
+    "medicine": 10,
+    "society": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

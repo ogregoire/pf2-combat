@@ -1,0 +1,195 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 7,
+    "dex": 3,
+    "int": -1,
+    "str": 7,
+    "wis": 1
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The troll king takes Persistent acid or fire damage.</p>\n<hr />\n<p><strong>Effect</strong> The troll king shakes itself to remove persistent acid or fire effects. The troll king immediately attempts a @Check[flat|dc:15] check to end the persistent damage that triggered this reaction. If the troll king succeeds at this check, it can immediately use Primordial Roar as part of this reaction.</p>",
+      "frequency": null,
+      "name": "Vigorous Shake",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The troll king takes Persistent acid or fire damage."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The troll king's regeneration is not currently deactivated.</p>\n<hr />\n<p><strong>Effect</strong> The troll king regains @Damage[15[healing]] HP.</p>",
+      "frequency": null,
+      "name": "Forced Regeneration",
+      "requirements": "The troll king's regeneration is not currently deactivated.",
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The troll king unleashes a bestial roar. Each non-troll creature within @Template[emanation|distance:100]{100 feet} must attempt a @Check[will|dc:29] save. The creature is then temporarily immune for 10 minutes.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Frightened 1</p>\n<p><strong>Failure</strong> The creature is Frightened 2</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 3</p>",
+      "frequency": null,
+      "name": "Primordial Roar",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>claw</p>\n<hr />\n<p><p>A Rend entry lists a Strike the monster has.</p>\n<p><strong>Requirements</strong> The monster hit the same enemy with two consecutive Strikes of the listed type in the same round.</p>\n<hr />\n<p><strong>Effect</strong> The monster automatically deals that Strike's damage again to the enemy.</p></p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The troll king Strides twice in a straight line. It can make up to two claw Strikes during this movement and one jaws Strike at the end of its movement. It can't Strike the same creature more than once.</p>",
+      "frequency": null,
+      "name": "Unstoppable Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 30 (Deactivated by Acid or Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "FwH05kDUlC8CwWTU",
+  "gear": [],
+  "hp": 220,
+  "hpDetails": "regeneration 30 (deactivated by acid or fire)",
+  "id": "pathfinder-bestiary/troll-king",
+  "immunities": [],
+  "languages": [
+    "jotun"
+  ],
+  "level": 10,
+  "name": "Troll King",
+  "perception": 19,
+  "publicNotes": "<p>Some trolls have learned the skills necessary to survive well beyond the typical life expectancy for their kind and rally others to follow their lead. These champions develop a number of talents that make them worthy leaders and potent hunters-namely their abilities to willingly boost the rate of their regeneration and to shake off the acid and fire that would hinder it, not to mention a bestial roar that can send would-be predators scurrying off. Troll kings possess a cunning far beyond their younger kin- they know to keep their allies close, and their enemies even closer. If a troll king so much as suspects that one of its followers is plotting to usurp it, retribution is swift and fatal.</p>\n<hr />\n<p>Slavering, cruel, practically invincible brutes: this is the villager's stock description for the dread monsters known as trolls. But words hardly do justice to trolls' capacity for destruction. They are as bloodthirsty as orcs but lacking the discipline, as massive as giants but capable of regenerating wounded flesh in an instant, and as reprobate as ogres but with twice the strength. The only way to really understand the wanton violence of a troll is to experience it firsthand-a fate few would wish even upon their worst enemies.</p>\n<p>The first thing that comes to mind when most think of trolls is the creatures' power of bodily regeneration. So potent is this regeneration that the only way to overcome it is to exploit the troll's vulnerability to acid and fire. It is not enough to slay the troll with caustic or flaming weapons, though-even the smallest scrap of a troll's flesh can regenerate into a full-size troll given enough time. The only sure way to eradicate a troll menace is to burn the monster's entire body until nothing remains.</p>\n<p>Trolls are solitary hunters, for their wickedness is anathema even to other giants. They occasionally roam in small gangs of two to four, but only when prey is plentiful or a particularly strong counterforce has broached their hunting grounds. In rare instances, an old and powerful troll comes to lead small tribes of trolls. Such \"troll kings\" possess enough cunning to lead their hordes in devastating raids and massacres, and their presence permanently alters the surrounding ecosystem. A wide variety of trolls exist, from the terrible monster traditionally associated with the name to the water-dwelling scrag and hybrid flood troll. Regional variations exist as well-mountain trolls among stony peaks, for instance, or moss trolls in swampy bayous-but all share the same trademark regenerative powers and insatiable thirst for blood.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 21,
+    "intimidation": 22,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "giant",
+    "troll"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 3,
+    "dex": 4,
+    "int": 1,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 19,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature touches the web lurker's web while the web lurker is on it.</p>\n<p><strong>Requirements</strong> Initiative has not yet been rolled.</p>\n<hr />\n<p><strong>Effect</strong> The web lurker automatically notices the creature and Strides or Climbs before rolling initiative.</p>",
+      "frequency": null,
+      "name": "Spring upon Prey",
+      "requirements": "Initiative has not yet been rolled.",
+      "traits": [],
+      "trigger": "A creature touches the web lurker's web while the web lurker is on it."
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The web lurker can speak with spiders, with the same effects and limitations as Speak with Animals.</p>",
+      "frequency": null,
+      "name": "Spider Speak",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 30 feet (Creatures Touching its Web)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:19]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 10 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage and Off-Guard (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]] damage, off-guard, and Slowed 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Web Lurker Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by the web lurker's web attack is immobilized and stuck to the nearest surface until it succeeds at @Check[acrobatics|dc:20|traits:action:escape] check to Escape.</p>",
+      "frequency": null,
+      "name": "Web Trap",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "web-lurker-venom"
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "poison"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [],
+      "effects": [
+        "web-trap"
+      ],
+      "kind": "melee",
+      "name": "Web",
+      "traits": []
+    }
+  ],
+  "foundryId": "ZMr28tFTA5NUcBTi",
+  "gear": [],
+  "hp": 45,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/web-lurker",
+  "immunities": [],
+  "languages": [
+    "aklo"
+  ],
+  "level": 3,
+  "name": "Web Lurker",
+  "perception": 10,
+  "publicNotes": "<p>Web lurkers, known also as ettercaps, are ugly monsters that not only dwell within the lairs of spiders and swarms, but actively cultivate and shepherd such vermin.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 9,
+    "crafting": 8,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

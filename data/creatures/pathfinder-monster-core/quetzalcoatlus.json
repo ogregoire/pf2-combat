@@ -1,0 +1,152 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 3,
+    "dex": 4,
+    "int": -4,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The quetzacoaltus Flies up to its Speed and makes one beak or talon Strike at any point during that movement.</p>",
+      "frequency": null,
+      "name": "Swoop",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A quetzalcoatlus can Fly at half Speed while it has a single creature Grabbed or Restrained. Both its talons are occupied while it does this.</p>",
+      "frequency": null,
+      "name": "Carry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "2d10+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "deadly-d10",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Talon",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "a4LgD3NrgkiINvru",
+  "gear": [],
+  "hp": 110,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/quetzalcoatlus",
+  "immunities": [],
+  "languages": [],
+  "level": 7,
+  "name": "Quetzalcoatlus",
+  "perception": 15,
+  "publicNotes": "<p>Quetzalcoatlus are the largest flying members of the pterosaur family and are often mistaken for dragons due to their immense size and 40-foot wingspans. Using the joints of their massive wings as forelimbs, they are also quite capable of moving on land, snatching smaller prey from the ground or out of streams.</p>\n<p>Quetzalcoatlus are carnivorous, feeding on a variety of reptiles, mammals, large fish, amphibians, and other vertebrates. They are not inherently aggressive creatures and are happy to scavenge for food, but when presented with live prey they readily attack almost any creature smaller than themselves.</p>\n<hr />\n<p>Pterosaurs are primitive flying creatures. While many are smaller than a human or even small enough to perch on a shoulder, the two presented below are quite a bit larger. Each of these creatures could pose a serious threat to a person.</p>\n<p>These flying reptiles can be found in a wide selection of regions, but they tend to soar above warm or temperate climates. They sometimes spread outside their natural range as pets and hunting companions for lizardfolk or giants. Cloud giants living in isolated valleys also train the largest pterosaurs to carry their messages to the outside world.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 14,
+    "athletics": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

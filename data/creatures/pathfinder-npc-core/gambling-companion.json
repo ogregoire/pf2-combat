@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 2,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The gambling companion is wielding cards or dice</p><hr /><p><strong>Effect</strong> The gambling companion performs a quick trick with the cards or dice to Feint, then makes a beak Strike against the same target. If the Feint succeeds, the Strike deals an additional 1d6 precision damage.</p>",
+      "frequency": null,
+      "name": "Distracting Trick",
+      "requirements": "The gambling companion is wielding cards or dice",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the gambling companion successfully Aids a skill check related to games or gambling, the ally rolls twice and takes the higher result instead of gaining the usual bonus.</p>",
+      "frequency": null,
+      "name": "Gamer's Guidance",
+      "requirements": null,
+      "traits": [
+        "fortune"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For social encounters involving gaming or gambling, the gambling companion is a 5th-level challenge</p>",
+      "frequency": null,
+      "name": "Social Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "HnitCC674ywMuqkS",
+  "gear": [
+    "Dagger",
+    "Playing Cards",
+    "Set of six ivory dice"
+  ],
+  "hp": 46,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/gambling-companion",
+  "immunities": [],
+  "languages": [
+    "common",
+    "tengu"
+  ],
+  "level": 3,
+  "name": "Gambling Companion",
+  "perception": 12,
+  "publicNotes": "<p>A reputation for protecting against bad luck, combined with skill and knowledge, establish these tengu as ideal gambling companions. Their role includes providing local knowledge of establishments as well as the various games available. Refined skills of observation and an ability to read other players increases the value of their services. The example provided is for a companion who frequents the finer establishments. For some areas, a patron would look for a companion with greater fighting skills to also fill the role of bodyguard</p><hr /><p>Originally hailing from the continent of Tian Xia, tengu have spread across the globe. Though some staunchly uphold traditions, gazing at the sky from the tallest mountaintops, other tengu remain on the ground, adapting and blending into the societies in which they settle.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "deception": 11,
+    "diplomacy": 11,
+    "society": 9,
+    "thievery": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "tengu"
+  ],
+  "weaknesses": []
+}

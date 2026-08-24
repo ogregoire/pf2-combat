@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 6,
+    "dex": 3,
+    "int": -2,
+    "str": 7,
+    "wis": 2
+  },
+  "ac": 31,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>An ofalth gains fast healing 2 when in an area with a high concentration of debris or excrement, such as a refuse heap or sewer.</p>",
+      "frequency": null,
+      "name": "Filth Wallow",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When they're not in danger, an ofalth can spend 1 minute settling into a 10-foot pile that looks like a heap of garbage. Until the next time it takes an action, the ofalth gains a +2 circumstance bonus to AC.</p>\n<p>A creature that enters the area of the garbage heap or interacts with it must attempt a save against the ofalth's stench.</p>",
+      "frequency": null,
+      "name": "Refuse Pile",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet, @Check[fortitude|dc:28]</p>\n<hr />\n<p><p>A creature entering the aura or starting its turn in the area must succeed at a Fortitude save or become Sickened 1 (plus Slowed 1 as long as it's sickened on a critical failure). A creature that succeeds at its save or recovers from being sickened is temporarily immune to all stench auras for 1 minute.</p></p>",
+      "frequency": null,
+      "name": "Stench",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "olfactory"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:26]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier with no ill effect (1 day)</p>\n<p><strong>Stage 2</strong> @Damage[2d4[bleed]]{2d4 persistent bleed} every hour and Enfeebled 1 (1 day);</p>\n<p><strong>Stage 3</strong> @Damage[2d6[bleed]]{2d6 persistent bleed} every hour and Enfeebled 2 (1 day)</p>",
+      "frequency": null,
+      "name": "Wretched Weeps",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "wretched-weeps"
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "wretched-weeps"
+      ],
+      "kind": "ranged",
+      "name": "Offal",
+      "traits": [
+        "range-increment-30"
+      ]
+    }
+  ],
+  "foundryId": "2jtRdYo9ey7osDUH",
+  "gear": [],
+  "hp": 170,
+  "hpDetails": "filth wallow",
+  "id": "pathfinder-monster-core/ofalth",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
+  ],
+  "languages": [
+    "common"
+  ],
+  "level": 10,
+  "name": "Ofalth",
+  "perception": 18,
+  "publicNotes": "<p>Fully grown ofalths capture victims and slowly eat them alive.</p>\n<hr />\n<p>Found in castle dung heaps, city dumps, and sewers, ofalths are living amalgamations of wet detritus, sewage, and rubbish. They carry a disease called wretched weeps that causes the victim's blood to seep from its pores.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 23,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

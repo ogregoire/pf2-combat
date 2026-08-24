@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 0,
+    "int": -2,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
+      "traits": [],
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hill giant makes a single greatclub Strike and compares the attack roll result to the ACs of up to two foes within its reach.</p>\n<p>This counts as two attacks for the hill giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greatclub",
+      "traits": [
+        "backswing",
+        "reach-10",
+        "shove"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "rock"
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "aqW5sp9HPgZgpXxs",
+  "gear": [
+    "Greatclub",
+    "Hide Armor",
+    "Rock",
+    "Sack for Holding Rocks"
+  ],
+  "hp": 140,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/hill-giant",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 7,
+  "name": "Hill Giant",
+  "perception": 13,
+  "publicNotes": "<p>Selfish and crude, these rough-skinned raiders are bullies and ultimately cowards. Quick-tempered and fond of violence, a hill giant gladly raids and pillages the defenseless but is quick to flee from those who are bigger, stronger, or better organized than they are. A hill giant is never above shoving or tricking one of their own kind to slow down their opponent or get the best loot.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They are divided into a number of subtypes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 19,
+    "intimidation": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

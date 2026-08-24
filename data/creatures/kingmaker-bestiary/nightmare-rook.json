@@ -1,0 +1,269 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 6,
+    "dex": 6,
+    "int": 5,
+    "str": 10,
+    "wis": 8
+  },
+  "ac": 46,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><p>The monster can use Push as a free action triggered by a hit with its initial attack.</p></p>",
+      "frequency": null,
+      "name": "Improved Push 10 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Check[reflex|dc:42]</p>\n<p><hr />\n<p>Most monsters that serve as mounts can attempt to buck off unwanted or annoying riders, but most mounts will not use this reaction against a trusted creature unless the mounts are spooked or mistreated.</p>\n<p><strong>Trigger</strong> A creature Mounts or uses the Command an Animal action while riding the monster.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must succeed at a Reflex saving throw against the listed DC or fall off the creature and land Prone. If the save is a critical failure, the triggering creature also takes @Damage[1d6[bludgeoning]] damage in addition to the normal damage for the fall.</p></p>",
+      "frequency": null,
+      "name": "Buck",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature moves from beyond the reach of the roc's wing to within the reach of the roc's wing.</p>\n<hr />\n<p><strong>Effect</strong> The roc makes a wing Strike against the triggering creature. If the roc Pushes the creature, it disrupts the triggering move action.</p>",
+      "frequency": null,
+      "name": "Wing Rebuff",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature moves from beyond the reach of the roc's wing to within the reach of the roc's wing."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The roc Flies up to its Speed and makes two talon Strikes at any point during that movement. Each Strike must target a different creature. Each attack takes the normal multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Flying Strafe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>60 feet. @Check[will|dc:39]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 20 (Deactivated by Cold Iron or Lawful)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A roc gains a +2 circumstance bonus to hit with its beak Strike if the target is Grabbed or Restrained in its talon.</p>",
+      "frequency": null,
+      "name": "Snack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A roc can Fly at half Speed while it has a creature Grabbed or Restrained in either or both of its talons, carrying that creature along with it.</p>",
+      "frequency": null,
+      "name": "Snatch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d12 + 18",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d8 + 18",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "improved-grab"
+      ],
+      "kind": "melee",
+      "name": "Talon",
+      "traits": [
+        "agile",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d8 + 18",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "improved-push"
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "reach-30"
+      ]
+    }
+  ],
+  "foundryId": "L3q7yQ0jKqH2IWy7",
+  "gear": [],
+  "hp": 380,
+  "hpDetails": "regeneration 20 (deactivated by cold iron or lawful)",
+  "id": "kingmaker-bestiary/nightmare-rook",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "fey"
+  ],
+  "level": 20,
+  "name": "Nightmare Rook",
+  "perception": 38,
+  "publicNotes": "<p>Legendarily massive raptors capable of carrying off elephants as prey, rocs are typically about 30 feet long from beak to tail and have a wingspan of 80 feet or more. While their beaks are hooked to rip flesh from bone, their hunting strategy involves grabbing their prey in their powerful talons and then dropping it from great heights before feeding. This method creates a massive amount of carrion, which guarantees that rocs are followed by flocks of opportunistic scavengers, such as ravens and buzzards, who find it easy to steal bits of the larger birds' meals. Rocs, for the most part, don't mind these creatures, which sometimes get gobbled up along with the rest of the roc's food.</p>\n<p>Rocs usually nest among mountaintops and cliffs inaccessible to all but the bravest of terrestrial dwellers. They are long-range predators that hunt both land and sea in search for massive prey to sustain them and their young. Rocs are antisocial and lone hunters who compete with each other in fierce aerial battles to protect territory. But about once a decade, a mating couple pairs up to raise their chicks. Once the chicks are old enough to hunt on their own, the parents separate to once again engage in lone hunting.</p>\n<p>Particularly skilled druids or rangers might capture and train a roc to serve as a flying mount or hunting companion, though examples of such an incredible feat of domestication are few and far between. The easiest way to rear a roc is to do so from the moment it hatches, since the chick imprints on the first creature it sees. Acquiring a roc egg is by no means an easy feat, though, and is often a death sentence for the would-be egg-snatcher.</p>",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "cold-iron"
+      ],
+      "type": "physical",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 34
+    },
+    "reflex": {
+      "detail": null,
+      "value": 34
+    },
+    "will": {
+      "detail": null,
+      "value": 38
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 34,
+    "athletics": 38,
+    "deception": 35,
+    "intimidation": 35
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 80
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 42,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Alter Reality",
+          "rank": 10
+        },
+        {
+          "name": "Weird",
+          "rank": 9
+        },
+        {
+          "name": "Phantasmal Calamity",
+          "rank": 6
+        },
+        {
+          "name": "Phantasmal Killer",
+          "rank": 4
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,318 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 7,
+    "dex": 5,
+    "int": 6,
+    "str": 10,
+    "wis": 8
+  },
+  "ac": 45,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p>Jaws only</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Jaws Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The umbral dragon breathes in one of two ways. They can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>\n<ul>\n<li><strong>Void</strong> The dragon breathes a blast of darkness in a @Template[cone|distance:50] that deals @Damage[21d6[void]|options:area-damage] damage (@Check[reflex|dc:42|basic|options:area-effect] save). Undead creatures take @Damage[25d6[force]|options:area-damage] damage instead of the void damage.</li>\n<li><p><strong>Shadows</strong> The dragon breathes a blast of shadows in a @Template[cone|distance:50]. Each creature within the cone must attempt a @Check[fortitude|dc:42|options:area-effect] save.</p>\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Enfeebled 3 for 1 round.</p>\n<p><strong>Failure</strong> The creature is Enfeebled 3 for 1 minute.</p>\n<p><strong>Critical Failure</strong> The creature is Enfeebled 3 for 1 minute and Blinded for 1 round.</p>\n</li>\n</ul>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "primal",
+        "shadow",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the dragon deals void damage to a living creature with its jaws Strike, the umbral dragon gains 20 temporary Hit Points and the creature must succeed at a @Check[fortitude|dc:41] save or become Enfeebled 2. Further damage dealt by the dragon's jaws Strike increases the enfeebled condition value by 2 on a failed save, to a maximum of enfeebled 4.</p>\n<p>Effect: Drain Vigor</p>",
+      "frequency": null,
+      "name": "Drain Vigor",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:40]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An umbral dragon's Strikes affect incorporeal creatures with the effects of a <em>Ghost Touch</em> property rune, and an umbral dragon's jaws deal an additional @Damage[8d6[force]] damage to undead.</p>",
+      "frequency": null,
+      "name": "Ghost Bane",
+      "requirements": null,
+      "traits": [
+        "incorporeal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d10+18",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d10+18",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "4d6",
+          "type": "void"
+        }
+      ],
+      "effects": [
+        "drain-vigor"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed",
+        "void"
+      ]
+    },
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d12+18",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    },
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+18",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "WfzhHOqGb3bR1e7e",
+  "gear": [],
+  "hp": 375,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/umbral-dragon-ancient-spellcaster",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void"
+    }
+  ],
+  "languages": [
+    "common",
+    "daemonic",
+    "draconic",
+    "necril",
+    "shadowtongue"
+  ],
+  "level": 20,
+  "name": "Umbral Dragon (Ancient, Spellcaster)",
+  "perception": 36,
+  "publicNotes": "<p>While the other primal dragons hail from the Elemental Planes, the cruel and unceasingly malicious umbral dragons originate in the depths of the Shadow Plane. Their sleek black scales and serpentine grace allow them to strike from hiding, and they are known for playing with their prey before finally finishing it. These creatures of shadowy energy and unwholesome appetites prefer the necrotic flesh of undead creatures to any other meal. This strange hunger can be of accidental benefit to nearby humanoid societies, but ultimately they hunt and kill undead creatures for the taste, rather than out of any desire to protect others from the undead. The benefit is always short-lived, however. When umbral dragons exhaust their preferred prey, they turn on whatever living creatures happen to be nearby. Umbral dragons sometimes go to great lengths to obtain their favorite meals, even creating undead creatures that they then feast upon.</p>\n<p>For all their power, umbral dragons are uninterested in fair battles. When faced with foes that pose any kind of actual danger to them, umbral dragons flee into the shadows and seek to strike back through pawns or minions rather than risk their own lives. Their treasure hoards are varied and diverse, often augmented by loot stolen from crypts the dragons have turned into feeding grounds. They have a strong respect for and interest in traditions and heirlooms, and they often seek to augment their hoards with items of great value that have been handed down through the generations of those whose corpses and ghosts they've fed upon.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 35
+    },
+    "reflex": {
+      "detail": null,
+      "value": 33
+    },
+    "will": {
+      "detail": null,
+      "value": 38
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 33,
+    "athletics": 38,
+    "deception": 34,
+    "intimidation": 36,
+    "nature": 34,
+    "stealth": 35,
+    "survival": 34
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 60
+    },
+    {
+      "type": "fly",
+      "value": 200
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 32,
+      "dc": 42,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Massacre",
+          "rank": 10
+        },
+        {
+          "name": "Darkness (At Will)",
+          "rank": 9
+        },
+        {
+          "name": "Vampiric Exsanguination",
+          "rank": 8
+        },
+        {
+          "name": "Finger of Death",
+          "rank": 7
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "shadow"
+  ],
+  "weaknesses": []
+}

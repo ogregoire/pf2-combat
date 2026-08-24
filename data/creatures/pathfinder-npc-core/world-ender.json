@@ -1,0 +1,162 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 7,
+    "dex": 3,
+    "int": 7,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 36,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> Throughout combat, the world ender ceaselessly expounds upon the righteous reasons for their destructive aims and the futility of their enemies' efforts to stop them. They gain a +1 status bonus to Will saves and a +2 status bonus to damage rolls with their spells. Each time they take this action again, the bonuses increase by 1 and 2, respectively. The monologue ends (and the bonuses are lost) if the world ender becomes unable to act or speak, or if they end their turn without having taken this action.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Monologue",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The world ender would be reduced to 0 HP</p>\n<p><strong>Requirements</strong> The world ender has a volcanic eruption spell remaining</p><hr /><p><strong>Effect</strong> The world ender refuses to let their destructive dream go unrealized, stabilizing at 1 HP just long enough to cast Volcanic Eruption, centered on themself. They die, immolated in the eruption.</p>",
+      "frequency": null,
+      "name": "Unyielding Purpose",
+      "requirements": "The world ender has a volcanic eruption spell remaining",
+      "traits": [],
+      "trigger": "The world ender would be reduced to 0 HP"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>If the next action the world ender uses is to Cast a Spell, the spell ignores 20 resistance to energy damage. This applies to all damage the spell deals, including persistent damage and damage caused by an ongoing effect of the spell. A creature's immunities are unaffected.</p>",
+      "frequency": null,
+      "name": "Overwhelming Energy",
+      "requirements": null,
+      "traits": [
+        "spellshape"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        },
+        {
+          "category": null,
+          "formula": "3d6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+10",
+          "type": "bludgeoning"
+        },
+        {
+          "category": null,
+          "formula": "3d6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff of Fire",
+      "traits": [
+        "magical",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "Vp2PPBttJl1h8iZe",
+  "gear": [
+    "Staff of Fire (Major)"
+  ],
+  "hp": 275,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/world-ender",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 16,
+  "name": "World Ender",
+  "perception": 25,
+  "publicNotes": "<p>Unlike most villains, world enders are unburdened by nuance. Their ultimate goal is simple, if lofty: destroy the world and everyone in it.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 30
+    },
+    "reflex": {
+      "detail": null,
+      "value": 26
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "intimidation": 28,
+    "nature": 27,
+    "religion": 25,
+    "society": 27
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

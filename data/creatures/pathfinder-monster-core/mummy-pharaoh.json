@@ -1,0 +1,255 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 2,
+    "int": 0,
+    "str": 5,
+    "wis": 5
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>The mummy pharaoh can use Reactive Strike when a creature within its reach uses a concentrate action, in addition to its normal trigger. It can disrupt triggering concentrate actions, and it disrupts actions on any hit, not just a critical hit.</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike (Special)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Sand whirls around the mummy pharaoh in a @Template[emanation|distance:5] until the beginning of their next turn. Creatures inside the sand are Concealed to those outside it and any living creature ending its turn within the sand takes @Damage[4d6[slashing]] damage with a @Check[fortitude|dc:28|basic] save</p>\n<p>Veil of Sand ends if the mummy takes damage from their water weakness.</p>",
+      "frequency": null,
+      "name": "Veil of Sand",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "earth"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mummy pharaoh exhales a @Template[cone|distance:60] of superheated sand that deals @Damage[5d6[fire],5d6[slashing]]{5d6 fire and 5d6 slashing damage} (@Check[reflex|dc:28|basic] save).</p>\n<p>The mummy pharaoh can't use Sandstorm Wrath again for [[/gmr 1d4 #Recharge use Sandstorm Wrath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Sandstorm Wrath",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "earth",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Vitality",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a mummy pharaoh is destroyed, necromantic energies rebuild its body in its tomb over [[/gmr 1d10 #Days to Rejuvenate]]{1d10 days}. If the body is destroyed during that time, the process starts anew. A reforming mummy pharaoh is destroyed permanently if their tomb is consecrated.</p>",
+      "frequency": null,
+      "name": "Rejuvenation",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a creature deals physical damage to the pharaoh or triggers one of the pharaoh's weaknesses, it must succeed at a @Check[will|dc:28] save or become Doomed 1.</p>\n<p>Regardless of the results of the save, the creature is then immune to that mummy's sacred wrappings for 24 hours.</p>",
+      "frequency": null,
+      "name": "Sacred Wrappings",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>100 feet.</p>\n<p>Commanded or allied undead in the aura that have a lower level than the mummy pharaoh gain a +1 circumstance bonus to attack rolls, damage rolls, AC, saves, and skill checks.</p>\n<p>Effect: Undead Mastery</p>",
+      "frequency": null,
+      "name": "Undead Mastery",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+11",
+          "type": "bludgeoning"
+        },
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "void"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "void"
+        },
+        {
+          "category": null,
+          "formula": "2d8+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longspear",
+      "traits": [
+        "magical",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "Ro49rEZwBLkkoEKE",
+  "gear": [
+    "Longspear"
+  ],
+  "hp": 175,
+  "hpDetails": "sacred wrappings, void healing",
+  "id": "pathfinder-monster-core/mummy-pharaoh",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "necril"
+  ],
+  "level": 9,
+  "name": "Mummy Pharaoh",
+  "perception": 20,
+  "publicNotes": "<p>While mummy guardians are undead crafted from the corpses of sacrificed—usually unwilling victims—and retain only fragments of their memories, a mummy pharaoh is the result of a deliberate embrace of undeath by a sadistic and cruel ruler. The transformation from life to undeath beneath the scorching desert sand is only somewhat less awful, but as the transition is an intentional bid to escape death by a powerful personality who fully embraces the blasphemous repercussions of the choice, the mummy pharaoh retains its memories and personality intact.</p>\n<hr />\n<p>While many cultures practice mummification for benign reasons, undead mummies are created through grueling rituals, typically to provide eternally vigilant guardians. Much more rarely, a body mummified without those special rites can rise again due to its hatred of the living.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "deception": 18,
+    "intimidation": 20,
+    "occultism": 15,
+    "religion": 20,
+    "stealth": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mummy",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "water",
+      "value": 10
+    }
+  ]
+}

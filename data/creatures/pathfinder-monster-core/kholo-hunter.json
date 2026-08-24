@@ -1,0 +1,154 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 3,
+    "int": -1,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A kholo hunter deals 1d4 extra damage to any creature that's within reach of at least two of the kholo hunter's allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A kholo ignores the first square of difficult terrain they move into each time they Step or Stride.</p>",
+      "frequency": null,
+      "name": "Rugged Travel",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+4",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Battle Axe",
+      "traits": [
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-60"
+      ]
+    }
+  ],
+  "foundryId": "qOAuCiPgsjpjDgA1",
+  "gear": [
+    "Arrows",
+    "Battle Axe",
+    "Leather Armor",
+    "Shortbow"
+  ],
+  "hp": 29,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/kholo-hunter",
+  "immunities": [],
+  "languages": [
+    "common",
+    "kholo"
+  ],
+  "level": 2,
+  "name": "Kholo Hunter",
+  "perception": 7,
+  "publicNotes": "<p>Kholo are tall, hyena-headed humanoids who dwell in savannas, warm grasslands, and arid hills. Given their appearance, their affinity for hyenas should not be surprising; kholos share their homes, food, and even many of their behaviors with these animals. Much like hyenas, kholos have a notorious reputation, for much the same reason—their uncanny laughter, frightening intelligence, and efficient pack tactics make them intimidating competition or foes. Kholos are keen to lean into these rumors, using them as a form of psychological warfare against their enemies.</p>\n<p>Also like hyenas, kholos prefer to hunt in packs, and are exceptionally skilled at setting up ambushes or separating individual targets from larger groups. As kholo packs value all their members highly, any tactic that gives them an advantage in dangerous situations is seen as virtuous, while chivalry and honor are derided as pointlessly risky. It's a philosophy borne from a deep respect and love for their kholo brethren, but to most other people, it makes kholos terrible neighbors.</p>\n<p>Kholos willingly eat nearly any other creature, including dead kholos, which can evoke strong reactions from people and cultures with a taboo against cannibalism or desecrating the dead. To a kholo, it's often more offensive to not eat a dead body, no matter its origin; kholos see no point in wasting precious meat in a harsh and challenging world. Worse still is the refusal to eat the flesh of a dead kholo, which they consider an insult to that kholo's memory and an implication that their flesh is unworthy of consumption. Eating the flesh of honored enemies is, for kholos, a respectful ritual, allowing that being to live on within the pack instead of rotting like trash on the ground.</p>\n<p>Kholo women are often larger and stronger than kholo men and are typically considered the leaders of their hunting packs and clans.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 8,
+    "intimidation": 4,
+    "stealth": 7,
+    "survival": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "gnoll",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

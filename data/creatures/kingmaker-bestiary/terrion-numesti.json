@@ -1,0 +1,106 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Terrion gains a +2 circumstance bonus on attack and damage rolls as long as he is adjacent to at least two other allies.</p>",
+      "frequency": null,
+      "name": "Formation Fighter",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "unarmed",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "etrlNmJRUWDKbKwG",
+  "gear": [],
+  "hp": 155,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/terrion-numesti",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 9,
+  "name": "Terrion Numesti",
+  "perception": 18,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 20,
+    "intimidation": 18
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

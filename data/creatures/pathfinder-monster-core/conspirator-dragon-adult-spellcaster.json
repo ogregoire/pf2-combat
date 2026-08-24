@@ -1,0 +1,313 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 4,
+    "dex": 3,
+    "int": 5,
+    "str": 5,
+    "wis": 5
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The dragon is hit or critically hit by an attack made by a creature the dragon can see</p>\n<hr />\n<p><strong>Effect</strong> The dragon retracts the targeted body part or twists away to avoid the attack, gaining a +2 circumstance bonus to AC against the triggering attack.</p>",
+      "frequency": null,
+      "name": "Retract Body",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The dragon is hit or critically hit by an attack made by a creature the dragon can see"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The dragon is wearing their conjured disguise</p>\n<hr />\n<p><strong>Effect</strong> The dragon erupts from the disguise, destroying it. The explosive revelation deals @Damage[13d6[bludgeoning]] damage to creatures in a @Template[emanation|distance:5] with a @Check[reflex|dc:31|basic] save. A creature that fails its save is Dazzled for 1 round as it becomes covered in scraps from the disguise.</p>\n<p>Any creature sharing a space with the dragon after they erupt is pushed into the nearest empty space.</p>",
+      "frequency": null,
+      "name": "Detonate Disguise",
+      "requirements": "The dragon is wearing their conjured disguise",
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon unleashes a noxious cloud of smoke that deals @Damage[10d6[poison]] damage in a @Template[cone|distance:50] (@Check[fortitude|dc:33|basic] save). The smoke remains for 1 minute. This has the effects of Mist, except it fills the cone's area.</p>\n<p>The dragon can't use Smoke Breath again for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Smoke Breath",
+      "requirements": null,
+      "traits": [
+        "occult",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<hr />\n<p><strong>Effect</strong> Using the aid of magic and an exhausting amount of effort, the dragon quickly reshapes their body into the form of a generic humanoid figure. This has the effects of Humanoid Form except that it lasts only 1 minute, and the dragon doesn't gain the +4 status bonus to Deception as the transformation makes use of the dragon's body to crudely mimic a humanoid form. The dragon can Dismiss the effect.</p>\n<p>Whenever the effect ends, the dragon leaves behind scraps of magically conjured flesh, which could give away the dragon's presence.</p>",
+      "frequency": null,
+      "name": "Rushed Transformation",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "manipulate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Occult",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The dragon conjures a perfect flesh-suit replica of a humanoid they've seen of their size or smaller and compresses themself into it, along with generating appropriate clothing for the humanoid. This process takes 1 minute to complete, during which the dragon is Off-Guard. If the dragon stops or is interrupted in this process, the suit is destroyed. Once the process is complete, the dragon can remain in this disguise indefinitely.</p>\n<p>The transformation has the effects of Change Shape, except that the disguise is not actively magical in nature and doesn't register as magical to detect magic and similar effects. The dragon loses Retract Body while transformed.</p>\n<p>If the dragon is critically hit while wearing the disguise, the suit is destroyed and immediately explodes. This has the effects of Detonate Disguise, except that creatures use the outcome one degree of success better than they rolled on their save.</p>",
+      "frequency": null,
+      "name": "Conjure Disguise",
+      "requirements": null,
+      "traits": [
+        "manipulate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon's Strikes deal an additional 2d6 precision damage to Off-Guard targets.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d6+11",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d6+6",
+          "type": "mental"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Mental Blast",
+      "traits": [
+        "mental",
+        "range-100"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "T0OAOkmk4xz0wvjJ",
+  "gear": [],
+  "hp": 215,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/conspirator-dragon-adult-spellcaster",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "shadowtongue",
+    "sussuran"
+  ],
+  "level": 12,
+  "name": "Conspirator Dragon (Adult, Spellcaster)",
+  "perception": 23,
+  "publicNotes": "<p>Hidden among the shadows and upper echelons of society are the conspirator dragons. These dragons are schemers, always looking to manipulate and control others, either for personal gain or simply for the thrill of watching their machinations play out. Conspirator dragons see themselves above others and typically speak with infantilizing tones and words. However, as most conspirator dragons meet others while in disguise, they do their best to maintain their disguise.</p>\n<hr />\n<p>Dragons come in myriad forms, with many having magical abilities or connections to magic. Some dragons draw greater power from magic than others, allowing them to manifest abilities or alter their physiques with prolonged exposure to magic. These dragons become more powerful as they age and strengthen their connections with their magical origins. Scholars debate the classification of these dragons, with some preferring the name magical dragons and others using traditional dragons due to their connection to specific magical traditions. Regardless of their names, these dragons share a number of characteristics: their ability to tap into magical energies, intensified might and cunning as they grow older, and an inclination to hoard vast amounts of treasure and wealth.</p>\n<h2>Draconic Spellcasters</h2>\n<p>Each dragon features a sidebar on spellcasting dragons of that type. To make a dragon spellcaster, remove the dragon's Draconic Frenzy and Draconic Momentum abilities, and give them the spells outlined in their sidebar. You can swap out any number of these with other spells, provided you keep the same number of spells for each rank. You might also want to increase the dragon's Intelligence, Wisdom, or Charisma modifier by 1 or 2 to reflect their mastery of magic.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 21,
+    "athletics": 23,
+    "deception": 25,
+    "diplomacy": 25,
+    "intimidation": 23,
+    "occultism": 23,
+    "performance": 25,
+    "society": 23,
+    "stealth": 21
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "climb",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 140
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 24,
+      "dc": 32,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Mind Probe",
+          "rank": 5
+        },
+        {
+          "name": "Rewrite Memory",
+          "rank": 4
+        },
+        {
+          "name": "Mind Reading (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Charm (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "occult"
+  ],
+  "weaknesses": []
+}

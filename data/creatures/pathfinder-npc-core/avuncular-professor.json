@@ -1,0 +1,223 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 0,
+    "int": 4,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When it comes to wining and dining or other social situations, the avuncular professor is an 8th-level challenge.</p>",
+      "frequency": null,
+      "name": "Academic Politics Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The avuncular professor may cultivate the appearance of an unworldly academic, but they know how to stick the rhetorical knife in. Once per hour, if the avuncular professor succeeds at a Deception or Diplomacy check, they can choose to roll a Society or Academia Lore check at the same DC—if they succeed on the second check, the initial success is upgraded to a critical success, though if they fail the second check, their initial success also turns into a failure.</p>",
+      "frequency": null,
+      "name": "Duelist of Wits",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Sword Cane",
+      "traits": [
+        "agile",
+        "concealable"
+      ]
+    }
+  ],
+  "foundryId": "hZ2ch39MaaKFKgtJ",
+  "gear": [
+    "Clothing (Fine)",
+    "Copy of a book that they wrote",
+    "Sword Cane",
+    "Writing Set"
+  ],
+  "hp": 75,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/avuncular-professor",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Avuncular Professor",
+  "perception": 12,
+  "publicNotes": "<p>These world-wise scholars know that there's more to life than just research. There are also good meals at the university refectory, comfortable beds, and captive audiences of students.</p><hr /><p>True power comes from knowledge—the power to shape the growth of kingdoms by mere whispers, stay three steps ahead of adversaries, or even know which flora is best for creating untraceable poisons.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 18,
+    "diplomacy": 18,
+    "occultism": 12,
+    "performance": 18,
+    "society": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Occult Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Uplifting Overture",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 2,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Enthrall",
+          "rank": 3
+        },
+        {
+          "name": "Hypnotize",
+          "rank": 3
+        },
+        {
+          "name": "Calm",
+          "rank": 2
+        },
+        {
+          "name": "Laughing Fit",
+          "rank": 2
+        },
+        {
+          "name": "Translate",
+          "rank": 2
+        },
+        {
+          "name": "Command",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

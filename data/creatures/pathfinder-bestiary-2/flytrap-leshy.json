@@ -1,0 +1,232 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>A flytrap leshy can combine itself with an adjacent and willing flytrap leshy that is not currently affected by Amalgam. The leshy using Amalgam physically merges with the target, restoring @Damage[3d8[healing]] Hit Points to the target.</p>\n<p>The leshy can Sustain a Spell to continue Amalgam, but once they stop, the target leshy takes [[/r {3d8}]]{3d8 damage}. If the target leshy dies, Amalgam ends at once and the original leshy gains the Dying condition or increases their dying condition value by 1 if they were already dying.</p>\n<p>As long as Amalgam is sustained, the target leshy gains a +1 status bonus to attack rolls and saving throws, its AC increases to 21, and it gains an additional reaction at the start of each turn.</p>",
+      "frequency": null,
+      "name": "Amalgam",
+      "requirements": null,
+      "traits": [
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The flytrap leshy transforms into a Small flytrap. This ability otherwise uses the effects of One with Plants.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:19]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> Sickened 1 (1 round),</p>\n<p><strong>Stage 2</strong> Sickened 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Flytrap Toxin",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a flytrap leshy dies, a burst of primal energy explodes from its body, restoring @Damage[3d6[healing]] Hit Points to each plant creature in a @Template[emanation|distance:30].</p>\n<p>This area immediately fills with flytraps, becoming difficult terrain. If the terrain is not a viable environment for these flytraps, they wither after 24 hours.</p>",
+      "frequency": null,
+      "name": "Verdant Burst",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "plant"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "flytrap-toxin"
+      ],
+      "kind": "melee",
+      "name": "Flytrap Hand",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "flytrap-toxin"
+      ],
+      "kind": "melee",
+      "name": "Flytrap Mouth",
+      "traits": [
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "acid"
+        }
+      ],
+      "effects": [
+        "flytrap-toxin"
+      ],
+      "kind": "ranged",
+      "name": "Spittle",
+      "traits": [
+        "acid",
+        "range-increment-10"
+      ]
+    }
+  ],
+  "foundryId": "vHTvuteLd2kYX3ib",
+  "gear": [],
+  "hp": 72,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/flytrap-leshy",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "wildsong"
+  ],
+  "level": 4,
+  "name": "Flytrap Leshy",
+  "perception": 11,
+  "publicNotes": "<p>While often seen as unfriendly by non-leshys, flytrap leshys get along well with other leshys. Nonetheless, they're among the most aggressive leshys, often guarding the most vulnerable places in the natural world with their flytrap mouths and hands.</p>\n<p>When a large threat emerges, pairs of flytrap leshys band together to create amalgams capable of driving back powerful foes. This unusual form of communal defense suffuses flytrap leshy society, and they often form relationships between multiple individuals that would confuse or even scandalize more uptight humanoids-to a flytrap leshy, though, there's nothing strange about sharing your innermost secrets with people you literally merged together with to defend your home from an enemy.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 12,
+    "nature": 10,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 11,
+      "dc": 21,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Speak with Plants",
+          "rank": 4
+        },
+        {
+          "name": "Pass Without Trace",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "leshy",
+    "plant"
+  ],
+  "weaknesses": []
+}

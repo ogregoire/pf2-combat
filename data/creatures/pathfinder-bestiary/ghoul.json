@@ -1,0 +1,208 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 4,
+    "int": 1,
+    "str": 1,
+    "wis": 2
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The ghoul is adjacent to the corpse of a creature that died within the last hour.</p><hr /><p><strong>Effect</strong> The ghoul devours a chunk of the corpse and regains @Damage[1d6[healing]] Hit Points.</p>\n<p>It can regain Hit Points from any given corpse only once.</p>",
+      "frequency": null,
+      "name": "Consume Flesh",
+      "requirements": "The ghoul is adjacent to the corpse of a creature that died within the last hour.",
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ghoul jumps up to half its Speed. This movement doesn't trigger reactions.</p>",
+      "frequency": null,
+      "name": "Swift Leap",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:15]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier with no ill effect (1 day)</p>\n<p><strong>Stage 2</strong> @Damage[2d6[void]] damage and regains half as many Hit Points from all healing (1 day)</p>\n<p><strong>Stage 3</strong> as stage 2 (1 day)</p>\n<p><strong>Stage 4</strong> @Damage[2d6[void]] damage and gains no benefit from healing (1 day)</p>\n<p><strong>Stage 5</strong> as stage 4 (1 day)</p>\n<p><strong>Stage 6</strong> dead, and rises as a Ghoul the next midnight.</p>",
+      "frequency": null,
+      "name": "Ghoul Fever",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any living, non-elf creature hit by a ghoul's attack must succeed at a @Check[fortitude|dc:15] save or become Paralyzed. It can attempt a new save at the end of each of its turns, and the DC cumulatively decreases by 1 on each such save.</p>",
+      "frequency": null,
+      "name": "Paralysis",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "ghoul-paralysis"
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "ghoul-ghoul-fever",
+        "ghoul-paralysis"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "LHHgGSs0ELCR4CYK",
+  "gear": [],
+  "hp": 20,
+  "hpDetails": "void healing",
+  "id": "pathfinder-bestiary/ghoul",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 1,
+  "name": "Ghoul",
+  "perception": 7,
+  "publicNotes": "<p>Ghouls are ravenous undead who haunt graveyards and eat corpses.</p>\n<hr />\n<p>Few creatures are more ubiquitous to sinister locations such as lonely graveyards and ruined crypts than the flesh-eating undead known as ghouls.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 4,
+    "stealth": 7,
+    "survival": 5
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "burrow",
+      "value": 5
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "ghoul",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

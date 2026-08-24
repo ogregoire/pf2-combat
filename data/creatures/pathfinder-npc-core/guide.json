@@ -1,0 +1,149 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 1,
+    "int": 1,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The guide is about to roll a Perception or Survival check to determine their initiative</p><hr /><p><strong>Effect</strong> The guide visually or audibly warns allies, granting them a +1 circumstance bonus to their initiative rolls. This bonus increases to +2 if the guide was Scouting. Depending on how the guide warns allies, this action has the auditory or visual trait.</p>\n<p>Effect: Guide's Warning</p>",
+      "frequency": null,
+      "name": "Guide's Warning",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The guide is about to roll a Perception or Survival check to determine their initiative"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The guide points out a weakness of a creature within 30 feet. Until the start of the guide's next turn, the guide and all allies that can hear the guiding words gain a +1 circumstance bonus to attack rolls against that creature, and the guide's Strikes deal an extra 1d4 precision damage to that creature.</p>\n<p>Effect: Guiding Words (Guide)</p>",
+      "frequency": null,
+      "name": "Guiding Words",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greataxe",
+      "traits": [
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "ndCqM6yNTg2QPZwK",
+  "gear": [
+    "Arrows",
+    "Composite Shortbow",
+    "Greataxe",
+    "Scale Mail"
+  ],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/guide",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Guide",
+  "perception": 14,
+  "publicNotes": "<p>Guides bring travelers, tourists, and adventurers into the wondrous natural world, using their expertise to avoid deadly monsters and gruesome hazards.</p><hr /><p>Explorers are often well-equipped and well-trained for any type of hazard and are eager to lead others into the wild.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 12,
+    "nature": 8,
+    "stealth": 10,
+    "survival": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

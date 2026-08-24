@@ -1,0 +1,174 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 3,
+    "int": 1,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Requirements</strong> The tengu bladesmith's previous action this turn was a Strike that failed or critically failed</p><hr /><p><strong>Effect</strong> The tengu bladesmith Strikes the same target, who is Off-Guard against this attack. On a hit, the bladesmith deals 1d6 additional precision damage.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Feinting Failure",
+      "requirements": "The tengu bladesmith's previous action this turn was a Strike that failed or critically failed",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The tengu bladesmith Interacts to draw a weapon in the sword group, then attempts to [[/act disarm]] a weapon held by a foe within reach. The weapon the tengu bladesmith draws gains the disarm trait for this attempt.</p>",
+      "frequency": null,
+      "name": "Swirling Blade",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Cold Iron Wakizashi",
+      "traits": [
+        "agile",
+        "cold-iron",
+        "deadly-d8",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d4",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Katana",
+      "traits": [
+        "deadly-d8",
+        "magical",
+        "two-hand-d10",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "YBNskadw9c8n1E21",
+  "gear": [
+    "Katana",
+    "Wakizashi"
+  ],
+  "hp": 100,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/tengu-bladesmith",
+  "immunities": [],
+  "languages": [
+    "common",
+    "tengu"
+  ],
+  "level": 6,
+  "name": "Tengu Bladesmith",
+  "perception": 14,
+  "publicNotes": "<p>With the tengu diaspora spreading across much of Golarion, their knowledge and tradition of blade crafting has been passed through the generations to those who show interest and aptitude. Many tengu bladesmiths have experience as warriors; others learn their sword craft to improve their knowledge and understanding of the weapons they produce.</p><hr /><p>Originally hailing from the continent of Tian Xia, tengu have spread across the globe. Though some staunchly uphold traditions, gazing at the sky from the tallest mountaintops, other tengu remain on the ground, adapting and blending into the societies in which they settle.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 14,
+    "athletics": 16,
+    "crafting": 16,
+    "deception": 14,
+    "intimidation": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "tengu"
+  ],
+  "weaknesses": []
+}

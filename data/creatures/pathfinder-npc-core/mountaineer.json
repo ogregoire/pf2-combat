@@ -1,0 +1,232 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> The mountaineer critically fails a check to Balance or Climb</p><hr /><p><strong>Effect</strong> Training kicks in, and the mountaineer catches themself, improving the check from a critical failure to a failure.</p>",
+      "frequency": null,
+      "name": "Lost My Footing",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The mountaineer critically fails a check to Balance or Climb"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The mountaineer Interacts to draw their hatchet or pick, then Strikes with the weapon.</p>",
+      "frequency": null,
+      "name": "Quick Draw",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A creature is undetected by one or more of the mountaineer's allies but is observed by the mountaineer</p><hr /><p><strong>Effect</strong> The mountaineer Points Out an enemy and makes a Strike against them.</p>",
+      "frequency": null,
+      "name": "Team Awareness",
+      "requirements": "A creature is undetected by one or more of the mountaineer's allies but is observed by the mountaineer",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "2",
+      "description": "<p>The mountaineer Strides twice and Leaps up to 20 feet horizontally.</p>",
+      "frequency": null,
+      "name": "Chasm Crossing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The mountaineer ignores difficult terrain caused by ice or snow.</p>",
+      "frequency": null,
+      "name": "Arctic Passage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A mountaineer isn't impeded by difficult terrain caused by snow or ice. They gain a +2 circumstance bonus to Acrobatics checks to Balance on slippery ice.</p>",
+      "frequency": null,
+      "name": "Experienced Steps",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>While climbing, the mountaineer can have up to five allies Following the Expert and grants a +3 circumstance bonus to Athletics checks to Climb.</p>",
+      "frequency": null,
+      "name": "Professional Climber",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>During an avalanche, the mountaineer gains a +2 circumstance bonus to their Reflex save against bludgeoning damage and natural disasters.</p>",
+      "frequency": null,
+      "name": "Tuck and Roll",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep",
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Pick",
+      "traits": [
+        "fatal-d10"
+      ]
+    }
+  ],
+  "foundryId": "lX6pkCTREEzPzmuY",
+  "gear": [
+    "Chalk",
+    "Climbing Kit (Extreme)",
+    "Compass",
+    "Hatchet",
+    "Hide Armor",
+    "Pick",
+    "Spyglass",
+    "Survey Map"
+  ],
+  "hp": 80,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/mountaineer",
+  "immunities": [],
+  "languages": [
+    "common",
+    "petran",
+    "pyric"
+  ],
+  "level": 5,
+  "name": "Mountaineer",
+  "perception": 15,
+  "publicNotes": "<p>Mountaineers usually travel solo, but some guide expeditions into dangerous terrain.</p><hr /><p>Explorers are often well-equipped and well-trained for any type of hazard and are eager to lead others into the wild.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 13,
+    "nature": 12,
+    "survival": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

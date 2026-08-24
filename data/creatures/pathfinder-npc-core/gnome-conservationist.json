@@ -1,0 +1,162 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 1,
+    "int": 2,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>With a primal incantation, the gnome conservationist inspires a willing animal. The animal becomes Quickened for 1 round. It can use this additional action only to Climb, Burrow, Fly, Stride, or Strike.</p>",
+      "frequency": null,
+      "name": "Wild Leadership",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The conservationist can ask questions of, receive answers from, and use the Diplomacy skill with animals.</p>",
+      "frequency": null,
+      "name": "Animal Elocutionist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Sling",
+      "traits": [
+        "magical",
+        "propulsive",
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Trowel",
+      "traits": [
+        "agile",
+        "finesse",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "V2wfIJdGvD4mQ1pU",
+  "gear": [
+    "Seeds (Functions as Sling Bullets)",
+    "Sling",
+    "Trowel (Functions as a Sickle)"
+  ],
+  "hp": 100,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/gnome-conservationist",
+  "immunities": [],
+  "languages": [
+    "common",
+    "gnomish"
+  ],
+  "level": 6,
+  "name": "Gnome Conservationist",
+  "perception": 17,
+  "publicNotes": "<p>The natural world boasts unsurpassed beauty and countless variety, and the gnome conservationist is devoted to experiencing and protecting as many examples of this grandeur as they possibly can. These gnomes are stalwart allies to animals and plants, and they find it exceptionally easy to build an outstanding rapport with almost all creatures they encounter on their travels.</p><hr /><p>Because their ancestors came from the First World, gnomes are intrinsically linked to the realm of the fey and crave the mystical and unpredictable. They seek to create daring works of art, voyage to new places, and have experiences they've never had before. Otherwise, they could fall victim to the terrible gnomish illness known as the Bleaching, which not only drains them of their color but of their spirits as well.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 13,
+    "crafting": 11,
+    "nature": 15,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "gnome",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

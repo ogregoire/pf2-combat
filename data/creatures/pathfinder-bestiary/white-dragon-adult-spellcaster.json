@@ -1,0 +1,301 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 5,
+    "dex": 2,
+    "int": 1,
+    "str": 7,
+    "wis": 2
+  },
+  "ac": 29,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An adjacent creature deals piercing or slashing damage to the dragon.</p>\n<hr />\n<p><strong>Effect</strong> The dragon's blood sprays on the creature, dealing @Damage[2d6[cold]] damage. A creature that takes cold damage in this way is Slowed 1 for 1 round.</p>",
+      "frequency": null,
+      "name": "Freezing Blood",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "cold"
+      ],
+      "trigger": "An adjacent creature deals piercing or slashing damage to the dragon."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dragon slams into the ground. It can do this if it's on the ground or Flying within 10 feet of the ground. Each creature on the ground within @Template[emanation|distance:10]{10 feet} must succeed at a @Check[reflex|dc:29|traits:damaging-effect] save or fall Prone and take @Damage[3d6[bludgeoning]] damage.</p>\n<p>The dragon can then Step.</p>",
+      "frequency": null,
+      "name": "Ground Slam",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a cloud of frost that deals @Damage[11d6[cold]|options:area-damage] damage in a @Template[cone|distance:40] (@Check[reflex|dc:29|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "cold"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon reshapes a cube of ice or snow it touches, up to 10 feet across. Any creature standing atop the ice must succeed at a @Check[reflex|dc:15] save or @Check[acrobatics|dc:15] check.</p>\n<p>On a failure, the creature falls Prone atop the ice; on a critical failure, it falls off the ice entirely and is also prone.</p>",
+      "frequency": null,
+      "name": "Shape Ice",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>5 feet. @Damage[2d6[cold]] damage (@Check[reflex|dc:27|basic] save)</p>",
+      "frequency": null,
+      "name": "Dragon Chill",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "aura",
+        "cold"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:27]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A white dragon can climb on ice as though it had the listed climb Speed. It ignores difficult terrain and greater difficult terrain from ice and snow and doesn't risk falling when crossing ice.</p>",
+      "frequency": null,
+      "name": "Ice Climb",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Snow doesn't impair a white dragon's vision; it ignores concealment from snowfall.</p>",
+      "frequency": null,
+      "name": "Snow Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+13",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "cold"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "cold",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "MhEfUXkSfLtgpmfE",
+  "gear": [],
+  "hp": 215,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/white-dragon-adult-spellcaster",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic"
+  ],
+  "level": 10,
+  "name": "White Dragon (Adult, Spellcaster)",
+  "perception": 20,
+  "publicNotes": "<p>The most feral and least intelligent of all the chromatic dragons, white dragons are brutish, predatory, and chiefly motivated by self-preservation. Nearly all other dragons look down on white dragons as hopelessly hotheaded and dull, though this does not make them any less dangerous-in fact, it may mean the opposite. It's nearly impossible to treat with white dragons, not because they lack the capacity to do so, but because they just don't care to. They are as difficult to deal with as they are quick to anger, and they become incensed at almost anything. When a white dragon does speak, it spews threats, inane jokes, and incoherent babbling as a prelude to attacking-and when the attack comes, it's bloody and relentless.</p>\n<p>Thankfully, white dragons prefer very cold, remote locations that are far from people. Dwelling on glacial mountaintops or in ice caverns beneath forbidding tundra, they treat the lands around them as their own personal hunting grounds. They fly out to feed or terrorize other creatures, especially those who trespass near the dragon's territory, then bring any treasure back to be displayed in icy niches in their lairs. They collect all kinds of valuables, with a slight preference for items with high utility-such as tools, trade goods, and fine food-over coins or jewels. The ability to shape ice lets white dragons rearrange their lairs exactly to their specifications, and they take great pride in how they've decorated their homes over the years.</p>\n<hr />\n<p>While there are many types of dragons, from the powerful planar dragons to the strange esoteric dragons, few dragon varieties are as well-known and as rightly feared as the chromatic dragons. Differentiated by the hue of their scales, each color of dragon unleashes its own flavor of murderous cruelty-be it by claw, tooth, or breath-and unlike most creatures, dragons only become more powerful as they age. Their lust for treasure, food, bloodshed, and control are legendary. Physically powerful with egos to match, these dragons are often morally depraved and act as criminal masterminds, vicious tyrants, or voracious raiders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 16,
+    "arcana": 15,
+    "athletics": 23,
+    "intimidation": 19,
+    "stealth": 18
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 120
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 27,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Obscuring Mist (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Gust of Wind (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "cold",
+    "dragon"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

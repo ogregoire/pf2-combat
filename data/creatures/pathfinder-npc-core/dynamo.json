@@ -1,0 +1,142 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 3,
+    "int": 3,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dynamo extends their collapsible steel arms, giving them both a reach of 20 feet with all melee attacks. However, the dynamo becomes Enfeebled 1 and can't use the Interact action. The dynamo can Dismiss this ability.</p>",
+      "frequency": null,
+      "name": "Extend Arms",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dynamo rises into the air on 10-foot-tall telescoping steel legs. While their legs are extended, the dynamo gains a +10-foot status bonus to land Speed and ignores any cover granted by barriers less than 10 feet tall. However, the dynamo becomes Clumsy 1 and can't use the Climb, Leap, Swim, or Tumble Through actions. The dynamo can Dismiss this ability.</p>",
+      "frequency": null,
+      "name": "Extend Legs",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dynamo configures one or both of their mechanical prosthetic hands into a specific configuration. Each configuration deals a specific damage type and has its own weapon traits: fist (bludgeoning; free-hand), gaff hook (piercing; grapple), impact driver (bludgeoning; shove), or spinning blade (slashing; trip). The dynamo can alternatively transform a hand into a steel shield with Hardness 8, HP 72, and BT 36. A broken prosthesis can't be reconfigured until repaired.</p>",
+      "frequency": null,
+      "name": "Modular Prostheses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dragon Mouth Pistol",
+      "traits": [
+        "concussive",
+        "range-increment-20",
+        "reload-1",
+        "scatter-5"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Modular Prosthesis",
+      "traits": []
+    }
+  ],
+  "foundryId": "3edjm6pFh3JhZHah",
+  "gear": [
+    "Artisan's Toolkit (Blacksmithing)",
+    "Dragon Mouth Pistol",
+    "Repair Toolkit",
+    "Rounds (Dragon Mouth Pistol)",
+    "Steel Plating (Functions as Half Plate)",
+    "Steel Shield (Modular Prostheses Only)"
+  ],
+  "hp": 145,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/dynamo",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Dynamo",
+  "perception": 16,
+  "publicNotes": "<p>The intricate clockwork prostheses known as sterling dynamos have become increasingly common in recent years, particularly in havens of technological progress like Dongun Hold and the city of Absalom, but a few specialized engineers have elevated their dedication to research and development of such devices to an entirely new level. These individuals seek to achieve bodily perfection through augmentation, replacing their own limbs with advanced and sometimes untested prototypes that grant them a wide variety of abilities.</p><hr /><p>Although relatively uncommon across much of Golarion, the frequently eccentric but undeniably brilliant minds who create elaborate devices of clockwork, gunpowder, and steam often loom much larger in the public eye than their numbers would suggest.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 18,
+    "crafting": 17,
+    "medicine": 16,
+    "thievery": 17
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

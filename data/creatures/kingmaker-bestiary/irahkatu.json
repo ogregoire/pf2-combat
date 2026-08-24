@@ -1,0 +1,173 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 6,
+    "int": 0,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 34,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> Irahkatu has a Medium or smaller creature grabbed with its tail claw</p>\n<hr />\n<p><strong>Effect</strong> Irahkatu attempts an @Check[athletics|defense:fortitude] check against the creature's Fortitude DC.</p>\n<hr />\n<p><strong>Critical Success</strong> If the creature is 10 feet away from Irahkatu, it is dragged into a square adjacent to Irahkatu. Irahkatu can make a jaws Strike against the creature.</p>\n<p><strong>Success</strong> If the creature is 10 feet away from Irahkatu, it is dragged into a square adjacent to Irahkatu.</p>\n<p><strong>Failure</strong> The creature is not dragged.</p>\n<p><strong>Critical Failure</strong> The creature is not dragged and Irahkatu no longer has the creature grabbed.</p>",
+      "frequency": null,
+      "name": "Tail Drag",
+      "requirements": "Irahkatu has a Medium or smaller creature grabbed with its tail claw",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> Irahkatu has a Medium or smaller creature Grabbed with his tail claw or has already damaged a creature with his claw or tail claw Strike this turn</p>\n<p><strong>Effect</strong> Irahkatu attempts an @Check[athletics|defense:fortitude] check against the creature's Fortitude DC.</p>\n<hr />\n<p><strong>Critical Success</strong> Irahkatu tears at the target's eyes. The target takes @Damage[14d6[slashing]] damage and is Blinded for 24 hours. This blinded condition is removed earlier if the creature is fully healed of all damage.</p>\n<p><strong>Success</strong> Irahkatu mangles some fingers. The target takes @Damage[7d6[slashing]] damage and is Clumsy 1 for 24 hours.</p>\n<p><strong>Failure</strong> Irahkatu claws at the creature, dealing @Damage[3d6[slashing]] damage.</p>\n<p><strong>Critical Failure</strong> The creature is unaffected.</p>",
+      "frequency": null,
+      "name": "Disfigure",
+      "requirements": "Irahkatu has a Medium or smaller creature Grabbed with his tail claw or has already damaged a creature with his claw or tail claw Strike this turn",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Irahkatu can mimic the sounds of a person in distress by attempting a Deception check to Lie. Irahkatu has a +4 circumstance bonus to this check.</p>",
+      "frequency": null,
+      "name": "Voice Imitation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+14",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d12+14",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d6+14",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "improved-grab"
+      ],
+      "kind": "melee",
+      "name": "Tail Claw",
+      "traits": [
+        "agile",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "v2cJC9tdjRHexMwa",
+  "gear": [],
+  "hp": 235,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/irahkatu",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common"
+  ],
+  "level": 13,
+  "name": "Irahkatu",
+  "perception": 22,
+  "publicNotes": "<p>The ahuizotl is a vicious, semi-aquatic predator that resembles a hideous cross between a badger and an otter, with disturbingly web-fingered paws supplemented by a fifth hand at the end of a long, serpentine tail. A clever and stealthy hunter, the ahuizotl lures unwary prey to their doom by mimicking the cries of people in distress. The ahuizotl's macabre habit of feeding on a victim's eyes, fingernails, and teeth leaves the corpses of its kills uniquely mutilated. Some say the creatures consider these body parts delicacies, while others insist ahuizotls collect them as tribute to a powerful but unknown entity. The fact that an ahuizotl does not eat the actual flesh of its victims, instead depositing their savaged and waterlogged corpses in locations where the remains are sure to be found by friends or family, points to a third and perhaps more likely possibility-the ahuizotl simply enjoys using its violent dietary quirks to spread fear and despair.</p>\n<p>An ahuizotl walks on all fours, but its hands are capable of manipulating simple tools and other objects. Ahuizotls have roughly mustelid features and an extra membrane covering their eyes, giving their eyes a dull color suggestive of cataracts and somewhat blunting the creature's vision. Yet despite their bestial appearance, ahuizotls are nearly as intelligent as the average human, and wiser than most. Although they don't form societies of their own, they have been known to ally with violent cults or conclaves of monsters, and even to found small shrines and temples to sinister deities. The cult of Charon, the horseman of Death, is particularly popular among certain ahuizotls, who look forward to an afterlife spent wallowing in the waters of the River Styx.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 25,
+    "deception": 23,
+    "stealth": 25
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "beast"
+  ],
+  "weaknesses": []
+}

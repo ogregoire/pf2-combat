@@ -1,0 +1,117 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 1,
+    "dex": 4,
+    "int": -4,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The wolf's Strikes deal 1d4 extra damage to creatures within reach of at least two of the wolf's allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "knockdown"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "BN5Lb6IsQ9Wyu3rL",
+  "gear": [],
+  "hp": 24,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/wolf",
+  "immunities": [],
+  "languages": [],
+  "level": 1,
+  "name": "Wolf",
+  "perception": 7,
+  "publicNotes": "<p>Wolves live and hunt in packs, which, contrary to popular belief, are not led by the strongest in the group, but typically consist of a mated pair, their pups, and juvenile offspring from previous mating seasons. Offspring generally leave their parents' pack upon reaching maturity, at which point they seek out mates of their own to form their own packs elsewhere.</p>\n<p>Humanoids are not traditionally viewed as prey animals by wolves, but extraordinary circumstances can lead these animals to attack people, especially in winter months and other situations where traditional prey (deer and elk mainly) is scarce. Some beings, such as powerful vampires, can call upon wolves to aid them in combat.</p>\n<hr />\n<p>Wolves roam forests, hills, and other wild lands, where they hunt in packs to beleaguer and surround their prey before going in for the kill. Like most predatory animals, wolves prefer to attack the weakest or most vulnerable prey they can find.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 6,
+    "stealth": 7,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

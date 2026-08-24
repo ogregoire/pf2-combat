@@ -1,0 +1,133 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 2,
+    "int": 1,
+    "str": 3,
+    "wis": 4
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The target is fully submerged in water, within 30 feet of the merfolk wavecaller, and holding its breath</p>\n<hr />\n<p><strong>Effect</strong> The merfolk wavecaller commands the tides to crush their foe's throat, rooting the target in place and forcing it to choke up precious air. The target must succeed at a @Check[fortitude|dc:18] save or become Immobilized for 1 round and immediately lose [[/gmr 1d4 #rounds]]{1d4 rounds}' worth of air (or twice that on a critical failure).</p>",
+      "frequency": null,
+      "name": "Hydraulic Asphyxiation",
+      "requirements": "The target is fully submerged in water, within 30 feet of the merfolk wavecaller, and holding its breath",
+      "traits": [
+        "divine",
+        "water"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "IxezJU9rIKKyd3LY",
+  "gear": [
+    "Dagger"
+  ],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/merfolk-wavecaller",
+  "immunities": [],
+  "languages": [
+    "common",
+    "thalassic"
+  ],
+  "level": 2,
+  "name": "Merfolk Wavecaller",
+  "perception": 8,
+  "publicNotes": "<p>Merfolk wavecallers use their primal magic to defend their people. Their ability to asphyxiate airbreathers makes them crucial when surface dwellers invade.</p>\n<hr />\n<p>Elegant, mysterious, and graceful; all this and more can be said of merfolk. These enigmatic people resemble humanoids with delicate features from the waist up but with the fins and tail of a massive fish from the waist down. Found in nearly all of Golarion's oceans, merfolk are as varied in appearance as humans, their skin ranging from pale to umber and all shades in between, while their gleaming scales shimmer with the majesty of the sea.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 7,
+    "deception": 6,
+    "nature": 8,
+    "religion": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aquatic",
+    "humanoid",
+    "merfolk"
+  ],
+  "weaknesses": []
+}

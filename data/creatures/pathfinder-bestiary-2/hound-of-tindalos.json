@@ -1,0 +1,226 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 6,
+    "int": 6,
+    "str": 4,
+    "wis": 4
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hound of Tindalos casts a 4th-rank Translocate spell, but it must transport itself into a space adjacent to an angle of 90º (or more acute) in the structure or environment around it. For example, it could teleport to a space adjacent to a wall (using the angle between the wall and floor) or a corner in a room, or adjacent to a sizable tree growing straight up out of the ground, but not to a flat plain or a room with only curved corners and edges.</p>\n<p>Once per day, the hound can use this ability to plane shift to or from the Dimension of Time, with the same restrictions on what angles it can appear next to.</p>",
+      "frequency": null,
+      "name": "Angled Entry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a creature targets the hound with a mental effect, that creature takes @Damage[4d6[mental]] damage (@Check[will|dc:25|basic] save). On a critical failure, it also becomes Confused for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Otherworldly Mind",
+      "requirements": null,
+      "traits": [
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. The hound of Tindalos's eyes glow balefully, causing painful but bloodless wounds to rip open in the body of a creature that meets its awful gaze. When a creature ends its turn in the aura's emanation, it takes @Damage[4d6[slashing]] damage (@Check[fortitude|dc:25|basic] save).</p>\n<p>A creature that critically succeeds at its save is temporarily immune for 24 hours.</p>",
+      "frequency": null,
+      "name": "Ripping Gaze",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "occult",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a hound of Tindalos is not adjacent to a structural angle of 90º (or more acute), its resistance to physical damage is suppressed and it becomes Sickened 1. It can't recover from this sickened condition, but the condition ends automatically once the hound is again adjacent to a suitable angle.</p>\n<p>Effect: Vulnerable to Curved Space</p>",
+      "frequency": null,
+      "name": "Vulnerable to Curved Space",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "JgePINrFINmlsvn3",
+  "gear": [],
+  "hp": 90,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/hound-of-tindalos",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "emotion"
+    }
+  ],
+  "languages": [
+    "aklo"
+  ],
+  "level": 7,
+  "name": "Hound Of Tindalos",
+  "perception": 17,
+  "publicNotes": "<p>Lean and athirst, the hounds of Tindalos are drawn to those who tamper with the flow of time, travel through time, or use magic or rare alchemical drugs to send their thoughts or perception back or forward in time. Powerful spellcasters can draw them from the Dimension of Time via rare rituals, but doing so attracts the hounds' ire, so few who traffic in such rituals live long enough to spread their knowledge. While the hounds possess great cunning and cruel intellect, they rarely interact with other creatures-other than to hunt and destroy those who have attracted their unblinking attention.</p>\n<p>Once a hound catches scent of a mortal to hunt, it calls others of its ilk. The pack then pursues its victim through all space and time until it catches, slays and devours them. Those pursued can escape only by avoiding all angles, as hounds of Tindalos could step through them from nothingness at any time.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 15,
+    "occultism": 17,
+    "stealth": 17,
+    "survival": 13
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 11,
+      "dc": 21,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Discern Location",
+          "rank": 8
+        },
+        {
+          "name": "Dimensional Anchor",
+          "rank": 4
+        },
+        {
+          "name": "Haste",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility (Self only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "time"
+  ],
+  "weaknesses": []
+}

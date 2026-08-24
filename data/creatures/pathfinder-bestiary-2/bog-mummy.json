@@ -1,0 +1,203 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 0,
+    "dex": 2,
+    "int": 0,
+    "str": 5,
+    "wis": 1
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature walks on top of a bog mummy that lies buried in the mud or peat below</p>\n<p><strong>Requirements</strong> Initiative has not yet been rolled</p>\n<hr />\n<p><strong>Effect</strong> The bog mummy automatically notices the creature and Burrows before rolling initiative.</p>",
+      "frequency": null,
+      "name": "Rise Up",
+      "requirements": "Initiative has not yet been rolled",
+      "traits": [],
+      "trigger": "A creature walks on top of a bog mummy that lies buried in the mud or peat below"
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>This affliction can't be reduced below stage 1, nor can the damage from it be healed, until it's successfully treated with Cleanse Affliction or a similar effect; the affliction can then be removed as normal for a disease. A creature killed by bog rot melts into a noxious sludge and can't be resurrected except by a 7th-rank Resurrect ritual or similar magic</p>\n<hr />\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:21]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier with no ill effect (1 minute)</p>\n<p><strong>Stage 2</strong> @Damage[3d6[void]] damage and Clumsy 1 (1 day)</p>",
+      "frequency": null,
+      "name": "Bog Rot",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "disease",
+        "divine",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A creature that begins its turn within the area feels as if its lungs were filling with water and must succeed at a @Check[fortitude|dc:19] save or be unable to speak or breathe. The creature can still hold its breath and can attempt a new saving throw at the end of its turn.</p>\n<p>A creature that succeeds is temporarily immune to breath of the bog for 24 hours.</p>",
+      "frequency": null,
+      "name": "Breath of the Bog",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "bog-rot"
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "hIWzgjW2E2K6ImPA",
+  "gear": [],
+  "hp": 85,
+  "hpDetails": "void healing",
+  "id": "pathfinder-bestiary-2/bog-mummy",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 5,
+  "name": "Bog Mummy",
+  "perception": 12,
+  "publicNotes": "<p>The cultural practice of mummifying the dead is not the only way a body can become preserved, nor is it the only route that gives rise to these disease-spreading undead monstrosities.</p>\n<p>Bog mummies (also called peat mummies or mire mummies) rarely, if ever, leave their marshy realms. Less powerful than their more notorious artificially preserved kin, bog mummies are preserved not by agents introduced during rituals but by the natural elements present in the airless, acidic morass of a peat bog or muddy swamp. While corpses preserved in this manner can certainly rise from the mire as bog mummies as the result of a curse by fell powers or the directed influence of a necromancer, the vast majority of them animate from a seething need for vengeance or to pursue some dire agenda left unfinished at the time of death-often because the creature was slain or otherwise betrayed. The nature of tthis emotional tie to life and the emotional power of the deceased compel unlife beyond death, while the preservative qualities of the bog within which the body was disposed of does the rest.</p>\n<p>Although most bog mummies are motivated by vengeance, many fulfill their dark yearnings with general violence. Filled with wrath and hatred for the living, they mercilessly attack any living creatures that dare to venture into their dismal domains. Their agonized moans echo over their putrid homes, driving away most natural life dwelling therein and often alerting travelers to the potential danger that lies beneath the surface.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 12,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "burrow",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mummy",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 5
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 6,
+    "int": 0,
+    "str": 10,
+    "wis": 6
+  },
+  "ac": 43,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature Grabbed by Minognos-Ushad critically fails a skill check to Escape.</p><hr /><p><strong>Effect</strong> Minognos-Ushad makes a stinger Strike against the triggering creature.</p>",
+      "frequency": null,
+      "name": "Savage",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature Grabbed by Minognos-Ushad critically fails a skill check to Escape."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> Minognos-Ushad Grabbed a creature this turn using Powerful Dive</p>\n<p><strong>Effect</strong> Minognos-Ushad can Fly at half Speed while holding the creature in her claws, carrying that creature along with her and dropping it at the end of her movement. Alternatively, she can Strike the creature with her stinger with a +2 circumstance bonus.</p>",
+      "frequency": null,
+      "name": "Punishing Momentum",
+      "requirements": "Minognos-Ushad Grabbed a creature this turn using Powerful Dive",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Minognos-Ushad breathes a @Template[cone|distance:60] of poison. Creatures in the cone take @Damage[20d6[poison]|options:area-damage] damage (@Check[reflex|dc:41|basic|options:area-effect]). Minognos-Ushad can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "poison",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Minognos-Ushad Flies up to her fly Speed and must both move forward at least 20 feet and descend at least 10 feet. If she ends her movement within melee reach of at least one enemy her size or smaller, she can make a claw Strike against that enemy. If the claw hits, as a free action she can either automatically Grab the target or knock it Prone.</p>",
+      "frequency": null,
+      "name": "Powerful Dive",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:41]</p><hr /><p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[5d10[poison]] damage and Clumsy 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[6d10[poison]] damage and Clumsy 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[8d10[poison]] damage and Clumsy 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Wyvern Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d8+18",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "improved-grab"
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d10+18",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d6+18",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "wyvern-venom"
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "agile",
+        "reach-20",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "SjU0oB6pOk0XY8VN",
+  "gear": [],
+  "hp": 295,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/minognos-ushad",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic"
+  ],
+  "level": 19,
+  "name": "Minognos-Ushad",
+  "perception": 30,
+  "publicNotes": "<p>A wyvern is a venomous drake with a well-earned reputation for impatience and aggression. As much as 15 feet long and weighing up to 1,000 pounds, a wyvern's resilient body allows it to crash talons-first into large prey without serious risk to itself. A wyvern uses its momentum to stun its target before injecting it with searing venom or carrying it over the side of a nearby cliff. Because a wyvern lacks the strength to haul its prey all the way to its nest intact, it is far more likely to lift and drop its victim over a gully or canyon and let gravity do its work before it descends to pick apart the carcass.</p>\n<p>Conversation is of little interest to a wyvern, as the creature typically speaks only to taunt its prey, issue territorial claims, or demand tribute. Even so, many wyverns enjoy grim humor and tales of violent acts, particularly if those acts were committed by the storyteller. A wyvern properly appeased with meat, entertainment, and treasure sometimes agrees to provide assistance ranging from giving directions to serving as a mount for a powerful humanoid. However, these arrangements rarely last more than a few weeks before the wyvern's pride, malice, or insolence inspires it to flee or even betray its allies. Only the truly cruel can cow a wyvern into servitude for an extended period, as most wyverns are so self-interested that they go out of their way to avoid helping others.</p>\n<hr />\n<p>Ravenous, bestial, and driven by instinct-drakes are primitive draconic monsters who bear a fraction of the terrifying might of their larger cousins but little (if any) of the cunning. While they're weaker, slower, and less inclined toward reason than dragons, drakes are nonetheless a menace to creatures and settlements around them. Their propensity for forming raiding parties-small social groups fittingly called \"rampages\"-makes them all the more dangerous; a single rampage of river drakes can quickly lay waste to a waterside village, and roving rampages of desert drakes are a plague to caravan traders.</p>\n<p>Drakes share a number of physical characteristics that unite them as one species despite their wide variety of habitats and abilities. For example, drakes lack forearms, leaving them only their formidable jaws and thick-scaled tails with which to attack if engaged at melee range. Most drakes would rather avoid close combat, however, preferring to use their breath weapons to wreak havoc in wide swaths from comfortable distances while flying overhead. Finally, all drakes have small reservoirs of their ancestral draconic power that they can tap into to perform incredible feats of speed.</p>",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 33
+    },
+    "reflex": {
+      "detail": null,
+      "value": 35
+    },
+    "will": {
+      "detail": null,
+      "value": 31
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 33,
+    "athletics": 37,
+    "intimidation": 31,
+    "stealth": 33
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 100
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dragon"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,294 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 2,
+    "dex": 4,
+    "int": 5,
+    "str": 2,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The venedaemon's most recent action was to cast a spell</p>\n<hr />\n<p><strong>Effect</strong> Fading runes cling to the venedaemon's tentacles. The venedaemon makes a tentacle Strike that has a reach of 20 feet and deals 2d4 additional force damage.</p>",
+      "frequency": null,
+      "name": "Residual Force",
+      "requirements": "The venedaemon's most recent action was to cast a spell",
+      "traits": [
+        "arcane",
+        "force"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The venedaemon whispers to a creature within 15 feet, which must succeed at a @Check[will|dc:22] save or be Stupefied 2 for 1 minute (or Stupefied 3 on a critical failure).</p>\n<p>Regardless of the results of the save, the creature is immune to Twisted Whispers for 24 hours.</p>",
+      "frequency": null,
+      "name": "Twisted Whispers",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "auditory",
+        "concentrate",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A venedaemon is aware of magical items and active spells as an imprecise sense. The subtle differences in these scents reveal the tradition and traits of the magic.</p>",
+      "frequency": null,
+      "name": "Smell Magic (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If a venedaemon ingest a soul gem from a cacodaemon, they can recover an expended spell slot instead of gaining fast healing. The spell slot's rank can be no higher than half the level of the creature whose soul was consumed, rounded up.</p>",
+      "frequency": null,
+      "name": "Soul Spell",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "byShcvERXQVHNaoL",
+  "gear": [],
+  "hp": 75,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/venedaemon",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    }
+  ],
+  "languages": [
+    "aklo",
+    "chthonian",
+    "common",
+    "daemonic",
+    "diabolic",
+    "draconic",
+    "requian"
+  ],
+  "level": 5,
+  "name": "Venedaemon",
+  "perception": 12,
+  "publicNotes": "<p>Those killed by magic or killed in the pursuit of magic can arise as venedaemons. Although among the weaker daemons, these robed figures can often be seen serving as researchers or clerks throughout the plane. Even within the mortal Universe, scholars barter souls or arcane knowledge with venedaemons for their secrets and assistance.</p>\n<hr />\n<p>Denizens of the bleak and terrible plane of Abaddon, daemons are shaped by and devoted to the destruction of life in all its forms. They seek the death of every mortal being by the most painful and horrible means possible, in service to the Apocalypse Riders. Each kind of daemon represents a different way to die, and their powers are nearly always aimed at spreading that particular form of death. Through the use of these powers, they seek to drag all existence down into a pit of hopelessness and despair, and to commit all souls to oblivion.</p>\n<p>While mortals who summon daemons usually seek to use the creatures' destructive and corrupting powers for their own ends, daemons always look for ways to spread fear, doubt, and despair wherever they go. Often, daemons disguise their plots as the workings of other fiends, knowing that such confusion compounds mortals' fear and keeps those mortals from bringing the most effective weapons. As a result, learned mortals sometimes refer to daemons as \"riders\" after their leaders or \"soul mongers\" after their largest industry.</p>\n<p>While many fiends seek to tempt mortals into lives of nihilistic evil to increase their own numbers and power on their native planes, daemons are further driven by a supernatural hunger for mortal souls and use a variety of methods—not least of which is the cacodaemons' soul gems—to entrap them. On Abaddon and in other forbidding places across the multiverse, souls are simultaneously a delicacy, a trade good, and a source of magical power, and the daemons are among the greatest gluttons, merchants, and abusers of this spiritual \"resource.\"</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "arcana": 16,
+    "deception": 12,
+    "occultism": 14,
+    "religion": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Arcane Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Levitate",
+          "rank": 3
+        },
+        {
+          "name": "Paralyze",
+          "rank": 3
+        },
+        {
+          "name": "Blazing Bolt",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Noise Blast",
+          "rank": 2
+        },
+        {
+          "name": "Electric Arc",
+          "rank": 1
+        },
+        {
+          "name": "Enfeeble",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Force Barrage",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        },
+        {
+          "name": "Void Warp",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    },
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Translocate",
+          "rank": 4
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "daemon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 5
+    }
+  ]
+}

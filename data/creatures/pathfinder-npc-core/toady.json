@@ -1,0 +1,166 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 2,
+    "int": -1,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The toady's boss takes damage from an attack, and the toady is adjacent to them</p><hr /><p><strong>Effect</strong> The toady takes the damage instead, along with any secondary effects of attack. This damage can't be reduced in any way.</p>",
+      "frequency": null,
+      "name": "Human Shield",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The toady's boss takes damage from an attack, and the toady is adjacent to them"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The toady Strides, then can [[/act hide]]. They can attempt to Hide from creatures without cover or being Concealed, but at a –2 circumstance penalty.</p>",
+      "frequency": null,
+      "name": "Scurry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>A toady carries a heavy load of supplies at their boss's behest. They hurl a heavy item they're carrying, which explodes on impact to deal @Damage[1d10[bludgeoning]|options:area-damage] damage to all creatures in a @Template[type:burst|distance:5] with a @Check[reflex|dc:14|basic|options:area-effect] save.</p>",
+      "frequency": null,
+      "name": "Throw Cargo",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A toady can deliver a message from their boss to Demoralize using their boss's Intimidation modifier instead of their own.</p>",
+      "frequency": null,
+      "name": "Master Sends Their Regards",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "Perception +9 to Eavesdrop",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Sap",
+      "traits": [
+        "agile",
+        "nonlethal"
+      ]
+    }
+  ],
+  "foundryId": "BbFb0HC3vMBGP5WN",
+  "gear": [
+    "Sap",
+    "Supplies for the boss"
+  ],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/toady",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Toady",
+  "perception": 3,
+  "publicNotes": "<p>These minions perform the thankless tasks that keep their master's vile machine running. Whether out of loyalty or fear, a toady serves their boss faithfully.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 4,
+    "deception": 2,
+    "stealth": 6,
+    "thievery": 4
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental",
+      "value": 2
+    }
+  ]
+}

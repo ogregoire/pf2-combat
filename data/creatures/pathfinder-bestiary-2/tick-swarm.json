@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 4,
+    "dex": 6,
+    "int": -5,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature leaves the swarm's space</p>\n<hr />\n<p><strong>Effect</strong> The swarm takes [[/r {1d6}]]{1d6 damage} as ticks cling to the creature and continue biting, dealing @Damage[3d6[bleed]]. Immersion in water reduces the DC of the flat check to end this persistent damage to 5, and any area damage dealt to the creature destroys these clinging ticks.</p>",
+      "frequency": null,
+      "name": "Cling",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature leaves the swarm's space"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each enemy in the swarm's space takes @Damage[3d6[piercing]] damage (@Check[reflex|dc:28|basic] save) plus Cling and exposure to tick fever.</p>",
+      "frequency": null,
+      "name": "Swarming Bites",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:27]</p>\n<p><strong>Onset</strong> 1 day</p>\n<p><strong>Stage 1</strong> Enfeebled 1 (1 day)</p>\n<p><strong>Stage 2</strong> Enfeebled 2 (1 day).</p>",
+      "frequency": null,
+      "name": "Tick Fever",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "jgMFqFDNUWsrnnBH",
+  "gear": [],
+  "hp": 130,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/tick-swarm",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
+  ],
+  "languages": [],
+  "level": 9,
+  "name": "Tick Swarm",
+  "perception": 18,
+  "publicNotes": "<p>This swarm of thousands of fist-sized ticks forms a moving carpet of bloated insects-a nauseating and intimidating sight.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bludgeoning",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 16,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "area-damage",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "splash-damage",
+      "value": 10
+    }
+  ]
+}

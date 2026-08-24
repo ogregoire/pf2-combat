@@ -1,0 +1,142 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The triton blows into a conch shell, casting a 2nd-rank Summon Animal spell. The triton can summon only an aquatic creature, such as a dolphin, octopus, ray, sea snake, or electric eel. This creature remains until it is slain, the triton Dismisses it, or the triton summons another ally.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Summon Aquatic Ally",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The triton Interacts to raise their trident, gaining a +1 circumstance bonus to AC until the start of their next turn. During this time, any of their allies also gains the bonus while adjacent to the triton.</p>",
+      "frequency": null,
+      "name": "Defender of the Seas",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Trident",
+      "traits": []
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Trident",
+      "traits": [
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "HjmqeJuWdmY5imiz",
+  "gear": [
+    "Conch Shell",
+    "Shell Armor (Hide)",
+    "Trident"
+  ],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/triton",
+  "immunities": [],
+  "languages": [
+    "common",
+    "thalassic"
+  ],
+  "level": 2,
+  "name": "Triton",
+  "perception": 8,
+  "publicNotes": "<p>While sometimes understandably mistaken for merfolk-both species live underwater and have a blend of features from both humans and fish-tritons have two legs instead of a tail. This gives tritons the ability to operate on land, though they are neither as comfortable nor as skilled above water as below.</p>\n<p>The arms and legs of a triton feature fins that assist in swimming, and their entire body is covered in fine scales that range in color from silver to cerulean blue to seaweed green. Their amphibious nature shows in the webbing between the digits of their feet and hands, as well as the fact that they have both gills and a human-shaped nose and mouth. Triton hair grows in wide strands like seagrass, commonly green in shade but in some cases blue or white. Their eyes range in color from sea blue to golden.</p>\n<p>Many tritons see themselves as defenders of the deep, dedicating their lives to protecting the inhabitants of the seas from evil creatures and intruders-whether they come from underwater or the surface world. Primary among triton foes are sea devils and alghollthu, both of whom have amphibious forces that tritons have had to fight underwater and on land.</p>\n<p>In their quest to fight underwater evil, tritons sometimes ally with dolphins and sea turtles (both of which make excellent mounts), water elemental, and sometimes even sharks and sea serpents. Tritons can summon such allies using a conch shell as a trumpet. When it comes to other intelligent undersea species, however, tritons take pride in their self-sufficiency, rarely trading with other underwater peoples such as merfolk, and even more rarely forming established alliances.</p>\n<p>Tritons live in natural-grown villages on the sea floor, forging dwellings out of colorful coral reefs, in rift valleys heated by volcanic activity, and even in underwater canyons- though they avoid settling in extreme depths due to the risk of encountering krakens or worse. They like to decorate their homes with aquatic plants, bioluminescent fish, and attractive trinkets recovered from shipwrecks.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "crafting": 4,
+    "diplomacy": 6,
+    "nature": 6,
+    "stealth": 9
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "swim",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

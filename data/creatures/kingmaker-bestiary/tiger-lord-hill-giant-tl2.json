@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 2,
+    "int": -2,
+    "str": 7,
+    "wis": 4
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
+      "traits": [],
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The hill giant's last action was a successful melee Strike</p>\n<p><strong>Effect</strong> The hill giant's swing drives their enemy back. They push the foe back 5 feet, with the effects of a successful Shove. The hill giant can follow the foe as normal on a successful Shove.</p>",
+      "frequency": null,
+      "name": "Knockback",
+      "requirements": "The hill giant's last action was a successful melee Strike",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hill giant makes a single greatclub Strike and compares the attack roll result to the ACs of up to two foes within its reach.</p>\n<p>This counts as two attacks for the hill giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d6+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greatclub",
+      "traits": [
+        "backswing",
+        "reach-10",
+        "shove"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "rock"
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "Cj2zn7JazTB9ZnIq",
+  "gear": [
+    "Greatclub",
+    "Hide Armor",
+    "Rock",
+    "Sack for Holding Rocks"
+  ],
+  "hp": 250,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/tiger-lord-hill-giant-tl2",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 12,
+  "name": "Tiger Lord Hill Giant (TL2)",
+  "perception": 20,
+  "publicNotes": "<p>Selfish and crude, these rough-skinned raiders are bullies and ultimately cowards. Quick-tempered and fond of violence, a hill giant gladly raids and pillages the defenseless but is quick to flee from those who are bigger, stronger, or better organized than they are. A hill giant is never above shoving or tricking one of their own kind to slow down their opponent or get the best loot.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They are divided into a number of subtypes.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 24
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 25,
+    "intimidation": 20
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

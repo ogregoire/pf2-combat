@@ -1,0 +1,155 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 6,
+    "dex": 2,
+    "int": -5,
+    "str": 7,
+    "wis": 0
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The paleohemoth reorganizes its bones, increasing its reach to 25 feet and reducing its Speed to 15 feet. It can revert to its original form by taking this action again.</p>",
+      "frequency": null,
+      "name": "Reassemble",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The first time each round a creature takes damage from the paleohemoth's jaws, the target must attempt a @Check[fortitude|dc:32] save. If it fails and has not already been slowed by this ability, it becomes Slowed 1 for 1 minute.</p>\n<p>If the creature was already slowed by this ability, a failed save causes it to be Petrified permanently.</p>",
+      "frequency": null,
+      "name": "Fossilization",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "incapacitation"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10 + 13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "fossilization"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "wfZoM7RfFzkmK7hI",
+  "gear": [],
+  "hp": 195,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/paleohemoth",
+  "immunities": [],
+  "languages": [],
+  "level": 12,
+  "name": "Paleohemoth",
+  "perception": 20,
+  "publicNotes": "<p>Paleohemoths are typically made from the fossilized bones of dinosaurs and other ancient megafauna, though some crafters stretch the definition and instead use magically petrified bones of dragons or even giants. Not bound to any specific model, paleohemoths are crafted to be as terrifying as possible instead of models of anatomic accuracy. As such, most paleohemoths are nightmarish saurian amalgams whose massive arms end with the complete skulls of apex predators like tyrannosauruses, their bite enhanced to petrify flesh.</p>\n<p>Intact fossilized bones are difficult components to scrounge, much less whole skeletons. An alternate way to obtain them is to hire expert hunters or adventurers to seek out live dinosaurs, bring back the bones, and use magic to turn them to stone. Of course, some purists prefer genuine fossilized bones and are willing to pay the price for their acquisition. Either way, opportunities await enterprising souls with the proper tools and several <em>spacious pouches</em>.</p>\n<p>The magic that animates paleohemoths grants them a form of modular flexibility, letting them trade mobility for extended reach through the rapid rearrangement of their limbs. This often involves bones moving from the legs in order to extend the arms. While this does lead to a somewhat silly anatomy, it is nonetheless effective. This ability also lets them appear like a jumbled mass of bones at rest, making them likely to be mistaken for decor rather than guardians.</p>\n<p>The reasons for creating such constructs vary. While they're often associated with guarding evil geniuses in deep, dark dungeons, they have great uses elsewhere. More elegant versions may be used to protect the private collections of upper-class collectors. Thuvia makes great use of paleohemoths in their construct arenas. While they weren't initially permitted to fight, an exploited loophole has made them a popular addition to the arenas ever since.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine",
+        "bludgeoning"
+      ],
+      "type": "physical",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "cold",
+        "earth",
+        "water"
+      ],
+      "type": "spells",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 20
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "mindless"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "earth",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "water",
+      "value": 10
+    }
+  ]
+}

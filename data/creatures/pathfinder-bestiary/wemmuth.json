@@ -1,0 +1,200 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 6,
+    "dex": 6,
+    "int": -2,
+    "str": 8,
+    "wis": 4
+  },
+  "ac": 37,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The wemmuth deals damage to a creature with Constrict.</p>\n<hr />\n<p><strong>Effect</strong> The wemmuth heals a number of Hit Points equal to half the total damage dealt by Constrict.</p>",
+      "frequency": null,
+      "name": "Blood Leech",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The wemmuth deals damage to a creature with Constrict."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d12+10)[bludgeoning]] damage, @Check[fortitude|dc:37|basic] save</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>@Check[reflex|dc:37|traits:damaging-effect], @Damage[4d8[bludgeoning]] damage, Escape DC 35, Rupture 36</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of any creatures in its path. Any creature of the monster's size or smaller whose space the monster moves through can attempt a Reflex save with the listed DC to avoid being engulfed. A creature unable to act automatically critically fails this save. If a creature succeeds at its save, it can choose to be either pushed aside (out of the monster's path) or pushed in front of the monster to the end of the monster's movement. The monster can attempt to Engulf the same creature only once in a single use of Engulf. The monster can contain as many creatures as can fit in its space.</p>\n<p>A creature that fails its save is pulled into the monster's body. It is Grabbed, is Slowed 1, and has to hold its breath or start suffocating. The creature takes the listed amount of damage when first engulfed and at the end of each of its turns while it's engulfed. An engulfed creature can get free by Escaping against the listed escape DC. An engulfed creature can attack the monster engulfing it, but only with unarmed attacks or with weapons of light Bulk or less. The engulfing creature is Off-Guard against the attack. If the monster takes piercing or slashing damage equaling or exceeding the listed Rupture value from a single attack or spell, the engulfed creature cuts itself free.\n<p>Effect: Engulf and Swallow Whole</p>\n<p>A creature that gets free by either method can immediately breathe and exits the swallowing monster's space.</p>\n<p>If the monster dies, all creatures it has engulfed are automatically released as the monster's form loses cohesion.</p></p>",
+      "frequency": null,
+      "name": "Engulf",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Whenever a creature within 10 feet attempts a melee attack against a wemmuth or uses Acrobatics to Tumble Through its space, that creature takes @Damage[(1d12+10)[piercing]] damage.</p>",
+      "frequency": null,
+      "name": "Thorny Mass",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d10+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Boulder",
+      "traits": [
+        "fatal-d12",
+        "range-increment-60"
+      ]
+    },
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d12+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "improved-grab"
+      ],
+      "kind": "melee",
+      "name": "Pummel",
+      "traits": [
+        "fatal-d12",
+        "reach-15",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "NTXm3ee7WZJ92Sww",
+  "gear": [],
+  "hp": 335,
+  "hpDetails": "blood leech",
+  "id": "pathfinder-bestiary/wemmuth",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "fey"
+  ],
+  "level": 15,
+  "name": "Wemmuth",
+  "perception": 25,
+  "publicNotes": "<p>Fertilized by large quantities of spilled blood, such as that found on bloodstained battlefields or in the war-torn regions surrounding besieged cities, wemmuths are vile swaths of vines that draw sustenance from mortal suffering, lapping up blood like water. Possessing a rudimentary intelligence and an unquenchable thirst for blood, wemmuths lie in wait for most of their lives, growing to incredible size in the bloody soil of their grisly homes. Though the vines that comprise a wemmuth's body are scarcely thicker than rope, a single adult wemmuth system consists of 6 tons of vines, enough to stretch for 6,000 feet if stretched from end to end in a single straight line. Wemmuths never orient themselves this way, however, instead preferring to wrap themselves into massive mounds approximately 15 feet across and equally thick. Although wemmuths are often spotted lazing about, the scent of blood is enough to whip one into a violent frenzy. The creature condenses its entire mass into a sphere of sharp thorns and lashing vines, resembling a hateful tumbleweed the size of an elephant. Wemmuths commonly dig up massive boulders or entire trees from the ground and incorporate them into their rolling mass, using these objects to bolster their defense against many forms of attack or hurling them at faraway foes with terrifying precision.</p>\n<p>Some speculate that wemmuths are a form of diabolical corruption let loose upon Golarion by House Thrune of Cheliax, perhaps as a scorched earth tactic against their rivals. Influential nobles from Nirmathas and Molthune both point fingers at one another for the wemmuth's creation, Nirmathas citing Molthune's close ties to Infernal Cheliax and Molthune blaming the primal magic commonly employed by Nirmathas's many druids and rangers. Several Varisian tales describe creatures closely matching the wemmuth's description attempting to apprehend a famous folk trickster, while crusaders from Mendev adhere to the belief that the wemmuths were a blight unleashed upon Golarion by Deskari, former demon lord of locusts, before his defeat at the hands of mortal heroes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 30,
+    "deception": 28,
+    "stealth": 30,
+    "survival": 27
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 20
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 15
+    }
+  ]
+}

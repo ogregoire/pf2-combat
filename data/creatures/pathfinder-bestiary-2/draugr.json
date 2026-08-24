@@ -1,0 +1,205 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 2,
+    "int": -1,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The draugr makes a melee Strike and compares the attack roll result to the AC of up to two foes, each of whom must be within its melee reach and adjacent to each other. Roll damage only once and apply it to each creature hit. A Swipe counts as two attacks for the draugr's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Swipe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A draugr's attacks spatter their targets with rancid flesh and rotting seaweed. A creature damaged by a draugr's Strike must succeed at a @Check[fortitude|dc:15] save or become Sickened 1 (Sickened 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Grotesque Gift",
+      "requirements": null,
+      "traits": [
+        "olfactory"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A creature that slays a draugr is subjected to a Mariner's Curse spell with a @Check[will|dc:17|traits:spell] save. The curse ends if the draugr is buried in a calm sea or after 1 week passes.</p>",
+      "frequency": null,
+      "name": "The Sea's Revenge",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "grotesque-gift"
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+4",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "grotesque-gift"
+      ],
+      "kind": "melee",
+      "name": "Greataxe",
+      "traits": [
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "48agy7vl9fQW1LLA",
+  "gear": [
+    "Greataxe",
+    "Leather Armor"
+  ],
+  "hp": 35,
+  "hpDetails": "void healing",
+  "id": "pathfinder-bestiary-2/draugr",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Draugr",
+  "perception": 7,
+  "publicNotes": "<p>Risen corpses of sailors who died at sea, draugr reek of the rot and decay of the briny deep. Their eyes glow with ghastly green light, and rotting seaweed, barnacles, and dead sea creatures cling to their bodies. Draugr can't speak, but expresses their malicious emotions with gurgles, as though they were eternally drowning with lungs full of water. They desire little more than to attack living creatures, especially those who sail the sea. Even when they go upon land, draugrs often drag the corpses of those they strike down back to the water, populating the depths with even more dead.</p>\n<p>Draugr rise in the haunted places of the sea, where restless spirits, swells of void energy, or supernatural storms deliver death. A corpse might rest at the bottom of the sea for some time before awakening as a draugr. Collecting detritus and organisms, a corpse becomes increasingly disgusting before it finally rises. Proximity to intelligent life can expedite this process, and an underwater explorer who happens upon a shipwreck might cause a body to snap to unlife as a draugr suddenly. The creatures don't take intrusions lightly, especially upon their place of death.</p>\n<p>Though steeped in evil, draugr are susceptible to reminders of their lives as mariners. In particular, a well-performed sea shanty or call-and-response work song might cause a draugr to become lost in reverie for a moment. The creatures have even been witnessed moaning along, unable to sing the words but providing haunting accompaniment. The lull rarely lasts long, though, as the beauty of the song quickly becomes a reminder of the tragedy that befell the draugr, reaffirming their desire for blood and death.</p>\n<p>More powerful draugr with burning red eyes are called draugr captains. They're 3rd-level creatures with elite adjustments that can cast obscuring mist as an innate divine spell three times per day.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 10,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "undead",
+    "unholy",
+    "water"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "vitality",
+      "value": 5
+    }
+  ]
+}

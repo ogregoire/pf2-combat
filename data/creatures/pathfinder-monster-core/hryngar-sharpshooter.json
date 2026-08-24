@@ -1,0 +1,174 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 3,
+    "dex": 3,
+    "int": 0,
+    "str": 1,
+    "wis": 2
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>This shot deals no damage, but on a hit, the target must succeed at a @Check[reflex|dc:16] save or be knocked Prone and Immobilized until it is freed with a successful DC 15 check to [[/act escape dc=15]]. This check can be attempted either by the target or a creature adjacent to the target.</p>",
+      "frequency": null,
+      "name": "Bola Bolt",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
+      "frequency": null,
+      "name": "Light Blindness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "bolts"
+      ],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Light Mace",
+      "traits": [
+        "agile",
+        "finesse",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "Ytp0kRaG8iexmPfN",
+  "gear": [
+    "Bola Bolts",
+    "Bolts",
+    "Chain Shirt",
+    "Crossbow",
+    "Light Mace"
+  ],
+  "hp": 18,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/hryngar-sharpshooter",
+  "immunities": [],
+  "languages": [
+    "common",
+    "dwarven",
+    "sakvroth"
+  ],
+  "level": 0,
+  "name": "Hryngar Sharpshooter",
+  "perception": 4,
+  "publicNotes": "<p>Deep beneath the surface, the dour dwarves known as hryngars stubbornly toil, claiming the ancestral subterranean homelands of other dwarves as their own. Long ago, hryngar leaders refused to venture to the surface along with their \"cousins,\" forsaking the Quest for Sky. An exiled dwarven deity named Droskar offered hryngars salvation from the horrors that beset them in the Darklands, offering them power, cunning, and knowledge in exchange for their unending servitude. Many hryngar believe that by working harder than their brethren, they can build a society far greater than anything under the sun, claiming unending riches from the planet's metallic veins in days of relentless toil.</p>\n<p>Through Droskar's blessings and their own fearsome work ethic, hryngar kingdoms now rule a significant portion of the upper Darklands region of NarVoth, and it's common to see hryngar caravans moving through the tunnels, drawn by teams of immense beetles. Hryngar leadership typically consists of powerful divine servants of Droskar, along with fearsomely implacable warriors whose martial prowess, backed by innate occult magic, ensures they can overcome any direct threat to hryngar rule. Almost every aspect of hryngar society is controlled by a strict hierarchy of leadership, with taskmasters directing subordinates across all walks of life.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 3,
+    "stealth": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 4,
+      "dc": 12,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Blood Vendetta",
+          "rank": 2
+        },
+        {
+          "name": "Paranoia",
+          "rank": 2
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "duergar",
+    "dwarf",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

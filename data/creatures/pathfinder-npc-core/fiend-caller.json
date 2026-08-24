@@ -1,0 +1,204 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 2,
+    "int": 4,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The fiend caller spends 1 day of downtime setting up a bargain between a mortal creature and a fiend the fiend caller knows well. The fiend caller attempts a Legal Lore check against the higher of the fiend's @Check[legal-lore|against:will]{Will DC} or @Check[legal-lore|against:diplomacy]{Diplomacy DC}.</p><hr /><p><strong>Success</strong> The mortal party receives one favor from the fiend, or the fiend becomes the mortal's minion for [[/gmr 1d4 #days]]{1d4 days} if they're on the same plane. Alternatively, if the GM allows the option, the mortal can receive a bargained contract of the fiend's level or lower.</p>\n<p><strong>Failure</strong> The fiend caller fails to strike the bargain.</p>\n<p><strong>Critical Failure</strong> The process fails, and the magical backlash makes the fiend caller Drained 2.</p>",
+      "frequency": null,
+      "name": "Fiendish Contract",
+      "requirements": null,
+      "traits": [
+        "downtime",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A fiend caller can cast Binding Circle and Commune to contact fiends even though the rituals are beyond the normal rank the fiend caller could cast. Furthermore, they can use Legal Lore for the primary check when they do so instead of the listed skill.</p>",
+      "frequency": null,
+      "name": "Fiendish Ritualist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving contracts and negotiations, the fiend caller is an 8th-level challenge.</p>",
+      "frequency": null,
+      "name": "Legal Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A fiend caller can cast Sending at will as an occult innate spell, but only to target a fiend they know well. The fiend can be on any plane.</p>",
+      "frequency": null,
+      "name": "Planar Communique",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d4",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d4",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "DHouUgsIwlktV1Pr",
+  "gear": [
+    "Dagger",
+    "Ritual Materials"
+  ],
+  "hp": 35,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/fiend-caller",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common",
+    "daemonic",
+    "diabolic",
+    "requian"
+  ],
+  "level": 3,
+  "name": "Fiend Caller",
+  "perception": 8,
+  "publicNotes": "<p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 10,
+    "diplomacy": 15,
+    "intimidation": 10,
+    "occultism": 16,
+    "religion": 13,
+    "society": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Sending (At-Will)",
+          "rank": 5
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid",
+    "unholy"
+  ],
+  "weaknesses": []
+}

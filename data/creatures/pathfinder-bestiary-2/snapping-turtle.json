@@ -1,0 +1,127 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": -1,
+    "int": -4,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The snapping turtle damaged a creature with a jaws Strike in its previous action</p>\n<hr />\n<p><strong>Effect</strong> The snapping turtle clenches its jaws down and automatically deals an additional @Damage[1d4[bludgeoning]] damage to the creature it just bit.</p>",
+      "frequency": null,
+      "name": "Clench Jaws",
+      "requirements": "The snapping turtle damaged a creature with a jaws Strike in its previous action",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The snapping turtle retracts its limbs and head into its shell and ends its turn. This increases its AC to 18, but it can't act except to reemerge, which it can do as a single action.</p>",
+      "frequency": null,
+      "name": "Shell Defense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The snapping turtle can hold its breath for 30 minutes.</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "UcUlBj3brC80A8gq",
+  "gear": [],
+  "hp": 9,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/snapping-turtle",
+  "immunities": [],
+  "languages": [],
+  "level": -1,
+  "name": "Snapping Turtle",
+  "perception": 3,
+  "publicNotes": "<p>Snapping turtles are freshwater reptiles with a long flexible neck, a sharp piercing beak, and a confrontational temperament that doesn't prevent some spellcasters from choosing these creatures as familiars. They weigh about 20 pounds and have shells around 18 inches in length.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 1
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "tiny",
+  "skills": {
+    "athletics": 5,
+    "stealth": 3
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

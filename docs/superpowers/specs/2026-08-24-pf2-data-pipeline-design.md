@@ -186,7 +186,7 @@ Deeper Remaster rules translation belongs to sub-project 3 (rules engine).
 ## CLI — agent-friendly interface
 
 ```
-pf2data update [--latest] [--pack <name>]
+pf2data update [--latest]
 pf2data status
 pf2data verify
 ```

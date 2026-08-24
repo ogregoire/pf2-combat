@@ -1,0 +1,213 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 3,
+    "dex": 4,
+    "int": 0,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The boggard warden unleashes a terrifying croak. Any non-boggard within @Template[emanation|distance:30]{30 feet} becomes Frightened 1 unless they succeed at a @Check[will|dc:28] save.</p>\n<p>Those who critically succeed are temporarily immune for 1 minute.</p>",
+      "frequency": null,
+      "name": "Terrifying Croak",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Boggard wardens are trained to take advantage of their foes' weak points when they're on unfavorable terrain. Enemies are Off-Guard to the boggard warden if they're in natural difficult terrain.</p>",
+      "frequency": null,
+      "name": "Nature's Edge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A boggard warden deals 2d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A boggard cultist ignores difficult terrain caused by swamp terrain features.</p>",
+      "frequency": null,
+      "name": "Swamp Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the boggard warden hits a creature with its tongue, that creature becomes Grabbed by the boggard. Unlike with a normal Grab, the creature isn't Immobilized, but it can't move beyond the reach of the boggard's tongue. A creature can sever the tongue by hitting AC 24 and dealing at least 10 slashing damage. Though this doesn't deal any damage to the boggard, it prevents it from using its tongue Strike until it regrows its tongue, which takes a week.</p>",
+      "frequency": null,
+      "name": "Tongue Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "hunting-spider-venom"
+      ],
+      "kind": "ranged",
+      "name": "Blowgun",
+      "traits": [
+        "agile",
+        "magical",
+        "nonlethal",
+        "range-increment-20",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [],
+      "effects": [
+        "tongue-grab"
+      ],
+      "kind": "melee",
+      "name": "Tongue",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Trident",
+      "traits": [
+        "magical",
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Trident",
+      "traits": [
+        "magical",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "I8IPTHEU1zF5KmAB",
+  "gear": [
+    "Blowgun",
+    "Blowgun Darts",
+    "Hide Armor",
+    "Hunting Spider Venom (On Darts)",
+    "Trident"
+  ],
+  "hp": 160,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/boggard-warden",
+  "immunities": [],
+  "languages": [
+    "boggard",
+    "chthonian",
+    "common"
+  ],
+  "level": 9,
+  "name": "Boggard Warden",
+  "perception": 19,
+  "publicNotes": "<p>Boggards are aggressive humanoid amphibians that thrive in swamps, marshes, and even some rain forests. Boggards hatch from eggs into tadpoles, fiercely competing for food and even consuming their siblings in that struggle. Over 3 years, the surviving boggards develops arms, legs, and lungs while learning the rudiments of hunting, crafts, and warfare-everything needed to survive in their might-makes-right society. At the top of most boggard hierarchies lords a hulking swampseer imbued with sinister divine magic.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 19,
+    "intimidation": 18,
+    "stealth": 19,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "boggard",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,296 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 3,
+    "dex": 4,
+    "int": 3,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The lamia matriarch can take on the appearance of a Medium humanoid. This doesn't change their Speed or their attack and damage modifiers with their Strikes, but it does prevent them from using their cursed touch. Each lamia matriarch has a fixed humanoid form that resembles their upper torso when in their true form. This is the only humanoid form they can adopt using this ability.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The lamia matriarch touches a creature, who must succeed at a @Check[will|dc:28] save or become Stupefied 2 (Stupefied 4 on a critical failure). If the target fails additional saves against this ability, the condition value increases by 1 (increases by 2 on a critical failure, to a maximum of Stupefied 4). This condition value decreases by 1 every 24 hours.</p>",
+      "frequency": null,
+      "name": "Matriarch's Caress",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The lamia matriarch makes a scimitar attack against each enemy within reach. Each attack counts toward their multiple attack penalty, but the penalty does not increase until after all the attacks. The first enemy they damage is subject to Matriarch's Caress.</p>",
+      "frequency": null,
+      "name": "Scimitar Storm",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Scimitar",
+      "traits": [
+        "forceful",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "0qaGLx8ads9blcfS",
+  "gear": [
+    "Scimitar"
+  ],
+  "hp": 135,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/lamia-matriarch",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    }
+  ],
+  "languages": [
+    "chthonian",
+    "common",
+    "draconic"
+  ],
+  "level": 8,
+  "name": "Lamia Matriarch",
+  "perception": 15,
+  "publicNotes": "<p>The brilliant and powerful lamia matriarchs possess boundless ambition, always seeking to bring more people and territory into the clutches of their kind. Consequently, they become rulers of other lamia. For all their cruelty toward other creatures, they're fierce protectors of other lamia, and consequently, they quickly come to rule cults or warbands. Regardless of the lamia's gender, these ascended lamias are always known as matriarchs. A lamia matriarch is set apart from their kindred by the occult power they pursue, and some have even had grand designs to break the animalistic curse that transformed them. However, every attempt so far has led to the matriarch's fall.</p>\n<hr />\n<p>Lamias are bloodthirsty victims of an ancient curse for which they blame the gods. Most lamias are humanoid from the waist up but have the lower bodies of serpents. Sinister magic comes naturally to a lamia, and they prefer the use of illusions to deceive prey for later consumption, or simply to torture.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 18,
+    "deception": 20,
+    "diplomacy": 20,
+    "intimidation": 18,
+    "occultism": 17,
+    "stealth": 16,
+    "survival": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Blur",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Sleep",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Enthrall",
+          "rank": 3
+        },
+        {
+          "name": "Haste",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading",
+          "rank": 3
+        },
+        {
+          "name": "Blur",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Illusory Creature",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Bless",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Force Barrage",
+          "rank": 1
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Soothe",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "beast",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

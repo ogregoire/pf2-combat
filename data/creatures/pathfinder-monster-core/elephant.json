@@ -1,0 +1,143 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": 0,
+    "int": -4,
+    "str": 7,
+    "wis": 2
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Large or smaller, foot, @Check[reflex|dc:24|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A Medium or smaller creature hit by the elephant's trunk is Grabbed. If the elephant moves, it can bring the Grabbed creature along with it.</p>",
+      "frequency": null,
+      "name": "Grabbing Trunk",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [],
+      "effects": [
+        "grabbing-trunk"
+      ],
+      "kind": "melee",
+      "name": "Trunk",
+      "traits": [
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tusk",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "1x0BdpVQLX7o3rrA",
+  "gear": [],
+  "hp": 130,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/elephant",
+  "immunities": [],
+  "languages": [],
+  "level": 7,
+  "name": "Elephant",
+  "perception": 13,
+  "publicNotes": "<p>Those who live near elephants have learned to be wary of angering the beasts, but even with precautions in place, elephants sometimes still rampage. There is little an individual person can do when even a single elephant becomes enraged. Furthermore, a herd of angry or frightened elephants can easily destroy an entire village.</p>\n<hr />\n<p>Immediately recognizable by their long, prehensile trunks and impressive tusks, elephants have different characteristics depending on where they are found. Elephants are used as beasts of burden in many regions, but they are extremely clever and must be handled with great care.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 17,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,159 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 14,
+  "acDetails": "(15 with platter raised)",
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An object the servant could hold in one hand is dropped within the servant's reach</p>\n<p><strong>Requirements</strong> The servant has at least one hand free</p><hr /><p><strong>Effect</strong> The servant catches the dropped object before it hits the floor or leaves their reach.</p>",
+      "frequency": null,
+      "name": "Quick Catch",
+      "requirements": "The servant has at least one hand free",
+      "traits": [],
+      "trigger": "An object the servant could hold in one hand is dropped within the servant's reach"
+    },
+    {
+      "category": "defensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> You are wielding a shield.</p>\n<hr />\n<p>You position your shield to protect yourself. When you have Raised a Shield, you gain its listed circumstance bonus to AC. Your shield remains raised until the start of your next turn.</p>",
+      "frequency": null,
+      "name": "Raise a Shield",
+      "requirements": "You are wielding a shield.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The servant can raise their serving platter using the Raise a Shield action. The platter has the same statistics as a Buckler but requires a hand to hold.</p><hr /><p>Raise a Shield</p>",
+      "frequency": null,
+      "name": "Protective Platter",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Cutlery",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Cutlery",
+      "traits": [
+        "agile",
+        "thrown-15",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "mgEMfxh0VUbBepc2",
+  "gear": [
+    "Cutlery",
+    "Servant's Uniform",
+    "Serving Platter"
+  ],
+  "hp": 7,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/servant",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": -1,
+  "name": "Servant",
+  "perception": 7,
+  "publicNotes": "<p>A servant might be a maid or butler, keeping a home in working order, or a server in an establishment like an inn, taking orders and serving customers.</p><hr /><p>Society is built upon the backs of laborers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 5,
+    "diplomacy": 4,
+    "society": 2
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

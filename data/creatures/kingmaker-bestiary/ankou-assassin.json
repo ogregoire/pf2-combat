@@ -1,0 +1,235 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 5,
+    "dex": 9,
+    "int": 3,
+    "str": 8,
+    "wis": 3
+  },
+  "ac": 40,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>(1 to 3 actions)</p>\n<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> For each action spent to use this ability, the ankou creates one shadowy duplicate of themself anywhere within 60 feet of themself. Shadow doubles have the same statistics as an ankou, but they have the summoned trait, have 110 Hit Points, can't use Shadow Doubles or innate spells, and have an attack bonus of +27 for their Strikes. A shadow double that attempts a saving throw against a light effect can't get a result better than failure. Each double remains for 1 round, until it's reduced to 0 Hit Points, or until it moves further than 120 feet from the ankou, whichever comes first. Each round thereafter, the ankou can spend a single action that has the concentrate trait to extend the duration of surviving duplicates by 1 round, to a maximum duration of 1 minute. The ankou can see through the eyes of all of the shadow doubles at once. A character who Seeks can identify an ankou as real or a shadow double with a successful @Check[perception|dc:43] check.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Shadow Doubles",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "illusion",
+        "light",
+        "occult",
+        "shadow",
+        "summoned"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
+      "frequency": null,
+      "name": "Lifesense 120 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An ankou's Strikes deal an additional 3d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+16",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "cold-iron",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "2d8+16",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "cold-iron",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "m8kwG6NskYDlBSCy",
+  "gear": [],
+  "hp": 333,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/ankou-assassin",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "fey"
+  ],
+  "level": 17,
+  "name": "Ankou Assassin",
+  "perception": 30,
+  "publicNotes": "<p>Ankous are shadowy killers who serve powerful fey creatures, or even the Eldest- the demigods of the First World. Amid the courts of the Eldest or of powerful fey rulers, these sinister assassins lurk overhead as they await the call to action-implied threats akin to deadly weapons hung as decor in a royal hall. Ankous never speak aloud; when they feel the need to communicate at all, they do so in a telepathic whisper directly into a victim's mind. While an ankou's body is made of strange, fleshy material, their claws and the cruel hooks on their wings are made of razor-sharp cold iron, a quality that makes them much feared among other fey. A typical ankou is 10 feet tall and has an 8-foot wingspan but weighs less than 80 pounds.</p>\n<p>While most ankous serve powerful masters, some of these murderous fey are left to their own devices and serve none but their own capricious, cruel whims. In some cases, their master may have been slain, while in others the ankou may have been released from service for any number of reasons. An ankou left to indulge their own whims unrestrained is often the most dangerous ankou of them all!</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 32
+    },
+    "will": {
+      "detail": null,
+      "value": 29
+    }
+  },
+  "senses": [
+    {
+      "acuity": "precise",
+      "range": 120,
+      "type": "lifesense"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 34,
+    "deception": 31,
+    "intimidation": 34,
+    "nature": 28,
+    "stealth": 34
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 75
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 30,
+      "dc": 38,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Massacre",
+          "rank": 9
+        },
+        {
+          "name": "Discern Location",
+          "rank": 8
+        },
+        {
+          "name": "Prismatic Spray",
+          "rank": 7
+        },
+        {
+          "name": "Teleport",
+          "rank": 7
+        },
+        {
+          "name": "True Seeing",
+          "rank": 6
+        },
+        {
+          "name": "Darkness (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Dimensional Anchor",
+          "rank": 4
+        },
+        {
+          "name": "Silence",
+          "rank": 2
+        },
+        {
+          "name": "Ray of Enfeeblement",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 15
+    }
+  ]
+}

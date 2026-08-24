@@ -1,0 +1,212 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 3,
+    "int": -4,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:26]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[fire]] damage and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[3d6[fire]] damage and Enfeebled 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Magma Scorpion Venom",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "injury",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The magma scorpion ignores the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "1d6+9",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Magma Spit",
+      "traits": [
+        "fire",
+        "range-increment-40"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d6+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Pincer",
+      "traits": [
+        "agile",
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+9",
+          "type": "piercing"
+        },
+        {
+          "category": "persistent",
+          "formula": "1d6",
+          "type": "fire"
+        }
+      ],
+      "effects": [
+        "magma-scorpion-venom"
+      ],
+      "kind": "melee",
+      "name": "Tail Sting",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "Z3J7uGaLmlFRfwPk",
+  "gear": [],
+  "hp": 155,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/magma-scorpion",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [],
+  "level": 8,
+  "name": "Magma Scorpion",
+  "perception": 18,
+  "publicNotes": "<p>Whether skittering through Abyssal wastelands or basking in the searing sand of the deepest deserts, magma scorpions have charred carapaces constantly emitting vision-warping waves of heat.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 18
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "elemental",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    }
+  ]
+}

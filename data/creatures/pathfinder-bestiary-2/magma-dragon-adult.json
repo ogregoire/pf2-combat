@@ -1,0 +1,308 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 5,
+    "dex": 2,
+    "int": 2,
+    "str": 8,
+    "wis": 4
+  },
+  "ac": 34,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The dragon is targeted with an attack</p>\n<hr />\n<p><strong>Effect</strong> The dragon raises a wing, gaining a +2 circumstance bonus to AC against the triggering attack. If the dragon is Flying, they descend 10 feet after the attack.</p>",
+      "frequency": null,
+      "name": "Wing Deflection",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The dragon is targeted with an attack"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>If the next action the dragon uses is Breath Weapon, the magma clings to those it damages. Each creature that fails its save against the Breath Weapon takes @Damage[4d6[persistent,fire]] damage, and as long as it has this persistent fire damage, it also takes a -10-foot status penalty to its Speeds.</p>",
+      "frequency": null,
+      "name": "Volcanic Purge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a blast of magma that deals @Damage[9d6[fire],4d12[bludgeoning]|options:area-damage]{9d6 fire damage and 4d12 bludgeoning damage} in a @Template[cone|distance:40] (@Check[reflex|dc:33|basic|options:area-effect] save).</p>\n<p>They can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon makes two claw Strikes and one horn Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon recharges their Breath Weapon whenever they score a critical hit with a Strike.</p>",
+      "frequency": null,
+      "name": "Draconic Momentum",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:30]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A magma dragon's swim Speed functions only when the dragon is Swimming through magma or molten lava.</p>",
+      "frequency": null,
+      "name": "Magma Swim",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+12",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+12",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Horns",
+      "traits": [
+        "magical",
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+12",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "3d6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "fire",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d12+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "FnLuqlzLl4zCE9pJ",
+  "gear": [],
+  "hp": 270,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/magma-dragon-adult",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "petran",
+    "pyric"
+  ],
+  "level": 13,
+  "name": "Magma Dragon (Adult)",
+  "perception": 23,
+  "publicNotes": "<p>Magma dragons have a reputation among other dragons for being unpredictable and brash. Their temperament and tendency for violent outbursts ensure that the typical magma dragon lives a solitary life, with hatchlings often bickering or fighting to establish dominance among themselves before they leave the nest. A magma dragon always has a reason for their outbursts and can always justify their sudden turns in mood, yet they rarely feel the need to do so.</p>\n<p>Magma dragons build lairs within volcanically active mountains or deep underground amid vast lakes of bubbling magma. As with all true dragons, magma dragons keep hoards of treasure, but the nature of their searing lairs limits the type of valuables they collect to metals, gems, and items capable of resisting the heat of a volcano's core.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 21,
+    "athletics": 27,
+    "deception": 19,
+    "intimidation": 25,
+    "nature": 21,
+    "stealth": 21,
+    "survival": 23
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 140
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 23,
+      "dc": 31,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Burning Hands (At Will)",
+          "rank": 6
+        },
+        {
+          "name": "Wall of Fire (At Will)",
+          "rank": 6
+        },
+        {
+          "name": "Produce Flame",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "elemental",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 15
+    }
+  ]
+}

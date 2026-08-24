@@ -1,0 +1,148 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 5,
+    "dex": 1,
+    "int": -4,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:18]</p>\n<p><strong>Stage 1</strong> carrier with no ill effect (1 day)</p>\n<p><strong>Stage 2</strong> Enfeebled 1 (1 day)</p>\n<p><strong>Stage 3</strong> Enfeebled 1 and Clumsy 1 (1 day)</p>\n<p><strong>Stage 4</strong> Enfeebled 2 and Clumsy 2 (1 day)</p>\n<p><strong>Stage 5</strong> Enfeebled 2, Clumsy 2, and Fatigued (1 day)</p>",
+      "frequency": null,
+      "name": "Bloodfire Fever",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The trollhound deals an extra 1d6 damage to any creature within reach of at least two of the trollhound's allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 15 (Deactivated by Acid or Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "bloodfire-fever",
+        "knockdown"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "fwjDIGzmuEJN81Qq",
+  "gear": [],
+  "hp": 65,
+  "hpDetails": "regeneration 15 (deactivated by acid or fire)",
+  "id": "pathfinder-bestiary-2/trollhound",
+  "immunities": [],
+  "languages": [],
+  "level": 3,
+  "name": "Trollhound",
+  "perception": 6,
+  "publicNotes": "<p>Trollhounds are squat, slavering beasts akin to trolls in canine form. Requiring vast quantities of meat to fuel their regenerative metabolisms, packs of wild trollhounds prowl the foothills of regions where trolls dwell, their voracious hunger driving them to slaughter and consume any prey they encounter. In some regions, trolls breed trollhounds as pets, utilizing the trollhounds' keen sense of smell to aid in the hunt.</p>\n<p>Covered in fetid, weeping sores, trollhounds are carriers of a debilitating contagion known as bloodfire fever. Creatures that contract the disease through the bite of a trollhound experience deep internal pain, as if their blood were on fire. Additional symptoms include loss of muscle coordination, pus-filled blisters, and overall lethargy and fatigue. Other than suffering from skin irritation, both trolls and trollhounds are immune to the major effects of the disease.</p>\n<p>Trollhounds are fearless on the hunt and in combat, relying on their ability to regenerate to carry them through. Not even the threat of fire is enough to repel them, as the beasts don't recognize the danger it represents. Nevertheless, fire is one of the most effective tools in combating trollhounds; canny hunters know to burn every last remnant of a supposedly slain trollhound, for their regenerative powers are potent indeed.</p>\n<p>While trolls themselves have had great success in domesticating, training, and even befriending trollhounds, the same cannot be said for other would-be masters. Whether impeded by constant exposure to trollhounds' diseased slobber, their ravenous hunger that never seems to be fully sated, or simply their foul personality and quick-to-bite temperament, most attempts to use trollhounds in place of more reliable guardians end in pain, misery, and a pack of feral trollhounds escaping into the hinterlands. Left to their own devices, a pack of escaped trollhounds can breed relatively quickly, and it can take less than a year for a small pack to multiply into a significant threat to the countryside. Best to leave the trollhounds to the trolls, as they say!</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 6,
+    "athletics": 11,
+    "stealth": 8,
+    "survival": 6
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "troll"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 7,
+    "int": -1,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 30,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The storm lord takes damage from a hostile action.</p>\n<hr />\n<p><strong>Effect</strong> The storm lord disperses.</p>\n<p>Until the end of the current turn, it can't be attacked or targeted, doesn't take up space, and any auras or emanations it has are suppressed. At the end of the turn, the storm lord reforms in any space in which it can fit within 50 feet of where it dispersed and any auras or emanations it has are restored as long as their duration didn't run out while it was dispersed.</p>",
+      "frequency": null,
+      "name": "Disperse",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The storm lord takes damage from a hostile action."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
+      "frequency": null,
+      "name": "Push 5 feet",
+      "requirements": "The monster's last action was a successful Strike that lists Push in its damage entry",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet. Air within the emanation is difficult terrain for Flying creatures that do not have the air trait.</p>",
+      "frequency": null,
+      "name": "High Winds",
+      "requirements": null,
+      "traits": [
+        "air",
+        "aura"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The storm lord's movement doesn't trigger reactions.</p>",
+      "frequency": null,
+      "name": "Swiftness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "push"
+      ],
+      "kind": "melee",
+      "name": "Gust",
+      "traits": [
+        "finesse",
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d12+4",
+          "type": "electricity"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Lightning Lash",
+      "traits": [
+        "range-increment-50"
+      ]
+    }
+  ],
+  "foundryId": "LUtSo30fQWj7mrDn",
+  "gear": [],
+  "hp": 120,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/storm-lord",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "sussuran"
+  ],
+  "level": 9,
+  "name": "Storm Lord",
+  "perception": 18,
+  "publicNotes": "<p>Storm lords wage battles to claim important territory within the Plane of Air.</p>\n<hr />\n<p>Hailing from the Plane of Air, these beings appear in a variety of sizes and shapes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 20,
+    "stealth": 18
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 75
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "air",
+    "elemental"
+  ],
+  "weaknesses": []
+}

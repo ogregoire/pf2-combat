@@ -1,0 +1,121 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 2,
+    "int": 4,
+    "str": 1,
+    "wis": -2
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p><hr /><p><strong>Effect</strong> The exuberant apprentice's teacher has told them they're not ready for this spell, but desperate times call for desperate measures. The exuberant apprentice attempts to cast Fireball as a 3rd-rank arcane spell but must first attempt a @Check[flat|dc:11].</p><hr /><p><strong>Critical Success</strong> The spell is cast flawlessly and heightened to 4th rank. The apprentice is Stunned 2 from sheer shock.</p>\n<p><strong>Success</strong> Nothing goes wrong, and the spell is cast normally.</p>\n<p><strong>Failure</strong> The spell fizzles and creates only a harmless puff of smoke.</p>\n<p><strong>Critical Failure</strong> Academic ablaze! The apprentice takes @Damage[6d6[fire]] damage as the magic backfires</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Overambitious Spell",
+      "requirements": null,
+      "traits": [
+        "arcane"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Textbook",
+      "traits": []
+    }
+  ],
+  "foundryId": "7A0foSLz3KU3G4jL",
+  "gear": [
+    "Late homework assignment",
+    "Spellbook",
+    "Textbooks",
+    "Writing Set"
+  ],
+  "hp": 65,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/exuberant-apprentice",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Exuberant Apprentice",
+  "perception": 11,
+  "publicNotes": "<p>Bright-eyed and bushy-tailed, these young mages seamlessly combine boundless curiosity, vigorous enthusiasm, and a complete lack of survival instincts.</p><hr /><p>True power comes from knowledge—the power to shape the growth of kingdoms by mere whispers, stay three steps ahead of adversaries, or even know which flora is best for creating untraceable poisons.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

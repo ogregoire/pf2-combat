@@ -1,0 +1,139 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 3,
+    "dex": 3,
+    "int": -4,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Bright light shines from the blindheim's eyes in a @Template[emanation|distance:30] (also creating dim light to 60 feet). Each creature in the bright light when the blindheim uses this action, or who enters it while the light continues, must attempt a @Check[fortitude|dc:18] save. It is then temporarily immune for 1 hour. This light remains until the blindheim dims its eyes by using this action again.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Dazzled for 1 round.</p>\n<p><strong>Failure</strong> The creature is Blinded for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<p><strong>Critical Failure</strong> The creature is Blinded for 1 hour.</p>",
+      "frequency": null,
+      "name": "Spotlight",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "light"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+2",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "B8dOh27iarR7rZI3",
+  "gear": [],
+  "hp": 27,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/blindheim",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "blinded"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "light"
+    }
+  ],
+  "languages": [],
+  "level": 2,
+  "name": "Blindheim",
+  "perception": 9,
+  "publicNotes": "<p>Inhabitants of damp, subterranean caves, blindheims resemble stubby humanoids with oversized, frog-like heads and bulbous eyes. Their eyes emit a soft glow at all times, but a blindheim can draw back the heavy membrane that normally covers them to emit an intense light as bright as day. These simple creatures use their lights to draw in or disorient prey, mostly small animals like lizards, rodents, or fish. However, they might go after larger prey if trying to feed their young. When they encounter creatures their own size or larger they retreat, flashing their eyes to facilitate their escape if necessary. They often hunt in pairs or small packs. Using their lights to coordinate from a distance, they slowly close in on the creatures they hunt. One common hunting pattern involves one blindheim diving deep and using its light to chase fish to the surface, while another up above snatches them up and tosses them onto the land to eat later.</p>\n<p>Blindheims make their nests in damp caverns, especially grottoes next to underground lakes or bogs. An ideal nest rests in a cozy cavern with plenty of fungus to eat, a few fish swimming in a lake, and the comforting drip of water from the ceiling. Blindheims prefer to lead quiet and serene lives, and even when first born they emit only the meekest of vocalizations. A blindheim is born shining, and its parents cuddle over it to dim the light so as to avoid attracting predators.</p>\n<p>It's not just animals that endanger blindheims. Underground peoples find the creatures useful and attempt to capture them for specialized purposes. Duergars use them as \"raid frogs,\" placing heavy hoods over blindheims' heads and revealing them suddenly during raids to blind their foes. They sometimes send the creatures along with their slaves that lack darkvision into the mines as a source of light. Drow use them for some of these same purposes, and some nobles have been known to treat the creatures as mere lanterns, having them hoisted to the ceilings of their halls. Neither duergars nor drow take good care of the captive creatures, so blindheims rarely last long in captivity.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 6,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 15
+    },
+    {
+      "type": "swim",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

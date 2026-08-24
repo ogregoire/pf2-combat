@@ -1,0 +1,175 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": 2,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per 10 minutes</p>\n<p><strong>Requirements</strong> The rocketeer is standing on a horizontal surface</p><hr /><p><strong>Effect</strong> The rocketeer unleashes the full strength of their jets to launch themself into the air, dealing @Damage[7d6[fire],7d6[bludgeoning]|options:area-damage] damage to all creatures in a @Template[type:emanation|distance:15] with a @Check[reflex|dc:24|basic|options:area-effect] save. The rocketeer Flies twice, straight up into the air.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT10M"
+      },
+      "name": "Explosive Liftoff",
+      "requirements": "The rocketeer is standing on a horizontal surface",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The rocketeer Flies twice, then attempts to [[/act trip options=mid-air-collision]] or [[/act shove options=mid-air-collision]] another flying creature. If they roll a success on the Athletics check, they get a critical success instead.</p>",
+      "frequency": null,
+      "name": "Mid-air Collision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The rocketeer Flies and makes two melee Strikes at any point during that movement. Each Strike must target a different creature. The rocketeer can forgo the melee Strikes to instead make one slide pistol Strike at any point during that movement and Interact to select the next loaded chamber of their slide pistol; they can do these in either order. Any Strike made as part of a Rocketing Strafe deals an additional 2d6 damage and takes the normal multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Rocketing Strafe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the rocketeer is struck by a critical hit that deals piercing or fire damage, they must attempt a @Check[flat|dc:5]. On a failure, the rocketeer's fuel tank explodes, dealing @Damage[6d6[fire]|options:area-damage] damage to the rocketeer and all creatures in a @Template[type:emanation|distance:20] and knocking the rocketeer Prone. The rocketeer loses their fly Speed and can't use Explosive Liftoff, Mid-air Collision, or Rocketing Strafe until they repair their jet pack, which requires an appropriate set of artisan's tools and takes 2 hours.</p>",
+      "frequency": null,
+      "name": "Fuel Tank Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Heavy Wrench",
+      "traits": [
+        "shove"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Slide Pistol",
+      "traits": [
+        "capacity-5",
+        "concussive",
+        "fatal-d10",
+        "range-increment-30",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "SHQHNG2o1T172Qm4",
+  "gear": [
+    "Alchemist's Fire (Moderate)",
+    "Artisan's Toolkit (Rocketry)",
+    "Flight Suit (Functions as Leather Armor)",
+    "Heavy Wrench (Functions as a Mace)",
+    "Rounds (Slide Pistol)",
+    "Slide Pistol"
+  ],
+  "hp": 85,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/rocketeer",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Rocketeer",
+  "perception": 14,
+  "publicNotes": "<p>It takes a very specific personality to strap on a tank filled with a highly flammable alchemical substance and set it afire to launch oneself into the sky, so it is perhaps unsurprising that most rocketeers are reckless and bombastic individuals who delight in the theatrics inherent in their craft. While the unpredictability of rocketeering devices and the high casualty rate among those who use them make such devices generally unsuitable for military applications, a few courageous souls have used them to become dashing folk heroes or performing daredevils, many of whose most memorable performances culminate in their own dramatic demises.</p><hr /><p>Although relatively uncommon across much of Golarion, the frequently eccentric but undeniably brilliant minds who create elaborate devices of clockwork, gunpowder, and steam often loom much larger in the public eye than their numbers would suggest.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "crafting": 14,
+    "performance": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,283 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 6,
+    "dex": 5,
+    "int": 3,
+    "str": 7,
+    "wis": 4
+  },
+  "ac": 31,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The meladaemon is attacked by an adjacent creature and the attack misses</p>\n<hr />\n<p><strong>Effect</strong> The meladaemon swipes at the triggering creature, which must immediately attempt a save against the meladaemon's withering touch.</p>",
+      "frequency": null,
+      "name": "Withering Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The meladaemon is attacked by an adjacent creature and the attack misses"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet. A meladaemon emanates an aura of intense hunger. Each round a creature begins its turn in the aura, it must attempt a @Check[fortitude|dc:27|traits:damaging-effect] save. On a failure, the creature takes @Damage[1d6[void]] damage (@Damage[2d6[void]] damage on a critical failure) and becomes Fatigued. This fatigue ends as soon as the creature eats any food.</p>",
+      "frequency": null,
+      "name": "Consumptive Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:29]</p>\n<p><strong>Stage 1</strong> carrier (1 day)</p>\n<p><strong>Stage 2</strong> Enfeebled 1 (1 day)</p>\n<p><strong>Stage 3</strong> Enfeebled 2 (1 day)</p>\n<p><strong>Stage 4</strong> as stage 3 (1 day)</p>\n<p><strong>Stage 5</strong> Enfeebled 3 (1 day)</p>\n<p><strong>Stage 6</strong> dead</p>",
+      "frequency": null,
+      "name": "Daemonic Famine",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
+      "frequency": null,
+      "name": "Lifesense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the meladaemon hits with a claw Strike or a creature begins its turn grabbed by the meladaemon, the creature must attempt a @Check[fortitude|dc:30|traits:damaging-effect] save. On a failure, the creature takes @Damage[1d6[void]] damage and becomes Fatigued. This fatigue ends when the creature drinks.</p>",
+      "frequency": null,
+      "name": "Withering Touch",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "evil"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "2d12+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "daemonic-famine"
+      ],
+      "kind": "melee",
+      "name": "Bite",
+      "traits": [
+        "evil",
+        "magical",
+        "reach-10",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "grab",
+        "withering-touch"
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "ytsHNgRwLzabsrZt",
+  "gear": [],
+  "hp": 225,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/meladaemon",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    }
+  ],
+  "languages": [
+    "common",
+    "daemonic"
+  ],
+  "level": 11,
+  "name": "Meladaemon",
+  "perception": 21,
+  "publicNotes": "<p>Meladaemons personify death by starvation and thirst, and revel in spreading the same despair that brought about their mortal demise. When they aren't blighting fields, massacring livestock, or tainting water supplies, they experiment on prisoners to study how long creatures can go without sustenance and the deleterious effects that result from such deprivation. Fiercely loyal to Trelmarixian, Horseman of Famine, they serve no other beings. They work alongside other daemons if Trelmarixian wills it, but are notoriously traitorous.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "lifesense"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 20,
+    "deception": 23,
+    "intimidation": 23,
+    "religion": 20,
+    "stealth": 23,
+    "survival": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 31,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Phantom Pain",
+          "rank": 6
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 5
+        },
+        {
+          "name": "Fear",
+          "rank": 5
+        },
+        {
+          "name": "Magic Missile (At will)",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Detect Alignment (At will) (Good only)",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "daemon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

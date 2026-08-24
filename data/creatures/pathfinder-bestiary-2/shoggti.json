@@ -1,0 +1,256 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 2,
+    "dex": 4,
+    "int": 4,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The shoggti caresses a creature with a tentacle and supernaturally erodes the creature's capability for thought as it does so. The target must succeed at a @Check[will|dc:25] save or become Stupefied 2, with an unlimited duration. The target can attempt the save to remove the stupefied condition again once per day when it makes its daily preparations.</p>",
+      "frequency": null,
+      "name": "Braincloud",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d10+8)[bludgeoning]] damage, @Check[fortitude|dc:25|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The shoggti writhes its tentacles and shifts its coloration to put on an unnaturally fascinating hypnotic display. Creatures in a @Template[emanation|distance:30] must attempt a @Check[will|dc:25] save, after which they are temporarily immune to further Fascinating Displays for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Sickened 1.</p>\n<p><strong>Failure</strong> The creature is Fascinated for 1 minute. Once the fascination effect ends, the creature is Sickened 1.</p>\n<p><strong>Critical Failure</strong> The creature is fascinated for 1 minute, can't use reactions while fascinated, and is Sickened 2 once the fascination ends.</p>",
+      "frequency": null,
+      "name": "Fascinating Display",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "emotion",
+        "fear",
+        "mental",
+        "occult",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "2d12+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Bite",
+      "traits": [
+        "chaotic",
+        "magical",
+        "reach-10",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Pincer",
+      "traits": [
+        "agile",
+        "chaotic",
+        "magical",
+        "reach-10",
+        "unholy",
+        "versatile-b"
+      ]
+    }
+  ],
+  "foundryId": "wByXwxI5r7YRlkAK",
+  "gear": [],
+  "hp": 105,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/shoggti",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
+  ],
+  "languages": [
+    "chthonian"
+  ],
+  "level": 7,
+  "name": "Shoggti",
+  "perception": 13,
+  "publicNotes": "<p>Shoggti travel to other planes in roving bands to capture and charm victims, bringing them back to the Abyss where they are enslaved for unknown-but no doubt insidiously evil-purposes. These squid-like qlippoth have slick, blue skin and four suckered tentacles that end in dexterous pincers. In addition to a lamprey-like mouth at the base of its body, each has a secondary maw in the middle of its forehead that stretches from between its two bulging eyes to the back of its head.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "cold-iron"
+      ],
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "intimidation": 17,
+    "occultism": 15,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 23,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Charm",
+          "rank": 4
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Paranoia",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "fiend",
+    "qlippoth",
+    "unholy"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,121 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": -1,
+    "wis": 3
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The halfling gains a +2 circumstance bonus when using the Seek action to find Hidden or Undetected creatures within 30 feet of it.</p>\n<p>Whenever the halfling targets a creature that is Concealed or hidden from them, reduce the DC of the flat check to @Check[flat|dc:3] for a concealed target or @Check[flat|dc:9] for a hidden one.</p>",
+      "frequency": null,
+      "name": "Keen Eyes",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4-1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Frying Pan",
+      "traits": [
+        "fatal-d8"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10-1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Halfling Sling Staff",
+      "traits": [
+        "propulsive",
+        "range-increment-80",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "FWLTPQZzrVsokXHb",
+  "gear": [
+    "Frying Pan",
+    "Halfling Sling Staff",
+    "Leather Armor"
+  ],
+  "hp": 8,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/halfling-street-watcher",
+  "immunities": [],
+  "languages": [
+    "common",
+    "halfling"
+  ],
+  "level": -1,
+  "name": "Halfling Street Watcher",
+  "perception": 8,
+  "publicNotes": "<p>Halflings' keen sight makes them excellent street watchers. Though the job rarely calls for fighting, most street watchers cover themselves head to ankle in whatever armor and weapons they manage to get their hands on.</p>\n<hr />\n<p>Despite their small stature, a halfling can prove to be a mighty foe if you find yourself on the wrong side of their frying pan.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [],
+  "size": "small",
+  "skills": {
+    "acrobatics": 5,
+    "athletics": 4,
+    "diplomacy": 3,
+    "stealth": 5,
+    "thievery": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "halfling",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,246 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 2,
+    "int": 1,
+    "str": 5,
+    "wis": 6
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The balisse marks a creature within their confessor's aura as irredeemable. They can do so only after a failed attempt to convince the creature to repent. The touched creature takes a –1 status penalty to AC and saves, reduces all its resistances by 2, and gains weakness 2 to holy. The duration depends on the target's @Check[will|dc:26] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The duration is 1 round.</p>\n<p><strong>Failure</strong> The duration is 1 day.</p>\n<p><strong>Critical Failure</strong> The duration is unlimited.</p>\n<hr />\n<p>Effect: Brand of the Impenitent</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Brand of the Impenitent",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The balisse is Invisible</p>\n<hr />\n<p><strong>Effect</strong> The balisse spiritually attaches themself to an adjacent mortal who doesn't have the unholy trait. They merge with the mortal's body and are unable to use any of their spells and abilities other than to interact with the mortal. They can Dismiss the effect to leave the mortal. While merged, the balisse can either communicate using a bodiless voice only the mortal can hear or can take a form of their choice that only the mortal can see, such as a small angel on the mortal's shoulder.</p>",
+      "frequency": null,
+      "name": "Guiding Angel",
+      "requirements": "The balisse is Invisible",
+      "traits": [
+        "concentrate",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Bonus on Perception to Detect lies and illusions",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>The monster can cast its at-will spells any number of times without using up spell slots.</p></p>",
+      "frequency": null,
+      "name": "At-Will Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet.</p>\n<p>Creatures in the balisse's aura are subject to Ring of Truth (@Check[will|dc:23]). Additionally, if these creatures choose to honestly express their own conflicted feelings, the aura makes it easier for them to put words to those feelings.</p>",
+      "frequency": null,
+      "name": "Confessor's Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Scimitar",
+      "traits": [
+        "fire",
+        "forceful",
+        "holy",
+        "magical",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "Q1wybC7rSc4MIF9g",
+  "gear": [
+    "Scimitar"
+  ],
+  "hp": 145,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/balisse",
+  "immunities": [],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 8,
+  "name": "Balisse",
+  "perception": 18,
+  "publicNotes": "<p>Balisses, or confessor angels, seek to assist mortals ensnared by moral dilemmas or crises of faith. They prefer to guide people to their own decisions rather than demand obedience to a higher cause, as intrinsic belief is even more powerful than unquestioning obedience. While most balisses are fundamentally honest, they use their guiding angel ability to seem less intimidating and decrease the chance the mortal will simply acquiesce to the opinion of an obviously divine being.</p>\n<p>While balisses can spring from any soul with suitable patience and strong counsel, they often form from souls of those who performed evil acts but were redeemed. These souls recognize the struggle and shame of those in similar situations, and can offer advice from the heart rather than from rote sympathy. Many serve the goddess Sarenrae, but they can serve other good deities and empyreal lords as well.</p>\n<hr />\n<p>The celestial hosts of angels are messengers and warriors, divided into choirs based on their abilities and purviews. Angels were one of the first creations of the gods, and many still assist their righteous creators throughout the cosmos. Most angels in modern times are not direct creations of the divine, however, instead consisting of ascended mortal souls drawn from the celestial planes.</p>\n<p>The majority of unaffiliated angels live in Nirvana, the plane of virtue and enlightenment. Angels who are affiliated with deities dwell in those deities' domains or other areas where that god holds influence. Regardless of residence or service, angels remain benevolent messengers possessed with magical auras to aid their allies.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 14,
+    "diplomacy": 17,
+    "religion": 18
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 18,
+      "dc": 26,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Divine Wrath",
+          "rank": 4
+        },
+        {
+          "name": "Paralyze",
+          "rank": 3
+        },
+        {
+          "name": "Cleanse Affliction",
+          "rank": 2
+        },
+        {
+          "name": "Clear Mind (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility (At Will) (Self Only)",
+          "rank": 2
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "angel",
+    "celestial",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unholy",
+      "value": 10
+    }
+  ]
+}

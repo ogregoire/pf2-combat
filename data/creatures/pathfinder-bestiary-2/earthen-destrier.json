@@ -1,0 +1,187 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 1,
+    "int": -1,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The earthen destrier tramples a creature</p>\n<hr />\n<p><strong>Effect</strong> The earthen destrier makes a lance arm Strike against the creature it's trampling at a -5 penalty.</p>",
+      "frequency": null,
+      "name": "Tilting Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The earthen destrier tramples a creature"
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:20|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An earthen destrier can Burrow through earthen matter, including rock. When it does so, it moves at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the destrier moved at least 10 feet directly before its lance arm Strike, it gains a +2 circumstance bonus to its damage roll.</p>",
+      "frequency": null,
+      "name": "Lancing Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": []
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "lancing-charge"
+      ],
+      "kind": "melee",
+      "name": "Lance Arm",
+      "traits": [
+        "deadly-d8",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "CrAsEzLl3F2vejd3",
+  "gear": [],
+  "hp": 72,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/earthen-destrier",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "petran"
+  ],
+  "level": 4,
+  "name": "Earthen Destrier",
+  "perception": 10,
+  "publicNotes": "<p>This wave of dirt takes the crude likeness of the melded forequarters of a charging warhorse and a rocky knight wielding a rudimentary lance of gray stone.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 12
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "burrow",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}

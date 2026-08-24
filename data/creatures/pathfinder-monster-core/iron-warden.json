@@ -1,0 +1,162 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 4,
+    "dex": -1,
+    "int": -5,
+    "str": 8,
+    "wis": 0
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The iron warden Strides up to its Speed, pushing back each creature whose space it moves into and damaging them if they try to stop its movement. A creature can attempt to bar the way by succeeding at a @Check[fortitude|dc:37] save. On a critical success, the resisting creature takes no damage; otherwise, it's damaged as if hit by the iron warden's fist.</p>",
+      "frequency": null,
+      "name": "Inexorable March",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The iron warden exhales poisonous gas in a @Template[burst|distance:10] centered on the corner of one of the iron warden's squares. The gas persists until the start of the warden's next turn. Any creature in the area (or that later enters the area) is exposed to the iron warden's poison.</p>\n<p>The warden can't Breathe Poison again for [[/gmr 1d4 #Recharge Breath Poison]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Poison",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any drained value from this poison is reduced by 1 every hour</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:33];</p>\n<p><strong>Maximum Duration</strong> 4 rounds</p>\n<hr />\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] and Drained 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[4d6[poison]] and Drained 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[8d6[poison]] and Drained 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Iron Warden Poison",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The iron warden has a shield built into its arm, that it can use as a steel shield (+2 to AC and Hardness 5). Because it's a part of the iron warden, all damage in excess of its Hardness is dealt only to the iron warden.</p>",
+      "frequency": null,
+      "name": "Shield Arm",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "NqbaJG3tPG0NGJud",
+  "gear": [
+    "Steel Shield"
+  ],
+  "hp": 190,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/iron-warden",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
+  ],
+  "languages": [],
+  "level": 13,
+  "name": "Iron Warden",
+  "perception": 21,
+  "publicNotes": "<p>Traditionally crafted into the forms of giant suits of armor or powerful animals, iron wardens are products of exquisite artistry and skill. Their articulated joints and sturdy, armored bodies require great care and mathematical precision to craft, and regular cleaning and oiling ensure they don't rust over the ages. With proper care, iron wardens can remain in good shape for thousands of years, being passed down for generations, as long as they aren't destroyed by meddlesome adventurers. In addition to their incredible strength, iron wardens possess a potent toxic breath that is often more than enough to dispatch entire groups of opponents.</p>\n<p>Though their impressive stature prevents them from being inconspicuous, iron wardens are often placed in areas where they are easily mistaken for decorative objects. An iron warden might be hidden among decorative suits of armor or disguised as a statue in a city square. Occasionally, locals are shocked when something they assumed to be a historic landmark animates into an iron warden, called to action by an unknown mystic command.</p>\n<p>Stories tell of ancient civilizations, such as the Jistka Imperium, that created iron wardens of massive size. Most of these constructs have since been melted down for resources, but magicians and historians still chase down rumors of one of these lost colossi.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
+      "type": "physical",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 30
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "mindless"
+  ],
+  "weaknesses": []
+}

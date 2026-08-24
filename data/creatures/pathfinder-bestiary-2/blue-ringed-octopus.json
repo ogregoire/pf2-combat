@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 3,
+    "int": -4,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The blue-ringed octopus has a creature Grabbed</p>\n<hr />\n<p><strong>Effect</strong> The blue-ringed octopus makes a beak Strike against the grabbed creature. If it hits, it injects additional poison, causing its venom to gain the virulent trait.</p>",
+      "frequency": null,
+      "name": "Toxic Bite",
+      "requirements": "The blue-ringed octopus has a creature Grabbed",
+      "traits": [
+        "virulent"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The blue-ringed octopus moves up to 60 feet in a straight line through the water without triggering reactions.</p>",
+      "frequency": null,
+      "name": "Jet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:17]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d4[poison]] damage (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]] damage (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[1d6[poison]] damage and Paralyzed (1 round)</p>",
+      "frequency": null,
+      "name": "Blue-Ringed Octopus Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The blue-ringed octopus can change the color of its skin to Hide even if it doesn't have cover.</p>",
+      "frequency": null,
+      "name": "Camouflage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Arms",
+      "traits": []
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "blue-ringed-octopus-venom"
+      ],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "WxSpfUReYJb4StxG",
+  "gear": [],
+  "hp": 15,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/blue-ringed-octopus",
+  "immunities": [],
+  "languages": [],
+  "level": 0,
+  "name": "Blue-Ringed Octopus",
+  "perception": 6,
+  "publicNotes": "<p>While relatively small, the blue-ringed octopus is particularly venomous for its size.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 2
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "tiny",
+  "skills": {
+    "athletics": 6,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

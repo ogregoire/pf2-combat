@@ -1,0 +1,205 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 6,
+    "dex": 5,
+    "int": 2,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 40,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>An athach gains an extra reaction at the start of each of its turns that it can use only to make an Attack of Opportunity with its claw. It can't use more than one Attack of Opportunity triggered by the same action.</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Special)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
+      "traits": [],
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The athach hits a creature with two fist Strikes</p>\n<hr />\n<p><strong>Effect</strong> The athach makes a claw Strike with no multiple attack penalty against the creature it hit with its fist Strikes. This claw attack does not increase the athach's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Swift Claw",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The athach hits a creature with two fist Strikes"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:38]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] damage and Enfeebled 1</p>\n<p><strong>Stage 2</strong> @Damage[2d6[poison]] damage and Enfeebled 2</p>\n<p><strong>Stage 3</strong> @Damage[2d6[poison]] damage and Enfeebled 3</p>",
+      "frequency": null,
+      "name": "Athach Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+17",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d12+17",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "athach-venom"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d4+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "fbsy6zPV4HjHiis7",
+  "gear": [],
+  "hp": 375,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/bloomborn-athach",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "fey",
+    "jotun"
+  ],
+  "level": 17,
+  "name": "Bloomborn Athach",
+  "perception": 31,
+  "publicNotes": "<p>The towering and brutish giants known as athaches are reviled for both their monstrosity and their cruelty. Beyond an athach's filthy habits, this giant is made stranger by the gangly third arm that protrudes from their torso and ends in a twitching, long-fingered claw. Huge, tusk-like fangs descend from an athach's upper jaw and prop their mouth open, leaking long strands of viscous drool that is itself is a toxic venom and coats the athach's fangs.</p>\n<p>Athachs despise civilization almost as much as they despise their own kind, and they delight in committing sadistic acts and terrorizing victims. An athach does not keep a traditional territory of their own, but rather wanders the hinterlands of settled territories until they find a suitably easy settlement of smaller humanoids to target. Once the athach has chosen their target, the giant establishes a hidden lair in a location like an abandoned farmhouse or cave, and from there they launch their reign of torment. After a few weeks of harassing, capturing, and torturing victims, the athach bores of their games. The giant then goes on a final rampage, destroying every dwelling and eating every creature they can find. Sometimes, the giant allows a survivor or two to escape, forcing these terrified victims to spend the rest of their lives spreading word of the athach's fearsomeness.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 33
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 31
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 32,
+    "intimidation": 32
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 15
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 3,
+    "int": -2,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The elemental puts out all fires in a @Template[emanation|distance:5].</p>\n<p>It extinguishes all non-magical fires automatically and attempts to counteract magical fires ([[/r 1d20+14 #Drench]]{+14} counteract modifier).</p>",
+      "frequency": null,
+      "name": "Drench",
+      "requirements": null,
+      "traits": [
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The living waterfall can choose whether to push or pull the creature on a succesful hit.</p>\n<hr />\n<p><strong>Push</strong> <span class=\"action-glyph\">1</span></p>\n<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>\n<hr />\n<p><strong>Pull</strong> <span class=\"action-glyph\">1</span></p>\n<p><p><strong>Requirements</strong> The monster's last action was a success with a Strike that lists Pull in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Reposition the creature, moving it closer to the monster. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Pull lists a distance, change the distance the creature is pulled on a success to that distance.</p></p>",
+      "frequency": null,
+      "name": "Push or Pull 5 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>Water in the area that is in the same body of water as the living waterfall is difficult terrain for Swimming creatures that don't have the water trait.</p>",
+      "frequency": null,
+      "name": "Vortex",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When not touching water, the living waterfall is Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Waterbound",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "push-or-pull"
+      ],
+      "kind": "melee",
+      "name": "Wave",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "1AZoRkLec47xrTqY",
+  "gear": [],
+  "hp": 90,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/living-waterfall",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 5,
+  "name": "Living Waterfall",
+  "perception": 10,
+  "publicNotes": "<p>Living waterfalls are humanoid-shaped columns of churning water. They see the water as their natural domain and even aquatic animals as interlopers. When summoned, they are surly, but will grudgingly guard all forms of aquatic sites.</p>\n<hr />\n<p>Water elementals can be very destructive, but often not intentionally so; just as water can bring life to mortals in need, its waves can pound shores and rains can flood cities. Water elementals are similarly difficult to predict.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 13,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aquatic",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

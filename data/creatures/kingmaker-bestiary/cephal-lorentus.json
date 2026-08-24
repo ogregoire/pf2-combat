@@ -1,0 +1,279 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 2,
+    "int": 6,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If Cephal critically succeeds at a jaws Strike against a foe or successfully hits a helpless foe with a jaws Strike, he gnaws upon the foe's flesh and drains its life force to bolster his own health. This restores @Damage[3d6[healing]] HP to Cephal (he gains any excess HP as temporary HP, and also becomes Quickened 1 during his next turn; he may use his extra action only to make a jaws Strike).</p>",
+      "frequency": null,
+      "name": "Feasting Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "4d6",
+          "type": "void"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+2",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "4d6",
+          "type": "void"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "vff5VzjJpRMmg4Hx",
+  "gear": [
+    "Dagger",
+    "Ring of Wizardry (Type I)",
+    "Tattered Robes"
+  ],
+  "hp": 140,
+  "hpDetails": "void healing",
+  "id": "kingmaker-bestiary/cephal-lorentus",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "hallit",
+    "jotun"
+  ],
+  "level": 9,
+  "name": "Cephal Lorentus",
+  "perception": 18,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bludgeoning",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 20,
+    "diplomacy": 17,
+    "nature": 19,
+    "society": 19,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Sending",
+          "rank": 5
+        },
+        {
+          "name": "Fly",
+          "rank": 4
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Vampiric Touch",
+          "rank": 3
+        },
+        {
+          "name": "Acid Arrow",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Mirror Image",
+          "rank": 2
+        },
+        {
+          "name": "Resist Energy",
+          "rank": 2
+        },
+        {
+          "name": "Telekinetic Maneuver",
+          "rank": 2
+        },
+        {
+          "name": "Command",
+          "rank": 1
+        },
+        {
+          "name": "Electric Arc",
+          "rank": 1
+        },
+        {
+          "name": "Feather Fall",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Magic Missile",
+          "rank": 1
+        },
+        {
+          "name": "Mending",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Unseen Servant",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,265 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 3,
+    "int": 0,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per turn</p>\n<p><strong>Requirements</strong> the false priestess' most recent action was to cast a non-cantrip spell</p>\n<p><strong>Effect</strong> Until the end of the false priestess's next turn, the priestess deals an extra @Damage[1d6[slashing]] damage with her melee Strikes.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "turn"
+      },
+      "name": "Primal Weapon",
+      "requirements": "the false priestess' most recent action was to cast a non-cantrip spell",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>If the next action the false priestess uses is to Cast a Spell that has a range, increase that spell's range by 30 feet.</p>",
+      "frequency": null,
+      "name": "Reach Spell",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "spellshape"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Glaive",
+      "traits": [
+        "deadly-d8",
+        "forceful",
+        "magical",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "ZPm7WqgQTjysuTiT",
+  "gear": [
+    "Ceremonial Robes",
+    "Glaive"
+  ],
+  "hp": 120,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/false-priestess",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 7,
+  "name": "False Priestess",
+  "perception": 15,
+  "publicNotes": "",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 17,
+    "nature": 17,
+    "religion": 15,
+    "stealth": 16
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Primal Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        }
+      ],
+      "spells": [
+        {
+          "name": "Hydraulic Torrent",
+          "rank": 4
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Blindness",
+          "rank": 3
+        },
+        {
+          "name": "Earthbind",
+          "rank": 3
+        },
+        {
+          "name": "Enthrall",
+          "rank": 3
+        },
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Animal Messenger",
+          "rank": 2
+        },
+        {
+          "name": "Create Food",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Glitterdust",
+          "rank": 2
+        },
+        {
+          "name": "Hideous Laughter",
+          "rank": 2
+        },
+        {
+          "name": "Alarm",
+          "rank": 1
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Electric Arc",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Grease",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Produce Flame",
+          "rank": 1
+        },
+        {
+          "name": "Tanglefoot",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    },
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Sorcerer Bloodline Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Fey Disappearance",
+          "rank": 3
+        },
+        {
+          "name": "Faerie Dust",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,152 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 5,
+    "dex": 1,
+    "int": -5,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The titan centipede Strides up to its Speed or Steps. During this movement, it can pass through spaces as narrow as 10 feet without Squeezing.</p>",
+      "frequency": null,
+      "name": "Undulate",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Huge or smaller, foot, @Check[reflex|dc:28|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a titan centipede scores a critical hit with its mandibles, the target is painfully pierced with barbed spines and bristles, taking @Damage[1d6[bleed]] and becoming Off-Guard as long as the bleed damage continues.</p>",
+      "frequency": null,
+      "name": "Impaling Critical",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:28]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] damage and Clumsy 2 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d8[poison]] damage, Clumsy 2, and Slowed 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[2d10[poison]] damage, Clumsy 2, and Slowed 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Titan Centipede Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+12",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "titan-centipede-venom"
+      ],
+      "kind": "melee",
+      "name": "Mandibles",
+      "traits": [
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "n1jTYFRCaqF1nQrf",
+  "gear": [],
+  "hp": 155,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/titan-centipede",
+  "immunities": [],
+  "languages": [],
+  "level": 9,
+  "name": "Titan Centipede",
+  "perception": 18,
+  "publicNotes": "<p>These colossal, solitary centipedes claim vast hunting grounds.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 16,
+    "athletics": 21
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "climb",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,173 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 2,
+    "int": 3,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 20 feet of the translator would be targeted by or in the area of an ability with the linguistic trait</p><hr /><p><strong>Effect</strong> The translator attempts a @Check[performance|against:will|options:crosstalk] check with a +5 circumstance bonus against the Will DC of the creature. On a success, the creature is unaffected by the linguistic effect, and the translator can choose to make the creature Confused until the end of the creature's next turn.</p>",
+      "frequency": null,
+      "name": "Crosstalk",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": "A creature within 20 feet of the translator would be targeted by or in the area of an ability with the linguistic trait"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The translator gains a +5 circumstance bonus to skill checks involving translating or deciphering languages. If the translator rolls a critical failure on a check to Decipher Writing, they get a failure instead.</p>",
+      "frequency": null,
+      "name": "Linguistic Mastery",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving translating or deciphering languages, the translator is a 4th-level challenge.</p>",
+      "frequency": null,
+      "name": "Translation Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Quill Pen",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "9p0WMNDYyeW5sqGX",
+  "gear": [
+    "Book of Translations",
+    "Quill Pen (Functions as a Dart)",
+    "Staff",
+    "Writing Set"
+  ],
+  "hp": 12,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/aiuvarin-translator",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven"
+  ],
+  "level": 0,
+  "name": "Aiuvarin Translator",
+  "perception": 5,
+  "publicNotes": "<p>Many societies recognize aiuvarins' skills as adept translators.</p><hr /><p>Elves' long lives give them centuries to delve into studies, artistry, or exploration.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "arcana": 7,
+    "diplomacy": 8,
+    "occultism": 7,
+    "performance": 6,
+    "religion": 5,
+    "society": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aiuvarin",
+    "elf",
+    "human"
+  ],
+  "weaknesses": []
+}

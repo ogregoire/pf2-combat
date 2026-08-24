@@ -1,0 +1,186 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 3,
+    "int": -2,
+    "str": 1,
+    "wis": 0
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The water mephit puts out all fires in a @Template[emanation|distance:5].</p>\n<p>The mephit extinguishes all non-magical fires automatically and attempts to counteract magical fires ([[/r 1d20+7 #Drench]]{+7} counteract modifier).</p>",
+      "frequency": null,
+      "name": "Drench",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The water mephit breathes acid in a @Template[cone|distance:15] that deals @Damage[2d6[acid]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save).</p>\n<p>The water mephit can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (While Underwater)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "KFf6pJmFmzj7HH9i",
+  "gear": [],
+  "hp": 20,
+  "hpDetails": "fast healing 2 (while underwater)",
+  "id": "pathfinder-bestiary/water-mephit",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 1,
+  "name": "Water Mephit",
+  "perception": 3,
+  "publicNotes": "<p>Water mephits are consummate jokers who are always happy to trade a favor for a good laugh. Just as fire mephits are the ones who cleave closest to evil without fully crossing over into true villainy, water mephits are the friendliest of the mephits and therefore the closest to good. Still, one should take care in making assumptions about a water mephit's benevolence, for no one can reliably count on them to keep their inborn need for pranks and trickery at bay for long. Water mephits have blue-green skin that shimmers in light like fish scales. Though water mephits' wings look more like webbed fins than limbs capable of flight, they can flap their wings to fly through the air as easily as any other mephit. Water mephits prefer to swim, when possible, and they leave the water only when they must.</p>\n<hr />\n<p>Mephits-sometimes known as elemental scamps-are little bipedal critters with bat-like wings who serve stronger elementals on the Elemental Planes or neophyte spellcasters who summon them to the Material Plane. All mephits have an inkling of magical power as well as a breath weapon.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid",
+      "value": 3
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Acid Arrow",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "aquatic",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

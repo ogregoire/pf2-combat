@@ -1,0 +1,233 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 6,
+    "dex": 3,
+    "int": 3,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 30,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The drained condition from Abyssal rot is cumulative, to a maximum of drained 4.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:29]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[3d6[void]] damage (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[3d6[void]] damage and Drained 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[3d6[void]] damage and Drained 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Abyssal Rot",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by the bebilith's web Strike is Restrained and tethered to the bebilith, preventing it from moving further away from the bebilith. The restrained creature is also under the effects of a Planar Tether spell (DC 29) with a duration that lasts as long as the creature remains tethered. The bebilith can have only one creature tethered at a time.</p>\n<p>The DC to Escape or Force Open the tether is 29. The tether can be severed with a Strike (AC 20, Hardness 2, HP 20); this ends the dimensional anchor effect but does not free the restrained creature.</p>",
+      "frequency": null,
+      "name": "Dimensional Tether",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Against demons, a bebilith's Strikes count as cold iron and holy.</p>",
+      "frequency": null,
+      "name": "Penetrating Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A bebilith can smell demons as a precise sense.</p>",
+      "frequency": null,
+      "name": "Scent Demons 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+13",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+13",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "abyssal-rot"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [],
+      "effects": [
+        "dimensional-tether"
+      ],
+      "kind": "ranged",
+      "name": "Web",
+      "traits": [
+        "range-increment-60",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "vg3nE7p855SXkXbz",
+  "gear": [],
+  "hp": 200,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/bebilith",
+  "immunities": [],
+  "languages": [
+    "chthonian"
+  ],
+  "level": 10,
+  "name": "Bebilith",
+  "perception": 21,
+  "publicNotes": "<p>While demons control much of the Abyss, even they are hunted in the wilder regions of this horrific plane. The most notorious of these predators-though not the deadliest-is the bebilith. These fiends resemble elephant-sized spiders with glowing eyes, barbed chitin, and a fanged maw dripping caustic fluid.</p>\n<p>Many demons and planar travelers have underestimated bebiliths' devious intellects, believing them to be little more than oversized vermin. Bebiliths take advantage of this, ambushing foes with unexpected tactics. While they lash out at any creatures they encounter, they take great pleasure in chewing on demonic flesh. Qlippoth are the only creatures bebiliths never consume.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 19,
+    "athletics": 23,
+    "intimidation": 21,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "climb",
+      "value": 15
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Plane Shift (Self Only)",
+          "rank": 7
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "beast",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

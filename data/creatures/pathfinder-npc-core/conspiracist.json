@@ -1,0 +1,145 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 2,
+    "int": 3,
+    "str": 0,
+    "wis": 0
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy reduces the conspiracist to below half their maximum HP</p><hr /><p><strong>Effect</strong> The conspiracist begs their assailants to \"see reason\" and let them live. The conspiracist attempts a single @Check[performance|against:will] check against the Will DCs of all enemies in a @Template[type:emanation|distance:30]. Any creature the attempt succeeds against takes a –2 circumstance penalty to damaging attacks without the nonlethal trait they make against the conspiracist for 10 minutes</p>",
+      "frequency": null,
+      "name": "Evoke Pity",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": "An enemy reduces the conspiracist to below half their maximum HP"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The conspiracist argues that their enemies have been hoodwinked into attacking them by nefarious powers. The conspiracist attempts a single @Check[deception|against:will] check against the Will DCs of all enemies that can hear them.</p><hr /><p><strong>Critical Success</strong> The enemy fully believes the conspiracist, becoming Stupefied 2 for 1 minute. If the creature was already stupefied 2, they become controlled by the conspiracist until the end of the encounter.</p>\n<p><strong>Success</strong> The enemy has trouble disbelieving the conspiracist's logic, becoming Stupefied 1 for 1 minute. If they're already stupefied 1, they become stupefied 2.</p>\n<p><strong>Failure</strong> The enemy is unconvinced, but a seed of doubt remains.</p>\n<p><strong>Critical Failure</strong> The enemy sees through the conspiracist's act, becoming immune to Sow Doubt for 24 hours.</p>",
+      "frequency": null,
+      "name": "Sow Doubt",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The conspiracist can use Deception instead of Diplomacy to [[/act make-an-impression skill=deception]]{Make an Impression} or [[/act request skill=deception]]{Request}. Any creature attempting a Perception check to Sense Motive against the conspiracist gets a result one degree of success worse than they rolled.</p>",
+      "frequency": null,
+      "name": "Compulsive Liar",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving deception and social manipulation, the conspiracist is a 4th-level challenge.</p>",
+      "frequency": null,
+      "name": "Social Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "W3uePAytelIvWOuV",
+  "gear": [
+    "Signal Whistle",
+    "Writing Set"
+  ],
+  "hp": 15,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/conspiracist",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Conspiracist",
+  "perception": 8,
+  "publicNotes": "<p>Conspiracists misinform and falsify facts to further their own causes. Though they pose little physical threat, conspiracists can have more powerful allies, such as a deluded mob that respond to the conspiracist's signal.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 10,
+    "occultism": -1,
+    "performance": 10,
+    "society": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

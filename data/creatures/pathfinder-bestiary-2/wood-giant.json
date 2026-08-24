@@ -1,0 +1,231 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 5,
+    "int": 2,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
+      "traits": [],
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The wood giant shoots an arrow at a target so that it glances off the first target to strike another target behind the first one. The wood giant chooses two targets in a direct line, one of which must be giving lesser cover to the other, then makes a single ranged Strike with its longbow against both targets. This attack ignores the lesser cover the first target provides to the second. The wood giant rolls damage only once, and applies it to each creature it hits. Piercing Shot counts as two attacks for the wood giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Piercing Shot",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "reach-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "5l0b80kz53Ie26gq",
+  "gear": [
+    "+1 Composite Longbow",
+    "Arrows",
+    "Hide"
+  ],
+  "hp": 120,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/wood-giant",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "jotun"
+  ],
+  "level": 6,
+  "name": "Wood Giant",
+  "perception": 15,
+  "publicNotes": "<p>Wood giants are the denizens and protectors of the deepest, most primeval forests in the world. They dedicate their entire lives to the preservation of nature-a role that they believe nature itself has selected them to carry out. Wood giants are patient and kind to those who show respect and care for wild places. Although most wood giants consider civilization as simply another part of the world, they value places untouched by permanent structures and dense humanoid settlements.</p>\n<p>Wood giants have long, drooping ears and more slender builds than most giants. Despite their size, they are graceful and agile, able to move through dense forests and brush with little sound. They have been known to work closely with druids and others who share their respect for the sanctity of wilderness regions. Wood giants spend their days patrolling vast swaths of territory, foraging, and keeping an eye out for any who would despoil their lands. While they respect the connection to nature they share with many fey creatures and remain on good terms with them, wood giants see most fey as far too flighty to take part in any long-term plans.</p>\n<p>An average wood giant stands 14 feet tall and weighs 1,200 pounds.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 15,
+    "nature": 14,
+    "stealth": 13,
+    "survival": 13
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 15,
+      "dc": 23,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Speak with Plants",
+          "rank": 4
+        },
+        {
+          "name": "Earthbind",
+          "rank": 3
+        },
+        {
+          "name": "Entangle",
+          "rank": 2
+        },
+        {
+          "name": "Pass Without Trace (Constant)",
+          "rank": 2
+        },
+        {
+          "name": "Speak with Animals (Constant)",
+          "rank": 2
+        },
+        {
+          "name": "Tree Shape",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

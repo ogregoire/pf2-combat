@@ -1,0 +1,150 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 1,
+    "int": 4,
+    "str": -1,
+    "wis": 2
+  },
+  "ac": 13,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Bonus on Perception to Notice Ailments",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A physician has a +4 circumstance bonus to Diplomacy checks to [[/act make-an-impression options=bedside-manner]] on or make a [[/act request options=bedside-manner]] of a diseased, poisoned, or wounded creature.</p>",
+      "frequency": null,
+      "name": "Bedside Manner",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the physician rolls a critical failure on a check to Treat Disease, Treat Poison, or Treat Wounds, they get a failure instead.</p>",
+      "frequency": null,
+      "name": "Doctor's Hand",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>For medical matters, the physician is a 4th-level challenge.</p>",
+      "frequency": null,
+      "name": "Medical Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4-1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4-1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Medical Textbook",
+      "traits": [
+        "nonlethal",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "GXmIABEvzmySOHRH",
+  "gear": [
+    "Elixir of Life (Minor)",
+    "Healer's Toolkit",
+    "Medical Textbook"
+  ],
+  "hp": 8,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/physician",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": -1,
+  "name": "Physician",
+  "perception": 6,
+  "publicNotes": "<p>The art of medicine is a blend of the intellectual and the practical, concerned with how diseases work and how to prevent them. The physician can be found consulting well-thumbed tomes while meticulously examining patients to better understand their condition, before determining the most effective treatment.</p><hr /><p>The world is a dangerous place. Thankfully, there are those who devote their lives to easing the pain and suffering of others.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 6,
+    "medicine": 12,
+    "society": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

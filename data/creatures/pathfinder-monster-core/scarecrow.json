@@ -1,0 +1,166 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 3,
+    "dex": 2,
+    "int": -4,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 19,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>The scarecrow's head bursts into ghostly, heatless flame that sheds bright light in a @Template[emanation|distance:20] (and dim light to the next 20 feet). If the scarecrow uses this ability on the first round of combat, any creature that has not acted yet is startled and becomes Off-Guard against the scarecrow for 1 round. It can suppress the light by using this action again.</p>",
+      "frequency": null,
+      "name": "Baleful Glow",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "light",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Until it acts, the scarecrow resembles an ordinary scarecrow. It has an automatic result of 32 on Deception checks and DCs to pass as an ordinary scarecrow.</p>",
+      "frequency": null,
+      "name": "Mundane Appearance",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The scarecrow's strikes deal an additional @Damage[1d6[mental]] damage to Frightened creatures.</p>",
+      "frequency": null,
+      "name": "Clawing Fear",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>40 feet.</p>\n<p>The scarecrow's eyes flicker with an unnerving glow. A creature can't reduce its Frightened condition below 1 as long as it is in the aura's emanation. When a creature enters or starts its turn in the aura, it must attempt a @Check[will|dc:18] save. Birds and other avian creatures take a -2 circumstance penalty to this save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and is then temporarily immune for 24 hours.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2 and is Fascinated by the scarecrow until the end of its next turn.</p>\n<p><strong>Critical Failure</strong> As failure, but Frightened 3.</p>",
+      "frequency": null,
+      "name": "Scarecrow's Leer",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental",
+        "occult",
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "clawing-fear"
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "unarmed",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "2p7MEk4SdXfLbzxO",
+  "gear": [],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/scarecrow",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
+  ],
+  "languages": [],
+  "level": 4,
+  "name": "Scarecrow",
+  "perception": 11,
+  "publicNotes": "<p>A ramshackle collection of materials in a human shape, the scarecrow construct is indistinguishable from a normal scarecrow until it slowly creaks to life. As it animates, its carved pumpkin or sackcloth face bursts into eldritch flame, sending fear creeping into the air around it. Each scarecrow is handcrafted and unique in its appearance, though most are 5 to 6 feet tall and constructed of a combination of wood, cloth, rope, straw, sawdust, discarded husks and cobs, and similar materials, all dressed in ragged pastoral garments. This rudimentary construction makes a scarecrow somewhat fragile, prone to snapping limbs in the crush of battle. Yet its structure is adaptable, allowing it to reshape another piece of itself into a clawed limb or grip a severed portion of itself to swat at its foes.</p>\n<p>When a scarecrow is created, it must be anointed with a drop of its creator's blood into each of its eyes. This blood soaks into the material and siphons a tiny sliver of the creator's soul away—not enough to harm the creator, but more than enough to imbue the scarecrow with an instinctive intellect that allows it to follow commands as eagerly as a well-trained (if ill-tempered) guard dog. When a scarecrow is destroyed, the blood leaks back out from its eyes, but the portion of the creator's soul never returns.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "slashing"
+      ],
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    }
+  ]
+}

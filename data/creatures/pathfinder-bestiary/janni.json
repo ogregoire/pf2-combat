@@ -1,0 +1,219 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 2,
+    "int": 2,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 20,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> Once per day.</p>\n<hr />\n<p><strong>Effect</strong> The janni changes a creature's size. This works as a 4th-rank Enlarge or Shrink spell but can target an unwilling creature (@Check[fortitude|dc:21] save negates).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Change Size",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A janni can survive on any Elemental Plane for up to 48 hours, after which it takes [[/r {1}]]{1 damage} per hour until it leaves or dies.</p>",
+      "frequency": null,
+      "name": "Elemental Endurance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Scimitar",
+      "traits": [
+        "forceful",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "tMxtnGthVV01wNQb",
+  "gear": [
+    "Arrows",
+    "Composite Shortbow",
+    "Scimitar"
+  ],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/janni",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Janni",
+  "perception": 11,
+  "publicNotes": "<p>Jann are genies composed of all four elements, meaning they are not quite home on any of the Elemental Planes. Instead, jann reside on the Material Plane, making only brief forays to the other parts of the Inner Sphere. Although they are human in size and appearance, jann are not at all related to humans and bristle at any claims to this effect. They are a proud people and take great care to maintain their honor-restoring that honor with the edge of a sword, if necessary.</p>\n<hr />\n<p>A unique type of genie exists for each Elemental Plane, and the bodies of genies are formed out of elemental matter corresponding to their native plane: djinn are formed from wind, clouds, and storms; efreet are fire made flesh; marids are beings of water; and shaitans are composed of metal, gems, and stone. Lastly, the jann are formed out of all four elements, and are the weakest of geniekind.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "arcana": 10,
+    "crafting": 8,
+    "deception": 7,
+    "survival": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 15
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 21,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Plane Shift (to Astral Plane, Elemental Planes, or Material Plane Only)",
+          "rank": 7
+        },
+        {
+          "name": "Create Food",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Speak with Animals",
+          "rank": 2
+        },
+        {
+          "name": "Create Water",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "elemental",
+    "genie"
+  ],
+  "weaknesses": []
+}

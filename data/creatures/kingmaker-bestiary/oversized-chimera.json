@@ -1,0 +1,210 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 2,
+    "int": -3,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The oversized chimera breathes a @Template[cone|distance:30] of fire that deals @Damage[13d6[fire]|options:area-damage] damage to all creatures in the area (@Check[reflex|dc:32|basic|options:area-effect] save).</p>\n<p>The chimera can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The oversized chimera makes a Strike with its dragon jaws, lion jaws, and goat horns, each at a -2 penalty and targeting a different creature. These Strikes count as only one attack for the chimera's multiple attack penalty, and the penalty doesn't increase until after it has made all three attacks.</p>",
+      "frequency": null,
+      "name": "Three-Headed Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An oversized chimera's dragon head deals an extra @Damage[3d6[fire]] damage <em>(already included)</em>.</p>",
+      "frequency": null,
+      "name": "Draconic Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Any ability that would sever a chimera's head (such as a critical hit with a <em>Vorpal Weapon</em>) severs one head at random. Losing a head doesn't kill a chimera (as long as it has one head left), but it does prevent it from making Strikes with the lost head or using the head's Breath Weapon.</p>",
+      "frequency": null,
+      "name": "Three Headed",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A oversized chimera gains 2 extra reactions each round that it can use only to make Attacks of Opportunity. It must use a different head for each reaction, and it can't use more than one on the same triggering action. If it loses one of its heads, it also loses one of these extra reactions.</p>",
+      "frequency": null,
+      "name": "Triple Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+11",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+11",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "3d6",
+          "type": "fire"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dragon Jaws",
+      "traits": []
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Goat Horns",
+      "traits": []
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+11",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Lion Jaws",
+      "traits": []
+    }
+  ],
+  "foundryId": "y68kqNXmr1BnjZtc",
+  "gear": [],
+  "hp": 220,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/oversized-chimera",
+  "immunities": [],
+  "languages": [
+    "draconic"
+  ],
+  "level": 12,
+  "name": "Oversized Chimera",
+  "perception": 23,
+  "publicNotes": "<p>The chimera is the archetypal example of an unnatural monster made up of a monstrous mix of wildly different component creatures: in this case, a lion, a dragon, and a goat. Wild, hateful, and hungry, it tries to eat any creature it sees, but sometimes a strong-willed master is able to compel a chimera to serve as a guardian or even a mount.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 22
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 20,
+    "athletics": 25,
+    "stealth": 22
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,175 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 4,
+    "int": 2,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the witchwarg's jaws attacks one of the witchwarg's allies.</p>\n<hr />\n<p><strong>Effect</strong> The witchwarg makes a jaws Strike against the triggering creature.</p>",
+      "frequency": null,
+      "name": "Avenging Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within reach of the witchwarg's jaws attacks one of the witchwarg's allies."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Check[reflex|dc:21]</p>\n<p><hr />\n<p>Most monsters that serve as mounts can attempt to buck off unwanted or annoying riders, but most mounts will not use this reaction against a trusted creature unless the mounts are spooked or mistreated.</p>\n<p><strong>Trigger</strong> A creature Mounts or uses the Command an Animal action while riding the monster.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must succeed at a Reflex saving throw against the listed DC or fall off the creature and land Prone. If the save is a critical failure, the triggering creature also takes @Damage[1d6[bludgeoning]] damage in addition to the normal damage for the fall.</p></p>",
+      "frequency": null,
+      "name": "Buck",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The witchwarg breathes a cloud of frost in a @Template[cone|distance:15] that deals @Damage[5d8[cold]] damage (@Check[reflex|dc:23|basic] save).</p>\n<p>The witchwarg can't use Winter Breath again for [[/gmr 1d4 #Recharge Winter Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Winter Breath",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The witchwarg's Strikes deal 1d6 extra damage to creatures within the reach of at least two of the witchwarg's allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d10+6",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "cold"
+        }
+      ],
+      "effects": [
+        "knockdown"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "cold",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "diU0V2M3LiMDMsS0",
+  "gear": [],
+  "hp": 70,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/witchwarg",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
+  ],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 5,
+  "name": "Witchwarg",
+  "perception": 14,
+  "publicNotes": "<p>Witchwargs are related to wargs, but are larger, smarter, and far more dangerous. They are capable of exhaling plumes of freezing breath. When they deign to serve others, they usually reserve this privilege for more dangerous creatures, such as the winter witches of Irrisen.</p>\n<hr />\n<p>The warg is an intelligent and malevolent wolf that dwells among goblins, hobgoblins, orcs, and violent humanoids.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 13,
+    "deception": 11,
+    "intimidation": 11,
+    "stealth": 13,
+    "survival": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "cold"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    }
+  ]
+}

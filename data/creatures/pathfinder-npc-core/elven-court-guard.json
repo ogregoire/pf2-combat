@@ -1,0 +1,196 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 5,
+    "int": 2,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 35,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Requirements</strong> The guard is within 30 feet of the creature they were guarding, and that creature is either Dying or died since the guard's last turn</p><hr /><p><strong>Effect</strong> The guard Strikes the creature that damaged their ally. They roll the attack roll twice and use the higher result.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Avenge the Fallen",
+      "requirements": "The guard is within 30 feet of the creature they were guarding, and that creature is either Dying or died since the guard's last turn",
+      "traits": [
+        "fortune"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An ally within 15 feet of the guard would take damage</p><hr /><p><strong>Effect</strong> The guard Strides. This movement does not trigger reactions, and the guard must end the Stride in a space adjacent to the ally. The guard then switches places with the ally, taking all damage and associated effects instead of the ally.</p>",
+      "frequency": null,
+      "name": "Interposition",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An ally within 15 feet of the guard would take damage"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The guard makes a Strike against a creature, then Strides. This Stride doesn't trigger reactions. If the guard ends this Stride in a different space adjacent to the same creature, they make another Strike against it. If both Strikes succeed, the creature is Off-Guard until the start of the guard's next turn. Each attack counts toward the guard's multiple attack penalty, but the penalty doesn't increase until they've made both attacks.</p>",
+      "frequency": null,
+      "name": "Dancing Blade",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status vs. mental effects",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A court guard gains a +1 circumstance bonus on Perception checks to [[/act sense-motive]] and [[/act seek]] creatures, and if they succeed, they get a critical success instead.</p>",
+      "frequency": null,
+      "name": "Vigilance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+12",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Elven Curve Blade",
+      "traits": [
+        "finesse",
+        "forceful",
+        "magical"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "1K6Zl3EGIRZvC3TO",
+  "gear": [
+    "Chain Shirt",
+    "Composite Longbow",
+    "Elven Curve Blade"
+  ],
+  "hp": 225,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/elven-court-guard",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven",
+    "fey"
+  ],
+  "level": 13,
+  "name": "Elven Court Guard",
+  "perception": 24,
+  "publicNotes": "<p>In the tangled web of lineages, rivalries, and shifting alliances that is an elven noble court, aristocratic families employ bodyguards loyal to them alone.</p><hr /><p>Elves' long lives give them centuries to delve into studies, artistry, or exploration.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 26,
+    "athletics": 23,
+    "intimidation": 24,
+    "society": 19
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "elf",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

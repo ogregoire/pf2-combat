@@ -1,0 +1,165 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 6,
+    "dex": 4,
+    "int": -5,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 38,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d12+12)[bludgeoning]] damage, @Check[fortitude|dc:36|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC. A creature that fails this save falls Unconscious, and a creature that succeeds is then temporarily immune to falling unconscious from Greater Constrict for 1 minute.</p></p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The black scorpion makes three stinger Strikes, each against a different target. Its multiple attack penalty applies to each attack, but the penalty increases only after all the attacks have been made.</p>",
+      "frequency": null,
+      "name": "Rapid Stinging",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:36]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d12[poison]] damage and Clumsy 2 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[3d12[poison]] damage, Clumsy 2, and Slowed 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[4d12[poison]] damage, Clumsy 4, and Slowed 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Black Scorpion Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
+      "frequency": null,
+      "name": "Tremorsense 90 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d12+15",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Pincer",
+      "traits": [
+        "agile",
+        "reach-30"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+15",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "black-scorpion-venom"
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "reach-30"
+      ]
+    }
+  ],
+  "foundryId": "O9LzsedLTUVFtOix",
+  "gear": [],
+  "hp": 275,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/black-scorpion",
+  "immunities": [],
+  "languages": [],
+  "level": 15,
+  "name": "Black Scorpion",
+  "perception": 27,
+  "publicNotes": "<p>With a carapace the color of polished obsidian and a penchant for attacking villages, this humongous scorpion is one of the desert's most frightening predators. A black scorpion measures 60 feet from tip to the base of its stinger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 29
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 90,
+      "type": "tremorsense"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 30
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

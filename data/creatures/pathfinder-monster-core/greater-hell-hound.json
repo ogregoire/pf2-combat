@@ -1,0 +1,153 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 5,
+    "dex": 5,
+    "int": -2,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The greater hell hound is critically hit by any Strike</p>\n<hr />\n<p><strong>Effect</strong> The greater hell hound's Hellfire Breath recharges. They can immediately use it as part of this reaction.</p>",
+      "frequency": null,
+      "name": "Hellish Revenge",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The greater hell hound is critically hit by any Strike"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hell hound breathes flames that deal @Damage[10d6[fire]|options:area-damage] damage to all creatures in a @Template[cone|distance:15] (@Check[reflex|dc:28|basic|options:area-effect] save.)</p>\n<p>The hell hound can't use Hellfire Breath again for [[/gmr 1d4 #Recharge Hellfire Breath]]{1d4 rounds}. If the greater hell hound would take fire damage or be targeted by a fire effect, their Hellfire Breath recharges.</p>",
+      "frequency": null,
+      "name": "Hellfire Breath",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The greater hell hound's Strikes deal 1d8 extra damage to creatures within the reach of at least two of their allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "2d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "15TyWlbDQWNjMKeL",
+  "gear": [],
+  "hp": 150,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/greater-hell-hound",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
+  ],
+  "languages": [
+    "diabolic"
+  ],
+  "level": 9,
+  "name": "Greater Hell Hound",
+  "perception": 19,
+  "publicNotes": "<p>Believed to be bred by the Kings of Hell themselves within vast kennels, greater hell hounds are the favored guards and hunting hounds of powerful fiends and, rarely, mortals who worship them and have earned their favor.</p>\n<hr />\n<p>Hell hounds are fiendish, extraplanar canines hailing from the Pit that can hunt down quarry and breathe supernatural gouts of flame. They are temperamental and quick to exhibit aggressive behavior.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 120,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 18,
+    "athletics": 19,
+    "stealth": 18,
+    "survival": 20
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "fiend",
+    "fire",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 10
+    }
+  ]
+}

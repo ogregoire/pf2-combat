@@ -1,0 +1,184 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>With a quick sprint, the lizardfolk warrior dashes up to their foe and swings. They Stride or Swim twice. If they end their movement within melee reach of at least one enemy, they can make a melee Strike against that enemy.</p>",
+      "frequency": null,
+      "name": "Sudden Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A lizardfolk warrior can hold their breath for 180 rounds (18 minutes).</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Non-lizardfolk creatures in difficult terrain and non-lizardfolk creatures that are in water and lack a swim Speed are Off-Guard to the lizardfolk scout.</p>",
+      "frequency": null,
+      "name": "Terrain Advantage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Javelin",
+      "traits": [
+        "thrown-30"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longspear",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "wD6nctHffSaMdyag",
+  "gear": [
+    "Javelin",
+    "Leather Armor",
+    "Longspear"
+  ],
+  "hp": 36,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/lizardfolk-warrior",
+  "immunities": [],
+  "languages": [
+    "draconic",
+    "iruxi"
+  ],
+  "level": 2,
+  "name": "Lizardfolk Warrior",
+  "perception": 7,
+  "publicNotes": "<p>When human scholars speak of ancient civilizations, they usually turn their focus to themselves, researching and lecturing on the first human empires. When they drift to others, they invariably look to cultures that had conflicts or alliances with ancient humanity. That the culture of the people called lizardfolk often gets ignored or forgotten even by well-meaning researchers is thus no surprise, but to the lizardfolk themselves it is no matter. They know their history and value its integrity and privacy-if younger ancestries like humanity aren't interested in learning from lizardfolk empires dating back to before the first human knocked two rocks together to make their first campfire, that's fine with them.</p>\n<p>The word 'lizardfolk' is an excellent example of humanity's narrow-sighted view of this culture. The name of their people is 'iruxi', but these reptilian humanoids have patiently and good-naturedly accepted the name 'lizardfolk' as a variant, and they generally resist urges to call humans and other mammalians similarly derivative names in return. Iruxis dwell and thrive in all tropical and temperate biomes, but they are most at home in swamplands, coastal regions, and riverlands, for they are talented swimmers, and fish and aquatic plants make up a large part of their preferred diets.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 6,
+    "athletics": 8,
+    "stealth": 6,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "lizardfolk"
+  ],
+  "weaknesses": []
+}

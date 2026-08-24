@@ -1,0 +1,123 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 1,
+    "int": 0,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The miner has their hammer in hand</p><hr /><p><strong>Effect</strong> The miner Interacts to draw a piton, then hammers it into a creature to pin them in place, attempting an @Check[athletics|against:reflex] check against the target's Reflex DC. On a hit, the target is Immobilized until it removes the piton with a successful @Check[athletics|dc:10] check made as an Interact action.</p>",
+      "frequency": null,
+      "name": "Piton Pin",
+      "requirements": "The miner has their hammer in hand",
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Pick",
+      "traits": [
+        "fatal-d10"
+      ]
+    }
+  ],
+  "foundryId": "GKDMvepxkEsUnN5d",
+  "gear": [
+    "Hammer",
+    "Lantern (Hooded)",
+    "Miner's Harness (Functions as Leather Armor)",
+    "Pick",
+    "Piton",
+    "Rope"
+  ],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/miner",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Miner",
+  "perception": 6,
+  "publicNotes": "<p>Miners explore deep underground in search of minerals and rare ores, taking numerous precautions to keep themselves safe.</p><hr /><p>Society is built upon the backs of laborers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 3,
+    "athletics": 6,
+    "survival": 4
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

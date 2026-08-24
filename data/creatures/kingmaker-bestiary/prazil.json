@@ -1,0 +1,123 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 4,
+    "int": 0,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The kobold warrior is adjacent to at least one enemy.</p>\n<hr />\n<p><strong>Effect</strong> The kobold warrior Strides up to its Speed plus 5 feet and gains a +2 circumstance bonus to AC against reactions triggered by this movement. It must end this movement in a space that's not adjacent to any enemy.</p>",
+      "frequency": null,
+      "name": "Hurried Retreat",
+      "requirements": "The kobold warrior is adjacent to at least one enemy.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Prazil attempts a warhammer Strike on a creature that is at least Medium sized and that has legs. He gains a +2 circumstance bonus to his attack roll and deals an extra 1d8 points of damage on a hit. The creature struck must succeed at a @Check[fortitude|dc:22] save or have its Speed reduced by 10 feet for 1 minute.</p>\n<p>Effect: Smash Kneecaps</p>",
+      "frequency": null,
+      "name": "Smash Kneecaps",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Prazil deals an extra 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Warhammer",
+      "traits": [
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "yzlu5YX7Oxo7TVvK",
+  "gear": [
+    "Breastplate",
+    "Steel Shield",
+    "Warhammer"
+  ],
+  "hp": 85,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/prazil",
+  "immunities": [],
+  "languages": [
+    "common",
+    "draconic"
+  ],
+  "level": 5,
+  "name": "Prazil",
+  "perception": 12,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [],
+  "size": "small",
+  "skills": {
+    "acrobatics": 13,
+    "deception": 10,
+    "stealth": 13,
+    "survival": 12,
+    "thievery": 13
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "kobold"
+  ],
+  "weaknesses": []
+}

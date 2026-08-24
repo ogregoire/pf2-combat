@@ -1,0 +1,216 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 5,
+    "int": 3,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The exiled revolutionary Feints, Steps, and Strikes in any order.</p>",
+      "frequency": null,
+      "name": "Darting Feint",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+3 Perception to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet. This aura is active only while in the exiled revolutionary's home realm, as they share knowledge to avoid guard patrols and get past checkpoints. Any ally in the aura gets a +2 circumstance bonus to Deception and Stealth checks.</p>",
+      "frequency": null,
+      "name": "Follow Me",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An exiled revolutionary remembers well their former realm. In their home realm, be it a manor, castle, or capital city, the exiled revolutionary gains a +4 circumstance bonus to Perception checks and Will saves, and to Deception, Diplomacy, Intimidation, and Stealth checks, and is a 12th-level challenge in the arena of noble politics.</p>",
+      "frequency": null,
+      "name": "Former Courtier",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the exiled revolutionary sees or hears someone who was part of their downfall in person, they break cover and attack their betrayer immediately, even if their actions would doom them and their allies. The revolutionary must succeed at a @Check[will|dc:35] save or be Fascinated by their betrayer and unable to cease targeting them exclusively until the betrayer is defeated.</p>\n<p>An ally can convince the revolutionary to forgo their vengeance with a DC 30 Diplomacy check to make a [[/act request dc=30]]. This lasts for 1 minute, but talking the revolutionary down after that time requires more thorough engagement.</p>",
+      "frequency": null,
+      "name": "It's... You!",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The exiled revolutionary deals an additional 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Longsword",
+      "traits": [
+        "magical",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "oTKuWWYyWyfy599O",
+  "gear": [
+    "Arrows",
+    "Composite Longbow",
+    "Leather Armor",
+    "Longsword",
+    "Signet Ring",
+    "Thieves' Toolkit",
+    "Wyvern Poison"
+  ],
+  "hp": 140,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/exiled-revolutionary",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 10,
+  "name": "Exiled Revolutionary",
+  "perception": 17,
+  "publicNotes": "<p>Forces hire an exiled revolutionary because they were once part of the enemy. A lost scion, noble who spoke against tyranny, or wrongly persecuted politician possesses an intimate knowledge of their foe's tactics, logistics, and territory.</p><hr /><p>Whether they're hired to wage war, protect a caravan, or infiltrate an impenetrable fortress, there's ample work for mercenaries all over Golarion.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 18,
+    "athletics": 15,
+    "deception": 19,
+    "diplomacy": 19,
+    "intimidation": 17,
+    "society": 20,
+    "stealth": 20,
+    "thievery": 18
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

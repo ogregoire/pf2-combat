@@ -1,0 +1,114 @@
+{
+  "abilityMods": {
+    "cha": -3,
+    "con": 4,
+    "dex": 1,
+    "int": -4,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster is reduced to 0 HP."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The boar Strides twice and then makes a tusk Strike. As long as it moved at least 20 feet, it gains a +2 circumstance bonus to its attack roll.</p>",
+      "frequency": null,
+      "name": "Boar Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tusk",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "IyhbcdTVmkV4pSju",
+  "gear": [],
+  "hp": 40,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/boar",
+  "immunities": [],
+  "languages": [],
+  "level": 2,
+  "name": "Boar",
+  "perception": 8,
+  "publicNotes": "<p>Boars are omnivorous mammals, hunted heavily because their meat is considered a delicacy. Boars are most likely to attack humanoids either in self-defense or during their mating season in the winter months, when the males grow an extra inch of tissue to protect their organs as they fight off rivals. Of course, in some cultures, boars are trained to become much more aggressive so they can fill the roles of warbeast and guardian. When such boars escape back into the wild, they can become true terrors in the region.</p>\n<hr />\n<p>While domesticated pigs are a staple of farm life, wild boars are much more dangerous. Foul-tempered warthogs are relatively common, while the lumbering, primeval beasts known as daeodons are less so. Voracious boars can ravage the countryside in which they live, making them a particular nuisance to farmers. Boars breed freely, and a pair of boars can rapidly grow to a large family.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 5,
+    "athletics": 8,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

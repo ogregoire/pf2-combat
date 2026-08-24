@@ -1,0 +1,315 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 3,
+    "dex": 3,
+    "int": 4,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 34,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the dragon's tail uses a move action or leaves a square during a move action it's using</p>\n<hr />\n<p><strong>Effect</strong> The dragon makes a tail Strike at the creature with a –2 penalty. If the Strike hits, the dragon disrupts the creature's action.</p>",
+      "frequency": null,
+      "name": "Twisting Tail",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within reach of the dragon's tail uses a move action or leaves a square during a move action it's using"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon makes two claw Strikes and one horn Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The dragon doesn't have a creature impaled on their horn</p>\n<hr />\n<p><strong>Effect</strong> The dragon attempts to gore a foe. They Stride, then attempt a horn Strike. On a hit, the target becomes impaled on the dragon's horn. The creature is Grabbed while on the horn (and can attempt to Escape as normal). The dragon doesn't need to use additional actions to keep the impaled creature grabbed. If the dragon moves, they bring the grabbed creature along with them.</p>",
+      "frequency": null,
+      "name": "Impaling Charge",
+      "requirements": "The dragon doesn't have a creature impaled on their horn",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a toxic cloud that deals @Damage[13d6[poison]] damage in a @Template[cone|distance:50] (@Check[fortitude|dc:31|basic] save).</p>\n<p>They can't use Poison Breath again for [[/gmr 1d4 #Recharge Poison Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Poison Breath",
+      "requirements": null,
+      "traits": [
+        "poison",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Primal",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon recharges their Poison Breath whenever they score a critical hit with a Strike.</p>",
+      "frequency": null,
+      "name": "Draconic Momentum",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The horned dragon ignores any difficult terrain caused by plants, such as bushes, vines, and undergrowth. Even plants manipulated by magic don't impede their progress.</p>",
+      "frequency": null,
+      "name": "Forest Passage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet @Check[will|dc:31]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The horned dragon always gains the benefits of Cover Tracks in natural surroundings, even while moving at full speed.</p>",
+      "frequency": null,
+      "name": "Trackless Journey",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+12",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Horn",
+      "traits": [
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d10+12",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "3d4",
+          "type": "poison"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "poison",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "ioi5L2CAM6q9aWKJ",
+  "gear": [],
+  "hp": 215,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/horned-dragon-adult",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "elven",
+    "fey"
+  ],
+  "level": 12,
+  "name": "Horned Dragon (Adult)",
+  "perception": 22,
+  "publicNotes": "<p>The magic that flows through primal dragons can manifest more animalistic or bestial features in a given type of dragon. Notably among these are the massive paired horns of the horned dragon. While their bulky frames, natural coloration, and prominent ridged scales are all remarkable in their own way, it's the horns that are most obvious and striking at first glance. Horned dragons use their horns to impale their prey in a quick and brutal display of their might. They are generally contemplative and have a fixation on knowledge and self-discipline, traits belied by their bestial appearance. As a result, horned dragons are generally more open to speaking with outsiders.</p>\n<hr />\n<p>Dragons come in myriad forms, with many having magical abilities or connections to magic. Some dragons draw greater power from magic than others, allowing them to manifest abilities or alter their physiques with prolonged exposure to magic. These dragons become more powerful as they age and strengthen their connections with their magical origins. Scholars debate the classification of these dragons, with some preferring the name magical dragons and others using traditional dragons due to their connection to specific magical traditions. Regardless of their names, these dragons share a number of characteristics: their ability to tap into magical energies, intensified might and cunning as they grow older, and an inclination to hoard vast amounts of treasure and wealth.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 22
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 19,
+    "arcana": 22,
+    "athletics": 24,
+    "deception": 19,
+    "diplomacy": 23,
+    "intimidation": 23,
+    "nature": 20,
+    "occultism": 24,
+    "society": 22,
+    "stealth": 21
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 160
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 24,
+      "dc": 32,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Entangling Flora",
+          "rank": 2
+        },
+        {
+          "name": "Charm (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "dragon",
+    "primal"
+  ],
+  "weaknesses": []
+}

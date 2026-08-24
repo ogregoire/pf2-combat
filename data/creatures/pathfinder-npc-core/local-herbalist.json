@@ -1,0 +1,180 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 0,
+    "int": 1,
+    "str": 3,
+    "wis": 4
+  },
+  "ac": 13,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per 10 minutes</p>\n<p><strong>Trigger</strong> An ally close enough for the herbalist to reach with a Stride is reduced to 0 Hit Points</p><hr /><p><strong>Effect</strong> The herbalist Strides until adjacent to the ally and Administers First Aid to that ally.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT10M"
+      },
+      "name": "Saving Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An ally close enough for the herbalist to reach with a Stride is reduced to 0 Hit Points"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per day</p><hr /><p><strong>Effect</strong> The local herbalist quickly mixes together a potent healing salve with the most precious ingredients from their medicine bag. They create a temporary lesser elixir of life. This elixir remains potent for 1 round before becoming sour and useless.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Prompt Poultice",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving collecting herbs or making medicine from them, the local herbalist is a 3rd-level challenge.</p>",
+      "frequency": null,
+      "name": "Herbalism Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The herbalist can use Nature instead of Medicine to Treat Wounds or Administer First Aid, and gains a +3 circumstance bonus to the check if they're in the wilderness with access to fresh herbal ingredients.</p>",
+      "frequency": null,
+      "name": "Natural Medicine",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "poison"
+        },
+        {
+          "category": "persistent",
+          "formula": "1d4",
+          "type": "poison"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Fungal Spores",
+      "traits": [
+        "fungus",
+        "poison",
+        "range-increment-10"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "3m8fkhbaUubLeckt",
+  "gear": [
+    "Cooking Pot",
+    "Medicine Bag (Functions as a Healer's Toolkit)",
+    "Staff"
+  ],
+  "hp": 24,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/local-herbalist",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 1,
+  "name": "Local Herbalist",
+  "perception": 7,
+  "publicNotes": "<p>Local herbalists use their understanding of the natural world to heal and restore balance. Most join a secret lodge that teaches these ancient arts.</p><hr /><p>The world is a dangerous place. Thankfully, there are those who devote their lives to easing the pain and suffering of others.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "crafting": 6,
+    "diplomacy": 4,
+    "nature": 7,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

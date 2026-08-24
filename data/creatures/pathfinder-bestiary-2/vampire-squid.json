@@ -1,0 +1,131 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 0,
+    "dex": 3,
+    "int": -4,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Requirements</strong> The vampire squid is in water</p>\n<hr />\n<p><strong>Effect</strong> The vampire squid ejects a cloud of bioluminescent mucus in a @Template[cone|distance:15]. Non-squid creatures within the cloud must attempt a @Check[fortitude|dc:16] save or become Sickened 1. The glowing mucus remains in the area for 1 minute, and any creature that ends its turn in the area must succeed at a @Check[fortitude|dc:13] save or become Sickened 1.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Glowing Mucus",
+      "requirements": "The vampire squid is in water",
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tentacles",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "3MDlKPlPhHBo1DId",
+  "gear": [],
+  "hp": 15,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/vampire-squid",
+  "immunities": [],
+  "languages": [],
+  "level": 0,
+  "name": "Vampire Squid",
+  "perception": 7,
+  "publicNotes": "<p>Vampire squid are neither undead nor blood drinkers. Their name is instead inspired by their red eyes and the dark, cloak-like webbing between their arms. Living in the lightless depths of the ocean, the vampire squid can eject a cloud of bioluminescent mucus that nauseates predators.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 4,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

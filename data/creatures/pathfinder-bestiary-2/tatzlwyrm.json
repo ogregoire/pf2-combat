@@ -1,0 +1,147 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 1,
+    "int": -3,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The tatzlwyrm belches a puff of poisonous vapor into the face of an adjacent creature, which must attempt a @Check[fortitude|dc:15|traits:damaging-effect] save; the creature takes a -2 circumstance penalty to this save if it's Grabbed or Off-Guard.</p>\n<p>The tatzlwyrm can't use Poison Gasp again for 2 rounds.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> The target is Sickened 1.</p>\n<p><strong>Failure</strong> The target takes @Damage[2d6[poison]] damage and is Enfeebled 1 for 1 round.</p>\n<p><strong>Critical Failure</strong> The target takes @Damage[4d6[poison]] damage and is Enfeebled 1 for 1 minute.</p>",
+      "frequency": null,
+      "name": "Poison Gasp",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A tatzlwyrm's green, gray, and brown scales provide it natural camouflage. In areas of dense undergrowth, a tatzlwyrm can move at its full Speed when Sneaking, and it gains a +4 circumstance bonus to Hide.</p>",
+      "frequency": null,
+      "name": "Natural Camouflage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "UnWr8QSMq2VZUQhX",
+  "gear": [],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/tatzlwyrm",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "draconic"
+  ],
+  "level": 2,
+  "name": "Tatzlwyrm",
+  "perception": 8,
+  "publicNotes": "<p>Tatzlwyrms resemble human-sized snakes with two arms and a dragon's head. Distant relatives of true dragons, tatzlwyrms possess only a meager level of intelligence. They can speak Draconic (with a thick, hissing accent), but their ability to reason is limited and they can't use magic. They do possess a level of cunning, however, and some have been known to build rudimentary traps and even lairs. They are not treasure-hoarders, though, so don't expect to find a tatzlwyrm sitting atop a bed of coins.</p>\n<p>Some tatzlwyrms have managed to forge working relationships with dragons, though it's a rare occurrence. From time to time, dragons have used them as messengers (because they can speak their language, however crudely), scouts (due to their smaller size), guides (when they're familiar with a particular mountain), and even muscle (harassing foes not worthy of a dragon's direct attention).</p>\n<p>Tatzlwyrms don't work with kobolds, though-tatzlwyrms eat kobolds.</p>\n<p>Tatzlwyrms hibernate in cold weather, and when they feel winter approaching they seek out underground lairs, mountain crevices, or even hay lofts. On one notable occasion, townsfolk reported being briefly overrun by tatzlwyrms after a conflict between spellcasters in the nearby hills caused a sudden blizzard. Local scholars still debate whether the cause of the influx was the sudden change in weather or if the creatures were drawn to one of the other magic users staying in town who were part of the same pilgrimage as those doing battle.</p>\n<p>When confronted, tatzlwyrms are more likely to attack than retreat. Indeed, they sometimes lie in wait on purpose, taking advantage of their scales' natural camouflage and awaiting the chance to unleash their signature move: belching poisonous vapor into an opponent's face. Since this breath attack doesn't have much range, the wyrms usually need to grab their foes first and bring them close to their mouth.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 8,
+    "crafting": 4,
+    "intimidation": 6,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dragon"
+  ],
+  "weaknesses": []
+}

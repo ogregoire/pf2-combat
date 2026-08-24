@@ -1,0 +1,153 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 5,
+    "dex": 0,
+    "int": -4,
+    "str": 8,
+    "wis": 2
+  },
+  "ac": 26,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The mastodon makes two tusk Strikes, each against a different creature. This counts as one attack for the mastodon's multiple attack penalty, and the penalty doesn't increase until after both attacks.</p>",
+      "frequency": null,
+      "name": "Dual Tusks",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Large or smaller, foot, @Check[reflex|dc:27|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A Medium or smaller creature hit by the mastodon's trunk is Grabbed. If the mastodon moves, it can bring the grabbed creature along with it.</p>",
+      "frequency": null,
+      "name": "Grabbing Trunk",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [],
+      "effects": [
+        "grabbing-trunk"
+      ],
+      "kind": "melee",
+      "name": "Trunk",
+      "traits": [
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+12",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tusk",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "ZBTqN3DNjdreXCu7",
+  "gear": [],
+  "hp": 175,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/mastodon",
+  "immunities": [],
+  "languages": [],
+  "level": 9,
+  "name": "Mastodon",
+  "perception": 17,
+  "publicNotes": "<p>Not to be confused with the larger mammoth, mastodons are primeval elephants who dwell predominantly in temperate forests. There, they travel in close-knit social groups and feed on the forest vegetation.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 21,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 45
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

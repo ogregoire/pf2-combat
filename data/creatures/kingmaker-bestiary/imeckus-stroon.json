@@ -1,0 +1,257 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": 5,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 33,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per day;</p>\n<p><strong>Requirements</strong> Imeckus hasn't yet acted on his turn and Lintwerth is in an adjacent square</p>\n<hr />\n<p><strong>Effect</strong> Imeckus draws power from his bond with his familiar. During his turn, he gains the ability to cast one spell he prepared today and already cast, without spending a spell slot. He must still Cast the Spell and meet the spell's other requirements.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Drain Lintwerth",
+      "requirements": "Imeckus hasn't yet acted on his turn and Lintwerth is in an adjacent square",
+      "traits": [
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> If Imeckus's next action is to cast a cantrip or spell that is 4th level or lower, reduce the number of actions to cast it by 1 (minimum 1 action).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Quickened Casting",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "spellshape"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "1",
+      "description": "<p>Imeckus calls out Lintwerth's name and snaps his fingers, causing his dust mephit familiar (and up to 1 Bulk of objects carried by Lintwerth) to instantly transport to an adjacent square of Imeckus' choice, providing Lintwerth is within a mile.</p>",
+      "frequency": null,
+      "name": "Recall Lintwerth",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "teleportation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Imeckus Stroon's familiar Lintwerth is a loyal companion and is a bit more powerful than the standard familiar in that he does not possess the minion trait; Imeckus can direct Lintwerth's actions verbally as a free action. If Lintwerth is slain, Imeckus becomes Drained 1 for 24 hours.</p>",
+      "frequency": null,
+      "name": "Enhanced Familiar",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>If a reaction would disrupt Imeckus's spellcasting action, he attempts a @Check[flat|dc:15]; if he succeeds, his action isn't disrupted.</p>",
+      "frequency": null,
+      "name": "Steady Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "XydYK1C7RFDqKine",
+  "gear": [
+    "+1 Striking Staff of Fire (Major)",
+    "Dagger",
+    "The Inward Flowing Source (Spellbook)"
+  ],
+  "hp": 210,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/imeckus-stroon",
+  "immunities": [],
+  "languages": [
+    "common",
+    "hallit",
+    "jotun",
+    "skald",
+    "sussuran"
+  ],
+  "level": 12,
+  "name": "Imeckus Stroon",
+  "perception": 25,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 25,
+    "crafting": 23,
+    "diplomacy": 22,
+    "nature": 21,
+    "occultism": 25,
+    "society": 23
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 23,
+      "dc": 33,
+      "name": "Staff of Fire (Major)",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 7,
+          "rank": 1
+        }
+      ],
+      "spells": [
+        {
+          "name": "Fire Shield",
+          "rank": 4
+        },
+        {
+          "name": "Wall of Fire",
+          "rank": 4
+        },
+        {
+          "name": "Wall of Fire",
+          "rank": 4
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Flaming Sphere",
+          "rank": 2
+        },
+        {
+          "name": "Flaming Sphere",
+          "rank": 2
+        },
+        {
+          "name": "Burning Hands",
+          "rank": 1
+        },
+        {
+          "name": "Burning Hands",
+          "rank": 1
+        },
+        {
+          "name": "Produce Flame",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

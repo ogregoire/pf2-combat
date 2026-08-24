@@ -1,0 +1,275 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 2,
+    "dex": 4,
+    "int": 2,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ostiarius inspires their willing allies and themself by whispering words of courage from their wounds. The ostiarius and their allies in a @Template[emanation|distance:50] gain a +1 status bonus to attack rolls, damage rolls, and saves against fear effects. The ostiarius can Sustain Compel Courage.</p>\n<p>Non-velstracs who accept this compelled courage find bleeding wounds opening on their own bodies to whisper in thanks. They take @Damage[1[bleed]] damage and can't attempt a flat check to end this damage as long as they're compelled.</p>",
+      "frequency": null,
+      "name": "Compel Courage",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "divine",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ostiarius stares at a creature they can see within 30 feet. The creature must immediately attempt a Will save against Whispering Wounds. In addition, if the creature was already Sickened and fails its save, the creature is Fascinated by the ostiarius and can't use hostile actions. This fascination lasts for 1 round or until the ostiarius takes any hostile action against the creature or the creature's allies. Whether the creature succeeds at or fails the save, it is temporarily immune for 1 hour.</p>",
+      "frequency": null,
+      "name": "Focus Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "fear",
+        "incapacitation",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A velstrac automatically knows whether a creature it sees has any of the Doomed, Dying, and Wounded conditions, as well as the value of those conditions</p>",
+      "frequency": null,
+      "name": "Painsight",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 5 (Deactivated by Holy or Silver)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The ostiarius always knows the direction and distance to the closest portal between the Shadow Plane and the Material Plane. This sense functions only on these two planes.</p>",
+      "frequency": null,
+      "name": "Sense Portal",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. When a creature ends its turn in the aura, it hears the wounds on the ostiarius's body whisper obscene truths. The creature must succeed at a @Check[will|dc:21] save or become Sickened 1.</p>",
+      "frequency": null,
+      "name": "Whispering Wounds",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "2d6+2",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "89isDKkB1UCbsSvU",
+  "gear": [],
+  "hp": 67,
+  "hpDetails": "regeneration 5 (deactivated by holy or silver)",
+  "id": "pathfinder-bestiary-2/ostiarius",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "shadowtongue"
+  ],
+  "level": 5,
+  "name": "Ostiarius",
+  "perception": 15,
+  "publicNotes": "<p>Ostiariuses, as emissaries of the velstracs, tend to the portals between the Shadow Plane and the Material Plane. They not only escort other velstracs into the world of mortals, but also work to entice mortals into the realms of the velstracs- from which most mortals never leave. Among the most pleasant and persuasive of the velstracs, ostiariuses are prepared to converse for hours upon any topic, and they are skilled at returning, again and again, to the subject of the delights found in their perverse philosophies. Ostiariuses stand over 6 feet tall, and individuals range from skeletally thin to hugely corpulent.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "deception": 12,
+    "diplomacy": 12,
+    "intimidation": 16,
+    "religion": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 24,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Enthrall",
+          "rank": 3
+        },
+        {
+          "name": "Wanderer's Guide",
+          "rank": 3
+        },
+        {
+          "name": "Calm Emotions (At will)",
+          "rank": 2
+        },
+        {
+          "name": "Darkness",
+          "rank": 2
+        },
+        {
+          "name": "Silence",
+          "rank": 2
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "unholy",
+    "velstrac"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "silver",
+      "value": 5
+    }
+  ]
+}

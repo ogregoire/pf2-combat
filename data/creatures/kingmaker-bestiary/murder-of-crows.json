@@ -1,0 +1,149 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 6,
+    "int": -4,
+    "str": 0,
+    "wis": 6
+  },
+  "ac": 27,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The crows' angry pecking deals @Damage[2d8[piercing]] damage to each enemy in the swarm's space (@Check[reflex|dc:28|basic]). A creature that critically fails its save is Blinded for [[/gmr 1d6 #Rounds]]{1d6 rounds} as the crows focus their attacks on the target's vulnerable face.</p>",
+      "frequency": null,
+      "name": "Swarming Beaks",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A murder of crows can get past most barriers to hound their prey. Simple latches, unsecured chimney flues, loosely shuttered windows, and similar obstacles rarely keep a murder away. A murder of crows automatically bypasses many of these simple obstructions and can attempt a @Check[thievery|dc:25] check to get through more complex obstructions (such as closed windows or simple barricades).</p>",
+      "frequency": null,
+      "name": "Enraged Cunning",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "GDBEHLicn4kKggis",
+  "gear": [],
+  "hp": 150,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/murder-of-crows",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
+  ],
+  "languages": [],
+  "level": 9,
+  "name": "Murder of Crows",
+  "perception": 19,
+  "publicNotes": "<p>A flock of ravens is known as an unkindness. Certainly the name lives up to its meaning when a swarm of ravens decides to work together. In most cases, a raven swarm like the one presented here won't attack larger foes, but when manipulated by supernatural forces or simple desperation born from hunger, an unkindness of ravens can be a surprisingly dangerous foe.</p>\n<hr />\n<p>Few birds are as cunning and social as the raven.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bludgeoning",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 19,
+    "thievery": 19
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "area-damage",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "splash-damage",
+      "value": 10
+    }
+  ]
+}

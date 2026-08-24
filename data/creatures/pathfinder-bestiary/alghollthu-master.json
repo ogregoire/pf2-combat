@@ -1,0 +1,172 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 1,
+    "int": 3,
+    "str": 5,
+    "wis": 5
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>5 feet. While underwater, an aboleth exudes a cloud of transparent slime. An air-breathing creature adjacent to an aboleth must succeed at a @Check[fortitude|dc:25] save each round or lose the ability to breathe air but gain the ability to breathe water for 3 hours.</p>",
+      "frequency": null,
+      "name": "Mucus Cloud",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:25]</p>\n<hr />\n<p><strong>Stage 1</strong> no ill effect (1 round)</p>\n<p><strong>Stage 2</strong> the victim's skin softens, inflicting Drained 1 (1 round)</p>\n<p><strong>Stage 3</strong> the victim's skin transforms into a clear, slimy membrane, inflicting Drained 2 until the curse ends; every hour this membrane remains dry, the creature's drained condition increases by 1 (permanent).</p>\n<p>A Cleanse Affliction spell can counteract this curse, but immunity to disease offers no protection against it</p>",
+      "frequency": null,
+      "name": "Slime",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "occult",
+        "virulent"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "slime"
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "tuIqEvsct8EO33xs",
+  "gear": [],
+  "hp": 135,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/alghollthu-master",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "alghollthu",
+    "common",
+    "sakvroth",
+    "thalassic"
+  ],
+  "level": 7,
+  "name": "Alghollthu Master",
+  "perception": 17,
+  "publicNotes": "<p>Aboleths form the core of alghollthu society, and while they are the \"common folk\" of their own societies, they see themselves as masters of all others. Unlike their leaders, who mask their actions using magical disguises, aboleths revel in their monstrous forms, appearing as primeval fish with tentacles. Masters of psychic manipulation, they are a species so ancient that they were present in the world when it was young, before the gods had turned their attention to the planet. They see all other life as something they have the right to control, so the idea that potential slaves might have faith in a higher power other than themselves enrages aboleths.</p>\n<hr />\n<p>In bygone millennia, aquatic monsters known as alghollthus used their occult powers to conquer and rule vast parts of the world. Their empires contained countless mortal slaves treated as little more than cattle. Alghollthus shaped their slaves and other creatures using mental manipulation and physically transformative magic. Aberrant horrors from faceless stalkers to mimics can be traced back to this meddling. The rulers of the alghollthu race, the so-called veiled masters, further shaped entire societies by assuming the forms of those they controlled. From the heights of power to the shadows of poverty, the veiled masters manipulated these societies according to their own dark designs, enslaving, killing, or horrifically transforming those who discovered their plans or acted against them.</p>\n<p>In time, the alghollthus grew frustrated with their increasingly upstart slave societies and sought to wipe the slate clean-both starting anew and punishing those who had become too willful and rebellious. They used incredible magical power to call forth a cataclysm, hoping to destroy the rebellious societies they'd manipulated. Yet they miscalculated the strength of faith and will to survive of their pawns and slaves, and in time the world and its empires recovered and grew strong once again-this time without alghollthu influence.</p>\n<p>Today, the alghollthus have retreated from their mass-scale manipulation of the surface world, and they have mostly remained within the deep aquatic realms where they still rule without question. Yet they have not abandoned their plots entirely, and the reemergence of servitor races like ugothols points to a frightening possibility-that the alghollthus have turned their hateful eyes to the surface once again.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 16,
+    "deception": 15,
+    "intimidation": 15,
+    "occultism": 16
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 60
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Project Image (At Will)",
+          "rank": 7
+        },
+        {
+          "name": "Dominate",
+          "rank": 6
+        },
+        {
+          "name": "Illusory Scene (At Will)",
+          "rank": 5
+        },
+        {
+          "name": "Hallucinatory Terrain (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Veil (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Hypnotic Pattern (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Illusory Object (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

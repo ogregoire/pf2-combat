@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 1,
+    "int": 4,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 15,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The coven aspirant forms a temporary coven with two or more willing creatures within 30 feet, all of whom must be able to cast spells.</p>\n<p>Members of the temporary coven can cast Charm, Entangling Flora, and Illusory Disguise as 2nd-rank occult innate spells at will, using DC 17 or their spellcasting DC, whichever is higher.</p>\n<p>The coven is dissolved after 3 rounds or when all but one member is dead, whichever comes first. A creature can be a member of only one temporary coven at a time and can join a temporary coven no more than once per 24 hours.</p>",
+      "frequency": null,
+      "name": "Forge Pact",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "linguistic",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a coven aspirant is within 30 feet of at least two allies, they and their allies gain a +1 status bonus to Will saves.</p>",
+      "frequency": null,
+      "name": "Shared Confidence",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dart",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "f6NqtcB94r3S7LCn",
+  "gear": [
+    "Cauldron",
+    "Dagger",
+    "Dart"
+  ],
+  "hp": 35,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/coven-aspirant",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "jotun"
+  ],
+  "level": 2,
+  "name": "Coven Aspirant",
+  "perception": 7,
+  "publicNotes": "<p>Only the foolish would bring themselves to the attention of hags, but some aspirants strive to join a hag coven out of a desire for power or companionship.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 7,
+    "intimidation": 5,
+    "medicine": 5,
+    "occultism": 8,
+    "stealth": 7,
+    "survival": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 10,
+      "dc": 18,
+      "name": "Occult Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Needle of Vengeance",
+          "rank": 1
+        },
+        {
+          "name": "Shroud of Night",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

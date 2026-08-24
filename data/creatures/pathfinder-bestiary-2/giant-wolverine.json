@@ -1,0 +1,168 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 3,
+    "int": -4,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 21,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The wolverine has a creature grabbed from its jaws Strike</p>\n<hr />\n<p><strong>Effect</strong> The wolverine chews violently on the creature, dealing @Damage[2d6[piercing]] damage (@Check[fortitude|dc:21|basic] save). A creature that fails its save also takes @Damage[2d6[bleed]].</p>",
+      "frequency": null,
+      "name": "Gnaw",
+      "requirements": "The wolverine has a creature grabbed from its jaws Strike",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giant wolverine Strides and makes a Strike at the end of that movement. If the giant wolverine begins this action Hidden, it remains hidden until after the attack.</p>",
+      "frequency": null,
+      "name": "Pounce",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p>\n<hr />\n<p><p>A Rend entry lists a Strike the monster has.</p>\n<p><strong>Requirements</strong> The monster hit the same enemy with two consecutive Strikes of the listed type in the same round.</p>\n<hr />\n<p><strong>Effect</strong> The monster automatically deals that Strike's damage again to the enemy.</p></p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giant wolverine enters a state of pure rage that lasts either for 1 minute, until there are no enemies it can perceive, or until it falls Unconscious, whichever comes first. While raging, the giant wolverine has AC 20, its jaws Strike deals 2d6+11 damage, and its claw Strike deals 2d4+11 damage. While raging, the giant wolverine can't use actions that have the concentrate trait, except for Seek.</p>\n<p>After it's stopped raging, a giant wolverine can't use Wolverine Rage again for 1 minute.</p>",
+      "frequency": null,
+      "name": "Wolverine Rage",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d4+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "MCZgXBC0I4Oovcjd",
+  "gear": [],
+  "hp": 65,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/giant-wolverine",
+  "immunities": [],
+  "languages": [],
+  "level": 4,
+  "name": "Giant Wolverine",
+  "perception": 9,
+  "publicNotes": "<p>Giant wolverines grow to the approximate size of horses and claim even more expansive territories than their more diminutive wolverine cousins. While a smaller wolverine will defend its prey from armed humanoids, a giant wolverine is unafraid to stalk and kill such creatures.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 12,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,163 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 0,
+    "int": -2,
+    "str": -3,
+    "wis": 3
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> three times per day</p>\n<hr />\n<p><strong>Effect</strong> The carbuncle concentrates on a creature it can see and tries to manipulate that creature. The target must attempt a @Check[will|dc:18] save. The target then becomes temporarily immune for 24 hours.</p>\n<hr />\n<p><strong>Critical Success</strong> The attempt backfires and bolsters the target's mind instead, granting it a +1 status bonus to Will saving throws for 1 hour.</p>\n<p><strong>Success</strong> The target briefly experiences an unusual but harmless sensation like an unexpected flavor or scent, an urge to eat something strange, or an amusing half-forgotten memory.</p>\n<p><strong>Failure</strong> The target is compelled to spend all of its actions on its next turn performing harmless, pointless, and usually embarrassing actions.</p>\n<p><strong>Critical Failure</strong> As failure, but the compulsion persists for 1 minute. The target can attempt a new save at the end of its turn each round to end the effect.</p>",
+      "frequency": {
+        "max": 3,
+        "per": "day"
+      },
+      "name": "Specious Suggestion",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The carbuncle takes damage</p>\n<hr />\n<p><strong>Effect</strong> The carbuncle feigns death by teleporting away and leaving a replica of its corpse behind, creating a colorful flash of light and a croaking sound. The real carbuncle transports to a clear space within 30 feet that it can see, and a hollow shell remains behind. The fake body appears solid until it is touched, at which point it crumbles to dust.</p>",
+      "frequency": null,
+      "name": "Fatal Faker",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "teleportation"
+      ],
+      "trigger": "The carbuncle takes damage"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The carbuncle can Telepathically send mild feelings and sensations to nearby creatures. It can't use this ability to communicate in language or hinder a target, but it might convey a feeling of dread or the scent of food cooking nearby.</p>",
+      "frequency": null,
+      "name": "Carbuncle Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Any mental spell can affect a carbuncle, regardless of creature type limitations. Against a Suggestion spell, a carbuncle always gets an outcome one degree of success worse than it rolled on its saving throw.</p>",
+      "frequency": null,
+      "name": "Easy to Influence",
+      "requirements": null,
+      "traits": [
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "tdCyjq57rgfPezjT",
+  "gear": [],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/carbuncle",
+  "immunities": [],
+  "languages": [],
+  "level": 1,
+  "name": "Carbuncle",
+  "perception": 7,
+  "publicNotes": "<p>Never have legend and misinformation met upon a more inauspicious brow than that of the lowly carbuncle. At first glance, carbuncles appear to be little more than ungainly reptiles. What sets them apart is their strange magical abilities and the gemstone-like horn protruding from between their goggling eyes. Although rumors suggest various uses for carbuncle horns, ranging from miracle cure-alls to potent magical components, the truth is much more mundane: a carbuncle's horn is merely a highly reflective growth, not unlike a fingernail.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "tiny",
+  "skills": {
+    "stealth": 3,
+    "survival": 6
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 18,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Levitate (At will) (Self only)",
+          "rank": 3
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Jump (At will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

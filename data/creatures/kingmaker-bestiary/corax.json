@@ -1,0 +1,123 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Corax lunges toward a foe and makes a Strike with his greataxe, increasing his reach by 5 feet for that Strike. If he hits, the target must succeed at a @Check[fortitude|dc:19|options:inflicts:prone] save to avoid being knocked Prone (and Stunned 1 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Felling Blow",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greataxe",
+      "traits": [
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "48o307dry03xazvd",
+  "gear": [
+    "Alchemist's Fire (Lesser)",
+    "Arrows",
+    "Composite Shortbow",
+    "Greataxe",
+    "Healing Potion (Lesser)",
+    "Studded Leather Armor"
+  ],
+  "hp": 55,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/corax",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Corax",
+  "perception": 8,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 9,
+    "nature": 7,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

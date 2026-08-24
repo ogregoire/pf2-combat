@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 3,
+    "int": 1,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<p><strong>Requirements</strong> The monster hunter isn't Fatigued</p><hr /><p><strong>Effect</strong> The monster hunter leads an attack against their monstrous foe. The monster hunter chooses an enemy they can see that qualifies as their favored game. The monster hunter becomes Fascinated by that creature and gains 10 temporary Hit Points that last as long as the onslaught does. During the onslaught, the hunter gains a +8 status bonus to damage rolls against the designated enemy, and allies in a 30-foot aura around the hunter gain half that bonus. The onslaught lasts for 1 minute or until either the monster hunter or the designated creature falls Unconscious.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1H"
+      },
+      "name": "Hunter's Onslaught",
+      "requirements": "The monster hunter isn't Fatigued",
+      "traits": [
+        "concentrate",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within your reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p>You lash out at a foe that leaves an opening. Make a melee Strike against the triggering creature. If your attack is a critical hit and the trigger was a manipulate action, you disrupt that action. This Strike doesn't count toward your multiple attack penalty, and your multiple attack penalty doesn't apply to this Strike.</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within your reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The monster hunter Strides twice and makes a melee Strike.</p>",
+      "frequency": null,
+      "name": "Sudden Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A monster hunter specializes in bringing down certain non-humanoid creatures. These favored game are typically animals and beasts, but an individual might hunt dragons, plants, or more specialized creatures like tigers or manticores.</p>",
+      "frequency": null,
+      "name": "Favored Game",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the monster hunter hits a creature that qualifies as their favored game, that creature is Frightened 1 (or Frightened 2 on a critical hit).</p>",
+      "frequency": null,
+      "name": "Primal Fear",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "primal-fear"
+      ],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "primal-fear"
+      ],
+      "kind": "melee",
+      "name": "Greataxe",
+      "traits": [
+        "magical",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "3qDYEHtyAobpCg5r",
+  "gear": [
+    "Arrows",
+    "Composite Longbow",
+    "Greataxe",
+    "Hide Armor"
+  ],
+  "hp": 105,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/monster-hunter",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Monster Hunter",
+  "perception": 13,
+  "publicNotes": "<p>Bounty hunters are constantly on the move, whether within city walls or the wilderness, trailing their fugitive quarries for capture... or disposal. Often relying on stealth or deception as much as martial skill, bounty hunters employ a vast array of talents to accomplish their goals and collect the hefty payout.</p><hr /><p>Whether they're hired to wage war, protect a caravan, or infiltrate an impenetrable fortress, there's ample work for mercenaries all over Golarion.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 15,
+    "stealth": 13,
+    "survival": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

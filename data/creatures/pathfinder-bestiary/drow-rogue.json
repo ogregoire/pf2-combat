@@ -1,0 +1,212 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 4,
+    "int": 0,
+    "str": 2,
+    "wis": 0
+  },
+  "ac": 19,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Requirements</strong> A drow rogue can't use this reaction while Encumbered.</p>\n<p><strong>Trigger</strong> The drow rogue is hit or critically hit by an attack made by a creature the drow rogue can see.</p>\n<hr />\n<p><strong>Effect</strong> The drow rogue gains a +2 circumstance bonus to their Armor Class against the triggering attack.</p>",
+      "frequency": null,
+      "name": "Nimble Dodge",
+      "requirements": "A drow rogue can't use this reaction while Encumbered.",
+      "traits": [],
+      "trigger": "The drow rogue is hit or critically hit by an attack made by a creature the drow rogue can see."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The drow rogue draws a weapon using the Interact action, then Strikes with that weapon.</p>",
+      "frequency": null,
+      "name": "Quick Draw",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
+      "frequency": null,
+      "name": "Light Blindness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The drow rogue deals 1d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "lethargy-poison"
+      ],
+      "kind": "ranged",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "VBXjZ1jYxdKf64B7",
+  "gear": [
+    "Bolts",
+    "Hand Crossbow",
+    "Lethargy Poison",
+    "Shortsword",
+    "Studded Leather Armor"
+  ],
+  "hp": 26,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/drow-rogue",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "elven",
+    "sakvroth"
+  ],
+  "level": 2,
+  "name": "Drow Rogue",
+  "perception": 6,
+  "publicNotes": "<p>Loners at heart, drow rogues trust no one-least of all fellow slayers. Thees drow rely on awareness and adaptation to survive the cutthroat nature of their society.</p>\n<hr />\n<p>The first drow were elves who fled into the depths of the world from a devastating cataclysm thousands of years ago. In their journey below, they fell to bickering and in-fighting, drawing the attention of sinister intelligences beyond their own. Whether it was the influence of a specific demon lord, the Rough Beast Rovagug, or some other fell force is unknown, but in that time the elves transformed both spiritually and physically, tainting their hearts with desires for cruelty, sadism, and violence. The hues of their eyes became sinister red or bleached white, and their flesh adopted an unearthly lavender sheen that made the drow instantly recognizable. The drow also developed potent magical abilities and resistances that further empowered them, if at the cost of their souls.</p>\n<p>Over the centuries to follow, the drow developed into a powerful, if violently dysfunctional society, influenced by the worship of demon lords and focused on providing power and glory to a relatively small collection of noble houses. Many of these noble houses are matriarchal in nature and all hold allegiance to a specific demon lord patron-but traditions of worship, warfare, and wizardry help to bind the oft-bickering houses together enough that drow society doesn't simply consume itself from within. Fear of earning the wrath of one's superior-be it a teacher, a parent, a commander, or the demon one worships-is the real bond holding drow society together, and this system is held in esteem by the lowliest drow servant and by the most powerful drow priestess alike.</p>\n<p>The drow are infamous throughout the world, but until recently most assumed stories of demon-worshipping, underground-dwelling elves were spooky legends crafted to share around a campfire. Today, the existence of drow is an understood truth, and while their presence in the dark caverns deep below is unsettling, they seem content to leave the surface world alone for now.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "deception": 7,
+    "society": 4,
+    "stealth": 10,
+    "thievery": 8
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 16,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Darkness (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Faerie Fire (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "drow",
+    "elf",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

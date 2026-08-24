@@ -1,0 +1,184 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 3,
+    "int": 3,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hryngar bombardier draws an alchemical grenade with an Interact action and throws it as a ranged Strike.</p>",
+      "frequency": null,
+      "name": "Quick Bombardier",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A hryngar bombardier carries 6 alchemical grenades that deal either acid, cold, or fire damage plus 1 persistent damage and 1 splash damage of the same type (typically two of each). The bombardier replenishes these grenades each day using easily collected materials.</p>",
+      "frequency": null,
+      "name": "Alchemical Grenades",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
+      "frequency": null,
+      "name": "Light Blindness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "acid"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Alchemical Grenade",
+      "traits": [
+        "range-increment-20",
+        "splash"
+      ]
+    },
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Warhammer",
+      "traits": [
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "KDbJ402jFuvn5frX",
+  "gear": [
+    "Alchemical Grenade (Acid)",
+    "Alchemical Grenade (Cold)",
+    "Alchemical Grenade (Fire)",
+    "Alchemist's Toolkit",
+    "Studded Leather Armor",
+    "Warhammer"
+  ],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/hryngar-bombardier",
+  "immunities": [],
+  "languages": [
+    "common",
+    "dwarven",
+    "sakvroth"
+  ],
+  "level": 1,
+  "name": "Hryngar Bombardier",
+  "perception": 4,
+  "publicNotes": "<p>Hryngar chemists have a knack for creating alchemical grenades. Their traditions often motivate them to constantly experiment and innovate, though the hostile nature of their environs tends to focus these innovations on weapons or other tools of war. Hryngar bombardiers eagerly steal notes and secrets from their underlings, pushing their students to cut corners to produce results while gleefully pillaging the credit and profits. For those hryngar bombardiers who find themselves pressed into combat service, each thrown grenade represents a new opportunity to observe the suffering they inflict, before eagerly incorporating that data into their next experiment or innovation to create an even more terrible tool of torment.</p>\n<hr />\n<p>Deep beneath the surface, the dour dwarves known as hryngars stubbornly toil, claiming the ancestral subterranean homelands of other dwarves as their own. Long ago, hryngar leaders refused to venture to the surface along with their \"cousins,\" forsaking the Quest for Sky. An exiled dwarven deity named Droskar offered hryngars salvation from the horrors that beset them in the Darklands, offering them power, cunning, and knowledge in exchange for their unending servitude. Many hryngar believe that by working harder than their brethren, they can build a society far greater than anything under the sun, claiming unending riches from the planet's metallic veins in days of relentless toil.</p>\n<p>Through Droskar's blessings and their own fearsome work ethic, hryngar kingdoms now rule a significant portion of the upper Darklands region of NarVoth, and it's common to see hryngar caravans moving through the tunnels, drawn by teams of immense beetles. Hryngar leadership typically consists of powerful divine servants of Droskar, along with fearsomely implacable warriors whose martial prowess, backed by innate occult magic, ensures they can overcome any direct threat to hryngar rule. Almost every aspect of hryngar society is controlled by a strict hierarchy of leadership, with taskmasters directing subordinates across all walks of life.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 6,
+    "crafting": 6,
+    "occultism": 6,
+    "stealth": 6,
+    "survival": 4
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Blood Vendetta",
+          "rank": 2
+        },
+        {
+          "name": "Paranoia",
+          "rank": 2
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "duergar",
+    "dwarf",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

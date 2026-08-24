@@ -1,0 +1,415 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 9,
+    "dex": 5,
+    "int": 5,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 47,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>DC 44</p>\n<p><strong>Trigger</strong> A living creature within 30 feet of the ravener dies</p><hr /><p><strong>Effect</strong> The ravener tears the creature's soul from its body with their maw and gulps it down. The dying creature must attempt a @Check[fortitude|dc:44] save with the same DC as the ravener's Breath Weapon.</p><hr /><p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The ravener tears off a small chunk of the creature's soul. If the victim is restored to life, they are Drained 1 in addition to any other side effects of returning to life. The ravener adds a number of Hit Points to their soul ward equal to half the creature's level.</p>\n<p><strong>Failure</strong> As success, but the creature's soul is ravaged. The creature is Drained 3 and the ravener adds a number of Hit Points to their soul ward equal to the creature's level.</p>\n<p><strong>Critical Failure</strong> As failure, but the ravener devours the entire soul. The victim can't be restored to life as long as the ravener exists except via a 10th-rank effect such as miracle or wish, and the ravener adds a number of Hit Points to their soul ward equal to twice the creature's level.</p>",
+      "frequency": null,
+      "name": "Consume Soul",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A living creature within 30 feet of the ravener dies"
+    },
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The ravener takes excess damage to their soul ward but still has at least 51 Hit Points in their soul ward</p>\n<hr />\n<p><strong>Effect</strong> The ravener draws deeply into their soul ward, discorporating their body into soul energy in order to escape. They take 50 damage to their soul ward and their physical body vanishes, reappearing [[/r 1d4 #hours]]{1d4 hours} later in a random location within 1 mile from the location where they used Discorporate.</p>",
+      "frequency": null,
+      "name": "Discorporate",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The ravener takes excess damage to their soul ward but still has at least 51 Hit Points in their soul ward"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Jaws only.</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Jaws Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 100 feet casts a fire spell, or a fire spell otherwise comes into effect from a source within 100 feet</p>\n<hr />\n<p><strong>Effect</strong> The ravener makes all the choices to determine the targets, destination, and other effects of the spell, as though they were the caster.</p>",
+      "frequency": null,
+      "name": "Redirect Fire",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": "A creature within 100 feet casts a fire spell, or a fire spell otherwise comes into effect from a source within 100 feet"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ravener attempts to take control of a magical fire or a fire spell within 100 feet. If it succeeds at a counteract check (counteract rank 10, counteract modifier +34), the original caster loses control of the spell or magical fire, control is transferred to the ravener, and this action counts as the ravener having Sustained the Spell with the action (if applicable). The ravener can choose to end the spell instead of taking control, if they choose.</p>",
+      "frequency": null,
+      "name": "Manipulate Flames",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The ravener breathes a blast of flame that deals @Damage[20d6[fire],4d6[persistent,void]|options:area-damage]{20d6 fire damage plus 4d6 persistent void damage} (@Check[reflex|dc:44|basic|options:area-effect] save). A creature that fails its save is also Drained 1 (or Drained 2 on a critical failure). If a creature is drained by the ravener's Ravenous Breath Weapon, the ravener's soul ward gains @Damage[5[healing]] HP.</p>\n<p>The ravener can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Ravenous Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:42]</p>\n<p>A ravener's frightful presence causes creatures to cower in fear as well. As long as a creature is at least Frightened 2 or more as a result of the ravener's frightful presence, it is also Immobilized from the fear.</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Cowering Fear",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet. @Damage[4d6[fire]] damage (@Check[reflex|dc:41|basic] save)</p>",
+      "frequency": null,
+      "name": "Dragon Heat",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "aura",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Smoke doesn't impair an ancient red ravener's vision; it ignores the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>200 HP</p>\n<p>An intangible field of necromantic energy protects a ravener from total destruction. A soul ward has 150 maximum Hit Points, or 200 if the ravener is level 21 or higher. Whenever a ravener would be reduced below 1 Hit Point, all damage in excess of what would reduce them to 1 Hit Point is instead dealt to their soul ward. If this damage reduces the soul ward to fewer than 0 Hit Points, the ravener is destroyed. A soul ward's Hit Points can be restored only via specific ravener abilities such as Consume Soul, ravenous breath, or vicious criticals. A ravener who goes more than a week without successfully using Consume Soul to feed on a dying creature starves, and their soul ward loses @Damage[1d4[healing]] Hit Points each day until they feed. If the ravener's soul ward loses all its Hit Points while the ravener still has more than 1 HP, they become a ravener husk.</p>",
+      "frequency": null,
+      "name": "Soul Ward",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A ravener senses the spiritual essence of living and undead creatures within the listed range. Creatures whose material bodies are one unit with their souls, like celestials and fiends, appear brighter to this sense.</p>",
+      "frequency": null,
+      "name": "Soulsense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The ravener treats an attack roll as a critical hit on a roll of 19 or 20, as long as the attack roll was a success. Additionally, whenever the ravener makes a critical hit with one of their Strikes, the target must succeed on a @Check[fortitude|dc:42] save or gain the Drained 1 condition. If the target already has a drained value of greater than 0, their drained value instead increases by 1, to a maximum of drained 4. Whenever the ravener applies drain to a creature in this way, their soul ward gains 5 Hit Points.</p>",
+      "frequency": null,
+      "name": "Vicious Criticals",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "void"
+        },
+        {
+          "category": null,
+          "formula": "4d8+17",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "void"
+        },
+        {
+          "category": null,
+          "formula": "3d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "4d10+17",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "fire",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "void"
+        },
+        {
+          "category": null,
+          "formula": "4d10+15",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d6",
+          "type": "void"
+        },
+        {
+          "category": null,
+          "formula": "3d8+15",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "g41X4b3q2iDMLRt3",
+  "gear": [],
+  "hp": 500,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/ravener",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "chthonian",
+    "common",
+    "draconic",
+    "dwarven",
+    "jotun",
+    "necril",
+    "orcish"
+  ],
+  "level": 21,
+  "name": "Ravener",
+  "perception": 37,
+  "publicNotes": "<p>The ravener presented here was once an ancient red dragon.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 38
+    },
+    "reflex": {
+      "detail": null,
+      "value": 34
+    },
+    "will": {
+      "detail": null,
+      "value": 37
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 32,
+    "arcana": 37,
+    "athletics": 39,
+    "deception": 38,
+    "diplomacy": 38,
+    "intimidation": 40,
+    "stealth": 35
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 60
+    },
+    {
+      "type": "fly",
+      "value": 180
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 44,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Wall of Fire (At Will)",
+          "rank": 8
+        },
+        {
+          "name": "Suggestion (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "fire",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 20
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 20
+    }
+  ]
+}

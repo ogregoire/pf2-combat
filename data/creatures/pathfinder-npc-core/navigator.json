@@ -1,0 +1,137 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 2,
+    "int": 4,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>By spending 10 minutes of work and succeeding at a @Check[sailing-lore|dc:22]{Sailing Lore} check, the navigator plots an optimal course.</p>\n<p>The severity of environmental conditions other than temperature are reduced by one step for 24 hours (two steps on a critical success). This changes moderate damage to minor damage, winds that create greater difficult terrain cause only difficult terrain, and so on.</p>",
+      "frequency": null,
+      "name": "Chart a Course",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The navigator deals an additional 1d6 weapon damage when on a ship.</p>",
+      "frequency": null,
+      "name": "Navigator's Edge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "navigators-edge"
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "navigators-edge"
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "nnrvoNBUzKyKQLu4",
+  "gear": [
+    "Dagger",
+    "Scroll Case with Ship's Charts",
+    "Writing Set"
+  ],
+  "hp": 28,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/navigator",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Navigator",
+  "perception": 9,
+  "publicNotes": "<p>A navigator uses celestial bodies and shipping lanes to determine routes.</p><hr /><p>Adventurers may need passage on a swift vessel, or they might face danger from raiders at sea or in coastal settlements.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 6,
+    "nature": 11,
+    "society": 8,
+    "survival": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

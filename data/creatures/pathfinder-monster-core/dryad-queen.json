@@ -1,0 +1,279 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 6,
+    "dex": 6,
+    "int": 4,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 35,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Nymph queens can transform between their original form, which looks much like a typical nymph of their kind, and any Small or Medium humanoid form, typically choosing a more humanoid-looking version of their natural form.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>On a failed save, if the target was already affected by the dryad queen's beauty, the target can't use hostile actions against the dryad queen for 1 hour.</p>\n<hr />\n<p>The nymph queen focuses her beauty upon a target, who must attempt a save against her nymph's beauty aura (@Check[will|dc:30] save). If the creature fails and was already affected by the aura, it takes a greater effect described in the nymph queen's entry.</p>\n<p>A nymph queen can Focus Beauty on a given creature only once per turn.</p>",
+      "frequency": null,
+      "name": "Focus Beauty",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental",
+        "primal",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>A One with Plants spell cast by a dryad has an unlimited duration.</p>\n<p>In addition, if the dryad merges with any tree in her domain, she can choose to instead enter an extradimensional living space within the tree, and can bring up to eight adjacent, willing creatures with her; the spell gains the extradimensional trait. The dryad can still be expelled from this space.</p>",
+      "frequency": null,
+      "name": "Tree Meld",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The nymph queen inspires a single intelligent creature by giving that creature a token of her favor, typically a lock of her hair, though it can be some other significant object as well. As long as the creature carries her token and remains in good standing with her, the creature gains a +1 status bonus to all Crafting checks, Performance checks, and Will saves.</p>\n<p>If the nymph grants her token to a bard, and she's the bard's muse, the queen chooses one additional benefit granted by her token: a +1 status bonus to all Lore checks, a +2 status bonus to Performance checks when determining the effects of compositions, a +4 status bonus to untrained skill checks, or a +2 status bonus to Will saves against fey.</p>\n<p>Effect: Nymph Queen's Inspiration</p>",
+      "frequency": null,
+      "name": "Inspiration",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The dryad can ask questions of, receive answers from, and use the Diplomacy skill with animals and plants.</p>",
+      "frequency": null,
+      "name": "Nature Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<hr />\n<p>On a failed save, the target is Immobilized in awe for 1 minute.</p>\n<hr />\n<p>Creatures that start their turn in the aura must succeed at a @Check[will|dc:30] save or suffer an effect described in the nymph queen's entry.</p>",
+      "frequency": null,
+      "name": "Nymph's Beauty",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "mental",
+        "primal",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The dryad queen is tied to a forest or other woodland.</p>\n<hr />\n<p>A nymph queen is intrinsically tied to a specific region. As long as the queen is healthy, the environment is exceptionally resilient, allowing the nymph queen to automatically attempt to counteract any spell that would harm the environment (such as the Blight ritual), using her spell DC with a counteract rank equal to the highest-rank druid spell she can cast.</p>\n<p>When the nymph queen becomes physically or psychologically unhealthy, however, her warded region eventually becomes twisted or unhealthy as well. In that case, restoring the nymph queen swiftly heals the entire region.</p>",
+      "frequency": null,
+      "name": "Tied to the Land",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d12+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Branch",
+      "traits": [
+        "finesse",
+        "magical"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "category": null,
+          "formula": "3d8+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Leaves",
+      "traits": [
+        "plant",
+        "primal",
+        "range-increment-60"
+      ]
+    }
+  ],
+  "foundryId": "gRy6Ci6zb1s4Nvy5",
+  "gear": [],
+  "hp": 220,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/dryad-queen",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven",
+    "fey",
+    "muan"
+  ],
+  "level": 13,
+  "name": "Dryad Queen",
+  "perception": 25,
+  "publicNotes": "<p>Also called a hamadryad, a dryad queen rules over an entire forest, or a portion of an incredibly large forest, leading and protecting all dryads within. Dryad queens often have strange relationships with powerful and deadly fey, working together in a dualistic way despite their differences, with the queen representing nature's wonders and the other fey representing nature's wrath.</p>\n<hr />\n<p>Nymphs are a family of fey that take the form of beautiful humanoids with elven features and have a deep association with the natural world. The most common of their kind are the dryads, which are spirits that embody great trees, but many other kinds of nymphs exist, including naiads, who watch over bodies of water. All nymphs are guardians of some element of nature, typically a specific tree or pond, or even-in the case of nymph queens-whole forests or massive bodies of water</p>\n<h2>Nymph Queens</h2>\n<p>Nymph queens are powerful nymphs who rule over entire regions of untouched wilderness, not just single trees or ponds. Every variety of nymph can have a queen. Naiad queens are among the most prominent, and more often interact with nearby mortals. Thus, some scholars refer to naiad queens as simply \"nymphs.\"</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 24
+    },
+    "reflex": {
+      "detail": null,
+      "value": 26
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 25,
+    "athletics": 19,
+    "crafting": 23,
+    "deception": 30,
+    "diplomacy": 30,
+    "intimidation": 27,
+    "nature": 24,
+    "performance": 28,
+    "stealth": 25,
+    "survival": 24
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 25,
+      "dc": 35,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Impaling Briars",
+          "rank": 8
+        },
+        {
+          "name": "Nature's Pathway",
+          "rank": 5
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Entangling Flora",
+          "rank": 2
+        },
+        {
+          "name": "One with Plants",
+          "rank": 2
+        },
+        {
+          "name": "Shape Wood",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Tangle Vine",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey",
+    "nymph",
+    "plant",
+    "wood"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 10
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

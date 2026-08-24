@@ -1,0 +1,239 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 5,
+    "int": 2,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 39,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> Korog commands his allies to take an action. All allies who hear or see him are Quickened 1 for 1 round and can use this extra action to Step, Stride, or make a Strike against one of Korog's blood-foes.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Korog's Command",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Korog declares one creature he can see within 30 feet to be his blood-foe whom he swears to defeat. He can have up to three blood-foes designated at a time; any additional blood-foe removes another blood-foe of Korog's choice. Korog treats the results of Perception checks made against blood-foes as improved by one degree, and he has a +2 circumstance bonus to AC against his blood-foes' attacks.</p>",
+      "frequency": null,
+      "name": "Designate Blood Foe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The graveknight unleashes a @Template[cone|distance:30] of energy. Creatures in the area take @Damage[9d12[electricity]] damage (@Check[reflex|dc:37|basic] save). The graveknight can use this ability once every [[/gmr 1d4 #Recharge Devastating Blast]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Devastating Blast",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "electricity"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>This curse affects anyone who wears a graveknight's armor for at least 1 hour.</p>\n<p><strong>Saving Throw</strong> @Check[will|dc:37] save</p>\n<hr />\n<p><strong>Onset</strong> 1 hour</p>\n<p><strong>Stage 1</strong> Doomed 1 and cannot remove the armor (1 day)</p>\n<p><strong>Stage 2</strong> Doomed 2, the creature's Speed is reduced by 10, and cannot remove the armor (1 day)</p>\n<p><strong>Stage 3</strong> dies and transforms into the armor's graveknight.</p>\n<p>Effect: Graveknight's Curse</p>",
+      "frequency": null,
+      "name": "Graveknight's Curse",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "curse"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a graveknight is destroyed, its armor rebuilds its body over the course of [[/gmr 1d10 #days]]{1d10 days}-or more quickly if the armor is worn by a living host. If the body is destroyed before then, the process restarts.</p>\n<p>A graveknight can only be permanently destroyed by obliterating its armor (such as with Disintegrate), transporting it to the Forge of Creation, or throwing it into the heart of a volcano.</p>",
+      "frequency": null,
+      "name": "Rejuvenation",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. When a creature in the aura uses a vitality spell or ability, the graveknight automatically attempts to counteract it, with a counteract modifier of [[/r 1d20+26 #Counteract]]{+26}.</p>",
+      "frequency": null,
+      "name": "Sacrilegious Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "evil"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The graveknight has access to the critical specialization effects of any weapons it wields.</p>",
+      "frequency": null,
+      "name": "Weapon Master",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "electricity"
+        },
+        {
+          "category": null,
+          "formula": "3d12+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Greater Shock Maul",
+      "traits": [
+        "magical",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "vrZrha0Gz14Zd4tA",
+  "gear": [
+    "Full Plate",
+    "Maul"
+  ],
+  "hp": 295,
+  "hpDetails": "void healing, rejuvenation",
+  "id": "kingmaker-bestiary/korog",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "hallit"
+  ],
+  "level": 16,
+  "name": "Korog",
+  "perception": 29,
+  "publicNotes": "<p>Graveknights are undead warriors granted unlife by a cursed suit of armor.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 30
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 27
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 29,
+    "athletics": 33,
+    "intimidation": 30,
+    "religion": 29,
+    "survival": 29
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

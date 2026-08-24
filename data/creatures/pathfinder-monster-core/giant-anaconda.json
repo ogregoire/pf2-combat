@@ -1,0 +1,199 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 6,
+    "dex": 3,
+    "int": -4,
+    "str": 7,
+    "wis": 3
+  },
+  "ac": 25,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature Grabbed or Restrained by the giant anaconda attempts to Escape.</p>\n<hr />\n<p><strong>Effect</strong> The DC of the Escape check is increased by 2.</p>",
+      "frequency": null,
+      "name": "Tighten Coils",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature Grabbed or Restrained by the giant anaconda attempts to Escape."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d10+7)[bludgeoning]], @Check[fortitude|dc:26|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC. A creature that fails this save falls Unconscious, and a creature that succeeds is then temporarily immune to falling unconscious from Greater Constrict for 1 minute.</p></p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
+      "frequency": null,
+      "name": "Push 10 feet",
+      "requirements": "The monster's last action was a successful Strike that lists Push in its damage entry",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giant anaconda Strides, Climbs, or Swims up to half its Speed, pulling any creatures it has Grabbed with it.</p>",
+      "frequency": null,
+      "name": "Slither",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(1d10+7)[bludgeoning]], Rupture 21</p>\n<hr />\n<p><p>The monster attempts to swallow a creature of the listed size or smaller that it has grabbed or restrained in its jaws or mouth. If a swallowed creature is of the maximum size listed, the monster can't use Swallow Whole again. If the creature is smaller than the maximum, the monster can usually swallow more creatures; the GM determines the maximum. The monster attempts an @Check[athletics|defense:reflex] check opposed by the grabbed creature's Reflex DC. If it succeeds, it swallows the creature. The monster's mouth or jaws no longer grab a creature it has swallowed, so the monster is free to use them to Strike or Grab once again. The monster can't attack creatures it has swallowed.</p>\n<p>A swallowed creature is Grabbed, is Slowed 1, and has to hold its breath or start suffocating. The swallowed creature takes the listed amount of damage when first swallowed and at the end of each of its turns while it's swallowed. If the victim Escapes this ability's grabbed condition, it exits through the monster's mouth. This frees any other creature grabbed in the monster's mouth or jaws. A swallowed creature can attack the monster that has swallowed it, but only with unarmed attacks or with weapons of light Bulk or less. The swallowing creature is Off-Guard against the attack. If the monster takes piercing or slashing damage equaling or exceeding the listed Rupture value from a single attack or spell, the swallowed creature cuts itself free. A creature that gets free by either Escaping or cutting itself free can immediately breathe and exits the swallowing monster's space.</p>\n<p>Effect: Engulf and Swallow Whole</p>\n<p>If the monster dies, a swallowed creature can be freed by creatures adjacent to the corpse if they spend a combined total of 3 actions cutting the monster open with a weapon or unarmed attack that deals piercing or slashing damage.</p></p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A Large or smaller creature is Grabbed or Restrained in the giant anaconda's jaws.</p>\n<hr />\n<p><strong>Effect</strong> The giant anaconda moves the creature into its coils, freeing its jaws to make attacks, then uses Greater Constrict against the creature. The giant anaconda's coils can hold as many creatures as will fit in its space.</p>",
+      "frequency": null,
+      "name": "Wrap in Coils",
+      "requirements": "A Large or smaller creature is Grabbed or Restrained in the giant anaconda's jaws.",
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "push"
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "XDNJSVxOOryeuN44",
+  "gear": [],
+  "hp": 175,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/giant-anaconda",
+  "immunities": [],
+  "languages": [],
+  "level": 8,
+  "name": "Giant Anaconda",
+  "perception": 17,
+  "publicNotes": "<p>The monstrous giant anaconda is a constrictor snake capable of swallowing whole creatures as big as horses—to say nothing of their riders. Although novice bushwhackers watch out for snakes that might drop on them from the jungle canopy above, giant anacondas are most commonly encountered in ponds and rivers, where they feed on prey including manatees and capybaras. This hunting tactic allows anacondas to drown their prey while constricting it, reducing the chance of injuries while hunting. Despite lurid and sensational stories spread by adventurers, these snakes rarely attack humanoids.</p>\n<hr />\n<p>Snakes come in an array of forms, from jungle-dwelling constrictors that wrap around their prey to venomous vipers with deadly bites. Regardless, all snakes consume their prey whole by unhinging their jaws and using powerful muscles to move the food down their throats and into their stomachs.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 15,
+    "athletics": 21,
+    "stealth": 15,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

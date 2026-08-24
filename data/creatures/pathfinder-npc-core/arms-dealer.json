@@ -1,0 +1,197 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 3,
+    "int": 1,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "1",
+      "description": "<p>The arms dealer advises an ally on how to properly use a firearm. The arms dealer chooses an ally within 30 feet wielding a firearm. That ally can use a reaction to Interact to reload their firearm.</p>",
+      "frequency": null,
+      "name": "Take Stock",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving the purchase of weapons, the arms dealer is a 5th-level challenge.</p>",
+      "frequency": null,
+      "name": "Arms Dealing Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The arms dealer seems unaffected by your attempts to threaten them. The arms dealer gains a +2 circumstance bonus to their Will DC against Intimidation checks while they're holding a firearm.</p>",
+      "frequency": null,
+      "name": "You Call That a Gun?",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Flintlock Musket",
+      "traits": [
+        "concussive",
+        "fatal-d10",
+        "range-increment-70",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Hand Cannon",
+      "traits": [
+        "modular",
+        "range-increment-30",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Sword Cane",
+      "traits": [
+        "agile",
+        "concealable",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "OB4x3FBwjJBfOsi3",
+  "gear": [
+    "Flintlock Musket",
+    "Hand Cannon",
+    "Rounds (Flintlock Musket)",
+    "Rounds (Hand Cannon)",
+    "Sword Cane"
+  ],
+  "hp": 28,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/arms-dealer",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Arms Dealer",
+  "perception": 9,
+  "publicNotes": "<p>A seedy arms dealer has access to all kinds of deadly weapons and can quickly provide them to clients in need… for the right price, of course.</p><hr /><p>These lone wolves have an aura of mystery, bravado, and swagger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "crafting": 7,
+    "deception": 7,
+    "diplomacy": 7,
+    "intimidation": 9,
+    "society": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

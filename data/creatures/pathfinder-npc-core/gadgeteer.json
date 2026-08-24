@@ -1,0 +1,150 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 4,
+    "int": 4,
+    "str": 1,
+    "wis": 2
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The gadgeteer uses their bag of junk and nearby scraps to create one of the following gadgets. Gadgets created this way fall apart after a single use or after 1 hour, whichever happens first.</p><ul><li><strong>Flash Bang</strong> <span class=\"action-glyph\">1</span> (manipulate) The gadgeteer throws a flash bang up to 20 feet away that explodes in a @Template[type:burst|distance:5]. Creatures in the burst must succeed a @Check[fortitude|dc:24] save or become Blinded for 1 round.</li><li><strong>Glider</strong> <span class=\"action-glyph\">1</span> (move) The gadgeteer leaps off a precipice with the glider in their hands. They fall only 60 feet per round, and for every 10 feet they fall, they can travel 5 feet forward.</li><li><strong>Makeshift Key</strong> <span class=\"action-glyph\">1</span> (manipulate) The gadgeteer attempts to Pick a Lock with a +4 item bonus to the check.</li><li><strong>Recorder</strong> <span class=\"action-glyph\">1</span> (manipulate) The gadgeteer records up to 25 spoken words on this device. Activating this gadget causes it to either repeat the recorded words once before falling apart or play the message on a loop for up to 10 minutes before falling apart.</li><li><p><strong>Shocking Rod</strong> <span class=\"action-glyph\">1</span> (manipulate) An adjacent creature takes @Damage[3d12[electricity]] damage with a @Check[reflex|dc:24|basic] save.</p>\n</li></ul>",
+      "frequency": null,
+      "name": "Create Gadget",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving crafting gadgets, the gadgeteer is a 9th-level challenge.</p>",
+      "frequency": null,
+      "name": "Gadget Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Heavy Wrench",
+      "traits": [
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "jx5KZC2tbgJIJnOq",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Heavy Wrench",
+    "Leather Armor"
+  ],
+  "hp": 95,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/gadgeteer",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Gadgeteer",
+  "perception": 14,
+  "publicNotes": "<p>Few are as prepared to be unprepared as a gadgeteer, who are masters at building seemingly impossible creations out of almost anything. They're always useful to have when a plan inevitably goes wrong because they can quickly craft the perfect tool needed to get out of even the stickiest predicament. Every now and again, someone tries to hire a gadgeteer to perfect a single design to replicate it and make more permanent versions of their thrown-together gadgets. This effort is often in vain, as even the most talented gadgeteers are unlikely to perfectly replicate a design they made in the moment, even with the same materials. In fact, when put on the spot, they will likely create a functional gadget differently every time, even if they have access to the same material. This process makes duplication nearly impossible.</p><hr /><p>Although relatively uncommon across much of Golarion, the frequently eccentric but undeniably brilliant minds who create elaborate devices of clockwork, gunpowder, and steam often loom much larger in the public eye than their numbers would suggest.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "crafting": 16,
+    "society": 12,
+    "thievery": 14
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

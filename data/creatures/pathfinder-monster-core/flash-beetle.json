@@ -1,0 +1,119 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 2,
+    "dex": 3,
+    "int": -5,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The flash beetle creates a brilliant flash of light. All creatures in its luminescent aura must succeed at a @Check[fortitude|dc:17] save or be Dazzled for 1 minute.</p>\n<p>The flash beetle's glow then goes out, disabling its aura for 24 hours, during which time it cannot use Light Flash.</p>",
+      "frequency": null,
+      "name": "Light Flash",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "light"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet.</p>\n<p>The flash beetle's bioluminescent organs fill the area with bright light.</p>",
+      "frequency": null,
+      "name": "Luminescent Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "light"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Mandibles",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "E2XL2egIA3QaSDBM",
+  "gear": [],
+  "hp": 6,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/flash-beetle",
+  "immunities": [],
+  "languages": [],
+  "level": -1,
+  "name": "Flash Beetle",
+  "perception": 6,
+  "publicNotes": "<p>These 3-foot-long insects boast a pair of glowing organs on the back of the abdomen that give off bright light and that continue to glow for days, even after the creature's death. Flash beetles are commonly herded and harvested by miners and spelunkers, as their glow is considered safer than torches and less expensive than lamps. Denizens of the Darklands often domesticate and train these insects, using them as pets, livestock, or caging them to use as organic sources of light in areas frequented by visitors unaccustomed to the darkness.</p>\n<hr />\n<p>Not all beetles are harmless creatures that can be easily crushed underfoot. Oversized and ravenous giant beetles can be found throughout the temperate and tropical regions of the world. They are often benign creatures, though when threatened or roused, giant beetles are quite dangerous. Their powerful mandibles and tough exoskeletons make for a challenging combatant.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 6,
+    "athletics": 4
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

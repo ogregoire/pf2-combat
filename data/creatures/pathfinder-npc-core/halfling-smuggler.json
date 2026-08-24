@@ -1,0 +1,218 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": 0,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The smuggler Interacts to draw an item of light Bulk concealed in one of their hidden pockets. The pockets can store up to four objects of light Bulk. For most smugglers, these items are Arsenic, an Elixir of Life (Lesser), a Smoke Ball (Lesser), and a Thieves' Toolkit. The smuggler can refill the pockets over the course of 1 minute.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Hidden Pockets",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> Smugglers succeed by making a move only after they've diverted others' attention. The smuggler [[/act create-a-diversion]]{Creates a Diversion}. If the smuggler became Hidden to at least one creature, the smuggler can then Sneak.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Distracting Escape",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A smuggler is adept at navigating official channels and makes network contacts in order to keep their goods moving. They gain a +2 circumstance bonus to Make an Impression and Request with members of the local bureaucracy.</p>",
+      "frequency": null,
+      "name": "Grease Some Palms",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The halfling gains a +2 circumstance bonus when using the Seek action to find Hidden or Undetected creatures within 30 feet of them. Whenever the halfling targets a creature that is Concealed or hidden from them, reduce the DC of the flat check to @Check[flat|dc:3] for a concealed target or @Check[flat|dc:9] for a hidden one.</p>",
+      "frequency": null,
+      "name": "Keen Eyes",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The smuggler deals an extra 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Filcher's Fork",
+      "traits": [
+        "agile",
+        "backstabber",
+        "deadly-d6",
+        "finesse",
+        "magical"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+9",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Filcher's Fork",
+      "traits": [
+        "agile",
+        "backstabber",
+        "deadly-d6",
+        "magical",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Sling",
+      "traits": [
+        "propulsive",
+        "range-increment-50",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "GPRL88DEmTVn0jkY",
+  "gear": [
+    "Arsenic",
+    "Clothing (Fine)",
+    "Disguise Kit",
+    "Elixir of Life (Lesser)",
+    "Filcher's Fork",
+    "Leather Armor",
+    "Sling",
+    "Smoke Ball (Lesser)",
+    "Thieves' Toolkit"
+  ],
+  "hp": 95,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/halfling-smuggler",
+  "immunities": [],
+  "languages": [
+    "common",
+    "halfling"
+  ],
+  "level": 6,
+  "name": "Halfling Smuggler",
+  "perception": 13,
+  "publicNotes": "<p>Halfling smugglers are sought out for their ability to deftly navigate the shadowy underworld to move illicit goods and information.</p><hr /><p>Halflings thrive on simple pleasures—having a pint at the pub or warming their feet by the hearth.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [],
+  "size": "small",
+  "skills": {
+    "acrobatics": 14,
+    "athletics": 11,
+    "deception": 14,
+    "intimidation": 14,
+    "society": 10,
+    "stealth": 15,
+    "thievery": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "halfling",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

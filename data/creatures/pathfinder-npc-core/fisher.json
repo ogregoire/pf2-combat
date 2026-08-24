@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 2,
+    "int": 0,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Bonus on Perception to Spot Fish",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>While it has persistent bleed damage from the fisher's fishing line Strike, a creature has a fishhook embedded in it. The creature can't move farther away from the fisher (though it can move laterally). The fisher can reel the creature in as a single action with the attack and manipulate trait, attempting an @Check[athletics|against:fortitude] check against the creature's Fortitude DC. On a success, the creature takes @Damage[2d4[slashing]] damage and is pulled 10 feet closer to the fisher (double the damage and distance on a critical success).</p>",
+      "frequency": null,
+      "name": "Fishhooked",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": "persistent",
+          "formula": "1",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "fishhooked"
+      ],
+      "kind": "ranged",
+      "name": "Fishing Line",
+      "traits": [
+        "range-increment-20"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Spear",
+      "traits": []
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Spear",
+      "traits": [
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "LbSA6uGVafcosT0X",
+  "gear": [
+    "Assorted Knives",
+    "Fishing Tackle",
+    "Net",
+    "Rope",
+    "Spear"
+  ],
+  "hp": 15,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/fisher",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Fisher",
+  "perception": 6,
+  "publicNotes": "<p>More than just hobbyists, fishers catch fish and other seafood with the intention of selling most of or all of their catch.</p><hr /><p>Society is built upon the backs of laborers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 7,
+    "nature": 4,
+    "survival": 4
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,144 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 2,
+    "int": 1,
+    "str": 2,
+    "wis": 5
+  },
+  "ac": 31,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Effect</strong> The Sister projects her wrath and rage into the minds of any number of creatures of her choice within 30 feet. Targeted creatures must attempt a @Check[will|dc:32] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Off-Guard for 1 round as they become distracted by the unexpected fit of rage.</p>\n<p><strong>Failure</strong> The creature is Confused for 1 round.</p>\n<p><strong>Critical Failure</strong> The creature is confused for as long as they remain within 30 feet of the Sister, or until they succeed at the @Check[flat|dc:11] to recover.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Infectious Wrath",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "2d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "category": null,
+          "formula": "2d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "magical",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "554zNFkbYXBdmgAy",
+  "gear": [
+    "Breastplate",
+    "Dagger",
+    "Religious Symbol of Gyronna (Silver)"
+  ],
+  "hp": 250,
+  "hpDetails": null,
+  "id": "kingmaker-bestiary/sister-of-the-bloodshot-eye",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common",
+    "hallit"
+  ],
+  "level": 12,
+  "name": "Sister of the Bloodshot Eye",
+  "perception": 23,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 22,
+    "intimidation": 22,
+    "religion": 25,
+    "society": 20,
+    "survival": 23
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,253 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 1,
+    "int": 2,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 28,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the dragon's tail uses a move action or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The dragon makes a tail Strike at the creature with a -2 penalty. If it hits, the dragon disrupts the creature's action.</p>",
+      "frequency": null,
+      "name": "Twisting Tail",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within reach of the dragon's tail uses a move action or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a toxic cloud that deals @Damage[9d6[poison]|options:area-damage] damage in a @Template[cone|distance:40] (@Check[fortitude|dc:25|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:24]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The green dragon ignores difficult terrain and greater difficult terrain from non-magical foliage.</p>",
+      "frequency": null,
+      "name": "Woodland Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d12+7",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Horn",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d10+8",
+          "type": "piercing"
+        },
+        {
+          "category": null,
+          "formula": "2d4",
+          "type": "poison"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "poison",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "5XtCOknYJuEl4SfD",
+  "gear": [],
+  "hp": 135,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/green-dragon-young-spellcaster",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic"
+  ],
+  "level": 8,
+  "name": "Green Dragon (Young, Spellcaster)",
+  "perception": 16,
+  "publicNotes": "<p>Green dragons are the most contemplative of the chromatic dragons as well as the most approachable. The key to understanding green dragons is to understand their obsession with knowledge and self-discipline. Any careful approach that takes advantage of a green dragon's fixations may end in a diplomatic outcome, but any misstep or slight can provoke a savage attack. Like most chromatic dragons, green dragons do not suffer fools-and the threshold for what they consider foolish is very low.</p>\n<p>Though more open than their chromatic cousins to dealing with other creatures and dragons, green dragons prefer an isolated and quiet life. They tend to lair in the most forbidding parts of a forest, surrounded by tangled thickets, or else at the heart of some dismal gulch. If the terrain is suitable, some green dragons make their home in natural caves, which they expand to suit their needs.</p>\n<p>Green dragons' pride leads them to see to the preservation of their forest homes. They feel that a verdant and lush forest is something that they alone have cultivated. This leads some green dragons to follow the path of druidism, though most prefer to study the arcane arts and occult lore. Most of them delve deeply into one particular field of study, and correspond with other scholars in the field by adopting a pen name that hides their true nature. Regardless of their chosen focus, green dragons seek to improve themselves, and their desire for knowledge makes them more likely to deal diplomatically with other creatures in order to obtain new information.</p>\n<p>Their hoards are typically well kept, organized, and filled with tomes of lore and scrolls of magic along with antiquities they collect for their own inscrutable reasons. Many of these treasures come from across the globe, and many an adventurer has survived an encounter with a green dragon by stroking its ego and plying it with rare artifacts or lost lore from ancient cultures.</p>\n<hr />\n<p>While there are many types of dragons, from the powerful planar dragons to the strange esoteric dragons, few dragon varieties are as well-known and as rightly feared as the chromatic dragons. Differentiated by the hue of their scales, each color of dragon unleashes its own flavor of murderous cruelty-be it by claw, tooth, or breath-and unlike most creatures, dragons only become more powerful as they age. Their lust for treasure, food, bloodshed, and control are legendary. Physically powerful with egos to match, these dragons are often morally depraved and act as criminal masterminds, vicious tyrants, or voracious raiders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 13,
+    "arcana": 16,
+    "athletics": 17,
+    "deception": 14,
+    "diplomacy": 16,
+    "intimidation": 16,
+    "nature": 14,
+    "occultism": 17,
+    "society": 14,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 120
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 18,
+      "dc": 26,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Entangle",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "dragon"
+  ],
+  "weaknesses": []
+}

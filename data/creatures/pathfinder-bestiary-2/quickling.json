@@ -1,0 +1,188 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 4,
+    "int": 3,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Requirements</strong> The quickling used no attack, manipulate, or move actions in the previous round</p>\n<hr />\n<p><strong>Effect</strong> The quickling becomes Invisible until it uses an attack, manipulate, or move action.</p>\n<p>The quickling can't use Fade from View again for [[/gmr 1d4 #Recharge Fade from View]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Fade from View",
+      "requirements": "The quickling used no attack, manipulate, or move actions in the previous round",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The quickling is targeted by a Strike</p>\n<hr />\n<p><strong>Effect</strong> The quickling darts aside, gaining a +2 circumstance bonus to AC, then Strides up to half their Speed after the Strike resolves.</p>",
+      "frequency": null,
+      "name": "Can't Catch Me",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The quickling is targeted by a Strike"
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The quickling takes a -2 status penalty to saving throws against effects that cause the Slowed condition. If the quickling ever becomes slowed, they lose their supernatural speed, can't Fade from View, and become Sickened 1 for the duration of the slow. They also can't reduce this sickened condition for the duration of the slowed effect.</p>",
+      "frequency": null,
+      "name": "Slow Susceptibility",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The quickling's Strikes deal an extra 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The quickling's speed, combined with nearly instantaneous acceleration and deceleration, enables them to move in astonishing ways. As long as they have a firm surface to travel across, they can Stride their full movement vertically or horizontally. They can even run across unstable surfaces, such as water, in the same way, although dangerous surfaces (acid, lava, etc.) harm them as normal. They must end their movement on a horizontal surface capable of bearing their weight or else they fall.</p>",
+      "frequency": null,
+      "name": "Supernatural Speed",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "lethargy-poison"
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "uQBfbNaIHdt0l2QB",
+  "gear": [
+    "Lethargy Poison",
+    "Shortsword"
+  ],
+  "hp": 25,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/quickling",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "fey"
+  ],
+  "level": 3,
+  "name": "Quickling",
+  "perception": 9,
+  "publicNotes": "<p>Few creatures can match a quickling's speed. These malicious fey creatures delight in striking with blinding speed and accuracy, racing in to stab and slash at foes before scampering away for cover with maddening- even frightening-swiftness. Stories of people simply doubling over, bleeding from what appear to be spontaneously opening wounds, are often eyewitness accounts of quickling attacks.</p>\n<p>Quicklings actively hate the \"slow-paced dullards\" they encounter every day, delighting in inflicting suffering and pain on creatures they deem too sluggish to matter. While they are related to kinder fey such as brownies and pixies, quicklings care only for their own merriment. They see their own cruel pranks as the height of humor and have full confidence that their speed and invisibility will keep them safe from harm. They occasionally form gangs of up to a dozen individuals, although the group usually devolves very quickly into mayhem, as they inevitably perform increasingly deadly pranks against each other.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 13,
+    "crafting": 8,
+    "deception": 8,
+    "nature": 8,
+    "stealth": 11,
+    "survival": 6,
+    "thievery": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 100
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Shatter",
+          "rank": 2
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 1,
+    "dex": 3,
+    "int": -4,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A stingray in water can use its electrolocation as an imprecise sense at the listed range to detect living creatures that are in the same body of water as itself.</p>",
+      "frequency": null,
+      "name": "Electrolocation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:16]</p>\n<p><strong>Maximum Duration</strong> 4 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d4[poison]] damage (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]] damage and Clumsy 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Stingray Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "stingray-venom"
+      ],
+      "kind": "melee",
+      "name": "Sting",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "HXWT5QxmOCn0poMt",
+  "gear": [],
+  "hp": 15,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/stingray",
+  "immunities": [],
+  "languages": [],
+  "level": 0,
+  "name": "Stingray",
+  "perception": 6,
+  "publicNotes": "<p>Found in salt or fresh water, stingrays are normally passive creatures, but when threatened or cornered, they lash out with their tails to lance foes with their toxic stingers. Stingrays often bury themselves in mud, sand, or sea grass, and unfortunately for those wading in shallow waters, stepping on an unseen stingray is a surefire way to receive a painful sting.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 5,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

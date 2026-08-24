@@ -1,0 +1,174 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 1,
+    "int": 3,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Circumstance Bonus on Saves vs. Poisons",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving making medicine or alchemical contests, the apothecary is a 3rd-level challenge.</p>",
+      "frequency": null,
+      "name": "Medical Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The apothecary can identify the effect of any alchemical composition or medical ingredient using only their senses. This typically takes 1 minute.</p>",
+      "frequency": null,
+      "name": "Medical Wisdom",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1",
+          "type": "acid"
+        },
+        {
+          "category": "splash",
+          "formula": "1",
+          "type": "acid"
+        },
+        {
+          "category": "persistent",
+          "formula": "1d6",
+          "type": "acid"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Acid Flask",
+      "traits": [
+        "range-increment-20",
+        "splash"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Stone Pestle",
+      "traits": []
+    }
+  ],
+  "foundryId": "h4gPulyY9uzkAbyo",
+  "gear": [
+    "Acid Flask (Lesser)",
+    "Dagger",
+    "Elixir of Life (Minor)",
+    "Healer's Toolkit",
+    "Leather Apron (Functions as Padded Armor)",
+    "Mortar and Pestle"
+  ],
+  "hp": 8,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/apothecary",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": -1,
+  "name": "Apothecary",
+  "perception": 5,
+  "publicNotes": "<p>The apothecary skillfully combines materials into unguents and medicines using crushed herbs, curative minerals, and potent extracts.</p><hr /><p>The world is a dangerous place. Thankfully, there are those who devote their lives to easing the pain and suffering of others.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 2
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "crafting": 5,
+    "medicine": 10,
+    "nature": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

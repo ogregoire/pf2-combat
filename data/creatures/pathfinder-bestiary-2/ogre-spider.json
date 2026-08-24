@@ -1,0 +1,146 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 4,
+    "dex": 4,
+    "int": -5,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 23,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An ogre spider can fit through tight spaces as if it were a Large creature. While Squeezing, it can move at its full speed.</p>",
+      "frequency": null,
+      "name": "Eerie Flexibility",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:22]</p><hr /><p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage (1 round)</p>\n<p><strong>Stage 2</strong> 1d6 poison damage, Clumsy 1, and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[2d6[poison]] damage, clumsy 1, and enfeebled 1 (1 round)</p>\n<p><strong>Stage 4</strong> 2d6 poison damage, Clumsy 2, and Enfeebled 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Ogre Spider Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The ogre spider has imprecise Tremorsense to detect the vibrations of creatures touching its web.</p>",
+      "frequency": null,
+      "name": "Web Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by the ogre spider's web attack is Immobilized and stuck to the nearest surface until it Escapes (DC 22).</p>",
+      "frequency": null,
+      "name": "Web Trap",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "ogre-spider-venom"
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": []
+    },
+    {
+      "bonus": 13,
+      "damage": [],
+      "effects": [
+        "web-trap"
+      ],
+      "kind": "ranged",
+      "name": "Web",
+      "traits": [
+        "range-increment-30"
+      ]
+    }
+  ],
+  "foundryId": "Kr5LtF0bqZJAC2Wn",
+  "gear": [],
+  "hp": 70,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/ogre-spider",
+  "immunities": [],
+  "languages": [],
+  "level": 5,
+  "name": "Ogre Spider",
+  "perception": 13,
+  "publicNotes": "<p>These terrifying creatures grow as large as elephants. The placement of their eyes above their wide mandibles evokes the grimacing visage of an ogre's leer. Ogres themselves find the appearance of ogre spider faces simultaneously amusing and adorable, but in most cases, ogres' attempts to keep these spiders as pets result in dead ogres and well-fed spiders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 13
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,144 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 2,
+    "dex": 3,
+    "int": -2,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hell hound breathes flames that deal @Damage[4d6[fire]|options:area-damage] damage to all creatures in a @Template[cone|distance:15] (@Check[reflex|dc:19|basic|options:area-effect] save).</p>\n<p>The hell hound can't use Hellfire Breath again for [[/gmr 1d4 #Recharge Hellfire Breath]]{1d4 rounds}. If the hell hound would take fire damage or be targeted by a fire effect, their Hellfire Breath recharges.</p>",
+      "frequency": null,
+      "name": "Hellfire Breath",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fire",
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The hell hound's Strikes deal 1d4 extra damage to creatures within the reach of at least two of the hell hounds' allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "category": null,
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "RTviEfjYnsXa0wkT",
+  "gear": [],
+  "hp": 40,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/hell-hound",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
+  ],
+  "languages": [
+    "diabolic"
+  ],
+  "level": 3,
+  "name": "Hell Hound",
+  "perception": 9,
+  "publicNotes": "<p>A hell hound's appearance dismisses any doubts as to their infernal origins—flesh the color of burning pitch, teeth as sharp as any fiend's pitchfork, and a shroud of ever-burning hellfire are all trademark features.</p>\n<hr />\n<p>Hell hounds are fiendish, extraplanar canines hailing from the Pit that can hunt down quarry and breathe supernatural gouts of flame. They are temperamental and quick to exhibit aggressive behavior.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 9,
+    "stealth": 8,
+    "survival": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "fiend",
+    "fire",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold",
+      "value": 5
+    }
+  ]
+}

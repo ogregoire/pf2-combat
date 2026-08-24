@@ -1,0 +1,190 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 4,
+    "dex": 2,
+    "int": -5,
+    "str": 5,
+    "wis": 0
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature enters a space occupied by a gray ooze</p>\n<p><strong>Requirements</strong> Initiative has not yet been rolled</p>\n<hr />\n<p><strong>Effect</strong> The gray ooze automatically notices the creature, then makes a pseudopod Strike against one creature adjacent to itself before rolling initiative.</p>",
+      "frequency": null,
+      "name": "Puddled Ambush",
+      "requirements": "Initiative has not yet been rolled",
+      "traits": [],
+      "trigger": "A creature enters a space occupied by a gray ooze"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[1d6[bludgeoning],1d6[acid]]{1d6 bludgeoning plus 1d6 acid}, @Check[fortitude|dc:21|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A gray ooze's acid damages only metal and organic materials, not stone.</p>",
+      "frequency": null,
+      "name": "Gray Ooze Acid",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A gray ooze can sense nearby creatures through vibration and air or water movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "category": null,
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "grab"
+      ],
+      "kind": "melee",
+      "name": "Pseudopod",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "V6OBYa51VcehPj22",
+  "gear": [],
+  "hp": 60,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/gray-ooze",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
+  ],
+  "languages": [],
+  "level": 4,
+  "name": "Gray Ooze",
+  "perception": 8,
+  "publicNotes": "<p>These dangerous oozes are the bane of any who travel through swamps, marshes, or damp caves. Easily masquerading as pools of clear water or patches of wet stone, gray oozes lie in wait for unwary victims to reach down for a drink or step into what appears to be a puddle, then lash out with whiplike pseudopods to ensnare and consume their hapless prey.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
+  },
+  "senses": [
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 11,
+    "stealth": 10
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "climb",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "ooze"
+  ],
+  "weaknesses": []
+}

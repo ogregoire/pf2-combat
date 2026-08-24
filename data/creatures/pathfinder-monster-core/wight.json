@@ -1,0 +1,226 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The wight is reduced to 0 Hit Points</p>\n<hr />\n<p><strong>Effect</strong> The wight makes a Strike before being destroyed. This Strike can inflict corrupting spite, but fueled by spite doesn't apply.</p>",
+      "frequency": null,
+      "name": "Final Spite",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The wight is reduced to 0 Hit Points"
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The wight's unarmed attacks and bound weapons inflict a curse that makes a creature grow weak and spiteful. If a wight inflicts corrupting spite on a creature already afflicted by it, the victim attempts a new save, ignoring the result if it's better than a failure.</p>\n<p>A living humanoid that dies while under the curse rises as a wight after [[/gmr 1d4 #Wight Spawn Timer]]{1d4 rounds}, controlled by the wight that killed it. The wight spawn can't inflict corrupting spite and is Clumsy 2. If its creator dies or after roughly a month of existence, the new wight becomes autonomous and turns into a normal wight</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:17];</p>\n<hr />\n<p><strong>Stage 1</strong> Drained 1 (1 round)</p>\n<p><strong>Stage 2</strong> Drained 2 and doesn't treat any creatures as allies (1 round)</p>\n<p><strong>Stage 3</strong> As stage 2, except Drained 3 (1 round)</p>\n<p><strong>Stage 4</strong> As stage 2, except Drained 4 (1 round).</p>",
+      "frequency": null,
+      "name": "Corrupting Spite",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Each time a creature loses Hit Points due to a corrupting spite curse the wight inflicted, the wight gains 3 temporary Hit Points.</p>",
+      "frequency": null,
+      "name": "Fueled by Spite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The wight is bound to a dagger it was buried with. Other wights can be bound to different weapons.</p>",
+      "frequency": null,
+      "name": "Grave Weapon",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "corrupting-spite"
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "corrupting-spite"
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+6",
+          "type": "slashing"
+        }
+      ],
+      "effects": [
+        "corrupting-spite"
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "DBTbqI9QQRtlJwWh",
+  "gear": [
+    "Dagger"
+  ],
+  "hp": 40,
+  "hpDetails": "fueled by spite, void healing",
+  "id": "pathfinder-monster-core/wight",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
+  ],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 3,
+  "name": "Wight",
+  "perception": 10,
+  "publicNotes": "<p>Wights are intelligent undead spawned through inescapable cycles of spite. This spite might come from their own malevolent will in life, or can be instilled by necromantic rituals, typically involving the desecration of burial sites. Wights usually haunt burial grounds, catacombs, or other places of the dead. Their hunger is targeted toward the living—those whose pumping hearts and ruddy warmth inspire visceral hatred.</p>\n<p>As many types of wights exist as types of people from which they might be created. Hulking brutes, skittering sneaks, and cunning tinkers all make for different wights with different niches to fill. The environment, too, plays a part in determining a wight's special abilities and defenses. Frost wights, for instance, can be found in parts of the world where exposure is a common end and the resentment of being left alone in the wild is a common source of spite. Durable and sustained by void energy, wights can last in harsh environments without decaying the way some lesser undead do.</p>\n<p>A single wight can wreak significant havoc if it is compelled to rise from its tomb. Because creatures slain under a wight's curse can become wights as well, all it takes is a single wight and a handful of unlucky graveyard visitors to create a veritable horde of these undead. Thus, canny priests and adventurers know that the best solution to a wight problem is swift and total eradication. Care must be taken, though, to destroy wight spawn before attempting to destroy the parent wight, for spawn without a master gain the ability to create spawn of their own.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 10,
+    "intimidation": 9,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "undead",
+    "unholy",
+    "wight"
+  ],
+  "weaknesses": []
+}

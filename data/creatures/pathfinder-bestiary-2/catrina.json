@@ -1,0 +1,264 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 5,
+    "int": 2,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 22,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The catrina telepathically compels a creature within 30 feet to approach and allow the catrina to kiss them, in preparation for using Kiss of Death. The target must attempt a @Check[will|dc:22] save.</p>\n<p><strong>Success</strong> The creature is unaffected and is temporarily immune to Compel Condemned for 24 hours.</p>\n<p><strong>Failure</strong> The creature must spend each of its actions to move closer to the catrina as quickly as possible, while avoiding obvious dangers. If the compelled creature is adjacent to the catrina, it stays still and doesn't act. If the creature takes any damage, the effect ends and the creature is temporarily immune to Compel Condemned for 24 hours. This effect lasts for 1 round, but if the catrina uses this ability again on subsequent rounds, it extend the duration by 1 round for all affected creatures.</p>\n<p><strong>Critical Failure</strong> As failure, but damage does not end the effect.</p>",
+      "frequency": null,
+      "name": "Compel Condemned",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "incapacitation",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The catrina gives a long, passionate kiss to an Unconscious or willing creature, dealing @Damage[3d6[void]] damage.</p>\n<p>Any creature damaged by the same catrina's Kiss of Death for 3 consecutive rounds becomes unconscious and is Dying 1.</p>",
+      "frequency": null,
+      "name": "Kiss of Death",
+      "requirements": null,
+      "traits": [
+        "death",
+        "divine",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A creature that begins its turn within the area must attempt a @Check[will|dc:18] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and is temporarily immune to calming presence for 24 hours.</p>\n<p><strong>Success</strong> The creature's attack rolls take a -1 status penalty for 1 round.</p>\n<p><strong>Failure</strong> Any emotion effects that would affect the creature are suppressed and the creature can't use hostile actions. If the creature is subjected to hostility from any other creature, it ceases to be affected by calming presence and is temporarily immune to calming presence for 24 hours.</p>\n<p><strong>Critical Failure</strong> As failure, but hostility doesn't end the effect.</p>",
+      "frequency": null,
+      "name": "Calming Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "emotion",
+        "incapacitation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
+      "frequency": null,
+      "name": "Lifesense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A catrina's Strikes affect incorporeal creatures with the effects of a <em>Ghost Touch</em> property rune and deal @Damage[1d6[void]] damage to living creatures and @Damage[1d6[vitality]] damage to undead.</p>",
+      "frequency": null,
+      "name": "Spirit Touch",
+      "requirements": null,
+      "traits": [
+        "incorporeal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
+      "frequency": null,
+      "name": "Telepathy 120 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "category": null,
+          "formula": "2d8+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [
+        "spirit-touch"
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "t8XwrLnvMnz3Z1al",
+  "gear": [],
+  "hp": 75,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/catrina",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    }
+  ],
+  "languages": [
+    "chthonian",
+    "diabolic",
+    "empyrean",
+    "requian"
+  ],
+  "level": 5,
+  "name": "Catrina",
+  "perception": 13,
+  "publicNotes": "<p>Not all spirits who enter the Boneyard realize they have died. Catrinas meet these souls, helping to convince them of the finality of their fate to ease a spirit's passing. Catrinas are more likely to intervene when a mortal can't accept their death. They perform their task to keep the afterlife calm, rather than out of true compassion for a mortal's grief. Catrinas only rarely visit the Material Plane, typically to help an extremely important mortal pass on.</p>\n<p>Catrinas resemble skeletons dressed in bright flowers and colorful dresses, giving them a simultaneously festive and macabre appearance. Though most catrinas present as feminine, masculine catrinas still dress in bright colors and carry garlands of flowers.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison",
+      "value": 5
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "lifesense"
+    }
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 14,
+    "diplomacy": 14,
+    "intimidation": 14,
+    "medicine": 12,
+    "occultism": 11,
+    "religion": 12
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 22,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Talking Corpse (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility (At will) (Self only)",
+          "rank": 2
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "monitor",
+    "psychopomp"
+  ],
+  "weaknesses": []
+}

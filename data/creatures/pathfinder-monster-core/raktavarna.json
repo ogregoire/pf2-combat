@@ -1,0 +1,211 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": 1,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 16,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The raktavarna takes on the appearance of a Tiny inanimate object. If, while transformed, the raktavarna takes any action other than the purely mental (such as Recall Knowledge), they immediately revert to their original form. Until then, they can use Deception to Impersonate the object.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Divine Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A raktavarna gains a +2 bonus to Strikes against any creature that is holding it.</p>",
+      "frequency": null,
+      "name": "Betraying Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The raktavarna spends 10 minutes on an invocation alongside another creature. That creature becomes the raktavarna's master until the raktavarna dies or Dismisses the effect. The master gains the Master's Eyes activity as long as the bond lasts.</p>\n<p>Master's Eye</p>",
+      "frequency": null,
+      "name": "Designate Master",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A creature that fails a Recall Knowledge check or a Perception check to Sense Motive on a rakshasa is Off-Guard until the end of its next turn.</p>",
+      "frequency": null,
+      "name": "Knowledge of Delusion",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:16]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d4[poison]] damage and Stupefied 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d4[poison]] damage and Stupefied 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Raktavarna Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "effects": [
+        "raktavarna-venom"
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "agile",
+        "finesse",
+        "reach-0",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "nFhAJSpbJz1w71EU",
+  "gear": [],
+  "hp": 20,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/raktavarna",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common",
+    "diabolic",
+    "empyrean",
+    "sakvroth"
+  ],
+  "level": 1,
+  "name": "Raktavarna",
+  "perception": 6,
+  "publicNotes": "<p>Raktavarnas are simple rakshasa incarnations of betrayal and assassination, often existing to test the mettle of those who were treacherous or poisonous in a previous life. They typically appear as a snake with blood-red eyes and oversized fangs, though they just as often appear in the guise of a sword or a piece of jewelry.</p>\n<hr />\n<p>Rakshasas are primordial, divine beings who serve as incarnations of all that is foul within creation, born the moment that the concepts of good and evil were first conceived. It is their divine purpose to exemplify the profane—by murdering their own kin, eating the flesh of sapient beings, and performing thousands of other atrocities, they define these acts as obscene and taboo, so that mortals know these acts to be crimes in the eyes of the holy. It is a role they must play, in the same way that a stage play must have an actor to serve as the villain, a role that damned all rakshasas from the moment of their genesis.</p>\n<p>Most rakshasas enjoy their role, in the same way an actor enjoys delivering a masterful performance, yet there is an element of tragedy to their existence. They are fated to serve solely as foils to others, to corrupt the unworthy and fall to the heroic, never free to forge their own path. They are condemned to perform the most heinous of deeds, even if it rankles their sensibilities and conscience. To do otherwise is to defy their nature and their purpose: the greatest sin a rakshasa can perform.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "tiny",
+  "skills": {
+    "athletics": 6,
+    "deception": 7,
+    "diplomacy": 7,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 16,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Command",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "rakshasa",
+    "spirit",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "holy",
+      "value": 3
+    }
+  ]
+}

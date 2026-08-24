@@ -1,0 +1,122 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 2,
+    "int": 1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 24,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The mixed martial artist's last action was a successful Grapple, Shove, or Trip.</p><hr /><p><strong>Effect</strong> The mixed martial artist uses Stance Shift.</p>",
+      "frequency": null,
+      "name": "Takedown Fluidity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The mixed martial artist's last action was a successful Grapple, Shove, or Trip."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The mixed martial artist enters a stance of their choice, gaining the listed circumstance bonus and Strike but losing the ability to make other Strikes.</p><ul><li><strong>Elbow Knockout Stance</strong> +2 to Athletics checks to [[/act shove]] or [[/act trip]]; <strong>Melee</strong> <span class=\"action-glyph\">1</span> cross elbow +16 (nonlethal, trip, unarmed) <strong>Damage</strong> 2d6+8 bludgeoning</li><li><strong>Secure Grapple Stance</strong> +2 to Athletics checks to [[/act grapple]]; <strong>Melee</strong> <span class=\"action-glyph\">1</span> grappling limb +16 (grapple, nonlethal, unarmed) <strong>Damage</strong> 2d4+8 bludgeoning</li><li><strong>Thrashing Barrage Stance</strong> +2 to damage against Off-Guard opponents; <strong>Melee</strong> <span class=\"action-glyph\">1</span> thrashing fist +16 (forceful, nonlethal, unarmed) <strong>Damage</strong> 2d8+8 bludgeoning</li></ul>",
+      "frequency": null,
+      "name": "Stance Shift",
+      "requirements": null,
+      "traits": [
+        "stance"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The mixed martial artist's fist Strikes don't take penalties when making lethal attacks.</p>",
+      "frequency": null,
+      "name": "Powerful Fists",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d8+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "2hBS767YPGZwXeiP",
+  "gear": [
+    "Handwraps of Mighty Blows"
+  ],
+  "hp": 130,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/mixed-martial-artist",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 7,
+  "name": "Mixed Martial Artist",
+  "perception": 15,
+  "publicNotes": "<p>These fighters combine the takedowns of a wrestler with aggressive stances and unorthodox blows, ensuring that contenders won't know what hit them.</p><hr /><p>Martial artists strive to master the art of hand-to-hand fighting.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 15,
+    "athletics": 17
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

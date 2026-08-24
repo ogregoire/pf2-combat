@@ -1,0 +1,208 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 2,
+    "str": -1,
+    "wis": 1
+  },
+  "ac": 17,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<p><strong>Requirements</strong> The kobold dragon mage is adjacent to at least one enemy.</p>\n<hr />\n<p><strong>Effect</strong> The dragon mage creates an illusion of itself in its square and then becomes Invisible (with the effects of a 2nd-rank Invisibility spell) for [[/gmr 1d4 #Duration Illusory Retreat]]{1d4 rounds}. The dragon mage can move up to half its Speed, but it must end its movement in a space that's not adjacent to any enemies.</p>\n<p>This is a 1st-rank spell that requires a somatic component.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1H"
+      },
+      "name": "Illusory Retreat",
+      "requirements": "The kobold dragon mage is adjacent to at least one enemy.",
+      "traits": [
+        "arcane",
+        "illusion",
+        "manipulate",
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A kobold dragon mage's resistance depends on the color of its scales:</p>\n<ul>\n<li><strong>Red</strong> fire 5</li>\n</ul>",
+      "frequency": null,
+      "name": "Dragonscaled",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon mage deals an extra 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d6-1",
+          "type": "slashing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 3,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4-1",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "CJuHwIRCAgTB1SEl",
+  "gear": [
+    "Staff"
+  ],
+  "hp": 25,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary/kobold-dragon-mage-red",
+  "immunities": [],
+  "languages": [
+    "common",
+    "draconic"
+  ],
+  "level": 2,
+  "name": "Kobold Dragon Mage (Red)",
+  "perception": 5,
+  "publicNotes": "<p>Kobold dragon mages use magic to carry out their secret schemes. The presence of a dragon mage in a kobold warren is one of the greatest testaments to the kobolds' claim to draconic heritage.</p>\n<hr />\n<p>Kobolds are small, reptilian humanoids who carry physical similarities to true dragons. They lurk in dark spaces, usually tunnels and mines beneath the earth, in either warrens of their own design or complexes discovered and colonized after the original builders have moved on. Though kobolds are far more pragmatic than they are courageous, they use every inch of their cunning to even the playing field between themselves and other, stronger creatures. They attack from the darkness and at range, and kobold artificers and engineers master the art of simple but effective traps, which they use to protect their lairs. Kobolds are skilled at working together by necessity, and they often set up ambushes or hit-and-run assaults that allow them to do the most damage possible without being harmed in return.</p>\n<p>Kobolds are diligent and hardworking creatures, though they often turn these virtues toward selfish ends. While some kobolds live in communal collectives that maintain neutral relations with the creatures around them, they can be easily swayed into serving malevolent powers or megalomaniac leaders. This is in part due to kobolds' innate pragmatism, as they would rather concede to servitude than risk being killed, but it is also in part due to a reverence for the power that kobolds generally lack. Dragons in particular are viewed with a deferential awe, and kobolds eagerly offer their services to such mighty and glorious creatures when they can. While kobolds may scheme against other leaders, especially those that control them via subjugation, dragons are usually viewed with adoration, no matter how brutal they might be to their kobold minions.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "small",
+  "skills": {
+    "arcana": 6,
+    "deception": 8,
+    "diplomacy": 8,
+    "intimidation": 8,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Arcane Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        }
+      ],
+      "spells": [
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Electric Arc",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Magic Missile",
+          "rank": 1
+        },
+        {
+          "name": "Tanglefoot",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "humanoid",
+    "kobold"
+  ],
+  "weaknesses": []
+}

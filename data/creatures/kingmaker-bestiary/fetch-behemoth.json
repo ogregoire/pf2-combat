@@ -1,0 +1,219 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 9,
+    "dex": 6,
+    "int": 2,
+    "str": 10,
+    "wis": 8
+  },
+  "ac": 44,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
+      "traits": [],
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
+      "frequency": null,
+      "name": "Regeneration 45 (Deactivated by Fire or Void)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d6",
+          "type": "mental"
+        },
+        {
+          "category": null,
+          "formula": "4d6+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "category": null,
+          "formula": "4d4+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "tjq87ghubOcPAXjj",
+  "gear": [],
+  "hp": 460,
+  "hpDetails": "regeneration 45 (deactivated by fire or void)",
+  "id": "kingmaker-bestiary/fetch-behemoth",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 20,
+  "name": "Fetch Behemoth",
+  "perception": 36,
+  "publicNotes": "<p>A fetch behemoth is much larger than a stalker, and forms from the soul of a Large fey or humanoid.</p>\n<hr />\n<p>A fetch is a twisted, deviant simulacrum of a humanoid creature that exists or existed at one point on the Material Plane. Rumors of fetches that are reflections of entities from other planes persist, but none of these tales speak of fetches that duplicate anything other than a sapient source. A fetch can manifest spontaneously when a powerful creature undergoes a significant emotional event or dies, either while on the First World or while in an area significantly influenced by the First World, but one can also be created by significant forces like the Eldest in order to torment and vex those who have annoyed them. While a fetch manifests from a soul's \"reflection,\" and as such bears a striking resemblance to that creature's appearance in life, a fetch has no true memories of its own. It keeps fragments of false remembrances from its source as if it experienced them in a half-remembered dream-which ensure the fetch is enraged by and jealous of its source.</p>\n<p>A fetch is similar in appearance to the creature whose soul spawned it, save that it often displays fey-like features such as pointed ears, plantlike elements, or supernatural grace. A fetch who seeks to impersonate a stillliving source must disguise these features, and takes care to manifest its fetch weapon as one known to be wielded by its target.</p>\n<p>When a fetch dies, it and its manifested items fades away into a bloom of plant life, its soul instantly recycled into the First World, leaving behind a patch of weeds and thorny flowers roughly in the shape they held in mockery while alive.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 37
+    },
+    "reflex": {
+      "detail": null,
+      "value": 32
+    },
+    "will": {
+      "detail": null,
+      "value": 34
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 36,
+    "athletics": 39,
+    "deception": 39,
+    "intimidation": 39,
+    "nature": 32,
+    "society": 30,
+    "stealth": 36
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 42,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Cataclysm",
+          "rank": 10
+        },
+        {
+          "name": "Disjunction",
+          "rank": 9
+        },
+        {
+          "name": "Earthquake",
+          "rank": 8
+        },
+        {
+          "name": "Plane Shift (to or from the First World only)",
+          "rank": 7
+        },
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Air Walk (Constant)",
+          "rank": 4
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey",
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold-iron",
+      "value": 20
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void",
+      "value": 20
+    }
+  ]
+}

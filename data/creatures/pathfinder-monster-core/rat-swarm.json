@@ -1,0 +1,147 @@
+{
+  "abilityMods": {
+    "cha": -3,
+    "con": 1,
+    "dex": 3,
+    "int": -4,
+    "str": -2,
+    "wis": 1
+  },
+  "ac": 14,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each enemy in the swarm's space takes @Damage[1d6[piercing]] damage and must attempt a @Check[reflex|dc:17|basic] save. A creature that fails its save is exposed to putrid plague.</p>",
+      "frequency": null,
+      "name": "Swarming Bites",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The Sickened and Unconscious conditions from putrid plague don't improve on their own until the disease is cured.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:14]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier with no ill effect ([[/gmr 1d4 #hours]]{1d4 hours})</p>\n<p><strong>Stage 2</strong> Sickened 1 (1 day)</p>\n<p><strong>Stage 3</strong> Sickened 1 and Slowed 1 (1 day)</p>\n<p><strong>Stage 4</strong> Unconscious (1 day)</p>\n<p><strong>Stage 5</strong> dead</p>",
+      "frequency": null,
+      "name": "Putrid Plague",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "6wPW2dvpt86Ou6bL",
+  "gear": [],
+  "hp": 14,
+  "hpDetails": null,
+  "id": "pathfinder-monster-core/rat-swarm",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
+  ],
+  "languages": [],
+  "level": 1,
+  "name": "Rat Swarm",
+  "perception": 5,
+  "publicNotes": "<p>A swarm of rats can cause total chaos within a household or business. Contracting putrid plague is all the easier when dozens of these agitated or hungry vermin gather to bite victims en masse, making rat-hunting a viable career in many parts of the world as desperate townspeople seek relief from the disease's spread.</p>\n<hr />\n<p>Rats are a ubiquitous menace, scurrying through the sewers and on the streets of nearly every settlement in the world. Though a regular rat darting underfoot might startle or even frighten the average passerby, giant rats and rat swarms are far more dangerous.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [
+        "bludgeoning"
+      ],
+      "type": "physical",
+      "value": 6
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 4,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "area-damage",
+      "value": 3
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "splash-damage",
+      "value": 3
+    }
+  ]
+}

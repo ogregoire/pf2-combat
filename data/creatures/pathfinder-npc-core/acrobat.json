@@ -1,0 +1,181 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 4,
+    "int": 1,
+    "str": 2,
+    "wis": 0
+  },
+  "ac": 18,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The acrobat is targeted with a melee or ranged attack by an attacker they can see</p><hr /><p><strong>Effect</strong> The acrobat gains a +2 circumstance bonus to AC against the triggering attack.</p>",
+      "frequency": null,
+      "name": "Nimble Dodge",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The acrobat is targeted with a melee or ranged attack by an attacker they can see"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The acrobat swings on a rope or trapeze, moving up to double their Speed. At any point during the swing, they can make a melee Strike.</p>",
+      "frequency": null,
+      "name": "Swinging Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The acrobat treats all falls as 25 feet shorter.</p>",
+      "frequency": null,
+      "name": "Cat Fall",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The acrobat deals an extra 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the acrobat rolls a success on an Acrobatics check, they get a critical success instead.</p>\n<p>They aren't Off-Guard when attempting to Balance and can attempt an Acrobatics check instead of a Reflex save to Grab an Edge.</p>",
+      "frequency": null,
+      "name": "Steady Balance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "effects": [],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "category": null,
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "effects": [],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "5KojtpJA0T5xoum4",
+  "gear": [
+    "Climbing Kit",
+    "Dagger",
+    "Rope"
+  ],
+  "hp": 30,
+  "hpDetails": null,
+  "id": "pathfinder-npc-core/acrobat",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Acrobat",
+  "perception": 6,
+  "publicNotes": "<p>Acrobats perform feats of agility, balance, and strength.</p><hr /><p>Performances come in a wide variety of forms, from musical methods like singing and instruments to physical dancing and juggling to simple orating and conversing.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 15,
+    "athletics": 8,
+    "deception": 5,
+    "performance": 9,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,169 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 3,
+    "dex": -2,
+    "int": -5,
+    "str": 0,
+    "wis": 0
+  },
+  "ac": 9,
+  "acDetails": null,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The amoeba swarm slithers over each creature in its space, dealing @Damage[1d6[acid]] damage (@Check[reflex|dc:14|basic] save). A creature that critically fails is Sickened 1.</p>",
+      "frequency": null,
+      "name": "Swarming Slither",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An amoeba swarm can sense nearby creatures through vibration and air or water movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An amoeba's acid damages only organic material-not metal, stone, or other inorganic substances.</p>",
+      "frequency": null,
+      "name": "Weak Acid",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "kapPWNOxXOLcd4VF",
+  "gear": [],
+  "hp": 35,
+  "hpDetails": null,
+  "id": "pathfinder-bestiary-2/amoeba-swarm",
+  "immunities": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
+  ],
+  "languages": [],
+  "level": 1,
+  "name": "Amoeba Swarm",
+  "perception": 3,
+  "publicNotes": "<p>An amoeba swarm consists of thousands of individual single-celled organisms held together by acrid-smelling slime. As ravenous as they are mindless, amoeba swarms use no tactics.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing",
+      "value": 4
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing",
+      "value": 4
+    }
+  ],
+  "saves": {
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 1
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
+  },
+  "senses": [
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
+  ],
+  "size": "large",
+  "skills": {
+    "stealth": 1
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "climb",
+      "value": 5
+    },
+    {
+      "type": "swim",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "mindless",
+    "ooze",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "area-damage",
+      "value": 3
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire",
+      "value": 3
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "splash-damage",
+      "value": 3
+    }
+  ]
+}
