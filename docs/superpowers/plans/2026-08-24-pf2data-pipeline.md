@@ -3583,8 +3583,10 @@ console.log('grab resolved:', !grab.description.includes('@Localize'));
 "
 ```
 
-Expected: roughly 43 conditions with a double-digit valued count, roughly 100
-glossary entries, and `grab resolved: true`.
+Expected (confirmed against the real run): 43 conditions of which 12 are
+valued, 447 glossary entries, and `grab resolved: true`. The 447 figure is
+correct — the two glossary packs really do hold that many files; an earlier
+estimate of ~100 came from a GitHub API listing paginated at 100 items.
 
 - [ ] **Step 6: Commit the dataset**
 
