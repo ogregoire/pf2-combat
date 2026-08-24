@@ -72,4 +72,16 @@ describe("TurnManager", () => {
     const list = screen.getByTestId("reaction-scroll");
     expect(list.style.overflowY).toBe("auto");
   });
+
+  it("shows the reaction's name and trigger text", () => {
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Akiros Ismort", level: 3, ac: 18,
+        saves: { fortitude: 10, reflex: 8, will: 6 }, hp: { current: 53, max: 53 },
+        reactions: [{ name: "No Escape", trigger: "An adjacent foe moves away." }] },
+      15,
+    );
+    render(<TurnManager />);
+    expect(screen.getByText("No Escape")).toBeDefined();
+    expect(screen.getByText(/An adjacent foe moves away\./)).toBeDefined();
+  });
 });

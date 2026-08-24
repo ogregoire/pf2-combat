@@ -16,6 +16,8 @@ export interface CombatantSeed {
   level: number;
   /** Populated from the creature record when added from the dataset. */
   iwr?: Iwr | null;
+  /** Populated from the creature record when added from the dataset. */
+  reactions?: { name: string; trigger: string }[];
 }
 
 let combatantSeq = 0;
@@ -55,6 +57,7 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
     saves: seed.saves,
     level: seed.level,
     iwr: seed.iwr ?? null,
+    reactions: seed.reactions ?? [],
     conditions: [],
     strikesMade: 0,
     reactionSpent: false,

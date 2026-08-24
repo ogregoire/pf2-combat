@@ -4,9 +4,10 @@ import { compareStrings } from "../rules/compare.js";
 /** Main.dc.html's "REACTIONS READY" list — every non-defeated combatant who
  * hasn't spent their reaction yet, so the GM can see who might interrupt.
  * The mockup pairs each entry with the reaction's name and trigger text;
- * the store only tracks whether a reaction is spent, not which reaction a
- * combatant has or its trigger, so that detail is omitted here rather than
- * invented — see the task report.
+ * `Combatant.reactions` (denormalised from the creature record, same as
+ * `iwr`) carries that. A reaction with no trigger text shows its name alone
+ * rather than inventing a trigger; a combatant with no known reactions
+ * (nothing has populated the field yet) shows just their name.
  *
  * The list scrolls independently of the round/pips/Next controls above it:
  * this container is the flex child that grows and gets `overflow-y: auto`,
@@ -58,7 +59,16 @@ export function ReactionWatch(): React.ReactElement {
             }}
           >
             <div style={{ fontSize: "12.5px", fontWeight: 600 }}>{c.name}</div>
-            <div style={{ fontSize: "11.5px", color: "var(--text-faint)", marginTop: "2px" }}>Reaction available</div>
+            {c.reactions.map((r) => (
+              <div key={r.name}>
+                <div style={{ fontSize: "12px", color: "var(--info)", marginTop: "2px" }}>{r.name}</div>
+                {r.trigger && (
+                  <div style={{ fontSize: "11.5px", lineHeight: 1.45, color: "var(--text-faint)", marginTop: "4px" }}>
+                    <span style={{ fontWeight: 600 }}>Trigger</span> {r.trigger}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         ))}
       </div>

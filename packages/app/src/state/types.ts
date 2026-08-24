@@ -22,6 +22,7 @@ export interface Combatant {
   saves: { fortitude: number; reflex: number; will: number } | null;
   level: number;
   iwr: Iwr | null;
+  reactions: { name: string; trigger: string }[];
   conditions: AppliedCondition[];
   strikesMade: number;
   reactionSpent: boolean;
