@@ -5,6 +5,8 @@ import { RowPopover } from "./RowPopover.js";
 import type { Combatant } from "../state/types.js";
 
 const HP_TRACK = "oklch(0.28 0.02 30)";
+const GROUP_BORDER = "oklch(0.34 0.04 200)";
+const GROUP_BG = "oklch(0.205 0.014 200)";
 
 function hpColor(current: number, max: number): string {
   if (max <= 0) return "var(--text-faint)";
@@ -55,16 +57,170 @@ function levelLabel(combatant: Combatant): string {
   return combatant.kind === "pc" ? `PC ${combatant.level}` : `${combatant.level}`;
 }
 
-/** Full row anatomy: initiative, name, HP bar with current/max, AC + the
- * three saves right-aligned in mono, condition chips beneath. Used for both
- * standalone combatants and group members — grouped members simply omit the
- * per-row initiative, since it's shown once on the shared GroupHeader. */
+/** Standalone anatomy (ungrouped combatants and PCs): initiative, name, HP
+ * bar with current/max, AC + the three saves right-aligned in mono,
+ * condition chips beneath. Matches Main.dc.html's non-grouped rows. */
+function StandaloneRow({
+  combatant,
+  initiative,
+}: {
+  combatant: Combatant;
+  initiative?: number;
+}): React.ReactElement {
+  const borderColor = combatant.kind === "pc" ? "oklch(0.55 0.10 240)" : "oklch(0.38 0.015 60)";
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        padding: "8px 10px",
+        borderRadius: "4px",
+        borderLeft: `3px solid ${borderColor}`,
+        background: "var(--panel-raised)",
+        opacity: combatant.defeated ? 0.42 : 1,
+      }}
+    >
+      {initiative !== undefined && (
+        <div
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "17px",
+            fontWeight: 600,
+            width: "24px",
+            textAlign: "right",
+            color: "var(--text-dim)",
+          }}
+        >
+          {initiative}
+        </div>
+      )}
+
+      <div style={{ flexGrow: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+          <span style={{ fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
+            {combatant.name}
+          </span>
+          <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant)}</span>
+        </div>
+
+        {!combatant.defeated && combatant.hp !== null && (
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "5px" }}>
+            <HpBar current={combatant.hp.current} max={combatant.hp.max} width="100%" />
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>
+              {combatant.hp.current}/{combatant.hp.max}
+            </span>
+          </div>
+        )}
+
+        {!combatant.defeated && <ConditionChips combatant={combatant} />}
+      </div>
+
+      {combatant.defeated ? (
+        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>DEFEATED</span>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+            gap: "2px",
+            fontFamily: "var(--font-mono)",
+            fontSize: "11px",
+          }}
+        >
+          <span style={{ color: "var(--text)" }}>{combatant.ac !== null ? `AC ${combatant.ac}` : "—"}</span>
+          <span style={{ color: "var(--text-faint)", letterSpacing: "-0.01em" }}>
+            {combatant.saves !== null
+              ? `${combatant.saves.fortitude} / ${combatant.saves.reflex} / ${combatant.saves.will}`
+              : "—"}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Grouped-member anatomy, matching Main.dc.html's indented group rows: a
+ * per-row left border in the group's colour, the HP bar beside the name
+ * (not stacked below it), and AC only — no saves; those only fit next to a
+ * standalone row's stacked initiative/AC column, and the mockup omits them
+ * for members. No per-row initiative either — it's shared on the
+ * GroupHeader. */
+function GroupMemberRow({ combatant }: { combatant: Combatant }): React.ReactElement {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "9px",
+        padding: "7px 10px",
+        borderRadius: "3px",
+        borderLeft: `3px solid ${GROUP_BORDER}`,
+        background: GROUP_BG,
+        opacity: combatant.defeated ? 0.42 : 1,
+      }}
+    >
+      <div style={{ flexGrow: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "5px" }}>
+          <span style={{ fontSize: "13px", fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
+            {combatant.name}
+          </span>
+          <span style={{ fontSize: "10.5px", color: "var(--text-faint)" }}>{levelLabel(combatant)}</span>
+        </div>
+        {!combatant.defeated && <ConditionChips combatant={combatant} />}
+      </div>
+
+      {combatant.defeated ? (
+        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>DEFEATED</span>
+      ) : (
+        <>
+          {combatant.hp !== null && (
+            <>
+              <HpBar current={combatant.hp.current} max={combatant.hp.max} width="46px" />
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "11px",
+                  color: "var(--text-dim)",
+                  width: "42px",
+                  textAlign: "right",
+                }}
+              >
+                {combatant.hp.current}/{combatant.hp.max}
+              </span>
+            </>
+          )}
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "11px",
+              color: "var(--text-faint)",
+              width: "34px",
+              textAlign: "right",
+            }}
+          >
+            {combatant.ac !== null ? `AC ${combatant.ac}` : "—"}
+          </span>
+        </>
+      )}
+    </div>
+  );
+}
+
+/** Wraps a combatant's row together with its hover-triggered damage
+ * popover. `grouped` selects the compact group-member anatomy over the
+ * full standalone one; `initiative` (standalone rows only) shows the
+ * per-row initiative — group members share theirs on the GroupHeader. */
 export function CombatantRow({
   id,
   initiative,
+  grouped = false,
 }: {
   id: string;
   initiative?: number;
+  grouped?: boolean;
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -75,8 +231,6 @@ export function CombatantRow({
   }, []);
 
   if (!combatant) return null;
-
-  const borderColor = combatant.kind === "pc" ? "oklch(0.55 0.10 240)" : "oklch(0.38 0.015 60)";
 
   // The pointer moving from the row's name onto a control inside the
   // popover is a single continuous hover as far as the user is concerned,
@@ -98,85 +252,12 @@ export function CombatantRow({
   };
 
   return (
-    <div
-      style={{ position: "relative" }}
-      onMouseEnter={openPopover}
-      onMouseLeave={scheduleClose}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          padding: "8px 10px",
-          borderRadius: "4px",
-          borderLeft: `3px solid ${borderColor}`,
-          background: "var(--panel-raised)",
-          opacity: combatant.defeated ? 0.42 : 1,
-        }}
-      >
-        {initiative !== undefined && (
-          <div
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "17px",
-              fontWeight: 600,
-              width: "24px",
-              textAlign: "right",
-              color: "var(--text-dim)",
-            }}
-          >
-            {initiative}
-          </div>
-        )}
-
-        <div style={{ flexGrow: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
-            <span
-              style={{
-                fontWeight: 500,
-                textDecoration: combatant.defeated ? "line-through" : "none",
-              }}
-            >
-              {combatant.name}
-            </span>
-            <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant)}</span>
-          </div>
-
-          {!combatant.defeated && combatant.hp !== null && (
-            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "5px" }}>
-              <HpBar current={combatant.hp.current} max={combatant.hp.max} width="100%" />
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>
-                {combatant.hp.current}/{combatant.hp.max}
-              </span>
-            </div>
-          )}
-
-          {!combatant.defeated && <ConditionChips combatant={combatant} />}
-        </div>
-
-        {combatant.defeated ? (
-          <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>DEFEATED</span>
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-end",
-              gap: "2px",
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-            }}
-          >
-            <span style={{ color: "var(--text)" }}>{combatant.ac !== null ? `AC ${combatant.ac}` : "—"}</span>
-            <span style={{ color: "var(--text-faint)", letterSpacing: "-0.01em" }}>
-              {combatant.saves !== null
-                ? `${combatant.saves.fortitude} / ${combatant.saves.reflex} / ${combatant.saves.will}`
-                : "—"}
-            </span>
-          </div>
-        )}
-      </div>
+    <div style={{ position: "relative" }} onMouseEnter={openPopover} onMouseLeave={scheduleClose}>
+      {grouped ? (
+        <GroupMemberRow combatant={combatant} />
+      ) : (
+        <StandaloneRow combatant={combatant} initiative={initiative} />
+      )}
 
       {hovered && <RowPopover combatantId={id} />}
     </div>

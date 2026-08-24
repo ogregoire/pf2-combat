@@ -1,10 +1,17 @@
 import { compareStrings } from "./compare.js";
 
-/** PF2 damage types — the subset of IWR entries a damage roll can actually be. */
+/**
+ * PF2 damage types — the subset of IWR entries a damage roll can actually
+ * be. The test: does picking this change the number? Materials (cold-iron,
+ * silver, ...) are exceptions on a physical resistance, not their own
+ * damage type, and conditions (paralyzed, disease, ...) can't be affected
+ * by any damage type at all — neither belongs here.
+ */
 export const DAMAGE_TYPES = new Set([
   "bludgeoning", "piercing", "slashing",
   "acid", "cold", "electricity", "fire", "force", "sonic", "vitality", "void",
   "mental", "poison", "bleed", "precision", "spirit",
+  "physical", "holy", "unholy", "all-damage", "area-damage", "splash-damage",
 ]);
 
 export interface Iwr {

@@ -14,18 +14,27 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
+  // Which action the panel is currently set up for. Starts on "damage" (the
+  // common case) so hovering alone still shows the selector for a creature
+  // with relevant IWR. Healing has no damage type — DamagePopover.dc.html:
+  // "Heal never shows the row at all" — so the selector is gated on this,
+  // not just on whether the creature has relevant IWR.
+  const [intent, setIntent] = useState<"damage" | "heal">("damage");
 
   if (!combatant) return null;
 
   const relevant = relevantDamageTypes(combatant.iwr);
+  const showSelector = intent === "damage" && relevant.length > 0;
 
   const handleDamage = (): void => {
+    setIntent("damage");
     const value = Number(amount);
     if (Number.isFinite(value) && value > 0) applyDamage(combatantId, value);
     setDamageType("none");
   };
 
   const handleHeal = (): void => {
+    setIntent("heal");
     const value = Number(amount);
     if (Number.isFinite(value) && value > 0) applyHealing(combatantId, value);
     setDamageType("none");
@@ -58,7 +67,7 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
         )}
       </div>
 
-      {relevant.length === 0 ? (
+      {intent === "damage" && relevant.length === 0 ? (
         <div
           style={{
             display: "flex",
@@ -74,7 +83,7 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
             No immunities, weaknesses or resistances — damage type is irrelevant here.
           </span>
         </div>
-      ) : (
+      ) : showSelector ? (
         <div>
           <div
             style={{
@@ -129,7 +138,7 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
             ))}
           </div>
         </div>
-      )}
+      ) : null}
 
       <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
         <input

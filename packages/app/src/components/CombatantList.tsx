@@ -33,7 +33,7 @@ export function CombatantList(): React.ReactElement {
               }}
             >
               {entry.combatantIds.map((id) => (
-                <CombatantRow key={id} id={id} />
+                <CombatantRow key={id} id={id} grouped />
               ))}
             </div>
           </div>
