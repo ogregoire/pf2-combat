@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CONDITIONS, conditionModifiers } from "../src/rules/conditions.js";
+import { CONDITIONS, conditionModifiers, type AppliedCondition } from "../src/rules/conditions.js";
 import { resolveModifiers } from "../src/rules/modifiers.js";
 
 describe("condition catalogue", () => {
@@ -20,6 +20,16 @@ describe("condition catalogue", () => {
   it("does not let blinded imply off-guard, unlike prone", () => {
     expect(CONDITIONS.blinded.implies).toBeUndefined();
     expect(CONDITIONS.prone.implies).toContain("off-guard");
+  });
+
+  it("marks persistent damage as not valued — it carries dice, not an integer", () => {
+    expect(CONDITIONS["persistent-damage"].valued).toBe(false);
+    const applied: AppliedCondition = {
+      slug: "persistent-damage",
+      value: 0,
+      formula: "2d6",
+    };
+    expect(applied.formula).toBe("2d6");
   });
 });
 

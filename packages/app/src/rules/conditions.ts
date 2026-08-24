@@ -145,7 +145,11 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   }),
   wounded: def({ slug: "wounded", name: "Wounded", valued: true, affects: () => null }),
   "persistent-damage": def({
-    slug: "persistent-damage", name: "Persistent Damage", valued: true,
+    // data/conditions.json marks this isValued: false — not an oversight.
+    // Persistent damage carries dice (1d6, 2d4, ...), which an integer
+    // `value` can't express. The dice live in AppliedCondition.formula
+    // instead; see below.
+    slug: "persistent-damage", name: "Persistent Damage", valued: false,
     affects: () => null, endOfTurn: "persistent-damage",
   }),
 };
@@ -153,6 +157,8 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
 export interface AppliedCondition {
   slug: ConditionSlug;
   value: number;
+  /** Dice formula for persistent damage (e.g. "2d6") — see the ruling above. */
+  formula?: string;
 }
 
 export function conditionModifiers(
