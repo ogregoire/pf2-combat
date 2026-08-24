@@ -128,12 +128,19 @@ function HpBar({
 }: {
   current: number;
   max: number;
-  width: string;
+  /** Fixed width, per Main.dc.html's grouped-member bars (`width: 46px`).
+   * Omit it to grow and fill the row instead, per Main.dc.html's
+   * standalone-row bar (`flex-grow: 1`) — the bar yields space to the
+   * `{current}/{max}` number beside it rather than demanding the full
+   * line and shoving that number into the AC/saves column. */
+  width?: string;
   height?: number;
 }): React.ReactElement {
   const pct = max > 0 ? Math.min(100, Math.max(0, (current / max) * 100)) : 0;
+  const sizing =
+    width !== undefined ? { width, flexShrink: 0 } : { flexGrow: 1, flexShrink: 1, minWidth: 0 };
   return (
-    <div style={{ width, height: `${height}px`, borderRadius: "3px", background: HP_TRACK, overflow: "hidden", flexShrink: 0 }}>
+    <div style={{ ...sizing, height: `${height}px`, borderRadius: "3px", background: HP_TRACK, overflow: "hidden" }}>
       <div style={{ width: `${pct}%`, height: "100%", background: hpColor(current, max) }} />
     </div>
   );
@@ -214,8 +221,16 @@ function StandaloneRow({
 
         {!combatant.defeated && combatant.hp !== null && (
           <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "5px" }}>
-            <HpBar current={combatant.hp.current} max={combatant.hp.max} width="100%" />
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>
+            <HpBar current={combatant.hp.current} max={combatant.hp.max} />
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "11px",
+                color: "var(--text-dim)",
+                flexShrink: 0,
+                whiteSpace: "nowrap",
+              }}
+            >
               {combatant.hp.current}/{combatant.hp.max}
             </span>
           </div>
