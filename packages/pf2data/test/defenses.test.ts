@@ -36,4 +36,59 @@ describe("normalizeDefenses", () => {
     expect(d.abilityMods.dex).toBe(4);
     expect(d.speeds).toEqual([{ type: "land", value: 20 }]);
   });
+
+  const baseSystem = {
+    abilities: { str: { mod: 0 } },
+    attributes: {
+      ac: { value: 10 },
+      hp: { max: 1 },
+      speed: { value: 25, otherSpeeds: [] as { type: string; value: number }[] },
+    },
+    details: { languages: { value: [] } },
+    perception: { mod: 0, senses: [] },
+    saves: {
+      fortitude: { value: 0 },
+      reflex: { value: 0 },
+      will: { value: 0 },
+    },
+    skills: {},
+  };
+
+  it("sorts other speeds with land kept first", () => {
+    const d = normalizeDefenses({
+      ...baseSystem,
+      attributes: {
+        ...baseSystem.attributes,
+        speed: {
+          value: 25,
+          otherSpeeds: [
+            { type: "swim", value: 15 },
+            { type: "burrow", value: 10 },
+            { type: "fly", value: 30 },
+          ],
+        },
+      },
+    });
+    expect(d.speeds).toEqual([
+      { type: "land", value: 25 },
+      { type: "burrow", value: 10 },
+      { type: "fly", value: 30 },
+      { type: "swim", value: 15 },
+    ]);
+  });
+
+  it("normalizes explicit null immunities, weaknesses and resistances to empty arrays", () => {
+    const d = normalizeDefenses({
+      ...baseSystem,
+      attributes: {
+        ...baseSystem.attributes,
+        immunities: null,
+        weaknesses: null,
+        resistances: null,
+      },
+    });
+    expect(d.immunities).toEqual([]);
+    expect(d.weaknesses).toEqual([]);
+    expect(d.resistances).toEqual([]);
+  });
 });

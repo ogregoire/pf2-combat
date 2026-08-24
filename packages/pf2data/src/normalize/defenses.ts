@@ -94,7 +94,9 @@ export function normalizeDefenses(system: unknown): Defenses {
     abilityMods,
     speeds: [
       { type: "land", value: s.attributes.speed.value },
-      ...s.attributes.speed.otherSpeeds,
+      ...[...s.attributes.speed.otherSpeeds].sort((a, b) =>
+        a.type.localeCompare(b.type),
+      ),
     ],
   };
 }
