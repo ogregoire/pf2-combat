@@ -38,6 +38,34 @@ function nextEntryId(): string {
   return `e${entrySeq}`;
 }
 
+/** Ids are always `c<n>`/`e<n>` from the counters above — parses the number
+ * back out, or null for anything else (defensive; every id the store itself
+ * ever produces matches). */
+function seqOf(id: string, prefix: string): number | null {
+  if (!id.startsWith(prefix)) return null;
+  const n = Number(id.slice(prefix.length));
+  return Number.isFinite(n) ? n : null;
+}
+
+/**
+ * `combatantSeq`/`entrySeq` are module-level counters, so a page reload
+ * starts them back at 0 while IndexedDB still holds combatants/entries
+ * numbered far higher — the very next add would then mint an id that
+ * collides with one already on screen. Called once, right after a
+ * persisted encounter is loaded (see main.tsx), to fast-forward both
+ * counters past the highest id already in use.
+ */
+export function restoreCombatantSequences(encounter: Encounter): void {
+  for (const id of Object.keys(encounter.combatants)) {
+    const n = seqOf(id, "c");
+    if (n !== null && n > combatantSeq) combatantSeq = n;
+  }
+  for (const entry of encounter.entries) {
+    const n = seqOf(entry.id, "e");
+    if (n !== null && n > entrySeq) entrySeq = n;
+  }
+}
+
 function emptyEncounter(): Encounter {
   return {
     name: "",
@@ -67,6 +95,7 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
     actions: seed.actions ?? [],
     conditions: [],
     strikesMade: 0,
+    actionsSpent: 0,
     reactionSpent: false,
     defeated: false,
   };
@@ -82,14 +111,22 @@ function sortEntries(entries: Entry[]): void {
 interface EncounterStore {
   encounter: Encounter;
   players: Player[];
-  addCombatant(seed: CombatantSeed, initiative: number): string;
-  addMany(seed: CombatantSeed, quantity: number, initiative: number): string[];
+  addCombatant(seed: CombatantSeed, initiative: number, trueInitiative?: number): string;
+  addMany(
+    seed: CombatantSeed,
+    quantity: number,
+    initiative: number,
+    trueInitiative?: number,
+  ): string[];
+  removeCombatant(id: string): void;
+  setInitiative(entryId: string, initiative: number): void;
   applyDamage(id: string, amount: number): void;
   applyHealing(id: string, amount: number): void;
   addCondition(id: string, slug: ConditionSlug, value: number): void;
   removeCondition(id: string, slug: ConditionSlug): void;
   recordStrike(id: string): void;
   resetStrikes(id: string): void;
+  spendActions(id: string, cost: number): void;
   setReactionSpent(id: string, spent: boolean): void;
   setTarget(id: string | null): void;
   nextTurn(): void;
@@ -104,7 +141,7 @@ export const useEncounter = create<EncounterStore>()(
     encounter: emptyEncounter(),
     players: [],
 
-    addCombatant: (seed, initiative) => {
+    addCombatant: (seed, initiative, trueInitiative) => {
       const id = nextCombatantId();
       set((state) => {
         const enc = state.encounter;
@@ -119,6 +156,7 @@ export const useEncounter = create<EncounterStore>()(
           initiative,
           combatantIds: [id],
           groupName: null,
+          trueInitiative: trueInitiative ?? null,
         });
         sortEntries(enc.entries);
         if (activeEntryId !== null) {
@@ -129,7 +167,7 @@ export const useEncounter = create<EncounterStore>()(
       return id;
     },
 
-    addMany: (seed, quantity, initiative) => {
+    addMany: (seed, quantity, initiative, trueInitiative) => {
       const ids: string[] = [];
       set((state) => {
         const enc = state.encounter;
@@ -143,6 +181,7 @@ export const useEncounter = create<EncounterStore>()(
             initiative,
             combatantIds: [id],
             groupName: null,
+            trueInitiative: trueInitiative ?? null,
           });
         }
         sortEntries(enc.entries);
@@ -153,6 +192,62 @@ export const useEncounter = create<EncounterStore>()(
       });
       return ids;
     },
+
+    removeCombatant: (id) =>
+      set((state) => {
+        const enc = state.encounter;
+        if (!(id in enc.combatants)) return;
+
+        const oldActiveIndex = enc.activeEntryIndex;
+        const activeEntry = enc.entries[oldActiveIndex];
+        const activeEntryDissolves =
+          activeEntry !== undefined &&
+          activeEntry.combatantIds.length === 1 &&
+          activeEntry.combatantIds[0] === id;
+        const activeEntryId = activeEntryDissolves ? null : (activeEntry?.id ?? null);
+
+        delete enc.combatants[id];
+        if (enc.targetId === id) enc.targetId = null;
+
+        const remaining: Entry[] = [];
+        for (const entry of enc.entries) {
+          const keep = entry.combatantIds.filter((cid) => cid !== id);
+          if (keep.length > 0) {
+            entry.combatantIds = keep;
+            remaining.push(entry);
+          }
+        }
+        enc.entries = remaining;
+
+        if (enc.entries.length === 0) {
+          enc.activeEntryIndex = 0;
+        } else if (activeEntryId !== null) {
+          const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
+          enc.activeEntryIndex = idx >= 0 ? idx : 0;
+        } else {
+          // The active entry itself was removed — whichever entry now sits
+          // at its old numeric slot is the one that was next (removal
+          // shifts later entries down); wrap to the front if it was last.
+          enc.activeEntryIndex = Math.min(oldActiveIndex, enc.entries.length - 1);
+        }
+      }),
+
+    setInitiative: (entryId, initiative) =>
+      set((state) => {
+        const enc = state.encounter;
+        const entry = enc.entries.find((e) => e.id === entryId);
+        if (!entry) return;
+        const activeEntryId = enc.entries[enc.activeEntryIndex]?.id ?? null;
+        entry.initiative = initiative;
+        // An explicit GM edit is authoritative — it overrides any pending
+        // "acts this round instead" restoration.
+        entry.trueInitiative = null;
+        sortEntries(enc.entries);
+        if (activeEntryId !== null) {
+          const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
+          enc.activeEntryIndex = idx >= 0 ? idx : 0;
+        }
+      }),
 
     applyDamage: (id, amount) =>
       set((state) => {
@@ -198,6 +293,12 @@ export const useEncounter = create<EncounterStore>()(
         if (c) c.strikesMade = 0;
       }),
 
+    spendActions: (id, cost) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (c) c.actionsSpent += cost;
+      }),
+
     setReactionSpent: (id, spent) =>
       set((state) => {
         const c = state.encounter.combatants[id];
@@ -218,6 +319,23 @@ export const useEncounter = create<EncounterStore>()(
         if (nextIndex >= enc.entries.length) {
           nextIndex = 0;
           enc.round += 1;
+
+          // The round just wrapped — restore the true typed initiative for
+          // any entry that was only acting this round early (see
+          // Entry.trueInitiative), then re-sort. Index 0 of the freshly
+          // sorted order is exactly who should lead the new round, so
+          // there's no identity to preserve here (unlike addCombatant/
+          // group, which insert mid-round and must not steal the turn from
+          // whoever the GM is already resolving).
+          if (enc.entries.some((e) => e.trueInitiative !== null)) {
+            for (const e of enc.entries) {
+              if (e.trueInitiative !== null) {
+                e.initiative = e.trueInitiative;
+                e.trueInitiative = null;
+              }
+            }
+            sortEntries(enc.entries);
+          }
         }
         enc.activeEntryIndex = nextIndex;
 
@@ -227,6 +345,7 @@ export const useEncounter = create<EncounterStore>()(
           const c = enc.combatants[cid];
           if (c) {
             c.strikesMade = 0;
+            c.actionsSpent = 0;
             c.reactionSpent = false;
           }
         }
@@ -264,7 +383,13 @@ export const useEncounter = create<EncounterStore>()(
           entry.combatantIds = keep;
           remaining.push(entry);
         }
-        remaining.push({ id: groupEntryId, initiative, combatantIds: [...ids], groupName: name });
+        remaining.push({
+          id: groupEntryId,
+          initiative,
+          combatantIds: [...ids],
+          groupName: name,
+          trueInitiative: null,
+        });
         sortEntries(remaining);
         enc.entries = remaining;
 

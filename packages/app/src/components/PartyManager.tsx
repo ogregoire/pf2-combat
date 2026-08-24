@@ -11,6 +11,18 @@ function nextPlayerId(): string {
   return `player${playerSeq}`;
 }
 
+/** Same defect as the store's combatantSeq/entrySeq (see
+ * store.ts:restoreCombatantSequences): a page reload resets this
+ * module-level counter to 0 while IndexedDB still holds players numbered
+ * higher, so the next "Add player" would mint a colliding id. Called once
+ * after persisted players load — see main.tsx. */
+export function restorePlayerSequence(players: Player[]): void {
+  for (const p of players) {
+    const n = Number(p.id.replace(/^player/, ""));
+    if (Number.isFinite(n) && n > playerSeq) playerSeq = n;
+  }
+}
+
 function emptyPlayer(): Player {
   return {
     id: nextPlayerId(),

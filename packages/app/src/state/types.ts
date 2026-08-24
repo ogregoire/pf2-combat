@@ -28,6 +28,9 @@ export interface Combatant {
   actions: Action[];
   conditions: AppliedCondition[];
   strikesMade: number;
+  /** Actions spent so far this turn, out of the pool `actionPool()` computes
+   * from conditions. Reset to 0 at the start of the combatant's turn. */
+  actionsSpent: number;
   reactionSpent: boolean;
   defeated: boolean;
 }
@@ -37,6 +40,14 @@ export interface Entry {
   initiative: number;
   combatantIds: string[];
   groupName: string | null;
+  /**
+   * Set only while a combatant added mid-round is acting this round instead
+   * of waiting for the next one ("act this round instead" in AddCombatants):
+   * `initiative` is temporarily lowered so turn order reaches them today,
+   * and the GM's real typed value is parked here rather than overwritten.
+   * Restored into `initiative` (and cleared) the next time the round wraps.
+   */
+  trueInitiative: number | null;
 }
 
 export interface Encounter {

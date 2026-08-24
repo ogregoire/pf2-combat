@@ -150,11 +150,18 @@ export function AddCombatants({
     if (!selected) return;
     const qty = Math.max(1, Math.trunc(Number(quantity)) || 1);
     const typedInitiative = Number(initiative) || 0;
-    const effectiveInitiative =
-      actThisRound && activeEntry ? Math.min(typedInitiative, activeEntry.initiative) : typedInitiative;
     const seed = seedFromEntry(selected, loadedCreature);
-    if (qty === 1) addCombatant(seed, effectiveInitiative);
-    else addMany(seed, qty, effectiveInitiative);
+
+    // "act this round instead": the combatant's turn-order slot is lowered
+    // just enough to still be reached this round, but the GM's typed
+    // initiative is never overwritten — it's parked as trueInitiative and
+    // restored (see store.nextTurn) the moment the round wraps.
+    const actingEarly = actThisRound && activeEntry !== undefined && typedInitiative > activeEntry.initiative;
+    const slotInitiative = actingEarly ? Math.min(typedInitiative, activeEntry!.initiative) : typedInitiative;
+    const trueInitiative = actingEarly ? typedInitiative : undefined;
+
+    if (qty === 1) addCombatant(seed, slotInitiative, trueInitiative);
+    else addMany(seed, qty, slotInitiative, trueInitiative);
     clearSelection();
   };
 

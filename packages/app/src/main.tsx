@@ -2,7 +2,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/tokens.css";
 import { App } from "./App.js";
-import { useEncounter } from "./state/store.js";
+import { restorePlayerSequence } from "./components/PartyManager.js";
+import { restoreCombatantSequences, useEncounter } from "./state/store.js";
 import { loadEncounter, loadPlayers, saveEncounter, savePlayers } from "./state/persist.js";
 
 const SAVE_DEBOUNCE_MS = 400;
@@ -27,6 +28,12 @@ Promise.all([loadEncounter(), loadPlayers()]).then(([encounter, players]) => {
     if (encounter !== null) state.encounter = encounter;
     if (players.length > 0) state.players = players;
   });
+  // The store's own id counters (and PartyManager's) are module-level state
+  // that always starts at 0 — without this, the very next add after a
+  // reload mints an id that collides with one already restored from
+  // IndexedDB. Must run after the state above is set, and before any add.
+  if (encounter !== null) restoreCombatantSequences(encounter);
+  if (players.length > 0) restorePlayerSequence(players);
   useEncounter.subscribe(scheduleSave);
 });
 

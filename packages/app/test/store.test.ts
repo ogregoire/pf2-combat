@@ -196,4 +196,117 @@ describe("encounter store", () => {
     expect(active.id).toBe(squadEntryId);
     expect(active.combatantIds).toEqual([h]);
   });
+
+  it("removes a combatant, dissolving its entry", () => {
+    const a = addCreature("a", 20);
+    const b = addCreature("b", 10);
+    useEncounter.getState().removeCombatant(a);
+    const enc = useEncounter.getState().encounter;
+    expect(enc.combatants[a]).toBeUndefined();
+    expect(enc.entries).toHaveLength(1);
+    expect(enc.entries[0]!.combatantIds).toEqual([b]);
+  });
+
+  it("clears the target when the targeted combatant is removed", () => {
+    const a = addCreature("a", 20);
+    useEncounter.getState().setTarget(a);
+    useEncounter.getState().removeCombatant(a);
+    expect(useEncounter.getState().encounter.targetId).toBeNull();
+  });
+
+  it("advances the active pointer to what comes next when the active combatant is removed", () => {
+    const a = addCreature("a", 20);
+    const b = addCreature("b", 10);
+    addCreature("c", 5);
+    expect(useEncounter.getState().encounter.activeEntryIndex).toBe(0);
+    useEncounter.getState().removeCombatant(a);
+    const enc = useEncounter.getState().encounter;
+    // b was next after a; removing a's entry shifts b into a's old slot.
+    expect(enc.entries[enc.activeEntryIndex]!.combatantIds).toEqual([b]);
+  });
+
+  it("wraps the active pointer to the front when the last, active entry is removed", () => {
+    const a = addCreature("a", 20);
+    const b = addCreature("b", 10);
+    useEncounter.getState().nextTurn(); // a -> b (active, last entry)
+    useEncounter.getState().removeCombatant(b);
+    const enc = useEncounter.getState().encounter;
+    expect(enc.activeEntryIndex).toBe(0);
+    expect(enc.entries[0]!.combatantIds).toEqual([a]);
+  });
+
+  it("keeps the active combatant unchanged when a different combatant is removed", () => {
+    const a = addCreature("a", 20);
+    const b = addCreature("b", 10);
+    useEncounter.getState().nextTurn(); // a -> b (active)
+    useEncounter.getState().removeCombatant(a);
+    const enc = useEncounter.getState().encounter;
+    expect(enc.entries[enc.activeEntryIndex]!.combatantIds).toEqual([b]);
+  });
+
+  it("edits an entry's initiative and re-sorts", () => {
+    addCreature("a", 20);
+    const b = addCreature("b", 10);
+    const entryId = useEncounter.getState().encounter.entries.find((e) => e.combatantIds[0] === b)!.id;
+    useEncounter.getState().setInitiative(entryId, 30);
+    const entries = useEncounter.getState().encounter.entries;
+    expect(entries[0]!.combatantIds).toEqual([b]);
+    expect(entries[0]!.initiative).toBe(30);
+  });
+
+  it("keeps the active combatant unchanged when an initiative edit reorders entries", () => {
+    const a = addCreature("a", 20);
+    const b = addCreature("b", 10);
+    useEncounter.getState().nextTurn(); // a -> b (active)
+    const aEntryId = useEncounter.getState().encounter.entries.find((e) => e.combatantIds[0] === a)!.id;
+    useEncounter.getState().setInitiative(aEntryId, 5);
+    const enc = useEncounter.getState().encounter;
+    expect(enc.entries[enc.activeEntryIndex]!.combatantIds).toEqual([b]);
+  });
+
+  it("restores true initiative when a combatant acts this round, once the round wraps", () => {
+    addCreature("Active", 15);
+    const newcomerId = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Newcomer", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 10, max: 10 } },
+      15, // slotted just behind the active entry this round…
+      22, // …but the GM actually typed 22.
+    );
+    let enc = useEncounter.getState().encounter;
+    const newcomerEntry = enc.entries.find((e) => e.combatantIds[0] === newcomerId)!;
+    expect(newcomerEntry.initiative).toBe(15);
+    expect(newcomerEntry.trueInitiative).toBe(22);
+
+    useEncounter.getState().nextTurn(); // Active -> Newcomer (still round 1)
+    useEncounter.getState().nextTurn(); // wraps to round 2 — restores 22
+    enc = useEncounter.getState().encounter;
+    const restored = enc.entries.find((e) => e.combatantIds[0] === newcomerId)!;
+    expect(restored.initiative).toBe(22);
+    expect(restored.trueInitiative).toBeNull();
+    // 22 sorts above Active's 15, so Newcomer leads the new round.
+    expect(enc.entries[0]!.combatantIds).toEqual([newcomerId]);
+  });
+
+  it("restores id counters from a persisted encounter, so a post-reload add cannot collide", async () => {
+    const { restoreCombatantSequences } = await import("../src/state/store.js");
+    addCreature("a", 20);
+    addCreature("b", 10);
+    const before = useEncounter.getState().encounter;
+    useEncounter.getState().reset(); // simulates the module reloading with seq back at 0
+    restoreCombatantSequences(before);
+    const c = addCreature("c", 5);
+    expect(c).toBe("c3");
+    const ids = Object.keys(useEncounter.getState().encounter.combatants);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("resets actions spent at the start of a turn", () => {
+    const a = addCreature("a", 20);
+    addCreature("b", 10);
+    useEncounter.getState().spendActions(a, 2);
+    expect(useEncounter.getState().encounter.combatants[a]!.actionsSpent).toBe(2);
+    useEncounter.getState().nextTurn();
+    useEncounter.getState().nextTurn();
+    expect(useEncounter.getState().encounter.combatants[a]!.actionsSpent).toBe(0);
+  });
 });
