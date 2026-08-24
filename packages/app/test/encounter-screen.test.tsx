@@ -66,6 +66,46 @@ describe("EncounterScreen", () => {
     expect(useEncounter.getState().encounter.activeEntryIndex).toBe(1);
   });
 
+  it("selects a target by clicking a combatant row and reaches the roll assistant", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Archer", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 },
+        attacks: [
+          { name: "Shortbow", kind: "ranged", bonus: 8, traits: [],
+            damage: [{ formula: "1d6+2", type: "piercing", category: null }], effects: [] },
+        ] },
+      20,
+    );
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Bandit", level: 1, ac: 17,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 16, max: 16 } },
+      10,
+    );
+    render(<EncounterScreen />);
+
+    // Archer is active with no target yet — the roll assistant is stuck on
+    // its placeholder, which is exactly the gap the reviewer caught.
+    expect(screen.getByText(/select a target/i)).toBeDefined();
+
+    // Bandit is not the active combatant, so its name is unambiguous — click
+    // its row (not a hover) to set it as the target.
+    const list = within(screen.getByTestId("combatant-list"));
+    await user.click(list.getByText("Bandit"));
+
+    await user.click(screen.getByRole("button", { name: /Shortbow/ }));
+
+    expect(screen.queryByText(/select a target/i)).toBeNull();
+    expect(screen.getByText("1d20 + 8")).toBeDefined();
+    // Exact match: the roll box also has a "vs AC 17" span, and Bandit's own
+    // list row (a different pane) reads "AC 17" too.
+    expect(within(screen.getByTestId("active-combatant")).getByText("AC 17")).toBeDefined();
+
+    // Clicking the same row again clears the target.
+    await user.click(list.getByText("Bandit"));
+    expect(screen.getByText(/select a target/i)).toBeDefined();
+  });
+
   describe("the add-a-creature loop, against injected fake fetches", () => {
     const book: BookCatalogEntry = {
       pack: "test-book",

@@ -42,6 +42,12 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
 
   return (
     <div
+      // The row beneath this popover is now click-to-target. The popover
+      // isn't a DOM descendant of the row (CombatantRow renders it as a
+      // sibling), so a click here wouldn't reach the row's handler anyway —
+      // stopping propagation here is defensive, per the brief, against that
+      // structure ever changing.
+      onClick={(e) => e.stopPropagation()}
       style={{
         position: "absolute",
         top: "-8px",

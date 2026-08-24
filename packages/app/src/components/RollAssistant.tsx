@@ -77,6 +77,8 @@ export function RollAssistant({
         <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--accent-text)" }}>
           {target.ac !== null ? `AC ${target.ac}` : "AC unknown"}
         </span>
+        <div style={{ flexGrow: 1 }} />
+        <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>click any combatant to retarget</span>
       </div>
 
       {!attack ? (

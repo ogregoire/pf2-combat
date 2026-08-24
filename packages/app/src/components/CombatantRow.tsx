@@ -6,6 +6,40 @@ import type { Combatant } from "../state/types.js";
 
 const HP_TRACK = "oklch(0.28 0.02 30)";
 const GROUP_BG = "oklch(0.205 0.014 200)";
+// Deliberately not the ember/accent hue Main.dc.html uses for "whose turn it
+// is" — the GM must tell "active" and "targeted" apart at a glance, and they
+// are frequently different combatants. This app has no active-row highlight
+// yet, but the colour is chosen to stay distinct from it either way.
+const TARGET_RING = "oklch(0.80 0.15 95)";
+
+/** Handles both the click-to-target toggle and Enter/Space activation, since
+ * every row is now a keyboard-reachable target picker, not a bare div. */
+function targetRowProps(
+  combatant: Combatant,
+  targeted: boolean,
+  onToggleTarget: () => void,
+): {
+  role: "button";
+  tabIndex: number;
+  "aria-pressed": boolean;
+  "aria-label": string;
+  onClick: () => void;
+  onKeyDown: (e: React.KeyboardEvent) => void;
+} {
+  return {
+    role: "button",
+    tabIndex: 0,
+    "aria-pressed": targeted,
+    "aria-label": `Target ${combatant.name}`,
+    onClick: onToggleTarget,
+    onKeyDown: (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onToggleTarget();
+      }
+    },
+  };
+}
 
 function hpColor(current: number, max: number): string {
   if (max <= 0) return "var(--text-faint)";
@@ -72,14 +106,19 @@ function levelLabel(combatant: Combatant): string {
 function StandaloneRow({
   combatant,
   initiative,
+  targeted,
+  onToggleTarget,
 }: {
   combatant: Combatant;
   initiative?: number;
+  targeted: boolean;
+  onToggleTarget: () => void;
 }): React.ReactElement {
   const borderColor = combatant.kind === "pc" ? "oklch(0.55 0.10 240)" : "oklch(0.38 0.015 60)";
 
   return (
     <div
+      {...targetRowProps(combatant, targeted, onToggleTarget)}
       style={{
         display: "flex",
         alignItems: "center",
@@ -89,6 +128,8 @@ function StandaloneRow({
         borderLeft: `3px solid ${borderColor}`,
         background: "var(--panel-raised)",
         opacity: combatant.defeated ? 0.42 : 1,
+        boxShadow: targeted ? `0 0 0 2px ${TARGET_RING}` : "none",
+        cursor: "pointer",
       }}
     >
       {initiative !== undefined && (
@@ -158,9 +199,18 @@ function StandaloneRow({
  * it's shared on the GroupHeader. The left border in the group's colour
  * belongs to the group wrapper (CombatantList.tsx), not each member row —
  * the mockup only draws it once. */
-function GroupMemberRow({ combatant }: { combatant: Combatant }): React.ReactElement {
+function GroupMemberRow({
+  combatant,
+  targeted,
+  onToggleTarget,
+}: {
+  combatant: Combatant;
+  targeted: boolean;
+  onToggleTarget: () => void;
+}): React.ReactElement {
   return (
     <div
+      {...targetRowProps(combatant, targeted, onToggleTarget)}
       style={{
         display: "flex",
         alignItems: "center",
@@ -169,6 +219,8 @@ function GroupMemberRow({ combatant }: { combatant: Combatant }): React.ReactEle
         borderRadius: "3px",
         background: GROUP_BG,
         opacity: combatant.defeated ? 0.42 : 1,
+        boxShadow: targeted ? `0 0 0 2px ${TARGET_RING}` : "none",
+        cursor: "pointer",
       }}
     >
       <div style={{ flexGrow: 1, minWidth: 0 }}>
@@ -234,12 +286,19 @@ export function CombatantRow({
   const [hovered, setHovered] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const combatant = useEncounter((s) => s.encounter.combatants[id]);
+  const targetId = useEncounter((s) => s.encounter.targetId);
+  const setTarget = useEncounter((s) => s.setTarget);
 
   useEffect(() => () => {
     if (closeTimer.current !== null) clearTimeout(closeTimer.current);
   }, []);
 
   if (!combatant) return null;
+
+  // mockups/TurnAssistant.dc.html: "click any combatant to retarget".
+  // Clicking the current target again clears it, so the GM can deselect.
+  const targeted = targetId === id;
+  const toggleTarget = (): void => setTarget(targeted ? null : id);
 
   // The pointer moving from the row's name onto a control inside the
   // popover is a single continuous hover as far as the user is concerned,
@@ -263,9 +322,9 @@ export function CombatantRow({
   return (
     <div style={{ position: "relative" }} onMouseEnter={openPopover} onMouseLeave={scheduleClose}>
       {grouped ? (
-        <GroupMemberRow combatant={combatant} />
+        <GroupMemberRow combatant={combatant} targeted={targeted} onToggleTarget={toggleTarget} />
       ) : (
-        <StandaloneRow combatant={combatant} initiative={initiative} />
+        <StandaloneRow combatant={combatant} initiative={initiative} targeted={targeted} onToggleTarget={toggleTarget} />
       )}
 
       {hovered && <RowPopover combatantId={id} />}
