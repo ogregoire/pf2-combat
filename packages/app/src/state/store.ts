@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import type { ConditionSlug } from "../rules/conditions.js";
+import type { Iwr } from "../rules/damage.js";
 import type { Combatant, Encounter, Entry, Player } from "./types.js";
 
 /** Fields a caller supplies to create a combatant; the rest is derived. */
@@ -13,6 +14,8 @@ export interface CombatantSeed {
   ac: number | null;
   saves: { fortitude: number; reflex: number; will: number } | null;
   level: number;
+  /** Populated from the creature record when added from the dataset. */
+  iwr?: Iwr | null;
 }
 
 let combatantSeq = 0;
@@ -51,6 +54,7 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
     ac: seed.ac,
     saves: seed.saves,
     level: seed.level,
+    iwr: seed.iwr ?? null,
     conditions: [],
     strikesMade: 0,
     reactionSpent: false,

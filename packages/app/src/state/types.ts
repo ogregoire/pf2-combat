@@ -1,4 +1,5 @@
 import type { AppliedCondition } from "../rules/conditions.js";
+import type { Iwr } from "../rules/damage.js";
 
 export interface Player {
   id: string;
@@ -20,6 +21,7 @@ export interface Combatant {
   ac: number | null;
   saves: { fortitude: number; reflex: number; will: number } | null;
   level: number;
+  iwr: Iwr | null;
   conditions: AppliedCondition[];
   strikesMade: number;
   reactionSpent: boolean;
