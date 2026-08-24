@@ -893,7 +893,7 @@ const akiros = JSON.parse(
 describe("extractTrigger", () => {
   it("pulls the trigger out of a real reaction description", () => {
     const noEscape = akiros.items.find((i: any) => i.name === "No Escape");
-    expect(noEscape.system.trigger).toBeNull();
+    expect(noEscape.system.trigger).toBeUndefined();
     expect(extractTrigger(noEscape.system.description.value)).toBe(
       "An adjacent foe moves away.",
     );
