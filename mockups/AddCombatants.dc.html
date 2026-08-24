@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: oklch(0.70 0.15 55); } a:hover { color: oklch(0.80 0.15 55); }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1080px; height: 820px; display: flex; flex-direction: column; background: oklch(0.16 0.012 60); color: oklch(0.92 0.01 80); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 14px;">
+
+  <div style="padding: 20px 24px 14px; border-bottom: 1px solid oklch(0.30 0.015 60);">
+    <div style="display: flex; align-items: baseline; gap: 12px;">
+      <h2 style="margin: 0; font-family: Spectral, Georgia, serif; font-size: 22px; font-weight: 600;">Add combatants</h2>
+      <span style="font-size: 12px; color: oklch(0.62 0.012 75);">encounter is running &mdash; round 3</span>
+    </div>
+  </div>
+
+  <!-- search + book filter -->
+  <div style="display: flex; gap: 10px; padding: 14px 24px;">
+    <div style="flex-grow: 1; display: flex; align-items: center; gap: 9px; padding: 9px 12px; border-radius: 4px; border: 1px solid oklch(0.40 0.03 55); background: oklch(0.20 0.013 60);">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.70 0.012 75)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px;">troll</span>
+      <span style="width: 1px; height: 15px; background: oklch(0.72 0.10 60);"></span>
+    </div>
+    <button style="font-family: inherit; font-size: 12.5px; padding: 9px 13px; border-radius: 4px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.23 0.014 60); color: oklch(0.86 0.01 80); cursor: pointer; display: inline-flex; align-items: center; gap: 7px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      5 books active
+    </button>
+  </div>
+
+  <!-- results -->
+  <div style="flex-grow: 1; min-height: 0; padding: 0 24px; display: flex; flex-direction: column; gap: 6px;">
+
+    <div style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.60 0.012 75); padding: 4px 0 6px;">3 matches</div>
+
+    <!-- legacy result, selected, with quantity -->
+    <div style="display: flex; align-items: center; gap: 16px; padding: 13px 16px; border-radius: 4px; background: oklch(0.25 0.026 55); border: 1px solid oklch(0.44 0.08 55);">
+      <div style="width: 210px;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 15px; font-weight: 600;">Troll</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.80 0.11 60);">5</span>
+        </div>
+        <div style="font-size: 11.5px; color: oklch(0.70 0.03 60); margin-top: 3px;">Pathfinder Bestiary &middot; legacy</div>
+      </div>
+      <div style="display: flex; gap: 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">
+        <span>AC <span style="font-weight: 600;">19</span></span>
+        <span>HP <span style="font-weight: 600;">115</span></span>
+        <span style="color: oklch(0.70 0.012 75);">+16 / +10 / +8</span>
+      </div>
+      <div style="display: flex; gap: 4px;">
+        <span style="font-size: 10px; letter-spacing: 0.05em; padding: 2px 6px; border-radius: 2px; background: oklch(0.30 0.015 60); color: oklch(0.76 0.012 75);">GIANT</span>
+        <span style="font-size: 10px; letter-spacing: 0.05em; padding: 2px 6px; border-radius: 2px; background: oklch(0.30 0.015 60); color: oklch(0.76 0.012 75);">TROLL</span>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <div style="display: flex; align-items: center; gap: 0;">
+        <button style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; width: 34px; height: 34px; border-radius: 4px 0 0 4px; border: 1px solid oklch(0.40 0.03 55); background: oklch(0.22 0.014 60); color: oklch(0.86 0.01 80); cursor: pointer;">&minus;</button>
+        <div style="width: 46px; height: 34px; display: flex; align-items: center; justify-content: center; border-top: 1px solid oklch(0.40 0.03 55); border-bottom: 1px solid oklch(0.40 0.03 55); background: oklch(0.17 0.012 60); font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600;">3</div>
+        <button style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; width: 34px; height: 34px; border-radius: 0 4px 4px 0; border: 1px solid oklch(0.40 0.03 55); background: oklch(0.22 0.014 60); color: oklch(0.86 0.01 80); cursor: pointer;">+</button>
+      </div>
+    </div>
+
+    <!-- remaster result -->
+    <div style="display: flex; align-items: center; gap: 16px; padding: 13px 16px; border-radius: 4px; background: oklch(0.20 0.013 60); border: 1px solid oklch(0.28 0.015 60);">
+      <div style="width: 210px;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 15px; font-weight: 600;">Forest Troll</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.80 0.11 60);">4</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px; margin-top: 3px;">
+          <span style="font-size: 11.5px; color: oklch(0.64 0.012 75);">Monster Core</span>
+          <span style="font-size: 9.5px; font-weight: 600; letter-spacing: 0.06em; padding: 1px 5px; border-radius: 2px; background: oklch(0.30 0.08 150); color: oklch(0.86 0.09 150);">REMASTER</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">
+        <span>AC <span style="font-weight: 600;">21</span></span>
+        <span>HP <span style="font-weight: 600;">75</span></span>
+        <span style="color: oklch(0.70 0.012 75);">+13 / +9 / +7</span>
+      </div>
+      <div style="display: flex; gap: 4px;">
+        <span style="font-size: 10px; letter-spacing: 0.05em; padding: 2px 6px; border-radius: 2px; background: oklch(0.30 0.015 60); color: oklch(0.76 0.012 75);">TROLL</span>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <button style="font-family: inherit; font-size: 12.5px; padding: 8px 15px; border-radius: 4px; border: 1px solid oklch(0.36 0.015 60); background: oklch(0.24 0.014 60); color: oklch(0.86 0.01 80); cursor: pointer;">Add</button>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 16px; padding: 13px 16px; border-radius: 4px; background: oklch(0.20 0.013 60); border: 1px solid oklch(0.28 0.015 60);">
+      <div style="width: 210px;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 15px; font-weight: 600;">Troll King</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.80 0.11 60);">8</span>
+        </div>
+        <div style="font-size: 11.5px; color: oklch(0.64 0.012 75); margin-top: 3px;">Pathfinder Bestiary &middot; legacy</div>
+      </div>
+      <div style="display: flex; gap: 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">
+        <span>AC <span style="font-weight: 600;">26</span></span>
+        <span>HP <span style="font-weight: 600;">165</span></span>
+        <span style="color: oklch(0.70 0.012 75);">+21 / +14 / +14</span>
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <button style="font-family: inherit; font-size: 12.5px; padding: 8px 15px; border-radius: 4px; border: 1px solid oklch(0.36 0.015 60); background: oklch(0.24 0.014 60); color: oklch(0.86 0.01 80); cursor: pointer;">Add</button>
+    </div>
+
+    <div style="margin-top: 10px; padding: 11px 14px; border-radius: 4px; background: oklch(0.19 0.013 60); border: 1px solid oklch(0.28 0.015 60); font-size: 12.5px; line-height: 1.55; color: oklch(0.72 0.012 75);">
+      <span style="font-weight: 600; color: oklch(0.84 0.01 80);">Both trolls are shown.</span>
+      Kingmaker prints the Bestiary&nbsp;1 stat block, so it stays findable under the name the book uses. When two books use the <em>same</em> name, the remaster entry wins and the legacy one is hidden &mdash; still reachable by id.
+    </div>
+  </div>
+
+  <!-- initiative footer, only when combat is running -->
+  <div style="display: flex; align-items: center; gap: 14px; padding: 14px 24px; border-top: 1px solid oklch(0.30 0.015 60); background: oklch(0.20 0.013 60);">
+    <div style="display: flex; align-items: center; gap: 9px;">
+      <span style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.60 0.012 75);">Initiative</span>
+      <input value="14" style="width: 62px; font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600; text-align: center; padding: 7px 6px; border-radius: 3px; border: 1px solid oklch(0.40 0.03 55); background: oklch(0.15 0.012 60); color: oklch(0.92 0.01 80);">
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 4px; background: oklch(0.24 0.03 200); border: 1px solid oklch(0.34 0.05 200);">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="oklch(0.78 0.09 200)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+      <span style="font-size: 12.5px; color: oklch(0.84 0.05 200);">Slot 14 has passed &mdash; acts <strong>next round</strong></span>
+      <button style="font-family: inherit; font-size: 11.5px; padding: 3px 9px; border-radius: 3px; border: 1px solid oklch(0.42 0.05 200); background: oklch(0.20 0.02 200); color: oklch(0.84 0.05 200); cursor: pointer;">act this round instead</button>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <label style="display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: oklch(0.78 0.012 75);">
+      <span style="width: 15px; height: 15px; border-radius: 3px; border: 1px solid oklch(0.42 0.015 60); background: oklch(0.17 0.012 60); display: inline-block;"></span>
+      Join group &ldquo;Bandits&rdquo;
+    </label>
+    <button style="font-family: inherit; font-size: 13.5px; font-weight: 600; padding: 10px 22px; border-radius: 4px; border: 1px solid oklch(0.52 0.13 55); background: oklch(0.40 0.11 55); color: oklch(0.96 0.03 70); cursor: pointer;">Add 3 Trolls</button>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

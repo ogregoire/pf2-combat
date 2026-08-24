@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: oklch(0.70 0.15 55); } a:hover { color: oklch(0.80 0.15 55); }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1080px; height: 760px; display: flex; flex-direction: column; background: oklch(0.16 0.012 60); color: oklch(0.92 0.01 80); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 14px;">
+
+  <div style="padding: 20px 24px 14px; border-bottom: 1px solid oklch(0.30 0.015 60);">
+    <div style="display: flex; align-items: baseline; gap: 12px;">
+      <h2 style="margin: 0; font-family: Spectral, Georgia, serif; font-size: 22px; font-weight: 600;">Build a group</h2>
+      <span style="font-size: 12px; color: oklch(0.62 0.012 75);">select combatants, then give the group one initiative</span>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1; min-height: 0; display: flex;">
+
+    <!-- selection list -->
+    <div style="flex-grow: 1; min-width: 0; padding: 16px 20px; display: flex; flex-direction: column; gap: 5px; border-right: 1px solid oklch(0.30 0.015 60);">
+      <div style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.60 0.012 75); margin-bottom: 5px;">Ungrouped combatants</div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 13px; border-radius: 4px; background: oklch(0.25 0.026 55); border: 1px solid oklch(0.44 0.08 55);">
+        <span style="width: 16px; height: 16px; border-radius: 3px; background: oklch(0.62 0.14 55); display: inline-flex; align-items: center; justify-content: center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="oklch(0.16 0.012 60)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span style="flex-grow: 1; font-weight: 500;">Goblin Chief</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.74 0.012 75);">AC 18 &middot; HP 30</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.66 0.012 75); width: 62px; text-align: right;">init 17</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 13px; border-radius: 4px; background: oklch(0.25 0.026 55); border: 1px solid oklch(0.44 0.08 55);">
+        <span style="width: 16px; height: 16px; border-radius: 3px; background: oklch(0.62 0.14 55); display: inline-flex; align-items: center; justify-content: center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="oklch(0.16 0.012 60)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span style="flex-grow: 1; font-weight: 500;">Goblin Warrior <span style="color: oklch(0.60 0.012 75); font-weight: 400;">1</span></span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.74 0.012 75);">AC 16 &middot; HP 6</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.66 0.012 75); width: 62px; text-align: right;">init 13</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 13px; border-radius: 4px; background: oklch(0.25 0.026 55); border: 1px solid oklch(0.44 0.08 55);">
+        <span style="width: 16px; height: 16px; border-radius: 3px; background: oklch(0.62 0.14 55); display: inline-flex; align-items: center; justify-content: center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="oklch(0.16 0.012 60)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span style="flex-grow: 1; font-weight: 500;">Goblin Warrior <span style="color: oklch(0.60 0.012 75); font-weight: 400;">2</span></span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.74 0.012 75);">AC 16 &middot; HP 6</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.66 0.012 75); width: 62px; text-align: right;">init 13</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 13px; border-radius: 4px; background: oklch(0.25 0.026 55); border: 1px solid oklch(0.44 0.08 55);">
+        <span style="width: 16px; height: 16px; border-radius: 3px; background: oklch(0.62 0.14 55); display: inline-flex; align-items: center; justify-content: center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="oklch(0.16 0.012 60)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span style="flex-grow: 1; font-weight: 500;">Goblin War Chanter</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.74 0.012 75);">AC 16 &middot; HP 18</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.66 0.012 75); width: 62px; text-align: right;">init 15</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 13px; border-radius: 4px; background: oklch(0.25 0.026 55); border: 1px solid oklch(0.44 0.08 55);">
+        <span style="width: 16px; height: 16px; border-radius: 3px; background: oklch(0.62 0.14 55); display: inline-flex; align-items: center; justify-content: center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="oklch(0.16 0.012 60)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span style="flex-grow: 1; font-weight: 500;">Goblin Dog</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.74 0.012 75);">AC 15 &middot; HP 14</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.66 0.012 75); width: 62px; text-align: right;">init 11</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 13px; border-radius: 4px; background: oklch(0.20 0.013 60); border: 1px solid oklch(0.28 0.015 60);">
+        <span style="width: 16px; height: 16px; border-radius: 3px; border: 1px solid oklch(0.42 0.015 60); background: oklch(0.17 0.012 60); display: inline-block;"></span>
+        <span style="flex-grow: 1;">Goblin Warrior <span style="color: oklch(0.58 0.012 75);">4</span></span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.66 0.012 75);">AC 16 &middot; HP 6</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.60 0.012 75); width: 62px; text-align: right;">init 13</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 13px; border-radius: 4px; background: oklch(0.20 0.013 60); border: 1px solid oklch(0.28 0.015 60);">
+        <span style="width: 16px; height: 16px; border-radius: 3px; border: 1px solid oklch(0.42 0.015 60); background: oklch(0.17 0.012 60); display: inline-block;"></span>
+        <span style="flex-grow: 1;">Goblin Warrior <span style="color: oklch(0.58 0.012 75);">5</span></span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.66 0.012 75);">AC 16 &middot; HP 6</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.60 0.012 75); width: 62px; text-align: right;">init 13</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 13px; border-radius: 4px; background: oklch(0.20 0.013 60); border: 1px solid oklch(0.28 0.015 60);">
+        <span style="width: 16px; height: 16px; border-radius: 3px; border: 1px solid oklch(0.42 0.015 60); background: oklch(0.17 0.012 60); display: inline-block;"></span>
+        <span style="flex-grow: 1;">Goblin Warrior <span style="color: oklch(0.58 0.012 75);">6</span></span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.66 0.012 75);">AC 16 &middot; HP 6</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(0.60 0.012 75); width: 62px; text-align: right;">init 13</span>
+      </div>
+    </div>
+
+    <!-- group preview -->
+    <div style="width: 340px; flex-shrink: 0; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; background: oklch(0.185 0.012 60);">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.60 0.012 75); margin-bottom: 8px;">Group name</div>
+        <div style="padding: 10px 12px; border-radius: 4px; border: 1px solid oklch(0.40 0.03 55); background: oklch(0.15 0.012 60); font-size: 15px; font-weight: 500;">
+          Chief&rsquo;s warband<span style="color: oklch(0.72 0.10 60);">|</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.60 0.012 75); margin-bottom: 8px;">Shared initiative</div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <input value="17" style="width: 72px; font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; text-align: center; padding: 8px 6px; border-radius: 4px; border: 1px solid oklch(0.40 0.03 55); background: oklch(0.15 0.012 60); color: oklch(0.92 0.01 80);">
+          <span style="font-size: 12px; line-height: 1.45; color: oklch(0.68 0.012 75);">Defaults to the highest member&rsquo;s roll.</span>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid oklch(0.28 0.015 60); padding-top: 14px;">
+        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 9px;">
+          <span style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.60 0.012 75);">5 selected</span>
+          <span style="font-size: 11px; color: oklch(0.72 0.09 60);">4 different creatures</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 3px; background: oklch(0.22 0.014 60); font-size: 13px;">
+            <span style="flex-grow: 1;">Goblin Chief</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75);">AC 18</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: oklch(0.60 0.012 75); width: 44px; text-align: right;">was 17</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 3px; background: oklch(0.22 0.014 60); font-size: 13px;">
+            <span style="flex-grow: 1;">Goblin War Chanter</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75);">AC 16</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: oklch(0.60 0.012 75); width: 44px; text-align: right;">was 15</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 3px; background: oklch(0.22 0.014 60); font-size: 13px;">
+            <span style="flex-grow: 1;">Goblin Warrior 1</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75);">AC 16</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: oklch(0.60 0.012 75); width: 44px; text-align: right;">was 13</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 3px; background: oklch(0.22 0.014 60); font-size: 13px;">
+            <span style="flex-grow: 1;">Goblin Warrior 2</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75);">AC 16</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: oklch(0.60 0.012 75); width: 44px; text-align: right;">was 13</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 3px; background: oklch(0.22 0.014 60); font-size: 13px;">
+            <span style="flex-grow: 1;">Goblin Dog</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75);">AC 15</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: oklch(0.60 0.012 75); width: 44px; text-align: right;">was 11</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex-grow: 1;"></div>
+
+      <div style="padding: 11px 13px; border-radius: 4px; background: oklch(0.19 0.013 60); border: 1px solid oklch(0.28 0.015 60); font-size: 12px; line-height: 1.55; color: oklch(0.72 0.012 75);">
+        The group takes <strong style="color: oklch(0.86 0.01 80);">one turn</strong> at initiative 17. Members keep their own HP and conditions.
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <button style="font-family: inherit; flex-grow: 1; font-size: 13px; padding: 11px 12px; border-radius: 4px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.23 0.014 60); color: oklch(0.84 0.01 80); cursor: pointer;">Cancel</button>
+        <button style="font-family: inherit; flex-grow: 2; font-size: 13.5px; font-weight: 600; padding: 11px 12px; border-radius: 4px; border: 1px solid oklch(0.52 0.13 55); background: oklch(0.40 0.11 55); color: oklch(0.96 0.03 70); cursor: pointer;">Create group</button>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

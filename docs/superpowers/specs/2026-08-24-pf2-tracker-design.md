@@ -42,6 +42,13 @@ module of pure functions.** The store calls into it. This is what makes the
 difficult logic unit-testable without React, and what would make replacing
 Zustand cheap if that ever became desirable.
 
+## Visual direction
+
+Dark, warm near-black ground with an ember accent, chosen for a dimly lit table.
+Spectral for display, IBM Plex Sans for UI, IBM Plex Mono for every number —
+tabular figures matter when AC, HP and initiative are read at a glance. Approved
+against a light, table-dense alternative.
+
 ## Layout
 
 Three panes.
@@ -108,11 +115,15 @@ A party is a persisted roster of players, each with a name and level. Each
 player has a **present** toggle, since difficulty must reflect who is actually
 at the table.
 
-Players are tracked as **light entries**: name, level, initiative, conditions.
-The GM does not own player sheets, so HP and defences are not entered for PCs.
-Their `<CombatantRow>` therefore renders the HP, AC and saves columns empty
-rather than omitting them, keeping the list's columns aligned across PCs and
-creatures.
+Players carry **name, level, AC, Fortitude, Reflex and Will**, entered once in
+the roster, plus per-encounter initiative and conditions. HP stays optional —
+players track their own — so the HP cell may render empty.
+
+This reverses an earlier decision that PCs were light entries with no defences.
+The roll assistant (below) computes outcomes against a target's AC or save DC;
+without those four numbers it would go blank precisely when a monster attacks a
+PC, which is most of the time. Four numbers per player, entered once, is the
+price of the whole workflow.
 
 ### Party level
 
@@ -161,11 +172,21 @@ Creature XP by level relative to party level:
 |---|---|---|---|---|---|---|---|---|---|
 | XP | 10 | 15 | 20 | 30 | 40 | 60 | 80 | 120 | 160 |
 
-### Dual rating
+### Dual rating and the XP award
 
 Difficulty is computed continuously against **both** a standard party of four
 and the **actually present** party, displayed side by side — e.g.
-"Moderate (party of 4) · Severe (3 present)".
+"Extreme (party of 4) · Over Extreme (3 present)". Budgets are computed but not
+displayed; the rating is the useful output.
+
+Beside them sits the **XP award per character**, which is *not* adjusted for
+party size. GM Core, XP Awards: "each character gains XP equal to the total XP
+of the creatures and hazards in the encounter (this excludes XP adjustments for
+different party sizes)"; Party Size: "the XP awards don't change—always award
+the amount of XP listed for a group of four characters." So the award is the
+plain sum of creature XP, identical whether three or four players are at the
+table. Party size changes the budget, and therefore the rating — which is
+exactly why the two badges can disagree while the XP does not.
 
 The rating counts **every creature added to the encounter, including defeated
 ones**, since that is the XP budget actually spent. Defeated creatures grey out
@@ -239,9 +260,78 @@ Flanking, flanked and any other position-relative state are **manual toggles**
 on a combatant, because position lives on the physical board. Toggling flanked
 applies off-guard through the normal condition path.
 
+## Applying damage, healing and conditions
+
+Damage is an interaction with **whichever combatant was hit**, not with the one
+whose turn it is — players act on their own turns and hit whoever they choose.
+So damage, healing and condition entry live on the **combatant rows**, not in a
+bar tied to the active creature.
+
+Hovering a row opens a popover anchored to its right. It stays open while the
+pointer is inside it, so the GM can pick a damage type and then type a number
+without it closing. It carries: damage amount, Damage and Heal, add-condition,
+a Flanked toggle, and a link to the full stat block.
+
+### Damage type is shown only when it changes the result
+
+The type selector appears **only when the target has damage-type immunities,
+weaknesses or resistances**, and then lists **only the types that creature
+actually cares about**, each labelled with its value. A creature with none gets
+a one-line note instead. `None` (untyped) is the default and **resets after
+every Damage push**, so a later hit cannot silently inherit an earlier type.
+Heal never shows the selector.
+
+The filter keys off *damage-type* entries specifically, not "has IWR": of the
+838 creatures carrying some IWR, many entries are condition immunities —
+disease, paralyzed, unconscious — that a damage type cannot affect.
+
+## Turn prompts
+
+Every timed effect fires as a prompt that states **the computation to perform**,
+not merely the condition's name. A dying creature does not prompt "make a
+recovery check"; it prompts `1d20 flat vs DC 12`, shows the derivation
+`DC 10 + dying 2 = 12`, and lists what each of the four outcomes does.
+
+Prompts are split by PF2's actual timing, which is not uniform:
+
+- **Start of turn** — slowed and stunned reduce the action pool; fast healing
+  and regeneration; dying recovery checks; reaction refresh.
+- **End of turn** — persistent damage (roll, then the DC 15 flat check to end
+  it) and frightened decrementing. These queue visibly during the turn and
+  prompt when the GM presses Next.
+
+Treating everything as start-of-turn would apply persistent damage a full turn
+early, every turn.
+
+## Targeting and the roll assistant
+
+A combatant may be selected as the **target**. With a target set, every action
+and Strike on the active creature resolves to the die face the GM needs:
+
+- A **modifier ledger** showing each contribution and its source — base attack
+  bonus, status penalties, circumstance bonuses, MAP — so the number is
+  auditable rather than magic.
+- The **roll**: `1d20 + N` against the target's AC or save DC.
+- An **outcome ladder**: critical hit, hit, miss, critical miss, each as a die
+  range, with the damage dice to roll for that outcome.
+
+Two rules that are easy to fumble at the table and must be folded in
+automatically: only the **worst status penalty of a type applies**, so sickened
+1 alongside frightened 2 is −1 and not −3; and a **natural 20 raises the degree
+one step** (natural 1 lowers it), which changes where the critical band starts.
+
+The assistant's purpose is that the GM reads one line, picks up the stated dice,
+and rolls — with no arithmetic at the table.
+
 ## Action economy
 
 The action pool is 3, adjusted by slowed, stunned and quickened.
+
+**Strikes made this turn are tracked**, driving the multiple attack penalty.
+Each Strike row shows its full MAP ladder with the applicable bonus highlighted
+and spent ones struck through — a Longsword at +15 reads `+15 / +10 / +5` with
+`+10` active after one Strike — so the GM reads the number rather than deriving
+it. The counter is resettable for miscounts and clears when the turn ends.
 
 The pool is an **indicator, never a blocker**:
 
@@ -258,6 +348,10 @@ of the action list, so limited-use abilities are more likely to be used.
 Each combatant has one reaction per round, refreshed at the start of their
 turn. `<ReactionWatch>` highlights combatants with an unspent reaction and
 displays the trigger text extracted by the data pipeline.
+
+The reaction list **scrolls independently** of the rest of the turn manager: in
+a large encounter it grows past the panel, and the round counter, action pips
+and Next button must stay put.
 
 ## Persistence
 

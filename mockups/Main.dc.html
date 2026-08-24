@@ -1,0 +1,463 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: oklch(0.70 0.15 55); } a:hover { color: oklch(0.80 0.15 55); }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; display: flex; flex-direction: column; background: oklch(0.16 0.012 60); color: oklch(0.92 0.01 80); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 14px;">
+
+  <!-- ================= TOP BAR ================= -->
+  <div style="display: flex; align-items: center; gap: 24px; padding: 0 20px; height: 56px; border-bottom: 1px solid oklch(0.30 0.015 60); background: oklch(0.19 0.013 60); flex-shrink: 0;">
+    <div style="font-family: Spectral, Georgia, serif; font-size: 19px; font-weight: 600; letter-spacing: 0.01em;">The Stag Lord&rsquo;s Fort</div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div title="Each character gains the encounter's full XP — party size does not change the award" style="display: flex; align-items: baseline; gap: 5px; padding: 3px 11px 4px; border-radius: 3px; background: oklch(0.28 0.035 145); border: 1px solid oklch(0.42 0.07 145);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; color: oklch(0.92 0.06 150);">160</span>
+        <span style="font-size: 10.5px; letter-spacing: 0.06em; color: oklch(0.80 0.05 150);">XP each</span>
+      </div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 3px; background: oklch(0.32 0.09 55); color: oklch(0.88 0.10 60); border: 1px solid oklch(0.45 0.11 55);">EXTREME &middot; party of 4</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 3px; background: oklch(0.30 0.12 25); color: oklch(0.88 0.12 30); border: 1px solid oklch(0.46 0.15 25);">OVER EXTREME &middot; 3 present</span>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: oklch(0.68 0.012 75);">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+      <span>3 of 4 present</span>
+      <span style="color: oklch(0.42 0.012 75);">&mdash;</span>
+      <span>party level 4</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-grow: 1; min-height: 0;">
+
+    <!-- ================= LEFT: COMBATANT LIST ================= -->
+    <div style="width: 340px; flex-shrink: 0; border-right: 1px solid oklch(0.30 0.015 60); display: flex; flex-direction: column; background: oklch(0.175 0.012 60); position: relative;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px 10px;">
+        <div style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.62 0.012 75);">Initiative</div>
+        <div style="display: flex; gap: 6px;">
+          <button style="font-family: inherit; font-size: 12px; padding: 4px 9px; border-radius: 3px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.24 0.014 60); color: oklch(0.86 0.01 80); cursor: pointer;">+ Add</button>
+          <button style="font-family: inherit; font-size: 12px; padding: 4px 9px; border-radius: 3px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.24 0.014 60); color: oklch(0.86 0.01 80); cursor: pointer;">Group</button>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 3px; padding: 0 8px 12px; overflow: hidden;">
+
+        <!-- PC row -->
+        <div style="display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 4px; border-left: 3px solid oklch(0.55 0.10 240); background: oklch(0.21 0.013 60);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; width: 24px; text-align: right; color: oklch(0.72 0.012 75);">22</div>
+          <div style="flex-grow: 1; min-width: 0;">
+            <div style="display: flex; align-items: baseline; gap: 6px;">
+              <span style="font-weight: 500;">Valeria</span>
+              <span style="font-size: 11px; color: oklch(0.60 0.012 75);">PC 4</span>
+            </div>
+            <div style="display: flex; gap: 4px; margin-top: 4px;">
+              <span style="font-size: 10px; letter-spacing: 0.04em; padding: 1px 5px; border-radius: 2px; background: oklch(0.32 0.07 300); color: oklch(0.85 0.07 300);">FRIGHTENED 1</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.52 0.012 75);">
+            <span>&mdash;</span><span>&mdash;</span>
+          </div>
+        </div>
+
+        <!-- ACTIVE: Stag Lord -->
+        <div style="display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 4px; border-left: 3px solid oklch(0.70 0.15 55); background: oklch(0.27 0.030 55); box-shadow: 0 0 0 1px oklch(0.44 0.08 55);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; width: 24px; text-align: right; color: oklch(0.86 0.12 60);">19</div>
+          <div style="flex-grow: 1; min-width: 0;">
+            <div style="display: flex; align-items: baseline; gap: 6px;">
+              <span style="font-weight: 600;">The Stag Lord</span>
+              <span style="font-size: 11px; color: oklch(0.70 0.05 60);">6</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 5px;">
+              <div style="flex-grow: 1; height: 5px; border-radius: 3px; background: oklch(0.28 0.02 30); overflow: hidden;">
+                <div style="width: 71%; height: 100%; background: oklch(0.62 0.16 28);"></div>
+              </div>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.80 0.06 40);">78/110</span>
+            </div>
+            <div style="display: flex; gap: 4px; margin-top: 5px;">
+              <span style="font-size: 10px; letter-spacing: 0.04em; padding: 1px 5px; border-radius: 2px; background: oklch(0.34 0.08 140); color: oklch(0.86 0.09 140);">SICKENED 1</span>
+              <span style="font-size: 10px; letter-spacing: 0.04em; padding: 1px 5px; border-radius: 2px; background: oklch(0.34 0.07 300); color: oklch(0.86 0.07 300);">OFF-GUARD</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 11px;">
+            <span style="color: oklch(0.86 0.01 80);">AC 23</span>
+            <span style="color: oklch(0.62 0.012 75); letter-spacing: -0.01em;">15 / 16 / 9</span>
+          </div>
+        </div>
+
+        <!-- MIXED GROUP header -->
+        <div style="margin-top: 4px; display: flex; align-items: center; gap: 8px; padding: 6px 10px 5px; border-radius: 4px 4px 0 0; background: oklch(0.22 0.020 200); border-left: 3px solid oklch(0.52 0.09 200);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; width: 24px; text-align: right; color: oklch(0.74 0.04 200);">15</div>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="oklch(0.70 0.06 200)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.03em; color: oklch(0.84 0.05 200);">GATE WATCH</span>
+          <div style="flex-grow: 1;"></div>
+          <span style="font-size: 10.5px; color: oklch(0.68 0.03 200);">4 combatants &middot; 3 kinds</span>
+        </div>
+
+        <!-- grouped members: deliberately MIXED creature types, each with its own stats -->
+        <div style="display: flex; flex-direction: column; gap: 2px; padding-left: 16px; border-left: 3px solid oklch(0.34 0.04 200); margin-left: 0;">
+
+          <div style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 3px; background: oklch(0.205 0.014 200);">
+            <div style="flex-grow: 1; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 5px;">
+                <span style="font-size: 13px; font-weight: 500;">Akiros Ismort</span>
+                <span style="font-size: 10.5px; color: oklch(0.58 0.012 75);">3</span>
+                <span title="unspent reaction" style="display: inline-flex; align-items: center; gap: 3px; font-size: 9.5px; letter-spacing: 0.05em; padding: 1px 4px; border-radius: 2px; background: oklch(0.33 0.09 200); color: oklch(0.86 0.10 200);">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                  RXN
+                </span>
+              </div>
+            </div>
+            <div style="width: 46px; height: 4px; border-radius: 2px; background: oklch(0.26 0.02 30); overflow: hidden;"><div style="width: 100%; height: 100%; background: oklch(0.60 0.15 145);"></div></div>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.70 0.012 75); width: 42px; text-align: right;">53/53</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75); width: 34px; text-align: right;">AC 18</span>
+          </div>
+
+          <!-- HOVERED row: popover opens to the right and stays while the pointer is inside it -->
+          <div style="position: relative; display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 3px; background: oklch(0.27 0.020 200); box-shadow: inset 0 0 0 1px oklch(0.48 0.07 200);">
+            <div style="flex-grow: 1; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 5px;">
+                <span style="font-size: 13px; font-weight: 500;">Dovan from Nisroch</span>
+                <span style="font-size: 10.5px; color: oklch(0.58 0.012 75);">2</span>
+              </div>
+              <div style="display: flex; gap: 4px; margin-top: 4px;">
+                <span style="font-size: 9.5px; letter-spacing: 0.04em; padding: 1px 4px; border-radius: 2px; background: oklch(0.32 0.07 300); color: oklch(0.85 0.07 300);">FRIGHTENED 2</span>
+              </div>
+            </div>
+            <div style="width: 46px; height: 4px; border-radius: 2px; background: oklch(0.26 0.02 30); overflow: hidden;"><div style="width: 60%; height: 100%; background: oklch(0.62 0.16 60);"></div></div>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.70 0.012 75); width: 42px; text-align: right;">18/30</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75); width: 34px; text-align: right;">AC 18</span>
+
+            <!-- ===== hover popover ===== -->
+            <div style="position: absolute; top: -8px; left: calc(100% + 10px); width: 330px; z-index: 20; padding: 12px 13px 13px; border-radius: 5px; background: oklch(0.235 0.016 60); border: 1px solid oklch(0.46 0.05 200); box-shadow: 0 12px 32px oklch(0.08 0.01 60 / 0.6); display: flex; flex-direction: column; gap: 10px;">
+              <!-- pointer -->
+              <div style="position: absolute; left: -6px; top: 20px; width: 10px; height: 10px; transform: rotate(45deg); background: oklch(0.235 0.016 60); border-left: 1px solid oklch(0.46 0.05 200); border-bottom: 1px solid oklch(0.46 0.05 200);"></div>
+
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <span style="font-size: 13px; font-weight: 600;">Dovan from Nisroch</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: oklch(0.70 0.012 75);">18/30</span>
+                <div style="flex-grow: 1;"></div>
+                <span style="font-size: 10px; letter-spacing: 0.05em; color: oklch(0.58 0.012 75);">NOT THEIR TURN</span>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 7px; padding: 7px 9px; border-radius: 3px; background: oklch(0.19 0.012 60); border: 1px solid oklch(0.28 0.015 60);">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="oklch(0.62 0.012 75)" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <span style="font-size: 11.5px; color: oklch(0.68 0.012 75);">No immunities, weaknesses or resistances &mdash; damage type is irrelevant here.</span>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 7px;">
+                <input value="14" style="width: 62px; font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; text-align: center; padding: 8px 6px; border-radius: 3px; border: 1px solid oklch(0.46 0.05 200); background: oklch(0.15 0.012 60); color: oklch(0.92 0.01 80);">
+                <button style="font-family: inherit; flex-grow: 1; font-size: 13px; font-weight: 600; padding: 9px 10px; border-radius: 3px; border: 1px solid oklch(0.48 0.14 28); background: oklch(0.34 0.11 28); color: oklch(0.93 0.06 35); cursor: pointer;">Damage</button>
+                <button style="font-family: inherit; flex-grow: 1; font-size: 13px; font-weight: 600; padding: 9px 10px; border-radius: 3px; border: 1px solid oklch(0.42 0.11 145); background: oklch(0.28 0.08 145); color: oklch(0.90 0.07 145); cursor: pointer;">Heal</button>
+              </div>
+
+              <div style="display: flex; gap: 6px;">
+                <button style="font-family: inherit; flex-grow: 1; font-size: 12px; padding: 7px 10px; border-radius: 3px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.20 0.013 60); color: oklch(0.86 0.01 80); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                  Condition
+                </button>
+                <button style="font-family: inherit; font-size: 12px; padding: 7px 10px; border-radius: 3px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.20 0.013 60); color: oklch(0.86 0.01 80); cursor: pointer;">Flanked</button>
+                <button style="font-family: inherit; font-size: 12px; padding: 7px 10px; border-radius: 3px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.20 0.013 60); color: oklch(0.80 0.012 75); cursor: pointer;">Stat block</button>
+              </div>
+
+              <div style="font-size: 11px; line-height: 1.45; color: oklch(0.62 0.012 75); border-top: 1px solid oklch(0.30 0.015 60); padding-top: 8px;">
+                Stays open while the pointer is inside, so you can pick a type, then type the number.
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 3px; background: oklch(0.205 0.014 200);">
+            <div style="flex-grow: 1; min-width: 0; display: flex; align-items: baseline; gap: 5px;">
+              <span style="font-size: 13px;">Stag Lord Bandit</span>
+              <span style="font-size: 10.5px; color: oklch(0.55 0.012 75);">1</span>
+            </div>
+            <div style="width: 46px; height: 4px; border-radius: 2px; background: oklch(0.26 0.02 30); overflow: hidden;"><div style="width: 44%; height: 100%; background: oklch(0.62 0.16 60);"></div></div>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.70 0.012 75); width: 42px; text-align: right;">7/16</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75); width: 34px; text-align: right;">AC 15</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 0 0 3px 3px; background: oklch(0.205 0.014 200); opacity: 0.42;">
+            <div style="flex-grow: 1; min-width: 0; display: flex; align-items: baseline; gap: 5px;">
+              <span style="font-size: 13px; text-decoration: line-through;">Stag Lord Bandit</span>
+              <span style="font-size: 10.5px; color: oklch(0.55 0.012 75);">2</span>
+            </div>
+            <span style="font-size: 9.5px; letter-spacing: 0.06em; color: oklch(0.62 0.012 75);">DEFEATED</span>
+          </div>
+        </div>
+
+        <!-- PC -->
+        <div style="margin-top: 4px; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 4px; border-left: 3px solid oklch(0.55 0.10 240); background: oklch(0.21 0.013 60);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; width: 24px; text-align: right; color: oklch(0.72 0.012 75);">12</div>
+          <div style="flex-grow: 1; min-width: 0; display: flex; align-items: baseline; gap: 6px;">
+            <span style="font-weight: 500;">Bran</span>
+            <span style="font-size: 11px; color: oklch(0.60 0.012 75);">PC 4</span>
+          </div>
+          <div style="display: flex; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.52 0.012 75);">
+            <span>&mdash;</span><span>&mdash;</span>
+          </div>
+        </div>
+
+        <!-- second group, ungrouped singleton for contrast -->
+        <div style="display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 4px; border-left: 3px solid oklch(0.38 0.015 60); background: oklch(0.21 0.013 60);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; width: 24px; text-align: right; color: oklch(0.72 0.012 75);">11</div>
+          <div style="flex-grow: 1; min-width: 0;">
+            <div style="display: flex; align-items: baseline; gap: 6px;">
+              <span style="font-weight: 500;">Stag Lord Bandit</span>
+              <span style="font-size: 11px; color: oklch(0.60 0.012 75);">3 &middot; ungrouped</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 5px;">
+              <div style="flex-grow: 1; height: 5px; border-radius: 3px; background: oklch(0.28 0.02 30); overflow: hidden;"><div style="width: 100%; height: 100%; background: oklch(0.60 0.15 145);"></div></div>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.70 0.012 75);">16/16</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 11px;">
+            <span style="color: oklch(0.86 0.01 80);">AC 15</span>
+            <span style="color: oklch(0.62 0.012 75); letter-spacing: -0.01em;">6 / 7 / 4</span>
+          </div>
+        </div>
+
+        <!-- absent PC, greyed -->
+        <div style="display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 4px; border-left: 3px solid oklch(0.30 0.015 60); background: oklch(0.185 0.012 60); opacity: 0.5;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; width: 24px; text-align: right; color: oklch(0.60 0.012 75);">8</div>
+          <div style="flex-grow: 1; min-width: 0; display: flex; align-items: baseline; gap: 6px;">
+            <span style="font-weight: 500;">Kesten</span>
+            <span style="font-size: 11px; color: oklch(0.58 0.012 75);">PC 5 &middot; absent</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= CENTRE: ACTIVE COMBATANT ================= -->
+    <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden;">
+
+      <!-- stat block header -->
+      <div style="padding: 18px 24px 14px; border-bottom: 1px solid oklch(0.28 0.015 60);">
+        <div style="display: flex; align-items: baseline; gap: 12px;">
+          <h1 style="margin: 0; font-family: Spectral, Georgia, serif; font-size: 28px; font-weight: 600; letter-spacing: 0.005em;">The Stag Lord</h1>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600; color: oklch(0.78 0.13 60);">Creature 6</span>
+          <div style="flex-grow: 1;"></div>
+          <span style="font-size: 11px; color: oklch(0.58 0.012 75);">Pathfinder Kingmaker &middot; legacy</span>
+        </div>
+        <div style="display: flex; gap: 5px; margin-top: 10px;">
+          <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.07em; padding: 3px 7px; border-radius: 2px; background: oklch(0.40 0.13 30); color: oklch(0.93 0.05 40);">UNIQUE</span>
+          <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.07em; padding: 3px 7px; border-radius: 2px; background: oklch(0.30 0.015 60); color: oklch(0.80 0.012 75); border: 1px solid oklch(0.38 0.015 60);">MEDIUM</span>
+          <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.07em; padding: 3px 7px; border-radius: 2px; background: oklch(0.30 0.015 60); color: oklch(0.80 0.012 75); border: 1px solid oklch(0.38 0.015 60);">HUMAN</span>
+          <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.07em; padding: 3px 7px; border-radius: 2px; background: oklch(0.30 0.015 60); color: oklch(0.80 0.012 75); border: 1px solid oklch(0.38 0.015 60);">HUMANOID</span>
+        </div>
+      </div>
+
+      <!-- defenses strip -->
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: oklch(0.28 0.015 60); border-bottom: 1px solid oklch(0.28 0.015 60);">
+        <div style="padding: 12px 16px; background: oklch(0.19 0.013 60);">
+          <div style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.60 0.012 75);">AC</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 600; margin-top: 3px;">23</div>
+        </div>
+        <div style="padding: 12px 16px; background: oklch(0.19 0.013 60);">
+          <div style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.60 0.012 75);">HIT POINTS</div>
+          <div style="display: flex; align-items: baseline; gap: 5px; margin-top: 3px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 600; color: oklch(0.82 0.11 40);">78</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: oklch(0.58 0.012 75);">/ 110</span>
+          </div>
+        </div>
+        <div style="padding: 12px 16px; background: oklch(0.19 0.013 60);">
+          <div style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.60 0.012 75);">FORTITUDE</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 600; margin-top: 3px;">+15</div>
+        </div>
+        <div style="padding: 12px 16px; background: oklch(0.19 0.013 60);">
+          <div style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.60 0.012 75);">REFLEX</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 600; margin-top: 3px;">+16</div>
+        </div>
+        <div style="padding: 12px 16px; background: oklch(0.19 0.013 60);">
+          <div style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.60 0.012 75);">WILL</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 600; margin-top: 3px;">+9</div>
+        </div>
+      </div>
+
+      <!-- scroll body -->
+      <div style="flex-grow: 1; min-height: 0; overflow: hidden; padding: 16px 24px; display: flex; flex-direction: column; gap: 18px;">
+
+        <!-- attacks -->
+        <div>
+          <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;">
+            <div style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.62 0.012 75);">Strikes</div>
+            <div style="display: flex; align-items: center; gap: 7px; padding: 2px 8px 3px; border-radius: 3px; background: oklch(0.30 0.05 55); border: 1px solid oklch(0.44 0.08 55);">
+              <span style="font-size: 10px; letter-spacing: 0.07em; color: oklch(0.78 0.06 60);">STRIKES THIS TURN</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: oklch(0.90 0.10 65);">1</span>
+              <span style="font-size: 11px; color: oklch(0.74 0.05 60);">&rarr; next at &minus;5</span>
+            </div>
+            <button style="font-family: inherit; font-size: 11px; padding: 2px 8px; border-radius: 3px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.23 0.014 60); color: oklch(0.74 0.012 75); cursor: pointer;">reset</button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+
+            <div style="display: flex; align-items: center; gap: 14px; padding: 10px 14px; border-radius: 4px; background: oklch(0.21 0.013 60); border: 1px solid oklch(0.28 0.015 60);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.72 0.012 75)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="m13 19 6-6"/><path d="m16 16 4 4"/></svg>
+              <span style="font-weight: 500; width: 150px;">Longsword</span>
+              <!-- MAP ladder: the applicable bonus is the highlighted one -->
+              <div style="display: flex; gap: 3px;">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 3px 8px; border-radius: 3px; color: oklch(0.50 0.012 75); background: oklch(0.185 0.012 60); text-decoration: line-through;">+15</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; padding: 2px 10px; border-radius: 3px; color: oklch(0.94 0.09 65); background: oklch(0.38 0.10 55); border: 1px solid oklch(0.54 0.13 55);">+10</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 3px 8px; border-radius: 3px; color: oklch(0.58 0.012 75); background: oklch(0.185 0.012 60);">+5</span>
+              </div>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.78 0.012 75);">1d8+5 slashing</span>
+              <div style="flex-grow: 1;"></div>
+              <span style="font-size: 10px; letter-spacing: 0.05em; padding: 2px 6px; border-radius: 2px; background: oklch(0.28 0.015 60); color: oklch(0.72 0.012 75);">VERSATILE P</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 14px; padding: 10px 14px; border-radius: 4px; background: oklch(0.21 0.013 60); border: 1px solid oklch(0.28 0.015 60);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.72 0.012 75)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3v18"/><path d="M17 12H7"/><path d="m10 9-3 3 3 3"/></svg>
+              <span style="font-weight: 500; width: 150px;">Composite Longbow</span>
+              <div style="display: flex; gap: 3px;">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 3px 8px; border-radius: 3px; color: oklch(0.50 0.012 75); background: oklch(0.185 0.012 60); text-decoration: line-through;">+17</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; padding: 2px 10px; border-radius: 3px; color: oklch(0.94 0.09 65); background: oklch(0.38 0.10 55); border: 1px solid oklch(0.54 0.13 55);">+12</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 3px 8px; border-radius: 3px; color: oklch(0.58 0.012 75); background: oklch(0.185 0.012 60);">+7</span>
+              </div>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.78 0.012 75);">1d8+5 piercing</span>
+              <div style="flex-grow: 1;"></div>
+              <span style="font-size: 10px; letter-spacing: 0.05em; padding: 2px 6px; border-radius: 2px; background: oklch(0.28 0.015 60); color: oklch(0.72 0.012 75);">DEADLY D10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- actions -->
+        <div>
+          <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;">
+            <div style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.62 0.012 75);">Actions</div>
+            <div style="font-size: 11px; color: oklch(0.52 0.012 75);">limited use first &middot; unaffordable dimmed</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+
+            <!-- affordable 1-action -->
+            <div style="padding: 11px 14px; border-radius: 4px; background: oklch(0.22 0.014 60); border: 1px solid oklch(0.32 0.02 60); cursor: pointer;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="display: flex; gap: 3px;">
+                  <svg width="11" height="11" viewBox="0 0 12 12"><path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="oklch(0.80 0.14 60)"/></svg>
+                </div>
+                <span style="font-weight: 600;">Hunt Prey</span>
+                <span style="font-size: 10px; letter-spacing: 0.05em; padding: 2px 6px; border-radius: 2px; background: oklch(0.28 0.015 60); color: oklch(0.72 0.012 75);">CONCENTRATE</span>
+              </div>
+              <div style="margin-top: 6px; font-size: 12.5px; line-height: 1.5; color: oklch(0.76 0.012 75);">Designate a creature as prey. +2 circumstance to Seek and Track it, and ignore the range-increment penalty against it.</div>
+            </div>
+
+            <!-- unaffordable 2-action, dimmed -->
+            <div style="padding: 11px 14px; border-radius: 4px; background: oklch(0.185 0.012 60); border: 1px dashed oklch(0.30 0.015 60); opacity: 0.45;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="display: flex; gap: 3px;">
+                  <svg width="11" height="11" viewBox="0 0 12 12"><path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="oklch(0.62 0.012 75)"/></svg>
+                  <svg width="11" height="11" viewBox="0 0 12 12"><path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="oklch(0.62 0.012 75)"/></svg>
+                </div>
+                <span style="font-weight: 600;">Unfair Aim</span>
+                <span style="font-size: 10px; letter-spacing: 0.06em; color: oklch(0.66 0.012 75);">NEEDS 2 &mdash; 1 LEFT</span>
+              </div>
+              <div style="margin-top: 6px; font-size: 12.5px; line-height: 1.5; color: oklch(0.70 0.012 75);">Line up a shot and Strike hunted prey, treating the target as Off-Guard.</div>
+            </div>
+
+            <!-- passives -->
+            <div style="display: flex; gap: 6px;">
+              <div style="flex-grow: 1; padding: 9px 12px; border-radius: 4px; background: oklch(0.19 0.013 60); border: 1px solid oklch(0.26 0.015 60);">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 10px; letter-spacing: 0.07em; color: oklch(0.58 0.012 75);">PASSIVE</span>
+                  <span style="font-weight: 500; font-size: 13px;">Sneak Attack</span>
+                </div>
+                <div style="margin-top: 4px; font-size: 12px; color: oklch(0.72 0.012 75);">2d6 extra precision vs Off-Guard.</div>
+              </div>
+              <div style="flex-grow: 1; padding: 9px 12px; border-radius: 4px; background: oklch(0.19 0.013 60); border: 1px solid oklch(0.26 0.015 60);">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 10px; letter-spacing: 0.07em; color: oklch(0.58 0.012 75);">PASSIVE</span>
+                  <span style="font-weight: 500; font-size: 13px;">Dread Striker</span>
+                </div>
+                <div style="margin-top: 4px; font-size: 12px; color: oklch(0.72 0.012 75);">Frightened creatures are Off-Guard to him.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- bottom action bar -->
+      <div style="display: flex; align-items: center; gap: 10px; padding: 11px 24px; border-top: 1px solid oklch(0.30 0.015 60); background: oklch(0.20 0.013 60); flex-shrink: 0;">
+        <span style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.60 0.012 75);">The Stag Lord</span>
+        <button style="font-family: inherit; font-size: 13px; padding: 8px 13px; border-radius: 3px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.25 0.014 60); color: oklch(0.88 0.01 80); cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Condition
+        </button>
+        <label style="display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: oklch(0.78 0.012 75); cursor: pointer;">
+          <span style="width: 34px; height: 19px; border-radius: 10px; background: oklch(0.48 0.11 300); position: relative; display: inline-block;">
+            <span style="position: absolute; top: 2px; left: 17px; width: 15px; height: 15px; border-radius: 50%; background: oklch(0.95 0.01 80);"></span>
+          </span>
+          Flanked
+        </label>
+        <div style="flex-grow: 1;"></div>
+        <span style="font-size: 11.5px; color: oklch(0.58 0.012 75);">Damage and healing live on each combatant row &mdash; hover one in the list.</span>
+      </div>
+    </div>
+    <!-- ================= RIGHT: TURN MANAGER ================= -->
+    <div style="width: 250px; flex-shrink: 0; border-left: 1px solid oklch(0.30 0.015 60); background: oklch(0.185 0.012 60); display: flex; flex-direction: column; padding: 16px 14px; gap: 16px;">
+
+      <div style="text-align: center;">
+        <div style="font-size: 10px; letter-spacing: 0.12em; color: oklch(0.58 0.012 75);">ROUND</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 40px; font-weight: 600; line-height: 1.05; margin-top: 2px;">3</div>
+      </div>
+
+      <div>
+        <div style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.58 0.012 75); margin-bottom: 8px;">ACTIONS REMAINING</div>
+        <div style="display: flex; gap: 8px; justify-content: center;">
+          <svg width="30" height="30" viewBox="0 0 12 12"><path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="oklch(0.80 0.14 60)"/></svg>
+          <svg width="30" height="30" viewBox="0 0 12 12"><path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="none" stroke="oklch(0.40 0.02 60)" stroke-width="1.1"/></svg>
+          <svg width="30" height="30" viewBox="0 0 12 12"><path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="none" stroke="oklch(0.40 0.02 60)" stroke-width="1.1"/></svg>
+        </div>
+        <div style="text-align: center; margin-top: 8px; font-size: 11px; color: oklch(0.62 0.012 75);">1 of 3 left</div>
+      </div>
+
+      <button style="font-family: inherit; width: 100%; padding: 22px 12px; border-radius: 5px; border: 1px solid oklch(0.42 0.015 60); background: oklch(0.26 0.014 60); color: oklch(0.88 0.01 80); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <span style="font-size: 15px; font-weight: 600; letter-spacing: 0.02em;">Next combatant</span>
+        <span style="font-size: 11.5px; color: oklch(0.64 0.012 75);">Gate Watch &middot; 4 in one turn &middot; init 15</span>
+      </button>
+
+      <!-- reactions scroll independently; everything above stays put -->
+      <div style="flex-grow: 1; min-height: 0; display: flex; flex-direction: column; border-top: 1px solid oklch(0.28 0.015 60); padding-top: 12px;">
+        <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 9px; flex-shrink: 0;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="oklch(0.72 0.11 200)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          <span style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.70 0.09 200);">REACTIONS READY</span>
+          <div style="flex-grow: 1;"></div>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.012 75);">5</span>
+        </div>
+
+        <div style="flex-grow: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 7px; padding-right: 4px;">
+          <div style="padding: 9px 10px; border-radius: 4px; background: oklch(0.22 0.025 200); border: 1px solid oklch(0.32 0.05 200); flex-shrink: 0;">
+            <div style="font-size: 12.5px; font-weight: 600;">Akiros Ismort</div>
+            <div style="font-size: 12px; color: oklch(0.80 0.05 200); margin-top: 2px;">No Escape</div>
+            <div style="font-size: 11.5px; line-height: 1.45; color: oklch(0.72 0.02 200); margin-top: 4px;"><span style="font-weight: 600;">Trigger</span> An adjacent foe moves away.</div>
+          </div>
+          <div style="padding: 9px 10px; border-radius: 4px; background: oklch(0.20 0.013 60); border: 1px solid oklch(0.28 0.015 60); flex-shrink: 0;">
+            <div style="font-size: 12.5px; font-weight: 600; color: oklch(0.82 0.012 75);">Dovan from Nisroch</div>
+            <div style="font-size: 12px; color: oklch(0.70 0.012 75); margin-top: 2px;">Attack of Opportunity</div>
+            <div style="font-size: 11.5px; line-height: 1.45; color: oklch(0.64 0.012 75); margin-top: 4px;"><span style="font-weight: 600;">Trigger</span> A creature within reach uses a manipulate or move action, makes a ranged attack, or leaves a square.</div>
+          </div>
+          <div style="padding: 9px 10px; border-radius: 4px; background: oklch(0.20 0.013 60); border: 1px solid oklch(0.28 0.015 60); flex-shrink: 0;">
+            <div style="font-size: 12.5px; font-weight: 600; color: oklch(0.82 0.012 75);">Stag Lord Bandit 1</div>
+            <div style="font-size: 12px; color: oklch(0.70 0.012 75); margin-top: 2px;">Attack of Opportunity</div>
+            <div style="font-size: 11.5px; line-height: 1.45; color: oklch(0.64 0.012 75); margin-top: 4px;"><span style="font-weight: 600;">Trigger</span> A creature within reach uses a manipulate or move action, makes a ranged attack, or leaves a square.</div>
+          </div>
+          <div style="padding: 9px 10px; border-radius: 4px; background: oklch(0.20 0.013 60); border: 1px solid oklch(0.28 0.015 60); flex-shrink: 0;">
+            <div style="font-size: 12.5px; font-weight: 600; color: oklch(0.82 0.012 75);">Stag Lord Bandit 3</div>
+            <div style="font-size: 12px; color: oklch(0.70 0.012 75); margin-top: 2px;">Attack of Opportunity</div>
+            <div style="font-size: 11.5px; line-height: 1.45; color: oklch(0.64 0.012 75); margin-top: 4px;"><span style="font-weight: 600;">Trigger</span> A creature within reach uses a manipulate or move action&hellip;</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

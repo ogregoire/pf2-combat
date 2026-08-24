@@ -1,0 +1,99 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "Combat screen \u2014 direction A (dark)"
+    },
+    {
+      "file": "DirectionLight.dc.html",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "Combat screen \u2014 direction B (light, table-dense)"
+    },
+    {
+      "file": "AddCombatants.dc.html",
+      "x": 0,
+      "y": 1080,
+      "w": 1080,
+      "h": 820,
+      "title": "Add combatants (mid-combat)"
+    },
+    {
+      "file": "GroupBuilder.dc.html",
+      "x": 1200,
+      "y": 1080,
+      "w": 1080,
+      "h": 760,
+      "title": "Group builder"
+    },
+    {
+      "file": "DamagePopover.dc.html",
+      "x": 2400,
+      "y": 1080,
+      "w": 1000,
+      "h": 640,
+      "title": "Damage popover \u2014 type row only when it matters"
+    },
+    {
+      "file": "TurnAssistant.dc.html",
+      "x": 0,
+      "y": 2000,
+      "w": 1240,
+      "h": 1000,
+      "title": "Turn start prompts & roll assistant"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "direction-note",
+      "x": 0,
+      "y": -190,
+      "w": 700,
+      "text": "Two directions for the same screen \u2014 pick one before I plan phase 1.\n\nA (dark): built for a dim table. Warm near-black, ember accent, generous rows, HP bars. Easier to glance at, costs vertical space.\n\nB (light, table-dense): a printed stat-block feel. Hard rules, tabular numbers, ~40% more combatants visible without scrolling. Harsher in low light."
+    },
+    {
+      "id": "shared-note",
+      "x": 760,
+      "y": -190,
+      "w": 620,
+      "text": "Shared by both, and not up for debate unless you say so:\n\n\u00b7 Left = initiative, centre = active creature, right = turn manager\n\u00b7 Groups are HETEROGENEOUS \u2014 \"Gate Watch\" is Akiros + Dovan + 2 bandits, three different creatures on one initiative, each keeping its own HP, AC, saves and conditions\n\u00b7 A creature can sit outside any group (bandit 3, init 11)\n\u00b7 Unaffordable actions dim but stay visible \u2014 indicator, not blocker\n\u00b7 Reactions surface with their trigger text\n\u00b7 Dual difficulty: party-of-4 and actually-present"
+    },
+    {
+      "id": "data-note",
+      "x": 0,
+      "y": 1010,
+      "w": 560,
+      "text": "Every number here is real, read out of data/: Stag Lord AC 23 / HP 110 / +15 +16 +9, Akiros' No Escape trigger, the Troll vs Forest Troll collision case."
+    },
+    {
+      "id": "round4-note",
+      "x": 620,
+      "y": 1010,
+      "w": 640,
+      "text": "This round's additions (direction A only so far):\n\n\u00b7 Damage/heal moved OFF the bottom bar onto each combatant row \u2014 players hit whoever they hit, not whoever's turn it is. Hover a row (Dovan, in the group) and the panel opens to its right; it stays while the pointer is inside it.\n\u00b7 The damage-type row only appears when the creature has damage-type IWR, and lists ONLY the types it cares about \u2014 see the Damage popover artboard. None is the default and resets after every push.\n\u00b7 Strikes-this-turn counter drives the MAP ladder: applicable bonus highlighted, spent ones struck through.\n\u00b7 Reactions scroll on their own; round, pips and Next stay put.\n\u00b7 Encounter XP (160) sits beside both difficulty badges, each showing its budget."
+    },
+    {
+      "id": "xp-rule-note",
+      "x": 1400,
+      "y": 1010,
+      "w": 620,
+      "text": "XP award, checked against the rules rather than assumed:\n\nGM Core, XP Awards \u2014 \"each character gains XP equal to the total XP of the creatures and hazards in the encounter (this excludes XP adjustments for different party sizes)\".\n\nGM Core, Party Size \u2014 \"the XP awards don't change\u2014always award the amount of XP listed for a group of four characters.\"\n\nSo XP per character does NOT depend on how many players show up. 160 each whether 3 or 4 are at the table. Party size changes the BUDGET (how much encounter you should build), which is what the two difficulty badges express \u2014 that is why the ratings differ while the XP does not."
+    },
+    {
+      "id": "assistant-note",
+      "x": 1360,
+      "y": 2000,
+      "w": 640,
+      "text": "Direction A approved \u2014 B is kept for reference only.\n\nTwo new requirements drawn here:\n\n1. Timed effects fire as prompts that state the computation, not just the condition name. Note the split: slowed and recovery checks are START of turn, but persistent damage and frightened tick at the END in PF2 \u2014 so those queue and prompt when you press Next.\n\n2. Every action resolves to a die face. The ledger shows each modifier and why, then the answer: \"1d20+14, 17+ crits, 7-16 hits, nat 1 crit-fails\" with the damage dice for each outcome. Note only the worst status penalty applies \u2014 sickened 1 and frightened 2 do not stack to -3.\n\nTHIS NEEDS YOUR DECISION: computing rolls against a player needs that player's AC and saves. We agreed players are light entries. Valeria's AC 21 above is invented. Four numbers per player, entered once, unlocks the whole 'just pick the dice and roll' workflow."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

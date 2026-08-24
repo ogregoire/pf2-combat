@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: oklch(0.70 0.15 55); } a:hover { color: oklch(0.80 0.15 55); }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1240px; height: 1000px; padding: 24px 26px; background: oklch(0.16 0.012 60); color: oklch(0.92 0.01 80); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 14px; display: flex; flex-direction: column; gap: 18px;">
+
+  <div>
+    <h2 style="margin: 0 0 5px; font-family: Spectral, Georgia, serif; font-size: 22px; font-weight: 600;">Turn start &amp; roll assistant</h2>
+    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: oklch(0.72 0.012 75);">Every timed effect fires as a prompt that states the computation. Every action resolves to the die face you need.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 470px minmax(0, 1fr); gap: 20px; flex-grow: 1; min-height: 0;">
+
+    <!-- ============ LEFT: turn-start prompts ============ -->
+    <div style="display: flex; flex-direction: column; gap: 10px; min-height: 0;">
+
+      <div style="display: flex; align-items: center; gap: 9px; padding: 11px 14px; border-radius: 5px 5px 0 0; background: oklch(0.30 0.045 55); border: 1px solid oklch(0.48 0.09 55); border-bottom: none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.88 0.11 60)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M2 12h4M18 12h4M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/></svg>
+        <span style="font-family: Spectral, Georgia, serif; font-size: 16px; font-weight: 600;">The Stag Lord&rsquo;s turn begins</span>
+        <div style="flex-grow: 1;"></div>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(0.80 0.06 60);">round 4</span>
+      </div>
+
+      <div style="margin-top: -10px; display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 0 0 5px 5px; background: oklch(0.205 0.014 60); border: 1px solid oklch(0.34 0.03 55);">
+
+        <div style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.62 0.012 75);">RESOLVE NOW &mdash; 3 ITEMS</div>
+
+        <!-- slowed: action loss, auto-applied -->
+        <div style="padding: 10px 12px; border-radius: 4px; background: oklch(0.24 0.020 300); border-left: 3px solid oklch(0.58 0.11 300);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.05em; padding: 1px 6px; border-radius: 2px; background: oklch(0.38 0.10 300); color: oklch(0.93 0.06 300);">SLOWED 1</span>
+            <span style="font-size: 12.5px; font-weight: 600;">Lose 1 action this turn</span>
+            <div style="flex-grow: 1;"></div>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(0.84 0.07 300);">3 &rarr; 2</span>
+          </div>
+          <div style="margin-top: 5px; font-size: 12px; color: oklch(0.74 0.02 300);">Applied. Action pips already show 2.</div>
+        </div>
+
+        <!-- regeneration: needs a roll -->
+        <div style="padding: 10px 12px; border-radius: 4px; background: oklch(0.23 0.025 145); border-left: 3px solid oklch(0.55 0.11 145);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.05em; padding: 1px 6px; border-radius: 2px; background: oklch(0.34 0.09 145); color: oklch(0.92 0.06 145);">FAST HEALING 5</span>
+            <span style="font-size: 12.5px; font-weight: 600;">Regain 5 HP</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 9px; margin-top: 7px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.86 0.06 145);">78 &rarr; 83 / 110</span>
+            <div style="flex-grow: 1;"></div>
+            <button style="font-family: inherit; font-size: 11.5px; padding: 5px 11px; border-radius: 3px; border: 1px solid oklch(0.44 0.10 145); background: oklch(0.30 0.08 145); color: oklch(0.92 0.06 145); cursor: pointer;">Apply</button>
+            <button style="font-family: inherit; font-size: 11.5px; padding: 5px 11px; border-radius: 3px; border: 1px solid oklch(0.34 0.015 60); background: oklch(0.22 0.014 60); color: oklch(0.76 0.012 75); cursor: pointer;">Skip</button>
+          </div>
+        </div>
+
+        <!-- dying: recovery check, exact DC computed -->
+        <div style="padding: 10px 12px; border-radius: 4px; background: oklch(0.24 0.030 25); border-left: 3px solid oklch(0.58 0.15 25);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.05em; padding: 1px 6px; border-radius: 2px; background: oklch(0.40 0.14 25); color: oklch(0.95 0.05 30);">DYING 2</span>
+            <span style="font-size: 12.5px; font-weight: 600;">Recovery check</span>
+          </div>
+          <div style="margin-top: 8px; padding: 9px 11px; border-radius: 3px; background: oklch(0.155 0.012 60); border: 1px solid oklch(0.34 0.05 25);">
+            <div style="display: flex; align-items: baseline; gap: 8px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 19px; font-weight: 600; color: oklch(0.92 0.09 35);">1d20</span>
+              <span style="font-size: 12.5px; color: oklch(0.78 0.012 75);">flat check vs</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 19px; font-weight: 600; color: oklch(0.92 0.09 35);">DC 12</span>
+            </div>
+            <div style="margin-top: 6px; font-size: 11.5px; line-height: 1.5; color: oklch(0.70 0.012 75); font-family: 'IBM Plex Mono', monospace;">
+              DC 10 + dying 2 = 12
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; margin-top: 8px; font-size: 11.5px;">
+              <div style="padding: 5px 8px; border-radius: 3px; background: oklch(0.22 0.05 145);"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: oklch(0.86 0.09 145);">22+</span> <span style="color: oklch(0.78 0.03 145);">crit &mdash; dying 0, conscious</span></div>
+              <div style="padding: 5px 8px; border-radius: 3px; background: oklch(0.21 0.03 145);"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: oklch(0.82 0.06 145);">12&ndash;21</span> <span style="color: oklch(0.74 0.02 145);">dying 1</span></div>
+              <div style="padding: 5px 8px; border-radius: 3px; background: oklch(0.21 0.03 30);"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: oklch(0.84 0.08 35);">2&ndash;11</span> <span style="color: oklch(0.76 0.03 35);">dying 3</span></div>
+              <div style="padding: 5px 8px; border-radius: 3px; background: oklch(0.22 0.06 25);"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: oklch(0.86 0.12 28);">nat 1</span> <span style="color: oklch(0.78 0.05 28);">dying 4 &mdash; dead at 4</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end-of-turn preview -->
+      <div style="padding: 11px 13px; border-radius: 5px; background: oklch(0.19 0.013 60); border: 1px dashed oklch(0.36 0.015 60);">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 7px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="oklch(0.66 0.012 75)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.64 0.012 75);">WAITING FOR END OF TURN &mdash; 2 ITEMS</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: oklch(0.76 0.012 75);">
+          <div style="display: flex; gap: 8px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; color: oklch(0.82 0.09 25); width: 92px;">1d6 bleed</span>
+            <span>persistent damage, then DC 15 flat to end it</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; color: oklch(0.80 0.06 300); width: 92px;">frightened</span>
+            <span>2 &rarr; 1 automatically</span>
+          </div>
+        </div>
+        <div style="margin-top: 8px; font-size: 11.5px; line-height: 1.45; color: oklch(0.60 0.012 75);">
+          Persistent damage and frightened tick at the <em>end</em> of the turn in PF2, not the start &mdash; so they queue here and prompt when you press Next.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ RIGHT: roll assistant ============ -->
+    <div style="display: flex; flex-direction: column; gap: 12px; min-height: 0;">
+
+      <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 5px; background: oklch(0.21 0.013 60); border: 1px solid oklch(0.32 0.015 60);">
+        <span style="font-size: 10px; letter-spacing: 0.09em; color: oklch(0.62 0.012 75);">TARGET</span>
+        <span style="font-size: 14px; font-weight: 600;">Valeria</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.84 0.10 60);">AC 21</span>
+        <div style="flex-grow: 1;"></div>
+        <span style="font-size: 11.5px; color: oklch(0.62 0.012 75);">click any combatant to retarget</span>
+      </div>
+
+      <!-- the strike -->
+      <div style="padding: 14px 16px; border-radius: 5px; background: oklch(0.225 0.016 60); border: 1px solid oklch(0.40 0.05 55);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="oklch(0.80 0.10 60)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="m13 19 6-6"/><path d="m16 16 4 4"/></svg>
+          <span style="font-size: 16px; font-weight: 600;">Longsword</span>
+          <span style="font-size: 11px; color: oklch(0.64 0.012 75);">first Strike this turn</span>
+        </div>
+
+        <!-- the modifier ledger -->
+        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;">
+          <div style="display: flex; gap: 10px; padding: 4px 0; color: oklch(0.80 0.012 75);"><span style="width: 46px; text-align: right; font-weight: 600;">+15</span><span style="color: oklch(0.66 0.012 75);">Longsword attack bonus</span></div>
+          <div style="display: flex; gap: 10px; padding: 4px 0; color: oklch(0.84 0.07 300);"><span style="width: 46px; text-align: right; font-weight: 600;">&minus;1</span><span style="color: oklch(0.70 0.03 300);">sickened 1 &mdash; status penalty to all checks</span></div>
+          <div style="display: flex; gap: 10px; padding: 4px 0; color: oklch(0.84 0.07 300);"><span style="width: 46px; text-align: right; font-weight: 600;">&minus;1</span><span style="color: oklch(0.70 0.03 300);">frightened 2 &hellip; <span style="color: oklch(0.60 0.012 75);">worst status penalty only, sickened already counted</span></span></div>
+          <div style="display: flex; gap: 10px; padding: 4px 0; color: oklch(0.55 0.012 75);"><span style="width: 46px; text-align: right;">&minus;0</span><span>MAP &mdash; no Strike made yet</span></div>
+          <div style="display: flex; gap: 10px; padding: 7px 0 0; margin-top: 3px; border-top: 1px solid oklch(0.32 0.015 60); color: oklch(0.94 0.09 65); font-size: 15px;"><span style="width: 46px; text-align: right; font-weight: 600;">+14</span><span style="color: oklch(0.78 0.05 60); font-size: 12.5px; align-self: center;">total attack modifier</span></div>
+        </div>
+
+        <!-- THE ANSWER -->
+        <div style="margin-top: 14px; padding: 13px 15px; border-radius: 4px; background: oklch(0.155 0.012 60); border: 1px solid oklch(0.46 0.09 55);">
+          <div style="display: flex; align-items: baseline; gap: 10px;">
+            <span style="font-size: 11px; letter-spacing: 0.08em; color: oklch(0.64 0.012 75);">ROLL</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; color: oklch(0.94 0.09 65);">1d20 + 14</span>
+            <span style="font-size: 12px; color: oklch(0.62 0.012 75);">vs AC 21</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 8px 11px; border-radius: 3px; background: oklch(0.26 0.07 145); border-left: 3px solid oklch(0.62 0.14 145);">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 19px; font-weight: 600; width: 66px; color: oklch(0.92 0.10 145);">17+</span>
+              <span style="font-size: 13px; font-weight: 600; width: 108px;">Critical hit</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.86 0.06 145);">(2d8+10) + 4d6</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 8px 11px; border-radius: 3px; background: oklch(0.24 0.045 145); border-left: 3px solid oklch(0.50 0.10 145);">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 19px; font-weight: 600; width: 66px; color: oklch(0.88 0.07 145);">7&ndash;16</span>
+              <span style="font-size: 13px; font-weight: 600; width: 108px;">Hit</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.84 0.04 145);">1d8+5 + 2d6</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 8px 11px; border-radius: 3px; background: oklch(0.21 0.013 60); border-left: 3px solid oklch(0.40 0.015 60);">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 19px; font-weight: 600; width: 66px; color: oklch(0.70 0.012 75);">2&ndash;6</span>
+              <span style="font-size: 13px; font-weight: 600; width: 108px; color: oklch(0.78 0.012 75);">Miss</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.58 0.012 75);">no damage</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 8px 11px; border-radius: 3px; background: oklch(0.22 0.055 25); border-left: 3px solid oklch(0.52 0.14 25);">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 19px; font-weight: 600; width: 66px; color: oklch(0.88 0.11 28);">nat 1</span>
+              <span style="font-size: 13px; font-weight: 600; width: 108px;">Critical miss</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(0.80 0.05 28);">no damage</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 11px; padding-top: 10px; border-top: 1px solid oklch(0.30 0.015 60); font-size: 11.5px; line-height: 1.55; color: oklch(0.68 0.012 75);">
+            <div><span style="color: oklch(0.86 0.01 80); font-weight: 600;">Why 17 crits and not 27:</span> a natural 20 raises the degree one step, so 17&ndash;19 crits by beating AC&nbsp;21 by 10, and a natural 20 on 7&ndash;16 also crits. Both folded in.</div>
+            <div style="margin-top: 5px;"><span style="color: oklch(0.86 0.01 80); font-weight: 600;">+2d6 precision:</span> Sneak Attack applies &mdash; Valeria is frightened, and Dread Striker makes frightened creatures off-guard to him.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PC stat gap -->
+      <div style="display: flex; gap: 12px; padding: 12px 14px; border-radius: 5px; background: oklch(0.23 0.028 60); border: 1px solid oklch(0.46 0.09 55);">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="oklch(0.84 0.11 60)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        <div style="font-size: 12.5px; line-height: 1.55; color: oklch(0.82 0.012 75);">
+          <strong style="color: oklch(0.92 0.05 60);">This needs a decision from you.</strong>
+          All of the above only works against a target whose AC the app knows. We agreed players are light entries &mdash; name, level, initiative, conditions &mdash; so <em>Valeria&rsquo;s AC 21 is invented here.</em>
+          To compute rolls against players I need their AC, and their Fort/Ref/Will for save-based abilities: four numbers per player, entered once in the party roster.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
