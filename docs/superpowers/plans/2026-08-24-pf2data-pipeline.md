@@ -3196,7 +3196,7 @@ Expected: PASS, all tests across both packages.
 - [ ] **Step 6: Commit**
 
 ```bash
-git add packages/pf2data/src/cli.ts package.json
+git add packages/pf2data/src/cli.ts packages/pf2data/test/cli.test.ts package.json
 git commit -m "feat(pf2data): cli with structured output and exit codes"
 ```
 
