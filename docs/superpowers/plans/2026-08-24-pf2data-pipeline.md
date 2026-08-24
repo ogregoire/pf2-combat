@@ -3645,7 +3645,7 @@ describe("renderSchemaDoc", () => {
   it("documents the exit codes", () => {
     const doc = renderSchemaDoc();
     expect(doc).toContain("10");
-    expect(doc).toContain("verification failed");
+    expect(doc.toLowerCase()).toContain("verification failed");
   });
 });
 ```
