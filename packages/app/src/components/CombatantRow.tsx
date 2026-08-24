@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useEncounter } from "../state/store.js";
 import { CONDITIONS } from "../rules/conditions.js";
 import { RowPopover } from "./RowPopover.js";
+import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import type { Combatant } from "../state/types.js";
 
 const HP_TRACK = "oklch(0.28 0.02 30)";
@@ -31,19 +32,44 @@ function combinedRing(active: boolean, targeted: boolean): string {
 }
 
 /** Handles both the click-to-target toggle and Enter/Space activation, since
- * every row is now a keyboard-reachable target picker, not a bare div. */
+ * every row is now a keyboard-reachable target picker, not a bare div — on
+ * desktop. On a narrow screen the row's tap instead opens the popover
+ * (`onTap`): there's no hover there, so tapping is the only way in, and the
+ * row's click can't do both jobs at once. Targeting moves into an explicit
+ * "Target" control inside the popover (RowPopover) in that case, which is
+ * why this becomes a disclosure control (aria-expanded) rather than a
+ * pressed toggle (aria-pressed) when narrow. */
 function targetRowProps(
   combatant: Combatant,
   targeted: boolean,
   onToggleTarget: () => void,
+  narrow: boolean,
+  open: boolean,
+  onTap: () => void,
 ): {
   role: "button";
   tabIndex: number;
-  "aria-pressed": boolean;
+  "aria-pressed"?: boolean;
+  "aria-expanded"?: boolean;
   "aria-label": string;
   onClick: () => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
 } {
+  if (narrow) {
+    return {
+      role: "button",
+      tabIndex: 0,
+      "aria-expanded": open,
+      "aria-label": `Show actions for ${combatant.name}`,
+      onClick: onTap,
+      onKeyDown: (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onTap();
+        }
+      },
+    };
+  }
   return {
     role: "button",
     tabIndex: 0,
@@ -159,6 +185,9 @@ function StandaloneRow({
   active,
   targeted,
   onToggleTarget,
+  narrow,
+  open,
+  onTap,
   selected,
   onToggleSelect,
 }: {
@@ -167,6 +196,9 @@ function StandaloneRow({
   active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
+  narrow: boolean;
+  open: boolean;
+  onTap: () => void;
   selected: boolean;
   onToggleSelect: () => void;
 }): React.ReactElement {
@@ -178,7 +210,7 @@ function StandaloneRow({
 
   return (
     <div
-      {...targetRowProps(combatant, targeted, onToggleTarget)}
+      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap)}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -276,6 +308,9 @@ function GroupMemberRow({
   active,
   targeted,
   onToggleTarget,
+  narrow,
+  open,
+  onTap,
   selected,
   onToggleSelect,
 }: {
@@ -283,12 +318,15 @@ function GroupMemberRow({
   active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
+  narrow: boolean;
+  open: boolean;
+  onTap: () => void;
   selected: boolean;
   onToggleSelect: () => void;
 }): React.ReactElement {
   return (
     <div
-      {...targetRowProps(combatant, targeted, onToggleTarget)}
+      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap)}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -352,10 +390,12 @@ function GroupMemberRow({
   );
 }
 
-/** Wraps a combatant's row together with its hover-triggered damage
- * popover. `grouped` selects the compact group-member anatomy over the
- * full standalone one; `initiative` (standalone rows only) shows the
- * per-row initiative — group members share theirs on the GroupHeader. */
+/** Wraps a combatant's row together with its damage popover — hover-
+ * triggered on desktop, tap-triggered on a narrow (<=900px) screen, since a
+ * touch screen has no hover at all. `grouped` selects the compact
+ * group-member anatomy over the full standalone one; `initiative`
+ * (standalone rows only) shows the per-row initiative — group members share
+ * theirs on the GroupHeader. */
 export function CombatantRow({
   id,
   initiative,
@@ -375,10 +415,12 @@ export function CombatantRow({
   onToggleSelect?: () => void;
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
+  const [tapOpen, setTapOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const combatant = useEncounter((s) => s.encounter.combatants[id]);
   const targetId = useEncounter((s) => s.encounter.targetId);
   const setTarget = useEncounter((s) => s.setTarget);
+  const narrow = useMediaQuery(NARROW_LAYOUT_QUERY);
 
   useEffect(() => () => {
     if (closeTimer.current !== null) clearTimeout(closeTimer.current);
@@ -388,6 +430,9 @@ export function CombatantRow({
 
   // mockups/TurnAssistant.dc.html: "click any combatant to retarget".
   // Clicking the current target again clears it, so the GM can deselect.
+  // On desktop this is still the row's own click; on narrow the row's tap
+  // opens the popover instead (below), so RowPopover exposes this same
+  // toggle as an explicit "Target" control there.
   const targeted = targetId === id;
   const toggleTarget = (): void => setTarget(targeted ? null : id);
 
@@ -398,6 +443,7 @@ export function CombatantRow({
   // the pointer stayed inside — it briefly fires a leave. Deferring the
   // close by a tick and cancelling it on the immediately-following re-entry
   // absorbs that without adding any perceptible delay for a real pointer.
+  // Desktop-only: narrow screens don't hover, so this never fires there.
   const openPopover = (): void => {
     if (closeTimer.current !== null) {
       clearTimeout(closeTimer.current);
@@ -410,6 +456,15 @@ export function CombatantRow({
     closeTimer.current = setTimeout(() => setHovered(false), 0);
   };
 
+  // Narrow-only: tapping the row opens the popover (never toggles it shut —
+  // RowPopover's full-screen backdrop is what a tap "elsewhere" dismisses
+  // against, per the brief; tapping the already-open popover's backdrop
+  // just re-opens the same state).
+  const onTap = (): void => setTapOpen(true);
+  const closeTapPopover = (): void => setTapOpen(false);
+
+  const popoverVisible = narrow ? tapOpen : hovered;
+
   return (
     <div style={{ position: "relative" }} onMouseEnter={openPopover} onMouseLeave={scheduleClose}>
       {grouped ? (
@@ -418,6 +473,9 @@ export function CombatantRow({
           active={active}
           targeted={targeted}
           onToggleTarget={toggleTarget}
+          narrow={narrow}
+          open={tapOpen}
+          onTap={onTap}
           selected={selected}
           onToggleSelect={onToggleSelect ?? (() => {})}
         />
@@ -428,12 +486,23 @@ export function CombatantRow({
           active={active}
           targeted={targeted}
           onToggleTarget={toggleTarget}
+          narrow={narrow}
+          open={tapOpen}
+          onTap={onTap}
           selected={selected}
           onToggleSelect={onToggleSelect ?? (() => {})}
         />
       )}
 
-      {hovered && <RowPopover combatantId={id} />}
+      {popoverVisible && (
+        <RowPopover
+          combatantId={id}
+          narrow={narrow}
+          targeted={targeted}
+          onToggleTarget={toggleTarget}
+          onClose={closeTapPopover}
+        />
+      )}
     </div>
   );
 }

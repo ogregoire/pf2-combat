@@ -7,11 +7,33 @@ import { compareStrings } from "../rules/compare.js";
 const CONDITION_OPTIONS = Object.values(CONDITIONS).sort((a, b) => compareStrings(a.name, b.name));
 
 /**
- * The hover popover for a single row. Rendered by CombatantRow while the
- * pointer is inside the row-plus-popover wrapper — see CombatantRow for the
- * mouseenter/mouseleave handling that keeps it open across the gap.
+ * The row popover. On desktop it's the hover popover: rendered by
+ * CombatantRow while the pointer is inside the row-plus-popover wrapper —
+ * see CombatantRow for the mouseenter/mouseleave handling that keeps it open
+ * across the gap. `narrow`/`targeted`/`onToggleTarget`/`onClose` are all
+ * unused there (and default away) so that call site's behaviour is
+ * unchanged.
+ *
+ * On a narrow screen there's no hover, so CombatantRow instead opens this on
+ * tap and passes `narrow`. The row's own click no longer sets the target
+ * there (see CombatantRow — a tap opens this popover instead), so the
+ * popover carries an explicit Target control in its place; a full-screen
+ * backdrop behind the panel is what "tap elsewhere" dismisses against, and
+ * doubles as `onClose` for the panel's own Close button.
  */
-export function RowPopover({ combatantId }: { combatantId: string }): React.ReactElement | null {
+export function RowPopover({
+  combatantId,
+  narrow = false,
+  targeted = false,
+  onToggleTarget,
+  onClose,
+}: {
+  combatantId: string;
+  narrow?: boolean;
+  targeted?: boolean;
+  onToggleTarget?: () => void;
+  onClose?: () => void;
+}): React.ReactElement | null {
   const combatant = useEncounter((s) => s.encounter.combatants[combatantId]);
   const entry = useEncounter((s) => s.encounter.entries.find((e) => e.combatantIds.includes(combatantId)));
   const applyDamage = useEncounter((s) => s.applyDamage);
@@ -72,15 +94,26 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
     addCondition(combatantId, conditionSlug, value, formula);
   };
 
-  return (
-    <div
-      // The row beneath this popover is now click-to-target. The popover
-      // isn't a DOM descendant of the row (CombatantRow renders it as a
-      // sibling), so a click here wouldn't reach the row's handler anyway —
-      // stopping propagation here is defensive, per the brief, against that
-      // structure ever changing.
-      onClick={(e) => e.stopPropagation()}
-      style={{
+  // Desktop keeps the original anchored-off-the-row placement (it's the
+  // only thing hover ever needed). A narrow screen has no room to the side
+  // of a full-width row for that, so there the panel instead sits in normal
+  // flow inside a fixed full-screen backdrop below, bottom-sheet style.
+  const panelStyle: React.CSSProperties = narrow
+    ? {
+        width: "min(420px, 100%)",
+        maxHeight: "min(560px, 85vh)",
+        overflowY: "auto",
+        padding: "14px 15px 16px",
+        borderRadius: "10px 10px 0 0",
+        background: "var(--panel-high)",
+        border: "1px solid oklch(0.46 0.05 200)",
+        borderBottom: "none",
+        boxShadow: "0 -12px 32px oklch(0.08 0.01 60 / 0.6)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+      }
+    : {
         position: "absolute",
         top: "-8px",
         left: "calc(100% + 10px)",
@@ -94,8 +127,62 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
         display: "flex",
         flexDirection: "column",
         gap: "10px",
-      }}
+      };
+
+  const panel = (
+    <div
+      // The row beneath this popover is click-to-target on desktop. The
+      // popover isn't a DOM descendant of the row (CombatantRow renders it
+      // as a sibling), so a click here wouldn't reach the row's handler
+      // anyway — stopping propagation here is defensive, per the brief,
+      // against that structure ever changing. On narrow it also keeps a tap
+      // on the panel itself from reaching the full-screen backdrop's
+      // onClose below.
+      onClick={(e) => e.stopPropagation()}
+      style={panelStyle}
     >
+      {narrow && (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <button
+            type="button"
+            aria-pressed={targeted}
+            onClick={onToggleTarget}
+            style={{
+              fontFamily: "inherit",
+              fontSize: "12.5px",
+              fontWeight: 600,
+              padding: "9px 14px",
+              borderRadius: "4px",
+              border: `1px solid ${targeted ? "oklch(0.80 0.15 95)" : "var(--border-strong)"}`,
+              background: targeted ? "oklch(0.34 0.06 95)" : "var(--panel-raised)",
+              color: "var(--text)",
+              cursor: "pointer",
+            }}
+          >
+            {targeted ? "Targeted" : "Target"}
+          </button>
+          <div style={{ flexGrow: 1 }} />
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={onClose}
+            style={{
+              fontFamily: "inherit",
+              fontSize: "13px",
+              fontWeight: 600,
+              padding: "9px 14px",
+              borderRadius: "4px",
+              border: "1px solid var(--border-strong)",
+              background: "var(--panel-raised)",
+              color: "var(--text-dim)",
+              cursor: "pointer",
+            }}
+          >
+            Close
+          </button>
+        </div>
+      )}
+
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <span style={{ fontSize: "13px", fontWeight: 600 }}>{combatant.name}</span>
         {combatant.hp !== null && (
@@ -184,7 +271,7 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
                 fontFamily: "inherit",
                 fontSize: "11.5px",
                 fontWeight: 600,
-                padding: "5px 9px",
+                padding: "8px 10px", // bumped for a comfortable tap target on narrow screens
                 borderRadius: "3px",
                 cursor: "pointer",
                 background: damageType === "none" ? "oklch(0.38 0.03 60)" : "var(--bg)",
@@ -203,7 +290,7 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
                 style={{
                   fontFamily: "inherit",
                   fontSize: "11.5px",
-                  padding: "5px 9px",
+                  padding: "8px 10px", // bumped for a comfortable tap target on narrow screens
                   borderRadius: "3px",
                   cursor: "pointer",
                   background: damageType === r.type ? "oklch(0.30 0.03 60)" : "var(--bg)",
@@ -393,7 +480,7 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
                   gap: "5px",
                   fontSize: "10.5px",
                   letterSpacing: "0.04em",
-                  padding: "2px 4px 2px 7px",
+                  padding: "7px 8px 7px 10px", // bumped for a comfortable tap target on narrow screens
                   borderRadius: "3px",
                   border: "1px solid var(--border)",
                   background: "var(--cond-bg)",
@@ -408,6 +495,28 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
           </div>
         )}
       </div>
+    </div>
+  );
+
+  if (!narrow) return panel;
+
+  // Full-screen backdrop: this is what "tap elsewhere dismisses it" means
+  // here. The panel above stops its own clicks from bubbling here, so only
+  // a genuine tap outside it reaches this onClose.
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "oklch(0.08 0.01 60 / 0.6)",
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center",
+        zIndex: 30,
+      }}
+    >
+      {panel}
     </div>
   );
 }
