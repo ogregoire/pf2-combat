@@ -1,3 +1,5 @@
+import { EncounterScreen } from "./components/EncounterScreen.js";
+
 export function App(): React.ReactElement {
-  return <div>PF2 Combat Tracker</div>;
+  return <EncounterScreen />;
 }

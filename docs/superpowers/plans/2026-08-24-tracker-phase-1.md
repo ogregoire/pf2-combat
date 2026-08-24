@@ -2881,7 +2881,7 @@ git commit -m "feat(app): indexeddb persistence with schema migration"
 
 ```tsx
 import { beforeEach, describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { EncounterScreen } from "../src/components/EncounterScreen.js";
 import { useEncounter } from "../src/state/store.js";
@@ -2932,7 +2932,10 @@ describe("EncounterScreen", () => {
     );
     render(<EncounterScreen />);
 
-    await user.hover(screen.getByText("Alpha"));
+    // "Alpha" is the active combatant, so its name renders twice by design —
+    // once in the list, once in the centre stat-block header. Scope the query.
+    const list = within(screen.getByTestId("combatant-list"));
+    await user.hover(list.getByText("Alpha"));
     const amount = screen.getByLabelText("amount");
     await user.clear(amount);
     await user.type(amount, "5");
