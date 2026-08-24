@@ -2169,7 +2169,9 @@ export function buildIndexes(creatures: Creature[]): IndexBuild {
       book: c.source.book,
     });
 
-    (bySlug.get(slug) ?? bySlug.set(slug, []).get(slug)!).push(c.id);
+    const sharing = bySlug.get(slug) ?? [];
+    sharing.push(c.id);
+    bySlug.set(slug, sharing);
   }
 
   for (const entries of Object.values(indexes)) {
@@ -2857,7 +2859,7 @@ Expected: FAIL — cannot resolve `../src/cli.js`.
 
 ```ts
 #!/usr/bin/env -S npx tsx
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
@@ -3054,6 +3056,9 @@ export function runCli(argv: string[], io: CliIo): number {
     nextManifest.generatedAt = new Date().toISOString();
   }
 
+  for (const id of diff.removed) {
+    rmSync(join(DATA_DIR, "creatures", `${id}.json`), { force: true });
+  }
   for (const creature of creatures) {
     writeJson(join(DATA_DIR, "creatures", `${creature.id}.json`), creature);
   }
@@ -3474,6 +3479,7 @@ git commit -m "data: initial normalized dataset from foundryvtt/pf2e"
 
 **Files:**
 - Create: `packages/pf2data/src/docs/schema-doc.ts`
+- Modify: `packages/pf2data/src/cli.ts`
 - Create: `AGENTS.md`
 - Create: `data/SCHEMA.md` (generated)
 - Test: `packages/pf2data/test/schema-doc.test.ts`
