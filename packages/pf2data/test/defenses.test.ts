@@ -16,7 +16,11 @@ describe("normalizeDefenses", () => {
     const d = normalizeDefenses(load("the-stag-lord").system);
     expect(d.ac).toBe(23);
     expect(d.hp).toBe(110);
-    expect(d.saves).toEqual({ fortitude: 15, reflex: 16, will: 9 });
+    expect(d.saves).toEqual({
+      fortitude: { value: 15, detail: null },
+      reflex: { value: 16, detail: null },
+      will: { value: 9, detail: null },
+    });
     expect(d.perception).toBe(16);
     expect(d.immunities).toEqual([]);
     expect(d.weaknesses).toEqual([]);
@@ -25,9 +29,54 @@ describe("normalizeDefenses", () => {
 
   it("reads a weakness and senses", () => {
     const d = normalizeDefenses(load("troll").system);
-    expect(d.weaknesses).toEqual([{ type: "fire", value: 10 }]);
-    expect(d.senses).toEqual(["darkvision"]);
+    expect(d.weaknesses).toEqual([
+      { type: "fire", value: 10, exceptions: [], doubleVs: [] },
+    ]);
+    expect(d.senses).toEqual([{ type: "darkvision", acuity: null, range: null }]);
     expect(d.languages).toEqual(["jotun"]);
+  });
+
+  it("normalizes hpDetails, empty acDetails and empty saveDetail to null, and keeps a real hpDetails", () => {
+    const d = normalizeDefenses(load("troll").system);
+    expect(d.hpDetails).toBe("regeneration 20 (deactivated by acid or fire)");
+    expect(d.acDetails).toBeNull();
+    expect(d.saves.fortitude.detail).toBeNull();
+  });
+
+  it("captures resistance exceptions and doubleVs", () => {
+    const d = normalizeDefenses({
+      ...baseSystem,
+      attributes: {
+        ...baseSystem.attributes,
+        resistances: [
+          {
+            type: "all-damage",
+            value: 10,
+            exceptions: ["force", "ghost-touch"],
+            doubleVs: ["non-magical"],
+          },
+        ],
+      },
+    });
+    expect(d.resistances).toEqual([
+      {
+        type: "all-damage",
+        value: 10,
+        exceptions: ["force", "ghost-touch"],
+        doubleVs: ["non-magical"],
+      },
+    ]);
+  });
+
+  it("captures acuity and range on a sense", () => {
+    const d = normalizeDefenses({
+      ...baseSystem,
+      perception: {
+        mod: 0,
+        senses: [{ type: "scent", acuity: "imprecise", range: 30 }],
+      },
+    });
+    expect(d.senses).toEqual([{ type: "scent", acuity: "imprecise", range: 30 }]);
   });
 
   it("flattens skills, ability mods and speeds", () => {

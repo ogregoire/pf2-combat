@@ -12,12 +12,18 @@ const load = (name: string) =>
     ),
   );
 
+const GLOSSARY_LANG = {
+  "PF2E.NPC.Abilities.Glossary.ConstantSpells": "<p>Always active.</p>",
+  "PF2E.NPC.Abilities.Glossary.ChangeShape": "<p>Change shape.</p>",
+};
+
 describe("normalizeCreature", () => {
   it("produces a schema-valid creature", () => {
     const c = normalizeCreature(
       load("the-stag-lord"),
       "kingmaker-bestiary",
       "the-stag-lord",
+      {},
     );
     expect(() => CreatureSchema.parse(c)).not.toThrow();
   });
@@ -27,6 +33,7 @@ describe("normalizeCreature", () => {
       load("the-stag-lord"),
       "kingmaker-bestiary",
       "the-stag-lord",
+      {},
     );
     expect(c.id).toBe("kingmaker-bestiary/the-stag-lord");
     expect(c.name).toBe("The Stag Lord");
@@ -40,6 +47,7 @@ describe("normalizeCreature", () => {
       load("akiros-ismort"),
       "kingmaker-bestiary",
       "akiros-ismort",
+      {},
     );
     expect(akiros.gear).toContain("Silver Stag Lord Amulet");
     expect(akiros.gear).toContain("Gold Pieces");
@@ -50,6 +58,7 @@ describe("normalizeCreature", () => {
       load("nyrissa"),
       "kingmaker-bestiary",
       "nyrissa",
+      GLOSSARY_LANG,
     );
     expect(nyrissa.gear).not.toContain("Wish");
     expect(nyrissa.gear).not.toContain("Arcane Spontaneous Spells");
@@ -61,6 +70,7 @@ describe("normalizeCreature", () => {
       load("nyrissa"),
       "kingmaker-bestiary",
       "nyrissa",
+      GLOSSARY_LANG,
     );
     expect(nyrissa.spellcasting).toHaveLength(3);
     expect(nyrissa.actions.length).toBeGreaterThan(0);
@@ -72,7 +82,28 @@ describe("normalizeCreature", () => {
       load("nyrissa"),
       "kingmaker-bestiary",
       "nyrissa",
+      GLOSSARY_LANG,
     );
     expect(JSON.stringify(nyrissa)).not.toContain("@UUID[");
+  });
+
+  it("resolves @Localize placeholders (Constant Spells, Change Shape) given a lang table", () => {
+    const nyrissa = normalizeCreature(
+      load("nyrissa"),
+      "kingmaker-bestiary",
+      "nyrissa",
+      GLOSSARY_LANG,
+    );
+    expect(JSON.stringify(nyrissa)).not.toContain("@Localize[");
+    const constantSpells = nyrissa.actions.find((a) => a.name === "Constant Spells")!;
+    expect(constantSpells.description).toContain("Always active.");
+  });
+
+  it("includes the creature's identity in a normalizeTraits failure message", () => {
+    const bad = load("the-stag-lord");
+    bad.system.traits.size.value = "unknown-size-code";
+    expect(() =>
+      normalizeCreature(bad, "kingmaker-bestiary", "the-stag-lord", {}),
+    ).toThrow(/kingmaker-bestiary\/the-stag-lord.*unknown-size-code|unknown-size-code.*kingmaker-bestiary\/the-stag-lord/is);
   });
 });

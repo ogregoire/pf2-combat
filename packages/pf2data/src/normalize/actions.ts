@@ -1,5 +1,7 @@
 import { z } from "zod";
 import { extractRequirements, extractTrigger } from "./html.js";
+import { resolveLocalize, type LangTable } from "./localize.js";
+import { compareStrings } from "../util.js";
 
 const ActionItemSchema = z.object({
   name: z.string(),
@@ -49,25 +51,28 @@ function costOf(system: z.infer<typeof ActionItemSchema>["system"]): ActionCost 
   return "passive";
 }
 
-export function normalizeActions(items: unknown[]): NormalizedAction[] {
+export function normalizeActions(
+  items: unknown[],
+  lang: LangTable,
+): NormalizedAction[] {
   const actions: NormalizedAction[] = [];
 
   for (const item of items) {
     const parsed = ActionItemSchema.safeParse(item);
     if (!parsed.success) continue;
     const { name, system } = parsed.data;
-    const html = system.description.value;
+    // Localize first, links later (in normalizeCreature): localized glossary
+    // text itself contains @UUID references that must survive to be resolved.
+    const html = resolveLocalize(system.description.value, lang);
 
     actions.push({
       name,
       cost: costOf(system),
       category: system.category ?? null,
-      traits: [...(system.traits?.value ?? [])].sort((a, b) =>
-        a.localeCompare(b),
-      ),
+      traits: [...(system.traits?.value ?? [])].sort(compareStrings),
       trigger:
         system.trigger !== null && system.trigger !== undefined && system.trigger !== ""
-          ? system.trigger
+          ? resolveLocalize(system.trigger, lang)
           : extractTrigger(html),
       requirements: extractRequirements(html),
       frequency: system.frequency
@@ -82,6 +87,6 @@ export function normalizeActions(items: unknown[]): NormalizedAction[] {
     if (limited !== 0) return limited;
     const cost = COST_ORDER[a.cost] - COST_ORDER[b.cost];
     if (cost !== 0) return cost;
-    return a.name.localeCompare(b.name);
+    return compareStrings(a.name, b.name);
   });
 }

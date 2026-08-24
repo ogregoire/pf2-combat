@@ -6,6 +6,8 @@ import { normalizeActions } from "./actions.js";
 import { normalizeAttacks } from "./attacks.js";
 import { normalizeSpellcasting } from "./spellcasting.js";
 import { resolveLinks } from "./links.js";
+import { resolveLocalize, type LangTable } from "./localize.js";
+import { compareStrings } from "../util.js";
 
 const ActorSchema = z.object({
   _id: z.string(),
@@ -41,9 +43,10 @@ export function normalizeCreature(
   raw: unknown,
   pack: string,
   slug: string,
+  lang: LangTable,
 ): Creature {
   const actor = ActorSchema.parse(raw);
-  const traits = normalizeTraits(actor.system.traits);
+  const traits = normalizeTraits(actor.system.traits, `${pack}/${slug} (${actor.name})`);
   // Deliberately the RAW system, not `actor.system`: ActorSchema's `system`
   // sub-schema does not passthrough, so zod has already stripped `attributes`,
   // `perception`, `saves` and `skills` from the parsed copy. `ActorSchema.parse`
@@ -55,9 +58,12 @@ export function normalizeCreature(
     .filter((i) => i.type !== undefined && !NON_GEAR_TYPES.has(i.type))
     .map((i) => i.name ?? "")
     .filter((n) => n !== "")
-    .sort((a, b) => a.localeCompare(b));
+    .sort(compareStrings);
 
-  const actions = normalizeActions(actor.items).map((a) => ({
+  // Localize first, links second: localized glossary text (Grab, Attack of
+  // Opportunity, ...) itself contains @UUID references that must survive
+  // resolveLocalize (applied inside normalizeActions) to be resolved here.
+  const actions = normalizeActions(actor.items, lang).map((a) => ({
     ...a,
     description: resolveLinks(a.description),
     trigger: a.trigger === null ? null : resolveLinks(a.trigger),
@@ -78,6 +84,6 @@ export function normalizeCreature(
     actions,
     spellcasting: normalizeSpellcasting(actor.items),
     gear,
-    publicNotes: resolveLinks(actor.system.details.publicNotes),
+    publicNotes: resolveLinks(resolveLocalize(actor.system.details.publicNotes, lang)),
   } satisfies Creature);
 }

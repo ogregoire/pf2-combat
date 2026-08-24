@@ -36,3 +36,25 @@ describe("extractRequirements", () => {
     expect(extractRequirements(html)).toBe("You are wielding a shield.");
   });
 });
+
+describe("M4: <hr/> boundary and entity decoding", () => {
+  it("ignores a same-labelled paragraph that appears after the <hr/>", () => {
+    const html =
+      "<p><strong>Trigger</strong> The real trigger.</p><hr />" +
+      "<p>Main description mentions a <strong>Trigger</strong> word later on.</p>";
+    expect(extractTrigger(html)).toBe("The real trigger.");
+  });
+
+  it("returns null when the only labelled paragraph is after the <hr/>", () => {
+    const html =
+      "<p>No trigger before the break.</p><hr />" +
+      "<p><strong>Trigger</strong> This is not a real trigger paragraph.</p>";
+    expect(extractTrigger(html)).toBeNull();
+  });
+
+  it("decodes common named entities beyond nbsp and amp", () => {
+    const html =
+      "<p><strong>Trigger</strong> The foe&rsquo;s turn ends&mdash;it can&apos;t act.</p>";
+    expect(extractTrigger(html)).toBe("The foe’s turn ends—it can't act.");
+  });
+});

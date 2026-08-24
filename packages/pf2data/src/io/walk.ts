@@ -1,5 +1,6 @@
 import { readdirSync } from "node:fs";
 import { join, basename } from "node:path";
+import { compareStrings } from "../util.js";
 
 export interface PackFile {
   slug: string;
@@ -23,5 +24,5 @@ export function walkPack(packRoot: string): PackFile[] {
   };
 
   visit(packRoot);
-  return found.sort((a, b) => a.slug.localeCompare(b.slug));
+  return found.sort((a, b) => compareStrings(a.slug, b.slug));
 }

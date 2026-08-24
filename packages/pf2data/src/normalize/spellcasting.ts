@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { compareStrings } from "../util.js";
 
 const EntryItemSchema = z.object({
   _id: z.string(),
@@ -82,9 +83,9 @@ export function normalizeSpellcasting(items: unknown[]): SpellcastingEntry[] {
 
   for (const entry of entries.values()) {
     entry.spells.sort(
-      (a, b) => b.rank - a.rank || a.name.localeCompare(b.name),
+      (a, b) => b.rank - a.rank || compareStrings(a.name, b.name),
     );
   }
 
-  return [...entries.values()].sort((a, b) => a.name.localeCompare(b.name));
+  return [...entries.values()].sort((a, b) => compareStrings(a.name, b.name));
 }

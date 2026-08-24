@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { compareStrings } from "../util.js";
 
 const ALIGNMENT_TRAITS = new Set([
   "lawful",
@@ -29,17 +30,19 @@ export interface NormalizedTraits {
   traits: string[];
 }
 
-export function normalizeTraits(raw: unknown): NormalizedTraits {
+export function normalizeTraits(raw: unknown, creatureLabel: string): NormalizedTraits {
   const parsed = RawTraitsSchema.parse(raw);
   const size = SIZES[parsed.size.value];
   if (size === undefined) {
-    throw new Error(`Unknown Foundry size abbreviation: ${parsed.size.value}`);
+    throw new Error(
+      `Unknown Foundry size abbreviation "${parsed.size.value}" on creature ${creatureLabel}`,
+    );
   }
   return {
     rarity: parsed.rarity,
     size,
     traits: parsed.value
       .filter((t) => !ALIGNMENT_TRAITS.has(t))
-      .sort((a, b) => a.localeCompare(b)),
+      .sort(compareStrings),
   };
 }
