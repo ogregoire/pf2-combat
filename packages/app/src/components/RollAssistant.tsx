@@ -99,7 +99,8 @@ export function RollAssistant({
             attackerConditions: combatant.conditions,
             targetConditions: target.conditions,
             targetAc: target.ac!,
-            damage: attack.damage.map((d) => ({ formula: d.formula, type: d.type })),
+            damage: attack.damage.map((d) => ({ formula: d.formula, type: d.type, category: d.category })),
+            traits: attack.traits,
           });
           const rollLine = `1d20 ${resolution.modifier >= 0 ? "+" : "−"} ${Math.abs(resolution.modifier)}`;
 

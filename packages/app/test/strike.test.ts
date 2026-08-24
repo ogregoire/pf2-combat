@@ -11,6 +11,10 @@ describe("doubleFormula", () => {
   it("leaves a bare number doubled", () => {
     expect(doubleFormula("7")).toBe("14");
   });
+
+  it("doubles a negative flat modifier instead of wrapping the formula", () => {
+    expect(doubleFormula("1d4-1")).toBe("2d4-2");
+  });
 });
 
 describe("resolveStrike", () => {
@@ -103,6 +107,69 @@ describe("resolveStrike", () => {
     );
     expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe(
       "2d8+10 slashing + 4d6 precision",
+    );
+  });
+
+  it("adds the deadly die on a crit, on top of normal doubling", () => {
+    const r = resolveStrike({ ...base, traits: ["deadly-d8"] });
+    expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe(
+      "3d8+10 slashing",
+    );
+    // Not on a normal hit.
+    expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe("1d8+5 slashing");
+  });
+
+  it("supports a bestiary deadly trait that bakes in a multi-die count, merging same-size dice", () => {
+    const r = resolveStrike({
+      ...base,
+      damage: [{ formula: "4d10+18", type: "piercing" }],
+      traits: ["deadly-2d10"],
+    });
+    expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe(
+      "10d10+36 piercing",
+    );
+  });
+
+  it("keeps a differently-sized deadly die as a separate term", () => {
+    const r = resolveStrike({ ...base, traits: ["deadly-2d10"] });
+    expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe(
+      "2d8+10+2d10 slashing",
+    );
+  });
+
+  it("changes the weapon die to the fatal size and adds one extra die on a crit", () => {
+    const r = resolveStrike({ ...base, traits: ["fatal-d10"] });
+    // 1d8+5 -> fatal die is d10 (1d10+5) -> doubled (2d10+10) -> +1 extra d10 (3d10+10).
+    expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe(
+      "3d10+10 slashing",
+    );
+    expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe("1d8+5 slashing");
+  });
+
+  it("labels persistent damage and doubles it on a crit", () => {
+    const r = resolveStrike({
+      ...base,
+      damage: [
+        { formula: "1d8+5", type: "slashing" },
+        { formula: "2d6", type: "fire", category: "persistent" },
+      ],
+    });
+    expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe(
+      "1d8+5 slashing + 2d6 persistent fire",
+    );
+    expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe(
+      "2d8+10 slashing + 4d6 persistent fire",
+    );
+  });
+
+  it("labels splash damage and never doubles it on a crit", () => {
+    const r = resolveStrike({
+      ...base,
+      damage: [{ formula: "3", type: "acid", category: "splash" }],
+    });
+    expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe("3 splash acid");
+    expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe(
+      "3 splash acid",
     );
   });
 
