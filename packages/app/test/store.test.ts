@@ -94,6 +94,40 @@ describe("encounter store", () => {
     expect(useEncounter.getState().encounter.acknowledgedPrompts).not.toContain(`${a}:start:dying`);
   });
 
+  it("keeps the active combatant unchanged when a higher-initiative combatant joins mid-combat", () => {
+    addCreature("Alpha", 20);
+    const beta = addCreature("Beta", 10);
+    useEncounter.getState().nextTurn(); // Alpha -> Beta
+    addCreature("Newcomer", 30);
+    const enc = useEncounter.getState().encounter;
+    const active = enc.entries[enc.activeEntryIndex]!;
+    expect(active.combatantIds).toEqual([beta]);
+  });
+
+  it("leaves the active combatant unchanged when the new combatant is slower", () => {
+    addCreature("Alpha", 20);
+    const beta = addCreature("Beta", 10);
+    useEncounter.getState().nextTurn(); // Alpha -> Beta
+    addCreature("Straggler", 5);
+    const enc = useEncounter.getState().encounter;
+    const active = enc.entries[enc.activeEntryIndex]!;
+    expect(active.combatantIds).toEqual([beta]);
+  });
+
+  it("keeps the active combatant unchanged when addMany inserts faster combatants", () => {
+    addCreature("Alpha", 20);
+    const beta = addCreature("Beta", 10);
+    useEncounter.getState().nextTurn(); // Alpha -> Beta
+    useEncounter.getState().addMany(
+      { kind: "creature", name: "Goblin", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 6, max: 6 } },
+      3, 30,
+    );
+    const enc = useEncounter.getState().encounter;
+    const active = enc.entries[enc.activeEntryIndex]!;
+    expect(active.combatantIds).toEqual([beta]);
+  });
+
   it("groups combatants under one entry sharing an initiative", () => {
     const a = addCreature("a", 20);
     const b = addCreature("b", 10);

@@ -107,14 +107,24 @@ export const useEncounter = create<EncounterStore>()(
     addCombatant: (seed, initiative) => {
       const id = nextCombatantId();
       set((state) => {
-        state.encounter.combatants[id] = makeCombatant(id, seed);
-        state.encounter.entries.push({
+        const enc = state.encounter;
+        // Same fix as group(): capture the active entry's id before
+        // re-sorting and recompute its position afterward, so inserting a
+        // higher-initiative combatant can't silently shift the turn onto
+        // whoever now lands on the old numeric position.
+        const activeEntryId = enc.entries[enc.activeEntryIndex]?.id ?? null;
+        enc.combatants[id] = makeCombatant(id, seed);
+        enc.entries.push({
           id: nextEntryId(),
           initiative,
           combatantIds: [id],
           groupName: null,
         });
-        sortEntries(state.encounter.entries);
+        sortEntries(enc.entries);
+        if (activeEntryId !== null) {
+          const newIndex = enc.entries.findIndex((e) => e.id === activeEntryId);
+          enc.activeEntryIndex = newIndex >= 0 ? newIndex : 0;
+        }
       });
       return id;
     },
@@ -122,18 +132,24 @@ export const useEncounter = create<EncounterStore>()(
     addMany: (seed, quantity, initiative) => {
       const ids: string[] = [];
       set((state) => {
+        const enc = state.encounter;
+        const activeEntryId = enc.entries[enc.activeEntryIndex]?.id ?? null;
         for (let i = 1; i <= quantity; i++) {
           const id = nextCombatantId();
           ids.push(id);
-          state.encounter.combatants[id] = makeCombatant(id, { ...seed, label: String(i) });
-          state.encounter.entries.push({
+          enc.combatants[id] = makeCombatant(id, { ...seed, label: String(i) });
+          enc.entries.push({
             id: nextEntryId(),
             initiative,
             combatantIds: [id],
             groupName: null,
           });
         }
-        sortEntries(state.encounter.entries);
+        sortEntries(enc.entries);
+        if (activeEntryId !== null) {
+          const newIndex = enc.entries.findIndex((e) => e.id === activeEntryId);
+          enc.activeEntryIndex = newIndex >= 0 ? newIndex : 0;
+        }
       });
       return ids;
     },

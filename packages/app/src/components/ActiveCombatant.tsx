@@ -5,41 +5,22 @@ import { DefensesPanel } from "./DefensesPanel.js";
 import { AttacksPanel } from "./AttacksPanel.js";
 import { ActionList } from "./ActionList.js";
 import { RollAssistant } from "./RollAssistant.js";
-import type { Combatant, Entry } from "../state/types.js";
-
-/** The turn-order entry to run — same rule TurnPrompts uses (the first
- * member of the entry at `activeEntryIndex`), except it skips past the
- * entry currently selected as `targetId`. An active combatant is never its
- * own target, and `addCombatant` re-sorts `entries` by initiative on every
- * call, so `activeEntryIndex` is a plain array position: adding a
- * higher-initiative combatant after the encounter's first entry silently
- * shifts what position 0 points at. Walking forward from `activeEntryIndex`
- * for the first non-target entry keeps this panel showing the combatant
- * actually taking the turn instead of whoever they're aiming at. */
-function activeAttackerOf(
-  entries: Entry[],
-  activeEntryIndex: number,
-  combatants: Record<string, Combatant>,
-  targetId: string | null,
-): Combatant | undefined {
-  for (let offset = 0; offset < entries.length; offset++) {
-    const entry = entries[(activeEntryIndex + offset) % entries.length];
-    const id = entry?.combatantIds[0];
-    if (id !== undefined && id !== targetId) return combatants[id];
-  }
-  return undefined;
-}
+import { activeCombatantOf } from "./TurnPrompts.js";
 
 /** The centre pane of Main.dc.html (stat block, defences, strikes, actions)
  * combined with the roll assistant column of TurnAssistant.dc.html, the way
- * TurnManager already merges its own two source mockups. */
+ * TurnManager already merges its own two source mockups. The active
+ * combatant is derived the same way TurnPrompts derives it: the first
+ * member of the active entry. `addCombatant`/`addMany` now preserve the
+ * active entry by identity across a re-sort, so this no longer needs a
+ * workaround for combatants added mid-combat. */
 export function ActiveCombatant(): React.ReactElement | null {
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const combatants = useEncounter((s) => s.encounter.combatants);
   const targetId = useEncounter((s) => s.encounter.targetId);
 
-  const combatant = activeAttackerOf(entries, activeEntryIndex, combatants, targetId);
+  const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const [selectedAttackIndex, setSelectedAttackIndex] = useState<number | null>(null);
 
   if (!combatant) return null;
