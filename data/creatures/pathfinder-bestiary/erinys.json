@@ -1,0 +1,270 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 5,
+    "int": 2,
+    "str": 5,
+    "wis": 4
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The erinys hovers in place if they are flying and fires one arrow at any number of creatures in a @Template[cone|distance:30]. Each attack is rolled separately. This counts as one attack for the purpose of the erinys's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Furious Fusillade",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any weapon an erinys holds gains the effects of a <em>Flaming</em> rune while they hold it.</p>",
+      "frequency": null,
+      "name": "Flames of Fury",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An erinys carries a coil of rope woven of their hair (use the statistics for Rope) that animates in their hands.</p>\n<p>When a creature is hit by the erinys's rope, a segment of the rope tears loose and wraps itself around the creature, imposing a 10-foot circumstance penalty to Speed. The piece that tears off is 10 feet long for a Medium or smaller creature, and doubles in length for each size larger than Medium.</p>\n<p>When a creature Escapes the effect (DC 26), the detached segment of rope withers away into useless black sludge.</p>\n<p>Effect: Rope Snare</p>",
+      "frequency": null,
+      "name": "Rope Snare",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Flaming Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "evil",
+        "fire",
+        "magical",
+        "range-increment-100",
+        "reload-0",
+        "unholy",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "1d8+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Flaming Longsword",
+      "traits": [
+        "evil",
+        "fire",
+        "magical",
+        "unholy",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [],
+      "kind": "ranged",
+      "name": "Rope",
+      "traits": [
+        "magical",
+        "range-increment-30",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "ETNlci6VnSthx5V6",
+  "gear": [
+    "100 feet of Erinys-Hair Rope",
+    "Arrows",
+    "Breastplate",
+    "Composite Longbow",
+    "Longsword"
+  ],
+  "hp": 120,
+  "id": "pathfinder-bestiary/erinys",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 8,
+  "name": "Erinys",
+  "perception": 18,
+  "publicNotes": "<p>Erinyes exact vengeance and bloody justice for a creature's crimes, torturing and punishing their victims in ironic fashion before allowing them the escape of death. While an erinys appears as a fallen angel and the first erinyes shared that origin, erinyes now originate in myriad ways, some promoted from lesser devils and others shaped from lemures themselves forged from the souls of torturers and persecutors. The erinyes' origin is entwined with Eiseth, herself a fallen angel and one of Hell's most powerful demigods. The first erinyes were all considered to be Eiseth's metaphorical daughters, but erinyes formed since that time are no longer limited to a single gender.</p>\n<hr />\n<p>Masters of corruption and architects of conquest, devils seek both to tempt mortal life to join in their pursuit of all things profane and to spread tyranny throughout all worlds. The temptations they offer mortals range from great powers granted by the signing of an infernal contract to twisted favors following a whispered pledge to a diabolic patron, or any number of even subtler exchanges. Those who succumb to these temptations find themselves consigned to an afterlife of endless torment in the pits of Hell, wherein the only hope of escape lies in the chance of being promoted to become a devil in the infernal ranks. Every devil has a specific role to play in the upkeep of the remorseless bureaucratic machine that is Hell, from soldiers and scholars to inquisitors, lawyers, judges, and executioners. Lowly lemures and imps perform subservient labor to more powerful and specialized devils, such as contract devils and erinyes, while the greatest pit fiends command entire infernal armies.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 5
+    },
+    {
+      "type": "poison",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 19,
+    "will": 16
+  },
+  "senses": [
+    "greater-darkvision",
+    "truesight"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "crafting": 14,
+    "deception": 19,
+    "diplomacy": 15,
+    "intimidation": 19,
+    "religion": 16,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 18,
+      "dc": 26,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "True Seeing (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Dimension Door (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Divine Wrath",
+          "rank": 4
+        },
+        {
+          "name": "Retributive Pain",
+          "rank": 4
+        },
+        {
+          "name": "Fear (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "devil",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 5
+    }
+  ]
+}

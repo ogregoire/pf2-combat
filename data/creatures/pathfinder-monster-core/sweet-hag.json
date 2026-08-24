@@ -1,0 +1,286 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 3,
+    "int": 2,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The sweet hag touches a creature that doesn't realize the hag is an enemy. The betrayed creature is affected by soporific strike with a –4 circumstance penalty to their saving throw.</p>",
+      "frequency": null,
+      "name": "Betraying Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The sweet hag can take on the appearance of any Medium humanoid woman. This doesn't change their Speed or their attack and damage bonuses with their Strikes, but it might change the damage type their Strikes deal (typically to bludgeoning).</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The sweet hag casts an innate spell that can normally target 1 creature on a piece of food, typically a sweet treat. The spell is stored in the food. The first creature that eats any of the food is affected by the spell and takes a –4 circumstance penalty to their saving throw against that effect.</p>",
+      "frequency": null,
+      "name": "Poisoned Candy",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A sweet hag adds Charm, Honeyed Words, and Outcast's Curse to their coven's spells.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Coven]</p>",
+      "frequency": null,
+      "name": "Coven",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature damaged by a sweet hag's claw must succeed at a @Check[fortitude|dc:20] save or be Enfeebled 1 for 1 day.</p>\n<p>If the creature critically fails or fails this save while already enfeebled by soporific strike, it falls Unconscious and dreams of eating delicious sweets; this is a mental sleep effect. If not woken up before 1 minute passes, the creature wakes up automatically.</p>",
+      "frequency": null,
+      "name": "Soporific Touch",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d10+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Candy Cane Claw",
+      "traits": [
+        "agile",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "zrzoj0L0ZwfCbHXr",
+  "gear": [],
+  "hp": 70,
+  "id": "pathfinder-monster-core/sweet-hag",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "fey",
+    "jotun"
+  ],
+  "level": 4,
+  "name": "Sweet Hag",
+  "perception": 10,
+  "publicNotes": "<p>Sweet hags use bright colors, pleasant visages, and sugary treats to draw in children and the young at heart. Their favorite prey is impoverished youngsters who are unlikely to be missed—sweet hags offer them food and a veneer of kindness before devouring the hapless child. Sweet hags also enchant their food to magically charm others, often using these bespelled servitors to handle all of their busywork. Though they present a lovely and generous face to the world, they turn vicious when insulted or defied. A sweet hag's true form is a dribbling mass of flesh with gumdrop eyes, often resembling melting taffy.</p>\n<hr />\n<p>Hags are malevolent predators who use magic and manipulation to lure children and young adults into their clutches. Though their true forms are eldritch and horrifying, hags spend much of their lives disguised as ordinary women. They seek out targets who are unhappy, innocent, or otherwise vulnerable, preying on their weaknesses before snatching them up. The typical hag is abusive, controlling, and narcissistic. Though less malicious hags possibly exist, they rarely reveal their true forms, making them nearly impossible to find.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 11,
+    "will": 12
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 11,
+    "deception": 10,
+    "nature": 8,
+    "occultism": 8,
+    "society": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 20,
+      "name": "Coven Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Cursed Metamorphosis",
+          "rank": 6
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Scouting Eye",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Honeyed Words",
+          "rank": 4
+        },
+        {
+          "name": "Outcast's Curse",
+          "rank": 4
+        },
+        {
+          "name": "Talking Corpse",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 14,
+      "dc": 20,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Create Food (Sweets Only)",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Laughing Fit",
+          "rank": 2
+        },
+        {
+          "name": "Shrink",
+          "rank": 2
+        },
+        {
+          "name": "Charm (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Cleanse Cuisine (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Sleep",
+          "rank": 1
+        },
+        {
+          "name": "Spider Sting",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "hag",
+    "humanoid"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

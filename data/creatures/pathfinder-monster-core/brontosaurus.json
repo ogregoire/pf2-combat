@@ -1,0 +1,118 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 5,
+    "dex": 0,
+    "int": -4,
+    "str": 9,
+    "wis": 2
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedKnockdown]</p>",
+      "frequency": null,
+      "name": "Improved Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The brontosaurus makes a tail Strike and compares the attack roll to the AC of up to three foes, each of whom must be within its tail's melee reach and adjacent to at least one other target. It rolls damage only once and applies it to each creature hit.</p>\n<p>A Tail Sweep counts as two attacks for its multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Tail Sweep",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Huge or smaller, foot, @Check[reflex|dc:29|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d8+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d10+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-20",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "wy8Ve0m3wbHMo1U1",
+  "gear": [],
+  "hp": 220,
+  "id": "pathfinder-monster-core/brontosaurus",
+  "immunities": [],
+  "languages": [],
+  "level": 10,
+  "name": "Brontosaurus",
+  "perception": 16,
+  "publicNotes": "<p>Brontosauruses are truly gigantic behemoths, herbivores large enough to be unafraid of all but the most massive predators. Brontosauruses have stout bodies and long, sinuous necks and tails. Although their feet are capable of crushing entire buildings, these herbivores are generally considerate of where they step.</p>\n<hr />\n<p>Remnants from the world's primeval era, these enormous reptilian animals still exist in large numbers in remote wildernesses or underground in magical Darklands caverns. Lizardfolk, orcs, giants, and other humanoids who live near dinosaurs use the animals as mounts, guards, or hunting beasts. Occasionally, rich nobles will collect dinosaurs to display them in menageries, which almost inevitably leads to cast-offs being nursed back to health by druids and other champions of nature. When dinosaurs establish themselves in regions outside their normal habitats, it's often the result of a large collection being released.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 14,
+    "will": 16
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 23
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "dinosaur"
+  ],
+  "weaknesses": []
+}

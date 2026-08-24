@@ -1,0 +1,179 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 3,
+    "dex": 4,
+    "int": 3,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 33,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Requirements</strong> The globetrotting scholar's last action was a successful Strike</p><hr /><p><strong>Effect</strong> The globetrotting scholar immediately casts Gouging Claw, Ignition, or Tangle Vine at the target of the Strike.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Following Spell",
+      "requirements": "The globetrotting scholar's last action was a successful Strike",
+      "traits": [
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The globetrotting scholar enthusiastically describes certain features of whatever dread horror they are currently facing, pointing out the weaknesses of a creature within 30 feet. The globetrotting scholar and all allies that can hear or see them gain a +1 status bonus to attack and damage rolls against that creature until the beginning of the globetrotting scholar's next turn. The scholar deals an extra 3d6 precision damage with their weapon and unarmed Strikes that hit that creature during the same duration.</p>\n<p>Effect: Magnificent…!</p>",
+      "frequency": null,
+      "name": "Magnificent…!",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "linguistic",
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "1d4+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "electricity"
+        },
+        {
+          "formula": "2d4+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Flintlock Pistol",
+      "traits": [
+        "concussive",
+        "fatal-d8",
+        "magical",
+        "range-increment-40",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "cold"
+        },
+        {
+          "formula": "2d4+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Frost Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "cold"
+        },
+        {
+          "formula": "2d4+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Frost Dagger",
+      "traits": [
+        "agile",
+        "magical",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "gJBsgTZnZnImelP2",
+  "gear": [
+    "Climbing Kit",
+    "Dagger",
+    "Flintlock Pistol",
+    "Leather Armor",
+    "Notebook filled with Sketches of Wild Animlas and Ancient Ruins",
+    "Writing Set"
+  ],
+  "hp": 235,
+  "id": "pathfinder-npc-core/globetrotting-scholar",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 13,
+  "name": "Globetrotting Scholar",
+  "perception": 26,
+  "publicNotes": "<p>It takes a particular kind of personality to leave the creature comforts of academia in order to explore trap-ridden ancient tombs or observe man-eating monstrosities in their native habitats. The sort of personality that finds joy in the life cycle of parasitic wasps or recounts grisly Ghol-Gani sacrificial rites with a decidedly gruesome relish. Academia would not survive without such globetrotting scholars, but to their more sedate colleagues, they do tend to come off as an odd bunch.</p><hr /><p>True power comes from knowledge—the power to shape the growth of kingdoms by mere whispers, stay three steps ahead of adversaries, or even know which flora is best for creating untraceable poisons.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 26,
+    "will": 20
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 24,
+    "athletics": 27,
+    "crafting": 22,
+    "nature": 27,
+    "stealth": 24,
+    "survival": 27
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,154 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> You are wielding a shield</p>\n<hr />\n<p>You position your shield to protect yourself. When you have Raised a Shield, you gain its listed circumstance bonus to AC. Your shield remains raised until the start of your next turn.</p>\n<p>Effect: Raise a Shield</p>",
+      "frequency": null,
+      "name": "Raise a Shield",
+      "requirements": "You are wielding a shield",
+      "traits": [
+        "general"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The Drelev guard makes a melee Strike. If he hits and deals damage, the target is Frightened 1, or Frightened 2 on a critical hit.</p>",
+      "frequency": null,
+      "name": "Intimidating Strike",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Drelev guard gains a +2 circumstance bonus on attack and damage rolls as long as he is adjacent to at least two other Drelev guards.</p>",
+      "frequency": null,
+      "name": "Formation Fighters",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d8+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d8+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Longsword",
+      "traits": [
+        "magical",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "wMfnwJoLvxdZZAwr",
+  "gear": [
+    "Arrows",
+    "Breastplate",
+    "Composite Longbow",
+    "Gold Pieces",
+    "Longsword",
+    "Steel Shield"
+  ],
+  "hp": 135,
+  "id": "kingmaker-bestiary/drelev-guard",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Drelev Guard",
+  "perception": 16,
+  "publicNotes": "",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 14,
+    "will": 16
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 18,
+    "intimidation": 16
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

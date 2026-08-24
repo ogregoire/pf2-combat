@@ -1,0 +1,182 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 6,
+    "dex": 2,
+    "int": -2,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The bush draws nourishment from one cluster of blood berries, regaining @Damage[(2d8+10)[healing]] Hit Points. That berry cluster wrinkles and dies.</p>",
+      "frequency": null,
+      "name": "Consume Berries",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "primal",
+        "vitality"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The drainberry bush has at least one living creature Grabbed with one of its vines</p>\n<hr />\n<p><strong>Effect</strong> The bush's hollow thorns siphon blood from creatures it has grabbed. Each creature must succeed at a @Check[fortitude|dc:25|traits:damaging-effect] save or take [[/r 2d8+10]] damage and become Drained 1 (double damage and Drained 2 on a critical failure). For every creature damaged this way, a cluster of blood berries immediately grows along the bush's branches.</p>",
+      "frequency": null,
+      "name": "Drain Blood",
+      "requirements": "The drainberry bush has at least one living creature Grabbed with one of its vines",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The drainberry bush makes up to four vine Strikes, each against a different target. These attacks count toward the bush's multiple attack penalty, but the multiple attack penalty doesn't increase until after the bush makes all these attacks.</p>",
+      "frequency": null,
+      "name": "Storm of Vines",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The drainberry bush must drain blood from living creatures for sustenance. This causes clusters of bright red berries to grow among its branches.</p>\n<p>Each cluster of berries lasts for 1 day, and a drainberry bush typically has [[/r 1d6+3 #clusters]]{1d6+3 clusters} when encountered. When consumed, a cluster restores @Damage[(2d8+10)[healing]] Hit Points. This effect has the healing, necromancy, and primal traits.</p>\n<p>A creature can pluck a cluster of berries with a successful unarmed Strike or Thievery check against the bush's AC.</p>",
+      "frequency": null,
+      "name": "Blood Berries",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "frequency": null,
+      "name": "Lifesense 120 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The drainberry bush can use Diplomacy to Make an Impression on and make very simple Requests of animals and plant creatures.</p>",
+      "frequency": null,
+      "name": "Nature Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Vine",
+      "traits": [
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "Z9rOUqCqAaMjvgBc",
+  "gear": [],
+  "hp": 135,
+  "id": "pathfinder-bestiary-2/drainberry-bush",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "fey"
+  ],
+  "level": 7,
+  "name": "Drainberry Bush",
+  "perception": 16,
+  "publicNotes": "<p>Drainberry bushes are floating bushes that originate from the First World, with long, thorny vines and dense clusters of bright-red berries. Their hollow thorns quickly siphon blood, which is how these carnivorous plants feed, and they rapidly turn consumed blood into fresh batches of delicious berries. Drainberry bushes exude a faint white glow that is a result of stored vitality energy.</p>\n<p>Drainberry bushes exhibit unusually high intelligence and have an astute sense of value. They typically become insulted when creatures attempt to harvest their berries. Creatures that attempt to converse with drainberry bushes finds the plants telepathically convey only short and simple phrases: most commonly, \"Money please,\" \"Deal good,\" \"Deal no good,\" \"Want that,\" (with a gesture toward an item it covets), \"Thank you, customer,\" and if necessary, \"No refunds.\" Though a drainberry bush considers the market value of its berries to be 25 gp, it greatly prefers interesting art objects as payment-even ones of significantly lower value.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "void",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 13,
+    "will": 13
+  },
+  "senses": [
+    "lifesense"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 11,
+    "athletics": 17,
+    "diplomacy": 13,
+    "nature": 17,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 5
+    }
+  ]
+}

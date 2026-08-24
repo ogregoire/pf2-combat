@@ -1,0 +1,393 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 2,
+    "dex": 4,
+    "int": 5,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 43,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Foras is Quickened 1, and he can use this additional action to Step, Stride, or Sustain a Spell.</p>",
+      "frequency": null,
+      "name": "Accelerated Existence",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Foras exists outside of time; he doesn't age, doesn't need food or drink to survive, and can't be Quickened or Slowed unless he chooses to be.</p>",
+      "frequency": null,
+      "name": "Outside of Time",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When Foras rolls a success on a Will save, he gets a critical success instead.</p>",
+      "frequency": null,
+      "name": "Resolve",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If a reaction would disrupt Foras's spellcasting action, he attempts a @Check[flat|dc:15].; on a success, the action isn't disrupted.</p>",
+      "frequency": null,
+      "name": "Steady Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>60 feet. A living creature that enters the aura or ends its turn within it has some of its temporal essence drained away to Yog-Sothoth. It must succeed at a @Check[will|dc:38] save or become Slowed 1 for 1 round (Slowed 2 on a critical failure). Worshipers of Yog-Sothoth are immune to Time Siphon.</p>",
+      "frequency": null,
+      "name": "Time Siphon",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The ritual Foras led his cultists on allowed them to turn aside time and halt aging, but it required more than the sacrifice of an individual's given name-it required the sacrifice of sight itself. The removal of the eyes symbolized a Thresholder's abandonment of all they had seen before, and with the ritual's completion they gain something greater than mere vision: they gain the Unseen Sight. This is a precise sense that mimics Darkvision yet functions even if the eye sockets themselves are covered. More importantly, the unseen sight allows a Thresholder to see the truth of the world, granting them the ability to see things as they actually are as if they were under the effects of Truesight, provided they are located within a region under the influence of Yog- Sothoth. Currently in the Stolen Lands, this is limited to the island of Candlemere and the dungeons within it; beyond this area, the Thresholder cultists are Blind. Of course, if their plan to draw Yog-Sothoth into the region succeeds, the region in which the unseen sight functions will increase dramatically.</p>",
+      "frequency": null,
+      "name": "Unseen Sight",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "3d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "magical",
+        "staff",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "2mkfF43tP8IGVfBz",
+  "gear": [
+    "Explorer's Clothing",
+    "Religious Symbol of Yog-Sothoth",
+    "Staff of Power"
+  ],
+  "hp": 355,
+  "id": "kingmaker-bestiary/foras",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "hallit"
+  ],
+  "level": 19,
+  "name": "Foras",
+  "perception": 33,
+  "publicNotes": "<p>The man who would take the name Foras grew up millennia ago among worshipers of Pharasma, yet he came to believe that the Outer Gods were the keys to claiming personal power. He tricked his people's priests into to imparting eldritch truths they would not normally share, then shared them with a few fellow secretive scholars of the occult.</p>\n<p>Gathering those whom Foras could manipulate, he retreated to a new stronghold-a location now known as Candlemere. Here, Foras's cult gave up their sight and their souls, only to become trapped with him within their own compound when their leader's brother tracked them down and imprisoned them. Yet even this hasn't stymied Foras, and he continues to this day to work toward his goal of drawing Yog-Sothoth into the world.</p>",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": 31,
+    "reflex": 31,
+    "will": 35
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 33,
+    "arcana": 34,
+    "deception": 37,
+    "intimidation": 35,
+    "occultism": 37,
+    "religion": 33
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 36,
+      "dc": 41,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 4,
+          "rank": 5
+        },
+        {
+          "max": 4,
+          "rank": 6
+        },
+        {
+          "max": 4,
+          "rank": 7
+        },
+        {
+          "max": 4,
+          "rank": 8
+        },
+        {
+          "max": 4,
+          "rank": 9
+        },
+        {
+          "max": 1,
+          "rank": 10
+        }
+      ],
+      "spells": [
+        {
+          "name": "Time Stop",
+          "rank": 10
+        },
+        {
+          "name": "Overwhelming Presence",
+          "rank": 9
+        },
+        {
+          "name": "Telepathic Demand",
+          "rank": 9
+        },
+        {
+          "name": "Unfathomable Song",
+          "rank": 9
+        },
+        {
+          "name": "Maze",
+          "rank": 8
+        },
+        {
+          "name": "Scintillating Pattern",
+          "rank": 8
+        },
+        {
+          "name": "Uncontrollable Dance",
+          "rank": 8
+        },
+        {
+          "name": "Mask of Terror",
+          "rank": 7
+        },
+        {
+          "name": "Visions of Danger",
+          "rank": 7
+        },
+        {
+          "name": "Warp Mind",
+          "rank": 7
+        },
+        {
+          "name": "Feeblemind",
+          "rank": 6
+        },
+        {
+          "name": "Spirit Blast",
+          "rank": 6
+        },
+        {
+          "name": "True Seeing",
+          "rank": 6
+        },
+        {
+          "name": "Black Tentacles",
+          "rank": 5
+        },
+        {
+          "name": "Crushing Despair",
+          "rank": 5
+        },
+        {
+          "name": "Synesthesia",
+          "rank": 5
+        },
+        {
+          "name": "Tongues",
+          "rank": 5
+        },
+        {
+          "name": "Confusion",
+          "rank": 4
+        },
+        {
+          "name": "Confusion",
+          "rank": 4
+        },
+        {
+          "name": "Fly",
+          "rank": 4
+        },
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Telepathy",
+          "rank": 4
+        },
+        {
+          "name": "Enthrall",
+          "rank": 3
+        },
+        {
+          "name": "Hypercognition",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Vampiric Touch",
+          "rank": 3
+        },
+        {
+          "name": "Death Knell",
+          "rank": 2
+        },
+        {
+          "name": "Hideous Laughter",
+          "rank": 2
+        },
+        {
+          "name": "See Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Touch of Idiocy",
+          "rank": 2
+        },
+        {
+          "name": "Chill Touch",
+          "rank": 1
+        },
+        {
+          "name": "Color Spray",
+          "rank": 1
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Magic Missile",
+          "rank": 1
+        },
+        {
+          "name": "Magic Missile",
+          "rank": 1
+        },
+        {
+          "name": "Mending",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Ray of Enfeeblement",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Spider Sting",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 36,
+      "dc": 41,
+      "name": "Sorcerer Bloodline Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Unusual Anatomy",
+          "rank": 5
+        },
+        {
+          "name": "Aberrant Whispers",
+          "rank": 3
+        },
+        {
+          "name": "Tentacular Limbs",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

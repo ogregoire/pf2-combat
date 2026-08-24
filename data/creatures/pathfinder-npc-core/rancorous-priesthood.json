@@ -1,0 +1,185 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 2,
+    "int": 2,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 31,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The members of the mob wildly swing their weapons in a chaotic attack at each enemy in a @Template[type:emanation|distance:5] with a @Check[reflex|dc:25|basic|options:area-effect] save. The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d12+2)[slashing]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d12+9)[slashing]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d12+9)[slashing]|options:area-damage] damage</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Wild Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FormUp]</p>",
+      "frequency": null,
+      "name": "Form Up",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 130 (3 segments), 65 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the rancorous priesthood Casts a Spell, their constituent members combine their efforts into casting a more powerful version of the spell than any one member could achieve alone. When Casting a Spell that has an area of a burst, cone, or line and doesn't have a duration, increase the area of that spell. Add 5 feet to the radius of a burst that normally has a radius of at least 10 feet (a burst with a smaller radius is not affected). Add 5 feet to the length of a cone or line that is normally 15 feet long or smaller, and add 10 feet to the length of a larger cone or line.</p>",
+      "frequency": null,
+      "name": "Troop Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "uFQsIRC0zz3sNNIW",
+  "gear": [],
+  "hp": 195,
+  "id": "pathfinder-npc-core/rancorous-priesthood",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common"
+  ],
+  "level": 11,
+  "name": "Rancorous Priesthood",
+  "perception": 21,
+  "publicNotes": "<p>Followers of Rovagug must usually conceal their devotion to the Rough Beast, hiding in remote cave complexes or abandoned ruins, but they emerge when they sense weakness, gathering together into a destructive, homicidal mob to hunt down priests of rival deities or slaughter entire towns.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 17,
+    "will": 22
+  },
+  "senses": [],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 22,
+    "intimidation": 21,
+    "religion": 22
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Cleric Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Destructive Aura",
+          "rank": 4
+        },
+        {
+          "name": "Cry of Destruction",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Divine Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 2,
+          "rank": 6
+        }
+      ],
+      "spells": [
+        {
+          "name": "Divine Immolation",
+          "rank": 5
+        },
+        {
+          "name": "Shadow Blast",
+          "rank": 5
+        },
+        {
+          "name": "Noise Blast",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Divine Lance",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid",
+    "troop",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 10
+    },
+    {
+      "type": "splash-damage",
+      "value": 10
+    }
+  ]
+}

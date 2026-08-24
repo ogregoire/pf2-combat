@@ -1,0 +1,288 @@
+{
+  "abilityMods": {
+    "cha": 9,
+    "con": 6,
+    "dex": 6,
+    "int": 5,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 42,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The thulgant causes a demon within 30 feet to suffer the effect of its sinful vulnerability.</p>",
+      "frequency": null,
+      "name": "Demon Hunter",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d6+17)[bludgeoning],1d6[acid]], @Check[fortitude|dc:40|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterConstrict]</p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The thulgant hits the same enemy with two consecutive sting Strikes in the same round</p>\n<hr />\n<p><strong>Effect</strong> The thulgant deals @Damage[(3d12+17)[mental]] damage to the enemy. If the enemy is affected by thulgant venom, that poison gains the virulent trait.</p>",
+      "frequency": null,
+      "name": "Mind-Rending Sting",
+      "requirements": "The thulgant hits the same enemy with two consecutive sting Strikes in the same round",
+      "traits": [
+        "virulent"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The thulgant rises up on its twitching limbs and presents its numerous tentacles and stingers in a horrifying display of awfulness. Creatures in a @Template[emanation|distance:30] must attempt a @Check[will|dc:40] save, after which they are temporarily immune to further Stunning Displays for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Stunned 1.</p>\n<p><strong>Failure</strong> The creature is Stunned 4.</p>\n<p><strong>Critical Failure</strong> The creature is Stunned 8.</p>",
+      "frequency": null,
+      "name": "Stunning Display",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "emotion",
+        "fear",
+        "incapacitation",
+        "mental",
+        "occult",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 10",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:40]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[3d6[poison]] damage and the victim gains one of the following at random: Clumsy 1, Enfeebled 1, or Stupefied 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[6d6[poison]] damage and the victim gains two of the following at random: Clumsy 2, Enfeebled 2, or Stupefied 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[9d6[poison]] damage and the victim gains all three of the following: Clumsy 3, Enfeebled 3, and Stupefied 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Thulgant Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "3d12+17",
+          "type": "piercing"
+        },
+        {
+          "formula": "4d6",
+          "type": "mental"
+        }
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "reach-10",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "3d6",
+          "type": "acid"
+        },
+        {
+          "formula": "3d8+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "mEjCLVRt7iDiNZL6",
+  "gear": [],
+  "hp": 305,
+  "id": "pathfinder-monster-core/thulgant",
+  "immunities": [
+    "controlled",
+    "fear-effects"
+  ],
+  "languages": [
+    "chthonian"
+  ],
+  "level": 18,
+  "name": "Thulgant",
+  "perception": 30,
+  "publicNotes": "<p>Thulgants are powerful and intelligent qlippoths created from the cannibalistic feeding frenzies of augnagars. Although they spend most of their time hunting and battling demons for control of the Outer Rifts, thulgants amuse themselves with a variety of diversions, such as maintaining galleries of petrified mortals or building massive, hive-like lairs filled with enslaved minions. Each thulgant is a horrific tangle of limbs, with spiderlike legs, writhing tentacles emerging from the top of its head, and three scorpion-like stingers.</p>\n<hr />\n<p>Long before the creatures known as demons came to be the dominant force in the Outer Rifts, qlippoth ruled the innumerable cracks of the Outer Sphere. These inimical creatures are a form of primordial and alien evil that predates mortal life, and most immortal life as well. Since the rise of mortal sin and the associated expansion of demonic life through the Outer Rifts, qlippoth have been driven to their deepest reaches, and they seethe with rancor at the loss of their realms. Yet, rather than directly oppose demons, qlippoth instead turn to the source—mortal sin—and wage an endless war to eradicate all creatures capable of sinful acts so that the demonic tide might be turned back. To ensure they do not bolster their foe's ranks, they enact horrific transformations on their targets, converting their victims into beings incapable of discerning right from wrong; this renders them unable to be judged by Pharasma's courts and thus incapable of becoming fiends. Most mortals consider the ministrations of a qlippoth to be far worse than any fate awaiting them in the afterlife.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 15
+    },
+    {
+      "type": "physical",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 30,
+    "reflex": 28,
+    "will": 32
+  },
+  "senses": [
+    "darkvision",
+    "truesight"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 32,
+    "athletics": 35,
+    "occultism": 33,
+    "stealth": 32
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 32,
+      "dc": 40,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Quandary",
+          "rank": 8
+        },
+        {
+          "name": "Divine Decree",
+          "rank": 7
+        },
+        {
+          "name": "Interplanar Teleport",
+          "rank": 7
+        },
+        {
+          "name": "Petrify",
+          "rank": 6
+        },
+        {
+          "name": "Phantasmal Calamity",
+          "rank": 6
+        },
+        {
+          "name": "Truesight (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Unfettered Movement (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "qlippoth",
+    "unholy"
+  ],
+  "weaknesses": []
+}

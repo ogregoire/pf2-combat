@@ -1,0 +1,282 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 5,
+    "dex": 6,
+    "int": 3,
+    "str": 5,
+    "wis": 5
+  },
+  "ac": 31,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(3d8+5)[bludgeoning]], @Check[fortitude|dc:29|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterConstrict]</p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The naga's grip is more spiritual than physical. A creature hit by a vicharamuni's tail must succeed at a @Check[will|dc:29] save or become Grabbed by the tail until they Escape, the naga releases them with an Interact action, or the naga dies.</p>\n<p>A captive takes a –4 status penalty to Escape, but can choose to attempt an Occultism or Religion check to Escape instead of the usual options without taking this penalty</p>",
+      "frequency": null,
+      "name": "Coils of Knowledge",
+      "requirements": null,
+      "traits": [
+        "force",
+        "magical"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A vicharamuni can choose to negate any damage that its venom does to a creature. In addition, the naga can cast any of its divine spells on a creature that is affected by its venom, regardless of range or line of effect.</p>",
+      "frequency": null,
+      "name": "Spiritual Venom",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[will|dc:29]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[3d6[spirit]] (1 round)</p>\n<p><strong>Stage 2</strong> 3d6 spirit and Drained 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Vicharamuni Venom",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "holy",
+        "mental",
+        "poison",
+        "spirit"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "3d10+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "finesse",
+        "holy",
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [],
+      "kind": "ranged",
+      "name": "Spit",
+      "traits": [
+        "agile",
+        "holy",
+        "poison",
+        "range-increment-30"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "3d8+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "finesse",
+        "holy",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "LRboVCCVODz00d5B",
+  "gear": [],
+  "hp": 175,
+  "id": "pathfinder-monster-core/vicharamuni",
+  "immunities": [],
+  "languages": [
+    "common",
+    "empyrean"
+  ],
+  "level": 10,
+  "name": "Vicharamuni",
+  "perception": 22,
+  "publicNotes": "<p>Awakener nagas are benevolent and wise teachers of people and places. They seek to guide and nurture the world around them, sensing mortals or locales with potential supernatural significance. Once located, these nagas provide instruction and divine trials to forge their wards toward strength and to impart a deeper understanding of right and wrong. Though considered stern and intimidating taskmasters by their students, those taught by a vicharamuni often go on to become great heroes.</p>\n<p>Awakener nagas are similarly attentive in guiding their young. Upon reaching adulthood, a naga is provided a final trial before being encouraged to depart the nest and seek out their own natural wonders or promising mortals. Sometimes generations of nagas might guard the same place or family line, passing the honor of such care from parent to child. In such cases, the parent nagas aim to have at least one of their children elect to stay behind and become the guardian of their ancestral ward, giving the parents peace of mind that the site they protect will continue to be guarded by their descendants.</p>\n<hr />\n<p>Nagas are serpentine beings with magical powers and keen intellects. Physically, they resemble massive snakes, though they often wear jewelry and other ornaments that clearly separate them from their animal kin. Nagas use their innate magic and poisonous fangs to keep all but the most stalwart foes at bay. They keep their own counsel, viewing their cosmic role to be sacrosanct and beyond the understanding of outside scholars. Their unwillingness to explain themselves or entertain the suggestion of alliances has led to a long history of conflict with their neighbors, who read them as aloof, arrogant, or duplicitous.</p>\n<p>Nagas often have a powerful sense of duty to their perceived role within the universe, even if this role leads them to violent or tragic ends. Many see them as harsh and stern due to their devotion, terrifying in their majesty yet possessed of an aura of transcendence.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 20,
+    "reflex": 21,
+    "will": 22
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 22,
+    "athletics": 21,
+    "deception": 18,
+    "diplomacy": 21,
+    "stealth": 20
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Divine Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 4,
+          "rank": 5
+        }
+      ],
+      "spells": [
+        {
+          "name": "Breath of Life",
+          "rank": 5
+        },
+        {
+          "name": "Divine Immolation",
+          "rank": 5
+        },
+        {
+          "name": "Fly",
+          "rank": 4
+        },
+        {
+          "name": "Crisis of Faith",
+          "rank": 3
+        },
+        {
+          "name": "Holy Light",
+          "rank": 3
+        },
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading",
+          "rank": 3
+        },
+        {
+          "name": "Calm",
+          "rank": 2
+        },
+        {
+          "name": "Cleanse Affliction",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Noise Blast",
+          "rank": 2
+        },
+        {
+          "name": "See the Unseen",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Frostbite",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Protection",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Spirit Link",
+          "rank": 1
+        },
+        {
+          "name": "Stabilize",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "beast",
+    "holy"
+  ],
+  "weaknesses": []
+}

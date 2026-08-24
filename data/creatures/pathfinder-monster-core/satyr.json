@@ -1,0 +1,209 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 1,
+    "dex": 4,
+    "int": 1,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 19,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> The satyr is holding a musical instrument.</p>\n<hr />\n<p><strong>Effect</strong> The satyr plays a melody on his instrument to cast Charm, Fear, Sleep, or Suggestion without expending the spell slot.</p>\n<p>The spell gains the auditory trait and targets all creatures in a @Template[emanation|distance:60] instead of its usual targets. A creature that succeeds at its Will save against any spell is then temporarily immune from spells played from that satyr's pipes for 1 minute. Satyrs are immune to this music.</p>",
+      "frequency": null,
+      "name": "Play the Pipes",
+      "requirements": "The satyr is holding a musical instrument.",
+      "traits": [
+        "auditory",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the satyr Plays the Pipes to cast a spell, he can Step or Stride as part of the activity.</p>",
+      "frequency": null,
+      "name": "Fleet Performer",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A satyr's wineskin magically enchants any alcohol inside. With an Interact action, a living creature can imbibe the alcohol and gain a +1 item bonus to Will saves and a +3 item bonus to Will saves against fear effects for the following hour. When the wineskin is removed from a satyr's person, the magic remains only until the wine spoils. The wineskin holds up to eight drafts of wine.</p>\n<p>Effect: Sylvan Wine</p>",
+      "frequency": null,
+      "name": "Sylvan Wine",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-60",
+        "reload-0"
+      ]
+    }
+  ],
+  "foundryId": "aj4ZJUULa7VoPYWy",
+  "gear": [
+    "Arrows",
+    "Dagger",
+    "Panpipes",
+    "Shortbow",
+    "Wineskin"
+  ],
+  "hp": 80,
+  "id": "pathfinder-monster-core/satyr",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 4,
+  "name": "Satyr",
+  "perception": 10,
+  "publicNotes": "<p>To a satyr, life is a party and everyone is invited. Notorious for their hedonism, these fey believe there's no greater beauty than can be found in song, drink, indulgent meals, and carnal pleasures. Satyrs use their enchanting songs and natural charm to encourage all manner of people to follow their true desires and free themselves from society's rules. This usually involves enticing mortals to join raucous parties or engage in trysts in moonlit glades. If a potential companion rejects a satyr's advances, however, the satyr has little interest in continuing a conversation and goes off to find more amenable revelers.</p>\n<p>The lifestyle of a satyr leaves no room for ongoing affairs or long-term friends. Once his party is over or his lust is satiated, the satyr disappears back into the forest. The offspring satyrs leave behind are satyrs themselves, and they usually end up being taken from their cradles by other fey rather than left in mortals' care. Satyrs are always male.</p>\n<p>The untouched beauty of the forest is sacred and precious to a satyr. Brutish intruders who clear-cut trees or massacre animals without eating them risk drawing a satyr's ire. A satyr so provoked uses his spells to undermine foes and attempts to dispatch them either with brutal ambushes or by leading a rush of forest animals to attack.</p>\n<p>Other fey, particularly more benevolent fey, look upon satyrs as loutish, embarrassing cousins. They're rarely hostile toward satyrs, but most find them insufferable and advise any mortals they like to steer clear of satyrs' glades.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 11,
+    "will": 12
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "deception": 13,
+    "diplomacy": 13,
+    "intimidation": 11,
+    "nature": 9,
+    "performance": 13,
+    "stealth": 11,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 21,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Triple Time",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Courageous Anthem",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Sleep",
+          "rank": 1
+        },
+        {
+          "name": "Uplifting Overture",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

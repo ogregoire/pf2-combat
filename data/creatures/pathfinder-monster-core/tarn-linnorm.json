@@ -1,0 +1,283 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 8,
+    "dex": 6,
+    "int": -1,
+    "str": 10,
+    "wis": 7
+  },
+  "ac": 46,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike (Tail Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(3d6+18)[bludgeoning]], @Check[fortitude|dc:44|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The tarn linnorm Strides and then makes a jaws Strike with each of their heads, each against a different target. Both attacks count toward the tarn linnorm's multiple attack penalty, but the multiple attack penalty doesn't increase until after the tarn linnorm makes all of these attacks.</p>",
+      "frequency": null,
+      "name": "Double Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The tarn linnorm can expel either a @Template[line|distance:120] or a @Template[cone|distance:60] of acid, dealing @Damage[20d6[acid]|options:area-damage] damage to creatures within the area (@Check[reflex|dc:44|basic|options:area-effect] save).</p>\n<p>The linnorm can't use Corrosive Breath or Double Breath again for [[/gmr 1d4 #Recharge Corrosive Breath or Double Breath]]{1d4 rounds}.</p>\n<p>The acid creates toxic fumes. At the beginning of the linnorm's next turn, those who failed the breath weapon's Reflex save must succeed at a @Check[fortitude|dc:42] or gain Sickened 4 from the poisonous fumes.</p>",
+      "frequency": null,
+      "name": "Corrosive Breath",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "poison",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The tarn linnorm uses Corrosive Breath twice. A creature attempts only one save and can take damage only once.</p>\n<p>The linnorm can't use Corrosive Breath or Double Breath again for [[/br 2d4 #Recharge Corrosive Breath or Double Breath]]{2d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Double Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a creature slays the tarn linnorm, it must succeed at a @Check[will|dc:46] save or it can no longer recover Hit Points via any means, such as healing spells, the Medicine skill, or natural healing from rest. This has an unlimited duration.</p>",
+      "frequency": null,
+      "name": "Curse of Death",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "death",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 15 (Deactivated by Cold Iron)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:44]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 10 rounds</p>\n<p><strong>Stage 1</strong> @Damage[7d6[acid]] damage and Drained 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[11d6[acid]] damage and Drained 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Tarn Linnorm Venom",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "injury",
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "4d8+18",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-30",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "4d12+18",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-30",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "4d6+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-30"
+      ]
+    }
+  ],
+  "foundryId": "k0HUy6WdbZUNfG8X",
+  "gear": [],
+  "hp": 400,
+  "id": "pathfinder-monster-core/tarn-linnorm",
+  "immunities": [
+    "acid",
+    "curse",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "aklo",
+    "draconic",
+    "fey"
+  ],
+  "level": 20,
+  "name": "Tarn Linnorm",
+  "perception": 35,
+  "publicNotes": "<p>Although more powerful linnorms exist, the multi-headed tarn linnorm can wreak an awe-inspiring amount of devastation.</p>\n<hr />\n<p>Immense, primeval dragons of the northern reaches of the world, linnorms hate those they deem to be lesser creatures and seek to inflict as much suffering as possible upon their unfortunate victims. While these serpentine monstrosities might not be the powerful winged dragons most imagine, they nonetheless possess incredible strength and deadly powers that often rival more notorious dragons' brutality.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 36,
+    "reflex": 32,
+    "will": 31
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 32,
+    "athletics": 38,
+    "stealth": 34
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "fly",
+      "value": 100
+    },
+    {
+      "type": "swim",
+      "value": 80
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 42,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Truesight (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Unfettered Movement (Constant)",
+          "rank": 4
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "acid",
+    "amphibious",
+    "dragon"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 15
+    }
+  ]
+}

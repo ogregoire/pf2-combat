@@ -1,0 +1,109 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 3,
+    "dex": 1,
+    "int": -5,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The giant leech has a creature Grabbed or Restrained</p>\n<hr />\n<p><strong>Effect</strong> The giant leech drains blood from the creature it has grabbed. This deals [[/r 2d4]] damage. A creature that has its blood drained by a giant leech is Drained 1 until it receives any kind or amount of healing.</p>",
+      "frequency": null,
+      "name": "Blood Drain",
+      "requirements": "The giant leech has a creature Grabbed or Restrained",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Mouth",
+      "traits": []
+    }
+  ],
+  "foundryId": "JJKxWVExhUEno9j0",
+  "gear": [],
+  "hp": 32,
+  "id": "pathfinder-bestiary-2/giant-leech",
+  "immunities": [],
+  "languages": [],
+  "level": 2,
+  "name": "Giant Leech",
+  "perception": 5,
+  "publicNotes": "<p>Capable of growing to lengths of nearly 5 feet, giant leeches have circular maws filled with hook-like teeth. They prefer to dwell in stagnant or slow-moving shallow water or in damp, moist undergrowth. Horses and larger animals are their favorite prey, but they won't balk at a chance to latch onto a human- or halfling-sized meal.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 7,
+    "will": 5
+  },
+  "senses": [
+    "tremorsense"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "animal"
+  ],
+  "weaknesses": [
+    {
+      "type": "salt",
+      "value": 5
+    }
+  ]
+}

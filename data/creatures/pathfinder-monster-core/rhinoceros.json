@@ -1,0 +1,105 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 4,
+    "dex": 0,
+    "int": -4,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The rhinoceros Strides twice, then makes a horn Strike. As long as the rhinoceros moved at least 20 feet, the Strike's damage increases to @Damage[(3d8+6)[piercing]] damage. A Medium or smaller creature struck by this attack must succeed at a @Check[reflex|dc:21] save or be automatically Shoved back 5 feet and knocked Prone by the force of the blow.</p>",
+      "frequency": null,
+      "name": "Rhinoceros Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, foot, @Check[reflex|dc:18|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "2d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d8+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Horn",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "LiURMjxzav8SBKSq",
+  "gear": [],
+  "hp": 70,
+  "id": "pathfinder-monster-core/rhinoceros",
+  "immunities": [],
+  "languages": [],
+  "level": 4,
+  "name": "Rhinoceros",
+  "perception": 9,
+  "publicNotes": "<p>Rhinoceroses are short-tempered, territorial, and easily startled, and these traits combined with their innate ferocity means their natural instinct when disturbed is to attack. When intruders disturb or surprise rhinoceroses, they respond by charging directly at the interlopers and then lashing out with their mighty horns.</p>\n<hr />\n<p>This hefty animal is easily recognizable by the distinctive upward-thrusting horn on its snout. Rhinoceroses are herbivorous and, in spite of their hulking size, can run at considerable speed. While rhinos have good hearing and a keen sense of smell, their eyesight is relatively poor.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 8,
+    "will": 11
+  },
+  "senses": [
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 12,
+    "survival": 10
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

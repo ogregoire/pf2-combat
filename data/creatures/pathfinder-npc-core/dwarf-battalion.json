@@ -1,0 +1,169 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 4,
+    "dex": 1,
+    "int": 0,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The dwarf battalion unleashes a storm of warhammer blows against each enemy in a @Template[type:emanation|distance:5] (@Check[reflex|dc:21|basic|options:area-effect] save). The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[1d8[bludgeoning]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d8+5)[bludgeoning]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d8+5)[bludgeoning]|options:area-damage] damage</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Coordinated Pummel",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p>The battalion raises their steel shields. It gains a +2 circumstance bonus to AC and Reflex saves until the start of its next turn.</p>",
+      "frequency": null,
+      "name": "Shields Up!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The battalion joins together to sing a traditional song of battle. Each enemy in a @Template[type:emanation|distance:30] must succeed at a @Check[will|dc:23|options:inflicts:frightened] save or be Frightened 1 (or Frightened 2 on a critical failure). Each enemy is then temporarily immune for 10 minutes.</p>",
+      "frequency": null,
+      "name": "Dwarven War Song",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>he dwarf battalion draws alchemical bombs, then hurls them at distant foes. This volley is a @Template[type:burst|distance:10] within 60 feet that deals @Damage[3d6[@item.flags.pf2e.rulesSelections.bombingBarrage]|options:area-damage] damage with a @Check[reflex|dc:21|basic|options:area-effect] save. The damage is either acid, fire, or electricity damage, depending on which type of bombs the battalion used. When the dwarf battalion is reduced to 2 or fewer segments, this area decreases to a @Template[type:burst|distance:5].</p>",
+      "frequency": null,
+      "name": "Bombing Barrage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Dwarves are often calm and collected in the face of imminent danger. At the end of the battalion's turn, reduce its Frightened condition by 2 instead of 1.</p>",
+      "frequency": null,
+      "name": "Dwarven Doughtiness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 70 (3 segments), 35 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "xnHaTClGCleGFoLP",
+  "gear": [],
+  "hp": 105,
+  "id": "pathfinder-npc-core/dwarf-battalion",
+  "immunities": [],
+  "languages": [
+    "common",
+    "dwarven"
+  ],
+  "level": 6,
+  "name": "Dwarf Battalion",
+  "perception": 13,
+  "publicNotes": "<p>Dwarven soldiers make formidable units, capable of holding their own against most enemies. In combat, a dwarf battalion is a well-oiled machine, unleashing coordinated attacks against foes.</p><hr /><p>From the dwarven perspective, most things in life are best done correctly, and that means taking one's time. Dwarves are a focused and intentional people, taking years or even decades to ply their trades, doing their best to make every detail perfect. The patience and dedication required for such tasks pays off, and many dwarves become experts in their respective field, trade, or area of focus. Many dwarves uphold traditions, and since dwarven origins trace back to underground life, many still hone skills focused on life underground.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 11,
+    "will": 13
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 15,
+    "survival": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dwarf",
+    "humanoid",
+    "troop"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 5
+    },
+    {
+      "type": "splash-damage",
+      "value": 5
+    }
+  ]
+}

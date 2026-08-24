@@ -1,0 +1,170 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 3,
+    "int": -1,
+    "str": 2,
+    "wis": 3
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A lizardfolk scout can hold their breath for 150 rounds (15 minutes).</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:14]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d4[poison]] damage (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d4[poison]] damage and Off-Guard (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[1d4[poison]] damage, Clumsy 1, and Fatigued (1 round)</p>",
+      "frequency": null,
+      "name": "Giant Centipede Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the lizardfolk scout starts its turn Hidden from or undetected by a creature, that creature is Off-Guard against the scout's attacks until the end of the turn.</p>",
+      "frequency": null,
+      "name": "Hidden Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The lizardfolk scout deals an extra 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Non-lizardfolk creatures that are in difficult terrain or are in water and lack a swim Speed are Off-Guard to the lizardfolk defender.</p>",
+      "frequency": null,
+      "name": "Terrain Advantage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Blowgun",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "range-increment-20",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "V8w4iOwUMPqYnqVE",
+  "gear": [
+    "Blowgun",
+    "Blowgun Darts",
+    "Blowgun Darts (Giant Centipede Venom)"
+  ],
+  "hp": 17,
+  "id": "pathfinder-monster-core/lizardfolk-scout",
+  "immunities": [],
+  "languages": [
+    "common",
+    "draconic",
+    "iruxi"
+  ],
+  "level": 1,
+  "name": "Lizardfolk Scout",
+  "perception": 8,
+  "publicNotes": "<p>Iruxi scouts are the lizardfolk most often encountered by adventurers, for these unsentimental explorers and hunters spend most of their lives on the move, constantly patrolling the territories held by their enclave. If intruders are driven off, it is the responsibility of iruxi scouts to track them, observe them, and learn their ways and weaknesses so as to report back to the community and aid in the defense against potential reprisals.</p>\n<hr />\n<p>Capable and adaptable predators, the reptilian beings known as lizardfolk are heirs to truly ancient civilizations. Their oral traditions cover thousands of years, and they revere the bones of their ancestors. Fossilized lizardfolk are even built into the walls of lizardfolk's stone and glass cities, to allow these predecessors to watch over their kin. Lizardfolk likewise have longstanding traditions of religious worship and astrology, with eyes on the past, the future, and the stars whenever they make a large decision. Their long history has taught them to be patient in all things, though this has seen them losing ground to hastier peoples in modern times.</p>\n<p>Lizardfolk refer to themselves as \"iruxi,\" though they have taken their common moniker among other peoples in stride. Most of their settlements are entirely communal, with hatchlings raised by anyone with the time and temperament for such a role. Iruxis dwell and thrive in all tropical and temperate biomes, but they are most at home in swamplands, coastal regions, and river lands. They are talented swimmers, and many of their major cities are partially submerged to take advantage of this fact, causing them to often be overlooked by others. Fish and aquatic plants make up a large part of their preferred diets.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 8,
+    "will": 6
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 6,
+    "athletics": 5,
+    "diplomacy": 4,
+    "nature": 6,
+    "stealth": 6,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "lizardfolk"
+  ],
+  "weaknesses": []
+}

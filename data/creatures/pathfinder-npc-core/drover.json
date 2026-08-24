@@ -1,0 +1,145 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 2,
+    "int": 0,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> A creature is grappled or Restrained by the drover's lasso</p><hr /><p><strong>Effect</strong> The drover can pull the grappled creature up to 20 feet. Then, if the creature is within reach, the drover hogties it, attempting to [[/act grapple]] it again. On a success, the creature is restrained with the lasso, and the drover doesn't need to maintain the grapple. The hogtie lasts until the creature Escapes or the lasso is Forced Open. The drover can Interact to free a hogtied creature within reach.</p>",
+      "frequency": null,
+      "name": "Hogtie",
+      "requirements": "A creature is grappled or Restrained by the drover's lasso",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The drover uses their lasso to [[/act grapple]] a Large or smaller creature up to 20 feet away. They can continue to Grapple to keep their hold on the target so long as the target remains within 20 feet and they continue to hold the end of the lasso. In addition to the Grabbed creature being able to Escape, a successful DC 16 Athletics check to [[/act force-open dc=16]] can remove the lasso entirely.</p>",
+      "frequency": null,
+      "name": "Lasso",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Drovers can whistle instead of speaking when communicating simple messages (such as \"go left,\" \"split the herd,\" and \"danger ahead\") to other drovers or when using the [[/act command-an-animal]] action on their herding dogs.</p>",
+      "frequency": null,
+      "name": "Whistling",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sling",
+      "traits": [
+        "propulsive",
+        "range-increment-50",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Whip",
+      "traits": [
+        "disarm",
+        "nonlethal",
+        "reach",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "aq5spzk2UZrI0ZwK",
+  "gear": [
+    "Lasso",
+    "Overalls (Function as Leather Armor)",
+    "Signal Whistle",
+    "Sling",
+    "Sling Bullets",
+    "Whip"
+  ],
+  "hp": 18,
+  "id": "pathfinder-npc-core/drover",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Drover",
+  "perception": 5,
+  "publicNotes": "<p>Drovers specialize in moving herds of livestock over large distances.</p><hr /><p>Society is built upon the backs of laborers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 6,
+    "will": 5
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 7,
+    "nature": 5,
+    "survival": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

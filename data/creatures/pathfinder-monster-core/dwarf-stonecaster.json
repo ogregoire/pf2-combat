@@ -1,0 +1,143 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 3,
+    "dex": 2,
+    "int": 2,
+    "str": 4,
+    "wis": 5
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The stonecaster causes the earth below to tremble. Each creature on the ground in a @Template[emanation|distance:10] takes @Damage[2d8[bludgeoning]] damage with a @Check[fortitude|dc:21|basic] save. A creature that critically fails is knocked Prone.</p>",
+      "frequency": null,
+      "name": "Tremor",
+      "requirements": null,
+      "traits": [
+        "earth",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The stonecaster conjures a rolling boulder that deals @Damage[5d6[bludgeoning]] damage to each creature in a @Template[line|distance:60] with a @Check[reflex|dc:21|basic] save.</p>\n<p>The stonecaster can't use Boulder Roll again for [[/gmr 1d4 #Recharge Boulder Roll]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Boulder Roll",
+      "requirements": null,
+      "traits": [
+        "earth",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A dwarf is often calm and collected in the face of imminent danger. At the end of this dwarf's turn, reduce their frightened condition by 2 instead of 1.</p>",
+      "frequency": null,
+      "name": "Dwarven Doughtiness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 10 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Clan Dagger",
+      "traits": [
+        "agile",
+        "parry",
+        "versatile-b"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "nEB0UekUmP5L8Tj8",
+  "gear": [
+    "Leather Armor",
+    "Staff"
+  ],
+  "hp": 70,
+  "id": "pathfinder-monster-core/dwarf-stonecaster",
+  "immunities": [],
+  "languages": [
+    "common",
+    "dwarven",
+    "petran"
+  ],
+  "level": 4,
+  "name": "Dwarf Stonecaster",
+  "perception": 13,
+  "publicNotes": "<p>All dwarves share a connection to the earth, but stonecasters have focused and polished that connection. Their years of meditation have granted them the ability to create boulders and shake the very earth. These elemental specialists are often highly respected in their community, which prizes their art of geomancy. Young dwarves who show a stronger than normal connection to the earth might be sent to a stonecaster to train at an early age.</p>\n<hr />\n<p>A dwarf's strength comes from their stoic determination, quality equipment, and their ability to hold grudges for centuries.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 8,
+    "will": 14
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 11,
+    "crafting": 8,
+    "nature": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dwarf",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

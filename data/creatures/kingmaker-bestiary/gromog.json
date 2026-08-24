@@ -1,0 +1,97 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": -1,
+    "int": -2,
+    "str": 5,
+    "wis": 0
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Gromog's eyes have been wounded by Linzi. In time, he'll recover his eyesight (mostly), but for the duration of this combat he is Blinded</p>",
+      "frequency": null,
+      "name": "Blinded",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Not only have the itchy lice in Gromog's furs reduced his AC, Reflex save, and attack modifier through distraction (resulting in the values below the standard values for an ogre warrior), he also must succeed at a @Check[flat|dc:10] at the start of each round to avoid spending 2 actions furiously scratching himself. On a successful flat check, he must spend only one action scratching at the vermin. Finally, as a side effect of the discomfort caused by his lice, Gromog is too distracted to properly wield his ogre hook. While the weapon can still inflict grievous damage, as long as he remains itchy it doesn't possess the deadly trait these weapons normally possess.</p>",
+      "frequency": null,
+      "name": "Itchy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d10+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Ogre Hook",
+      "traits": [
+        "reach-10",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "AGNRcnrftglAtlbN",
+  "gear": [
+    "Lice-Infested Furs",
+    "Ogre Hook"
+  ],
+  "hp": 28,
+  "id": "kingmaker-bestiary/gromog",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 2,
+  "name": "Gromog",
+  "perception": 5,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 6,
+    "will": 5
+  },
+  "senses": [],
+  "size": "large",
+  "skills": {
+    "acrobatics": 12,
+    "intimidation": 9
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,132 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 5,
+    "dex": -5,
+    "int": -5,
+    "str": 4,
+    "wis": 0
+  },
+  "ac": 10,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>@Check[reflex|dc:19|traits:damaging-effect], @Damage[2d6[acid]], Escape DC 19, Rupture 7</p>\n<p>A creature Engulfed by the gelatinous cube must also attempt a saving throw against paralysis.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Engulf]</p>",
+      "frequency": null,
+      "name": "Engulf",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A gelatinous cube can sense nearby motion through vibration and air movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature Engulfed by the cube or hit by its attack is Paralyzed unless it succeeds at a @Check[fortitude|dc:20] save. A victim can attempt a new save to recover at the end of each of its turn.</p>",
+      "frequency": null,
+      "name": "Paralysis",
+      "requirements": null,
+      "traits": [
+        "incapacitation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A gelatinous cube is so clear that it's difficult to spot. A successful @Check[perception|dc:23|traits:action:search] check is required to notice a stationary cube, and a creature must be Searching to attempt this check.</p>\n<p>A creature that walks into the cube is automatically Engulfed (this usually causes the GM to call for initiative).</p>",
+      "frequency": null,
+      "name": "Transparent",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A gelatinous cube's acid damages only organic material-not metal, stone, or other inorganic substances.</p>",
+      "frequency": null,
+      "name": "Weak Acid",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "acid"
+        }
+      ],
+      "kind": "melee",
+      "name": "Cube Face",
+      "traits": []
+    }
+  ],
+  "foundryId": "TZcDdN5o7s4alZNE",
+  "gear": [],
+  "hp": 90,
+  "id": "pathfinder-bestiary/gelatinous-cube",
+  "immunities": [
+    "acid",
+    "critical-hits",
+    "precision",
+    "unconscious",
+    "visual"
+  ],
+  "languages": [],
+  "level": 3,
+  "name": "Gelatinous Cube",
+  "perception": 5,
+  "publicNotes": "<p>Found underground or in dungeons, these quivering cubes of slime continuously scour their domain for food. The acid in their bodies is weak enough that many gelatinous cubes still contain the gear of their victims, as they're unable to break them down.</p>\n<hr />\n<p>Slimes, molds, and other oozes can be found in dank dungeons and shadowed forests. While not necessarily evil, some grow to enormous sizes and have insatiable appetites.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "electricity",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 0,
+    "will": 5
+  },
+  "senses": [
+    "motion-sense"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "ooze"
+  ],
+  "weaknesses": []
+}

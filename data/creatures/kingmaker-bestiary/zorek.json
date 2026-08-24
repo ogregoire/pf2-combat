@@ -1,0 +1,185 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 5,
+    "dex": 4,
+    "int": 0,
+    "str": 7,
+    "wis": 7
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> Zorek fails a saving throw</p>\n<p><strong>Effect</strong> Zorek loses all negative conditions he is currently affected by and may attempt a new saving throw against the effect that triggered Divine Recovery. His armor and weapons glow with blood-red light when he uses this ability.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Divine Recovery",
+      "requirements": null,
+      "traits": [],
+      "trigger": "Zorek fails a saving throw"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Zorek does not age or breathe, and he doesn't need to eat, drink, or sleep.</p>",
+      "frequency": null,
+      "name": "Blessed Life",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 10",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d6+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Spear",
+      "traits": [
+        "magical"
+      ]
+    },
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d6+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Spear",
+      "traits": [
+        "magical",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "PK8yBANFyMqFZ3IY",
+  "gear": [
+    "Hide Armor",
+    "Spear"
+  ],
+  "hp": 220,
+  "id": "kingmaker-bestiary/zorek",
+  "immunities": [
+    "controlled",
+    "disease"
+  ],
+  "languages": [
+    "hallit"
+  ],
+  "level": 12,
+  "name": "Zorek",
+  "perception": 25,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 10
+    },
+    {
+      "type": "poison",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 20,
+    "will": 25
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 24,
+    "religion": 25,
+    "survival": 23
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 26,
+      "dc": 36,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Banishment",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door (At Will) (To any location in Armag's Tomb)",
+          "rank": 4
+        },
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Alarm",
+          "rank": 1
+        },
+        {
+          "name": "Lock",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

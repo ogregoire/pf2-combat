@@ -1,0 +1,176 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 0,
+    "int": -2,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Requirements</strong> The mudwretch is dehydrated</p>\n<p><strong>Trigger</strong> The mudwretch deals Constrict damage to a living creature that has blood</p>\n<hr />\n<p><strong>Effect</strong> The mudwretch squeezes harder, dealing @Damage[1d6[bleed]] to the target. The mudwretch absorbs this blood, removing any penalties it had as a result of being dehydrated.</p>",
+      "frequency": null,
+      "name": "Gory Hydration",
+      "requirements": "The mudwretch is dehydrated",
+      "traits": [],
+      "trigger": "The mudwretch deals Constrict damage to a living creature that has blood"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d8+2)[bludgeoning]] damage, @Check[fortitude|dc:18|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Until it next acts, the mudwretch appears to be an ordinary puddle of mud. It has an automatic result of 20 on Deception checks to pass as a mud puddle and can make a fist Strike against a creature that walks onto the mud puddle as a reaction.</p>",
+      "frequency": null,
+      "name": "Mud Puddle",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mudwretch spews a @Template[line|distance:20] of pressurized mud that deals @Damage[2d10[bludgeoning]] damage (@Check[reflex|dc:18|basic] save). On a critical failure, a creature also takes a -10-foot status penalty to its Speeds for 1 round.</p>\n<p>The mudwretch can't Spew Mud again for [[/gmr 1d4 #Recharge Spew Mud]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Spew Mud",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet. The ground in the area is difficult terrain for all non-mudwretch creatures.</p>",
+      "frequency": null,
+      "name": "Muddy Field",
+      "requirements": null,
+      "traits": [
+        "aura"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>If a mudwretch takes any damage from Desiccate or a similar effect, takes 10 or more fire damage from a single effect, or spends more than 24 hours outside of a source of sufficient hydration (such as a swamp, river, well, or recent rainfall), it becomes dehydrated.</p>\n<p>While dehydrated, the mudwretch can't Spew Mud, is Sickened 2, and is Slowed 1 until it either fully immerses in water, spends 1 minute in the rain, or rehydrates in another way (such as via Gory Hydration).</p>",
+      "frequency": null,
+      "name": "Susceptible to Desiccation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "Hwy4YrNVVr7NnsMC",
+  "gear": [],
+  "hp": 40,
+  "id": "pathfinder-bestiary-2/mudwretch",
+  "immunities": [
+    "bleed",
+    "critical-hits",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "petran"
+  ],
+  "level": 2,
+  "name": "Mudwretch",
+  "perception": 9,
+  "publicNotes": "<p>In its resting form, a mudwretch looks like a large puddle of thick, dark mud, heaped at the center in a slightly drier patch of loam. When a living creature approaches, though, the mudwretch lurches upward, piling its muddy flesh upon itself to form a roughly humanoid shape, often in vague mockery of the approaching creature's general form in cases where the creature is a humanoid itself.</p>\n<p>Mudwretches possess a low level of intellect, and while they do not form societies or cultures of their own, they are attracted to ruins or abandoned settlements. They have little need to eat, but without a constant source of moisture, a mudwretch dries out, suffering from low throbbing aches until it can resaturate. Often, blood from living creatures has to do-a dried mudwretch is more dangerous to intruders than one that's comfortably wallowing on a river bank.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "acid",
+      "value": 3
+    },
+    {
+      "type": "physical",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 4,
+    "will": 9
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 5
+    }
+  ]
+}

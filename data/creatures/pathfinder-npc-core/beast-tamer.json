@@ -1,0 +1,136 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 1,
+    "int": 0,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The beast tamer gains the support benefit appropriate to its trained animal companion. Unlike for an animal companion, this doesn't require the animal to use any of its actions. The benefit for a Tiger is as follows: Until the start of the beast tamer's next turn, their Strikes that deal damage to a creature within the tiger's reach make the target Off-Guard until the end of the beast tamer's next turn.</p>",
+      "frequency": null,
+      "name": "Animal Trick",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The beast tamer can use Diplomacy to Make an Impression on animals and to make very simple Requests of them.</p>",
+      "frequency": null,
+      "name": "Wild Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Whip",
+      "traits": [
+        "disarm",
+        "nonlethal",
+        "reach",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "eF87AWFclYpu1cgD",
+  "gear": [
+    "Animal Claw Necklace (Primal Symbol)",
+    "Leather Armor",
+    "Rope",
+    "Whip"
+  ],
+  "hp": 55,
+  "id": "pathfinder-npc-core/beast-tamer",
+  "immunities": [],
+  "languages": [
+    "common",
+    "wildsong"
+  ],
+  "level": 4,
+  "name": "Beast Tamer",
+  "perception": 12,
+  "publicNotes": "<p>Beast tamers bring the wild to civilization, rearing and training creatures to follow their commands and perform flashy tricks that entertain audiences. The beast tamer typically fights alongside a trained animal ally of its level or lower, most likely a tiger (Monster Core 51).</p><hr /><p>Performances come in a wide variety of forms, from musical methods like singing and instruments to physical dancing and juggling to simple orating and conversing.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 7,
+    "will": 12
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "diplomacy": 8,
+    "intimidation": 8,
+    "nature": 12,
+    "performance": 8,
+    "survival": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 22,
+      "name": "Druid Order Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Heal Animal",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

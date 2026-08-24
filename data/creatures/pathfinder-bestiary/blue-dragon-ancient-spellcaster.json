@@ -1,0 +1,288 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 6,
+    "dex": 4,
+    "int": 7,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 42,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> Once per round</p>\n<p><strong>Requirements</strong> A storm cloud created by Breath Weapon is within 500 feet, and the dragon can see the cloud.</p>\n<hr />\n<p><strong>Effect</strong> The dragon calls down a lightning bolt from a storm cloud created by its Breath Weapon. This creates a vertical line of lightning to the ground that deal @Damage[6d12[electricity]] damage to all enemies in its path (@Check[reflex|dc:40|basic] save).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Storm Breath",
+      "requirements": "A storm cloud created by Breath Weapon is within 500 feet, and the dragon can see the cloud.",
+      "traits": [
+        "arcane",
+        "concentrate",
+        "electricity"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The dragon is targeted with an attack</p>\n<hr />\n<p><strong>Effect</strong> The dragon raises its wing, gaining a +2 circumstance bonus to AC against the triggering attack. If the dragon is Flying, it descends 10 feet after the attack is complete.</p>",
+      "frequency": null,
+      "name": "Wing Deflection",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The dragon is targeted with an attack"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes lightning that deals @Damage[12d12[electricity]|options:area-damage] damage in a @Template[line|distance:120] (@Check[reflex|dc:40|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>\n<hr />\n<p>Each time the dragon uses Breath Weapon, a @Template[burst|distance:20]{20-foot-radius} storm cloud appears 80 feet above a point of the dragon's choosing along the Breath Weapon's path. Clouds last for 10 minutes and allow the dragon to use Storm Breath.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "electricity"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When casting Create Water, the dragon can attempt to destroy liquid instead of creating it, turning an equal amount of liquid into sand. This destroys liquid magic or alchemical items if they're of a lower level than the dragon (a creature can attempt a @Check[will|dc:37] save to protect all liquids in its possession). This doesn't affect the liquids in a creature's body.</p>",
+      "frequency": null,
+      "name": "Desert Thirst",
+      "requirements": null,
+      "traits": [
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:39]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Whenever the dragon uses Breath Weapon while the illusory image from its innate Project Image spell persists, it can cause the Breath Weapon to originate from itself or the image.</p>",
+      "frequency": null,
+      "name": "Mirage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The dragon can mimic any sound it has heard. To do so, it must succeed at a Deception check with a +4 circumstance bonus.</p>",
+      "frequency": null,
+      "name": "Sound Imitation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "3d10+15",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "2d10+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Horns",
+      "traits": [
+        "magical",
+        "reach-20"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "2d12",
+          "type": "electricity"
+        },
+        {
+          "formula": "3d10+15",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "electricity",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d10+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    }
+  ],
+  "foundryId": "4C3Sh2lO9oWi78Zo",
+  "gear": [],
+  "hp": 370,
+  "id": "pathfinder-bestiary/blue-dragon-ancient-spellcaster",
+  "immunities": [
+    "electricity",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "draconic",
+    "jotun",
+    "pyric",
+    "sussuran"
+  ],
+  "level": 18,
+  "name": "Blue Dragon (Ancient, Spellcaster)",
+  "perception": 31,
+  "publicNotes": "<p>Blue dragons are the sleek and poised cosmopolitans of the chromatic dragons. Their brand of evil is organized, manipulative, and regal. Blue dragons often lair near or within cities and set out to bend the population to their will and gather hordes of servants. These dragons love spinning webs of conspiracy. A blue dragon's lackeys typically don't even realize that they serve a dragon, but instead think the protection money, tariffs, or taxes they are amassing is treasure for a cruel but legitimate master. In some ways, blue dragons even see their servants as a living hoard and value them like treasure. These dragons have been known to use these tactics even with their own chromatic cousins.</p>\n<p>Not all blue dragons work clandestinely. Some lord over desert tribes and hill people like vengeful gods, demanding both tribute and worship. No matter how blue dragons manage their underlings, their bearing is regal and their lairs palatial; they're universally intolerant of insubordination, incompetence, and embezzlement, and punish perpetrators with murderous efficiency.</p>\n<p>Blue dragons are also known for their use and mastery of illusion magic. They make use of illusions to augment their manipulations and bewilder their foes in battle. Blue dragons also have some control over water, but use this ability to destroy water, something quite dangerous for those who encounter them in their desert lairs.</p>\n<p>The ideal lair for a blue dragon contains multiple passages, rooms, and secret chambers. As social creatures, blue dragons prefer to host guests in comfort-but their dwellings should not be so public that just anyone can come calling. A force of guards keeps out intruders, and clever illusions conceal the edifice from prying eyes. Rather than a pile of coins or gems, a blue dragon's true hoard is the rich furnishings in its citadel- expensive art, ornate furniture, and architectural marvels.</p>\n<hr />\n<p>While there are many types of dragons, from the powerful planar dragons to the strange esoteric dragons, few dragon varieties are as well-known and as rightly feared as the chromatic dragons. Differentiated by the hue of their scales, each color of dragon unleashes its own flavor of murderous cruelty-be it by claw, tooth, or breath-and unlike most creatures, dragons only become more powerful as they age. Their lust for treasure, food, bloodshed, and control are legendary. Physically powerful with egos to match, these dragons are often morally depraved and act as criminal masterminds, vicious tyrants, or voracious raiders.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 32,
+    "reflex": 30,
+    "will": 33
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 28,
+    "arcana": 33,
+    "deception": 35,
+    "diplomacy": 35,
+    "intimidation": 33,
+    "society": 35,
+    "stealth": 28,
+    "survival": 29
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "burrow",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 200
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 35,
+      "dc": 43,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Project Image (See Mirage)",
+          "rank": 7
+        },
+        {
+          "name": "Hallucinatory Terrain (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Illusory Creature (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Create Water (At Will) (See Desert Thirst)",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "electricity"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,132 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 0,
+    "int": 0,
+    "str": 7,
+    "wis": 1
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The ogre boss successfully Trips a creature using an ogre hook</p>\n<hr />\n<p><strong>Effect</strong> The ogre boss makes an ogre hook Strike against the creature they tripped.</p>",
+      "frequency": null,
+      "name": "Sweeping Hook",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The ogre boss successfully Trips a creature using an ogre hook"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ogre boss issues a command to hasten their fellows. Each ogre ally who hears and understands this command becomes Quickened until the end of that ally's next turn but can use the extra action only to Step or Stride.</p>",
+      "frequency": null,
+      "name": "Bellowing Command",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d6+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Javelin",
+      "traits": [
+        "thrown-30"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d10+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Ogre Hook",
+      "traits": [
+        "deadly-d10",
+        "reach-10",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "oopxVowT2jnUQJiS",
+  "gear": [
+    "Breastplate",
+    "Javelin",
+    "Ogre Hook"
+  ],
+  "hp": 130,
+  "id": "pathfinder-monster-core/ogre-boss",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 7,
+  "name": "Ogre Boss",
+  "perception": 12,
+  "publicNotes": "<p>In ogre society, might makes more than right—it makes the rules. The strongest or most violent ogre in a family (in most cases, this is the same ogre) is invariably that family's boss. Quick to hook fallen foes on their weapons, even other ogres fear the repercussions of displeasing an ogre boss. When an ogre boss barks out commands, the other members of the family move quickly to obey.</p>\n<hr />\n<p>For many societies, ogres embody brutish, amoral violence and greedy cruelty. Standing 10 feet tall and densely muscled, ogres are usually as strong as they are vicious. The worst ogres are sadists, enjoying remorseless murder, torture, and violence in all of its forms. Although they prefer to vent their violent urges on other humanoids—the smaller the better—ogre captivity can end in a horrifying fate for anyone unlucky enough to fall within their meaty grasp: becoming dinner. But for all their creativity in inflicting pain, ogres often forget that their playthings lack their own robust fortitude and high pain tolerance, and many of their captives die sooner than the ogres might prefer. Meanwhile, those who manage to survive captivity in an ogre's larder often emerge with lasting mental scars. A captive able to keep their wits about them, however, can sometimes trick the brutes by promising treasure, more plentiful food sources, or other crude amusements, taking advantage of an ogre's often-limited intellect to engineer opportunities to escape or gain revenge.</p>\n<p>Ogres are social creatures only in the most debased sense. They gather together in groups called families, though members are not always related by blood. The most powerful ogre in any family is the \"boss\"—usually the family's patriarch or matriarch—whom the other ogres in the family learn to quickly obey or risk being brutalized by the boss's loyal kin. Ogres lair in caves, crumbling ruins, or dilapidated shacks close enough to humanoid settlements or animal trails to make raiding easy. Their lairs are filthy and frequently contain all-too-recognizable evidence of their depravity, along with assorted treasures stolen from past captives.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 12,
+    "will": 15
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 16,
+    "intimidation": 16,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

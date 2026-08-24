@@ -1,0 +1,125 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": -5,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The enormous dragonfly has a Large or smaller creature Grabbed in its mandibles</p>\n<p><strong>Effect</strong> The dragonfly tries to transfer the grabbed creature to be clutched by its legs. The enormous dragonfly attempts an @Check[athletics|defense:reflex] check against the creature's Reflex DC. On a success, it transfers the creature (which remains grabbed) to its legs, freeing its mandibles to attack. The dragonfly can have only one creature clutched at a time.</p>",
+      "frequency": null,
+      "name": "Clutch",
+      "requirements": "The enormous dragonfly has a Large or smaller creature Grabbed in its mandibles",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragonfly Flies up to its Speed and makes one mandible Strike at any point during that movement.</p>",
+      "frequency": null,
+      "name": "Swoop",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The enormous dragonfly can Fly at half Speed while it has a creature Grabbed or Restrained by Clutch, carrying that creature along with it.</p>",
+      "frequency": null,
+      "name": "Snatch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Wavesense]</p>",
+      "frequency": null,
+      "name": "Wavesense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d12+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Mandibles",
+      "traits": []
+    }
+  ],
+  "foundryId": "wHQmyXnG4Yax4KcK",
+  "gear": [],
+  "hp": 165,
+  "id": "kingmaker-bestiary/enormous-dragonfly",
+  "immunities": [],
+  "languages": [],
+  "level": 9,
+  "name": "Enormous Dragonfly",
+  "perception": 16,
+  "publicNotes": "<p>These buzzing insects are the size of a small horse. They are ambush predators known to hunt beasts and humanoids alike, capable of using impressive aerial acrobatics to swoop down from above and snatch away their prey.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 21,
+    "will": 14
+  },
+  "senses": [
+    "darkvision",
+    "wavesense"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 19,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

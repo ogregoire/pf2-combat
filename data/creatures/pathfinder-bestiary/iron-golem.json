@@ -1,0 +1,146 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 4,
+    "dex": -1,
+    "int": -5,
+    "str": 8,
+    "wis": 0
+  },
+  "ac": 34,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Check[fortitude|dc:37|traits:damaging-effect]</p>\n<p>On a critical success, the resisting creature takes no damage; otherwise it is damaged as if hit by the golem's fist.</p>\n<hr />\n<p>The golem Strides up to its Speed, pushing back each creature whose space it moves into and damaging them if they try to stop its movement. A creature can attempt to bar the way by succeeding at a Fortitude save.</p>",
+      "frequency": null,
+      "name": "Inexorable March",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The iron golem exhales poisonous gas in a @Template[burst|distance:10]{10-foot radius} centered on the corner of one of the iron golem's squares.</p>\n<p>The gas persists for 1 round. Any creature in the area (or that later enters the area) is exposed to the iron golem's poison.</p>\n<p>The golem can't use its Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Harmed by acid (@Damage[6d10[untyped]], @Damage[2d8[untyped]] from areas or persistent damage); healed by fire (area @Damage[2d8[healing]] HP); slowed by electricity</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.GolemAntimagic]</p>",
+      "frequency": null,
+      "name": "Golem Antimagic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any Drained value from this poison is reduced by 1 every hour.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:33]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 4 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] damage and Drained 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[4d6[poison]] damage and Drained 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[8d6[poison]] damage and Drained 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Iron Golem Poison",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Casting Cleanse Affliction on the golem deactivates its Breath Weapon for 1 minute.</p>",
+      "frequency": null,
+      "name": "Vulnerable to Neutralize Poison",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Magical rusting effects, like a rust monster's antennae, affect the iron golem normally.</p>",
+      "frequency": null,
+      "name": "Vulnerable to Rust",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "3d10+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "t4bHhZBBDUyVzEmf",
+  "gear": [],
+  "hp": 190,
+  "id": "pathfinder-bestiary/iron-golem",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [],
+  "level": 13,
+  "name": "Iron Golem",
+  "perception": 21,
+  "publicNotes": "<p>Traditionally crafted into the forms of giant suits of armor or powerful animals, iron golems are products of exquisite artistry and skill. Their articulated joints and sturdy armored bodies require great care and mathematical precision to craft, and regular cleaning and oiling ensure they don't rust over the ages. With proper care, iron golems can remain in good shape for thousands of years, being passed down for generations, as long as they aren't destroyed by meddlesome adventurers. In addition to their incredible strength, iron golems possess a potent toxic breath weapon that is often more than enough to dispatch entire groups of opponents.</p>\n<hr />\n<p>Crafted of base materials and then magically animated into a powerful guardian, the legendary golem is a living construct that mindlessly obeys its creator's commands-often continuing to do so for years or even centuries after its creator's death. There exist two known methods of animating a golem. The traditional method involves harvesting and implanting an elemental soul or essence within the newly crafted host statue, a procedure seen as vile and blasphemous to those who value the sanctity of the soul; evil or amoral golem crafters tend to prefer this method. The other, less disreputable technique involves siphoning pure vitality energy into the statue to artificially imitate the creation of a soul. The result does not give the golem a true soul and is generally a more costly and time-consuming method of creation. Regardless of the method used, the resulting golem functions the same. A golem's unique animating force leaves it susceptible to certain forms of magic, but apart from these few weaknesses, it is impervious to magic and difficult to damage with weapons.</p>\n<p>Golems work best in play as foes to vanquish rather than allies to accompany player characters on adventures. The process of creating a golem is time-consuming, expensive, and difficult, and only the most talented spellcasters or artisans can even hope to accomplish such an undertaking. While certain magical texts-so-called \"golem manuals\"-are said to aid golems crafters, for the most part the creation of a golem should be something left in the hands of the Game Master.</p>\n<p>Golems have components that can be harvested as trophies or magical components; the value depends on the golem in question. Examples of components that can be harvested from golems are listed in the sidebars.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 26,
+    "reflex": 21,
+    "will": 22
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 30
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "golem",
+    "mindless"
+  ],
+  "weaknesses": []
+}

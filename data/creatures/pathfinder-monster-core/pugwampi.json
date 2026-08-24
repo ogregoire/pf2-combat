@@ -1,0 +1,151 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 0,
+    "dex": 3,
+    "int": 0,
+    "str": -3,
+    "wis": 2
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "-2 Penalty on Perception to Hear things",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet.</p>\n<p>When a creature that isn't an animal, gremlin, or kholo enters the aura, it might become unlucky. It attempts a @Check[will|dc:16] save; it must roll twice and take the worse result. On a success, the creature is temporarily immune to pugwampi unluck auras for 24 hours. On a failure, the creature must roll twice and take the worse result on all checks as long as it's within the aura.</p>\n<p>Effect: Unluck Aura</p>",
+      "frequency": null,
+      "name": "Unluck Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "mental",
+        "misfortune",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Shortbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6-3",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "aeOzCBpwnUVcpqxI",
+  "gear": [
+    "Arrows",
+    "Shortbow",
+    "Shortsword"
+  ],
+  "hp": 17,
+  "id": "pathfinder-monster-core/pugwampi",
+  "immunities": [],
+  "languages": [
+    "kholo",
+    "sakvroth"
+  ],
+  "level": 0,
+  "name": "Pugwampi",
+  "perception": 6,
+  "publicNotes": "<p>Mean, dog-faced, and craven, pugwampis take disproportionate enjoyment from the accidents and missteps of other creatures—something that happens often due to the supernatural aura of ill fortune these gremlins project. They enjoy preparing pranks involving spikes, excrement, pits full of spiders, and similar twisted torments. Pugwampis are somewhat deaf and thus often yell loudly to each other when not hiding. Many pugwampis worship kholos as gods and aspire to be more like them. Kholos, on the other hand, hate pugwampis because of their sycophantic fawning.</p>\n<hr />\n<p>Gremlins are cruel fey tricksters and saboteurs who have fully acclimated to life in the Universe, finding distinct niches for their inventive destructiveness. Nearly all gremlins delight in ruining or breaking things, whether it's something physical like a device or vehicle or something intangible such as an alliance or relationship. A gremlin's greatest joy is watching the collapse of complex creations, preferably after the slightest, carefully targeted nudge from the gremlin. Gremlins tend to denigrate, bully, or even slaughter their lesser kin, particularly mitflits, whom stronger gremlins derisively call \"baggies.\"</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 8,
+    "will": 6
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "tiny",
+  "skills": {
+    "crafting": 2,
+    "deception": 2,
+    "nature": 4,
+    "stealth": 5,
+    "thievery": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 16,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Speak with Animals (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey",
+    "gremlin"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 2
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 2,
+    "int": 2,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving fortune-telling, the harrow reader is a 3rd-level challenge.</p>",
+      "frequency": null,
+      "name": "Cold Reading Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Though harrow readers try to avoid combat, no throw of the cards can avoid fate, so a harrow reader learns how best to survive. In the harrow reader's first encounter each day, they gain a +1 status bonus to their initiative roll, attack rolls, and AC.</p>",
+      "frequency": null,
+      "name": "Fated Doom",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The harrow reader can conduct a reading over the course of 10 minutes to duplicate the effects of the Augury spell. The harrow reader can conduct up to five readings per day, but the flat check DC increases by 2. This is cumulative, to a maximum of DC 14 for the fifth.</p>",
+      "frequency": null,
+      "name": "Read the Harrow",
+      "requirements": null,
+      "traits": [
+        "exploration",
+        "occult",
+        "prediction"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sickle",
+      "traits": [
+        "agile",
+        "finesse",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "taNAx8xPuOJ3EmxC",
+  "gear": [
+    "Harrow Deck (Simple)",
+    "Sickle"
+  ],
+  "hp": 8,
+  "id": "pathfinder-npc-core/harrow-reader",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": -1,
+  "name": "Harrow Reader",
+  "perception": 7,
+  "publicNotes": "<p>A harrow deck is a set of 54 cards with symbolic illustrations that serves as a sacred divining tool. Feared by the superstitious and avoided by those who know better than to tempt fate, many harrow readers live and work in traveling communities, often moving from town to town as opportunities arise.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 3,
+    "reflex": 6,
+    "will": 10
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 10,
+    "occultism": 5,
+    "performance": 5,
+    "society": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

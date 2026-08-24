@@ -1,0 +1,158 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 2,
+    "dex": 6,
+    "int": 2,
+    "str": 4,
+    "wis": 5
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A hostile creature within 30 feet creates an effect with the auditory trait that provides bonuses to itself or its allies</p>\n<hr />\n<p><strong>Effect</strong> The melody on the wind recreates the auditory effect, gaining the bonuses for itself and its allies as long as the original effect persists.</p>",
+      "frequency": null,
+      "name": "Hostile Duet",
+      "requirements": null,
+      "traits": [
+        "auditory"
+      ],
+      "trigger": "A hostile creature within 30 feet creates an effect with the auditory trait that provides bonuses to itself or its allies"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The melody on the wind is targeted by a spell with the auditory trait</p>\n<hr />\n<p><strong>Effect</strong> The melody on the wind attempts to counteract the spell. If it succeeds, the spell effect is caught in a blast of wind that sweeps it back to its origin, affecting the caster. Targets of the triggering effect other than the melody on the wind are still affected normally.</p>",
+      "frequency": null,
+      "name": "Retune",
+      "requirements": null,
+      "traits": [
+        "auditory"
+      ],
+      "trigger": "The melody on the wind is targeted by a spell with the auditory trait"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The melody on the wind sings in a sonorous chorus. Any creature in a @Template[emanation|distance:30] must attempt a @Check[will|dc:30] save to resist becoming fascinated by the melody on the wind. A creature that succeeds at its save is temporarily immune for 24 hours.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Fascinated for 1 round.</p>\n<p><strong>Failure</strong> The creature is fascinated for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Mesmerizing Melody",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The melody on the wind's movement doesn't trigger reactions.</p>",
+      "frequency": null,
+      "name": "Swiftness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "sonic"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Solid Refrain",
+      "traits": [
+        "range-increment-70"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d10+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wind Gust",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "hvoIxruNUei1auQT",
+  "gear": [],
+  "hp": 170,
+  "id": "pathfinder-bestiary-2/melody-on-the-wind",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "sussuran"
+  ],
+  "level": 10,
+  "name": "Melody On The Wind",
+  "perception": 21,
+  "publicNotes": "<p>This cloud of song and sound has been caught by the wind and carried across the air. While the melody on the wind might enjoy the beauty of music, it is by nature a destructive elemental force.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 22,
+    "will": 19
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 22,
+    "performance": 22,
+    "stealth": 22
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 100
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "air",
+    "elemental"
+  ],
+  "weaknesses": []
+}

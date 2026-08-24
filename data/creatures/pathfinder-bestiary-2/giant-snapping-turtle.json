@@ -1,0 +1,130 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": 0,
+    "int": -4,
+    "str": 7,
+    "wis": 4
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The turtle tries to capsize an adjacent aquatic vessel of its size or smaller. The turtle must succeed at a @Check[athletics|dc:35] check (reduced by 5 for each size smaller the vessel is than the turtle) or the pilot's Sailing Lore DC, whichever is higher.</p>",
+      "frequency": null,
+      "name": "Capsize",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giant snapping turtle retracts its limbs and head into its shell and ends its turn. This increases its AC to 30, but it can't act except to reemerge, which it can do as a single action.</p>",
+      "frequency": null,
+      "name": "Shell Defense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(2d12+7)[bludgeoning]] damage, Rupture 30</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The giant snapping turtle can hold its breath for 2 hours.</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "2d12+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "fVvRASaKa6SkQkYG",
+  "gear": [],
+  "hp": 170,
+  "id": "pathfinder-bestiary-2/giant-snapping-turtle",
+  "immunities": [],
+  "languages": [],
+  "level": 9,
+  "name": "Giant Snapping Turtle",
+  "perception": 17,
+  "publicNotes": "<p>If the regular-sized snapping turtle is foul-tempered, then the giant snapping turtle seems to be willfully violent toward anything that dares intrude upon its domain. Measuring over 20 feet long and weighing thousands of pounds, this creature is capable of swallowing a humanoid whole. Swamp-dwelling societies, particularly boggards and lizardfolk, have often tried to domesticate giant snapping turtles to serve as powerful guardians, but in most cases the casualties pile up quickly. Those unfortunate enough to be swallowed whole by a giant snapping turtle find that even the creature's stomach is somewhat armored, making it difficult to cut through.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 15,
+    "will": 19
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 20
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

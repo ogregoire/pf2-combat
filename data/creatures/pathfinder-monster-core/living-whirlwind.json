@@ -1,0 +1,131 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 5,
+    "int": -2,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The living whirlwind takes damage from a hostile action;</p>\n<hr />\n<p><strong>Effect</strong> The living whirlwind disperses. Until the end of the current turn, it can't be attacked or targeted, doesn't take up space, and its high winds aura is suppressed.</p>\n<p>At the end of the turn, the living whirlwind reforms in any unoccupied space within 25 feet of where it dispersed, and its high winds are restored.</p>",
+      "frequency": null,
+      "name": "Disperse",
+      "requirements": null,
+      "traits": [
+        "air"
+      ],
+      "trigger": "The living whirlwind takes damage from a hostile action;"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The living whirlwind creates a @Template[line|distance:60] of violent wind. Creatures in the area must succeed at a @Check[fortitude|dc:25] save or be pushed back 10 feet and knocked Prone.</p>",
+      "frequency": null,
+      "name": "Forceful Winds",
+      "requirements": null,
+      "traits": [
+        "air"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet.</p>\n<p>Air within the emanation is difficult terrain for Flying creatures that don't have the air trait.</p>",
+      "frequency": null,
+      "name": "High Winds",
+      "requirements": null,
+      "traits": [
+        "air",
+        "aura"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The living whirlwind's movement doesn't trigger reactions.</p>",
+      "frequency": null,
+      "name": "Swiftness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Gust",
+      "traits": [
+        "finesse",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "XgGeD4fz5m7nQQlN",
+  "gear": [],
+  "hp": 50,
+  "id": "pathfinder-monster-core/living-whirlwind",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "sussuran"
+  ],
+  "level": 5,
+  "name": "Living Whirlwind",
+  "perception": 10,
+  "publicNotes": "<p>A living whirlwind resembles a dust devil with a vague mouth and eyes formed among the dust and debris swirling within it.</p>\n<hr />\n<p>Hailing from the Plane of Air, these beings appear in a variety of sizes and shapes. They're noted for being elusive, swift, and often difficult to detect due to being composed primarily of air.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 16,
+    "will": 10
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 16,
+    "stealth": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "air",
+    "elemental"
+  ],
+  "weaknesses": []
+}

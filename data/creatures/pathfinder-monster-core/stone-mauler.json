@@ -1,0 +1,164 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 7,
+    "dex": -1,
+    "int": -1,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The stone mauler takes damage from a hostile source while atop rock or earth</p>\n<hr />\n<p><strong>Effect</strong> The stone mauler crumbles into the ground, Burrowing down 15 feet. This Burrowing does not trigger reactions.</p>\n<p>The stone mauler can't Crumble again for [[/gmr 1d4 #Recharge Crumble]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Crumble",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The stone mauler takes damage from a hostile source while atop rock or earth"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push 10 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The stone mauler can Burrow through any earthen matter, including rock. When it does so, the stone mauler moves at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When not touching solid ground, a stone mauler is Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Earthbound",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>5 feet.</p>\n<p>Spikes of rock rise up from all stone surfaces in the emanation, creating difficult terrain. A creature moving in the terrain takes @Damage[2d6[piercing]] damage for each square of spikes it moves into (a Large or larger creature takes damage only once for each square it moves, even if its space covers multiple squares of spikes). Creatures with the earth trait ignore all effects within the area.</p>\n<p>The stone mauler can disable or activate this aura using a single action, which has the concentrate trait.</p>",
+      "frequency": null,
+      "name": "Spike Stones",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "earth",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 80 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d10+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d12+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-80"
+      ]
+    }
+  ],
+  "foundryId": "ToteDLIM7jCyHwDH",
+  "gear": [],
+  "hp": 180,
+  "id": "pathfinder-monster-core/stone-mauler",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "petran"
+  ],
+  "level": 9,
+  "name": "Stone Mauler",
+  "perception": 16,
+  "publicNotes": "<p>These towering heaps of earth can inflict tremendous damage up close and from afar.</p>\n<hr />\n<p>Earth elementals make excellent bodyguards for adventuresome spelunkers and are ideal protectors of important subterranean locations such as vaults and treasuries.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 15,
+    "will": 19
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 21,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "burrow",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}

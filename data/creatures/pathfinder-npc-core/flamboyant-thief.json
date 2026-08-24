@@ -1,0 +1,207 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 1,
+    "dex": 6,
+    "int": 3,
+    "str": 5,
+    "wis": 4
+  },
+  "ac": 37,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The flamboyant thief rolls initiative</p><hr /><p><strong>Effect</strong> The flamboyant thief draws all eyes to them. They attempt a @Check[performance|defense:will] check, comparing the result against the Will DC of any number of creatures within 120 feet. Each creature the thief succeeds against is Fascinated with the thief until the end of the thief's next turn.</p>",
+      "frequency": null,
+      "name": "Dramatic Entrance",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental",
+        "visual"
+      ],
+      "trigger": "The flamboyant thief rolls initiative"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The flamboyant thief is targeted with a melee or ranged attack by an attacker it can see.</p><hr /><p><strong>Effect</strong> The flamboyant thief gains a +2 circumstance bonus to AC against the triggering attack.</p>",
+      "frequency": null,
+      "name": "Nimble Dodge",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The flamboyant thief is targeted with a melee or ranged attack by an attacker it can see."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The flamboyant thief can Step, attempt a melee dagger Strike, and attempt a ranged dagger Strike, taking the actions in any order. Both Strikes count toward the thief's multiple attack penalty, but it doesn't increase until after both attacks.</p>",
+      "frequency": null,
+      "name": "Dancing Dagger",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The flamboyant thief throws down their smoke ball, then [[/act hide]]{Hides}, then [[/act sneak]]{Sneaks} up to three times with a +2 circumstance bonus to their Stealth checks.</p>",
+      "frequency": null,
+      "name": "Dramatic Exit",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A flamboyant thief's attempts to Steal don't automatically fail even if a creature is in combat or on guard. While being observed, the thief gains a +2 circumstance bonus to Deception checks to Create a Diversion or [[/act feint]] and to Thievery checks to [[/act palm-an-object]] or [[/act steal]]. However, they are compelled to leave a tangible sign of their presence, such as a calling card or symbol—often in place of a stolen item.</p>",
+      "frequency": null,
+      "name": "Flamboyant Performance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When any detection, revelation, or scrying magic would reveal the flamboyant thief, the thief becomes aware of it and can attempt to counteract the magic with a counteract rank of 8th level and using their Stealth as their counteract modifier.</p>",
+      "frequency": null,
+      "name": "I Say When I'm Here",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>All the flamboyant thief's Strikes deal an additional 3d6 precision damage or 6d6 if the target is Fascinated with the thief. After the thief Strikes a creature, that creature becomes fascinated with the thief until the end of the thief's next turn.</p>",
+      "frequency": null,
+      "name": "Spectacular Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The flamboyant thief can [[/act hide]] and [[/act sneak]] even without having cover or being Concealed.</p>",
+      "frequency": null,
+      "name": "Vanishing Act",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "2d4+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "2d4+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "magical",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "1d4+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "dkUu1Ua71kWcZBMd",
+  "gear": [
+    "Clothing (Fine)",
+    "Dagger",
+    "Disguise Kit (Elite)",
+    "Leather Armor",
+    "Potion of Flying (Standard)",
+    "Smoke Ball (Greater)",
+    "Thieves' Toolkit (Infiltrator)"
+  ],
+  "hp": 225,
+  "id": "pathfinder-npc-core/flamboyant-thief",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 15,
+  "name": "Flamboyant Thief",
+  "perception": 27,
+  "publicNotes": "<p>There's no honor among thieves, but if there were points for style, these thieves would have 10s across the board. Some would say flamboyant thieves value showcasing their skills rather than successfully stealing an item, but what better way to show that you're the best than with an audience?</p><hr /><p>In the underbelly of society, the lawless reign supreme.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 30,
+    "will": 26
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 29,
+    "athletics": 26,
+    "deception": 28,
+    "intimidation": 26,
+    "performance": 28,
+    "society": 24,
+    "stealth": 31,
+    "thievery": 31
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

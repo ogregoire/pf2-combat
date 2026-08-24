@@ -1,0 +1,297 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 5,
+    "int": 3,
+    "str": 5,
+    "wis": 4
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The osyluth telepathically questions a creature affected by Ring of Truth. After 1 round, if the creature intentionally refuses to answer the question, it takes @Damage[2d6[mental]] damage.</p>",
+      "frequency": null,
+      "name": "Stygian Inquisitor",
+      "requirements": null,
+      "traits": [
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The osyluth sweeps their tail in a @Template[cone|distance:15]. Each creature in the cone must succeed at a @Check[reflex|dc:26] save or be knocked Prone.</p>",
+      "frequency": null,
+      "name": "Tail Sweep",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:25]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] damage, Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[3d6[poison]] damage and enfeebled 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[3d6[poison]] damage and Enfeebled 2 (1 round). Once a creature reaches stage 3, it takes a -4 status penalty to Will saves against attempts to Coerce it for 1 hour (this is a mental effect)</p>",
+      "frequency": null,
+      "name": "Osyluth Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The osyluth can cast innate Invisibility using only 1 action.</p>",
+      "frequency": null,
+      "name": "Quick Invisibility",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An osyluth deals an extra 2d6 damage whenever they Strike an Enfeebled, Frightened, or Prone creature.</p>",
+      "frequency": null,
+      "name": "Sadistic Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d6+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Bone Shard",
+      "traits": [
+        "evil",
+        "magical",
+        "range-increment-30",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d6+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d10+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "1d10+11",
+          "type": "piercing"
+        },
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        }
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "evil",
+        "magical",
+        "reach-15",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "xjV0TmPNfKR7UcKu",
+  "gear": [],
+  "hp": 135,
+  "id": "pathfinder-bestiary-2/osyluth",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 9,
+  "name": "Osyluth",
+  "perception": 21,
+  "publicNotes": "<p>An osyluth is an unparalleled inquisitor that revels in the sadism and torture for which Hell is so well known. These devils' charge is to seek out heresies, both among mortals and among other fiends-a commandment they uphold with unwavering fervor. They spawn within the Styx-fed swamps of Hell's fifth layer, Stygia; where heresies and the souls of heretics stagnate, osyluths eventually rise. In the remote corners of that same layer of Hell, they build massive, calcified hives where they perform their vile interrogations and perfect their torturous arts upon lesser devils and petitioners alike.</p>\n<hr />\n<p>Each type of devil plays a particular role in Hell's bureaucracies and hierarchies, though some have far more specialized functions than others</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 10
+    },
+    {
+      "type": "poison",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 18,
+    "will": 17
+  },
+  "senses": [
+    "greater-darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "arcana": 18,
+    "deception": 19,
+    "intimidation": 21,
+    "religion": 17,
+    "stealth": 20
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Dimension Door (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Dimensional Anchor",
+          "rank": 4
+        },
+        {
+          "name": "Dimensional Anchor",
+          "rank": 4
+        },
+        {
+          "name": "Discern Lies",
+          "rank": 4
+        },
+        {
+          "name": "Zone of Truth",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility (At Will) (Self Only)",
+          "rank": 2
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "devil",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

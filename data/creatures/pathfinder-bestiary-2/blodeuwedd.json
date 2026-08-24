@@ -1,0 +1,216 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 2,
+    "dex": 5,
+    "int": 3,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> While surrounded by any field or fertile plain, a blodeuwedd can infuse themself with borrowed life energy from nearby plants and nutrients in the ground. The blodeuwedd gains 15 temporary Hit Points that last for 1 hour.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Nature's Infusion",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>A blodeuwedd can take on the appearance of a single unique humanoid or the form of a prairie owl.</p>\n<p>When in humanoid form, the blodeuwedd loses its claw attack.</p>\n<p>In owl form, its statistics change as follows:</p>\n<ul>\n<li><strong>Size</strong> Small;</li>\n<li><strong>Speed</strong> fly 60 feet;</li>\n<li><strong>Melee</strong> <span class=\"action-glyph\">a</span> talons [[/r {1d20+15} #Attack]]{+15}, Damage @Damage[(1d3+1)[slashing]].</li>\n</ul>\n<p>A blodeuwedd can return to their normal form as a free action.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A blodeuwedd exudes a 30-foot aura of pollen and irritating allergens. A non-plant living creature that begins its turn in the aura must succeed at a @Check[fortitude|dc:22] save or become Sickened 2. A creature that succeeds at its save is then temporarily immune to the allergen aura for 24 hours.</p>\n<p>A blodeuwedd can suppress this aura or activate it again as a free action.</p>",
+      "frequency": null,
+      "name": "Allergen Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Every Stride action taken by a blodeuwedd causes small plants, grasses, and wildflowers to sprout from the ground, though they can suppress this effect if they desire. In a region or terrain that wouldn't normally support plant life, these plants thrive for 1 minute before withering away.</p>",
+      "frequency": null,
+      "name": "Living Footsteps",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The blodeuwedd can use Diplomacy to Make an Impression on and make very simple Requests of animals.</p>",
+      "frequency": null,
+      "name": "Wild Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d8+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d6+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Sling",
+      "traits": [
+        "propulsive",
+        "range-increment-50"
+      ]
+    }
+  ],
+  "foundryId": "nzLGh9GKCk7imto3",
+  "gear": [
+    "Sling"
+  ],
+  "hp": 105,
+  "id": "pathfinder-bestiary-2/blodeuwedd",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "fey"
+  ],
+  "level": 6,
+  "name": "Blodeuwedd",
+  "perception": 14,
+  "publicNotes": "<p>The mysterious blodeuwedds dwell in those parts of the world where the boundaries between the Material Plane and the First World have worn thin, or around portals between the two planes. Their link with such regions of the natural world is so strong that it rivals the bond shared between nymphs and places of great natural beauty, yet none would look upon a blodeuwedd and mistake them for something as elegant as a nymph.</p>\n<p>Although blodeuwedds share certain traits with nymphs, their role as guardians of the pathways between this world and the First World prevents them from forming as powerful a magical bond with the natural world. Never truly a part of either reality yet forced to keep watch over both, blodeuwedds tend to grow cynical and sharp-tongued toward any who would seek travel from one realm to the other, regardless of their actual goals.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 17,
+    "will": 14
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 15,
+    "diplomacy": 15,
+    "nature": 13,
+    "performance": 15,
+    "stealth": 13,
+    "survival": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Hallucinatory Terrain",
+          "rank": 4
+        },
+        {
+          "name": "Modify Memory",
+          "rank": 4
+        },
+        {
+          "name": "Sleep",
+          "rank": 4
+        },
+        {
+          "name": "Speak with Plants (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Wall of Thorns",
+          "rank": 3
+        },
+        {
+          "name": "Entangle",
+          "rank": 2
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Tanglefoot",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey",
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

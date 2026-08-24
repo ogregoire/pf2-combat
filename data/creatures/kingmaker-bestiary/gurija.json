@@ -1,0 +1,204 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 2,
+    "int": 0,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Requirements</strong> An ally within 60 feet is suffering persistent acid or fire damage.</p>\n<hr />\n<p><strong>Effect</strong> Gurija summons a torrential but localized rainstorm around the ally that washes off any acid or douses any fire on it to immediately end persistent acid or fire damage.</p>",
+      "frequency": null,
+      "name": "Sudden Stormburst",
+      "requirements": "An ally within 60 feet is suffering persistent acid or fire damage.",
+      "traits": [
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 20 (Deactivated by Acid or Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "2d8+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claws",
+      "traits": [
+        "agile",
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "2d10+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "lutSSPcXOzDDqIGj",
+  "gear": [
+    "Hide Armor",
+    "Wand of Shocking Grasp (Level 2)"
+  ],
+  "hp": 95,
+  "id": "kingmaker-bestiary/gurija",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common",
+    "jotun"
+  ],
+  "level": 5,
+  "name": "Gurija",
+  "perception": 11,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "electricity",
+      "value": 2
+    }
+  ],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 13,
+    "will": 11
+  },
+  "senses": [],
+  "size": "large",
+  "skills": {
+    "athletics": 10,
+    "deception": 13,
+    "intimidation": 13,
+    "religion": 11
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Primal Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 2,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Resist Energy",
+          "rank": 2
+        },
+        {
+          "name": "Electric Arc",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Hydraulic Push",
+          "rank": 1
+        },
+        {
+          "name": "Magic Fang",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Ray of Frost",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Shocking Grasp",
+          "rank": 1
+        },
+        {
+          "name": "Tanglefoot",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "giant",
+    "troll"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

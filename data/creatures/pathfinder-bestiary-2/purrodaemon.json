@@ -1,0 +1,265 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 7,
+    "dex": 6,
+    "int": 4,
+    "str": 9,
+    "wis": 7
+  },
+  "ac": 43,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Requirements</strong> The purrodaemon has fewer than 10 weapons sheathed in their body</p>\n<p><strong>Trigger</strong> The purrodaemon is hit with a weapon that deals piercing damage</p>\n<hr />\n<p><strong>Effect</strong> The purrodaemon seizes the triggering weapon. The weapon's wielder must attempt a @Check[reflex|dc:40] save. On a failure, the weapon is disarmed and falls to an adjacent square. On a critical failure, the weapon is sheathed in the purrodaemon's body as though the daemon had used Steep Weapon.</p>",
+      "frequency": null,
+      "name": "Twist the Blade",
+      "requirements": "The purrodaemon has fewer than 10 weapons sheathed in their body",
+      "traits": [],
+      "trigger": "The purrodaemon is hit with a weapon that deals piercing damage"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The purrodaemon causes a weapon that has steeped in their flesh (see Steep Weapon) to telekinetically launch from their flesh. The purrodaemon makes a hurled weapon Strike without using their hands.</p>",
+      "frequency": null,
+      "name": "Hurl Weapon",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A steeped weapon that's no longer sheathed in the purrodaemon's body is within 120 feet of the daemon</p>\n<hr />\n<p><strong>Effect</strong> The steeped weapon swiftly flies through the air to resheath itself in the purrodaemon's body. If a creature is along this flight path, the purrodaemon can make a hurled weapon Strike against the target; if it hits, the weapon drops to the ground in a square adjacent to the creature.</p>",
+      "frequency": null,
+      "name": "Recall Weapon",
+      "requirements": "A steeped weapon that's no longer sheathed in the purrodaemon's body is within 120 feet of the daemon",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The purrodaemon sheathes a weapon in their own flesh. This deals no damage to the purrodaemon, which can have up to 10 weapons sheathed in their body at a time. A steeped weapon must be one that deals piercing or slashing damage.</p>\n<p>If a purrodaemon Interacts to crush a soul gem, one weapon of their choice sheathed in their flesh becomes enchanted with the daemon's fiendish power and becomes a +2 greater striking weapon that can be used in place of their glaive or hurled at targets (with a +2 item bonus to the hurled weapon's attack modifier and an extra d10 of damage). This magical quality fades 24 hours after it ceases being sheathed in the daemon's living body. A steeped weapon can be Disarmed.</p>",
+      "frequency": null,
+      "name": "Steep Weapon",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "3d8+17",
+          "type": "slashing"
+        },
+        {
+          "formula": "4d6",
+          "type": "bleed"
+        }
+      ],
+      "kind": "melee",
+      "name": "Glaive",
+      "traits": [
+        "deadly-d8",
+        "evil",
+        "forceful",
+        "magical",
+        "reach-15",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d10+12",
+          "type": "piercing"
+        },
+        {
+          "formula": "4d6",
+          "type": "bleed"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Hurled Weapon",
+      "traits": [
+        "deadly-d10",
+        "evil",
+        "magical",
+        "propulsive",
+        "range-increment-120",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "GfJLotTcrZmn6tay",
+  "gear": [
+    "+2 Greater Striking Glaive",
+    "Soul Gem",
+    "Steeped Weapon (7-10)"
+  ],
+  "hp": 335,
+  "id": "pathfinder-bestiary-2/purrodaemon",
+  "immunities": [
+    "bleed",
+    "death-effects"
+  ],
+  "languages": [
+    "common",
+    "daemonic"
+  ],
+  "level": 18,
+  "name": "Purrodaemon",
+  "perception": 33,
+  "publicNotes": "<p>Few creatures embody war's sheer amount of bloodshed and loss of life as deeply as the purrodaemons, deacons of war. These giant humanoid daemons are bedecked in black, unholy armor, with weapons piercing their flesh at every opening. Far from wounds, however, these weapons are the purrodaemon's arsenal. A purrodaemon can, with frightening swiftness and nauseating ease, extract a weapon from its own flesh as though drawing a sword from a sheath, and their blood is so tainted with evil that weapons steeped in it become powerful tools of war.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "piercing",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 33,
+    "reflex": 30,
+    "will": 29
+  },
+  "senses": [
+    "darkvision",
+    "truesight"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 37,
+    "intimidation": 35,
+    "religion": 30,
+    "stealth": 34,
+    "survival": 33
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 27,
+      "dc": 37,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Bind Soul",
+          "rank": 9
+        },
+        {
+          "name": "Blade Barrier",
+          "rank": 9
+        },
+        {
+          "name": "Chain Lightning",
+          "rank": 9
+        },
+        {
+          "name": "Teleport",
+          "rank": 7
+        },
+        {
+          "name": "True Seeing (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 5
+        },
+        {
+          "name": "Flame Strike",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Detect Alignment (At will) (Good only)",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "daemon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 15
+    }
+  ]
+}

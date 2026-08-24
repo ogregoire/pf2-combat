@@ -1,0 +1,307 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 7,
+    "dex": 5,
+    "int": 0,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 39,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the shemhazian's tail leaves a square during a move action it's using</p>\n<hr />\n<p><strong>Effect</strong> The shemhazian attempts to Trip the triggering creature. On a success, the creature also takes damage as if the shemhazian had hit with a tail Strike, and if the creature was flying, it falls 30 feet.</p>",
+      "frequency": null,
+      "name": "Tail Whip",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within reach of the shemhazian's tail leaves a square during a move action it's using"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The shemhazian focuses their gaze on a non-demon creature they can see within 30 feet. If that creature isn't already Slowed by the shemhazian's paralyzing gaze, it must attempt a save against the shemhazian's paralyzing gaze. If that creature is slowed, it must succeed at a @Check[fortitude|dc:35] save or be Paralyzed for 1 round.</p>\n<p>A shemhazian can't use this ability against the same creature more than once per round.</p>",
+      "frequency": null,
+      "name": "Focused Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "incapacitation",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Rend]</p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the shemhazian's jaws Strike damages a creature, the target is Enfeebled 3 for 24 hours. The target can attempt a @Check[fortitude|dc:37] save to reduce this to Enfeebled 1 (or be unaffected on a critical success).</p>",
+      "frequency": null,
+      "name": "Enfeebling Bite",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>A non-demon creature that ends its turn in the aura must attempt a @Check[fortitude|dc:35] save. If it fails, it's Slowed 1 for 1 round, and if it critically fails, it is Paralyzed for 1 round.</p>",
+      "frequency": null,
+      "name": "Paralyzing Gaze",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "unholy",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A shemhazian's mutilation is a part of them, and they can't bear to see it reversed. The first time each round that a creature heals from damage the shemhazian dealt on their last turn, the demon takes @Damage[3d6[mental]] damage.</p>",
+      "frequency": null,
+      "name": "Succor Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d8+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-20",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d12+17",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d8+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pincer",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d6+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-30",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "3vkQLclK0z4LhAh7",
+  "gear": [],
+  "hp": 350,
+  "id": "pathfinder-monster-core/shemhazian",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 16,
+  "name": "Shemhazian",
+  "perception": 30,
+  "publicNotes": "<p>Shemhazians rise from the souls of torturers and those who reveled in mutilating the physical bodies of their victims. Standing 35 feet tall, a shemhazian is well equipped with a wide range of claws, pincers, and fangs to continue inflicting such torments on those they encounter.</p>\n<p>Shemhazians delight in tormenting mortals, of course, but more than most demons, they revel in sharing the pain with their own kind. Other demons fear and hate shemhazians for this reason, with only the most powerful willing to work with a shemhazian to achieve a shared goal. Even then, the shemhazian is always on the watch for an opportunity to bring pain and suffering to their allies along with any foe.</p>\n<hr />\n<p>When a sinful mortal soul is judged and sent on to the Outer Rifts, it can become a deadly fiend—a demon. Demons are living incarnations of sin—be they classic sins like wrath or gluttony, or more \"specialized\" depravities like an obsession with torture or the act of treason or treachery. Once formed, a demon's driving goals are twofold—the amassing of personal power, and the corruption of mortal souls to cause them to become tainted by sin. In this way demons ensure a never-ending supply of new demons to bolster their ever-growing ranks in the Outer Rifts.</p>\n<p>Demons are selfish and self-absorbed creatures, and most firmly believe that mortals only play at being more virtuous than fiends. They enjoy tempting mortals into damnation to both indulge their egos and swell their armies. Like many other fiends, one of the great rewards of this manipulation is fulfilling their hunger for souls. In their eyes, the primary use for these souls is to spawn new demons, who can serve as soldiers, slaves, pawns, or even currency for their more powerful masters.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 32,
+    "reflex": 26,
+    "will": 27
+  },
+  "senses": [
+    "darkvision",
+    "scent",
+    "truesight"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 31,
+    "deception": 25,
+    "intimidation": 27,
+    "medicine": 28,
+    "religion": 30
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "climb",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 29,
+      "dc": 37,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Divine Decree",
+          "rank": 7
+        },
+        {
+          "name": "Truesight (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Scouting Eye",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Invisibility (At Will)",
+          "rank": 2
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "demon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 15
+    },
+    {
+      "type": "holy",
+      "value": 15
+    }
+  ]
+}

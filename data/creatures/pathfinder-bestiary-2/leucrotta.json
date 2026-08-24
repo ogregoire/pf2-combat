@@ -1,0 +1,129 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 2,
+    "int": 0,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The leucrotta perfectly imitates voices and speech and attempts a @Check[deception] check against listeners' Will DC to fool them. The leucrotta gains a +4 bonus to this Deception check if it has listened to the creature it's imitating for at least 10 minutes at any point in the last 24 hours. The leucrotta can't duplicate voice-based abilities or spells, though it can perfectly mimic the sound of verbal spellcasting and can attempt to deceive constructs or undead that respond to voice commands. The leucrotta can't imitate speech in languages it doesn't know.</p>",
+      "frequency": null,
+      "name": "Sound Mimicry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>60 feet</p>\n<p><strong>Requirements</strong> The leucrotta's last action was Sound Mimicry</p>\n<hr />\n<p><strong>Effect</strong> The leucrotta utters a plaintive cry to draw its prey closer. Each creature within the emanation that was deceived by Sound Mimicry must succeed at a @Check[will|dc:19] save or become Fascinated and compelled to move toward the sound of the leucrotta's voice on their turn. Fascinated creatures are also Off-Guard.</p>\n<p>If the leucrotta attacks, the fascinated condition ends only for the creature that is attacked. If the leucrotta speaks a creature's name while using its Luring Cry, that creature takes a -2 circumstance penalty to their saving throw to resist the ability.</p>\n<p>On a successful save, a creature is temporarily immune to Luring Cry for 24 hours.</p>",
+      "frequency": null,
+      "name": "Luring Cry",
+      "requirements": "The leucrotta's last action was Sound Mimicry",
+      "traits": [
+        "aura",
+        "incapacitation",
+        "linguistic",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A leucrotta can learn any language it hears spoken for at least 10 minutes, adding it to its languages known and replacing the language it previously learned using this ability. Typically, a leucrotta knows Gnoll as the language granted by this ability.</p>",
+      "frequency": null,
+      "name": "Language Adaptation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "2d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": [
+        "agile"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d8+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jagged Jaws",
+      "traits": [
+        "fatal-d10"
+      ]
+    }
+  ],
+  "foundryId": "T3low0wQNMO0SEtr",
+  "gear": [],
+  "hp": 85,
+  "id": "pathfinder-bestiary-2/leucrotta",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Leucrotta",
+  "perception": 11,
+  "publicNotes": "<p>The vile and vicious offspring of a demon lord and a monstrous species of hyenas, leucrottas are intelligent and cruel beasts. They use their astounding vocal mimicry to lure unsuspecting creatures near so that they can first torment and then devour them. Leucrottas measure 5 feet at the shoulder and weigh 800 pounds, and they are perpetually filthy. A leucrotta's oversized jaws are lined with rows of jagged, hardened bony ridges rather than teeth, and it can shear through flesh, bone, and even steel with ease.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 9,
+    "will": 11
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 13,
+    "deception": 13,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "climb",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,205 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 8,
+    "int": 2,
+    "str": 7,
+    "wis": 2
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>(1 to 3 actions)</p>\n<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> For each action spent to use this ability, the ankou creates one shadowy duplicate of themself anywhere within 60 feet of themself. Shadow doubles have the same statistics as an ankou, but they have the summoned trait, have 84 Hit Points, can't use Shadow Doubles or innate spells, and have an attack bonus of +25 for their Strikes. A shadow double that attempts a saving throw against a light effect can't get a result better than failure. Each double remains for 1 round, until it's reduced to 0 Hit Points, or until it moves further than 120 feet from the ankou, whichever comes first. Each round thereafter, the ankou can spend a single action that has the concentrate trait to extend the duration of surviving duplicates by 1 round, to a maximum duration of 1 minute. The ankou can see through the eyes of all of the shadow doubles at once. A character who Seeks can identify an ankou as real or a shadow double with a successful @Check[perception|dc:39] check.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Shadow Doubles",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "illusion",
+        "light",
+        "occult",
+        "shadow",
+        "summoned"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "frequency": null,
+      "name": "Lifesense 120 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An ankou's Strikes deal an additional 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "3d6+15",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "cold-iron",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d6+15",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "cold-iron",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "DxV2vH17H789bJ6y",
+  "gear": [],
+  "hp": 280,
+  "id": "pathfinder-bestiary-2/ankou",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "fey"
+  ],
+  "level": 14,
+  "name": "Ankou",
+  "perception": 25,
+  "publicNotes": "<p>Ankous are shadowy killers who serve powerful fey creatures, or even the Eldest- the demigods of the First World. Amid the courts of the Eldest or of powerful fey rulers, these sinister assassins lurk overhead as they await the call to action-implied threats akin to deadly weapons hung as decor in a royal hall. Ankous never speak aloud; when they feel the need to communicate at all, they do so in a telepathic whisper directly into a victim's mind. While an ankou's body is made of strange, fleshy material, their claws and the cruel hooks on their wings are made of razor-sharp cold iron, a quality that makes them much feared among other fey. A typical ankou is 10 feet tall and has an 8-foot wingspan but weighs less than 80 pounds.</p>\n<p>While most ankous serve powerful masters, some of these murderous fey are left to their own devices and serve none but their own capricious, cruel whims. In some cases, their master may have been slain, while in others the ankou may have been released from service for any number of reasons. An ankou left to indulge their own whims unrestrained is often the most dangerous ankou of them all!</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 28,
+    "will": 24
+  },
+  "senses": [
+    "lifesense",
+    "low-light-vision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 28,
+    "deception": 25,
+    "intimidation": 27,
+    "nature": 22,
+    "stealth": 28
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 75
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 26,
+      "dc": 34,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Discern Location",
+          "rank": 8
+        },
+        {
+          "name": "Prismatic Spray",
+          "rank": 7
+        },
+        {
+          "name": "Teleport",
+          "rank": 7
+        },
+        {
+          "name": "True Seeing",
+          "rank": 6
+        },
+        {
+          "name": "Darkness (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Dimensional Anchor",
+          "rank": 4
+        },
+        {
+          "name": "Silence",
+          "rank": 2
+        },
+        {
+          "name": "Ray of Enfeeblement",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 10
+    }
+  ]
+}

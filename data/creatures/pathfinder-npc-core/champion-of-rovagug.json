@@ -1,0 +1,170 @@
+{
+  "abilityMods": {
+    "cha": 12,
+    "con": 3,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy in the champion's aura damages the champion</p><hr /><p><strong>Effect</strong> The champion increases the amount of damage they take by @Damage[2d6] and deals @Damage[2d6[spirit]] damage to the triggering enemy. In addition, until the end of the champion's next turn, the champion's Strikes against the triggering creature deals 2 extra spirit damage.</p>",
+      "frequency": null,
+      "name": "Destructive Vengeance",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": "An enemy in the champion's aura damages the champion"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The champion makes a melee Strike with a +1 circumstance bonus to the attack roll and compares the roll to the AC of up to two foes that are in reach and adjacent to each other. The champion rolls damage only once and applies it to each creature they hit. This counts as two attacks toward their multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Axe Swipe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>15 feet. Any follower of Rovagug in the aura knows the champion is a champion of Rovagug. Enemies in the aura take a –1 circumstance penalty to saves against fear, and an enemy that ends its turn in the aura can't reduce the value of its Frightened condition below 1. The aura can be suppressed or resumed with a single action, which has the concentrate trait, and ends if the champion falls Unconscious.</p>",
+      "frequency": null,
+      "name": "Champion's Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The champion grants their greataxe the fearsome rune while they wield it.</p>",
+      "frequency": null,
+      "name": "Fearsome Armament",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d12+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fearsome Greataxe",
+      "traits": [
+        "magical",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Gauntlet",
+      "traits": [
+        "agile",
+        "free-hand"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d6+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Javelin",
+      "traits": [
+        "thrown-30"
+      ]
+    }
+  ],
+  "foundryId": "swsUKYW00lGAH55r",
+  "gear": [
+    "Greataxe",
+    "Half Plate",
+    "Javelin"
+  ],
+  "hp": 70,
+  "id": "pathfinder-npc-core/champion-of-rovagug",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Champion of Rovagug",
+  "perception": 10,
+  "publicNotes": "<p>There are perhaps no mortals more anathematic to peace than champions of Rovagug or other destructive deities.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 8,
+    "will": 10
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "deception": 10,
+    "intimidation": 12,
+    "religion": 8,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Champion Devotion Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Touch of the Void",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid",
+    "unholy"
+  ],
+  "weaknesses": []
+}

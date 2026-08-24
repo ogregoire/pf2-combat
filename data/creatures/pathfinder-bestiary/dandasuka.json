@@ -1,0 +1,227 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 3,
+    "dex": 4,
+    "int": 1,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dandasuka takes on the appearance of any Small humanoid. This doesn't change the dandasuka's Speed or its attack and damage modifiers with its Strikes, but it might change the damage type its Strikes deal (typically to bludgeoning). It typically loses its fangs Strike unless the humanoid form has fangs or a similar unarmed attack.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+3 Status to All Saves vs. Divine Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dandasuka deals an extra 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d4+4",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d6+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "finesse",
+        "magical",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "hNR4xZRsxUkGPI1v",
+  "gear": [],
+  "hp": 60,
+  "id": "pathfinder-bestiary/dandasuka",
+  "immunities": [],
+  "languages": [
+    "common",
+    "diabolic",
+    "sakvroth"
+  ],
+  "level": 5,
+  "name": "Dandasuka",
+  "perception": 12,
+  "publicNotes": "<p>Known as \"biters\" among the more powerful rakshasa castes, dandasukas serve as spies and assassins for rakshasa clans or powerful spellcasters who have found methods to bind one of these fiends to their will. Born to manipulate and murder, these half-sized terrors revel in their work and delight in the sight of blood. They often dress in extravagant clothes dyed with ostentatious colors and wear numerous elaborate accessories, whether in their true form or in disguise as human children, halfling merchants, or anything else that helps them blend into their targeted society.</p>\n<p>A dandasuka rakshasa is constantly haunted by a monstrous hunger that gnaws at its hyperactive body, forcing it to feed often. In combat, a dandasuka might pause to lick a bloody blade or lap at a pool of spilled blood on the floor. These creatures settle for other meat when they must, but much prefer the taste of mortal humanoid flesh. Regular offers of such victuals can keep a dandasuka loyal to anyone willing to provide frequent meals, but care must be taken in keeping a dandasuka, for many stories tell of them being overly eager to serve an adored benefactor, taking off-hand remarks too literally, and performing services of violence that were never intended.</p>\n<hr />\n<p>Rakshasas are evil spirits that cloak themselves in the guises of humanoid creatures, that they might walk unseen among their prey. They embody what is taboo among most societies, and in the shape of those they seek to defile, rakshasas gorge themselves on these hideous acts. A wide range of rakshasas exist; presented below are the diminutive, sinister dandasuka rakshasa and the infamous raja rakshasa, who are the most widespread and commonly encountered of these fiends.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 13,
+    "will": 10
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 13,
+    "deception": 14,
+    "stealth": 13,
+    "thievery": 13
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 11,
+      "dc": 19,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading (At Will)",
+          "rank": 3
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 15,
+      "dc": 22,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        }
+      ],
+      "spells": [
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "rakshasa",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 5
+    }
+  ]
+}

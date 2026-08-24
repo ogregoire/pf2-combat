@@ -1,0 +1,154 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 2,
+    "int": -1,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 29,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.Rend]</p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A creature within the eidolon's scent range is taking bleed damage</p><hr /><p><strong>Effect</strong> The eidolon flies into a frenzy, gaining 10 temporary HP for 1 minute and a +4 status bonus to damage rolls with its unarmed attacks, but becomes Off-Guard. It can't voluntarily end the frenzy or start another frenzy while in the frenzy. The frenzy lasts for 1 minute, after which the eidolon is Fatigued for 1 minute.</p>",
+      "frequency": null,
+      "name": "Scent of Blood",
+      "requirements": "A creature within the eidolon's scent range is taking bleed damage",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The eidolon Strides twice and then makes a Strike. As long as it moved at least 20 feet, it gains a +2 circumstance bonus to the attack roll.</p>",
+      "frequency": null,
+      "name": "Furious Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The eidolon attempts to Demoralize each enemy within 30 feet; these Demoralize attempts don't take any penalty for not sharing a language.</p>",
+      "frequency": null,
+      "name": "Primal Roar",
+      "requirements": null,
+      "traits": [
+        "auditory"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "2d6+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d8+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Horn",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "xMDUgVCByn9VA0zC",
+  "gear": [],
+  "hp": 180,
+  "id": "pathfinder-npc-core/beast-eidolon",
+  "immunities": [],
+  "languages": [
+    "fey"
+  ],
+  "level": 10,
+  "name": "Beast Eidolon",
+  "perception": 21,
+  "publicNotes": "<p>This creature is intended to be used as the eidolon accompanying a Sarkorian god caller, but it can be used or adapted into any aggressive beast eidolon for a summoner.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "cold",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 18,
+    "will": 19
+  },
+  "senses": [
+    "darkvision",
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 16,
+    "athletics": 21,
+    "intimidation": 22,
+    "nature": 15
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "eidolon"
+  ],
+  "weaknesses": []
+}

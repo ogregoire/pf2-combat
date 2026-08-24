@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 1,
+    "int": 0,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The street musician is playing their instrument</p><hr /><p><strong>Effect</strong> The street musician attempts a @Check[type:performance|against:will] check compared to the Will DC of an observer within 30 feet. On a success, the target is Fascinated by the street musician and Off-Guard for 1 round.</p>",
+      "frequency": null,
+      "name": "Distracting Drone",
+      "requirements": "The street musician is playing their instrument",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The street musician deals an additional 1d4 precision damage to offguard creatures. This increases to 1d6 against creatures Off-Guard due to the street musician's Feint or distracting drone.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "srsib4P14wAYv4pS",
+  "gear": [
+    "Dagger",
+    "Musical Instrument (Handheld)"
+  ],
+  "hp": 32,
+  "id": "pathfinder-npc-core/street-musician",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Street Musician",
+  "perception": 9,
+  "publicNotes": "<p>Many musicians make their living off stage by playing at markets, fairs, or crossroads. While their fame may not be as widespread as theatrical performers, they are nonetheless staples of many communities.</p><hr /><p>Performances come in a wide variety of forms, from musical methods like singing and instruments to physical dancing and juggling to simple orating and conversing.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 8,
+    "will": 9
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 6,
+    "crafting": 5,
+    "deception": 8,
+    "diplomacy": 8,
+    "performance": 8,
+    "society": 6
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 10,
+      "dc": 18,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        }
+      ],
+      "spells": [
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Force Barrage",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Summon Instrument",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

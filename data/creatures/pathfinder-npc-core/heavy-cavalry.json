@@ -1,0 +1,136 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 2,
+    "int": 0,
+    "str": 7,
+    "wis": 1
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The heavy cavalry swing flails at each enemy in a @Template[type:emanation|distance:5], with a @Check[reflex|dc:22|basic|options:area-effect] save. The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d6+3)[bludgeoning]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d6+7)[bludgeoning]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d6+10)[bludgeoning]|options:area-damage] damage</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Join the Fray",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The heavy cavalry Strides. At the end of their movement, the cavalry can either attempt an Athletics check to [[/act trip]] each adjacent enemy or an Intimidation check to [[/act demoralize]] each enemy within 30 feet. Roll only once and compare the result to each enemy's Reflex DC (for Trip) or Will DC (for Demoralize).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Thunder of Hooves",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, @Damage[(2d8+7)[bludgeoning]], @Check[reflex|dc:22|basic]; creatures that fail the save are also knocked Prone</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Effects that target only animals or only humanoids might not work on the cavalry brigade, subject to the GM's discretion.</p>",
+      "frequency": null,
+      "name": "Mounted Troop",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 70 (3 segments), 35 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "Iax22298eQbIhIQK",
+  "gear": [],
+  "hp": 105,
+  "id": "pathfinder-npc-core/heavy-cavalry",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 7,
+  "name": "Heavy Cavalry",
+  "perception": 14,
+  "publicNotes": "<p>A charging band of knights, mounted upon heavy warhorses and clad in steel plate, is a sight to be feared on the battlefield. The weight of their armor, however, makes them ill-suited to extended overland maneuvers. Squads of squires are needed to tend to horses, repair armor, and otherwise support the heavy cavalry group between battles. Despite these limitations, their ability to crash through enemy lines makes them an invaluable tool for professional armies.</p><hr /><p>A military serves to defend and fight on behalf of nations and can be trained and deployed in various ways.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 13,
+    "will": 14
+  },
+  "senses": [],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 17,
+    "intimidation": 15,
+    "nature": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "human",
+    "humanoid",
+    "troop"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 8
+    },
+    {
+      "type": "splash-damage",
+      "value": 8
+    }
+  ]
+}

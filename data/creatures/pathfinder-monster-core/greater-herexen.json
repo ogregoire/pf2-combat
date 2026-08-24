@@ -1,0 +1,142 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 4,
+    "int": 0,
+    "str": 4,
+    "wis": 6
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the herexen is destroyed, it explodes in a wave of void energy with the effects of a 3-action Harm spell (@Check[fortitude|dc:18]).</p>\n<p>The herexen is destroyed, so it doesn't gain any Hit Points from this use of <em>harm</em>, and it doesn't need to have any <em>harm</em> spells remaining to use this ability</p>",
+      "frequency": null,
+      "name": "Final Blasphemy",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>While wielding the favored weapon of its former deity (such as a dagger for an ex-Pharasmin herexen), the greater herexen's Strikes deal an additional 2d6 spirit damage to creatures with the holy trait.</p>",
+      "frequency": null,
+      "name": "Heretic's Smite",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d6+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "ZlAzJNsHYz1ZtMVK",
+  "gear": [
+    "Dagger",
+    "Defiled Religious Symbol of Pharasma (Wooden)"
+  ],
+  "hp": 135,
+  "id": "pathfinder-monster-core/greater-herexen",
+  "immunities": [
+    "bleed",
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "poison",
+    "unconscious"
+  ],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 8,
+  "name": "Greater Herexen",
+  "perception": 16,
+  "publicNotes": "<p>When a cleric rebels against their deity and dies in the grip of blasphemous rage, the heresies they committed in life may fuel their transformation into an undead herexen. Herexens seek vengeance against the deity they once worshipped, defiling temples, slaying the faithful, and rallying lesser undead and death cultists to aid them in their unholy quests. Though a herexen's divine gifts have mostly been corrupted into the vileness of undeath, they stubbornly cling to remnants of their former power, still wielding magic and armaments favored by the deity they so greatly despise.</p>\n<p>Groups of herexens that blasphemed against the same deity sometimes combine to form a mockery of a congregation, conducting blasphemous rites with something approaching euphoria. These congregations are often formed from a blasphemous cult whose members practiced their heresy together in life and died together, though some gather independent herexens of the same former faith.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 16,
+    "will": 19
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 15,
+    "deception": 16,
+    "religion": 20,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 18,
+      "dc": 26,
+      "name": "Cleric Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Eradicate Undeath",
+          "rank": 4
+        },
+        {
+          "name": "Death's Call",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

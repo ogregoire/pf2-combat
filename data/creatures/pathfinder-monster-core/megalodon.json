@@ -1,0 +1,158 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 5,
+    "dex": 2,
+    "int": -4,
+    "str": 8,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The megalodon Swims up to its swim Speed, then Leaps vertically out of the water up to 25 feet high, making a Strike against a creature at any point during the jump (this lets it attack a creature within 35 feet of the water's surface or 40 feet with its tail). After the Strike, the megalodon splashes back down into the water.</p>",
+      "frequency": null,
+      "name": "Breach",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push 15 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The megalodon hit with a jaws Strike on its most recent action this turn.</p>\n<hr />\n<p><strong>Effect</strong> The creature the megalodon hit takes @Damage[2d12[slashing]] damage.</p>",
+      "frequency": null,
+      "name": "Savage",
+      "requirements": "The megalodon hit with a jaws Strike on its most recent action this turn.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Huge, @Damage[(2d8+5)[bludgeoning]], Rupture 20</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The megaladon can smell blood in the water from up to 1 mile away.</p>",
+      "frequency": null,
+      "name": "Blood Scent",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "2d12+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "9rXYGu7D3umIW1sv",
+  "gear": [],
+  "hp": 180,
+  "id": "pathfinder-monster-core/megalodon",
+  "immunities": [],
+  "languages": [],
+  "level": 9,
+  "name": "Megalodon",
+  "perception": 20,
+  "publicNotes": "<p>Prehistoric sharks of incredible size, strength, and ferocity, megalodons scour waters deep and shallow to sate their considerable hunger. The presence of a megalodon undeniably affects the local aquatic ecosystem.</p>\n<hr />\n<p>Sharks of all shapes and sizes have stalked the oceans, largely unchanged, since primordial times. They are efficient, ruthless predators with multiple rows of razor-sharp teeth capable of rending prey in an instant. Their uncanny ability to smell blood in the water means sharks might show up at any scene of aquatic carnage.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 16,
+    "will": 17
+  },
+  "senses": [
+    "scent"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 21,
+    "stealth": 19,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "swim",
+      "value": 80
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

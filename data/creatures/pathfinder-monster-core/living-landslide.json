@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 4,
+    "dex": -1,
+    "int": -2,
+    "str": 5,
+    "wis": 1
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The living landslide takes damage from a hostile source while atop rock or earth</p>\n<hr />\n<p><strong>Effect</strong> The living landslide crumbles into the ground, Burrowing down 10 feet. This Burrowing does not trigger reactions.</p>\n<p>The living landslide can't Crumble again for [[/gmr 1d4 #Recharge Crumble]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Crumble",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The living landslide takes damage from a hostile source while atop rock or earth"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The living landslide Strides up to twice its normal Speed in a straight line, then attempts to Trip a creature in its reach. If a creature falls Prone from this Trip, it takes @Damage[1d4[bludgeoning]] damage for every 10 feet the living landslide moved.</p>",
+      "frequency": null,
+      "name": "Sliding Earth",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The living landslide can Burrow through any earthen matter, including rock. When it does so, the living landslide moves at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When not touching solid ground, the living landslide is Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Earthbound",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d8+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "4Ejgj6p1LAu1RAN3",
+  "gear": [],
+  "hp": 90,
+  "id": "pathfinder-monster-core/living-landslide",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "petran"
+  ],
+  "level": 5,
+  "name": "Living Landslide",
+  "perception": 12,
+  "publicNotes": "<p>Living landslides resemble humanoids made of earth and gravel. They find moving across the many surfaces of the mortal Universe strangely liberating.</p>\n<hr />\n<p>Earth elementals make excellent bodyguards for adventuresome spelunkers and are ideal protectors of important subterranean locations such as vaults and treasuries.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 8,
+    "will": 10
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 14,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}

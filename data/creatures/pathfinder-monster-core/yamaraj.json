@@ -1,0 +1,355 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 7,
+    "dex": 7,
+    "int": 10,
+    "str": 10,
+    "wis": 7
+  },
+  "ac": 45,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The yamaraj breathes a blast of beetles in a @Template[cone|distance:50] that deals @Damage[14d8[slashing],4d8[persistent,slashing]|options:area-damage]{14d8 slashing damage and 4d8 persistent slashing damage} to creatures in the area with a @Check[reflex|dc:42|options:area-effect,damaging-effect] save.</p>\n<p>It can't use Beetle Breath again for [[/gmr 1d4 #Recharge Beetle Breath]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes half damage and is Sickened 1.</p>\n<p><strong>Failure</strong> The creature takes full damage and is Sickened 2.</p>\n<p><strong>Critical Failure</strong> The creature takes double damage and is Sickened 3.</p>",
+      "frequency": null,
+      "name": "Beetle Breath",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 20",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A yamaraj's Manifestation spells are used only to pronounce judgment, typically either to restore a dead or destroyed creature to life, bind a creature to the Boneyard, or banish a creature from the Boneyard.</p>",
+      "frequency": null,
+      "name": "Final Judgment",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>60 feet @Check[will|dc:39]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "frequency": null,
+      "name": "Lifesense 240 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a yamaraj would take electricity damage if not for its immunity, its fast healing increases to 40 on its next turn.</p>\n<p>During that turn, if it uses Beetle Breath, the beetles deal @Damage[2d12[electricity]]{2d12 additional electricity damage}.</p>",
+      "frequency": null,
+      "name": "Lightning Drinker",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A yamaraj's Strikes affect incorporeal creatures with the effects of a <em>Ghost Touch</em> property rune and deal @Damage[3d6[void]] damage to living creatures and @Damage[3d6[vitality]] damage to undead.</p>",
+      "frequency": null,
+      "name": "Shepherd's Touch",
+      "requirements": null,
+      "traits": [
+        "incorporeal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 120 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>While a creature is clumsy from this poison, it is Doomed with the same value;</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:42]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 10 rounds</p>\n<p><strong>Stage 1</strong> @Damage[3d8[poison]] damage and Clumsy 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[5d8[poison]] damage and Clumsy 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[7d8[poison]] damage and Clumsy 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Yamaraj Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "4d4+18",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "4d8+18",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "4d10+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "00uNOPsU5VognIcB",
+  "gear": [],
+  "hp": 375,
+  "id": "pathfinder-monster-core/yamaraj",
+  "immunities": [
+    "death-effects",
+    "disease",
+    "electricity"
+  ],
+  "languages": [
+    "chthonian",
+    "diabolic",
+    "empyrean",
+    "requian"
+  ],
+  "level": 20,
+  "name": "Yamaraj",
+  "perception": 37,
+  "publicNotes": "<p>The greatest judges among the psychopomps are yamarajes, whose wisdom is legendary and whose edicts are unappealable except to ushers or Pharasma herself. A yamaraj resembles an immense dragon with dark, feathery scales and an emotionless, dispassionate gaze behind a feathered mask. When not serving as the senior magistrates, lords, and generals of the Boneyard, yamarajes pursue highly individualistic hobbies, such as gardening or literature.</p>\n<hr />\n<p>Psychopomps are guardians and shepherds of the dead in the Boneyard, the vast plane of graves where mortal souls are judged and sent on to their eternal rewards or damnations. Psychopomps ensure that the dead come to terms with their transition from mortality and are properly sorted into the appropriate afterlife. They also protect souls from being preyed upon by supernatural predators. Nearly all psychopomps wear masks, especially when they're likely to be interacting with mortals, although the types of masks they wear are as varied as the psychopomps themselves. The courts of the Boneyard preside in Requian, a somber yet melodic language spoken slowly with various tonal shifts.</p>\n<p>Many psychopomps are intimately involved with the Boneyard's massive bureaucracy. Few pursue mercy, justice, or personal gain; their duties to Pharasma and her Boneyard are supreme. Nevertheless, individual psychopomps interpret their duties in different ways, which might put them in conflict with mortals or even with each other.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "poison",
+      "value": 20
+    },
+    {
+      "type": "void",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": 33,
+    "reflex": 31,
+    "will": 35
+  },
+  "senses": [
+    "darkvision",
+    "lifesense",
+    "truesight"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 33,
+    "athletics": 38,
+    "deception": 34,
+    "diplomacy": 34,
+    "intimidation": 36,
+    "occultism": 38,
+    "religion": 38,
+    "society": 38
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "fly",
+      "value": 50
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 36,
+      "dc": 44,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [
+        {
+          "max": 2,
+          "rank": 5
+        },
+        {
+          "max": 8,
+          "rank": 8
+        },
+        {
+          "max": 4,
+          "rank": 9
+        },
+        {
+          "max": 1,
+          "rank": 10
+        }
+      ],
+      "spells": [
+        {
+          "name": "Manifestation",
+          "rank": 10
+        },
+        {
+          "name": "Revival",
+          "rank": 10
+        },
+        {
+          "name": "Seize Soul",
+          "rank": 9
+        },
+        {
+          "name": "Wails of the Damned",
+          "rank": 9
+        },
+        {
+          "name": "Chain Lightning",
+          "rank": 6
+        },
+        {
+          "name": "Spirit Blast",
+          "rank": 6
+        },
+        {
+          "name": "Truesight (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Wall of Force",
+          "rank": 6
+        },
+        {
+          "name": "Mind Probe (At will)",
+          "rank": 5
+        },
+        {
+          "name": "Translocate (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Harm",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "monitor",
+    "psychopomp"
+  ],
+  "weaknesses": []
+}

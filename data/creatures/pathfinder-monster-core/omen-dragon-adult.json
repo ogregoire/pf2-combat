@@ -1,0 +1,270 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 5,
+    "dex": 4,
+    "int": 7,
+    "str": 7,
+    "wis": 6
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The dragon is targeted by an attack;</p>\n<hr />\n<p><strong>Effect</strong> This fate is not set in stone. The attacker rolls the triggering attack twice and uses the worse result.</p>",
+      "frequency": null,
+      "name": "Challenge Fate",
+      "requirements": null,
+      "traits": [
+        "misfortune",
+        "occult"
+      ],
+      "trigger": "The dragon is targeted by an attack;"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a translucent mist of potentialities that overwhelms creatures with visions of possible features, dealing @Damage[10d6[mental]|options:area-damage] damage in a @Template[cone|distance:30] (@Check[will|dc:30|options:area-effect] save). A creature that fails its save is Slowed 1 for 1 round (or Slowed 2 on a critical failure) as it struggles with the visions.</p>\n<p>The dragon can't use Destiny Breath again for [[/gmr 1d4 #Recharge Destiny Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Destiny Breath",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon makes two claw Strikes and one wing Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<hr />\n<p><strong>Effect</strong> The dragon splits themself into two versions with different fates. Each copy Strides or Flies from the dragon's current space, then takes a single action. If the actions are both attacks, they use the same multiple attack penalty and count as one attack toward the dragon's multiple attack penalty.</p>\n<p>After both actions, the dragon chooses one of the two locations as their actual destination and the other version of themself disappears.</p>",
+      "frequency": null,
+      "name": "Walk the Timelines",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Occult",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon recharges their Destiny Breath whenever they score a critical hit with a Strike.</p>",
+      "frequency": null,
+      "name": "Draconic Momentum",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon or any ally can glimpse into the future through the dragon's wings in a process that requires 10 minutes of concentration. This casts a 6th-rank Augury spell, except that the wings can predict results up to 1 month into the future and the dragon always speaks a few cryptic words related to the result of the prediction.</p>\n<p>The dragon can use their wings in this way only once per day, and a given creature can seek a future in the wings only once per week.</p>",
+      "frequency": null,
+      "name": "Prophetic Wings",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The dragon can choose to negate any fortune or misfortune effects that would affect them; other creatures remain affected normally.</p>",
+      "frequency": null,
+      "name": "Untethered to Fate",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "mental"
+        },
+        {
+          "formula": "2d6+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "mental"
+        },
+        {
+          "formula": "2d8+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "mental"
+        },
+        {
+          "formula": "2d8+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "mental"
+        },
+        {
+          "formula": "1d8+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "awrILpXoGooQKEui",
+  "gear": [],
+  "hp": 185,
+  "id": "pathfinder-monster-core/omen-dragon-adult",
+  "immunities": [
+    "confused",
+    "doomed",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "fey",
+    "jotun"
+  ],
+  "level": 11,
+  "name": "Omen Dragon (Adult)",
+  "perception": 21,
+  "publicNotes": "<p>Fate is a fickle matter on Golarion. Even with prophecy broken on the world, there are ways to look to the immediate future or acquire a vague sense of long-term events. Omen dragons are bound to see the future—nebulous though it might be—at all times. Visions of the future hound them like a quiet song that never stops playing in their minds. While an omen dragon can focus on or ignore the music of fate at any time, the song plays all the same. At a glance, omen dragons resemble other occult dragons in appearance, save for the mirror-like interior membrane of their wings. An omen dragon's wings offer glimpses into the future. These glimpses are cloudy and vague, but generally correct, if only technically. Omen dragons have a natural compulsion to share the futures they see. These dragons have no compunctions about what the visions show and share their knowledge equally with innocent villagers as they do with wicked tyrants.</p>\n<hr />\n<p>Dragons come in myriad forms, with many having magical abilities or connections to magic. Some dragons draw greater power from magic than others, allowing them to manifest abilities or alter their physiques with prolonged exposure to magic. These dragons become more powerful as they age and strengthen their connections with their magical origins. Scholars debate the classification of these dragons, with some preferring the name magical dragons and others using traditional dragons due to their connection to specific magical traditions. Regardless of their names, these dragons share a number of characteristics: their ability to tap into magical energies, intensified might and cunning as they grow older, and an inclination to hoard vast amounts of treasure and wealth.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 20,
+    "reflex": 19,
+    "will": 23
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 21,
+    "athletics": 22,
+    "diplomacy": 20,
+    "occultism": 24,
+    "society": 22
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "fly",
+      "value": 130
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Guidance",
+          "rank": 1
+        },
+        {
+          "name": "Ill Omen (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Mindlink (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Sure Strike",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "occult"
+  ],
+  "weaknesses": []
+}

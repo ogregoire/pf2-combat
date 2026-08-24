@@ -1,0 +1,205 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 4,
+    "int": 1,
+    "str": 6,
+    "wis": 0
+  },
+  "ac": 29,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Requirements</strong> The warmonger has a hand free</p><hr /><p><strong>Effect</strong> The warmonger grits their teeth and ties off a wound or sets a bone or joint. They regain @Damage[20[healing]] Hit Points.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Patch and Set",
+      "requirements": "The warmonger has a hand free",
+      "traits": [
+        "healing",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<p><strong>Trigger</strong> The warmonger critically hits or knocks out an enemy</p><hr /><p><strong>Effect</strong> The warmonger screams a battle cry. Each ally in a @Template[type:emanation|distance:30] that hears it deals an additional 1d6 damage with its Strikes for 1 round.</p>\n<p>Effect: War Cry</p>",
+      "frequency": null,
+      "name": "War Cry",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "mental"
+      ],
+      "trigger": "The warmonger critically hits or knocks out an enemy"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The warmonger singles out one enemy to bring down with ranged attacks until the end of the current turn. The warmonger's ranged Strikes against that creature gain a +1 circumstance bonus to the attack roll and deal an extra 3d6 precision damage. Each time the warmonger hits that creature with a ranged Strike, the creature takes a –10-foot penalty to its Speeds for 1 minute and falls 20 feet if it's flying.</p>\n<p>Effect: Sight Prey (Speed Penalty)</p>",
+      "frequency": null,
+      "name": "Sight Prey",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The warmonger is wielding two melee weapons and isn't Fatigued</p><hr /><p><strong>Effect</strong> The warmonger attempts up to three melee Strikes against different creatures. These count toward the warmonger's multiple attack penalty normally, but the penalty doesn't increase until after all the attacks. The warmonger overexerts themself with the attacks, becoming fatigued. The warmonger can attempt a @Check[fortitude|dc:30] save to recover from this fatigued condition at the start of each of their turns.</p>",
+      "frequency": null,
+      "name": "Power Through",
+      "requirements": "The warmonger is wielding two melee weapons and isn't Fatigued",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The warmonger treats the value of any Drained, Dying, Enfeebled, Sickened, and Wounded conditions affecting them as 1 lower. The warmonger still has the condition and must remove it normally.</p>",
+      "frequency": null,
+      "name": "Pain Training",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The warmonger can always roll Warfare Lore for initiative.</p>",
+      "frequency": null,
+      "name": "Warfare Lore",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d8+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Battle Axe",
+      "traits": [
+        "magical",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "1d8+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "1d4+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "KJ4faFTpKHVhAqFR",
+  "gear": [
+    "Battle Axe",
+    "Composite Longbow",
+    "Hide Armor"
+  ],
+  "hp": 200,
+  "id": "pathfinder-npc-core/warmonger",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 10,
+  "name": "Warmonger",
+  "perception": 16,
+  "publicNotes": "<p>Warmongers believe the base state of life is violence. They stay in peak physical condition with constant training and keep their supplies ready for marching to war.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 20,
+    "will": 16
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 24,
+    "intimidation": 20,
+    "stealth": 19,
+    "survival": 14
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

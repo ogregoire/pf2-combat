@@ -1,0 +1,169 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 1,
+    "dex": 4,
+    "int": 2,
+    "str": 0,
+    "wis": 6
+  },
+  "ac": 41,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The mystic reminds their allies of the punishments awaiting those who fail Yog-Sothoth. The mystic and their allies within 60 feet gain a +2 status bonus to attack rolls and damage rolls until the end of the mystic's next turn.</p>\n<p>Effect: Reminder of Doom</p>",
+      "frequency": null,
+      "name": "Reminder of Doom",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Harm</p>",
+      "frequency": null,
+      "name": "Divine Font",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The Thresholder Mystic exists outside of time; they don't age, don't need food or drink to survive, and can't be Quickened or Slowed unless they choose to be.</p>",
+      "frequency": null,
+      "name": "Outside of Time",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the mystic rolls a success on a Will save, they get a critical success instead.</p>",
+      "frequency": null,
+      "name": "Resolve",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If a reaction would disrupt the Thresholder Mystic's spellcasting action, they attempt a @Check[flat|dc:15]; on a success, the action isn't disrupted.</p>",
+      "frequency": null,
+      "name": "Steady Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The removal of the eyes symbolized a Thresholder's abandonment of all they had seen before, and with the ritual's completion they gain something greater than mere vision: they gain the Unseen Sight. This is a precise sense that mimics darkvision yet functions even if the eye sockets themselves are covered. More importantly, the unseen sight allows a Thresholder to see the truth of the world, granting them the ability to see things as they actually are as if they were under the effects of Truesight, provided they are located within a region under the influence of Yog- Sothoth.</p>",
+      "frequency": null,
+      "name": "Unseen Sight",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "3d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "htHgsx1COWOfhE3D",
+  "gear": [
+    "Dagger",
+    "Leather Armor",
+    "Religious Symbol of Yog-Sothoth"
+  ],
+  "hp": 315,
+  "id": "kingmaker-bestiary/thresholder-mystic",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "hallit"
+  ],
+  "level": 17,
+  "name": "Thresholder Mystic",
+  "perception": 31,
+  "publicNotes": "",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 27,
+    "reflex": 29,
+    "will": 33
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 28,
+    "deception": 30,
+    "intimidation": 32,
+    "medicine": 31,
+    "occultism": 30,
+    "religion": 33
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 30,
+      "dc": 38,
+      "name": "Divine Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Stasis",
+          "rank": 4
+        },
+        {
+          "name": "Delay Consequence",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

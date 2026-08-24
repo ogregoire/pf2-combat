@@ -1,0 +1,174 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 5,
+    "dex": 2,
+    "int": -3,
+    "str": 6,
+    "wis": 5
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 30 feet that the dracolisk can see starts its turn</p>\n<hr />\n<p><strong>Effect</strong> The target must attempt a @Check[fortitude|dc:26] save. If it fails, it becomes Slowed 1 for 1 minute as its body stiffens.</p>",
+      "frequency": null,
+      "name": "Petrifying Glance",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "aura",
+        "visual"
+      ],
+      "trigger": "A creature within 30 feet that the dracolisk can see starts its turn"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The white dracolisk breathes a @Template[cone|distance:30] of energy. This breath weapon deals @Damage[6d10[cold]|options:area-damage] damage, with a @Check[reflex|dc:28|basic|options:area-effect] save.</p>\n<p>The dracolisk can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dracolisk stares at a creature it can see within 30 feet. That creature must attempt a @Check[fortitude|dc:28] save. If it fails and has not already been slowed by Petrifying Glance or this ability, it becomes Slowed 1. If the creature already was slowed by this ability or Petrifying Glance, a failed save causes the creature to be Petrified permanently.</p>\n<p>A creature petrified in this manner can be instantly restored to flesh by being coated (not just splashed) with fresh dracolisk or basilisk blood no more than 1 hour old. A single dracolisk contains enough blood to coat [[/r 1d4+2 #Medium creatures]] Medium creatures in this manner.</p>",
+      "frequency": null,
+      "name": "Petrifying Gaze",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "incapacitation",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dracolisk makes a single Strike with its jaws. If the attack hits, it deals @Damage[(4d12+16)[piercing]] damage (versatile S). This counts as two attacks for its multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Savage Jaws",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A white dracolisk has resistance 10 to cold damage.</p>",
+      "frequency": null,
+      "name": "Draconic Resistance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d10+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d12+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "DM5js1XSiuiPAf3t",
+  "gear": [],
+  "hp": 155,
+  "id": "pathfinder-bestiary-2/white-dracolisk",
+  "immunities": [
+    "paralyzed",
+    "petrified",
+    "sleep"
+  ],
+  "languages": [],
+  "level": 9,
+  "name": "White Dracolisk",
+  "perception": 18,
+  "publicNotes": "<p>Dracolisks are rare magical crossbreeds of chromatic dragons and basilisks. None now know how they first came to be, but they have proven viable and can breed with one another as well as with basilisks. While a dracolisk appears much like a young true dragon of its parent type, its eight legs are an immediate indication that it is something more. Its coloration varies, depending on the nature of its draconic ancestry, though it's lighter on its underside and darker near its wing tips. A typical dracolisk is 15 feet long and weighs 3,000 pounds.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "cold",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 20,
+    "reflex": 17,
+    "will": 18
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 21,
+    "stealth": 17,
+    "survival": 20
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "dragon"
+  ],
+  "weaknesses": []
+}

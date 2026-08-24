@@ -1,0 +1,168 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 2,
+    "int": 2,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The veteran noble directs an ally. The ally can immediately use their reaction to Strike or to Stride without triggering reactions. The ally gains a +2 status bonus to their Strike if the veteran noble has dealt with that creature or an organization that creature belongs to before, as the veteran offers hard-earned tactical advice.</p><hr /><p>Effect: Tactical Command</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Tactical Command",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An opponent attempts to Demoralize the veteran noble or one of the noble's allies within 30 feet</p><hr /><p><strong>Effect</strong> The veteran noble attempts to Demoralize the triggering opponent before the opponent rolls. On a critical success, the triggering action is disrupted as well.</p>",
+      "frequency": null,
+      "name": "Noble Pride",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "mental"
+      ],
+      "trigger": "An opponent attempts to Demoralize the veteran noble or one of the noble's allies within 30 feet"
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The first time each day the veteran noble would be reduced to 0 HP, they remain at 1 HP and are Enfeebled 2 for the rest of the day.</p>",
+      "frequency": null,
+      "name": "Battle Scarred",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Gauntlet",
+      "traits": [
+        "agile",
+        "free-hand"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d8+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Longsword",
+      "traits": [
+        "magical",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "e4f7h4XJ6Hmm8jZl",
+  "gear": [
+    "Dagger",
+    "Half Plate",
+    "Longsword",
+    "Signet Ring"
+  ],
+  "hp": 85,
+  "id": "pathfinder-npc-core/veteran-noble",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Veteran Noble",
+  "perception": 15,
+  "publicNotes": "<p>Veteran nobles have survived battles in the past, both social and physical. These movers and shakers are often the patrons or mentors of bold adventurers.</p><hr /><p>The denizens of a noble court are the most powerful people in a civilization, primed with wealth, station, and authority above the common people.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 14,
+    "will": 16
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "deception": 12,
+    "diplomacy": 12,
+    "intimidation": 14
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

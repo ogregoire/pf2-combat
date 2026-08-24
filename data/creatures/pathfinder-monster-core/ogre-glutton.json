@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": -1,
+    "int": -2,
+    "str": 6,
+    "wis": 0
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Small, @Damage[(2d4+4)[bludgeoning]], Rupture 14</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The ogre glutton Strides twice and makes a jaws Strike. If they damage a living creature with this Strike, the temporary Hit Points they receive from Glutton's Feast is increased to 2d4.</p>",
+      "frequency": null,
+      "name": "Glutton's Rush",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the ogre glutton damages a living creature with their jaws Strike, they gain 1d4 temporary Hit Points for 1 minute.</p>\n<p>Effect: Glutton's Feast</p>",
+      "frequency": null,
+      "name": "Glutton's Feast",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d12+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Greataxe",
+      "traits": [
+        "reach-10",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d8+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "X7PaA6XgvrY5ByfM",
+  "gear": [
+    "Greataxe",
+    "Leather Armor"
+  ],
+  "hp": 70,
+  "id": "pathfinder-monster-core/ogre-glutton",
+  "immunities": [],
+  "languages": [
+    "jotun"
+  ],
+  "level": 4,
+  "name": "Ogre Glutton",
+  "perception": 6,
+  "publicNotes": "<p>Ogre gluttons take the act of feeding to a horrific extreme, capable of extending their already cavernous mouths wide enough to gulp down a halfling. Stories of ogre gluttons being tricked into eating razor-edged shields or barrels filled with poisoned meat are common, but such tales are of little consolation to those who have been gobbled whole by these ravenous giants. In addition to their sadistic table manners, ogre gluttons have a disturbing knack for coming up with violent \"games\" that are little more than drawn-out torments, yet those who somehow manage to beat a glutton at the rules of their own game can often enrage the ogre enough that the resulting tantrum provides an opportunity for the captives to escape.</p>\n<hr />\n<p>For many societies, ogres embody brutish, amoral violence and greedy cruelty. Standing 10 feet tall and densely muscled, ogres are usually as strong as they are vicious. The worst ogres are sadists, enjoying remorseless murder, torture, and violence in all of its forms. Although they prefer to vent their violent urges on other humanoids—the smaller the better—ogre captivity can end in a horrifying fate for anyone unlucky enough to fall within their meaty grasp: becoming dinner. But for all their creativity in inflicting pain, ogres often forget that their playthings lack their own robust fortitude and high pain tolerance, and many of their captives die sooner than the ogres might prefer. Meanwhile, those who manage to survive captivity in an ogre's larder often emerge with lasting mental scars. A captive able to keep their wits about them, however, can sometimes trick the brutes by promising treasure, more plentiful food sources, or other crude amusements, taking advantage of an ogre's often-limited intellect to engineer opportunities to escape or gain revenge.</p>\n<p>Ogres are social creatures only in the most debased sense. They gather together in groups called families, though members are not always related by blood. The most powerful ogre in any family is the \"boss\"—usually the family's patriarch or matriarch—whom the other ogres in the family learn to quickly obey or risk being brutalized by the boss's loyal kin. Ogres lair in caves, crumbling ruins, or dilapidated shacks close enough to humanoid settlements or animal trails to make raiding easy. Their lairs are filthy and frequently contain all-too-recognizable evidence of their depravity, along with assorted treasures stolen from past captives.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 7,
+    "will": 6
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 12,
+    "intimidation": 10,
+    "survival": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

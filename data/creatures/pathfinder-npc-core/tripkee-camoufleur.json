@@ -1,0 +1,168 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 4,
+    "int": 1,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving avoiding detection or hiding an object or creature, the camoufleur is a 5th-level challenge.</p>",
+      "frequency": null,
+      "name": "Camouflage Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The camoufleur ignores difficult terrain caused by plants, such as bushes, vines, and undergrowth.</p>",
+      "frequency": null,
+      "name": "Forest Passage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The camoufleur can use their Disguise Kit to disguise a creature or object as natural flora. A creature gains a +2 item bonus to Stealth checks while in a natural environment until its next daily preparations or until its disguise is ruined, whichever comes first. An object in a natural environment can be found only by actively searching (using the Search activity while exploring or the Seek action in an encounter) and uses the camoufleur's Stealth DC.</p>\n<p>Effect: Natural Disguise</p>",
+      "frequency": null,
+      "name": "Natural Disguise",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dart",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hand Adze",
+      "traits": [
+        "agile",
+        "finesse",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hand Adze",
+      "traits": [
+        "agile",
+        "sweep",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "FYB0XBshilW7Bszx",
+  "gear": [
+    "Dart",
+    "Disguise Kit",
+    "Hand Adze",
+    "Leather Armor"
+  ],
+  "hp": 30,
+  "id": "pathfinder-npc-core/tripkee-camoufleur",
+  "immunities": [],
+  "languages": [
+    "common",
+    "grippli"
+  ],
+  "level": 2,
+  "name": "Tripkee Camoufleur",
+  "perception": 10,
+  "publicNotes": "<p>Camoufleurs, masters of natural camouflage, not only disguise their village scouts and warriors before they embark, but also create and maintain the village-wide concealment needed to keep their community hidden and safe. Just as others rely on engineers to build walls, tripkees rely on camoufleurs to protect their homes.</p><hr /><p>Traditionally making their homes in the treetops of tropical jungles and forests, these frog-like humanoids are often seen as resourceful and cautious, preferring to live and hunt hidden in the branches of tall trees.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 11,
+    "will": 8
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 5,
+    "crafting": 7,
+    "nature": 7,
+    "stealth": 11,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "grippli",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,166 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 3,
+    "int": -1,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>A grindylow gains 1 extra reaction at the start of each of their turns that they can use only to make a Reactive Strike with a tentacle. They can't use more than one Reactive Strike triggered by the same action or choice.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike (Special)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The grindylow moves up to 60 feet in a straight line through the water without triggering reactions.</p>",
+      "frequency": null,
+      "name": "Jet",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a grindylow successfully Grabs a creature larger than themself, they attach to that creature. The Grabbed creature is not Immobilized, but if it moves, the grindylow moves with it.</p>\n<p>If the creature is Medium or smaller, it takes a –5-foot status penalty to its Speeds while the grindylow is attached. The grindylow is Off-Guard while attached to a creature.</p>",
+      "frequency": null,
+      "name": "Clinging Suckers",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Bite",
+      "traits": [
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Spear",
+      "traits": []
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Spear",
+      "traits": [
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "finesse",
+        "trip",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "sC4B1pjGrKFXhjOQ",
+  "gear": [
+    "Spear"
+  ],
+  "hp": 14,
+  "id": "pathfinder-monster-core/grindylow",
+  "immunities": [],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 0,
+  "name": "Grindylow",
+  "perception": 5,
+  "publicNotes": "<p>The top half of a grindylow vaguely resembles a goblin, but from the waist down, their bodies split into a tangle of suckered, wriggling tentacles. Grindylows mostly dwell in shallow waters, fresh and briny, including lakes, rivers, coastal regions, and coral reefs. They generally organize into groups called schools, which can range from a few individuals to a few hundred. Smaller schools are sometimes taken over by a powerful aquatic creature, though such alliances only last until the school faces a major setback, at which point the surviving grindylows scatter and form smaller schools of their own.</p>\n<p>Grindylows aren't territorial, but they are pragmatic. While they rarely build permanent structures, they will adopt a good hunting ground for generations until driven away by predators. They often lair in mobile shelters, such as a sargasso of seaweed or hull of an abandoned ship. They are skilled scavengers and hunters who eat anything they can sink their teeth into.</p>\n<p>Grindylows respect the power of larger sea predators but have a special hatred for squids (or anything that resembles a squid). Sailors plying grindylow-infested waters often paint the images of squids on the bottoms of their hulls in hopes of warding off potentials raids. While this can keep smaller schools at bay, it can also backfire, potentially inciting larger groups to gather for a coordinated attack; this becomes especially likely if the ship's route is predictable. Their hatred of squids does not extend to other tentacled creatures; grindylows consider octopuses to be the epitome of grace and power.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 7,
+    "will": 5
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 5,
+    "stealth": 7,
+    "survival": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration",
+    "amphibious"
+  ],
+  "weaknesses": []
+}

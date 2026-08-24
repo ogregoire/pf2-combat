@@ -1,0 +1,143 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 4,
+    "dex": 0,
+    "int": -5,
+    "str": 5,
+    "wis": 0
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The ice golem exhales a blast of freezing mist that deals @Damage[6d6[cold]|options:area-damage] damage in a @Template[cone|distance:30] (@Check[reflex|dc:22|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "cold"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the ice golem gets a critical hit with a fist Strike, the target also takes 2d6 persistent cold damage and is Slowed 1 for 1 round.</p>",
+      "frequency": null,
+      "name": "Creeping Cold",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "cold"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Harmed by fire (@Damage[4d6[untyped]], @Damage[1d10[untyped]] from areas or persistent damage); healed by cold (area @Damage[1d6[healing]] HP); slowed by water</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.GolemAntimagic]</p>",
+      "frequency": null,
+      "name": "Golem Antimagic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When an ice golem is destroyed, its body explodes in a blast of frigid air and razor-sharp ice, dealing @Damage[2d6[slashing],2d6[cold]]{2d6 slashing damage and 2d6 cold damage} to creatures in a @Template[emanation|distance:20], with a @Check[reflex|dc:19|basic] save.</p>",
+      "frequency": null,
+      "name": "Icy Demise",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "cold"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>An ice golem can be targeted with Environmental Endurance even if it's not willing. If it is targeted, for 1 round it can't use Breath Weapon or benefit from creeping cold, and its fist attack doesn't deal cold damage.</p>",
+      "frequency": null,
+      "name": "Vulnerable to Endure Elements",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "unarmed",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "tieZOKf2qX7GsL9H",
+  "gear": [],
+  "hp": 80,
+  "id": "pathfinder-bestiary-2/ice-golem",
+  "immunities": [
+    "cold",
+    "electricity",
+    "magic"
+  ],
+  "languages": [],
+  "level": 5,
+  "name": "Ice Golem",
+  "perception": 9,
+  "publicNotes": "<p>Ice golems are either carved from massive blocks of ice, or pieced together from individual components that are then fused together through heat and refreezing. In most cases, the resulting shape is little more than a crude approximation of a humanoid form, but given the right talent, an ice golem could be an exquisitely carved statue of a mythical creature, famous persona, or even a deity.</p>\n<p>While ice golems most frequently serve as guardians in freezing climates, the magic that holds an ice golem together keeps it from melting in warmer temperatures. This, combined with the fact that ice golems lie on the lower end of the scale as far as cost and difficulty to create, gives these constructs unusual features that puts them in great demand. The rich and powerful in hot, arid regions often commission ice golems not only as guardians for their estates and vaults, but for comfort-the presence of an ice golem standing quietly sentinel in the corner of a room can help to keep the chamber at a comfortable temperature. The truly decadent use ice golems as servants to keep drinks cold.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 11,
+    "will": 9
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "cold",
+    "construct",
+    "golem",
+    "mindless"
+  ],
+  "weaknesses": []
+}

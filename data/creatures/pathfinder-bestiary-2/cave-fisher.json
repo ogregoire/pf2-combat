@@ -1,0 +1,104 @@
+{
+  "abilityMods": {
+    "cha": -3,
+    "con": 3,
+    "dex": 3,
+    "int": -5,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The cave fisher pulls a creature Grabbed by its filament toward itself, even suspending the target vertically if necessary. The cave fisher attempts an @Check[athletics|defense:fortitude] check against the creature's Fortitude DC. On a success, the cave fisher pulls the creature 15 feet closer to it (30 feet closer on a critical success).</p>",
+      "frequency": null,
+      "name": "Pull Filament",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any creature hit by the cave fisher's sticky filament is Grabbed. The cave fisher can move while it has a creature grabbed with its filament, but it automatically releases the creature if the cave fisher moves beyond the filament's 60-foot length. The cave fisher can use only one filament at a time, and it can sever the filament and release any creature grabbed by it as a free action. The filament can be severed by a Strike that deals at least 10 slashing damage to it. This doesn't deal any damage to the cave fisher itself. The filament has AC 17, and its Escape DC is 19.</p>",
+      "frequency": null,
+      "name": "Sticky Filament",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d10+6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [],
+      "kind": "ranged",
+      "name": "Filament",
+      "traits": [
+        "range-increment-60"
+      ]
+    }
+  ],
+  "foundryId": "OERK0GGnaEOthcdV",
+  "gear": [],
+  "hp": 30,
+  "id": "pathfinder-bestiary-2/cave-fisher",
+  "immunities": [],
+  "languages": [],
+  "level": 2,
+  "name": "Cave Fisher",
+  "perception": 7,
+  "publicNotes": "<p>Cave fishers lurk in dark corners near the ceilings of caves and underground structures, lying in wait for prey to approach. When it does, the cave fisher excretes thin, tough, and very sticky filaments at its prey with lightning speed to capture it.</p>\n<p>A cave fisher eats just about any live prey smaller than itself, though anything smaller than a rat isn't much of a meal for it. When a cave fisher captures such a creature, it often leaves the hapless animal entangled, using it as bait to attract larger creatures. Because the adhesive on its filament doesn't last long, the fisher frequently needs to eat one filament and excrete a new one. The filaments are translucent and can be hard to see when they're still and in darkness.</p>\n<p>Cave fishers hatch with the ability to excrete filaments, but they molt many times before reaching their adult size of about 7 feet long and 400 pounds. They often leave shed shells in conspicuous locations as decoys.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 9,
+    "will": 7
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 10,
+    "stealth": 9
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "climb",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

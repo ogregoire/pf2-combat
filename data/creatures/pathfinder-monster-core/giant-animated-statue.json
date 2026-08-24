@@ -1,0 +1,129 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 6,
+    "dex": -1,
+    "int": -5,
+    "str": 6,
+    "wis": 0
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The statue grinds a creature it has Grabbed or Restrained into the red-hot coals of its brazier. The target takes @Damage[3d8[fire],1d8[persistent,fire]] damage.</p>",
+      "frequency": null,
+      "name": "Burn Alive",
+      "requirements": null,
+      "traits": [
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The statue carries a wide brazier full of hot coals. To make flaming coal Strikes or use Burn Alive, the statue must have the brazier held in one hand or otherwise have it within reach.</p>\n<p>Instead of targeting the statue with an attack, a creature can target the brazier directly. The brazier has the same AC and saves as the statue.</p>\n<p>Dealing 15 cold damage to the brazier or dousing it with at least 2 gallons of water extinguishes the coals. This prevents the statue from using Burn Alive and causes its ranged attacks to no longer deal fire damage.</p>",
+      "frequency": null,
+      "name": "Brazier",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Like normal objects, a giant animated statue has Hardness. This Hardness reduces any damage it takes by an amount equal to the Hardness. Once a giant animated statue is reduced to less than half its Hit Points, or immediately upon being damaged by a critical hit, its construct armor breaks and its Armor Class is reduced to 22.</p>",
+      "frequency": null,
+      "name": "Construct Armor (Hardness 10)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "2d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Flaming Coal",
+      "traits": [
+        "fire",
+        "magical",
+        "range-increment-80"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d12+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Stone Fist",
+      "traits": [
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "I00S3LWnDJfCn4zv",
+  "gear": [],
+  "hp": 100,
+  "id": "pathfinder-monster-core/giant-animated-statue",
+  "immunities": [],
+  "languages": [],
+  "level": 7,
+  "name": "Giant Animated Statue",
+  "perception": 13,
+  "publicNotes": "<p>Giant animated statues' increased size and power make them most useful in large vaults, spacious chambers, or outdoor locations. Tasks beyond their capabilities typically require a more advanced construct, not an animated object.</p>\n<hr />\n<p>Granted a semblance of life through the use of rituals or other strange magic, animated objects take many forms and serve a variety of uses. A few examples of typical animated objects are listed below. Many of these creatures serve as guardians, surprising unsuspecting adventurers when they suddenly attack. Others serve as idle distractions for the exceptionally rich, simple servants created to handle odd jobs, and the like.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 10,
+    "will": 9
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "mindless"
+  ],
+  "weaknesses": []
+}

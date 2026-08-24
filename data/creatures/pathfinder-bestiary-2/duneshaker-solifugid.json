@@ -1,0 +1,152 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 7,
+    "dex": 7,
+    "int": -5,
+    "str": 9,
+    "wis": 4
+  },
+  "ac": 42,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The duneshaker solifugid Strides and makes a Strike at the end of that movement. If the duneshaker solifugid began this action Hidden, it remains hidden until after this ability's Strike.</p>",
+      "frequency": null,
+      "name": "Pounce",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Rend]</p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The duneshaker solifugid spews toxic barbs at all creatures in a @Template[cone|distance:30]. Each creature within the area takes @Damage[10d6[poison]] damage (@Check[fortitude|dc:39|basic] save). A creature that fails its saving throw is Blinded for [[/gmr 1d6 #rounds]]{1d6 rounds} (or permanently on a critical failure).</p>\n<p>The duneshaker solifugid can't use Venom Spray again for [[/gmr 1d4 #Recharge Venom Spray]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Venom Spray",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Each turn, the first time the duneshaker solifugid is adjacent to a Large or smaller creature during a move action it's using, that creature must succeed at a @Check[reflex|dc:39] save or fall Prone.</p>",
+      "frequency": null,
+      "name": "Earth Shaker",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "3d10+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "4d10+17",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "r3yLNfqS00g8sdrT",
+  "gear": [],
+  "hp": 340,
+  "id": "pathfinder-bestiary-2/duneshaker-solifugid",
+  "immunities": [],
+  "languages": [],
+  "level": 18,
+  "name": "Duneshaker Solifugid",
+  "perception": 30,
+  "publicNotes": "<p>The largest solifugids, duneshakers, are so immense that their movements make the terrain around them tremble. They can prey on creatures the size of mammoths or even larger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 31,
+    "reflex": 33,
+    "will": 28
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 33,
+    "athletics": 35,
+    "stealth": 33
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

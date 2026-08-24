@@ -1,0 +1,129 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 0,
+    "dex": 4,
+    "int": -5,
+    "str": -2,
+    "wis": 0
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each enemy in the chew spiders' space takes @Damage[1d6[bleed]] damage (@Check[reflex|dc:16|basic]). A creature that fails its save is exposed to chew spider venom.</p>",
+      "frequency": null,
+      "name": "Chewing Bites",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:18]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage and Clumsy 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]] damage and Clumsy 2 (1 round).</p>",
+      "frequency": null,
+      "name": "Chew Spider Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The chew spiders have imprecise Tremorsense to detect the vibrations of creatures touching their web (which stretches through the entire fangberry thicket).</p>",
+      "frequency": null,
+      "name": "Web Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "1upVC05DY7YzxNsr",
+  "gear": [],
+  "hp": 22,
+  "id": "kingmaker-bestiary/chew-spider",
+  "immunities": [
+    "precision",
+    "swarm-mind"
+  ],
+  "languages": [],
+  "level": 2,
+  "name": "Chew Spider",
+  "perception": 6,
+  "publicNotes": "<p>Few everyday vermin inspire as much dread as the infamous spider.</p>",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 2
+    },
+    {
+      "type": "piercing",
+      "value": 5
+    },
+    {
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 10,
+    "will": 4
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 2,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 5
+    },
+    {
+      "type": "splash-damage",
+      "value": 5
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 2,
+    "dex": 4,
+    "int": -3,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> The elananx takes damage from a hostile source</p>\n<hr />\n<p><strong>Effect</strong> The elananx disperses into a cloud of smoke and cinders, filling its space and a @Template[emanation|distance:20]. While in this form, the elananx can't be attacked or targeted, and it doesn't take up space. Anything inside this cloud is Concealed, and any creature ending its turn there takes @Damage[2d6[fire]] damage. At the start of its turn, the elananx returns to its normal form in any square the cloud covered. If the elananx Strikes a creature using its first action after returning to its normal form, the target is Off-Guard and the Strike deals an extra @Damage[1d6[fire]] damage.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Cinder Dispersal",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "primal"
+      ],
+      "trigger": "The elananx takes damage from a hostile source"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The elananx Strides and makes a Strike at the end of that movement. If the elananx began this action Hidden, it remains hidden until after the attack.</p>",
+      "frequency": null,
+      "name": "Pounce",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The elananx's Strikes deal an extra 1d6 damage to creatures within the reach of at least two of its allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d6+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "formula": "2d6+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "RJFpwZIGbuOuCtXr",
+  "gear": [],
+  "hp": 95,
+  "id": "pathfinder-monster-core/elananx",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [
+    "fey"
+  ],
+  "level": 6,
+  "name": "Elananx",
+  "perception": 14,
+  "publicNotes": "<p>These strange, fey felines resemble large, broad bobcats from a distance, but a closer view reveals something amiss. Their forms ripple and billow with heat, and their eyes glow from within as if they contained tiny, flickering flames. The pungent scent of rotting leaves smoldering in a bonfire clings to their fur. Yet those who have the chance to watch elananxes hunt or attack prey witness the greatest indication that these creatures are something more than mere predators, for they act with cruel and savvy instincts, reveling in the pain they inflict.</p>\n<p>Elananxes typically hunt alone, but sometimes these cunning and malicious hunters of the First World roam in packs called billows to take down large prey. Like many house cats, elananxes are not content to merely track and devour prey, but prefer to toy with their victims, drawing joy from the fear and pain of those they capture. To this end, elananxes rarely use their cinder dispersal ability to evade their targets, instead opting to foil their quarry just before the end of the hunt—though, as selfish creatures who wish to live to hunt again, elananxes often reserve one use of this ability, just in case.</p>\n<p>Because of their clever and malicious ways, elananxes are favored as hunting companions by redcaps, who go out of their way to befriend or make deals with these creatures. Redcaps also find great sport in hunts where competing elananxes chase a single creature. Although they're large enough to serve as mounts for redcaps, elananxes despise being ridden and resist such attempts—little is as sure to cause a supposedly friendly elananx to turn on its redcap ally as a foolhardy attempt to treat the fey cat as a horse!</p>\n<p>Elananxes have a strange affinity with forest fires. Because they are immune to the damage caused by flickering flames, they enjoy capering and caterwauling through the smoky, burning ruins of forest infernos. Some have even been known to use their burning bites to deliberately light undergrowth on fire, simply so they might experience the beauty of the flames combined with the inevitable pain such disasters inflict on other creatures.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 16,
+    "will": 12
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 14,
+    "athletics": 14,
+    "survival": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fey",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 2,
+    "int": -2,
+    "str": 1,
+    "wis": 0
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The steam mephit calls down a rain boiling water that surrounds them in a @Template[emanation|distance:10]. Creatures in the area take @Damage[2d8[fire]|options:area-damage] damage (@Check[reflex|dc:17|basic|options:area-effect] save), and small unattended flames (such as torches) are extinguished.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Boiling Rain",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The steam mephit spits a cloud of steam in a @Template[cone|distance:15] that deals @Damage[2d6[fire]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save).</p>\n<p>The steam mephit can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (in boiling water or steam)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The steam mephit ignores the Concealed condition from mist and steam.</p>",
+      "frequency": null,
+      "name": "Steam Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "ARw4pyNmuQxoZDke",
+  "gear": [],
+  "hp": 19,
+  "id": "pathfinder-bestiary-2/steam-mephit",
+  "immunities": [
+    "bleed",
+    "fire",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "pyric",
+    "thalassic"
+  ],
+  "level": 1,
+  "name": "Steam Mephit",
+  "perception": 3,
+  "publicNotes": "<p>These brash and arrogant creatures are among the more energetic mephits. They are quick to nominate themselves the leaders of any group, barking out orders in shrill, high-pitched voices and insisting on having everything done their way. Even when they aren't bossing others around, the constant hiss of steam escaping from their pores ensures that there is never a quiet moment.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 7,
+    "will": 5
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "intimidation": 6
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 17,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Obscuring Mist",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "elemental",
+    "fire",
+    "water"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold",
+      "value": 3
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 5,
+    "dex": 1,
+    "int": -4,
+    "str": 8,
+    "wis": 1
+  },
+  "ac": 29,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The mammoth makes two tusk Strikes, each against a different creature. This counts as one attack for the mammoth's multiple attack penalty, and the penalty doesn't increase until after both attacks.</p>",
+      "frequency": null,
+      "name": "Dual Tusks",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Large or smaller, foot, @Check[reflex|dc:28|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Cold",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The mammoth reduces the effects it suffers from cold environments by one step.</p>",
+      "frequency": null,
+      "name": "Cold Adaptation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A Medium or smaller creature hit by the mammoth's trunk is Grabbed. If the mammoth moves, it can bring the Grabbed creature along with it.</p>",
+      "frequency": null,
+      "name": "Grabbing Trunk",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "2d10+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [],
+      "kind": "melee",
+      "name": "Trunk",
+      "traits": [
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "3d8+12",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tusk",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "jkp7THTZMc0ivN8Y",
+  "gear": [],
+  "hp": 190,
+  "id": "pathfinder-monster-core/mammoth",
+  "immunities": [],
+  "languages": [],
+  "level": 10,
+  "name": "Mammoth",
+  "perception": 18,
+  "publicNotes": "<p>Found mostly in colder climates, mammoths are accustomed to dealing with desperate and dangerous predators, trampling and crushing their enemies while using their larger tusks to greater effect. Humanoids dwelling in harsh, frost-bound lands rely on the mammoth's strength to help them survive.</p>\n<hr />\n<p>Immediately recognizable by their long, prehensile trunks and impressive tusks, elephants have different characteristics depending on where they are found. Elephants are used as beasts of burden in many regions, but they are extremely clever and must be handled with great care.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 15,
+    "will": 18
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 22,
+    "survival": 19
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 45
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

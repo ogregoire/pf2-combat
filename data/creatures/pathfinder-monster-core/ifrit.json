@@ -1,0 +1,218 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 3,
+    "int": 1,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ifrit transforms into a Small or Medium fire elemental or reptile, such as a snake. This doesn't affect their statistics but could change the damage type of their Strikes.</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The ifrit has a hand free</p>\n<hr />\n<p><strong>Effect</strong> The ifrit makes a melee Strike. If the Strike hits, the target is Grabbed in the ifrit's free hand.</p>",
+      "frequency": null,
+      "name": "Combat Grab",
+      "requirements": "The ifrit has a hand free",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ifrit grows flaming wings from their back. They gain a fly Speed of 35 feet for 1 minute. The flames also create an aura in a @Template[emanation|distance:5] around the ifrit.</p>\n<p>Any creature that ends its turn in the aura takes @Damage[2d6[fire]] damage with a @Check[reflex|dc:25|basic] save.</p>",
+      "frequency": null,
+      "name": "Wings of Flame",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the ifrit Grabs or Restrains a creature, that creature takes @Damage[2d6[fire]] damage, and takes 2d6 fire damage at the end of each of its turns until freed.</p>",
+      "frequency": null,
+      "name": "Burning Grasp",
+      "requirements": null,
+      "traits": [
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d4+11",
+          "type": "bludgeoning"
+        },
+        {
+          "formula": "2d6",
+          "type": "fire"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "formula": "2d6+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Scimitar",
+      "traits": [
+        "fire",
+        "forceful",
+        "magical",
+        "reach-10",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "oKaewcA4gu3fbSVP",
+  "gear": [
+    "Breastplate",
+    "Scimitar"
+  ],
+  "hp": 175,
+  "id": "pathfinder-monster-core/ifrit",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [
+    "common",
+    "pyric"
+  ],
+  "level": 9,
+  "name": "Ifrit",
+  "perception": 17,
+  "publicNotes": "<p>The fierce and unforgiving ifrits hail from the Plane of Fire, where they build metropolises and trade centers that draw extraplanar travelers. Many ifrits are tyrannical or warmongering, and most use their might to accomplish their goals.</p>\n<hr />\n<p>Before mortal history, genies were some of the first creations of the cosmos to possess free will. Formed of elemental matter, they traversed the Universe and the six elemental planes of air, earth, fire, metal, water, and wood. The genies who remained on each elemental plane found their matter replaced with those elements. Genies of metal and wood appear in <em>Pathfinder Rage of Elements</em>.</p>\n<h2>Genie Shuyookhs</h2>\n<p>Older, wiser, and more powerful genies possess greater power and are revered with the title of shuyookh (typically adjusted to \"sheikha\" if the genie is female or \"sheikh\" for a male). Generally at least 5 levels higher than a typical example of their kind, a shuyookh gains additional spells. The basics of shuyookhs appear here in sidebars and are detailed further in <em>Rage of Elements</em>.</p>\n<p>The most wondrous of their powers is their ability to grant wishes three times per year. This is not an innate ability but a ritual practice passed down over time in an attempt to replicate the wish-granting abilities of janns.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 17,
+    "will": 20
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "arcana": 14,
+    "athletics": 22,
+    "crafting": 14,
+    "deception": 19,
+    "diplomacy": 17,
+    "intimidation": 19,
+    "society": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 29,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Interplanar Teleport (to Astral Plane, Elemental Planes, or the Universe only)",
+          "rank": 7
+        },
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Ignition",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "elemental",
+    "fire",
+    "genie"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold",
+      "value": 10
+    },
+    {
+      "type": "water",
+      "value": 10
+    }
+  ]
+}

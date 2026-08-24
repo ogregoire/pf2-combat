@@ -1,0 +1,159 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 0,
+    "int": 0,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The xorn makes three claw Strikes; no more than two can be against the same target. These attacks count toward the xorn's multiple attack penalty, but the penalty doesn't increase until after all the attacks have been made.</p>",
+      "frequency": null,
+      "name": "Claw Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The xorn can Burrow through any earthen matter, including rock. When it does so, the xorn moves at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d6+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d10+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaw",
+      "traits": [
+        "deadly-d10"
+      ]
+    }
+  ],
+  "foundryId": "4npwV3fuBm3sBCPG",
+  "gear": [],
+  "hp": 115,
+  "id": "pathfinder-bestiary/xorn",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "petran"
+  ],
+  "level": 7,
+  "name": "Xorn",
+  "perception": 15,
+  "publicNotes": "<p>These squat, rotund elementals have three legs, three arms, three eyes, and one massive maw, which they fill with the gems and metals they find so delicious.</p>\n<hr />\n<p>Earth elementals make excellent bodyguards for adventuresome spelunkers and are ideal protectors of important subterranean locations such as vaults and treasuries.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "cold",
+      "value": 5
+    },
+    {
+      "type": "electricity",
+      "value": 5
+    },
+    {
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 11,
+    "will": 13
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 17,
+    "stealth": 11,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "burrow",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": [
+    {
+      "type": "bludgeoning",
+      "value": 5
+    }
+  ]
+}

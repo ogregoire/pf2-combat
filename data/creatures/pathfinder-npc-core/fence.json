@@ -1,0 +1,176 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 4,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The fence [[/act feint]]{Feints}, then can Step. If the feint succeeds, the target is Off-Guard against the fence's melee attacks until the end of the fence's next turn (or to all melee attacks on a critical success).</p>",
+      "frequency": null,
+      "name": "Fence's Feint",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The fence always has a few items close at hand. The fence Interacts to draw a weapon or an item that takes a single action to activate, and then Strikes with the weapon or Activates the Item.</p>",
+      "frequency": null,
+      "name": "Quick Rummage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Fences can use @Check[underworld-lore|traits:action:identify-magic] to identify an item's value and Identify Magic on an item. They gain a +2 circumstance bonus to Underworld Lore checks when doing so, and to all Underworld Lore checks related to stolen items.</p>",
+      "frequency": null,
+      "name": "Fence's Eye",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The fence deals an extra 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "HBcKkBXyGaWXZxSs",
+  "gear": [
+    "Dagger",
+    "Darkvision Elixir (Lesser)",
+    "Disguise Kit",
+    "Shortsword",
+    "Smoke Ball (Lesser)",
+    "Thieves' Toolkit"
+  ],
+  "hp": 70,
+  "id": "pathfinder-npc-core/fence",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Fence",
+  "perception": 11,
+  "publicNotes": "<p>Fences make themselves indispensable to the underworld by paying for stolen goods only to resell them later, whether through a seemingly legitimate business or to a closed group of elite buyers.</p><hr /><p>In the underbelly of society, the lawless reign supreme.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 12,
+    "will": 15
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 10,
+    "crafting": 13,
+    "deception": 13,
+    "diplomacy": 11,
+    "intimidation": 11,
+    "society": 11,
+    "stealth": 10,
+    "thievery": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

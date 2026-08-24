@@ -1,0 +1,205 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 4,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The werecreature changes into their humanoid, hybrid, or animal shape. Each shape has a specific, persistent appearance. A true werecreature's natural form is their hybrid shape. In humanoid shape, the werecreature uses their original humanoid size, loses their jaws and claw Strikes, and gains a melee fist Strike that deals bludgeoning damage equal to the slashing damage dealt by their claw. In animal shape, their Speed and size change to that of the animal, they gain any special Strike effects of the animal that they didn't already have (such as Grab), and they lose their weapon Strikes.</p>\n<p>Human with fist +10 for @Damage[(1d4+2)[bludgeoning]] damage, or Boar with Speed 40 feet and tusk for @Damage[(2d6+4)[piercing]] damage.</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The wereboar Strides twice and then makes a melee Strike. As long as they moved at least 20 feet, they gain a +2 circumstance bonus to their attack roll.</p>",
+      "frequency": null,
+      "name": "Boar Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The wereboar can communicate with boars and pigs.</p>",
+      "frequency": null,
+      "name": "Boar Empathy",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>This curse affects only humanoids</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:15].</p>\n<p>On each full moon, the cursed creature must succeed at another Fortitude save or turn into a wearboar until dawn. The creature is under the GM's control and goes on a rampage for half the night before falling unconscious until dawn.</p>",
+      "frequency": null,
+      "name": "Curse of the Wereboar",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a full moon appears in the night sky, the werecreature must enter hybrid form, can't Change Shape thereafter, becomes one size larger, increases its reach by 5 feet, and increases the damage of its jaws Strike (or a similar Strike) by 2.</p>\n<p>When the moon sets or the sun rises, the werecreature returns to humanoid form and is Fatigued for [[/br 2d4 #Fatigued duration]]{2d4 hours}.</p>\n<p>Effect: Moon Frenzy</p>",
+      "frequency": null,
+      "name": "Moon Frenzy",
+      "requirements": null,
+      "traits": [
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tusk",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "vjEHKCgMunMHKl7r",
+  "gear": [
+    "Dagger",
+    "Studded Leather Armor"
+  ],
+  "hp": 45,
+  "id": "pathfinder-bestiary-2/wereboar",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Wereboar",
+  "perception": 8,
+  "publicNotes": "<p>Wereboars tend to be aggressive and stubborn, and often live with their own kind in small, remote communities. Even when they're inclined to interact with others, wereboars' short tempers and hostile nature lead other creatures to avoid them. Lone wereboars who settle down-often on remote farms-are extremely territorial, though others are content to roam and explore lands far from home. Their other habits also vary widely from individual to individual, right down to diet: some wereboars might feast on human flesh, while others are mostly vegetarian.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 5,
+    "will": 8
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 8,
+    "intimidation": 5,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "human",
+    "humanoid",
+    "werecreature"
+  ],
+  "weaknesses": [
+    {
+      "type": "silver",
+      "value": 5
+    }
+  ]
+}

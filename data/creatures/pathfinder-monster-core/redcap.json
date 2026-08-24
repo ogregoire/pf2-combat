@@ -1,0 +1,171 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": 1,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The redcap reduces a creature to 0 Hit Points with a halberd Strike</p><hr /><p><strong>Effect</strong> The redcap makes another halberd Strike against a different creature, using the same multiple attack penalty as the halberd Strike that triggered this reaction. This counts toward their multiple attack penalty as normal.</p>",
+      "frequency": null,
+      "name": "Deadly Cleave",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The redcap reduces a creature to 0 Hit Points with a halberd Strike"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The redcap dips their cap in the blood of a slain foe. The foe must have died in the last minute, and the redcap must have helped kill it. The redcap gains a +4 status bonus to damage rolls for 1 minute.</p>\n<p>Effect: Blood Soak</p>",
+      "frequency": null,
+      "name": "Blood Soak",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The redcap Strides up to half its Speed and makes a boot Strike at any point during that movement. If the boot Strike hits a Prone creature, it deals an extra @Damage[2d6[bleed]].</p>",
+      "frequency": null,
+      "name": "Stomp",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>If a redcap sees a creature brandish a religious symbol of a deity (which requires an Interact action by that creature) or cast a divine spell while wearing a religious symbol, the redcap must attempt a @Check[will|dc:19] save. They then become temporarily immune to all brandished religious symbols for 10 minutes.</p>\n<hr />\n<p><strong>Critical Success</strong> The redcap is unaffected.</p>\n<p><strong>Success</strong> The redcap is Frightened 2.</p>\n<p><strong>Failure</strong> The redcap gains the Fleeing condition for 1 round and is Frightened 4.</p>",
+      "frequency": null,
+      "name": "Divine Revulsion",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 10",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A redcap's woolen hat is dyed with the blood of their victims. If the redcap loses their cap, they no longer benefit from fast healing and take a –4 status penalty to their damage rolls. They can create a new cap in 10 minutes, but that cap doesn't grant them powers until the redcap has turned it red with Blood Soak. A cap has no benefit for creatures other than the redcap who made it.</p>\n<p>Effect: Lost Red Cap</p>",
+      "frequency": null,
+      "name": "Red Cap",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d10+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Halberd",
+      "traits": [
+        "reach-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d6+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Iron Boot",
+      "traits": [
+        "agile",
+        "versatile-b"
+      ]
+    }
+  ],
+  "foundryId": "fWAjkhQ0y50Eh2BT",
+  "gear": [
+    "Halberd",
+    "Iron Boots",
+    "Red Cap"
+  ],
+  "hp": 60,
+  "id": "pathfinder-monster-core/redcap",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 5,
+  "name": "Redcap",
+  "perception": 12,
+  "publicNotes": "<p>Redcaps are sadistic and capricious fey who thrill in bloodletting and murder. While they are most famous for appearing as wizened, bearded men, redcaps of other genders are no less fearsome or cruel. However, redcaps are ultimately craven bullies, cowed by anything more powerful than themselves, a trait that leads them to fear and despise the symbols of deities.</p>\n<p>Many fairy tales explain how the redcaps draw power from dipping the hats for which they are named in fresh blood. Just as iconic to these cruel little fey are their iron-clad boots, and the clanging sound of their metal soles clanking on stone floors is both discordant and disconcerting—especially to those who recognize the sound for what it is. Redcaps typically stand only 3 feet tall, with hunched frames, pointed ears, crooked teeth, and long, white, tangled hair.</p>\n<p>Though unlikely to share true affection, redcaps find camaraderie in murder. Small troupes of redcaps travel together, sharing bloody kills and reminiscing on their brutal exploits. They loathe the company of most other creatures, with the notable exception of the feline fey called elananxes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 15,
+    "will": 10
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 15,
+    "deception": 11,
+    "intimidation": 13,
+    "nature": 10,
+    "stealth": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

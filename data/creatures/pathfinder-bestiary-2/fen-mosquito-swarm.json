@@ -1,0 +1,118 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 3,
+    "dex": 4,
+    "int": -5,
+    "str": 0,
+    "wis": 0
+  },
+  "ac": 19,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each enemy in the swarm's space takes @Damage[1d6[piercing]] damage (@Check[reflex|dc:20|basic] save) and is exposed to pyrexic malaria. Creatures that fail the saving throw also take @Damage[1d4[bleed]].</p>",
+      "frequency": null,
+      "name": "Swarming Bites",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The victim can't reduce its Sickened condition while it's affected by pyrexic malaria</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:20]</p>\n<p><strong>Onset</strong> 4 days</p>\n<p><strong>Stage 1</strong> Sickened 1 (1 day)</p>\n<p><strong>Stage 2</strong> Enfeebled 1 and Sickened 1 (1 day)</p>\n<p><strong>Stage 3</strong> as stage 2 (1 day)</p>\n<p><strong>Stage 4</strong> Unconscious (1 day)</p>\n<p><strong>Stage 5</strong> dead</p>",
+      "frequency": null,
+      "name": "Pyrexic Malaria",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "l3kFjH4n9Shet6bz",
+  "gear": [],
+  "hp": 25,
+  "id": "pathfinder-bestiary-2/fen-mosquito-swarm",
+  "immunities": [
+    "precision",
+    "swarm-mind"
+  ],
+  "languages": [],
+  "level": 3,
+  "name": "Fen Mosquito Swarm",
+  "perception": 8,
+  "publicNotes": "<p>When deadly fen mosquitoes gather in large numbers, they form into lethal swarms capable of draining blood at a truly alarming rate. Fen mosquito swarms are typically encountered only in tropical swamps or bogs, but during humid months in spring or summer they can drift into riverine areas or even through the waterfront reaches of settlements.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 2
+    },
+    {
+      "type": "piercing",
+      "value": 5
+    },
+    {
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 11,
+    "will": 5
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 6,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "fly",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 5
+    },
+    {
+      "type": "splash-damage",
+      "value": 5
+    }
+  ]
+}

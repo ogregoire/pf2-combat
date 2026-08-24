@@ -1,0 +1,219 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 2,
+    "dex": 4,
+    "int": 4,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The shoggti caresses a creature with a tentacle and supernaturally erodes the creature's capability for thought as it does so. The target must succeed at a @Check[will|dc:25] save or become Stupefied 2, with an unlimited duration. The target can attempt the save to remove the stupefied condition again once per day when it makes its daily preparations.</p>",
+      "frequency": null,
+      "name": "Braincloud",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d10+8)[bludgeoning]] damage, @Check[fortitude|dc:25|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The shoggti writhes its tentacles and shifts its coloration to put on an unnaturally fascinating hypnotic display. Creatures in a @Template[emanation|distance:30] must attempt a @Check[will|dc:25] save, after which they are temporarily immune to further Fascinating Displays for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Sickened 1.</p>\n<p><strong>Failure</strong> The creature is Fascinated for 1 minute. Once the fascination effect ends, the creature is Sickened 1.</p>\n<p><strong>Critical Failure</strong> The creature is fascinated for 1 minute, can't use reactions while fascinated, and is Sickened 2 once the fascination ends.</p>",
+      "frequency": null,
+      "name": "Fascinating Display",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "emotion",
+        "fear",
+        "mental",
+        "occult",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d12+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Bite",
+      "traits": [
+        "chaotic",
+        "magical",
+        "reach-10",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d8+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pincer",
+      "traits": [
+        "agile",
+        "chaotic",
+        "magical",
+        "reach-10",
+        "unholy",
+        "versatile-b"
+      ]
+    }
+  ],
+  "foundryId": "wByXwxI5r7YRlkAK",
+  "gear": [],
+  "hp": 105,
+  "id": "pathfinder-bestiary-2/shoggti",
+  "immunities": [
+    "controlled",
+    "fear-effects"
+  ],
+  "languages": [
+    "chthonian"
+  ],
+  "level": 7,
+  "name": "Shoggti",
+  "perception": 13,
+  "publicNotes": "<p>Shoggti travel to other planes in roving bands to capture and charm victims, bringing them back to the Abyss where they are enslaved for unknown-but no doubt insidiously evil-purposes. These squid-like qlippoth have slick, blue skin and four suckered tentacles that end in dexterous pincers. In addition to a lamprey-like mouth at the base of its body, each has a secondary maw in the middle of its forehead that stretches from between its two bulging eyes to the back of its head.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 5
+    },
+    {
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 12,
+    "will": 14
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "intimidation": 17,
+    "occultism": 15,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 23,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Charm",
+          "rank": 4
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Paranoia",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "fiend",
+    "qlippoth",
+    "unholy"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 3,
+    "int": -2,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The elemental puts out all fires in a @Template[emanation|distance:5].</p>\n<p>It extinguishes all non-magical fires automatically and attempts to counteract magical fires ([[/r 1d20+14 #Drench]]{+14} counteract modifier).</p>",
+      "frequency": null,
+      "name": "Drench",
+      "requirements": null,
+      "traits": [
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The living waterfall can choose whether to push or pull the creature on a succesful hit.</p>\n<hr />\n<p><strong>Push</strong> <span class=\"action-glyph\">1</span></p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>\n<hr />\n<p><strong>Pull</strong> <span class=\"action-glyph\">1</span></p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Pull]</p>",
+      "frequency": null,
+      "name": "Push or Pull 5 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>Water in the area that is in the same body of water as the living waterfall is difficult terrain for Swimming creatures that don't have the water trait.</p>",
+      "frequency": null,
+      "name": "Vortex",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When not touching water, the living waterfall is Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Waterbound",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wave",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "1AZoRkLec47xrTqY",
+  "gear": [],
+  "hp": 90,
+  "id": "pathfinder-monster-core/living-waterfall",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 5,
+  "name": "Living Waterfall",
+  "perception": 10,
+  "publicNotes": "<p>Living waterfalls are humanoid-shaped columns of churning water. They see the water as their natural domain and even aquatic animals as interlopers. When summoned, they are surly, but will grudgingly guard all forms of aquatic sites.</p>\n<hr />\n<p>Water elementals can be very destructive, but often not intentionally so; just as water can bring life to mortals in need, its waves can pound shores and rains can flood cities. Water elementals are similarly difficult to predict.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 12,
+    "will": 10
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 13,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aquatic",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

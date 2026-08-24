@@ -1,0 +1,145 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 6,
+    "dex": 6,
+    "int": 0,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 31,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The elemental puts out all fires in a @Template[emanation|distance:20].</p>\n<p>It extinguishes all non-magical fires automatically and attempts to counteract magical fires ([[/r 1d20+20 #Drench]]{+20} counteract modifier).</p>",
+      "frequency": null,
+      "name": "Drench",
+      "requirements": null,
+      "traits": [
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The elemental tsunami can choose whether to push or pull the creature on a succesful hit.</p>\n<hr />\n<p><strong>Push</strong> <span class=\"action-glyph\">1</span></p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>\n<hr />\n<p><strong>Pull</strong> <span class=\"action-glyph\">1</span></p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Pull]</p>",
+      "frequency": null,
+      "name": "Push or Pull 10 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The elemental tsunami momentarily expands to fill the area of its vortex. Creatures within the aura take @Damage[(5d12+6)[bludgeoning]] damage with a @Check[fortitude|dc:31|basic] save. A creature that fails this save is pushed 20 feet.</p>\n<p>The elemental tsunami then shrinks to its normal space and can't Surge again for [[/gmr 1d4 #Recharge Surge]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Surge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>50 feet.</p>\n<p>Water in the area that is in the same body of water as the elemental tsunami is difficult terrain for Swimming creatures that don't have the water trait.</p>",
+      "frequency": null,
+      "name": "Vortex",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When not touching water, the elemental tsunami is Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Waterbound",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d12+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wave",
+      "traits": [
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "R427CMT90S7fv7MY",
+  "gear": [],
+  "hp": 195,
+  "id": "pathfinder-monster-core/elemental-tsunami",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 11,
+  "name": "Elemental Tsunami",
+  "perception": 22,
+  "publicNotes": "<p>Elemental tsunamis are huge and destructive, having none of the caring or nurturing aspects of water.</p>\n<hr />\n<p>Water elementals can be very destructive, but often not intentionally so; just as water can bring life to mortals in need, its waves can pound shores and rains can flood cities. Water elementals are similarly difficult to predict.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 22,
+    "will": 19
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 23,
+    "stealth": 23
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "swim",
+      "value": 100
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aquatic",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

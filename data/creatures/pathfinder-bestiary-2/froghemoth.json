@@ -1,0 +1,215 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 7,
+    "dex": 6,
+    "int": -4,
+    "str": 8,
+    "wis": 6
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>40 feet</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AquaticAmbush]</p>",
+      "frequency": null,
+      "name": "Aquatic Ambush",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(3d6+12)[bludgeoning]] damage, @Check[fortitude|dc:33|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterConstrict]</p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(3d6+9)[bludgeoning]] damage, Rupture 24</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The froghemoth makes up to four tentacle Strikes, each against a different target. These count toward the froghemoth's multiple attack penalty, but the multiple attack penalty doesn't increase until after all the attacks.</p>",
+      "frequency": null,
+      "name": "Flailing Tentacles",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The froghemoth pulls a creature grabbed by its tongue toward itself. The froghemoth rolls an @Check[athletics|defense:fortitude] check against the creature's Fortitude DC. On a success, the froghemoth pulls the creature into an adjacent space, and if it critically succeeds it can also make a bite Strike against the creature after the pull.</p>",
+      "frequency": null,
+      "name": "Retract Tongue",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by the froghemoth's tongue becomes Grabbed by the froghemoth. The creature isn't Immobilized, but it can't move beyond the reach of the froghemoth's tongue. A creature can sever the tongue with a successful Strike against AC 31 that deals at least 15 slashing damage.</p>\n<p>This deals no damage to the froghemoth but prevents it from using its tongue Strike until it regrows its tongue, which takes 1 minute.</p>",
+      "frequency": null,
+      "name": "Barbed Tongue",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Though a froghemoth is immune to electricity damage, it is Slowed 1 for 1 round whenever it would have otherwise taken electricity damage.</p>",
+      "frequency": null,
+      "name": "Electric Torpor",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A froghemoth's alien eyes allow it to perceive creatures within 30 feet, even if they are Invisible or ethereal. It can still be fooled by successful Stealth checks to Hide, but it has Perception DC 38 in such cases. It also sees through and is unaffected by illusions with the visual trait if they are within 30 feet.</p>",
+      "frequency": null,
+      "name": "Otherworldly Vision",
+      "requirements": null,
+      "traits": [
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "3d12+14",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "3d8+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "2d10+14",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tongue",
+      "traits": [
+        "agile",
+        "reach-30"
+      ]
+    }
+  ],
+  "foundryId": "RFCxaIS4OkacCpxD",
+  "gear": [],
+  "hp": 285,
+  "id": "pathfinder-bestiary-2/froghemoth",
+  "immunities": [
+    "electricity"
+  ],
+  "languages": [],
+  "level": 13,
+  "name": "Froghemoth",
+  "perception": 25,
+  "publicNotes": "<p>A terrifying abomination of teeth, tentacles, and unbridled rage, the froghemoth is thankfully rarely encountered even in the deepest swamplands or most remote Darklands caverns. Capable of devouring dinosaurs and even dragons, it is a frighteningly effective ambush hunter, immersing itself in the mire with only its eyestalk protruding and watching in every direction at once with uncanny precision.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 26,
+    "reflex": 21,
+    "will": 23
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 23,
+    "athletics": 27,
+    "stealth": 27
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration",
+    "amphibious"
+  ],
+  "weaknesses": []
+}

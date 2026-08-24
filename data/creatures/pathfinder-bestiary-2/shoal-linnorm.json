@@ -1,0 +1,241 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 7,
+    "dex": 5,
+    "int": -3,
+    "str": 8,
+    "wis": 6
+  },
+  "ac": 38,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Tail only.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Tail Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The shoal linnorm exhales scalding steam that deals @Damage[12d8[fire]|options:area-damage] damage in a @Template[cone|distance:60] (@Check[reflex|dc:36|basic|options:area-effect] save). The steam lingers until the end of the linnorm's next turn; anyone who enters the area or begins their turn in the area takes @Damage[6d8[fire]] damage (@Check[reflex|dc:36|traits:damaging-effect] save negates). During this time, the steam is so thick that it impedes movement as well as sight, turning the area into difficult terrain. All creatures in the steam become Concealed, and all creatures outside the steam become concealed to creatures within it.</p>\n<p>The shoal linnorm can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a creature slays a shoal linnorm, it must succeed at a @Check[will|dc:38] save or become cursed. As long as the curse of drowning persists, the character must spend 3 actions when drinking any liquid. Attempting to drink liquid faster causes the victim to begin drowning, immediately running out of air and falling unconscious.</p>",
+      "frequency": null,
+      "name": "Curse of Drowning",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 10 (Deactivated by Cold Iron)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:36]</p>\n<p><strong>Maximum Duration</strong> 10 rounds</p>\n<p><strong>Stage 1</strong> @Damage[4d6[fire]] damage and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[6d6[fire]] damage and Enfeebled 2 (1 round).</p>",
+      "frequency": null,
+      "name": "Shoal Linnorm Venom",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "3d8+16",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "3d12+16",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "4d6+16",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    }
+  ],
+  "foundryId": "nipVBTEgG6itWJSW",
+  "gear": [],
+  "hp": 295,
+  "id": "pathfinder-bestiary-2/shoal-linnorm",
+  "immunities": [
+    "curse",
+    "fire",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "aklo",
+    "draconic",
+    "fey"
+  ],
+  "level": 15,
+  "name": "Shoal Linnorm",
+  "perception": 27,
+  "publicNotes": "<p>Shoal linnorms occupy rocky shoreline shallows and slither along lonely coastlines. While they do not intentionally seek out large settlements, these linnorms nonetheless beleaguer fishers headed out from small coastal towns, and they may even follow skiffs back to their home port to appraise the town's defenses and plan a raid. Shoal linnorms tend to hunt large prey, both underwater and on land. Their preferred quarries includes giant squid and grizzly bears-meals rich in fat, which the linnorms metabolize into the fiery steam that courses through their veins.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 29,
+    "reflex": 25,
+    "will": 22
+  },
+  "senses": [
+    "darkvision",
+    "scent",
+    "truesight"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 28,
+    "athletics": 31,
+    "stealth": 28
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "fly",
+      "value": 100
+    },
+    {
+      "type": "swim",
+      "value": 100
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 26,
+      "dc": 36,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Freedom of Movement (Constant)",
+          "rank": 7
+        },
+        {
+          "name": "True Seeing (Constant)",
+          "rank": 6
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "dragon"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 10
+    }
+  ]
+}

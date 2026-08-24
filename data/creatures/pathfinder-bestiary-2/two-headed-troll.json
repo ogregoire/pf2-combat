@@ -1,0 +1,176 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 6,
+    "dex": 1,
+    "int": -2,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> On one head's initiative, the troll hits the same enemy with two consecutive claw Strikes in the same round</p>\n<hr />\n<p><strong>Effect</strong> While the prey is distracted with unrelenting claw attacks, the head that's not taking its turn makes a jaws Strike against the enemy.</p>",
+      "frequency": null,
+      "name": "Reactive Chomp",
+      "requirements": null,
+      "traits": [],
+      "trigger": "On one head's initiative, the troll hits the same enemy with two consecutive claw Strikes in the same round"
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A two-headed troll's regeneration can regrow a severed head. After regaining Hit Points from regeneration, the two-headed troll attempts a @Check[flat|dc:10] check. On a success, the missing head is fully restored.</p>\n<p>If a two-headed troll loses their last remaining head, they die immediately.</p>",
+      "frequency": null,
+      "name": "Head Regrowth",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Each of a two-headed troll's heads rolls their own initiative and has their own turn. Neither head can Delay. At the start of a head's turn, that head gets 2 actions and 1 reaction. Each brain controls one of the troll's arms, but both can move the legs.</p>\n<p>Any ability that would sever a two-headed troll's head (such as the Vorpal weapon property) doesn't cause the two-headed troll to die if they still have their other head, but does cause them to lose the turns, actions, and reactions of the severed head.</p>\n<p>Mental effects that target a single creature affect only one of the troll's heads.</p>",
+      "frequency": null,
+      "name": "Independent Brains",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 25 (Deactivated by Acid or Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d8+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d6+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Club",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "2d6+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Club",
+      "traits": [
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d12+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "lUYlClIPITmhzepe",
+  "gear": [
+    "Club"
+  ],
+  "hp": 190,
+  "id": "pathfinder-bestiary-2/two-headed-troll",
+  "immunities": [],
+  "languages": [
+    "jotun"
+  ],
+  "level": 8,
+  "name": "Two-Headed Troll",
+  "perception": 18,
+  "publicNotes": "<p>Two-headed trolls are savage, dual-minded monsters with an unquenchable thirst for bloodshed, and dread tales of their ravenous appetites are whispered of in homesteads throughout the lands of the Inner Sea. Indeed, it is a custom for parents to invoke the two-headed troll as a warning to misbehaving children. \"Finish your chores,\" a parent might say to a stubborn child, \"or a two-headed troll will snatch you away at night and swallow you whole!\" It's unclear why such a morbid tradition gained traction with parents, but it's an undeniable fact that two-headed trolls have an appetite for \"nibbles\"-creatures small enough to devour with one bite.</p>\n<p>Mature two-headed trolls stand 13 feet in height, weighing roughly 1,700 pounds. Unlike common trolls, two-headed trolls share the upright gait of their ettin ancestry and do not walk hunched over.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 20,
+    "reflex": 15,
+    "will": 14
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 18,
+    "intimidation": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "giant",
+    "troll"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 0,
+    "dex": 0,
+    "int": 0,
+    "str": 0,
+    "wis": 0
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The elementalist Steps twice.</p>",
+      "frequency": null,
+      "name": "Elf Step",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The elementalist unleashes powerful static electricity in a @Template[emanation|distance:20] that lasts for 1 minute. All squares in the area become hazardous terrain for other creatures. A creature takes @Damage[1[electricity]] damage each time it moves into one of these squares. While in the area, creatures take a –1 status penalty to saves against electricity spells.</p>\n<p>Effect: Elemental Field</p>",
+      "frequency": null,
+      "name": "Elemental Field",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "electricity"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "C9a1JvKRo43I1nx3",
+  "gear": [
+    "Dagger"
+  ],
+  "hp": 20,
+  "id": "pathfinder-monster-core/aiuvarin-elementalist",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven"
+  ],
+  "level": 2,
+  "name": "Aiuvarin Elementalist",
+  "perception": 11,
+  "publicNotes": "<p>Commonly referred to as half-elves, aiuvarins often have trouble fitting into society. This can lead to many aiuvarins diverting their full attention towards their own personal pursuits, such as studying spellcasting.</p>\n<hr />\n<p>Elves are mysterious and intelligent, and graceful and cunning in battle.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 11,
+    "will": 8
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 7,
+    "arcana": 8,
+    "athletics": 5,
+    "deception": 4,
+    "nature": 6,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aiuvarin",
+    "elf",
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

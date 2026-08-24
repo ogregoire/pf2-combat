@@ -1,0 +1,156 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 0,
+    "dex": 3,
+    "int": -1,
+    "str": -1,
+    "wis": 1
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A mitflit's self-loathing makes it easy to influence. It takes a -4 penalty to its Will DC against checks to Coerce, Demoralize, Make an Impression, and Request.</p>",
+      "frequency": null,
+      "name": "Self-Loathing",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>As long as it isn't Frightened, a mitflit gains a +2 status bonus to damage rolls against a creature that has previously damaged or tormented it.</p>",
+      "frequency": null,
+      "name": "Vengeful Anger",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d4-1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Dart",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6-1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "kkAllKGsVCZVGFpf",
+  "gear": [
+    "Dart",
+    "Shortsword"
+  ],
+  "hp": 10,
+  "id": "pathfinder-monster-core/mitflit",
+  "immunities": [],
+  "languages": [
+    "sakvroth"
+  ],
+  "level": -1,
+  "name": "Mitflit",
+  "perception": 4,
+  "publicNotes": "<p>Mitflits are self-loathing and pitiful cowards, easily bullied into servitude by other creatures or even slightly more powerful mitflit leaders. They tame insects, spiders, and other small vermin to serve as faithful allies. Mitflits have lost most of their ancestral magic, leaving them to feel incomplete and full of doubt and insecurity. Mitflits find companionship in the other base creatures of the world, and forge strong bonds of friendship with vermin, the only other beings that seem willing to accept them. A social structure, even one in which they are bullied, partially fills the hole within most mitflits' personalities, and they rarely rebel or last out unless their rage hits a breaking point.</p>\n<hr />\n<p>Gremlins are cruel fey tricksters and saboteurs who have fully acclimated to life in the Universe, finding distinct niches for their inventive destructiveness. Nearly all gremlins delight in ruining or breaking things, whether it's something physical like a device or vehicle or something intangible such as an alliance or relationship. A gremlin's greatest joy is watching the collapse of complex creations, preferably after the slightest, carefully targeted nudge from the gremlin. Gremlins tend to denigrate, bully, or even slaughter their lesser kin, particularly mitflits, whom stronger gremlins derisively call \"baggies.\"</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 2,
+    "reflex": 7,
+    "will": 4
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 5,
+    "diplomacy": 1,
+    "nature": 3,
+    "stealth": 5,
+    "thievery": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 16,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Speak with Animals (Arthropods Only, At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Bane",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey",
+    "gremlin"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 2
+    }
+  ]
+}

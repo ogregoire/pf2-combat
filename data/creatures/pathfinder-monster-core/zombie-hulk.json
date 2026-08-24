@@ -1,0 +1,144 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": -1,
+    "int": -5,
+    "str": 7,
+    "wis": 0
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The zombie hulk makes two hunk of meat Strikes against different targets within its reach.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A zombie hulk can throw Medium or smaller corpses at foes. They can also throw Medium or smaller zombies for this purpose, who take just as much damage as the target they hit. A zombie that survives being thrown falls Prone.</p>",
+      "frequency": null,
+      "name": "Corpse Throwing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A zombie is permanently slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Slow",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d6+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Corpse",
+      "traits": [
+        "brutal",
+        "range-increment-30"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d10+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hunk Of Meat",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "EDYKUdYmilw3rgJg",
+  "gear": [],
+  "hp": 160,
+  "id": "pathfinder-monster-core/zombie-hulk",
+  "immunities": [
+    "bleed",
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "poison",
+    "unconscious"
+  ],
+  "languages": [],
+  "level": 6,
+  "name": "Zombie Hulk",
+  "perception": 8,
+  "publicNotes": "<p>These towering horrors rise from monstrous, gigantic corpses.</p>\n<hr />\n<p>A zombie's only desire is to consume the living. Unthinking and ever-shambling harbingers of death, zombies stop only when they're destroyed.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 9,
+    "will": 12
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 18
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "undead",
+    "unholy",
+    "zombie"
+  ],
+  "weaknesses": [
+    {
+      "type": "slashing",
+      "value": 10
+    },
+    {
+      "type": "vitality",
+      "value": 10
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 0,
+    "int": 1,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 29,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature adjacent to the dragon turtle targets it with a melee attack.</p>\n<hr />\n<p><strong>Effect</strong> The dragon turtle rolls its shell toward the triggering creature, gaining a +2 circumstance bonus to its AC against the triggering attack.</p>",
+      "frequency": null,
+      "name": "Shell Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature adjacent to the dragon turtle targets it with a melee attack."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dragon turtle tries to capsize an adjacent aquatic vessel of their size or smaller. The dragon turtle must succeed at a @Check[athletics|dc:30] check (reduce the DC by 5 for each size smaller than the dragon turtle) or the pilot's Sailing Lore DC, whichever is higher.</p>",
+      "frequency": null,
+      "name": "Capsize",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dragon turtle summons a mighty storm to rage around themself. The area in a @Template[emanation|distance:30] around the turtle becomes difficult terrain for all other flying and swimming creatures. The dragon turtle can end the storm by taking this action again.</p>",
+      "frequency": null,
+      "name": "Conjure Storm",
+      "requirements": null,
+      "traits": [
+        "air",
+        "aura",
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon turtle makes two Claw Strikes and one Jaws Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon turtle unleashes their destructive prowess by creating a massive growing wave that deals @Damage[7d6[bludgeoning]] damage in a @Template[cone|distance:60] (@Check[reflex|dc:27|basic] save). The wave's damage increases by 10 for creatures who are more than 30 feet away. A creature that fails its save is knocked Prone.</p>\n<p>The dragon turtle can't use Tsunami again for [[/gmr 1d4 #Recharge Tsunami]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Tsunami",
+      "requirements": null,
+      "traits": [
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d8+9",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d12+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "kLhBdqKOMHDGjdFz",
+  "gear": [],
+  "hp": 140,
+  "id": "pathfinder-monster-core/dragon-turtle",
+  "immunities": [
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "thalassic"
+  ],
+  "level": 9,
+  "name": "Dragon Turtle",
+  "perception": 18,
+  "publicNotes": "<p>These immense aquatic dragons have rocky shells similar to those of tortoises and flippers powerful enough to overturn hardy vessels. The fearsome creatures enjoy being considered as dangerous as storms or natural disasters by seafaring folk. Despite their reputation, many dragon turtles delight in secretly observing seafaring cities grow and evolve throughout the ages. They have even been known to protect such cities from pirates, invading armies, or even other dangerous sea creatures. According to rumor, these turtles have even hired adventurers to handle more inland threats. Such cities will often offer tribute to the great turtle if they discover its intervention. While a dragon turtle hoards the treasures of the ships it sinks, they consider the bounty freely offered from their protected city most precious.</p>\n<p>While many dragon turtles are already large enough to inspire awe, some can grow substantially larger. Those massive, ancient dragon turtles are somnolent, resembling rocky islands from a distance; their prodigious hoards can be a source of ancient sea lore. Legends persist of truly immense dragon turtles who spend centuries drifting on the surface of the ocean, far from established shipping lanes or charted waters, with shells that serve as islands capable of supporting entire ecosystems and even, some claim, small settlements whose inhabitants know nothing of land that doesn't drift across the sea.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 15,
+    "will": 17
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 21,
+    "diplomacy": 18,
+    "intimidation": 18,
+    "stealth": 13,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "dragon"
+  ],
+  "weaknesses": []
+}

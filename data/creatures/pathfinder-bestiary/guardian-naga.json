@@ -1,0 +1,236 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 5,
+    "dex": 6,
+    "int": 3,
+    "str": 5,
+    "wis": 5
+  },
+  "ac": 31,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:29]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[3d6[poison]] (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[3d6[poison]] and Drained 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Guardian Naga Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [],
+      "kind": "ranged",
+      "name": "Spit",
+      "traits": [
+        "agile",
+        "poison",
+        "range-increment-30"
+      ]
+    }
+  ],
+  "foundryId": "aq2H1lRALUNMEGRG",
+  "gear": [],
+  "hp": 175,
+  "id": "pathfinder-bestiary/guardian-naga",
+  "immunities": [],
+  "languages": [
+    "common",
+    "empyrean"
+  ],
+  "level": 10,
+  "name": "Guardian Naga",
+  "perception": 22,
+  "publicNotes": "<p>The opposite of dark nagas in many ways, guardian nagas are benevolent and wise protectors of places of great natural or supernatural significance: ancient oak groves, forgotten holy temples, and vaults of sacred power are just a few examples of locations that these nagas protect. Guardian nagas believe that the beautiful elements of the cosmos are worthy of protection and that devotion to such a grand effort is its own reward. A guardian naga may join a group with similar values, such as a sect of priests or monks, to aid it in its holy endeavors and to exchange knowledge of the heavens.</p>\n<p>Guardian nagas usually encourage their young, upon reaching adulthood, to depart the nest and seek out their own natural wonders or ancient ruins to protect. Sometimes generations of guardian nagas might guard the same place, passing the honor of such care from parent to child. In such cases, the parent nagas aim to have at least one of their children elect to stay behind and become the guardian of their ancestral ward, giving the parents the peace of mind that the site they protect will continue to be guarded by their descendants.</p>\n<p>It is difficult for many societies that vilify serpents or see them as symbols of evil to accept the fact that guardian nagas are benevolent and kindly. Fortunately for these people, guardian nagas are also patient and understanding, and see encounters with such societies as opportunities to educate and expand worldviews.</p>\n<hr />\n<p>Nagas are serpentine beings with magical powers and keen, nearly inscrutable intellects. Physically, they resemble massive snakes with eerie visages that resemble those of humans. Nagas use their innate magic and poisonous fangs to keep all but the most stalwart foes at bay. Beyond the natural weapons they use to ward away foes, little is understood of the naga's unsettling physiology.</p>\n<p>Nagas are intelligent creatures with powerful needs to pursue, be they the accumulation of knowledge, the collection of rare art, or the rule of an entire nation. On Golarion, the nation of Nagajor is one such society-an entire empire ruled by nagas and populated by reptilian humanoids who serve their naga rulers with a patriotic pride that borders on worship.</p>\n<p>Still, most adventurers interact with nagas on a much smaller scale, encountering them as dangerous guardians in remote locations or not-so-abandoned ruins. In many cases, these nagas have heard of distant Nagajor, but they are usually unwilling to abandon their own pursuits to seek out a land where they might be worshipped as gods.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 20,
+    "reflex": 21,
+    "will": 22
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 22,
+    "deception": 18,
+    "diplomacy": 21,
+    "stealth": 20
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Divine Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 4,
+          "rank": 5
+        }
+      ],
+      "spells": [
+        {
+          "name": "Breath of Life",
+          "rank": 5
+        },
+        {
+          "name": "Death Ward",
+          "rank": 5
+        },
+        {
+          "name": "Flame Strike",
+          "rank": 5
+        },
+        {
+          "name": "Air Walk",
+          "rank": 4
+        },
+        {
+          "name": "Freedom of Movement",
+          "rank": 4
+        },
+        {
+          "name": "Remove Curse",
+          "rank": 4
+        },
+        {
+          "name": "Neutralize Poison",
+          "rank": 3
+        },
+        {
+          "name": "Remove Disease",
+          "rank": 3
+        },
+        {
+          "name": "Searing Light",
+          "rank": 3
+        },
+        {
+          "name": "Calm Emotions",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Restoration",
+          "rank": 2
+        },
+        {
+          "name": "Restoration",
+          "rank": 2
+        },
+        {
+          "name": "See Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Sound Burst",
+          "rank": 2
+        },
+        {
+          "name": "Bless",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Protection",
+          "rank": 1
+        },
+        {
+          "name": "Ray of Frost",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Spirit Link",
+          "rank": 1
+        },
+        {
+          "name": "Stabilize",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

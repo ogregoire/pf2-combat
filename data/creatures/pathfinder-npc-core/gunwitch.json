@@ -1,0 +1,218 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 4,
+    "int": 4,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The gunwitch conjures a magical hex bullet in their firearm. It can be used as a normal bullet or for the Bewitched Shot and Bullet Storm abilities. The bullet vanishes if not fired by the end of the turn.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Hex Bullet",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Requirements</strong> The gunwitch's firearm familiar is within 1 mile</p><hr /><p><strong>Effect</strong> The gunwitch summons their firearm into their hand or hands.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Recall Firearm",
+      "requirements": "The gunwitch's firearm familiar is within 1 mile",
+      "traits": [
+        "concentrate",
+        "occult",
+        "teleportation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An attacker the gunwitch can observe targets them with an attack</p><hr /><p><strong>Effect</strong> The gunwitch gains a +2 circumstance bonus to AC against the triggering attack, and after the attack the gunwitch Leaps.</p>",
+      "frequency": null,
+      "name": "Acrobatic Dodge",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An attacker the gunwitch can observe targets them with an attack"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The gunwitch is wielding their firearm familiar and has a hex bullet loaded in it (see Hex Bullet)</p><hr /><p><strong>Effect</strong> The gunwitch Casts a Spell that takes 1 or 2 actions to cast into their bullet, then Strikes with their firearm familiar, shooting the magic bullet. This counts as two attacks for the gunwitch's multiple attack penalty. On a hit, the target is also affected by the spell, though the target gets any normal defenses allowed by the spell.</p>\n<p>If the spell is targeted, it targets the creature that was hit and no one else. If the spell is an area, the target must be in the area. A burst is centered on a corner of the target's square if the target is Medium or smaller or the corner of a square closest to the creature's center if it's Large or larger. A cone or line emits from a square of the gunwitch's choice adjacent to the target.</p>",
+      "frequency": null,
+      "name": "Betwitched Shot",
+      "requirements": "The gunwitch is wielding their firearm familiar and has a hex bullet loaded in it (see Hex Bullet)",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The gunwitch is wielding their firearm familiar and has a hex bullet loaded into it (see Hex Bullet)</p><hr /><p><strong>Effect</strong> The gunwitch unleashes a flurry of projectiles. Each creature in a @Template[type:emanation|distance:60] takes @Damage[8d6[piercing]|options:area-damage] damage with a @Check[reflex|dc:25|basic|options:area-effect] save.</p>",
+      "frequency": null,
+      "name": "Bullet Storm",
+      "requirements": "The gunwitch is wielding their firearm familiar and has a hex bullet loaded into it (see Hex Bullet)",
+      "traits": [
+        "concentrate",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The gunwitch's firearm acts as their familiar but remains a mindless item with no actions. The master abilities it grants are included in the stat block.</p>",
+      "frequency": null,
+      "name": "Firearm Familiar",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        },
+        {
+          "formula": "1d6",
+          "type": "force"
+        }
+      ],
+      "kind": "melee",
+      "name": "Musket Staff",
+      "traits": [
+        "finesse",
+        "magical",
+        "two-hand-d6"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "force"
+        },
+        {
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Musket Staff",
+      "traits": [
+        "concussive",
+        "fatal-d10",
+        "magical",
+        "range-increment-70",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "ow76NqtsZUhZMf9f",
+  "gear": [
+    "Musket Staff of Force",
+    "Reinforced Stock",
+    "Rounds (Flintlock Musket)"
+  ],
+  "hp": 90,
+  "id": "pathfinder-npc-core/gunwitch",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 7,
+  "name": "Gunwitch",
+  "perception": 13,
+  "publicNotes": "<p>As wielders of both occult power and firearms, gunwitches pride themselves in using both unconventional weapons and obscure magic. To change their patron (Spinner of Threads), swap out Nudge Fate and Sure Strike.</p><hr /><p>These lone wolves have an aura of mystery, bravado, and swagger.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 15,
+    "will": 15
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "crafting": 15,
+    "intimidation": 15,
+    "occultism": 17
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Witch Hex Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Needle of Vengeance",
+          "rank": 1
+        },
+        {
+          "name": "Nudge Fate",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

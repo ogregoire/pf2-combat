@@ -1,0 +1,166 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": -1,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The gourd leshy transforms into a Small gourd-bearing plant. This ability otherwise uses the effects of One with Plants.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the gourd leshy damages a creature with a fist or seed Strike, vines lash out from the leshy (or seed) and wrap around the target's limbs.</p>\n<p>The target must attempt a @Check[reflex|dc:17] save. On a failure, the target takes a –10-foot status penalty to its Speed for 1 round; on a critical failure, the target is Immobilized for 1 round and the penalty to Speed lasts for 1 minute.</p>\n<p>Effect: Ensnare</p>",
+      "frequency": null,
+      "name": "Ensnare",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The leshy can store an item of light Bulk or less in their head, concealing it as Veil of Privacy. If stored for 24 hours, the item benefits from Mending.</p>",
+      "frequency": null,
+      "name": "Keepsake",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a gourd leshy dies, a burst of primal energy explodes from their body, restoring @Damage[1d8[healing]]{1d8 Hit Points} to each plant creature in a @Template[emanation|distance:30]. This area is filled with gourds, becoming difficult terrain.</p>\n<p>If the terrain is not a viable environment for these gourds, they wither after 24 hours.</p>",
+      "frequency": null,
+      "name": "Verdant Burst",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "primal",
+        "vitality"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Seed",
+      "traits": [
+        "range-increment-30"
+      ]
+    }
+  ],
+  "foundryId": "f9fjSDdcBKkEPoIi",
+  "gear": [],
+  "hp": 20,
+  "id": "pathfinder-monster-core/gourd-leshy",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 1,
+  "name": "Gourd Leshy",
+  "perception": 5,
+  "publicNotes": "<p>Gourd leshies are guardians of fields, gardens, and farms. Many villages benefit from the protection of a gourd leshy, even if they are unaware of it.</p>\n<hr />\n<p>Leshies are intelligent plant creatures who guard areas of primeval wilderness or earthly power. Originally created by powerful fey, they manifest when a skilled practitioner of primal magic—typically a druid—combines a nature spirit with a body carefully grown and crafted from local vegetation. The rites and materials required to create a leshy vary depending on the type of leshy. They are typically given life in an area of great natural significance, such as an arboreal's grove, a druidic circle, a fairy ring, or a great natural wonder.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 9,
+    "will": 7
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "nature": 5,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 15,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Speak with Plants (Constant, Gourds Only)",
+          "rank": 3
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "leshy",
+    "plant"
+  ],
+  "weaknesses": []
+}

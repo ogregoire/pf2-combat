@@ -1,0 +1,212 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 6,
+    "dex": 1,
+    "int": 3,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 34,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The storm giant makes a single greatsword Strike and compares the attack roll result to the ACs of up to two foes within its reach. This counts as two attacks for the giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The storm giant raises one hand to the sky, channeling a bolt of lightning into the blade held in the other. The giant makes a greatsword Strike with a -2 circumstance penalty against each creature within its reach.</p>\n<p>It makes only one attack roll and compares the result against each creature's AC. This Strike deals an additional @Damage[3d12[electricity]] damage and counts as two attacks for the giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Lightning Blade",
+      "requirements": null,
+      "traits": [
+        "electricity",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "electricity"
+        },
+        {
+          "formula": "2d8+16",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "electricity"
+        },
+        {
+          "formula": "2d12+16",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Greatsword",
+      "traits": [
+        "magical",
+        "reach-15",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "2d10+16",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "B0QyZEjAXUG5TsJU",
+  "gear": [
+    "Greatsword",
+    "Rock",
+    "Sack for Holding Rocks"
+  ],
+  "hp": 235,
+  "id": "pathfinder-bestiary/storm-giant",
+  "immunities": [
+    "electricity"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "jotun",
+    "sussuran"
+  ],
+  "level": 13,
+  "name": "Storm Giant",
+  "perception": 24,
+  "publicNotes": "<p>Storm giants are looming but benevolent stewards of sea and sky, often serving as the natural guardians of tropical islands, coastlines, or rocky archipelagos. Storm giants tend to rapidly shift in mood and behavior, one moment engaging in peaceful negotiation, the next unleashing unbridled ferocity against their foes. In this way, they embody both the fury of a raging tempest and the calm of a hurricane's eye. This can make them valuable allies who race to the aid of those in need, but their allies remain must be alert and mindful of their mood, as the giants can be quick to anger or aggressive when caution is most appropriate.</p>\n<p>Most storm giants have complexions akin to the crystal blue of the ocean or the warm violet of a sky touched by the setting sun. Their hair tends to be dark purple, blue, or black, and their eyes often have a silvery sheen. A typical storm giant stands 21 feet tall, weighs 12,000 pounds, and lives to be about 600 years old.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They are divided into a number of subtypes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 28,
+    "reflex": 21,
+    "will": 23
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 20,
+    "athletics": 27,
+    "crafting": 24,
+    "intimidation": 24,
+    "performance": 22
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 25,
+      "dc": 33,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Chain Lightning",
+          "rank": 6
+        },
+        {
+          "name": "Control Weather (At Will)",
+          "rank": 5
+        },
+        {
+          "name": "Freedom of Movement (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Levitate (At Will)",
+          "rank": 3
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

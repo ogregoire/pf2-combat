@@ -1,0 +1,281 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 6,
+    "dex": 4,
+    "int": 3,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The dragon is critically hit with a melee attack</p>\n<hr />\n<p><strong>Effect</strong> The dragon channels the rancor of Hell back through the body of their foe, overwhelming it with an infernal assault on the mind. The triggering creature takes @Damage[8d6[mental]] damage with a @Check[will|dc:36|basic] save. Holy creatures use an outcome one degree of success worse than they roll on their saving throw.</p>",
+      "frequency": null,
+      "name": "Hell's Sting",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "mental",
+        "unholy"
+      ],
+      "trigger": "The dragon is critically hit with a melee attack"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon unleashes a blast of infernal fire that deals @Damage[16d6[fire]|options:area-damage] damage in a @Template[cone|distance:50] (@Check[reflex|dc:36|basic|options:area-effect] save).</p>\n<p>The dragon can't use Hellfire Breath again for [[/gmr 1d4 #Recharge Hellfire Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Hellfire Breath",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fire",
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Divine",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any fire damage that a diabolic dragon deals, including fire damage from spells, is imbued with the unholy power of Hell to scorch the spirit as well. A creature takes spirit damage instead of fire damage if that would be more detrimental to the creature (as determined by the GM). A diabolic dragon is immune to the diabolic fire of other diabolic dragons, the fire from divine immolation, and similar effects.</p>",
+      "frequency": null,
+      "name": "Diabolic Fire",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet @Check[will|dc:34]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Smoke doesn't impair the dragon's vision; they ignore the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "formula": "3d8+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claws",
+      "traits": [
+        "agile",
+        "fire",
+        "magical",
+        "reach-10",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "formula": "3d12+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "fire",
+        "magical",
+        "reach-15",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "formula": "3d8+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "fire",
+        "magical",
+        "reach-20",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "hXl3HV5uuCD1KJjU",
+  "gear": [],
+  "hp": 285,
+  "id": "pathfinder-monster-core/diabolic-dragon-adult-spellcaster",
+  "immunities": [
+    "fire",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "draconic",
+    "empyrean",
+    "necril",
+    "pyric"
+  ],
+  "level": 15,
+  "name": "Diabolic Dragon (Adult, Spellcaster)",
+  "perception": 26,
+  "publicNotes": "<p>Hell, according to some theologians, is a living entity in and of itself. Diabolic dragons, these scholars argue, are just extensions of the plane, living creatures that break off from Hell to enact its will. Whether this is true or whether diabolical dragons are simply the reborn souls of dragons sent to Hell, the fact remains that these dragons are powerful, cunning, and tyrannical. Every diabolic dragon's goal is to further Hell's will, though how this happens can vary. Regardless of their goals, these dragons always approach newcomers with an unsettling calmness.</p>\n<hr />\n<p>Dragons come in myriad forms, with many having magical abilities or connections to magic. Some dragons draw greater power from magic than others, allowing them to manifest abilities or alter their physiques with prolonged exposure to magic. These dragons become more powerful as they age and strengthen their connections with their magical origins. Scholars debate the classification of these dragons, with some preferring the name magical dragons and others using traditional dragons due to their connection to specific magical traditions. Regardless of their names, these dragons share a number of characteristics: their ability to tap into magical energies, intensified might and cunning as they grow older, and an inclination to hoard vast amounts of treasure and wealth.</p>\n<h2>Draconic Spellcasters</h2>\n<p>Each dragon features a sidebar on spellcasting dragons of that type. To make a dragon spellcaster, remove the dragon's Draconic Frenzy and Draconic Momentum abilities, and give them the spells outlined in their sidebar. You can swap out any number of these with other spells, provided you keep the same number of spells for each rank. You might also want to increase the dragon's Intelligence, Wisdom, or Charisma modifier by 1 or 2 to reflect their mastery of magic.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 29,
+    "reflex": 25,
+    "will": 26
+  },
+  "senses": [
+    "greater-darkvision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 27,
+    "athletics": 30,
+    "deception": 26,
+    "diplomacy": 28,
+    "intimidation": 26,
+    "religion": 26,
+    "society": 24,
+    "thievery": 27
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 60
+    },
+    {
+      "type": "fly",
+      "value": 150
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 26,
+      "dc": 34,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Interplanar Teleport (At Will, Self Only)",
+          "rank": 7
+        },
+        {
+          "name": "Divine Immolation",
+          "rank": 5
+        },
+        {
+          "name": "Wall of Fire (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Ignition",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "divine",
+    "dragon",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

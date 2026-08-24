@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 5,
+    "int": -1,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The elemental puts out all fires in a @Template[emanation|distance:10].</p>\n<p>It extinguishes all non-magical fires automatically and attempts to counteract magical fires ([[/r 1d20+20 #Drench]]{+20} counteract modifier).</p>",
+      "frequency": null,
+      "name": "Drench",
+      "requirements": null,
+      "traits": [
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The tidal master can also pull the creature.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push or Pull 10 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>40 feet. Water in the area that is in the same body of water as the tidal master is difficult terrain for Swimming creatures that don't have the water trait.</p>",
+      "frequency": null,
+      "name": "Vortex",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When not touching water, the tidal master is Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Water-Bound",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d12+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wave",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "6UczvqBDlGNXcIlW",
+  "gear": [],
+  "hp": 155,
+  "id": "pathfinder-bestiary/tidal-master",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 9,
+  "name": "Tidal Master",
+  "perception": 18,
+  "publicNotes": "<p>Tidal masters use their power over waves and water to drown their enemies.</p>\n<hr />\n<p>Water elementals can be very destructive, but often not intentionally so; just as water can bring life to those in need on the Material Plane, its waves can pound shores and rains can flood cities. Water elementals are similarly difficult to predict.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 21,
+    "will": 15
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 20,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "swim",
+      "value": 80
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aquatic",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,291 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 5,
+    "dex": 9,
+    "int": 10,
+    "str": 5,
+    "wis": 6
+  },
+  "ac": 47,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> When the Wriggling Man casts a spell of 8th level or lower, reduce the number of actions to cast it by 1 (minimum 1 action).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Quickened Casting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The wriggling man's turn begins.</p>\n<hr />\n<p><strong>Effect</strong> The Wriggling Man immediately gains the effects of the Sustain a Spell action, allowing him to extend the duration of an active spell.</p>",
+      "frequency": null,
+      "name": "Effortless Concentration",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The wriggling man's turn begins."
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The Wriggling Man is reduced to 50 or fewer HP</p>\n<hr />\n<p><strong>Effect</strong> Translocate, heightened to 5th level, teleports the Wriggling Man to area <strong>M6</strong>.</p>",
+      "frequency": null,
+      "name": "Contingency",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The Wriggling Man is reduced to 50 or fewer HP"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The worm that walks Strides, ending its movement sharing a space with a creature, and deals @Damage[8d8[piercing]] damage to the creature. The creature can attempt a @Check[reflex|dc:44|basic] save.</p>",
+      "frequency": null,
+      "name": "Squirming Embrace",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The worm that walks collapses into a shapeless swarm of worms. It drops all held, worn, and carried items. While discorporated, the worm that walks can't use attack actions and can't cast spells, but it can move through areas small enough for its individual worms to fit without having to Squeeze. It can use the same action to coalesce back into its normal form.</p>",
+      "frequency": null,
+      "name": "Swarm Shape",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 Status to All Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the worm that walks is reduced to 0 HP, it discorporates and the component worms that make up its body disperse in every direction. If even a single worm escapes, the worm that walks will eventually re-form using a process that typically takes [[/gmr 1d10 #Re-Form]]{1d10 days}.</p>\n<p>While the exact circumstances and surroundings determine how long the worm that walks's foes have to dispatch the fleeing worms before they escape, usually its foes have only a single round. Typically, this requires the application of an area effect or splash weapon within 1 round to the space where the worm that walks collapsed. After any amount of area or splash damage is dealt to that space, the character dealing the damage must attempt a @Check[flat|dc:15] check. Each subsequent area or splash damage effect performed on the area reduces the DC of this flat check by 2, to a minimum of DC 5. If any of these flat checks succeed, none of the worms escape, and the worm that walks is destroyed permanently.</p>\n<p>At the GM's discretion, clever means of trapping or otherwise detaining the vermin may extend the time allowed to finish off the worm that walks.</p>",
+      "frequency": null,
+      "name": "Discorporate",
+      "requirements": null,
+      "traits": [
+        "splash"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 20",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "formula": "4d12+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tendril",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "NMCee869vhJjP5Ri",
+  "gear": [
+    "Bag of Holding (Type IV)",
+    "Leather Armor",
+    "Staff of Transmutation (Major)"
+  ],
+  "hp": 325,
+  "id": "kingmaker-bestiary/the-wriggling-man",
+  "immunities": [
+    "disease",
+    "paralyzed",
+    "poison",
+    "precision",
+    "swarm-mind",
+    "unconscious"
+  ],
+  "languages": [
+    "aklo",
+    "chthonian",
+    "common",
+    "draconic",
+    "fey",
+    "petran",
+    "sakvroth"
+  ],
+  "level": 21,
+  "name": "The Wriggling Man",
+  "perception": 35,
+  "publicNotes": "<p>This worm that walks was a cultist of the Great Old One Hastur in its prior life. It continues its conspiracies and strives to further its evil plots in its new life.</p>",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 10
+    },
+    {
+      "type": "physical",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": 34,
+    "reflex": 39,
+    "will": 35
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 39,
+    "arcana": 41,
+    "deception": 39,
+    "nature": 37,
+    "society": 41,
+    "stealth": 39
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 36,
+      "dc": 44,
+      "name": "Major Staff of Transmutation",
+      "preparation": "spontaneous",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Baleful Polymorph",
+          "rank": 6
+        },
+        {
+          "name": "Dragon Form",
+          "rank": 6
+        },
+        {
+          "name": "Gaseous Form",
+          "rank": 4
+        },
+        {
+          "name": "Shape Stone",
+          "rank": 4
+        },
+        {
+          "name": "Feet to Fins",
+          "rank": 3
+        },
+        {
+          "name": "Enlarge",
+          "rank": 2
+        },
+        {
+          "name": "Humanoid Form",
+          "rank": 2
+        },
+        {
+          "name": "Humanoid Form",
+          "rank": 2
+        },
+        {
+          "name": "Fleet Step",
+          "rank": 1
+        },
+        {
+          "name": "Jump",
+          "rank": 1
+        },
+        {
+          "name": "Jump",
+          "rank": 1
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 20
+    },
+    {
+      "type": "splash-damage",
+      "value": 20
+    }
+  ]
+}

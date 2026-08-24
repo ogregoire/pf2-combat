@@ -1,0 +1,210 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 6,
+    "int": 3,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:25]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 5 minutes</p>\n<p><strong>Stage 1</strong> Slowed 1 (1 round)</p>\n<p><strong>Stage 2</strong> Slowed 2 (1 round)</p>\n<p><strong>Stage 3</strong> Unconscious with no Perception check to wake up ([[/gmr 1d4+1 #minutes]]{1d4+1 minutes})</p>",
+      "frequency": null,
+      "name": "Dark Naga Venom",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Dark nagas are immune to any form of mind reading.</p>",
+      "frequency": null,
+      "name": "Guarded Thoughts",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d8+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "0MOWKI97bgGDf5Xi",
+  "gear": [],
+  "hp": 115,
+  "id": "pathfinder-bestiary/dark-naga",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common"
+  ],
+  "level": 7,
+  "name": "Dark Naga",
+  "perception": 15,
+  "publicNotes": "<p>Dark nagas are wicked, jealous creatures that crave power and wealth. Indeed, the dark naga sees such ideals as spiritual expressions of an essential truth: if one can take something, that something is theirs to have. The dark naga sees other creatures as lessers worthy only of subjugation or as rivals who must be eliminated.</p>\n<p>Dark nagas dwell in remote places other creatures have forsaken, searching abandoned ruins for wealth and potent magic items. Those unlucky trespassers into a dark naga's lair typically find themselves as the naga's slaves or playthings, put to sleep with the monster's poison or incinerated by its deadly magic. Some dark nagas are more disposed toward socializing than others; in these cases, they may become wicked despots who rule over enclaves of captive or unsuspecting subjects. Subtler dark nagas, especially those who crave finer luxuries, dwell in or under the wealthy settlements and use their wiles to garner a decadent following, forming something akin to a cult with the naga as the jewelry-bedecked object of worship.</p>\n<hr />\n<p>Nagas are serpentine beings with magical powers and keen, nearly inscrutable intellects. Physically, they resemble massive snakes with eerie visages that resemble those of humans. Nagas use their innate magic and poisonous fangs to keep all but the most stalwart foes at bay. Beyond the natural weapons they use to ward away foes, little is understood of the naga's unsettling physiology.</p>\n<p>Nagas are intelligent creatures with powerful needs to pursue, be they the accumulation of knowledge, the collection of rare art, or the rule of an entire nation. On Golarion, the nation of Nagajor is one such society-an entire empire ruled by nagas and populated by reptilian humanoids who serve their naga rulers with a patriotic pride that borders on worship.</p>\n<p>Still, most adventurers interact with nagas on a much smaller scale, encountering them as dangerous guardians in remote locations or not-so-abandoned ruins. In many cases, these nagas have heard of distant Nagajor, but they are usually unwilling to abandon their own pursuits to seek out a land where they might be worshipped as gods.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 17,
+    "will": 15
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "arcana": 16,
+    "athletics": 13,
+    "deception": 16,
+    "intimidation": 16,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 18,
+      "dc": 26,
+      "name": "Arcane Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        }
+      ],
+      "spells": [
+        {
+          "name": "Blink",
+          "rank": 4
+        },
+        {
+          "name": "Wall of Fire",
+          "rank": 4
+        },
+        {
+          "name": "Haste",
+          "rank": 3
+        },
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Illusory Creature",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Feather Fall",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        },
+        {
+          "name": "Longstrider",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Magic Missile",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    },
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Mind Reading (Constant)",
+          "rank": 3
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

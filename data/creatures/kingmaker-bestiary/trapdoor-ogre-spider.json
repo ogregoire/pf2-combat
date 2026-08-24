@@ -1,0 +1,108 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 4,
+    "dex": 4,
+    "int": -5,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature comes within 25 feet of the spider's lair while the spider is positioned just under the ajar trapdoor and the spider notices the creature</p>\n<p><strong>Requirements</strong> Initiative has not yet been rolled</p>\n<p><strong>Effect</strong> The spider Strides or Climbs before it rolls initiative.</p>",
+      "frequency": null,
+      "name": "Trapdoor Lunge",
+      "requirements": "Initiative has not yet been rolled",
+      "traits": [],
+      "trigger": "A creature comes within 25 feet of the spider's lair while the spider is positioned just under the ajar trapdoor and the spider notices the creature"
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A trapdoor ogre spider can fit through tight spaces as if it were a Large creature. While Squeezing, it can move at its full speed.</p>",
+      "frequency": null,
+      "name": "Eerie Flexibility",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:22]</p><hr /><p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage (1 round)</p>\n<p><strong>Stage 2</strong> 1d6 poison damage, Clumsy 1, and Off-Guard (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[2d6[poison]] damage, clumsy 1, and off-guard (1 round)</p>\n<p><strong>Stage 4</strong> 2d6 poison and Paralyzed (1 round).</p>",
+      "frequency": null,
+      "name": "Ogre Spider Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "1ZKOTqqzeorIv7BB",
+  "gear": [],
+  "hp": 70,
+  "id": "kingmaker-bestiary/trapdoor-ogre-spider",
+  "immunities": [],
+  "languages": [],
+  "level": 5,
+  "name": "Trapdoor Ogre Spider",
+  "perception": 13,
+  "publicNotes": "<p>These terrifying creatures grow as large as elephants. The placement of their eyes above their wide mandibles evokes the grimacing visage of an ogre's leer. Ogres themselves find the appearance of ogre spider faces simultaneously amusing and adorable, but in most cases, ogres' attempts to keep these spiders as pets result in dead ogres and well-fed spiders.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 13,
+    "will": 9
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 13,
+    "stealth": 13
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

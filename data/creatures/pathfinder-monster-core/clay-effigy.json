@@ -1,0 +1,134 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 6,
+    "dex": -1,
+    "int": -5,
+    "str": 6,
+    "wis": 0
+  },
+  "ac": 29,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>A @Template[emanation|distance:20] of spiritual energy pushes against intruders, as though trying to drive their souls away. Each creature in the area takes @Damage[8d6[spirit]] damage depending on a @Check[will|dc:29] save.</p>\n<p>The clay effigy can't Cast Out again for [[/gmr 1d4 #Recharge Cast Out]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes half damage.</p>\n<p><strong>Failure</strong> The creature takes full damage and @Damage[3d6[persistent,spirit]] damage. The persistent damage ends if the creature moves over 60 feet from the clay effigy or the effigy is destroyed.</p>\n<p><strong>Critical Failure</strong> As failure, except the persistent damage is increased to @Damage[6d6[persistent,spirit]].</p>",
+      "frequency": null,
+      "name": "Cast Out",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "sanctified",
+        "spirit"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The clay effigy Strides and can move through the spaces of Medium and smaller creatures. Each creature it moves through must succeed at a @Check[reflex|dc:29] save or be knocked Prone.</p>",
+      "frequency": null,
+      "name": "Heavy Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a creature damages the clay effigy, it must succeed at a @Check[will|dc:27] save or be afflicted with the effigy's curse. The accursed becomes Fatigued when it carries part of the effigy or any item the effigy was assigned to guard.</p>\n<p>This fatigue can't be removed until the creature has given up such items for at least 24 hours.</p>",
+      "frequency": null,
+      "name": "Effigy's Curse",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The creator of a clay effigy can dedicate the effigy to a deity while constructing it. If the deity allows a divine sanctification, the effigy is sanctified to that deity, gaining the holy or unholy trait as appropriate.</p>",
+      "frequency": null,
+      "name": "Sacred Art",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d10+6",
+          "type": "bludgeoning"
+        },
+        {
+          "formula": "2d6",
+          "type": "spirit"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "reach-10",
+        "sanctified",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "IuVoyT5lkzcWJ6sK",
+  "gear": [],
+  "hp": 175,
+  "id": "pathfinder-monster-core/clay-effigy",
+  "immunities": [],
+  "languages": [],
+  "level": 10,
+  "name": "Clay Effigy",
+  "perception": 16,
+  "publicNotes": "<p>Traditionally, clay effigies are crafted in the image of a deity and used as guardians of tombs or sacred crypts. Clay effigies have the power to lay curses upon their victims as punishment for intrusion, leading many to believe that these oft-ancient constructs have a touch of the divine in them. Out of an abundance of caution, superstitious folk still tread lightly around elaborate or particularly well-crafted statues that resemble clay effigies even in the slightest.</p>\n<p>For some clay effigies, this divine protection goes deeper. Even though deities rarely have the time to monitor their effigies, lesser divine servants are sometimes tasked with watching over an effigy. When the effigy is damaged, these guardians can sense it. The most precious effigies are layered with rituals that summon their guardians directly. Experienced tomb robbers learn to spot such markings from afar, so as to be forewarned of any divine interference in the area.</p>\n<p>Although often assigned to protect valuable religious relics and other treasure, clay effigies' size and heavy movements make them ill-suited to stand guard among fragile items. Entire treasuries have been totally ruined by clumsy battles, so crafters do well to make sure their treasures are secured in sturdy containers—or otherwise place the effigy on the other side of the door from the treasures they wish to protect.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 10
+    },
+    {
+      "type": "spells",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 16,
+    "will": 17
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 24
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "mindless"
+  ],
+  "weaknesses": []
+}

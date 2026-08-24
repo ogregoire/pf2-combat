@@ -1,0 +1,178 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 8,
+    "dex": 4,
+    "int": -4,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 42,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The aolaz tucks its head down and rolls up into an armored sphere. While Rolling, an aolaz has AC 44, Fort +37, Ref +29, Will +33, and Speed 100 feet, but it can't use its trunk Strikes or its Ultrasonic Blast. It can make foot Strikes while rolling, but only as part of a Trample. The aolaz can use this action again to unroll and resume its standing form.</p>",
+      "frequency": null,
+      "name": "Roll",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The aolaz releases a tremendous blast of sonic energy from its trunk in a @Template[line|distance:150], dealing @Damage[12d10[sonic]] damage. The frequency of this sound is such that it is completely imperceptible to humanoids, but the damage it wreaks is all too evident. Each creature in the area must attempt a @Check[fortitude|dc:40|traits:damaging-effect] save.</p>\n<p>The aolaz can't use Ultrasonic Blast again for [[/gmr 1d4 #Recharge Ultrasonic Blast]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes half damage and is Stunned 1.</p>\n<p><strong>Failure</strong> The creature takes full damage and is Stunned 2.</p>\n<p><strong>Critical Failure</strong> The creature takes double damage and is Stunned 3.</p>",
+      "frequency": null,
+      "name": "Ultrasonic Blast",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "sonic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Huge or smaller, foot, @Check[reflex|dc:40|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An aolaz has an incredible sense of hearing. It can hear any sound made within 1,000 feet as though it were only 5 feet away from the source of the sound, and any sound within 1 mile as though it were only 30 feet away from the source of the sound. An aolaz's hearing is a precise sense.</p>",
+      "frequency": null,
+      "name": "Flawless Hearing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "5d8+15",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "5d10+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Trunk",
+      "traits": [
+        "magical",
+        "reach-20",
+        "sweep",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "KdW5UeZSqeTZZlo5",
+  "gear": [],
+  "hp": 255,
+  "id": "pathfinder-monster-core/aolaz",
+  "immunities": [
+    "sonic"
+  ],
+  "languages": [],
+  "level": 18,
+  "name": "Aolaz",
+  "perception": 33,
+  "publicNotes": "<p>Aolazes are great beasts carved from stone and metal and magically imbued with the essence of life. The exact means of their creation is a long-lost secret, and they are so rare that scholars have little opportunity to study active specimens. The best-known aolazes are museum pieces or battlefield relics destroyed or deactivated centuries ago, though fragmented records suggest that many more were made and might remain, yet to be unearthed.</p>\n<p>Most aolazes are built in the shape of great land-bound beasts, such as elephants, rhinoceroses, or dinosaurs. Regardless of the specific creature an aolaz has been constructed to resemble, it is not bound to walk the earth like its inspirations are—it's imbued with the magical ability to pursue across water and even through the air. Few can escape an aolaz's wrath once it is earned.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 35,
+    "reflex": 27,
+    "will": 31
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 35
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 30,
+      "dc": 40,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Fly (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Water Walk (Constant)",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "construct"
+  ],
+  "weaknesses": []
+}

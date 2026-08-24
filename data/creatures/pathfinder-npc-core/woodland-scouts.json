@@ -1,0 +1,148 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 4,
+    "int": 1,
+    "str": 3,
+    "wis": 4
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The scouts engage in a coordinated melee attack against each enemy in a @Template[type:emanation|distance:5], with a @Check[reflex|dc:24|basic|options:area-effect] save. The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d8+3)[slashing]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d8+6)[slashing]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d8+9)[slashing]|options:area-damage] damage</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Thicket of Blades",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> Every square the woodland scouts occupy is in forest terrain</p><hr /><p><strong>Effect</strong> The woodland scouts disperse among the trees. They Take Cover and then use that cover to [[/act hide]], attempting a Stealth check.</p>",
+      "frequency": null,
+      "name": "Among the Trees",
+      "requirements": "Every square the woodland scouts occupy is in forest terrain",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The scouts draw or reload their longbows, then send forth a flurry of arrows. This barrage is a @Template[type:burst|distance:10] within 100 feet that deals @Damage[3d8[piercing]|options:area-damage] damage with a @Check[reflex|dc:24|basic|options:area-effect] save. If the scouts are Hidden or undetected, this deals an additional 2d6 precision damage. When the troop is reduced to 2 or fewer segments, this area decreases to a @Template[type:burst|distance:5].</p>",
+      "frequency": null,
+      "name": "Longbow Barrage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Woodland scouts ignore any difficult terrain caused by plants and fungi, such as bushes, vines, and undergrowth.</p>",
+      "frequency": null,
+      "name": "Forest Passage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the scouts become Hidden or Undetected, they remain so until they take a hostile action.</p>",
+      "frequency": null,
+      "name": "Stealthy Formation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 80 (3 segments), 40 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "IYEVUYP6fXJCleTQ",
+  "gear": [],
+  "hp": 120,
+  "id": "pathfinder-npc-core/woodland-scouts",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven",
+    "fey"
+  ],
+  "level": 8,
+  "name": "Woodland Scouts",
+  "perception": 18,
+  "publicNotes": "<p>Elves of the forest or jungle take advantage of the terrain, operating in units that seemingly appear from the trees themselves.</p><hr /><p>Elves' long lives give them centuries to delve into studies, artistry, or exploration.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 18,
+    "will": 16
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 16,
+    "athletics": 15,
+    "medicine": 14,
+    "nature": 16,
+    "stealth": 18,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "elf",
+    "humanoid",
+    "troop"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 8
+    },
+    {
+      "type": "splash-damage",
+      "value": 8
+    }
+  ]
+}

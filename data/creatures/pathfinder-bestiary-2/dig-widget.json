@@ -1,0 +1,148 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 1,
+    "dex": 5,
+    "int": -5,
+    "str": 2,
+    "wis": 0
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dig-widget Leaps up 20 feet onto a creature or object and attempts a corkscrew Strike against it. If the Strike damages the target, the dig-widget attaches to the target (typically to the back of a creature). This is similar to Grabbing the creature, but the dig-widget moves with that creature rather than holding it in place. While attached, the dig-widget can't use its corkscrew. The dig-widget can be Shoved off, or it can detach itself with an Interact action.</p>",
+      "frequency": null,
+      "name": "Fastening Leap",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A dig-widget's face consists of a set of Infiltrator Thieves' Tools. They can be salvaged from a destroyed dig-widget with a successful @Check[crafting|dc:20|name:Salvage Infiltration Tools] check. On a failed check, the tools are destroyed.</p>",
+      "frequency": null,
+      "name": "Infiltration Tools",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A creature with expert proficiency in Thievery can attempt a check to Disable a Device to damage a dig-widget. The DC is 22, and each success deals 20 damage.</p>",
+      "frequency": null,
+      "name": "Mechanical Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A dig-widget's Strikes deal an additional 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Corkscrew",
+      "traits": [
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d6+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Drill",
+      "traits": [
+        "fatal-d10",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "57pzXwM9qFiRTwq9",
+  "gear": [],
+  "hp": 65,
+  "id": "pathfinder-bestiary-2/dig-widget",
+  "immunities": [],
+  "languages": [],
+  "level": 5,
+  "name": "Dig-Widget",
+  "perception": 9,
+  "publicNotes": "<p>Thieves covet dig-widgets, specialized constructs built for infiltration. Each dig-widget contains numerous simple tools, including a set of mechanical devices that function as thieves' tools, two arms with drills, and two arms with corkscrews for attaching to and climbing surfaces. Once activated, these devices propel themselves forward. Though they have the full faculties typical of a construct, they usually follow a simple routine: avoid notice, pick any lock barring the path, dig past obstacles, and attack if caught. They're rarely left unattended, as a thief needs to be nearby to follow after-both to steal goods and to stop the dig-widget from engaging in further larceny once it's achieved its goal.</p>\n<p>The source of a dig-widget's power is as much mechanical as it is magical. The gears and springs that provide a dig-widget mobility are an improvement over more primitive true clockwork creations (whose functions require constant winding to remain mobile), but at the cost of security, for a dig-widget's moving parts can be dismantled quickly by thieves and others with the proper training.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 14,
+    "will": 7
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 12,
+    "athletics": 9,
+    "stealth": 14,
+    "thievery": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "burrow",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "mindless"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,169 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 4,
+    "int": 2,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> The spy draws a weapon and then Strikes with it. The target of the strike is Off-Guard against the attack.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Hidden Blade",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The spy has positioned themself to seem a trusted ally, gaining a +2 circumstance bonus to [[/act gather-information options=nobles-ally]] or to [[/act make-an-impression options=nobles-ally]] among the nobles of that court.</p>",
+      "frequency": null,
+      "name": "Noble's Ally",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The spy deals an extra 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "PXukrrvpLA40chXN",
+  "gear": [
+    "Clothing (Fine)",
+    "Dagger",
+    "Disguise Kit",
+    "Leather Armor",
+    "Rapier",
+    "Thieves' Toolkit"
+  ],
+  "hp": 90,
+  "id": "pathfinder-npc-core/spy",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Spy",
+  "perception": 14,
+  "publicNotes": "<p>Any number of nobles could be spies—a beloved confidante of the queen or even the court jester. Spies use their skills to subtly manipulate courtiers, turn enemies against one another, and collect valuable information.</p><hr /><p>The denizens of a noble court are the most powerful people in a civilization, primed with wealth, station, and authority above the common people.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 16,
+    "will": 14
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 14,
+    "deception": 16,
+    "diplomacy": 14,
+    "intimidation": 14,
+    "society": 14,
+    "stealth": 16,
+    "thievery": 14
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

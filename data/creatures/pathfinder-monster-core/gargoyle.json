@@ -1,0 +1,126 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 3,
+    "dex": 2,
+    "int": -2,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The gargoyle is Flying, and a creature moves into an adjacent square below it.</p>\n<hr />\n<p><strong>Effect</strong> The gargoyle makes a claw Strike against the triggering creature.</p>",
+      "frequency": null,
+      "name": "Clawed Feet",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": "The gargoyle is Flying, and a creature moves into an adjacent square below it."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Until the next time it acts, the gargoyle appears to be a statue. It has an automatic result of 32 on Deception checks and DCs to pass as a statue.</p>",
+      "frequency": null,
+      "name": "Statue",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "2d6+3",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "2d8+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "cvfIkEF6xmWn2soN",
+  "gear": [],
+  "hp": 40,
+  "id": "pathfinder-monster-core/gargoyle",
+  "immunities": [
+    "bleed"
+  ],
+  "languages": [
+    "common",
+    "petran"
+  ],
+  "level": 4,
+  "name": "Gargoyle",
+  "perception": 10,
+  "publicNotes": "<p>Gargoyles are monstrous hunters made of elemental stone. They use their resemblance to decorative statues to hide in plain sight in cities during the day and descend upon unlucky pedestrians at night. Their most common form is that of a horned humanoid with bat-like wings, but individual gargoyles show a great deal of variation, with some appearing more or less humanoid and others resembling no known creature. A gargoyle's features are not fixed; city-dwelling gargoyles who remain in the same locale long enough slowly morph, day by day, to match the style of the local architecture. These patient monsters can stay disguised for long stretches of time as they patiently await an opportunity to strike.</p>\n<p>Gargoyles tend to be lone hunters, though sometimes they band into fearsome groups called wings for protection or sport. On rare occasions, wings become relatively stable communities, and gargoyles in wings may even ally with other creatures such as demons and intelligent aberrations, though these alliances exist on a razor's edge. The majority of gargoyles are treacherous, vindictive, and petty—traits that preclude lasting partnerships. Almost all have some subject they spend days mulling over while in statue form. Some are collectors, focusing on anything from books to grim trophies, while others are ritualistic or overly passionate about niche intellectual subjects or certain artistic motifs. These tendencies often contribute to the dissolution of wings as individuals with conflicting focuses clash.</p>\n<h2>Sanctified Roosts</h2>\n<p>In addition to their appearances matching their environment, gargoyles that position themselves on temples or other consecrated ground slowly succumb to the influence of that location. These gargoyles gain the holy or unholy trait, as do their unarmed Strikes. A gargoyle roosting on a temple of Asmodeus, for example, will eventually gain the unholy trait along with changes to their personality that bring it more in line with the god's ethos. Holy gargoyles are also possible, although gargoyles at such locations often abandon their roosts as their changing personality conflicts with their need to hunt.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 10,
+    "will": 10
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 10,
+    "athletics": 9,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "earth"
+  ],
+  "weaknesses": []
+}

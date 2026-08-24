@@ -1,0 +1,256 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 4,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>When the mastermind successfully Feints, the target is Off-Guard against the mastermind's melee attacks until the end of the mastermind's next turn. On a critical success, the target is off-guard against all melee attacks for that time, not just the mastermind's.</p>",
+      "frequency": null,
+      "name": "Scoundrel's Feint",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When competing in a social or intellectual arena, the mastermind is a 7th-level challenge.</p>",
+      "frequency": null,
+      "name": "Manipulation Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "Perception +17 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The creature's Strikes deal an additional 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The mastermind can use Performance instead of Diplomacy to [[/act make-an-impression skill=performance]]{Make an Impression} and instead of Deception to [[/act impersonate skill=performance]]{Impersonate}.</p>",
+      "frequency": null,
+      "name": "Versatile Performance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "fBd8Cfe7fRtF8HoJ",
+  "gear": [
+    "Bolts",
+    "Chain Shirt",
+    "Disguise Kit",
+    "Hand Crossbow",
+    "Shortsword"
+  ],
+  "hp": 55,
+  "id": "pathfinder-npc-core/mastermind",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Mastermind",
+  "perception": 10,
+  "publicNotes": "<p>Masterminds weave long-ranged plots to see their nefarious goals come to fruition, deftly manipulating those around them, turning enemies into friends and then pitting them against one another.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 11,
+    "will": 16
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 13,
+    "deception": 15,
+    "diplomacy": 15,
+    "intimidation": 15,
+    "occultism": 15,
+    "performance": 17,
+    "religion": 11,
+    "society": 17,
+    "stealth": 11,
+    "thievery": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Bard Composition Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Courageous Anthem",
+          "rank": 1
+        },
+        {
+          "name": "Uplifting Overture",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        }
+      ],
+      "spells": [
+        {
+          "name": "Blur",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Paranoia",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

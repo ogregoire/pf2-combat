@@ -1,0 +1,169 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 4,
+    "int": -1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 10",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a skeletal Tiger Lord is destroyed, its bones clatter to the ground in a tangle and its armor and weapons crumble to dust. It automatically reforms with its armor and weapons intact (regaining a full quiver of 20 arrows) 1 hour later at 1 Hit Point, allowing its fast healing to resume healing it thereafter. If the trap in area <strong>D5</strong> is disabled, the skeleton loses this ability; otherwise, the only way to permanently destroy a skeletal Tiger Lord is to reduce it to 0 Hit Points with vitality damage or a holy effect.</p>",
+      "frequency": null,
+      "name": "Rejuvenation",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d8+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d12+10",
+          "type": "slashing"
+        },
+        {
+          "formula": "2d6",
+          "type": "void"
+        }
+      ],
+      "kind": "melee",
+      "name": "Greatsword",
+      "traits": [
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "vs8QT4LYEcQfA6Us",
+  "gear": [
+    "Arrows",
+    "Breastplate",
+    "Composite Longbow",
+    "Greatsword"
+  ],
+  "hp": 99,
+  "id": "kingmaker-bestiary/skeletal-tiger-lord",
+  "immunities": [
+    "death-effects",
+    "disease",
+    "mental",
+    "paralyzed",
+    "poison",
+    "unconscious"
+  ],
+  "languages": [
+    "hallit"
+  ],
+  "level": 8,
+  "name": "Skeletal Tiger Lord",
+  "perception": 18,
+  "publicNotes": "<p>Made from bones held together by foul necromancy, skeletons are among the most common types of undead, found haunting old dungeons and forgotten cemeteries.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "cold",
+      "value": 10
+    },
+    {
+      "type": "electricity",
+      "value": 10
+    },
+    {
+      "type": "fire",
+      "value": 10
+    },
+    {
+      "type": "piercing",
+      "value": 10
+    },
+    {
+      "type": "slashing",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 16,
+    "will": 16
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 18
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "skeleton",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

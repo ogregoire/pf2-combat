@@ -1,0 +1,278 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 6,
+    "dex": 4,
+    "int": 8,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 37,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature the neothelid is aware of uses a teleportation effect</p>\n<hr />\n<p><strong>Effect</strong> The neothelid creates an extradimensional wormhole at the triggering creature's initial location that persists for up to 1 minute. If the neothelid moves into the wormhole's space, the neothelid teleports to the same destination as the triggering creature.</p>",
+      "frequency": null,
+      "name": "Dimensional Wormhole",
+      "requirements": null,
+      "traits": [
+        "occult",
+        "teleportation"
+      ],
+      "trigger": "A creature the neothelid is aware of uses a teleportation effect"
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature fails a Will save against a spell or effect created by the neothelid</p>\n<hr />\n<p><strong>Effect</strong> The neothelid casts a Suggestion spell it has available on the creature that failed its Will save.</p>",
+      "frequency": null,
+      "name": "Instant Suggestion",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature fails a Will save against a spell or effect created by the neothelid"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[2d12[bludgeoning],2d12[acid]]{2d12 bludgeoning plus 2d12 acid}, Rupture 27</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The neothelid breathes a spray of acid that deals @Damage[16d6[acid]|options:area-damage] damage in a @Template[cone|distance:60] (@Check[reflex|dc:38|basic|options:area-effect] save).</p>\n<p>The neothelid can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The neothelid's four tongues lash out in a frenzy at several targets. It makes up to four rasping tongue Strikes, each against a different target. These attacks count toward the neothelid's multiple attack penalty, but the multiple attack penalty doesn't increase until after the neothelid makes all of its attacks.</p>",
+      "frequency": null,
+      "name": "Lashing Tongues",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The neothelid uses its mind as a precise sense at the listed range to notice all non-mindless creatures.</p>",
+      "frequency": null,
+      "name": "Thoughtsense (Precise) 100 feet",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "mindless",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "3d12+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "3d8+13",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Rasping Tongue",
+      "traits": [
+        "agile",
+        "fatal-d10",
+        "reach-25"
+      ]
+    }
+  ],
+  "foundryId": "wxBQsGLdti2xcGVT",
+  "gear": [],
+  "hp": 345,
+  "id": "pathfinder-bestiary-2/neothelid",
+  "immunities": [
+    "acid"
+  ],
+  "languages": [
+    "aklo",
+    "alghollthu",
+    "sakvroth"
+  ],
+  "level": 15,
+  "name": "Neothelid",
+  "perception": 29,
+  "publicNotes": "<p>This gigantic, mauve worm has a hooked mouth with multiple circular bands of teeth and four barbed tongues. A wielder of terrible occult powers and a vast alien intellect, the neothelid serves the ageless horrors that dwell in strange dimensions beyond known reality-the Outer Gods and Great Old Ones of the Elder Mythos. Neothelids pass down these mysteries to the eerie wormlike creatures they spawn and create in preparation for a future where the worms below shall rule-a time when all other life is nothing more than food.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 27,
+    "reflex": 23,
+    "will": 29
+  },
+  "senses": [
+    "greater-darkvision",
+    "thoughtsense"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 25,
+    "athletics": 28,
+    "deception": 29,
+    "diplomacy": 27,
+    "intimidation": 29,
+    "occultism": 29
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 30,
+      "dc": 38,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Charm",
+          "rank": 8
+        },
+        {
+          "name": "Suggestion",
+          "rank": 8
+        },
+        {
+          "name": "Summon Entity",
+          "rank": 8
+        },
+        {
+          "name": "Phantasmal Calamity",
+          "rank": 7
+        },
+        {
+          "name": "Teleport",
+          "rank": 7
+        },
+        {
+          "name": "Scrying",
+          "rank": 6
+        },
+        {
+          "name": "Suggestion (At will)",
+          "rank": 6
+        },
+        {
+          "name": "Mind Probe (At will)",
+          "rank": 5
+        },
+        {
+          "name": "Telekinetic Haul (At will)",
+          "rank": 5
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 15
+    }
+  ]
+}

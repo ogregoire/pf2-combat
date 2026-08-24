@@ -1,0 +1,165 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An allied animal within 30 feet attempts a saving throw</p><hr /><p><strong>Effect</strong> The pack leader shouts a word of encouragement, granting the allied animal a +1 circumstance bonus to the save.</p>\n<p>Effect: Stay Strong!</p>",
+      "frequency": null,
+      "name": "Stay Strong!",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An allied animal within 30 feet attempts a saving throw"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The pack leader can ask questions of, receive answers from, and use the Diplomacy skill with animals.</p>",
+      "frequency": null,
+      "name": "Animal Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The pack leader commands an animal ally within 30 feet to perform a specific action; the target can spend its reaction to immediately Step, Stride, or Strike.</p>",
+      "frequency": null,
+      "name": "Timely Trick",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sickle",
+      "traits": [
+        "agile",
+        "finesse",
+        "trip"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d6+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sling",
+      "traits": [
+        "propulsive",
+        "range-increment-50",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "mkyMSRTbDV4lho2o",
+  "gear": [
+    "Leather Armor",
+    "Sickle",
+    "Sling",
+    "Sling Bullets"
+  ],
+  "hp": 55,
+  "id": "pathfinder-npc-core/pack-leader",
+  "immunities": [],
+  "languages": [
+    "common",
+    "wildsong"
+  ],
+  "level": 4,
+  "name": "Pack Leader",
+  "perception": 12,
+  "publicNotes": "<p>Primal spellcasters with a particular affinity for animals often aid their community by training and healing their domesticated animals. Others focus their time on preserving endangered species and helping them propagate or adapt to a changing environment. The pack leader is most often paired with the Trained Bat companion.</p><hr /><p>A primalist is a wielder of primal energies and magic, sometimes taught by forces of primal power, including powerful elementals or fey of the First World. Primalists protect the natural world, offering strong medicine to those in need while facing suspicion from those who don't understand their ways.</p>\n<p>A great many primalists belong to druidic circles, and even those who aren't members tend to be familiar with the most prominent ones in their homeland.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 9,
+    "will": 12
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 6,
+    "diplomacy": 9,
+    "nature": 12,
+    "stealth": 9,
+    "survival": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 0,
+      "dc": 20,
+      "name": "Druid Order Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Heal Animal",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

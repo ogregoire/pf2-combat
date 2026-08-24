@@ -1,0 +1,131 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 3,
+    "dex": -1,
+    "int": -5,
+    "str": 5,
+    "wis": 0
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The golem takes electricity damage and a creature is adjacent to it.</p>\n<hr />\n<p><strong>Effect</strong> The golem lashes out and tries to grab a nearby creature. The golem attempts an Athletics check to Grapple an adjacent creature. The creature also takes @Damage[3d6[electricity]] damage on a success, or @Damage[6d6[electricity]] damage on a critical success.</p>",
+      "frequency": null,
+      "name": "Electric Reflexes",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The golem takes electricity damage and a creature is adjacent to it."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The flesh golem is berserk.</p>\n<hr />\n<p><strong>Effect</strong> The flesh golem Strikes with its fist at a -1 circumstance penalty. If it hits, it deals 1d6 extra damage and knocks the target Prone.</p>",
+      "frequency": null,
+      "name": "Berserk Slam",
+      "requirements": "The flesh golem is berserk.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A severely damaged flesh golem has a chance of going berserk. If it has 40 or fewer HP at the start of its turn, the golem must succeed at a @Check[flat|dc:5] check or go berserk. A berserk golem wildly attacks the nearest living creature, or the nearest object if no creatures are nearby.</p>",
+      "frequency": null,
+      "name": "Berserk",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Harmed by fire (@Damage[5d8[untyped]], @Damage[3d4[untyped]] from areas or persistent damage); healed by electricity (area @Damage[2d4[healing]] HP); slowed by cold</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.GolemAntimagic]</p>",
+      "frequency": null,
+      "name": "Golem Antimagic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Casting a Petrify spell on the flesh golem affects the golem normally.</p>",
+      "frequency": null,
+      "name": "Vulnerable to Flesh to Stone",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d10+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "sNFBOw4z9KagWUHe",
+  "gear": [],
+  "hp": 140,
+  "id": "pathfinder-bestiary/flesh-golem",
+  "immunities": [
+    "electricity"
+  ],
+  "languages": [],
+  "level": 8,
+  "name": "Flesh Golem",
+  "perception": 12,
+  "publicNotes": "<p>Made of odd scraps of skin and muscle, a flesh golem is a grotesque parody of life. Though it has no mind, it can still go into a berserk rage when harmed, giving it a faint semblance of emotion. Flesh golems guard the laboratories and charnel houses of fleshwarpers and necromancers who feel no compunctions about desecrating corpses for their own ends. Though the first flesh golem is believed to have been a misguided attempt to create from simple base elements, these monstrosities are far from human. In isolated cases, echoes of a personality might rise in a flesh golem if the brain used as part of its construction belonged to a particularly powerful personality, but such tragic instances are (thankfully) rare in the extreme.</p>\n<hr />\n<p>Crafted of base materials and then magically animated into a powerful guardian, the legendary golem is a living construct that mindlessly obeys its creator's commands-often continuing to do so for years or even centuries after its creator's death. There exist two known methods of animating a golem. The traditional method involves harvesting and implanting an elemental soul or essence within the newly crafted host statue, a procedure seen as vile and blasphemous to those who value the sanctity of the soul; evil or amoral golem crafters tend to prefer this method. The other, less disreputable technique involves siphoning pure vitality energy into the statue to artificially imitate the creation of a soul. The result does not give the golem a true soul and is generally a more costly and time-consuming method of creation. Regardless of the method used, the resulting golem functions the same. A golem's unique animating force leaves it susceptible to certain forms of magic, but apart from these few weaknesses, it is impervious to magic and difficult to damage with weapons.</p>\n<p>Golems work best in play as foes to vanquish rather than allies to accompany player characters on adventures. The process of creating a golem is time-consuming, expensive, and difficult, and only the most talented spellcasters or artisans can even hope to accomplish such an undertaking. While certain magical texts-so-called \"golem manuals\"-are said to aid golems crafters, for the most part the creation of a golem should be something left in the hands of the Game Master.</p>\n<p>Golems have components that can be harvested as trophies or magical components; the value depends on the golem in question. Examples of components that can be harvested from golems are listed in the sidebars.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 14,
+    "will": 15
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "construct",
+    "golem",
+    "mindless"
+  ],
+  "weaknesses": []
+}

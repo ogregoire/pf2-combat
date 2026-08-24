@@ -1,0 +1,196 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 3,
+    "dex": 4,
+    "int": 3,
+    "str": 4,
+    "wis": 5
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The theletos releases a @Template[cone|distance:60] of energy from its center. Creatures in the cone become overwhelmed with the knowledge of various fates that destiny has in store for them and lack of clear pathways to these potential futures. They must succeed at a @Check[will|dc:26] save or be Slowed 1 indefinitely.</p>\n<p>An affected creature can choose to roll twice when it attempts an attack, saving throw, or skill check and take the lower result. Regardless of the outcome, that creature is no longer slowed after that roll.</p>\n<p>Effect: Wrath of Fate</p>\n<p>The theletos can't use Wrath of Fate again for [[/gmr 1d4 #Recharge Wrath of Fate]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Wrath of Fate",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine",
+        "mental",
+        "misfortune"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When a theletos conveys information, it does so wordlessly through psychic projections. This acts as Telepathy with a range of 100 feet but is understandable to all creatures regardless of whether they have a language. The meaning to non-aeons can be vague and is often mysterious. A theletos can use this ability to communicate flawlessly with any other aeon on the same plane.</p>",
+      "frequency": null,
+      "name": "Envisioning",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature damaged by the theletos's tentacle must succeed at a @Check[will|dc:22] save or become Stupefied 1.</p>\n<p>As long as the creature is stupefied, it can no longer benefit from fortune effects. If the target fails additional saves against this ability, the condition value increases by 1 (to a maximum of stupefied 4). This condition value decreases by 1 every 24 hours.</p>",
+      "frequency": null,
+      "name": "Fate Drain",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine",
+        "fortune",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d10+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d8+4",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "OaKx1ZaU25i3cypS",
+  "gear": [],
+  "hp": 125,
+  "id": "pathfinder-bestiary-2/theletos",
+  "immunities": [],
+  "languages": [],
+  "level": 7,
+  "name": "Theletos",
+  "perception": 18,
+  "publicNotes": "<p>Theletoses maintain the balance between fate and free will. A theletos is a roughly spherical mass of crystals from which emerge four limbs, each split at the elbow and ending in three-fingered hands. A pair of crystalline tentacles also emerges from its body. Those who have been damaged by a theletos's tentacles describe a disorienting dilemma as they simultaneously feel forced to make a single choice while also being overwhelmed by the endless options available to choose from. Theletoses are more likely than most aeons to interfere in non-aeon societies, particularly in regions with draconian laws. Their involvement is twofold; a theletos concerns itself with both the freedom of individuals and the laws that restrict these individuals, even when the two are in opposition.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 13,
+    "will": 18
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "arcana": 16,
+    "intimidation": 16,
+    "religion": 18,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Augury (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Charm",
+          "rank": 4
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 4
+        },
+        {
+          "name": "Enthrall",
+          "rank": 4
+        },
+        {
+          "name": "Outcast's Curse",
+          "rank": 4
+        },
+        {
+          "name": "Remove Curse",
+          "rank": 4
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Touch of Idiocy",
+          "rank": 4
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "aeon",
+    "monitor"
+  ],
+  "weaknesses": []
+}

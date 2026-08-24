@@ -1,0 +1,279 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 6,
+    "dex": 3,
+    "int": 5,
+    "str": 8,
+    "wis": 6
+  },
+  "ac": 39,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The planetar can take on the appearance of any Small or Medium humanoid. This doesn't change their Speed or Strikes.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The planetar makes a greatsword Strike against a target it detects as evil. If the target is evil, the Strike deals three extra weapon damage dice and deals @Damage[1d6[persistent,spirit]] damage to the target. The planetar can convert all the physical damage from the attack into spirit damage.</p>",
+      "frequency": null,
+      "name": "Blade of Justice",
+      "requirements": null,
+      "traits": [
+        "holy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 Bonus on Perception to Detect Illusions",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet. Allies in the planetar's aura gain a +2 status bonus to AC against evil creatures and a +2 status bonus to damage rolls against evil creatures. The area in the aura is difficult terrain for evil creatures.</p>",
+      "frequency": null,
+      "name": "Aura of Righteousness",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any weapon gains the effect of a <em>Holy</em> property rune while a planetar wields it.</p>",
+      "frequency": null,
+      "name": "Holy Armaments",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 15 (Deactivated by Unholy)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "3d12+16",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Holy Greatsword",
+      "traits": [
+        "good",
+        "holy",
+        "magical",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "cu6Bl5pFByrpinxd",
+  "gear": [
+    "Greatsword"
+  ],
+  "hp": 300,
+  "id": "pathfinder-bestiary-2/planetar",
+  "immunities": [],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 16,
+  "name": "Planetar",
+  "perception": 28,
+  "publicNotes": "<p>The beings of righteous fury known as planetars are known to be the least patient of angels. They exist to destroy evil that cannot be redeemed, and they often leave prolonged dialogue to other angels. Of course, no planetar ignores the importance of diplomacy, but they know that others among the angelic hosts are better suited to that task, while they focus on the larger picture. In angelic armies, planetars serve as commanders or generals. They stand at least 9 feet tall and weigh over 500 pounds.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 28,
+    "reflex": 25,
+    "will": 28
+  },
+  "senses": [
+    "darkvision",
+    "truesight"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 32,
+    "intimidation": 32,
+    "religion": 32
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 29,
+      "dc": 37,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dispel Magic",
+          "rank": 8
+        },
+        {
+          "name": "Earthquake",
+          "rank": 8
+        },
+        {
+          "name": "Power Word Stun",
+          "rank": 8
+        },
+        {
+          "name": "Sunburst",
+          "rank": 8
+        },
+        {
+          "name": "Charm",
+          "rank": 7
+        },
+        {
+          "name": "Plane Shift",
+          "rank": 7
+        },
+        {
+          "name": "Power Word Blind",
+          "rank": 7
+        },
+        {
+          "name": "Remove Fear (At will)",
+          "rank": 7
+        },
+        {
+          "name": "Blade Barrier",
+          "rank": 6
+        },
+        {
+          "name": "Dispel Magic (At will)",
+          "rank": 6
+        },
+        {
+          "name": "Breath of Life",
+          "rank": 5
+        },
+        {
+          "name": "Death Ward",
+          "rank": 5
+        },
+        {
+          "name": "Detect Alignment (Constant) (Evil only)",
+          "rank": 5
+        },
+        {
+          "name": "Freedom of Movement",
+          "rank": 5
+        },
+        {
+          "name": "Restoration",
+          "rank": 5
+        },
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "True Seeing (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Divine Wrath",
+          "rank": 4
+        },
+        {
+          "name": "Invisibility (At will) (Self only)",
+          "rank": 2
+        },
+        {
+          "name": "Remove Paralysis",
+          "rank": 2
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "angel",
+    "celestial",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "type": "unholy",
+      "value": 15
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 5,
+    "dex": 5,
+    "int": -5,
+    "str": 7,
+    "wis": 3
+  },
+  "ac": 29,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature hits or touches the flytrap.</p>\n<hr />\n<p><strong>Effect</strong> The flytrap makes a leaf Strike against the triggering creature. If it hits, the creature is Grabbed in that leaf.</p>",
+      "frequency": null,
+      "name": "Quick Capture",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature hits or touches the flytrap."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(2d8+3)[bludgeoning],(2d6)[acid]], Rupture 17</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The flytrap attacks a single target with all four of its leaves. The flytrap makes one leaf Strike. On a success, the flytrap deals the damage from one leaf Strike plus an additional [[/r {1d8}]]{1d8 damage} for every leaf beyond the first. On a failure, the flytrap deals the damage from one leaf Strike, but it can't use Improved Grab. It deals no damage on a critical failure. This counts toward the flytrap's multiple attack penalty as a number of attacks equal to the number of leaves the flytrap has.</p>",
+      "frequency": null,
+      "name": "Focused Assault",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The flytrap makes four leaf Strikes at a -2 penalty, each against a different target. These attacks count toward the flytrap's multiple attack penalty, but the multiple attack penalty doesn't increase until after it makes all its attacks.</p>",
+      "frequency": null,
+      "name": "Hungry Flurry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "acid"
+        },
+        {
+          "formula": "2d8+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Leaf",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "ka7bXO7HIfBxk8Gy",
+  "gear": [],
+  "hp": 185,
+  "id": "pathfinder-monster-core/giant-flytrap",
+  "immunities": [],
+  "languages": [],
+  "level": 10,
+  "name": "Giant Flytrap",
+  "perception": 17,
+  "publicNotes": "<p>Because they blend in so well with surrounding foliage, giant flytraps can use the element of surprise to make quick strikes against unsuspecting adventurers and forest travelers.</p>\n<hr />\n<p>Flytraps eagerly feed on humanoids, monstrous insects, and larger prey.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "acid",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 17,
+    "will": 15
+  },
+  "senses": [
+    "tremorsense"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 23,
+    "stealth": 21
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

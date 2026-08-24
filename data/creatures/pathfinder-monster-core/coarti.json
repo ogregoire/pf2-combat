@@ -1,0 +1,229 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 6,
+    "int": 3,
+    "str": 4,
+    "wis": 4
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per turn</p>\n<hr />\n<p><strong>Effect</strong> The coarti makes two wing Strikes, then falls if it's flying. It can't Fly until the end of its turn.</p>",
+      "frequency": null,
+      "name": "Wing Snap",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The coarti lets out a terrible cry, dealing @Damage[4d6[sonic]] damage to all creatures in a @Template[emanation|distance:30] with a @Check[will|dc:25|basic] save. Holy creatures that fail this save are also Frightened 2; this added effect has the emotion, fear, and mental traits.</p>\n<p>The coarti can't use Despairing Shriek again for [[/gmr 1d4 #Recharge Despairing Shriek]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Despairing Shriek",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "sonic",
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the coarti takes damage from their holy weakness, blood flows freely from their eyes and the contract carved into their skin. They take @Damage[1d6[persistent,bleed]] damage and are Dazzled as long as the persistent damage continues, but their Despairing Shriek recharges.</p>",
+      "frequency": null,
+      "name": "Blood Contract",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "1d6+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Morningstar",
+      "traits": [
+        "magical",
+        "unholy",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "fire"
+        },
+        {
+          "formula": "1d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "unholy",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "VbN33np2jBfaxhAz",
+  "gear": [
+    "Morningstar"
+  ],
+  "hp": 110,
+  "id": "pathfinder-monster-core/coarti",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 7,
+  "name": "Coarti",
+  "perception": 17,
+  "publicNotes": "<p>The burning-winged coartis are marked by the onerous contracts they agreed to and bound to Hell by the machinations of a legalistic devil, usually a phistophilus. Some coartis are truly a type of fallen celestial, those trapped in horrible agreements for the greater good or due to grievous errors in judgment, but most arise from mortal souls that were on the path to become celestials yet were contractually bound to Hell. Coartis serve in public roles as messengers and personal attendants to demonstrate the power of Hell and the legal acumen of their corruptors.</p>\n<p>Celestials universally pity coartis and despise their creators, but their preferred methods of dealing with the corrupted beings differ. While angels argue against lost cases in Pharasma's courts, seeking loopholes in the voluminous contracts, azatas scheme daring heists against the contract storehouses. Archons are the most direct, working to end their blighted lives.</p>\n<hr />\n<p>Masters of corruption and architects of conquest, devils seek both to tempt mortal life to join in their pursuit of all things profane and to spread tyranny throughout all worlds. The temptations they offer mortals range from great powers granted by the signing of an infernal contract to twisted favors following a whispered pledge to a diabolic patron, or any number of even subtler exchanges. Those who succumb to these temptations find themselves consigned to an afterlife of endless torment in the pits of Hell, wherein the only hope of escape lies in the chance of being promoted to become a devil in the infernal ranks.</p>\n<p>Every devil has a specific role to play in the upkeep of the remorseless bureaucratic machine that is Hell, from soldiers and scholars to inquisitors, lawyers, judges, and executioners. Lowly orts perform subservient labor to more powerful and specialized devils, such as infantry and contract devils, while the greatest nessaris command entire infernal armies.</p>\n<p>Asmodeus stands at the apex of the structure he created, but the layers below him are marked by a constant jockeying for position. Most diabolic plans ultimately serve to improve the schemer's place in the hierarchy.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 5
+    },
+    {
+      "type": "poison",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 17,
+    "will": 15
+  },
+  "senses": [
+    "greater-darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 15,
+    "athletics": 15,
+    "deception": 17,
+    "religion": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Darkness",
+          "rank": 2
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "devil",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 5
+    }
+  ]
+}

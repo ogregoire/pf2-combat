@@ -1,0 +1,219 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 6,
+    "int": 0,
+    "str": 4,
+    "wis": 5
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> Gaetane makes two ranged oathbow Strikes against a target. If both hit the same target, combine their damage for the purpose of resistances and weaknesses. He applies his multiple attack penalty to each Strike normally.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Hunted Shot",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<ul>\n<li><strong>Human</strong>\n<ul>\n<li><strong>Melee</strong> fist [[/r 1d20+24 #Fist]]{+24} (agile, nonlethal), <strong>Damage</strong> @Damage[(1d4+10)[bludgeoning]] damage</li>\n</ul>\n</li>\n<li><strong>Rat</strong>\n<ul>\n<li><strong>Size</strong> Small</li>\n<li><strong>Speed</strong> 30 feet, climb 10 feet</li>\n</ul>\n</li>\n</ul>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> Gaetane hasn't attempted a Strike during his turn yet</p>\n<hr />\n<p><strong>Effect</strong> Gaetane makes a ranged Strike against his target at a -2 penalty. He gains a +6 circumstance bonus to damage on that Strike.</p>",
+      "frequency": null,
+      "name": "Deadly Aim",
+      "requirements": "Gaetane hasn't attempted a Strike during his turn yet",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> Gaetane is currently suffering a multiple attack penalty</p>\n<hr />\n<p><strong>Effect</strong> Gaetane aims carefully, then makes an oathbow Strike; he ignores the target's Concealed condition and all cover.</p>",
+      "frequency": null,
+      "name": "Targeting Shot",
+      "requirements": "Gaetane is currently suffering a multiple attack penalty",
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>This curse affects only humanoids.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:34]</p>\n<hr />\n<p>On each full moon, the cursed creature must succeed at another Fortitude save or turn into a wererat until dawn.</p>\n<p>The creature is under the GM's control and goes on a rampage for half the night before falling unconscious until dawn.</p>",
+      "frequency": null,
+      "name": "Curse of the Wererat",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If Gaetane critically hits a creature with a ranged weapon, or hits a creature at least twice on the same turn with a ranged weapon, and if that creature is one he has used his oathbow to swear an oath to destroy, that creature is Off-Guard until the stat of Gaetane's next turn.</p>",
+      "frequency": null,
+      "name": "Distracting Shot",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a full moon appears in the night sky, the werecreature must enter hybrid form, can't Change Shape thereafter, becomes one size larger, increases its reach by 5 feet, and increases the damage of its jaws Strike by 2.</p>\n<p>When the moon sets or the sun rises, the werecreature returns to humanoid form and is Fatigued for [[/br 2d4 #Fatigued duration]]{2d4 hours}.</p>\n<p>Effect: Moon Frenzy</p>",
+      "frequency": null,
+      "name": "Moon Frenzy",
+      "requirements": null,
+      "traits": [
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Gaetane can communicate with rodents.</p>",
+      "frequency": null,
+      "name": "Rat Empathy",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "2d10+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Oathbow",
+      "traits": [
+        "deadly-d10",
+        "range-100",
+        "reload-0",
+        "volley-30"
+      ]
+    }
+  ],
+  "foundryId": "SZVTHAwTVXDwIOqC",
+  "gear": [
+    "Arrows",
+    "Chain Shirt",
+    "Oathbow"
+  ],
+  "hp": 315,
+  "id": "kingmaker-bestiary/gaetane",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 14,
+  "name": "Gaetane",
+  "perception": 27,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 25,
+    "reflex": 28,
+    "will": 25
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 28,
+    "athletics": 26,
+    "nature": 22,
+    "stealth": 28,
+    "survival": 25
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "human",
+    "humanoid",
+    "werecreature"
+  ],
+  "weaknesses": [
+    {
+      "type": "silver",
+      "value": 15
+    }
+  ]
+}

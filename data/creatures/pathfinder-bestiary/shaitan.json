@@ -1,0 +1,204 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 1,
+    "int": 3,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push 10 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The shaitan can Burrow through dirt and stone at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the shaitan Pushes a creature into a stone barrier, the target must succeed at a @Check[reflex|dc:22] save or become merged with the barrier (as One with Stone). The victim can attempt to Escape (DC 28).</p>",
+      "frequency": null,
+      "name": "Shove into Stone",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "earth"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d10+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Falchion",
+      "traits": [
+        "forceful",
+        "magical",
+        "reach-10",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d4+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "nonlethal",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "xqnl2eFzy5H2NZoQ",
+  "gear": [
+    "Falchion"
+  ],
+  "hp": 110,
+  "id": "pathfinder-bestiary/shaitan",
+  "immunities": [],
+  "languages": [
+    "common",
+    "petran"
+  ],
+  "level": 7,
+  "name": "Shaitan",
+  "perception": 15,
+  "publicNotes": "<p>Hailing from the Plane of Earth, shaitans are proud and brazen genies. They value physical skill and love bargaining, games of chance, and working with metal and stone. Immense gemstones and veins of precious metal crisscross their home plane, and the industrious shaitans have built a vast mercantile empire from these abundant natural resources.</p>\n<hr />\n<p>A unique type of genie exists for each Elemental Plane, and the bodies of genies are formed out of elemental matter corresponding to their native plane: djinn are formed from wind, clouds, and storms; efreet are fire made flesh; marids are beings of water; and shaitans are composed of metal, gems, and stone. Lastly, the jann are formed out of all four elements, and are the weakest of geniekind.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "electricity",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 12,
+    "will": 15
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 19,
+    "crafting": 14,
+    "deception": 16,
+    "nature": 15,
+    "society": 14
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "burrow",
+      "value": 45
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 16,
+      "dc": 24,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Plane Shift (to Astral Plane, Elemental Planes, or Material Plane Only)",
+          "rank": 7
+        },
+        {
+          "name": "Wall of Stone",
+          "rank": 5
+        },
+        {
+          "name": "Shape Stone (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Veil (Self Only)",
+          "rank": 4
+        },
+        {
+          "name": "Glitterdust",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic (Constant)",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "earth",
+    "elemental",
+    "genie"
+  ],
+  "weaknesses": []
+}

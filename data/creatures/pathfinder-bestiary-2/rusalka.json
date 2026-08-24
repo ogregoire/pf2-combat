@@ -1,0 +1,218 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 3,
+    "dex": 5,
+    "int": 1,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 33,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The rusalka cries out a compelling invitation. Each non-fey creature within a @Template[emanation|distance:300] must attempt a @Check[will|dc:27] save. The effect lasts for 1 round, but if the rusalka uses Beckoning Call again on subsequent rounds, the duration extends by 1 round for all affected creatures. Once a creature succeeds at any save against Beckoning Call, that creature is temporarily immune for 24 hours.</p>\n<hr />\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The creature is Fascinated and must spend each of its actions to move closer to the rusalka, avoiding obvious dangers. If a beckoned creature is adjacent to the rusalka, it stays still and doesn't act. If attacked by the rusalka, the creature is freed from captivation at the end of the rusalka's turn.</p>\n<p><strong>Critical Failure</strong> As failure, but if attacked by the rusalka, the creature can attempt a new save only at the start of its next turn, rather than being freed at the end of the rusalka's turn.</p>",
+      "frequency": null,
+      "name": "Beckoning Call",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "incapacitation",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d8+10)[bludgeoning]], @Check[fortitude|dc:32|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The rusalka attempts an @Check[athletics] check against each Grabbed creature's Fortitude DC. The rusalka moves each creature they succeed against up to 10 feet and each creature they critically succeed against up to 20 feet. This movement must all be within reach of its tresses.</p>",
+      "frequency": null,
+      "name": "Flowing Hair",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The rusalka touches a creature within 5 feet using their hand, stirring up memories of regret and shame. The target must attempt a @Check[will|dc:35] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> The target is Sickened 1.</p>\n<p><strong>Failure</strong> The creature is Sickened 1 and Stunned 1.</p>\n<p><strong>Critical Failure</strong> The creature is Sickened 1 and Stunned 1, and it must use its first action on its next turn to Strike itself, automatically hitting.</p>",
+      "frequency": null,
+      "name": "Shameful Touch",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A rusalka is Concealed while underwater.</p>",
+      "frequency": null,
+      "name": "Blurred Form",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A rusalka can have up to eight creatures grabbed within their tresses at a time.</p>",
+      "frequency": null,
+      "name": "Entangling Tresses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "3d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tresses",
+      "traits": [
+        "agile",
+        "finesse",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "U2hAALepVC90CNhQ",
+  "gear": [],
+  "hp": 230,
+  "id": "pathfinder-bestiary-2/rusalka",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 12,
+  "name": "Rusalka",
+  "perception": 22,
+  "publicNotes": "<p>These androgynous, river-dwelling fey delight in manipulating the emotions of those unfortunate enough to fall into their grasp, using humiliation to break their victims' wills. Rusalkas enjoy keeping their broken toys nearby, both for continuing entertainment and to aid in the rusalkas' defense, as the shame their captives feel often drives them to become obsessively loyal to these fey.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 25,
+    "will": 21
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 21,
+    "athletics": 22,
+    "deception": 25,
+    "diplomacy": 21,
+    "nature": 21,
+    "performance": 23,
+    "stealth": 25
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 25,
+      "dc": 35,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Water Walk (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Charm (At will)",
+          "rank": 5
+        },
+        {
+          "name": "Control Water (At will)",
+          "rank": 5
+        },
+        {
+          "name": "Invisibility (At will)",
+          "rank": 2
+        },
+        {
+          "name": "Obscuring Mist (At will)",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "aquatic",
+    "fey",
+    "water"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 15
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The skullcrushers smash their mauls and clubs against each enemy in a @Template[type:emanation|distance:5], with a @Check[reflex|dc:22|basic|options:area-effect] save. The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[1d12[bludgeoning]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(1d12+8)[bludgeoning]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(2d12+8)[bludgeoning]|options:area-damage] damage</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Crush Skulls",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Effect</strong> Orc war drummers lead the other skullcrushers in a holy chant extolling their superiority in battle. Any creature damaged by the skullcrushers this turn also takes 1d6 persistent spirit damage.</p>",
+      "frequency": null,
+      "name": "Chant of Dominance",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "holy",
+        "spirit"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The skullcrushers fling a fusillade of sling bullets enchanted with life energy intended to destroy undead. This barrage is a @Template[type:burst|distance:10] within 50 feet that deals @Damage[3d6[bludgeoning]|options:area-damage] damage plus @Damage[1d6[vitality]|options:area-damage] damage to undead, with a @Check[reflex|dc:22|basic|options:area-effect] save. When the troop is reduced to 2 or fewer segments, this area decreases to a @Template[type:burst|distance:5].</p>",
+      "frequency": null,
+      "name": "Sacred Salvo",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "vitality"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 80 (3 segments), 40 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "C8Bo22NBYGoj9Fwd",
+  "gear": [],
+  "hp": 120,
+  "id": "pathfinder-npc-core/orc-skullcrushers",
+  "immunities": [],
+  "languages": [
+    "common",
+    "orcish"
+  ],
+  "level": 7,
+  "name": "Orc Skullcrushers",
+  "perception": 15,
+  "publicNotes": "<p>Orc warriors search for more effective weapons and tactics—most physical, but some magical. As they fought back against the undead on their borders, they formed bands of skullcrushers to crush hordes of skeletons.</p><hr /><p>Orcs have a strict moral code encompassing valor and accomplishment, and they cast out those unwilling to follow it. For the last few generations, orcs have been trying to erase the narratives around their culture as being solely focused on war and violence. They invite other races and adventuring parties inside their holds so they may experience the truth of who the orcs are.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "void",
+      "value": 8
+    }
+  ],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 16,
+    "will": 13
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 17,
+    "intimidation": 15,
+    "stealth": 16,
+    "survival": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "orc",
+    "troop"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 8
+    },
+    {
+      "type": "splash-damage",
+      "value": 8
+    }
+  ]
+}

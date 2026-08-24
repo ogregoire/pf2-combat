@@ -1,0 +1,146 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": 4,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature Casts a Spell with the teleportation trait or as a reaction</p><hr /><p><strong>Effect</strong> The watchmage expends a spell slot of the same rank or higher as the trigger creature's spell and attempts to counteract the triggering spell (counteract modifier +11).</p>",
+      "frequency": null,
+      "name": "Counter Escape",
+      "requirements": null,
+      "traits": [
+        "arcane"
+      ],
+      "trigger": "A creature Casts a Spell with the teleportation trait or as a reaction"
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> The watchmage is wielding the weapon chosen with Eldritch Arms</p><hr /><p><strong>Effect</strong> The watchmage Casts a Spell that takes 1 or 2 actions to cast, imbuing that spell into the weapon. The watchmage Strikes with the required weapon. This counts as two attacks for the watchmage's multiple attack penalty. On a hit, the target is also affected by the spell, though the target gets any normal defenses allowed by the spell.</p>\n<p>If the spell is targeted, it targets the creature that was hit and no one else. If the spell is an area, the target must be in the area. A burst is centered on a corner of the target's square if the target is Medium or smaller, or the corner of a square closest to the creature's center if it's Large or larger. A cone or line emits from a square of the watchmage's choice adjacent to the target.</p>",
+      "frequency": null,
+      "name": "Spellbound Strike",
+      "requirements": "The watchmage is wielding the weapon chosen with Eldritch Arms",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The watchmage can either Investigate or Search while using the Detect Magic exploration activity.</p>",
+      "frequency": null,
+      "name": "Arcane Watch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>In a brief ritual that takes 10 minutes, the watchmage chooses a single weapon or unarmed attack through which they can focus their magic. Strikes the watchmage makes with that weapon are magical and deal 1d6 additional force damage.</p>",
+      "frequency": null,
+      "name": "Eldritch Arms",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "force"
+        },
+        {
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-60",
+        "reload-0"
+      ]
+    }
+  ],
+  "foundryId": "SK7BA4K7ALWtfNBe",
+  "gear": [
+    "Arrows",
+    "Leather Armor",
+    "Shortbow",
+    "Spellbook"
+  ],
+  "hp": 70,
+  "id": "pathfinder-npc-core/watchmage",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Watchmage",
+  "perception": 15,
+  "publicNotes": "<p>A watchmage uses a mix of magic and martial training to enforce the law. They magically detect invisible criminals, locate stolen property, and counter illegal spells.</p><hr /><p>Larger societies rely on those with the authority and the ability to interpret and enforce laws. Some carry out these duties fairly, but others are harsh and cruel, imposing severe punishments on anyone unable to pay for clemency.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 12,
+    "will": 14
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 13,
+    "athletics": 10,
+    "intimidation": 9,
+    "society": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

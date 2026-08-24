@@ -1,0 +1,475 @@
+{
+  "abilityMods": {
+    "cha": 10,
+    "con": 6,
+    "dex": 8,
+    "int": 5,
+    "str": 5,
+    "wis": 5
+  },
+  "ac": 45,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> When Phomandala's next action is to cast a spell that is 7th level or lower, she reduces the number of actions to cast it by 1 (minimum 1 action).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Quickened Casting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature ends its turn adjacent to the medusa.</p>\n<hr />\n<p><strong>Effect</strong> The medusa makes a snake fangs Strike against the creature.</p>",
+      "frequency": null,
+      "name": "Biting Snakes",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature ends its turn adjacent to the medusa."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The medusa fixes their glare at a creature they can see within 30 feet. The target must immediately attempt a @Check[fortitude|dc:38] save against the medusa's petrifying gaze. If the creature was already Slowed by petrifying gaze before attempting its save, a failed save causes it to be Petrified permanently.</p>\n<p>After attempting its save, the creature is then temporarily immune until the start of the medusa's next turn.</p>",
+      "frequency": null,
+      "name": "Focus Gaze",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "incapacitation",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Phomandala's sorcerer bloodline is a result of Nyrissa's infusion of the medusa with jabberwock blood. This bloodline functions as the draconic bloodline, but the damage type caused is a line of sonic energy, and she uses the primal spell list instead of the arcane spell list.</p>",
+      "frequency": null,
+      "name": "Jabberwock Bloodline",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. When a creature ends its turn in the aura, it must attempt a @Check[fortitude|dc:38] save. If the creature fails, it becomes Slowed 1 for 1 minute. The medusa can deactivate or activate this aura by using a single action, which has the concentrate trait.</p>",
+      "frequency": null,
+      "name": "Petrifying Gaze",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "aura",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:41]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[6d6[poison]] damage and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[9d6[poison]] damage and Enfeebled 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Phomandala's Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Even the thickest vines and roots seem to part as Phomandala moves about. Phomandala ignores difficult terrain caused by plants, such as bushes, vines, and undergrowth. Even plants manipulated by magic don't impede her progress.</p>",
+      "frequency": null,
+      "name": "Woodland Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "4d12 + 13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Cobra Fangs",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "4d10 + 13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Snake Fangs",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "S4oIMaVPzQuRaTpK",
+  "gear": [
+    "Elegant Robes",
+    "Leather Armor"
+  ],
+  "hp": 300,
+  "id": "kingmaker-bestiary/phomandala",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "draconic",
+    "fey"
+  ],
+  "level": 19,
+  "name": "Phomandala",
+  "perception": 32,
+  "publicNotes": "<p>Monstrous humanoids that resemble humans with snakes instead of hair, medusas are best known for their petrifying gazes that-if lingered upon-can permanently transform mortals to stone. Medusas are shrewd and manipulative adversaries who collect and covet secrets, and who use threats and guile to exploit the fears of weaker creatures. A medusa may seek out powerful magic items, use divination magic to discover secret knowledge and unlock forbidden power, or infiltrate a society to beguile influential politicians. Their ability to worm their way into powerful organizations makes them natural leaders of criminal outfits and thieves' guilds, and their interest in magical phenomena leads some to pursue careers as oracles who offer to help adventurers find what they seek-for a price. Of course, if wit and deception proves insufficient, a medusa can always simply turn rivals into ornate stone decorations with little more than a glare.</p>\n<p>Exceptionally agile and surprisingly hardy, a medusa rarely backs down from a conflict even when cornered. Many adventurers who thought themselves readied to resist the effects of a medusa's gaze have nevertheless fallen to a medusa, as these creatures are also often deadly archers able to riddle their foes with venom-coated arrows from a distance. Still, a medusa may barter for their life if no alternatives remain, and the secrets carried by these powerful villains often make it more than worth sparing the monster's life.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 33,
+    "reflex": 35,
+    "will": 32
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 35,
+    "arcana": 34,
+    "deception": 37,
+    "intimidation": 37,
+    "nature": 35,
+    "religion": 33
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 36,
+      "dc": 41,
+      "name": "Primal Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 4,
+          "rank": 5
+        },
+        {
+          "max": 4,
+          "rank": 6
+        },
+        {
+          "max": 4,
+          "rank": 7
+        },
+        {
+          "max": 4,
+          "rank": 8
+        },
+        {
+          "max": 4,
+          "rank": 9
+        },
+        {
+          "max": 1,
+          "rank": 10
+        }
+      ],
+      "spells": [
+        {
+          "name": "Revival",
+          "rank": 10
+        },
+        {
+          "name": "Disjunction",
+          "rank": 9
+        },
+        {
+          "name": "Massacre",
+          "rank": 9
+        },
+        {
+          "name": "Overwhelming Presence",
+          "rank": 9
+        },
+        {
+          "name": "Horrid Wilting",
+          "rank": 8
+        },
+        {
+          "name": "Prismatic Wall",
+          "rank": 8
+        },
+        {
+          "name": "Eclipse Burst",
+          "rank": 7
+        },
+        {
+          "name": "Finger of Death",
+          "rank": 7
+        },
+        {
+          "name": "Mask of Terror",
+          "rank": 7
+        },
+        {
+          "name": "Regenerate",
+          "rank": 7
+        },
+        {
+          "name": "Baleful Polymorph",
+          "rank": 6
+        },
+        {
+          "name": "Chain Lightning",
+          "rank": 6
+        },
+        {
+          "name": "Dragon Form",
+          "rank": 6
+        },
+        {
+          "name": "Stone to Flesh",
+          "rank": 6
+        },
+        {
+          "name": "True Seeing",
+          "rank": 6
+        },
+        {
+          "name": "Chromatic Wall",
+          "rank": 5
+        },
+        {
+          "name": "Cone of Cold",
+          "rank": 5
+        },
+        {
+          "name": "Wall of Ice",
+          "rank": 5
+        },
+        {
+          "name": "Wall of Stone",
+          "rank": 5
+        },
+        {
+          "name": "Freedom of Movement",
+          "rank": 4
+        },
+        {
+          "name": "Spell Immunity",
+          "rank": 4
+        },
+        {
+          "name": "Blindness",
+          "rank": 3
+        },
+        {
+          "name": "Haste",
+          "rank": 3
+        },
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Meld into Stone",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Wall of Thorns",
+          "rank": 3
+        },
+        {
+          "name": "Acid Arrow",
+          "rank": 2
+        },
+        {
+          "name": "Create Food",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Enhance Victuals",
+          "rank": 2
+        },
+        {
+          "name": "Glitterdust",
+          "rank": 2
+        },
+        {
+          "name": "Resist Energy",
+          "rank": 2
+        },
+        {
+          "name": "Restoration",
+          "rank": 2
+        },
+        {
+          "name": "Web",
+          "rank": 2
+        },
+        {
+          "name": "Acid Splash",
+          "rank": 1
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Chill Touch",
+          "rank": 1
+        },
+        {
+          "name": "Create Water",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Electric Arc",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Gust of Wind",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Magic Fang",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "True Strike",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    },
+    {
+      "attack": 36,
+      "dc": 41,
+      "name": "Sorcerer Bloodline Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dragon Wings",
+          "rank": 5
+        },
+        {
+          "name": "Dragon Breath",
+          "rank": 3
+        },
+        {
+          "name": "Dragon Claws",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

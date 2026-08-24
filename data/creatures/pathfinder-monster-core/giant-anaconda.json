@@ -1,0 +1,172 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 6,
+    "dex": 3,
+    "int": -4,
+    "str": 7,
+    "wis": 3
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature Grabbed or Restrained by the giant anaconda attempts to Escape.</p>\n<hr />\n<p><strong>Effect</strong> The DC of the Escape check is increased by 2.</p>",
+      "frequency": null,
+      "name": "Tighten Coils",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature Grabbed or Restrained by the giant anaconda attempts to Escape."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d10+7)[bludgeoning]], @Check[fortitude|dc:26|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterConstrict]</p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push 10 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giant anaconda Strides, Climbs, or Swims up to half its Speed, pulling any creatures it has Grabbed with it.</p>",
+      "frequency": null,
+      "name": "Slither",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(1d10+7)[bludgeoning]], Rupture 21</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A Large or smaller creature is Grabbed or Restrained in the giant anaconda's jaws.</p>\n<hr />\n<p><strong>Effect</strong> The giant anaconda moves the creature into its coils, freeing its jaws to make attacks, then uses Greater Constrict against the creature. The giant anaconda's coils can hold as many creatures as will fit in its space.</p>",
+      "frequency": null,
+      "name": "Wrap in Coils",
+      "requirements": "A Large or smaller creature is Grabbed or Restrained in the giant anaconda's jaws.",
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d10+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "XDNJSVxOOryeuN44",
+  "gear": [],
+  "hp": 175,
+  "id": "pathfinder-monster-core/giant-anaconda",
+  "immunities": [],
+  "languages": [],
+  "level": 8,
+  "name": "Giant Anaconda",
+  "perception": 17,
+  "publicNotes": "<p>The monstrous giant anaconda is a constrictor snake capable of swallowing whole creatures as big as horses—to say nothing of their riders. Although novice bushwhackers watch out for snakes that might drop on them from the jungle canopy above, giant anacondas are most commonly encountered in ponds and rivers, where they feed on prey including manatees and capybaras. This hunting tactic allows anacondas to drown their prey while constricting it, reducing the chance of injuries while hunting. Despite lurid and sensational stories spread by adventurers, these snakes rarely attack humanoids.</p>\n<hr />\n<p>Snakes come in an array of forms, from jungle-dwelling constrictors that wrap around their prey to venomous vipers with deadly bites. Regardless, all snakes consume their prey whole by unhinging their jaws and using powerful muscles to move the food down their throats and into their stomachs.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 20,
+    "reflex": 17,
+    "will": 15
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 15,
+    "athletics": 21,
+    "stealth": 15,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

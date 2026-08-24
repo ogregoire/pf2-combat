@@ -1,0 +1,384 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 9,
+    "dex": 8,
+    "int": 8,
+    "str": 9,
+    "wis": 9
+  },
+  "ac": 46,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> If the nessari's next action is to cast an 8th-rank or lower innate spell, reduce the number of actions to cast it by 1 (minimum 1 action).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Masterful Quickened Casting",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>The nessari can make a Reactive Strike when a creature within reach uses a concentrate action, in addition to the usual trigger. The devil can disrupt triggering concentrate actions, and they disrupt actions on any hit, not only a critical hit.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike (Special)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d10+17)[bludgeoning]], @Check[fortitude|dc:43|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The nessari Flies and makes a wing Strike at any point during its movement.</p>",
+      "frequency": null,
+      "name": "Fast Swoop",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>100 feet.</p>\n<p>Commanded or allied unholy creatures in the aura of lower level than the nessari gain a +1 circumstance bonus to attack rolls, damage rolls, AC, saves, and skill checks.</p>\n<p>Effect: Commander's Aura</p>",
+      "frequency": null,
+      "name": "Commander's Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>20 feet @Check[will|dc:42]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:43]</p>\n<p><strong>Maximum Duration</strong> 10 rounds</p>\n<p><strong>Stage 1</strong> @Damage[6d6[poison]] damage and Drained 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[7d6[poison]] damage and Drained 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[8d6[poison]] damage and Drained 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Nessari Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 30 (Deactivated by Holy)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The nessari reshapes a large number of orts within a 600-foot emanation into more powerful devils to swell Hell's legions. The nessari must have available the number of orts listed on the table below.</p><table class=\"pf2e remaster\"><thead><tr><th>Devil Level</th><th>Number of Orts</th></tr></thead><tbody><tr><td>4 or below</td><td>4</td></tr><tr><td>5-6</td><td>8</td></tr><tr><td>7-8</td><td>16</td></tr><tr><td>9-10</td><td>32</td></tr><tr><td>11-12</td><td>64</td></tr><tr><td>13-14</td><td>128</td></tr><tr><td>15-16</td><td>256</td></tr><tr><td>17-18</td><td>512</td></tr><tr><td>19-20</td><td>1.024</td></tr></tbody></table><p>The nessari can shape 100 orts per day, to a maximum of 1,100 orts in 11 days. Devils created in this way are in thrall to the nessari and follow its orders, with the exception of created nessaris or other devils of similar power, which are always independent. As a result, few nessaris choose to create peers. At the end of the Shape Devils activity, the nessari attempts an incredibly hard @Check[religion] check of the desired devil's level, with results as follows.</p><hr /><p><strong>Critical Success</strong> The nessari shapes two devils from the massed orts instead of one.</p>\n<p><strong>Success</strong> The nessari shapes a devil of the desired type and level.</p>\n<p><strong>Failure</strong> The devil shaped from the orts is 2 levels lower than the intended devil.</p>\n<p><strong>Critical Failure</strong> The nessari fails to shape any devils and draws the ire of an archdevil for its waste of resources.</p>",
+      "frequency": null,
+      "name": "Shape Devils",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "downtime"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "4d6+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 40,
+      "damage": [
+        {
+          "formula": "4d10+17",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "poison",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "formula": "4d10+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "formula": "4d6+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "magical",
+        "reach-15",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "BlTEvlCUKPOfBYMR",
+  "gear": [],
+  "hp": 335,
+  "id": "pathfinder-monster-core/nessari",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 20,
+  "name": "Nessari",
+  "perception": 37,
+  "publicNotes": "<p>When an army of devils invades to bathe a region in bloodshed and hellfire, it is likely that one of the nessaris masterminded the incursion. Cunning, powerful, and ruthless, nessaris often serve the archdevils directly. They rule infernal duchies, subjugate mortal worlds, and usurp infernal rivals using unparalleled despotism and calculated ferocity. To realize their tyrannical machinations, nessaris claim mortal souls that they corrupt into ort servants, which can then be shaped and transformed through infernal manipulation into the terrifying devils that form Hell's formidable legions. They often select the most wicked and vicious orts for their armies, drawing upon these lesser devils' depravity during powerful magical ceremonies to create hideous and terrifying abominations that can cow and eviscerate the nessari's enemies.</p>\n<p>Each nessari is crafted deep within the nightmarish bowels of Nessus, the ninth layer of Hell, to serve the whims of archdevils and infernal dukes. Those nessaris that don't leave Nessus to command infernal legions in the upper layers of Hell often form the courts of Hell's elite, gathering cronies and sects that shape Hell's political landscape through subterfuge and manipulation. But many nessaris see themselves as living embodiments of hellfire, the all-encompassing wrath of Hell, and thus prefer to dwell in realms consumed by fire. In Avernus, Dis, Malebolge, Nessus, and Phlegethon, nessaris build vast citadels of brimstone wreathed in flame to lord over.</p>\n<p>Rather than being above the constant power struggles of the diabolic ranks, nessaris are in the thick of it. Even apocalyptic schemes to conquer or despoil mortal worlds usually begin from a desire to claw a single rank up the immortal hierarchy of Hell. For this reason, the best, yet also most dangerous, ally against a nessari is the nessari next to them.</p>\n<p>Nessaris tower over other devils, standing at least 16 feet tall, weighing over 1,000 pounds, and brandishing wingspans in excess of 20 feet.</p>\n<h2>Infernal Dukes</h2>\n<p>Elite members of Hell's political infrastructure and leadership hierarchy, the dukes of Hell are chosen from among the most tyrannical, oppressive, and conniving devils. While not all infernal dukes are nessaris, a nessari's natural disposition toward conquest and oppression often makes them an ideal candidate for this position. To create an infernal duke, adjust the nessari to be between 21st and 25th level. Because of their physical prowess, manipulative nature, and powerful spellcasting abilities, infernal dukes make excellent villains for long-running campaigns.</p>\n<hr />\n<p>Masters of corruption and architects of conquest, devils seek both to tempt mortal life to join in their pursuit of all things profane and to spread tyranny throughout all worlds. The temptations they offer mortals range from great powers granted by the signing of an infernal contract to twisted favors following a whispered pledge to a diabolic patron, or any number of even subtler exchanges. Those who succumb to these temptations find themselves consigned to an afterlife of endless torment in the pits of Hell, wherein the only hope of escape lies in the chance of being promoted to become a devil in the infernal ranks.</p>\n<p>Every devil has a specific role to play in the upkeep of the remorseless bureaucratic machine that is Hell, from soldiers and scholars to inquisitors, lawyers, judges, and executioners. Lowly orts perform subservient labor to more powerful and specialized devils, such as infantry and contract devils, while the greatest nessaris command entire infernal armies.</p>\n<p>Asmodeus stands at the apex of the structure he created, but the layers below him are marked by a constant jockeying for position. Most diabolic plans ultimately serve to improve the schemer's place in the hierarchy.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 15
+    },
+    {
+      "type": "poison",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 37,
+    "reflex": 32,
+    "will": 35
+  },
+  "senses": [
+    "greater-darkvision",
+    "truesight"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 34,
+    "arcana": 32,
+    "athletics": 33,
+    "deception": 39,
+    "diplomacy": 34,
+    "intimidation": 39,
+    "religion": 37,
+    "society": 36,
+    "stealth": 34
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 42,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Manifestation",
+          "rank": 10
+        },
+        {
+          "name": "Falling Stars",
+          "rank": 9
+        },
+        {
+          "name": "Seize Soul (At Will)",
+          "rank": 9
+        },
+        {
+          "name": "Divine Decree (At Will)",
+          "rank": 7
+        },
+        {
+          "name": "Scrying",
+          "rank": 6
+        },
+        {
+          "name": "Truesight (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Wall of Fire (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Fireball (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic (At Will)",
+          "rank": 2
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "devil",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 15
+    }
+  ]
+}

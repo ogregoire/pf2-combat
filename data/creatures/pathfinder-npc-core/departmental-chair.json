@@ -1,0 +1,121 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 1,
+    "int": 5,
+    "str": 0,
+    "wis": 5
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The departmental chair has spent so much time dealing with bureaucracy recently that papers and forms have worked their way into the chair's spellcasting. If the departmental chair's next action is to Cast a Spell that deals energy damage, the spell conjures a burst of sharp-edged paper instead. Change the damage type to slashing, and the spell deals an additional @Damage[1d6[persistent,bleed]] damage.</p>",
+      "frequency": null,
+      "name": "Paper Pusher",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "spellshape"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>On the rare occasions the departmental chair still deals with their research, they are a 10th-level challenge.</p>",
+      "frequency": null,
+      "name": "Veteran Researcher",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "magical",
+        "monk",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "MxcprNbX7hcpAU8p",
+  "gear": [
+    "Spellbook",
+    "Staff",
+    "Writing Set"
+  ],
+  "hp": 115,
+  "id": "pathfinder-npc-core/departmental-chair",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 7,
+  "name": "Departmental Chair",
+  "perception": 16,
+  "publicNotes": "<p>All the departmental chair really wants is a chance to quietly do their research. Instead, they've been roped into dealing with every emergency—political, supernatural, or emotional—in the university. They are not thrilled about this.</p><hr /><p>True power comes from knowledge—the power to shape the growth of kingdoms by mere whispers, stay three steps ahead of adversaries, or even know which flora is best for creating untraceable poisons.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 14,
+    "will": 18
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 22,
+    "diplomacy": 15,
+    "occultism": 22,
+    "society": 17
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

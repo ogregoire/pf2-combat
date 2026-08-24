@@ -1,0 +1,268 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 5,
+    "dex": 3,
+    "int": 4,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The jahtohl extracts the brain of a creature within its reach that has been dead for no more than 1 minute. It can then use an Interact action to secure the brain in one of its empty brain blisters and heal 20 Hit Points.</p>",
+      "frequency": null,
+      "name": "Collect Brain",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A jah-tohl has seven brain blisters on its back that it uses to house stolen brains. A jah-tohl without all seven blisters full is Stupefied with a value equal to the number of empty blisters.</p>",
+      "frequency": null,
+      "name": "Brain Blisters",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>If a jah-tohl takes 30 damage from a critical hit or 25 mental damage, it must succeed at a DC 26 save (@Check[fortitude|dc:26]{Fortitude} for critical damage or @Check[will|dc:26]{Will} for mental damage) or one of its brain blisters is destroyed.</p>",
+      "frequency": null,
+      "name": "Brain Loss",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:26]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]], enfeebled 1, and Slowed 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[2d6[poison]], Enfeebled 2, and slowed 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Mind Snatcher Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The jah-tohl senses a creature's mental essence as a precise sense with the listed range; it cannot sense mindless creatures with thoughtsense.</p>",
+      "frequency": null,
+      "name": "Thoughtsense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d8+6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d12+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "YUI465JYqM65iimj",
+  "gear": [],
+  "hp": 140,
+  "id": "pathfinder-monster-core/jah-tohl",
+  "immunities": [
+    "confused"
+  ],
+  "languages": [
+    "aklo",
+    "chthonian",
+    "draconic",
+    "protean",
+    "sakvroth"
+  ],
+  "level": 8,
+  "name": "Jah-Tohl",
+  "perception": 18,
+  "publicNotes": "<p>The grotesque jah-tohl arrive in living starships to harvest the brains of intelligent creatures. These aberrations draw no nutrition from brains, instead storing them for analysis and as vessels for occult energies.</p>\n<p>A mind snatcher's form evokes that of a tailless scorpion, but the pulsing brain-filled blisters that glisten along its back make them impossible to mistake for oversized arachnids. Baleful eyes glare from the joints on their legs, and the unsettling, intrusive whisper-thoughts they telepathically broadcast into the minds of those they seek to feed on can be interpreted as threats or promises alike.</p>\n<p>Mind snatchers have little empathy for the denizens of any world they visit, despite the fact that certain cults venerate them and the Dominion they hail from. To mind snatchers, terrestrial creatures are simply resources for their investigations. They have little interest in gods or being worshipped, instead practicing a philosophy that considers the primordial forces of deep space as worthy of faith and fear. Jah-tohlian philosophers contemplate these mysterious forces from many perspectives at once, burning through numerous brains in the search of insight.</p>\n<hr />\n<p>The Dominion of the Black is a conglomeration of deep-space conquerors with a strong presence on Aucturn, the most remote planet in Golarion's solar system. The Dominion has secret outposts all over Golarion; most of its members on the planet are scouts, using their skills to steal brains and identities, gathering information without any consideration for the inhabitants of the worlds they infiltrate.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 13,
+    "will": 18
+  },
+  "senses": [
+    "darkvision",
+    "thoughtsense"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "arcana": 18,
+    "athletics": 16,
+    "occultism": 21,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 18,
+      "dc": 26,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 2,
+          "rank": 4
+        }
+      ],
+      "spells": [
+        {
+          "name": "Confusion",
+          "rank": 4
+        },
+        {
+          "name": "Vision of Death",
+          "rank": 4
+        },
+        {
+          "name": "Haste",
+          "rank": 3
+        },
+        {
+          "name": "Paralyze",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Humanoid Form",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Paranoia",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Enfeeble",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Mindlink",
+          "rank": 1
+        },
+        {
+          "name": "Sure Strike",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

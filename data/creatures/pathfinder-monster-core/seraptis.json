@@ -1,0 +1,281 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 6,
+    "dex": 7,
+    "int": 3,
+    "str": 8,
+    "wis": 4
+  },
+  "ac": 37,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The seraptis has at least one creature Grabbed or Restrained</p>\n<hr />\n<p><strong>Effect</strong> The seraptis's arm mouths gnaw on those creatures, dealing each of them @Damage[(2d6+8)[piercing]] damage with a @Check[fortitude|dc:37|basic] save. Creatures that fail the save also take @Damage[2d6[bleed]]{2d6 persistent bleed damage}.</p>",
+      "frequency": null,
+      "name": "Gnawing Arms",
+      "requirements": "The seraptis has at least one creature Grabbed or Restrained",
+      "traits": [
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The seraptis telepathically explains a plausible secret to a creature within 30 feet. That creature must succeed at a @Check[will|dc:37] save or be mentally cut off from those around them for 1 minute (or permanently on a critical failure). The affected creature treats no one as an ally and any speech they hear is warped, encouraging conflict, and negating any linguistic ability from creatures that aren't unholy.</p>\n<p>Regardless of the results of the saving throw, the creature is immune to Isolating Words for 24 hours.</p>",
+      "frequency": null,
+      "name": "Isolating Words",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The seraptis makes a Strike with up to four arms, each against a different target and using a claw or scimitar as appropriate. These attacks count toward the seraptis's multiple attack penalty, but the multiple attack penalty doesn't increase until after all the attacks. The seraptis can use Grab following this activity, separately attempting to Grapple each creature hit by a claw.</p>",
+      "frequency": null,
+      "name": "Bloody Dance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>Whenever a humanoid within the aura takes bleed damage, the blood flows through the air to the seraptis's mouths and the seraptis heals by the same amount.</p>",
+      "frequency": null,
+      "name": "Blood Healing",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "healing",
+        "vitality"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a creature within the seraptis's blood healing aura recovers from persistent damage, the seraptis takes @Damage[3d6[mental]] damage.</p>",
+      "frequency": null,
+      "name": "Recovery Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "7d6",
+          "type": "acid"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Caustic Blood",
+      "traits": [
+        "acid",
+        "magical",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "2d4+16",
+          "type": "slashing"
+        },
+        {
+          "formula": "2d6",
+          "type": "mental"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d6",
+          "type": "mental"
+        },
+        {
+          "formula": "2d6+16",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wounding Scimitar",
+      "traits": [
+        "forceful",
+        "magical",
+        "sweep",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "sPFQOP6asxC8Ga0O",
+  "gear": [
+    "Scimitar"
+  ],
+  "hp": 340,
+  "id": "pathfinder-monster-core/seraptis",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 15,
+  "name": "Seraptis",
+  "perception": 25,
+  "publicNotes": "<p>Four-armed seraptis demons are radical nihilists at heart, despising other creatures out of bitter entitlement and laughing hysterically when others die or suffer. They arise from souls that engaged in dedicated campaigns of misery, driving their victims toward despair and suicide. After their awakening as a seraptis, the hungry mouths carved into their arms devour others' suffering, bringing a lively hue to the demon's cold skin.</p>\n<p>These demons seek to drag mortals down to their level, luring pawns into deepseated resentment. Feeding their targets an unending stream of half-truths and propaganda, they often drive these mortals to vent their rage into unforgivable deeds against innocents. Although thrilled by the misery their mortal pawns inflict, the demons' true comfort is to harvest the souls of those pawns as more of their kind.</p>\n<hr />\n<p>When a sinful mortal soul is judged and sent on to the Outer Rifts, it can become a deadly fiend—a demon. Demons are living incarnations of sin—be they classic sins like wrath or gluttony, or more \"specialized\" depravities like an obsession with torture or the act of treason or treachery. Once formed, a demon's driving goals are twofold—the amassing of personal power, and the corruption of mortal souls to cause them to become tainted by sin. In this way demons ensure a never-ending supply of new demons to bolster their ever-growing ranks in the Outer Rifts.</p>\n<p>Demons are selfish and self-absorbed creatures, and most firmly believe that mortals only play at being more virtuous than fiends. They enjoy tempting mortals into damnation to both indulge their egos and swell their armies. Like many other fiends, one of the great rewards of this manipulation is fulfilling their hunger for souls. In their eyes, the primary use for these souls is to spawn new demons, who can serve as soldiers, slaves, pawns, or even currency for their more powerful masters.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 27,
+    "reflex": 28,
+    "will": 25
+  },
+  "senses": [
+    "darkvision",
+    "truesight"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 30,
+    "athletics": 31,
+    "deception": 29,
+    "religion": 27,
+    "stealth": 28
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 27,
+      "dc": 35,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dominate",
+          "rank": 6
+        },
+        {
+          "name": "Phantasmal Calamity",
+          "rank": 6
+        },
+        {
+          "name": "Truesight (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Wave of Despair",
+          "rank": 5
+        },
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Illusory Disguise (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "demon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 15
+    },
+    {
+      "type": "holy",
+      "value": 15
+    }
+  ]
+}

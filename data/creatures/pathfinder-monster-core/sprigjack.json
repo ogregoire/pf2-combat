@@ -1,0 +1,118 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 3,
+    "int": -1,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> The twigjack is in undergrowth</p>\n<hr />\n<p><strong>Effect</strong> The twigjack scrambles into the undergrowth and instantly teleports to a square of undergrowth within 60 feet. This movement doesn't trigger reactions.</p>",
+      "frequency": null,
+      "name": "Bramble Jump",
+      "requirements": "The twigjack is in undergrowth",
+      "traits": [
+        "plant",
+        "primal",
+        "teleportation",
+        "wood"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "reach-0",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Splinter",
+      "traits": [
+        "range-increment-30"
+      ]
+    }
+  ],
+  "foundryId": "TElwkEGZy1zgwoVg",
+  "gear": [],
+  "hp": 10,
+  "id": "pathfinder-monster-core/sprigjack",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": -1,
+  "name": "Sprigjack",
+  "perception": 5,
+  "publicNotes": "<p>Weaker twigjacks are often found in cultivated forests and even gardens. They seek to drive away interlopers, growing as their environment runs wild.</p>\n<hr />\n<p>Maladjusted forest denizens, twigjacks form from the cruel and prankish combination of fey and the very woods in which they reside. A twigjack's body is made up of prickly brambles woven with vines. Shaggy, mossy growth, not unlike hair, tops a twigjack's head. Its mouth is just a canyon of splintered and broken sticks bisecting its face. Leaves and sprigs of new growth randomly sprout from the creature's body. Many dense forests on Golarion have at least a handful of twigjacks living in the undergrowth.</p>\n<p>While truculent and violent, twigjacks care deeply for what they consider to be their forests. These creatures harass outsiders who delve deep into their wooded domains, forcing back even the most determined explorers, foresters, and travelers, especially when those intruders cut roads through the forest. However, they are not terribly territorial when it comes to other forest creatures. When sylvan creatures, especially fey, rally against an outside threat, twigjacks in the area eagerly arrive to fight, even if they were not invited.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 7,
+    "will": 3
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 5,
+    "nature": 3,
+    "stealth": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fey",
+    "plant",
+    "wood"
+  ],
+  "weaknesses": [
+    {
+      "type": "axe-vulnerability",
+      "value": 2
+    },
+    {
+      "type": "fire",
+      "value": 2
+    }
+  ]
+}

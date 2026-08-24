@@ -1,0 +1,126 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 2,
+    "int": -4,
+    "str": 6,
+    "wis": 2
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The smilodon makes a fangs Strike against a creature that's Grabbed or Restrained.</p>\n<p>If the attack hits, the creature is knocked Prone; if the creature is wearing armor with hardness 10 or lower, the armor is Broken.</p>\n<p>If this Strike breaks a creature's armor or damages a creature who is unarmored or wearing broken armor, the creature also takes @Damage[2d6[bleed]]. This Strike doesn't further damage armor that's already broken.</p>",
+      "frequency": null,
+      "name": "Pierce Armor",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The smilodon Strides and makes a Strike at the end of that movement. If the smilodon began this action Hidden, it remains hidden until after this ability's Strike.</p>",
+      "frequency": null,
+      "name": "Pounce",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The smilodon deals 1d6 extra precision damage to creatures that are Off-Guard.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d8+6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d10+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": []
+    }
+  ],
+  "foundryId": "6EgJNAJss45TQqpa",
+  "gear": [],
+  "hp": 110,
+  "id": "pathfinder-monster-core/smilodon",
+  "immunities": [],
+  "languages": [],
+  "level": 6,
+  "name": "Smilodon",
+  "perception": 14,
+  "publicNotes": "<p>Smilodons are large saber-toothed cats, apex predators that are significantly more muscular and broader than the other species of big cats. They often kill prey with a quick stab to the throat or other vulnerable spot. The smilodon's oversized fangs are particularly sought after as trophies.</p>\n<hr />\n<p>Few predators of the natural world can match the cat's talent for stalking and stealth. Large cats can be found in almost any environment, usually keeping their distance from settlements. When civilization encroaches onto a big cat's hunting grounds, the animals are often driven to making desperate attacks against unwary travelers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 12,
+    "will": 10
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 12,
+    "athletics": 16,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

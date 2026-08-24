@@ -1,0 +1,198 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 5,
+    "int": 2,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The assassin is targeted with a melee or ranged attack by an attacker they can see.</p>\n<hr />\n<p><strong>Effect</strong> The assassin gains a +2 circumstance bonus to AC against the triggering attack.</p>",
+      "frequency": null,
+      "name": "Nimble Dodge",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The assassin is targeted with a melee or ranged attack by an attacker they can see."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The assassin is wielding a piercing or slashing weapon and has a free hand</p><hr /><p><strong>Effect</strong> The assassin applies a poison to the weapon. That poison's DC is increased to 24 if it was lower.</p>",
+      "frequency": null,
+      "name": "Assassin's Poison",
+      "requirements": "The assassin is wielding a piercing or slashing weapon and has a free hand",
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The assassin Interacts to draw a weapon, then Strikes with that weapon.</p>",
+      "frequency": null,
+      "name": "Quick Draw",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The assassin isn't Off-Guard to creatures of 8th level or lower that are Hidden, Undetected, flanking or using Surprise Attack.</p>",
+      "frequency": null,
+      "name": "Deny Advantage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The assassin deals an extra 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>On the first round of combat, creatures that haven't acted yet are Off-Guard to the assassin.</p>",
+      "frequency": null,
+      "name": "Surprise Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The assassin can move their full speed when Sneaking.</p>",
+      "frequency": null,
+      "name": "Swift Sneak",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d6+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-2d10",
+        "magical",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d4+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d6+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "jOASgCgSyk3enLfP",
+  "gear": [
+    "Arrows",
+    "Composite Shortbow",
+    "Darkvision Elixir (Lesser)",
+    "Giant Centipede Venom",
+    "Invisibility Potion",
+    "Leather Armor",
+    "Lethargy Poison",
+    "Rapier"
+  ],
+  "hp": 130,
+  "id": "pathfinder-npc-core/assassin",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Assassin",
+  "perception": 16,
+  "publicNotes": "<p>Assassins commit murder, either for pay or due to their belief in a cause, such as a religion or a political movement. Many are members of assassins' guilds: organizations that accept contracts to kill in return for money, favors, or both.</p><hr /><p>In the underbelly of society, the lawless reign supreme.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 19,
+    "will": 14
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 13,
+    "deception": 12,
+    "diplomacy": 10,
+    "intimidation": 10,
+    "medicine": 14,
+    "society": 12,
+    "stealth": 19,
+    "thievery": 15
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

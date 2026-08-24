@@ -1,0 +1,164 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 5,
+    "dex": 4,
+    "int": -2,
+    "str": 7,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d6+7)[bludgeoning]] damage, @Check[fortitude|dc:27|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(2d12+7)[bludgeoning]] damage, Rupture 21</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The behir has a creature either Restrained or Grabbed in its jaws</p>\n<hr />\n<p><strong>Effect</strong> The behir moves the creature into its coils, freeing its jaws. The creature remains grabbed and takes @Damage[(1d6+6)[slashing]] damage. The behir's coils can hold as many creatures as will fit in its space.</p>",
+      "frequency": null,
+      "name": "Wrap in Coils",
+      "requirements": "The behir has a creature either Restrained or Grabbed in its jaws",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The behir breathes lightning that deals @Damage[9d6[electricity]|options:area-damage] damage in an @Template[line|distance:60] (@Check[reflex|dc:27|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "electricity",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The behir Strides up to its Speed, during which it can walk on air as if it were solid ground, ascending or descending at up to a 45-degree angle. It can make up to four claw Strikes at any point during this movement, each against a different target within reach, and it deals an extra @Damage[1d6[electricity]] damage with each Strike. These attacks count toward the behir's multiple attack penalty, but the multiple attack penalty doesn't increase until after the behir makes all of its attacks. If the behir moves half its Speed or less during a Claw Storm, that movement doesn't trigger reactions. The behir can't use Claw Storm if it has a creature wrapped in its coils. At the end of Claw Storm, it drifts downward up to 60 feet to the ground, landing softly and taking no damage from the fall. If it descends further than 60 feet, it takes damage normally from the remaining fall.</p>",
+      "frequency": null,
+      "name": "Claw Storm",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d6+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d12+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "6wpHJXze0RLxl780",
+  "gear": [],
+  "hp": 140,
+  "id": "pathfinder-bestiary-2/behir",
+  "immunities": [
+    "electricity"
+  ],
+  "languages": [
+    "draconic"
+  ],
+  "level": 8,
+  "name": "Behir",
+  "perception": 17,
+  "publicNotes": "<p>The behir is a massive, serpentine beast with never fewer than a dozen short legs, each ending in three hooked talons. A behir can live to 80 years, but most perish far younger to violence. Fully grown, a behir is 40 feet long and weighs 4,000 pounds.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 16,
+    "will": 15
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 16,
+    "athletics": 19,
+    "intimidation": 18,
+    "stealth": 18,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "electricity"
+  ],
+  "weaknesses": []
+}

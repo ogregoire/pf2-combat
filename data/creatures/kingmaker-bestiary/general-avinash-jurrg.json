@@ -1,0 +1,214 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 6,
+    "dex": 4,
+    "int": 4,
+    "str": 8,
+    "wis": 4
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> General Jurrg roars out a simple command during battle, using his supernatural power to force a foe within 30 feet to pursue a tactic in combat. The targeted creature must attempt a @Check[will|dc:34] save and is thereafter temporarily immune to new Battlefield Commands for 24 hours.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is Stunned 1 as their mind rails against the command.</p>\n<p><strong>Failure</strong> The creature must spend 1 action at the start of their turn to perform a basic action commanded by the general.</p>\n<p><strong>Critical Failure</strong> As failure, but the creature must spend all 3 actions to perform basic actions commanded by the general. At the end of their turn, they must save against Battlefield Command again to determine how the effect continues into their next turn, but each time this save is attempted the DC is reduced by 2.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Battlefield Command",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "incapacitation",
+        "linguistic",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The onidoshi takes on the appearance of an ogre. This doesn't change their Speed or Strike attack and damage.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 15 (deactivated by Acid or Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-100",
+        "unholy",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "1d12+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Greatsword",
+      "traits": [
+        "unholy",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "VSffsyt5RONB4k2U",
+  "gear": [
+    "Arrows",
+    "Breastplate",
+    "Composite Longbow",
+    "Greatsword"
+  ],
+  "hp": 225,
+  "id": "kingmaker-bestiary/general-avinash-jurrg",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 14,
+  "name": "General Avinash Jurrg",
+  "perception": 26,
+  "publicNotes": "<p>Onidoshi, or ogre mages, are oni with the material form of an ogre. Onidoshi's supernatural prowess and overwhelming intellect are enough to awe and cow entire families of rank-and-file ogres. Because of this, onidoshi are often found at the head of ogre war parties or orchestrating these violent campaigns from behind the scenes. It's rare for onidoshi to lead solitary existences, but those who do prefer to maraud the countryside or exploit villages and hoard the spoils for themselves.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 28,
+    "reflex": 24,
+    "will": 24
+  },
+  "senses": [
+    "darkvision",
+    "low-light-vision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 24,
+    "arcana": 26,
+    "athletics": 28,
+    "deception": 28,
+    "intimidation": 28,
+    "nature": 24,
+    "society": 24
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 28,
+      "dc": 36,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Cone of Cold",
+          "rank": 5
+        },
+        {
+          "name": "Gaseous Form",
+          "rank": 4
+        },
+        {
+          "name": "Chilling Darkness",
+          "rank": 3
+        },
+        {
+          "name": "Darkness (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Sleep",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "giant",
+    "humanoid",
+    "oni",
+    "unholy"
+  ],
+  "weaknesses": []
+}

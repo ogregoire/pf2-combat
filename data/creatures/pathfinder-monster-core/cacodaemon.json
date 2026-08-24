@@ -1,0 +1,184 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 3,
+    "int": -1,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<ul><li><p><strong>Lizard</strong></p><ul><li><strong>Speed</strong> 20 feet</li><li><strong>Melee</strong> jaws +8 (agile, finesse), <strong>Damage</strong> 1d8+1 piercing</li></ul></li><li><p><strong>Octopus</strong></p><ul><li><strong>Size</strong> Small</li><li><strong>Speed</strong> 20 feet, swim 30 feet</li><li><strong>Skills</strong> Athletics +6</li><li><strong>Melee</strong> tentacle +8 (finesse), <strong>Damage</strong> 1d8+1 bludgeoning plus Grab</li><li><strong>Melee</strong> beak +8 (agile, finesse), <strong>Damage</strong> 1d6 piercing plus 2 poison</li></ul></li><li><p><strong>Scorpion</strong></p><ul><li><strong>Size</strong> Small</li><li><strong>Speed</strong> 30 feet</li><li><strong>Skills</strong> Athletics +6</li><li><strong>Melee</strong> pincer +8 (agile, finesse), <strong>Damage</strong> 1d6+1 bludgeoning plus Grab</li><li><strong>Melee</strong> stinger +8 (agile, finesse), <strong>Damage</strong> 1d6+1 piercing plus 1d4 poison</li></ul></li></ul><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The cacodaemon ingests the soul of a sentient creature within 30 feet that died within the last minute. When they do, the cacodaemon grows a fist-sized soul gem (Hardness 2, HP 8) in their gut and can regurgitate it at any time as an Interact action. Destroying the gem frees the soul within but doesn't return the deceased creature to life. If a caster attempts to return to life a creature whose soul is trapped within a soul gem, they fail unless they succeed at a @Check[religion|dc:30] check. A success causes the soul gem to shatter so the creature is returned to life as normal for the spell.</p>\n<p>A fiend can Interact to ingest a soul gem it is holding, condemning the soul to the fiend's home plane. The fiend gains fast healing 5 for 1 minute.</p>\n<p>Effect: Soul Lock (Healing)</p>",
+      "frequency": null,
+      "name": "Soul Lock",
+      "requirements": null,
+      "traits": [
+        "death",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AtWillSpells]</p>",
+      "frequency": null,
+      "name": "At-Will Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The cacodaemon can telepathically communicate with the afflicted creature at any distance on the same plane.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:17]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier (1 day)</p>\n<p><strong>Stage 2</strong> Stupefied 1 (1 day)</p>\n<p><strong>Stage 3</strong> Stupefied 2 (1 day)</p>",
+      "frequency": null,
+      "name": "Cacodaemonia",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "disease",
+        "finesse",
+        "magical",
+        "reach-0",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "9Bl1ua3uLqodv47s",
+  "gear": [],
+  "hp": 22,
+  "id": "pathfinder-monster-core/cacodaemon",
+  "immunities": [
+    "death-effects"
+  ],
+  "languages": [
+    "daemonic"
+  ],
+  "level": 1,
+  "name": "Cacodaemon",
+  "perception": 6,
+  "publicNotes": "<p>These twisted embodiments of violence and spite are spawned from eddies of angry and warped souls amid Abaddon's mists. Cacodaemons constantly hunger for mortal souls and yearn to create suffering. As gnashing spheres of teeth, fins, and spines, they are the weakest of daemonkind, an amalgam of various petty forms of death without the strength that comes from focusing on a single cause of demise.</p>\n<hr />\n<p>Denizens of the bleak and terrible plane of Abaddon, daemons are shaped by and devoted to the destruction of life in all its forms. They seek the death of every mortal being by the most painful and horrible means possible, in service to the Apocalypse Riders. Each kind of daemon represents a different way to die, and their powers are nearly always aimed at spreading that particular form of death. Through the use of these powers, they seek to drag all existence down into a pit of hopelessness and despair, and to commit all souls to oblivion.</p>\n<p>While mortals who summon daemons usually seek to use the creatures' destructive and corrupting powers for their own ends, daemons always look for ways to spread fear, doubt, and despair wherever they go. Often, daemons disguise their plots as the workings of other fiends, knowing that such confusion compounds mortals' fear and keeps those mortals from bringing the most effective weapons. As a result, learned mortals sometimes refer to daemons as \"riders\" after their leaders or \"soul mongers\" after their largest industry.</p>\n<p>While many fiends seek to tempt mortals into lives of nihilistic evil to increase their own numbers and power on their native planes, daemons are further driven by a supernatural hunger for mortal souls and use a variety of methods—not least of which is the cacodaemons' soul gems—to entrap them. On Abaddon and in other forbidding places across the multiverse, souls are simultaneously a delicacy, a trade good, and a source of magical power, and the daemons are among the greatest gluttons, merchants, and abusers of this spiritual \"resource.\"</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 7,
+    "reflex": 8,
+    "will": 6
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 8,
+    "deception": 5,
+    "religion": 6,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Invisibility (At Will) (Self Only)",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "daemon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 3
+    }
+  ]
+}

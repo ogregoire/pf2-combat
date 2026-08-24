@@ -1,0 +1,139 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 7,
+    "dex": -5,
+    "int": -5,
+    "str": 7,
+    "wis": 0
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d8+7)[bludgeoning],1d6[acid]], @Check[fortitude|dc:26|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>@Check[reflex|dc:22], @Damage[(4d6)[acid]] damage, [[/act escape dc=22]], Rupture 15</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Engulf]</p>",
+      "frequency": null,
+      "name": "Engulf",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A weapon that hits the living tar is stuck to the ooze. Removing it requires a successful @Check[athletics|dc:23|options:action:force-open] check to Break Open. The living tar can have any number of objects or creatures stuck to it at a time.</p>\n<p>It can release a stuck object with an Interact action, and the adhesive dissolves 1 minute after the ooze dies, releasing all stuck objects and creatures.</p>",
+      "frequency": null,
+      "name": "Adhesive Mass",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A living tar can feel nearby motion through vibration and air movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "acid"
+        },
+        {
+          "formula": "2d8+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pseudopod",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "EWYXtfIQYhUbWK4R",
+  "gear": [],
+  "hp": 165,
+  "id": "pathfinder-monster-core/living-tar",
+  "immunities": [
+    "acid",
+    "bleed",
+    "bludgeoning",
+    "critical-hits",
+    "mental",
+    "precision",
+    "unconscious",
+    "visual"
+  ],
+  "languages": [],
+  "level": 7,
+  "name": "Living Tar",
+  "perception": 9,
+  "publicNotes": "<p>Most often found belowground, these oozes scour caves for objects to dissolve with their corrosive secretions. These sticky masses are often filled with bones, fossils, and discarded weaponry from adventurers.</p>\n<hr />\n<p>Slimes, molds, and other oozes can be found in dank dungeons and shadowed forests. While not necessarily evil, some grow to enormous sizes and have insatiable appetites.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 6,
+    "will": 11
+  },
+  "senses": [
+    "motion-sense"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 18
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "ooze"
+  ],
+  "weaknesses": []
+}

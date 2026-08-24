@@ -1,0 +1,144 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 1,
+    "int": 2,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p>A creature fails a Charisma-based skill check against the political upstart</p><hr /><p><strong>Effect</strong> The political upstart targets the creature with Fiery Rhetoric.</p>",
+      "frequency": null,
+      "name": "Retort",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The upstart rattles off talking points at an enemy within 30 feet. The target takes a –2 status penalty to Perception and Will saves for 1 minute.</p>\n<p>Effect: Fiery Rhetoric</p>",
+      "frequency": null,
+      "name": "Fiery Rhetoric",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The political upstart begins a rousing speech which they can Sustain up to 1 minute. Any creature within 30 feet that can hear the speech, must attempt a @Check[will|dc:17] save.</p>\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The creature is Fascinated with the upstart for 1 round.</p>\n<p><strong>Critical Failure</strong> The creature is fascinated with the upstart as long as the speech lasts.</p>",
+      "frequency": null,
+      "name": "Fascinating Speech",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+3 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For social encounters involving debate and legal logic, the political upstart is a 3rd-level challenge.</p>",
+      "frequency": null,
+      "name": "Rhetoric Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "HVUlGw83Hf4YmW0p",
+  "gear": [
+    "Long Coat (Functions as Leather Armor)",
+    "Political Pamphlets",
+    "Soapbox",
+    "Writing Set"
+  ],
+  "hp": 15,
+  "id": "pathfinder-npc-core/political-upstart",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Political Upstart",
+  "perception": 8,
+  "publicNotes": "<p>Fiery and heady, a political upstart actively pushes against the status quo.</p><hr /><p>These lone wolves have an aura of mystery, bravado, and swagger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 4,
+    "reflex": 7,
+    "will": 10
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 8,
+    "diplomacy": 10,
+    "performance": 10,
+    "society": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

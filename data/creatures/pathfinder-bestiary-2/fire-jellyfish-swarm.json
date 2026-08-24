@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 4,
+    "dex": 5,
+    "int": -5,
+    "str": -4,
+    "wis": 0
+  },
+  "ac": 13,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each enemy in the swarm's space takes @Damage[3d8[poison]] damage (@Check[reflex|dc:24|basic] save) and is exposed to fire jelly venom.</p>",
+      "frequency": null,
+      "name": "Burning Swarm",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Fire jellyfish swarms use Acrobatics to Swim.</p>",
+      "frequency": null,
+      "name": "Agile Swimmer",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:24]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> Clumsy 1 (1 round)</p>\n<p><strong>Stage 2</strong> Clumsy 2 (1 round)</p>\n<p><strong>Stage 3</strong> Clumsy 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Fire Jelly Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "7lL7APeHQgkVxU1B",
+  "gear": [],
+  "hp": 155,
+  "id": "pathfinder-bestiary-2/fire-jellyfish-swarm",
+  "immunities": [
+    "precision",
+    "swarm-mind"
+  ],
+  "languages": [],
+  "level": 6,
+  "name": "Fire Jellyfish Swarm",
+  "perception": 10,
+  "publicNotes": "<p>While individually one of these fist-sized jellyfish is merely a nuisance, in great numbers, fire jellyfish can form into dangerous swarms. Bobbing in the water, they create a cloud of stinging tentacles. They were named in part for their bright coloration, but those who are stung by fire jellyfish learn the larger reason for their name-the pain of their stings is comparable to being burned alive.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 9
+    },
+    {
+      "type": "piercing",
+      "value": 9
+    },
+    {
+      "type": "poison",
+      "value": 10
+    },
+    {
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 15,
+    "will": 10
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic",
+    "mindless",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 7
+    },
+    {
+      "type": "splash-damage",
+      "value": 7
+    }
+  ]
+}

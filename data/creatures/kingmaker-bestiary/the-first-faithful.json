@@ -1,0 +1,157 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 2,
+    "int": 1,
+    "str": 3,
+    "wis": 5
+  },
+  "ac": 34,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Worm jaws only.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Worm Jaws Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> only once</p>\n<hr />\n<p><strong>Effect</strong> The First Faithful stretches out his hands toward a single PC within 60 feet, focusing a swirling beam of phantasmal worms and pale light to strike that PC. This immediately ends the Curse Countdown and saves any other targets from its effects, but the targeted PC must immediately attempt a Will save to resist the curse's effects. The DC of this save is equal to 27 minus the Curse Countdown's current value.</p>",
+      "frequency": null,
+      "name": "Refocus Curse",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The First Faithful makes fists with both hands, pressing them to their temples so that their outward pointing thumbs extend to the left and right while they cry out in painful religious rapture. The hourglass-shaped scar on their forehead bulges briefly before a bloody worm is expelled from the center of the scar. This worm shoots through the air to target two creatures within 30 feet, who must then attempt a @Check[fortitude|dc:34] save. The First Faithful can't Release the Inmost Worm again for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> The worm lands on the target and causes agonizing pain before dropping to the floor and fading away. The target takes @Damage[3d6[mental]] damage.</p>\n<p><strong>Failure</strong> The worm lands on the target and burrows into their flesh, leaving no trace of a hole. The target seems to age rapidly for a moment, takes @Damage[6d6[mental]] damage, and is Stupefied 1 for 1 round before the pain fades and the target returns to its actual age.</p>\n<p><strong>Critical Failure</strong> As failure, but the target also takes @Damage[6d6[persistent,mental]] damage. The target remains stupefied 1 as long as the mental damage persists, during which they appear to be aging rapidly. Once the persistent damage ends, the target's appearance reverts to normal.</p>",
+      "frequency": null,
+      "name": "Release the Inmost Worm",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "magical",
+        "staff",
+        "two-hand-d8",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "2d8",
+          "type": "poison"
+        },
+        {
+          "formula": "3d8+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Worm Jaws",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "qS7JwIPqsjNKKALK",
+  "gear": [
+    "Cultist Robes",
+    "Staff of Necromancy (Major)"
+  ],
+  "hp": 240,
+  "id": "kingmaker-bestiary/the-first-faithful",
+  "immunities": [
+    "poison"
+  ],
+  "languages": [
+    "chthonian",
+    "common"
+  ],
+  "level": 13,
+  "name": "The First Faithful",
+  "perception": 24,
+  "publicNotes": "",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "acid",
+      "value": 15
+    },
+    {
+      "type": "physical",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 24,
+    "reflex": 20,
+    "will": 26
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "deception": 27,
+    "intimidation": 27,
+    "occultism": 23,
+    "religion": 28,
+    "society": 23
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fiend",
+    "human",
+    "humanoid",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 15
+    }
+  ]
+}

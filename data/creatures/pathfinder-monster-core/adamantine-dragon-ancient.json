@@ -1,0 +1,314 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 8,
+    "dex": 4,
+    "int": 4,
+    "str": 9,
+    "wis": 5
+  },
+  "ac": 41,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The dragon Grabs a creature</p>\n<hr />\n<p><strong>Effect</strong> The dragon uses Swallow Whole.</p>",
+      "frequency": null,
+      "name": "Fast Swallow",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The dragon Grabs a creature"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The dragon is critically hit with a weapon or unarmed attack;</p>\n<hr />\n<p><strong>Effect</strong> The dragon's tough scales ward off deadly attacks. The dragon attempts a @Check[flat|dc:17]. On a success, the triggering attack becomes a normal hit.</p>",
+      "frequency": null,
+      "name": "Resilient Form",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The dragon is critically hit with a weapon or unarmed attack;"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(3d12+14)[bludgeoning]], Rupture 35</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon belches a mass of boulders that deals @Damage[15d8[bludgeoning]|options:area-damage] damage in a @Template[cone|distance:40] (@Check[reflex|dc:40|basic|options:area-effect] save).</p>\n<p>They can't use Avalanche Breath again for [[/gmr 1d4 #Recharge use Avalanche Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Avalanche Breath",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon makes two claw Strikes and one tail Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> The dragon is burrowed</p>\n<hr />\n<p><strong>Effect</strong> The dragon Burrows, then Leaps out of the ground, landing at a point within 25 feet. The dragon makes a melee Strike against a creature within reach when they land. If the Strike is a critical hit, the target is knocked Prone.</p>",
+      "frequency": null,
+      "name": "Burrowing Pounce",
+      "requirements": "The dragon is burrowed",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Primal",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Once the adamantine dragon is reduced to fewer than half their Hit Points, their resistance is reduced by 10 and they gain a +10 circumstance bonus to their Speeds.</p>",
+      "frequency": null,
+      "name": "Abandon Armor",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon's unarmed melee Strikes are adamantine.</p>",
+      "frequency": null,
+      "name": "Adamantine Body",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon recharges their Avalanche Breath whenever they score a critical hit with a Strike.</p>",
+      "frequency": null,
+      "name": "Draconic Momentum",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet @Check[will|dc:37]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon can burrow through solid stone at a Speed of 20 feet. They can leave a tunnel if they desire, and they usually don't.</p>",
+      "frequency": null,
+      "name": "Rock Tunneler",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 120 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "formula": "3d8+18",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "formula": "3d12+18",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "3d8+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-150"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "3d10+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    }
+  ],
+  "foundryId": "KdUMMd6ol83JpP62",
+  "gear": [],
+  "hp": 300,
+  "id": "pathfinder-monster-core/adamantine-dragon-ancient",
+  "immunities": [
+    "paralyzed",
+    "petrified",
+    "sleep"
+  ],
+  "languages": [
+    "aklo",
+    "common",
+    "draconic",
+    "fey",
+    "petran",
+    "sakvroth"
+  ],
+  "level": 18,
+  "name": "Adamantine Dragon (Ancient)",
+  "perception": 30,
+  "publicNotes": "<p>The powerful adamantine dragons are one of several dragons known as skymetal dragons. The innate magic that flows through these dragons causes them to draw particular metals to their bodies like magnets or, in some cases, naturally grow these skymetals on their bodies. Adamantine dragons begin their lives with tough scales that are naturally replaced with thicker and even tougher adamantine plating as they grow older. Adamantine dragons are typically steadfast and loyal. Once they commit to a certain purpose, changing their minds is nigh impossible.</p>\n<hr />\n<p>Dragons come in myriad forms, with many having magical abilities or connections to magic. Some dragons draw greater power from magic than others, allowing them to manifest abilities or alter their physiques with prolonged exposure to magic. These dragons become more powerful as they age and strengthen their connections with their magical origins. Scholars debate the classification of these dragons, with some preferring the name magical dragons and others using traditional dragons due to their connection to specific magical traditions. Regardless of their names, these dragons share a number of characteristics: their ability to tap into magical energies, intensified might and cunning as they grow older, and an inclination to hoard vast amounts of treasure and wealth.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 32,
+    "reflex": 26,
+    "will": 29
+  },
+  "senses": [
+    "darkvision",
+    "scent",
+    "tremorsense"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 28,
+    "athletics": 36,
+    "intimidation": 32,
+    "nature": 29,
+    "survival": 31
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "burrow",
+      "value": 50
+    },
+    {
+      "type": "fly",
+      "value": 180
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dragon",
+    "primal"
+  ],
+  "weaknesses": []
+}

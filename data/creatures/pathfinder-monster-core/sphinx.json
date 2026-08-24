@@ -1,0 +1,181 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 1,
+    "int": 5,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The sphinx Strides and makes a Strike at the end of that movement. If the sphinx began this action Hidden, they remain hidden until after the attack.</p>",
+      "frequency": null,
+      "name": "Pounce",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The sphinx rears back on their hind legs and makes two claw Strikes at the same target, using the same attack bonus as their highest melee attack. If both attacks deal damage, the target takes extra damage equal to one claw Strike.</p>",
+      "frequency": null,
+      "name": "Claw Rake",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Sphinxes are naturally curious, and their love of puzzles and mysteries leads them to gather information on a broad range of topics. Sphinxes have Bardic Lore, a special Lore skill that can be used only to Recall Knowledge, but on any topic.</p>",
+      "frequency": null,
+      "name": "Bardic Lore",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Once per week, a Sphinx can create a magical symbol as the Rune Trap ritual. The sphinx usually shapes it to take the form of a written riddle and sets the password to the answer.</p>\n<p>A creature that gives the wrong answer or tries to pass without answering must succeed at a @Check[will|dc:26] save or be affected by one of the following spells, chosen by the sphinx when creating the symbol: Synaptic Pulse (5th), Charm (4th), Fear (4th), Phantom Pain (4th), Sleep (4th). The sphinx learns the identity of any creature that answers the riddle and tends to be friendly to them if they answered correctly.</p>",
+      "frequency": null,
+      "name": "Riddler's Rune",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d6+9",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "rdgs2gxTWxkyanD6",
+  "gear": [],
+  "hp": 135,
+  "id": "pathfinder-monster-core/sphinx",
+  "immunities": [],
+  "languages": [
+    "common",
+    "draconic",
+    "sphinx"
+  ],
+  "level": 8,
+  "name": "Sphinx",
+  "perception": 18,
+  "publicNotes": "<p>Sphinxes are mystical beings with the body of a lion, the wings of a great bird, and the upper torso and head of a human. They are often maligned in legends as nothing more than monsters, and though they are quick to anger and are capable of exacting deadly retribution for perceived slights, they are also very intelligent.</p>\n<p>Sphinxes are often associated with desert regions, but they can dwell in more moderate climates as well. They form small groups consisting of a single, extended family that hunts and works together to protect and teach their young. As they mature, sphinxes develop a wanderlust, a drive to gather hidden lore and solve the world's greatest riddles-the trait that is perhaps most often identified with their kind.</p>\n<p>While sometimes bound into service as guardians for powerful spellcasters, lone sphinxes may also be encountered on journeys of discovery and as purveyors of esoteric lore. If treated with the proper respect-and fed well-a sphinx can demonstrate a willingness to exchange information. Their favorite currency is, of course, riddles and secrets. One who can trade knowledge for knowledge has a much better chance of succeeding while bargaining with a sphinx. However, a sphinx's insatiable thirst for new riddles as well their extensive collection of secrets accumulated over hundreds of years of life-makes it difficult to offer them something they don't already know. Those who attempt to trade petty insight and stale riddles may invoke a sphinx's ire and will not live long enough to regret it.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 14,
+    "will": 19
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "arcana": 17,
+    "athletics": 18,
+    "deception": 16,
+    "diplomacy": 16,
+    "intimidation": 18,
+    "occultism": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 27,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Locate",
+          "rank": 3
+        },
+        {
+          "name": "Cleanse Affliction",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "See the Unseen (Constant)",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,146 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 4,
+    "int": -2,
+    "str": 0,
+    "wis": 0
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The fire mephit breathes flames in a @Template[cone|distance:15] that deals @Damage[2d4[fire]|options:area-damage] damage and @Damage[1d4[persistent,fire]] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save).</p>\n<p>The fire mephit can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (While Touching Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The fire mephit ignores the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "fire"
+        },
+        {
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "k9fM0vufbdsDPQul",
+  "gear": [],
+  "hp": 16,
+  "id": "pathfinder-bestiary/fire-mephit",
+  "immunities": [
+    "bleed",
+    "fire",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "pyric"
+  ],
+  "level": 1,
+  "name": "Fire Mephit",
+  "perception": 3,
+  "publicNotes": "<p>Fire mephits are conniving and quick to anger. They aren't evil, but they delight in inflicting pain, and their love of burning things pushes them the closest to this alignment of all mephits. They have bright-orange skin, and wisps of flame flicker along their wings as they flap through the air. The rivalry between fire and water mephits is notorious, and these creatures loathe working together for any amount of time.</p>\n<hr />\n<p>Mephits-sometimes known as elemental scamps-are little bipedal critters with bat-like wings who serve stronger elementals on the Elemental Planes or neophyte spellcasters who summon them to the Material Plane. All mephits have an inkling of magical power as well as a breath weapon.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 3,
+    "reflex": 9,
+    "will": 7
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "deception": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 15,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "elemental",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold",
+      "value": 3
+    }
+  ]
+}

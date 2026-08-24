@@ -1,0 +1,247 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 4,
+    "dex": 5,
+    "int": 3,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Nymph queens can transform between their original form, which looks much like a typical nymph of their kind, and any Small or Medium humanoid form, typically choosing a more humanoid-looking version of their natural form.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>If a target already affected by nymph's beauty fails its save, the image of the queen sears into the creature's mind, effectively blinding the creature until its vision is restored with sound body or a similar effect.</p>\n<p>The naiad queen can Dismiss the effect.</p>\n<hr />\n<p>The nymph queen focuses her beauty upon a target, who must attempt a save against her nymph's beauty aura (@Check[will|dc:23] save). If the creature fails and was already affected by the aura, it takes a greater effect described in the nymph queen's entry.</p>\n<p>A nymph queen can Focus Beauty on a given creature only once per turn.</p>",
+      "frequency": null,
+      "name": "Focus Beauty",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental",
+        "primal",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>For every 10 minutes a naiad spends soaking in any body of water in her domain, she regains @Damage[30[healing]]{30 Hit Points}.</p>",
+      "frequency": null,
+      "name": "Water Healing",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "primal",
+        "vitality"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The nymph queen inspires a single intelligent creature by giving that creature a token of her favor, typically a lock of her hair, though it can be some other significant object as well. As long as the creature carries her token and remains in good standing with her, the creature gains a +1 status bonus to all Crafting checks, Performance checks, and Will saves.</p>\n<p>If the nymph grants her token to a bard, and she's the bard's muse, the queen chooses one additional benefit granted by her token: a +1 status bonus to all Lore checks, a +2 status bonus to Performance checks when determining the effects of compositions, a +4 status bonus to untrained skill checks, or a +2 status bonus to Will saves against fey.</p>\n<p>Effect: Nymph Queen's Inspiration</p>",
+      "frequency": null,
+      "name": "Inspiration",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The naiad can ask questions of, receive answers from, and use the Diplomacy skill with animals.</p>",
+      "frequency": null,
+      "name": "Animal Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<hr />\n<p>A creature that fails its save is Stunned 1 and becomes stunned 1 each time it starts its turn within the aura for the next 24 hours, even if it can't see the naiad queen.</p>\n<hr />\n<p>Creatures that start their turn in the aura must succeed at a @Check[will|dc:23] save or suffer an effect described in the nymph queen's entry.</p>",
+      "frequency": null,
+      "name": "Nymph's Beauty",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "mental",
+        "primal",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The queen is tied to a body of water or area with a great deal of water features.</p>\n<hr />\n<p>A nymph queen is intrinsically tied to a specific region. As long as the queen is healthy, the environment is exceptionally resilient, allowing the nymph queen to automatically attempt to counteract any spell that would harm the environment (such as the Blight ritual), using her spell DC with a counteract rank equal to the highest-rank druid spell she can cast.</p>\n<p>When the nymph queen becomes physically or psychologically unhealthy, however, her warded region eventually becomes twisted or unhealthy as well. In that case, restoring the nymph queen swiftly heals the entire region.</p>",
+      "frequency": null,
+      "name": "Tied to the Land",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d8+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Aqueous Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "water"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "4d6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Water Orb",
+      "traits": [
+        "magical",
+        "range-60",
+        "water"
+      ]
+    }
+  ],
+  "foundryId": "H8lGFF3PKUv2yRL2",
+  "gear": [],
+  "hp": 100,
+  "id": "pathfinder-monster-core/naiad-queen",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven",
+    "fey",
+    "thalassic"
+  ],
+  "level": 7,
+  "name": "Naiad Queen",
+  "perception": 18,
+  "publicNotes": "<p>Naiad queens rule over pristine wildernesses centered around untouched lakes, massive rivers, or other collective bodies of fresh water. Bards' songs and artists' paintings of these powerful nymphs tend to depict naiad queens in their slightly more humanoid forms, which they don when they make the rare journey into civilized lands to garner allies, gather news, or gauge threats.</p>\n<p>Most naiad queens treat those who respect their domains with kindness, but they're fierce—and quick to eliminate foes. Their blinding beauty and breadth of offensive spells make naiad queens fierce opponents if forced into a fight.</p>\n<hr />\n<p>Nymphs are a family of fey that take the form of beautiful humanoids with elven features and have a deep association with the natural world. The most common of their kind are the dryads, which are spirits that embody great trees, but many other kinds of nymphs exist, including naiads, who watch over bodies of water. All nymphs are guardians of some element of nature, typically a specific tree or pond, or even-in the case of nymph queens-whole forests or massive bodies of water</p>\n<h2>Nymph Queens</h2>\n<p>Nymph queens are powerful nymphs who rule over entire regions of untouched wilderness, not just single trees or ponds. Every variety of nymph can have a queen. Naiad queens are among the most prominent, and more often interact with nearby mortals. Thus, some scholars refer to naiad queens as simply \"nymphs.\"</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 18,
+    "will": 17
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 16,
+    "athletics": 9,
+    "diplomacy": 20,
+    "medicine": 15,
+    "nature": 15,
+    "performance": 20,
+    "stealth": 14,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Create Water",
+          "rank": 1
+        },
+        {
+          "name": "Hydraulic Push",
+          "rank": 1
+        },
+        {
+          "name": "Tidal Surge",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "fey",
+    "nymph",
+    "water"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 10
+    }
+  ]
+}

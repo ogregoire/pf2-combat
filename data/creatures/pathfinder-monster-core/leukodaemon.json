@@ -1,0 +1,246 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 5,
+    "int": 3,
+    "str": 6,
+    "wis": 5
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The leukodaemon coaxes a disease into full bloom. They choose a target in their aura of pestilence that's currently affected by a disease. That creature must attempt a Fortitude save against the disease as if the interval for the disease's current stage had passed.</p>",
+      "frequency": null,
+      "name": "Quicken Pestilence",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The leukodaemon exhales a cloud of corpse-bloated, biting black flies in a @Template[cone|distance:20]. Creatures within the cone take @Damage[4d8[piercing]] damage (@Check[reflex|dc:28|basic] save). A creature that fails the save becomes Sickened 1 (or Sickened 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Plague Breath",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The leukodaemon can telepathically communicate with the afflicted creature at any distance on the same plane</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:28]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier (1 day)</p>\n<p><strong>Stage 2</strong> Drained 1 (1 day)</p>\n<p><strong>Stage 3</strong> Drained 2 (1 day)</p>\n<p><strong>Stage 4</strong> drained 2 (1 day)</p>\n<p><strong>Stage 5</strong> Drained 3 (1 week)</p>\n<p><strong>Stage 6</strong> dead</p>",
+      "frequency": null,
+      "name": "Daemonic Pestilence",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>Leukodaemons radiate infection. All creatures within 30 feet of a leukodaemon take a –2 status penalty to saves against disease. If a creature within range contracts or progresses a disease, all adjacent creatures are exposed to the same disease, at the same DC.</p>\n<p>Effect: Infectious Aura</p>",
+      "frequency": null,
+      "name": "Infectious Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A leukodaemon senses any creature with a disease, and they know the type and current stage of all diseases carried by any creature within range.</p>",
+      "frequency": null,
+      "name": "Plaguesense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d8+9",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "disease",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d8+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "disease",
+        "magical",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "unholy",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d12+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "disease",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "bb5Z4z4EHb5LbCLK",
+  "gear": [
+    "Arrows",
+    "Composite Longbow"
+  ],
+  "hp": 155,
+  "id": "pathfinder-monster-core/leukodaemon",
+  "immunities": [
+    "death-effects",
+    "disease"
+  ],
+  "languages": [
+    "daemonic"
+  ],
+  "level": 9,
+  "name": "Leukodaemon",
+  "perception": 20,
+  "publicNotes": "<p>These skull-headed, vulture-winged daemons are harbingers of pestilence and servants of their patron Apocalypse Rider, Apollyon. Manifestations of evil souls who perished from disease in life, leukodaemons work tirelessly alongside one another to spread disease across all the worlds of the multiverse.</p>\n<hr />\n<p>Denizens of the bleak and terrible plane of Abaddon, daemons are shaped by and devoted to the destruction of life in all its forms. They seek the death of every mortal being by the most painful and horrible means possible, in service to the Apocalypse Riders. Each kind of daemon represents a different way to die, and their powers are nearly always aimed at spreading that particular form of death. Through the use of these powers, they seek to drag all existence down into a pit of hopelessness and despair, and to commit all souls to oblivion.</p>\n<p>While mortals who summon daemons usually seek to use the creatures' destructive and corrupting powers for their own ends, daemons always look for ways to spread fear, doubt, and despair wherever they go. Often, daemons disguise their plots as the workings of other fiends, knowing that such confusion compounds mortals' fear and keeps those mortals from bringing the most effective weapons. As a result, learned mortals sometimes refer to daemons as \"riders\" after their leaders or \"soul mongers\" after their largest industry.</p>\n<p>While many fiends seek to tempt mortals into lives of nihilistic evil to increase their own numbers and power on their native planes, daemons are further driven by a supernatural hunger for mortal souls and use a variety of methods—not least of which is the cacodaemons' soul gems—to entrap them. On Abaddon and in other forbidding places across the multiverse, souls are simultaneously a delicacy, a trade good, and a source of magical power, and the daemons are among the greatest gluttons, merchants, and abusers of this spiritual \"resource.\"</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 21,
+    "will": 19
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 18,
+    "intimidation": 18,
+    "medicine": 20,
+    "religion": 20,
+    "stealth": 18,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 18,
+      "dc": 26,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Translocate",
+          "rank": 4
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "daemon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

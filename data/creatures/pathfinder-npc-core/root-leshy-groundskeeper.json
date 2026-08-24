@@ -1,0 +1,151 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 0,
+    "int": -1,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The root leshy groundskeeper transforms into a Small root vegetable. This ability otherwise uses the effects of One with Plants.</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The root leshy groundskeeper roots themself into the ground, reducing their Speed to 0 and granting them a +1 circumstance bonus to AC and 2 temporary Hit Points until the start of their next turn.</p>",
+      "frequency": null,
+      "name": "Root in Place",
+      "requirements": null,
+      "traits": [
+        "manipulate",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the root leshy groundskeeper dies, a burst of primal energy explodes from their body, restoring @Damage[1d4[healing,vitality]|shortLabel] Hit Points to each plant creature in a @Template[type:emanation|distance:30]. This area immediately fills with roots and vines, becoming difficult terrain. If the terrain is not a viable environment for these plants, they wither after 24 hours.</p>",
+      "frequency": null,
+      "name": "Verdant Burst",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "primal",
+        "vitality"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shovel",
+      "traits": [
+        "fatal-d10"
+      ]
+    }
+  ],
+  "foundryId": "vRMKs6dHHWzQ1k62",
+  "gear": [
+    "Shovel (Functions as Pick)"
+  ],
+  "hp": 9,
+  "id": "pathfinder-npc-core/root-leshy-groundskeeper",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": -1,
+  "name": "Root Leshy Groundskeeper",
+  "perception": 5,
+  "publicNotes": "<p>Hardy root leshies have the strength and stamina to dig furrows for planting seeds over long hours. Though they're humble even among leshies, they can be extremely stubborn even against powerful adversaries.</p><hr /><p>Nature spirits inhabit bodies made of plants or fungi, blooming from primal magic to become the small people called leshies. They come in a truly immense number of diverse shapes and sizes, more so than most peoples of Golarion. This variety of forms means a leshy could have a place in nearly any type of setting for any type of story.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 2,
+    "will": 5
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 5,
+    "nature": 5,
+    "stealth": 4,
+    "survival": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 0,
+      "dc": 13,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Speak with Plants (root vegetables only)",
+          "rank": 3
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "leshy",
+    "plant"
+  ],
+  "weaknesses": []
+}

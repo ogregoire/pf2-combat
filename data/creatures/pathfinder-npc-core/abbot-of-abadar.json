@@ -1,0 +1,148 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": -2,
+    "dex": 1,
+    "int": 2,
+    "str": 1,
+    "wis": 4
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p><hr /><p><strong>Effect</strong> The abbot beseeches their deity to protect someone in their charge, attempting a @Check[religion|dc:25] check. If it succeeds, a divine Sanctuary spell affects one of the abbot's allies within 60 feet. The Will DC is 17.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Divine Protection",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving religious debates or conflicts of doctrine, the abbot is a 9th-level challenge.</p>",
+      "frequency": null,
+      "name": "Religious Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The abbot uses lessons from scripture to foil others trying to deceive them. They can use their Religion modifier to [[/act sense-motive skill=religion]] instead of Perception, and their Religion DC instead of their Perception DC against attempts to Lie to them.</p>",
+      "frequency": null,
+      "name": "True Faith",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d8+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Griffon Cane",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "oAKCSQ9z2bLTO9sr",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Griffon Cane (Functions as a Staff)",
+    "Religious Symbol of Abadar"
+  ],
+  "hp": 15,
+  "id": "pathfinder-npc-core/abbot-of-abadar",
+  "immunities": [],
+  "languages": [
+    "common",
+    "empyrean",
+    "utopian"
+  ],
+  "level": 1,
+  "name": "Abbot of Abadar",
+  "perception": 7,
+  "publicNotes": "<p>Abbots are often the heads of religious institutions less focused on spellcasting, such as orphanages, religious schools, or charities.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 3,
+    "reflex": 4,
+    "will": 11
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 6,
+    "diplomacy": 8,
+    "religion": 21,
+    "society": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

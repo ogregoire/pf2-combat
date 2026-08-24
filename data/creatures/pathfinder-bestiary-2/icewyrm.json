@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 5,
+    "dex": 7,
+    "int": -1,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The icewyrm breathes a @Template[line|distance:60] of freezing shards of razor-sharp ice, dealing @Damage[3d12[cold],3d12[piercing]|options:area-damage]{3d12 cold damage and 3d12 piercing damage} to every creature in the line (@Check[reflex|dc:29|basic|options:area-effect] save).</p>\n<p>The icewyrm can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the icewyrm dies, it explodes, dealing @Damage[8d6[cold]] damage to each creature in a @Template[emanation|distance:10] (@Check[reflex|dc:27|basic] save).</p>",
+      "frequency": null,
+      "name": "Explosion",
+      "requirements": null,
+      "traits": [
+        "cold"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The Icewyrm can Burrow through ice or snow with a Speed of 20 feet. It moves at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Ice Burrow",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "cold"
+        },
+        {
+          "formula": "1d6+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Ice Shard",
+      "traits": [
+        "range-increment-60"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d12+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "cold"
+        },
+        {
+          "formula": "2d6+13",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "N3XfcwDn1Nu7milG",
+  "gear": [],
+  "hp": 185,
+  "id": "pathfinder-bestiary-2/icewyrm",
+  "immunities": [
+    "bleed",
+    "cold",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "thalassic"
+  ],
+  "level": 10,
+  "name": "Icewyrm",
+  "perception": 19,
+  "publicNotes": "<p>Resembling wingless, serpentine dragons formed of jagged ice and shot through with veins of nearly frozen water, these elementals dwell within icebergs and enjoy striking out at passing ships or creatures. They're especially common in frigid stretches of ocean in the Plane of Water, where icebergs cluster together into enormous islands of ice.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 20,
+    "reflex": 21,
+    "will": 17
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 21
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "ice-burrow",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "cold",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

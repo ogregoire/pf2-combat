@@ -1,0 +1,140 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 1,
+    "int": 0,
+    "str": 6,
+    "wis": -1
+  },
+  "ac": 19,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The deluded mob uses their fists, wooden planks, and anything else they can pick up to attack each enemy in a @Template[type:emanation|distance:5] with fervor, if not coordination (@Check[reflex|dc:18|basic|options:area-effect] save). The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[1d8[piercing]|options:area-damage] or @Damage[1d8[bludgeoning]|options:area-damage]{bludgeoning damage}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(1d8+6)[piercing]|options:area-damage,action:cost:2] or @Damage[(1d8+6)[bludgeoning]|options:area-damage,action:cost:2]{bludgeoning damage}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(2d8+6)[piercing]|options:area-damage,action:cost:3] or @Damage[(2d8+6)[bludgeoning]|options:area-damage,action:cost:3]{bludgeoning damage}</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Flail Desperately",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The deluded mob hurls detritus in a @Template[type:burst|distance:10] within 30 feet that deals @Damage[2d8[bludgeoning]|options:area-damage] damage with a @Check[reflex|dc:18|basic|options:area-effect] save. When the mob is reduced to 2 or fewer segments, this area decreases to a @Template[type:burst|distance:5].</p>",
+      "frequency": null,
+      "name": "Throw Detritus",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The deluded mob is severely disconnected from reality. Diplomacy checks to Make an Impression or otherwise sway their worldview automatically fail.</p>",
+      "frequency": null,
+      "name": "Irrational",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When they feel cornered, the mob lashes out more recklessly. While the deluded mob is flanked, Flail Desperately and Throw Detritus are DC 17 and deal an additional 2 damage per action spent on the activity.</p>",
+      "frequency": null,
+      "name": "Surrounded",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 50 (3 segments), 25 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>As they lose members, the deluded mob takes the opposition against them as proof that they're right, bolstering their resolve. The deluded mob gains a +2 circumstance bonus to Will saves at 50 or fewer Hit Points, or a +4 circumstance bonus at 25 HP or fewer.</p>",
+      "frequency": null,
+      "name": "Victim Complex",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "ct7EwIepldAqv572",
+  "gear": [],
+  "hp": 75,
+  "id": "pathfinder-npc-core/deluded-mob",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Deluded Mob",
+  "perception": 7,
+  "publicNotes": "<p>Pulled astray by lies, bribes, and propaganda, these desperate people are convinced to fight on their behalf of utter villains. Conspiracists, propagandists, masterminds, despots, and more take advantage of these mobs.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 9,
+    "will": 7
+  },
+  "senses": [],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 12,
+    "intimidation": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid",
+    "troop"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 5
+    },
+    {
+      "type": "splash-damage",
+      "value": 5
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 3,
+    "int": -3,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The esobok Strides and then makes a Strike. If it began this action Hidden, it remains hidden until after the Strike.</p>",
+      "frequency": null,
+      "name": "Pounce",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A creature is Grabbed by the esobok's jaws</p>\n<hr />\n<p><strong>Effect</strong> The esobok releases the target from the Grab but wrenches its spirit free as it does so. The creature must attempt a @Check[will|dc:20] save. Creatures without souls (such as most constructs) and creatures whose bodies and souls are one (such as most celestials, fiends, and monitors) that roll a failure or critical failure on the save get a success instead.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The target is Stunned 1.</p>\n<p><strong>Failure</strong> The esobok wrenches the target's soul from its body into its jaws. mindless undead creatures of level 2 or lower are destroyed, other undead creatures are Stunned for 1 round, and all other creatures are Paralyzed. At the end of each of its turns, a creature paralyzed by this effect can attempt a new save to end the effect. The paralysis ends automatically if the esobok attempts a jaws Strike or speaks.</p>\n<p><strong>Critical Failure</strong> As failure, but as long as a creature is stunned or paralyzed, it is also Stupefied 2.</p>",
+      "frequency": null,
+      "name": "Wrench Spirit",
+      "requirements": "A creature is Grabbed by the esobok's jaws",
+      "traits": [
+        "attack",
+        "divine",
+        "incapacitation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "frequency": null,
+      "name": "Lifesense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An esobok's Strikes affect incorporeal creatures with the effects of a <em>Ghost Touch</em> property rune and deal @Damage[1d6[void]] damage to living creatures and @Damage[1d6[vitality]] damage to undead.</p>",
+      "frequency": null,
+      "name": "Spirit Touch",
+      "requirements": null,
+      "traits": [
+        "incorporeal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d10+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "yvmX4J21XE1wqDar",
+  "gear": [],
+  "hp": 55,
+  "id": "pathfinder-bestiary-2/esobok",
+  "immunities": [
+    "death-effects",
+    "disease"
+  ],
+  "languages": [
+    "chthonian",
+    "diabolic",
+    "empyrean",
+    "requian"
+  ],
+  "level": 3,
+  "name": "Esobok",
+  "perception": 12,
+  "publicNotes": "<p>Esoboks are brute hunters and pugnacious sentinels that serve as the guard dogs of the Boneyard. These squat, powerful quadrupeds have a frill of dark feathers around their distinctive heads which resemble a crocodile skull. Esoboks rarely bother with those who are truly dead, allowing the dead of the Boneyard to go about their business while remaining watchful for danger. Though cunning when sniffing out threats to the Boneyard or to their psychopomp handlers, they're among the least intelligent of the psychopomps and rarely speak except to utter growling threats. The wise listen when an esobok makes a threat, as it won't do so twice.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "poison",
+      "value": 5
+    },
+    {
+      "type": "void",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 8,
+    "will": 8
+  },
+  "senses": [
+    "darkvision",
+    "lifesense",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 10,
+    "intimidation": 9,
+    "religion": 4,
+    "stealth": 8,
+    "survival": 10
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 17,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Invisibility (Self only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "monitor",
+    "psychopomp"
+  ],
+  "weaknesses": []
+}

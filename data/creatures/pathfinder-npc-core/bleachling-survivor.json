@@ -1,0 +1,165 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 1,
+    "int": 1,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy moves into an adjacent space</p><hr /><p><strong>Effect</strong> The bleachling survivor Steps up to 10 feet. They must end this movement in a space that is not adjacent to an enemy.</p>",
+      "frequency": null,
+      "name": "Flinch Back",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An enemy moves into an adjacent space"
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The bleachling survivor deals an extra 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the bleachling survivor rolls a critical failure on a check with the emotion trait, they get a failure instead.</p>",
+      "frequency": null,
+      "name": "Unflappable",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Longbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    }
+  ],
+  "foundryId": "KVJYvqx9xEXuG4cP",
+  "gear": [
+    "Arrows",
+    "Dagger",
+    "Longbow"
+  ],
+  "hp": 34,
+  "id": "pathfinder-npc-core/bleachling-survivor",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "gnomish"
+  ],
+  "level": 2,
+  "name": "Bleachling Survivor",
+  "perception": 8,
+  "publicNotes": "<p>It is almost unheard of for gnomes to survive the horrendous sickness known as the Bleaching, but those few who do are permanently altered. Having lived through the worst disease known to their kind, bleachling survivors often emerge jaded and reckless, traveling to seek out mind-bending experiences and heady thrills that will awaken something in them again. Though their experiences may toughen them, they are not unfriendly. Most try to help others they meet during their travels who might not be as unshakable.</p><hr /><p>Because their ancestors came from the First World, gnomes are intrinsically linked to the realm of the fey and crave the mystical and unpredictable. They seek to create daring works of art, voyage to new places, and have experiences they've never had before. Otherwise, they could fall victim to the terrible gnomish illness known as the Bleaching, which not only drains them of their color but of their spirits as well.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 8,
+    "will": 12
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "intimidation": 7,
+    "medicine": 8,
+    "occultism": 7,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "gnome",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

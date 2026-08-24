@@ -1,0 +1,224 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 4,
+    "int": -2,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round;</p>\n<p><strong>Requirement</strong> the hill giant butcher is wielding two melee weapons, each in a different hand</p>\n<p><strong>Effect</strong> The hill giant butcher uses both of its axes against a single target. It makes two Strikes against its menaced prey, one with each of the required weapons. If both hit the same menaced prey, combine their damage for the purpose of its resistances and weaknesses. In addition, if both Strikes hit, the menaced prey is Off-Guard until the start of the hill giant butcher's next turn. Apply the hill giant butcher's multiple attack penalty normally.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Twin Butchery",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hill giant butcher designates up to two creatures they can see and hear, or one they're Tracking, as their prey. The hill giant butcher gains a +2 circumstance bonus to Perception checks to Seek the prey and to Intimidation checks to Demoralize the prey. This effect lasts until the hill giant butcher uses Menace Prey again.</p>",
+      "frequency": null,
+      "name": "Menace Prey",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hill giant makes a single greatclub Strike and compares the attack roll result to the ACs of up to two foes within its reach.</p>\n<p>This counts as two attacks for the hill giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The hill giant butcher deals an extra 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "2d8+16",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Battle Axe",
+      "traits": [
+        "magical",
+        "reach-10",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "2d6+16",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "sweep",
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "2d6+16",
+          "type": "slashing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "sweep",
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "formula": "3d4+16",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "bF0FHdZMWl1OuRae",
+  "gear": [
+    "Battle Axe",
+    "Hatchet",
+    "Hide Armor",
+    "Rock",
+    "Sack for Holding Rocks"
+  ],
+  "hp": 260,
+  "id": "kingmaker-bestiary/hill-giant-butcher",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 14,
+  "name": "Hill Giant Butcher",
+  "perception": 25,
+  "publicNotes": "<p>Selfish and crude, these rough-skinned raiders are bullies and ultimately cowards. Quick-tempered and fond of violence, a hill giant gladly raids and pillages the defenseless but is quick to flee from those who are bigger, stronger, or better organized than they are. A hill giant is never above shoving or tricking one of their own kind to slow down their opponent or get the best loot.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They are divided into a number of subtypes.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 28,
+    "reflex": 23,
+    "will": 26
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 28,
+    "intimidation": 24,
+    "survival": 25
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 23,
+      "dc": 31,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Barkskin",
+          "rank": 2
+        },
+        {
+          "name": "Entangle",
+          "rank": 2
+        },
+        {
+          "name": "Longstrider",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "earth",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

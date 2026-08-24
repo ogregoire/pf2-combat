@@ -1,0 +1,142 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 7,
+    "dex": 5,
+    "int": -5,
+    "str": 8,
+    "wis": 3
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Requirements</strong> Initiative has not yet been rolled.</p>\n<p><strong>Trigger</strong> A creature touches the goliath spider's web while the spider is on it.</p>\n<hr />\n<p><strong>Effect</strong> The goliath spider automatically notices the creature and Strides, Climbs, or Descends on a Web before it rolls initiative.</p>",
+      "frequency": null,
+      "name": "Spring Upon Prey",
+      "requirements": "Initiative has not yet been rolled.",
+      "traits": [
+        "attack"
+      ],
+      "trigger": "A creature touches the goliath spider's web while the spider is on it."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The goliath spider moves straight down up to 120 feet, suspended by a web line. It can hang from the web or drop off. The distance it Descends on a Web doesn't count for falling damage.</p>\n<p>A creature that successfully Strikes the web (AC 20, Hardness 5, 20 HP) severs it, causing the spider to fall.</p>",
+      "frequency": null,
+      "name": "Descend on a Web",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:30]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[3d6[poison]] damage and Slowed 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[3d8[poison]] damage and Slowed 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[3d10[poison]] damage and Paralyzed for [[/br 2d4 #hours]]{2d4 hours}</p>",
+      "frequency": null,
+      "name": "Goliath Spider Venom",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The goliath spider has imprecise tremorsense to detect the vibrations of creatures touching its web.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Web Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by the spider's web Strike is Restrained and tethered to the spider, preventing it from moving farther away from the spider.</p>\n<p>The spider can have one creature tethered at a time. The DC to Escape or Force Open the web is 30. The tether can be severed with a Strike (AC 20, Hardness 5, HP 20), but this doesn't free the restrained creature.</p>",
+      "frequency": null,
+      "name": "Web Tether",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d12+12",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [],
+      "kind": "ranged",
+      "name": "Web",
+      "traits": [
+        "range-increment-60"
+      ]
+    }
+  ],
+  "foundryId": "eP4a0FAbus3tNTbc",
+  "gear": [],
+  "hp": 220,
+  "id": "pathfinder-monster-core/goliath-spider",
+  "immunities": [],
+  "languages": [],
+  "level": 11,
+  "name": "Goliath Spider",
+  "perception": 22,
+  "publicNotes": "<p>Goliath spiders dwell in the deepest jungles, where they build webs as big as temples and feast on prey as large as hippopotami.</p>\n<hr />\n<p>Few everyday vermin inspire as much dread as the infamous spider.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 25,
+    "reflex": 21,
+    "will": 17
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 18,
+    "athletics": 23,
+    "stealth": 22
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 45
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

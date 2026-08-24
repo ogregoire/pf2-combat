@@ -1,0 +1,219 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 4,
+    "int": 1,
+    "str": -1,
+    "wis": 2
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> The quasit restores @Damage[1d6[healing]] HP to itself.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Abyssal Healing",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "healing"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<ul>\n<li><strong>Bat</strong>\n<ul>\n<li><strong>Senses</strong> Echolocation 40 feet</li>\n<li><strong>Speed</strong> 15 feet, fly 30 feet</li>\n<li><strong>Melee</strong> fangs +7, <strong>Damage</strong> 1d4-1 piercing damage</li>\n<li><strong>Melee</strong> wing +7 (agile), <strong>Damage</strong> 1d4-1 bludgeoning damage</li>\n</ul>\n</li>\n<li><strong>Centipede</strong>\n<ul>\n<li><strong>Speed</strong> 10 feet, climb 10 feet</li>\n<li><strong>Melee</strong> mandibles +7 (poison), <strong>Damage</strong> 1 piercing damage + 1d4 poison damage</li>\n</ul>\n</li>\n<li><strong>Toad</strong>\n<ul>\n<li><strong>Senses</strong> Scent (Imprecise) 30 feet</li>\n<li><strong>Speed</strong> 5 feet</li>\n<li><strong>Melee</strong> jaws +7, <strong>Damage</strong> 1 bludgeoning damage</li>\n</ul>\n</li>\n<li><strong>Wolf</strong>\n<ul>\n<li><strong>Size</strong> Medium</li>\n<li><strong>Senses</strong> Scent (Imprecise) 30 feet</li>\n<li><strong>Speed</strong> 40 feet, climb 10 feet</li>\n<li><strong>Melee</strong> jaws +7, <strong>Damage</strong> 1d10-1 piercing damage plus Knockdown</li>\n</ul>\n</li>\n</ul>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "frequency": null,
+      "name": "Knockdown (Wolf Form)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When a quasit offers Aid for an Arcana or Religion check, it gets the critical success result on any success and gets the critical failure result on any failure.</p>",
+      "frequency": null,
+      "name": "Abyssal Knowledge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:17]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]] damage (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[1d6[poison]] damage and Slowed 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Quasit Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy (Touch)",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The quasit's link to a mortal soul gave it birth, but it presents a vulnerability. Once per round, a creature can present an object related to something virtuous or good in the life of the quasit's creator (such as a beloved daughter's doll) as an Interact action to automatically deal the quasit @Damage[2d6[mental]] damage.</p>",
+      "frequency": null,
+      "name": "Virtue Aversion",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "spirit"
+        },
+        {
+          "formula": "1d6-1",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "poison",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "9jF564DF6ylEovna",
+  "gear": [],
+  "hp": 25,
+  "id": "pathfinder-bestiary/quasit",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common"
+  ],
+  "level": 1,
+  "name": "Quasit",
+  "perception": 7,
+  "publicNotes": "<p>Unlike other demons, quasits are formed when a mortal spellcaster sheds a portion of their own sinful soul to create a familiar or companion. When these quasits outlive their creators, they become free willed and seek methods of returning to the Abyss, a task that requires pledging servitude to more powerful demons, so many quasits instead opt to remain on the Material Plane to promote evil and hope for chance and luck to someday provide them with a method of reaching the Abyss on their own.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 4,
+    "reflex": 10,
+    "will": 7
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 7,
+    "arcana": 4,
+    "deception": 7,
+    "intimidation": 5,
+    "religion": 5,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "fly",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Invisibility (At Will) (Self Only)",
+          "rank": 2
+        },
+        {
+          "name": "Detect Alignment (At Will) (Good Only)",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "demon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 3
+    },
+    {
+      "type": "holy",
+      "value": 3
+    }
+  ]
+}

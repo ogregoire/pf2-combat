@@ -1,0 +1,221 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 5,
+    "int": 0,
+    "str": 5,
+    "wis": 4
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> Once per turn</p>\n<hr />\n<p><strong>Effect</strong> The disciple makes two unarmed Strikes. If both hit the same creature, combine their damages for the purposes of resistances and weaknesses. The disciple's multiple attack penalty applies normally to these Strikes.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "turn"
+      },
+      "name": "Flurry of Blows",
+      "requirements": null,
+      "traits": [
+        "flourish"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The disciple takes the stance of the Lurker at the Threshold, full of menace and danger. The disciple can make lurker claw unarmed attacks. These deal 1d12 slashing damage; are in the brawling group; and have the parry, forceful, and unarmed traits. While in this stance, if the disciple succeeds or critically succeeds at a check to Demoralize a target, the target must succeed at a @Check[will|dc:34] saving throw or be Stupefied 1 (Stupefied 3 on a critical failure) for 1 minute.</p>",
+      "frequency": null,
+      "name": "Lurker Stance",
+      "requirements": null,
+      "traits": [
+        "stance"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The disciple is in Lurker Stance</p>\n<hr />\n<p><strong>Effect</strong> The disciple gains a +2 circumstance bonus to Intimidation checks and their Demoralize attempts don't take a penalty for not speaking the target's language and don't cause the target to become temporarily immune. These effects last until the end of the disciple's next turn.</p>",
+      "frequency": null,
+      "name": "Ominous Mien",
+      "requirements": "The disciple is in Lurker Stance",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the disciple rolls a success on a Reflex save, they get a critical success instead.</p>",
+      "frequency": null,
+      "name": "Evasion",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The disciple gains a +4 circumstance bonus to AC against reactions triggered by their movement.</p>",
+      "frequency": null,
+      "name": "Guarded Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The Thresholder Disciple exists outside of time; they don't age, don't need food or drink to survive, and can't be Quickened or Slowed unless they choose to be.</p>",
+      "frequency": null,
+      "name": "Outside of Time",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The disciple's Strikes force the creature hit to endure a deluge of unfamiliar memories from a combination of past lives and parallel existences, causing an additional 3d6 mental damage with a successful hit.</p>",
+      "frequency": null,
+      "name": "Temporal Strikes",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The removal of the eyes symbolized a Thresholder's abandonment of all they had seen before, and with the ritual's completion they gain something greater than mere vision: they gain the Unseen Sight. This is a precise sense that mimics darkvision yet functions even if the eye sockets themselves are covered. More importantly, the unseen sight allows a Thresholder to see the truth of the world, granting them the ability to see things as they actually are as if they were under the effects of Truesight, provided they are located within a region under the influence of Yog- Sothoth.</p>",
+      "frequency": null,
+      "name": "Unseen Sight",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "2d6+11",
+          "type": "bludgeoning"
+        },
+        {
+          "formula": "3d6",
+          "type": "mental"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "2d12+11",
+          "type": "slashing"
+        },
+        {
+          "formula": "3d6",
+          "type": "mental"
+        }
+      ],
+      "kind": "melee",
+      "name": "Lurker Claw",
+      "traits": [
+        "forceful",
+        "magical",
+        "parry",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "1d4+11",
+          "type": "piercing"
+        },
+        {
+          "formula": "3d6",
+          "type": "mental"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Shuriken",
+      "traits": [
+        "agile",
+        "reload-0",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "z1Hk6z6RU4sF9aJU",
+  "gear": [
+    "Elixir of Life (Major)",
+    "Handwraps of Mighty Blows",
+    "Religious Symbol of Yog-Sothoth",
+    "Robes",
+    "Shuriken"
+  ],
+  "hp": 255,
+  "id": "kingmaker-bestiary/thresholder-disciple",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "hallit"
+  ],
+  "level": 14,
+  "name": "Thresholder Disciple",
+  "perception": 26,
+  "publicNotes": "",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 28,
+    "will": 25
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 27,
+    "athletics": 28,
+    "intimidation": 26,
+    "religion": 25,
+    "stealth": 25
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,170 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 4,
+    "dex": 4,
+    "int": 8,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 39,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> A creature attacks or uses a spell or ability that would affect the eldritch emeritus</p><hr /><p><strong>Effect</strong> A masterpiece of complex spellwork instantly takes shape, casting Fire Shield, Mislead, and Mountain Resilience on the eldritch emeritus, each as an 8th-rank arcane spell.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Third Contingent Sequencer",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature attacks or uses a spell or ability that would affect the eldritch emeritus"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature casts a spell the eldritch emeritus has prepared.</p><hr /><p><strong>Effect</strong> The emeritus expends a prepared spell to counter the triggering creature's casting of that same spell. The emeritus loses their spell slot as if they had cast the triggering spell. The emeritus then attempts to counteract the triggering spell.</p>",
+      "frequency": null,
+      "name": "Counterspell",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature casts a spell the eldritch emeritus has prepared."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Requirements</strong> The eldritch emeritus has seen a creature Cast a Spell of 7th rank or lower during the previous round, that spell takes between one and three actions to cast, and that spell is on the arcane spell list</p><hr /><p><strong>Effect</strong> The eldritch emeritus mastered that spell 30 years ago, and is happy to show how a real master does it. The emeritus Casts the same Spell but heightened to 8th rank. Didactic Arcanism uses the same number of actions as the original spell took to cast.</p>",
+      "frequency": null,
+      "name": "Didactic Arcanism",
+      "requirements": "The eldritch emeritus has seen a creature Cast a Spell of 7th rank or lower during the previous round, that spell takes between one and three actions to cast, and that spell is on the arcane spell list",
+      "traits": [
+        "arcane",
+        "magical"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If a reaction would disrupt the eldritch emeritus's spellcasting action, the eldritch emeritus attempts a @Check[flat|dc:15]. On a success, the action isn't disrupted</p>",
+      "frequency": null,
+      "name": "Steady Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "6d6+10",
+          "type": "fire"
+        }
+      ],
+      "kind": "melee",
+      "name": "Arcane Beam",
+      "traits": [
+        "arcane",
+        "fire",
+        "magical"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "1d4+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "3d4+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "magical",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "SlabO2qbzHYS3kA6",
+  "gear": [
+    "+2 Greater Striking Staff of Fire (Major)",
+    "Somewhat Disheveled Accolade Robe",
+    "Spellbook"
+  ],
+  "hp": 290,
+  "id": "pathfinder-npc-core/eldritch-emeritus",
+  "immunities": [],
+  "languages": [
+    "common",
+    "draconic"
+  ],
+  "level": 17,
+  "name": "Eldritch Emeritus",
+  "perception": 32,
+  "publicNotes": "<p>To outsiders, the eldritch emeritus looks something like a joke—a befuddled old scholar, their mind so stuffed with obscure theorems and abstract metaphysics that concerns about mere daily reality fade away. Those who know them, however, know that the eldritch emeritus wrote more treatises of spells than most wizards have had hot dinners, and if sufficiently annoyed, is entirely capable of providing a brief, thorough, and fatal demonstration.</p><hr /><p>True power comes from knowledge—the power to shape the growth of kingdoms by mere whispers, stay three steps ahead of adversaries, or even know which flora is best for creating untraceable poisons.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 27,
+    "reflex": 27,
+    "will": 32
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 36,
+    "intimidate": 30,
+    "intimidation": 30,
+    "nature": 33,
+    "occultism": 33,
+    "religion": 33
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

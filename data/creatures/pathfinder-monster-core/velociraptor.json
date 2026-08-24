@@ -1,0 +1,111 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 3,
+    "int": -4,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The velociraptor Strides up to 10 feet, ignoring difficult terrain as it leaps over obstacles. It then makes a Strike with its talons, gaining a +1 circumstance bonus to its attack roll.</p>",
+      "frequency": null,
+      "name": "Leaping Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The velociraptor deals 1d4 extra damage to any creature that's within reach of at least two of the velociraptor's allies.</p>",
+      "frequency": null,
+      "name": "Pack Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Talon",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "ZW8ARUrNdc3zewLM",
+  "gear": [],
+  "hp": 20,
+  "id": "pathfinder-monster-core/velociraptor",
+  "immunities": [],
+  "languages": [],
+  "level": 1,
+  "name": "Velociraptor",
+  "perception": 6,
+  "publicNotes": "<p>A smaller cousin of the deinonychus, the velociraptor is a swift, cunning pack hunter. It has no fear of larger creatures, and a group of these dinosaurs won't hesitate to attack prey the size of a horse. They have manes of feathery plumage that extend down their backs and along the sides of their arms, legs, and tail, while their underbellies and flanks are scaly. These feathers allow them to blend into their natural terrain with ease, but when startled, a velociraptor can puff and frill this plumage to expose brighter colors normally covered by the longer feathers. A typical velociraptor is 1-1/2 feet tall, 7 feet long, and weighs 35 pounds.</p>\n<hr />\n<p>Remnants from the world's primeval era, these enormous reptilian animals still exist in large numbers in remote wildernesses or underground in magical Darklands caverns. Lizardfolk, orcs, giants, and other humanoids who live near dinosaurs use the animals as mounts, guards, or hunting beasts. Occasionally, rich nobles will collect dinosaurs to display them in menageries, which almost inevitably leads to cast-offs being nursed back to health by druids and other champions of nature. When dinosaurs establish themselves in regions outside their normal habitats, it's often the result of a large collection being released.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 7,
+    "will": 4
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 5,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "dinosaur"
+  ],
+  "weaknesses": []
+}

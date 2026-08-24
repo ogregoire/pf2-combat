@@ -1,0 +1,199 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 8,
+    "dex": 4,
+    "int": -3,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 30 feet casts a spell with the light trait or uses an ability with the light trait</p>\n<hr />\n<p><strong>Effect</strong> The quai dau to adjusts its position to reflect the light off their scales in a blinding display. All creatures in a @Template[emanation|distance:30] must succeed at a @Check[fortitude|dc:33] saving throw or become Blinded for 1 round.</p>",
+      "frequency": null,
+      "name": "Reflective Scales",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within 30 feet casts a spell with the light trait or uses an ability with the light trait"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The quai dau to is within 10 feet of a body of water that's at least 10 feet deep and their water sac is empty</p>\n<hr />\n<p><strong>Effect</strong> The quai dau to sucks water through their trunk to fill their water sac, lowering the level in the body of water by 10 feet. All creatures in the water within a @Template[emanation|distance:30] are Off-Guard until the start of the quai dau to's next turn.</p>",
+      "frequency": null,
+      "name": "Drain Water",
+      "requirements": "The quai dau to is within 10 feet of a body of water that's at least 10 feet deep and their water sac is empty",
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The quai dau to inflates their body. They become Gargantuan, gain a fly Speed of 30 feet until the end of their next turn, and then Fly. They deflate if they fall Unconscious or Dismiss this effect.</p>",
+      "frequency": null,
+      "name": "Inflate",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The quai dau to's water sac is full</p>\n<hr />\n<p><strong>Effect</strong> The quai dau to empties their water sac to breathe out mist in a @Template[emanation|distance:10]. All creatures within the mist become Concealed, and all creatures outside the mist become concealed to creatures within it. The mist dissipates after 1 round.</p>",
+      "frequency": null,
+      "name": "Mist Breath",
+      "requirements": "The quai dau to's water sac is full",
+      "traits": [
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The quai dau to's water sac is full</p>\n<hr />\n<p><strong>Effect</strong> The quai dau to empties its water sac to blast water from its trunk, dealing @Damage[9d10[bludgeoning]] damage to all creatures in a @Template[line|distance:90], with a @Check[reflex|dc:33|basic] save. A creature that fails is pushed 10 feet (or 20 feet on a critical failure).</p>",
+      "frequency": null,
+      "name": "Spout Water",
+      "requirements": "The quai dau to's water sac is full",
+      "traits": [
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>60 feet.</p>\n<p>This aura functions as a @Check[will|dc:32] frightful presence aura, but a creature doesn't attempt its save until it sees the quai dau to.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Sight",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The quai dau to ignores the Concealed condition from mist and fog.</p>",
+      "frequency": null,
+      "name": "Mist Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "3d8+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "3d12+14",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "3d8+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "Ao8hNYvOeo2HbJ5p",
+  "gear": [],
+  "hp": 300,
+  "id": "pathfinder-monster-core/quai-dau-to",
+  "immunities": [
+    "blinded",
+    "dazzled"
+  ],
+  "languages": [],
+  "level": 13,
+  "name": "Quai Dau To",
+  "perception": 25,
+  "publicNotes": "<p>This big-headed beast is covered in glittering scales; its eyes are like large copper pots, and its mouth is full of sharp teeth. Despite its fish-like appearance, a quai dau to spends most of its time on land hunting along riversides or lakes. It uses its trunk to drain the nearby water before using it with deadly skill. A quai dau to can expel the water with a force strong enough to knock a knight off a horse, or gently enough to surround themself in a veil of mist.</p>\n<p>A quai dau to is extremely sensitive to sound. If they hear too much ruckus near their hunting grounds, they violently attack. Their silent movement allows them to sneak up on such distracted prey despite their massive size. Researchers have discovered, after much study, that quai dau tos don't have ears in the traditional sense. They have an organ in the upper part of their skulls that inflates to hold the water they use in their attacks. This organ is extremely sensitive to vibrations in the air and is used as a pseudo ear.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 26,
+    "reflex": 19,
+    "will": 21
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 27,
+    "stealth": 25,
+    "survival": 24
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": [
+    {
+      "type": "sonic",
+      "value": 15
+    }
+  ]
+}

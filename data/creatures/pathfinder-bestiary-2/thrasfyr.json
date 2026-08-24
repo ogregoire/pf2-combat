@@ -1,0 +1,271 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 9,
+    "dex": 5,
+    "int": -3,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 40,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedKnockdown]</p>",
+      "frequency": null,
+      "name": "Improved Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The thrasfyr designates one creature as its rider by touching the rider with its claw. The thrasfyr and rider can communicate with each other telepathically at any range on the same plane and are aware of each other's present state, direction from each other, distance from each other, and any conditions affecting either.</p>",
+      "frequency": null,
+      "name": "Rider's Bond",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The thrasfyr's serpent tail breathes a blast of flame in a @Template[cone|distance:50], dealing @Damage[10d12[fire]|options:area-damage] damage (@Check[reflex|dc:40|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The thrasfyr thrashes its chains in all directions. Each creature in a @Template[emanation|distance:15] takes @Damage[18d6[bludgeoning]] damage (@Check[reflex|dc:38|basic] save); creatures that fail are Immobilized until the start of the thrasfyr's next turn.</p>\n<p>The thrasfyr can't use Tangling Chains or make chain Strikes for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Tangling Chains",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The thrasfyr makes a jaws Strike, a horn Strike, and two claw Strikes, each against a different target. Each attack counts toward the thrasfyr's multiple attack penalty, but the penalty doesn't increase until after all the attacks.</p>",
+      "frequency": null,
+      "name": "Whirling Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The thrasfyr always treats the plane it is located on as its home plane.</p>",
+      "frequency": null,
+      "name": "Planar Acclimation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 25 (Deactivated by Acid or Cold)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "3d10+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Chain",
+      "traits": [
+        "magical",
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "3d8+15",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "3d12+15",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Horn",
+      "traits": [
+        "fatal-d12",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "3d6",
+          "type": "fire"
+        },
+        {
+          "formula": "3d6+15",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "luPebMfNmwtOZcWR",
+  "gear": [],
+  "hp": 350,
+  "id": "pathfinder-bestiary-2/thrasfyr",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [
+    "aklo",
+    "fey"
+  ],
+  "level": 17,
+  "name": "Thrasfyr",
+  "perception": 31,
+  "publicNotes": "<p>As bizarre in appearance as they are ferocious, thrasfyrs resemble six-limbed bears with bull-like horns, draconic scales, and a fire-breathing serpent for a tail. Every thrasfyr is wrapped in animated chains psychically linked to the creature's mind.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 35,
+    "reflex": 28,
+    "will": 27
+  },
+  "senses": [
+    "darkvision",
+    "see-invisibility"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 34,
+    "intimidation": 31
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "climb",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 27,
+      "dc": 37,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Teleport (Self and rider only)",
+          "rank": 9
+        },
+        {
+          "name": "Air Walk (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "See Invisibility",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "beast",
+    "fire",
+    "tane"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold",
+      "value": 15
+    },
+    {
+      "type": "cold-iron",
+      "value": 15
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": 2,
+    "int": -4,
+    "str": 7,
+    "wis": 2
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(2d10+7)[bludgeoning]], Rupture 16</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:25]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage and Clumsy 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d6[poison]] damage, Clumsy 2, and Off-Guard (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[2d6[poison]] damage, Clumsy 3, and Off-Guard (1 round)</p>",
+      "frequency": null,
+      "name": "Megalania Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d10+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "VHXsmfnOBRBXB6TL",
+  "gear": [],
+  "hp": 125,
+  "id": "pathfinder-bestiary-2/megalania",
+  "immunities": [],
+  "languages": [],
+  "level": 7,
+  "name": "Megalania",
+  "perception": 15,
+  "publicNotes": "<p>Megalanias, like their smaller cousins the giant monitor lizards, strike fast and use their powerful bite to grip their prey. They prefer to swallow their prey whole rather than risk others getting a bite of a hard-won meal.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 15,
+    "will": 13
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 18,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

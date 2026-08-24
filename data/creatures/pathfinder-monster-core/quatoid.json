@@ -1,0 +1,158 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 0,
+    "dex": 2,
+    "int": 4,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d12+6)[bludgeoning]], @Check[fortitude|dc:25|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AtWillSpells]</p>",
+      "frequency": null,
+      "name": "At-Will Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>The aura sheds dim light. Creatures in the emanation gain a +2 circumstance bonus to saving throws against emotion effects. The quatoid can activate or deactivate its calming bioluminescence as a single action, which has the concentrate trait.</p>\n<p>Effect: Calming Bioluminescence</p>",
+      "frequency": null,
+      "name": "Calming Bioluminescence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d12+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "dfshMY9yEEXOUoMo",
+  "gear": [],
+  "hp": 120,
+  "id": "pathfinder-monster-core/quatoid",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "thalassic"
+  ],
+  "level": 7,
+  "name": "Quatoid",
+  "perception": 18,
+  "publicNotes": "<p>Quatoids are peculiar elementals native to the Plane of Water that resemble four-tentacled octopuses with eerily humanoid faces on their mantles. Mysterious even to other elementals, quatoids nevertheless respond to mortal summons. They assist these mortals in combat but seem to prefer offering calm advice, looking for alternate solutions even in the midst of bloody conflict.</p>\n<p>With the return of their elemental lord from her long imprisonment, quatoids are slowly becoming more active on the Plane of Water. However, much of their activity still seems to be centered on the mortal realm.</p>\n<hr />\n<p>Water elementals can be very destructive, but often not intentionally so; just as water can bring life to mortals in need, its waves can pound shores and rains can flood cities. Water elementals are similarly difficult to predict.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 5
+    },
+    {
+      "type": "fire",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 15,
+    "will": 18
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 15,
+    "diplomacy": 12,
+    "occultism": 17,
+    "society": 17,
+    "stealth": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 27,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Hydraulic Push (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "aquatic",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

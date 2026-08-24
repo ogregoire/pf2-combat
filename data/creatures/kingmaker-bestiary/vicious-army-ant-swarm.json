@@ -1,0 +1,119 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 7,
+    "dex": 5,
+    "int": -5,
+    "str": -2,
+    "wis": 5
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature leaves the swarm's space</p>\n<hr />\n<p><strong>Effect</strong> The swarm takes [[/r {1d6}]]{1d6 damage} as ants cling to the creature and continue biting, dealing @Damage[7d6[persistent,piercing]] damage. High winds or immersion in water reduces the DC of the flat check to end this persistent damage to 5. Any area damage dealt to the creature destroys these clinging ants.</p>",
+      "frequency": null,
+      "name": "Cling",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature leaves the swarm's space"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each enemy in the swarm's space takes @Damage[7d6[piercing]] damage (@Check[fortitude|dc:31|basic] save). A creature that fails its save against Swarming Bites becomes Clumsy 1 for 1 round. If the creature attempts a concentrate or manipulate action while affected, it must succeed at a @Check[flat|dc:5] check or the action is lost; roll the check after spending the action, but before any effects are applied.</p>",
+      "frequency": null,
+      "name": "Swarming Bites",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "MUuXMpUGEnqmElgT",
+  "gear": [],
+  "hp": 155,
+  "id": "kingmaker-bestiary/vicious-army-ant-swarm",
+  "immunities": [
+    "precision",
+    "swarm-mind"
+  ],
+  "languages": [],
+  "level": 12,
+  "name": "Vicious Army Ant Swarm",
+  "perception": 23,
+  "publicNotes": "<p>An army ant swarm is a terrifying carpet of stinging insects that devours all in its path.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 8
+    },
+    {
+      "type": "piercing",
+      "value": 15
+    },
+    {
+      "type": "slashing",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 25,
+    "reflex": 23,
+    "will": 19
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 16
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 15
+    },
+    {
+      "type": "splash-damage",
+      "value": 15
+    }
+  ]
+}

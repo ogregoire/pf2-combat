@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 1,
+    "int": 3,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p>As Reactive Strike, but if it was triggered by a creature casting an arcane spell, the target must succeed at a @Check[flat|dc:11] or the spell is disrupted. If the Strike was a critical hit, the spell is disrupted automatically.</p>",
+      "frequency": null,
+      "name": "Spellbreaking Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The hobgoblin spellbreaker attempts a melee Strike against a creature under the effects of a beneficial arcane spell. If the Strike hits and deals damage, the hobgoblin spellbreaker can attempt to counteract a single arcane spell or arcane magical effect on the target (counteract rank 2, [[/r 1d20+10 #Counteract]]{counteract modifier +10}). If it fails, the hobgoblin spellbreaker can't attempt to counteract the same effect for 1 hour.</p>",
+      "frequency": null,
+      "name": "Shatter Spell",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The hobgoblin spellbreaker can detect the source of any arcane magic within range as an imprecise sense.</p>",
+      "frequency": null,
+      "name": "Arcane Magic Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Breaching Pike",
+      "traits": [
+        "razing",
+        "reach"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d8+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "O0n4NLOuY3ZkEKbF",
+  "gear": [
+    "Bolts",
+    "Breaching Pike",
+    "Crossbow",
+    "Scale Mail",
+    "Shortsword"
+  ],
+  "hp": 50,
+  "id": "pathfinder-npc-core/hobgoblin-spellbreaker",
+  "immunities": [],
+  "languages": [
+    "common",
+    "goblin"
+  ],
+  "level": 3,
+  "name": "Hobgoblin Spellbreaker",
+  "perception": 9,
+  "publicNotes": "<p>Largely due to an ancestral grudge against all things elven, many hobgoblins have an inherent distrust for magic, particularly the \"elf magic\" of the arcane tradition. Most hobgoblin armies maintain a contingent of special \"spellbreaker\" forces trained to assassinate high-value spellcasting targets prior to military engagement or quickly identify and terminate enemy battle mages.</p><hr /><p>Hobgoblins are respected across Golarion for their unmatched expertise in the art of war. The recent foundation of the hobgoblin nation of Oprak and its unprecedented acts of diplomacy, including non-aggression pacts with the neighboring nations of Nidal and Nirmathas, has given some hope that a lasting peace might finally be established; however, there remains no shortage of unaffiliated hobgoblin raiders and pillagers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 6,
+    "will": 9
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 9,
+    "arcana": 10,
+    "athletics": 10,
+    "intimidation": 9,
+    "stealth": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "hobgoblin",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

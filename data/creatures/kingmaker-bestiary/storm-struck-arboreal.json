@@ -1,0 +1,159 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 6,
+    "dex": 1,
+    "int": 0,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 37,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A storm-struck arboreal takes 15 additional Damage from axes.</p>",
+      "frequency": null,
+      "name": "Axe Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever the storm-struck arboreal would take electricity damage or is targeted with an electricity effect, it gains 15 temporary HP.</p>",
+      "frequency": null,
+      "name": "Electric Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a storm-struck arboreal damages an item or structure it deals an additional [[/r 3d12]] damage to that item or structure.</p>",
+      "frequency": null,
+      "name": "Sunder Objects",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d12+15",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Branch",
+      "traits": [
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d10+15",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Root",
+      "traits": [
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "BJbe6BzLSIx8Jsix",
+  "gear": [],
+  "hp": 370,
+  "id": "kingmaker-bestiary/storm-struck-arboreal",
+  "immunities": [
+    "electricity"
+  ],
+  "languages": [
+    "aklo",
+    "fey"
+  ],
+  "level": 16,
+  "name": "Storm-Struck Arboreal",
+  "perception": 28,
+  "publicNotes": "<p>Arboreal regents-also called treants-are lumbering, solitary creatures responsible for guarding an entire forest. They take an especially long view of affairs and never act brashly or without much deliberation. They occasionally come together in small groups called groves to share news and pass their wisdom down to the arboreal wardens that have sprouted under their watch. In times of grave danger, all the groves in a region may gather for a great months-long meeting to plan and, eventually, act upon a threat.</p>\n<p>The typical arboreal regent is 30 feet tall, has a trunk 2 feet in diameter, and weighs 4,500 pounds.</p>\n<hr />\n<p>Arboreals are guardians of the forest and representatives of the trees. As long-lived as the woods they watch over, arboreals consider themselves parents and shepherds of trees rather than their gardeners. Consequently, while arboreals tend to be slow and methodical, they are terrifyingly swift when forced to fight in defense of the woods. Though they rarely seek out the companionship of short-lived folk-even elves are fugacious in the eyes of arboreals-and have an inherent distrust of change, arboreals have been known to tolerate those who seek to learn from their long-winded, rambling monologues, especially if such pupils also express a desire to protect the timberlands. Against those who threaten their realm, such as loggers eager to harvest lumber or settlers aiming to establish croplands or a town, arboreals' wrath is unwavering and devastating. Perhaps ironically, arboreals are gifted at tearing down what others build-a trait that serves vengeful members of their kind well.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 15
+    },
+    {
+      "type": "fire",
+      "value": 15
+    },
+    {
+      "type": "piercing",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 28,
+    "reflex": 25,
+    "will": 30
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 33,
+    "nature": 26,
+    "stealth": 25,
+    "survival": 30
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Chain Lightning",
+          "rank": 6
+        },
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "type": "axe-vulnerability",
+      "value": 15
+    }
+  ]
+}

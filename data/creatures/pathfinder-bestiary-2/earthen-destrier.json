@@ -1,0 +1,146 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 1,
+    "int": -1,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The earthen destrier tramples a creature</p>\n<hr />\n<p><strong>Effect</strong> The earthen destrier makes a lance arm Strike against the creature it's trampling at a -5 penalty.</p>",
+      "frequency": null,
+      "name": "Tilting Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The earthen destrier tramples a creature"
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:20|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An earthen destrier can Burrow through earthen matter, including rock. When it does so, it moves at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If the destrier moved at least 10 feet directly before its lance arm Strike, it gains a +2 circumstance bonus to its damage roll.</p>",
+      "frequency": null,
+      "name": "Lancing Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": []
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d8+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Lance Arm",
+      "traits": [
+        "deadly-d8",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "CrAsEzLl3F2vejd3",
+  "gear": [],
+  "hp": 72,
+  "id": "pathfinder-bestiary-2/earthen-destrier",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "petran"
+  ],
+  "level": 4,
+  "name": "Earthen Destrier",
+  "perception": 10,
+  "publicNotes": "<p>This wave of dirt takes the crude likeness of the melded forequarters of a charging warhorse and a rocky knight wielding a rudimentary lance of gray stone.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 9,
+    "will": 10
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 12
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "burrow",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}

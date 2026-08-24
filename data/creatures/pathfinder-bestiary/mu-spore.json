@@ -1,0 +1,233 @@
+{
+  "abilityMods": {
+    "cha": 9,
+    "con": 9,
+    "dex": 3,
+    "int": 4,
+    "str": 10,
+    "wis": 9
+  },
+  "ac": 45,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> A creature within 10 feet of the mu spore moves or attacks the mu spore.</p>\n<hr />\n<p><strong>Effect</strong> The spore uses Grab on the triggering creature. There is no limit to how many creatures it can grab with the sticky tendrils that cover its body.</p>",
+      "frequency": null,
+      "name": "Grasping Tendrils",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within 10 feet of the mu spore moves or attacks the mu spore."
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The mu spore Grabs a creature with its jaws.</p>\n<hr />\n<p><strong>Effect</strong> The spore uses Swallow Whole.</p>",
+      "frequency": null,
+      "name": "Fast Swallow",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The mu spore Grabs a creature with its jaws."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[15[bludgeoning]] damage, @Check[fortitude|dc:45|basic] save</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterConstrict]</p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Gargantuan, @Damage[(20d6+9)[acid]] damage, Rupture 37.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mu spore releases a cloud of burrowing spores in a @Template[cone|distance:400]. The spores deal @Damage[22d6[piercing]] damage to all creatures, objects, and wooden structures in the area, but not to plants or fungi (@Check[reflex|dc:46|basic] save).</p>\n<p>The mu spore can't use this ability again for [[/gmr 1d4 #Recharge Cough Spores]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Cough Spores",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mu spore pulls all creatures and objects in a @Template[cone|distance:400] 400 feet towards it's mouth. A successful @Check[fortitude|dc:43] save halves the distance, or avoids the pull on a critical success. The mu spore automatically attempts to Swallow Whole each creature adjacent to it at the end of the inhalation.</p>",
+      "frequency": null,
+      "name": "Enormous Inhalation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A mu spore is a massive creature and takes up a space of 10 squares by 10 squares (50 feet by 50 feet).</p>",
+      "frequency": null,
+      "name": "Enormous",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The mu spore still deals @Damage[18[piercing]] damage if its jaws Strike is a failure</p>",
+      "frequency": null,
+      "name": "Overpowering Jaws",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 50 (Deactivated by Sonic)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>60 feet. A living creature that enters the area or ends its turn within it is corrupted by spores. It must succeed at a @Check[fortitude|dc:42] save or be Clumsy 1, Enfeebled 1, and Slowed 1 for 1 round. Fungi and plants are immune.</p>",
+      "frequency": null,
+      "name": "Spores",
+      "requirements": null,
+      "traits": [
+        "aura"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The mu spore senses vibrations in the air through its aerial spores.</p>",
+      "frequency": null,
+      "name": "Windsense 240 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 40,
+      "damage": [
+        {
+          "formula": "4d12+18",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "deadly-3d12",
+        "reach-30",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 40,
+      "damage": [
+        {
+          "formula": "4d10+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "reach-100",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "VUJrPHKOjYkIQnWn",
+  "gear": [],
+  "hp": 350,
+  "id": "pathfinder-bestiary/mu-spore",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "petran",
+    "sakvroth"
+  ],
+  "level": 21,
+  "name": "Mu Spore",
+  "perception": 36,
+  "publicNotes": "<p>A mu spore is a thankfully rare fungoid monstrosity of vast power and strange intellect. Even the smallest mu spores are never less than a hundred feet long from tentacle tip to tentacle tip, yet despite this vast bulk, they are capable of flying with an uncommon grace, venting jets of foul-smelling spores to guide their flight.</p>\n<p>Many societies tell tales of vast mu spores appearing over cities at the dawn of apocalyptic events, but they're more than just ravenous eaters of nations. Mu spores often possess rare or esoteric knowledge, and if peaceful contact can be made, this lore can be quite valuable. Their spores can also be used to craft certain foul drugs or deadly alchemical poisons, but harvesting these ingredients is dangerous, as the spores are not viable for long once they've been shed, forcing alchemists seeking to harvest them to operate in perilously close proximity to the abominations.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "acid",
+      "value": 20
+    },
+    {
+      "type": "all-damage",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 38,
+    "reflex": 32,
+    "will": 38
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 26,
+    "athletics": 41,
+    "nature": 38,
+    "occultism": 36
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fungus"
+  ],
+  "weaknesses": []
+}

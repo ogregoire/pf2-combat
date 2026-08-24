@@ -1,0 +1,132 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 3,
+    "wis": 4
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the priest casts Heal, they roll d10s instead of d8s.</p>",
+      "frequency": null,
+      "name": "Healing Hands",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If another creature's reaction disrupts the priest's spellcasting action, the priest attempts a @Check[flat|dc:15]. If the priest succeeds, their action isn't disrupted.</p>",
+      "frequency": null,
+      "name": "Steady Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Scimitar",
+      "traits": [
+        "forceful",
+        "magical",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "DYqFgKrgZBf07NZS",
+  "gear": [
+    "Religious Symbol of Sarenrae",
+    "Scimitar"
+  ],
+  "hp": 80,
+  "id": "pathfinder-npc-core/priest-of-sarenrae",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Priest of Sarenrae",
+  "perception": 14,
+  "publicNotes": "<p>Cloistered priests safeguard their temples and communities. They are the stalwart keepers of their god's tenets, devoted to spreading the word. Their guidance or healing services come at the cost of a donation.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 13,
+    "will": 16
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 12,
+    "medicine": 14,
+    "religion": 14,
+    "society": 11,
+    "survival": 12
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 16,
+      "dc": 24,
+      "name": "Cleric Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dazzling Flash",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "holy",
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

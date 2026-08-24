@@ -1,0 +1,234 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 7,
+    "dex": 1,
+    "int": 2,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 31,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy damages the archon's ally and both are within 15 feet of the archon</p>\n<hr />\n<p><strong>Effect</strong> The ally gains resistance 15 to all damage against the triggering damage and the archon can make a Strike against the enemy.</p>",
+      "frequency": null,
+      "name": "Archon's Protection",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An enemy damages the archon's ally and both are within 15 feet of the archon"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The rekhep grants an adjacent ally a +2 circumstance bonus to AC until they're no longer adjacent or until the start of the archon's next turn, whichever comes first. When the rekhep uses Archon's Protection against an attack against the shielded ally, the rekhep gains the resistance and takes the damage rather than the ally.</p>\n<hr />\n<p>Effect: Living Shield</p>",
+      "frequency": null,
+      "name": "Living Shield",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Requirements</strong> The rekhep saw another creature teleport within the last round and has at least one Translocate spell remaining</p>\n<hr />\n<p><strong>Effect</strong> The rekhep casts one of their <em>translocate</em> spells, which is heightened to 5th rank and causes the qarna to arrive in an unoccupied space it chooses within 30 feet of the creature it's pursuing. If the creature is too far away, the rekhep arrives as close as possible.</p>",
+      "frequency": null,
+      "name": "Archon's Pursuit",
+      "requirements": "The rekhep saw another creature teleport within the last round and has at least one Translocate spell remaining",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The rekhep makes a Strike against an enemy that has one of the rekhep's allies within its reach. On a hit, the target takes an additional 2d8 mental damage and is Frightened 2. The extra damage and frightened value are doubled on a critical hit.</p>",
+      "frequency": null,
+      "name": "Terrifying Smite",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a rekhep uses their Translocate innate spell, they can choose to move into the space of a willing ally they can see within range. If they do, the ally switches places with the archon, appearing in the space the archon just vacated, as if it too had cast <em>translocate</em>.</p>",
+      "frequency": null,
+      "name": "Courageous Switch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any weapon gains the <em>Holy</em> rune while the rekhep wields it.</p>",
+      "frequency": null,
+      "name": "Holy Armament",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "holy"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d8+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Holy Lance",
+      "traits": [
+        "deadly-d8",
+        "divine",
+        "holy",
+        "jousting-d6",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "FWg5qHuwoa0JfEMR",
+  "gear": [
+    "Lance"
+  ],
+  "hp": 150,
+  "id": "pathfinder-monster-core/rekhep",
+  "immunities": [
+    "fear-effects"
+  ],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean",
+    "utopian"
+  ],
+  "level": 10,
+  "name": "Rekhep",
+  "perception": 19,
+  "publicNotes": "<p>Rekheps are the living shields that defend Heaven against fiendish incursions. They tile together in massive formations capable of withstanding any onslaught. Given their tremendous strength and imposing stature, shield archons are ideal guardians of the meek and are sometimes summoned to the mortal Universe to ward off the attacks of great numbers of evildoers.</p>\n<hr />\n<p>Archons are guardians of Heaven and enemies of corruption. Before gods and their servants set foot in the celestial planes, archons already resided in Heaven, the original inhabitants of the realm. Upon meeting, the archons and divine angels quickly discovered they were of a kind, holding justice and righteousness in their hearts. An alliance was formed, and archons now serve as stalwart allies to all celestials and mortals they find worthy.</p>\n<p>While the first archons coalesced from the immense seven-tiered mountain of Heaven, they choose willing and worthy Heaven-bound souls to join their ranks. These mortals hear and answer the call of a mysterious voice, manifesting in the Garden at the mountain's peak. There they swear to forever serve the cause of justice and transform into their new archon forms.</p>\n<p>Though deeply concerned with defending mortal life and willing to sacrifice themselves in battle against fiends, archons often feel rote and inscrutable to others, and their forms can border on frightening and bizarre. For this reason, they often have issues with interacting with mortals, or with the free spirited azatas. Despite this, archons draw great strength from others, especially those who exemplify virtue.</p>\n<p>Beyond their celestial allies, archons also maintain ancient ties with aeons. The inscrutable factions can still be seen working together to defend longforgotten secrets and enforce rules that predate mortal life. Archons explain these missions as necessary without further elaboration, leaving even their angelic allies frustrated with archons' obstinance.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 15,
+    "will": 19
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 21,
+    "diplomacy": 19,
+    "intimidation": 19,
+    "religion": 19,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 27,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Translocate (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Share Life",
+          "rank": 2
+        },
+        {
+          "name": "Divine Lance",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Sure Strike",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "archon",
+    "celestial",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "type": "unholy",
+      "value": 10
+    }
+  ]
+}

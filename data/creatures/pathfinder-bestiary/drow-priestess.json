@@ -1,0 +1,186 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 2,
+    "int": 0,
+    "str": 1,
+    "wis": 4
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.LightBlindness]</p>",
+      "frequency": null,
+      "name": "Light Blindness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "FaBHkmFGuEIqIYM1",
+  "gear": [
+    "Bolts",
+    "Chain Mail",
+    "Hand Crossbow",
+    "Lethargy Poison",
+    "Rapier",
+    "Religious Symbol (Wooden)",
+    "Steel Shield"
+  ],
+  "hp": 39,
+  "id": "pathfinder-bestiary/drow-priestess",
+  "immunities": [
+    "sleep"
+  ],
+  "languages": [
+    "chthonian",
+    "elven",
+    "sakvroth"
+  ],
+  "level": 3,
+  "name": "Drow Priestess",
+  "perception": 9,
+  "publicNotes": "<p>Many drow priestesses venerate demon lords and other foul divinities.</p>\n<hr />\n<p>The first drow were elves who fled into the depths of the world from a devastating cataclysm thousands of years ago. In their journey below, they fell to bickering and in-fighting, drawing the attention of sinister intelligences beyond their own. Whether it was the influence of a specific demon lord, the Rough Beast Rovagug, or some other fell force is unknown, but in that time the elves transformed both spiritually and physically, tainting their hearts with desires for cruelty, sadism, and violence. The hues of their eyes became sinister red or bleached white, and their flesh adopted an unearthly lavender sheen that made the drow instantly recognizable. The drow also developed potent magical abilities and resistances that further empowered them, if at the cost of their souls.</p>\n<p>Over the centuries to follow, the drow developed into a powerful, if violently dysfunctional society, influenced by the worship of demon lords and focused on providing power and glory to a relatively small collection of noble houses. Many of these noble houses are matriarchal in nature and all hold allegiance to a specific demon lord patron-but traditions of worship, warfare, and wizardry help to bind the oft-bickering houses together enough that drow society doesn't simply consume itself from within. Fear of earning the wrath of one's superior-be it a teacher, a parent, a commander, or the demon one worships-is the real bond holding drow society together, and this system is held in esteem by the lowliest drow servant and by the most powerful drow priestess alike.</p>\n<p>The drow are infamous throughout the world, but until recently most assumed stories of demon-worshipping, underground-dwelling elves were spooky legends crafted to share around a campfire. Today, the existence of drow is an understood truth, and while their presence in the dark caverns deep below is unsettling, they seem content to leave the surface world alone for now.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 7,
+    "will": 11
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "deception": 8,
+    "intimidation": 8,
+    "religion": 9,
+    "society": 5,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Levitate",
+          "rank": 3
+        },
+        {
+          "name": "Darkness",
+          "rank": 2
+        },
+        {
+          "name": "Darkness (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Faerie Fire (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Command (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "drow",
+    "elf",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

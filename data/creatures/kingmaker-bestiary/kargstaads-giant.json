@@ -1,0 +1,186 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 4,
+    "int": 0,
+    "str": 8,
+    "wis": 4
+  },
+  "ac": 37,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The frost giant breathes out a @Template[cone|distance:15|damaging:yes]{15-foot cone} of freezing moisture that quickly condenses into ice, dealing @Damage[7d6[cold]] damage. Each creature in the cone must attempt a @Check[reflex|dc:36|basic] save.</p>\n<p>A creature that fails its save is also Immobilized and takes @Damage[2d6[cold]] damage at the end of each of its turns until it gets free (Escape DC 36).</p>\n<p>The giant can't use Chill Breath again for [[/gmr 1d4 #Recharge Chill Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Chill Breath",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The frost giant makes a single greataxe Strike and compares the attack roll result to the ACs of up to two foes within its reach. This counts as two attacks for the frost giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 15",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A frost giant isn't impeded by difficult terrain caused by snow or ice, nor does it need to attempt Acrobatics checks to keep from falling on slippery ice.</p>",
+      "frequency": null,
+      "name": "Ice Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "2d8+22",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "2d12+22",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Greataxe",
+      "traits": [
+        "magical",
+        "reach-10",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "3d10+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "s0BfmFWAhLQkQEbg",
+  "gear": [
+    "Breastplate",
+    "Greataxe",
+    "Rock",
+    "Sack"
+  ],
+  "hp": 270,
+  "id": "kingmaker-bestiary/kargstaads-giant",
+  "immunities": [
+    "cold"
+  ],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 15,
+  "name": "Kargstaad's Giant",
+  "perception": 27,
+  "publicNotes": "<p>Frost giants are remorseless marauders who pillage and plunder from those who dare to live near them in desolate, frigid lands. Their clans range from extremely territorial hunters who claim an expanse of tundra and defend it at all costs to nomadic hordes that roam icy slopes in search of settlements to conquer. Frost giant clans are ruled by those who exhibit the greatest ferocity and prowess in battle-massive brutes who proclaim themselves jarl and demand absolute obedience from their followers. If at any time a frost giant wishes to be a jarl, all they must do is issue a challenge to the current jarl and face off in mortal combat, after which the reigning champion continues leading the clan or the victorious challenger assumes control.</p>\n<p>Frost giants live in frostbitten realms, and their appearance is reflective of a people weathered and hardened by relentless snowstorms and freezing temperatures. They often wear metal armor adorned with the furs, skin, teeth, and tusks of slain beasts and heft weapons as long as dining tables. Their flesh ranges from pale blue to shale gray, and their hair is typically a dingy white or dirty yellow color.</p>\n<p>A typical frost giant stands about 15 feet tall and weighs approximately 2,800 pounds.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They are divided into a number of subtypes.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 29,
+    "reflex": 25,
+    "will": 25
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 31,
+    "crafting": 25,
+    "intimidation": 27,
+    "stealth": 25
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "cold",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 15
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 5,
+    "dex": 8,
+    "int": 4,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 34,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The irlgaunt violently regurgitates a melonsized clot of brittle stone supernaturally infused with digestive enzymes. The stone and acid explode on impact within a range of 30 feet, dealing @Damage[7d6[piercing]] damage and @Damage[7d6[acid]] damage to creatures in a @Template[burst|distance:20] (@Check[reflex|dc:33|basic] save).</p>\n<p>The irlgaunt can't Regurgitate Gastroliths for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Regurgitate Gastrolith",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The irlgaunt ignores difficult terrain composed of rocks and stone.</p>",
+      "frequency": null,
+      "name": "Stone Step",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "acid"
+        },
+        {
+          "formula": "3d8+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "formula": "3d10+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Legs",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "10JbkieWjqKA5Hzc",
+  "gear": [],
+  "hp": 265,
+  "id": "pathfinder-bestiary-2/irlgaunt",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "jotun",
+    "petran"
+  ],
+  "level": 13,
+  "name": "Irlgaunt",
+  "perception": 24,
+  "publicNotes": "<p>Irlgaunts resemble titanic spiders or crabs, but with cephalopod-like tendrils erupting from the tips of their chitin-armored legs. Their jagged gray shells allow them to blend into the rocky walls of the high mountain passes and deep ravines that serve as their hunting grounds. Despite their size, they move with incredible alacrity, bounding across chasms and skittering up sheer mountain cliffs without pause. Though they are formidable in melee, irlgaunts have an even more powerful ranged attack. These creatures can pelt their opponents by forcefully regurgitating gastroliths-melon-sized clusters of rocks enveloped in coagulated digestive enzymes strong enough to break down flesh and bone. Gastroliths are fragile and explode on contact, spraying the area with shards of rock and caustic acid.</p>\n<p>While one might easily mistake an irlgaunt for a simple brutish beast, they have a keen intelligence and use devious hunting strategies. They set traps for travelers and are fond of using gems and magical items taken from previous victims as bait. They have been known to start rockslides or otherwise block passages to reroute explorers into their clutches. They also use their gastroliths to direct the movements of their prey, forcing victims into dead ends at the edge of chasms or cliffs.</p>\n<p>For the most part, irlgaunts live solitary lives, likely because finding enough food to sustain a community tends to be difficult. However, they still maintain a sense of extended, regional community, actively gathering when organizing for war or to discuss other issues that affect their species or shared territories. They have been known to occasionally ally with giants, but these truces are usually nebulous.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 22,
+    "reflex": 25,
+    "will": 24
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 25,
+    "athletics": 26,
+    "deception": 23,
+    "stealth": 27,
+    "survival": 22
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 31,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Stone Tell",
+          "rank": 6
+        },
+        {
+          "name": "Meld into Stone (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Shape Stone (At will)",
+          "rank": 4
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "earth"
+  ],
+  "weaknesses": [
+    {
+      "type": "bludgeoning",
+      "value": 10
+    }
+  ]
+}

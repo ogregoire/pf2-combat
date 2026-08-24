@@ -1,0 +1,176 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 5,
+    "dex": 8,
+    "int": 5,
+    "str": 5,
+    "wis": 4
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The worm that walks Strides, ending its movement sharing a space with a creature, and deals @Damage[5d8[piercing]] damage to the creature. The creature can attempt a @Check[reflex|dc:32|basic] save.</p>",
+      "frequency": null,
+      "name": "Squirming Embrace",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The worm that walks collapses into a shapeless swarm of worms. It drops all held, worn, and carried items. While discorporated, the worm that walks can't use attack actions and can't cast spells, but it can move through areas small enough for its individual worms to fit without having to Squeeze. It can use the same action to coalesce back into its normal form.</p>",
+      "frequency": null,
+      "name": "Swarm Shape",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the worm that walks is reduced to 0 HP, it discorporates and the component worms that make up its body disperse in every direction. If even a single worm escapes, the worm that walks will eventually re-form using a process that typically takes [[/gmr 1d10 #Re-Form]]{1d10 days}.</p>\n<p>While the exact circumstances and surroundings determine how long the worm that walks's foes have to dispatch the fleeing worms before they escape, usually its foes have only a single round. Typically, this requires the application of an area effect or splash weapon within 1 round to the space where the worm that walks collapsed. After any amount of area or splash damage is dealt to that space, the character dealing the damage must attempt a @Check[flat|dc:15] check. Each subsequent area or splash damage effect performed on the area reduces the DC of this flat check by 2, to a minimum of DC 5. If any of these flat checks succeed, none of the worms escape, and the worm that walks is destroyed permanently.</p>\n<p>At the GM's discretion, clever means of trapping or otherwise detaining the vermin may extend the time allowed to finish off the worm that walks.</p>",
+      "frequency": null,
+      "name": "Discorporate",
+      "requirements": null,
+      "traits": [
+        "splash"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 10",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "4d8+14",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tendril",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "WjZCNuHNKfeeHCQS",
+  "gear": [],
+  "hp": 200,
+  "id": "pathfinder-bestiary-2/worm-that-walks-cultist",
+  "immunities": [
+    "disease",
+    "paralyzed",
+    "poison",
+    "precision",
+    "swarm-mind",
+    "unconscious"
+  ],
+  "languages": [
+    "aklo",
+    "common"
+  ],
+  "level": 14,
+  "name": "Worm That Walks Cultist",
+  "perception": 25,
+  "publicNotes": "<p>This worm that walks was a cultist of the Great Old One Hastur in its prior life. It continues its conspiracies and strives to further its evil plots in its new life.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 28,
+    "will": 26
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 24,
+    "deception": 28,
+    "intimidation": 26,
+    "occultism": 27,
+    "society": 23,
+    "stealth": 28
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 10
+    },
+    {
+      "type": "splash-damage",
+      "value": 10
+    }
+  ]
+}

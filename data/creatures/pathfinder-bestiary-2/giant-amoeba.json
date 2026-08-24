@@ -1,0 +1,142 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 2,
+    "dex": -2,
+    "int": -5,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 8,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[1d4[bludgeoning],1d4[acid]]{1d4 bludgeoning plus 1d4 acid}, @Check[fortitude|dc:17|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Requirements</strong> The giant amoeba begins its turn with a target its size or smaller Grabbed</p>\n<hr />\n<p><strong>Effect</strong> The giant amoeba maintains the Grab and extends pseudopods to surround the creature and pull it inside the amoeba's body. This thereafter has the same effect as if the amoeba had Engulfed the creature (DC 17, @Damage[1d6[acid]] damage, Escape DC 17, Rupture 3).</p>",
+      "frequency": null,
+      "name": "Envelop",
+      "requirements": "The giant amoeba begins its turn with a target its size or smaller Grabbed",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A giant amoeba can sense nearby creatures through vibration and air or water movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A giant amoeba's acid damages only organic material-not metal, stone, or other inorganic substances.</p>",
+      "frequency": null,
+      "name": "Weak Acid",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "acid"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pseudopod",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "VPDKzeTY8O1XrKLk",
+  "gear": [],
+  "hp": 45,
+  "id": "pathfinder-bestiary-2/giant-amoeba",
+  "immunities": [
+    "acid",
+    "critical-hits",
+    "precision",
+    "unconscious",
+    "visual"
+  ],
+  "languages": [],
+  "level": 1,
+  "name": "Giant Amoeba",
+  "perception": 4,
+  "publicNotes": "<p>These blobs of nearly transparent protoplasm are identical in form and behavior to the microscopic creatures from which they have evolved, except their outlandish size makes them all the more dangerous. Unlike slimes, puddings, and other deadly oozes, giant amoebas have an outer membrane that contains their internal structures, making them more susceptible to slashing weapons than their amorphous kin. However, this membrane is also extremely flexible and permeable, allowing them to surround prey and absorb it, suffocating and slowly digesting it in the amoeba's acidic fluids.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 7,
+    "reflex": 3,
+    "will": 5
+  },
+  "senses": [
+    "motion-sense"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "stealth": 3
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "climb",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "mindless",
+    "ooze"
+  ],
+  "weaknesses": [
+    {
+      "type": "slashing",
+      "value": 5
+    }
+  ]
+}

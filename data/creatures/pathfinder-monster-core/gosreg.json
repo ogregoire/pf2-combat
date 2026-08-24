@@ -1,0 +1,259 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 3,
+    "dex": 6,
+    "int": 6,
+    "str": 3,
+    "wis": 5
+  },
+  "ac": 31,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> the gosreg is in its natural form</p>\n<hr />\n<p><strong>Effect</strong> The gosreg secures its limbs into the ground as its brain-like head crackles with psychic energy. The gosreg's unsettled aura extends to 60 feet, and it blocks all other creatures' telepathy in the aura. Its Mind Bolt can also affect any number of targets in 60 feet. These effects end when the gosreg uses its claw Strike, leaves its space, or is knocked Prone.</p>",
+      "frequency": null,
+      "name": "Broadcast Stance",
+      "requirements": "the gosreg is in its natural form",
+      "traits": [
+        "mental",
+        "occult",
+        "stance"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The gosreg takes on the appearance of any Small or Medium humanoid. This doesn't change its Speed or attack and damage modifiers with its claw, but it might change the damage type it deals (typically to bludgeoning). It cannot use its jaws Strike while in humanoid form.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>A gosreg concentrates its field of discordant mental energy and projects it into the mind of one creature within 60 feet. The target takes @Damage[6d6[mental]] damage (@Check[will|dc:30|basic] save). On a critical failure, the creature is also Confused for 1 minute or until it takes damage.</p>",
+      "frequency": null,
+      "name": "Mind Bolt",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The gosreg can read and speak all languages known by creatures within range of its telepathy.</p>",
+      "frequency": null,
+      "name": "Borrow Languages",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The gosreg senses a creature's mental essence as a precise sense with the listed range; it cannot sense mindless creatures with thoughtsense.</p>",
+      "frequency": null,
+      "name": "Thoughtsense 60 feet",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>Gosregs project a field of discordant energy that unsettles the minds of thinking creatures. Any non-mindless creature within 30 feet of a gosreg takes a –1 status penalty to Will saves.</p>\n<p>Effect: Unsettled Aura</p>",
+      "frequency": null,
+      "name": "Unsettled Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d8+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "1d10",
+          "type": "mental"
+        },
+        {
+          "formula": "2d10+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "TwFcW5O5J1SdsYv3",
+  "gear": [],
+  "hp": 195,
+  "id": "pathfinder-monster-core/gosreg",
+  "immunities": [
+    "confused"
+  ],
+  "languages": [
+    "aklo",
+    "sakvroth"
+  ],
+  "level": 11,
+  "name": "Gosreg",
+  "perception": 21,
+  "publicNotes": "<p>Gosregs are agents of the Dominion of the Black who insinuate themselves into humanoid societies to implement the goals of their sinister masters. They're generally tasked with observing and waiting, hiding in disguised forms until their location is ripe for harvest. When this occurs, they reveal themselves as living psychic beacons, signaling their distant masters and guiding invasion forces. Over the years of an infiltration, a gosreg will assume dozens of roles, relishing any intense emotions it can inspire while laying the groundwork for future identities.</p>\n<p>In their natural form, gosregs dart about in a jerky gallop due to stumpy legs, gangly arms, and oversized heads. They take on the appearances of humanoids to infiltrate societies, and they drop these disguises only when they're compromised and must resort to physical violence to continue their mission.</p>\n<hr />\n<p>The Dominion of the Black is a conglomeration of deep-space conquerors with a strong presence on Aucturn, the most remote planet in Golarion's solar system. The Dominion has secret outposts all over Golarion; most of its members on the planet are scouts, using their skills to steal brains and identities, gathering information without any consideration for the inhabitants of the worlds they infiltrate.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 23,
+    "will": 22
+  },
+  "senses": [
+    "darkvision",
+    "thoughtsense"
+  ],
+  "size": "medium",
+  "skills": {
+    "deception": 24,
+    "diplomacy": 22,
+    "occultism": 23,
+    "society": 19,
+    "stealth": 23
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Phantasmal Calamity",
+          "rank": 6
+        },
+        {
+          "name": "Mind Probe",
+          "rank": 5
+        },
+        {
+          "name": "Sending",
+          "rank": 5
+        },
+        {
+          "name": "Subconscious Suggestion",
+          "rank": 5
+        },
+        {
+          "name": "Synaptic Pulse",
+          "rank": 5
+        },
+        {
+          "name": "Nightmare",
+          "rank": 4
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,152 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 2,
+    "int": -4,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>After 3 or more days without eating, an akata can secrete resin that encases it in a noqual cocoon. The cocoon has Hardness 9, 40 HP, and a Broken Threshold of 18. It has resistance 5 to damage from magical sources. As long as the cocoon remains intact, the akata can't be harmed, and it doesn't need to eat or drink.</p>\n<p>While inside the cocoon, the akata gains Lifesense 30 feet.</p>\n<p>The akata remains in a state of hibernation until it is exposed to extreme heat or senses a living creature, at which point it can burst free of its cocoon in [[/gmr 1d4 #minutes]]{1d4 minutes}.</p>",
+      "frequency": null,
+      "name": "Hibernation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>An akata doesn't breathe and is immune to effects that require breathing (such as an inhaled poison).</p>",
+      "frequency": null,
+      "name": "No Breath",
+      "requirements": null,
+      "traits": [
+        "inhaled"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An akata has no auditory senses. It is immune to auditory effects, automatically critically fails Perception checks that require it to hear, and takes a -2 status penalty to Perception checks (but not initiative rolls) that involve sound but also rely on other senses.</p>",
+      "frequency": null,
+      "name": "No Hearing",
+      "requirements": null,
+      "traits": [
+        "auditory"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Salt water acts as an extremely strong acid to an akata. Full immersion in salt water deals @Damage[4d6[acid]] damage per round.</p>",
+      "frequency": null,
+      "name": "Salt Water Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An akata implants its parasitic larval young into any creature it bites, but only Medium or Small humanoids make suitable hosts; all other creatures are immune to this disease</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:17]</p>\n<p><strong>Stage 1</strong> carrier with no ill effect 1 (1 day)</p>\n<p><strong>Stage 2</strong> Drained 1 (1 day)</p>\n<p><strong>Stage 3</strong> as stage 2 (1 day)</p>\n<p><strong>Stage 4</strong> drained 2 and Fatigued (1 day)</p>\n<p><strong>Stage 5</strong> as stage 4 (1 day)</p>\n<p><strong>Stage 6</strong> dead and corpse rises as a void zombie in [[/br 2d4 #hours]]{2d4 hours}</p>",
+      "frequency": null,
+      "name": "Void Death",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "nRsH7unLIRWq0ZHC",
+  "gear": [],
+  "hp": 15,
+  "id": "pathfinder-bestiary-2/akata",
+  "immunities": [
+    "auditory",
+    "disease",
+    "inhaled"
+  ],
+  "languages": [],
+  "level": 1,
+  "name": "Akata",
+  "perception": 6,
+  "publicNotes": "<p>An akata is a hairless, blue-skinned quadruped with fearsome jaws, glowing eyes, a pair of thin tails, and a mane of writhing tentacles. It is a strangely silent beast, as it lacks the lungs and vocal chords necessary to vocalize. It also lacks ears, but it has heightened visual and olfactory senses.</p>\n<p>When food is scarce, an akata secretes a resin from its pores that forms into a sturdy cocoon of pale green crystal-the skymetal noqual. An akata can hibernate in this cocoon without needing to eat or drink for centuries, though it retains a rudimentary sense of its surroundings and can break out in only a few minutes' time. These cocoons allow the creatures to travel through the void of space, seeking new worlds where they can infect suitable humanoid hosts with their larval young. Once a victim succumbs to this infection, the offspring fight among themselves until one proves the strongest. The surviving akata then animates the corpse-now a void zombie-which shambles about of its own accord.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 5
+    },
+    {
+      "type": "poison",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 5,
+    "will": 6
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 7,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": [
+    {
+      "type": "salt-water",
+      "value": 5
+    }
+  ]
+}

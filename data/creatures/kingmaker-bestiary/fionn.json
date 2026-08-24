@@ -1,0 +1,224 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 0,
+    "dex": 5,
+    "int": 4,
+    "str": -5,
+    "wis": 5
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Effect</strong> Fionn's orders are difficult for undead to ignore. When Fionn Commands the Undead, two undead allies who are lower level than him and are within 30 feet of him may Stride or Strike.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Command the Undead",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Fionn casts Outcast's Curse, extending the spell's range to 30 feet. A creature that fails its save against the spell is also Stupefied 1 (Stupefied 2 on a critical failure) by the overwhelming sensation and belief that they have been exiled from all they hold dear. This stupefaction value cannot be reduced below 1 as long as the creature continues to be affected by <em>outcast's curse</em>.</p>",
+      "frequency": null,
+      "name": "Exile's Curse",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "curse",
+        "mental",
+        "misfortune",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Fionn exhales a swirling blizzard of snow and ice that chills the soul as surely as it freezes flesh. All living creatures within @Template[emanation|distance:60]{60 feet} of Fionn must attempt a @Check[fortitude|dc:33] save. Fionn can't use Fearsome Blizzard for [[/gmr 1d4 #Recharge Fearsome Blizzard]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes @Damage[5d8[cold]] damage.</p>\n<p><strong>Failure</strong> The creature takes @Damage[10d8[cold]] damage and is Frightened 1; the frightened effect has the emotion, fear, and mental traits.</p>\n<p><strong>Critical Failure</strong> The creature takes @Damage[20d8[cold]] damage, is Frightened 2, and is Fleeing as long as they remain frightened. The frightened and fleeing effects have the emotion, fear, and mental traits.</p>",
+      "frequency": null,
+      "name": "Fearsome Blizzard",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "cold",
+        "emotion",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Unlike most ghosts, Fionn isn't bound to a specific site. Instead, his exile to the Material Plane has bound him to the night itself. He can travel anywhere he wishes, so long as it is night. During the day, he cannot travel further than thirty feet from the location he occupies as the sun rises. He cannot leave the Material Plane at all, and if he suffers an effect that would normally transport him to another plane, he remains on the Material Plane and instead is Stunned 3.</p>",
+      "frequency": null,
+      "name": "Bound to the Mortal Night",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>In order to put Fionn permanently to rest, the PCs must release his brother Kean from Amiri's blade-doing so renders Fionn's plan to use Kean's soul to return to the First World impossible and causes the frustrated ghost to accept his fate and resign himself as well to the afterlife. Until this occurs, Fionn seeks out the blade each time he rejuvenates; now that he's seen the blade in person, he's capable of sensing its location at all times.</p>\n<hr />\n<p>When a ghost is destroyed, it re-forms after [[/br 2d4 #days]]{2d4 days} within the location it's bound to, fully healed. A ghost can be permanently destroyed only if someone determines the reason for its existence and sets right whatever prevents the spirit from resting.</p>",
+      "frequency": null,
+      "name": "Rejuvenation",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "cold"
+        },
+        {
+          "formula": "3d8+11",
+          "type": "void"
+        }
+      ],
+      "kind": "melee",
+      "name": "Ghostly Battle Axe",
+      "traits": [
+        "finesse",
+        "reach-10",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "wdoRpYImTQuVGZSQ",
+  "gear": [],
+  "hp": 175,
+  "id": "kingmaker-bestiary/fionn",
+  "immunities": [
+    "cold",
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "poison",
+    "precision",
+    "unconscious"
+  ],
+  "languages": [
+    "common",
+    "fey",
+    "jotun"
+  ],
+  "level": 13,
+  "name": "Fionn",
+  "perception": 24,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "all-damage",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 22,
+    "will": 24
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "deception": 27,
+    "intimidation": 27,
+    "nature": 24,
+    "stealth": 26,
+    "survival": 24
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 32,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Eclipse Burst",
+          "rank": 7
+        },
+        {
+          "name": "Cone of Cold",
+          "rank": 5
+        },
+        {
+          "name": "Wall of Ice",
+          "rank": 5
+        },
+        {
+          "name": "Outcast's Curse (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Talking Corpse",
+          "rank": 4
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Ray of Frost",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "cold",
+    "incorporeal",
+    "spirit",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

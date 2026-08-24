@@ -1,0 +1,221 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 5,
+    "dex": 6,
+    "int": 1,
+    "str": 7,
+    "wis": 6
+  },
+  "ac": 33,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>A non-evil target must succeed at a @Check[will|dc:32] save or become Confused for 1 round, or 1 minute on a critical failure. It is temporarily immune for 10 minutes.</p>",
+      "frequency": null,
+      "name": "Derghodaemon's Stare",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "emotion",
+        "incapacitation",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Rend]</p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The derghodaemon makes up to five claw Strikes, each against a different target. These attacks count toward the derghodaemon's multiple attack penalty, but the penalty doesn't increase until after all the attacks.</p>",
+      "frequency": null,
+      "name": "Savage Assault",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The derghodaemon spews a large swarm, making a swarm spit Strike against up to two adjacent targets within range. Whether or not the targets are hit, each must attempt a @Check[reflex|dc:31|traits:damaging-effect] save (at a -2 circumstance penalty if it was actually hit by the swarm spit).</p>\n<p>Persistent Piercing Damage caused by the swarming infestation ends as soon as the creature takes any amount of damage from an area effect.</p>\n<p>The derghodaemon can't use this ability for [[/gmr 1d4 #Recharge Swarming Infestation]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The swarm disperses as soon as it deals its swarm spit Strike damage.</p>\n<p><strong>Success</strong> The swarm clings to the target and infests it, dealing @Damage[1d6[persistent,piercing]] damage.</p>\n<p><strong>Failure</strong> The swarm clings to the target and infests it, dealing @Damage[2d6[persistent,piercing]] damage.</p>\n<p><strong>Critical Failure</strong> As failure, but the hissing sounds caused by the infestation also cause the target to become Confused for 1 round; this additional effect has the auditory, emotion, and mental traits.</p>",
+      "frequency": null,
+      "name": "Swarming Infestation",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "3d8+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "deadly-d12",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d6+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Swarm Spit",
+      "traits": [
+        "evil",
+        "magical",
+        "range-increment-60",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "oKogG9AwUZ9iBsm3",
+  "gear": [],
+  "hp": 240,
+  "id": "pathfinder-bestiary-2/derghodaemon",
+  "immunities": [
+    "confused",
+    "death-effects",
+    "swarm-attacks"
+  ],
+  "languages": [
+    "common",
+    "daemonic"
+  ],
+  "level": 12,
+  "name": "Derghodaemon",
+  "perception": 24,
+  "publicNotes": "<p>Derghodaemons represent death through unfathomable violence and being eaten alive. Whether in life a ravenous murderer hacked them to bits for stew, a werewolf tore them limb from limb, or they simply succumbed to the elements and became worm meat, derghodaemons seek to inflict the same twisted and bloody ends upon any they come across. Unlike some daemons, derghodaemons derive little pleasure from prolonged deaths-to these fiends, the quicker they can enact a gory demise, the sooner they can turn their attentions to their next victim and repeat the violent cycle.</p>\n<p>Derghodaemons look like walking masses of razor-sharp insect claws connected to equally menacing chitinous limbs, but few linger on their appearance for long- the gaze of a derghodaemon is enough to cause others in the vicinity to experience severe visual warping. The derghodaemon's appearance becomes more and more twisted as those who stare at it experience vicious hallucinations and ravenous urges to inflict harm on and devour others. Perhaps the most horrific attack derghodaemons can unleash upon their victims, though, is their swarming infestation-the daemons cough up a crawling, buzzing cloud of ravenous insects that cling to those targeted and chew them to death, provided the mind-numbing, half-whispered threats made by the rasp of the insects' bodies don't drive them to violent fury first!</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 24,
+    "will": 22
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 22,
+    "athletics": 25,
+    "intimidation": 24,
+    "stealth": 24
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 32,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Blade Barrier",
+          "rank": 6
+        },
+        {
+          "name": "Feeblemind",
+          "rank": 6
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Detect Alignment (At will) (Good only)",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "daemon",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

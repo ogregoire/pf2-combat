@@ -1,0 +1,218 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 2,
+    "dex": 2,
+    "int": 2,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dullahan removes the head of a dead creature within reach. Each creature within the area of the dullahan's frightful presence must attempt a new save, even if it is temporarily immune.</p>",
+      "frequency": null,
+      "name": "Reap",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dullahan summons a war horse with elite adjustments and the fiend and unholy traits. This steed remains until it is slain, the dullahan Dismisses this effect, or the dullahan Summons a Steed again.</p>",
+      "frequency": null,
+      "name": "Summon Steed",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 5",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. @Check[will|dc:23]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any slashing weapon gains the <em>Keen</em> rune while a dullahan wields it, and any hatchet they wield gains the <em>Returning</em> rune as well. If the dullahan kills a creature with a critical hit using a slashing weapon, the target is decapitated as though the dullahan had used Reap on the target.</p>",
+      "frequency": null,
+      "name": "Head Hunter",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "frequency": null,
+      "name": "Lifesense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d8+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Keen Longsword",
+      "traits": [
+        "magical",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Keen Returning Hatchet",
+      "traits": [
+        "agile",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Keen Returning Hatchet",
+      "traits": [
+        "agile",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "GNwLVbfFx8EPz7xO",
+  "gear": [
+    "Full Plate",
+    "Hatchet",
+    "Longsword"
+  ],
+  "hp": 95,
+  "id": "pathfinder-monster-core/dullahan",
+  "immunities": [
+    "bleed",
+    "death-effects",
+    "disease",
+    "fear-effects",
+    "paralyzed",
+    "poison",
+    "unconscious"
+  ],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 7,
+  "name": "Dullahan",
+  "perception": 14,
+  "publicNotes": "<p>Riding on a horse as black as night, the headless hunter known as the dullahan tracks down and takes the heads of those they deem unfit to continue living. When closing in for the kill, the dullahan first whispers their victim's name, then swiftly collects their prize, casting a pall of dread upon all who witness the grim execution.</p>\n<p>A dullahan manifests when a particularly violent warrior is beheaded and the warrior's soul stubbornly clings to material existence (or is refused entry to the afterlife). Most dullahans return to their former homelands, where they can exact vengeance on those they feel wronged them in life (or their living descendants). A dullahan's concept of justice is swift and merciless, and once they've selected a target, they're unwavering in their cause.</p>\n<p>Perhaps even more than revenge, a dullahan desires their own rotted head. An individual who wields the head of a dullahan is powerful indeed, for a dullahan will grudgingly serve such a master in the hopes of reclaiming their missing skull. Mighty fiends such as devils command dullahans to harvest souls or lead armies for them, while a mortal might use such an undead warrior to fulfill a personal vendetta. A dullahan won't hesitate to kill their liege and reclaim their head when the opportunity presents itself.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 15,
+    "will": 17
+  },
+  "senses": [
+    "lifesense"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 15,
+    "intimidation": 17,
+    "stealth": 13,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 5
+    }
+  ]
+}

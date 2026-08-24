@@ -1,0 +1,134 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 6,
+    "dex": 2,
+    "int": -4,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>30 feet</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AquaticAmbush]</p>",
+      "frequency": null,
+      "name": "Aquatic Ambush",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hippopotamus tries to capsize an adjacent aquatic vessel of its size or smaller. The hippopotamus must succeed at an Athletics check with a DC of 25 (reduced by 5 for each size smaller the vessel is than the hippo) or the pilot's Sailing Lore DC, whichever is higher.</p>",
+      "frequency": null,
+      "name": "Capsize",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, foot, @Check[reflex|dc:23|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The hippopotamus can hold its breath for 5 minutes.</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d10+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "deadly-d10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "5CixyyBkCLj2VI8q",
+  "gear": [],
+  "hp": 85,
+  "id": "pathfinder-bestiary-2/hippopotamus",
+  "immunities": [],
+  "languages": [],
+  "level": 5,
+  "name": "Hippopotamus",
+  "perception": 11,
+  "publicNotes": "<p>Typical adult hippos move quickly on land and attack stealthily in the water. Though herbivorous, hippos are notoriously aggressive and territorial.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 9,
+    "will": 11
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 13,
+    "stealth": 11,
+    "survival": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

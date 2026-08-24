@@ -1,0 +1,193 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 3,
+    "dex": 6,
+    "int": 3,
+    "str": -5,
+    "wis": 4
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dread wraith extends its hand toward another wraith creature within 100 feet. The target wraith dissolves and streaks toward the dread wraith in a straight line, dealing @Damage[6d10[void]] damage to each creature along the line (@Check[fortitude|dc:28|basic] save).</p>\n<p>The dread wraith absorbs the essence of the target wraith, becoming Quickened and gaining a +10-foot status bonus to its fly Speed for a number of rounds equal to the level of the absorbed wraith. It can use its extra action only to Fly or Strike.</p>\n<p>An unwilling target can attempt a @Check[will|dc:28] save to resist being absorbed.</p>",
+      "frequency": null,
+      "name": "Absorb Wraith",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Vitality",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the dread wraith damages a living creature with its spectral hand Strike, the wraith gains [[/r 10 #Temporary Hit Points]]{10 temporary Hit Points} and the target must succeed at a @Check[fortitude|dc:28] save or become Drained 1. Further damage dealt by the wraith increases the drained condition value by 1 on a failed save, to a maximum of drained 4.</p>",
+      "frequency": null,
+      "name": "Drain Life",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet. A creature entering the aura must succeed at a @Check[fortitude|dc:26] save or become Drained 1. It recovers after it has been out of the aura for 1 minute. This drained condition value is cumulative with the drained value caused by drain life, but not with multiple draining presence auras.</p>\n<p>A creature that succeeds at its save is temporarily immune to draining presence for 24 hours.</p>",
+      "frequency": null,
+      "name": "Draining Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "frequency": null,
+      "name": "Lifesense 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A dread wraith caught in sunlight is Stunned 2 and Clumsy 2.</p>",
+      "frequency": null,
+      "name": "Sunlight Powerlessness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A living humanoid slain by a wraith's spectral hand Strike rises as a Wraith Spawn after [[/gmr 1d4 #Wraith Spawn Transformation]]{1d4 rounds}. This wraith spawn is under the command of the dread wraith that killed it. It doesn't have drain life or wraith spawn. If the creator of the wraith spawn dies, the wraith spawn becomes a full-fledged, autonomous wraith; it regains its free will and gains drain life and wraith spawn.</p>",
+      "frequency": null,
+      "name": "Wraith Spawn",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d10+7",
+          "type": "void"
+        }
+      ],
+      "kind": "melee",
+      "name": "Spectral Hand",
+      "traits": [
+        "finesse",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "ZGEf08j9q4fIPDFd",
+  "gear": [],
+  "hp": 130,
+  "id": "pathfinder-bestiary-2/dread-wraith",
+  "immunities": [
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "poison",
+    "precision",
+    "unconscious"
+  ],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 9,
+  "name": "Dread Wraith",
+  "perception": 19,
+  "publicNotes": "<p>These menacing spiritual remnants of wicked warlords or bloodthirsty generals are towering specters of shadow and death. Like other wraiths, dread wraiths haunt the shadowy places of the world, but dread wraiths are more likely to travel greater distances to sow terror or amass influence, often sticking to dark glades or sinister ruins when journeying across sun-dappled lands. Dread wraiths tends to be arrogant and rarely form a pack with others of their kind, preferring instead to dominate groups of ordinary wraiths. A particularly powerful necromancer might compel packs of dread wraiths into service, however, while a particularly malevolent goal-such as to eradicate a bastion of light and life-might draw several dread wraiths together in a common purpose.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "all-damage",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 19,
+    "will": 21
+  },
+  "senses": [
+    "darkvision",
+    "lifesense"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 19,
+    "intimidation": 21,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "incorporeal",
+    "undead",
+    "unholy",
+    "wraith"
+  ],
+  "weaknesses": []
+}

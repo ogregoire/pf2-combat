@@ -1,0 +1,120 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 4,
+    "dex": 1,
+    "int": -5,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The giant ant has a Large or smaller creature grabbed</p>\n<hr />\n<p><strong>Effect</strong> The giant ant Strides up to its full Speed, carrying the grabbed creature with it. It is Encumbered if the grabbed creature is Medium or larger.</p>",
+      "frequency": null,
+      "name": "Haul Away",
+      "requirements": "The giant ant has a Large or smaller creature grabbed",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:18]</p>\n<p><strong>Maximum Duration</strong> 4 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d8[poison]] and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d10[poison]] and Enfeebled 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[1d12[poison]] and Enfeebled 3 (1 round)</p>",
+      "frequency": null,
+      "name": "Giant Ant Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Mandibles",
+      "traits": []
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "mEZUTqNIgu0ASApu",
+  "gear": [],
+  "hp": 30,
+  "id": "pathfinder-monster-core/giant-ant",
+  "immunities": [],
+  "languages": [],
+  "level": 2,
+  "name": "Giant Ant",
+  "perception": 7,
+  "publicNotes": "<p>Giant ants are much like their smaller kin in their industrious habits, though growing to the size of ponies makes them much deadlier.</p>\n<hr />\n<p>Ants are industrious insects that aid the natural processes of decay and renewal.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 7,
+    "will": 5
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

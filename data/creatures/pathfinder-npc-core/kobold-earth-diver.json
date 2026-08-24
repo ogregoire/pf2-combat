@@ -1,0 +1,140 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 0,
+    "dex": 3,
+    "int": 1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The kobold earth diver smashes their pick into the ground, sending debris exploding in a @Template[type:emanation|distance:5]. All creatures and unattended objects in range take @Damage[3d6[bludgeoning]|options:area-damage] damage with a @Check[reflex|dc:20|basic|options:area-effect] save. A creature that is Restrained by an earth diver's Sinkhole takes an additional @Damage[1d6[bludgeoning]] damage.</p>",
+      "frequency": null,
+      "name": "Pick Smash",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The earth diver is burrowed beneath a Medium or smaller creature aboveground</p><hr /><p><strong>Effect</strong> The earth diver creates a small sinkhole under the creature, who must attempt a @Check[reflex|dc:20] save. Regardless of the result, the target's space becomes difficult terrain.</p>\n<p><strong>Failure</strong> The creature falls into the sinkhole and is Restrained until it [[/act escape dc=18]]{Escapes} (DC 18).</p>\n<p><strong>Critical Failure</strong> As failure, and the creature takes @Damage[2d8[bludgeoning]] damage.</p>",
+      "frequency": null,
+      "name": "Sinkhole",
+      "requirements": "The earth diver is burrowed beneath a Medium or smaller creature aboveground",
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pick",
+      "traits": [
+        "fatal-d10"
+      ]
+    }
+  ],
+  "foundryId": "mYbZJQPzpXx9DfIq",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Leather Armor",
+    "Map (depicting landmarks above and below ground in 1 square mile)",
+    "Pick"
+  ],
+  "hp": 60,
+  "id": "pathfinder-npc-core/kobold-earth-diver",
+  "immunities": [],
+  "languages": [
+    "common",
+    "petran",
+    "sakvroth"
+  ],
+  "level": 4,
+  "name": "Kobold Earth Diver",
+  "perception": 13,
+  "publicNotes": "<p>Kobold earth divers study the geology of the areas near their communities. The mystical influence of their community's patron or years of extensive training at digging or earth magic allow them to swiftly burrow through the ground and to feel movements in the ground beneath their feet.</p><hr /><p>Kobolds are drawn to beings and objects of power, establishing their communities near them. Once a warren has been formed, the resident kobolds construct traps and set up ambushes to deter interlopers.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 14,
+    "will": 11
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 10,
+    "athletics": 12,
+    "nature": 10,
+    "stealth": 10,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "kobold"
+  ],
+  "weaknesses": []
+}

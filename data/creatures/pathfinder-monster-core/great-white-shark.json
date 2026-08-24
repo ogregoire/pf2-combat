@@ -1,0 +1,117 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 4,
+    "dex": 2,
+    "int": -4,
+    "str": 6,
+    "wis": 1
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The shark hit with a jaws Strike on its most recent action this turn.</p>\n<hr />\n<p><strong>Effect</strong> The creature the shark hit takes @Damage[1d12[slashing]] damage.</p>",
+      "frequency": null,
+      "name": "Savage",
+      "requirements": "The shark hit with a jaws Strike on its most recent action this turn.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The shark Swims up to half its swim Speed, makes a jaws Strike, and then Swims up to half its Speed further. The Strike deals half damage.</p>",
+      "frequency": null,
+      "name": "Strafing Chomp",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The shark Swims up to its swim Speed, then Leaps vertically out of the water up to 25 feet high, making a Strike against a creature at any point during the jump (this lets it attack a creature within 30 feet of the water's surface). After the Strike, the shark splashes back down into the water.</p>",
+      "frequency": null,
+      "name": "Breach",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The shark can smell blood in the water from up to 1 mile away.</p>",
+      "frequency": null,
+      "name": "Blood Scent",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d12+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "uNNOQFvuMq8ZsQkn",
+  "gear": [],
+  "hp": 60,
+  "id": "pathfinder-monster-core/great-white-shark",
+  "immunities": [],
+  "languages": [],
+  "level": 4,
+  "name": "Great White Shark",
+  "perception": 11,
+  "publicNotes": "<p>An apex predator among the coastal surface waters where it hunts, the great white shark is one of the largest shark species. These silent killers glide gracefully through the ocean, always in search of their next meal.</p>\n<hr />\n<p>Sharks of all shapes and sizes have stalked the oceans, largely unchanged, since primordial times. They are efficient, ruthless predators with multiple rows of razor-sharp teeth capable of rending prey in an instant. Their uncanny ability to smell blood in the water means sharks might show up at any scene of aquatic carnage.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 10,
+    "will": 9
+  },
+  "senses": [
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 14,
+    "stealth": 12,
+    "survival": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,157 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 3,
+    "dex": 4,
+    "int": 0,
+    "str": 3,
+    "wis": -1
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>You designate a single creature as your prey and focus your attacks against that creature. You must be able to see or hear the prey, or you must be tracking the prey during exploration.</p>\n<p>You gain a +2 circumstance bonus to Perception checks when you Seek your prey and a +2 circumstance bonus to Survival checks when you Track your prey. You also ignore the penalty for making ranged attacks within your second range increment against the prey you're hunting.</p>\n<p>You can have only one creature designated as your prey at a time. If you use Hunt Prey against a creature when you already have a creature designated, the prior creature loses the designation and the new prey gains the designation. Your designation lasts until your next daily preparations.</p>",
+      "frequency": null,
+      "name": "Hunt Prey",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The Stag Lord lines up a shot and then attempts a ranged Strike against a hunted prey. On this strike, he treats the target as if they were Off-Guard.</p>",
+      "frequency": null,
+      "name": "Unfair Aim",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The Stag Lord capitalizes on his enemies' fear; any creature that has the Frightened condition is also Off-Guard against his attacks.</p>",
+      "frequency": null,
+      "name": "Dread Striker",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The Stag Lord is in a constant cycling state of being drunk or hungover. As a result, he is constantly Sickened 1, and cannot reduce his sickened state to lower than 1 (although if effects increase his sickened value, he can reduce them back toward 1 as normal). The Stag Lord can willingly ingest food and drink (including potions and elixirs) while sickened. The values in this stat block have been adjusted to account for his sickened state.</p>",
+      "frequency": null,
+      "name": "Perpetual Hangover",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The Stag Lord deals 2d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d8+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d8+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Longsword",
+      "traits": [
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "defXhBIK4TtoZXGK",
+  "gear": [
+    "Arrows",
+    "Composite Longbow",
+    "Flask of Wine",
+    "Healing Potion (Lesser)",
+    "Hide Armor",
+    "Lock of green hair bound with red twine",
+    "Longsword",
+    "Stag's Helm"
+  ],
+  "hp": 110,
+  "id": "kingmaker-bestiary/the-stag-lord",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "The Stag Lord",
+  "perception": 16,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 16,
+    "will": 9
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 14,
+    "athletics": 13,
+    "intimidation": 15,
+    "stealth": 14,
+    "survival": 9
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

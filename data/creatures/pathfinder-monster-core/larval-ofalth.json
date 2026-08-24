@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 3,
+    "dex": 1,
+    "int": -2,
+    "str": 5,
+    "wis": 1
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A larval ofalth can hide in any pile of filth or trash that is its size or larger, allowing it to use Stealth for initiative. If it rolls Stealth for initiative, on the first round of combat, creatures that haven't acted yet are Off-Guard to it.</p>",
+      "frequency": null,
+      "name": "Hide in Filth",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet @Check[fortitude|dc:19]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Stench]</p>",
+      "frequency": null,
+      "name": "Stench",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "olfactory"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:19]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier with no ill effect (1 day)</p>\n<p><strong>Stage 2</strong> @Damage[2d4[bleed]]{2d4 persistent bleed} every hour and Enfeebled 1 (1 day);</p>\n<p><strong>Stage 3</strong> @Damage[2d6[bleed]]{2d6 persistent bleed} every hour and Enfeebled 2 (1 day)</p>",
+      "frequency": null,
+      "name": "Wretched Weeps",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "2d8+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "3d8",
+          "type": "acid"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Leachate",
+      "traits": [
+        "range-20"
+      ]
+    }
+  ],
+  "foundryId": "lK4Xfb58mUNygoae",
+  "gear": [
+    "Trash Shield"
+  ],
+  "hp": 60,
+  "id": "pathfinder-monster-core/larval-ofalth",
+  "immunities": [
+    "disease",
+    "poison"
+  ],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Larval Ofalth",
+  "perception": 9,
+  "publicNotes": "<p>Ofalths reproduce asexually. When they first hatch from their leathery eggs, larval ofalths resemble a tendril of flesh supported by spindly legs, but they soon cocoon themselves in trash, to serve as both armor and camouflage.</p>\n<hr />\n<p>Found in castle dung heaps, city dumps, and sewers, ofalths are living amalgamations of wet detritus, sewage, and rubbish. They carry a disease called wretched weeps that causes the victim's blood to seep from its pores.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 9,
+    "will": 9
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "stealth": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

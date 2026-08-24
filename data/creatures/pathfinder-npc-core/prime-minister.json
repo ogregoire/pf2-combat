@@ -1,0 +1,125 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 1,
+    "dex": 2,
+    "int": 3,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The prime minister hears a creature attempt a Deception, Diplomacy, or an Intimidation check against any creature other than the prime minister</p><hr /><p><strong>Effect</strong> The prime minister interrupts with a witty barb, cutting the credibility of the creature's argument. The prime minister attempts their own check of the same type. If the result is higher than that of the triggering check, the triggering check is considered a failure regardless of its roll.</p>\n<p>In extended negotiations, like a Victory Point challenge, the prime minister can't use this ability again until every creature in the discussion has had an opportunity to attempt a check (even if they decide not to make one).</p>",
+      "frequency": null,
+      "name": "Cutting Counterpoint",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The prime minister hears a creature attempt a Deception, Diplomacy, or an Intimidation check against any creature other than the prime minister"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving politics, the prime minister is a 10th-level challenge.</p>",
+      "frequency": null,
+      "name": "Political Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>All attempts to Coerce the prime minister have a result one degree worse.</p>",
+      "frequency": null,
+      "name": "Unshakable Confidence",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "KV9WeA9fq5HuCxxx",
+  "gear": [
+    "Rapier"
+  ],
+  "hp": 15,
+  "id": "pathfinder-npc-core/prime-minister",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Prime Minister",
+  "perception": 9,
+  "publicNotes": "<p>The prime minister is the leader of a nation's bureaucracy. They are experienced politicians in charge of the laws and regulations of their territory, answering only to a monarch, if there is one. Often, though, a vote of \"No Confidence\" or similar legal procedure exists for removing the prime minister.</p><hr /><p>Larger societies rely on those with the authority and the ability to interpret and enforce laws. Some carry out these duties fairly, but others are harsh and cruel, imposing severe punishments on anyone unable to pay for clemency.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 3,
+    "will": 19
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 22,
+    "diplomacy": 22,
+    "intimidation": 19,
+    "society": 22
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

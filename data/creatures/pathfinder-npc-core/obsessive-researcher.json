@@ -1,0 +1,138 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 1,
+    "int": 5,
+    "str": 0,
+    "wis": 0
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The researcher starts hectoring an enemy within 30 feet, upbraiding them for daring to interrupt such valuable research. The target must attempt a @Check[will|dc:15] save. On a failure, they are Frightened 2 (Frightened 3 and Fleeing for 1 round on a critical failure). Regardless of the result of its save, the target is temporarily immune for 1 hour.</p>",
+      "frequency": null,
+      "name": "Furious Harangue",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Nothing gets between the obsessive researcher and their subject. If the obsessive researcher is targeted by a spell or ability with a Will save that would prompt them to give up, ignore, or divert course from the subject of their Narrow Lore (for example, using a suggestion to get a specialist in Jistkan artificing to give up a construct part), then the obsessive researcher can use their Narrow Lore skill in place of their Will save.</p>",
+      "frequency": null,
+      "name": "Idée Fixe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Each obsessive researcher is preoccupied with a hyper-specialized, niche body of knowledge (their Narrow Lore) in which they are the acknowledged world authority. The catch is that when such an expert goes wrong, they go badly wrong—if an obsessive researcher gets a success on a Narrow Lore roll, they get a critical success instead. But if they roll a failure, then they get a critical failure instead.</p>",
+      "frequency": null,
+      "name": "Monomania",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>In their narrow field of interest, the obsessive researcher is a 10th-level challenge.</p>",
+      "frequency": null,
+      "name": "World-Class Authority",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 4,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pen",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal"
+      ]
+    }
+  ],
+  "foundryId": "DPSvIsPlVrlx7Q8V",
+  "gear": [
+    "Entirely too many books",
+    "Writing Set"
+  ],
+  "hp": 7,
+  "id": "pathfinder-npc-core/obsessive-researcher",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": -1,
+  "name": "Obsessive Researcher",
+  "perception": 3,
+  "publicNotes": "<p>Academia rewards specialization, and so the universities and athenaeums of the Inner Sea are full to the brim of sunlight-deprived scholars who are the world experts in such obscure topics such as the migratory habits of bogwids or the folklore of pre-Choral Brevoy.</p><hr /><p>True power comes from knowledge—the power to shape the growth of kingdoms by mere whispers, stay three steps ahead of adversaries, or even know which flora is best for creating untraceable poisons.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 3,
+    "reflex": 2,
+    "will": 7
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "stealth": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

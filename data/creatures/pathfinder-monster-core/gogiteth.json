@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 3,
+    "int": -2,
+    "str": 6,
+    "wis": 1
+  },
+  "ac": 31,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature that starts its move outside the gogiteth's reach moves into its reach.</p>\n<hr />\n<p><strong>Effect</strong> The gogiteth moves 10 feet. This does not trigger reactions.</p>",
+      "frequency": null,
+      "name": "Skittering Reposition",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": "A creature that starts its move outside the gogiteth's reach moves into its reach."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(3d6+12)[bludgeoning]], @Check[fortitude|dc:32|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The gogiteth Strides three times. Once per Stride, it can attempt a leg Strike against a creature in its reach at any point during the Stride; it must make each attack against a different creature, but it doesn't apply its multiple attack penalty until after making all its Strikes. If any of the Strikes result in a critical failure, Skittering Assault ends.</p>",
+      "frequency": null,
+      "name": "Skittering Assault",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "frequency": null,
+      "name": "All-Around Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The gogiteth can move at its full Speed while it has a creature Grabbed in its jaws, bringing the grabbed creature along.</p>",
+      "frequency": null,
+      "name": "Carry Off Prey",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "formula": "3d10+12",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "formula": "3d6+12",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Leg",
+      "traits": [
+        "agile",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "Iwk2qT4lVyrvoz3B",
+  "gear": [],
+  "hp": 250,
+  "id": "pathfinder-monster-core/gogiteth",
+  "immunities": [],
+  "languages": [
+    "sakvroth"
+  ],
+  "level": 12,
+  "name": "Gogiteth",
+  "perception": 21,
+  "publicNotes": "<p>A gogiteth is a slavering nightmare of teeth, eyes, and hairy spiderlike legs, and its appearance is invariably seared into the minds of any who witness it. Hives of these skittering monsters haunt the lowest reaches of the Darklands, competing with cave worms and other subterranean horrors for food and resources. A gogiteth is rarely alone, as they learned that the best means of survival is sticking with others of their own kind. Even the hardiest Darklands residents seek cover when a gogiteth is spotted, for where there's one, a swarm is sure to follow.</p>\n<p>Gogiteths make a clacking sound as they skitter. The joints in their many legs pop and crack with each movement, though they can suppress this voluntarily and hunt silently without alerting prey. The odd creatures can also make a high-pitched whistling sound that echoes throughout the caverns where they live. Some Darklands natives report that groups of gogiteths sometimes join together in eerie, discordant songs.</p>\n<p>Gogiteth anatomy have inspired no shortage of speculation as to their origins. Some believe they are the result of a fleshwarping experiment gone horribly wrong. Others think they may be related in some way to the Dominion of the Black—possibly the distant cousins or some strange exiles of those alien entities. According to this mythos, once they made their way to Golarion, the gogiteths crawled into the depths of the earth, shying away from the blazing sun above.</p>\n<p>Gogiteths are a menace to every other denizen of the Darklands. Those who live in gogiteth-infested regions of Sekamina or Orv frequently call for temporary truces when a gogiteth swarm has been spotted. Since even an average gogiteth hive can host up to two dozen of the horrors, calls to eradicate them are dangerous quests indeed.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "poison",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 25,
+    "reflex": 22,
+    "will": 20
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 19,
+    "athletics": 24,
+    "stealth": 21,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,144 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 1,
+    "str": 1,
+    "wis": 2
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Requirements</strong> A creature damaged the mime with a weapon Strike since their previous turn</p><hr /><p><strong>Effect</strong> The mime makes a Performance check against the Perception DC of the creature who damaged them, gesturing as if making an attack with the same weapon. On a success, the mime deals two dice of damage to the creature, using the same type and die size as the required weapon Strike.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Mimic Assault",
+      "requirements": "A creature damaged the mime with a weapon Strike since their previous turn",
+      "traits": [
+        "attack",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mime uses exaggerated movements to emulate one of the following effects, which lasts until the end of their next turn. Any creature who sees this ability can attempt to disbelieve this ability as it is used with a @Check[will|dc:14] save. Creatures that disbelieve are temporarily immune to pantomime for 1 minute.</p>\n<p><em>Barrier</em>: The mime creates an Invisible 10-foot-by-10-foot stretch of wall adjacent to them and within their reach. The wall has AC 10, 5 hardness, and 10 HP. If the mime Sustains this effect, they can add an additional wall in the same manner.</p>\n<p><em>Rope</em>: The mime tugs an invisible rope, trying to knock over or pull at a creature within 15 feet. If the creature fails to disbelieve the pantomime, the mime can choose to either knock the creature Prone or to move it 5 feet towards them.</p>\n<p><em>Wind</em>: The mime creates a @Template[type:line|distance:30] of imaginary wind. Creatures who don't disbelieve the pantomime treat this area as difficult terrain, and if they enter or begin their turn in the area, they fall prone.</p>",
+      "frequency": null,
+      "name": "Pantomime",
+      "requirements": null,
+      "traits": [
+        "illusion",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving mimicry or pantomime, the mime is a 6th-level challenge.</p>",
+      "frequency": null,
+      "name": "Mimicry Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The mime receives a +1 circumstance bonus to skill checks to perform actions they have witnessed another creature successfully perform in the last minute, or +2 if they witness a creature critically succeed instead.</p>",
+      "frequency": null,
+      "name": "Skill Mimicry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The mime can use Performance instead of Diplomacy to [[/act make-an-impression statistic=performance]], instead of Intimidation to [[/act demoralize statistic=performance]], and instead of Deception to [[/act impersonate statistic=performance]].</p>",
+      "frequency": null,
+      "name": "Versatile Performance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "sAurhtXSqv3kPAlJ",
+  "gear": [],
+  "hp": 45,
+  "id": "pathfinder-npc-core/mime",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Mime",
+  "perception": 11,
+  "publicNotes": "<p>Mimes are performers who use movement, gestures, and expressions without any speech to act out a scene or situation for onlookers.</p><hr /><p>Performances come in a wide variety of forms, from musical methods like singing and instruments to physical dancing and juggling to simple orating and conversing.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "sonic",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 9,
+    "will": 12
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 10,
+    "athletics": 8,
+    "deception": 10,
+    "performance": 10,
+    "stealth": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

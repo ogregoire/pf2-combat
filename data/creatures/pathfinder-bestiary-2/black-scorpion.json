@@ -1,0 +1,138 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 6,
+    "dex": 4,
+    "int": -5,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 38,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d12+12)[bludgeoning]] damage, @Check[fortitude|dc:36|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterConstrict]</p>",
+      "frequency": null,
+      "name": "Greater Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The black scorpion makes three stinger Strikes, each against a different target. Its multiple attack penalty applies to each attack, but the penalty increases only after all the attacks have been made.</p>",
+      "frequency": null,
+      "name": "Rapid Stinging",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:36]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d12[poison]] damage and Clumsy 2 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[3d12[poison]] damage, Clumsy 2, and Slowed 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[4d12[poison]] damage, Clumsy 4, and Slowed 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Black Scorpion Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 90 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "3d12+15",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pincer",
+      "traits": [
+        "agile",
+        "reach-30"
+      ]
+    },
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "3d8+15",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "reach-30"
+      ]
+    }
+  ],
+  "foundryId": "O9LzsedLTUVFtOix",
+  "gear": [],
+  "hp": 275,
+  "id": "pathfinder-bestiary-2/black-scorpion",
+  "immunities": [],
+  "languages": [],
+  "level": 15,
+  "name": "Black Scorpion",
+  "perception": 27,
+  "publicNotes": "<p>With a carapace the color of polished obsidian and a penchant for attacking villages, this humongous scorpion is one of the desert's most frightening predators. A black scorpion measures 60 feet from tip to the base of its stinger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 29,
+    "reflex": 25,
+    "will": 25
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 30
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

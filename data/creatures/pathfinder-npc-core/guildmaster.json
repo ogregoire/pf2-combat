@@ -1,0 +1,149 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 2,
+    "dex": 1,
+    "int": 4,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The guildmaster gives a speech to inspire themself and all guild-member allies within 60 feet, granting them a +1 status bonus to attack and damage rolls until the start of the guildmaster's next turn.</p>\n<p>Effect: Call to Action</p>",
+      "frequency": null,
+      "name": "Call to Action",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving matters of crafting or architecture, the guildmaster is a 12th-level challenge.</p>",
+      "frequency": null,
+      "name": "Craft Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>While within the guild or presiding over guild business, the guildmaster gains a +2 circumstance bonus to weapon attack rolls and deals an additional 2d6 damage on a successful weapon attack.</p>",
+      "frequency": null,
+      "name": "Sworn Duty",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Light Hammer",
+      "traits": [
+        "agile",
+        "magical"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Light Hammer",
+      "traits": [
+        "agile",
+        "magical",
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "fadWrz7SnifBx4yz",
+  "gear": [
+    "Artisan's Tools",
+    "Construction Schematics",
+    "Guildmaster's Uniform",
+    "Light Hammer",
+    "Tax Ledgers"
+  ],
+  "hp": 135,
+  "id": "pathfinder-npc-core/guildmaster",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Guildmaster",
+  "perception": 16,
+  "publicNotes": "<p>In cities, artisans working in a common trade often form guilds to set standards of quality, establish common prices, engage in collective bargaining with business owners, and lobby local governments for favorable laws. The guildmaster—often a master artisan in their own right—also acts as an administrator and politician, advocating for artisans in their trade.</p><hr /><p>Expertise is forged through years of effort and often tedious work. Artisans are masters of their craft, able to create works both practical and beautiful.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 14,
+    "will": 17
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "crafting": 25,
+    "diplomacy": 24,
+    "intimidation": 22,
+    "society": 21
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

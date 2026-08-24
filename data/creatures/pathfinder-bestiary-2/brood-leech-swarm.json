@@ -1,0 +1,133 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 4,
+    "dex": 3,
+    "int": -5,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 19,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each enemy in the swarm's space takes @Damage[2d6[bleed]] and is exposed to brood leech swarm venom.</p>",
+      "frequency": null,
+      "name": "Blood Draining Bites",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:21]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> Clumsy 1, Sickened 1, and -5-foot status penalty to Speed (1 round)</p>\n<p><strong>Stage 2</strong> Clumsy 1, Sickened 1, and -10-foot status penalty to Speed (1 round).</p>",
+      "frequency": null,
+      "name": "Brood Leech Swarm Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "dvZM7hGNDu8olV7A",
+  "gear": [],
+  "hp": 40,
+  "id": "pathfinder-bestiary-2/brood-leech-swarm",
+  "immunities": [
+    "precision",
+    "swarm-mind"
+  ],
+  "languages": [],
+  "level": 4,
+  "name": "Brood Leech Swarm",
+  "perception": 9,
+  "publicNotes": "<p>Most smaller species of leeches do not tend to swarm, but brood leeches are prone to gathering in seething, undulant mats of squirming gluttony. When they gather in sufficient numbers to swarm, they eschew the stealth of a lone leech's feeding methods in favor of swift and merciless feeding. In these situations, their mild venom can affect much larger creatures than their usual prey.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 2
+    },
+    {
+      "type": "piercing",
+      "value": 5
+    },
+    {
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 11,
+    "will": 9
+  },
+  "senses": [
+    "tremorsense"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 8,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "animal",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 5
+    },
+    {
+      "type": "salt",
+      "value": 5
+    },
+    {
+      "type": "splash-damage",
+      "value": 5
+    }
+  ]
+}

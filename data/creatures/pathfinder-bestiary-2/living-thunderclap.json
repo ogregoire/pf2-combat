@@ -1,0 +1,134 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": -3,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The living thunderclap emits a bolt of lightning that crashes with deafening thunder. The living thunderclap makes a lightning bolt Strike that deals @Damage[1d12[electricity]] damage. If it hits, the target and any creatures within a @Template[emanation|distance:15] around the target take @Damage[2d6[sonic]] damage and must attempt a @Check[fortitude|dc:18|basic] save.</p>\n<p>Any creature that fails its save is also Deafened for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Thunderbolt",
+      "requirements": null,
+      "traits": [
+        "electricity",
+        "primal",
+        "sonic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The living thunderclap doesn't trigger reactions when it moves.</p>",
+      "frequency": null,
+      "name": "Swiftness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Gust",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d12",
+          "type": "electricity"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Lightning Bolt",
+      "traits": [
+        "electricity",
+        "range-increment-50"
+      ]
+    }
+  ],
+  "foundryId": "mZxVXRI1Zh3HUXxn",
+  "gear": [],
+  "hp": 50,
+  "id": "pathfinder-bestiary-2/living-thunderclap",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep",
+    "sonic"
+  ],
+  "languages": [
+    "sussuran"
+  ],
+  "level": 4,
+  "name": "Living Thunderclap",
+  "perception": 9,
+  "publicNotes": "<p>A living thunderclap is a humanoid-shaped storm cloud that cracks and booms with thunder.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 12,
+    "will": 9
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 12,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "air",
+    "elemental"
+  ],
+  "weaknesses": []
+}

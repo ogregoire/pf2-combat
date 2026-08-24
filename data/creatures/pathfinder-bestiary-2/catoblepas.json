@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 6,
+    "dex": 4,
+    "int": -2,
+    "str": 7,
+    "wis": 4
+  },
+  "ac": 33,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The catoblepas breathes a @Template[cone|distance:60] of horrid fumes, dealing @Damage[13d6[poison]|options:area-damage] damage (@Check[fortitude|dc:32|basic|options:area-effect] save). The area of this cone is reduced to 30 feet underwater. Targets that fail their saving throw also become Sickened 1 (Sickened 2 on a critical failure).</p>\n<p>The catoblepas can't use its Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "poison",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:32|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>30 feet. A creature entering the aura or starting its turn in the aura must succeed at a @Check[fortitude|dc:30] save or become Sickened 1 (plus Slowed 1 for as long as itʼs sickened on a critical failure).</p>\n<p>While within the aura, affected creatures take a -2 circumstance penalty to saves against disease and to recover from the sickened condition. A creature that succeeds at its save is temporarily immune for 1 minute.</p>",
+      "frequency": null,
+      "name": "Stench",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "disease",
+        "olfactory"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "3d12+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Antler",
+      "traits": [
+        "magical",
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "3d10+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": [
+        "magical"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "3d10+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "BJoM8LAVP8MA5o8v",
+  "gear": [],
+  "hp": 215,
+  "id": "pathfinder-bestiary-2/catoblepas",
+  "immunities": [
+    "disease",
+    "olfactory",
+    "poison"
+  ],
+  "languages": [
+    "aklo"
+  ],
+  "level": 12,
+  "name": "Catoblepas",
+  "perception": 22,
+  "publicNotes": "<p>The catoblepas is an aggressive beast at the best of times. Though it prefers swamps, the catoblepas has been know to forage in plains and forests for short periods, leaving behind hunting grounds tainted by its foul breath and noxious waste that other predators and prey alike avoid for days or even weeks thereafter. The catoblepas bullies those creatures it believes are a match for it, and eats everything weaker.</p>\n<p>A catoblepas is 15 feet long and weighs 2,200 pounds.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 24,
+    "reflex": 20,
+    "will": 22
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 25,
+    "intimidation": 20,
+    "stealth": 22,
+    "survival": 20
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

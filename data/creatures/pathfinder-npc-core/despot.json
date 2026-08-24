@@ -1,0 +1,215 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 2,
+    "int": 4,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Any creature deceived by the despot's Deception skill believes the deception more readily on the next day. Any later Perception checks attempted against the despot's Deception DC take a –2 circumstance penalty, as do other creatures' attempts to convince the creature otherwise, such as through Diplomacy or further Deception.</p>",
+      "frequency": null,
+      "name": "Persistent Lies",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the despot Casts a Spell from a spell slot that deals damage, they gain a status bonus to the spell's initial damage equal to the spell's rank.</p>",
+      "frequency": null,
+      "name": "Sorcerous Potency",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the despot casts Charm, Diabolic Edict, Enthrall, or Floating Flame, either a target takes @Damage[1[fire]] damage per spell rank, or the despot gains a +2 status bonus to Deception checks for 1 round.</p>",
+      "frequency": null,
+      "name": "Tongue of Flame",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Spiked Gauntlet",
+      "traits": [
+        "agile",
+        "free-hand"
+      ]
+    }
+  ],
+  "foundryId": "u1Np0sUKfkTxrNT1",
+  "gear": [
+    "Darkvision Elixir (Lesser)",
+    "Healing Potion (Lesser)",
+    "Spiked Gauntlet"
+  ],
+  "hp": 60,
+  "id": "pathfinder-npc-core/despot",
+  "immunities": [],
+  "languages": [
+    "common",
+    "diabolic"
+  ],
+  "level": 5,
+  "name": "Despot",
+  "perception": 11,
+  "publicNotes": "<p>Despots live to amass and exploit power over others.</p><hr /><p>Villains pursue selfish and cruel goals, trampling over anyone in their way.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 9,
+    "will": 13
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 11,
+    "deception": 13,
+    "diplomacy": 11,
+    "intimidation": 13,
+    "performance": 13,
+    "religion": 11,
+    "society": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 23,
+      "name": "Divine Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        }
+      ],
+      "spells": [
+        {
+          "name": "Chilling Darkness",
+          "rank": 3
+        },
+        {
+          "name": "Enthrall",
+          "rank": 3
+        },
+        {
+          "name": "Blood Vendetta",
+          "rank": 2
+        },
+        {
+          "name": "Calm",
+          "rank": 2
+        },
+        {
+          "name": "Floating Flame",
+          "rank": 2
+        },
+        {
+          "name": "See the Unseen",
+          "rank": 2
+        },
+        {
+          "name": "Bane",
+          "rank": 1
+        },
+        {
+          "name": "Command",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Harm",
+          "rank": 1
+        },
+        {
+          "name": "Ignition",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Sanctuary",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Void Warp",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Sorcerer Bloodline Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Diabolic Edict",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

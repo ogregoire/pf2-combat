@@ -1,0 +1,153 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 2,
+    "dex": 5,
+    "int": 1,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The bandits make a coordinated attack with their axes against each enemy in a @Template[emanation|distance:5] with a @Check[reflex|dc:22|basic|options:area-effect] save. The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d6+3)[slashing]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d6+9)[slashing]|options:area-damage] damage</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d6+9)[slashing]|options:area-damage] damage</p>",
+      "frequency": null,
+      "name": "Chop 'em Down!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The troop attempts to [[/act demoralize]] up to 4 creatures.</p>",
+      "frequency": null,
+      "name": "Stand and Deliver!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The bandits draw or reload their slings, then launch a volley of sling bullets. This is a @Template[burst|distance:10] within 50 feet that deals @Damage[(2d6+4)[bludgeoning]|options:area-damage] damage with a @Check[reflex|dc:22|basic|options:area-effect] save. When the troop is reduced to 2 or fewer segments, this area decreases to a @Template[burst|distance:5].</p>",
+      "frequency": null,
+      "name": "Launch Slings!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The bandit gang ignores any difficult terrain caused by plants, such as bushes, vines, and undergrowth.</p>",
+      "frequency": null,
+      "name": "Forest Passage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The troop can spend 10 minutes preparing the ground before combat to gain a +2 circumstance bonus to their initiative roll.</p>",
+      "frequency": null,
+      "name": "Lie in Wait",
+      "requirements": null,
+      "traits": [
+        "exploration"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the troop rolls initiative using Deception or Stealth, they can use Stand and Deliver! as a free action.</p>",
+      "frequency": null,
+      "name": "Sudden Ambush",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 80 (3 segments), 40 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "sEbc0YrpxVZ9kn1W",
+  "gear": [],
+  "hp": 120,
+  "id": "pathfinder-npc-core/bandit-gang",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 7,
+  "name": "Bandit Gang",
+  "perception": 15,
+  "publicNotes": "<p>Cutthroat crews of criminals form gangs to take out larger scores and intimidate their victims. Bandit gangs are often accompanied by a Gang Leader.</p><hr /><p>In the underbelly of society, the lawless reign supreme.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 16,
+    "will": 13
+  },
+  "senses": [],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 16,
+    "deception": 14,
+    "intimidation": 16,
+    "stealth": 17,
+    "survival": 11,
+    "thievery": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid",
+    "troop"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 8
+    },
+    {
+      "type": "splash-damage",
+      "value": 8
+    }
+  ]
+}

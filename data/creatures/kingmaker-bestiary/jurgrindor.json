@@ -1,0 +1,105 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 1,
+    "int": 0,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Jurgrindor breathes out a @Template[cone|distance:15] of freezing moisture that quickly condenses into ice, dealing @Damage[2d6[cold]] damage (@Check[reflex|dc:18|basic]). A creature that critically fails the save is also Immobilized until it Escapes (DC 18). Jurgrindor can't use Chill Breath for [[/gmr 1d4 #Recharge Chill Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Chill Breath",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Jurgrindor's left arm is dreadfully wounded, courtesy of Amiri's greatsword. The discomfort of this wound causes Jurgrindor to take a -2 circumstance penalty to his Armor Class and Strikes (these modifications are included in his stats). At the end of each of his turns, Jurgrindor must succeed at a @Check[flat|dc:12] or the wound begins to bleed again, dealing him @Damage[1d6[bleed]] damage. He can't use Catch Rock or Throw Rock (as typical giants) until he's healed back to full hit points.</p>",
+      "frequency": null,
+      "name": "Wounded Arm",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d8+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "Nx6vcagWXhYToIdC",
+  "gear": [
+    "Battered Breastplate"
+  ],
+  "hp": 50,
+  "id": "kingmaker-bestiary/jurgrindor",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 3,
+  "name": "Jurgrindor",
+  "perception": 9,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 6,
+    "will": 9
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 10,
+    "crafting": 7,
+    "intimidation": 9,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "cold",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

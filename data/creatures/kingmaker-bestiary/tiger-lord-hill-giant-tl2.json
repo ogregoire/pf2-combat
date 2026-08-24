@@ -1,0 +1,154 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 2,
+    "int": -2,
+    "str": 7,
+    "wis": 4
+  },
+  "ac": 33,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "frequency": null,
+      "name": "Catch Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The hill giant's last action was a successful melee Strike</p>\n<p><strong>Effect</strong> The hill giant's swing drives their enemy back. They push the foe back 5 feet, with the effects of a successful Shove. The hill giant can follow the foe as normal on a successful Shove.</p>",
+      "frequency": null,
+      "name": "Knockback",
+      "requirements": "The hill giant's last action was a successful melee Strike",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "frequency": null,
+      "name": "Throw Rock",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hill giant makes a single greatclub Strike and compares the attack roll result to the ACs of up to two foes within its reach.</p>\n<p>This counts as two attacks for the hill giant's multiple attack penalty.</p>",
+      "frequency": null,
+      "name": "Wide Swing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "formula": "3d6+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "3d10+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Greatclub",
+      "traits": [
+        "backswing",
+        "reach-10",
+        "shove"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d8+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-120"
+      ]
+    }
+  ],
+  "foundryId": "Cj2zn7JazTB9ZnIq",
+  "gear": [
+    "Greatclub",
+    "Hide Armor",
+    "Rock",
+    "Sack for Holding Rocks"
+  ],
+  "hp": 250,
+  "id": "kingmaker-bestiary/tiger-lord-hill-giant-tl2",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 12,
+  "name": "Tiger Lord Hill Giant (TL2)",
+  "perception": 20,
+  "publicNotes": "<p>Selfish and crude, these rough-skinned raiders are bullies and ultimately cowards. Quick-tempered and fond of violence, a hill giant gladly raids and pillages the defenseless but is quick to flee from those who are bigger, stronger, or better organized than they are. A hill giant is never above shoving or tricking one of their own kind to slow down their opponent or get the best loot.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They are divided into a number of subtypes.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 24,
+    "reflex": 19,
+    "will": 22
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 25,
+    "intimidation": 20
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

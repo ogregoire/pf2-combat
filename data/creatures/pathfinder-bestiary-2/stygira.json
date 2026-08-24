@@ -1,0 +1,199 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 5,
+    "dex": 4,
+    "int": 4,
+    "str": 4,
+    "wis": 6
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The stygira holds aloft a gem and gazes into the mind of a creature within 30 feet, infusing the creature's thoughts with visions of the creature's own dead body slowly petrifying.</p>\n<p>The creature must succeed at a @Check[will|dc:25] save or become Frightened 1 (Frightened 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Gem Gaze",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "fear",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>As long as the stygira holds a gemstone, they can see through the gem with Darkvision and the effects of Truesight. The stygira is Blinded when they are not holding a gem in a hand.</p>",
+      "frequency": null,
+      "name": "Gemsight",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A stygira in an area of bright light is Sickened 1.</p>",
+      "frequency": null,
+      "name": "Light Sickness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Wounds dealt by the stygira's claws leave the flesh bleached of color and turn the blood that runs from them dark gray. Each time a creature is damaged by the stygira's claw Strike, it must succeed at a @Check[fortitude|dc:25] save or become permanently Slowed 1 (slowed 2 on a critical failure) as its flesh stiffens like stone. If a creature is reduced to 0 Hit Points from the stygira's claw Strike and fails the saving throw against stone curse, it is Petrified. A creature that spends 8 hours in direct sunlight can attempt a new saving throw to remove the effects of stone curse, even if it has been petrified.</p>",
+      "frequency": null,
+      "name": "Stone Curse",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d6+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "tZkiE8hnN5e9KIzi",
+  "gear": [
+    "Gemstone"
+  ],
+  "hp": 80,
+  "id": "pathfinder-bestiary-2/stygira",
+  "immunities": [
+    "paralyzed",
+    "petrified",
+    "visual"
+  ],
+  "languages": [
+    "aklo",
+    "cyclops",
+    "jotun",
+    "petran"
+  ],
+  "level": 7,
+  "name": "Stygira",
+  "perception": 17,
+  "publicNotes": "<p>Withered hermits wrapped in tattered rags, these scarred, eyeless creatures command strange secrets of the earth and interpret the fateful energies of the subterranean depths. In some regions, stygiras are worshipped as seers or even gods, although they lack the ability to grant spells to clerics and are often not aware of their worshippers at all. In other areas, they have strange ties to the ancient empires of the cyclopes, often dwelling in the oversized ruins those creatures left behind long ago. To many stygiras, gemstones harvested from ancient cyclopean mosaics have even greater magical properties than other crystals.</p>\n<p>Although technically blind, stygiras do have vestigial eyes hidden beneath the stony, scarred flesh of their faces. Capable of sensing bright lights even through their scars, stygiras are sickened and distracted by these flashing glimpses, so they keep to their caves during the day and wander into the world above only after nightfall. Far from benevolent, they seek out unwary travelers or explorers to capture and reduce them down to the base chemicals and supernatural humors the stygiras require to infuse gemstones with the capacity to give them sight and magical power.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 13,
+    "will": 19
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 15,
+    "deception": 15,
+    "nature": 17,
+    "occultism": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 15,
+      "dc": 25,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Shape Stone",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Earthbind",
+          "rank": 3
+        },
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Undetectable Alignment",
+          "rank": 2
+        },
+        {
+          "name": "Know Direction",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "earth",
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

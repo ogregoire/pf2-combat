@@ -1,0 +1,209 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 1,
+    "int": -1,
+    "str": -1,
+    "wis": 1
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>A cassisian can take the appearance of a dove, a winged humanoid, a dog, or a fish. Normally, this doesn't change their Speed or the attack and damage bonuses for their Strikes, but it might change the damage type Strikes deal (typically to bludgeoning). Any further changes for specific forms are noted below.</p><ul><li><p><strong>Dog</strong></p><ul><li><strong>Size</strong> Small;</li><li>Scent (Imprecise) 30 feet,</li><li><strong>Speed</strong> 40 feet;</li><li><strong>Skills</strong> Athletics [[/r 1d20+6]]{+6};</li><li><strong>Melee</strong> <span class=\"action-glyph\">1</span> jaws +7, <strong>Damage</strong> 1d6+2 piercing plus Knockdown</li></ul></li><li><p><strong>Fish</strong></p><ul><li><strong>Speed</strong> Swim 30 feet</li></ul></li></ul><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The cassisian releases beams of heat or cold from their eyes, dealing 2d6 @Damage[2d6[cold]|options:area-damage]{cold} or @Damage[2d6[fire]|options:area-damage]{fire} damage (@Check[reflex|dc:17|basic|options:area-effect] save) to all creatures in a @Template[line|distance:15]. They can't use Eye Beams again for [[/gmr 1d4 #Recharge Eye Beams]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Eye Beams",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "holy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to AC vs. Unholy Creatures",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Unholy Creatures",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>While the cassisian isn't particularly intelligent, they have perfect memory and can remember everything they see or hear. This allows them to attempt Lore checks on any topic, provided (at the GM's discretion) they've encountered the topic in question before. The cassisian's limited intellect often prevents them from acting upon their knowledge, making them a better resource than agent in using information.</p>",
+      "frequency": null,
+      "name": "Repository of Lore",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A creature can wear a willing cassisian as a helmet. While it does, the cassisian can't act, but the cassisian extends their +1 status bonus to AC and saves against unholy creatures to their wearer. At any time, the cassisian can detach themself from their wearer as a single action.</p>\n<p>Effect: Transfer Protection</p>",
+      "frequency": null,
+      "name": "Transfer Protection",
+      "requirements": null,
+      "traits": [
+        "holy"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d6-1",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Headbutt",
+      "traits": [
+        "agile",
+        "finesse",
+        "holy",
+        "magical",
+        "reach-0"
+      ]
+    }
+  ],
+  "foundryId": "9qERA2jk7Yv74Hqq",
+  "gear": [],
+  "hp": 20,
+  "id": "pathfinder-monster-core/cassisian",
+  "immunities": [],
+  "languages": [
+    "common",
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 1,
+  "name": "Cassisian",
+  "perception": 6,
+  "publicNotes": "<p>The weakest of angels, cassisians usually serve as lackey messengers for more powerful angels or as spiritual guides for mortals. Despite their limited intellect, cassisians have a knack for precise recollection, particularly with scripture. Most cassisians are formed from the souls of trustworthy mortals, but some arise from fragments of greater angels destroyed in service to the celestial realms.</p>\n<hr />\n<p>The celestial hosts of angels are messengers and warriors, divided into choirs based on their abilities and purviews. Angels were one of the first creations of the gods, and many still assist their righteous creators throughout the cosmos. Most angels in modern times are not direct creations of the divine, however, instead consisting of ascended mortal souls drawn from the celestial planes.</p>\n<p>The majority of unaffiliated angels live in Nirvana, the plane of virtue and enlightenment. Angels who are affiliated with deities dwell in those deities' domains or other areas where that god holds influence. Regardless of residence or service, angels remain benevolent messengers possessed with magical auras to aid their allies.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "cold",
+      "value": 3
+    },
+    {
+      "type": "fire",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": 7,
+    "reflex": 6,
+    "will": 4
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 6,
+    "diplomacy": 6,
+    "religion": 6,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 16,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Know the Way",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "angel",
+    "celestial",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "type": "unholy",
+      "value": 3
+    }
+  ]
+}

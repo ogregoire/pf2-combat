@@ -1,0 +1,209 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 5,
+    "int": 3,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The nilith has a creature Grabbed</p>\n<hr />\n<p><strong>Effect</strong> The nilith reaches into the mind of the grabbed creature and implants disjointed images of the victim's worst fears and nightmares. The grabbed creature takes @Damage[6d6[mental]] damage with a @Check[will|dc:31|basic] save. On a critical failure, the target is also affected as though by Never Mind, and it must attempt a second Will save against that effect.</p>",
+      "frequency": null,
+      "name": "Mind Crush",
+      "requirements": "The nilith has a creature Grabbed",
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d10+9",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d12+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "D2Pe38jYbeBxUaxU",
+  "gear": [],
+  "hp": 150,
+  "id": "pathfinder-monster-core/nilith",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common"
+  ],
+  "level": 10,
+  "name": "Nilith",
+  "perception": 19,
+  "publicNotes": "<p>The sleek, dark niliths resemble hairless, emaciated tree sloths. These creatures are intensely dangerous and fearsome, with glowing red eyes, wicked claws, and mouths full of needlelike teeth. Niliths feed off the emotions, fears, and flesh of the living, and folktales posit that those who have nightmares of these creatures are fated to one day be eaten by them. Niliths draw intense joy from tormenting sapient creatures, often focusing their predations on the pious and the just, from whom they draw forth their most basic fears and worst thoughts and revel in their victims' subsequent terror. More often than not, these despicable manipulators wish to drive their victims into madness and even to suicide. Most niliths lack the patience to spend too much time fully tearing down an individual, and when a nilith tires of its current plaything and becomes bored with its particular thoughts and fears, it murders the quarry before feeding on its flesh and moving onto the next victim.</p>\n<p>Niliths are actually extensions of much deadlier creatures that dwell in a distant dimension beyond dreams—in a way, niliths are little more than remote feeding machines for the unknown alien entities to which they are connected. Scholars and dimensional travelers have attempted to uncover the exact mechanisms of this mysterious connection, but they have yet to decipher the truth. Indeed, many who investigate the nature of a nilith's bond are driven to madness before getting anywhere close. The odd connection to otherworldly beings might help explain the longevity of these creatures, as it is believed that niliths can live for thousands of years.</p>\n<p>Thankfully for others, niliths are solitary creatures that hate the company of their own kind, likely because these harbingers of nightmares have no wish to taste the horrors they bring to others.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 10
+    },
+    {
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 20,
+    "will": 20
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 21,
+    "athletics": 17,
+    "intimidation": 23,
+    "occultism": 19,
+    "stealth": 21,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 21,
+      "dc": 29,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Hallucination",
+          "rank": 5
+        },
+        {
+          "name": "Mind Probe",
+          "rank": 5
+        },
+        {
+          "name": "Wave of Despair",
+          "rank": 5
+        },
+        {
+          "name": "Confusion",
+          "rank": 4
+        },
+        {
+          "name": "Flicker",
+          "rank": 4
+        },
+        {
+          "name": "Nightmare",
+          "rank": 4
+        },
+        {
+          "name": "Dream Message",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Invisibility (At Will, Self Only)",
+          "rank": 2
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Shield",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 3,
+    "int": 0,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The mountain oni can take on the appearance of any Medium or Large humanoid creature. This doesn't change their Speed or their attack and damage bonuses with their Strikes but might change the damage type their Strikes deal (typically to bludgeoning).</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The oni lifts their tetsubo and brings it down in a deafening peal. They make a tetsubo Strike. On a success, the target takes an additional 1d10 sonic damage.</p>\n<p>Each creature in a @Template[emanation|distance:10] around the target, other than the oni, take this damage as well and is pushed 5 feet away from the target.</p>",
+      "frequency": null,
+      "name": "Thundering Iron",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Oni are curiously afraid of beans, especially as the seasons begin to change. If a creature Interacts to throw a handful of beans at the oni, the oni becomes Frightened 2. While frightened this way, their weakness to spirit damage is increased by 5. The oni then becomes immune to bean panic for 24 hours.</p>",
+      "frequency": null,
+      "name": "Bean Panic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d6+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d10+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tetsubo",
+      "traits": [
+        "magical",
+        "razing",
+        "reach-10",
+        "shove",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "yVS5i5U28fQyGz99",
+  "gear": [
+    "Tetsubo"
+  ],
+  "hp": 165,
+  "id": "pathfinder-monster-core/mountain-oni",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 8,
+  "name": "Mountain Oni",
+  "perception": 17,
+  "publicNotes": "<p>Mountain oni are the most common oni and often considered the least sophisticated. While other oni might have a stronger connection to the spiritual world, mountain oni have little interest in anything beyond satisfying their relentless appetites. Sloth and gluttony are common vices among mountain oni, which can allow them to coexist with nearby villages so long as they're well fed, but more ambitious mountain oni can often be found leading ogre war parties or orchestrating violent bandit raids. It's rare for mountain oni to live solitary existences, but those who do prefer to maraud the countryside or exploit villages and hoard the spoils for themselves.</p>\n<hr />\n<p>Oni are large, brutal creatures originating in Tian Xia who resemble humanoids with brightly colored skin, tusks, and horns. Though commonly mistaken for fiends, the first oni were originally kami, tutelary nature spirits. These kami suffered a terrible trauma, losing their sacred wards to dramatic disasters or the callousness of others, and as a result transformed into the violent creatures they are today. While some believe that oni can be spiritually placated through proper ritual worship that transforms them back into kami, many of these would-be saviors fall to oni's notorious brute strength, flesh-rending teeth, and command of storms.</p>\n<p>Oni possess the ability to disguise themselves as other humanoids. They are rarely creative in their disguises, often choosing a specific appearance similar to their oni form and sticking with it. This simplicity catches many by surprise, however, as people assume oni are limited to a single alternate form, which is by no means the case.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 15,
+    "will": 14
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 16,
+    "deception": 18,
+    "intimidation": 18,
+    "survival": 17
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Invisibility (At Will, Self Only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "giant",
+    "humanoid",
+    "oni"
+  ],
+  "weaknesses": [
+    {
+      "type": "spirit",
+      "value": 10
+    }
+  ]
+}

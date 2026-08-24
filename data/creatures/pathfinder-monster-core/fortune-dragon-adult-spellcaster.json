@@ -1,0 +1,251 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 6,
+    "dex": 7,
+    "int": 8,
+    "str": 7,
+    "wis": 4
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The dragon succeeds or critically succeeds on a saving throw against a spell</p>\n<hr />\n<p><strong>Effect</strong> The dragon attempts to capture a portion of the spell's magic to feed themself. They attempt to counteract the spell (counteract rank 7, counteract modifier [[/r 1d20+28 #Counteract]]{+28}). If successful, the dragon is unaffected by the spell and regains one expended spontaneous spell slot; other subjects are affected by the spell normally.</p>",
+      "frequency": null,
+      "name": "Capture Spell",
+      "requirements": null,
+      "traits": [
+        "arcane"
+      ],
+      "trigger": "The dragon succeeds or critically succeeds on a saving throw against a spell"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon unleashes a spray of magic-disrupting energies that deals @Damage[13d6[force]|options:area-damage] damage in a @Template[cone|distance:40] (@Check[reflex|dc:36|basic|options:area-effect] save). Creatures that fail become Stupefied 1 (Stupefied 2 on a critical failure) for 1 minute.</p>\n<p>The dragon can't use Disruptive Breath again for [[/gmr 1d4 #Recharge Disruptive Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Disruptive Breath",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "force"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The dragon's body is covered in riches (this is typically the case when the dragon is first encountered)</p>\n<hr />\n<p><strong>Effect</strong> The dragon shakes their body aggressively, sending coins and other riches flying in every direction, dealing @Damage[9d10[bludgeoning]] damage with a @Check[reflex|dc:35|basic] save to all creatures in a @Template[emanation|distance:40]. The dragon's body is then no longer covered in riches.</p>",
+      "frequency": null,
+      "name": "Share the Wealth",
+      "requirements": "The dragon's body is covered in riches (this is typically the case when the dragon is first encountered)",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The dragon's body isn't covered in riches and the dragon is adjacent to their hoard</p>\n<hr />\n<p><strong>Effect</strong> The dragon Strides or Burrows through their hoard using their land Speed. They coat themself in coins, magic items, and other treasures. This contact with magical items revitalizes the dragon, causing them to regain one expended spontaneous spell slot.</p>\n<p>The dragon can move through other creatures while moving in this way. Creatures in the dragon's path, or above it if the dragon Burrows, must succeed at a @Check[reflex|dc:33] save or be pushed 10 feet (or pushed 20 feet and knocked Prone on a critical failure).</p>",
+      "frequency": null,
+      "name": "Treasure Dive",
+      "requirements": "The dragon's body isn't covered in riches and the dragon is adjacent to their hoard",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Arcane",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>120 feet.</p>\n<p>The dragon radiates disruptive energies that allow them to feed on magic. When a spell is counteracted or disrupted within the aura, the dragon regains one expended spontaneous spell slot and gains 25 temporary Hit Points that last for 1 minute.</p>",
+      "frequency": null,
+      "name": "Aura of Disruption",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "aura"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "force"
+        },
+        {
+          "formula": "3d6+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "force"
+        },
+        {
+          "formula": "3d10+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "force"
+        },
+        {
+          "formula": "3d10+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "ED9YZQYMGHuN5l8E",
+  "gear": [],
+  "hp": 230,
+  "id": "pathfinder-monster-core/fortune-dragon-adult-spellcaster",
+  "immunities": [
+    "drained",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "dwarven"
+  ],
+  "level": 14,
+  "name": "Fortune Dragon (Adult, Spellcaster)",
+  "perception": 24,
+  "publicNotes": "<p>Fortune dragons have the innate ability to draw upon the raw magical energies that surround them. They constantly use these magical energies to empower their magical abilities and even their bodies, as the energy can heal wounds. A fortune dragon has a typical build for an arcane dragon, but their bodies sport a striking feature: their treasure. The dragon's nature of drawing upon magic causes coins, gems, and, most notably, magical items to cling to their body like iron drawn to magnets. A dragon constantly pulls magical energies from the items attached to their body and makes use of these energies to cast spells. The magical energies that flow through a fortune dragon constantly flow through the dragon's items as well, and in many cases, the items melt from the heat produced in this process. Fortune dragons are seekers of novel experiences. This desire for originality leads fortune dragons to approach visitors of other ancestries with curiosity, though this initial interest quickly wanes if a visitor lacks exciting qualities.</p>\n<hr />\n<p>Dragons come in myriad forms, with many having magical abilities or connections to magic. Some dragons draw greater power from magic than others, allowing them to manifest abilities or alter their physiques with prolonged exposure to magic. These dragons become more powerful as they age and strengthen their connections with their magical origins. Scholars debate the classification of these dragons, with some preferring the name magical dragons and others using traditional dragons due to their connection to specific magical traditions. Regardless of their names, these dragons share a number of characteristics: their ability to tap into magical energies, intensified might and cunning as they grow older, and an inclination to hoard vast amounts of treasure and wealth.</p>\n<h2>Draconic Spellcasters</h2>\n<p>Each dragon features a sidebar on spellcasting dragons of that type. To make a dragon spellcaster, remove the dragon's Draconic Frenzy and Draconic Momentum abilities, and give them the spells outlined in their sidebar. You can swap out any number of these with other spells, provided you keep the same number of spells for each rank. You might also want to increase the dragon's Intelligence, Wisdom, or Charisma modifier by 1 or 2 to reflect their mastery of magic.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 24,
+    "reflex": 27,
+    "will": 24
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 27,
+    "arcana": 28,
+    "athletics": 27,
+    "crafting": 28,
+    "diplomacy": 24,
+    "thievery": 27
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 70
+    },
+    {
+      "type": "fly",
+      "value": 140
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 36,
+      "name": "Arcane Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 2,
+          "rank": 7
+        }
+      ],
+      "spells": [
+        {
+          "name": "Warp Mind",
+          "rank": 7
+        },
+        {
+          "name": "Chain Lightning",
+          "rank": 6
+        },
+        {
+          "name": "Slither",
+          "rank": 5
+        },
+        {
+          "name": "Unfettered Movement",
+          "rank": 4
+        },
+        {
+          "name": "Fireball",
+          "rank": 3
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Force Barrage",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "arcane",
+    "dragon"
+  ],
+  "weaknesses": []
+}

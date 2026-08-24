@@ -1,0 +1,128 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 2,
+    "dex": -2,
+    "int": -5,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The yellow musk thrall is reduced to 4 HP or fewer</p>\n<hr />\n<p><strong>Effect</strong> Creeper tendrils tear through the thrall's limbs, causing its forearms to tear loose. The thrall's melee reach increases by 5 feet.</p>",
+      "frequency": null,
+      "name": "Limb Extension",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The yellow musk thrall is reduced to 4 HP or fewer"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>5 feet. Grasping tendrils extend out from the thrall. When the thrall ends its movement next to a creature, or a creature ends its turn next to the thrall, that creature must succeed at a @Check[reflex|dc:14] save or be Grabbed by the tendrils.</p>",
+      "frequency": null,
+      "name": "Entangling Tendrils",
+      "requirements": null,
+      "traits": [
+        "aura"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the thrall strikes a creature, that creature is exposed to yellow musk creeper pollen, as Spray Pollen (DC 14). The creature is Fascinated by the yellow musk creeper that spawned the thrall, not by the thrall itself. The affected creature must attempt a @Check[will|dc:14] save.</p>\n<p>Once a creature succeeds at any save against Spray Pollen, it becomes temporarily immune for 24 hours.</p>\n<hr />\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The creature is Fascinated. For as long as it is fascinated, it must spend each of its actions to move closer to the yellow musk creeper that spawned the thrall as expediently as possible, while avoiding obvious dangers. If the creature is adjacent to the yellow musk creeper, it stays still and doesn't act.</p>\n<p><strong>Critical Failure</strong> As failure, but the condition doesn't end automatically. The creature can attempt a new save at the end of each of its turns. On a success, the fascinated condition and other effects end.</p>",
+      "frequency": null,
+      "name": "Pollen Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A yellow musk thrall is permanently Slowed 1 and can't use reactions.</p>",
+      "frequency": null,
+      "name": "Slow",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "0rhltfBkQtYkCwXd",
+  "gear": [],
+  "hp": 12,
+  "id": "pathfinder-bestiary-2/yellow-musk-thrall",
+  "immunities": [],
+  "languages": [],
+  "level": -1,
+  "name": "Yellow Musk Thrall",
+  "perception": 0,
+  "publicNotes": "<p>A creature transformed by a yellow musk creeper's tendrils boring into its brain becomes a yellow musk thrall if it's Small or Medium, or a yellow musk brute if Large (a Small creature becomes a Small thrall rather than a Medium one). The transformation takes 1 hour. A yellow musk thrall takes only the most rudimentary of actions: bringing the yellow musk creeper water and new creatures to infest. After a few days (or if the creeper dies), the thrall wanders off into the wilderness and falls dead within 24 hours. The body of a deceased thrall sprouts a new yellow musk creeper within hours of its death, becoming a fully grown plant within 24 hours.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 0,
+    "will": 2
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 5
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 5
+    }
+  ]
+}

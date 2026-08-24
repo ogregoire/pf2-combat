@@ -1,0 +1,180 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 5,
+    "dex": 2,
+    "int": -3,
+    "str": 7,
+    "wis": 1
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(2d8+5)[bludgeoning],2d6[fire]]{2d8+5 bludgeoning damage plus 2d6 fire damage}, Rupture 12</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The remorhaz unleashes a gout of flame that deals @Damage[8d6[fire]|options:area-damage] damage in a @Template[cone|distance:30] (@Check[reflex|dc:26|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The remorhaz Strikes once with its jaws and once with its tail, each targeting a different creature. Each attack counts toward the remorhaz's multiple attack penalty, but the multiple attack penalty doesn't increase until after all the attacks have been made.</p>",
+      "frequency": null,
+      "name": "Thrash",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>5 feet. A creature that starts its turn in the aura takes @Damage[1d6[fire]] damage. Whenever the remorhaz takes damage from an enemy, this damage increases to @Damage[2d6[fire]] damage until the start of its next turn. Any creature that hits a remorhaz with an unarmed Strike takes @Damage[2d6[fire]] damage, and a weapon that hits a remorhaz takes @Damage[2d6[fire]] damage.</p>",
+      "frequency": null,
+      "name": "Heat",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "fire",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A remorhaz can leave a tunnel when it burrows through ice or snow, and it usually does.</p>",
+      "frequency": null,
+      "name": "Ice Tunneler",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d10+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d10+3",
+          "type": "bludgeoning"
+        },
+        {
+          "formula": "2d6",
+          "type": "fire"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "fire",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "Zbvh6ChdD0TWv257",
+  "gear": [],
+  "hp": 120,
+  "id": "pathfinder-bestiary/remorhaz",
+  "immunities": [
+    "cold",
+    "fire"
+  ],
+  "languages": [
+    "jotun"
+  ],
+  "level": 7,
+  "name": "Remorhaz",
+  "perception": 14,
+  "publicNotes": "<p>A remorhaz is an enormous arctic predator that resembles a multilegged insect with draconic features. This monster has chitinous plates and more than a score segmented legs, a multipartite maw, and winglike growths fianking its head. The most unusual aspect of the creature, however, is its internal heat, which burns with such intensity that it causes the armored plates on the creature's back to become superheated whenever the beast is agitated.</p>\n<p>Remorhazes are carnivores. Their diet includes arctic animals such as elk, but a hungry remorhaz readily devours anything it can catch and kill. It commonly lurks beneath ice or snow and ambushes prey with a sudden upward strike. Many victims die before even knowing what attacked them.</p>\n<p>Those who survive the worm's initial onslaught must face not only its deadly jaws, but also its hideously hot body. This heat can melt weapons, scorch armor, and burn flesh-all tactics the remorhaz uses to disable and defeat its foes. A remorhaz's internal fire allows it to burrow through ice and snow with ease. It leaves smooth tunnels in its wake as melted ice refreezes to leave the telltale signs of its passage. Most people underestimate a remorhaz's intelligence, assuming it to be a mere animal. However, remorhazes are capable of learning languages. Frost giants in particular use this trait to form alliances with them. The giants provide food, protection, and shelter for the worm, and in return the remorhaz acts as a guard beast and helps the giants build fortresses and forge metal weapons. The giants also employ the worms as war beasts, using them to undermine enemy positions.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 15,
+    "will": 10
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 18,
+    "stealth": 13
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "burrow",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

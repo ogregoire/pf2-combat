@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 2,
+    "str": -1,
+    "wis": 3
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The courtesan levies insults or backhanded compliments, attempting to [[/act demoralize skill=performance]] a creature using their Performance modifier instead of Intimidation.</p>",
+      "frequency": null,
+      "name": "Cutting Remarks",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The courtesan praises the performance of one ally who can hear them. The targeted ally ignores any circumstance and status penalties they have until the start of the courtesan's next turn. The target then becomes temporarily immune to this ability for 10 minutes.</p>\n<p>Effect: Words of Encouragement</p>",
+      "frequency": null,
+      "name": "Words of Encouragement",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 Bonus on Perception to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet.</p>\n<p>Creatures in the area that can observe the courtesan take a –2 status penalty on their Will DC against the courtesan's attempts to make a [[/act request]] of them.</p>",
+      "frequency": null,
+      "name": "Beguiling Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the courtesan Makes an Impression, they can compare their Diplomacy check result to the Will DCs of up to four targets instead of one.</p>",
+      "frequency": null,
+      "name": "Group Impression",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When entertaining or socializing, the courtesan is a 5th-level challenge.</p>",
+      "frequency": null,
+      "name": "Social Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sword Cane",
+      "traits": [
+        "agile",
+        "concealable",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "B9NoqcAASkg2Gjz3",
+  "gear": [
+    "Clothing (Fine)",
+    "Jewelry",
+    "Musical Instrument (Handheld)",
+    "Sword Cane"
+  ],
+  "hp": 25,
+  "id": "pathfinder-npc-core/courtesan",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Courtesan",
+  "perception": 9,
+  "publicNotes": "<p>Courtesans are high-class entertainers and professional companions, paid in favors and privileges for the honor of their company. These trendsetting socialites levy their clout to consort with those above their station, maneuvering connections to build exclusive clientele and climb the social ladder. A courtesan's discretion and mobility among the different ranks of society make their friendship well worth the price.</p><hr /><p>The denizens of a noble court are the most powerful people in a civilization, primed with wealth, station, and authority above the common people.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 7,
+    "will": 11
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 12,
+    "diplomacy": 12,
+    "performance": 13,
+    "society": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

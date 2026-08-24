@@ -1,0 +1,149 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 1,
+    "int": 0,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The penitent Strikes, then increases their own Frightened value by 2 and deals @Damage[3[slashing]] damage to themselves, bypassing resistance. The penitent then gains resistance 3 to physical damage until the start of their next turn.</p>",
+      "frequency": null,
+      "name": "Repentant Defiance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The penitent ignores the penalty to attack rolls from being Frightened and gains a status bonus to damage rolls equal to their frightened value.</p>",
+      "frequency": null,
+      "name": "Agonizing Drive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Whip",
+      "traits": [
+        "disarm",
+        "nonlethal",
+        "reach",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "uTGGtpKUotQep27v",
+  "gear": [
+    "Dagger",
+    "Explorer's Clothing",
+    "Religious Symbol of Calistria",
+    "Whip"
+  ],
+  "hp": 18,
+  "id": "pathfinder-npc-core/penitent-of-calistria",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Penitent of Calistria",
+  "perception": 4,
+  "publicNotes": "<p>Atonement is seen as an ultimate act of supplication for those who have wronged their faith. Repentance takes several forms—acts of service, a pilgrimage, flagellation, or divine quests.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 5,
+    "will": 6
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 6,
+    "deception": 5,
+    "intimidation": 3,
+    "religion": 4
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,254 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 9,
+    "dex": -1,
+    "int": -3,
+    "str": 10,
+    "wis": -1
+  },
+  "ac": 40,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> The magma worm would be affected by a condition or adverse effect (such as Cursed Metamorphosis)</p>\n<hr />\n<p><strong>Effect</strong> The magma worm negates the triggering condition or effect by sloughing an outer layer of its skin. Effects from artifacts, deities, or a similarly powerful source can't be avoided in this way.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Slough Skin",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The magma worm would be affected by a condition or adverse effect (such as Cursed Metamorphosis)"
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The worm Grabs a creature</p>\n<hr />\n<p><strong>Effect</strong> The worm uses Swallow Whole.</p>",
+      "frequency": null,
+      "name": "Fast Swallow",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The worm Grabs a creature"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Huge, @Damage[(3d10+10)[bludgeoning],2d6[fire]], Rupture 36</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The magma worm breathes a blast of flame in a @Template[cone|distance:60] that deals @Damage[18d6[fire]] damage to all creatures in the area (@Check[reflex|dc:41|basic] save).</p>\n<p>It can't use Fire Breath again for [[/gmr 1d4 #Recharge Fire Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Fire Breath",
+      "requirements": null,
+      "traits": [
+        "fire",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The worm makes a Strike once against each creature in its reach. It can Strike up to once with its jaws, up to once with its stinger, and any number of times with its body. Each attack counts toward the worm's multiple attack penalty, but the multiple attack penalty doesn't increase until after it makes all the attacks.</p>",
+      "frequency": null,
+      "name": "Thrash",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>As long as a magma worm is in contact with a fire or body of magma at least as large as itself, it gains fast healing 20. When struck by a magical fire effect from anything other than itself, a magma worm regains Hit Points equal to half the fire damage the effect would otherwise deal.</p>",
+      "frequency": null,
+      "name": "Fire Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The magma worm recovers from the Paralyzed, Slowed, and Stunned conditions at the end of its turn. It's also immune to penalties to its Speeds and the Immobilized condition, and it ignores difficult terrain and greater difficult terrain.</p>",
+      "frequency": null,
+      "name": "Inexorable",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:41]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage and Drained 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d6[poison]] damage and drained 1 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[2d6[poison]] damage and Drained 2 (1 round).</p>",
+      "frequency": null,
+      "name": "Magma Worm Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A magma worm can burrow through solid stone at a Speed of 20 feet. It can leave a tunnel if it desires, and it usually does.</p>",
+      "frequency": null,
+      "name": "Rock Tunneler",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 100 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "2d10+16",
+          "type": "bludgeoning"
+        },
+        {
+          "formula": "2d6",
+          "type": "fire"
+        }
+      ],
+      "kind": "melee",
+      "name": "Body",
+      "traits": [
+        "fire",
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "fire"
+        },
+        {
+          "formula": "3d10+18",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "deadly-3d10",
+        "fire",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 36,
+      "damage": [
+        {
+          "formula": "2d12+18",
+          "type": "piercing"
+        },
+        {
+          "formula": "2d6",
+          "type": "fire"
+        }
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "agile",
+        "fire",
+        "poison",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "jh3XmHoFtcGYkdJm",
+  "gear": [],
+  "hp": 410,
+  "id": "pathfinder-monster-core/magma-worm",
+  "immunities": [
+    "fire"
+  ],
+  "languages": [],
+  "level": 18,
+  "name": "Magma Worm",
+  "perception": 25,
+  "publicNotes": "<p>Among the most dangerous of their kind are the fiery magma worms. In addition to being even larger than benthic worms, the magma worm has a penchant for burrowing through volcanic regions that, over the generations, have infused it with a supernatural link to the Elemental Plane of Fire. The fiery heart of an active volcano is an attractive lair for a magma worm, as are the sprawling fields of molten rock found in the deepest reaches of the Darklands. Legends of ancient dwarven societies and colonists of the Elemental Planes populating moats of lava with magma worms likely have some basis in truth, although the methods used to keep these \"moat worms\" contained—and prevented from chewing their way through fortress foundations—must have been significant.</p>\n<p>Magma worms sometimes frequent areas on the surface where volcanism creates hot springs or other geothermal features, but even then they prefer to spend most of their time burrowing through the ground in their never-ending search for sustenance. Surface lands claimed by magma worms are notable for the mound-shaped burrows these creatures leave behind as they dig.</p>\n<hr />\n<p>Cave worms are gigantic scavengers that bore through the depths of the world, eating whatever material they find. Named for their distinctive habitats, these worms are ravenous and display overwhelming destructive capabilities. Cave worms of different types and abilities lurk in the more remote corners of the world—tales speak of arctic worms that dwell within immense glaciers or icebergs and grave worms that burrow through the boneyards of long-forgotten ruins, to name a few.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 36,
+    "reflex": 25,
+    "will": 27
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 38
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "burrow",
+      "value": 40
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "beast",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold",
+      "value": 15
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 1,
+    "int": 4,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 30 feet Casts a Spell or uses an ability with the fortune or misfortune trait</p><hr /><p><strong>Effect</strong> The astronomer's rejection of such fantasy becomes manifest. The astronomer attempts to counteract the triggering effect with a counteract modifier of [[/r 1d20+9 #Counteract]]{+9} and a counteract rank of 1.</p>",
+      "frequency": null,
+      "name": "Reject Myth",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within 30 feet Casts a Spell or uses an ability with the fortune or misfortune trait"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>If the astronomer is able to see the night sky, they can [[/act sense-direction skill=astronomy-lore]]{Sense Direction} using Astronomy Lore.</p>",
+      "frequency": null,
+      "name": "Living Sextant",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "Y0MSOv0l5ePhP3Co",
+  "gear": [
+    "Astrolabe",
+    "Spellbook",
+    "Staff"
+  ],
+  "hp": 23,
+  "id": "pathfinder-npc-core/astronomer",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Astronomer",
+  "perception": 10,
+  "publicNotes": "<p>Different cultures have created stories about the hows and whys of the universe, if things exist beyond the stars, and if the gods manipulate the heavenly bodies. But astronomers aren't interested in folktales—they desire truth.</p><hr /><p>True power comes from knowledge—the power to shape the growth of kingdoms by mere whispers, stay three steps ahead of adversaries, or even know which flora is best for creating untraceable poisons.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 5,
+    "will": 9
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 8,
+    "occultism": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

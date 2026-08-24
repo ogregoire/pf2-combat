@@ -1,0 +1,136 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 0,
+    "dex": 4,
+    "int": -2,
+    "str": 1,
+    "wis": 0
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The air scamp creates cutting winds in a @Template[cone|distance:15] that deal @Damage[2d6[slashing]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save). A creature that fails its save is also pushed back 10 feet.</p>\n<p>The air scamp can't use Sirocco Breath again for [[/gmr 1d4 #Recharge Sirocco Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Sirocco Breath",
+      "requirements": null,
+      "traits": [
+        "air",
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (In Open Air)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The air scamp ignores the Concealed condition from fog and mist.</p>",
+      "frequency": null,
+      "name": "Fog Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "MSm1im7lZA5i82rz",
+  "gear": [],
+  "hp": 12,
+  "id": "pathfinder-monster-core/air-scamp",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "sussuran"
+  ],
+  "level": 1,
+  "name": "Air Scamp",
+  "perception": 3,
+  "publicNotes": "<p>A pale blue head and paper-thin wings peek out from the cloud that clings to the air scamp. Air scamps are short-sighted and flighty, even relative to their kin; they are as likely to fly recklessly into battle as they are to whine in terror at a loud noise.</p>\n<hr />\n<p>Elemental scamps are bat-like critters marked by elemental powers. Scamps are dispatched from the Elemental Planes by more powerful residents or called to the Universe by neophyte summoners. All scamps have a hint of magical power due to a lingering connection to their home plane, which they largely use to pull simple pranks.</p>\n<p>Scamps rapidly form a pecking order of cleverness. Humanoids often confuse scamps when meeting such creatures for the first time. These confused scamps usually resort to an escalating series of pranks and mischief, seeing what they can get away with to establish their place in the hierarchy.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 3,
+    "reflex": 9,
+    "will": 7
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Blur",
+          "rank": 2
+        },
+        {
+          "name": "Gust of Wind",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "air",
+    "elemental"
+  ],
+  "weaknesses": []
+}

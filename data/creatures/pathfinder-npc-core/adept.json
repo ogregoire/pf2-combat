@@ -1,0 +1,130 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 0,
+    "dex": 2,
+    "int": 3,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The adept concentrates to muster knowledge and wisdom. While focusing, they gain a +2 status bonus to checks to Recall Knowledge, but take a –2 penalty to Perception. They can Dismiss this focused state.</p>",
+      "frequency": null,
+      "name": "Focused Thinker",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Journal",
+      "traits": [
+        "nonlethal",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "PBb2WprHhEIQE9jN",
+  "gear": [
+    "Journal",
+    "Robes",
+    "Writing Set"
+  ],
+  "hp": 8,
+  "id": "pathfinder-npc-core/adept",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": -1,
+  "name": "Adept",
+  "perception": 4,
+  "publicNotes": "<p>Adepts have unlocked only the most minor of occult mysteries. A few are chosen by accomplished practitioners for further training.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 2,
+    "reflex": 4,
+    "will": 6
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 5,
+    "diplomacy": 3,
+    "occultism": 5,
+    "society": 5
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 6,
+      "dc": 14,
+      "name": "Occult Spells Known",
+      "preparation": "spontaneous",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

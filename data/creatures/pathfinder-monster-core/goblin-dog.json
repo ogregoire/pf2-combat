@@ -1,0 +1,126 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 2,
+    "int": -4,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Check[reflex|dc:17]</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Buck]</p>",
+      "frequency": null,
+      "name": "Buck",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Requirements</strong> A creature must be mounted on the goblin dog.</p>\n<p><strong>Trigger</strong> The rider issues a command to the goblin dog.</p>\n<hr />\n<p><strong>Effect</strong> The goblin dog Steps before following the command.</p>",
+      "frequency": null,
+      "name": "Juke",
+      "requirements": "A creature must be mounted on the goblin dog.",
+      "traits": [],
+      "trigger": "The rider issues a command to the goblin dog."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The goblin dog vigorously scratches itself, exposing all adjacent creatures to goblin pox.</p>",
+      "frequency": null,
+      "name": "Scratch",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Goblins and goblin dogs are immune to goblin pox.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:17]</p>\n<hr />\n<p><strong>Stage 1</strong> Sickened 1 (1 round)</p>\n<p><strong>Stage 2</strong> sickened 1 and Slowed 1 (1 round)</p>\n<p><strong>Stage 3</strong> Sickened 2 and can't reduce its sickened value below 1 (1 day)</p>",
+      "frequency": null,
+      "name": "Goblin Pox",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A creature that hits the goblin dog with an unarmed attack, tries to Grapple it, or otherwise touches it is exposed to goblin pox.</p>",
+      "frequency": null,
+      "name": "Irritating Dander",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "yclRuradTmZbdKFQ",
+  "gear": [],
+  "hp": 17,
+  "id": "pathfinder-monster-core/goblin-dog",
+  "immunities": [],
+  "languages": [],
+  "level": 1,
+  "name": "Goblin Dog",
+  "perception": 6,
+  "publicNotes": "<p>Goblins' eponymous pets aren't true canines at all but rather large, blunt-nosed rodents with thin bodies and long legs. Often as cowardly as they are ugly, goblin dogs prefer to lurk behind bushes or in deep shadows, only pouncing upon lone or wounded prey. Goblin dogs frequently roam in packs, but they are likely to flee from a fight if injured, even if it means abandoning their packmates.</p>\n<p>Goblin dogs take their name from a long association with goblins, who breed the beasts as guard animals and mounts. Most goblins take issue with the name, as the average goblin is appalled at the suggestion that their favored mounts have anything at all to do with actual dogs. Of course, being goblins, they haven't bothered to come up with their own unique name for the creatures.</p>\n<p>Even the most pampered goblin dogs have itchy mange and prolific dander that tenaciously affects those who come in contact with them. This \"goblin pox\" causes itchy hives and festering sores that are as unsightly as they are irritating and distracting. Goblin dog dander causes allergic reactions in nearly all other creatures that don't share goblin dogs' terrible hygiene—with the notable exception being, of course, goblins, who remain entirely immune to the disease regardless of cleanliness.</p>\n<p>Hunger can drive goblin dogs to bouts of uncharacteristic violence, and crueler goblins sometimes purposefully starve their pets on the eve of battle. Goblin dogs subsist on whatever organic material they can scavenge; they particularly enjoy fresh carrion. Although goblins are far from picky eaters themselves, they value goblin dogs because the noisome animals will consume material that even goblins won't touch. In fact, \"Will It Eat?\" is one of the most popular games goblins play with their pets, where a wide range of morsels (not always edible or safe to consume) are dangled before a goblin dog's snout. Sadly, the game \"Will It Die?\" is often played after \"Will It Eat?\" Goblin dogs that survive the second game earn renown for their digestive prowess and often become favored tribal pets, treated even better than most of the rank-and-file goblins.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 8,
+    "will": 5
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 6,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

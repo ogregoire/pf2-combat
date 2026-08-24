@@ -1,0 +1,150 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 2,
+    "dex": 4,
+    "int": 1,
+    "str": 0,
+    "wis": 0
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The leaping thief Steps, then [[/act hide]]{Hides} or [[/act sneak]]{Sneaks}, ignoring difficult terrain for this movement.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Stealthy Pad",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The leaping thief Leaps up to 10 feet vertically or 30 feet horizontally.</p>",
+      "frequency": null,
+      "name": "Coiled Leap",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The leaping thief deals an extra 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the leaping thief successfully [[/act tumble-through]]{Tumbles Through} a foe's space or Leaps to a position higher than a foe, the foe is Off-Guard against the next attack the leaping thief makes before the end of their turn.</p>",
+      "frequency": null,
+      "name": "Unexpected Angle",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw Blade",
+      "traits": [
+        "agile",
+        "deadly-d8",
+        "disarm",
+        "finesse",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "BfuYoV5mQVc0DrzO",
+  "gear": [
+    "Claw Blade",
+    "Leather Armor",
+    "Thieves' Toolkit"
+  ],
+  "hp": 38,
+  "id": "pathfinder-npc-core/leaping-thief",
+  "immunities": [],
+  "languages": [
+    "amurrun",
+    "common"
+  ],
+  "level": 3,
+  "name": "Leaping Thief",
+  "perception": 10,
+  "publicNotes": "<p>Some catfolk take advantage of their natural agility to steal from those too slow to catch them. They usually target notorious misers and others who obviously have money to spare—sometimes to help the needy, sometimes for simple profit.</p><hr /><p>Catfolk can be found traveling almost anywhere, and they are quick to settle down for a chat when they encounter fellow travelers. Some trade stories, act as guides, or operate at the fringes of polite society.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 7,
+    "reflex": 11,
+    "will": 7
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 11,
+    "athletics": 7,
+    "deception": 10,
+    "society": 9,
+    "stealth": 11,
+    "thievery": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "catfolk",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

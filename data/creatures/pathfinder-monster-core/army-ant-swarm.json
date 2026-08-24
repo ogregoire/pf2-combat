@@ -1,0 +1,116 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 4,
+    "dex": 4,
+    "int": -5,
+    "str": -2,
+    "wis": 2
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature leaves the swarm's space</p>\n<hr />\n<p><strong>Effect</strong> The swarm takes @Damage[1d6[untyped]] damage as ants cling to the creature and continue biting, dealing @Damage[3d6[persistent,piercing]] damage. High winds or immersion in water reduces the DC of the flat check to end this persistent damage to 5. Any area damage dealt to the creature destroys these clinging ants.</p>",
+      "frequency": null,
+      "name": "Cling",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature leaves the swarm's space"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Each enemy in the swarm's space takes @Damage[3d6[piercing]] damage (@Check[fortitude|dc:21|basic] save). A creature that fails its save against Swarming Bites becomes Clumsy 1 for 1 round. If the creature attempts a concentrate or manipulate action while affected, it must succeed at a @Check[flat|dc:5] or the action is lost; roll the check after spending the action, but before any effects are applied.</p>\n<hr />\n<p>Effect: Swarming Bites</p>",
+      "frequency": null,
+      "name": "Swarming Bites",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "drcSWbCIWc7P4lKO",
+  "gear": [],
+  "hp": 55,
+  "id": "pathfinder-monster-core/army-ant-swarm",
+  "immunities": [
+    "precision",
+    "swarm-mind"
+  ],
+  "languages": [],
+  "level": 5,
+  "name": "Army Ant Swarm",
+  "perception": 11,
+  "publicNotes": "<p>An army ant swarm is a terrifying carpet of stinging insects that devours all in its path.</p>\n<hr />\n<p>Ants are industrious insects that aid the natural processes of decay and renewal.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 2
+    },
+    {
+      "type": "piercing",
+      "value": 5
+    },
+    {
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 11,
+    "will": 9
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 5
+    },
+    {
+      "type": "splash-damage",
+      "value": 5
+    }
+  ]
+}

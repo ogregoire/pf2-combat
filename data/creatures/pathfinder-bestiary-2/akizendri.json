@@ -1,0 +1,289 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 4,
+    "int": 4,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 19,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The akizendri takes on the appearance of any Small or smaller creature. This doesn't change its Speed or its attack and damage bonuses with its Strikes, but might change the damage type its Strikes deal.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d8+3)[bludgeoning]] damage, @Check[fortitude|dc:20|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An akizendri can anticipate the most likely location of a creature through their supernatural insight into the forces of chaotic probabilities and chance. This grants the akizendri the ability to sense creatures within the listed range. A creature under the effects of Veil of Privacy or that is otherwise shielded from divinations and predictions cannot be noticed via entropy sense.</p>",
+      "frequency": null,
+      "name": "Entropy Sense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "prediction"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 1",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by the akizendri's bite Strike must attempt a @Check[will|dc:20] save.</p>\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The creature is Stupefied 1 for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<p><strong>Critical Failure</strong> As failure, but the creature is also Confused for 1 round.</p>",
+      "frequency": null,
+      "name": "Garbled Thoughts",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>An akizendri's vital organs shift and change shape and position constantly. Immediately after the akizendri takes acid, electricity, or sonic damage, it gains the listed amount of resistance to that damage type. This lasts for 1 hour or until the next time the protean takes damage of one of the other types (in which case its resistance changes to match that type), whichever comes first.</p>\n<p>The akizendri is immune to polymorph effects unless it is a willing target. If Blinded or Deafened, the akizendri automatically recovers at the end of its next turn as new sensory organs grow to replace the compromised ones.</p>",
+      "frequency": null,
+      "name": "Protean Anatomy 6",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy (Touch)",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the akizendri casts Secret Page, it can physically immerse itself in the text, changing the message of the text in the process. It can exit the book at any point by Dismissing <em>secret page</em>, at which point it appears in a space adjacent to the text. If it does so to begin combat, it rolls a Deception check for initiative. As long as it remains immersed in the text, the akizendri has no body. It can communicate telepathically with a creature as long as the creature touches the book or scroll that contains the secret page. It can sense nearby creatures using its entropy sense, but not in any other way, nor can it use any attack, manipulate, or move actions or speak aloud. If the object it is immersed in is destroyed, the akizendri reappears in an adjacent square and is Stunned 1.</p>",
+      "frequency": null,
+      "name": "Text Immersion",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d8+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "chaotic",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "27R4ntwgch7eIQM6",
+  "gear": [],
+  "hp": 42,
+  "id": "pathfinder-bestiary-2/akizendri",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "empyrean",
+    "protean"
+  ],
+  "level": 3,
+  "name": "Akizendri",
+  "perception": 8,
+  "publicNotes": "<p>Akizendris gnaw at sources of knowledge and lore, gleefully corrupting and altering them to vex scholars and sages across the planes with contradictions and untruths. These proteans appear as cackling, serpentine creatures with elongated crocodilian faces, luminous eyes, and arms that vanish at the elbows into swirling clouds of runes before reforming into solid talons.</p>\n<p>Akizendris amuse themselves by rearranging or deleting texts, placing insulting acrostics in poetic verses, and penning crude insults upon title pages. Libraries in such places as Heaven, Axis, and Hell are especially keen to avoid such contamination, knowing that their records are choice targets for every akizendri in existence.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "precision",
+      "value": 3
+    },
+    {
+      "type": "protean-anatomy",
+      "value": 6
+    }
+  ],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 11,
+    "will": 10
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 9,
+    "deception": 10,
+    "occultism": 11,
+    "society": 10,
+    "stealth": 9,
+    "thievery": 9
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Freedom of Movement (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Glyph of Warding",
+          "rank": 3
+        },
+        {
+          "name": "Secret Page",
+          "rank": 3
+        },
+        {
+          "name": "Acid Splash",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Alignment (At will) (Lawful only)",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "monitor",
+    "protean"
+  ],
+  "weaknesses": []
+}

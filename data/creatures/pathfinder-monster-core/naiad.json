@@ -1,0 +1,187 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 1,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The naiad can ask questions of, receive answers from, and use the Diplomacy skill with animals.</p>",
+      "frequency": null,
+      "name": "Animal Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A naiad is bonded to a spring, pond, or similar-sized water feature. If she is more than 300 feet away from it for 24 hours or more, she gains the weak adjustments until she returns. She can perform a 24-hour ritual to bond herself to a new body of water.</p>",
+      "frequency": null,
+      "name": "Water Dependent",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>For every 10 minutes a naiad spends soaking in her bonded body of water, she regains @Damage[7[healing]]{7 Hit Points}.</p>",
+      "frequency": null,
+      "name": "Water Healing",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "primal",
+        "vitality"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Aqueous Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "water"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Water Orb",
+      "traits": [
+        "magical",
+        "range-60",
+        "water"
+      ]
+    }
+  ],
+  "foundryId": "Cqi8jadYpUTajIC6",
+  "gear": [],
+  "hp": 20,
+  "id": "pathfinder-monster-core/naiad",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven",
+    "fey",
+    "thalassic"
+  ],
+  "level": 1,
+  "name": "Naiad",
+  "perception": 6,
+  "publicNotes": "<p>Naiads protect streams, ponds, springs, and other natural bodies of fresh water. While most naiads lead solitary lives close to their chosen home, sometimes they congregate in coven-like groups where river tributaries meet, performing great magic and blessing the waters of the land. Because naiads' bonds to their bodies of water permit more flexibility, they are the nymphs most likely to interact with humanoids—and even visit their settlements on occasion. Unlike other nymphs, naiads occasionally become adventurers, especially when dark forces seek to despoil nature or otherwise threaten the land, joining forces with others to prevent the corruption of the natural world.</p>\n<hr />\n<p>Nymphs are a family of fey that take the form of beautiful humanoids with elven features and have a deep association with the natural world. The most common of their kind are the dryads, which are spirits that embody great trees, but many other kinds of nymphs exist, including naiads, who watch over bodies of water. All nymphs are guardians of some element of nature, typically a specific tree or pond, or even-in the case of nymph queens-whole forests or massive bodies of water</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": 3,
+    "reflex": 6,
+    "will": 8
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 6,
+    "athletics": 3,
+    "diplomacy": 7,
+    "nature": 6,
+    "stealth": 6,
+    "survival": 4
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Create Water",
+          "rank": 1
+        },
+        {
+          "name": "Hydraulic Push",
+          "rank": 1
+        },
+        {
+          "name": "Tidal Surge (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "fey",
+    "nymph",
+    "water"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 3
+    }
+  ]
+}

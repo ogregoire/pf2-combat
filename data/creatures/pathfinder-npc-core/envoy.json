@@ -1,0 +1,150 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 1,
+    "int": 4,
+    "str": 0,
+    "wis": 3
+  },
+  "ac": 13,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The envoy invokes their diplomatic status. Until the end of the envoy's next turn, any creature that attempts to attack them must succeed at a @Check[will|dc:15] save or have their attack disrupted. The attacker gains weakness 2 to all damage from the envoy's allies while Diplomatic Immunity lasts, whether their attack was disrupted or not.</p><hr /><p>Effect: Diplomatic Immunity</p>",
+      "frequency": null,
+      "name": "Diplomatic Immunity",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "emotion",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+6 Bonus on Perception to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When dealing with matters of statecraft and negotiation, the envoy is a 6th-level challenge.</p>",
+      "frequency": null,
+      "name": "Diplomatic Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "9wdaQ6ZuBAZx9Vjk",
+  "gear": [
+    "Clothing (Fine)",
+    "Dagger",
+    "Letter of Diplomatic Status",
+    "Signet Ring"
+  ],
+  "hp": 12,
+  "id": "pathfinder-npc-core/envoy",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Envoy",
+  "perception": 7,
+  "publicNotes": "<p>Envoys are guests of a given court, representing the interests of another court or organization. Some envoys stay in one place so long they're practically considered locals, though those with whom they parley are swiftly reminded where their loyalty lies.</p><hr /><p>The denizens of a noble court are the most powerful people in a civilization, primed with wealth, station, and authority above the common people.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 2,
+    "reflex": 3,
+    "will": 11
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 13,
+    "diplomacy": 15,
+    "intimidation": 7,
+    "society": 15
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

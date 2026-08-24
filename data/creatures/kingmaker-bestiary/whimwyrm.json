@@ -1,0 +1,223 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 6,
+    "dex": 9,
+    "int": 5,
+    "str": 5,
+    "wis": 6
+  },
+  "ac": 42,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Fangs only.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Fangs Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The whimwyrm damages a creature with its whiplashing tail Strike</p>\n<p><strong>Effect</strong> The whimwyrm can attempt to Disarm, Shove, or Trip the damaged creature.</p>",
+      "frequency": null,
+      "name": "Meddling Tail",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The whimwyrm damages a creature with its whiplashing tail Strike"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The whimwyrm exhales a @Template[cone|distance:40] of sparkling magenta mist. Creatures within the area must attempt a @Check[will|dc:38] save as their minds are overwhelmed by a sudden riot of false (and typically unpleasant) memories, taking @Damage[10d12[mental]] damage depending on their save. The whimwyrm can't use mind-numbing breath for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature becomes outlined in sparkling dust, negating any Invisibility it has in effect for 1 round and takes no damage.</p>\n<p><strong>Success</strong> The creature takes half damage, and its invisibility is negated for 2 rounds.</p>\n<p><strong>Failure</strong> The creature takes full damage, is Dazzled for 1 minute, and its invisibility is negated for 1 minute.</p>\n<p><strong>Critical Failure</strong> The creature takes double damage, is Blinded for 1 round, dazzled for 1 minute, and its invisibility is negated for 1 minute.</p>",
+      "frequency": null,
+      "name": "Mind-Numbing Breath",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Fog and mist doesn't impair a whimwyrm's vision; it ignores the Concealed condition from fog and mist.</p>",
+      "frequency": null,
+      "name": "Fog Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When a whimwyrm's insults result in combat, it rolls Performance for initiative. A PC who engaged in the insults can roll Performance as well, and if they insulted the whimwyrm, it begins the combat Stunned 1 as it sputters in indignation if the Performance check also exceeds the Whimwyrm's Will DC of 39.</p>",
+      "frequency": null,
+      "name": "Insult Challenges",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "3d12+12",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Frenzied Fangs",
+      "traits": [
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "3d8+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Whiplashing Tail",
+      "traits": [
+        "agile",
+        "finesse",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "SfFMqKTUQ1Dwu5lT",
+  "gear": [],
+  "hp": 280,
+  "id": "kingmaker-bestiary/whimwyrm",
+  "immunities": [
+    "confused",
+    "controlled",
+    "paralyzed",
+    "petrified",
+    "unconscious"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "fey"
+  ],
+  "level": 17,
+  "name": "Whimwyrm",
+  "perception": 31,
+  "publicNotes": "<p>Whimwyrms are unpredictable dragons native to the whimsically dangerous First World. While their coloration and appearance might evoke reactions of adoration, their moods shift quickly from one extreme to the other. Many who have assumed that their adorability and relatively small size equates to safety have met swift and grisly ends on a whimwyrm's fangs or magic.</p>\n<p>A whimwyrm is a slender, sleek dragon, not much longer than seven feet from snout to tail, but its speed in combat is unnerving. When a whimwyrm attacks, be it with its fanged mouth or its long tail, it makes several quick, darting snaps or lashes at once. While stylistically, these attacks consist of multiple bites or lashings, they still resolve as a single Strike.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 29,
+    "reflex": 34,
+    "will": 29
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 34,
+    "athletics": 30,
+    "deception": 32,
+    "intimidation": 30,
+    "nature": 30,
+    "performance": 35,
+    "stealth": 34,
+    "survival": 29
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 30,
+      "dc": 38,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Scintillating Pattern",
+          "rank": 8
+        },
+        {
+          "name": "Duplicate Foe",
+          "rank": 7
+        },
+        {
+          "name": "Prismatic Spray",
+          "rank": 7
+        },
+        {
+          "name": "Warp Mind",
+          "rank": 7
+        },
+        {
+          "name": "Cloudkill",
+          "rank": 5
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "air",
+    "dragon"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 15
+    }
+  ]
+}

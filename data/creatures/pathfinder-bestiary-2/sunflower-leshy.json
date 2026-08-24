@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>20 feet.</p>\n<p><strong>Requirements</strong> The sunflower leshy begins its turn in an area of bright light</p>\n<hr />\n<p><strong>Effect</strong> The sunflower leshy reflects the sun or another source of bright light from their face. Each creature that ends its turn in the emanation must attempt a @Check[will|dc:16] save.</p>\n<hr />\n<p><strong>Success</strong> The creature is unaffected and is temporarily immune to heliotrope for 24 hours.</p>\n<p><strong>Failure</strong> The creature is distracted by the light, becoming Off-Guard for 1 round.</p>\n<p><strong>Critical Failure</strong> As failure, but the creature is also Dazzled for 1 round.</p>",
+      "frequency": null,
+      "name": "Heliotrope",
+      "requirements": "The sunflower leshy begins its turn in an area of bright light",
+      "traits": [
+        "aura",
+        "light",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The sunflower leshy transforms into a Small flower. This ability otherwise uses the effects of One with Plants.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The sunflower leshy launches a deluge of seeds from their head in a @Template[cone|distance:15], dealing @Damage[2d6[bludgeoning]] damage to creatures within the area (@Check[reflex|dc:16|basic] save).</p>\n<p>It gains a +2 status bonus to this damage against Dazzled creatures.</p>\n<p>The sunflower leshy can't use Seed Spray again for [[/gmr 1d4 #Recharge Seed Spray]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Seed Spray",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a sunflower leshy dies, a burst of primal energy explodes from its body, restoring @Damage[1d8[healing]] Hit Points to each plant creature in a @Template[emanation|distance:30]. This area immediately fills with sunflowers, becoming difficult terrain.</p>\n<p>If the terrain is not a viable environment for these sunflowers, they wither after 24 hours.</p>",
+      "frequency": null,
+      "name": "Verdant Burst",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "plant"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Seed",
+      "traits": [
+        "range-increment-20"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tendril",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "Bz5wgKEVsHAyaYEx",
+  "gear": [],
+  "hp": 20,
+  "id": "pathfinder-bestiary-2/sunflower-leshy",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey",
+    "wildsong"
+  ],
+  "level": 1,
+  "name": "Sunflower Leshy",
+  "perception": 7,
+  "publicNotes": "<p>Sunflower leshys are the ambassadors and social leaders of their kind. Their petals radiate from their heads in various hues with a serrated, leafy, beard-like ruff. When particularly excited, their eyes and petals glow with collected sunlight, and when they become depressed or saddened, their usually vibrant coloration grows correspondingly muted. These shifts in coloration are echoed in sunflower leshy art, which can lead to unexpected color palettes for artworks. For example, a human artist might illustrate Hell as a place of glowing lava and flickering flames, drawing upon many vibrant colors, but to a sunflower leshy, the only proper way to depict a place like Hell is in morose grays, blacks, and whites.</p>\n<p>The more adventurous sunflower leshys leave their communities to grow bonds with nearby settlements of humanoids. When interacting with humanoids, sunflower leshys are some of the most likely to act friendly and give strangers a chance to prove their good intentions, though they remain cautious. They're often accompanied by other, more powerful leshys.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 4,
+    "reflex": 10,
+    "will": 7
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 6,
+    "diplomacy": 8,
+    "nature": 5,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 17,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Speak with Plants",
+          "rank": 4
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "leshy",
+    "plant"
+  ],
+  "weaknesses": []
+}

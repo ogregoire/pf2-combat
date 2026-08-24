@@ -1,0 +1,145 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 4,
+    "int": -2,
+    "str": -5,
+    "wis": 2
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The shadow hit a living creature with a shadow hand Strike on its previous action</p>\n<hr />\n<p><strong>Effect</strong> The shadow pulls at the target's shadow, making the creature Enfeebled 1. This is cumulative with other enfeebled conditions from shadows, to a maximum of Enfeebled 4. If this increases a creature's enfeebled value to 3 or more, the target's shadow is separated from its body (see shadow spawn). The enfeebled value from Steal Shadow decreases by 1 every hour.</p>",
+      "frequency": null,
+      "name": "Steal Shadow",
+      "requirements": "The shadow hit a living creature with a shadow hand Strike on its previous action",
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Attacks against the shadow are treated as magical if made by a creature who is in magical light or with an object that is in magical light (such as from the Light spell).</p>",
+      "frequency": null,
+      "name": "Light Vulnerability",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a creature's shadow is pulled free by Steal Shadow, it becomes a shadow spawn under the command of the shadow that created it. This Shadow Spawn doesn't have Steal Shadow and is perpetually and incurably Clumsy 2.</p>\n<p>If the creature the shadow spawn was pulled from dies, the shadow spawn becomes a full-fledged, autonomous shadow. If the creature recovers from its enfeeblement, its shadow returns to it and the shadow spawn is extinguished.</p>",
+      "frequency": null,
+      "name": "Shadow Spawn",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The shadow can Hide or end its Sneak in a creature's or object's shadow.</p>",
+      "frequency": null,
+      "name": "Slink in Shadows",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d6+3",
+          "type": "void"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shadow Hand",
+      "traits": [
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "VotlWUsFKdOrHWF6",
+  "gear": [],
+  "hp": 40,
+  "id": "pathfinder-monster-core/shadow",
+  "immunities": [
+    "bleed",
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "poison",
+    "precision",
+    "unconscious"
+  ],
+  "languages": [
+    "necril"
+  ],
+  "level": 4,
+  "name": "Shadow",
+  "perception": 10,
+  "publicNotes": "<p>The mysterious undead known as shadows lurk in dark places and feed on those who stray too far from the light.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "all-damage",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 14,
+    "will": 12
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 10,
+    "stealth": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "incorporeal",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

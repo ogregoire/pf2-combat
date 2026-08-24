@@ -1,0 +1,277 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 8,
+    "dex": 5,
+    "int": 5,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 45,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Jaws only</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Jaws Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 100 feet casts a fire spell, or a fire spell otherwise comes into effect from a source within 100 feet.</p>\n<hr />\n<p><strong>Effect</strong> The dragon makes all the choices to determine the targets, destination, or other effects of the spell, as though it were the caster.</p>",
+      "frequency": null,
+      "name": "Redirect Fire",
+      "requirements": null,
+      "traits": [
+        "arcane"
+      ],
+      "trigger": "A creature within 100 feet casts a fire spell, or a fire spell otherwise comes into effect from a source within 100 feet."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The red dragon attempts to take control of a magical fire or a fire spell within 100 feet.</p>\n<p>If it succeeds at a counteract check (counteract rank 10, counteract modifier +32), the original caster loses control of the spell or magic fire, control is transferred to the dragon, and the dragon counts as having Sustained the Spell with this action (if applicable). The dragon can choose to end the spell instead of taking control, if it chooses.</p>",
+      "frequency": null,
+      "name": "Manipulate Flames",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a blast of flame that deals @Damage[20d6[fire]|options:area-damage] damage in a @Template[cone|distance:60] (@Check[reflex|dc:42|basic|options:area-effect] save).</p>\n<p>It can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet. @Damage[4d6[fire]] damage (@Check[reflex|dc:39|basic] save)</p>",
+      "frequency": null,
+      "name": "Dragon Heat",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "aura",
+        "fire"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:40]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Smoke doesn't impair a red dragon's vision; it ignores the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "4d8+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "3d6",
+          "type": "fire"
+        },
+        {
+          "formula": "4d10+17",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "fire",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "4d10+15",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    },
+    {
+      "bonus": 35,
+      "damage": [
+        {
+          "formula": "3d8+15",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "2T2cN4j4EzfDAIEe",
+  "gear": [],
+  "hp": 425,
+  "id": "pathfinder-bestiary/red-dragon-ancient-spellcaster",
+  "immunities": [
+    "fire",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "chthonian",
+    "common",
+    "draconic",
+    "dwarven",
+    "jotun",
+    "orcish"
+  ],
+  "level": 19,
+  "name": "Red Dragon (Ancient, Spellcaster)",
+  "perception": 35,
+  "publicNotes": "<p>The largest and most powerful of the chromatic dragons, red dragons are a menace to civilizations everywhere, and their strength is rivaled only by their arrogance. Red dragons see themselves as regents and overlords of all dragonkind. With their crowns of crimson spikes and their command of blistering frame, this is no haughty boast in their eyes-only unquestioned fact.</p>\n<p>Red dragons don't deign to speak with lesser creatures; they simply dominate and burn, enslaving weaker creatures to act as servants and to look after their lairs while the dragons slumber away. They take pleasure in dominating these creatures, and they demand tribute from their supplicants. Those who anger or disappoint end up eaten or reduced to ash. They command their enslaved minions to constantly build onto their lairs, carving out new tunnels and designing cunning traps that ensure the dragon's security.</p>\n<p>Driven by their arrogance, red dragons are the most likely of the chromatic dragons to ravage settlements. They want the world to see them in their rightful place as powerful tyrants, and they delight in threatening all other creatures. They have no qualms about bullying, manipulating, or killing to complete their goals-or simply intimidating others through a public display of brutality and dominance.</p>\n<p>As legendary as the brutishness of red dragons is the magnificence of their hoards of gold. Their lairs are often situated in dangerous places, with volcanoes being a favorite spot, as they find them foreboding and the constant warmth is comfortable. No matter the locale, red dragons sleep on a litter of coins and other treasures, which they zealously guard. Sometimes, the dragon's internal heat causes these precious metals to fuse together.</p>\n<hr />\n<p>While there are many types of dragons, from the powerful planar dragons to the strange esoteric dragons, few dragon varieties are as well-known and as rightly feared as the chromatic dragons. Differentiated by the hue of their scales, each color of dragon unleashes its own flavor of murderous cruelty-be it by claw, tooth, or breath-and unlike most creatures, dragons only become more powerful as they age. Their lust for treasure, food, bloodshed, and control are legendary. Physically powerful with egos to match, these dragons are often morally depraved and act as criminal masterminds, vicious tyrants, or voracious raiders.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 35,
+    "reflex": 32,
+    "will": 35
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 30,
+    "arcana": 35,
+    "athletics": 37,
+    "deception": 35,
+    "diplomacy": 35,
+    "intimidation": 37,
+    "stealth": 33
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 60
+    },
+    {
+      "type": "fly",
+      "value": 180
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 42,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Suggestion (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Wall of Fire (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "fire"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold",
+      "value": 20
+    }
+  ]
+}

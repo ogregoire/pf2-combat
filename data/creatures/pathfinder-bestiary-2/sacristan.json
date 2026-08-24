@@ -1,0 +1,226 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 6,
+    "dex": 5,
+    "int": 0,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<hr />\n<p><strong>Effect</strong> The sacristan opens their mouth to unloose the wailing howls and mind-twisting darkness of the Shadow Plane. This creates a @Template[emanation|distance:30] of darkness and wailing sounds around the sacristan. Creatures with Darkvision can't see through this darkness. The sacristan can Sustain Shadow Scream for up to 1 minute. Non-velstrac creatures in the area when the ability is used, as well as those who enter or start their turn in the area, must attempt a @Check[will|dc:28|traits:damaging-effect] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and is then temporarily immune for 24 hours.</p>\n<p><strong>Success</strong> The creature is Deafened for 1 round.</p>\n<p><strong>Failure</strong> The creature is Confused and deafened for 1 round.</p>\n<p><strong>Critical Failure</strong> The creature takes @Damage[20[mental]] damage, and is confused and deafened for 1 round.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1H"
+      },
+      "name": "Shadow Scream",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "concentrate",
+        "darkness",
+        "divine",
+        "mental",
+        "sonic"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The sacristan stares at a creature they can see within 30 feet. The creature must immediately attempt a Will save against Staggering Servitude. In addition, if the creature was already Stunned, on a failed save its revulsion toward the sacristan's presence causes it to be Stupefied 2 for 1 minute. After attempting this save, the creature is then temporarily immune until the start of the sacristan's next turn.</p>",
+      "frequency": null,
+      "name": "Focus Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A velstrac automatically knows whether a creature it sees has any of the Doomed, Dying, and Wounded conditions, as well as the value of those conditions</p>",
+      "frequency": null,
+      "name": "Painsight",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 10 (Deactivated by Holy or Silver)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. When a creature ends its turn in the aura, it sees a vision of the sacristan groveling in pitiable servitude. The creature must succeed at a @Check[will|dc:27] save or become Stunned 1.</p>",
+      "frequency": null,
+      "name": "Staggering Servitude",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d8+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Barbed Chain",
+      "traits": [
+        "evil",
+        "magical",
+        "reach-10",
+        "trip",
+        "unholy",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "7oiIDnLBDpC2r2AA",
+  "gear": [],
+  "hp": 175,
+  "id": "pathfinder-bestiary-2/sacristan",
+  "immunities": [
+    "cold"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "shadowtongue"
+  ],
+  "level": 10,
+  "name": "Sacristan",
+  "perception": 19,
+  "publicNotes": "<p>Sacristans are failures among the velstracs, creatures whose bodies and minds have been utterly broken by the velstracs' torments. These unfortunates are assembled from scrap metal, nerveless flesh, and bits of darkness into loyal agents who take ecstatic pleasure in serving other velstracs. Sacristans are empowered by a miniature gateway to the Shadow Plane deep in their mouths. By distending their jaws, they can howl with the shrieks and windstorms of that plane. Sacristans vary in appearance but are the size of maimed humans. Their features are redundant or absent and they are wrapped in barbed and rusted chains.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 22,
+    "reflex": 19,
+    "will": 17
+  },
+  "senses": [
+    "greater-darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 19,
+    "athletics": 22,
+    "intimidation": 18,
+    "stealth": 21
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 29,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Chilling Darkness",
+          "rank": 5
+        },
+        {
+          "name": "Fear",
+          "rank": 3
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "unholy",
+    "velstrac"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 10
+    },
+    {
+      "type": "silver",
+      "value": 10
+    }
+  ]
+}

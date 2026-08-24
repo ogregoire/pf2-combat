@@ -1,0 +1,110 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 4,
+    "int": -5,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giant wasp lays eggs in an adjacent creature that is Paralyzed or Unconscious, exposing it to the wasp larva disease.</p>",
+      "frequency": null,
+      "name": "Implant Eggs",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:19]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> no effect (1 round)</p>\n<p><strong>Stage 2</strong> Clumsy 2 (1 round)</p>\n<p><strong>Stage 3</strong> Paralyzed (1 round)</p>",
+      "frequency": null,
+      "name": "Giant Wasp Venom",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:21]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier with no ill effect ([[/gmr 1d6 #days]]{1d6 days})</p>\n<p><strong>Stage 2</strong> Drained 1 ([[/br 1d3 #days]]{1d3 days})</p>\n<p><strong>Stage 3</strong> [[/r {5d6}]]{5d6 damage}, larva emerges (disease ends)</p>",
+      "frequency": null,
+      "name": "Wasp Larva",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d12+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "poison"
+      ]
+    }
+  ],
+  "foundryId": "6aaBmiOgqZ5h2IhW",
+  "gear": [],
+  "hp": 45,
+  "id": "pathfinder-monster-core/giant-wasp",
+  "immunities": [],
+  "languages": [],
+  "level": 3,
+  "name": "Giant Wasp",
+  "perception": 8,
+  "publicNotes": "<p>Giant wasps are much more dangerous but less common than their smaller kin, and—to the relief of those who encounter them—they tend to be solitary.</p>\n<hr />\n<p>While the common wasp poses little threat to a hardy adventurer aside from an uncomfortable sting, a large and aggressive swarm of these territorial insects—to say nothing of their oversized kin—can lay low an entire party of heroes. The wasps represented here are of the common variety, also known as yellow jackets, but many other sorts of dangerous wasps exist, such as a Garundi variant that swarms in such great numbers that it can decimate entire villages.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 11,
+    "will": 6
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 11,
+    "athletics": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

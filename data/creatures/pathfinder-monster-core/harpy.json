@@ -1,0 +1,152 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 4,
+    "int": -1,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The harpy uses the wind to pull its prey closer. A target within 20 feet must succeed at a @Check[fortitude|dc:21] save or be pulled adjacent to the harpy, where they make a jaws Strike against the target. If the target was pulled off the ground and can't fly, it then falls as normal.</p>",
+      "frequency": null,
+      "name": "Hungry Winds",
+      "requirements": null,
+      "traits": [
+        "air",
+        "concentrate",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The sickened and unconscious conditions from putrid plague can't end or be reduced until the disease is cured</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:19]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier with no ill effect (1d4 hours),</p>\n<p><strong>Stage 2</strong> Sickened 1 (1 day),</p>\n<p><strong>Stage 3</strong> sickened 1 and Slowed 1 (1 day),</p>\n<p><strong>Stage 4</strong> Unconscious (1 day),</p>\n<p><strong>Stage 5</strong> dead</p>",
+      "frequency": null,
+      "name": "Putrid Plague",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet, @Check[fortitude|dc:21]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Stench]</p>",
+      "frequency": null,
+      "name": "Stench",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "olfactory"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When a harpy speaks, they can choose one creature within 90 feet. That creature can hear the harpy's words over any other sound, but no other creature hears the words at all.</p>",
+      "frequency": null,
+      "name": "Wind's Whispers",
+      "requirements": null,
+      "traits": [
+        "air",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d6+4",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Talon",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "uBNm3R9wbLTPrM9i",
+  "gear": [],
+  "hp": 75,
+  "id": "pathfinder-monster-core/harpy",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Harpy",
+  "perception": 12,
+  "publicNotes": "<p>Harpies are amalgamations of human and bird, resembling feral humans with wings, talons, and sharp teeth. They use their ancestral control of the wind to lure prey or even directly pull in their next meal. They enjoy causing confusion and fear in their prey before they strike, believing it creates a savory flavor in the flesh. Harpies can eat most creatures but strongly prefer sapient prey—humans and elves in particular. Although harpies will eat goblins if sufficiently hungry, they dislike their flavor and avoid eating them if possible. This doesn't comfort goblins, of course, who have a particularly strong fear of harpies.</p>\n<p>Because their aeries often reek with the gore of their kills and careless spatters of guano, harpies carry a distinctly vile scent that canny travelers associate with danger. Harpies who roost close to civilization make better efforts to keep clean, though these efforts have mixed results.</p>\n<p>Somewhere among the filth, most aeries have a shrine dedicated to the demon lord Pazuzu. Harpy legends credit him with raising them up from simple air spirits to their current station, and their gratitude typically takes the shape of a sketched figure in a corner piled with offerings. More devout families build portable wooden shrines that are carried from aerie to aerie for generations.</p>\n<p>Harpies live in family groups or larger clans. Most adults stand 5 feet tall and weigh around 90 pounds. While some use relatively simple weapons, those who master the use of the bow are regarded as heroes among their kind.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 15,
+    "will": 12
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "deception": 11,
+    "intimidation": 13,
+    "performance": 11,
+    "stealth": 11,
+    "thievery": 13
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "air",
+    "beast",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

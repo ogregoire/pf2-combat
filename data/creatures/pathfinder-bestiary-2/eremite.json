@@ -1,0 +1,365 @@
+{
+  "abilityMods": {
+    "cha": 10,
+    "con": 7,
+    "dex": 6,
+    "int": 6,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 45,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The eremite has a creature grabbed</p>\n<hr />\n<p><strong>Effect</strong> The eremite excises flesh or bone from a creature it has grabbed. The target takes @Damage[6d10[bleed]].</p>",
+      "frequency": null,
+      "name": "Evisceration",
+      "requirements": "The eremite has a creature grabbed",
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The eremite stares at a creature they can see within 30 feet. The creature must immediately attempt a Will save against paralytic perfection.</p>\n<p>In addition, if the creature was already paralyzed, on a failed save, its unnatural longing causes it to become Doomed 1.</p>\n<p>After attempting this save, the creature is then temporarily immune until the start of the eremite's next turn.</p>",
+      "frequency": null,
+      "name": "Focus Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The eremite holds a piece of flesh they collected via Evisceration</p><hr /><p><strong>Effect</strong> The eremite attaches the stolen flesh to themself. They either regain @Damage[100[healing]] Hit Points; reduce the value of their clumsy, drained, enfeebled, or stupefied condition by 3; or reduce the stage of any affliction affecting them by 3.</p>",
+      "frequency": null,
+      "name": "Graft Flesh",
+      "requirements": "The eremite holds a piece of flesh they collected via Evisceration",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An eremite's knowledge of pressure points and pain centers is unsurpassed. A creature hit by an eremite's melee Strikes must succeed at a @Check[fortitude|dc:40] save or be Stunned 2 (Stunned 4 on a critical failure).</p>\n<p>A creature that critically succeeds is temporarily immune for 24 hours.</p>",
+      "frequency": null,
+      "name": "Exquisite Pain",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>An eremite's actions can't be disrupted due to damage or Strikes (such as Attack of Opportunity).</p>",
+      "frequency": null,
+      "name": "Ignore Pain",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A velstrac automatically knows whether a creature it sees has any of the Doomed, Dying, and Wounded conditions, as well as the value of those conditions.</p>",
+      "frequency": null,
+      "name": "Painsight",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. When a creature ends its turn in the aura, it feels compelled to offer pieces of its own flesh to the eremite. The creature must succeed at a @Check[will|dc:40] save or become Paralyzed for 1 round.</p>",
+      "frequency": null,
+      "name": "Paralytic Perfection",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "fear",
+        "incapacitation",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 25 (Deactivated by Holy or Silver)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When an eremite uses Interplanar Teleport or Umbral Journey, they arrive at exactly their intended destination.</p>",
+      "frequency": null,
+      "name": "Shadow Traveler",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "3d6+19",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "4d8+19",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "hmnNDCNV425MisdA",
+  "gear": [],
+  "hp": 375,
+  "id": "pathfinder-bestiary-2/eremite",
+  "immunities": [
+    "cold",
+    "fear-effects",
+    "nonlethal-attacks"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "shadowtongue"
+  ],
+  "level": 20,
+  "name": "Eremite",
+  "perception": 34,
+  "publicNotes": "<p>Eremites roam the planes to seek out ideal portions of other creatures, such as a hero's sword-arm or an angel's pinions. Eremites capture these specimens to clinically test their true limits, then harvest specimens and add them to their own bodies. An eremite might attach tongues to their hand as extra fingers or a fist to the back of their neck in a horrid \"improvement.\" Eremites average 7 feet tall and weigh approximately 200 pounds.</p>\n<hr />\n<p>The search for ultimate sensation through self-mutilation is the horrifying preoccupation of the shadow-dwelling fiends known as velstracs. They transcend their stoic detachment only when inflicting pain and terror upon their victims, practicing new forms of torture, or when turning their agonizing practices back on themselves. Velstracs consider themselves enlightened beings, transcending such limitations as morality or mortal taboos, but their victims know them as emotionless tormentors who inflict sadistic suffering. These fiends claim to seek perfection in thought, form, and action, although they don't recognize any refinement that doesn't require the painful excision of the flesh or spirit.</p>\n<p>Velstracs manifest from the souls of the most extreme masochistic or sadistic mortals who are judged and sent on to the Shadow Plane. They take on forms that suit their vile predilections, ranging from the low-ranking augurs to the maestros of suffering and mutilation called eremites. The process of transformation warps the soul step by step, with other velstracs conveying their new members through untold chambers of pain among the dark reaches of the Shadow Plane.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 37,
+    "reflex": 32,
+    "will": 34
+  },
+  "senses": [
+    "greater-darkvision",
+    "truesight"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 35,
+    "deception": 38,
+    "diplomacy": 36,
+    "intimidation": 40,
+    "medicine": 36,
+    "religion": 34,
+    "stealth": 36
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 32,
+      "dc": 42,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [
+        {
+          "max": 1,
+          "rank": 0
+        },
+        {
+          "max": 5,
+          "rank": 7
+        },
+        {
+          "max": 1,
+          "rank": 9
+        }
+      ],
+      "spells": [
+        {
+          "name": "Bind Soul",
+          "rank": 9
+        },
+        {
+          "name": "Blade Barrier",
+          "rank": 9
+        },
+        {
+          "name": "Shadow Blast",
+          "rank": 9
+        },
+        {
+          "name": "Shadow Walk (At will)",
+          "rank": 9
+        },
+        {
+          "name": "True Seeing (Constant)",
+          "rank": 9
+        },
+        {
+          "name": "Dimension Door (At will)",
+          "rank": 7
+        },
+        {
+          "name": "Dimensional Lock",
+          "rank": 7
+        },
+        {
+          "name": "Plane Shift (to the Universe or Netherworld only)",
+          "rank": 7
+        },
+        {
+          "name": "Shadow Siphon (At will)",
+          "rank": 7
+        },
+        {
+          "name": "Warp Mind",
+          "rank": 7
+        },
+        {
+          "name": "Harm",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Stabilize",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "unholy",
+    "velstrac"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 20
+    },
+    {
+      "type": "silver",
+      "value": 20
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 4,
+    "int": 1,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The iron hag can take on the appearance of any Medium female humanoid. This doesn't change their Speed or their attack and damage bonuses with their Strikes but might change the damage type their Strikes deal (typically to bludgeoning).</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A creature is Grabbed or Restrained by the iron hag's claw</p>\n<hr />\n<p><strong>Effect</strong> The hag's nails tear into their captured victim, dealing @Damage[2d8[piercing]|traits:cold-iron] damage (the nails are cold iron). Then the hag can attempt to Reposition the creature. If the creature is adjacent to the hag, they can then attempt a jaws Strike against it.</p>",
+      "frequency": null,
+      "name": "Embrace of Iron",
+      "requirements": "A creature is Grabbed or Restrained by the iron hag's claw",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The hag causes a cage built of cold iron fingernails to spring out of nothingness around one creature within 30 feet, attempting an Athletics check to [[/act grapple]] against the target's Fortitude DC; if the target has a weakness to cold iron, the iron hag gains a +2 circumstance bonus to this check.</p>\n<p>On a success, the creature is Grabbed by the magical fingernails (or Restrained on a critical success). If the creature successfully [[/act escape dc=24]]{Escapes} (DC 24), the cage crumbles into rust.</p>\n<p>Any creature can attempt to destroy the cage by attacking it. It has an AC of 19, Hardness 10, and 40 Hit Points.</p>",
+      "frequency": null,
+      "name": "Bonds of Iron",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An iron hag adds Earthbind, Impaling Spike, and Spellwrack to their coven's spells. Their spell DC when leading a coven is 24.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Coven]</p>",
+      "frequency": null,
+      "name": "Coven",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d8+6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "cold-iron",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d6+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "cold-iron",
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "lfUUnFazGLAtqRsP",
+  "gear": [],
+  "hp": 80,
+  "id": "pathfinder-monster-core/iron-hag",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "jotun"
+  ],
+  "level": 6,
+  "name": "Iron Hag",
+  "perception": 14,
+  "publicNotes": "<p>Iron hags are kidnappers, targeting those too young to even remember to fight back. They most often snatch babies from their cradles, though they sometimes target fearful children or youths who suffer from anxiety. They then imprison their new wards in towers or enchanted dungeons, terrifying their victims with stories of the outside world to discourage them from even trying to escape. If these methods fail to be effective, iron hags become more straightforward in their methods of imprisonment, insisting it's for their captives' own good.</p>\n<p>An iron hag's true form has unnaturally long arms. True to their name, they have teeth made of iron, as well as long iron toenails and claws.</p>\n<hr />\n<p>Hags are malevolent predators who use magic and manipulation to lure children and young adults into their clutches. Though their true forms are eldritch and horrifying, hags spend much of their lives disguised as ordinary women. They seek out targets who are unhappy, innocent, or otherwise vulnerable, preying on their weaknesses before snatching them up. The typical hag is abusive, controlling, and narcissistic. Though less malicious hags possibly exist, they rarely reveal their true forms, making them nearly impossible to find.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 12,
+    "will": 14
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 12,
+    "athletics": 14,
+    "deception": 13,
+    "diplomacy": 11,
+    "intimidation": 13,
+    "stealth": 16
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 16,
+      "dc": 24,
+      "name": "Coven Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Cursed Metamorphosis",
+          "rank": 6
+        },
+        {
+          "name": "Spellwrack",
+          "rank": 6
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Impaling Spike",
+          "rank": 5
+        },
+        {
+          "name": "Scouting Eye",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Talking Corpse",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Dream Message",
+          "rank": 3
+        },
+        {
+          "name": "Earthbind",
+          "rank": 3
+        },
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "hag",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

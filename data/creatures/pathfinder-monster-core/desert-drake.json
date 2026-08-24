@@ -1,0 +1,185 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 5,
+    "dex": 3,
+    "int": -1,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The desert drake is targeted with an attack</p>\n<hr />\n<p><strong>Effect</strong> The desert drake raises their wing, gaining a +2 circumstance bonus to AC against the triggering attack. If the desert drake is flying at the time they're attacked, they descend 10 feet after the attack is complete.</p>",
+      "frequency": null,
+      "name": "Wing Deflection",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The desert drake is targeted with an attack"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> three times per day</p>\n<hr />\n<p><strong>Effect</strong> The desert drake Strides or Flies twice.</p>",
+      "frequency": null,
+      "name": "Speed Surge",
+      "requirements": null,
+      "traits": [
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The desert drake makes two Fangs Strikes and one Tail Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The desert drake spits a ball of abrasive sand with a range of 60 feet that explodes into a cloud with a @Template[burst|distance:15]. Creatures in the area take @Damage[9d6[slashing]] damage (@Check[reflex|dc:27|basic] save).</p>\n<p>The desert drake can't use Sandstorm Breath again for [[/gmr 1d6 #Recharge Sandstorm Breath]]{1d6 rounds}, during which the sandstorm lingers in the area. This lingering sandstorm grants Concealment to everything within it and conceals everything outside from them.</p>",
+      "frequency": null,
+      "name": "Sandstorm Breath",
+      "requirements": null,
+      "traits": [
+        "earth",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Sandstorms don't impair a desert drake's vision; they ignore Concealment from sandstorms. They also are immune to being Dazzled or Blinded by sand or other grit.</p>",
+      "frequency": null,
+      "name": "Sandstorm Sight",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>On the first round of combat, creatures that haven't acted yet are Off-Guard to the desert drake.</p>",
+      "frequency": null,
+      "name": "Surprise Attacker",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d12+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": []
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d10+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "irl1wnfk4b83JWkY",
+  "gear": [],
+  "hp": 135,
+  "id": "pathfinder-monster-core/desert-drake",
+  "immunities": [
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "draconic"
+  ],
+  "level": 8,
+  "name": "Desert Drake",
+  "perception": 15,
+  "publicNotes": "<p>These distant cousins of creatures like adamantine dragons are a pale echo that lacks their relatives' power and intelligence. Desert drakes are nonetheless dangerous ambush predators, preying upon isolated desert travelers and outposts for food and supplies. Desert drakes' scales range in coloration from rust-brown to light tan and ocher shades, mimicking the colors of the dunes they call home.</p>\n<p>Like frost drakes, a rampage of desert drakes often claims a huge span of territory, watching over an expanse of desert from a perch in nearby mountains or a nest among weathered ruins. Any creature visible on the surface is liable to be targeted by the drakes, especially humanoid caravans. Rampages along trade routes quickly learn to leave a member watching over each oasis for new prey. During especially lean times, the drakes will even dig out subterranean prey like ankhravs, giant scorpions, or entire nests of giant ants.</p>\n<p>Desert drakes are among the lightest and most compact of the drakes, though this shouldn't be mistaken for frailty. Their swooped-back horns and feather-thin wings are adapted to make burrowing as easy as possible. Indeed, a desert drake's powerful neck makes wriggling through sand and other loose scree as easy as walking for it.</p>\n<hr />\n<p>Ravenous, bestial, and driven by instinct, drakes are draconic monsters who bear a fraction of the terrifying might of the primal dragons they share evolutionary roots with. While they're weaker, slower, and less inclined toward reason than dragons, drakes are nonetheless a menace to creatures and settlements around them. Their propensity for forming raiding parties—small social groups fittingly called \"rampages\"—makes them all the more dangerous; a single rampage of river drakes can quickly lay waste to a waterside village, and roving rampages of desert drakes are a plague to caravan traders.</p>\n<p>Drakes share a number of physical characteristics that unite them as one species despite their wide variety of habitats and abilities. For example, drakes lack forearms, leaving them with their formidable jaws and thickscaled tails to use in close combat. Most drakes would rather avoid this, however, preferring to use their magical breath to wreak havoc in wide swaths from comfortable distances while flying overhead. Finally, all drakes have small reservoirs of their ancestral draconic power that they can tap into to perform incredible feats of speed.</p>\n<p>Different species of drakes rarely come into conflict. Part of this is their distinct habitats, but drakes are open to negotiating simple agreements between rampages. This courtesy does not extend to dragonets, which drakes happily take as prey. Solitary tamed drakes are also excluded from such agreements and considered free game if their tamer isn't strong enough to protect them.</p>\n<h3>Drake Eggs</h3>\n<p>While drake hides aren't any more valuable than those of similarly sized creatures, drake eggs are prized commodities. They are used as components in powerful spells as well as eaten by various cultures, but the most common use for drake eggs is hatching and rearing drakes to serve as mounts and guardians.</p>\n<p>A typical drake lays a clutch of 2d4 eggs every 5 years. Eggs hatch within 3 to 6 weeks, during which time they must be kept in conditions appropriate to their natural environment, perhaps the most difficult aspect of drake husbandry. While it is generally easy for breeders to incubate the eggs of desert or jungle drakes (which require mildly warm temperatures to hatch) or river drakes (which must be submerged in running water), the eggs of flame and frost drakes require extreme temperatures in order to hatch, which can be difficult to replicate safely.</p>\n<p>A drake egg is an object with Hardness 3, 5 HP, and no Broken Threshold. The coloration of drake eggs varies only slightly from one species to the next. A creature must succeed at a @Check[nature|dc:20] check, or a relevant DC 20 Lore check, to identify the drake species of a specific egg.</p>\n<p>Once a drake hatches, they imprint on the first creature that they see. A creature imprinted on in this way can use Nature to Train and Command that drake. The market price of a drake egg varies depending on the type of drake and the exact legal situation. Because drakes are dangerous and intelligent creatures, many societies do not condone the trade of drake eggs and criminalize those who engage in it.</p>\n<p>It takes 2 years for a drake hatchling to grow to full size. A well-trained drake can make a fearsome mount or guardian, but many careless would-be drake trainers are devoured by their charges.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "cold",
+      "value": 10
+    },
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 15,
+    "will": 13
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 18,
+    "intimidation": 13,
+    "stealth": 15,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "burrow",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "dragon",
+    "earth"
+  ],
+  "weaknesses": []
+}

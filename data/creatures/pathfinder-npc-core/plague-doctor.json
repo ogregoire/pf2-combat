@@ -1,0 +1,157 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 1,
+    "int": 2,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Circumstance Bonus on Saves vs. Disease",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the plague doctor casts Heal, they roll d10s instead of d8s.</p>",
+      "frequency": null,
+      "name": "Healing Hands",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the plague doctor casts Heal targeting a single creature, the plague doctor also restores Hit Points equal to the spell's rank to themself or any other creature within range of the spell.</p>",
+      "frequency": null,
+      "name": "Improved Communal Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "txVORfqTxVCMD75C",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Healer's Toolkit",
+    "Healing Potion (Minor)",
+    "Staff",
+    "Studded Leather Armor"
+  ],
+  "hp": 70,
+  "id": "pathfinder-npc-core/plague-doctor",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Plague Doctor",
+  "perception": 13,
+  "publicNotes": "<p>These healers, often seen wearing distinctive masks and burning powders to defend against airborne plagues, are as much feared as they are respected. To see a plague doctor signals that disease has infested the land—and that it might have already taken hold.</p><hr /><p>The world is a dangerous place. Thankfully, there are those who devote their lives to easing the pain and suffering of others.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 8,
+    "will": 13
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "intimidation": 9,
+    "medicine": 13,
+    "religion": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 15,
+      "dc": 23,
+      "name": "Cleric Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Healer's Blessing",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

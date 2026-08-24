@@ -1,0 +1,142 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 10 feet uses an action with the move trait or leaves a space within the constable's reach during its move action</p><hr /><p><strong>Effect</strong> The constable attempts to Trip the triggering creature. On a success, the triggering action is disrupted.</p>",
+      "frequency": null,
+      "name": "Opportune Maneuver",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within 10 feet uses an action with the move trait or leaves a space within the constable's reach during its move action"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The equestrian constable Seeks or Points Out a target. They can Interact to draw an item or Command an Animal to approach or attack the target.</p>",
+      "frequency": null,
+      "name": "Vigilant Vantage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The equestrian constable rides a trained mount of their level or lower, usually a War Horse or, for elite equestrian constables, a Veteran War Horse. The animal has the standard number of actions, uses its normal stat block, and counts toward the encounter's XP budget normally.</p>",
+      "frequency": null,
+      "name": "Trained Animal",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d8+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Guisarme",
+      "traits": [
+        "reach-10",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "nVV8UBPEB9gHOh1R",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Guisarme",
+    "Half Plate",
+    "Manacles (Poor)",
+    "Rope",
+    "Signal Whistle"
+  ],
+  "hp": 60,
+  "id": "pathfinder-npc-core/equestrian-constable",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 4,
+  "name": "Equestrian Constable",
+  "perception": 11,
+  "publicNotes": "<p>Equestrian constables patrol for criminals on horseback in wealthy areas or serve as reeves to enforce court orders. Some patrol major roads far from the protection of the city guard.</p><hr /><p>Larger societies rely on those with the authority and the ability to interpret and enforce laws. Some carry out these duties fairly, but others are harsh and cruel, imposing severe punishments on anyone unable to pay for clemency.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 8,
+    "will": 10
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 12,
+    "nature": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

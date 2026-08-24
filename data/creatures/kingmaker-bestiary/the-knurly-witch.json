@@ -1,0 +1,190 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 4,
+    "int": 1,
+    "str": 6,
+    "wis": 4
+  },
+  "ac": 45,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hag can take on the appearance of any Medium female humanoid. This doesn't change her Speed or her attack and damage bonuses with her Strikes but might change the damage type her Strikes deal (typically to bludgeoning).</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Claw</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Rend]</p>",
+      "frequency": null,
+      "name": "Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Once per day, an annis hag can cause a cage built of cold iron fingernails to spring out of nothingness at a range of up to 30 feet, attempting an Athletics check to [[/act grapple]] against the target's Fortitude DC; if the target has a weakness to cold iron, the annis hag gains a +2 circumstance bonus to this check.</p>\n<p>Unlike a normal Grapple, the annis hag doesn't need to be within reach and can move as she pleases, and a successful attempt lasts until the creature [[/act escape dc=42]]{Escapes} (DC 42), causing the cage to crumble into rust.</p>\n<p>Any creature can attempt to destroy the cage by attacking it. It has an AC of 40, Hardness 20, and 80 Hit Points.</p>",
+      "frequency": null,
+      "name": "Bonds of Iron",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the Knurly Witch rolls a success at a Will save, she gets a critical success instead.</p>",
+      "frequency": null,
+      "name": "Resolve",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The Knurly Witch has used Gathering Call to bind herself to the House at the Edge of Time (area <strong>K16</strong>).</p>",
+      "frequency": null,
+      "name": "Word of Recall",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "4d10 + 14",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "cold-iron",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "SVUjDSZHYmwbQgnq",
+  "gear": [
+    "Religious Symbol of Gyronna",
+    "Wand of Slaying (7th-Rank Spell)"
+  ],
+  "hp": 324,
+  "id": "kingmaker-bestiary/the-knurly-witch",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "fey",
+    "jotun"
+  ],
+  "level": 20,
+  "name": "The Knurly Witch",
+  "perception": 38,
+  "publicNotes": "<p>Annis hags are brutal torturers and murderers, delighting in the musical screams and tasty flesh of young creatures and those who are pure of heart. Annis hags are the most direct of all hags, engaging in physical combat and using their change shape ability to hunt rather than to infiltrate and betray humanoids. But an Annis hag takes a grisly trophy from each kill and uses it to sow discord, sending the trophy to one of her victim's loved ones in a way that implicates another family member in the murder. Also known as iron hags, annis hags have iron-like yet flexible flesh that resists edged weapons, and their own touch is the same cold iron that burns the flesh of other hags. This allows them to bully their way to the leadership of hag covens.</p><hr /><p>Malevolent crones who lurk at the edges of civilization, hags use their deceptive, magical abilities to prey upon humanoids, manipulating and corrupting them. Some say hags arose from fey that became twisted by their inner selfishness. Hags gather together in covens for greater power, craft unique magical items known as <em>Hag Eyes</em>, and are known to replace infant humanoids with their own offspring-these children are Changelings who have the potential to become hags themselves.</p>",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 20
+    }
+  ],
+  "saves": {
+    "fortitude": 32,
+    "reflex": 35,
+    "will": 38
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 35,
+    "athletics": 34,
+    "deception": 37,
+    "intimidation": 34,
+    "nature": 36,
+    "occultism": 35,
+    "religion": 38
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 38,
+      "dc": 44,
+      "name": "Cleric Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Retributive Pain",
+          "rank": 4
+        },
+        {
+          "name": "Savor the Sting",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "hag",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

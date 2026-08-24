@@ -1,0 +1,198 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The mountain guardian reactivates their kinetic aura and can make an elemental blast Strike.</p>",
+      "frequency": null,
+      "name": "Channel Elements",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mountain guardian generates, moves, or suppresses up to 1 Bulk of naturally occurring earthen matter within 15 feet. Generating creates earthen matter, moving moves existing matter up to 20 feet into any direction, and suppressing destroys a piece of that element (which can't be a durable crafted good, only natural forms of the element).</p>",
+      "frequency": null,
+      "name": "Base Kinesis",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mountain guardian makes a melee or ranged elemental blast Strike with a +4 status bonus to damage.</p>",
+      "frequency": null,
+      "name": "Empowered Blast",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mountain guardian stomps on natural earth or stone, causing a localized tremor. All creatures in a @Template[type:burst|distance:10] within 30 feet take @Damage[3d10[bludgeoning]|options:area-damage] damage with a @Check[fortitude|dc:24|basic|options:area-effect] save. A creature that critically fails is knocked Prone. Earth and stone in the area is difficult terrain until the start of the mountain guardian's next turn.</p>",
+      "frequency": null,
+      "name": "Tremor",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "earth",
+        "impulse",
+        "overflow",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "3",
+      "description": "<p>The mountain guardian calls down boulders in a cylinder 20 feet in diameter and 80 feet high within 120 feet. Each creature in the area takes @Damage[4d8[bludgeoning]] damage with a @Check[reflex|dc:24|basic] save. A creature that fails is also pushed downward 40 feet (80 feet on a critical failure) without taking falling damage and can't leave the ground for 1 round.</p>",
+      "frequency": null,
+      "name": "Weight of Stone",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "earth",
+        "impulse",
+        "overflow",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet. Pieces of rock and earth float in the aura. The aura must be active for the guardian to use impulse actions, and deactivates if the guardian uses an overflow impulse, is knocked out, or Dismisses it. The guardian can Channel Elements to reactivate it.</p>",
+      "frequency": null,
+      "name": "Kinetic Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "earth",
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d8+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Elemental Blast",
+      "traits": [
+        "earth",
+        "primal",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2d8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Elemental Blast",
+      "traits": [
+        "earth",
+        "primal",
+        "range-increment-30",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "mD4gjp3Yus8TXGUs",
+  "gear": [],
+  "hp": 100,
+  "id": "pathfinder-npc-core/mountain-guardian",
+  "immunities": [],
+  "languages": [
+    "common",
+    "petran"
+  ],
+  "level": 6,
+  "name": "Mountain Guardian",
+  "perception": 9,
+  "publicNotes": "<p>Those who have unlocked the secrets of opening a kinetic gate to an elemental plane within themselves wield immense power over that element. Practitioners who specialize in elemental earth are hardy and defense-minded. The mountain guardian is surrounded by heavy armor made of stone held together with elemental magic.</p><hr /><p>A primalist is a wielder of primal energies and magic, sometimes taught by forces of primal power, including powerful elementals or fey of the First World. Primalists protect the natural world, offering strong medicine to those in need while facing suspicion from those who don't understand their ways.</p>\n<p>A great many primalists belong to druidic circles, and even those who aren't members tend to be familiar with the most prominent ones in their homeland.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "earth",
+      "value": 6
+    },
+    {
+      "type": "poison",
+      "value": 6
+    }
+  ],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 11,
+    "will": 11
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 15,
+    "intimidation": 13,
+    "nature": 11,
+    "survival": 9
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

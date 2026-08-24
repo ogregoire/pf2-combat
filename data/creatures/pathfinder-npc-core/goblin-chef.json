@@ -1,0 +1,140 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 1,
+    "int": 2,
+    "str": 1,
+    "wis": 2
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Effect</strong> The goblin chef draws a pickle and eats it or feeds it to an adjacent ally. The chef or ally gains 4 temporary Hit Points and ignores any penalties from emotion effects or fatigue for 1 round.</p>\n<p>Effect: Eat a Pickle</p>",
+      "frequency": null,
+      "name": "Eat a Pickle",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 circumstance bonus against ingested poisons",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The goblin chef can turn otherwise inedible items into meals for others. They can provide food for any number of creatures without using the Subsist downtime activity as long as garbage is readily available. A non-goblin who eats the goblin chef's food must attempt a @Check[fortitude|dc:14] save. On a failure, they suffer an upset stomach for 1 day; if they attempt to willingly ingest anything else during that period, they must first succeed at a @Check[flat|dc:4] or the action is disrupted.</p>",
+      "frequency": null,
+      "name": "Good Enough to Eat",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving cooking, a goblin chef is a 3rd-level challenge.</p>",
+      "frequency": null,
+      "name": "Kitchen Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Cleaver",
+      "traits": [
+        "agile",
+        "backstabber",
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "DsyCuAx23QkztXNF",
+  "gear": [
+    "Cleaver (Functions as Dogslicer)",
+    "Leather Apron (Functions as Leather Armor)",
+    "Pickles"
+  ],
+  "hp": 24,
+  "id": "pathfinder-npc-core/goblin-chef",
+  "immunities": [
+    "sickened"
+  ],
+  "languages": [
+    "common",
+    "goblin"
+  ],
+  "level": 1,
+  "name": "Goblin Chef",
+  "perception": 7,
+  "publicNotes": "<p>Goblins eat almost anything. Though they'll survive on raw or little-cooked meat, some prefer searing or frying their food first—or better yet, pickling it! A goblin chef can make anything edible (at least to a goblin).</p><hr /><p>Goblins can be found across Golarion, sometimes threatening taller humanoids (whom they refer to as \"longshanks\") and sometimes redeeming harmful history by working alongside others.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 6,
+    "will": 5
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "nature": 7,
+    "society": 4,
+    "stealth": 6,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "goblin",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

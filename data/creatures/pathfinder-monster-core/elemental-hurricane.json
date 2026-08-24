@@ -1,0 +1,154 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 7,
+    "int": 0,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The elemental hurricane takes damage from a hostile action.</p>\n<hr />\n<p><strong>Effect</strong> The elemental hurricane disperses.</p>\n<p>Until the end of the current turn, it can't be attacked or targeted, doesn't take up space, and any auras or emanations it has are suppressed. At the end of the turn, the elemental hurricane reforms in any space in which it can fit within 100 feet of where it dispersed and any auras or emanations it has are restored as long as their duration didn't run out while it was dispersed.</p>",
+      "frequency": null,
+      "name": "Disperse",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The elemental hurricane takes damage from a hostile action."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "frequency": null,
+      "name": "Push 10 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The elemental exhales a @Template[cone|distance:30] of air. Creatures in the cone must succeed at a @Check[fortitude|dc:29] save or be knocked away from the elemental.</p>\n<p>A creature knocked into a solid object stops moving and takes @Damage[10d6[bludgeoning]] damage (roll the damage once for all creatures).</p>\n<p>The elemental hurricane can't use Gale Breath again for [[/gmr 1d4 #Recharge Gale Breath]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature is pushed 20 feet.</p>\n<p><strong>Failure</strong> The creature is pushed 40 feet.</p>\n<p><strong>Critical Failure</strong> The creature is pushed 40 feet and knocked Prone.</p>",
+      "frequency": null,
+      "name": "Gale Breath",
+      "requirements": null,
+      "traits": [
+        "air"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>40 feet.</p>\n<p>Air within the emanation is difficult terrain for Flying creatures that don't have the air trait.</p>",
+      "frequency": null,
+      "name": "High Winds",
+      "requirements": null,
+      "traits": [
+        "air",
+        "aura"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The elemental's movement doesn't trigger reactions.</p>",
+      "frequency": null,
+      "name": "Swiftness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d10+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Gust",
+      "traits": [
+        "finesse",
+        "reach-20"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d12+6",
+          "type": "electricity"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Lightning Lash",
+      "traits": [
+        "range-increment-75"
+      ]
+    }
+  ],
+  "foundryId": "mx2Xpra7bRJP0GuX",
+  "gear": [],
+  "hp": 140,
+  "id": "pathfinder-monster-core/elemental-hurricane",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "sussuran"
+  ],
+  "level": 11,
+  "name": "Elemental Hurricane",
+  "perception": 20,
+  "publicNotes": "<p>Elemental hurricanes embody the ferocity of violent windstorms.</p>\n<hr />\n<p>Hailing from the Plane of Air, these beings appear in a variety of sizes and shapes. They're noted for being elusive, swift, and often difficult to detect due to being composed primarily of air.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 24,
+    "will": 18
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": 24,
+    "athletics": 21,
+    "stealth": 22
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 100
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "air",
+    "elemental"
+  ],
+  "weaknesses": []
+}

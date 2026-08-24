@@ -1,0 +1,153 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": 1,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The warrior imbues a weapon they wield with holy energy. Until the start of their next turn, their Strikes with that weapon gain the holy trait and deal an additional 1d6 spirit damage to unholy creatures.</p>",
+      "frequency": null,
+      "name": "Imbue Righteousness",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "holy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A demonbane warrior gains a +1 circumstance bonus to damage rolls against demons. If their actions force a demon to take damage from its sin vulnerability, increase the damage from the vulnerability by 2.</p>",
+      "frequency": null,
+      "name": "Demonbane",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A demonbane warrior automatically learns all weaknesses of a demon they've identified by Recalling Knowledge.</p>",
+      "frequency": null,
+      "name": "Sin Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d6+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Cold Iron Elven Branched Spear",
+      "traits": [
+        "cold-iron",
+        "deadly-d8",
+        "finesse",
+        "reach"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d6+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "62L0yQBRKjnsDmzH",
+  "gear": [
+    "Arrows",
+    "Chain Shirt",
+    "Composite Shortbow",
+    "Elven Branched Spear"
+  ],
+  "hp": 76,
+  "id": "pathfinder-npc-core/demonbane-warrior",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common",
+    "elven"
+  ],
+  "level": 5,
+  "name": "Demonbane Warrior",
+  "perception": 13,
+  "publicNotes": "<p>Elves' long lives give them centuries to delve into studies, artistry, or exploration.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 13,
+    "will": 11
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "religion": 11,
+    "stealth": 10,
+    "survival": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "elf",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

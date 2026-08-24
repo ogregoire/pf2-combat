@@ -1,0 +1,174 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 3,
+    "int": 1,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "2",
+      "description": "<p>The kholo outrider Strikes, Steps, then Strikes again. If the kholo outrider hits the same enemy with both Strikes, that enemy takes an additional @Damage[1d6[persistent,bleed]] damage.</p>",
+      "frequency": null,
+      "name": "Bloody Flurry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A kholo ignores the first square of difficult terrain they move into each time they Step or Stride.</p>",
+      "frequency": null,
+      "name": "Rugged Travel",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A kholo outrider deals 1d6 extra damage while adjacent to at least 2 enemies and no allies.</p>",
+      "frequency": null,
+      "name": "Solo Hunter",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d6+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "magical",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "magical",
+        "sweep",
+        "thrown-10"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d6+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "w7mf2yC3rE3CjGD5",
+  "gear": [
+    "Arrows",
+    "Composite Shortbow",
+    "Hatchet",
+    "Hide Armor"
+  ],
+  "hp": 120,
+  "id": "pathfinder-npc-core/kholo-outrider",
+  "immunities": [],
+  "languages": [
+    "common",
+    "kholo"
+  ],
+  "level": 7,
+  "name": "Kholo Outrider",
+  "perception": 18,
+  "publicNotes": "<p>Many kholo packs are semi-nomadic, staying in one place until they're pushed out by others, or the local resources begin to grow sparse. Before moving the pack elsewhere, the leaders send out a single kholo to blaze a trail and ensure a safe route to their next destination. These outriders are masters of the wilderness and fight better when they're alone.</p><hr /><p>These pragmatic hunters have earned a very poor reputation for their brutality in battle and worship of demons. While many kholos live up to the terrible stories of their ferocity and cannibalism, others are scavengers and trappers just trying to get by. Many of their cultural traditions are misunderstood by other ancestries, and some kholos play into the fear provoked in those who believe the twisted tales about their people. Kholos are often criticized for their lack of honor in battle, but a kholo understands honor doesn't bring you back home alive, nor does honor put food on the table. Ambushes, feints, and deceptions that lead to fewer kholo deaths and a quicker victory are simply the logical thing to do.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 18,
+    "will": 13
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 18,
+    "intimidation": 13,
+    "stealth": 15,
+    "survival": 18
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "gnoll",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

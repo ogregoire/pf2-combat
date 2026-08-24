@@ -1,0 +1,169 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 3,
+    "dex": 1,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The angelkin is targeted by a spell that allows a saving throw.</p>\n<hr />\n<p><strong>Effect</strong> The scion gains a +2 circumstance bonus to the saving throw.</p>",
+      "frequency": null,
+      "name": "Divine Grace",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The angelkin is targeted by a spell that allows a saving throw."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An enemy damages one of the angelkin's allies. Both the enemy and ally must be within 15 feet of the angelkin.</p>\n<hr />\n<p><strong>Effect</strong> The angelkin causes its foe to hesitate under the weight of its sins as visions of possible redemption play out in its mind's eye. The foe chooses one of two options:</p>\n<ul>\n<li>The ally is completely unharmed by the triggering damage.</li>\n<li>The ally gains resistance 7 to all damage against the triggering damage. After the damaging effect resolves, the enemy becomes Enfeebled 2 until the end of its next turn.</li>\n</ul>",
+      "frequency": null,
+      "name": "Glimpse of Redemption",
+      "requirements": null,
+      "traits": [],
+      "trigger": "An enemy damages one of the angelkin's allies. Both the enemy and ally must be within 15 feet of the angelkin."
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Against diseases, critical failures become failures.</p>",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Disease",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d8+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d8+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Longsword",
+      "traits": [
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "gDMPUL0UiOHrUUd3",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Half Plate",
+    "Longsword",
+    "Steel Shield"
+  ],
+  "hp": 73,
+  "id": "pathfinder-bestiary/aasimar-redeemer",
+  "immunities": [],
+  "languages": [
+    "common",
+    "empyrean"
+  ],
+  "level": 5,
+  "name": "Aasimar Redeemer",
+  "perception": 11,
+  "publicNotes": "<p>Mortals whose ancestry has been influenced by celestials are known as aasimars, and angelkin, who have blood of angels coursing through their veins, are among the most common type of them. Many angelkin seek adventure as a means of doing good in the world.</p>\n<hr />\n<p>Many immortals dwell upon the other planes of the Great Beyond. Some are benevolent and kindly, like angels. Others are cruel and destructive, like demons. And some fit roles outside of morality, like psychopomps. It's far from unheard of that mortals and immortals alike become entangled romantically, and the children of such engagements carry a supernatural element in their bloodlines for generations to follow. After the first generation, this otherworldly influence usually lies dormant, but now and then, the influence can manifest strongly in descendants many years later. These inheritors of extraplanar legacies are known collectively as planar scions.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 8,
+    "will": 11
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 11,
+    "diplomacy": 12,
+    "medicine": 9,
+    "religion": 11,
+    "society": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Champion Devotion Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Lay on Hands",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Light",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid",
+    "nephilim"
+  ],
+  "weaknesses": []
+}

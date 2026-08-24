@@ -1,0 +1,169 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 4
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The unicorn Strides up to double its Speed in a straight line and then makes a horn Strike. If the unicorn moved at least 20 feet, it deals an additional 2d6 damage on a hit.</p>",
+      "frequency": null,
+      "name": "Powerful Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Will Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The unicorn has a connection to the creatures of the natural world that allows them to communicate with animals. They can ask questions of, receive answers from, and use the Diplomacy skill with animals.</p>",
+      "frequency": null,
+      "name": "Animal Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A unicorn's Strikes have the effects of a <em>Ghost Touch</em> property rune.</p>",
+      "frequency": null,
+      "name": "Ghost Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hoof",
+      "traits": [
+        "agile",
+        "magical"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d10+4",
+          "type": "piercing"
+        },
+        {
+          "formula": "1d4",
+          "type": "spirit"
+        }
+      ],
+      "kind": "melee",
+      "name": "Horn",
+      "traits": [
+        "holy",
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "lYoAwofYGbhWL75Q",
+  "gear": [],
+  "hp": 45,
+  "id": "pathfinder-monster-core/unicorn",
+  "immunities": [
+    "poison"
+  ],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 3,
+  "name": "Unicorn",
+  "perception": 13,
+  "publicNotes": "<p>Symbols of grace and purity, unicorns resemble proud and noble horses. They typically have pure white coats, but they are best known for the single, delicate horn that extends from the center of their forehead. While unicorns often serve as protectors of unspoiled wilderness and sacred places, they are themselves highly sought after for their horns, which are said to possess potent magical properties. To many, the mere idea of hunting such a magnificent creature in the hopes of severing its horn is utterly reprehensible. Indeed, a dehorned unicorn is a sorry sight, and few such unicorns survive much longer in the wild.</p>\n<p>Unicorns are found almost exclusively in remote, unsullied areas of wilderness. Sometimes associated with good-aligned deities, other times associated with nature and the fey, unicorns are always known for their righteousness and nobility. They are wary, at best, of most humanoid creatures, due in large part to poachers' tendency to hunt them for their horns, but unicorns are often rumored to have a weakness for those who are pure of both heart and spirit. Despite some tales, unicorns are equally likely to recognize purity in people of all genders.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 8,
+    "will": 11
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 10,
+    "diplomacy": 11,
+    "stealth": 8,
+    "survival": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 45
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 21,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Nature's Pathway",
+          "rank": 5
+        },
+        {
+          "name": "Cleanse Affliction",
+          "rank": 2
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "beast",
+    "fey",
+    "holy"
+  ],
+  "weaknesses": []
+}

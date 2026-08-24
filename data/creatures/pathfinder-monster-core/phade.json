@@ -1,0 +1,120 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 6,
+    "int": 2,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The phade calms the air in a @Template[emanation|distance:30] until the beginning of its next turn, reducing sounds in it to a whisper that can't be heard outside the emanation.</p>\n<p>This doesn't prevent casting spells, but a phade attempts to counteract any auditory or sonic effect originating in the area with a [[/r 1d20+17 #Counteract]]{+17} counteract modifier. If the counteract attempt fails, Hush ends early.</p>",
+      "frequency": null,
+      "name": "Hush",
+      "requirements": null,
+      "traits": [
+        "air",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The phade is Invisible at all times, though when it takes a hostile action of any kind, it is Hidden instead of undetected until the start of its next turn, as the vague outline of its humanoid form is faintly visible for a short period of time.</p>",
+      "frequency": null,
+      "name": "Naturally Invisible",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The phade deals 2d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d10+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "HKXa9E91WLy6dAZA",
+  "gear": [],
+  "hp": 70,
+  "id": "pathfinder-monster-core/phade",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "sussuran"
+  ],
+  "level": 7,
+  "name": "Phade",
+  "perception": 16,
+  "publicNotes": "<p>On the Plane of Air, and throughout the Inner Sphere, phades serve as spies and assassins for their creators. Even when summoned into the mortal Universe, phades are generally called for unsavory and violent purposes, giving the phades that have turned their back on their creator a poor opinion of mortals as well.</p>\n<hr />\n<p>Hailing from the Plane of Air, these beings appear in a variety of sizes and shapes. They're noted for being elusive, swift, and often difficult to detect due to being composed primarily of air.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 18,
+    "will": 11
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 16,
+    "nature": 15,
+    "stealth": 18,
+    "survival": 15
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "air",
+    "elemental"
+  ],
+  "weaknesses": []
+}

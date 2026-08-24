@@ -1,0 +1,206 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The evangelist stares at a creature they can see within 30 feet. The target must immediately attempt a @Check[will|dc:21] save against Unnerving gaze. In addition, if the creature was already Frightened, on a failed save, the evangelist is Concealed from the creature for as long as the creature remains frightened.</p>\n<p>After attempting this save, the creature is then temporarily immune until the start of the evangelist's next turn.</p>",
+      "frequency": null,
+      "name": "Focus Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Chains in the evangelist's vicinity sprout barbs and writhe menacingly. The evangelist can make chain Strikes against any creature that is adjacent to an unattended chain within 20 feet, in addition to those within the reach of the evangelist's chain Strike.</p>",
+      "frequency": null,
+      "name": "Animate Chains",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the evangelist critically hits with a chain Strike, the target is impaled and anchored in place, becoming Grabbed by the chain. The creature is unable to recover from persistent bleed damage until it gets free (Escape DC 25).</p>\n<p>Effect: Impaling Chain</p>",
+      "frequency": null,
+      "name": "Impaling Chain",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A velstrac automatically knows whether a creature it sees has any of the Doomed, Dying, and Wounded conditions, as well as the value of those conditions</p>",
+      "frequency": null,
+      "name": "Painsight",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 10 (Deactivated by Holy or Silver)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. When a creature ends its turn in the aura, it sees the face of a departed loved one in place of the evangelist's face. The creature must succeed at a @Check[will|dc:21] save or become Frightened 2 (Frightened 3 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Unnerving Gaze",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d8+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Chain",
+      "traits": [
+        "disarm",
+        "evil",
+        "magical",
+        "reach-10",
+        "trip",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "OuimMwM3yFRy5tRK",
+  "gear": [],
+  "hp": 90,
+  "id": "pathfinder-bestiary-2/evangelist",
+  "immunities": [
+    "cold"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "shadowtongue"
+  ],
+  "level": 6,
+  "name": "Evangelist",
+  "perception": 13,
+  "publicNotes": "<p>Evangelists, the velstracs' unofficial ambassadors, roam the farthest reaches of the planes to spread the word of their kind's abhorrent belief in perfection through pain. They are therefore the most frequently encountered velstracs on the Material Plane, leading covens of hedonistic mortal flesh-sculptors or serving as wardens of horrific dungeons. In regions ruled by infernal powers, evangelists may serve as lieutenants or advisors, whispering secret paths to power in exchange for mortal's souls or choice mortal flesh. Evangelists are the same size as humans, although with the heavy chains that always drape their forms, they often weigh 350 pounds or more.</p>\n<hr />\n<p>The search for ultimate sensation through self-mutilation is the horrifying preoccupation of the shadow-dwelling fiends known as velstracs. They transcend their stoic detachment only when inflicting pain and terror upon their victims, practicing new forms of torture, or when turning their agonizing practices back on themselves. Velstracs consider themselves enlightened beings, transcending such limitations as morality or mortal taboos, but their victims know them as emotionless tormentors who inflict sadistic suffering. These fiends claim to seek perfection in thought, form, and action, although they don't recognize any refinement that doesn't require the painful excision of the flesh or spirit.</p>\n<p>Velstracs manifest from the souls of the most extreme masochistic or sadistic mortals who are judged and sent on to the Shadow Plane. They take on forms that suit their vile predilections, ranging from the low-ranking augurs to the maestros of suffering and mutilation called eremites. The process of transformation warps the soul step by step, with other velstracs conveying their new members through untold chambers of pain among the dark reaches of the Shadow Plane.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 14,
+    "will": 11
+  },
+  "senses": [
+    "greater-darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 15,
+    "crafting": 10,
+    "intimidation": 15,
+    "religion": 11
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fiend",
+    "unholy",
+    "velstrac"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 5
+    },
+    {
+      "type": "silver",
+      "value": 5
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The sheriff's last action this turn was a successful Strike against a creature within 30 feet</p><hr /><p><strong>Effect</strong> The sheriff yells a command at the creature they hit. The target must succeed at a @Check[will|dc:22] save or spend the first action on its next turn doing as commanded (or all its actions on its next turn on a critical failure). The sheriff can command a creature to approach the sheriff, release what its holding, or drop Prone. Regardless of the result of its save, the creature is temporarily immune for 10 minutes.</p>",
+      "frequency": null,
+      "name": "Lay Down the Law",
+      "requirements": "The sheriff's last action this turn was a successful Strike against a creature within 30 feet",
+      "traits": [
+        "auditory",
+        "concentrate",
+        "linguistic",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Money talks, and no one knows that better than the unsanctioned sheriff. A creature that pays the sheriff at least 5 gp gains a +2 status bonus to Gather Information in the sheriff's settlement for the next 24 hours.</p>\n<p>Effect: Greased Palms</p>",
+      "frequency": null,
+      "name": "Greased Palms",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dueling Pistol",
+      "traits": [
+        "concealable",
+        "concussive",
+        "fatal-d10",
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d6+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sap",
+      "traits": [
+        "agile",
+        "nonlethal"
+      ]
+    }
+  ],
+  "foundryId": "CCxgC3FIPsEZqZEo",
+  "gear": [
+    "Badge",
+    "Dueling Pistol",
+    "Rounds (Dueling Pistol)",
+    "Sap",
+    "Scale Mail"
+  ],
+  "hp": 75,
+  "id": "pathfinder-npc-core/unsanctioned-sheriff",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Unsanctioned Sheriff",
+  "perception": 13,
+  "publicNotes": "<p>Believing the ends justify the means, the unsanctioned sheriff is unafraid to use others for their own gain, through bribes, manipulation, or force.</p><hr /><p>These lone wolves have an aura of mystery, bravado, and swagger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 11,
+    "will": 13
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "deception": 11,
+    "diplomacy": 11,
+    "intimidation": 13,
+    "society": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

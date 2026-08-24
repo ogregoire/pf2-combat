@@ -1,0 +1,140 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 3,
+    "dex": 4,
+    "int": 3,
+    "str": 4,
+    "wis": 6
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The doppelganger is transformed with Change Shape and another creature moves adjacent to it or takes a hostile action against it.</p>\n<hr />\n<p><strong>Effect</strong> The doppelganger reverts to its natural form and can make a Strike against the triggering creature. If the creature was unaware the doppelganger was in disguise, that creature is Off-Guard against this attack.</p>",
+      "frequency": null,
+      "name": "End the Charade",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": "The doppelganger is transformed with Change Shape and another creature moves adjacent to it or takes a hostile action against it."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The doppelganger takes on the specific appearance of any Small or Medium humanoid who it has seen and whose appearance it remembers. This doesn't change the doppelganger's Speed or its attack and damage bonuses with its Strikes but might change the damage type its Strikes deal (typically to bludgeoning).</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> Virthad is carrying a sack of prepared flytrap pods</p>\n<hr />\n<p><strong>Effect</strong> Virthad dumps the contents of the sack into two adjacent squares while invoking prayers to Lamashtu. The pods grow into two elite Snapping Flytraps that immediately attack any non-worshipper of Lamashtu they can detect.</p>",
+      "frequency": null,
+      "name": "Deploy Flytraps",
+      "requirements": "Virthad is carrying a sack of prepared flytrap pods",
+      "traits": [
+        "divine",
+        "manipulate"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d6+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dogslicer",
+      "traits": [
+        "agile",
+        "backstabber",
+        "finesse",
+        "goblin"
+      ]
+    }
+  ],
+  "foundryId": "Dxn6t9aoWUwPn6CE",
+  "gear": [
+    "Dogslicer",
+    "Robes",
+    "Sack of Flytrap Pods"
+  ],
+  "hp": 135,
+  "id": "kingmaker-bestiary/virthad",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common",
+    "goblin"
+  ],
+  "level": 8,
+  "name": "Virthad",
+  "perception": 18,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 16,
+    "will": 18
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "deception": 18,
+    "diplomacy": 16,
+    "nature": 15,
+    "religion": 17,
+    "society": 15,
+    "stealth": 18
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 15,
+      "dc": 23,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Mind Reading (At Will)",
+          "rank": 3
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "humanoid"
+  ],
+  "weaknesses": []
+}

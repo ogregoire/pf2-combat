@@ -1,0 +1,205 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 1,
+    "dex": 3,
+    "int": 2,
+    "str": -1,
+    "wis": 1
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The augur stares at a creature they can see within 30 feet. The target must immediately attempt a Will save against Feel the Blades. After attempting this save, the creature is then temporarily immune until the start of the augur's next turn.</p>",
+      "frequency": null,
+      "name": "Focus Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The augur Flies or Strides, whirling as they move. The augur deals the damage of their blade Strike to each creature whose space they enter (@Check[reflex|dc:16|basic] save). Each creature is affected only once, even if the augur moves through its space multiple times.</p>",
+      "frequency": null,
+      "name": "Whirling Slice",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. When a creature ends its turn in the aura, it feels the sharp barbs of the augur's blades on its skin. The creature must succeed at a @Check[will|dc:17] save or become Frightened 1 (Frightened 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Feel the Blades",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A velstrac automatically knows whether a creature it sees has any of the Doomed, Dying, and Wounded conditions, as well as the value of those conditions.</p>",
+      "frequency": null,
+      "name": "Painsight",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 2 (Deactivated by Holy or Silver)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "bleed"
+        },
+        {
+          "formula": "1d4-1",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Blade",
+      "traits": [
+        "agile",
+        "evil",
+        "finesse",
+        "magical",
+        "unholy",
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "BTQ2ARKulg5Egueg",
+  "gear": [],
+  "hp": 14,
+  "id": "pathfinder-bestiary-2/augur",
+  "immunities": [
+    "cold"
+  ],
+  "languages": [
+    "common",
+    "diabolic",
+    "shadowtongue"
+  ],
+  "level": 1,
+  "name": "Augur",
+  "perception": 8,
+  "publicNotes": "<p>These spherical knots of sinewy muscle, serrated blades, and bloody metal are the most common velstracs on the Shadow Plane. Each augur has only a single eye, from which they can see the horrors inflicted by other velstracs, who train the augur to expect and appreciate pain. Augurs are 1 foot in diameter and weigh 30 pounds.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 4,
+    "reflex": 10,
+    "will": 7
+  },
+  "senses": [
+    "greater-darkvision"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 8,
+    "deception": 6,
+    "intimidation": 7,
+    "religion": 4,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 7,
+      "dc": 17,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Harm",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "unholy",
+    "velstrac"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 5
+    },
+    {
+      "type": "silver",
+      "value": 5
+    }
+  ]
+}

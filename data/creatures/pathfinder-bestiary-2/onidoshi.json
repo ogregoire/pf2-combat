@@ -1,0 +1,213 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 4,
+    "dex": 3,
+    "int": 3,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The onidoshi takes on the appearance of an ogre. This doesn't change their Speed or Strike attack and damage.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 7 (Deactivated by Acid or Fire)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d6+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-100",
+        "reload-0",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d10+9",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Falchion",
+      "traits": [
+        "forceful",
+        "magical",
+        "reach-10",
+        "sweep",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d8+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "7EppoGdIcmd0AV9B",
+  "gear": [
+    "+1 Striking Falchion",
+    "Arrows",
+    "Breastplate",
+    "Composite Shortbow"
+  ],
+  "hp": 125,
+  "id": "pathfinder-bestiary-2/onidoshi",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun"
+  ],
+  "level": 8,
+  "name": "Onidoshi",
+  "perception": 17,
+  "publicNotes": "<p>Onidoshi, or ogre mages, are oni with the material form of an ogre. Onidoshi's supernatural prowess and overwhelming intellect are enough to awe and cow entire families of rank-and-file ogres. Because of this, onidoshi are often found at the head of ogre war parties or orchestrating these violent campaigns from behind the scenes. It's rare for onidoshi to lead solitary existences, but those who do prefer to maraud the countryside or exploit villages and hoard the spoils for themselves.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 15,
+    "will": 15
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 15,
+    "arcana": 13,
+    "athletics": 16,
+    "deception": 18,
+    "intimidation": 18,
+    "nature": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 24,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Cone of Cold",
+          "rank": 5
+        },
+        {
+          "name": "Charm",
+          "rank": 4
+        },
+        {
+          "name": "Gaseous Form",
+          "rank": 4
+        },
+        {
+          "name": "Sleep",
+          "rank": 4
+        },
+        {
+          "name": "Fear",
+          "rank": 3
+        },
+        {
+          "name": "Darkness",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility (At will) (Self only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fiend",
+    "giant",
+    "humanoid",
+    "oni",
+    "unholy"
+  ],
+  "weaknesses": []
+}

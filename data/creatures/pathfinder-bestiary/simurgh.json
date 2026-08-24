@@ -1,0 +1,252 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 6,
+    "dex": 3,
+    "int": 3,
+    "str": 8,
+    "wis": 6
+  },
+  "ac": 41,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> Once per day</p>\n<hr />\n<p><strong>Effect</strong> The simurgh fans out its glimmering tail feathers and blasts its foes with a @Template[cone|distance:100] of radiant light. Aside from the size of the cone, this effect is identical to Prismatic Spray (DC 42).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Radiant Feathers",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>50 feet. A creature that starts its turn in the aura must attempt a @Check[will|dc:37] save or be affected by Calm. Creatures that successfully save are unaffected, but must attempt another save each turn they start in the aura.</p>",
+      "frequency": null,
+      "name": "Aura of Peace",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "emotion",
+        "incapacitation",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If a creature hit by the simurgh's tail Strike is not currently on its home plane, it must succeed at a @Check[will|dc:42] save or be affected by Banishment, except that if the creature critically succeeds its save the simurgh is not Stunned.</p>",
+      "frequency": null,
+      "name": "Banishing Swipe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "4d8+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "10d6",
+          "type": "fire"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Glaring Ray",
+      "traits": [
+        "magical",
+        "range-100"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "4d12+12",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "4d8+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "ASc5sT2hU84tp1fx",
+  "gear": [],
+  "hp": 350,
+  "id": "pathfinder-bestiary/simurgh",
+  "immunities": [
+    "disease",
+    "fire",
+    "sleep",
+    "void"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 18,
+  "name": "Simurgh",
+  "perception": 32,
+  "publicNotes": "<p>Desert-dwelling people consider the sight of a simurgh a herald to a lifetime's worth of luck, and those who are unfamiliar with the majestic beast might mistake it for the avatar of a deity. Beautiful, graceful, and truly gargantuan, the simurgh resembles nothing so much as a massive multicolored bird with the head of an equally enormous and regal lupine. Simurghs act as intermediaries in world-threatening conflicts, serving as agents of good deities or vigilantes who spread their own brand of justice, typically by obliterating or banishing evil extraplanar beings.</p>\n<p>Simurghs can live for thousands of years, and because these ancient beings are so rare many doubt their existence. But they are very real, as those who have been aided by a simurgh can enthusiastically attest. A simurgh does not show itself often, but when it does, it is typically in response to a truly grave threat, such as the incursion of an undead army or the rampage of some truly epic monster. Simurghs are nothing if not paragons of righteousness, and goodly heroes can hardly find a better ally in their quest to vanquish evil than a simurgh.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 30,
+    "reflex": 29,
+    "will": 32
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 27,
+    "arcana": 28,
+    "athletics": 32,
+    "diplomacy": 34,
+    "medicine": 35,
+    "performance": 28,
+    "religion": 35,
+    "survival": 32
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 90
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 34,
+      "dc": 42,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Flame Strike",
+          "rank": 5
+        },
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Zone of Truth (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Dazzling Flash",
+          "rank": 1
+        },
+        {
+          "name": "Detect Alignment (At Will) (Evil Only)",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

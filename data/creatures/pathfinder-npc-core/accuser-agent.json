@@ -1,0 +1,181 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 4,
+    "int": 3,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within 30 feet takes an action with the linguistic trait</p><hr /><p><strong>Effect</strong> The triggering creature must succeed a @Check[will|dc:28] saving throw or their action is disrupted.</p>",
+      "frequency": null,
+      "name": "Objection!",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "linguistic"
+      ],
+      "trigger": "A creature within 30 feet takes an action with the linguistic trait"
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The accuser agent's Strikes deal an extra 3d6 precision damage to Off-Guard creatures. A target who takes this additional precision damage also either becomes Enfeebled 1 or takes a –10-foot status penalty to its Speeds until the end of the agent's next turn.</p>",
+      "frequency": null,
+      "name": "Debilitating Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the accuser agent succeeds at a Perception check, they critically succeed instead.</p>",
+      "frequency": null,
+      "name": "Insightful",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d4+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "deadly-d6",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d4+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "deadly-d6",
+        "finesse",
+        "magical",
+        "thrown-20",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d8+8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sword Cane",
+      "traits": [
+        "agile",
+        "concealable",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "u1coIGvOeO8XZjKu",
+  "gear": [
+    "Dagger",
+    "Scholarly Journal",
+    "Sword Cane",
+    "Writing Set"
+  ],
+  "hp": 115,
+  "id": "pathfinder-npc-core/accuser-agent",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 9,
+  "name": "Accuser Agent",
+  "perception": 19,
+  "publicNotes": "<p>Accuser agents might be high court advocates, official spymasters, or innocuous adjutants delivering important messages to magistrates, generals, officers, or mercenaries. They have ample latitude in matters of government security, though they sometimes have little oversight. When their findings demand an official response, accuser agents present cases before national tribunals or in royal courts.</p><hr /><p>Larger societies rely on those with the authority and the ability to interpret and enforce laws. Some carry out these duties fairly, but others are harsh and cruel, imposing severe punishments on anyone unable to pay for clemency.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 19,
+    "will": 19
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 20,
+    "diplomacy": 18,
+    "intimidation": 18,
+    "society": 18,
+    "stealth": 17,
+    "thievery": 19
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

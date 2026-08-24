@@ -1,0 +1,346 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 5,
+    "int": 7,
+    "str": 7,
+    "wis": 3
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The imentesh takes the appearance of any Large or smaller creature. This doesn't change its Speed or its attack and damage bonuses with its Strikes, but might change the damage type its Strikes deal.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d10+11)[bludgeoning]] damage, @Check[fortitude|dc:29|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>An imentesh inflicts a warpwave on a creature within 100 feet (@Check[fortitude|dc:29] save to resist).</p>",
+      "frequency": null,
+      "name": "Inflict Warpwave",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An imentesh can anticipate the most likely location of a creature through their supernatural insight into the forces of chaotic probabilities and chance. This grants the imentesh the ability to sense creatures within the listed range. A creature under the effects of Veil of Privacy or that is otherwise shielded from divination and prediction cannot be noticed via entropy sense.</p>",
+      "frequency": null,
+      "name": "Entropy Sense",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "prediction"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 5",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>An imentesh's vital organs shift and change shape and position constantly. Immediately after the imentesh takes acid, electricity, or sonic damage, it gains the listed amount of resistance to that damage type. This lasts for 1 hour or until the next time the protean takes damage of one of the other types (in which case its resistance changes to match that type), whichever comes first.</p>\n<p>The imentesh is immune to polymorph effects unless it is a willing target. If Blinded or Deafened, the imentesh automatically recovers at the end of its next turn as new sensory organs grow to replace the compromised ones.</p>",
+      "frequency": null,
+      "name": "Protean Anatomy 15",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>An imentesh's Strikes deal an additional 2d6 precision damage to Off-Guard targets.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any creature struck and damaged by an imentesh's jaws Strike must succeed at a @Check[fortitude|dc:29] save or be subject to a warpwave.</p>",
+      "frequency": null,
+      "name": "Warpwave Strike",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Many proteans can subject their foes to disorienting alterations perceived in time and space by creating ripples of unstable reality in the environment called warpwaves.</p>\n<p>When a creature fails its saving throw and is affected by a warpwave, roll [[/r 1d8]] and consult the table below for the specific effect on that creature.</p>\n<p>Unless indicated otherwise, a warpwave effect lasts for [[/gmr 1d4 #rounds]]{1d4 rounds}, and a new warpwave effect negates any previous warpwave effect already affecting a creature.</p>\n<hr />\n<table class=\"pf2e\">\n<thead>\n<tr>\n<th>d8</th>\n<th>Warpwave Effect</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1</td>\n<td>Clumsy 2 (Clumsy 3 on a critical failure)</td>\n</tr>\n<tr>\n<td>2</td>\n<td>Confused and gains [[/r 4d6 #Temporary Hit Points]]{4d6 temporary Hit Points}</td>\n</tr>\n<tr>\n<td>3</td>\n<td>Dazzled (permanent on a critical failure)</td>\n</tr>\n<tr>\n<td>4</td>\n<td>Enfeebled 2 (Enfeebled 3 on a critical failure)</td>\n</tr>\n<tr>\n<td>5</td>\n<td>Immobilized by filaments of energy</td>\n</tr>\n<tr>\n<td>6</td>\n<td>Quickened (Stride, Strike, or Step only)</td>\n</tr>\n<tr>\n<td>7</td>\n<td>Slowed 1</td>\n</tr>\n<tr>\n<td>8</td>\n<td>Stupefied 2 (Stupefied 3 on a critical failure)</td>\n</tr>\n</tbody>\n</table>",
+      "frequency": null,
+      "name": "Warpwaves",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d6+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d10+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d10+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "chaotic",
+        "magical",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "hvKRgNiQtQJhHk9u",
+  "gear": [],
+  "hp": 175,
+  "id": "pathfinder-bestiary-2/imentesh",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "empyrean",
+    "protean"
+  ],
+  "level": 10,
+  "name": "Imentesh",
+  "perception": 19,
+  "publicNotes": "<p>The loquacious proteans known as imenteshes serve as missionaries, spies, and heralds of chaos to further the protean goal of reality's dissolution. Imenteshes are cunning, curiously diplomatic, and profoundly whimsical. They travel beyond the Maelstrom for their work, frequently adopting extravagant personal attire and decorations that often border upon the garish, all to curry favor with less chaotic beings.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "precision",
+      "value": 10
+    },
+    {
+      "type": "protean-anatomy",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 19,
+    "will": 17
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 19,
+    "deception": 21,
+    "diplomacy": 19,
+    "performance": 21,
+    "stealth": 21,
+    "thievery": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 29,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dimension Door",
+          "rank": 5
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 5
+        },
+        {
+          "name": "Sending",
+          "rank": 5
+        },
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Creation",
+          "rank": 4
+        },
+        {
+          "name": "Dimension Door (At will)",
+          "rank": 4
+        },
+        {
+          "name": "Divine Wrath",
+          "rank": 4
+        },
+        {
+          "name": "Freedom of Movement (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Shatter",
+          "rank": 4
+        },
+        {
+          "name": "Haste",
+          "rank": 3
+        },
+        {
+          "name": "Mending",
+          "rank": 3
+        },
+        {
+          "name": "Shrink Item",
+          "rank": 3
+        },
+        {
+          "name": "Slow",
+          "rank": 3
+        },
+        {
+          "name": "Detect Alignment (At will) (Lawful only)",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "monitor",
+    "protean"
+  ],
+  "weaknesses": []
+}

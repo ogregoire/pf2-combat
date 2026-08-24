@@ -1,0 +1,131 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 3,
+    "int": -1,
+    "str": -2,
+    "wis": 2
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Tooth fairies pinch their victims' fingers, noses, ears, or similar protruding body parts. Each enemy in the swarm's space takes @Damage[2d6[bludgeoning]] damage (@Check[reflex|dc:20|basic] save). Creatures that critically fail this save are Sickened 1 from the pain.</p>",
+      "frequency": null,
+      "name": "Pinch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The tooth fairies try to pry out one of their target's teeth. One enemy in the swarm's space takes @Damage[4d6[bludgeoning]] damage with a @Check[reflex|dc:20|basic] save. On a failed save, the target takes @Damage[2[bleed]] damage and loses a tooth.</p>\n<p>If the creature loses a tooth, it takes a –1 status penalty to Charisma-based skill checks and must succeed at a @Check[flat|dc:5] to Cast a Spell unless that spell has the subtle trait. These effects last for 1 day, or until the stolen tooth is returned and the target regains at least 1 Hit Point.</p>\n<p>Effect: Tooth Tug</p>",
+      "frequency": null,
+      "name": "Pry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When killed, a tooth fairy swarm bursts into sticky, foul-smelling white dust. Each creature in a @Template[emanation|distance:15] must succeed at a @Check[fortitude|dc:20] save or become Sickened 1 (Sickened 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Plaque Burst",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "frequency": null,
+      "name": "Swarm Mind",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "rmJItn5jMW7Af0Iy",
+  "gear": [],
+  "hp": 28,
+  "id": "pathfinder-monster-core/tooth-fairy-swarm",
+  "immunities": [
+    "precision",
+    "swarm-mind"
+  ],
+  "languages": [],
+  "level": 3,
+  "name": "Tooth Fairy Swarm",
+  "perception": 8,
+  "publicNotes": "<p>A mob of tooth fairies working together can conduct forced dentistry in seconds.</p>\n<hr />\n<p>Tooth fairies spawn when a child's tooth (or, less commonly, an entire child) is buried in terrain rife with fey energies. Hatching from the buried teeth like larvae from an egg, tooth fairies build crude pliers from whatever they can find, then go hunting for more teeth—regardless of the owners' willingness.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 2
+    },
+    {
+      "type": "piercing",
+      "value": 5
+    },
+    {
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 10,
+    "will": 7
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 10,
+    "stealth": 10,
+    "thievery": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fey",
+    "swarm"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 5
+    },
+    {
+      "type": "cold-iron",
+      "value": 5
+    },
+    {
+      "type": "splash-damage",
+      "value": 5
+    }
+  ]
+}

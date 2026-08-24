@@ -1,0 +1,184 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 0,
+    "dex": 5,
+    "int": 2,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<p><strong>Requirements</strong> The high roller has at least 16 cards in one hand</p><hr /><p><strong>Effect</strong> The high roller unleashes the cards in a @Template[type:cone|distance:30], dealing @Damage[16d4[slashing]|options:area-damage] damage to all creatures in the area with a @Check[reflex|dc:30|basic|options:area-effect] save. This ability expends the full deck of cards held.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1H"
+      },
+      "name": "Royal Flush Flurry",
+      "requirements": "The high roller has at least 16 cards in one hand",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature the high roller is observing critically fails a check</p><hr /><p><strong>Effect</strong> The high roller picks up on luck that others dropped. They roll twice on their next d20 roll before the end of their next turn and take the better result.</p>",
+      "frequency": null,
+      "name": "Tip the Scales",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "fortune"
+      ],
+      "trigger": "A creature the high roller is observing critically fails a check"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The high roller's last action was a critical success</p><hr /><p><strong>Effect</strong> The high roller either Strides twice or attempts a Strike that deals an additional 4d6 precision damage and deals half damage on a failure (but not a critical failure).</p>",
+      "frequency": null,
+      "name": "Lucky Momentum",
+      "requirements": "The high roller's last action was a critical success",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 to Sense Motive",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The high roller treats all game tools—such as cards (used in the stat block's Strike entries), dice, coins, and gambling tokens—as melee weapons with a d4 damage die and the agile, finesse and thrown 20 feet traits. The high roller gets a +1 item bonus to attack rolls with them and deals two damage dice. The damage type depends on the item and is determined by the GM.</p>",
+      "frequency": null,
+      "name": "Gaming Arsenal",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d4+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Card",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d4+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Card",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 22,
+      "damage": [
+        {
+          "formula": "1d4+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d6+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse",
+        "magical"
+      ]
+    }
+  ],
+  "foundryId": "VYO4XEO6mHw8bfS4",
+  "gear": [
+    "Playing Cards (54-Card Deck)",
+    "Predictable Silver Piece",
+    "Rapier"
+  ],
+  "hp": 150,
+  "id": "pathfinder-npc-core/high-roller",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 11,
+  "name": "High Roller",
+  "perception": 22,
+  "publicNotes": "<p>Those with a particular mastery over luck can make a living through games of chance as professional gamblers.</p><hr /><p>These lone wolves have an aura of mystery, bravado, and swagger.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 24,
+    "will": 22
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 24,
+    "intimidation": 22,
+    "society": 21,
+    "thievery": 22
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,218 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 2,
+    "int": 1,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Damage Reduction</strong> 9</p>\n<p>A lantern archon can also make a Retributive Strike with its light ray.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.RetributiveStrike]</p>",
+      "frequency": null,
+      "name": "Retributive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The lantern archon shines as a beacon of hope.</p>\n<p>Good allies within @Template[emanation|distance:30]{30 feet} gain a +3 status bonus to damage rolls and to saving throws against Wave of Despair.</p>\n<p>Effect: Lantern of Hope (Gestalt)</p>",
+      "frequency": null,
+      "name": "Lantern of Hope",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A gestalt's spirit of righteousness manifests in its hands as a mighty two-handed sword called the flame of justice.</p>\n<p>A gestalt can throw its flame of justice as a ranged weapon. If disarmed or thrown, the flame of justice vanishes after landing or dealing damage and reappears in the gestalt's hands again instantly.</p>\n<p>On a critical hit, the fire damage from the flame of justice deals maximum damage (@Damage[6[fire]]{6} on the d6) before being doubled for the critical hit, and the target takes @Damage[1d10[persistent,fire]] damage.</p>",
+      "frequency": null,
+      "name": "Flame of Justice",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d10+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Flame of Justice",
+      "traits": [
+        "holy",
+        "magical",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d10+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Flame of Justice",
+      "traits": [
+        "holy",
+        "magical",
+        "range-increment-30",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "3d4",
+          "type": "fire"
+        },
+        {
+          "formula": "3d4",
+          "type": "spirit"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Light Ray",
+      "traits": [
+        "agile",
+        "fire",
+        "good",
+        "holy",
+        "magical",
+        "range-increment-30"
+      ]
+    }
+  ],
+  "foundryId": "gztjujplfVCBVXv0",
+  "gear": [],
+  "hp": 100,
+  "id": "pathfinder-bestiary/lantern-archon-gestalt",
+  "immunities": [],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 7,
+  "name": "Lantern Archon (Gestalt)",
+  "perception": 15,
+  "publicNotes": "<p>Friendly, curious, and eternally optimistic, lantern archons embody the virtue of hope. They are formed of living light given corporeal shape, and they serve as beacons, guiding mortals out of their darkest moments and toward the path of righteousness. Their luminous bodies can flicker with the subtlety of a candle flame or flare up like a torch. Lantern archons can control all aspects of their light as easily as other creatures control their facial expressions, leading them to change color, twinkle, and otherwise dim and brighten in time with their actions and words. While effervescent and chipper in conversation, lantern archons are impressively stoic mobile support troops and guardians in times of conflict, and are capable of uniting to form powerful warriors of light called gestalts.</p>\n<hr />\n<p>Archons are guardians of Heaven and enemies of chaos and evil. They openly fight back the spread of fiends but also quietly nurture the seeds of virtue within mortals, teaching the denizens of the Material Plane how to act with honor and integrity, enact just laws, and cast off sin and temptation.</p>\n<p>Archons live in the immense seven-tiered mountain of Heaven. They manifest in the Garden at the mountain's peak from mortal souls who answer a mysterious voice. There they swear to forever serve the cause of justice and transform into their new archon forms. Intensely orderly in their metamorphosis, new archons begin as lantern archons or other lesser forms, transforming into ever-greater archons as their virtue and achievements grow. Each archon represents a particular virtue, such as hope, charity, justice, or courage, and they gain strength in the presence of mortals who exemplify this virtue. Due to their extremely lawful nature, archons sometimes find themselves at odds with azatas.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 11,
+    "will": 15
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "athletics": 14,
+    "diplomacy": 16,
+    "intimidation": 16,
+    "religion": 13,
+    "survival": 14
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 16,
+      "dc": 24,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Read Omens",
+          "rank": 4
+        },
+        {
+          "name": "Detect Alignment (At Will) (Evil Only)",
+          "rank": 1
+        },
+        {
+          "name": "Heal",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "archon",
+    "celestial",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "type": "unholy",
+      "value": 10
+    }
+  ]
+}

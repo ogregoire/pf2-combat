@@ -1,0 +1,141 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 1,
+    "int": 0,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The druid initiate can ask questions of, receive answers from, and use the Diplomacy skill with plants and fungus.</p>",
+      "frequency": null,
+      "name": "Plant Empathy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sling",
+      "traits": [
+        "propulsive",
+        "range-increment-50",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Staff",
+      "traits": [
+        "monk",
+        "two-hand-d8"
+      ]
+    }
+  ],
+  "foundryId": "J0JoIeg82JCQj3Fm",
+  "gear": [
+    "Healer's Toolkit",
+    "Leather Armor",
+    "Primal Symbol",
+    "Sling",
+    "Sling Bullets",
+    "Staff"
+  ],
+  "hp": 18,
+  "id": "pathfinder-npc-core/druid-initiate",
+  "immunities": [],
+  "languages": [
+    "common",
+    "wildsong"
+  ],
+  "level": 1,
+  "name": "Druid Initiate",
+  "perception": 7,
+  "publicNotes": "<p>A neophyte druid learns basic techniques and spellcasting soon after being initiated into their druidic order. The druid initiate has already learned much from their mentors—elders among the order—but hasn't had a chance to develop their own identity.</p><hr /><p>A primalist is a wielder of primal energies and magic, sometimes taught by forces of primal power, including powerful elementals or fey of the First World. Primalists protect the natural world, offering strong medicine to those in need while facing suspicion from those who don't understand their ways.</p>\n<p>A great many primalists belong to druidic circles, and even those who aren't members tend to be familiar with the most prominent ones in their homeland.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 4,
+    "will": 9
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 3,
+    "medicine": 7,
+    "nature": 7,
+    "stealth": 4,
+    "survival": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 0,
+      "dc": 17,
+      "name": "Druid Order Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Cornucopia",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

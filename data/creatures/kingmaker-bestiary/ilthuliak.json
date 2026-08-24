@@ -1,0 +1,245 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 6,
+    "dex": 5,
+    "int": 4,
+    "str": 8,
+    "wis": 5
+  },
+  "ac": 47,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> Once per day</p>\n<hr />\n<p><strong>Effect</strong> The dragon permanently befouls 10 cubic feet of liquid within 90 feet. The liquid becomes undrinkable and unable to support water-breathing life.</p>\n<p>This destroys liquid magic or alchemical items if they're of a lower level than the dragon (a creature can attempt a @Check[will|dc:41] save to protect liquids in its possession). This doesn't affect liquids in a creature's body.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Corrupt Water",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the dragon's tail takes an action to Strike or attempt a skill check</p>\n<hr />\n<p><strong>Effect</strong> The dragon Strikes with its tail at the triggering creature at a -2 penalty. If it hits, the creature takes a -2 circumstance penalty to the triggering roll.</p>\n<p>Effect: Tail Lash</p>",
+      "frequency": null,
+      "name": "Tail Lash",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within reach of the dragon's tail takes an action to Strike or attempt a skill check"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Ilthuliak breathes a spray of acid that deals @Damage[22d6[acid]|options:area-damage] damage in a @Template[line|distance:100] (@Check[reflex|dc:44|basic|options:area-effect] save).</p>\n<p>She can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 Status to All Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:41]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "formula": "4d8+18",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "3d6+16",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Horns",
+      "traits": [
+        "magical",
+        "reach-20"
+      ]
+    },
+    {
+      "bonus": 39,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "acid"
+        },
+        {
+          "formula": "2d6",
+          "type": "acid"
+        },
+        {
+          "formula": "4d12+18",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "acid",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "4d6+16",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    }
+  ],
+  "foundryId": "n82GZhM6joceE91v",
+  "gear": [],
+  "hp": 450,
+  "id": "kingmaker-bestiary/ilthuliak",
+  "immunities": [
+    "acid",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "aklo",
+    "common",
+    "draconic",
+    "fey",
+    "goblin",
+    "jotun",
+    "orcish"
+  ],
+  "level": 21,
+  "name": "Ilthuliak",
+  "perception": 37,
+  "publicNotes": "<p>Murderous tyrants of marshes, swamps, bogs, and fens, black dragons terrorize their domains with intense fervor. Gleefully sadistic, they rule their fetid principalities from a deep cave or otherwise isolated part of the swamp with a mix of lightning-quick raids and subterfuge. Their hatred for other creatures is as acidic as their breath weapons, and they rarely tolerate even other dragons of their kind-except perhaps to mate or temporarily collaborate to take down a mutual enemy.</p>\n<p>Black dragons are amphibious-although they breathe air, their gills also allow them to breathe water. Their frills and fins make them accomplished swimmers, well suited to their wetland environments and submerged lairs. They're immune to the fetid water that comes as a result of their magical ability to corrupt water.</p>\n<p>Black dragon lairs are as foul as their souls. The floors are littered with rotting meat, and plundered treasures line the muck and slime of their dank caves amid twisted roots and creepers. Such places are often crawling with pests, snakes, and slimes. Though they claim natural caverns when they can, they make do with areas of dense, twisted vegetation within a swamp. Black dragon treasure hoards primarily consist of gems and expensive glass work, as valuables of softer substance can't survive the dragon's acidic presence.</p>\n<hr />\n<p>While there are many types of dragons, from the powerful planar dragons to the strange esoteric dragons, few dragon varieties are as well-known and as rightly feared as the chromatic dragons. Differentiated by the hue of their scales, each color of dragon unleashes its own flavor of murderous cruelty-be it by claw, tooth, or breath-and unlike most creatures, dragons only become more powerful as they age. Their lust for treasure, food, bloodshed, and control are legendary. Physically powerful with egos to match, these dragons are often morally depraved and act as criminal masterminds, vicious tyrants, or voracious raiders.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 38,
+    "reflex": 35,
+    "will": 35
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 35,
+    "arcana": 36,
+    "athletics": 41,
+    "deception": 40,
+    "intimidation": 40,
+    "stealth": 35
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 70
+    },
+    {
+      "type": "fly",
+      "value": 180
+    },
+    {
+      "type": "swim",
+      "value": 70
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 36,
+      "dc": 44,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Darkness (At Will)",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "acid",
+    "amphibious",
+    "dragon"
+  ],
+  "weaknesses": []
+}

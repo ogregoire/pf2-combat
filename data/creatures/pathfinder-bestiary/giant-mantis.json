@@ -1,0 +1,133 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 3,
+    "int": -5,
+    "str": 5,
+    "wis": 2
+  },
+  "ac": 20,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The giant mantis Grabs a creature with its leg.</p>\n<hr />\n<p><strong>Effect</strong> The mantis pulls the creature adjacent to it, then makes a mandibles Strike against the creature.</p>",
+      "frequency": null,
+      "name": "Deadly Mandibles",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The giant mantis Grabs a creature with its leg."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The giant mantis lunges forward, making a leg Strike with an extended reach of 20 feet.</p>",
+      "frequency": null,
+      "name": "Lunging Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>On the first round of combat, creatures that haven't acted are Off-Guard to the giant mantis.</p>",
+      "frequency": null,
+      "name": "Sudden Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d10+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Leg",
+      "traits": [
+        "agile",
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d12+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Mandibles",
+      "traits": []
+    }
+  ],
+  "foundryId": "Z7xWkQKCHGyd02B1",
+  "gear": [],
+  "hp": 40,
+  "id": "pathfinder-bestiary/giant-mantis",
+  "immunities": [],
+  "languages": [],
+  "level": 3,
+  "name": "Giant Mantis",
+  "perception": 9,
+  "publicNotes": "<p>These massive cousins of normal praying mantises stand taller than an average human. They stalk through dense forests, striking at meals from the trees.</p>\n<hr />\n<p>These monstrously oversized insects are silent predators with lightning-quick forelegs and a bone-breaking bite.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 12,
+    "will": 7
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 12,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

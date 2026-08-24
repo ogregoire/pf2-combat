@@ -1,0 +1,123 @@
+{
+  "abilityMods": {
+    "cha": -5,
+    "con": 5,
+    "dex": -5,
+    "int": -5,
+    "str": 4,
+    "wis": 0
+  },
+  "ac": 10,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> another string slime is within 30 feet</p>\n<hr />\n<p><strong>Effect</strong> The slime arcs protoplasm to the other string slime. Creatures in that line take @Damage[3d6[acid]] damage with a @Check[reflex|dc:16|basic] save. A creature that fails its save is also knocked Prone.</p>",
+      "frequency": null,
+      "name": "Tag Team",
+      "requirements": "another string slime is within 30 feet",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A string slime can feel nearby motion through vibration and air movement.</p>",
+      "frequency": null,
+      "name": "Motion Sense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a string slime would take slashing damage (if it weren't immune) and has at least 10 HP, it splits into two identical slimes with half the original's HP. One string slime is in the same space as the original, and the other appears in an adjacent unoccupied space. If no adjacent space is unoccupied, move smaller creatures and objects out of the way to make a space or the split is canceled at the GM's discretion.</p>",
+      "frequency": null,
+      "name": "Split",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A string slime's acid damages only organic material—not metal, stone, or other inorganic substances.</p>",
+      "frequency": null,
+      "name": "Weak Acid",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "formula": "1d8+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pseudopod",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "r3EXyntNIazKf2gP",
+  "gear": [],
+  "hp": 90,
+  "id": "pathfinder-monster-core/string-slime",
+  "immunities": [
+    "acid",
+    "bleed",
+    "critical-hits",
+    "precision",
+    "slashing",
+    "unconscious",
+    "visual"
+  ],
+  "languages": [],
+  "level": 3,
+  "name": "String Slime",
+  "perception": 5,
+  "publicNotes": "<p>Found underground or in dungeons, these quivering, slug-like ropes of slime continuously scour their domain for food. In addition to their shape, they are named for their ability to shoot out expanding ribbons of slime that resemble tangled strings.</p>\n<hr />\n<p>Slimes, molds, and other oozes can be found in dank dungeons and shadowed forests. While not necessarily evil, some grow to enormous sizes and have insatiable appetites.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 0,
+    "will": 5
+  },
+  "senses": [
+    "motion-sense"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 11
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "mindless",
+    "ooze"
+  ],
+  "weaknesses": []
+}

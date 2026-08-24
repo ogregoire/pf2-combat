@@ -1,0 +1,128 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 0,
+    "dex": 3,
+    "int": -1,
+    "str": -2,
+    "wis": 2
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The tooth fairy's last action was a successful pliers Strike against a creature with teeth</p><hr /><p><strong>Effect</strong> The tooth fairy attempts a @Check[thievery|defense:fortitude] check against the creature's Fortitude DC, dealing @Damage[2[bleed]] damage on any result but a critical failure. On a critical success, it also pulls out one of the target's teeth.</p>\n<p>If the creature loses a tooth, it takes a –1 status penalty to Charisma-based skill checks and must succeed at a @Check[flat|dc:5] to Cast a Spell unless that spell has the subtle trait. These effects last for 1 day, or until the stolen tooth is returned and the target regains at least 1 Hit Point.</p>\n<p>Effect: Tooth Tug</p>",
+      "frequency": null,
+      "name": "Tooth Tug",
+      "requirements": "The tooth fairy's last action was a successful pliers Strike against a creature with teeth",
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When killed, a tooth fairy bursts into sticky, foul-smelling white dust. Each creature in a @Template[emanation|distance:5] must succeed at a @Check[fortitude|dc:16] save or become Sickened 1 (Sickened 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Plaque Burst",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pliers",
+      "traits": [
+        "disarm",
+        "finesse",
+        "reach-0"
+      ]
+    }
+  ],
+  "foundryId": "q95mjOkL678a1Wnt",
+  "gear": [
+    "Pliers"
+  ],
+  "hp": 8,
+  "id": "pathfinder-monster-core/tooth-fairy",
+  "immunities": [],
+  "languages": [
+    "fey"
+  ],
+  "level": -1,
+  "name": "Tooth Fairy",
+  "perception": 6,
+  "publicNotes": "<p>Lone fairies usually need several minutes of elbow grease and a sleeping or restrained subject to extract a tooth.</p>\n<hr />\n<p>Tooth fairies spawn when a child's tooth (or, less commonly, an entire child) is buried in terrain rife with fey energies. Hatching from the buried teeth like larvae from an egg, tooth fairies build crude pliers from whatever they can find, then go hunting for more teeth—regardless of the owners' willingness.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 2,
+    "reflex": 7,
+    "will": 4
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 5,
+    "stealth": 5,
+    "thievery": 6
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "fly",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 5,
+      "dc": 13,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Sleep",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 2
+    }
+  ]
+}

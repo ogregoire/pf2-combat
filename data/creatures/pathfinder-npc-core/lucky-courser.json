@@ -1,0 +1,196 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 3,
+    "dex": 4,
+    "int": 1,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<p><strong>Trigger</strong> The lucky courser or an ally within 10 feet fails a Reflex save, Acrobatics check, or Athletics check</p><hr /><p><strong>Effect</strong> The triggering creature rerolls the save or check and uses the better result.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1H"
+      },
+      "name": "Guide to Fortune",
+      "requirements": null,
+      "traits": [
+        "fortune"
+      ],
+      "trigger": "The lucky courser or an ally within 10 feet fails a Reflex save, Acrobatics check, or Athletics check"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The lucky courser can Interact to reload their arbalest, Step, and Strike, taking the actions in any order. The Step ignores difficult terrain.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Feline Skirmish",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The lucky courser rolls initiative using Perception or Survival</p><hr /><p><strong>Effect</strong> Their expressive ears twitch in alarm, granting allies within 10 feet a +2 circumstance bonus to initiative rolls.</p>",
+      "frequency": null,
+      "name": "Warning Ears",
+      "requirements": null,
+      "traits": [
+        "visual"
+      ],
+      "trigger": "The lucky courser rolls initiative using Perception or Survival"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The lucky courser [[/act create-a-diversion]]{Creates a Diversion} and then Strikes. The target is Dazzled until the end of the lucky courser's next turn on a successful Strike (or Blinded on a critical hit).</p>",
+      "frequency": null,
+      "name": "Head Shot",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The lucky courser can [[/act hide]] and [[/act sneak]] in any natural terrain and in lesser cover from allies.</p>",
+      "frequency": null,
+      "name": "Elusive Hunter",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Scent]</p>",
+      "frequency": null,
+      "name": "Scent (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d10+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Arbalest",
+      "traits": [
+        "backstabber",
+        "magical",
+        "range-increment-110",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d4+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d4+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Whip",
+      "traits": [
+        "disarm",
+        "finesse",
+        "nonlethal",
+        "reach",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "NKSglx8RnXfuhb3m",
+  "gear": [
+    "Arbalest",
+    "Cold Iron Bolts",
+    "Dawnsilver Bolts",
+    "Leather Armor",
+    "Whip"
+  ],
+  "hp": 140,
+  "id": "pathfinder-npc-core/lucky-courser",
+  "immunities": [],
+  "languages": [
+    "amurrun",
+    "common",
+    "fey"
+  ],
+  "level": 8,
+  "name": "Lucky Courser",
+  "perception": 18,
+  "publicNotes": "<p>Masterful catfolk hunters travel the far corners of the world, stalking terrible the monsters who dwell there in hopes of someday putting an end to their predations. They eagerly cooperate with other adventurers to defeat demons, aberrations, and malevolent beasts and fey.</p><hr /><p>Catfolk can be found traveling almost anywhere, and they are quick to settle down for a chat when they encounter fellow travelers. Some trade stories, act as guides, or operate at the fringes of polite society.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 18,
+    "will": 14
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 16,
+    "athletics": 14,
+    "deception": 14,
+    "nature": 16,
+    "stealth": 18,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "catfolk",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

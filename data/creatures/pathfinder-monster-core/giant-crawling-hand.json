@@ -1,0 +1,144 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 2,
+    "int": -4,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The giant crawling hand takes piercing or slashing damage</p>\n<hr />\n<p><strong>Effect</strong> A random creature adjacent to the giant crawling hand is sprayed with vile pus that deals @Damage[4d6[void]] damage. The affected creature must attempt a @Check[reflex|dc:21] save.</p>\n<p><strong>Critical Success</strong> The creature takes no damage.</p>\n<p><strong>Success</strong> The creature takes half damage and becomes Sickened 1.</p>\n<p><strong>Failure</strong> The creature takes full damage and becomes Sickened 2.</p>\n<p><strong>Critical Failure</strong> The creature takes double damage and becomes Sickened 3.</p>",
+      "frequency": null,
+      "name": "Pus Burst",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The giant crawling hand takes piercing or slashing damage"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "frequency": null,
+      "name": "Lifesense 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A crawling hand can be assigned a quarry by anointing the hand with a drop of the intended quarry's blood. If the hand ever has no quarry, it automatically gains the next creature it damages as its quarry. The hand gains a +1 circumstance bonus to Perception checks when it Seeks its quarry, to Survival checks when it Tracks its quarry, and damage rolls when it Strikes its quarry.</p>",
+      "frequency": null,
+      "name": "Mark Quarry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d6+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "TlDmc2ZKeIAJuD5v",
+  "gear": [],
+  "hp": 75,
+  "id": "pathfinder-monster-core/giant-crawling-hand",
+  "immunities": [
+    "bleed",
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "poison",
+    "unconscious",
+    "visual"
+  ],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Giant Crawling Hand",
+  "perception": 12,
+  "publicNotes": "<p>A giant crawling hand is the appendage of a very large creature, such as a giant.</p>\n<hr />\n<p>Typically, crawling hands are formed when severed appendages are endowed with a crude sentience by evil necromantic energies that turn them into tireless killers. Yet crawling hands can also arise spontaneously, usually when a creature loses an appendage in a place rife with necromantic energy or with a connection to the Void.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 11,
+    "will": 10
+  },
+  "senses": [
+    "lifesense",
+    "tremorsense"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "stealth": 11,
+    "survival": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

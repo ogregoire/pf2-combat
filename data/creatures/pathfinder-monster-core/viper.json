@@ -1,0 +1,106 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 0,
+    "dex": 4,
+    "int": -4,
+    "str": -3,
+    "wis": 1
+  },
+  "ac": 14,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature ends its movement adjacent to the viper or within the viper's space.</p>\n<hr />\n<p><strong>Effect</strong> The viper Strides, Climbs, or Swims up to 10 feet (or up to the relevant Speed, if that Speed is less than 10 feet). It must end its movement in a location that isn't within 5 feet of a foe. This movement doesn't trigger reactions.</p>",
+      "frequency": null,
+      "name": "Slink",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature ends its movement adjacent to the viper or within the viper's space."
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:16]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 4 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d8[poison]] (1 round).</p>",
+      "frequency": null,
+      "name": "Viper Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d8-3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "agile",
+        "finesse",
+        "reach-0"
+      ]
+    }
+  ],
+  "foundryId": "1uVwkGlqYzyWaDMy",
+  "gear": [],
+  "hp": 8,
+  "id": "pathfinder-monster-core/viper",
+  "immunities": [],
+  "languages": [],
+  "level": -1,
+  "name": "Viper",
+  "perception": 5,
+  "publicNotes": "<p>Each member of this family of venomous snakes has long, hinged fangs that inject potent venom into their prey. Different vipers inject different types of venom, which might result in paralysis, extreme pain and swelling, blood clotting, or even the sudden stopping of the victim's heart.</p>\n<hr />\n<p>Snakes come in an array of forms, from jungle-dwelling constrictors that wrap around their prey to venomous vipers with deadly bites. Regardless, all snakes consume their prey whole by unhinging their jaws and using powerful muscles to move the food down their throats and into their stomachs.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 2,
+    "reflex": 7,
+    "will": 5
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 5,
+    "athletics": 1,
+    "stealth": 5,
+    "survival": 3
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

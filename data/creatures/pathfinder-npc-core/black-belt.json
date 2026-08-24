@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 4,
+    "int": 1,
+    "str": 5,
+    "wis": 3
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The black belt makes two fist Strikes. If both hit the same creature, combine their damage for the purpose of resistances and weaknesses.</p>\n<p>The black belt can substitute any number of the attacks with bo staff Strikes or attempts to [[/act grapple]], [[/act reposition]], [[/act shove]], or [[/act trip]].</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Flurry of Blows",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within the black belt's reach targets them with a melee attack</p><hr /><p><strong>Effect</strong> The black belt blocks, gaining a +2 circumstance bonus to their AC against the triggering attack. If the attack misses, the black belt retaliates with a Strike. This Strike doesn't count toward the black belt's multiple attack penalty, and the multiple attack penalty doesn't apply to this Strike.</p>",
+      "frequency": null,
+      "name": "Blocking Counterattack",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within the black belt's reach targets them with a melee attack"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The black belt pummels their fists in a fast onslaught. They make three fist Strikes against one target. If more than one Strike hits, combine damage for the purpose of resistances and weaknesses. Regardless of whether any Strikes hit, the target must succeed at a @Check[fortitude|dc:32] save or be Clumsy 1 until the end of their next turn and Stunned 1 (Clumsy 2 and Stunned 2 on a critical failure).</p>",
+      "frequency": null,
+      "name": "Rapid Barrage",
+      "requirements": null,
+      "traits": [
+        "incapacitation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The black belt's fist Strikes don't take penalties when making lethal attacks, and fist Strikes are treated as cold iron and silver.</p>",
+      "frequency": null,
+      "name": "Powerful Fists",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "2d8+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Bo Staff",
+      "traits": [
+        "magical",
+        "parry",
+        "reach",
+        "trip"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "2d8+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "YnUDViAV0M2FMG3M",
+  "gear": [
+    "+1 Striking Handwraps of Mighty Blows",
+    "Bands of Force",
+    "Bo Staff"
+  ],
+  "hp": 220,
+  "id": "pathfinder-npc-core/black-belt",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 12,
+  "name": "Black Belt",
+  "perception": 25,
+  "publicNotes": "<p>Martial artists strive to master the art of hand-to-hand fighting.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 23,
+    "will": 20
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 25,
+    "athletics": 25,
+    "stealth": 20
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 23,
+      "dc": 32,
+      "name": "Monk Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Inner Upheaval",
+          "rank": 1
+        },
+        {
+          "name": "Qi Rush",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,249 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 6,
+    "int": 2,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature attempts a melee attack against a sceaduinar or an Acrobatics check to Tumble Through the sceaduinar's space</p>\n<hr />\n<p><strong>Effect</strong> The sceaduinar flexes its wings to emit a brief pulse of void energy that deals @Damage[4d6[void]] damage to the triggering creature (@Check[reflex|dc:22|basic] save).</p>",
+      "frequency": null,
+      "name": "Wing Flash",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature attempts a melee attack against a sceaduinar or an Acrobatics check to Tumble Through the sceaduinar's space"
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the sceaduinar damages a living creature with its jaws Strike, the sceaduinar gains 5 temporary Hit Points and the creature must succeed at a @Check[fortitude|dc:25] save or become Drained 1.</p>\n<p>Further damage dealt to the creature by the sceaduinar increases the drained value by 1 on a failed save, to a maximum of drained 4.</p>",
+      "frequency": null,
+      "name": "Drain Life",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Void damage dealt by a sceaduinar damages undead and creatures with void healing as if it were vitality damage. The sceaduinar's melee Strikes have the benefits of the <em>Ghost Touch</em> property rune on attacks against incorporeal undead.</p>",
+      "frequency": null,
+      "name": "Entropic Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "frequency": null,
+      "name": "Lifesense 120 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Sceaduinars have neither souls nor the ability to create. A sceaduinar is immune to effects that target a soul (such as bind soul or resurrect) or that require knowledge of a creature's identity (such as scrying), and critically fails Crafting checks.</p>",
+      "frequency": null,
+      "name": "Void Child",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "void"
+        },
+        {
+          "formula": "2d6+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "void"
+        },
+        {
+          "formula": "2d6+4",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "LcdQZ2NTG2eJswXA",
+  "gear": [],
+  "hp": 100,
+  "id": "pathfinder-bestiary-2/sceaduinar",
+  "immunities": [
+    "death-effects",
+    "drained"
+  ],
+  "languages": [
+    "aklo"
+  ],
+  "level": 7,
+  "name": "Sceaduinar",
+  "perception": 15,
+  "publicNotes": "<p>Strange creatures born from jagged crystals in the heart of the Void, sceaduinar are fueled by its void energy and driven to extinguish all life. Resembling crystalline gargoyles with serrated limbs and sharp, bat-like faces, sceaduinar stand about 7 feet tall and weigh around 100 pounds.</p>\n<p>These malevolent beings sometimes gather in great packs of their own kind. Despite their intelligence, they act like cunning, feral beasts for the most part, though they occasionally build tools to aid them in extinguishing life. Sceaduinar sail through the great voids of their home plane, seeking to destroy any sparks of life that find their way into that deadly realm-even the twisted sparks found in undead creatures.</p>\n<p>When they discover portals to other planes, sceaduinar swarm through in great numbers, slaughtering all they come across. While dwelling outside the Negative Energy plane is uncomfortable for sceaduinar, they can exist for extended periods of time apart from their home. Of course, the feeling of a plane where void energy isn't the rule doesn't improve these creatures' attitude, and as a result, they tend to be particularly cruel and violent when encountered in such realms.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 18,
+    "will": 14
+  },
+  "senses": [
+    "greater-darkvision",
+    "lifesense"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 13,
+    "intimidation": 13,
+    "occultism": 15,
+    "stealth": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "fly",
+      "value": 60
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 0,
+      "dc": 25,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Darkness",
+          "rank": 4
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 4
+        },
+        {
+          "name": "Grim Tendrils",
+          "rank": 3
+        },
+        {
+          "name": "Silence",
+          "rank": 2
+        },
+        {
+          "name": "Chill Touch",
+          "rank": 1
+        },
+        {
+          "name": "Harm",
+          "rank": 1
+        },
+        {
+          "name": "Harm",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "unholy",
+    "void"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 10
+    }
+  ]
+}

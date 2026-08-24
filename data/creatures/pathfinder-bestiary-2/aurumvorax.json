@@ -1,0 +1,151 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 2,
+    "int": -4,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is wounded 3, it can no longer use this ability</p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster is reduced to 0 HP."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The aurumvorax makes a jaws Strike against a creature it has grabbed. If the attack hits, the target is knocked Prone if it is Medium or smaller. In addition, if the target is wearing armor with Hardness 10 or lower, the armor becomes Broken. If this Strike breaks a creature's armor or damages a creature that is unarmored or wearing broken armor, the target also takes @Damage[1d6[bleed]]. This Strike doesn't further damage armor that's already broken.</p>",
+      "frequency": null,
+      "name": "Gnaw Metal",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The aurumvorax makes four claw Strikes against a creature it has grabbed. Each attack counts toward the aurumvorax's multiple attack penalty, and the multiple attack penalty increases with each attack.</p>",
+      "frequency": null,
+      "name": "Rapid Rake",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When an aurumvorax scores a critical hit, the target takes @Damage[1d6[bleed]].</p>",
+      "frequency": null,
+      "name": "Bleeding Critical",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>An aurumvorax gains a +4 circumstance bonus to its Fortitude or Reflex DC against Shove and Trip attempts, and to its Athletics DC against attempts to Escape its Grab.</p>",
+      "frequency": null,
+      "name": "Tenacious Stance",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d8+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d10+12",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "zjPdqdQGNjO3Kto7",
+  "gear": [],
+  "hp": 170,
+  "id": "pathfinder-bestiary-2/aurumvorax",
+  "immunities": [],
+  "languages": [],
+  "level": 9,
+  "name": "Aurumvorax",
+  "perception": 18,
+  "publicNotes": "<p>Aurumvoraxes are highly aggressive and territorial predators that sprint on eight legs, using their terrific strength and iron-hard claws to dig through solid stone. A typical aurumvorax is only 3 feet long but weighs more than 200 pounds, for its thick, sturdy bones are densely packed with muscle, making the creature very strong but a notoriously poor swimmer. Its fur is golden, sometimes with a silvery or russet tone depending on the metals it has ingested, and its claws are always the shiny black of seasoned iron.</p>\n<p>Aurumvorax adults claim hunting territories spanning a mile or more, driving out other predators and leading solitary lives except when they mate. They are irascible creatures, impossible to train as adults, but daring trainers can rear aurumvorax pups as deadly guard beasts, which they sell for hundreds of gold pieces to discriminating buyers. Aurumvorax pups are usually single births, and their mothers are fiercely protective, making their acquisition a dangerous proposition. Even when trained, the creatures are prone to dangerous bursts of rage.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 17,
+    "will": 16
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 20,
+    "stealth": 18
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "burrow",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

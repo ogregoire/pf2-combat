@@ -1,0 +1,237 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 3,
+    "int": 6,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature that takes damage from a denizen's bite must succeed at a @Check[fortitude|dc:27] save or become Clumsy 1. Each time a target fails an additional save against this ability, the condition value increases by 1 (to a maximum of Clumsy 4). This condition value decreases by 1 every 24 hours.</p>",
+      "frequency": null,
+      "name": "Debilitating Bite",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Many denizens of Leng carry strange rubies mined from quarries in Leng. As long as a creature holds a Leng ruby that it willingly accepted as a gift or payment from a denizen of Leng, any denizen of Leng can target that creature with Outcast's Curse, Phantom Pain, or Mind Reading at a range of 1 mile, and the bearer uses an outcome one degree of success worse than the result of its saving throw against <em>Outcast's Curse</em>.</p>",
+      "frequency": null,
+      "name": "Leng Ruby",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Denizens of Leng don't need to breathe.</p>",
+      "frequency": null,
+      "name": "No Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A denizen of Leng maintains a connection to Leng at all times, and when away from Leng, they have fast healing 5. They lose this ability on Leng or in areas where planar connections do not function. If killed, their body dissolves into nothingness in [[/gmr 1d4 #Dissolve Body]]{1d4 rounds}, leaving behind their equipment. A slain denizen reforms in Leng; they can be permanently killed only when their planar fast healing doesn't function.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Planar Fast Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d10+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d6+6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Kukri",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "tOVGYQueeJwLtn0v",
+  "gear": [
+    "Kukri",
+    "Leng Ruby"
+  ],
+  "hp": 100,
+  "id": "pathfinder-bestiary-2/denizen-of-leng",
+  "immunities": [
+    "cold"
+  ],
+  "languages": [
+    "aklo"
+  ],
+  "level": 8,
+  "name": "Denizen of Leng",
+  "perception": 17,
+  "publicNotes": "<p>Slavers and raiders from the cold, windswept dimension of Leng, these malevolent humanoids range across reality in ominous black ships capable of sailing beyond the borders of dimensions and planes. Although most denizens of Leng seek slaves and plunder like any pirate, others operate as self-styled ambassadors and merchants, sowing discord with far-ranging plots. While the inscrutable denizens dress themselves in flowing robes, veils, and broad turbans to appear human, their aberrant physiology, when glimpsed, is evident from their crown of stubby horns and tentacled jaws to their furry, goat-like legs.</p>\n<p>Above the fierce captains who command the infamous black ships are an even higher caste of denizens of Leng. These cultists and musicians serve as high priests, laboring to appease the frightening gods who look down upon the Nightmare Realm with cold malice.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "critical-hits",
+      "value": 10
+    },
+    {
+      "type": "precision",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 19,
+    "will": 17
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 15,
+    "athletics": 15,
+    "deception": 19,
+    "occultism": 18,
+    "stealth": 17,
+    "thievery": 17
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 19,
+      "dc": 27,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Outcast's Curse",
+          "rank": 4
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Tongues (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Hypnotic Pattern",
+          "rank": 3
+        },
+        {
+          "name": "Levitate",
+          "rank": 3
+        },
+        {
+          "name": "Locate",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading",
+          "rank": 3
+        },
+        {
+          "name": "Mirror Image",
+          "rank": 2
+        },
+        {
+          "name": "Chill Touch",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Phantom Pain",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration",
+    "dream"
+  ],
+  "weaknesses": []
+}

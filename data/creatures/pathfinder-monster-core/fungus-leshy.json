@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": -1,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 19,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The fungus leshy transforms into a giant mushroom or patch of fungi. This ability otherwise uses the effects of One with Plants.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "polymorph",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>A fungus leshy can unleash a cloud of spores that irritates the eyes and throats of non-fungus creatures in a @Template[emanation|distance:15]. Each creature must succeed at a @Check[fortitude|dc:16] save or take @Damage[1[persistent,poison]] damage.</p>\n<p>A creature has its vision reduced as long as the persistent damage continues and can see only within 20 feet.</p>",
+      "frequency": null,
+      "name": "Spore Cloud",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature that takes damage from a fungus leshy's spore pod Strike must attempt a saving throw with the same DC (@Check[fortitude|dc:16]) and effect as its Spore Cloud ability</p>",
+      "frequency": null,
+      "name": "Spores",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a fungus leshy dies, a burst of primal energy explodes from its body, restoring @Damage[2d8[healing]] Hit Points to each fungi creature in a @Template[emanation|distance:30]. This area is filled with fungi, becoming difficult terrain.</p>\n<p>If the terrain is not a viable environment for this fungi, they wither after 24 hours.</p>",
+      "frequency": null,
+      "name": "Verdant Burst",
+      "requirements": null,
+      "traits": [
+        "healing",
+        "primal",
+        "vitality"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Spore Pod",
+      "traits": [
+        "range-increment-30"
+      ]
+    }
+  ],
+  "foundryId": "BoXCGLACP9vuIZkZ",
+  "gear": [],
+  "hp": 30,
+  "id": "pathfinder-monster-core/fungus-leshy",
+  "immunities": [],
+  "languages": [
+    "common",
+    "fey"
+  ],
+  "level": 2,
+  "name": "Fungus Leshy",
+  "perception": 6,
+  "publicNotes": "<p>Fungus leshies guard caves, bogs, and damp, dark places. Their fungus gardens are bizarre by most standards, but fungus leshies are extremely proud of their works.</p>\n<hr />\n<p>Leshies are intelligent plant creatures who guard areas of primeval wilderness or earthly power. Originally created by powerful fey, they manifest when a skilled practitioner of primal magic—typically a druid—combines a nature spirit with a body carefully grown and crafted from local vegetation. The rites and materials required to create a leshy vary depending on the type of leshy. They are typically given life in an area of great natural significance, such as an arboreal's grove, a druidic circle, a fairy ring, or a great natural wonder.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 10,
+    "will": 6
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "nature": 6,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 16,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Speak with Plants (Constant, Fungi Only)",
+          "rank": 3
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fungus",
+    "leshy"
+  ],
+  "weaknesses": []
+}

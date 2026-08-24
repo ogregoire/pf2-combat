@@ -1,0 +1,123 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 2,
+    "int": -1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1</span> to <span class=\"action-glyph\">3</span></p><hr /><p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The mercenary band engages in a coordinated attack with its wide array of melee weapons against each enemy in a @Template[type:emanation|distance:5] with a @Check[reflex|dc:25|basic|options:area-effect] save. The damage depends on the number of actions.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d8+2)[bludgeoning]|options:area-damage], @Damage[(1d8+2)[piercing]|options:area-damage]{piercing}, or @Damage[(1d8+2)[slashing]|options:area-damage]{slashing}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(3d8+4)[bludgeoning]|options:area-damage], @Damage[(3d8+4)[piercing]|options:area-damage]{piercing}, or @Damage[(3d8+4)[slashing]|options:area-damage]{slashing}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(4d8+6)[bludgeoning]|options:area-damage], @Damage[(4d8+6)[piercing]|options:area-damage]{piercing}, or @Damage[(4d8+6)[slashing]|options:area-damage]{slashing}</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Let 'em Have It!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The band's last action was Let 'em Have It and at least one creature failed its save</p><hr /><p><strong>Effect</strong> The mercenary band attempts to [[/act steal]] one object from each enemy that failed its save, even if the enemy is in combat or on guard.</p>",
+      "frequency": null,
+      "name": "Spoils of War",
+      "requirements": "The band's last action was Let 'em Have It and at least one creature failed its save",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The mercenary band draws or reloads their bows, crossbows, and slings, then launches a ranged attack in the form of a volley. This volley is a @Template[type:burst|distance:10] within 120 feet that deals @Damage[(2d8+4)[piercing]|options:area-damage] or @Damage[(2d8+4)[bludgeoning]|options:area-damage]{bludgeoning} damage with a @Check[reflex|dc:25|basic|options:area-effect] save. When the mercenary band is reduced to 2 or fewer segments, this area decreases to a @Template[type:burst|distance:5].</p>",
+      "frequency": null,
+      "name": "Ready... Fire!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 120 (3 segments), 60 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "nN1fOQT8FDgbmQdx",
+  "gear": [],
+  "hp": 180,
+  "id": "pathfinder-npc-core/mercenary-band",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 9,
+  "name": "Mercenary Band",
+  "perception": 17,
+  "publicNotes": "<p>Some bands of experienced soldiers have storied reputations, their rolls filled with legendary warriors. Others are whispered of for their cruel deeds and opportunistic betrayals.</p><hr /><p>Whether they're hired to wage war, protect a caravan, or infiltrate an impenetrable fortress, there's ample work for mercenaries all over Golarion.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 17,
+    "will": 15
+  },
+  "senses": [],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 19,
+    "intimidation": 18,
+    "society": 14,
+    "survival": 15,
+    "thievery": 19
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid",
+    "troop"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 10
+    },
+    {
+      "type": "splash-damage",
+      "value": 10
+    }
+  ]
+}

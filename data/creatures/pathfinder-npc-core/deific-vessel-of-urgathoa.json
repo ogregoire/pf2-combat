@@ -1,0 +1,286 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 6,
+    "dex": 4,
+    "int": 2,
+    "str": 5,
+    "wis": 4
+  },
+  "ac": 35,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The vessel chooses two different creatures in their void tendrils aura. Each one must be either undead or the vessel themself. One target loses @Damage[25[untyped]] HP and the other regains that many HP. If a target is unwilling, it can negate the transfer with a successful @Check[fortitude|dc:39] save.</p>",
+      "frequency": null,
+      "name": "Borrow Time",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "void"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The vessel's unarmed attacks and scythe gain the <em>+2 Decaying Frost greater striking</em> runes when used by the vessel, and their Strikes gain the death trait.</p>",
+      "frequency": null,
+      "name": "Grave Chill",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The deific vessel takes @Damage[25[untyped]] damage at the end of its turn if it Cast a Spell, used Borrow Time, or made a Strike that turn. This damage ignores resistance.</p>",
+      "frequency": null,
+      "name": "Limited Lifespan",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A creature that slays the deific vessel must succeed at a @Check[will|dc:35] save or be visibly marked as anathema to Urgathoa. It gains weakness 10 to unholy and takes a –2 circumstance penalty to Charisma-based skill checks against followers of Urgathoa. Creatures attempting to Gather Information about or Track the marked creature gain a +2 circumstance bonus to their checks.</p>\n<p>The mark can't be hidden and can be removed only by participating in an atone ritual led by a worshipper of Urgathoa who is 12th level or higher.</p>\n<p>Effect: Mark of Fate</p>",
+      "frequency": null,
+      "name": "Mark of Fate",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the deific vessel dies, the divine power barely contained within their form explodes outward, dealing @Damage[6d8[spirit]|options:area-damage] damage to each creature in a @Template[type:emanation|distance:30] with a @Check[reflex|dc:33|basic|options:area-effect] save.</p>",
+      "frequency": null,
+      "name": "Shattered Vessel",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>When a creature in the aura would be healed by a vitality effect, the healing is reduced by 15 and the deific vessel regains @Damage[15[healing]] Hit Points.</p>",
+      "frequency": null,
+      "name": "Void Tendrils",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "void"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "3d4+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Decaying Frost Fist",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "3d10+11",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Decaying Frost Scythe",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "trip",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "2d8",
+          "type": "void"
+        },
+        {
+          "formula": "3d6",
+          "type": "cold"
+        }
+      ],
+      "kind": "melee",
+      "name": "Grave Pulse",
+      "traits": [
+        "cold",
+        "range-120",
+        "unholy",
+        "void"
+      ]
+    }
+  ],
+  "foundryId": "L9GYpgZrtvRcjsrS",
+  "gear": [
+    "Explorer's Clothing",
+    "Scythe"
+  ],
+  "hp": 300,
+  "id": "pathfinder-npc-core/deific-vessel-of-urgathoa",
+  "immunities": [
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "unconscious"
+  ],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 15,
+  "name": "Deific Vessel of Urgathoa",
+  "perception": 27,
+  "publicNotes": "<p>Through direct intervention in the mortal world, a deity creates a deific vessel to do their will, whether from a willing servant or through possession, a contract, or a curse. A candle to the flame of their progenitor, a divine vessel burns fast and quickly extinguishes.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "void",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 28,
+    "reflex": 24,
+    "will": 26
+  },
+  "senses": [
+    "lifesense"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 26,
+    "deception": 27,
+    "intimidation": 29,
+    "religion": 31
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 31,
+      "dc": 39,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Divine Decree",
+          "rank": 7
+        },
+        {
+          "name": "Eclipse Burst",
+          "rank": 7
+        },
+        {
+          "name": "Execute",
+          "rank": 7
+        },
+        {
+          "name": "Mask of Terror",
+          "rank": 7
+        },
+        {
+          "name": "Dominate",
+          "rank": 6
+        },
+        {
+          "name": "Truesight",
+          "rank": 6
+        },
+        {
+          "name": "Vampiric Exsanguination",
+          "rank": 6
+        },
+        {
+          "name": "Zealous Conviction",
+          "rank": 6
+        },
+        {
+          "name": "Truespeech (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Divine Lance",
+          "rank": 1
+        },
+        {
+          "name": "Harm",
+          "rank": 1
+        },
+        {
+          "name": "Harm (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "divine",
+    "human",
+    "humanoid",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 15
+    }
+  ]
+}

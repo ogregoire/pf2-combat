@@ -1,0 +1,204 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 2,
+    "dex": 4,
+    "int": -1,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An ally within 10 feet of the dancer rolls a saving throw against a mental or illusion effect</p>\n<hr />\n<p><strong>Effect</strong> The target ally can roll the save twice and take the better result.</p>\n<p>Effect: Distracting Frolic</p>",
+      "frequency": null,
+      "name": "Distracting Frolic",
+      "requirements": null,
+      "traits": [
+        "fortune",
+        "manipulate"
+      ],
+      "trigger": "An ally within 10 feet of the dancer rolls a saving throw against a mental or illusion effect"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The caligni dancer touches a foe and curses it.</p>\n<p>If the target fails a @Check[will|dc:18] save, it gains Clumsy 1 and Stupefied 1.</p>\n<p>The target is then temporarily immune for 24 hours.</p>\n<p>These conditions persist until the curse is removed. The victim can attempt a new @Check[will|dc:18] save once per hour to end the curse.</p>",
+      "frequency": null,
+      "name": "Dancer's Curse",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When the dancer dies, their body dissolves into a swirling mass of darkness and light. All creatures in a @Template[emanation|distance:10] must succeed at a @Check[will|dc:17] save or be Dazzled for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<p>The dancer's possessions are left in a pile where they died.</p>",
+      "frequency": null,
+      "name": "Final Dance",
+      "requirements": null,
+      "traits": [
+        "occult",
+        "shadow",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "frequency": null,
+      "name": "Greater Darkvision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.LightBlindness]</p>",
+      "frequency": null,
+      "name": "Light Blindness",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The caligni dancer deals 1d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Baton",
+      "traits": [
+        "agile",
+        "finesse",
+        "shove"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "SZCf0IZkf36plwVd",
+  "gear": [
+    "Baton (Light Mace)",
+    "Dagger"
+  ],
+  "hp": 18,
+  "id": "pathfinder-monster-core/caligni-dancer",
+  "immunities": [],
+  "languages": [
+    "caligni"
+  ],
+  "level": 1,
+  "name": "Caligni Dancer",
+  "perception": 6,
+  "publicNotes": "<p>Caligni dancers serve as intermediaries between caligni factions, carrying messages and negotiating deals between the notoriously independent groups. Although physically fragile, the dancers serve an important role within caligni society and are rarely seen without guards.</p>\n<hr />\n<p>Calignis lurk in subterranean cities, with each caligni growing into a specific role and form determined by supernatural influences in caligni society. Regardless of their size or role, all calignis are gaunt, with pale flesh and white eyes. Many relish the chance to creep above ground at night to steal resources, shadow their surface counterparts, or simply make mischief.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 7,
+    "reflex": 9,
+    "will": 4
+  },
+  "senses": [
+    "greater-darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "diplomacy": 8,
+    "performance": 6,
+    "stealth": 7,
+    "thievery": 7
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 8,
+      "dc": 16,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Counter Performance (Visual Only)",
+          "rank": 1
+        },
+        {
+          "name": "Courageous Anthem",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "caligni",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,151 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": 0,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The cleansed cultist makes fists with both hands, pressing them to their temples so that their outward pointing thumbs extend to the left and right while they cry out in painful religious rapture. The hourglass-shaped scar on their forehead bulges briefly before a bloody worm is expelled from the center of the scar. This worm shoots through the air to target a single creature within 30 feet, who must then attempt a @Check[fortitude|dc:24] save. The cultist can't Release the Inmost Worm again for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> The worm lands on the target and causes agonizing pain before dropping to the floor and fading away. The target takes @Damage[3d6[mental]] damage.</p>\n<p><strong>Failure</strong> The worm lands on the target and burrows into their flesh, leaving no trace of a hole. The target seems to age rapidly for a moment, takes @Damage[6d6[mental]] damage, and is Stupefied 1 for 1 round before the pain fades and the target returns to its actual age.</p>\n<p><strong>Critical Failure</strong> As failure, but the target also takes @Damage[6d6[persistent,mental]] damage. The target remains stupefied 1 as long as the mental damage persists, during which they appear to be aging rapidly. Once the persistent damage ends, the target's appearance reverts to normal.</p>",
+      "frequency": null,
+      "name": "Release the Inmost Worm",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The cultist makes two Strikes, one with their shortsword and one with their dagger, both against the same target. The target is automatically Off-Guard against the second attack. Apply the cultist's multiple attack penalty to the Strikes normally.</p>",
+      "frequency": null,
+      "name": "Twin Feint",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The cleansed cultist deals an extra 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "UfB3NfSgZIkN5Rjx",
+  "gear": [
+    "Dagger",
+    "Hourglass",
+    "Leather Armor",
+    "Shortsword"
+  ],
+  "hp": 100,
+  "id": "kingmaker-bestiary/cleansed-cultist",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Cleansed Cultist",
+  "perception": 12,
+  "publicNotes": "",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 16,
+    "will": 14
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "deception": 13,
+    "intimidation": 13,
+    "occultism": 11,
+    "society": 11,
+    "stealth": 14
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,138 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": -1,
+    "int": -2,
+    "str": 3,
+    "wis": 0
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The earth scamp breathes rocks in a @Template[cone|distance:15] that deals @Damage[2d6[bludgeoning]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:17|basic|options:area-effect] save).</p>\n<p>The earth scamp can't use Scree Breath again for [[/gmr 1d4 #Recharge Scree Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Scree Breath",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "earth"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 2 (While Underground)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Body",
+      "traits": []
+    }
+  ],
+  "foundryId": "4n0nhynklrs2iHUJ",
+  "gear": [],
+  "hp": 20,
+  "id": "pathfinder-monster-core/earth-scamp",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "petran"
+  ],
+  "level": 1,
+  "name": "Earth Scamp",
+  "perception": 3,
+  "publicNotes": "<p>An earth scamp's rocky exterior could camouflage it well among loose rocks if not for the scamp's large eyes and bat-like wings. Earth scamps can fly, but the act of flight is uncomfortable and unnerving to them—they rarely leave the ground if they can help it. In fact, most earth scamps would rather never visit the surface at all, staying nestled deeply within the rocks they resemble.</p>\n<hr />\n<p>Elemental scamps are bat-like critters marked by elemental powers. Scamps are dispatched from the Elemental Planes by more powerful residents or called to the Universe by neophyte summoners. All scamps have a hint of magical power due to a lingering connection to their home plane, which they largely use to pull simple pranks.</p>\n<p>Scamps rapidly form a pecking order of cleverness. Humanoids often confuse scamps when meeting such creatures for the first time. These confused scamps usually resort to an escalating series of pranks and mischief, seeing what they can get away with to establish their place in the hierarchy.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 4,
+    "will": 3
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "stealth": 2
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "burrow",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 15
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 17,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "One with Stone",
+          "rank": 3
+        },
+        {
+          "name": "Enlarge (Self Only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,188 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 4,
+    "dex": 2,
+    "int": 2,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> The expedition leader fails a Survival check</p><hr /><p><strong>Effect</strong> The expedition leader rethinks their choices based on prior experience. The degree of success increases by one step, from critical failure to failure or from failure to success.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Memories of Expeditions Past",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The expedition leader fails a Survival check"
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The expedition leader Interacts to take out their machete or shortbow, then Strikes with the weapon.</p>",
+      "frequency": null,
+      "name": "Quick Draw",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The expedition leader has a hand free</p><hr /><p><strong>Effect</strong> The expedition leader scoops up a handful of rubble and throws it. Each creature in a @Template[type:cone|distance:15] must succeed at a @Check[reflex|dc:27] save or be Dazzled and Off-Guard until the start of the expedition leader's next turn.</p>",
+      "frequency": null,
+      "name": "Think Fast!",
+      "requirements": "The expedition leader has a hand free",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The expedition leader isn't affected by severe weather and ignores difficult terrain.</p>",
+      "frequency": null,
+      "name": "Familiarity with the Land",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the expedition leader Scouts, they grant their party a +2 circumstance bonus to their initiative rolls.</p>\n<p>Effect: On Guard</p>",
+      "frequency": null,
+      "name": "On Guard",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d6+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Machete",
+      "traits": [
+        "deadly-d8",
+        "magical",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortbow",
+      "traits": [
+        "deadly-d10",
+        "range-increment-60",
+        "reload-0"
+      ]
+    }
+  ],
+  "foundryId": "Dd7E7pMKxPhrXaa8",
+  "gear": [
+    "Arrows",
+    "Compass",
+    "Hide Armor",
+    "Lantern (Hooded)",
+    "Machete",
+    "Repair Toolkit",
+    "Shortbow",
+    "Spyglass",
+    "Sun Goggles",
+    "Survey Map",
+    "Tent (Four-Person)"
+  ],
+  "hp": 160,
+  "id": "pathfinder-npc-core/expedition-leader",
+  "immunities": [],
+  "languages": [
+    "common",
+    "erutaki",
+    "skald",
+    "tien",
+    "varki"
+  ],
+  "level": 9,
+  "name": "Expedition Leader",
+  "perception": 21,
+  "publicNotes": "<p>Full-scale expeditions require a central leader. Expedition leaders tend to have level heads in dangerous situations and can make decisions quickly when time is of the essence.</p><hr /><p>Explorers are often well-equipped and well-trained for any type of hazard and are eager to lead others into the wild.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 18,
+    "will": 15
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 20,
+    "athletics": 20,
+    "diplomacy": 18,
+    "nature": 19,
+    "survival": 18
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

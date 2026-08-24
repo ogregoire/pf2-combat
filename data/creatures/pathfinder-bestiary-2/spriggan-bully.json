@@ -1,0 +1,158 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 4,
+    "int": 1,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 19,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The spriggan bully takes damage</p><hr /><p><strong>Effect</strong> The spriggan bully grows to Large size, along with their equipment (which returns to natural size if removed). The spriggan bully's reach increases by 5 feet. They regain @Damage[5[healing]] Hit Points and gain a +2 status bonus to melee attacks and damage rolls. This effect continues until the end of the spriggan bully's next turn, but on any turn in which the spriggan bully deals damage to another creature and is not Fatigued, the effect extends until the end of the following turn.</p>\n<p>When Enraged Growth ends, the spriggan bully is fatigued for 1 hour.</p>",
+      "frequency": null,
+      "name": "Enraged Growth",
+      "requirements": null,
+      "traits": [
+        "polymorph",
+        "primal"
+      ],
+      "trigger": "The spriggan bully takes damage"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The spriggan bully makes a morningstar Strike with a +2 circumstance bonus to its attack roll. This attack is nonlethal.</p>",
+      "frequency": null,
+      "name": "Bully's Bludgeon",
+      "requirements": null,
+      "traits": [
+        "nonlethal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The spriggan bully's Strikes deal an additional 1d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Crossbow",
+      "traits": [
+        "range-increment-120",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Morningstar",
+      "traits": [
+        "versatile-p"
+      ]
+    }
+  ],
+  "foundryId": "qdlP3qTZtjzZXpmQ",
+  "gear": [
+    "Bolts",
+    "Crossbow",
+    "Morningstar"
+  ],
+  "hp": 48,
+  "id": "pathfinder-bestiary-2/spriggan-bully",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common"
+  ],
+  "level": 3,
+  "name": "Spriggan Bully",
+  "perception": 10,
+  "publicNotes": "<p>The typical spriggan is a bully who prefers to take live prisoners in fights, but only to ensure that they have a large stock of living victims to torment, tease, and abuse. They train to use weapons in nonlethal ways that inflict the maximum amount of pain even as they guard against accidental death. When not bullying prisoners or hunting for new victims, spriggan bullies enjoy drinking, watching others fight, and fighting among themselves.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 11,
+    "will": 8
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 8,
+    "intimidation": 10,
+    "society": 8,
+    "stealth": 11,
+    "survival": 10,
+    "thievery": 9
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 10,
+      "dc": 20,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Shatter",
+          "rank": 2
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "gnome",
+    "humanoid",
+    "spriggan"
+  ],
+  "weaknesses": []
+}

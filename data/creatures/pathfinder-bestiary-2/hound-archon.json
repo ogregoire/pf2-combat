@@ -1,0 +1,202 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 4,
+    "dex": 2,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Damage Reduction</strong> 6</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.RetributiveStrike]</p>",
+      "frequency": null,
+      "name": "Retributive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>A hound archon can take the appearance of any canid animal of Small to Large size. This doesn't change their Speed or the attack and damage bonuses for their Strikes, but if the canid's bite attack has the Knockdown ability, then the hound archon's bite attack gains that ability while they are in that form.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The hound archon carefully makes one greatsword Strike and one jaws Strike in any order. These attacks count toward the hound archon's multiple attack penalty, but the multiple attack penalty doesn't increase until after all the attacks.</p>",
+      "frequency": null,
+      "name": "Diligent Assault",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Once per day, if an archon sees another creature cast Translocate, the archon can use dimension door (heightened to 5th level) within 1 round to attempt to follow that creature to the maximum distance of the archon's dimension door. If the archon's dimension door has enough distance, the archon appears the same distance and direction from the creature as before either creature used dimension door.</p>",
+      "frequency": null,
+      "name": "Archon's Door",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d12+6",
+          "type": "slashing"
+        },
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        }
+      ],
+      "kind": "melee",
+      "name": "Greatsword",
+      "traits": [
+        "good",
+        "holy",
+        "magical",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "1d6+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "holy",
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "ZKTz1ABoPTtlgYIy",
+  "gear": [
+    "Full Plate",
+    "Greatsword"
+  ],
+  "hp": 70,
+  "id": "pathfinder-bestiary-2/hound-archon",
+  "immunities": [],
+  "languages": [
+    "diabolic",
+    "draconic",
+    "empyrean"
+  ],
+  "level": 4,
+  "name": "Hound Archon",
+  "perception": 13,
+  "publicNotes": "<p>Among the rank-and-file soldiers of Heaven's armies, few individuals are more dependable and truer to the cause than the noble hound archons, embodiments of the virtue of diligence. Unlike horned archons, who perform at a similar level along Heaven's grand hierarchy, hound archons do not scout ahead for evil or perform reconnaissance missions in hostile territory. A hound archon's role is as a soldier in the heart of battle or, occasionally, as a sentinel tasked with protecting a particular strategic location or holy site.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 8,
+    "will": 11
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 12,
+    "intimidation": 10,
+    "religion": 9,
+    "stealth": 10
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 9,
+      "dc": 19,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "archon",
+    "celestial",
+    "holy"
+  ],
+  "weaknesses": [
+    {
+      "type": "unholy",
+      "value": 5
+    }
+  ]
+}

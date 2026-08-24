@@ -1,0 +1,112 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 1,
+    "int": 4,
+    "str": 3,
+    "wis": 4
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Requirements</strong> The demonologist's last action was to cast a non-cantrip spell</p><hr /><p><strong>Effect</strong> The demonologist siphons energy drawn from the Outer Rifts into their weapon. Until the end of the turn, the weapon deals an extra 2d6 damage. Roll 1d20 to determine the type: 1–7 acid, 8–9 cold, 10–11 electricity, 12–18 fire, 19–20 void.</p>",
+      "frequency": null,
+      "name": "Breach the Outer Rifts",
+      "requirements": "The demonologist's last action was to cast a non-cantrip spell",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The demonologist can cast a 5th-rank Summon Fiend arcane spell to summon a demon. To do so, they must sacrifice two 4th-rank prepared spells and voluntarily take @Damage[4d12[mental]] damage that can't be reduced or prevented. If the demonologist is unable to Sustain the Spell, including if they're knocked out or killed, the spell continues, but the GM rolls a @Check[flat|dc:10] each round, ending the spell on a failure.</p>",
+      "frequency": null,
+      "name": "Demon Summoning",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Demonic study has garnered the attention of at least one demon who is actively trying to possess the demonologist. When the demonologist publicly espouses the benefits of demonic power (whether they believe it a good thing or not), they gain a +1 status bonus to skill checks, AC, and saves for 1 day. These bonuses don't apply against demons. At the end of the day, the demonologist must attempt a @Check[will|dc:20] save, becoming possessed for 1 day on a failure (or permanently on a critical failure).</p>",
+      "frequency": null,
+      "name": "Demonic Temptation",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d8+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Longspear",
+      "traits": [
+        "magical",
+        "reach"
+      ]
+    }
+  ],
+  "foundryId": "hR9n5d0tfyOkeZFb",
+  "gear": [
+    "Fiendish Hypotheses and Protections from Same (Spellbook)",
+    "Longspear",
+    "Robes"
+  ],
+  "hp": 100,
+  "id": "pathfinder-npc-core/demonologist",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common"
+  ],
+  "level": 7,
+  "name": "Demonologist",
+  "perception": 15,
+  "publicNotes": "<p>Demonologists can pull a creature from the Outer Rifts and bend it to their will... for a time.</p><hr /><p>Hidden secrets and occult powers have an irresistible lure for many. Since the majority of these NPCs are spellcasters, consider using alternative spell lists to adjust their themes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 12,
+    "will": 15
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "arcana": 16,
+    "diplomacy": 11,
+    "religion": 15
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

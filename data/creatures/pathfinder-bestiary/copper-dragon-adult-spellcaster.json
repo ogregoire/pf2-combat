@@ -1,0 +1,211 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 4,
+    "dex": 3,
+    "int": 4,
+    "str": 6,
+    "wis": 3
+  },
+  "ac": 33,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature within reach of the copper dragon's tail uses a move action or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The dragon makes a tail Strike at the creature with a -2 penalty. If it hits, the dragon disrupts the triggering action.</p>",
+      "frequency": null,
+      "name": "Twisting Tail",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature within reach of the copper dragon's tail uses a move action or leaves a square during a move action it's using."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The copper dragon breathes in one of two ways.</p>\n<p>The dragon can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p><ul><li><strong>Acid</strong> (acid, arcane) The dragon breathes acid in a @Template[line|distance:80] that deals @Damage[13d6[acid]|options:area-damage] damage (@Check[reflex|dc:32|basic|traits:arcane,acid|options:area-effect] save).</li><li><strong>Slowing Gas</strong> (arcane) The dragon breathes a @Template[line|distance:80] of slowing gas. Each creature in the area must succeed at a @Check[fortitude|dc:32|traits:arcane|options:area-effect] save or be Slowed 1 for 1 round (or Slowed 2 on a critical failure).</li></ul>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The dragon's climb speed functions only when climbing stone surfaces</p>",
+      "frequency": null,
+      "name": "Climb Stone",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:29]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "formula": "3d8+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 26,
+      "damage": [
+        {
+          "formula": "2d8",
+          "type": "acid"
+        },
+        {
+          "formula": "3d8+12",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "acid",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "ouOt6d8xUFk8NhJ9",
+  "gear": [],
+  "hp": 235,
+  "id": "pathfinder-bestiary/copper-dragon-adult-spellcaster",
+  "immunities": [
+    "acid",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "elven",
+    "gnomish"
+  ],
+  "level": 12,
+  "name": "Copper Dragon (Adult, Spellcaster)",
+  "perception": 23,
+  "publicNotes": "<p>Capricious and always eager to share a good laugh, copper dragons are among the wiliest of the metallic dragons, but this by no means interferes with their mission to spread freedom in oppressive lands. Copper dragons are hedonists who are quick to indulge in simple pleasures, but they're also sympathetic to other creatures, slow to pass judgment, and careful to always examine a situation from as many perspectives as possible. This philosophy has its drawbacks, however, as copper dragons are susceptible to negative influences and prone to forgiving the less serious evil acts performed by their chromatic cousins and other cruel creatures. Copper dragons also have a difficult time keeping their temper in check once they are roused to anger.</p>\n<p>Copper dragons tend to lair in warm or temperate hills, but due to their nature, they move their lairs every few years. They sometimes live among other people, especially any dwarves who reside nearby. Some copper dragons even worship gods typically worshipped only by humanoids. Among these dragons, worship of Cayden Cailean is most popular, as they see his love of freedom and penchant for alcohol aligning with the typical copper dragon mindset.</p>\n<p>A copper dragon's combat tactics are as unorthodox as its sense of humor, as it is more likely to use mockery and tricks than outright strength to win its battles. As a copper dragon ages, it perfects jokes capable of rendering its foes helpless with laughter.</p>\n<hr />\n<p>Paragons of virtue, nobility, and grace, metallic dragons are benevolent entities revered as mythic beings akin to gods in both their power and majesty. Few have ever seen a metallic dragon firsthand, but tales of their intervention in mortals' lives-and of their passing-always spread far and wide. Named for the way their scales resemble the shining metals humanoids use in commerce, warfare, and industry, these immense beings are diverse in their interests and abilities, and they don't seem to mind being associated with such mundane materials. After all, to compare a gold dragon to a gold coin is like comparing an ocean to a glass of water-though they may seem similar at first glance, the raw power, breadth, and grandeur of one simply overwhelms the other.</p>\n<p>In addition to metallic dragons and their chromatic counterparts, other types of dragons roam the world and the rest of the multiverse. In the legendary lands of Tian Xia on the other side of the globe are the imperial dragons, serpentine beings who protect the cosmic balance and defend their ancient homeland. Outside the Material Plane, primal dragons such as the domineering brine dragon and reclusive cloud dragon shape the nature and goings-on of the Elemental Planes. Countless other types of dragons are sure to exist, including dragons on far-flung planes of existence and, it is rumored, primeval dragons who soar between the stars.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 22,
+    "will": 22
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 21,
+    "athletics": 24,
+    "crafting": 22,
+    "deception": 21,
+    "performance": 23,
+    "society": 22,
+    "stealth": 21
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "climb",
+      "value": 40
+    },
+    {
+      "type": "fly",
+      "value": 140
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 25,
+      "dc": 33,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Shape Stone",
+          "rank": 4
+        },
+        {
+          "name": "Hideous Laughter (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Grease (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "earth"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,210 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 8,
+    "dex": -1,
+    "int": -5,
+    "str": 10,
+    "wis": -1
+  },
+  "ac": 35,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Trigger</strong> The benthic worm would be affected by a condition or adverse effect (such as Cursed Metamorphosis)</p>\n<hr />\n<p><strong>Effect</strong> The benthic worm negates the triggering condition or effect by sloughing an outer layer of its skin. Effects from artifacts, deities, or a similarly powerful source can't be avoided in this way.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Slough Skin",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The benthic worm would be affected by a condition or adverse effect (such as Cursed Metamorphosis)"
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The worm Grabs a creature.</p>\n<hr />\n<p><strong>Effect</strong> The worm uses Swallow Whole.</p>",
+      "frequency": null,
+      "name": "Fast Swallow",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The worm Grabs a creature."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Huge, @Damage[(3d8+10)[bludgeoning]], Rupture 27</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The benthic worm Swims up to its swim Speed, then Leaps vertically out of the water up to 30 feet, making a Strike against a creature at the apex of the jump (this lets it attack a creature within 45 feet of the water's surface). After the Strike, the worm splashes back down. It can use Improved Grab on this Strike and follow it up with Fast Swallow.</p>",
+      "frequency": null,
+      "name": "Breach",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The worm makes a Strike once against each creature in its reach. It can Strike up to once with its jaws, up to once with its stinger, and any number of times with its body. Each attack counts toward the worm's multiple attack penalty, but the multiple attack penalty doesn't increase until after it makes all the attacks.</p>",
+      "frequency": null,
+      "name": "Thrash",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:37]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[3d6[poison]] damage and Clumsy 2 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[4d6[poison]] damage and clumsy 2 (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[6d6[poison]] damage and clumsy 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Benthic Worm Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The benthic worm recovers from the Paralyzed, Slowed, and Stunned conditions at the end of its turn. It's also immune to penalties to its Speeds and the Immobilized condition, and it ignores difficult terrain and greater difficult terrain.</p>",
+      "frequency": null,
+      "name": "Inexorable",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 100 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "2d8+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Body",
+      "traits": [
+        "reach-15"
+      ]
+    },
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "3d12+16",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "deadly-2d10",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 31,
+      "damage": [
+        {
+          "formula": "4d6+16",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Stinger",
+      "traits": [
+        "agile",
+        "poison",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "v7LH85fl189pXMsR",
+  "gear": [],
+  "hp": 320,
+  "id": "pathfinder-monster-core/benthic-worm",
+  "immunities": [],
+  "languages": [],
+  "level": 15,
+  "name": "Benthic Worm",
+  "perception": 22,
+  "publicNotes": "<p>The benthic worm is a deep-blue creature that is more at home in flooded tunnels than dry caves. While a benthic worm is a strong swimmer, it prefers to lie in wait within the walls, floor, or even ceiling of flooded caverns, ready to spring out and ambush creatures swimming past its hiding spot. The benthic worm is particularly hated and feared by Darklands-dwelling cultures, due to the fact that a benthic worm that burrows into a tunnel often brings with it waters from the submerged river or lake it calls home. When it becomes obvious that a benthic worm is near a Darklands settlement, the inhabitants quickly establish a hunting party to deal with the menace before it can bring ruin.</p>\n<hr />\n<p>Cave worms are gigantic scavengers that bore through the depths of the world, eating whatever material they find. Named for their distinctive habitats, these worms are ravenous and display overwhelming destructive capabilities. Cave worms of different types and abilities lurk in the more remote corners of the world—tales speak of arctic worms that dwell within immense glaciers or icebergs and grave worms that burrow through the boneyards of long-forgotten ruins, to name a few.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 32,
+    "reflex": 20,
+    "will": 23
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 33,
+    "stealth": 20
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "burrow",
+      "value": 40
+    },
+    {
+      "type": "swim",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "amphibious",
+    "animal"
+  ],
+  "weaknesses": []
+}

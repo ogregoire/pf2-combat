@@ -1,0 +1,136 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 3,
+    "dex": 2,
+    "int": 2,
+    "str": 5,
+    "wis": 1
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The hobgoblin vanguard critically hits a creature with an alchemical grenade Strike</p><hr /><p><strong>Effect</strong> The hobgoblin vanguard attempts to [[/act demoralize]] the creature with a mere look. If the target creature was reduced to 0 Hit Points by the triggering Strike, the hobgoblin vanguard can instead attempt to Demoralize all opponents within 30 feet, rolling once and comparing the result to each target's Will DC.</p>",
+      "frequency": null,
+      "name": "Shock and Awe",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental",
+        "visual"
+      ],
+      "trigger": "The hobgoblin vanguard critically hits a creature with an alchemical grenade Strike"
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "2",
+          "type": "acid"
+        },
+        {
+          "formula": "2",
+          "type": "acid"
+        },
+        {
+          "formula": "2d8",
+          "type": "acid"
+        }
+      ],
+      "kind": "melee",
+      "name": "Alchemical Grenade",
+      "traits": [
+        "range-increment-20",
+        "splash"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d12+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Maul",
+      "traits": [
+        "magical",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "PoH1pKba7YEqgWVn",
+  "gear": [
+    "Acid Flask (Moderate)",
+    "Alchemist's Toolkit",
+    "Full Plate",
+    "Maul"
+  ],
+  "hp": 150,
+  "id": "pathfinder-npc-core/hobgoblin-vanguard",
+  "immunities": [],
+  "languages": [
+    "common",
+    "goblin"
+  ],
+  "level": 8,
+  "name": "Hobgoblin Vanguard",
+  "perception": 16,
+  "publicNotes": "<p>Though there are times for precision and discipline, every hobgoblin general also understands the value of demoralizing the enemy with a show of overwhelming force. No military unit is better suited to this purpose than the vanguard, a heavily armed and armored elite unit that inspires their fellow soldiers to action while breaking the enemy's lines and morale with terrifying explosive weapons.</p><hr /><p>Hobgoblins are respected across Golarion for their unmatched expertise in the art of war. The recent foundation of the hobgoblin nation of Oprak and its unprecedented acts of diplomacy, including non-aggression pacts with the neighboring nations of Nidal and Nirmathas, has given some hope that a lasting peace might finally be established; however, there remains no shortage of unaffiliated hobgoblin raiders and pillagers.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 13,
+    "will": 16
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 18,
+    "crafting": 17,
+    "intimidation": 16,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "hobgoblin",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

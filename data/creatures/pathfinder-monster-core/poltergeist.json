@@ -1,0 +1,196 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 5,
+    "int": -1,
+    "str": -5,
+    "wis": 2
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature approaches within 10 feet of the poltergeist</p>\n<hr />\n<p><strong>Effect</strong> The poltergeist makes a telekinetic object Strike against the triggering creature.</p>",
+      "frequency": null,
+      "name": "Telekinetic Defense",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature approaches within 10 feet of the poltergeist"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The poltergeist must be Invisible</p>\n<hr />\n<p><strong>Effect</strong> The poltergeist becomes visible, appearing as a skeletal, ghostlike humanoid. Each creature within 30 feet must attempt a @Check[will|dc:21] save, becoming Frightened 2 on a failure. On a critical failure, it's also Fleeing for as long as it's frightened. On a success, the creature is temporarily immune for 1 minute.</p>\n<p>At the start of its next turn, the poltergeist becomes invisible again.</p>",
+      "frequency": null,
+      "name": "Frighten",
+      "requirements": "The poltergeist must be Invisible",
+      "traits": [
+        "concentrate",
+        "emotion",
+        "fear",
+        "incapacitation",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The poltergeist telekinetically throws numerous small objects, such as dozens of pieces of silverware or books, either spreading them out among multiple foes or directing them at one target.</p>\n<ul>\n<li>When this effect is spread out among multiple foes, the poltergeist makes a telekinetic object Strike at a -2 penalty against each creature within @Template[emanation|distance:30]{30 feet}. These count as one attack for the poltergeist's multiple attack penalty, and the penalty doesn't increase until after all the attacks.</li>\n<li>When this effect has only one target, the poltergeist makes a telekinetic object Strike against the target, and the damage increases to 3d12. It deals @Damage[1d12[untyped]] damage on a failure, and no damage on a critical failure.</li>\n</ul>",
+      "frequency": null,
+      "name": "Telekinetic Storm",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A poltergeist is naturally Invisible. It becomes visible only when it uses Frighten.</p>",
+      "frequency": null,
+      "name": "Natural Invisibility",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a poltergeist is destroyed, it reforms, fully healed, where it was destroyed after [[/br 2d4 #Rejuvenation]]{2d4 days}. A poltergeist can be permanently destroyed only if someone determines the reason for its existence and sets right whatever prevents the spirit from resting.</p>",
+      "frequency": null,
+      "name": "Rejuvenation",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A poltergeist is tied to a location and can't travel more than 120 feet from the place where it was created or formed. Some poltergeists are instead bound to a specific room, building, or similar area</p>",
+      "frequency": null,
+      "name": "Site Bound",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "2d12",
+          "type": "untyped"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Telekinetic Object",
+      "traits": [
+        "magical",
+        "occult",
+        "range-increment-60"
+      ]
+    }
+  ],
+  "foundryId": "zpd6b6UPP72ZELCj",
+  "gear": [],
+  "hp": 55,
+  "id": "pathfinder-monster-core/poltergeist",
+  "immunities": [
+    "bleed",
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "poison",
+    "precision",
+    "unconscious"
+  ],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Poltergeist",
+  "perception": 11,
+  "publicNotes": "<p>When a creature dies, and for whatever reason its spirit is unable or unwilling to leave the site of its death, that spirit may manifest as a poltergeist: a restless, invisible spirit that is still able to manipulate physical objects. Many poltergeists perished in a way that resulted from or led to extreme emotional trauma.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "all-damage",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 14,
+    "will": 13
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 14,
+    "intimidation": 15,
+    "stealth": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 23,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Telekinetic Maneuver (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "incorporeal",
+    "spirit",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

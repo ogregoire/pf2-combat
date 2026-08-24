@@ -1,0 +1,100 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 2,
+    "int": -2,
+    "str": 4,
+    "wis": 0
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Auchs unleashes a particularly powerful attack and makes a melee club Strike that counts as two attacks when calculating his multiple attack penalty. If this strike hits, he deals an extra 1d6 points of damage; on a critical hit, the creature struck must succeed at a @Check[fortitude|dc:18] save or be knocked Prone.</p>",
+      "frequency": null,
+      "name": "Hit 'Em Hard",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Club",
+      "traits": []
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d6+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Club",
+      "traits": [
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "bHnGsHHymPUC1XGc",
+  "gear": [
+    "Club",
+    "Healing Potion (Lesser)",
+    "Knight and Dragon Toys",
+    "Leather Armor",
+    "Silver Stag Lord Amulet"
+  ],
+  "hp": 40,
+  "id": "kingmaker-bestiary/auchs",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 2,
+  "name": "Auchs",
+  "perception": 6,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 5,
+    "will": 3
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 10,
+    "survival": 4
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,137 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 4,
+    "dex": 0,
+    "int": -4,
+    "str": 7,
+    "wis": 2
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The rider is targeted with an attack.</p>\n<p><strong>Requirements</strong> A creature must be mounted on the triceratops.</p>\n<hr />\n<p><strong>Effect</strong> The triceratops intercepts the attack with its bony frill. The rider gains a +2 circumstance bonus to its AC against the triggering attack.</p>",
+      "frequency": null,
+      "name": "Frill Defense",
+      "requirements": "A creature must be mounted on the triceratops.",
+      "traits": [],
+      "trigger": "The rider is targeted with an attack."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The triceratops Strides up to 10 feet and then makes a Strike.</p>",
+      "frequency": null,
+      "name": "Lumbering Charge",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Large or smaller, foot, @Check[reflex|dc:26|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A triceratops deals 2d6 extra persistent bleed damage to Prone targets it hits with its horns.</p>",
+      "frequency": null,
+      "name": "Vicious Gore",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d6+9",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d8+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Horns",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "zAxKR8XWtQm2rqh4",
+  "gear": [],
+  "hp": 140,
+  "id": "pathfinder-monster-core/triceratops",
+  "immunities": [],
+  "languages": [],
+  "level": 8,
+  "name": "Triceratops",
+  "perception": 16,
+  "publicNotes": "<p>Triceratopses are muscular quadrupeds with powerful short legs, thick necks, and heads crowned by a wide, bony frill. Though they bear three large horns, they use these bony protrusions only to defend themselves or fight for dominance. Short-tempered and obstinate, triceratopses are unlikely to back down from a fight unless they are hopelessly outmatched, and the creatures are known to fight to the death for no apparent reason beyond stubbornness. Triceratopses often serve as mounts for humanoids, particularly giants, who can comfortably ride behind the dinosaurs' protective bone frills. A triceratops is 30 feet long and weighs as much as 10 tons.</p>\n<hr />\n<p>Remnants from the world's primeval era, these enormous reptilian animals still exist in large numbers in remote wildernesses or underground in magical Darklands caverns. Lizardfolk, orcs, giants, and other humanoids who live near dinosaurs use the animals as mounts, guards, or hunting beasts. Occasionally, rich nobles will collect dinosaurs to display them in menageries, which almost inevitably leads to cast-offs being nursed back to health by druids and other champions of nature. When dinosaurs establish themselves in regions outside their normal habitats, it's often the result of a large collection being released.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 12,
+    "will": 14
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 21
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "dinosaur"
+  ],
+  "weaknesses": []
+}

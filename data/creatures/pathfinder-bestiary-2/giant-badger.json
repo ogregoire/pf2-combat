@@ -1,0 +1,115 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 3,
+    "dex": 1,
+    "int": -4,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The giant badger enters a state of pure rage that lasts for 1 minute, until there are no enemies it can perceive, or until it falls Unconscious, whichever comes first.</p>\n<p>While raging, the giant badger has AC 17, its jaws Strike deals 1d8+8 damage, and its claw Strike deals 1d6+6 damage. While raging, the giant badger also can't use actions that have the concentrate trait except for Seek.</p>\n<p>After it has stopped raging, a giant badger can't use Badger Rage again for 1 minute.</p>\n<p>Effect: Rage</p>",
+      "frequency": null,
+      "name": "Badger Rage",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d6+4",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "T9vzmpvpRL5xjrhd",
+  "gear": [],
+  "hp": 30,
+  "id": "pathfinder-bestiary-2/giant-badger",
+  "immunities": [],
+  "languages": [],
+  "level": 2,
+  "name": "Giant Badger",
+  "perception": 8,
+  "publicNotes": "<p>The violent, territorial giant badger is a relentless predator. An obligate carnivore, its prey ranges from rabbits to deer, livestock, and even the occasional traveler or adventurer. A giant badger's claws are sharp and strong enough to carve tunnels from solid rock. They typically stand 4 feet tall at the shoulder and weigh 500 pounds.</p>\n<hr />\n<p>The burrowing badger is plentiful in most temperate forests. All badgers are naturally fierce and tenacious, and their squat stature belies their strength and speed.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 6,
+    "will": 8
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 8,
+    "stealth": 7
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

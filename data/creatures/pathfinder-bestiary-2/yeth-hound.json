@@ -1,0 +1,149 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 3,
+    "int": -2,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The yeth hound emits an unearthly howl audible up to 300 feet away. Any non-fiend creature that hears the howl must succeed at a @Check[will|dc:20] save or become Frightened 1. Any creature that critically fails and is within 60 feet of the yeth hound is instead Frightened 3 and Fleeing for [[/gmr 1d4 #rounds]]{1d4 rounds} (or until it recovers from its frightened condition).</p>\n<p>Whether it succeeds or fails the saving throw, the creature is then temporarily immune to Bay for 24 hours.</p>",
+      "frequency": null,
+      "name": "Bay",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "concentrate",
+        "divine",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A good creature bitten by a yeth hound must attempt a @Check[will|dc:20] save. On a critical success, the creature is temporarily immune to sinister bite for 1 minute. A creature that fails becomes Frightened 1, or increases the value of its frightened condition by 1 if already frightened.</p>",
+      "frequency": null,
+      "name": "Sinister Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "1d8+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "6jqnHzjmJ190G8Zj",
+  "gear": [],
+  "hp": 55,
+  "id": "pathfinder-bestiary-2/yeth-hound",
+  "immunities": [],
+  "languages": [
+    "chthonian"
+  ],
+  "level": 3,
+  "name": "Yeth Hound",
+  "perception": 9,
+  "publicNotes": "<p>Wicked canine creatures who live for the thrill of the hunt, yeth hounds often serve evil masters as guardians and trackers. Yeth hounds resemble lean, sleek dogs with overlarge ears and narrow paws that can tread on air as easily as the ground. Despite their canine appearance, yeth hounds are remarkably intelligent, although they rarely display this intelligence except when devising intricate tactics to ensnare their quarry. Their eerie bays echo across the countryside when they are engaged in a hunt, and they particularly enjoy baying to frighten and disorient intelligent creatures. Yeth hound packs can number as many as a dozen members, each working in uncanny communion with its packmates to corner and kill their prey. Yeth hounds like to drag their victims back to their lairs to eat at their leisure, so these lairs often contain discarded treasures from the hounds' previous meals.</p>\n<p>Yeth hounds despise two things: sunlight and other canines. They hunt only at night if they can, often breaking off their hunt at dawn to retreat to a subterranean lair or den, no matter how close they had come to catching their prey. Yeth hounds usually attack wargs, wolves, and similar creatures on sight, working to drive larger or more powerful canines from their hunting areas when then can't simply overpower and kill them.</p>\n<p>Evil rangers, bestial demons, and wicked cults are frequently gifted yeth hound servants by fiendish patrons. Such hounds often serve as spies and are quick to turn against those who fail to advance the patrons' wicked aims. The cult of Lamashtu, in particular, is fond of using yeth hounds as temple guardians.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 12,
+    "will": 12
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 9,
+    "stealth": 10,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 10,
+      "dc": 20,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Air Walk (Constant)",
+          "rank": 4
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "beast",
+    "fiend",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "silver",
+      "value": 5
+    }
+  ]
+}

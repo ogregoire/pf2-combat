@@ -1,0 +1,171 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 4,
+    "int": 4,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> The ratfolk grenadier stores one held item of light or negligible Bulk in its cheek pouches.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Quick Stow",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The ratfolk grenadier draws an alchemical grenade with an Interact action and throws it as a ranged Strike.</p>",
+      "frequency": null,
+      "name": "Quick Grenadier",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The grenadier carries 6 alchemical grenades that deal either acid, cold, or fire damage plus 2 persistent damage and 2 splash damage of the same type (typically two of each). The grenadier replenishes these each day using scavenged materials.</p>",
+      "frequency": null,
+      "name": "Alchemical Grenades",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A ratfolk grenadier has stretchy cheek pouches that can store up to 1 cubic foot of objects (though no more than 4 light items). The ratfolk can remove or store an item using the Interact action. As long as the ratfolk has at least one object in their cheek pouches, their speech is noticeably difficult to understand.</p>",
+      "frequency": null,
+      "name": "Cheek Pouches",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A ratfolk grenadier can end its movement in the same square as an ally that also has this ability. Only two such creatures can share the same space.</p>",
+      "frequency": null,
+      "name": "Swarming",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "acid"
+        }
+      ],
+      "kind": "melee",
+      "name": "Alchemical Grenade",
+      "traits": [
+        "range-increment-20",
+        "splash"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "C1gYuDSwTkTIkAcC",
+  "gear": [
+    "Alchemical Grenade (Acid)",
+    "Alchemical Grenade (Cold)",
+    "Alchemical Grenade (Fire)",
+    "Alchemist's Toolkit",
+    "Bolts",
+    "Hand Crossbow",
+    "Studded Leather Armor"
+  ],
+  "hp": 60,
+  "id": "pathfinder-monster-core/ratfolk-grenadier",
+  "immunities": [],
+  "languages": [
+    "common",
+    "ysoki"
+  ],
+  "level": 4,
+  "name": "Ratfolk Grenadier",
+  "perception": 10,
+  "publicNotes": "<p>Grenadiers use alchemical techniques and stealth to defend their communities.</p>\n<hr />\n<p>True to their name, ratfolk are rodent-like humanoids well suited to living on the outskirts of mainstream society. Despite common misconceptions that they are dirty or diseased, ratfolk, or ysoki, as they call themselves, keep impeccably clean. Ratfolk are also sometimes mistaken for wererats and initially treated with fear until they can correct the mistaken identification—if they get the chance to do so.</p>\n<p>In general, ratfolk have a keen understanding of pathological and alchemical sciences, which they employ in trade and self-defense. They make accomplished alchemists and inventors, and they often protect their lairs with traps, bombs, and other creations. Ratfolk merchants regularly dispatch large trade caravans that travel widely for a year or more before returning to their home community. During this time, they make an effort to learn new things from the people they encounter and collect interesting materials and goods that they can bring back to their warrens.</p>\n<p>In their warrens, on the road, and in cities, ratfolk are extremely communal, thriving on proximity to and contact with one another even in relatively tight spaces. In addition, ratfolk are excellent at fighting in cramped spaces alongside their kin. Threatening one ratfolk or their allies is a surefire way to rally the whole community.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 11,
+    "reflex": 13,
+    "will": 9
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 9,
+    "crafting": 12,
+    "deception": 7,
+    "society": 10,
+    "stealth": 12,
+    "thievery": 9
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "ratfolk"
+  ],
+  "weaknesses": []
+}

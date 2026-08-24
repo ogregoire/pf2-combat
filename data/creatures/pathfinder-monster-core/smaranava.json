@@ -1,0 +1,172 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 4,
+    "dex": 6,
+    "int": 3,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d8+5)[bludgeoning]], @Check[fortitude|dc:25|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The naga's grip is more spiritual than physical. A creature hit by a smaranava's tail must succeed at a @Check[will|dc:25] save or become Grabbed by the tail until they Escape, the naga releases them with an Interact action, or the naga dies.</p>\n<p>A captive takes a –4 status penalty to Escape, but can choose to attempt an Occultism or Religion check to Escape instead of the usual options without taking this penalty</p>",
+      "frequency": null,
+      "name": "Coils of Knowledge",
+      "requirements": null,
+      "traits": [
+        "force",
+        "magical"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When a holy creature succeeds at a saving throw against this poison, it is immediately cured</p>\n<p><strong>Saving Throw</strong> @Check[will|dc:25]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 5 minutes</p>\n<p><strong>Stage 1</strong> Slowed 1 (1 round)</p>\n<p><strong>Stage 2</strong> Slowed 2 (1 round)</p>\n<p><strong>Stage 3</strong> Unconscious with no Perception check to wake up (1 minute)</p>",
+      "frequency": null,
+      "name": "Smaranava Venom",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "mental",
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d10+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "finesse",
+        "magical"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d8+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "CYyxzpymkIZxX4Zo",
+  "gear": [],
+  "hp": 115,
+  "id": "pathfinder-monster-core/smaranava",
+  "immunities": [],
+  "languages": [
+    "common",
+    "empyrean"
+  ],
+  "level": 7,
+  "name": "Smaranava",
+  "perception": 15,
+  "publicNotes": "<p>Many view clouded nagas as jealous, malevolent creatures. Only those with the courage to see clearly can recognize these beings for what they truly are: tragic, wounded beings who have been trapped and corrupted by fate. The betrayal and beheading of the naga's mother goddess, Ravithra, cascaded trauma onto all of her creations. Smaranavas have never recovered from this divine wound, and these cursed serpents live wretched half-lives, attempting to fulfill Ravithra's forgotten purpose by tempting and testing mortals they encounter. In this way, they separate the wicked from the righteous, the worthy from the unworthy.</p>\n<p>Smaranavas have dark scales that are rendered dull gray by stuck shed skin, their eyes a milky white due to opaque caps over their eyes. Many ritually scar their necks out of sorrow for their mother Ravithra. Legends claim that the wise and enlightened can free clouded naga from their fates, allowing them to shed their forms and emerge as an awakener naga.</p>\n<hr />\n<p>Nagas are serpentine beings with magical powers and keen intellects. Physically, they resemble massive snakes, though they often wear jewelry and other ornaments that clearly separate them from their animal kin. Nagas use their innate magic and poisonous fangs to keep all but the most stalwart foes at bay. They keep their own counsel, viewing their cosmic role to be sacrosanct and beyond the understanding of outside scholars. Their unwillingness to explain themselves or entertain the suggestion of alliances has led to a long history of conflict with their neighbors, who read them as aloof, arrogant, or duplicitous.</p>\n<p>Nagas often have a powerful sense of duty to their perceived role within the universe, even if this role leads them to violent or tragic ends. Many see them as harsh and stern due to their devotion, terrifying in their majesty yet possessed of an aura of transcendence.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 17,
+    "will": 15
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 17,
+    "arcana": 16,
+    "athletics": 13,
+    "deception": 16,
+    "intimidation": 16,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 17,
+      "dc": 25,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Hand",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "beast"
+  ],
+  "weaknesses": []
+}

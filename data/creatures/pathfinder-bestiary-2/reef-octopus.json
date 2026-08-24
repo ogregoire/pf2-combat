@@ -1,0 +1,159 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 4,
+    "int": -4,
+    "str": 1,
+    "wis": 1
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The reef octopus emits a cloud of dark-brown ink in a @Template[emanation|distance:10]. This cloud has no effect outside of water. Creatures inside the cloud are Hidden and can't use their sense of smell. The cloud dissipates after 1 minute.</p>\n<p>The octopus can't use Ink Cloud again for [[/br 2d6 #Recharge Ink Cloud]]{2d6 rounds}.</p>",
+      "frequency": null,
+      "name": "Ink Cloud",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The reef octopus moves up to 80 feet in a straight line through the water without triggering reactions.</p>",
+      "frequency": null,
+      "name": "Jet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The reef octopus makes up to four arm Strikes with different arms, each against a different target. These attacks count toward the octopus's multiple attack penalty, but the multiple attack penalty doesn't increase until after it makes all of its attacks.</p>",
+      "frequency": null,
+      "name": "Writhing Arms",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The reef octopus can change the color of its skin to Hide even if it doesn't have cover.</p>",
+      "frequency": null,
+      "name": "Camouflage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:17]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d4[poison]] damage and Off-Guard (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]] damage and Off-Guard (1 round)</p>\n<p><strong>Stage 3</strong> @Damage[1d8[poison]] damage and Off-Guard (1 round)</p>",
+      "frequency": null,
+      "name": "Reef Octopus Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Arm",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d10+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Beak",
+      "traits": [
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "RknMXlwJcbvGhk3n",
+  "gear": [],
+  "hp": 20,
+  "id": "pathfinder-bestiary-2/reef-octopus",
+  "immunities": [],
+  "languages": [],
+  "level": 1,
+  "name": "Reef Octopus",
+  "perception": 7,
+  "publicNotes": "<p>The common reef octopus is a risky but valuable catch for coastal fishers.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "cold",
+      "value": 3
+    }
+  ],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 9,
+    "will": 7
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 6,
+    "stealth": 9
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 10
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

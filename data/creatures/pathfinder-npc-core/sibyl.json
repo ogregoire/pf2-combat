@@ -1,0 +1,243 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": -1,
+    "dex": 3,
+    "int": 2,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The sibyl becomes the target of a spell with the detection, prediction, revelation, or scrying trait</p><hr /><p><strong>Effect</strong> The sibyl's oracular awareness alerts them to danger. They gain a +2 circumstance bonus to their saving throw or AC against the spell.</p>",
+      "frequency": null,
+      "name": "Foresight",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The sibyl becomes the target of a spell with the detection, prediction, revelation, or scrying trait"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The sibyl isn't Fatigued or in a frenzy</p><hr /><p><strong>Effect</strong> The sibyl enters into a divine frenzy that lasts 1 minute. The sibyl can't voluntarily stop frenzying. While in a divine frenzy, the sibyl takes a –2 penalty to Perception checks and Will saves and gains a +2 status bonus to their spell DC and spell attack modifier. During a divine frenzy, the sibyl can't use actions with the concentrate trait unless they're Casting a Spell or Seeking. The frenzy lasts for 1 minute, until the sibyl falls Unconscious, or the encounter ends, whichever comes first. The sibyl can't voluntarily end the frenzy.</p>",
+      "frequency": null,
+      "name": "Divine Frenzy",
+      "requirements": "The sibyl isn't Fatigued or in a frenzy",
+      "traits": [
+        "concentrate",
+        "divine",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The sibyl can use Religion instead of Intimidation to [[/act coerce skill=religion]] or [[/act demoralize skill=religion]].</p>",
+      "frequency": null,
+      "name": "Induce Awe",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "piercing"
+        },
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "piercing"
+        },
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        },
+        {
+          "formula": "1d6",
+          "type": "spirit"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "gJDjwGcTryITVTTo",
+  "gear": [
+    "Bundle of Herbs",
+    "Dagger"
+  ],
+  "hp": 40,
+  "id": "pathfinder-npc-core/sibyl",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Sibyl",
+  "perception": 9,
+  "publicNotes": "<p>Sibyls are oracular diviners who often fall deep into trances with their oracular curses to spur a frenzied mental state. In this trance, they connect with gods and spirits, albeit in a disorganized haze. Some false sibyls will use substances to try and attempt to bring on this same frantic connection, often with deadly results.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 8,
+    "will": 12
+  },
+  "senses": [
+    "lifesense"
+  ],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 9,
+    "occultism": 9,
+    "performance": 9,
+    "religion": 11
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 11,
+      "dc": 19,
+      "name": "Divine Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        }
+      ],
+      "spells": [
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Darkness",
+          "rank": 2
+        },
+        {
+          "name": "Sudden Blight",
+          "rank": 2
+        },
+        {
+          "name": "Command",
+          "rank": 1
+        },
+        {
+          "name": "Concordant Choir",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Divine Lance",
+          "rank": 1
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Guidance",
+          "rank": 1
+        },
+        {
+          "name": "Haunting Hymn",
+          "rank": 1
+        },
+        {
+          "name": "Know the Way",
+          "rank": 1
+        },
+        {
+          "name": "Mindlink",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 11,
+      "dc": 19,
+      "name": "Oracle Focus Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Brain Drain",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

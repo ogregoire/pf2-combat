@@ -1,0 +1,109 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 3,
+    "int": 0,
+    "str": 4,
+    "wis": 1
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The martial student makes two fist Strikes. If both hit the same creature, combine their damage for the purpose of resistances and weaknesses.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Flurry of Blows",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "1",
+      "description": "<p>The martial student Steps and Strides in any order.</p>",
+      "frequency": null,
+      "name": "Fancy Footwork",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The martial student's fist Strikes don't take penalties when making lethal attacks.</p>",
+      "frequency": null,
+      "name": "Powerful Fists",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d6+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "13mJkhzJX1jt5aPF",
+  "gear": [
+    "Handwraps"
+  ],
+  "hp": 40,
+  "id": "pathfinder-npc-core/martial-student",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Martial Student",
+  "perception": 9,
+  "publicNotes": "<p>Every warrior must begin somewhere.</p><hr /><p>Martial artists strive to master the art of hand-to-hand fighting.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 10,
+    "will": 6
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 9,
+    "athletics": 10
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

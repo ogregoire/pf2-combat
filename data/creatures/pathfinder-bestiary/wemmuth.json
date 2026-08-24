@@ -1,0 +1,171 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 6,
+    "dex": 6,
+    "int": -2,
+    "str": 8,
+    "wis": 4
+  },
+  "ac": 37,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The wemmuth deals damage to a creature with Constrict.</p>\n<hr />\n<p><strong>Effect</strong> The wemmuth heals a number of Hit Points equal to half the total damage dealt by Constrict.</p>",
+      "frequency": null,
+      "name": "Blood Leech",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The wemmuth deals damage to a creature with Constrict."
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d12+10)[bludgeoning]] damage, @Check[fortitude|dc:37|basic] save</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>@Check[reflex|dc:37|traits:damaging-effect], @Damage[4d8[bludgeoning]] damage, Escape DC 35, Rupture 36</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Engulf]</p>",
+      "frequency": null,
+      "name": "Engulf",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Whenever a creature within 10 feet attempts a melee attack against a wemmuth or uses Acrobatics to Tumble Through its space, that creature takes @Damage[(1d12+10)[piercing]] damage.</p>",
+      "frequency": null,
+      "name": "Thorny Mass",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "4d10+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Boulder",
+      "traits": [
+        "fatal-d12",
+        "range-increment-60"
+      ]
+    },
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "4d12+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Pummel",
+      "traits": [
+        "fatal-d12",
+        "reach-15",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "NTXm3ee7WZJ92Sww",
+  "gear": [],
+  "hp": 335,
+  "id": "pathfinder-bestiary/wemmuth",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "fey"
+  ],
+  "level": 15,
+  "name": "Wemmuth",
+  "perception": 25,
+  "publicNotes": "<p>Fertilized by large quantities of spilled blood, such as that found on bloodstained battlefields or in the war-torn regions surrounding besieged cities, wemmuths are vile swaths of vines that draw sustenance from mortal suffering, lapping up blood like water. Possessing a rudimentary intelligence and an unquenchable thirst for blood, wemmuths lie in wait for most of their lives, growing to incredible size in the bloody soil of their grisly homes. Though the vines that comprise a wemmuth's body are scarcely thicker than rope, a single adult wemmuth system consists of 6 tons of vines, enough to stretch for 6,000 feet if stretched from end to end in a single straight line. Wemmuths never orient themselves this way, however, instead preferring to wrap themselves into massive mounds approximately 15 feet across and equally thick. Although wemmuths are often spotted lazing about, the scent of blood is enough to whip one into a violent frenzy. The creature condenses its entire mass into a sphere of sharp thorns and lashing vines, resembling a hateful tumbleweed the size of an elephant. Wemmuths commonly dig up massive boulders or entire trees from the ground and incorporate them into their rolling mass, using these objects to bolster their defense against many forms of attack or hurling them at faraway foes with terrifying precision.</p>\n<p>Some speculate that wemmuths are a form of diabolical corruption let loose upon Golarion by House Thrune of Cheliax, perhaps as a scorched earth tactic against their rivals. Influential nobles from Nirmathas and Molthune both point fingers at one another for the wemmuth's creation, Nirmathas citing Molthune's close ties to Infernal Cheliax and Molthune blaming the primal magic commonly employed by Nirmathas's many druids and rangers. Several Varisian tales describe creatures closely matching the wemmuth's description attempting to apprehend a famous folk trickster, while crusaders from Mendev adhere to the belief that the wemmuths were a blight unleashed upon Golarion by Deskari, former demon lord of locusts, before his defeat at the hands of mortal heroes.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 27,
+    "reflex": 27,
+    "will": 24
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 30,
+    "deception": 28,
+    "stealth": 30,
+    "survival": 27
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold",
+      "value": 20
+    },
+    {
+      "type": "slashing",
+      "value": 15
+    }
+  ]
+}

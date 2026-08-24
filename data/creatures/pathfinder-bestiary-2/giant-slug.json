@@ -1,0 +1,171 @@
+{
+  "abilityMods": {
+    "cha": -4,
+    "con": 7,
+    "dex": -1,
+    "int": -5,
+    "str": 7,
+    "wis": 2
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Large or smaller, foot, @Check[reflex|dc:27|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The giant slug can fit through tight spaces as if it were a Large creature. While Squeezing, it can move at its full Speed. It can Squeeze through spaces that typically fit only a Medium creature, but it does so at the usual Speed for Squeezing.</p>",
+      "frequency": null,
+      "name": "Malleable",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any creature hit by the giant slug or that moves into its mucus trail is coated in sticky, caustic mucus. It takes @Damage[1d4[persistent,acid]] damage and takes a -5-foot status penalty to its Speeds while the damage persists.</p>",
+      "frequency": null,
+      "name": "Mucus",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Any square the giant slug moves into is coated in mucus. These spaces are difficult terrain, and any creature that moves into one or ends its turn in one is subjected to the slug's mucus. After an hour, the mucus dries and the area is no longer difficult terrain.</p>",
+      "frequency": null,
+      "name": "Mucus Trail",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A giant slug has no auditory senses. It is immune to auditory effects, automatically critically fails Perception checks that require it to hear, and takes a -2 status penalty to Perception checks (but not initiative rolls) that involve sound but also rely on other senses.</p>",
+      "frequency": null,
+      "name": "No Hearing",
+      "requirements": null,
+      "traits": [
+        "auditory"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "formula": "3d6",
+          "type": "acid"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Disgorged Mucus",
+      "traits": [
+        "brutal",
+        "range-increment-50",
+        "splash"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d10+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Radula",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "g1htYgARxNKxc7MV",
+  "gear": [],
+  "hp": 165,
+  "id": "pathfinder-bestiary-2/giant-slug",
+  "immunities": [],
+  "languages": [],
+  "level": 8,
+  "name": "Giant Slug",
+  "perception": 14,
+  "publicNotes": "<p>These massive, primeval relatives of ordinary slugs squirm slowly through swamps and grasslands. Giant slugs are always voracious and prefer to eat flesh or plants high in water content. They frequently consume livestock or strip bare entire orchards or melon crops. For cattle, pigs, or other sizable meals, they first shred the creatures using their radula-tongue-like appendages covered in teeth- to make them easier to consume. The mucus secreted by a giant slug is powerfully acidic and viscous. Wherever it travels, the creature leaves a trailing brown strip that kills most vegetation. Farmers and ranchers, especially those living near swamps known to contain giant slugs, keep close tabs on these journeys. Many almanacs go into great detail on slug migration and mating seasons. Since each giant slug needs its own wide hunting ground, the creatures typically come into proximity to mate only once a year. Either or both slugs can become impregnated, and any that do typically lay a clutch of around 100 eggs. They usually lay these eggs in a shallow bog or a cool, humid cave.</p>\n<p>Giant slugs tend to travel at night, as the creatures dislike sunlight and dry weather. They have been known to seek out locations like barns, the undersides of bridges, or even fortifications like castles for shelter as dawn starts to break. Woe to the unprepared farmer who ambles out at sunrise to milk the cows but instead finds that a giant slug has made the barn its home! Subterranean giant slugs don't have to worry about sunlight, and crawl about on no schedule in particular. Narrow tunnels pose little obstacle for them, as the creatures can easily compress their bodies. These factors make their movements very unpredictable, so they pose quite a menace for underground peoples like kobolds or xulgaths.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "acid",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 11,
+    "will": 14
+  },
+  "senses": [
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "climb",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": [
+    {
+      "type": "salt",
+      "value": 5
+    }
+  ]
+}

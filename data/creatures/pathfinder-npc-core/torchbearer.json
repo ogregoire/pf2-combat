@@ -1,0 +1,157 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 1,
+    "dex": 3,
+    "int": 0,
+    "str": 2,
+    "wis": 1
+  },
+  "ac": 15,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A torchbearer is adept at attacking with torches and deals 1 persistent fire damage when they critically hit with a Torch.</p>",
+      "frequency": null,
+      "name": "Torch Combatant",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d4+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 6,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 5,
+      "damage": [
+        {
+          "formula": "1",
+          "type": "fire"
+        },
+        {
+          "formula": "1d6+2",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Torch",
+      "traits": []
+    }
+  ],
+  "foundryId": "xjJV1G5FBeLV4KPQ",
+  "gear": [
+    "Bolts",
+    "Climbing Kit",
+    "Dagger",
+    "Hand Crossbow",
+    "Matchstick",
+    "Torch"
+  ],
+  "hp": 15,
+  "id": "pathfinder-npc-core/torchbearer",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 0,
+  "name": "Torchbearer",
+  "perception": 5,
+  "publicNotes": "<p>Torchbearers carry light sources for seasoned explorers.</p><hr /><p>Explorers are often well-equipped and well-trained for any type of hazard and are eager to lead others into the wild.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 9,
+    "will": 4
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 5,
+    "athletics": 4,
+    "stealth": 5,
+    "survival": 3
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

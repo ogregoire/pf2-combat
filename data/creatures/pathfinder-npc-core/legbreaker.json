@@ -1,0 +1,134 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 3,
+    "int": -1,
+    "str": 4,
+    "wis": 2
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The legbreaker [[/act shove options=stampeding-shove]]{Shoves} a creature, gaining a +2 circumstance bonus to their Athletics check if the target is Prone. If the Shove succeeds, the target takes @Damage[2d10[bludgeoning]] damage (double damage on a critical success).</p>",
+      "frequency": null,
+      "name": "Stampeding Shove",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The legbreaker makes a maul Strike against an adjacent creature. If it hits, the creature is knocked Prone and becomes Clumsy 1 for 1 minute. As long as this clumsy condition lasts, the creature also takes a –5-foot penalty to its Speeds and has weakness 5 to the legbreaker's Strikes.</p>\n<p>Effect: Break Legs!</p>",
+      "frequency": null,
+      "name": "Break Legs!",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The legbreaker Strides twice. If they end their movement within melee reach of an enemy, they can make a melee Strike against that enemy.</p>",
+      "frequency": null,
+      "name": "Rushing Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d10+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Maul",
+      "traits": [
+        "magical",
+        "shove"
+      ]
+    }
+  ],
+  "foundryId": "WzBMIigC3lfvZyhJ",
+  "gear": [
+    "Maul",
+    "Studded Leather Armor"
+  ],
+  "hp": 110,
+  "id": "pathfinder-npc-core/legbreaker",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 6,
+  "name": "Legbreaker",
+  "perception": 14,
+  "publicNotes": "<p>Criminal organizations are always happy to loan out money at exorbitant rates, and their legbreakers are always happy to collect.</p><hr /><p>In the underbelly of society, the lawless reign supreme.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 15,
+    "will": 12
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 16,
+    "intimidation": 15,
+    "stealth": 15,
+    "thievery": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

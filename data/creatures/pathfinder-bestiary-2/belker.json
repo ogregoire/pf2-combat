@@ -1,0 +1,142 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 5,
+    "int": -2,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The belker is partially inhaled by a creature</p>\n<hr />\n<p><strong>Effect</strong> The belker automatically deals its claw damage to the inhaling creature by forming a claw to slash and scrape the creature from within.</p>",
+      "frequency": null,
+      "name": "Smoke Slash",
+      "requirements": "The belker is partially inhaled by a creature",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The belker occupies the same space as a Medium or smaller creature</p>\n<hr />\n<p><strong>Effect</strong> The belker attempts to flow into the creature's lungs; the creature must attempt a @Check[fortitude|dc:23] save. On a failure, the creature partially inhales the belker and is Immobilized by the pain of the smoke rasping in its throat and lungs. The creature can attempt to exhale the belker by spending an action coughing and succeeding at a @Check[fortitude|dc:23] save. Most of the belker remains outside the creature, so the belker can still act normally. If the belker moves out of the creature's space or uses Noxious Fumes again, the creature automatically exhales it.</p>",
+      "frequency": null,
+      "name": "Noxious Fumes",
+      "requirements": "The belker occupies the same space as a Medium or smaller creature",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The belker can occupy the same space as other creatures.</p>",
+      "frequency": null,
+      "name": "Smoke Form",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The belker ignores the Concealed condition from smoke.</p>",
+      "frequency": null,
+      "name": "Smoke Vision",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d10+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "2d8+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "agile",
+        "finesse",
+        "reach-10"
+      ]
+    }
+  ],
+  "foundryId": "QLY246Z6hP41LnCF",
+  "gear": [],
+  "hp": 78,
+  "id": "pathfinder-bestiary-2/belker",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "precision",
+    "sleep"
+  ],
+  "languages": [
+    "sussuran"
+  ],
+  "level": 6,
+  "name": "Belker",
+  "perception": 14,
+  "publicNotes": "<p>These reclusive elementals have glowing red eyes, leathery wings, and long, sharp claws. While they always retain their shape, belkers can control the solidity of their forms at will, transforming into clouds of smoke, ash, and dust.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 13,
+    "reflex": 17,
+    "will": 12
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 15,
+    "stealth": 15
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "fly",
+      "value": 40
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "air",
+    "elemental"
+  ],
+  "weaknesses": []
+}

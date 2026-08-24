@@ -1,0 +1,154 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": 2,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A grimstalker can Hide in natural environments, even if it doesn't have cover.</p>",
+      "frequency": null,
+      "name": "Camouflage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:22]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d6[poison]] damage (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[1d6[poison]] damage and Clumsy 1 (1 round),</p>\n<p><strong>Stage 3</strong> @Damage[2d6[poison]] damage and Clumsy 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Grimstalker Sap",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A grimstalker can always find a path, almost as if foliage parts before it. A grimstalker ignores difficult terrain caused by plants, such as bushes, vines, and undergrowth. Even plants manipulated by magic don't impede its progress.</p>",
+      "frequency": null,
+      "name": "Woodland Stride",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "2d6+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "F5QibbbxUeO8A3Kj",
+  "gear": [],
+  "hp": 60,
+  "id": "pathfinder-bestiary-2/grimstalker",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common"
+  ],
+  "level": 5,
+  "name": "Grimstalker",
+  "perception": 12,
+  "publicNotes": "<p>These violently murderous fey have one purpose: to stealthily hunt down and slay humanoids brazen enough to dare set foot in the wilderness. Though they prefer to hunt from the shadows, grimstalkers do not fear taking their grisly work to the very edges of civilization. This boldness serves as a reminder that nature can be cruel, capricious, and owes no debt to humanity. Grimstalkers are happy to perform nature's dirty work and particularly enjoy targeting loggers, hunters, and explorers, regardless of whether they respect the natural setting they work or travel within.</p>\n<p>Grimstalkers are gaunt and hairless, and their mottled, green and brown flesh gives them the appearance of moss-draped bark. When damaged, they bleed a thick, sap-like blood. They mark their territories by lopping off the heads of their victims and stringing them up in the surrounding trees, a practice that often lures dangerous scavengers into their lands. Carnivorous and thorny plants are often found in wilds where grimstalkers dwell, filling roles that pets might in human society, though grimstalkers tend to treat these \"pets\" poorly at best.</p>\n<p>There are few accounts of grimstalkers working with other fey-for the most part, grimstalkers see their kin from the First World as cowards or weaklings, or perhaps both. Even notoriously violent fey such as redcaps shy from them, as grimstalkers consider their own kind the only company worth keeping.</p>\n<p>Grimstalkers hunt in small bands, using stealth to approach their targets. They surround enemies first, then work to unnerve them by knocking on trees or howling out threats in Aklo to distract and panic their quarry. Of course, a band of grimstalkers won't stay together for long, quickly succumbing to bickering and infighting. These violent arguments are common pastimes among grimstalkers, often ending with each grimstalker going its own way. Not even the presence of more powerful fey or commanding creatures can keep grimstalkers from their predisposed bickering. Some scholars theorize that this quality speaks to an ancient curse that once afflicted fey who were judged too cantankerous, but in truth, it's just part of what makes a grimstalker what it is: ill-tempered, confrontational, and bitter.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 15,
+    "will": 12
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 13,
+    "intimidation": 13,
+    "nature": 11,
+    "stealth": 13,
+    "survival": 12
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 14,
+      "dc": 22,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Earthbind",
+          "rank": 3
+        },
+        {
+          "name": "Wall of Thorns",
+          "rank": 3
+        },
+        {
+          "name": "Entangle",
+          "rank": 2
+        },
+        {
+          "name": "Pass Without Trace",
+          "rank": 2
+        },
+        {
+          "name": "Tree Shape",
+          "rank": 2
+        },
+        {
+          "name": "Tanglefoot",
+          "rank": 1
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "fey"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 5
+    }
+  ]
+}

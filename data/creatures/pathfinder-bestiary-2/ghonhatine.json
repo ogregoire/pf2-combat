@@ -1,0 +1,155 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 6,
+    "dex": 3,
+    "int": -2,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The ghonhatine is adjacent to the corpse of a creature that died within the last hour</p>\n<hr />\n<p><strong>Effect</strong> The ghonhatine devours a chunk of the corpse. For 1 minute, the ghonhatine gains fast healing 5 and a +2 status bonus to damage rolls. It can gain these benefits from any given corpse only once.</p>\n<p>Effect: Ghonhatine Feed</p>",
+      "frequency": null,
+      "name": "Feed",
+      "requirements": "The ghonhatine is adjacent to the corpse of a creature that died within the last hour",
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A ghonhatine's vomit carries an awful disease that, over time, can cause a suffering creature's flesh to develop painful boils that eventually slough away, leaving gaping wounds</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:28]</p>\n<hr />\n<p><strong>Stage 1</strong> carrier with no ill effect ([[/r 1d4 #Incubation]]{1d4 hours})</p>\n<p><strong>Stage 2</strong> Enfeebled 1 and Drained 1 (1 day)</p>\n<p><strong>Stage 3</strong> Enfeebled 2 and Drained 2 (1 day)</p>\n<p><strong>Stage 4</strong> enfeebled 2 and Drained 3 (1 day)</p>\n<p><strong>Stage 5</strong> Drained 4, enfeebled 2, and Unconscious (1 day)</p>\n<p><strong>Stage 6</strong> dead</p>",
+      "frequency": null,
+      "name": "Fleshgout",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A creature entering the aura or starting its turn in the aura must succeed at a @Check[fortitude|dc:26] save or become Sickened 1 (plus Slowed 1 for as long as it's sickened on a critical failure).</p>\n<p>While within the aura, affected creatures take a -2 circumstance penalty to saves against disease and to recover from the sickened condition. A creature that succeeds at its save is temporarily immune for 1 minute.</p>\n<p>Effect: Stench</p>",
+      "frequency": null,
+      "name": "Stench",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "olfactory"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d10+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "acid"
+        },
+        {
+          "formula": "2d12+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "5d6",
+          "type": "acid"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Vomit",
+      "traits": [
+        "acid",
+        "range-increment-20"
+      ]
+    }
+  ],
+  "foundryId": "xdIHvCBspeSXRL6A",
+  "gear": [],
+  "hp": 175,
+  "id": "pathfinder-bestiary-2/ghonhatine",
+  "immunities": [
+    "disease"
+  ],
+  "languages": [
+    "sakvroth"
+  ],
+  "level": 10,
+  "name": "Ghonhatine",
+  "perception": 19,
+  "publicNotes": "<p>In transforming xulgaths, drow fleshwarpers sought not to create a new type of creature but to recapture a form of xulgath predecessor believed entirely vanished from Golarion. Ghonhatines are the result-hulking reptilian beasts who prefer to crawl on all fours and tear at their foes with bestial fury.</p>\n<hr />\n<p>Horrid abominations reshaped by vile alchemical magic, the two fleshwarps presented here were created by drow, who transform captured elves or xulgaths into twisted monstrosities that can then be loosed to cause havoc and terror.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "acid",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 22,
+    "reflex": 17,
+    "will": 19
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 21,
+    "intimidation": 19,
+    "stealth": 19
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

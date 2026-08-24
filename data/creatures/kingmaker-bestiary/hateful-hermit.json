@@ -1,0 +1,166 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 4,
+    "dex": 2,
+    "int": 1,
+    "str": 4,
+    "wis": 0
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The hateful hermit unleashes a vexing stream of profanities and threats at a single foe he can see within 30 feet. The hermit gains a +1 circumstance bonus on all attack rolls made against that target until he chooses a different target to Focus Hatred on. The target must attempt a @Check[will|dc:22] save, with the below effects. The hateful hermit cannot Focus Hatred again for [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected and is temporarily immune to Focus Hatred for 24 hours.</p>\n<p><strong>Success</strong> The target is distracted by the hatred and is Off-Guard against the hermit's next attack.</p>\n<p><strong>Failure</strong> The hermit's words unnerve the target and distract them; the target is off-guard until the end of the hateful hermit's next turn.</p>\n<p><strong>Critical Failure</strong> As failure, but the target is off-guard for 1 minute.</p>",
+      "frequency": null,
+      "name": "Focus Hatred",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 Status to All Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The hateful hermit deals 2d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The hateful hermit always gains the benefits of Cover Tracks in natural surroundings, even when moving at full speed.</p>",
+      "frequency": null,
+      "name": "Trackless Step",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Blowgun",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "range-increment-20",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 13,
+      "damage": [
+        {
+          "formula": "1d4+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Sickle",
+      "traits": [
+        "agile",
+        "finesse",
+        "trip"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+7",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Whip",
+      "traits": [
+        "disarm",
+        "finesse",
+        "magical",
+        "nonlethal",
+        "reach-10",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "k9eR5UwCSrfpPPAv",
+  "gear": [
+    "Blowgun",
+    "Blowgun Darts",
+    "Graveroot",
+    "Hide Armor",
+    "Sickle",
+    "Whip"
+  ],
+  "hp": 80,
+  "id": "kingmaker-bestiary/hateful-hermit",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 5,
+  "name": "Hateful Hermit",
+  "perception": 11,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 11,
+    "will": 9
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 13,
+    "nature": 12,
+    "survival": 11
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

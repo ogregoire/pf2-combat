@@ -1,0 +1,226 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": -1,
+    "dex": 2,
+    "int": 3,
+    "str": 1,
+    "wis": 5
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the high priest casts Heal, they roll d10s instead of d8s.</p>",
+      "frequency": null,
+      "name": "Healing Hands",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>For encounters involving religious debates, church politics, and conflicts of doctrine, the high priest is a 13th-level challenge.</p>",
+      "frequency": null,
+      "name": "Religious Specialist",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The high priest can sacrifice one prepared Heal spell to instead cast Cleanse Affliction, Clear Mind, Sound Body, or Sure Footing at the same spell rank.</p>",
+      "frequency": null,
+      "name": "Restorative Channel",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>30 feet.</p>\n<p>Each ally in the aura who worships Pharasma gains resistance 5 to void and a +1 status bonus to Will saves, Diplomacy checks, and Medicine checks.</p>",
+      "frequency": null,
+      "name": "Steward of the Faithful",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "vitality"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>During a religious debate, clash of church politics, or similar conflict, the high priest gains a +4 circumstance bonus to Perception check to Sense Motive and to their Perception DC against attempt to Lie to them.</p>",
+      "frequency": null,
+      "name": "Unshakable Faith",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "1d10",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d4+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d10",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d4+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "magical",
+        "thrown-10",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d10",
+          "type": "spirit"
+        },
+        {
+          "formula": "1d4+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d10",
+          "type": "spirit"
+        },
+        {
+          "formula": "1d6+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    }
+  ],
+  "foundryId": "deQ6Vg46CS6GTu7J",
+  "gear": [
+    "Bolts",
+    "Dagger",
+    "Hand Crossbow",
+    "Healer's Toolkit",
+    "Holy Water",
+    "Religious Symbol of Pharasma",
+    "Religious Text of Pharasma",
+    "Scroll of Cleanse Affliction (Rank 4)"
+  ],
+  "hp": 150,
+  "id": "pathfinder-npc-core/high-priest-of-pharasma",
+  "immunities": [],
+  "languages": [
+    "common",
+    "requian"
+  ],
+  "level": 9,
+  "name": "High Priest of Pharasma",
+  "perception": 20,
+  "publicNotes": "<p>High priests are the leaders of larger churches and similar religious establishments, watching over the lower-ranking clergy and ensuring the surrounding community is taken care of. This can be a highly political position, as the leader of the faith in an area has a powerful influence over everyday citizens.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 16,
+    "reflex": 17,
+    "will": 21
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "diplomacy": 25,
+    "intimidation": 17,
+    "medicine": 18,
+    "performance": 17,
+    "religion": 26
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Cleric Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Eradicate Undeath",
+          "rank": 4
+        },
+        {
+          "name": "Death's Call",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,191 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 6,
+    "dex": 4,
+    "int": -4,
+    "str": 8,
+    "wis": 2
+  },
+  "ac": 35,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The sea serpent attempts to capsize an aquatic vessel of its size or smaller that it's adjacent to. It must succeed at an @Check[athletics|dc:35] check with a DC of 35 (reduced by 5 for each size smaller than the sea serpent) or the pilot's Sailing Lore DC, whichever is higher.</p>",
+      "frequency": null,
+      "name": "Capsize",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(1d10+14)[bludgeoning]], @Check[fortitude|dc:32|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Huge, @Damage[(2d10+6)[bludgeoning]], Rupture 20</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The sea serpent extends the spines along its back and Swims or Strides. Each creature the serpent is adjacent to at any point during its movement takes @Damage[(4d6+8)[slashing]] damage (@Check[reflex|dc:32|basic] save).</p>",
+      "frequency": null,
+      "name": "Spine Rake",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "move"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The water in the ballast organs around the sea serpent's neck is full of psychotropic algae.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:34]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> Confused and, if flying, spends its first action each turn to descend 20 feet (1 round)</p>\n<p><strong>Stage 2</strong> confused and, if flying, descends until reaching the ground or water below (1 round)</p>",
+      "frequency": null,
+      "name": "Sea Serpent Algae",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A sea serpent automatically tries to counteract any detection, revelation, or scrying divination attempted against it, using its @Check[stealth] modifler for its counteract modifier.</p>",
+      "frequency": null,
+      "name": "Undetectable",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "3d10+14",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 27,
+      "damage": [
+        {
+          "formula": "2d10+14",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "reach-30"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "2d6+12",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Water Spout",
+      "traits": [
+        "brutal",
+        "range-increment-100",
+        "water"
+      ]
+    }
+  ],
+  "foundryId": "PUPnGG406PanzIvL",
+  "gear": [],
+  "hp": 210,
+  "id": "pathfinder-monster-core/sea-serpent",
+  "immunities": [],
+  "languages": [],
+  "level": 12,
+  "name": "Sea Serpent",
+  "perception": 22,
+  "publicNotes": "<p>These fabled beasts resemble massive snakes with long rows of finned spines down their back. Temperamental and territorial, sea serpents can capsize a boat with ease, and most won't hesitate to do so when hungry or threatened. Stories abound of aggrieved captains who spend their entire lives hunting down the elusive monster that sunk their ships and took their livelihoods. These hunts rely on rumors and glimpses of the beasts, as few survive the catastrophes wrought by sea serpents.</p>\n<p>While many fishermen's tales paint sea serpents as divinely appointed guardians of the ocean or as evil and demonic agents, the truth is that most sea serpents are simply very large beasts with a knack for avoiding magical detection.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 25,
+    "reflex": 21,
+    "will": 21
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 18,
+    "athletics": 26,
+    "stealth": 28
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "swim",
+      "value": 60
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "aquatic"
+  ],
+  "weaknesses": []
+}

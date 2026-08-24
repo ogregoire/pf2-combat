@@ -1,0 +1,129 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 4,
+    "int": 1,
+    "str": 3,
+    "wis": 1
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The gnome daredevil Strides up to their Speed, makes a melee Strike, then Steps.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Daredevil Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Composite Shortbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-60",
+        "reload-0"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Gnome Flickmace",
+      "traits": [
+        "reach",
+        "sweep"
+      ]
+    }
+  ],
+  "foundryId": "TXu9W2jQezwQNT5k",
+  "gear": [
+    "Arrows",
+    "Composite Shortbow",
+    "Gnome Flickmace"
+  ],
+  "hp": 30,
+  "id": "pathfinder-npc-core/gnome-daredevil",
+  "immunities": [],
+  "languages": [
+    "common",
+    "gnomish"
+  ],
+  "level": 2,
+  "name": "Gnome Daredevil",
+  "perception": 5,
+  "publicNotes": "<p>These nimble warriors capitalize on their slight stature and dexterous movements to evade and overtake their foes on the battlefield. Their unmatched skill with the gnome flickmace allows a daredevil to strike from a short distance and twirl away unscathed, sometimes hitting hard enough to topple their foes.</p><hr /><p>Because their ancestors came from the First World, gnomes are intrinsically linked to the realm of the fey and crave the mystical and unpredictable. They seek to create daring works of art, voyage to new places, and have experiences they've never had before. Otherwise, they could fall victim to the terrible gnomish illness known as the Bleaching, which not only drains them of their color but of their spirits as well.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 12,
+    "will": 5
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 8,
+    "athletics": 7,
+    "performance": 8,
+    "thievery": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "gnome",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

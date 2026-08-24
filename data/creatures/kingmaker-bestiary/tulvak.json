@@ -1,0 +1,364 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 5,
+    "int": 3,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 31,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "reaction",
+      "description": "<p><strong>Frequency</strong> once per hour</p>\n<p><strong>Trigger</strong> Tulvak uses Change Shape to assume her natural shape</p>\n<p><strong>Effect</strong> Tulvak's transformation into her true form is particularly revolting and can sicken those who aren't prepared for it. All creatures within 30 feet of Tulvak when she takes this reaction must attempt a @Check[will|dc:30] save or become Sickened 1 (Sickened 2 on a critical failure).</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1H"
+      },
+      "name": "Unsettling Revelation",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "fear",
+        "mental",
+        "visual"
+      ],
+      "trigger": "Tulvak uses Change Shape to assume her natural shape"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The green hag touches a creature that doesn't realize the hag is an enemy. The betrayed creature is affected by the hag's enfeebling humors and takes a -4 circumstance penalty to their saving throw against that effect.</p>",
+      "frequency": null,
+      "name": "Betraying Touch",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The green hag can take on the appearance of any Medium humanoid woman. This doesn't change her Speed or her attack and damage bonuses with her Strikes, but might change the damage type her Strikes deal (typically to bludgeoning).</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "frequency": null,
+      "name": "Change Shape",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "occult",
+        "polymorph"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The green hag exhales a miasma of green vapors. Each living creature in a @Template[cone|distance:15] is affected by her enfeebling humors (attemping a save as normal).</p>\n<p>She can't use Exhale Miasma again for [[/gmr 1d4 #Recharge Exhale Miasma]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Exhale Miasma",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A green hag adds Entangling Flora, Outcast's Curse, and Wall of Thorns to her coven's spells.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Coven]</p>",
+      "frequency": null,
+      "name": "Coven",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature damaged by a hag's claw must succeed at a @Check[fortitude|dc:30] save or be Enfeebled 1 for 1 day. On a critical failure, or if it gets hit again and fails its save a second time, it's Enfeebled 2 for 1 day.</p>",
+      "frequency": null,
+      "name": "Enfeebling Humors",
+      "requirements": null,
+      "traits": [
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>A green hag who succeeds at a Deception check to Lie can mimic the sounds of any animal found near her lair. She has a +4 circumstance bonus to this check.</p>",
+      "frequency": null,
+      "name": "Sound Imitation",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d6+13",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "bleed"
+        },
+        {
+          "formula": "2d10+13",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Scythe",
+      "traits": [
+        "deadly-d10",
+        "magical",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "K61HTqmdHRPHQz1x",
+  "gear": [
+    "Grisly Scythe"
+  ],
+  "hp": 220,
+  "id": "kingmaker-bestiary/tulvak",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "jotun"
+  ],
+  "level": 11,
+  "name": "Tulvak",
+  "perception": 22,
+  "publicNotes": "<p>Malevolent crones who lurk at the edges of civilization, hags use their deceptive, magical abilities to prey upon humanoids, manipulating and corrupting them. Some say hags arose from fey that became twisted by their inner selfishness. Hags gather together in covens for greater power, craft unique magical items known as <em>Hag Eyes</em>, and are known to replace infant humanoids with their own offspring-these children are Changelings who have the potential to become hags themselves.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 22,
+    "reflex": 20,
+    "will": 22
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 20,
+    "athletics": 22,
+    "deception": 24,
+    "nature": 22,
+    "occultism": 20,
+    "stealth": 24
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Coven Spells",
+      "preparation": "innate",
+      "slots": [
+        {
+          "max": 1,
+          "rank": 3
+        },
+        {
+          "max": 1,
+          "rank": 4
+        },
+        {
+          "max": 1,
+          "rank": 5
+        }
+      ],
+      "spells": [
+        {
+          "name": "Baleful Polymorph",
+          "rank": 6
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Prying Eye",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Outcast's Curse",
+          "rank": 4
+        },
+        {
+          "name": "Talking Corpse",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Dream Message",
+          "rank": 3
+        },
+        {
+          "name": "Wall of Thorns",
+          "rank": 3
+        },
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Entangle",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dominate",
+          "rank": 6
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Sending",
+          "rank": 5
+        },
+        {
+          "name": "Tongues (Constant)",
+          "rank": 5
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Tree Shape (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Water Breathing (Constant)",
+          "rank": 2
+        },
+        {
+          "name": "Acid Splash",
+          "rank": 1
+        },
+        {
+          "name": "Dancing Lights",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Item Facade",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Pass Without Trace (Constant)",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "hag",
+    "humanoid"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 10
+    }
+  ]
+}

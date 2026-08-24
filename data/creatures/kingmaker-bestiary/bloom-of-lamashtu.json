@@ -1,0 +1,177 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 5,
+    "dex": 2,
+    "int": 0,
+    "str": 7,
+    "wis": 5
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The bloom takes slashing damage.</p>\n<p><strong>Effect</strong> The bloom of Lamashtu sprays a gout of acid against an adjacent creature, inflicting @Damage[9d6[acid]] damage (@Check[reflex|dc:26|basic]). The bloom can't use Defensive Burst for [[/gmr 1d4 #Recharge Defensive Burst]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Defensive Burst",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The bloom takes slashing damage."
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The bloom of Lamashtu's central stalk disgorges a pulsing seed pod from its flower, spitting it at a range of up to 60 feet and creating a @Template[burst|distance:20] when the seed pod explodes into a spray of supernatural acidic poison. All creatures in this area must attempt a @Check[reflex|dc:29] save. The bloom of Lamashtu can't Spew Seed Pod for [[/gmr 1d4 #Recharge Spew Seed Pod]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes @Damage[3d6[acid]] damage and @Damage[3d6[poison]] damage.</p>\n<p><strong>Failure</strong> The creature takes @Damage[5d6[acid]] damage and @Damage[5d6[poison]] damage and is exposed to the bloom curse.</p>\n<p><strong>Critical Failure</strong> As failure, but @Damage[10d6[acid]] damage and @Damage[10d6[poison]] damage, plus knocked Prone by the force of the blast.</p>",
+      "frequency": null,
+      "name": "Spew Seed Pod",
+      "requirements": null,
+      "traits": [
+        "poison",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A living creature is exposed to the bloom curse if it eats any portion of a bloom of Lamashtu, fails a save against the bloom's seed pod, or is critically hit by the bloom's thorny vine Strike. Unlike the bloom curse contracted from secondary sources, there is no onset time for this version of the curse, and the creature spawned by the victim's death may be much more powerful and is always chaotic evil.</p>\n<hr />\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:29]</p>\n<p><strong>Stage 1</strong> no ill effects (1 day)</p>\n<p><strong>Stage 2</strong> Enfeebled 1 (1 day)</p>\n<p><strong>Stage 3</strong> enfeebled 1 and @Damage[2d6[poison]] damage (8 hours)</p>\n<p><strong>Stage 4</strong> Unconscious and @Damage[4d6[poison]] damage (10 minutes)</p>\n<p><strong>Stage 5</strong> death;</p>\n<p><strong>Special</strong> A creature that dies from the bloom curse explodes in a blast of First World foliage and releases a monster into the world. This creature is a chaotic evil low-intelligence beast or dragon (chosen by the GM) of the same level as the dead creature.</p>",
+      "frequency": null,
+      "name": "Bloom Curse",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 30 (Deactivated by Fire or Holy)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Precise) 30 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "poison"
+        },
+        {
+          "formula": "2d6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Thorn",
+      "traits": [
+        "range-50",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "poison"
+        },
+        {
+          "formula": "2d8+10",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Thorny Vine",
+      "traits": [
+        "reach-15",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "vBugpZnpxQcrrWoo",
+  "gear": [],
+  "hp": 210,
+  "id": "kingmaker-bestiary/bloom-of-lamashtu",
+  "immunities": [
+    "acid",
+    "curse"
+  ],
+  "languages": [
+    "chthonian"
+  ],
+  "level": 10,
+  "name": "Bloom of Lamashtu",
+  "perception": 21,
+  "publicNotes": "<p>A thick, green stalk with spiraling rows of thorns stands at the center of this enormous flowering plant. Each flower has a growing seed pod at its center, surrounded by vibrant petals in a wide variety of colors. Crafted after consecutive seasons of experimentation, prayer, and ritual, the bloom of Lamashtu is the triumph of the cultist Darivan and his Cult of the Bloom. The fiendish plant aids their effort to infect the humanoid population of the Stolen Lands and replace them with monstrous predators. While the Bloom of Lamashtu is intelligent and is capable of understanding Abyssal, it has very little interest in anything other than spreading its curse.</p>\n<p>Cultivated to spread misery and violence, the bloom is quietly malevolent, growing its seeds as rapidly as it can. It is 12 feet tall and weighs 600 pounds.</p>",
+  "rarity": "unique",
+  "resistances": [
+    {
+      "type": "bludgeoning",
+      "value": 10
+    },
+    {
+      "type": "piercing",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 16,
+    "will": 19
+  },
+  "senses": [
+    "low-light-vision",
+    "tremorsense"
+  ],
+  "size": "large",
+  "skills": {
+    "athletics": 21,
+    "stealth": 18
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 5
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fiend",
+    "plant",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "holy",
+      "value": 10
+    },
+    {
+      "type": "slashing",
+      "value": 10
+    }
+  ]
+}

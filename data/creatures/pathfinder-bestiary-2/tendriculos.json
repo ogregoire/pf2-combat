@@ -1,0 +1,161 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 5,
+    "dex": 2,
+    "int": -2,
+    "str": 7,
+    "wis": 3
+  },
+  "ac": 25,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Tentacle only.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Tentacle Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> A creature the tendriculos has Swallowed Whole has taken damage since the end of the tendriculos's last turn, and the tendriculos hasn't used any other actions this turn</p><hr /><p><strong>Effect</strong> The tendriculos regains @Damage[3d8[healing]] Hit Points and recovers from the Fatigued and Slowed conditions. It reduces any Enfeebled value it has by 2.</p>",
+      "frequency": null,
+      "name": "Rampant Growth",
+      "requirements": "A creature the tendriculos has Swallowed Whole has taken damage since the end of the tendriculos's last turn, and the tendriculos hasn't used any other actions this turn",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Large, @Damage[(2d10+7)[acid]] damage plus tendriculos venom, Rupture 14</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:21]</p>\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> Clumsy 2 (1 round)</p>\n<p><strong>Stage 2</strong> Clumsy 2 and Slowed 2 (1 round)</p>\n<p><strong>Stage 3</strong> Paralyzed (1 round)</p>",
+      "frequency": null,
+      "name": "Tendriculos Venom",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d10+11",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Bite",
+      "traits": [
+        "reach-10"
+      ]
+    },
+    {
+      "bonus": 18,
+      "damage": [
+        {
+          "formula": "2d6+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "agile",
+        "reach-15",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "yBglC9GBy6p1x87t",
+  "gear": [],
+  "hp": 120,
+  "id": "pathfinder-bestiary-2/tendriculos",
+  "immunities": [
+    "acid"
+  ],
+  "languages": [
+    "fey"
+  ],
+  "level": 7,
+  "name": "Tendriculos",
+  "perception": 15,
+  "publicNotes": "<p>These strange amalgams of plant and fungus with animal tendencies form where the natural world is corrupted by foul magic or frayed planar boundaries. Tendriculoses are instinctive ambush predators who seek out lightly traveled forest paths and lie in wait in the undergrowth. A tendriculos swallows its prey as quickly as possible and lets its paralytic digestive juices finish the meal, while swiftly restoring itself with the nourishment provided by the trapped creature. When collected, neutralized, and refined, the digestive fluids of a tendriculos form a lacquer that retains some of the tendriculos's acid resistance.</p>\n<p>A tendriculos comes into being with a rudimentary understanding of the Sylvan language, but in some cases it might manifest knowing a different tongue, such as Aklo, Draconic, or even Necril. Regardless, tendriculoses have little patience for chattering from potential meals, though some determined fey and primal spellcasters have been known to form alliances or even closer bonds with tendriculoses. Befriending a tendriculos requires great patience and plentiful food-and these the gifts of food must be alive when handed over.</p>\n<p>When it has finished feeding and is out of combat, a tendriculos slips into a quiescent state for a full day, one of the few times it is safe to approach. Upon rousing, it seeks the deep forest to regurgitate the less digestible portions of its meal. These remains may contain valuables that survived digestion and indicate that a tendriculos's hunting grounds lie nearby.</p>\n<p>Tendriculoses dwell in deep woods and jungles. Those too near populated areas soon draw unwanted attention with their ravenous appetites. Well-fed tendriculoses develop fruiting bodies that cast forth millions of spores. Spores that happen to alight on carrion grow into new tendriculoses.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "piercing",
+      "value": 5
+    },
+    {
+      "type": "slashing",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 12,
+    "will": 13
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 17,
+    "stealth": 14
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fungus",
+    "plant"
+  ],
+  "weaknesses": [
+    {
+      "type": "fire",
+      "value": 5
+    }
+  ]
+}

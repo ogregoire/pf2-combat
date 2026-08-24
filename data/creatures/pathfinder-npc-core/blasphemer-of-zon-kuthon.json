@@ -1,0 +1,135 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 0,
+    "dex": 1,
+    "int": 1,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The blasphemer attempts a @Check[religion|dc:15] check to attempt to cast the 1st-rank spell their deity grants to clerics (Phantom Pain for Zon-Kuthon). The spell must take 1, 2, or 3 actions to Cast. The blasphemer can use twisted faith to roll @Check[deception|dc:15] instead if they have a witness, as normal.</p><hr /><p><strong>Critical Success</strong> The blasphemer successfully Casts the Spell, then is Stunned with a value equal to the number of actions the spell takes – 1.</p>\n<p><strong>Success</strong> As critical success, plus the blasphemer takes @Damage[1d6[mental]] damage.</p>\n<p><strong>Failure</strong> The blasphemer fails to Cast the Spell and takes @Damage[1d6[mental]] damage.</p>\n<p><strong>Critical Failure</strong> The blasphemer fails to Cast the Spell, takes @Damage[2d6[mental]] damage, and is Stunned 1.</p>",
+      "frequency": null,
+      "name": "False Blessing",
+      "requirements": null,
+      "traits": [
+        "manipulate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When attempting a Religion skill check, the blasphemer can roll @Check[deception] instead, so long as they have an intelligent creature around as a witness. If the creature is a follower of the blasphemer's faith, the blasphemer receives a +2 circumstance bonus to the check.</p>",
+      "frequency": null,
+      "name": "Twisted Faith",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d6+2",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hand Crossbow",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d8+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Spiked Chain",
+      "traits": [
+        "disarm",
+        "trip"
+      ]
+    }
+  ],
+  "foundryId": "nh5QBC79HYRCSmLV",
+  "gear": [
+    "Bolts",
+    "Hand Crossbow",
+    "Religious Symbol of Zon-Kuthon",
+    "Spiked Chain"
+  ],
+  "hp": 35,
+  "id": "pathfinder-npc-core/blasphemer-of-zon-kuthon",
+  "immunities": [],
+  "languages": [
+    "common",
+    "shadowtongue"
+  ],
+  "level": 2,
+  "name": "Blasphemer of Zon-Kuthon",
+  "perception": 8,
+  "publicNotes": "<p>Blasphemers spread messages contrary to the tenets of their faith, often out of the belief that the gods are specifically targeting them to spread this message. In some cultures, such as Nidal, this is a heretical crime and can send a blasphemer on the run from the law.</p><hr /><p>Religions inspire devout individuals to uphold their tenets.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 7,
+    "will": 10
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 9,
+    "intimidation": 7,
+    "performance": 7,
+    "religion": 6,
+    "society": 7
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

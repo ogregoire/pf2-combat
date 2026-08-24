@@ -1,0 +1,118 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 5,
+    "dex": 2,
+    "int": -4,
+    "str": 7,
+    "wis": 1
+  },
+  "ac": 26,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>A megaprimatus makes two fist Strikes against the same target. If both hit, the attack deals an additional @Damage[2d6[bludgeoning]] damage, the target is Off-Guard, and the target takes a -20-foot status penalty to all Speeds until the end of its next turn.</p>\n<p>Effect: Mangling Rend</p>",
+      "frequency": null,
+      "name": "Mangling Rend",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The megaprimatus beats its chest in a terrifying display. Creatures within @Template[emanation|distance:50]{50 feet} must attempt a @Check[will|dc:27|name:Frightening Display] save.</p>\n<p>While a creature is Frightened by this ability, it is Off-Guard to the megaprimatus and to gorillas.</p>\n<hr />\n<p><strong>Critical Success</strong> No effect and temporarily immune for 1 minute.</p>\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The creature is Frightened 1.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 2 and Fleeing until the end of its next turn.</p>",
+      "frequency": null,
+      "name": "Terrifying Display",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d8+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 21,
+      "damage": [
+        {
+          "formula": "2d10+10",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "pyTr1VOPrPYH8UNg",
+  "gear": [],
+  "hp": 150,
+  "id": "pathfinder-monster-core/megaprimatus",
+  "immunities": [],
+  "languages": [],
+  "level": 8,
+  "name": "Megaprimatus",
+  "perception": 15,
+  "publicNotes": "<p>The megaprimatus is among the mightiest of apes, quick to confront any perceived intrusions into its domain. With a height of 40 feet, it towers over even most giants, and is used to being the top-tier predator in the region.</p>\n<hr />\n<p>While many apes exhibit peaceful or reclusive behavior, gorillas can be territorial, and the megaprimatus is especially aggressive and dangerous.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 19,
+    "reflex": 16,
+    "will": 13
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 14,
+    "athletics": 19
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    },
+    {
+      "type": "climb",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

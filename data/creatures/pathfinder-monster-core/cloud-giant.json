@@ -1,0 +1,170 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 5,
+    "dex": 0,
+    "int": 1,
+    "str": 7,
+    "wis": 3
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The cloud giant solidifies some clouds, including fog or mist, around a creature that's already in a cloud up to 120 feet away. The target takes @Damage[3d8[bludgeoning]] damage (@Check[fortitude|dc:30|basic] save). If it fails its save, it treats clouds as difficult terrain for 1 round.</p>",
+      "frequency": null,
+      "name": "Crushing Cloud",
+      "requirements": null,
+      "traits": [
+        "air",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The cloud giant Strikes a creature with their ranseur, surrounded in a roar of rushing air. On a hit, the target takes an additional 4d8 bludgeoning damage and is Deafened for 1 minute. Whether or not the Strike hits, each non-cloud giant within a @Template[emanation|distance:20], including the target of the Strike, is buffeted by roaring winds and must attempt a @Check[fortitude|dc:30] saving throw.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes @Damage[2d8[sonic]] damage.</p>\n<p><strong>Failure</strong> The creature takes @Damage[4d8[sonic]] damage and is deafened until the end of its next turn.</p>\n<p><strong>Critical Failure</strong> As failure, but double damage and also knocked Prone.</p>",
+      "frequency": null,
+      "name": "Wind Strike",
+      "requirements": null,
+      "traits": [
+        "air",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Cloud giants ignore concealment from weather conditions, including clouds and rain.</p>",
+      "frequency": null,
+      "name": "Cloudsight",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d8+13",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 25,
+      "damage": [
+        {
+          "formula": "2d10+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Ranseur",
+      "traits": [
+        "disarm",
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "Z5QezXy38ZHyt3O3",
+  "gear": [
+    "Ranseur"
+  ],
+  "hp": 220,
+  "id": "pathfinder-monster-core/cloud-giant",
+  "immunities": [],
+  "languages": [
+    "common",
+    "jotun",
+    "sussuran"
+  ],
+  "level": 11,
+  "name": "Cloud Giant",
+  "perception": 22,
+  "publicNotes": "<p>The graceful and regal cloud giants are fractious, with roughly half their clans believing they should rule over humanoids regardless of their size and the rest shying away from any contact with outsiders. Due to the physical and ideological distance between clans, most rely on giant eagle or roc messengers, to arrange marriages and exchange art without setting foot in each other's territory.</p>\n<p>Cloud giants' skin color ranges from milky white to powdery blue. They make their homes anywhere veiled by the clouds, generally mountaintops or isolated valleys, but occasionally fog-shrouded swamps or misty rainforests. Legends persist of floating cities ruled by magically gifted cloud giant queens and kings. While most cloud giants plainly state that such claims are pure fantasy, others are mysteriously tight-lipped or evasive about the matter.</p>\n<hr />\n<p>Giants are massive humanoid creatures who live in remote regions throughout the world. They vary widely but are united in their hunger, requiring sustenance of their own element along with the feasts one would expect from such a massive humanoid. Although a simple matter for some giants, more esoteric types find this need a harsh reality. While a massive fistful of ice or snow alongside their meal will satisfy a frost giant, shadow giants hunger for the coagulated shadows of the Netherworld.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 25,
+    "reflex": 18,
+    "will": 21
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 26,
+    "crafting": 21,
+    "diplomacy": 24,
+    "intimidation": 26,
+    "performance": 21
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Vapor Form",
+          "rank": 4
+        },
+        {
+          "name": "Levitate (At Will)",
+          "rank": 3
+        },
+        {
+          "name": "Mist (At Will)",
+          "rank": 2
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "air",
+    "giant",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,165 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 4,
+    "int": 1,
+    "str": 2,
+    "wis": 3
+  },
+  "ac": 27,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p><strong>Frequency</strong> once per 10 minutes</p><hr /><p><strong>Effect</strong> The mummer dons a ceremonial skull mask, calling an ancestral spirit to come to their aid. The spirit answers with a spell the mummer can cast as a primal innate spell (5th rank, DC 27) as part of the Don Mask activity. The mummer also gains a primal boon that lasts for 1 minute. After the minute is over or the mask is removed, the spell and boon end if either is still active, and the mummer is Fatigued. The most common legendary spirits the masks can invoke are:</p><ul><li><p><strong>Fiery Akkarok</strong> (tyrannosaurus mask)</p><ul><li><strong>Spell</strong> Blazing Bolt (3-action version)</li><li><strong>Boon</strong> The mummer's melee Strikes deal an additional 2d6 fire damage.</li></ul></li><li><p><strong>Hazi Zephyr-Borne</strong> (griffon or iruxi mask)</p><ul><li><strong>Spell</strong> Wall of Wind</li><li><strong>Boon</strong> The mummer gains a fly Speed of 20 feet.</li></ul></li><li><p><strong>King of Storms</strong> (roc or horned dragon mask)</p><ul><li><strong>Spell</strong> Howling Blizzard</li><li><strong>Boon</strong> The mummer gains the Reactive Strike reaction that can be used only with their tail.</li></ul></li><li><p><strong>Nessek, the Wave Dancer</strong> (mosasaur mask)</p><ul><li><strong>Spell</strong> Slither</li><li><strong>Boon</strong> The mummer's claw Strikes deal an additional 2d4 persistent bleed damage.</li></ul></li><li><p><strong>Zalok, Who was Called to Black Harbor</strong> (naga or spinosaurus mask)</p><ul><li><strong>Spell</strong> Hydraulic Torrent</li><li><strong>Boon</strong> The mummer gains a +10-foot status bonus to their land Speed and swim Speed.</li></ul></li></ul>",
+      "frequency": {
+        "max": 1,
+        "per": "PT10M"
+      },
+      "name": "Don Mask",
+      "requirements": null,
+      "traits": [
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>30 feet. With a quick dance, the iruxi masked mummer surrounds themself with a starlight image resembling a figure from legend. The image lasts until the start of the mummer's next turn. An enemy that enters or starts its turn in the aura must succeed at a @Check[will|dc:25] save or become Dazzled until the start of its next turn.</p>",
+      "frequency": null,
+      "name": "Starry Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "illusion",
+        "light",
+        "mental",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>An iruxi masked mummer can hold their breath for 20 minutes.</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d4+8",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed",
+        "versatile-p"
+      ]
+    },
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "3d10",
+          "type": "sonic"
+        }
+      ],
+      "kind": "melee",
+      "name": "Spectral Roar",
+      "traits": [
+        "primal",
+        "range-30",
+        "sonic"
+      ]
+    },
+    {
+      "bonus": 20,
+      "damage": [
+        {
+          "formula": "2d6+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "finesse",
+        "sweep",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "cNXg1uiwM9Dafdko",
+  "gear": [
+    "+1 Striking Handwraps of Mighty Blows",
+    "Ceremonial Skull Mask",
+    "Maestro's Instrument (Lesser) (Hand Drum)",
+    "Mummer's Costume"
+  ],
+  "hp": 155,
+  "id": "pathfinder-npc-core/iruxi-masked-mummer",
+  "immunities": [],
+  "languages": [
+    "common",
+    "draconic",
+    "iruxi",
+    "thalassic"
+  ],
+  "level": 9,
+  "name": "Iruxi Masked Mummer",
+  "perception": 18,
+  "publicNotes": "<p>Iruxi masked mummers bring lizardfolk myths to life, donning elaborate costumes and bone masks to enact stories featuring their ancestors, the gods, legendary dragons and dinosaurs, and nature spirits of all kinds.</p>\n<p>The most talented mummers claim their ritual dances invite these spirits inside them, suffusing their bodies with starlight and lending them primal power uniquely tied to the luminaries their masks represent. This magic can be seen even by those without magical ability, as they can see glowing motes shaped like distant stars seeming to float under the skin of the mummer.</p><hr /><p>Lizardfolk culture has flowered in recent years. With that revival has come a new generation of iruxis (as they call themselves) more willing to engage with the wider world, bringing with them their society's reverence for the past, facility with nature, and willingness to defend itself.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 19,
+    "will": 18
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 17,
+    "intimidation": 19,
+    "nature": 18,
+    "performance": 20,
+    "society": 16,
+    "survival": 18
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "lizardfolk"
+  ],
+  "weaknesses": []
+}

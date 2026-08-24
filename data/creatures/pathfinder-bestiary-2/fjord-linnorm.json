@@ -1,0 +1,241 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 8,
+    "dex": 5,
+    "int": -3,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 40,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>Tail only</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "frequency": null,
+      "name": "Attack of Opportunity (Tail Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The fjord linnorm expels a @Template[line|distance:120] of icy bile, dealing @Damage[17d6[cold]|options:area-damage] damage to creatures within the area (@Check[reflex|dc:37|basic|options:area-effect] save). Any creature that fails its save is covered by the ice, which freezes and fuses with the creature's skin, giving it a -10-foot penalty to Speed. A creature can Escape or Force Open the ice (DC 34) to free itself; otherwise, the ice remains for 1 minute.</p>\n<p>The fjord linnorm can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a creature slays a fjord linnorm, it must succeed at a @Check[will|dc:41] save or become unable to ever breathe underwater (either via a natural ability or a spell such as water breathing). In addition, the victim can hold its breath only half as long as normal, and whenever it holds its breath it becomes Sickened 2.</p>",
+      "frequency": null,
+      "name": "Curse of Stolen Breath",
+      "requirements": null,
+      "traits": [
+        "curse",
+        "primal",
+        "water"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:37]</p>\n<p><strong>Maximum Duration</strong> 10 rounds</p>\n<p><strong>Stage 1</strong> @Damage[4d6[cold]] damage and Clumsy 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[6d6[cold]] damage and Clumsy 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Fjord Linnorm Venom",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 10 (Deactivated by Cold Iron)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d10+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d12+17",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 33,
+      "damage": [
+        {
+          "formula": "3d6+15",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-25"
+      ]
+    }
+  ],
+  "foundryId": "sY3VkazdyPiMgMj1",
+  "gear": [],
+  "hp": 315,
+  "id": "pathfinder-bestiary-2/fjord-linnorm",
+  "immunities": [
+    "cold",
+    "curse",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "aklo",
+    "draconic",
+    "fey"
+  ],
+  "level": 16,
+  "name": "Fjord Linnorm",
+  "perception": 28,
+  "publicNotes": "<p>Fjord linnorms make their homes in damp caves behind ice-cold waterfalls in the river-veined coastal reaches of the north. While they may appear graceful as they swim up the fjords for which they're named, they are as vile as any other of their species and take pleasures in capsizing river boats before gobbling up their terrified crews.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 30,
+    "reflex": 28,
+    "will": 24
+  },
+  "senses": [
+    "darkvision",
+    "scent",
+    "truesight"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 27,
+    "athletics": 33,
+    "stealth": 29
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "fly",
+      "value": 75
+    },
+    {
+      "type": "swim",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 27,
+      "dc": 37,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Freedom of Movement (Constant)",
+          "rank": 7
+        },
+        {
+          "name": "True Seeing (Constant)",
+          "rank": 6
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "dragon"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 15
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 8,
+    "dex": 2,
+    "int": -4,
+    "str": 10,
+    "wis": 0
+  },
+  "ac": 43,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedKnockdown]</p>",
+      "frequency": null,
+      "name": "Improved Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedPush]</p>",
+      "frequency": null,
+      "name": "Improved Push 20 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The guthallath has a creature Grabbed.</p>\n<hr />\n<p><strong>Effect</strong> The guthallath throws the creature into the air, 100 feet high and 50 feet away. If the flung creature lands on another creature, the creature it lands on takes the same amount of bludgeoning damage. The creature being landed on can attempt a @Check[reflex|dc:41|basic] save.</p>",
+      "frequency": null,
+      "name": "Deadly Throw",
+      "requirements": "The guthallath has a creature Grabbed.",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>A guthallath releases two beams of destruction from its eyes. Each beam is a @Template[line|distance:120]. Everything in either line takes the effect of a hit from a 10th-rank Disintegrate spell (@Check[fortitude|dc:41|basic|traits:attack,evocation,arcane]). There is no additional effect on creatures in any area where the beams overlap.</p>\n<p>The guthallath can't use this ability again for [[/gmr 1d4 #Recharge Annihilation Beams]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Annihilation Beams",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Huge or smaller, foot, @Check[reflex|dc:45|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>120 feet. The guthallath erodes away the physical integrity of all around it. Creatures and objects in the emanation other than the guthallath have their hardness and resistances reduced by 10. At the start of its turn, a creature in the erosion aura's area takes @Damage[6d6[bludgeoning]] damage (@Check[fortitude|dc:39|basic]).</p>",
+      "frequency": null,
+      "name": "Erosion Aura",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The guthallath is immune to spells of lower than 7th level and the activated effects of magic items of lower than 14th level.</p>",
+      "frequency": null,
+      "name": "Immunity to Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Any encounters with adamantine golems, guthallaths, or radiant wardens in Numeria are with ancient robotic versions of these creatures. In encounters with them, describe them as having more technological aspects. The guthallath's erosion aura could be caused by clouds of deconstructor nanites and its annihilation beams manifest as plasma blasts. The adamantine golem might have tank treads instead of legs and its vent ability might manifest as a spray of dozens of laser beams in a cone. And the radiant warden's radiant beams and blast serve as rippling attacks of focused graviton beams.</p>\n<p>All of these constructs have weakness 15 to critical hits and electricity, but their other statistics do not change. If you'd rather not introduce Numeria's themes of super-science and strange technology, you can either present these constructs as standard versions, or re-roll your encounter to get a more appropriate result for your game.</p>",
+      "frequency": null,
+      "name": "Numerian Construct",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If a guthallath hits with an attack and rolls a natural 19 on the d20 roll, the attack is a critical hit. This has no effect if the 19 would be a failure.</p>",
+      "frequency": null,
+      "name": "Powerful Blows",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "4d12+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "deadly-3d12",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 38,
+      "damage": [
+        {
+          "formula": "4d8+18",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "deadly-3d12",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "UqUj1IF3vCFuXYqb",
+  "gear": [],
+  "hp": 325,
+  "id": "kingmaker-bestiary/numerian-guthallah",
+  "immunities": [],
+  "languages": [],
+  "level": 19,
+  "name": "Numerian Guthallah",
+  "perception": 30,
+  "publicNotes": "<p>A guthallath is an enormous construct created long ago by some unknown empire, probably as a war machine. Nearly 100 feet tall, this massive stone statue typically resembles a stalwart warrior wearing only a loincloth and skullcap. Few have seen the entire body of a guthallath, though; most of the time such a relic is buried up to its neck, covered in moss and stranded in some forgotten place. Yet, every so often, one of these harbingers of destruction reactivates in response to some unknown stimulus or rallying call, and when this happens, woe be unto any who stand in its way.</p>\n<p>While the guthallath's ancient enemies are gone, it is an engine of pure destruction, designed to rampage for weeks or even months. While not intelligent enough to enjoy or regret its acts, the guthallath cannot be reasoned with-it is unaffected by most magic, and is unpredictable in how it selects its targets (and creatures it spares).</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "physical",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 38,
+    "reflex": 32,
+    "will": 30
+  },
+  "senses": [
+    "darkvision",
+    "truesight"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 25,
+    "athletics": 40
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "burrow",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 29,
+      "dc": 37,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "True Seeing (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Haste (Constant)",
+          "rank": 3
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "construct"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,157 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 2,
+    "dex": 4,
+    "int": 0,
+    "str": 1,
+    "wis": 3
+  },
+  "ac": 17,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The scout is wielding a net in two hands</p><hr /><p><strong>Effect</strong> The scout makes a ranged Strike (with a [[/r 1d20+9 #Hurl Net]]{+9} modifier) against a Medium or smaller creature within 20 feet. On a hit, the target is Off-Guard and takes a –10-foot circumstance penalty to its Speeds. On a critical hit, the creature is Restrained instead. The DC to [[/act escape dc=16]]{Escape} the net is 16. A creature adjacent to the target can Interact with the net to remove it.</p>\n<p>Effect: Hurl Net</p>",
+      "frequency": null,
+      "name": "Hurl Net",
+      "requirements": "The scout is wielding a net in two hands",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>The scout ignores difficult terrain caused by plants, such as bushes, vines, and undergrowth.</p>",
+      "frequency": null,
+      "name": "Forest Passage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dart",
+      "traits": [
+        "agile",
+        "thrown-20"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hand Adze",
+      "traits": [
+        "agile",
+        "finesse",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hand Adze",
+      "traits": [
+        "agile",
+        "sweep",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "XfK0MATlH2WDNhAA",
+  "gear": [
+    "Dart",
+    "Hand Adze",
+    "Leather Armor",
+    "Net"
+  ],
+  "hp": 20,
+  "id": "pathfinder-npc-core/tripkee-scout",
+  "immunities": [],
+  "languages": [
+    "common",
+    "grippli"
+  ],
+  "level": 1,
+  "name": "Tripkee Scout",
+  "perception": 8,
+  "publicNotes": "<p>Tripkee scouts are the first line of defense for their hidden treetop villages. They are often scattered throughout the forests in small groups to keep an eye out for anything new or dangerous that could pose a threat.</p><hr /><p>Traditionally making their homes in the treetops of tropical jungles and forests, these frog-like humanoids are often seen as resourceful and cautious, preferring to live and hunt hidden in the branches of tall trees.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 7,
+    "reflex": 9,
+    "will": 6
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 7,
+    "athletics": 4,
+    "nature": 6,
+    "stealth": 7,
+    "survival": 6
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "grippli",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

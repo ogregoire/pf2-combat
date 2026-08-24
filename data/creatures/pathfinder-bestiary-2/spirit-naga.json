@@ -1,0 +1,298 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 3,
+    "dex": 4,
+    "int": 1,
+    "str": 3,
+    "wis": 3
+  },
+  "ac": 28,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A spirit naga adds Hallucination, Mind Probe, and Suggestion to their coven's spells.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Coven]</p>",
+      "frequency": null,
+      "name": "Coven",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:28]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] damage and Stupefied 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d6[poison]] damage and Stupefied 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Spirit Naga Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "2d8+9",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "h4SZ3U9at7aT0ASv",
+  "gear": [],
+  "hp": 160,
+  "id": "pathfinder-bestiary-2/spirit-naga",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common"
+  ],
+  "level": 9,
+  "name": "Spirit Naga",
+  "perception": 18,
+  "publicNotes": "<p>In naga culture, the foul-tempered, unkempt spirit naga holds a contemptible place similar to that of hags in humanoid cultures. These decrepit creatures live out lives of solitude, sought out only by those who are foolish or brave enough to think they can benefit from the spirit naga's powers without paying a heavy price-for most who dare to show such hubris, the price is their own lives.</p>\n<p>Spirit nagas seek out desolate ruins and places long associated with death and corruption. These sinister, serpentine beings can be found in abandoned graveyards, crumbled fortresses, rotting swamps, and blighted woodlands. Though they may know little of the actual history of such places, the nagas are nonetheless attracted to the psychic remnants of evil deeds and tormented spirits that remain within the earth and stones there.</p>\n<p>Despite their hideous appearance and treatment as pariahs by other nagas, spirit nagas feel a profound pride in their abilities and even in their hermetic existences. They see themselves as connected to a greater force whose mysteries are revealed only to those who can cast off the trappings and morals of \"civilized\" society. Even so, spirit nagas gleefully accept the worship of other creatures willing to bow to their capricious whims. They often form cults around themselves, using their charm spells and rituals to ensnare the minds of a few key individuals who spread the nagas' foul influence throughout a community.</p>\n<hr />\n<p>Nagas are identifiable by their serpentine bodies and strange, humanlike heads. All nagas have magical abilities and great intelligence, which they combine to advance their own agendas.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 20,
+    "will": 18
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 18,
+    "athletics": 16,
+    "deception": 17,
+    "intimidation": 19,
+    "occultism": 20,
+    "stealth": 20
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 15
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 15,
+      "dc": 23,
+      "name": "Coven Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Baleful Polymorph",
+          "rank": 6
+        },
+        {
+          "name": "Hallucination",
+          "rank": 5
+        },
+        {
+          "name": "Illusory Scene",
+          "rank": 5
+        },
+        {
+          "name": "Mind Probe",
+          "rank": 5
+        },
+        {
+          "name": "Prying Eye",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Talking Corpse",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Dream Message",
+          "rank": 3
+        },
+        {
+          "name": "Augury",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 20,
+      "dc": 28,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 3,
+          "rank": 5
+        }
+      ],
+      "spells": [
+        {
+          "name": "Black Tentacles",
+          "rank": 5
+        },
+        {
+          "name": "Sending",
+          "rank": 5
+        },
+        {
+          "name": "Subconscious Suggestion",
+          "rank": 5
+        },
+        {
+          "name": "Clairvoyance",
+          "rank": 4
+        },
+        {
+          "name": "Confusion",
+          "rank": 4
+        },
+        {
+          "name": "Fly",
+          "rank": 4
+        },
+        {
+          "name": "Modify Memory",
+          "rank": 4
+        },
+        {
+          "name": "Dream Message",
+          "rank": 3
+        },
+        {
+          "name": "Mind Reading",
+          "rank": 3
+        },
+        {
+          "name": "Paralyze",
+          "rank": 3
+        },
+        {
+          "name": "Vampiric Touch",
+          "rank": 3
+        },
+        {
+          "name": "Blur",
+          "rank": 2
+        },
+        {
+          "name": "Humanoid Form",
+          "rank": 2
+        },
+        {
+          "name": "Mirror Image",
+          "rank": 2
+        },
+        {
+          "name": "Telekinetic Maneuver",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Command",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Grim Tendrils",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Sigil",
+          "rank": 1
+        },
+        {
+          "name": "Unseen Servant",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

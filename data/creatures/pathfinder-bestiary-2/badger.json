@@ -1,0 +1,101 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 2,
+    "dex": 1,
+    "int": -5,
+    "str": 0,
+    "wis": 2
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is wounded 3, it can no longer use this ability</p>",
+      "frequency": null,
+      "name": "Ferocity",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The monster is reduced to 0 HP."
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d8",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "PKAs8bMBMpnegmwq",
+  "gear": [],
+  "hp": 15,
+  "id": "pathfinder-bestiary-2/badger",
+  "immunities": [],
+  "languages": [],
+  "level": 0,
+  "name": "Badger",
+  "perception": 6,
+  "publicNotes": "<p>The typical badger has dark, brownish-gray fur highlighted with white markings, particularly on the head, giving it a striped mask of fur around its eyes. A threatened badger can swiftly become a ferocious combatant that typically fights until slain.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 5,
+    "will": 6
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "small",
+  "skills": {
+    "athletics": 4,
+    "stealth": 6
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 10
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

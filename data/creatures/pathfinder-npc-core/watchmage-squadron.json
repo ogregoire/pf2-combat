@@ -1,0 +1,136 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 4,
+    "int": 5,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><span class=\"action-glyph\">1 </span>to<span class=\"action-glyph\"> 3</span></p>\n<p><strong>Frequency</strong> once per round</p><hr /><p><strong>Effect</strong> The watchmages fire a volley against each enemy in a @Template[type:burst|distance:10] within 150 feet, with a @Check[reflex|dc:26|basic] save. The damage depends on the number of actions. When the squadron is reduced to 2 or fewer segments, this area decreases to a @Template[type:burst|distance:5].</p>\n<p><span class=\"action-glyph\">1</span> 1d6+3 piercing plus @Damage[1d6[force]] damage</p>\n<p><span class=\"action-glyph\">2</span> 3d6+6 piercing plus @Damage[1d6[force]] damage</p>\n<p><span class=\"action-glyph\">3</span> 4d6+6 piercing plus @Damage[1d6[force]] damage</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Fire Shortbows!",
+      "requirements": null,
+      "traits": [
+        "arcane"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The watchmages lash out against all enemies in a @Template[type:emanation|distance:5] with their fists, dealing @Damage[(4d4+4)[bludgeoning]|options:area-damage] damage with a @Check[reflex|dc:29|basic|options:area-effect] save.</p>",
+      "frequency": null,
+      "name": "Bash Heads",
+      "requirements": null,
+      "traits": [
+        "nonlethal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Invisibility can't make anything undetected or unnoticed to the watchmage squadron.</p>",
+      "frequency": null,
+      "name": "Invisibility Scan",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p><strong>Thresholds</strong> 120 (3 segments), 60 (2 segments)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "frequency": null,
+      "name": "Troop Defenses",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Whenever a troop moves, you move one of its segments and the other segments follow behind it. At the end of the movement, you can group the other segments adjacent to the one you moved as you see fit, provided none of them moves farther than the moving segment. If you choose not to move the troop any distance, you can instead reshape the position of all the segments as long as one stays in place.</p>",
+      "frequency": null,
+      "name": "Troop Movement",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>When the watchmage squadron Casts a Spell, the individual members combine their efforts into casting a more powerful version than any one member could achieve alone. When Casting a Spell that has an area of a burst, cone, or line and doesn't have a duration, increase the area of that spell. Add 5 feet to the radius of a burst that normally has a radius of at least 10 feet (a burst with a smaller radius is not affected). Add 5 feet to the length of a cone or line that is normally 15 feet long or smaller, and add 10 feet to the length of a larger cone or line.</p>",
+      "frequency": null,
+      "name": "Troop Spellcasting",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [],
+  "foundryId": "4gz263pSwpuyZQ6O",
+  "gear": [],
+  "hp": 180,
+  "id": "pathfinder-npc-core/watchmage-squadron",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 10,
+  "name": "Watchmage Squadron",
+  "perception": 22,
+  "publicNotes": "<p>Governments often organize and deploy squadrons of watchmages in places where dangerous magic is expected. Members combine their spellcasting to cast at a higher level than they could alone.</p><hr /><p>Larger societies rely on those with the authority and the ability to interpret and enforce laws. Some carry out these duties fairly, but others are harsh and cruel, imposing severe punishments on anyone unable to pay for clemency.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 22,
+    "reflex": 16,
+    "will": 19
+  },
+  "senses": [],
+  "size": "gargantuan",
+  "skills": {
+    "arcana": 21,
+    "athletics": 19,
+    "intimidation": 20,
+    "society": 19
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid",
+    "troop"
+  ],
+  "weaknesses": [
+    {
+      "type": "area-damage",
+      "value": 10
+    },
+    {
+      "type": "splash-damage",
+      "value": 10
+    }
+  ]
+}

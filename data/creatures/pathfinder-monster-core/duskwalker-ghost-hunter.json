@@ -1,0 +1,179 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 1,
+    "dex": 4,
+    "int": 0,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<p><strong>Requirements</strong> The duskwalker has designated a creature as their prey using Spirit Hunter</p>\n<hr />\n<p><strong>Effect</strong> The duskwalker makes two ranged Strikes against their prey. If both Strikes hit, combine their damage for the purpose of resistances and weaknesses.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Spirit Shot",
+      "requirements": "The duskwalker has designated a creature as their prey using Spirit Hunter",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The duskwalker is targeted by a Strike or spell</p>\n<hr />\n<p><strong>Effect</strong> The duskwalker gains a +2 circumstance bonus to AC, resistance 5 to spirit damage, and increases their resistance to void damage to 5, all against the triggering attack.</p>",
+      "frequency": null,
+      "name": "Ghost Dodge",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The duskwalker is targeted by a Strike or spell"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The duskwalker designates a single creature they can observe as their prey.</p>\n<p>The duskwalker gains a +2 circumstance bonus to Deception checks, Intimidation checks, and Stealth checks against their prey and to any check to Recall Knowledge about it, and deal an additional @Damage[2[spirit]] damage with all weapon Strikes against their prey.</p>\n<p>These effects last until the duskwalker uses Spirit Hunter again.</p>",
+      "frequency": null,
+      "name": "Spirit Hunter",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Death Effects",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The duskwalker's weapons have the benefits of the <em>Ghost Touch</em> property rune on attacks against incorporeal undead.</p>",
+      "frequency": null,
+      "name": "Ghost Hunter",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Composite Longbow",
+      "traits": [
+        "deadly-d10",
+        "propulsive",
+        "range-increment-100",
+        "reload-0",
+        "volley-30"
+      ]
+    },
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Hatchet",
+      "traits": [
+        "agile",
+        "sweep",
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "3t1z62LREP4nnIDr",
+  "gear": [
+    "Arrows",
+    "Composite Longbow",
+    "Hatchet",
+    "Leather Armor"
+  ],
+  "hp": 56,
+  "id": "pathfinder-monster-core/duskwalker-ghost-hunter",
+  "immunities": [],
+  "languages": [
+    "common",
+    "necril"
+  ],
+  "level": 4,
+  "name": "Duskwalker Ghost Hunter",
+  "perception": 10,
+  "publicNotes": "<p>Duskwalkers are infused with the same energies as psychopomps. These ashen scions are reborn in the mortal Universe to guard the cycle of life and death.</p>\n<hr />\n<p>Many immortals dwell upon the other planes of the Great Beyond. Some are benevolent and kind, like angels. Others are cruel and destructive, like demons. And some fit roles outside of morality, like psychopomps. It's far from unheard of for mortals and immortals alike to become entangled romantically, and the children of such engagements carry a supernatural element in their bloodlines for generations to follow. After the first generation, this otherworldly influence usually lies dormant, but now and then, the influence can manifest strongly in descendants many years later. These inheritors of extraplanar legacies are known collectively as planar scions.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "void",
+      "value": 2
+    }
+  ],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 12,
+    "will": 10
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 10,
+    "athletics": 8,
+    "deception": 6,
+    "intimidation": 6,
+    "nature": 8,
+    "stealth": 12,
+    "survival": 8
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "duskwalker",
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

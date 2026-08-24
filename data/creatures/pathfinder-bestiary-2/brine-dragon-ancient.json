@@ -1,0 +1,287 @@
+{
+  "abilityMods": {
+    "cha": 6,
+    "con": 6,
+    "dex": 5,
+    "int": 5,
+    "str": 9,
+    "wis": 5
+  },
+  "ac": 40,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature the brine dragon observes within 30 feet uses a concentrate action</p>\n<hr />\n<p><strong>Effect</strong> The dragon spits a glob of caustic salt water at the creature. The creature takes @Damage[7d6[acid]] damage (@Check[reflex|dc:36|basic] save). On a failure, the concentrate action is disrupted.</p>",
+      "frequency": null,
+      "name": "Brine Spit",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": "A creature the brine dragon observes within 30 feet uses a concentrate action"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The dragon tries to capsize an adjacent aquatic vessel of their size or smaller. They must succeed at an Athletics check with a DC of 35 (reduced by 5 for each size smaller the vessel is than the dragon) or the pilot's Sailing Lore DC, whichever is higher.</p>",
+      "frequency": null,
+      "name": "Capsize",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon breathes a spray of acidic salt water that deals @Damage[18d6[acid]|options:area-damage] damage in a @Template[line|distance:120] (@Check[reflex|dc:38|basic|options:area-effect] save).</p>\n<p>They can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "acid",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon makes a jaws Strike. On a hit, the target takes @Damage[6d6[persistent,acid]] damage, and is Sickened 3 from the pain of salt and brine in its wounds.</p>",
+      "frequency": null,
+      "name": "Desiccating Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragon makes two claw Strikes and one wing Strike in any order.</p>",
+      "frequency": null,
+      "name": "Draconic Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The dragon recharges their Breath Weapon whenever they score a critical hit with a Strike.</p>",
+      "frequency": null,
+      "name": "Draconic Momentum",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>90 feet. @Check[will|dc:36]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The brine dragon's body is encrusted with salty, acidic crystals. When a target takes damage from one of the dragon's melee Strikes, it must succeed at a @Check[fortitude|dc:38] Save or be Stunned 1 (Stunned 3 on a critical failure). The target then becomes temporarily immune for 1 minute.</p>",
+      "frequency": null,
+      "name": "Painful Strikes",
+      "requirements": null,
+      "traits": [
+        "acid"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "3d10+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "3d10+17",
+          "type": "piercing"
+        },
+        {
+          "formula": "5d4",
+          "type": "acid"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "acid",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "3d12+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "magical",
+        "reach-25"
+      ]
+    },
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "2d12+17",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Wing",
+      "traits": [
+        "magical",
+        "reach-20"
+      ]
+    }
+  ],
+  "foundryId": "oMZaSpBmWddKZ1KN",
+  "gear": [],
+  "hp": 330,
+  "id": "pathfinder-bestiary-2/brine-dragon-ancient",
+  "immunities": [
+    "acid",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "fey",
+    "thalassic",
+    "utopian"
+  ],
+  "level": 17,
+  "name": "Brine Dragon (Ancient)",
+  "perception": 32,
+  "publicNotes": "<p>Brine dragons are usually blue-green in color, with shiny scales, crests that help them glide through the water, and sweeping neck frills. They care little for either good or evil. As they are both opinionated and willing to impose their sense of order on others, many brine dragons eventually seek to rule over a meticulously crafted community. These communities are orderly and well-planned, with rigid standards of courtesy and unchanging laws set down by the dragon themself. A settlement seeded by a brine dragon can be made of members of almost any ancestry, but the most common inhabitants are humans, merfolk, tengus, or sahuagin.</p>\n<p>Depending on the dragon's personality, their community members might view their brine dragon ruler as anything from a benevolent force of order to a fearful tyrant. Regardless, the typical brine dragon has little patience for kindness or philanthropy, and the strength and health of their settlement as a whole are of greater concern than individuals' well-being. A notable exception to this dispassion rises when an outside force encroaches on their lands. In these cases, the brine dragon is quick to step in and aid in the defense of their community.</p>\n<p>Although brine dragons enjoy cultivating settlements, they rarely make their lairs within the city limits, instead preferring to dwell in sea caves or cliffside grottoes overlooking the coastline. Here they can retreat for privacy as needed, or can accumulate and display their gathered wealth in a place where they feel safe spreading out their treasures. Brine dragon hoards often consist of a mix of offerings and taxes paid by those they rule over and strange discoveries salvaged from sunken ships.</p>",
+  "rarity": "rare",
+  "resistances": [],
+  "saves": {
+    "fortitude": 31,
+    "reflex": 30,
+    "will": 30
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 28,
+    "athletics": 32,
+    "deception": 32,
+    "intimidation": 34,
+    "nature": 30,
+    "society": 30,
+    "survival": 29
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 50
+    },
+    {
+      "type": "fly",
+      "value": 140
+    },
+    {
+      "type": "swim",
+      "value": 70
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 30,
+      "dc": 38,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Control Water",
+          "rank": 5
+        },
+        {
+          "name": "Mariner's Curse",
+          "rank": 5
+        },
+        {
+          "name": "Hydraulic Push (At Will)",
+          "rank": 4
+        },
+        {
+          "name": "Hydraulic Torrent",
+          "rank": 4
+        },
+        {
+          "name": "Obscuring Mist (At Will)",
+          "rank": 4
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "amphibious",
+    "dragon",
+    "elemental",
+    "water"
+  ],
+  "weaknesses": []
+}

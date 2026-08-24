@@ -1,0 +1,165 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 2,
+    "dex": 3,
+    "int": 1,
+    "str": 2,
+    "wis": 4
+  },
+  "ac": 125,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The tripkee fiend keeper isn't stupefied</p><hr /><p><strong>Effect</strong> The tripkee fiend keeper allows a portion of the fiendish power they have absorbed to flow through their body. For the next minute, the tripkee fiend keeper's Strikes deal an additional die of damage and gain the unholy trait. The tripkee fiend keeper also gains 10 temporary Hit Points, a +5-foot status bonus to Speed for the duration, and weakness 5 to holy. At the end of the duration, the tripkee fiend keeper is Stupefied 1 for 1 hour.</p>",
+      "frequency": null,
+      "name": "Harness Wickedness",
+      "requirements": null,
+      "traits": [
+        "concentrate",
+        "divine",
+        "unholy"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The tripkee fiend keeper makes a ranged Strike with their cruuk against a target within 30 feet. Once the Strike is complete, the cruuk ricochets back into the tripkee fiend keeper's hand. If their hands are full when the cruuk returns, it falls to the ground in their space.</p>",
+      "frequency": null,
+      "name": "Bounce Cruuk",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The fiend keeper ignores difficult terrain caused by plants, such as bushes, vines, and undergrowth.</p>",
+      "frequency": null,
+      "name": "Forest Passage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Whenever the tripkee fiend keeper critically hits an unholy creature, they reduce the value of their Stupefied condition by 1.</p>",
+      "frequency": null,
+      "name": "Hunter of Virtue",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Cruuk",
+      "traits": [
+        "magical",
+        "shove"
+      ]
+    },
+    {
+      "bonus": 17,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Cruuk",
+      "traits": [
+        "magical",
+        "thrown-30"
+      ]
+    },
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+5",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "bQsdRYWGcUvXdp5G",
+  "gear": [
+    "Cruuk",
+    "Leather Armor"
+  ],
+  "hp": 125,
+  "id": "pathfinder-npc-core/tripkee-fiend-keeper",
+  "immunities": [],
+  "languages": [
+    "chthonian",
+    "common",
+    "diabolic",
+    "grippli"
+  ],
+  "level": 7,
+  "name": "Tripkee Fiend-Keeper",
+  "perception": 18,
+  "publicNotes": "<p>Tripkees have a technique for dealing with unholy threats that has been passed down through the generations. A fiend keeper can absorb unholy spirits into their body before those entities can cause trouble for their kin. Though they can tap into this power when necessary, tripkee fiend keepers try to cleanse themselves of its evil influence by undertaking good deeds.</p><hr /><p>Traditionally making their homes in the treetops of tropical jungles and forests, these frog-like humanoids are often seen as resourceful and cautious, preferring to live and hunt hidden in the branches of tall trees.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 15,
+    "will": 18
+  },
+  "senses": [
+    "low-light-vision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 17,
+    "athletics": 13,
+    "nature": 16,
+    "religion": 16,
+    "stealth": 17,
+    "survival": 16
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 20
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "grippli",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

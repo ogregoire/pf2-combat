@@ -1,0 +1,181 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 0,
+    "dex": 4,
+    "int": 2,
+    "str": -2,
+    "wis": 0
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dragonet breathes euphoric gas in a @Template[cone|distance:15]. Each creature in the area must succeed at a @Check[fortitude|dc:18] save or become Stupefied 2 and Slowed 1 for [[/gmr 1d4 #rounds]]{1d4 rounds}; on a critical failure, the duration is 1 minute.</p>\n<p>The fey dragonet can't use Euphoric Breath again for [[/gmr 1d4 #Recharge Euphoric Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Euphoric Breath",
+      "requirements": null,
+      "traits": [
+        "arcane",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "finesse",
+        "magical",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "QIXc18xHrEWDmtKW",
+  "gear": [],
+  "hp": 30,
+  "id": "pathfinder-monster-core/fey-dragonet",
+  "immunities": [
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "fey"
+  ],
+  "level": 2,
+  "name": "Fey Dragonet",
+  "perception": 8,
+  "publicNotes": "<p>Although they are much smaller than their larger dragon cousins, fey dragonets have many of the same physiological attributes, including long necks, toothy maws, sinuous tails, and sharp claws. They flit about on iridescent butterfly wings, the coloring of which changes based on where they live, giving them a natural camouflage. Unlike their larger kin, an adult fey dragonet remains the same size throughout their lifespan. The only visual clue to the age of a fey dragonet is the sheen on their scales, a glimmer that becomes more lustrous the older they get.</p>\n<p>Fey dragonets usually exhibit pleasant and good-natured temperaments, though they have a mischievous streak that leads them to play tricks on those around them. In search of amusement, they prefer harmless annoyances over wounding malice. While often spontaneous, they may also spend months, if not years, planning the perfect prank. Especially responsive targets endear themselves to fey dragonets and may create a lifelong bond. A fey dragonet's reputation as a trickster leads many to associate them with fey, with whom the tiny dragons have cordial relationships, and this association gives them their name.</p>\n<p>Peaceful by nature, fey dragonets don't enjoy confrontation. If faced with hostility, they prefer to remain at a distance and breathe euphoric gas at their foes, diffusing the skirmish by creating an atmosphere of bliss. If conflict escalates, they target their opponents with spells, using their renowned trickery to escape. If their companions are in danger, however, their desire to remain out of combat changes. Fey dragonets protect their friends by any means available, including physical combat.</p>\n<p>Sometimes, as fey dragonets grow older, their connection to the First World grows stronger. In addition to growing more lustrous and vibrant in appearance, these fey dragonets gain an increasing amount of magical primal power. Such fey dragonets increase in strength as appropriate—a fey dragonet of 20th level or even higher is possible, but it's exceptionally unusual to encounter a fey dragonet of 9th level or higher beyond the most remote regions of the First World. When creating a more powerful fey dragonet, change their spellcasting tradition to primal and grant them primal spells appropriate for a druid of their level. Fey dragonets don't grow much larger, regardless of how powerful they become. It's often difficult to tell how powerful one of these tiny dragons truly is at a glance!</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 5,
+    "reflex": 12,
+    "will": 11
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 8,
+    "deception": 8,
+    "diplomacy": 8,
+    "nature": 4,
+    "stealth": 10
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "fly",
+      "value": 40
+    },
+    {
+      "type": "swim",
+      "value": 20
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 21,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Invisibility (Self Only)",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    },
+    {
+      "attack": 10,
+      "dc": 18,
+      "name": "Arcane Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        }
+      ],
+      "spells": [
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Grease",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Object",
+          "rank": 1
+        },
+        {
+          "name": "Light",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Sleep",
+          "rank": 1
+        },
+        {
+          "name": "Tangle Vine",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "dragon",
+    "fey"
+  ],
+  "weaknesses": []
+}

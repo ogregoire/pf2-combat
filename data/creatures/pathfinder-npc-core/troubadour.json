@@ -1,0 +1,198 @@
+{
+  "abilityMods": {
+    "cha": 4,
+    "con": 0,
+    "dex": 3,
+    "int": 2,
+    "str": 0,
+    "wis": 1
+  },
+  "ac": 18,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The troubadour can Recall Knowledge on any subject with a +7 modifier.</p>",
+      "frequency": null,
+      "name": "Bardic Lore",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d4+4",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 11,
+      "damage": [
+        {
+          "formula": "1d6+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Rapier",
+      "traits": [
+        "deadly-d8",
+        "disarm",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "55t4OPNXDx6fAeZd",
+  "gear": [
+    "Bolts",
+    "Leather Armor",
+    "Lute",
+    "Poetry Book",
+    "Rapier"
+  ],
+  "hp": 40,
+  "id": "pathfinder-npc-core/troubadour",
+  "immunities": [],
+  "languages": [
+    "common"
+  ],
+  "level": 3,
+  "name": "Troubadour",
+  "perception": 9,
+  "publicNotes": "<p>Troubadours keep alive the traditional songs of their culture and write original works to commemorate major events.</p><hr /><p>Performances come in a wide variety of forms, from musical methods like singing and instruments to physical dancing and juggling to simple orating and conversing.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 6,
+    "reflex": 11,
+    "will": 9
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 8,
+    "deception": 9,
+    "diplomacy": 9,
+    "occultism": 7,
+    "performance": 13,
+    "society": 7,
+    "stealth": 8
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Bard Composition Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Counter Performance",
+          "rank": 1
+        },
+        {
+          "name": "Courageous Anthem",
+          "rank": 1
+        },
+        {
+          "name": "Lingering Composition",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 12,
+      "dc": 20,
+      "name": "Occult Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 2,
+          "rank": 2
+        }
+      ],
+      "spells": [
+        {
+          "name": "Calm",
+          "rank": 2
+        },
+        {
+          "name": "Embed Message",
+          "rank": 2
+        },
+        {
+          "name": "Charm",
+          "rank": 1
+        },
+        {
+          "name": "Daze",
+          "rank": 1
+        },
+        {
+          "name": "Figment",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Prestidigitation",
+          "rank": 1
+        },
+        {
+          "name": "Read Aura",
+          "rank": 1
+        },
+        {
+          "name": "Soothe",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

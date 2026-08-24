@@ -1,0 +1,134 @@
+{
+  "abilityMods": {
+    "cha": 3,
+    "con": 1,
+    "dex": 3,
+    "int": 1,
+    "str": 0,
+    "wis": 4
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> A creature damages Satinder Morne with a melee Strike</p>\n<p><strong>Effect</strong> Satinder Morne makes a melee Strike against the triggering creature. She suffers a -2 penalty on the attack roll but gains a +2 bonus on the damage roll if the Strike hits.</p>",
+      "frequency": null,
+      "name": "Vengeful Sting",
+      "requirements": null,
+      "traits": [],
+      "trigger": "A creature damages Satinder Morne with a melee Strike"
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Satinder Morne deals 1d6 extra precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 15,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Dagger",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d4+6",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Dagger",
+      "traits": [
+        "thrown-10"
+      ]
+    }
+  ],
+  "foundryId": "Lm30gxMpkRJ2Y43d",
+  "gear": [
+    "Dagger",
+    "Gold Pieces",
+    "Leather Armor",
+    "Religious Symbol of Calistra (Silver)",
+    "Ruby Ring"
+  ],
+  "hp": 75,
+  "id": "kingmaker-bestiary/satinder-morne",
+  "immunities": [],
+  "languages": [
+    "common",
+    "elven"
+  ],
+  "level": 6,
+  "name": "Satinder Morne",
+  "perception": 15,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 10,
+    "reflex": 12,
+    "will": 15
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "deception": 14,
+    "diplomacy": 12,
+    "intimidation": 12,
+    "religion": 13,
+    "society": 12,
+    "stealth": 12
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 23,
+      "name": "Cleric Domain Spells",
+      "preparation": "focus",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Charming Touch",
+          "rank": 1
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

@@ -1,0 +1,238 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 4,
+    "dex": 5,
+    "int": 5,
+    "str": 6,
+    "wis": 6
+  },
+  "ac": 36,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Frequency</strong> once per round;</p>\n<hr />\n<p><strong>Effect</strong> The quelaunt feeds on the emotional unrest of a single creature within 30 feet that's under a harmful emotion effect. The target must succeed at a @Check[will|dc:37] save or take @Damage[4d10[mental]] damage and be Stunned for 1 round.</p>\n<p>If the target fails its saving throw, the quelaunt regains the same number of Hit Points and regains the action it spent to Feed on Emotion. It can't use the regained action to Feed on Emotion again.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "round"
+      },
+      "name": "Feed on Emotion",
+      "requirements": null,
+      "traits": [
+        "attack",
+        "emotion",
+        "incapacitation",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> A creature fails a saving throw to resist one of the quelaunt's innate spells or emotional focus spells</p>\n<hr />\n<p><strong>Effect</strong> As the quelaunt invades the triggering creature's mind and plants the seeds of negative emotions, it also strips away the target's feelings of hope or positivity. The quelaunt can immediately end a single emotion effect from which the triggering creature is benefiting.</p>",
+      "frequency": null,
+      "name": "Spiral of Despair",
+      "requirements": null,
+      "traits": [
+        "emotion",
+        "mental"
+      ],
+      "trigger": "A creature fails a saving throw to resist one of the quelaunt's innate spells or emotional focus spells"
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The quelaunt makes three melee Strikes, each against a different target within reach. The multiple attack penalty applies to each attack but increases only after all the attacks have been made.</p>",
+      "frequency": null,
+      "name": "Rapid Strikes",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>The quelaunt casts up to three spells chosen from its at-will innate spells and its emotional focus spells.</p>",
+      "frequency": null,
+      "name": "Emotional Frenzy",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+2 to Will Saves vs. Emotion",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The quelaunt can cast the following cleric domain spells as 8th-rank occult innate spells at will without spending Focus Points: Captivating Adoration, Delusional Pride, and Ignite Ambition.</p>",
+      "frequency": null,
+      "name": "Emotional Focus",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 60 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 30,
+      "damage": [
+        {
+          "formula": "3d8+12",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "G5OY8UMEOrbycZZc",
+  "gear": [],
+  "hp": 305,
+  "id": "pathfinder-monster-core/quelaunt",
+  "immunities": [],
+  "languages": [
+    "aklo"
+  ],
+  "level": 15,
+  "name": "Quelaunt",
+  "perception": 29,
+  "publicNotes": "<p>This three-armed, three-legged monster has no discernible eyes, nose, ears, or mouth, and no visible means of ingesting food. Its limbs are distributed so evenly across its body that it's all but impossible to tell which way the creature is oriented at any given time. Few who witness a quelaunt linger on its alien looks for long though, as the invasion of their minds becomes a more pressing concern, sowing doubt, sorrow, and rage. This monstrosity not only delights in the negative emotions of its prey, but feeds on them, gaining strength and sustenance from their dismay. For the quelaunt, no act is too terrible or cruel to inflict on its victims, since the more a creature suffers, the more the quelaunt feasts.</p>\n<p>Quelaunts are known to associate with other aberrant horrors, including jah-tohls and other creatures associated with the Dominion of the Black. However, the more prevalent theory paints them as more alien—perhaps invasive beings from another dimension of pure thought and feeling—and claims that in their natural state they have no physical bodies at all. Few dare speculate further; the only known autopsy of a quelaunt resulted in the researcher's suicide just days afterward and all the notes were mysteriously destroyed. Whatever secrets there are to be unlocked in the anatomy of these bizarre monsters are apparently important enough to warrant great protection from quelaunts, even after death.</p>",
+  "rarity": "common",
+  "resistances": [
+    {
+      "type": "mental",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 27,
+    "reflex": 26,
+    "will": 31
+  },
+  "senses": [
+    "tremorsense"
+  ],
+  "size": "large",
+  "skills": {
+    "deception": 30,
+    "intimidation": 30,
+    "occultism": 27
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 31,
+      "dc": 39,
+      "name": "Emotional Focus",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Captivating Adoration",
+          "rank": 4
+        },
+        {
+          "name": "Delusional Pride",
+          "rank": 4
+        },
+        {
+          "name": "Ignite Ambition",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    },
+    {
+      "attack": 31,
+      "dc": 39,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Wave of Despair",
+          "rank": 5
+        },
+        {
+          "name": "Fly (Constant)",
+          "rank": 4
+        },
+        {
+          "name": "Laughing Fit",
+          "rank": 2
+        },
+        {
+          "name": "Fear (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

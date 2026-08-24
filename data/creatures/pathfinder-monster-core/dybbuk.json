@@ -1,0 +1,212 @@
+{
+  "abilityMods": {
+    "cha": 8,
+    "con": 0,
+    "dex": 7,
+    "int": 1,
+    "str": -5,
+    "wis": 6
+  },
+  "ac": 35,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The dybbuk attempts to possess an adjacent corporeal creature. This has the same effect as the Possession spell (@Check[will|dc:34]) with an unlimited duration, except since the dybbuk doesn't have a physical body, they aren't Unconscious, and aren't Paralyzed when the effect ends, though they take @Damage[5d6[spirit]] damage if the body is knocked unconscious or killed.</p>\n<p>If the dybbuk took control of the target with Malevolent Possession, when the dybbuk departs, the target has only incoherent memories of the interval it was possessed.</p>",
+      "frequency": null,
+      "name": "Malevolent Possession",
+      "requirements": null,
+      "traits": [
+        "incapacitation",
+        "mental",
+        "occult",
+        "possession"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AtWillSpells]</p>",
+      "frequency": null,
+      "name": "At-Will Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. @Check[will|dc:33]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "frequency": null,
+      "name": "Frightful Presence",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "frequency": null,
+      "name": "Telepathy 100 feet",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "magical",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "frequency": null,
+      "name": "Void Healing",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 28,
+      "damage": [
+        {
+          "formula": "2d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "3d10+14",
+          "type": "void"
+        }
+      ],
+      "kind": "melee",
+      "name": "Ghostly Hand",
+      "traits": [
+        "agile",
+        "finesse",
+        "magical",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "IrssIkWkW6fsbHJL",
+  "gear": [],
+  "hp": 175,
+  "id": "pathfinder-monster-core/dybbuk",
+  "immunities": [
+    "bleed",
+    "death-effects",
+    "disease",
+    "paralyzed",
+    "poison",
+    "precision",
+    "unconscious"
+  ],
+  "languages": [
+    "aklo",
+    "chthonian",
+    "common"
+  ],
+  "level": 15,
+  "name": "Dybbuk",
+  "perception": 27,
+  "publicNotes": "<p>The discorporated spirits called dybbuks arise from souls denied respite in the afterlife, often because they committed some great transgression in life. These spirits are said to cling to life through possessing victims to escape the punishment awaiting them in the afterlife. Only by trapping, cowing, or destroying such spirits can a mortal hope to drive them back.</p>\n<p>Dybbuks, who are most often the spirits of men, hide within possessed victims. Their targets of possession are usually young women on the eve of their wedding nights, which can be seen as an omen of an ill-fitting match, particularly in arranged marriages. Male and nonbinary victims do exist as well, though in lesser quantities, and also often on the eve of a troubled marriage. No one knows for sure why dybbuks are drawn to such situations, though it may be because the transgressive soul of a dybbuk seeks to bring chaos to the most strictly regimented aspects of society.</p>\n<p>A victim possessed by a dybbuk might be loud and crude, refuse to eat or drink, perform profane acts, or otherwise stir up trouble in the victim's household. The possessed victim has no memory of these events after their possession ends.</p>\n<p>Certain classes of specially trained priests can expel dybbuks from their victims through exorcism. Typically, this uses a methodology combining smoke, the blowing of a horn from a ram, and the recitation of holy verses. Exorcisms are, however, extremely difficult and dangerous, and require great knowledge and skill on the part of the priest due to the power of these malevolent spirits.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "all-damage",
+      "value": 10
+    }
+  ],
+  "saves": {
+    "fortitude": 21,
+    "reflex": 28,
+    "will": 29
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 28,
+    "deception": 31,
+    "diplomacy": 27,
+    "intimidation": 29,
+    "stealth": 28
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 50
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 30,
+      "dc": 36,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Dominate",
+          "rank": 6
+        },
+        {
+          "name": "Never Mind",
+          "rank": 6
+        },
+        {
+          "name": "Rewrite Memory",
+          "rank": 4
+        },
+        {
+          "name": "Chilling Darkness",
+          "rank": 3
+        },
+        {
+          "name": "Telekinetic Maneuver (At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Fear",
+          "rank": 1
+        },
+        {
+          "name": "Fear (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "incorporeal",
+    "spirit",
+    "undead",
+    "unholy"
+  ],
+  "weaknesses": []
+}

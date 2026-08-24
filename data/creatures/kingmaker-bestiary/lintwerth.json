@@ -1,0 +1,136 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 3,
+    "dex": 7,
+    "int": 2,
+    "str": 1,
+    "wis": 5
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Lintwerth breathes a cloud of dust in a @Template[cone|distance:15] that deals @Damage[6d6[slashing]|options:area-damage] damage to each creature within the area (@Check[reflex|dc:30|basic|options:area-effect]). The air in this area remains thick with dust for the next 4 rounds; while Lintwerth is in this area his fast healing functions normally, but other breathing creatures who end their turn in the area must make a @Check[fortitude|dc:30] save or become Sickened 1 (Sickened 2 on a critical failure) from coughing on the dusty air. Lintwerth can't use Breath Weapon again for [[/gmr 1d4 #Recharge Breath Weapon]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Breath Weapon",
+      "requirements": null,
+      "traits": [
+        "air",
+        "arcane",
+        "earth"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "frequency": null,
+      "name": "Fast Healing 10 (in dust or sand)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "WGHV95WkNnlY70Sn",
+  "gear": [],
+  "hp": 180,
+  "id": "kingmaker-bestiary/lintwerth",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "common",
+    "petran",
+    "sussuran"
+  ],
+  "level": 11,
+  "name": "Lintwerth",
+  "perception": 22,
+  "publicNotes": "<p>Whining and self-important creatures, dust mephits are known for their tendency to pronounce doom and gloom at every opportunity, lamenting every insignificant and minor difficulty as though it were an insurmountable obstacle and making themselves out to be heroes for struggling valiantly against their cruel fates. They tend to be thin and gaunt, with dusky brown and gray skin and wings.</p>\n<hr />\n<p>Mephits are small, weak creatures that serve at the whims of other elemental entities. The mephits presented here are less common than air mephits, earth mephits, and the like, as they are a blend of two different elements rather than focusing on one alone.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 18,
+    "reflex": 24,
+    "will": 22
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "small",
+  "skills": {
+    "acrobatics": 22,
+    "stealth": 22
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 20
+    },
+    {
+      "type": "fly",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 22,
+      "dc": 30,
+      "name": "Arcane Innate Spells",
+      "preparation": "innate",
+      "slots": [
+        {
+          "max": 1,
+          "rank": 2
+        }
+      ],
+      "spells": [
+        {
+          "name": "Elemental Form",
+          "rank": 5
+        },
+        {
+          "name": "Glitterdust",
+          "rank": 2
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "air",
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}

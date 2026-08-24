@@ -1,0 +1,245 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 5,
+    "dex": 4,
+    "int": 7,
+    "str": 8,
+    "wis": 8
+  },
+  "ac": 39,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "free",
+      "description": "<p><strong>Trigger</strong> The bythos fails or critically fails a check</p>\n<p><strong>Frequency</strong> once per day</p>\n<hr />\n<p><strong>Effect</strong> The bythos rerolls the triggering check and takes the better result.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Temporal Reversion",
+      "requirements": null,
+      "traits": [
+        "fortune"
+      ],
+      "trigger": "The bythos fails or critically fails a check"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The bythos focuses its gaze on a creature it can see within 30 feet. The target must attempt a save against the bythos's confusing gaze. A bythos can't use this ability against the same creature more than once per turn.</p>",
+      "frequency": null,
+      "name": "Focused Gaze",
+      "requirements": null,
+      "traits": [
+        "concentrate"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The bythos make two fist Strikes against a single target. If both Strikes hit, the target attempts a @Check[fortitude|dc:37] save. Creatures that don't get weaker with age or don't age are immune (GM's discretion).</p>\n<p>If a creature becomes clumsy 4, drained 4, and enfeebled 4 due to Aging Strikes, it dies of old age.</p>\n<hr />\n<p><strong>Success</strong> The creature is unaffected.</p>\n<p><strong>Failure</strong> The creature becomes Clumsy 1, Drained 1, and Enfeebled 1, or increases each of these conditions by 1. This effect is cumulative with other aging strikes from bythoses, to a maximum of clumsy 4, drained 4, and enfeebled 4.</p>\n<p><strong>Critical Failure</strong> As failure, but the creature becomes Clumsy 2, Drained 2, and Enfeebled 2, or increases these conditions by 2.</p>",
+      "frequency": null,
+      "name": "Aging Strikes",
+      "requirements": null,
+      "traits": [
+        "divine"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The bythos makes four fist Strikes. Its multiple attack penalty increases normally with each attack.</p>",
+      "frequency": null,
+      "name": "Temporal Flurry",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The bythos touches a creature or object to displace it from time. The target attempts a @Check[fortitude|dc:37|traits:damaging-effect] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The target is unaffected.</p>\n<p><strong>Success</strong> Time flows around the target; the target is Slowed 1 for 1 round.</p>\n<p><strong>Failure</strong> The target disappears from the present moment and reappears in the same location [[/gmr 1d4 #rounds]]{1d4 rounds} later as if no time had passed for it. If a creature or object occupies that space when the target returns, the target appears in the closest available space to its original location.</p>\n<p><strong>Critical Failure</strong> As failure, but the target is Slowed 1 for an extra [[/gmr 1d4 #rounds]]{1d4 rounds} after it returns.</p>",
+      "frequency": null,
+      "name": "Temporal Strike",
+      "requirements": null,
+      "traits": [
+        "divine",
+        "incapacitation",
+        "teleportation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A creature that ends its turn in the aura must attempt a @Check[will|dc:34] save. If it fails, it's Confused for 1 round (or [[/gmr 1d4 #rounds]]{1d4 rounds} on a critical failure).</p>",
+      "frequency": null,
+      "name": "Confusing Gaze",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "divine",
+        "emotion",
+        "incapacitation",
+        "mental",
+        "visual"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When a bythos conveys information, it does so wordlessly through psychic projections. This acts as Telepathy with a range of 100 feet but is understandable to all creatures regardless of whether they have a language.</p>\n<p>The meaning to non-aeons can be vague and is often mysterious. A bythos can use this ability to communicate flawlessly with any other aeon on the same plane.</p>",
+      "frequency": null,
+      "name": "Envisioning",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 15 (Deactivated by Chaotic)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 32,
+      "damage": [
+        {
+          "formula": "2d8",
+          "type": "cold"
+        },
+        {
+          "formula": "2d8",
+          "type": "spirit"
+        },
+        {
+          "formula": "2d8+16",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "magical",
+        "reach-10",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "qjAtPDIi7OyUGsNy",
+  "gear": [],
+  "hp": 245,
+  "id": "pathfinder-bestiary-2/bythos",
+  "immunities": [],
+  "languages": [],
+  "level": 16,
+  "name": "Bythos",
+  "perception": 30,
+  "publicNotes": "<p>The bythos is a guardian of space and time, and at all times seeks out those who misuse planar and temporal magic. A bythos is a roughly humanoid creature with four arms and a body made of swirling clouds and mist. Despite its appearance, its body feels like dry stone. A bythos seeks out paradoxes caused by irresponsible planar or dimensional travelers and repairs breaches where the barriers between planes have become thin or damaged. If the mortals responsible remain in the area and cannot be convinced to cease their activities, the bythos has no qualms about removing them. Using its ability to manipulate time, a bythos might cause an opponent to quickly die of old age as time speeds up around them, or cause a target to disappear from time and space.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 25,
+    "reflex": 26,
+    "will": 30
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "arcana": 29,
+    "athletics": 32,
+    "deception": 25,
+    "intimidation": 25,
+    "nature": 30,
+    "occultism": 29,
+    "religion": 30,
+    "stealth": 26
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 0
+    },
+    {
+      "type": "fly",
+      "value": 35
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 27,
+      "dc": 37,
+      "name": "Divine Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Augury (At will)",
+          "rank": 8
+        },
+        {
+          "name": "Teleport",
+          "rank": 8
+        },
+        {
+          "name": "Dimensional Anchor",
+          "rank": 7
+        },
+        {
+          "name": "Dimensional Lock",
+          "rank": 7
+        },
+        {
+          "name": "Haste",
+          "rank": 7
+        },
+        {
+          "name": "Plane Shift",
+          "rank": 7
+        },
+        {
+          "name": "Slow",
+          "rank": 6
+        },
+        {
+          "name": "Dimensional Anchor (At will)",
+          "rank": 4
+        }
+      ],
+      "tradition": "divine"
+    }
+  ],
+  "traits": [
+    "aeon",
+    "monitor"
+  ],
+  "weaknesses": []
+}

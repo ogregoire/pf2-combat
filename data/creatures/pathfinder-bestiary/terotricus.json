@@ -1,0 +1,247 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 9,
+    "dex": 5,
+    "int": -1,
+    "str": 10,
+    "wis": 6
+  },
+  "ac": 42,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per day</p>\n<p><strong>Requirements</strong> The terotricus is in a swamp or forested area.</p>\n<hr />\n<p><strong>Effect</strong> The terotricus drains nutrients from nearby trees and undergrowth while simultaneously infesting them with fungal growth. All non-magical plant life (though not plant creatures) within a @Template[emanation|distance:60] withers and sprouts foul mold and slimy mushrooms, removing any cover and concealment provided by trees and undergrowth. The terotricus is healed @Damage[200[healing]] Hit Points.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "day"
+      },
+      "name": "Infest Environs",
+      "requirements": "The terotricus is in a swamp or forested area.",
+      "traits": [
+        "healing",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedPush]</p>",
+      "frequency": null,
+      "name": "Improved Push 20 feet (40 feet on a Critical Hit)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 25 (Deactivated by Cold)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Plants and fungi are immune.</p>\n<p><strong>Saving Throw</strong> @Check[fortitude|dc:40]</p>\n<hr />\n<p><strong>Stage 1</strong> Enfeebled 2 (1 day)</p>\n<p><strong>Stage 2</strong> Enfeebled 4 and Slowed 1 (1 day)</p>\n<p><strong>Stage 3</strong> Controlled by the terotricus (as Dominate; [[/br 5d8 #Duration Controlled]]{5d8 days})</p>\n<p><strong>Stage 4</strong> dead</p>",
+      "frequency": null,
+      "name": "Spore Blight",
+      "requirements": null,
+      "traits": [
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>30 feet. A creature entering the aura or starting its turn there is exposed to spore blight.</p>",
+      "frequency": null,
+      "name": "Spore Cloud",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "disease"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A creature hit by a terotricus's spores must succeed at a @Check[reflex|dc:40] save or take a -10-foot status penalty to all its Speeds for 1 minute. On a critical failure, the creature is Immobilized until it Escapes (DC 40).</p>\n<p>Effect: Sticky Spores</p>",
+      "frequency": null,
+      "name": "Sticky Spores",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 120 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "4d6",
+          "type": "spirit"
+        },
+        {
+          "formula": "4d8+6",
+          "type": "poison"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Spores",
+      "traits": [
+        "magical",
+        "range-increment-80",
+        "unholy"
+      ]
+    },
+    {
+      "bonus": 37,
+      "damage": [
+        {
+          "formula": "4d10+16",
+          "type": "bludgeoning"
+        },
+        {
+          "formula": "4d6",
+          "type": "spirit"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tentacle",
+      "traits": [
+        "magical",
+        "reach-20",
+        "unarmed",
+        "unholy"
+      ]
+    }
+  ],
+  "foundryId": "cZsaAKlEYWZUO1CV",
+  "gear": [],
+  "hp": 370,
+  "id": "pathfinder-bestiary/terotricus",
+  "immunities": [
+    "controlled",
+    "disease",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "chthonian",
+    "elven",
+    "fey"
+  ],
+  "level": 19,
+  "name": "Terotricus",
+  "perception": 31,
+  "publicNotes": "<p>The legendary terotricus is a massive slime-mold that hails from the Abyss. Its collective consciousness encapsulates entire regions, spreading as far as its ever-growing cloud of spores will take it. Once it has seeped onto the Material Plane from the Abyssal realm, a terotricus's agenda is to feed on all living creatures, infecting them with its spores, and its presence can spell doom for any in its way.</p>\n<p>Terotricuses move by rapidly expanding and contracting their slimy \"bodies,\" which are capable of burrowing through soil, gliding across water, and scrabbling up steep slopes. These behemoths of rot don't need to travel to see their plans come to fruition, though; their spores easily latch onto demons and other denizens of the Abyss, who in turn bring this blight to the Material Plane when the flends are summoned.</p>\n<p>When a terotricus infects a creature with its spores, web-like fungal growths start appearing on the victim's skin until they cover the entire body, at which point the victim's mind is also subdued and bent to the terotricus's will. The terotricus's favored victims include animals, elves, and fey, though it is happy to infect any creature it can catch. Cults of Treerazer occasionally attempt to make contact with a terotricus, but such acts almost always simply result in a new sect of spore-blighted slaves.</p>",
+  "rarity": "rare",
+  "resistances": [
+    {
+      "type": "fire",
+      "value": 15
+    }
+  ],
+  "saves": {
+    "fortitude": 34,
+    "reflex": 28,
+    "will": 33
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "athletics": 37,
+    "deception": 32,
+    "intimidation": 35,
+    "nature": 31,
+    "survival": 31
+  },
+  "source": {
+    "book": "Pathfinder Bestiary",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    },
+    {
+      "type": "climb",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 35
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "fungus",
+    "unholy"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold",
+      "value": 15
+    },
+    {
+      "type": "cold-iron",
+      "value": 15
+    },
+    {
+      "type": "holy",
+      "value": 15
+    },
+    {
+      "type": "slashing",
+      "value": 10
+    }
+  ]
+}

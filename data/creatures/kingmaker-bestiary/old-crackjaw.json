@@ -1,0 +1,116 @@
+{
+  "abilityMods": {
+    "cha": -2,
+    "con": 4,
+    "dex": 2,
+    "int": -4,
+    "str": 5,
+    "wis": 4
+  },
+  "ac": 23,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> Old Crackjaw damaged a creature with a jaws Strike in its previous action</p>\n<hr />\n<p><strong>Effect</strong> Old Crackjaw clenches its jaws down and automatically deals an additional @Damage[2d8[bludgeoning]] damage to the creature it just bit.</p>",
+      "frequency": null,
+      "name": "Clench Jaws",
+      "requirements": "Old Crackjaw damaged a creature with a jaws Strike in its previous action",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Old Crackjaw retracts its limbs and head into its shell and ends its turn. This increases its AC to 25, but it can't act except to reemerge, which it can do as a single action.</p>",
+      "frequency": null,
+      "name": "Shell Defense",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Old Crackjaw makes a jaws Strike against an object. This counts as two attacks when calculating Old Crackjaw's multiple attack penalty. If this Strike hits, Old Crackjaw deals an extra die of weapon damage to the object.</p>",
+      "frequency": null,
+      "name": "Gnawing Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Old Crackjaw can hold its breath for 30 minutes.</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d8+7",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "dZEl1W8zV3rj5D9O",
+  "gear": [],
+  "hp": 78,
+  "id": "kingmaker-bestiary/old-crackjaw",
+  "immunities": [],
+  "languages": [],
+  "level": 5,
+  "name": "Old Crackjaw",
+  "perception": 11,
+  "publicNotes": "<p>Snapping turtles are freshwater reptiles with a long flexible neck, a sharp piercing beak, and a confrontational temperament that doesn't prevent some spellcasters from choosing these creatures as familiars. They weigh about 20 pounds and have shells around 18 inches in length.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 15,
+    "reflex": 9,
+    "will": 13
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "athletics": 12,
+    "stealth": 11
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 15
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal"
+  ],
+  "weaknesses": []
+}

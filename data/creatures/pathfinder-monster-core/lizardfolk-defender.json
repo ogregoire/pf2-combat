@@ -1,0 +1,167 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 2,
+    "int": -1,
+    "str": 3,
+    "wis": 2
+  },
+  "ac": 16,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "frequency": null,
+      "name": "Shield Block",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A lizardfolk defender can hold their breath for 15 minutes.</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>Non-lizardfolk creatures that are in difficult terrain or are in water and lack a swim Speed are Off-Guard to the lizardfolk defender.</p>",
+      "frequency": null,
+      "name": "Terrain Advantage",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Flail",
+      "traits": [
+        "disarm",
+        "sweep",
+        "trip"
+      ]
+    },
+    {
+      "bonus": 7,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Javelin",
+      "traits": [
+        "thrown-30"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 8,
+      "damage": [
+        {
+          "formula": "1d4+3",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile"
+      ]
+    }
+  ],
+  "foundryId": "WZRHV2WU0SkpbtJI",
+  "gear": [
+    "Flail",
+    "Javelin",
+    "Wooden Shield"
+  ],
+  "hp": 21,
+  "id": "pathfinder-monster-core/lizardfolk-defender",
+  "immunities": [],
+  "languages": [
+    "common",
+    "draconic",
+    "iruxi"
+  ],
+  "level": 1,
+  "name": "Lizardfolk Defender",
+  "perception": 7,
+  "publicNotes": "<p>A lizardfolk defender serves as a protector of the young, guardian of the settlement, and when no other options are available, a soldier in times of war. They eagerly rise to the defense of their kin but do not revel in battle. An iruxi defender would rather turn back intruders and allow them to flee with the knowledge they were beaten, in hopes that such word prevents further invasions, but they are not naive. Iruxis understand the need for revenge, and when they allow a foe to escape, they do not forget.</p>\n<hr />\n<p>Capable and adaptable predators, the reptilian beings known as lizardfolk are heirs to truly ancient civilizations. Their oral traditions cover thousands of years, and they revere the bones of their ancestors. Fossilized lizardfolk are even built into the walls of lizardfolk's stone and glass cities, to allow these predecessors to watch over their kin. Lizardfolk likewise have longstanding traditions of religious worship and astrology, with eyes on the past, the future, and the stars whenever they make a large decision. Their long history has taught them to be patient in all things, though this has seen them losing ground to hastier peoples in modern times.</p>\n<p>Lizardfolk refer to themselves as \"iruxi,\" though they have taken their common moniker among other peoples in stride. Most of their settlements are entirely communal, with hatchlings raised by anyone with the time and temperament for such a role. Iruxis dwell and thrive in all tropical and temperate biomes, but they are most at home in swamplands, coastal regions, and river lands. They are talented swimmers, and many of their major cities are partially submerged to take advantage of this fact, causing them to often be overlooked by others. Fish and aquatic plants make up a large part of their preferred diets.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 8,
+    "reflex": 7,
+    "will": 5
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 5,
+    "athletics": 6,
+    "stealth": 5
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 15
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "humanoid",
+    "lizardfolk"
+  ],
+  "weaknesses": []
+}

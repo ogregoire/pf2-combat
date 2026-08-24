@@ -1,0 +1,148 @@
+{
+  "abilityMods": {
+    "cha": 1,
+    "con": 6,
+    "dex": 4,
+    "int": -4,
+    "str": 8,
+    "wis": 2
+  },
+  "ac": 30,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "frequency": null,
+      "name": "Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The spinosaurus has a creature Grabbed in its jaws</p>\n<hr />\n<p><strong>Effect</strong> The spinosaurus reaches up and slashes with its claws at the creature it has grabbed, dealing @Damage[4d8[slashing]] damage (@Check[reflex|dc:30|basic] save) and @Damage[1d6[bleed]].</p>",
+      "frequency": null,
+      "name": "Rip and Tear",
+      "requirements": "The spinosaurus has a creature Grabbed in its jaws",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>Medium, @Damage[2d12[bludgeoning]] damage, Rupture 19</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "frequency": null,
+      "name": "Swallow Whole",
+      "requirements": null,
+      "traits": [
+        "attack"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Requirements</strong> The spinosaurus is swimming on the surface of water</p>\n<hr />\n<p><strong>Effect</strong> With a powerful lunge to the side, the spinosaurus uses its sail to slap the surface of the water, creating a crushing wave of water that deals @Damage[6d6[bludgeoning]] damage in a 30 foot cone. Each creature in the water in the area must attempt a @Check[reflex|dc:30|traits:damaging-effect] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes half damage.</p>\n<p><strong>Failure</strong> The creature takes full damage and is Slowed 1 until the end of its next turn.</p>\n<p><strong>Critical Failure</strong> The creature takes double damage and is Stunned 3.</p>",
+      "frequency": null,
+      "name": "Staggering Sail",
+      "requirements": "The spinosaurus is swimming on the surface of water",
+      "traits": [
+        "incapacitation"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A spinosaurus can hold its breath for 2 hours.</p>",
+      "frequency": null,
+      "name": "Deep Breath",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d12+14",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Bite",
+      "traits": [
+        "deadly-d12",
+        "reach-20"
+      ]
+    },
+    {
+      "bonus": 23,
+      "damage": [
+        {
+          "formula": "2d8+14",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "reach-15",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "s8EjxYqdN4gOvcBh",
+  "gear": [],
+  "hp": 200,
+  "id": "pathfinder-bestiary-2/spinosaurus",
+  "immunities": [],
+  "languages": [],
+  "level": 11,
+  "name": "Spinosaurus",
+  "perception": 21,
+  "publicNotes": "<p>The spinosaurus is more than just one of the largest carnivorous dinosaurs-it's also one of the most unusual in appearance, with a large, sail-like fin running along its spine. Often quite colorful, this sail allows the spinosaurus to attract mates, aids in swimming, and makes it appear to be even larger than it actually is. A swimming spinosaurus can also use the sail as part of a unique means of staggering prey by slapping the water with it to make a crushing wave.</p>\n<p>The spinosaurus is equally at home in water as it is on land, and its long, toothy maw is well-adapted to catching swimming prey. Attempts by giants to capture spinosauruses to serve as guardians typically go poorly, for these headstrong dinosaurs do not domesticate well. Their surly attitudes and striking appearances make them better suited for bloodsports, and they are popular prizes for those who run arenas specializing in battles that pit gladiators against hungry animals or beasts. Of course, an angry dinosaur forced to fight for the amusement of others won't discriminate between potential meals on the battleground and ones seated in the surrounding stands.</p>\n<p>The spinosaurus's appearance and strength make it attractive to more than just giants and bloodsport organizers. Spellcasters who mutate and transform animals into magical guardians have long been intrigued by the spinosaurus's potential. More so than any other dinosaurs, spinosauruses have been subjected to fleshwarping procedures, crossbreeding with monsters, and other magical techniques to enhance the creatures' viability as effective guardians.</p>\n<p>A spinosaurus can measure up to 60 feet in length and weighs 25,000 pounds.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 23,
+    "reflex": 21,
+    "will": 19
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 19,
+    "athletics": 23
+  },
+  "source": {
+    "book": "Pathfinder Bestiary 2",
+    "license": "OGL",
+    "pack": "pathfinder-bestiary-2",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 40
+    },
+    {
+      "type": "swim",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "dinosaur"
+  ],
+  "weaknesses": []
+}

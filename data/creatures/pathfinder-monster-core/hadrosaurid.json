@@ -1,0 +1,111 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 3,
+    "dex": 2,
+    "int": -4,
+    "str": 6,
+    "wis": 1
+  },
+  "ac": 21,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p><strong>Frequency</strong> once per minute</p>\n<hr />\n<p><strong>Effect</strong> The hadrosaurid Strides twice. It has a +20-foot circumstance bonus to its Speed during these Strides.</p>",
+      "frequency": {
+        "max": 1,
+        "per": "PT1M"
+      },
+      "name": "Sprint",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Large or smaller, foot, @Check[reflex|dc:21|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 12,
+      "damage": [
+        {
+          "formula": "2d4+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Foot",
+      "traits": [
+        "reach-15",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "2d6+8",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "reach-15"
+      ]
+    }
+  ],
+  "foundryId": "3zqVFz4FfRYv5Sgy",
+  "gear": [],
+  "hp": 60,
+  "id": "pathfinder-monster-core/hadrosaurid",
+  "immunities": [],
+  "languages": [],
+  "level": 4,
+  "name": "Hadrosaurid",
+  "perception": 13,
+  "publicNotes": "<p>Hadrosaurids are a broad grouping of herbivorous dinosaurs that share characteristic flat snouts filled with rows of grinding teeth well suited for feeding on vegetation. Also known as \"duck-billed dinosaurs\" due to the unusual shape of their jaws, hadrosaurids are lumbering creatures that can rival an elephant in size, although they tend to be much less aggressive and are prone to flight when confronted with danger. Many species of hadrosaurids have uniquely shaped crests on their heads, making them easily recognizable even to amateur dinosaur watchers.</p>\n<p>Giants and other oversized creatures have been known to domesticate hadrosaurids to serve as livestock. Despite their ability to sprint quickly, they don't make particularly viable mounts due to their timid natures, but a panicked herd of hadrosaurids can wreak great damage.</p>\n<hr />\n<p>Remnants from the world's primeval era, these enormous reptilian animals still exist in large numbers in remote wildernesses or underground in magical Darklands caverns. Lizardfolk, orcs, giants, and other humanoids who live near dinosaurs use the animals as mounts, guards, or hunting beasts. Occasionally, rich nobles will collect dinosaurs to display them in menageries, which almost inevitably leads to cast-offs being nursed back to health by druids and other champions of nature. When dinosaurs establish themselves in regions outside their normal habitats, it's often the result of a large collection being released.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 12,
+    "reflex": 10,
+    "will": 11
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 12,
+    "stealth": 10
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "dinosaur"
+  ],
+  "weaknesses": []
+}

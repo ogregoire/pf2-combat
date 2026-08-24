@@ -1,0 +1,241 @@
+{
+  "abilityMods": {
+    "cha": 5,
+    "con": 1,
+    "dex": 4,
+    "int": 4,
+    "str": 2,
+    "wis": 2
+  },
+  "ac": 22,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>The Coil spy Strides up to half their Speed and attempts a Feint, in either order.</p>",
+      "frequency": null,
+      "name": "Deceptive Reposition",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+4 Status to Will Saves vs. Mental",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>A Coil spy can maintain an ongoing Illusory Disguise as long as they are conscious without having to re-cast the spell; they need only Cast the Spell again to reassume their <em>illusory disguise</em> if they wish to change their appearance or if the active spell is dispelled.</p>\n<p>Coil spies typically seek privacy when they need to sleep, as an ongoing <em>illusory disguise</em> ends an hour after they fall Unconscious.</p>",
+      "frequency": null,
+      "name": "Maintain Disguise",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:19]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[1d4[poison]] damage and Enfeebled 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d4[poison]] damage and enfeebled 1 (1 round)</p>",
+      "frequency": null,
+      "name": "Serpentfolk Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The Coil spy's Strikes deal an extra 2d6 precision damage to Off-Guard creatures.</p>",
+      "frequency": null,
+      "name": "Sneak Attack",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>Coil spies recover slowly from injuries. When they take physical damage from a critical hit, they gain @Damage[1d4[persistent,bleed]] damage. They take a –2 circumstance penalty to flat checks to recover from persistent damage and saving throws against afflictions.</p>",
+      "frequency": null,
+      "name": "Thin of Blood",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "finesse"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Hand Crossbow (Serpentfolk Venom)",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 10,
+      "damage": [
+        {
+          "formula": "1d6+3",
+          "type": "piercing"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Hand Crossbow (Spider Venom)",
+      "traits": [
+        "range-increment-60",
+        "reload-1"
+      ]
+    },
+    {
+      "bonus": 14,
+      "damage": [
+        {
+          "formula": "1d6+5",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Shortsword",
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile-s"
+      ]
+    }
+  ],
+  "foundryId": "y2w2jjs2O3gP0H5v",
+  "gear": [
+    "Bolts",
+    "Hand Crossbow",
+    "Shortsword",
+    "Spider Venom",
+    "Thieves' Toolkit"
+  ],
+  "hp": 48,
+  "id": "pathfinder-monster-core/coil-spy",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common",
+    "dwarven",
+    "gnomish",
+    "sakvroth"
+  ],
+  "level": 4,
+  "name": "Coil Spy",
+  "perception": 10,
+  "publicNotes": "<p>Some serpentfolk undergo intense ritual training and practice to improve their innate ability to disguise themselves. These serpentfolk often identify as members of a sinister society known as the Coils of Ydersius, and the most devoted of their number seek out methods of reincarnating into new forms to infiltrate enemy societies even more efficiently. Coil spies train in methods of infiltrating other societies to such an extent that they might be capable of infiltrating a mammalian civilization for years. Though they're expected to work entirely toward the eventual triumph of their people, most Coil spies also find personal pursuits. When Coil spies get caught, it's rarely due to a lack of skill, but rather to their arrogance or recklessness as they pursue their hedonistic desires.</p>\n<hr />\n<p>Before their ancient clash with humanity devastated their civilization, serpentfolk were masters of a sprawling underground empire. Their power was shattered and their god Ydersius decapitated (although not quite slain). The cunning, intelligence, and magical abilities of serpentfolk have diminished from their ancient heights, and most are born without these boons. This is partially the result of cruel genetic meddling among serpentfolk—though the ruling class, zyss, are born with an innate spellcasting ability, their blood runs thin, making them susceptible to wounds. Seen as the failures of the serpentfolk's experiments are the aapophs, who are strong but prone to mutation and lack innate spellcasting.</p>\n<p>Today, the central realm of the Darklands retains the old name of the serpentfolk empire that once dominated this region—Sekamina. This name is also the source of the serpentfolk's Aklo title, sekmin, which they are often called in ancient texts. Serpentfolk dominion had declined before ghouls, gugs, umbral gnomes, and other forces. Yet their recent ventures have brought them back to a stronger place in the Darklands. Many serpentfolk sleeping in torpor in secluded vaults have awakened.</p>\n<p>Zyss serpentfolk tend toward megalomania, with dreams of returning to their place of dominance. Many of their plans hinge on resurrecting Ydersius, their decapitated god. His headless body still thrashes about, mindless, in the Darklands, waiting to be reunited with his lost skull. Serpentfolk numbers are so small that reclaiming their dominance seems a distant dream, especially since their reproduction is slow. Though a parent can birth a dozen young at once, the gestation period lasts up to a decade, and the likelihood that even one will be zyss is low. There's no telling whether a child will be zyss or aapoph, regardless of parentage. A coveted zyss child is just as likely to arise from aapoph parents as from two zyss, and every serpentfolk colony has someone in charge of sorting the young, identifying the earliest signs of magic in them.</p>",
+  "rarity": "uncommon",
+  "resistances": [
+    {
+      "type": "poison",
+      "value": 5
+    }
+  ],
+  "saves": {
+    "fortitude": 9,
+    "reflex": 12,
+    "will": 10
+  },
+  "senses": [
+    "darkvision",
+    "scent"
+  ],
+  "size": "medium",
+  "skills": {
+    "acrobatics": 10,
+    "deception": 13,
+    "diplomacy": 11,
+    "intimidation": 11,
+    "occultism": 10,
+    "society": 10,
+    "stealth": 12,
+    "thievery": 12
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 13,
+      "dc": 21,
+      "name": "Occult Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Suggestion",
+          "rank": 4
+        },
+        {
+          "name": "Blur (Self Only, At Will)",
+          "rank": 2
+        },
+        {
+          "name": "Illusory Disguise (At Will)",
+          "rank": 1
+        },
+        {
+          "name": "Ventriloquism (At Will)",
+          "rank": 1
+        }
+      ],
+      "tradition": "occult"
+    }
+  ],
+  "traits": [
+    "humanoid",
+    "serpentfolk"
+  ],
+  "weaknesses": []
+}

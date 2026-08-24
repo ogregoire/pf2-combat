@@ -1,0 +1,255 @@
+{
+  "abilityMods": {
+    "cha": 7,
+    "con": 7,
+    "dex": 5,
+    "int": -3,
+    "str": 9,
+    "wis": 6
+  },
+  "ac": 41,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "free",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "frequency": null,
+      "name": "Improved Grab",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "frequency": null,
+      "name": "Reactive Strike (Tail Only)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Damage[(2d6+18)[bludgeoning]], @Check[fortitude|dc:38|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "frequency": null,
+      "name": "Constrict",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The ice linnorm spews out a blast of freezing, viscous ooze in a @Template[cone|distance:60] that deals @Damage[15d6[cold]] damage to creatures within the area (@Check[reflex|dc:38|basic] save).</p>\n<p>The freezing ooze clings to those struck and hardens into thick sheets of ice. A creature that fails the saving throw is Immobilized by the ice until it succeeds at a check to [[/act escape dc=34]] or it or an ally [[/act force-open dc=34]]{Forces Open} the ice (DC 34 for either case). At the start of its turn, a creature still immobilized by the ice takes @Damage[4d6[cold]] damage. Another creature can free a frozen target by dealing a total of 20 fire damage to the frozen target. Left unattended, the ice crumbles away in 1 minute on its own.</p>\n<p>Creatures with the fire trait can't be frozen in place by Icemire Breath. Flying creatures fall if frozen, and swimming creatures that are frozen rise toward the surface of the water at a speed of 60 feet per round.</p>\n<p>The linnorm can't use Icemire Breath again for [[/gmr 1d4 #Recharge Icemire Breath]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Icemire Breath",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "",
+      "frequency": null,
+      "name": "+1 Status to All Saves vs. Magic",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "frequency": null,
+      "name": "Constant Spells",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>When a creature slays the ice linnorm, it must succeed at a @Check[will|dc:40] save or gain weakness to cold 15 with an unlimited duration.</p>\n<p>Effect: Curse of Frost</p>",
+      "frequency": null,
+      "name": "Curse of Frost",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "curse",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:38]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 10 rounds</p>\n<p><strong>Stage 1</strong> @Damage[5d6[cold]] damage and Drained 1 (1 round);</p>\n<p><strong>Stage 2</strong> @Damage[7d6[cold]] damage and Drained 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Ice Linnorm Venom",
+      "requirements": null,
+      "traits": [
+        "cold",
+        "injury",
+        "poison"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "frequency": null,
+      "name": "Regeneration 10 (Deactivated by Cold Iron)",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "3d8+17",
+          "type": "slashing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Claw",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "3d12+17",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "magical",
+        "reach-25",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 34,
+      "damage": [
+        {
+          "formula": "3d6+17",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Tail",
+      "traits": [
+        "agile",
+        "magical",
+        "reach-25"
+      ]
+    }
+  ],
+  "foundryId": "Np5Z7RMQzvSNnH0h",
+  "gear": [],
+  "hp": 330,
+  "id": "pathfinder-monster-core/ice-linnorm",
+  "immunities": [
+    "cold",
+    "curse",
+    "paralyzed",
+    "sleep"
+  ],
+  "languages": [
+    "aklo",
+    "draconic",
+    "fey"
+  ],
+  "level": 17,
+  "name": "Ice Linnorm",
+  "perception": 29,
+  "publicNotes": "<p>The ice linnorm dwells amid glacial crevasses, atop wind-blasted mountain peaks, or within glittering caverns carved from the hearts of the mightiest of icebergs.</p>\n<hr />\n<p>Immense, primeval dragons of the northern reaches of the world, linnorms hate those they deem to be lesser creatures and seek to inflict as much suffering as possible upon their unfortunate victims. While these serpentine monstrosities might not be the powerful winged dragons most imagine, they nonetheless possess incredible strength and deadly powers that often rival authentic dragon brutality.</p>",
+  "rarity": "uncommon",
+  "resistances": [],
+  "saves": {
+    "fortitude": 32,
+    "reflex": 28,
+    "will": 27
+  },
+  "senses": [
+    "darkvision",
+    "scent",
+    "truesight"
+  ],
+  "size": "gargantuan",
+  "skills": {
+    "acrobatics": 28,
+    "athletics": 32
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 35
+    },
+    {
+      "type": "fly",
+      "value": 100
+    },
+    {
+      "type": "swim",
+      "value": 40
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 30,
+      "dc": 38,
+      "name": "Primal Innate Spells",
+      "preparation": "innate",
+      "slots": [],
+      "spells": [
+        {
+          "name": "Truesight (Constant)",
+          "rank": 6
+        },
+        {
+          "name": "Unfettered Movement (Constant)",
+          "rank": 4
+        }
+      ],
+      "tradition": "primal"
+    }
+  ],
+  "traits": [
+    "cold",
+    "dragon"
+  ],
+  "weaknesses": [
+    {
+      "type": "cold-iron",
+      "value": 15
+    },
+    {
+      "type": "fire",
+      "value": 10
+    }
+  ]
+}

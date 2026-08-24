@@ -1,0 +1,109 @@
+{
+  "abilityMods": {
+    "cha": 2,
+    "con": 2,
+    "dex": 4,
+    "int": -4,
+    "str": -2,
+    "wis": 4
+  },
+  "ac": 29,
+  "actions": [
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>Jewel unleashes a torrent of grating, high-pitched yips. All creatures other than Pavetta within @Template[emanation|distance:20]{20 feet} must attempt a @Check[will|dc:25] save.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected and becomes temporarily immune to Distracting Yipping for 24 hours.</p>\n<p><strong>Success</strong> The creature takes a -2 status penalty to Perception checks for 1 round.</p>\n<p><strong>Failure</strong> The creature takes a -4 status penalty to Perception checks and is Off-Guard for 1 round.</p>\n<p><strong>Critical Failure</strong> As failure, but also, if the creature attempts any concentrate action during the round, they must succeed at a @Check[flat|dc:11] or the action is lost.</p>",
+      "frequency": null,
+      "name": "Distracting Yipping",
+      "requirements": null,
+      "traits": [
+        "auditory",
+        "emotion",
+        "mental"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If Jewel damages a Small or larger creature standing on the ground with her jaws Strike, that creature becomes Off-Guard for 1 round (or off-guard and Clumsy 1 for 1 round on a critical hit).</p>",
+      "frequency": null,
+      "name": "Ankle Bite",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>If Pavetta doesn't sustain her Release Jewel action, Jewel can only take Stride actions to return to Pavetta's square. If she's in her square, she takes no actions.</p>",
+      "frequency": null,
+      "name": "Return to Pavetta",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 19,
+      "damage": [
+        {
+          "formula": "1d4+1",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Jaws",
+      "traits": [
+        "agile",
+        "finesse",
+        "unarmed"
+      ]
+    }
+  ],
+  "foundryId": "xMuLJmx51eBv9FcE",
+  "gear": [],
+  "hp": 60,
+  "id": "kingmaker-bestiary/jewel",
+  "immunities": [],
+  "languages": [],
+  "level": 9,
+  "name": "Jewel",
+  "perception": 21,
+  "publicNotes": "",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 17,
+    "reflex": 21,
+    "will": 19
+  },
+  "senses": [
+    "low-light-vision",
+    "scent"
+  ],
+  "size": "tiny",
+  "skills": {
+    "acrobatics": 19,
+    "intimidation": 17
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 30
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "animal",
+    "minion"
+  ],
+  "weaknesses": []
+}

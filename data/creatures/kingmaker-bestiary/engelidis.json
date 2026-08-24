@@ -1,0 +1,248 @@
+{
+  "abilityMods": {
+    "cha": 9,
+    "con": 5,
+    "dex": 6,
+    "int": 5,
+    "str": 5,
+    "wis": 6
+  },
+  "ac": 40,
+  "actions": [
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>A spirit naga adds Hallucination, Mind Probe, and Suggestion to their coven's spells.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Coven]</p>",
+      "frequency": null,
+      "name": "Coven",
+      "requirements": null,
+      "traits": [
+        "mental",
+        "occult"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p><strong>Saving Throw</strong> @Check[fortitude|dc:37]</p>\n<hr />\n<p><strong>Maximum Duration</strong> 6 rounds</p>\n<p><strong>Stage 1</strong> @Damage[2d6[poison]] damage and Stupefied 1 (1 round)</p>\n<p><strong>Stage 2</strong> @Damage[2d6[poison]] damage and Stupefied 2 (1 round)</p>",
+      "frequency": null,
+      "name": "Spirit Naga Venom",
+      "requirements": null,
+      "traits": [
+        "poison"
+      ],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 29,
+      "damage": [
+        {
+          "formula": "5d8+13",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fangs",
+      "traits": [
+        "agile",
+        "finesse"
+      ]
+    }
+  ],
+  "foundryId": "UPESZZbXchcuqI1r",
+  "gear": [],
+  "hp": 290,
+  "id": "kingmaker-bestiary/engelidis",
+  "immunities": [],
+  "languages": [
+    "aklo",
+    "common"
+  ],
+  "level": 16,
+  "name": "Engelidis",
+  "perception": 28,
+  "publicNotes": "<p>In naga culture, the foul-tempered, unkempt spirit naga holds a contemptible place similar to that of hags in humanoid cultures. These decrepit creatures live out lives of solitude, sought out only by those who are foolish or brave enough to think they can benefit from the spirit naga's powers without paying a heavy price-for most who dare to show such hubris, the price is their own lives.</p>\n<p>Spirit nagas seek out desolate ruins and places long associated with death and corruption. These sinister, serpentine beings can be found in abandoned graveyards, crumbled fortresses, rotting swamps, and blighted woodlands. Though they may know little of the actual history of such places, the nagas are nonetheless attracted to the psychic remnants of evil deeds and tormented spirits that remain within the earth and stones there.</p>\n<p>Despite their hideous appearance and treatment as pariahs by other nagas, spirit nagas feel a profound pride in their abilities and even in their hermetic existences. They see themselves as connected to a greater force whose mysteries are revealed only to those who can cast off the trappings and morals of \"civilized\" society. Even so, spirit nagas gleefully accept the worship of other creatures willing to bow to their capricious whims. They often form cults around themselves, using their charm spells and rituals to ensnare the minds of a few key individuals who spread the nagas' foul influence throughout a community.</p>\n<hr />\n<p>Nagas are identifiable by their serpentine bodies and strange, humanlike heads. All nagas have magical abilities and great intelligence, which they combine to advance their own agendas.</p>",
+  "rarity": "unique",
+  "resistances": [],
+  "saves": {
+    "fortitude": 25,
+    "reflex": 30,
+    "will": 28
+  },
+  "senses": [
+    "darkvision"
+  ],
+  "size": "large",
+  "skills": {
+    "acrobatics": 30,
+    "athletics": 27,
+    "deception": 33,
+    "intimidation": 31,
+    "occultism": 29,
+    "stealth": 30
+  },
+  "source": {
+    "book": "Pathfinder Kingmaker",
+    "license": "OGL",
+    "pack": "kingmaker-bestiary",
+    "remaster": false
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 15
+    }
+  ],
+  "spellcasting": [
+    {
+      "attack": 26,
+      "dc": 39,
+      "name": "Arcane Spontaneous Spells",
+      "preparation": "spontaneous",
+      "slots": [
+        {
+          "max": 4,
+          "rank": 1
+        },
+        {
+          "max": 4,
+          "rank": 2
+        },
+        {
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 4,
+          "rank": 4
+        },
+        {
+          "max": 4,
+          "rank": 5
+        },
+        {
+          "max": 4,
+          "rank": 6
+        },
+        {
+          "max": 4,
+          "rank": 7
+        },
+        {
+          "max": 2,
+          "rank": 8
+        }
+      ],
+      "spells": [
+        {
+          "name": "Discern Location",
+          "rank": 8
+        },
+        {
+          "name": "Power Word Stun",
+          "rank": 8
+        },
+        {
+          "name": "Mask of Terror",
+          "rank": 7
+        },
+        {
+          "name": "Power Word Blind",
+          "rank": 7
+        },
+        {
+          "name": "Chain Lightning",
+          "rank": 6
+        },
+        {
+          "name": "Mislead",
+          "rank": 6
+        },
+        {
+          "name": "Cone of Cold",
+          "rank": 5
+        },
+        {
+          "name": "Telekinetic Haul",
+          "rank": 5
+        },
+        {
+          "name": "Dimension Door",
+          "rank": 4
+        },
+        {
+          "name": "Fly",
+          "rank": 4
+        },
+        {
+          "name": "Clairaudience",
+          "rank": 3
+        },
+        {
+          "name": "Lightning Bolt",
+          "rank": 3
+        },
+        {
+          "name": "Dispel Magic",
+          "rank": 2
+        },
+        {
+          "name": "Humanoid Form",
+          "rank": 2
+        },
+        {
+          "name": "Invisibility",
+          "rank": 2
+        },
+        {
+          "name": "Misdirection",
+          "rank": 2
+        },
+        {
+          "name": "Detect Magic",
+          "rank": 1
+        },
+        {
+          "name": "Ghost Sound",
+          "rank": 1
+        },
+        {
+          "name": "Illusory Disguise",
+          "rank": 1
+        },
+        {
+          "name": "Mage Hand",
+          "rank": 1
+        },
+        {
+          "name": "Message",
+          "rank": 1
+        },
+        {
+          "name": "Ray of Enfeeblement",
+          "rank": 1
+        },
+        {
+          "name": "Sanctuary",
+          "rank": 1
+        },
+        {
+          "name": "Telekinetic Projectile",
+          "rank": 1
+        }
+      ],
+      "tradition": "arcane"
+    }
+  ],
+  "traits": [
+    "aberration"
+  ],
+  "weaknesses": []
+}

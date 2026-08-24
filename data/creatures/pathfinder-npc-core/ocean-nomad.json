@@ -1,0 +1,162 @@
+{
+  "abilityMods": {
+    "cha": 0,
+    "con": 2,
+    "dex": 4,
+    "int": 0,
+    "str": 4,
+    "wis": 3
+  },
+  "ac": 24,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> An adjacent creature attempts an Athletics check to Swim</p><hr /><p><strong>Effect</strong> The ocean nomad chooses to either prop the swimmer up or yanks them down into the depths. Increase or decrease the result of the Athletics check by one step. If the ocean nomad chooses to decrease the result, the creature can attempt a @Check[fortitude|dc:24] save to negate the effect.</p>",
+      "frequency": null,
+      "name": "Tidal Pressure",
+      "requirements": null,
+      "traits": [
+        "water"
+      ],
+      "trigger": "An adjacent creature attempts an Athletics check to Swim"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p><strong>Requirements</strong> The ocean nomad's last action was a successful melee trident Strike</p><hr /><p><strong>Effect</strong> The ocean nomad wrenches out the barbed tines of their trident, inflicting 1d6 persistent bleed to the target.</p>",
+      "frequency": null,
+      "name": "Stab and Twist",
+      "requirements": "The ocean nomad's last action was a successful melee trident Strike",
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>Any watercraft the ocean nomad pilots gains a +10-foot circumstance bonus to its Speed and reduces the minimum distance it must move to turn by half. An ocean nomad ignores difficult terrain or uneven ground from a ship's motion.</p>",
+      "frequency": null,
+      "name": "Master Sailor",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When the ocean nomad rolls a success on an Athletics check to Swim, they get a critical success instead.</p>",
+      "frequency": null,
+      "name": "Practiced Swimmer",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>The ocean nomad can hold their breath for up to 10 minutes (100 rounds).</p>",
+      "frequency": null,
+      "name": "Strong Lungs",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 16,
+      "damage": [
+        {
+          "formula": "1d4+10",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "agile",
+        "nonlethal",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Trident",
+      "traits": []
+    },
+    {
+      "bonus": 9,
+      "damage": [
+        {
+          "formula": "1d8+4",
+          "type": "piercing"
+        }
+      ],
+      "kind": "melee",
+      "name": "Trident",
+      "traits": [
+        "thrown-20"
+      ]
+    }
+  ],
+  "foundryId": "UTDcZPzjM6D26MZK",
+  "gear": [
+    "Leather Armor",
+    "Net",
+    "Trident"
+  ],
+  "hp": 100,
+  "id": "pathfinder-npc-core/ocean-nomad",
+  "immunities": [],
+  "languages": [
+    "common",
+    "thalassic"
+  ],
+  "level": 6,
+  "name": "Ocean Nomad",
+  "perception": 16,
+  "publicNotes": "<p>Adventurers may need passage on a swift vessel, or they might face danger from raiders at sea or in coastal settlements.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 14,
+    "reflex": 17,
+    "will": 11
+  },
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "athletics": 15,
+    "nature": 10,
+    "survival": 13
+  },
+  "source": {
+    "book": "Pathfinder NPC Core",
+    "license": "ORC",
+    "pack": "pathfinder-npc-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "swim",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "human",
+    "humanoid"
+  ],
+  "weaknesses": []
+}

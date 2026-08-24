@@ -1,0 +1,184 @@
+{
+  "abilityMods": {
+    "cha": -1,
+    "con": 8,
+    "dex": -1,
+    "int": 0,
+    "str": 7,
+    "wis": 3
+  },
+  "ac": 32,
+  "actions": [
+    {
+      "category": "defensive",
+      "cost": "reaction",
+      "description": "<p><strong>Trigger</strong> The elemental avalanche takes damage from a hostile source while atop rock or earth</p>\n<hr />\n<p><strong>Effect</strong> The elemental avalanche crumbles into the ground, Burrowing down 20 feet. This Burrowing does not trigger reactions.</p>\n<p>The elemental avalanche can't Crumble again for [[/gmr 1d4 #Recharge Crumble]]{1d4 rounds}.</p>",
+      "frequency": null,
+      "name": "Crumble",
+      "requirements": null,
+      "traits": [],
+      "trigger": "The elemental avalanche takes damage from a hostile source while atop rock or earth"
+    },
+    {
+      "category": "offensive",
+      "cost": "1",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "frequency": null,
+      "name": "Knockdown",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "2",
+      "description": "<p>The elemental avalanche deals @Damage[4d12[bludgeoning]] damage to each Prone creature within the elemental's melee reach with a @Check[reflex|dc:30|basic] save.</p>",
+      "frequency": null,
+      "name": "Grinding Stones",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "3",
+      "description": "<p>Large or smaller, fist, @Check[reflex|dc:30|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "frequency": null,
+      "name": "Trample",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "offensive",
+      "cost": "passive",
+      "description": "<p>The elemental avalanche can Burrow through any earthen matter, including rock. When it does so, the elemental avalanche moves at its full burrow Speed, leaving no tunnels or signs of its passing.</p>",
+      "frequency": null,
+      "name": "Earth Glide",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>When not touching solid ground, the elemental avalanche is Slowed 1, can't use reactions, and can't Trample.</p>",
+      "frequency": null,
+      "name": "Earthbound",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    },
+    {
+      "category": "defensive",
+      "cost": "passive",
+      "description": "<p>10 feet.</p>\n<p>Spikes of rock rise up from all stone surfaces in the emanation, creating difficult terrain. A creature moving in the terrain takes @Damage[2d8[piercing]] damage for each square of spikes it moves into (a Large or larger creature takes damage only once for each square it moves, even if its space covers multiple squares of spikes). Creatures with the earth trait ignore all effects within the area.</p>\n<p>The elemental avalanche can disable or activate this aura using a single action, which has the concentrate trait.</p>",
+      "frequency": null,
+      "name": "Spike Stones",
+      "requirements": null,
+      "traits": [
+        "aura",
+        "earth",
+        "primal"
+      ],
+      "trigger": null
+    },
+    {
+      "category": "interaction",
+      "cost": "passive",
+      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "frequency": null,
+      "name": "Tremorsense (Imprecise) 90 feet",
+      "requirements": null,
+      "traits": [],
+      "trigger": null
+    }
+  ],
+  "attacks": [
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d12+11",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "melee",
+      "name": "Fist",
+      "traits": [
+        "reach-20",
+        "unarmed"
+      ]
+    },
+    {
+      "bonus": 24,
+      "damage": [
+        {
+          "formula": "2d12+7",
+          "type": "bludgeoning"
+        }
+      ],
+      "kind": "ranged",
+      "name": "Rock",
+      "traits": [
+        "brutal",
+        "range-increment-80"
+      ]
+    }
+  ],
+  "foundryId": "Oq31fcKwH0EE9R89",
+  "gear": [],
+  "hp": 215,
+  "id": "pathfinder-monster-core/elemental-avalanche",
+  "immunities": [
+    "bleed",
+    "paralyzed",
+    "poison",
+    "sleep"
+  ],
+  "languages": [
+    "petran"
+  ],
+  "level": 11,
+  "name": "Elemental Avalanche",
+  "perception": 20,
+  "publicNotes": "<p>Stubborn and ponderous, elemental avalanches are massive beings of living rock and dirt. Once their ire is raised, they will take the shortest route to resolving the problem, usually by burying it in rock.</p>\n<hr />\n<p>Earth elementals make excellent bodyguards for adventuresome spelunkers and are ideal protectors of important subterranean locations such as vaults and treasuries.</p>",
+  "rarity": "common",
+  "resistances": [],
+  "saves": {
+    "fortitude": 26,
+    "reflex": 17,
+    "will": 21
+  },
+  "senses": [
+    "darkvision",
+    "tremorsense"
+  ],
+  "size": "huge",
+  "skills": {
+    "athletics": 24,
+    "stealth": 14
+  },
+  "source": {
+    "book": "Pathfinder Monster Core",
+    "license": "ORC",
+    "pack": "pathfinder-monster-core",
+    "remaster": true
+  },
+  "speeds": [
+    {
+      "type": "land",
+      "value": 25
+    },
+    {
+      "type": "burrow",
+      "value": 25
+    }
+  ],
+  "spellcasting": [],
+  "traits": [
+    "earth",
+    "elemental"
+  ],
+  "weaknesses": []
+}
