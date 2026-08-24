@@ -91,4 +91,29 @@ describe("normalizeDefenses", () => {
     expect(d.weaknesses).toEqual([]);
     expect(d.resistances).toEqual([]);
   });
+
+  it("omits the land entry when speed.value is null, keeping other speeds", () => {
+    const d = normalizeDefenses({
+      ...baseSystem,
+      attributes: {
+        ...baseSystem.attributes,
+        speed: {
+          value: null,
+          otherSpeeds: [{ type: "fly", value: 60 }],
+        },
+      },
+    });
+    expect(d.speeds).toEqual([{ type: "fly", value: 60 }]);
+  });
+
+  it("drops a null-base skill while keeping well-formed siblings", () => {
+    const d = normalizeDefenses({
+      ...baseSystem,
+      skills: {
+        stealth: { base: 14 },
+        "athletics+15": { base: null },
+      },
+    });
+    expect(d.skills).toEqual({ stealth: 14 });
+  });
 });

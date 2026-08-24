@@ -1,5 +1,5 @@
 import { describe, expect, it, afterAll } from "vitest";
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -141,5 +141,52 @@ describe("runCli", () => {
     const manifest2 = readFileSync(join(dataDir, "manifest.json"), "utf8");
 
     expect(manifest2).toBe(manifest1);
+  });
+
+  it("reports a malformed actor as a structured failure instead of throwing, and writes nothing", () => {
+    const dataDir = tmpDir("pf2data-data-");
+    const cacheDir = tmpDir("pf2data-cache-");
+    const configDir = tmpDir("pf2data-config-");
+
+    const configPath = join(configDir, "pf2data.config.json");
+    writeFileSync(
+      configPath,
+      JSON.stringify({
+        upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        packs: [{ name: "kingmaker-bestiary", kind: "creatures" }],
+      }),
+    );
+
+    const packDir = join(cacheDir, "packs", "kingmaker-bestiary");
+    mkdirSync(packDir, { recursive: true });
+    const fixture = JSON.parse(
+      readFileSync(
+        fileURLToPath(new URL("./fixtures/the-stag-lord.json", import.meta.url)),
+        "utf8",
+      ),
+    );
+    // Corrupt a required numeric field so normalizeCreature throws a ZodError.
+    fixture.system.attributes.ac.value = "not-a-number";
+    writeFileSync(
+      join(packDir, "broken-creature.json"),
+      JSON.stringify(fixture),
+    );
+
+    mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+
+    const { run } = recordingGit();
+    const deps: CliDeps = { dataDir, cacheDir, configPath, runGit: run };
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["update", "--latest"],
+      { out: () => {}, err: (s) => errLines.push(s), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.some((l) => l.includes("kingmaker-bestiary/broken-creature"))).toBe(true);
+    expect(existsSync(join(dataDir, "manifest.json"))).toBe(false);
   });
 });

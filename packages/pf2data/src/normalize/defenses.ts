@@ -11,7 +11,8 @@ const SystemSchema = z.object({
     ac: z.object({ value: z.number() }),
     hp: z.object({ max: z.number() }),
     speed: z.object({
-      value: z.number(),
+      // Null means the creature has no land speed at all (the Banshee flies).
+      value: z.number().nullable(),
       otherSpeeds: z
         .array(z.object({ type: z.string(), value: z.number() }))
         .default([]),
@@ -32,7 +33,10 @@ const SystemSchema = z.object({
     reflex: z.object({ value: z.number() }),
     will: z.object({ value: z.number() }),
   }),
-  skills: z.record(z.object({ base: z.number() })).default({}),
+  // A null base marks an upstream data-entry artefact: three NPC Core actors
+  // carry junk keys such as "+6", "athletics+15" and "occultism -1" alongside
+  // their real skills. Those entries are dropped during normalization.
+  skills: z.record(z.object({ base: z.number().nullable() })).default({}),
 });
 
 export interface Defenses {
@@ -62,7 +66,9 @@ export function normalizeDefenses(system: unknown): Defenses {
 
   const skills: Record<string, number> = {};
   for (const name of Object.keys(s.skills).sort()) {
-    skills[name] = s.skills[name]!.base;
+    const base = s.skills[name]!.base;
+    if (base === null) continue;
+    skills[name] = base;
   }
 
   const abilityMods: Record<string, number> = {};
@@ -93,7 +99,9 @@ export function normalizeDefenses(system: unknown): Defenses {
     skills,
     abilityMods,
     speeds: [
-      { type: "land", value: s.attributes.speed.value },
+      ...(s.attributes.speed.value === null
+        ? []
+        : [{ type: "land", value: s.attributes.speed.value }]),
       ...[...s.attributes.speed.otherSpeeds].sort((a, b) =>
         a.type.localeCompare(b.type),
       ),

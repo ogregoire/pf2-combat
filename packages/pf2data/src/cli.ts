@@ -176,7 +176,13 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     return EXIT.upstreamError;
   }
 
-  const creatures = normalizePacks(fetched.packsDir, config);
+  const normalized = normalizePacks(fetched.packsDir, config);
+  if (normalized.failures.length > 0) {
+    for (const failure of normalized.failures) io.err(`${failure}\n`);
+    emit({ command: command.name, ok: false, failures: normalized.failures });
+    return EXIT.verifyFailed;
+  }
+  const creatures = normalized.creatures;
   const build = buildIndexes(creatures);
 
   const nextManifest: Manifest = {
