@@ -1356,9 +1356,35 @@ describe("normalizeSpellcasting", () => {
   it("attaches spells to the entry that owns them", () => {
     const entries = normalizeSpellcasting(nyrissa.items);
     const total = entries.reduce((sum, e) => sum + e.spells.length, 0);
-    expect(total).toBe(64);
+    // 64 spell items, 7 of which are rituals with no spellcasting entry.
+    expect(total).toBe(57);
     const spont = entries.find((e) => e.name === "Arcane Spontaneous Spells")!;
     expect(spont.spells.some((s) => s.name === "Wish")).toBe(true);
+  });
+
+  it("excludes rituals, which have no spellcasting entry", () => {
+    const entries = normalizeSpellcasting(nyrissa.items);
+    const all = entries.flatMap((e) => e.spells.map((s) => s.name));
+    for (const ritual of [
+      "Control Weather",
+      "Create Demiplane",
+      "Awaken Animal",
+      "Commune with Nature",
+      "Primal Call",
+      "Geas",
+      "Inveigle",
+    ]) {
+      expect(all).not.toContain(ritual);
+    }
+  });
+
+  it("leaves no non-ritual spell orphaned", () => {
+    const entries = normalizeSpellcasting(nyrissa.items);
+    const attached = entries.reduce((sum, e) => sum + e.spells.length, 0);
+    const castable = nyrissa.items.filter(
+      (i: any) => i.type === "spell" && (i.system.ritual ?? null) === null,
+    ).length;
+    expect(attached).toBe(castable);
   });
 
   it("reads slot maxima", () => {
@@ -1402,6 +1428,7 @@ const SpellItemSchema = z.object({
   system: z.object({
     level: z.object({ value: z.number() }),
     location: z.object({ value: z.string().nullish() }),
+    ritual: z.unknown().nullish(),
   }),
 });
 
@@ -1445,6 +1472,12 @@ export function normalizeSpellcasting(items: unknown[]): SpellcastingEntry[] {
   for (const item of items) {
     const parsed = SpellItemSchema.safeParse(item);
     if (!parsed.success) continue;
+    // Rituals are not cast from a spellcasting entry: upstream gives them a
+    // populated `ritual` block, a cast time in days, and a null location.
+    // Skipping them explicitly means a null location on a NON-ritual spell
+    // stays visible as the broken link it would be.
+    const { ritual } = parsed.data.system;
+    if (ritual !== null && ritual !== undefined) continue;
     const owner = parsed.data.system.location.value;
     if (owner === null || owner === undefined) continue;
     const entry = entries.get(owner);
