@@ -3223,7 +3223,14 @@ git commit -m "feat(pf2data): cli with structured output and exit codes"
 - Produces:
   - `resolveLocalize(html: string, lang: LangTable): string`, `LangTable = Record<string, string>`
   - `loadGlossaryLang(langFilePath: string): LangTable` — flattens `PF2E.NPC.Abilities.Glossary.*` into dotted keys
-  - `buildConditions(packsDir: string): Condition[]`
+  - `buildConditions(packsDir: string, packs: string[]): Condition[]` — **amended
+    during implementation** (review finding, ruled on): the pack list comes from
+    config (`kind === "conditions"`), mirroring `buildGlossary`. Hardcoding the
+    directory name coupled it to `pf2data.config.json` naming the pack
+    `conditions`; a rename would have skipped sparse-checkout and produced an
+    ENOENT. The CLI also wraps the reference-data reads in the same error
+    boundary as `fetchUpstream`, so a broken cache exits `30` with structured
+    JSON instead of an uncaught stack trace.
   - `buildGlossary(packsDir: string, lang: LangTable, packs: string[]): GlossaryEntry[]`
 
 ```ts
