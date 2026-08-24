@@ -1,0 +1,152 @@
+import { compareStrings } from "./compare.js";
+import type { Modifier } from "./modifiers.js";
+
+export type Selector =
+  | "attack"
+  | "ac"
+  | "fortitude"
+  | "reflex"
+  | "will"
+  | "perception"
+  | "skill";
+
+export type ConditionSlug =
+  | "off-guard" | "frightened" | "sickened" | "clumsy" | "enfeebled"
+  | "stupefied" | "drained" | "slowed" | "stunned" | "quickened"
+  | "prone" | "grabbed" | "restrained" | "immobilized" | "blinded"
+  | "dazzled" | "deafened" | "fatigued" | "doomed" | "dying"
+  | "wounded" | "persistent-damage";
+
+export interface ConditionDef {
+  slug: ConditionSlug;
+  name: string;
+  valued: boolean;
+  /** Selectors this condition penalises, given its value. */
+  affects: (value: number) => { selectors: Selector[]; mod: Modifier } | null;
+  startOfTurn?: "reduce-actions" | "recovery-check";
+  endOfTurn?: "decrement" | "persistent-damage";
+  implies?: ConditionSlug[];
+}
+
+const ALL_CHECKS: Selector[] = [
+  "attack", "fortitude", "reflex", "will", "perception", "skill",
+];
+
+const status = (value: number, source: string): Modifier => ({
+  value: -value,
+  type: "status",
+  source,
+});
+
+const circumstance = (value: number, source: string): Modifier => ({
+  value: -value,
+  type: "circumstance",
+  source,
+});
+
+const def = (d: ConditionDef): ConditionDef => d;
+
+export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
+  "off-guard": def({
+    slug: "off-guard", name: "Off-Guard", valued: false,
+    affects: () => ({ selectors: ["ac"], mod: circumstance(2, "off-guard") }),
+  }),
+  frightened: def({
+    slug: "frightened", name: "Frightened", valued: true,
+    affects: (v) => ({ selectors: ALL_CHECKS, mod: status(v, `frightened ${v}`) }),
+    endOfTurn: "decrement",
+  }),
+  sickened: def({
+    slug: "sickened", name: "Sickened", valued: true,
+    affects: (v) => ({ selectors: ALL_CHECKS, mod: status(v, `sickened ${v}`) }),
+  }),
+  clumsy: def({
+    slug: "clumsy", name: "Clumsy", valued: true,
+    affects: (v) => ({ selectors: ["ac", "reflex"], mod: status(v, `clumsy ${v}`) }),
+  }),
+  enfeebled: def({
+    slug: "enfeebled", name: "Enfeebled", valued: true,
+    affects: (v) => ({ selectors: ["attack"], mod: status(v, `enfeebled ${v}`) }),
+  }),
+  stupefied: def({
+    slug: "stupefied", name: "Stupefied", valued: true,
+    // PF2e stupefied applies to Int/Wis/Cha-based checks and DCs, which
+    // includes Will saves AND Perception checks (Perception uses Wisdom).
+    // The brief's reference implementation scoped this to ["will"] only,
+    // dropping Perception — corrected here; see task-5-report.md.
+    affects: (v) => ({ selectors: ["will", "perception"], mod: status(v, `stupefied ${v}`) }),
+  }),
+  drained: def({
+    slug: "drained", name: "Drained", valued: true,
+    affects: (v) => ({ selectors: ["fortitude"], mod: status(v, `drained ${v}`) }),
+  }),
+  slowed: def({
+    slug: "slowed", name: "Slowed", valued: true,
+    affects: () => null, startOfTurn: "reduce-actions",
+  }),
+  stunned: def({
+    slug: "stunned", name: "Stunned", valued: true,
+    affects: () => null, startOfTurn: "reduce-actions",
+  }),
+  quickened: def({
+    slug: "quickened", name: "Quickened", valued: false, affects: () => null,
+  }),
+  prone: def({
+    slug: "prone", name: "Prone", valued: false,
+    affects: () => ({ selectors: ["attack"], mod: circumstance(2, "prone") }),
+    implies: ["off-guard"],
+  }),
+  grabbed: def({
+    slug: "grabbed", name: "Grabbed", valued: false, affects: () => null,
+    implies: ["off-guard", "immobilized"],
+  }),
+  restrained: def({
+    slug: "restrained", name: "Restrained", valued: false, affects: () => null,
+    implies: ["off-guard", "immobilized"],
+  }),
+  immobilized: def({
+    slug: "immobilized", name: "Immobilized", valued: false, affects: () => null,
+  }),
+  blinded: def({
+    slug: "blinded", name: "Blinded", valued: false, affects: () => null,
+    implies: ["off-guard"],
+  }),
+  dazzled: def({ slug: "dazzled", name: "Dazzled", valued: false, affects: () => null }),
+  deafened: def({ slug: "deafened", name: "Deafened", valued: false, affects: () => null }),
+  fatigued: def({
+    slug: "fatigued", name: "Fatigued", valued: false,
+    affects: () => ({
+      selectors: ["ac", "fortitude", "reflex", "will"],
+      mod: status(1, "fatigued"),
+    }),
+  }),
+  doomed: def({ slug: "doomed", name: "Doomed", valued: true, affects: () => null }),
+  dying: def({
+    slug: "dying", name: "Dying", valued: true, affects: () => null,
+    startOfTurn: "recovery-check",
+  }),
+  wounded: def({ slug: "wounded", name: "Wounded", valued: true, affects: () => null }),
+  "persistent-damage": def({
+    slug: "persistent-damage", name: "Persistent Damage", valued: true,
+    affects: () => null, endOfTurn: "persistent-damage",
+  }),
+};
+
+export interface AppliedCondition {
+  slug: ConditionSlug;
+  value: number;
+}
+
+export function conditionModifiers(
+  applied: AppliedCondition[],
+  selector: Selector,
+): Modifier[] {
+  const mods: Modifier[] = [];
+  for (const c of applied) {
+    const effect = CONDITIONS[c.slug].affects(c.value);
+    if (effect === null) continue;
+    if (!effect.selectors.includes(selector)) continue;
+    mods.push(effect.mod);
+  }
+  return mods.sort((a, b) => compareStrings(a.source, b.source));
+}

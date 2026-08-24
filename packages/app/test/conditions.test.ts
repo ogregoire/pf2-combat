@@ -1,0 +1,84 @@
+import { describe, expect, it } from "vitest";
+import { CONDITIONS, conditionModifiers } from "../src/rules/conditions.js";
+import { resolveModifiers } from "../src/rules/modifiers.js";
+
+describe("condition catalogue", () => {
+  it("covers the curated set", () => {
+    expect(Object.keys(CONDITIONS).length).toBeGreaterThanOrEqual(20);
+    expect(CONDITIONS["off-guard"].valued).toBe(false);
+    expect(CONDITIONS.frightened.valued).toBe(true);
+  });
+
+  it("marks the right timing hooks", () => {
+    expect(CONDITIONS.slowed.startOfTurn).toBe("reduce-actions");
+    expect(CONDITIONS.dying.startOfTurn).toBe("recovery-check");
+    expect(CONDITIONS.frightened.endOfTurn).toBe("decrement");
+    expect(CONDITIONS["persistent-damage"].endOfTurn).toBe("persistent-damage");
+    expect(CONDITIONS.sickened.endOfTurn).toBeUndefined();
+  });
+});
+
+describe("conditionModifiers", () => {
+  it("gives off-guard a -2 circumstance penalty to AC only", () => {
+    expect(conditionModifiers([{ slug: "off-guard", value: 0 }], "ac")).toEqual([
+      { value: -2, type: "circumstance", source: "off-guard" },
+    ]);
+    expect(conditionModifiers([{ slug: "off-guard", value: 0 }], "attack")).toEqual([]);
+  });
+
+  it("applies frightened to every check", () => {
+    for (const sel of ["attack", "fortitude", "reflex", "will", "perception"] as const) {
+      expect(conditionModifiers([{ slug: "frightened", value: 2 }], sel)).toEqual([
+        { value: -2, type: "status", source: "frightened 2" },
+      ]);
+    }
+  });
+
+  it("does not let sickened and frightened stack — worst status only", () => {
+    const mods = conditionModifiers(
+      [
+        { slug: "sickened", value: 1 },
+        { slug: "frightened", value: 2 },
+      ],
+      "attack",
+    );
+    expect(resolveModifiers(mods).total).toBe(-2);
+  });
+
+  it("applies clumsy to AC and Reflex but not Will", () => {
+    const c = [{ slug: "clumsy" as const, value: 2 }];
+    expect(conditionModifiers(c, "ac")).toHaveLength(1);
+    expect(conditionModifiers(c, "reflex")).toHaveLength(1);
+    expect(conditionModifiers(c, "will")).toEqual([]);
+  });
+
+  it("applies drained to Fortitude only", () => {
+    const c = [{ slug: "drained" as const, value: 1 }];
+    expect(conditionModifiers(c, "fortitude")).toHaveLength(1);
+    expect(conditionModifiers(c, "reflex")).toEqual([]);
+  });
+
+  it("gives prone a -2 circumstance to attack", () => {
+    expect(conditionModifiers([{ slug: "prone", value: 0 }], "attack")).toEqual([
+      { value: -2, type: "circumstance", source: "prone" },
+    ]);
+  });
+
+  it("applies fatigued to AC and every save", () => {
+    const c = [{ slug: "fatigued" as const, value: 0 }];
+    expect(conditionModifiers(c, "ac")).toHaveLength(1);
+    expect(conditionModifiers(c, "will")).toHaveLength(1);
+    expect(conditionModifiers(c, "attack")).toEqual([]);
+  });
+
+  it("returns modifiers sorted deterministically", () => {
+    const mods = conditionModifiers(
+      [
+        { slug: "frightened", value: 1 },
+        { slug: "fatigued", value: 0 },
+      ],
+      "will",
+    );
+    expect(mods.map((m) => m.source)).toEqual(["fatigued", "frightened 1"]);
+  });
+});
