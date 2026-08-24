@@ -875,7 +875,9 @@ git commit -m "feat(app): multiple attack penalty and action pool"
   - `type ConditionSlug` — union of the curated slugs.
   - `interface ConditionDef { slug: ConditionSlug; name: string; valued: boolean; modifiers(value: number): Modifier[]; startOfTurn?: "reduce-actions" | "recovery-check"; endOfTurn?: "decrement" | "persistent-damage"; implies?: ConditionSlug[] }`
   - `CONDITIONS: Record<ConditionSlug, ConditionDef>`
-  - `interface AppliedCondition { slug: ConditionSlug; value: number }`
+  - `interface AppliedCondition { slug: ConditionSlug; value: number; formula?: string }`
+    — `formula` carries persistent damage's dice (`1d6`), which an integer cannot express;
+    `data/conditions.json` marks persistent damage `isValued: false` for exactly this reason.
   - `conditionModifiers(applied: AppliedCondition[], selector: Selector): Modifier[]` where `Selector = "melee-attack" | "ranged-attack" | "ac" | "fortitude" | "reflex" | "will" | "perception" | "skill"`
 
 The curated set for phase 1, with their mechanical effect:
@@ -903,7 +905,7 @@ The curated set for phase 1, with their mechanical effect:
 | doomed | yes | no modifier; lowers the dying threshold |
 | dying | yes | start of turn: recovery check |
 | wounded | yes | no modifier; raises dying on re-entry |
-| persistent-damage | yes | end of turn: roll, then DC 15 flat |
+| persistent-damage | no (carries a `formula`, e.g. `1d6`) | end of turn: roll it, then DC 15 flat to end |
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1688,7 +1690,7 @@ describe("promptsFor", () => {
   it("emits persistent damage with its flat check at the end of turn", () => {
     const [p] = promptsFor({
       combatantId: "c1",
-      conditions: [{ slug: "persistent-damage", value: 6 }],
+      conditions: [{ slug: "persistent-damage", value: 0, formula: "1d6" }],
       timing: "end",
     });
     expect(p!.computation).toContain("1d6");
@@ -1809,7 +1811,7 @@ export function promptsFor(input: PromptsInput): Prompt[] {
       prompts.push({
         id, timing: "end", slug: c.slug,
         title: "Persistent damage",
-        computation: `Roll 1d${c.value}, then DC 15 flat check to end it`,
+        computation: `Roll ${c.formula ?? "the persistent damage"}, then DC 15 flat check to end it`,
         derivation: null,
         outcomes: [
           { label: "15+", effect: "the condition ends" },
