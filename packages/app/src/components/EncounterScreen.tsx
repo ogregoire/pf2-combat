@@ -1,7 +1,14 @@
+import { useState } from "react";
+import type { Creature } from "@pf2/schema";
+import type { FetchFn } from "../data/catalog.js";
+import { loadCreature } from "../data/creatures.js";
+import { useCatalog } from "../hooks/useCatalog.js";
 import { encounterXp, partyLevelFor } from "../rules/xp.js";
 import { useEncounter } from "../state/store.js";
 import { ActiveCombatant } from "./ActiveCombatant.js";
+import { AddCombatants } from "./AddCombatants.js";
 import { CombatantList } from "./CombatantList.js";
+import { PartyManager } from "./PartyManager.js";
 import { TurnManager } from "./TurnManager.js";
 
 /** Main.dc.html's top bar: encounter name, the XP award per character (the
@@ -74,12 +81,76 @@ function TopBar(): React.ReactElement {
   );
 }
 
-/** Assembles Main.dc.html's whole screen: the top bar plus the three panes,
- * each carrying the `data-testid` its own tests key off. `CombatantList`,
- * `ActiveCombatant` and `TurnManager` already own their internal content —
- * this component owns only the outer layout (pane widths, borders) and the
- * top bar, matching the mockup's spacing. */
-export function EncounterScreen(): React.ReactElement {
+const headerButtonStyle: React.CSSProperties = {
+  fontFamily: "inherit",
+  fontSize: "12px",
+  padding: "4px 9px",
+  borderRadius: "3px",
+  border: "1px solid var(--border-strong)",
+  background: "var(--panel-raised)",
+  color: "var(--text-dim)",
+  cursor: "pointer",
+};
+
+/** A right-anchored drawer over the whole screen, used for `<AddCombatants>`
+ * and `<PartyManager>` — both are "supporting screens" per the design doc,
+ * not panes of their own, so they surface on demand rather than taking
+ * permanent space from the three-pane layout the mockup specifies. */
+function Drawer({
+  title,
+  onClose,
+  children,
+}: {
+  title: string;
+  onClose: () => void;
+  children: React.ReactNode;
+}): React.ReactElement {
+  return (
+    <div style={{ position: "fixed", inset: 0, background: "oklch(0.08 0.01 60 / 0.6)", display: "flex", justifyContent: "flex-end", zIndex: 50 }}>
+      <div
+        style={{
+          width: "min(760px, 100%)",
+          height: "100%",
+          background: "var(--bg)",
+          borderLeft: "1px solid var(--border)",
+          padding: "20px 24px",
+          overflowY: "auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontFamily: "var(--font-display)", fontSize: "18px", fontWeight: 600 }}>{title}</span>
+          <button type="button" aria-label={`Close ${title}`} onClick={onClose} style={headerButtonStyle}>
+            Close
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+type DrawerKind = "add" | "party" | null;
+
+/** Assembles Main.dc.html's whole screen: the top bar, the three panes each
+ * carrying the `data-testid` its own tests key off, and the "+ Add"/"Party"
+ * controls that surface `<AddCombatants>` and `<PartyManager>` in a drawer —
+ * without this the deployed app would have no way to put a creature or a
+ * player into the encounter. The creature catalog loads once, on mount, via
+ * `useCatalog`; `fetchFn`/`loadCreatureFn` are injectable so tests can drive
+ * the whole add-a-creature loop against fake data instead of the network. */
+export function EncounterScreen({
+  fetchFn,
+  loadCreatureFn = loadCreature,
+}: {
+  fetchFn?: FetchFn;
+  loadCreatureFn?: (id: string) => Promise<Creature>;
+} = {}): React.ReactElement {
+  const catalog = useCatalog(fetchFn);
+  const [drawer, setDrawer] = useState<DrawerKind>(null);
+
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100dvh", background: "var(--bg)", color: "var(--text)" }}>
       <TopBar />
@@ -97,8 +168,18 @@ export function EncounterScreen(): React.ReactElement {
             overflowY: "auto",
           }}
         >
-          <div style={{ padding: "12px 14px 10px", fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-            Initiative
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px 10px" }}>
+            <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
+              Initiative
+            </div>
+            <div style={{ display: "flex", gap: "6px" }}>
+              <button type="button" onClick={() => setDrawer("add")} style={headerButtonStyle}>
+                + Add
+              </button>
+              <button type="button" onClick={() => setDrawer("party")} style={headerButtonStyle}>
+                Party
+              </button>
+            </div>
           </div>
           <CombatantList />
         </div>
@@ -120,6 +201,22 @@ export function EncounterScreen(): React.ReactElement {
           <TurnManager />
         </div>
       </div>
+
+      {drawer === "add" && (
+        <Drawer title="Add combatants" onClose={() => setDrawer(null)}>
+          {catalog.status === "loading" && <p style={{ color: "var(--text-faint)", fontSize: "13px" }}>loading books&hellip;</p>}
+          {catalog.status === "error" && (
+            <p style={{ color: "var(--danger)", fontSize: "13px" }}>Could not load the creature catalog: {catalog.message}</p>
+          )}
+          {catalog.status === "ready" && <AddCombatants entries={catalog.entries} loadCreatureFn={loadCreatureFn} />}
+        </Drawer>
+      )}
+
+      {drawer === "party" && (
+        <Drawer title="Party" onClose={() => setDrawer(null)}>
+          <PartyManager />
+        </Drawer>
+      )}
     </div>
   );
 }
