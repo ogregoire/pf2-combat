@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+import type { Action, Attack } from "@pf2/schema";
 import type { ConditionSlug } from "../rules/conditions.js";
 import type { Iwr } from "../rules/damage.js";
 import type { Combatant, Encounter, Entry, Player } from "./types.js";
@@ -18,6 +19,10 @@ export interface CombatantSeed {
   iwr?: Iwr | null;
   /** Populated from the creature record when added from the dataset. */
   reactions?: { name: string; trigger: string }[];
+  /** Populated from the creature record when added from the dataset. */
+  attacks?: Attack[];
+  /** Populated from the creature record when added from the dataset. */
+  actions?: Action[];
 }
 
 let combatantSeq = 0;
@@ -58,6 +63,8 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
     level: seed.level,
     iwr: seed.iwr ?? null,
     reactions: seed.reactions ?? [],
+    attacks: seed.attacks ?? [],
+    actions: seed.actions ?? [],
     conditions: [],
     strikesMade: 0,
     reactionSpent: false,

@@ -1,3 +1,4 @@
+import type { Action, Attack } from "@pf2/schema";
 import type { AppliedCondition } from "../rules/conditions.js";
 import type { Iwr } from "../rules/damage.js";
 
@@ -23,6 +24,8 @@ export interface Combatant {
   level: number;
   iwr: Iwr | null;
   reactions: { name: string; trigger: string }[];
+  attacks: Attack[];
+  actions: Action[];
   conditions: AppliedCondition[];
   strikesMade: number;
   reactionSpent: boolean;
