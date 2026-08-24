@@ -41,10 +41,16 @@ export function normalizeAttacks(items: unknown[]): NormalizedAttack[] {
 
     // Foundry omits `weaponType` for some ranged weapons (thrown items,
     // slings, bows in NPC Core): infer ranged from a `range-*` trait
-    // (`range-120`, `range-increment-50`) rather than defaulting to melee.
+    // (`range-120`, `range-increment-50`) or a `thrown-*` trait
+    // (`thrown-20`) rather than defaulting to melee. A weapon that is thrown
+    // is upstream's own signal that the Strike is ranged; explicit
+    // `weaponType` (checked first) always wins, so a weapon upstream tags
+    // "melee" despite carrying a thrown-* trait is left alone.
     const kind =
       system.weaponType?.value ??
-      (traits.some((t) => t.startsWith("range-")) ? "ranged" : "melee");
+      (traits.some((t) => t.startsWith("range-") || t.startsWith("thrown-"))
+        ? "ranged"
+        : "melee");
 
     attacks.push({
       name,

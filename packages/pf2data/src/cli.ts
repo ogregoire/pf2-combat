@@ -138,9 +138,10 @@ interface OnDiskFiles {
 
 /** Reads the raw text of every emitted file (creature and non-creature
  * alike) so `update` can detect a change confined to a non-creature file --
- * see Task C3. Deliberately excludes manifest.json, which carries
- * `generatedAt` and would self-trigger. A corrupt on-disk file is left to
- * throw; the caller treats that as a verification failure. */
+ * see Task C3. Does not read manifest.json itself: its fields (other than
+ * `generatedAt`, which would self-trigger) are folded into `others` by the
+ * caller instead -- see N3. A corrupt on-disk file is left to throw; the
+ * caller treats that as a verification failure. */
 function readOnDiskFiles(manifest: Manifest | null, dataDir: string): OnDiskFiles {
   const creatures = new Map<string, string>();
   const others = new Map<string, string>();
@@ -213,6 +214,32 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
       emit({ command: "verify", ok: false, failures: ["no dataset"] });
       return EXIT.verifyFailed;
     }
+
+    // readDataset/readOnDiskFiles fall back to [] for an absent file, so a
+    // DELETED emitted file (as opposed to one that never existed) has to be
+    // caught here, before that fallback can mask it -- see N2. Every file
+    // the manifest implies should exist: the four fixed top-level files, and
+    // an index for every pack the manifest lists that is actually a
+    // creatures-kind pack (the only kind that ever gets an index file).
+    const missingFiles: string[] = [];
+    for (const relPath of ["books.json", "conditions.json", "glossary.json", "SCHEMA.md"]) {
+      if (!existsSync(join(dataDir, relPath))) missingFiles.push(relPath);
+    }
+    const creaturePacks = new Set(
+      config.packs.filter((p) => p.kind === "creatures").map((p) => p.name),
+    );
+    for (const pack of manifest.packs) {
+      if (!creaturePacks.has(pack)) continue;
+      const relPath = `index/${pack}.json`;
+      if (!existsSync(join(dataDir, relPath))) missingFiles.push(relPath);
+    }
+    if (missingFiles.length > 0) {
+      const failures = missingFiles.map((p) => `missing: ${p} does not exist`);
+      for (const failure of failures) io.err(`${failure}\n`);
+      emit({ command: "verify", ok: false, failures });
+      return EXIT.verifyFailed;
+    }
+
     let onDisk: OnDiskDataset;
     try {
       onDisk = readDataset(manifest, dataDir);
@@ -287,7 +314,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
 
   let conditions, glossary;
   try {
-    conditions = buildConditions(fetched.packsDir, conditionPacks);
+    conditions = buildConditions(fetched.packsDir, lang, conditionPacks);
     glossary = buildGlossary(fetched.packsDir, lang, glossaryPacks);
   } catch (error) {
     io.err(`upstream error: ${(error as Error).message}\n`);
@@ -334,11 +361,16 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   // Two diffs: `creatureDiff` is the documented, agent-facing "what changed"
   // report (creature ids only). `otherDiff` covers every other emitted file
   // (index/<pack>.json, books.json, conditions.json, glossary.json,
-  // SCHEMA.md) purely to decide the change status -- see C3. Without it, a
-  // change confined to a non-creature file reported "unchanged" and exit 0
-  // while `git diff data/` was non-empty.
+  // SCHEMA.md) plus the manifest's own non-generatedAt fields, purely to
+  // decide the change status -- see C3 and N3. Without the manifest fields
+  // here, a change to `upstreamRef` or `toolVersion` alone (every other
+  // emitted file byte-identical) reported "unchanged" and exit 0.
+  // `generatedAt` is excluded because it would self-trigger: it is not
+  // reassigned to "now" until AFTER `status` is decided, a few lines below.
   const nextCreatureRaw = new Map(creatures.map((c) => [c.id, stableStringify(c)]));
   const creatureDiff = diffDataset(onDisk.creatures, nextCreatureRaw);
+
+  const withoutGeneratedAt = ({ generatedAt: _generatedAt, ...rest }: Manifest): Omit<Manifest, "generatedAt"> => rest;
 
   const nextOtherRaw = new Map<string, string>();
   for (const [pack, entries] of Object.entries(build.indexes)) {
@@ -348,6 +380,10 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   nextOtherRaw.set("conditions.json", stableStringify(conditions));
   nextOtherRaw.set("glossary.json", stableStringify(glossary));
   nextOtherRaw.set("SCHEMA.md", schemaDoc);
+  nextOtherRaw.set("manifest.json", stableStringify(withoutGeneratedAt(nextManifest)));
+  if (manifest !== null) {
+    onDisk.others.set("manifest.json", stableStringify(withoutGeneratedAt(manifest)));
+  }
   const otherDiff = diffDataset(onDisk.others, nextOtherRaw);
 
   const otherFilesChanged = statusOf(otherDiff) === "updated";

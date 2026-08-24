@@ -29,7 +29,11 @@ const GlossaryItemSchema = z.object({
   }),
 });
 
-export function buildConditions(packsDir: string, packs: string[]): Condition[] {
+export function buildConditions(
+  packsDir: string,
+  lang: LangTable,
+  packs: string[],
+): Condition[] {
   const conditions: Condition[] = [];
 
   for (const pack of packs) {
@@ -41,7 +45,9 @@ export function buildConditions(packsDir: string, packs: string[]): Condition[] 
         slug: file.slug,
         name: parsed.data.name,
         isValued: parsed.data.system.value.isValued,
-        description: resolveLinks(parsed.data.system.description.value),
+        description: resolveLinks(
+          resolveLocalize(parsed.data.system.description.value, lang),
+        ),
       });
     }
   }

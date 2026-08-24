@@ -137,6 +137,37 @@ describe("verifyDataset", () => {
     expect(result.failures.join(" ")).toMatch(/schema: index/);
   });
 
+  it("N4: fails when an unresolved @UUID link remains in a condition description", () => {
+    const input = baseInput();
+    input.conditions = [
+      {
+        slug: "grabbed",
+        name: "Grabbed",
+        isValued: false,
+        description: "see @UUID[Compendium.pf2e.x.Item.y]{Z}",
+      },
+    ];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/links: condition grabbed.*@UUID/);
+  });
+
+  it("N4: fails when an unresolved @Localize placeholder remains in a glossary description", () => {
+    const input = baseInput();
+    input.glossary = [
+      {
+        slug: "grab",
+        name: "Grab",
+        cost: "1",
+        traits: [],
+        description: "@Localize[PF2E.NPC.Abilities.Glossary.Grab]",
+      },
+    ];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/links: glossary grab.*@Localize/);
+  });
+
   it("fails when a condition does not validate against its schema", () => {
     const input = baseInput();
     input.conditions = [{ slug: "prone", name: "Prone" /* missing isValued/description */ }];

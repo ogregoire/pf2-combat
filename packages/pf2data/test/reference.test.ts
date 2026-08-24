@@ -58,7 +58,7 @@ describe("buildConditions", () => {
       }),
     );
 
-    const conditions = buildConditions(packsDir, ["custom-condition-pack"]);
+    const conditions = buildConditions(packsDir, {}, ["custom-condition-pack"]);
 
     expect(conditions).toEqual([
       {
@@ -68,5 +68,30 @@ describe("buildConditions", () => {
         description: "<p>You are lying on the ground.</p>",
       },
     ]);
+  });
+
+  it("resolves @Localize placeholders in a condition description, like buildGlossary does", () => {
+    const packsDir = mkdtempSync(join(tmpdir(), "reference-packs-"));
+    tmpDirs.push(packsDir);
+
+    const packDir = join(packsDir, "conditions");
+    mkdirSync(packDir, { recursive: true });
+    writeFileSync(
+      join(packDir, "frightened.json"),
+      JSON.stringify({
+        name: "Frightened",
+        type: "condition",
+        system: {
+          description: { value: "<p>@Localize[PF2E.ConditionsGlossary.Frightened]</p>" },
+          value: { isValued: true },
+        },
+      }),
+    );
+
+    const lang = { "PF2E.ConditionsGlossary.Frightened": "<p>You are gripped by fear.</p>" };
+    const conditions = buildConditions(packsDir, lang, ["conditions"]);
+
+    expect(conditions[0]!.description).toContain("You are gripped by fear.");
+    expect(conditions[0]!.description).not.toContain("@Localize[");
   });
 });

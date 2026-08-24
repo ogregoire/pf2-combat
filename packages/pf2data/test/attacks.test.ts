@@ -50,6 +50,59 @@ describe("normalizeAttacks", () => {
     expect(attacks[0]!.kind).toBe("ranged");
   });
 
+  it("infers a ranged attack from a thrown-* trait when weaponType is absent (real fisher shape)", () => {
+    // pathfinder-npc-core/fisher.json: upstream emits the thrown Spear as two
+    // "melee"-type items sharing the same linkedWeapon, weaponType absent on
+    // both. The +7 entry has no traits (the melee Strike) and must stay
+    // melee; the +6 entry carries only thrown-20 (the ranged Strike) and
+    // must now come out ranged instead of the old melee default.
+    const attacks = normalizeAttacks([
+      {
+        name: "Spear",
+        type: "melee",
+        system: {
+          attackEffects: { value: [] },
+          bonus: { value: 7 },
+          damageRolls: { a: { damage: "1d6+3", damageType: "piercing" } },
+          traits: { value: [] },
+        },
+      },
+      {
+        name: "Spear",
+        type: "melee",
+        system: {
+          attackEffects: { value: [] },
+          bonus: { value: 6 },
+          damageRolls: { a: { damage: "1d6+3", damageType: "piercing" } },
+          traits: { value: ["thrown-20"] },
+        },
+      },
+    ]);
+    const melee = attacks.find((a) => a.bonus === 7)!;
+    const ranged = attacks.find((a) => a.bonus === 6)!;
+    expect(melee.kind).toBe("melee");
+    expect(ranged.kind).toBe("ranged");
+  });
+
+  it("respects an explicit melee weaponType even when a thrown-* trait is present", () => {
+    // pathfinder-monster-core/azarketi-crab-catcher.json's Dagger: upstream
+    // explicitly tags weaponType "melee" despite the thrown-10 trait. That
+    // explicit tag must win over trait-based inference.
+    const attacks = normalizeAttacks([
+      {
+        name: "Dagger",
+        type: "melee",
+        system: {
+          bonus: { value: 10 },
+          damageRolls: {},
+          traits: { value: ["agile", "finesse", "thrown-10", "versatile-s"] },
+          weaponType: { value: "melee" },
+        },
+      },
+    ]);
+    expect(attacks[0]!.kind).toBe("melee");
+  });
+
   it("still defaults to melee when neither weaponType nor a range-* trait is present", () => {
     const attacks = normalizeAttacks([
       {

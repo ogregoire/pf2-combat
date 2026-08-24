@@ -321,4 +321,51 @@ describe("runCli", () => {
     expect(exit).toBe(20);
     expect(errLines.some((l) => l.toLowerCase().includes("corrupt"))).toBe(true);
   });
+
+  describe("N2: verify catches a DELETED emitted file, not just a corrupt one", () => {
+    const deletionCases: [string, (dataDir: string) => string][] = [
+      ["books.json", (dataDir) => join(dataDir, "books.json")],
+      ["conditions.json", (dataDir) => join(dataDir, "conditions.json")],
+      ["glossary.json", (dataDir) => join(dataDir, "glossary.json")],
+      ["SCHEMA.md", (dataDir) => join(dataDir, "SCHEMA.md")],
+      ["index/kingmaker-bestiary.json", (dataDir) => join(dataDir, "index", "kingmaker-bestiary.json")],
+    ];
+
+    for (const [relPath, resolvePath] of deletionCases) {
+      it(`fails verify with exit 20 and names the path when ${relPath} is deleted`, () => {
+        const { deps, dataDir } = seededDeps();
+        expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+        rmSync(resolvePath(dataDir), { force: true });
+
+        const errLines: string[] = [];
+        const exit = runCli(
+          ["verify"],
+          { out: () => {}, err: (s) => errLines.push(s), isTty: true },
+          deps,
+        );
+
+        expect(exit).toBe(20);
+        expect(errLines.some((l) => l.includes(relPath))).toBe(true);
+      });
+    }
+  });
+
+  it("N3: a manifest field change alone (toolVersion), with every emitted file byte-identical, yields exit 10 not 0", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    expect(runCli(["update"], silentIo(), deps)).toBe(0);
+
+    const manifestPath = join(dataDir, "manifest.json");
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+    manifest.toolVersion = "0.0.1-drifted";
+    writeFileSync(manifestPath, JSON.stringify(manifest));
+
+    const exit = runCli(["update"], silentIo(), deps);
+    expect(exit).toBe(10);
+
+    // and the drifted field is corrected back to what the tool actually emits
+    const fixed = JSON.parse(readFileSync(manifestPath, "utf8"));
+    expect(fixed.toolVersion).not.toBe("0.0.1-drifted");
+  });
 });
