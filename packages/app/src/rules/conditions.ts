@@ -120,7 +120,14 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   }),
   blinded: def({
     slug: "blinded", name: "Blinded", valued: false, affects: () => null,
-    implies: ["off-guard"],
+    // No `implies: ["off-guard"]` here, deliberately. Blinded's own text in
+    // data/conditions.json never mentions off-guard; a blinded creature
+    // reaches off-guard only because it can't see, so its targets are
+    // undetected to it, and you're off-guard to undetected creatures. That
+    // link runs through the visibility system, which this app does not
+    // model — and it doesn't always hold (a creature with a precise
+    // non-visual sense, e.g. tremorsense, would not be off-guard at all).
+    // Don't shortcut it back in; let the GM apply off-guard explicitly.
   }),
   dazzled: def({ slug: "dazzled", name: "Dazzled", valued: false, affects: () => null }),
   deafened: def({ slug: "deafened", name: "Deafened", valued: false, affects: () => null }),

@@ -16,6 +16,11 @@ describe("condition catalogue", () => {
     expect(CONDITIONS["persistent-damage"].endOfTurn).toBe("persistent-damage");
     expect(CONDITIONS.sickened.endOfTurn).toBeUndefined();
   });
+
+  it("does not let blinded imply off-guard, unlike prone", () => {
+    expect(CONDITIONS.blinded.implies).toBeUndefined();
+    expect(CONDITIONS.prone.implies).toContain("off-guard");
+  });
 });
 
 describe("conditionModifiers", () => {
