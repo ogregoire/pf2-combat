@@ -38,6 +38,38 @@ describe("TurnManager", () => {
     expect(screen.getByText("DC 10 + dying 2 = 12")).toBeDefined();
   });
 
+  it("decrements frightened when its end-of-turn prompt is acknowledged", async () => {
+    const user = userEvent.setup();
+    const id = add("a", 20);
+    useEncounter.getState().addCondition(id, "frightened", 2);
+    render(<TurnManager />);
+
+    await user.click(screen.getByRole("button", { name: /got it/i }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([
+      { slug: "frightened", value: 1, formula: undefined },
+    ]);
+  });
+
+  it("removes frightened once its value would decrement to zero", async () => {
+    const user = userEvent.setup();
+    const id = add("a", 20);
+    useEncounter.getState().addCondition(id, "frightened", 1);
+    render(<TurnManager />);
+
+    await user.click(screen.getByRole("button", { name: /got it/i }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
+  });
+
+  it("clears stunned once its start-of-turn action-loss prompt is acknowledged", async () => {
+    const user = userEvent.setup();
+    const id = add("a", 20);
+    useEncounter.getState().addCondition(id, "stunned", 2);
+    render(<TurnManager />);
+
+    await user.click(screen.getByRole("button", { name: /got it/i }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
+  });
+
   it("dismisses a prompt only on click", async () => {
     const user = userEvent.setup();
     const id = add("a", 20);
@@ -83,6 +115,29 @@ describe("TurnManager", () => {
     // wrapper, which must not itself scroll.
     expect(root.style.flexGrow).toBe("1");
     expect(root.style.minHeight).toBe("0");
+  });
+
+  it("excludes a combatant with no known reactions from the ready list", () => {
+    add("a", 20); // no `reactions` given — defaults to []
+    render(<TurnManager />);
+    expect(screen.getByText("0 ready")).toBeDefined();
+  });
+
+  it("lets the GM mark a reaction spent, removing it from the ready list", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Akiros Ismort", level: 3, ac: 18,
+        saves: { fortitude: 10, reflex: 8, will: 6 }, hp: { current: 53, max: 53 },
+        reactions: [{ name: "No Escape", trigger: "An adjacent foe moves away." }] },
+      15,
+    );
+    render(<TurnManager />);
+    expect(screen.getByText("1 ready")).toBeDefined();
+
+    await user.click(screen.getByRole("button", { name: /spent/i }));
+
+    expect(screen.getByText("0 ready")).toBeDefined();
+    expect(useEncounter.getState().encounter.combatants[id]!.reactionSpent).toBe(true);
   });
 
   it("shows the reaction's name and trigger text", () => {

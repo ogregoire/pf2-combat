@@ -1,4 +1,5 @@
 import { useEncounter } from "../state/store.js";
+import { CONDITIONS } from "../rules/conditions.js";
 import { promptsFor, type Prompt } from "../rules/prompts.js";
 import type { Combatant, Entry } from "../state/types.js";
 import { PromptCard } from "./PromptCard.js";
@@ -40,9 +41,37 @@ export function TurnPrompts(): React.ReactElement | null {
   const combatants = useEncounter((s) => s.encounter.combatants);
   const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
   const acknowledgePrompt = useEncounter((s) => s.acknowledgePrompt);
+  const addCondition = useEncounter((s) => s.addCondition);
+  const removeCondition = useEncounter((s) => s.removeCondition);
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   if (!combatant) return null;
+
+  /**
+   * Acknowledging is the GM's only record that a timed effect actually
+   * happened, so it's also the only place that effect gets applied — before
+   * this, nextTurn advanced the round but nothing ever decremented
+   * frightened (the same "Lose 1 action" prompt reappeared forever) and a
+   * stunned value, once its action loss had been read off the pips, was
+   * never cleared.
+   */
+  const handleAcknowledge = (prompt: Prompt): void => {
+    const applied = combatant.conditions.find((c) => c.slug === prompt.slug);
+    if (applied) {
+      if (prompt.timing === "end" && CONDITIONS[prompt.slug].endOfTurn === "decrement") {
+        const next = applied.value - 1;
+        if (next <= 0) removeCondition(combatant.id, prompt.slug);
+        else addCondition(combatant.id, prompt.slug, next);
+      }
+      // Stunned's whole value is what the action-pool math already
+      // subtracted this turn (see rules/actions.ts) — once the GM has seen
+      // and acknowledged that loss, the condition is spent.
+      if (prompt.timing === "start" && prompt.slug === "stunned") {
+        removeCondition(combatant.id, "stunned");
+      }
+    }
+    acknowledgePrompt(prompt.id);
+  };
 
   const startPrompts = unacknowledged(
     promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "start" }),
@@ -74,7 +103,7 @@ export function TurnPrompts(): React.ReactElement | null {
             </span>
           </div>
           {startPrompts.map((p) => (
-            <PromptCard key={p.id} prompt={p} onAcknowledge={() => acknowledgePrompt(p.id)} />
+            <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} />
           ))}
         </div>
       )}
@@ -95,7 +124,7 @@ export function TurnPrompts(): React.ReactElement | null {
             WAITING FOR END OF TURN — {endPrompts.length} ITEM{endPrompts.length === 1 ? "" : "S"}
           </span>
           {endPrompts.map((p) => (
-            <PromptCard key={p.id} prompt={p} onAcknowledge={() => acknowledgePrompt(p.id)} />
+            <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} />
           ))}
         </div>
       )}

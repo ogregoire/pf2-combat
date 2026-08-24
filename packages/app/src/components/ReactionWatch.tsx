@@ -6,16 +6,19 @@ import { compareStrings } from "../rules/compare.js";
  * The mockup pairs each entry with the reaction's name and trigger text;
  * `Combatant.reactions` (denormalised from the creature record, same as
  * `iwr`) carries that. A reaction with no trigger text shows its name alone
- * rather than inventing a trigger; a combatant with no known reactions
- * (nothing has populated the field yet) shows just their name.
+ * rather than inventing a trigger; a combatant with no known reactions at
+ * all has nothing to watch for, so it's excluded rather than listed with
+ * nothing under its name — `setReactionSpent` previously had no call site,
+ * so this list also never shrank when a reaction was actually used.
  *
  * The list scrolls independently of the round/pips/Next controls above it:
  * this container is the flex child that grows and gets `overflow-y: auto`,
  * while everything else in the panel has `flexShrink: 0` and stays put. */
 export function ReactionWatch(): React.ReactElement {
   const combatants = useEncounter((s) => s.encounter.combatants);
+  const setReactionSpent = useEncounter((s) => s.setReactionSpent);
   const ready = Object.values(combatants)
-    .filter((c) => !c.defeated && !c.reactionSpent)
+    .filter((c) => !c.defeated && !c.reactionSpent && c.reactions.length > 0)
     .sort((a, b) => compareStrings(a.name, b.name));
 
   return (
@@ -58,7 +61,26 @@ export function ReactionWatch(): React.ReactElement {
               flexShrink: 0,
             }}
           >
-            <div style={{ fontSize: "12.5px", fontWeight: 600 }}>{c.name}</div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ fontSize: "12.5px", fontWeight: 600 }}>{c.name}</span>
+              <div style={{ flexGrow: 1 }} />
+              <button
+                type="button"
+                onClick={() => setReactionSpent(c.id, true)}
+                style={{
+                  fontFamily: "inherit",
+                  fontSize: "10.5px",
+                  padding: "2px 7px",
+                  borderRadius: "3px",
+                  border: "1px solid var(--border)",
+                  background: "var(--panel)",
+                  color: "var(--text-dim)",
+                  cursor: "pointer",
+                }}
+              >
+                Spent
+              </button>
+            </div>
             {c.reactions.map((r) => (
               <div key={r.name}>
                 <div style={{ fontSize: "12px", color: "var(--info)", marginTop: "2px" }}>{r.name}</div>
