@@ -1693,6 +1693,27 @@ describe("normalizeCreature", () => {
     expect(c.source.license).toBe("OGL");
   });
 
+  it("keeps treasure and other carried items in gear", () => {
+    const akiros = normalizeCreature(
+      load("akiros-ismort"),
+      "kingmaker-bestiary",
+      "akiros-ismort",
+    );
+    expect(akiros.gear).toContain("Silver Stag Lord Amulet");
+    expect(akiros.gear).toContain("Gold Pieces");
+  });
+
+  it("keeps gear free of items the other normalizers own", () => {
+    const nyrissa = normalizeCreature(
+      load("nyrissa"),
+      "kingmaker-bestiary",
+      "nyrissa",
+    );
+    expect(nyrissa.gear).not.toContain("Wish");
+    expect(nyrissa.gear).not.toContain("Arcane Spontaneous Spells");
+    expect(nyrissa.gear).not.toContain("First World Lore");
+  });
+
   it("carries actions, attacks and spellcasting through", () => {
     const nyrissa = normalizeCreature(
       load("nyrissa"),
@@ -1840,7 +1861,20 @@ const ActorSchema = z.object({
   }),
 });
 
-const GEAR_TYPES = new Set(["equipment", "weapon", "armor", "consumable"]);
+// Item types consumed by the dedicated normalizers above, or otherwise not
+// gear. Everything else counts as gear. This is deliberately a deny-list: an
+// allow-list silently drops upstream types nobody thought of, which is exactly
+// how `treasure` items (Akiros Ismort's "Silver Stag Lord Amulet", "Gold
+// Pieces") went missing.
+const NON_GEAR_TYPES = new Set([
+  "action",
+  "melee",
+  "spell",
+  "spellcastingEntry",
+  "condition",
+  "effect",
+  "lore",
+]);
 
 export function normalizeCreature(
   raw: unknown,
@@ -1849,11 +1883,15 @@ export function normalizeCreature(
 ): Creature {
   const actor = ActorSchema.parse(raw);
   const traits = normalizeTraits(actor.system.traits);
+  // Deliberately the RAW system, not `actor.system`: ActorSchema's `system`
+  // sub-schema does not passthrough, so zod has already stripped `attributes`,
+  // `perception`, `saves` and `skills` from the parsed copy. `ActorSchema.parse`
+  // above has already guaranteed `raw.system` exists. Do not "simplify" this.
   const defenses = normalizeDefenses((raw as { system: unknown }).system);
 
   const gear = actor.items
     .map((i) => i as { type?: string; name?: string })
-    .filter((i) => i.type !== undefined && GEAR_TYPES.has(i.type))
+    .filter((i) => i.type !== undefined && !NON_GEAR_TYPES.has(i.type))
     .map((i) => i.name ?? "")
     .filter((n) => n !== "")
     .sort((a, b) => a.localeCompare(b));
