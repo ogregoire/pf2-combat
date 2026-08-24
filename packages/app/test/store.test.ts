@@ -104,4 +104,62 @@ describe("encounter store", () => {
     expect(entries[0]!.initiative).toBe(15);
     expect(entries[0]!.combatantIds).toHaveLength(2);
   });
+
+  it("keeps the active combatant unchanged when the group is formed only from entries before it", () => {
+    const a = addCreature("a", 40);
+    const d = addCreature("d", 30);
+    const b = addCreature("b", 20);
+    addCreature("c", 10);
+    useEncounter.getState().nextTurn(); // a -> d
+    useEncounter.getState().nextTurn(); // d -> b
+    useEncounter.getState().group([a, d], "Vanguard", 5);
+    const enc = useEncounter.getState().encounter;
+    const active = enc.entries[enc.activeEntryIndex]!;
+    expect(active.combatantIds).toEqual([b]);
+  });
+
+  it("keeps the active combatant unchanged when the group is formed only from entries after it", () => {
+    const a = addCreature("a", 40);
+    const d = addCreature("d", 30);
+    const b = addCreature("b", 20);
+    const c = addCreature("c", 10);
+    const e = addCreature("e", 5);
+    useEncounter.getState().nextTurn(); // a -> d
+    useEncounter.getState().nextTurn(); // d -> b
+    useEncounter.getState().group([c, e], "Rear Guard", 5);
+    const enc = useEncounter.getState().encounter;
+    const active = enc.entries[enc.activeEntryIndex]!;
+    expect(active.combatantIds).toEqual([b]);
+  });
+
+  it("moves the active turn onto the new group entry when the active entry is fully absorbed", () => {
+    const a = addCreature("a", 40);
+    const d = addCreature("d", 30);
+    const b = addCreature("b", 20);
+    const c = addCreature("c", 10);
+    useEncounter.getState().nextTurn(); // a -> d
+    useEncounter.getState().nextTurn(); // d -> b (active)
+    useEncounter.getState().group([b, c], "Vanguard", 35);
+    const enc = useEncounter.getState().encounter;
+    const active = enc.entries[enc.activeEntryIndex]!;
+    expect(active.groupName).toBe("Vanguard");
+    expect(active.combatantIds).toContain(b);
+    expect(active.combatantIds).toContain(c);
+  });
+
+  it("keeps the original entry active when it is only partially absorbed", () => {
+    const f = addCreature("f", 50);
+    const g = addCreature("g", 20);
+    const h = addCreature("h", 15);
+    useEncounter.getState().group([g, h], "Squad", 25);
+    useEncounter.getState().nextTurn(); // f -> Squad (active)
+    const squadEntryId = useEncounter
+      .getState()
+      .encounter.entries.find((entry) => entry.groupName === "Squad")!.id;
+    useEncounter.getState().group([g], "Just G", 30);
+    const enc = useEncounter.getState().encounter;
+    const active = enc.entries[enc.activeEntryIndex]!;
+    expect(active.id).toBe(squadEntryId);
+    expect(active.combatantIds).toEqual([h]);
+  });
 });

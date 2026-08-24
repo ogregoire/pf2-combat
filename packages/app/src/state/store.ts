@@ -215,9 +215,18 @@ export const useEncounter = create<EncounterStore>()(
     group: (ids, name, initiative) =>
       set((state) => {
         const enc = state.encounter;
-        const activeEntryId = enc.entries[enc.activeEntryIndex]?.id ?? null;
         const idSet = new Set(ids);
+        const activeEntry = enc.entries[enc.activeEntryIndex];
+        // If every combatant in the active entry is joining the group, that
+        // entry is dissolved entirely and the new group entry inherits the
+        // active turn. Otherwise the active entry survives (possibly with
+        // fewer combatantIds) and keeps the turn — resolved below by id,
+        // never by position, since grouping can reorder the entries array.
+        const activeFullyAbsorbed =
+          activeEntry !== undefined && activeEntry.combatantIds.every((cid) => idSet.has(cid));
+        const activeEntryId = activeEntry?.id ?? null;
 
+        const groupEntryId = nextEntryId();
         const remaining: Entry[] = [];
         for (const entry of enc.entries) {
           const keep = entry.combatantIds.filter((cid) => !idSet.has(cid));
@@ -225,14 +234,13 @@ export const useEncounter = create<EncounterStore>()(
           entry.combatantIds = keep;
           remaining.push(entry);
         }
-        remaining.push({ id: nextEntryId(), initiative, combatantIds: [...ids], groupName: name });
+        remaining.push({ id: groupEntryId, initiative, combatantIds: [...ids], groupName: name });
         sortEntries(remaining);
         enc.entries = remaining;
 
-        const preserved =
-          activeEntryId === null ? -1 : enc.entries.findIndex((e) => e.id === activeEntryId);
-        enc.activeEntryIndex =
-          preserved >= 0 ? preserved : Math.min(enc.activeEntryIndex, Math.max(0, enc.entries.length - 1));
+        const targetId = activeFullyAbsorbed ? groupEntryId : activeEntryId;
+        const newIndex = targetId === null ? -1 : enc.entries.findIndex((e) => e.id === targetId);
+        enc.activeEntryIndex = newIndex >= 0 ? newIndex : 0;
       }),
 
     setPlayers: (players) =>
