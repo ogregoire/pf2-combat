@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -48,10 +49,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -65,14 +68,17 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "2d8",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -90,6 +96,7 @@
     "Shortsword"
   ],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/cult-leader",
   "immunities": [],
   "languages": [
@@ -102,9 +109,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 15,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 12,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -37,9 +38,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "slime-rot"
       ],
       "kind": "melee",
       "name": "Pseudopod",
@@ -51,12 +56,29 @@
   "foundryId": "6tKVMKDdvbp0VhZD",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/slime-mold",
   "immunities": [
-    "critical-hits",
-    "precision",
-    "unconscious",
-    "visual"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
   ],
   "languages": [],
   "level": 2,
@@ -66,12 +88,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 3,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "motion-sense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
   ],
   "size": "large",
   "skills": {

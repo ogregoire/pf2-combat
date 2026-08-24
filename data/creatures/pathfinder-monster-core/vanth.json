@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -29,12 +30,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
@@ -49,7 +50,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>20 feet @Check[will|dc:22]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>20 feet @Check[will|dc:22]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -76,7 +77,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
       "frequency": null,
       "name": "Lifesense 60 feet",
       "requirements": null,
@@ -99,9 +100,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "spirit-touch"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -114,9 +119,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+8",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "spirit-touch"
       ],
       "kind": "melee",
       "name": "Scythe",
@@ -132,10 +141,19 @@
     "Scythe"
   ],
   "hp": 105,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/vanth",
   "immunities": [
-    "death-effects",
-    "disease"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    }
   ],
   "languages": [
     "chthonian",
@@ -150,22 +168,43 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "void",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 15,
-    "reflex": 13,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "darkvision",
-    "lifesense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "lifesense"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -37,17 +38,17 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>The snow oni can take on the appearance of any Medium or Large humanoid creature. This doesn't change their Speed or their attack and damage bonuses with their Strikes but might change the damage type their Strikes deal (typically to bludgeoning).</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>The snow oni can take on the appearance of any Medium or Large humanoid creature. This doesn't change their Speed or their attack and damage bonuses with their Strikes but might change the damage type their Strikes deal (typically to bludgeoning).</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -83,7 +84,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -106,14 +107,17 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d8+16",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -127,14 +131,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "3d10+4",
           "type": "cold"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Ice Dart",
       "traits": [
@@ -147,14 +154,17 @@
       "bonus": 27,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "2d6+16",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -167,9 +177,14 @@
   "foundryId": "CIQgNHkiUtBQR2NJ",
   "gear": [],
   "hp": 290,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/snow-oni",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [
     "common"
@@ -181,12 +196,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 25,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "greater-darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -234,6 +262,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "spirit",
       "value": 15
     }

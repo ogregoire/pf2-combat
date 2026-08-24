@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -62,10 +63,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+4",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shock",
       "traits": [
@@ -77,9 +80,14 @@
   "foundryId": "KgJq51AeYrENo3Db",
   "gear": [],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/will-o-wisp",
   "immunities": [
-    "magic"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "magic"
+    }
   ],
   "languages": [
     "aklo",
@@ -92,12 +100,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 16,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

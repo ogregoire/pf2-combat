@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 29,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -75,10 +76,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -90,10 +93,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -105,10 +110,19 @@
   "foundryId": "kLhBdqKOMHDGjdFz",
   "gear": [],
   "hp": 140,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/dragon-turtle",
   "immunities": [
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -122,12 +136,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 19,
-    "reflex": 15,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {

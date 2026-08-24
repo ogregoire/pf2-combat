@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -34,7 +35,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Fast Healing 5",
       "requirements": null,
@@ -70,9 +71,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "skrik-nettle-venom"
       ],
       "kind": "melee",
       "name": "Beak",
@@ -87,6 +92,7 @@
   "foundryId": "LtaVzD7ADtWmBWap",
   "gear": [],
   "hp": 130,
+  "hpDetails": "(fast healing 5)",
   "id": "pathfinder-bestiary-2/skrik-nettle",
   "immunities": [],
   "languages": [],
@@ -97,12 +103,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 17,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "motion-sense"
+    {
+      "acuity": "precise",
+      "range": 30,
+      "type": "motion-sense"
+    }
   ],
   "size": "large",
   "skills": {
@@ -130,10 +149,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }

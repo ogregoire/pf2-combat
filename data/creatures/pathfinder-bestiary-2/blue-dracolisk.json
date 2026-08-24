@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -73,7 +74,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense 30 feet",
       "requirements": null,
@@ -86,10 +87,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -101,10 +104,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -115,11 +120,24 @@
   "foundryId": "4x9trDSABU5dqq9w",
   "gear": [],
   "hp": 155,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/blue-dracolisk",
   "immunities": [
-    "paralyzed",
-    "petrified",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "petrified"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [],
   "level": 9,
@@ -129,18 +147,37 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "electricity",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 20,
-    "reflex": 17,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
   ],
   "size": "large",
   "skills": {

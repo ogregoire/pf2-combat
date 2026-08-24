@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -101,10 +102,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -117,14 +120,17 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -138,6 +144,7 @@
     "Staff"
   ],
   "hp": 180,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/infernal-registrar",
   "immunities": [],
   "languages": [
@@ -151,14 +158,25 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 19,
-    "reflex": 16,
-    "will": 33
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
   },
   "senses": [],
   "size": "medium",

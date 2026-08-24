@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 36,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -52,14 +53,17 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -72,14 +76,17 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+10",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff of Fire",
       "traits": [
@@ -93,6 +100,7 @@
     "Staff of Fire (Major)"
   ],
   "hp": 275,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/world-ender",
   "immunities": [],
   "languages": [
@@ -105,14 +113,25 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 30,
-    "reflex": 26,
-    "will": 28
+    "fortitude": {
+      "detail": null,
+      "value": 30
+    },
+    "reflex": {
+      "detail": null,
+      "value": 26
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
   },
   "senses": [],
   "size": "medium",

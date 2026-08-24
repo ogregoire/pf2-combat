@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 43,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,7 +36,7 @@
     {
       "category": "offensive",
       "cost": "3",
-      "description": "<p>Huge or smaller, root, @Check[reflex|dc:39|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Huge or smaller, root, @Check[reflex|dc:39|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
       "frequency": null,
       "name": "Trample",
       "requirements": null,
@@ -92,7 +93,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense 120 feet",
       "requirements": null,
@@ -105,9 +106,13 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "4d8+18",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "sard-venom"
       ],
       "kind": "melee",
       "name": "Branch",
@@ -120,14 +125,17 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "4d6+18",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Root",
       "traits": [
@@ -138,9 +146,13 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "4d4+16",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "sard-venom"
       ],
       "kind": "ranged",
       "name": "Thorn",
@@ -155,14 +167,17 @@
       "bonus": 37,
       "damage": [
         {
+          "category": "persistent",
           "formula": "3d6",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "4d6+18",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Trunk",
       "traits": [
@@ -174,9 +189,14 @@
   "foundryId": "eD1kydftMIp4CL2K",
   "gear": [],
   "hp": 400,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/sard",
   "immunities": [
-    "electricity"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    }
   ],
   "languages": [
     "aklo",
@@ -191,22 +211,45 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [
+        "slashing"
+      ],
       "type": "physical",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 35,
-    "reflex": 31,
-    "will": 33
+    "fortitude": {
+      "detail": null,
+      "value": 35
+    },
+    "reflex": {
+      "detail": null,
+      "value": 31
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
   },
   "senses": [
-    "low-light-vision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 120,
+      "type": "tremorsense"
+    }
   ],
   "size": "gargantuan",
   "skills": {
@@ -265,6 +308,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

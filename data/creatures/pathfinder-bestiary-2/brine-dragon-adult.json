@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -77,7 +78,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>90 feet. @Check[will|dc:30]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>90 feet. @Check[will|dc:30]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -95,10 +96,12 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -112,14 +115,17 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+12",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "3d4",
           "type": "acid"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -133,10 +139,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -148,10 +156,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wing",
       "traits": [
@@ -163,11 +173,24 @@
   "foundryId": "PXTQ8wTvnd5qF1hW",
   "gear": [],
   "hp": 222,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/brine-dragon-adult",
   "immunities": [
-    "acid",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -182,13 +205,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 25,
-    "reflex": 20,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

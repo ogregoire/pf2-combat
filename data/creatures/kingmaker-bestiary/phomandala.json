@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 45,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "offensive",
@@ -50,7 +51,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -109,9 +110,13 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "4d12 + 13",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "phomandalas-venom"
       ],
       "kind": "melee",
       "name": "Cobra Fangs",
@@ -123,9 +128,13 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "4d10 + 13",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "phomandalas-venom"
       ],
       "kind": "melee",
       "name": "Snake Fangs",
@@ -141,6 +150,7 @@
     "Leather Armor"
   ],
   "hp": 300,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/phomandala",
   "immunities": [],
   "languages": [
@@ -156,12 +166,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 33,
-    "reflex": 35,
-    "will": 32
+    "fortitude": {
+      "detail": null,
+      "value": 33
+    },
+    "reflex": {
+      "detail": null,
+      "value": 35
+    },
+    "will": {
+      "detail": null,
+      "value": 32
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

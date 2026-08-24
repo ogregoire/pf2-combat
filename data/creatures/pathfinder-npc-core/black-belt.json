@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 32,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -60,10 +61,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Bo Staff",
       "traits": [
@@ -77,10 +80,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -98,6 +103,7 @@
     "Bo Staff"
   ],
   "hp": 220,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/black-belt",
   "immunities": [],
   "languages": [
@@ -110,9 +116,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 23,
-    "will": 20
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
   },
   "senses": [],
   "size": "medium",

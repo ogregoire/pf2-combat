@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Antler",
       "traits": [
@@ -59,10 +62,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fangs",
       "traits": [
@@ -73,6 +78,7 @@
   "foundryId": "E4aJhHWyFDxgJcy9",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/peryton",
   "immunities": [],
   "languages": [
@@ -85,12 +91,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 11,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

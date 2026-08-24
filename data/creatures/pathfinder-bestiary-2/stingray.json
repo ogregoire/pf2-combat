@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -37,9 +38,13 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "stingray-venom"
       ],
       "kind": "melee",
       "name": "Sting",
@@ -52,6 +57,7 @@
   "foundryId": "HXWT5QxmOCn0poMt",
   "gear": [],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/stingray",
   "immunities": [],
   "languages": [],
@@ -62,12 +68,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 7,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -75,10 +76,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -92,10 +95,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Trident",
       "traits": []
@@ -104,10 +109,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Trident",
       "traits": [
@@ -120,6 +127,7 @@
     "Trident"
   ],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/diver",
   "immunities": [],
   "languages": [
@@ -133,9 +141,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 12,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [],
   "size": "medium",

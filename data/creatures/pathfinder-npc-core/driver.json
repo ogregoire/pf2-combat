@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 18,
+  "acDetails": "+6 status to all defenses while driving",
   "actions": [
     {
       "category": "offensive",
@@ -75,10 +76,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Crowbar",
       "traits": [
@@ -89,10 +92,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -106,11 +111,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
         "range-increment-60",
@@ -126,6 +133,7 @@
     "Leather Armor"
   ],
   "hp": 28,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/driver",
   "immunities": [],
   "languages": [
@@ -138,9 +146,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 8,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [],
   "size": "medium",

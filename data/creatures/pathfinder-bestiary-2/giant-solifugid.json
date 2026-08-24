@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>Claw</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Rend]</p>",
+      "description": "<p>Claw</p>\n<hr />\n<p><p>A Rend entry lists a Strike the monster has.</p>\n<p><strong>Requirements</strong> The monster hit the same enemy with two consecutive Strikes of the listed type in the same round.</p>\n<hr />\n<p><strong>Effect</strong> The monster automatically deals that Strike's damage again to the enemy.</p></p>",
       "frequency": null,
       "name": "Rend",
       "requirements": null,
@@ -35,10 +36,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+1",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -65,6 +70,7 @@
   "foundryId": "C7LvY2Xxzm2xRL1M",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/giant-solifugid",
   "immunities": [],
   "languages": [],
@@ -75,12 +81,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 8,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

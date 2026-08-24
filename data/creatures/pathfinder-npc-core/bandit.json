@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -45,10 +46,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -60,10 +63,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -76,10 +81,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -92,10 +99,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Machete",
       "traits": [
@@ -107,11 +116,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "bludgeoning"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Sling",
       "traits": [
         "propulsive",
@@ -129,6 +140,7 @@
     "Studded Leather Armor"
   ],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/bandit",
   "immunities": [],
   "languages": [
@@ -141,9 +153,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 9,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [],
   "size": "medium",

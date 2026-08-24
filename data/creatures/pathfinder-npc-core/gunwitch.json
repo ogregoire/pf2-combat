@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -91,10 +92,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -108,14 +111,17 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "force"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Musket Staff",
       "traits": [
@@ -128,15 +134,18 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "force"
         },
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Musket Staff",
       "traits": [
         "concussive",
@@ -154,6 +163,7 @@
     "Rounds (Flintlock Musket)"
   ],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/gunwitch",
   "immunities": [],
   "languages": [
@@ -166,9 +176,18 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 15,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [],
   "size": "medium",

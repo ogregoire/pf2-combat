@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -72,9 +73,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d10",
           "type": "void"
         }
+      ],
+      "effects": [
+        "steal-voice"
       ],
       "kind": "melee",
       "name": "Bony Hand",
@@ -86,9 +91,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "steal-breath"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -102,13 +111,34 @@
   "foundryId": "ril4ohkYrf5mGwHO",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/attic-whisperer",
   "immunities": [
-    "death-effects",
-    "disease",
-    "paralyzed",
-    "poison",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "common",
@@ -121,12 +151,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 13,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

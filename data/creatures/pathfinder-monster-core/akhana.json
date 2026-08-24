@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 32,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -24,10 +25,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -82,7 +83,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AtWillSpells]</p>",
+      "description": "<p><p>The monster can cast its at-will spells any number of times without using up spell slots.</p></p>",
       "frequency": null,
       "name": "At-Will Spells",
       "requirements": null,
@@ -106,7 +107,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
       "frequency": null,
       "name": "Lifesense 120 feet",
       "requirements": null,
@@ -119,10 +120,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -135,9 +138,13 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "5d10",
           "type": "void"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Tail",
@@ -150,10 +157,19 @@
   "foundryId": "085JMzkQqhNEWWWL",
   "gear": [],
   "hp": 225,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/akhana",
   "immunities": [
-    "vitality",
-    "void"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "vitality"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void"
+    }
   ],
   "languages": [],
   "level": 12,
@@ -163,13 +179,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 22,
-    "will": 23
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 22
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
   },
   "senses": [
-    "darkvision",
-    "lifesense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 120,
+      "type": "lifesense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -237,6 +270,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "spirit",
       "value": 10
     }

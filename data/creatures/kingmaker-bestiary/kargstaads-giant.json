@@ -8,16 +8,17 @@
     "wis": 4
   },
   "ac": 37,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
       "frequency": null,
       "name": "Catch Rock",
-      "requirements": null,
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
     },
     {
       "category": "offensive",
@@ -35,7 +36,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -55,7 +56,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Fast Healing 15",
       "requirements": null,
@@ -78,10 +79,12 @@
       "bonus": 29,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+22",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -94,10 +97,12 @@
       "bonus": 29,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+22",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greataxe",
       "traits": [
@@ -110,9 +115,13 @@
       "bonus": 29,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+13",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "rock"
       ],
       "kind": "ranged",
       "name": "Rock",
@@ -130,9 +139,14 @@
     "Sack"
   ],
   "hp": 270,
+  "hpDetails": "fast healing 15",
   "id": "kingmaker-bestiary/kargstaads-giant",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [
     "common",
@@ -145,12 +159,25 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 29,
-    "reflex": 25,
-    "will": 25
+    "fortitude": {
+      "detail": null,
+      "value": 29
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -179,6 +206,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     }

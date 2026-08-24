@@ -8,6 +8,7 @@
     "wis": 7
   },
   "ac": 32,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,12 +26,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -45,7 +46,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Fast Healing 10",
       "requirements": null,
@@ -58,14 +59,17 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": [
@@ -76,14 +80,17 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Spear",
       "traits": [
@@ -98,10 +105,19 @@
     "Spear"
   ],
   "hp": 220,
+  "hpDetails": "fast healing 10",
   "id": "kingmaker-bestiary/zorek",
   "immunities": [
-    "controlled",
-    "disease"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    }
   ],
   "languages": [
     "hallit"
@@ -113,18 +129,31 @@
   "rarity": "unique",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "physical",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 23,
-    "reflex": 20,
-    "will": 25
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
   },
   "senses": [],
   "size": "medium",

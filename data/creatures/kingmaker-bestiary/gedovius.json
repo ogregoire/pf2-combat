@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 39,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -82,10 +83,12 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -97,10 +100,12 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -114,6 +119,7 @@
     "Leather Armor"
   ],
   "hp": 222,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/gedovius",
   "immunities": [],
   "languages": [
@@ -128,17 +134,34 @@
   "rarity": "unique",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
       "type": "physical",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 27,
-    "reflex": 31,
-    "will": 28
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 31
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

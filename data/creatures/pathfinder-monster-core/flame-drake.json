@@ -8,16 +8,17 @@
     "wis": 3
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike (Fangs Only)",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -70,14 +71,17 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d8+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fangs",
       "traits": []
@@ -86,10 +90,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -100,11 +106,24 @@
   "foundryId": "qlxVPpwVFw5qIVQM",
   "gear": [],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/flame-drake",
   "immunities": [
-    "fire",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "draconic"
@@ -116,13 +135,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 10,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -154,6 +190,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     }

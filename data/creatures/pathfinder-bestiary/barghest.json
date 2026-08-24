@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,17 +26,17 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>The barghest takes on the shape of a goblinoid (a goblin, hobgoblin, or bugbear) or a wolf, or it transforms back into its true form. When the barghest is a goblinoid, it loses its jaws and claw Strikes, it becomes Small if it is a goblin, and its Speed changes to 20 feet. When the barghest is a wolf, its Speed changes to 40 feet and its jaws gain Knockdown. Each individual barghest has only one goblinoid form and one wolf form.</p>\n<p>Effect: Wolf Shape</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>The barghest takes on the shape of a goblinoid (a goblin, hobgoblin, or bugbear) or a wolf, or it transforms back into its true form. When the barghest is a goblinoid, it loses its jaws and claw Strikes, it becomes Small if it is a goblin, and its Speed changes to 20 feet. When the barghest is a wolf, its Speed changes to 40 feet and its jaws gain Knockdown. Each individual barghest has only one goblinoid form and one wolf form.</p>\n<p>Effect: Wolf Shape</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -52,10 +53,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -68,10 +71,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -83,6 +88,7 @@
   "foundryId": "x4mlZseBP5bWcy4H",
   "gear": [],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/barghest",
   "immunities": [],
   "languages": [
@@ -97,22 +103,45 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [
+        "magical"
+      ],
       "type": "physical",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 11,
-    "reflex": 12,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

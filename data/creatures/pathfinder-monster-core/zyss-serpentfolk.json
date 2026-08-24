@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -44,7 +45,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -71,9 +72,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpentfolk-venom"
       ],
       "kind": "melee",
       "name": "Dagger",
@@ -87,9 +92,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpentfolk-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -101,9 +110,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpentfolk-venom"
       ],
       "kind": "ranged",
       "name": "Shortbow",
@@ -120,6 +133,7 @@
     "Shortbow"
   ],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/zyss-serpentfolk",
   "immunities": [],
   "languages": [
@@ -134,18 +148,37 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 4,
-    "reflex": 8,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": "; +1 status to all saves vs. magic",
+      "value": 8
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 25,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -42,7 +43,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 60 feet",
       "requirements": null,
@@ -55,10 +56,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -70,10 +73,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaw",
       "traits": [
@@ -84,12 +89,29 @@
   "foundryId": "4npwV3fuBm3sBCPG",
   "gear": [],
   "hp": 115,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/xorn",
   "immunities": [
-    "bleed",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -102,26 +124,49 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "electricity",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 18,
-    "reflex": 11,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -152,6 +197,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 5
     }

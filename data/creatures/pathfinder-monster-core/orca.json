@@ -8,11 +8,12 @@
     "wis": 3
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>30 feet.</p>\n<p>An orca can travel no further than 5 feet onto land as part of an Aquatic Ambush. After it does so, it's Prone until it Crawls to return to the water.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AquaticAmbush]</p>",
+      "description": "<p>30 feet.</p>\n<p>An orca can travel no further than 5 feet onto land as part of an Aquatic Ambush. After it does so, it's Prone until it Crawls to return to the water.</p>\n<hr />\n<p><p><strong>Requirements</strong> The monster is hiding in water and a creature that hasn't detected it is within the listed number of feet.</p>\n<hr />\n<p><strong>Effect</strong> The monster moves up to its swim Speed + 10 feet toward the triggering creature, traveling on water and on land. Once the creature is in reach, the monster makes a Strike against it. The creature is Off-Guard against this Strike.</p></p>",
       "frequency": null,
       "name": "Aquatic Ambush",
       "requirements": null,
@@ -22,10 +23,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -65,9 +66,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -79,6 +84,7 @@
   "foundryId": "uco1YijAEotYjdnF",
   "gear": [],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/orca",
   "immunities": [],
   "languages": [],
@@ -89,13 +95,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 11,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "echolocation",
-    "low-light-vision"
+    {
+      "acuity": "precise",
+      "range": 120,
+      "type": "echolocation"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "huge",
   "skills": {

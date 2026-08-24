@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -56,19 +57,23 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "piercing"
         },
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "2d6",
           "type": "poison"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Blowgun",
       "traits": [
         "agile",
@@ -81,10 +86,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -98,10 +105,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hatchet",
       "traits": [
@@ -117,6 +126,7 @@
     "Hatchet"
   ],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/castaway",
   "immunities": [],
   "languages": [
@@ -129,9 +139,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 13,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

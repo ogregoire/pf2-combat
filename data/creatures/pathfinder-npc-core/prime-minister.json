@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -45,10 +46,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -62,10 +65,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -80,6 +85,7 @@
     "Rapier"
   ],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/prime-minister",
   "immunities": [],
   "languages": [
@@ -92,9 +98,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 3,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [],
   "size": "medium",

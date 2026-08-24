@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -45,10 +46,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -60,14 +63,17 @@
       "bonus": 7,
       "damage": [
         {
+          "category": "splash",
           "formula": "1d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "2d6",
           "type": "acid"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Digestive Spew",
       "traits": [
@@ -80,9 +86,14 @@
   "foundryId": "VCYF0NAfPKwTHkK1",
   "gear": [],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/grothlut",
   "immunities": [
-    "acid"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    }
   ],
   "languages": [],
   "level": 3,
@@ -92,12 +103,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 5,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

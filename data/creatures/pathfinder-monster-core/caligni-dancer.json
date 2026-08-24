@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -53,7 +54,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -63,7 +64,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.LightBlindness]</p>",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
       "frequency": null,
       "name": "Light Blindness",
       "requirements": null,
@@ -86,10 +87,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Baton",
       "traits": [
@@ -102,10 +105,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -118,10 +123,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -137,6 +144,7 @@
     "Dagger"
   ],
   "hp": 18,
+  "hpDetails": "final dance",
   "id": "pathfinder-monster-core/caligni-dancer",
   "immunities": [],
   "languages": [
@@ -149,12 +157,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 9,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "greater-darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
   ],
   "size": "small",
   "skills": {

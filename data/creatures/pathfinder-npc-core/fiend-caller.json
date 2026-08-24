@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,14 +59,17 @@
       "bonus": 9,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d4",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -78,14 +82,17 @@
       "bonus": 9,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d4",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -98,10 +105,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -118,6 +127,7 @@
     "Ritual Materials"
   ],
   "hp": 35,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/fiend-caller",
   "immunities": [],
   "languages": [
@@ -134,9 +144,18 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 9,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [],
   "size": "medium",

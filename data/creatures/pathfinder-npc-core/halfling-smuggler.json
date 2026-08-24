@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -71,10 +72,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Filcher's Fork",
       "traits": [
@@ -89,10 +92,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Filcher's Fork",
       "traits": [
@@ -107,10 +112,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -124,11 +131,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "bludgeoning"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Sling",
       "traits": [
         "propulsive",
@@ -150,6 +159,7 @@
     "Thieves' Toolkit"
   ],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/halfling-smuggler",
   "immunities": [],
   "languages": [
@@ -163,9 +173,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 16,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [],
   "size": "small",

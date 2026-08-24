@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 39,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -41,7 +42,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
       "frequency": null,
       "name": "Constant Spells",
       "requirements": null,
@@ -136,10 +137,12 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Horns",
       "traits": [
@@ -151,14 +154,17 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Living Bow",
       "traits": [
@@ -176,6 +182,7 @@
     "Living Bow"
   ],
   "hp": 340,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/wild-hunt-archer",
   "immunities": [],
   "languages": [
@@ -190,14 +197,35 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 26,
-    "reflex": 32,
-    "will": 28
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 32
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
   },
   "senses": [
-    "greater-darkvision",
-    "scent",
-    "truesight"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "truesight"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -286,6 +314,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

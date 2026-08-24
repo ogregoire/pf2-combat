@@ -8,11 +8,12 @@
     "wis": 5
   },
   "ac": 34,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> A vidileth takes on the appearance of a humanoid of Large, Medium, or Small size or resumes its true form. While in humanoid form, the vidileth's Speed is 30 feet, and it loses its numbing lights aura and swim Speed. If the humanoid form assumed lacks the aquatic trait, the vidileth loses its own aquatic trait as well. In humanoid form, the vidileth can use weapons or make Strikes that work like its tentacle attack but use the reach of its current form. If the form has fangs or claws, the vidileth can also make such Strikes.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> A vidileth takes on the appearance of a humanoid of Large, Medium, or Small size or resumes its true form. While in humanoid form, the vidileth's Speed is 30 feet, and it loses its numbing lights aura and swim Speed. If the humanoid form assumed lacks the aquatic trait, the vidileth loses its own aquatic trait as well. In humanoid form, the vidileth can use weapons or make Strikes that work like its tentacle attack but use the reach of its current form. If the form has fangs or claws, the vidileth can also make such Strikes.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -60,7 +61,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
       "frequency": null,
       "name": "Constant Spells",
       "requirements": null,
@@ -125,9 +126,13 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+12",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "shape-flesh"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -142,9 +147,13 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "consume-memories"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -158,9 +167,13 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "7d6",
           "type": "electricity"
         }
+      ],
+      "effects": [
+        "thoughtlance"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -176,11 +189,24 @@
   "foundryId": "VDm2XhfNwhgiJOxD",
   "gear": [],
   "hp": 270,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/vidileth",
   "immunities": [
-    "controlled",
-    "electricity",
-    "mental"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental"
+    }
   ],
   "languages": [
     "aklo",
@@ -196,17 +222,32 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 20
     }
   ],
   "saves": {
-    "fortitude": 26,
-    "reflex": 22,
-    "will": 24
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 22
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

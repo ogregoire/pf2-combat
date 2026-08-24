@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -35,10 +36,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greatclub",
       "traits": [
@@ -66,10 +71,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sap",
       "traits": [
@@ -81,11 +88,13 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Sling",
       "traits": [
         "propulsive",
@@ -102,6 +111,7 @@
     "Studded Leather Armor"
   ],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/bodyguard",
   "immunities": [],
   "languages": [
@@ -114,9 +124,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 7,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [],
   "size": "medium",

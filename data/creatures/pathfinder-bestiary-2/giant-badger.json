@@ -8,16 +8,17 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
       "frequency": null,
       "name": "Ferocity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is reduced to 0 HP."
     },
     {
       "category": "offensive",
@@ -39,10 +40,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -54,10 +57,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -68,6 +73,7 @@
   "foundryId": "T9vzmpvpRL5xjrhd",
   "gear": [],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/giant-badger",
   "immunities": [],
   "languages": [],
@@ -78,13 +84,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 6,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

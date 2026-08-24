@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dart",
       "traits": [
@@ -60,10 +63,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -77,10 +82,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "War Razor",
       "traits": [
@@ -100,6 +107,7 @@
     "War Razor"
   ],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/interrogator",
   "immunities": [],
   "languages": [
@@ -112,9 +120,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 12,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 39,
+  "acDetails": "concealed",
   "actions": [
     {
       "category": "offensive",
@@ -85,9 +86,13 @@
       "bonus": 31,
       "damage": [
         {
+          "category": null,
           "formula": "3d4+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "cruel-anatomist"
       ],
       "kind": "melee",
       "name": "Dagger",
@@ -102,18 +107,22 @@
       "bonus": 31,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "acid"
         },
         {
+          "category": "splash",
           "formula": "3",
           "type": "acid"
         },
         {
+          "category": "persistent",
           "formula": "3d6",
           "type": "acid"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Greater Acid Flask",
       "traits": [
@@ -135,6 +144,7 @@
     "Studded Leather Armor"
   ],
   "hp": 290,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/thresholder-hermeticist",
   "immunities": [],
   "languages": [
@@ -148,14 +158,25 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 28,
-    "reflex": 30,
-    "will": 26
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
   },
   "senses": [],
   "size": "medium",

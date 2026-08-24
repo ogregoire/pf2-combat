@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -37,7 +38,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -47,7 +48,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.LightBlindness]</p>",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
       "frequency": null,
       "name": "Light Blindness",
       "requirements": null,
@@ -70,9 +71,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "black-smear-poison"
       ],
       "kind": "melee",
       "name": "Kukri",
@@ -89,6 +94,7 @@
     "Kukri"
   ],
   "hp": 45,
+  "hpDetails": "death implosion",
   "id": "pathfinder-bestiary-2/caligni-slayer",
   "immunities": [],
   "languages": [
@@ -102,12 +108,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 12,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "greater-darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
   ],
   "size": "small",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -67,18 +72,22 @@
       "bonus": 8,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1",
           "type": "fire"
         },
         {
+          "category": "splash",
           "formula": "1",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "1d8",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Lesser Alchemist's Fire",
       "traits": [
@@ -98,6 +107,7 @@
     "Studded Leather Armor"
   ],
   "hp": 18,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/ifrit-pyrochemist",
   "immunities": [],
   "languages": [
@@ -111,14 +121,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 1
     }
   ],
   "saves": {
-    "fortitude": 5,
-    "reflex": 6,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [],
   "size": "medium",

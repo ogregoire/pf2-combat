@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 13,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -55,10 +56,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -72,10 +75,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Medical Textbook",
       "traits": [
@@ -91,6 +96,7 @@
     "Medical Textbook"
   ],
   "hp": 8,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/physician",
   "immunities": [],
   "languages": [
@@ -103,9 +109,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 3,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [],
   "size": "medium",

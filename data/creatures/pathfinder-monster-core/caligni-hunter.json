@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -34,7 +35,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AtWillSpells]</p>",
+      "description": "<p><p>The monster can cast its at-will spells any number of times without using up spell slots.</p></p>",
       "frequency": null,
       "name": "At-Will Spells",
       "requirements": null,
@@ -57,7 +58,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -67,7 +68,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.LightBlindness]</p>",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
       "frequency": null,
       "name": "Light Blindness",
       "requirements": null,
@@ -90,9 +91,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "darkening-poison"
       ],
       "kind": "melee",
       "name": "Shortsword",
@@ -110,6 +115,7 @@
     "Shortsword"
   ],
   "hp": 60,
+  "hpDetails": "final fate",
   "id": "pathfinder-monster-core/caligni-hunter",
   "immunities": [],
   "languages": [
@@ -123,12 +129,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 13,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "greater-darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

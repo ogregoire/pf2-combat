@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -45,14 +46,17 @@
       "bonus": 17,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Ice Claw",
       "traits": [
@@ -63,13 +67,34 @@
   "foundryId": "2Kw49I6EZbKKlTtK",
   "gear": [],
   "hp": 105,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/blizzardborn",
   "immunities": [
-    "bleed",
-    "cold",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "thalassic"
@@ -81,12 +106,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 12,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -117,6 +155,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     }

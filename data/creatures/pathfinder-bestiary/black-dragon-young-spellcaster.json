@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -35,7 +36,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>90 feet. @Check[will|dc:23]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>90 feet. @Check[will|dc:23]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -53,10 +54,12 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -68,10 +71,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Horns",
       "traits": [
@@ -82,14 +87,17 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "2d10+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -102,10 +110,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -116,11 +126,24 @@
   "foundryId": "kR1wGS61ubIpH8A6",
   "gear": [],
   "hp": 125,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/black-dragon-young-spellcaster",
   "immunities": [
-    "acid",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "draconic"
@@ -132,13 +155,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 12,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

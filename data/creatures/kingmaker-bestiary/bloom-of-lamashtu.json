@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -48,7 +49,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
       "frequency": null,
       "name": "Regeneration 30 (Deactivated by Fire or Holy)",
       "requirements": null,
@@ -58,7 +59,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Precise) 30 feet",
       "requirements": null,
@@ -71,14 +72,17 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "2d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Thorn",
       "traits": [
@@ -90,14 +94,17 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Thorny Vine",
       "traits": [
@@ -109,10 +116,19 @@
   "foundryId": "vBugpZnpxQcrrWoo",
   "gear": [],
   "hp": 210,
+  "hpDetails": "regeneration 30 (deactivated by fire or holy)",
   "id": "kingmaker-bestiary/bloom-of-lamashtu",
   "immunities": [
-    "acid",
-    "curse"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "curse"
+    }
   ],
   "languages": [
     "chthonian"
@@ -124,22 +140,43 @@
   "rarity": "unique",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 21,
-    "reflex": 16,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "low-light-vision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "precise",
+      "range": 30,
+      "type": "tremorsense"
+    }
   ],
   "size": "large",
   "skills": {
@@ -166,10 +203,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 10
     }

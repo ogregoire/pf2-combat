@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -47,11 +48,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Composite Shortbow",
       "traits": [
         "deadly-d10",
@@ -64,10 +67,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -81,10 +86,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Mace",
       "traits": []
@@ -99,6 +106,7 @@
     "Snare Toolkit (Functions as Artisan's Toolkit)"
   ],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/poacher",
   "immunities": [],
   "languages": [
@@ -111,9 +119,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 10,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [],
   "size": "medium",

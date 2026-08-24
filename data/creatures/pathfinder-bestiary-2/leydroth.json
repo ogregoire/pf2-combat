@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 40,
+  "acDetails": "or 36 vs. non-magical",
   "actions": [
     {
       "category": "offensive",
@@ -102,10 +103,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+16",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -119,10 +122,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+16",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Horn Sweep",
       "traits": [
@@ -136,14 +141,17 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "3d10+16",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -156,6 +164,7 @@
   "foundryId": "GBBVBEAsznP8A5gv",
   "gear": [],
   "hp": 315,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/leydroth",
   "immunities": [],
   "languages": [
@@ -168,17 +177,34 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "non-magical"
+      ],
       "type": "all-damage",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 32,
-    "reflex": 30,
-    "will": 28
+    "fortitude": {
+      "detail": null,
+      "value": 32
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

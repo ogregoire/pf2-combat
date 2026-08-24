@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -31,10 +32,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -46,10 +49,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -61,6 +66,7 @@
   "foundryId": "FFnsYr2aIfDGnUVS",
   "gear": [],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/giant-frilled-lizard",
   "immunities": [],
   "languages": [],
@@ -71,13 +77,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 12,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -50,9 +51,13 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+4",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "giant-wasp-venom"
       ],
       "kind": "melee",
       "name": "Stinger",
@@ -64,6 +69,7 @@
   "foundryId": "6aaBmiOgqZ5h2IhW",
   "gear": [],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/giant-wasp",
   "immunities": [],
   "languages": [],
@@ -74,12 +80,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 11,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

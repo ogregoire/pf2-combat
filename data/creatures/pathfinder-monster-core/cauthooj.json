@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -69,10 +70,12 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -86,6 +89,7 @@
   "foundryId": "1a5faH5CCtFfbQHO",
   "gear": [],
   "hp": 215,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/cauthooj",
   "immunities": [],
   "languages": [
@@ -98,17 +102,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "sonic",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 25,
-    "reflex": 20,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "thoughtsense"
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "thoughtsense"
+    }
   ],
   "size": "medium",
   "skills": {

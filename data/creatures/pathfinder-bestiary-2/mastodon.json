@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "offensive",
       "cost": "3",
-      "description": "<p>Large or smaller, foot, @Check[reflex|dc:27|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Large or smaller, foot, @Check[reflex|dc:27|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
       "frequency": null,
       "name": "Trample",
       "requirements": null,
@@ -45,10 +46,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Foot",
       "traits": [
@@ -59,6 +62,9 @@
     {
       "bonus": 21,
       "damage": [],
+      "effects": [
+        "grabbing-trunk"
+      ],
       "kind": "melee",
       "name": "Trunk",
       "traits": [
@@ -69,10 +75,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tusk",
       "traits": [
@@ -84,6 +92,7 @@
   "foundryId": "ZBTqN3DNjdreXCu7",
   "gear": [],
   "hp": 175,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/mastodon",
   "immunities": [],
   "languages": [],
@@ -94,13 +103,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 20,
-    "reflex": 13,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

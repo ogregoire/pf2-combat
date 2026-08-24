@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -38,14 +39,17 @@
       "bonus": 17,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d8+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -58,13 +62,34 @@
   "foundryId": "RUdP7qWg6pnKrPnh",
   "gear": [],
   "hp": 115,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/striding-fire",
   "immunities": [
-    "bleed",
-    "fire",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "pyric"
@@ -76,12 +101,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 17,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -107,6 +145,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     }

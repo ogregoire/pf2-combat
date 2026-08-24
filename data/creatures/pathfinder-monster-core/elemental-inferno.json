@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 31,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -72,10 +73,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+6",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Fire Mote",
       "traits": [
@@ -86,14 +89,17 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+12",
           "type": "fire"
         },
         {
+          "category": "persistent",
           "formula": "3d8",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tendril",
       "traits": [
@@ -104,13 +110,34 @@
   "foundryId": "yYicb7uJH4EaBO4v",
   "gear": [],
   "hp": 210,
+  "hpDetails": "explosion",
   "id": "pathfinder-monster-core/elemental-inferno",
   "immunities": [
-    "bleed",
-    "fire",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "pyric"
@@ -122,12 +149,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 21,
-    "reflex": 23,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -152,10 +192,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "water",
       "value": 10
     }

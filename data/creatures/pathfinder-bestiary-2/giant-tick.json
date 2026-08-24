@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -47,9 +48,14 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "attach",
+        "tick-fever"
       ],
       "kind": "melee",
       "name": "Hypostome",
@@ -61,6 +67,7 @@
   "foundryId": "le7VaOJyQQnl37Wa",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/giant-tick",
   "immunities": [],
   "languages": [],
@@ -71,12 +78,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 6,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

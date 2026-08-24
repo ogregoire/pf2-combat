@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -49,9 +50,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "con-rit-venom"
       ],
       "kind": "melee",
       "name": "Mandible",
@@ -63,6 +68,7 @@
   "foundryId": "aCTOWweRtjucLmfe",
   "gear": [],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/con-rit",
   "immunities": [],
   "languages": [],
@@ -73,21 +79,38 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 17,
-    "reflex": 14,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -118,6 +141,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 5
     }

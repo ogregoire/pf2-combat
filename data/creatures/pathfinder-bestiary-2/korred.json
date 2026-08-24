@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -44,7 +45,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -94,10 +95,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Club",
       "traits": []
@@ -106,10 +109,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Club",
       "traits": [
@@ -120,10 +125,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Rock",
       "traits": [
@@ -139,6 +146,7 @@
     "Rock"
   ],
   "hp": 65,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/korred",
   "immunities": [],
   "languages": [
@@ -152,12 +160,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 13,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -208,6 +229,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -32,7 +33,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 30 feet (Creatures Touching its Web)",
       "requirements": null,
@@ -67,10 +68,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -82,9 +85,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "web-lurker-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -95,6 +102,9 @@
     {
       "bonus": 11,
       "damage": [],
+      "effects": [
+        "web-trap"
+      ],
       "kind": "melee",
       "name": "Web",
       "traits": []
@@ -103,6 +113,7 @@
   "foundryId": "ZMr28tFTA5NUcBTi",
   "gear": [],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/web-lurker",
   "immunities": [],
   "languages": [
@@ -115,13 +126,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 11,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
   ],
   "size": "medium",
   "skills": {

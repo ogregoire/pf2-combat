@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,10 +26,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Trident",
       "traits": []
@@ -37,10 +40,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Trident",
       "traits": [
@@ -53,6 +58,7 @@
     "Trident"
   ],
   "hp": 19,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/merfolk-warrior",
   "immunities": [],
   "languages": [
@@ -66,12 +72,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 9,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,11 +8,12 @@
     "wis": 5
   },
   "ac": 34,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>Worm jaws only.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p>Worm jaws only.</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity (Worm Jaws Only)",
       "requirements": null,
@@ -50,10 +51,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -67,14 +70,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "2d8",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "3d8+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Worm Jaws",
       "traits": [
@@ -90,9 +96,14 @@
     "Staff of Necromancy (Major)"
   ],
   "hp": 240,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/the-first-faithful",
   "immunities": [
-    "poison"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
   ],
   "languages": [
     "chthonian",
@@ -105,21 +116,40 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "acid",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [
+        "cold-iron"
+      ],
       "type": "physical",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 24,
-    "reflex": 20,
-    "will": 26
+    "fortitude": {
+      "detail": null,
+      "value": 24
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -150,6 +180,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 15
     }

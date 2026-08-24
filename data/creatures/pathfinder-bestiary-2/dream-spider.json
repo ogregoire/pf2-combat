@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -47,9 +48,13 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "dream-spider-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -60,6 +65,10 @@
     {
       "bonus": 7,
       "damage": [],
+      "effects": [
+        "dream-spider-venom",
+        "web-trap"
+      ],
       "kind": "ranged",
       "name": "Web",
       "traits": [
@@ -70,6 +79,7 @@
   "foundryId": "Z2v611Np3J1MBkpv",
   "gear": [],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/dream-spider",
   "immunities": [],
   "languages": [],
@@ -80,12 +90,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 7,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

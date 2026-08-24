@@ -8,6 +8,7 @@
     "wis": 7
   },
   "ac": 31,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -32,7 +33,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -77,7 +78,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
       "frequency": null,
       "name": "Regeneration 10 (Deactivated by Cold)",
       "requirements": null,
@@ -97,7 +98,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
       "frequency": null,
       "name": "Swarm Mind",
       "requirements": null,
@@ -110,9 +111,13 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+11",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "isqulugia"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -126,9 +131,14 @@
   "foundryId": "kElZCC1zMQVftoi9",
   "gear": [],
   "hp": 230,
+  "hpDetails": "regeneration 10 (deactivated by cold)",
   "id": "pathfinder-bestiary-2/isqulug",
   "immunities": [
-    "swarm-mind"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
   ],
   "languages": [
     "aklo"
@@ -140,18 +150,37 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 24,
-    "reflex": 20,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 24
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "greater-darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -222,6 +251,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     }

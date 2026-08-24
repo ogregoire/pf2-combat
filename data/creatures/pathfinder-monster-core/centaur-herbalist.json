@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "offensive",
       "cost": "3",
-      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:18|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:18|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
       "frequency": null,
       "name": "Trample",
       "requirements": null,
@@ -35,10 +36,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hoof",
       "traits": [
@@ -49,10 +52,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Sling",
       "traits": [
@@ -70,6 +75,7 @@
     "Sling Bullets"
   ],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/centaur-herbalist",
   "immunities": [],
   "languages": [
@@ -84,12 +90,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 9,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

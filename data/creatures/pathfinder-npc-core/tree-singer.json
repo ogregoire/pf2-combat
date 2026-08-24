@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 10,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -55,15 +56,18 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "sonic"
         },
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Composite Longbow",
       "traits": [
         "deadly-d10",
@@ -78,14 +82,17 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "2d10",
           "type": "sonic"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -98,14 +105,17 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d10",
           "type": "sonic"
         },
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Longspear",
       "traits": [
@@ -121,6 +131,7 @@
     "Longspear"
   ],
   "hp": 220,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tree-singer",
   "immunities": [],
   "languages": [
@@ -134,9 +145,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 21,
-    "will": 25
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
   },
   "senses": [],
   "size": "medium",

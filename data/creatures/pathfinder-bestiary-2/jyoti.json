@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -72,14 +73,17 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d12+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -91,10 +95,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Flaming Ghost Touch Longspear",
       "traits": [
@@ -106,14 +112,17 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Talon",
       "traits": [
@@ -128,11 +137,24 @@
     "Longspear"
   ],
   "hp": 155,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/jyoti",
   "immunities": [
-    "death-effects",
-    "disease",
-    "poison"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
   ],
   "languages": [
     "common",
@@ -145,21 +167,38 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "void",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 15,
-    "reflex": 18,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

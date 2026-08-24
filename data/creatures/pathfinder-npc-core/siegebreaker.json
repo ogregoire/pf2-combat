@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 34,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -77,19 +78,23 @@
       "bonus": 27,
       "damage": [
         {
+          "category": "persistent",
           "formula": "10",
           "type": "untyped"
         },
         {
+          "category": "splash",
           "formula": "10",
           "type": "untyped"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "untyped"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Alchemical Grenade",
       "traits": [
         "range-increment-60",
@@ -100,10 +105,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+18",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -117,10 +124,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+18",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Mace",
       "traits": [
@@ -139,6 +148,7 @@
     "Light Mace"
   ],
   "hp": 300,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/siegebreaker",
   "immunities": [],
   "languages": [
@@ -151,9 +161,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 25,
-    "reflex": 28,
-    "will": 23
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
   },
   "senses": [],
   "size": "medium",

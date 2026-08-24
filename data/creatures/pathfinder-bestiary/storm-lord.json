@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -22,10 +23,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
       "frequency": null,
       "name": "Push 5 feet",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Push in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -58,9 +59,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+10",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "push"
       ],
       "kind": "melee",
       "name": "Gust",
@@ -73,10 +78,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+4",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Lightning Lash",
       "traits": [
@@ -87,12 +94,29 @@
   "foundryId": "LUtSo30fQWj7mrDn",
   "gear": [],
   "hp": 120,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/storm-lord",
   "immunities": [
-    "bleed",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "sussuran"
@@ -104,12 +128,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 20,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

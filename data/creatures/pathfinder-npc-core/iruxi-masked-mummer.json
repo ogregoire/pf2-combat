@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -56,10 +57,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -73,11 +76,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "3d10",
           "type": "sonic"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Spectral Roar",
       "traits": [
         "primal",
@@ -89,10 +94,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -110,6 +117,7 @@
     "Mummer's Costume"
   ],
   "hp": 155,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/iruxi-masked-mummer",
   "immunities": [],
   "languages": [
@@ -125,9 +133,18 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 19,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,16 +8,17 @@
     "wis": 2
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
@@ -42,7 +43,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>A sinspawn can smell creatures that reflect its sin as the scent ability. The GM determines which creatures are appropriately sinful.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Scent]</p>",
+      "description": "<p>A sinspawn can smell creatures that reflect its sin as the scent ability. The GM determines which creatures are appropriately sinful.</p>\n<hr />\n<p><p>Scent involves sensing creatures or objects by smell, and is usually a vague sense. The range is listed in the ability, and it functions only if the creature or object being detected emits an aroma (for instance, incorporeal creatures usually do not exude an aroma).</p>\n<p>If a creature emits a heavy aroma or is upwind, the GM can double or even triple the range of scent abilities used to detect that creature, and the GM can reduce the range if a creature is downwind.</p></p>",
       "frequency": null,
       "name": "Sin Scent (Imprecise) 30 feet",
       "requirements": null,
@@ -69,10 +70,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -83,10 +86,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Glaive",
       "traits": [
@@ -99,9 +104,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "sinful-bite"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -116,9 +125,14 @@
     "Glaive"
   ],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/greedspawn",
   "immunities": [
-    "controlled"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    }
   ],
   "languages": [
     "aklo"
@@ -130,18 +144,37 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 10,
-    "reflex": 9,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

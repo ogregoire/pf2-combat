@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -25,10 +26,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Mandibles",
       "traits": [
@@ -40,6 +43,7 @@
   "foundryId": "RqABskvexmp5sT7X",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/giant-cockroach",
   "immunities": [],
   "languages": [],
@@ -50,13 +54,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 8,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "small",
   "skills": {

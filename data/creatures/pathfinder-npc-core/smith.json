@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -51,9 +54,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "smiths-fury"
       ],
       "kind": "melee",
       "name": "Light Hammer",
@@ -65,9 +72,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "smiths-fury"
       ],
       "kind": "melee",
       "name": "Light Hammer",
@@ -84,6 +95,7 @@
     "Light Hammer"
   ],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/smith",
   "immunities": [],
   "languages": [
@@ -96,9 +108,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 8,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [],
   "size": "medium",

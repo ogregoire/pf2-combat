@@ -8,11 +8,12 @@
     "wis": 0
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
       "frequency": null,
       "name": "Void Healing",
       "requirements": null,
@@ -25,10 +26,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -41,10 +44,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Scimitar",
       "traits": [
@@ -56,10 +61,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Shortbow",
       "traits": [
@@ -76,14 +83,39 @@
     "Shortbow"
   ],
   "hp": 4,
+  "hpDetails": "void healing",
   "id": "pathfinder-monster-core/skeleton-guard",
   "immunities": [
-    "bleed",
-    "death-effects",
-    "disease",
-    "paralyzed",
-    "poison",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [],
   "level": -1,
@@ -93,33 +125,56 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "electricity",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 2,
-    "reflex": 8,
-    "will": 2
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 2
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

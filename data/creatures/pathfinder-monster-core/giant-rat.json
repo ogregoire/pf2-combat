@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -27,9 +28,13 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "filth-fever"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -43,6 +48,7 @@
   "foundryId": "iIJPJcDT8wlJ8z5M",
   "gear": [],
   "hp": 8,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/giant-rat",
   "immunities": [],
   "languages": [],
@@ -53,13 +59,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 7,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "small",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -62,10 +63,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -78,10 +81,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Shock",
       "traits": [
@@ -93,9 +98,14 @@
   "foundryId": "HI7SecILsRTmOtky",
   "gear": [],
   "hp": 32,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/shocker-lizard",
   "immunities": [
-    "electricity"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    }
   ],
   "languages": [],
   "level": 2,
@@ -105,12 +115,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 10,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

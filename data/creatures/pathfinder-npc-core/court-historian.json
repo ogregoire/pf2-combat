@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 13,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -49,10 +50,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -66,10 +69,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Inkwell",
       "traits": [
@@ -85,6 +90,7 @@
     "Writing Set"
   ],
   "hp": 7,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/court-historian",
   "immunities": [],
   "languages": [
@@ -97,9 +103,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 3,
-    "reflex": 5,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [],
   "size": "medium",

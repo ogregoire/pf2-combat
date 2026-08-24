@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -47,7 +48,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -67,7 +68,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -83,13 +84,18 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+3",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         }
+      ],
+      "effects": [
+        "cocytan-filth"
       ],
       "kind": "melee",
       "name": "Mandibles",
@@ -104,9 +110,14 @@
   "foundryId": "wCsfRovcZMZxSdGm",
   "gear": [],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/zebub",
   "immunities": [
-    "fire"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
   ],
   "languages": [
     "diabolic",
@@ -120,21 +131,40 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "silver"
+      ],
       "type": "physical",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 8,
-    "reflex": 10,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "greater-darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -199,6 +229,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 5
     }

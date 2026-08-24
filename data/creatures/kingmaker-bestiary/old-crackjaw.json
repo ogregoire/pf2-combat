@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -55,10 +56,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -69,6 +72,7 @@
   "foundryId": "dZEl1W8zV3rj5D9O",
   "gear": [],
   "hp": 78,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/old-crackjaw",
   "immunities": [],
   "languages": [],
@@ -79,13 +83,30 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 9,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

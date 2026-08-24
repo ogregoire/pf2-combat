@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -74,9 +75,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "magical-static"
       ],
       "kind": "melee",
       "name": "Dagger",
@@ -90,9 +95,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "magical-static"
       ],
       "kind": "melee",
       "name": "Dagger",
@@ -107,9 +116,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "magical-static"
       ],
       "kind": "melee",
       "name": "Fist",
@@ -124,9 +137,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+10",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "magical-static"
       ],
       "kind": "melee",
       "name": "Rapier",
@@ -145,6 +162,7 @@
     "Studded Leather Armor"
   ],
   "hp": 145,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/mage-killer",
   "immunities": [],
   "languages": [
@@ -157,9 +175,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 17,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [],
   "size": "medium",

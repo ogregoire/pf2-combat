@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,10 +23,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -45,9 +46,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "knockdown"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -59,6 +64,7 @@
   "foundryId": "tUWchW8dXavTFeBy",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/hyena",
   "immunities": [],
   "languages": [],
@@ -69,13 +75,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 8,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

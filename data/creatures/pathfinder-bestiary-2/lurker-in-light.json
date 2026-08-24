@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -62,10 +63,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -78,9 +81,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+2",
           "type": "force"
         }
+      ],
+      "effects": [
+        "lurkers-glow"
       ],
       "kind": "ranged",
       "name": "Mote of Light",
@@ -94,9 +101,14 @@
   "foundryId": "73qJxJK8ES4Tbp2k",
   "gear": [],
   "hp": 72,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/lurker-in-light",
   "immunities": [
-    "blinded"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "blinded"
+    }
   ],
   "languages": [
     "aklo",
@@ -110,12 +122,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 14,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -194,6 +219,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

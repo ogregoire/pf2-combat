@@ -8,16 +8,17 @@
     "wis": 4
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
       "frequency": null,
       "name": "Shield Block",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
     },
     {
       "category": "offensive",
@@ -47,10 +48,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -63,10 +66,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": [
@@ -77,10 +82,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": [
@@ -97,6 +104,7 @@
     "Wooden Shield"
   ],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/dedicated-druid",
   "immunities": [],
   "languages": [
@@ -110,12 +118,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 13,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "lifesense"
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "lifesense"
+    }
   ],
   "size": "medium",
   "skills": {

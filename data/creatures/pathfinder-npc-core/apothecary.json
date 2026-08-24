@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -45,19 +46,23 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "acid"
         },
         {
+          "category": "splash",
           "formula": "1",
           "type": "acid"
         },
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "acid"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Acid Flask",
       "traits": [
         "range-increment-20",
@@ -68,10 +73,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -85,10 +92,12 @@
       "bonus": 4,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Stone Pestle",
       "traits": []
@@ -104,6 +113,7 @@
     "Mortar and Pestle"
   ],
   "hp": 8,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/apothecary",
   "immunities": [],
   "languages": [
@@ -116,14 +126,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 2
     }
   ],
   "saves": {
-    "fortitude": 8,
-    "reflex": 3,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [],
   "size": "medium",

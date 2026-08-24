@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -59,10 +62,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Snout",
       "traits": []
@@ -71,6 +76,7 @@
   "foundryId": "YZ4G7eRQ49dTVtjb",
   "gear": [],
   "hp": 16,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/bottlenose-dolphin",
   "immunities": [],
   "languages": [],
@@ -81,13 +87,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 7,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "echolocation",
-    "low-light-vision"
+    {
+      "acuity": "precise",
+      "range": 120,
+      "type": "echolocation"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

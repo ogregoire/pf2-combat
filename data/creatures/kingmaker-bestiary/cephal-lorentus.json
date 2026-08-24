@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
       "frequency": null,
       "name": "Void Healing",
       "requirements": null,
@@ -35,14 +36,17 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "4d6",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -55,14 +59,17 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+2",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "4d6",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -77,13 +84,34 @@
     "Tattered Robes"
   ],
   "hp": 140,
+  "hpDetails": "void healing",
   "id": "kingmaker-bestiary/cephal-lorentus",
   "immunities": [
-    "death-effects",
-    "disease",
-    "paralyzed",
-    "poison",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "common",
@@ -98,21 +126,38 @@
   "rarity": "unique",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 15,
-    "reflex": 15,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

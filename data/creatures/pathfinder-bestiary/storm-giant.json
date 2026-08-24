@@ -8,21 +8,22 @@
     "wis": 5
   },
   "ac": 34,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
       "frequency": null,
       "name": "Catch Rock",
-      "requirements": null,
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -55,7 +56,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
       "frequency": null,
       "name": "Constant Spells",
       "requirements": null,
@@ -68,14 +69,17 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "2d8+16",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -88,14 +92,17 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "2d12+16",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greatsword",
       "traits": [
@@ -108,9 +115,13 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+16",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "rock"
       ],
       "kind": "ranged",
       "name": "Rock",
@@ -127,9 +138,14 @@
     "Sack for Holding Rocks"
   ],
   "hp": 235,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/storm-giant",
   "immunities": [
-    "electricity"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    }
   ],
   "languages": [
     "common",
@@ -144,12 +160,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 28,
-    "reflex": 21,
-    "will": 23
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "huge",
   "skills": {

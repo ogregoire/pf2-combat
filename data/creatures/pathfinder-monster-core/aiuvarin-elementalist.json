@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -39,10 +40,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -55,10 +58,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -73,6 +78,7 @@
     "Dagger"
   ],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/aiuvarin-elementalist",
   "immunities": [],
   "languages": [
@@ -86,12 +92,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 11,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

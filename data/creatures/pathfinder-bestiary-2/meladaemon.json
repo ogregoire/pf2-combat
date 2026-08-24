@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 31,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -22,10 +23,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -67,7 +68,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
       "frequency": null,
       "name": "Lifesense (Imprecise) 30 feet",
       "requirements": null,
@@ -77,7 +78,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -106,13 +107,18 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d12+13",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "daemonic-famine"
       ],
       "kind": "melee",
       "name": "Bite",
@@ -127,13 +133,19 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d8+13",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "grab",
+        "withering-touch"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -149,9 +161,14 @@
   "foundryId": "ytsHNgRwLzabsrZt",
   "gear": [],
   "hp": 225,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/meladaemon",
   "immunities": [
-    "death-effects"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    }
   ],
   "languages": [
     "common",
@@ -164,13 +181,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 20,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision",
-    "lifesense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "lifesense"
+    }
   ],
   "size": "large",
   "skills": {
@@ -240,6 +274,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 10
     }

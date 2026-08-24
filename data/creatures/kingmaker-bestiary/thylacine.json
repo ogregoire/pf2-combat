@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -29,10 +30,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -43,6 +46,7 @@
   "foundryId": "TLoNfIIhS7YGdV54",
   "gear": [],
   "hp": 16,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/thylacine",
   "immunities": [],
   "languages": [],
@@ -53,13 +57,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 8,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "small",
   "skills": {

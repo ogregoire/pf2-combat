@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -37,9 +38,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "goblin-pox"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -51,6 +56,7 @@
   "foundryId": "jFA0q3g3MsFxS3xO",
   "gear": [],
   "hp": 53,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/goblin-bat-dog",
   "immunities": [],
   "languages": [],
@@ -61,13 +67,30 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 12,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

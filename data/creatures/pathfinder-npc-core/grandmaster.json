@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 40,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -70,10 +71,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+14",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -87,10 +90,12 @@
       "bonus": 31,
       "damage": [
         {
+          "category": null,
           "formula": "3d4+14",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shuriken",
       "traits": [
@@ -103,10 +108,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+14",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Temple Sword",
       "traits": [
@@ -123,6 +130,7 @@
     "Temple Sword"
   ],
   "hp": 310,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/grandmaster",
   "immunities": [],
   "languages": [
@@ -135,12 +143,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 28,
-    "reflex": 32,
-    "will": 27
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 32
+    },
+    "will": {
+      "detail": null,
+      "value": 27
+    }
   },
   "senses": [
-    "lifesense"
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "lifesense"
+    }
   ],
   "size": "medium",
   "skills": {

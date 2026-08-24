@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -28,7 +29,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>Claw</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Rend]</p>",
+      "description": "<p>Claw</p>\n<hr />\n<p><p>A Rend entry lists a Strike the monster has.</p>\n<p><strong>Requirements</strong> The monster hit the same enemy with two consecutive Strikes of the listed type in the same round.</p>\n<hr />\n<p><strong>Effect</strong> The monster automatically deals that Strike's damage again to the enemy.</p></p>",
       "frequency": null,
       "name": "Rend",
       "requirements": null,
@@ -72,7 +73,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -88,14 +89,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "3d8+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -110,14 +114,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d6+13",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Swarm Spit",
       "traits": [
@@ -131,11 +138,24 @@
   "foundryId": "oKogG9AwUZ9iBsm3",
   "gear": [],
   "hp": 240,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/derghodaemon",
   "immunities": [
-    "confused",
-    "death-effects",
-    "swarm-attacks"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "confused"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-attacks"
+    }
   ],
   "languages": [
     "common",
@@ -148,13 +168,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 21,
-    "reflex": 24,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 24
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -214,6 +251,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 10
     }

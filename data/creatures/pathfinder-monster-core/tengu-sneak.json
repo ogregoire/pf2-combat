@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -61,10 +62,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -76,10 +79,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Shortbow",
       "traits": [
@@ -92,10 +97,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wakizashi",
       "traits": [
@@ -114,6 +121,7 @@
     "Wakizashi"
   ],
   "hp": 27,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/tengu-sneak",
   "immunities": [],
   "languages": [
@@ -127,12 +135,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 10,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -63,10 +64,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Fire Mote",
       "traits": [
@@ -77,14 +80,17 @@
       "bonus": 20,
       "damage": [
         {
+          "category": "persistent",
           "formula": "2d8",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d8+11",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -95,13 +101,34 @@
   "foundryId": "MX2cLbODuo4gECPJ",
   "gear": [],
   "hp": 165,
+  "hpDetails": "explosion",
   "id": "pathfinder-monster-core/firewyrm",
   "immunities": [
-    "bleed",
-    "fire",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "pyric"
@@ -113,12 +140,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 18,
-    "reflex": 20,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -143,10 +183,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "water",
       "value": 10
     }

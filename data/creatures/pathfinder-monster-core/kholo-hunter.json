@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Battle Axe",
       "traits": [
@@ -49,10 +52,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -64,10 +69,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Shortbow",
       "traits": [
@@ -84,6 +91,7 @@
     "Shortbow"
   ],
   "hp": 29,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/kholo-hunter",
   "immunities": [],
   "languages": [
@@ -97,12 +105,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 7,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

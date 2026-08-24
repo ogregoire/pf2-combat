@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 32,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,12 +23,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
@@ -120,10 +121,12 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+11",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -137,11 +140,13 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
         "magical",
@@ -153,10 +158,12 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+11",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -177,6 +184,7 @@
     "Rapier"
   ],
   "hp": 250,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/crime-kingpin",
   "immunities": [],
   "languages": [
@@ -189,9 +197,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 23,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Breaching Pike",
       "traits": [
@@ -60,11 +63,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Crossbow",
       "traits": [
         "range-increment-120",
@@ -75,10 +80,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -91,10 +98,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -112,6 +121,7 @@
     "Shortsword"
   ],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/hobgoblin-spellbreaker",
   "immunities": [],
   "languages": [
@@ -125,12 +135,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 6,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

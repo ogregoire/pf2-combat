@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,10 +26,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -40,10 +43,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Talon",
       "traits": [
@@ -56,6 +61,7 @@
   "foundryId": "WBPEvEqIGvxeQKlp",
   "gear": [],
   "hp": 6,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/eagle",
   "immunities": [],
   "languages": [],
@@ -66,12 +72,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 4,
-    "reflex": 6,
-    "will": 2
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 2
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

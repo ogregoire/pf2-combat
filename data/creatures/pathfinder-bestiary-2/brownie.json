@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -29,10 +30,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -46,6 +49,7 @@
     "Shortsword"
   ],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/brownie",
   "immunities": [],
   "languages": [
@@ -61,12 +65,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 4,
-    "reflex": 9,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "tiny",
   "skills": {
@@ -124,6 +141,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 3
     }

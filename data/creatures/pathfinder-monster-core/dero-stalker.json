@@ -8,6 +8,7 @@
     "wis": -1
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,10 +59,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Club",
       "traits": []
@@ -70,10 +73,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Club",
       "traits": [
@@ -84,9 +89,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "lethargy-poison"
       ],
       "kind": "ranged",
       "name": "Hand Crossbow",
@@ -106,9 +115,14 @@
     "Rope"
   ],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/dero-stalker",
   "immunities": [
-    "confused"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "confused"
+    }
   ],
   "languages": [
     "aklo",
@@ -121,12 +135,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 10,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
       "frequency": null,
       "name": "Swarm Mind",
       "requirements": null,
@@ -34,10 +35,19 @@
   "foundryId": "8HJNH3aDTJyJi3pU",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/cockroach-swarm",
   "immunities": [
-    "precision",
-    "swarm-mind"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
   ],
   "languages": [],
   "level": 2,
@@ -47,26 +57,49 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 2
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 9,
-    "reflex": 10,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -100,10 +133,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "area-damage",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "splash-damage",
       "value": 5
     }

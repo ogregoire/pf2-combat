@@ -8,11 +8,12 @@
     "wis": 2
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>Jaws only</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p>Jaws only</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity (Jaws Only)",
       "requirements": null,
@@ -35,7 +36,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>90 feet. @Check[will|dc:27]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>90 feet. @Check[will|dc:27]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -63,10 +64,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -78,14 +81,17 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+12",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "2d6",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -98,10 +104,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -112,10 +120,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wing",
       "traits": [
@@ -127,11 +137,24 @@
   "foundryId": "oLdrCmarnzd62kA8",
   "gear": [],
   "hp": 210,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/red-dragon-young-spellcaster",
   "immunities": [
-    "fire",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -144,13 +167,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 21,
-    "reflex": 18,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -204,6 +244,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     }

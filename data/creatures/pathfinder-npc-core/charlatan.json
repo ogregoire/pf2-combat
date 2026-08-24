@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -52,10 +55,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -68,10 +73,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whip",
       "traits": [
@@ -92,6 +99,7 @@
     "Whip"
   ],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/charlatan",
   "immunities": [],
   "languages": [
@@ -104,9 +112,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 8,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [],
   "size": "medium",

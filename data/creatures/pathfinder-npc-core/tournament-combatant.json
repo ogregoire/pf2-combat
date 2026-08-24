@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -61,10 +62,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -78,10 +81,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Nunchaku",
       "traits": [
@@ -94,10 +99,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shuriken",
       "traits": [
@@ -113,6 +120,7 @@
     "Shuriken"
   ],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tournament-combatant",
   "immunities": [],
   "languages": [
@@ -125,9 +133,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 15,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [],
   "size": "medium",

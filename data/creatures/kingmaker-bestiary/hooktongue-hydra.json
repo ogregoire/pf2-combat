@@ -8,16 +8,17 @@
     "wis": 5
   },
   "ac": 34,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -42,7 +43,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -62,7 +63,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>The hydra has regeneration equal to 3 x the number of heads it has. If a hydra's body is missing any heads and the remaining stumps have not been cauterized, the hydra attempts a @Check[fortitude|immutable:true|dc:35] save after it regains Hit Points from regeneration. On a success, one uncauterized stump regrows two heads; on a critical success, two uncauterized stumps regrow into two heads each. The hydra can never grow more than double the number of heads it ordinarily has. The hydra's regeneration only fully deactivates if all its heads are severed and all stumps are cauterized, at which point it dies.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>\n<hr />\n<p><em><strong>Note:</strong> The source specifies hydra regeneration 15, but this conflicts with standard hydra regeneration.</em></p>",
+      "description": "<p>The hydra has regeneration equal to 3 x the number of heads it has. If a hydra's body is missing any heads and the remaining stumps have not been cauterized, the hydra attempts a @Check[fortitude|immutable:true|dc:35] save after it regains Hit Points from regeneration. On a success, one uncauterized stump regrows two heads; on a critical success, two uncauterized stumps regrow into two heads each. The hydra can never grow more than double the number of heads it ordinarily has. The hydra's regeneration only fully deactivates if all its heads are severed and all stumps are cauterized, at which point it dies.</p>\n<hr />\n<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>\n<hr />\n<p><em><strong>Note:</strong> The source specifies hydra regeneration 15, but this conflicts with standard hydra regeneration.</em></p>",
       "frequency": null,
       "name": "Hydra Regeneration",
       "requirements": null,
@@ -85,10 +86,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+14",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fangs",
       "traits": [
@@ -99,6 +102,7 @@
   "foundryId": "8D3xvMiuOLJ3p6FU",
   "gear": [],
   "hp": 240,
+  "hpDetails": "hydra regeneration",
   "id": "kingmaker-bestiary/hooktongue-hydra",
   "immunities": [],
   "languages": [],
@@ -109,13 +113,30 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 25,
-    "reflex": 24,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 24
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

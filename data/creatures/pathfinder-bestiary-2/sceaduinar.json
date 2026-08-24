@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -54,7 +55,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -64,7 +65,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
       "frequency": null,
       "name": "Lifesense 120 feet",
       "requirements": null,
@@ -84,7 +85,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
       "frequency": null,
       "name": "Void Healing",
       "requirements": null,
@@ -97,13 +98,18 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "void"
         },
         {
+          "category": null,
           "formula": "2d6+4",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "drain-life"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -118,14 +124,17 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "void"
         },
         {
+          "category": null,
           "formula": "2d6+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wing",
       "traits": [
@@ -139,10 +148,19 @@
   "foundryId": "LcdQZ2NTG2eJswXA",
   "gear": [],
   "hp": 100,
+  "hpDetails": "void healing",
   "id": "pathfinder-bestiary-2/sceaduinar",
   "immunities": [
-    "death-effects",
-    "drained"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "drained"
+    }
   ],
   "languages": [
     "aklo"
@@ -154,18 +172,39 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
       "type": "physical",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 16,
-    "reflex": 18,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "greater-darkvision",
-    "lifesense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 120,
+      "type": "lifesense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -242,6 +281,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 10
     }

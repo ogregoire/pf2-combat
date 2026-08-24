@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -52,10 +53,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -68,14 +71,17 @@
       "bonus": 23,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "2d12+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -87,9 +93,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "5d6",
           "type": "acid"
         }
+      ],
+      "effects": [
+        "fleshgout"
       ],
       "kind": "ranged",
       "name": "Vomit",
@@ -102,9 +112,14 @@
   "foundryId": "xdIHvCBspeSXRL6A",
   "gear": [],
   "hp": 175,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/ghonhatine",
   "immunities": [
-    "disease"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    }
   ],
   "languages": [
     "sakvroth"
@@ -116,18 +131,37 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "acid",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 22,
-    "reflex": 17,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

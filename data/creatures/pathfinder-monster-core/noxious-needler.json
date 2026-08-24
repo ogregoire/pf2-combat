@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -56,6 +57,9 @@
     {
       "bonus": 20,
       "damage": [],
+      "effects": [
+        "generate-bomb"
+      ],
       "kind": "ranged",
       "name": "Bomb",
       "traits": [
@@ -67,9 +71,13 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "alchemical-injection"
       ],
       "kind": "melee",
       "name": "Syringe",
@@ -82,6 +90,7 @@
   "foundryId": "eqHTr6Wj1JadHSa1",
   "gear": [],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/noxious-needler",
   "immunities": [],
   "languages": [],
@@ -92,21 +101,43 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine",
+        "bludgeoning"
+      ],
       "type": "physical",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [
+        "sonic"
+      ],
       "type": "spells",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 20,
-    "reflex": 19,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -80,14 +81,17 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d12+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fangs",
       "traits": []
@@ -96,10 +100,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -110,11 +116,24 @@
   "foundryId": "2SixuEUfKpEyfOEY",
   "gear": [],
   "hp": 115,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/frost-drake",
   "immunities": [
-    "cold",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "draconic"
@@ -126,13 +145,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 15,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -172,6 +208,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }

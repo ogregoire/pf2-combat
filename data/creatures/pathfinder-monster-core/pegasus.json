@@ -8,11 +8,12 @@
     "wis": 2
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Check[reflex|dc:19]</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Buck]</p>",
+      "description": "<p>@Check[reflex|dc:19]</p>\n<p><hr />\n<p>Most monsters that serve as mounts can attempt to buck off unwanted or annoying riders, but most mounts will not use this reaction against a trusted creature unless the mounts are spooked or mistreated.</p>\n<p><strong>Trigger</strong> A creature Mounts or uses the Command an Animal action while riding the monster.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must succeed at a Reflex saving throw against the listed DC or fall off the creature and land Prone. If the save is a critical failure, the triggering creature also takes @Damage[1d6[bludgeoning]] damage in addition to the normal damage for the fall.</p></p>",
       "frequency": null,
       "name": "Buck",
       "requirements": null,
@@ -45,10 +46,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hoof",
       "traits": []
@@ -57,10 +60,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wing",
       "traits": [
@@ -71,6 +76,7 @@
   "foundryId": "HMfH0CI1CQCXB9Xr",
   "gear": [],
   "hp": 55,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/pegasus",
   "immunities": [],
   "languages": [
@@ -83,13 +89,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 11,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

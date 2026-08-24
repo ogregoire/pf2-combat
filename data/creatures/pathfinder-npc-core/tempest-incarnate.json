@@ -8,14 +8,15 @@
     "wis": 4
   },
   "ac": 40,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
       "frequency": null,
       "name": "Push 10 Feet",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Push in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -83,13 +84,18 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "3d12",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "3d4+8",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "push"
       ],
       "kind": "melee",
       "name": "Fist",
@@ -108,6 +114,7 @@
     "Handwraps of Mighty Blows"
   ],
   "hp": 360,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tempest-incarnate",
   "immunities": [],
   "languages": [
@@ -122,18 +129,31 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "electricity",
       "value": 20
     }
   ],
   "saves": {
-    "fortitude": 30,
-    "reflex": 34,
-    "will": 31
+    "fortitude": {
+      "detail": null,
+      "value": 30
+    },
+    "reflex": {
+      "detail": null,
+      "value": 34
+    },
+    "will": {
+      "detail": null,
+      "value": 31
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -66,14 +67,17 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+6",
           "type": "slashing"
         },
         {
+          "category": null,
           "formula": "2d6",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Ghost Claw",
       "traits": [
@@ -87,15 +91,18 @@
       "bonus": 19,
       "damage": [
         {
+          "category": "persistent",
           "formula": "2d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "spirit"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Spirit Pitch",
       "traits": [
         "magical",
@@ -107,6 +114,7 @@
   "foundryId": "6OtvMTyXhxUdZI44",
   "gear": [],
   "hp": 175,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/spirit-binder",
   "immunities": [],
   "languages": [
@@ -121,12 +129,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 19,
-    "reflex": 19,
-    "will": 24
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
   },
   "senses": [
-    "spiritsense"
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "spiritsense"
+    }
   ],
   "size": "medium",
   "skills": {

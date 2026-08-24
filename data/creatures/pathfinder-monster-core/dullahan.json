@@ -8,16 +8,17 @@
     "wis": 3
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -44,7 +45,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Fast Healing 5",
       "requirements": null,
@@ -54,7 +55,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>30 feet. @Check[will|dc:23]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>30 feet. @Check[will|dc:23]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -79,7 +80,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
       "frequency": null,
       "name": "Lifesense 60 feet",
       "requirements": null,
@@ -92,10 +93,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -108,9 +111,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+10",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "head-hunter"
       ],
       "kind": "melee",
       "name": "Keen Longsword",
@@ -123,9 +130,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "head-hunter"
       ],
       "kind": "melee",
       "name": "Keen Returning Hatchet",
@@ -138,9 +149,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "head-hunter"
       ],
       "kind": "ranged",
       "name": "Keen Returning Hatchet",
@@ -157,15 +172,44 @@
     "Longsword"
   ],
   "hp": 95,
+  "hpDetails": "fast healing 5",
   "id": "pathfinder-monster-core/dullahan",
   "immunities": [
-    "bleed",
-    "death-effects",
-    "disease",
-    "fear-effects",
-    "paralyzed",
-    "poison",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "common",
@@ -178,12 +222,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 15,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "lifesense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "lifesense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -211,6 +268,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 5
     }

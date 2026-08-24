@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -40,10 +41,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -56,10 +59,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Hammer",
       "traits": [
@@ -70,10 +75,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Light Hammer",
       "traits": [
@@ -87,6 +94,7 @@
     "Light Hammer"
   ],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/kobold-cavern-mage",
   "immunities": [],
   "languages": [
@@ -102,17 +110,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 5,
-    "reflex": 6,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

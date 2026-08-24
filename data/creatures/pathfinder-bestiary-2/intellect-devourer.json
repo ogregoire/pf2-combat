@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -50,7 +51,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
       "frequency": null,
       "name": "Lifesense 60 feet",
       "requirements": null,
@@ -70,7 +71,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -86,10 +87,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Talon",
       "traits": [
@@ -102,12 +105,29 @@
   "foundryId": "OFHr8UhsBOOgj0ef",
   "gear": [],
   "hp": 130,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/intellect-devourer",
   "immunities": [
-    "blinded",
-    "controlled",
-    "emotion",
-    "possession"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "blinded"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "emotion"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "possession"
+    }
   ],
   "languages": [
     "aklo",
@@ -121,13 +141,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 16,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "darkvision",
-    "lifesense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "lifesense"
+    }
   ],
   "size": "small",
   "skills": {

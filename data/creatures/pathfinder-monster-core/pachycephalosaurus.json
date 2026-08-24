@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -37,10 +38,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Skull",
       "traits": [
@@ -52,6 +55,7 @@
   "foundryId": "dUI8N2AXDGcf3qRD",
   "gear": [],
   "hp": 65,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/pachycephalosaurus",
   "immunities": [],
   "languages": [],
@@ -62,13 +66,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 11,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

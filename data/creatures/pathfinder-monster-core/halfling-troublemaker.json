@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Filcher's Fork",
       "traits": [
@@ -62,10 +65,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Filcher's Fork",
       "traits": [
@@ -82,6 +87,7 @@
     "Leather Armor"
   ],
   "hp": 18,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/halfling-troublemaker",
   "immunities": [],
   "languages": [
@@ -95,9 +101,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 4,
-    "reflex": 10,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [],
   "size": "small",

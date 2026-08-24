@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,10 +26,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -39,6 +42,7 @@
   "foundryId": "bGp2t0UteEYu3BGe",
   "gear": [],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/pteranodon",
   "immunities": [],
   "languages": [],
@@ -49,13 +53,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 10,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

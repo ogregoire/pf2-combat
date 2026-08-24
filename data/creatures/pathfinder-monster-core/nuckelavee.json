@@ -8,16 +8,17 @@
     "wis": 3
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -36,7 +37,7 @@
     {
       "category": "offensive",
       "cost": "3",
-      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:28|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:28|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
       "frequency": null,
       "name": "Trample",
       "requirements": null,
@@ -46,7 +47,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>30 feet @Check[will|dc:25]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>30 feet @Check[will|dc:25]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -86,13 +87,18 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "2d8+12",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "mortasheen"
       ],
       "kind": "melee",
       "name": "Bastard Sword",
@@ -106,9 +112,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+12",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "mortasheen"
       ],
       "kind": "melee",
       "name": "Hoof",
@@ -118,13 +128,18 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "2d8+12",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "mortasheen"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -139,10 +154,19 @@
     "Bastard Sword"
   ],
   "hp": 190,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/nuckelavee",
   "immunities": [
-    "disease",
-    "poison"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
   ],
   "languages": [
     "aklo",
@@ -156,12 +180,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 19,
-    "reflex": 16,
-    "will": 20
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -213,6 +250,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 10
     }

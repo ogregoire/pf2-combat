@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -49,10 +50,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Gauntlet",
       "traits": [
@@ -64,10 +67,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Javelin",
       "traits": [
@@ -83,6 +88,7 @@
     "Javelin"
   ],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/subaquatic-marauder",
   "immunities": [],
   "languages": [],
@@ -93,9 +99,18 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 7,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [],
   "size": "medium",

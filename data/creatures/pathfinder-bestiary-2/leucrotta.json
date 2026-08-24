@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -51,10 +52,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hoof",
       "traits": [
@@ -65,10 +68,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jagged Jaws",
       "traits": [
@@ -79,6 +84,7 @@
   "foundryId": "T3low0wQNMO0SEtr",
   "gear": [],
   "hp": 85,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/leucrotta",
   "immunities": [],
   "languages": [
@@ -91,13 +97,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 9,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

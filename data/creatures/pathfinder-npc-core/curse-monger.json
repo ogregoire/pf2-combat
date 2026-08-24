@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 35,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -54,10 +55,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+13",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -71,14 +74,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "2d4+13",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -96,6 +102,7 @@
     "Sickle"
   ],
   "hp": 230,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/curse-monger",
   "immunities": [],
   "languages": [
@@ -112,9 +119,18 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 25,
-    "will": 26
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
   },
   "senses": [],
   "size": "medium",

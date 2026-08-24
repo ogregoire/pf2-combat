@@ -8,21 +8,22 @@
     "wis": 2
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<ul>\n<li><strong>Human</strong>\n<ul>\n<li><strong>Melee</strong> fist +11 <strong>Damage</strong> 1d4+8</li>\n</ul>\n</li>\n<li><strong>Animal</strong>\n<ul>\n<li><strong>Speed</strong> 40 feet</li>\n<li><strong>Melee</strong> jaws with Knockdown</li>\n</ul>\n</li>\n</ul>\n<hr />\n<p>The werecreature changes into its humanoid, hybrid, or animal shape. Each shape has a specific, persistent appearance. A true werecreature's natural form is its hybrid shape.</p>\n<p>In humanoid shape, the werecreature uses its original humanoid size, loses its jaws and claws Strikes, and gains a melee fist Strike that deals bludgeoning damage equal to the slashing damage dealt by its claw.</p>\n<p>In animal shape, its Speed and size change to that of the animal, it gains any special Strike effects of the animal that it didn't already have (such as Grab), and it loses its weapon Strikes.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<ul>\n<li><strong>Human</strong>\n<ul>\n<li><strong>Melee</strong> fist +11 <strong>Damage</strong> 1d4+8</li>\n</ul>\n</li>\n<li><strong>Animal</strong>\n<ul>\n<li><strong>Speed</strong> 40 feet</li>\n<li><strong>Melee</strong> jaws with Knockdown</li>\n</ul>\n</li>\n</ul>\n<hr />\n<p>The werecreature changes into its humanoid, hybrid, or animal shape. Each shape has a specific, persistent appearance. A true werecreature's natural form is its hybrid shape.</p>\n<p>In humanoid shape, the werecreature uses its original humanoid size, loses its jaws and claws Strikes, and gains a melee fist Strike that deals bludgeoning damage equal to the slashing damage dealt by its claw.</p>\n<p>In animal shape, its Speed and size change to that of the animal, it gains any special Strike effects of the animal that it didn't already have (such as Grab), and it loses its weapon Strikes.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -85,10 +86,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Battle Axe",
       "traits": [
@@ -99,10 +102,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -114,10 +119,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Composite Shortbow",
       "traits": [
@@ -130,9 +137,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "werecreature-curse-of-the-werecreature"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -149,6 +160,7 @@
     "Studded Leather Armor"
   ],
   "hp": 63,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/werewolf",
   "immunities": [],
   "languages": [
@@ -161,13 +173,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 9,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -196,6 +225,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "silver",
       "value": 5
     }

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -59,10 +60,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -76,15 +79,18 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "force"
         },
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Shortbow",
       "traits": [
         "deadly-d10",
@@ -101,6 +107,7 @@
     "Spellbook"
   ],
   "hp": 70,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/watchmage",
   "immunities": [],
   "languages": [
@@ -113,9 +120,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 12,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [],
   "size": "medium",

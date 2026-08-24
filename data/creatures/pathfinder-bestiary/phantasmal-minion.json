@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 13,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -34,14 +35,39 @@
   "foundryId": "j7NNPfZwD19BwSEZ",
   "gear": [],
   "hp": 4,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/phantasmal-minion",
   "immunities": [
-    "disease",
-    "paralyzed",
-    "poison",
-    "precision",
-    "spirit",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "spirit"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [],
   "level": -1,
@@ -51,17 +77,35 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "force",
+        "ghost-touch"
+      ],
       "type": "all-damage",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 0,
-    "reflex": 4,
-    "will": 0
+    "fortitude": {
+      "detail": null,
+      "value": 0
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 0
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

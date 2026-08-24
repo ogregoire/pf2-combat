@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -82,14 +83,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": "persistent",
           "formula": "2d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "3d8+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -100,9 +104,14 @@
   "foundryId": "mpBOeFrbtx1wMrNn",
   "gear": [],
   "hp": 225,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/frost-worm",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [],
   "level": 12,
@@ -112,12 +121,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 24,
-    "reflex": 22,
-    "will": 20
+    "fortitude": {
+      "detail": null,
+      "value": 24
+    },
+    "reflex": {
+      "detail": null,
+      "value": 22
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -147,6 +169,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     }

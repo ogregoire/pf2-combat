@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -28,10 +29,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Luminous Spark",
       "traits": [
@@ -44,10 +47,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6-3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -64,6 +69,7 @@
     "Rapier"
   ],
   "hp": 7,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/sprite",
   "immunities": [],
   "languages": [
@@ -77,12 +83,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 2,
-    "reflex": 8,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "tiny",
   "skills": {
@@ -139,6 +158,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 3
     }

@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -36,7 +37,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>Claw</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Rend]</p>",
+      "description": "<p>Claw</p>\n<hr />\n<p><p>A Rend entry lists a Strike the monster has.</p>\n<p><strong>Requirements</strong> The monster hit the same enemy with two consecutive Strikes of the listed type in the same round.</p>\n<hr />\n<p><strong>Effect</strong> The monster automatically deals that Strike's damage again to the enemy.</p></p>",
       "frequency": null,
       "name": "Rend",
       "requirements": null,
@@ -79,10 +80,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -93,9 +96,14 @@
   "foundryId": "alPZcKVrHTcMdtIU",
   "gear": [],
   "hp": 115,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/yeti",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [
     "aklo"
@@ -107,13 +115,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 11,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -143,6 +168,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }

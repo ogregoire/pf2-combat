@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -28,7 +29,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>The gourd leshy witch transforms into a Small gourd. This ability otherwise uses the effects of One with Plants.</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>The gourd leshy witch transforms into a Small gourd. This ability otherwise uses the effects of One with Plants.</p><hr /><p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -73,14 +74,17 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Broom",
       "traits": [
@@ -92,14 +96,17 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -112,14 +119,17 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -133,14 +143,17 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -157,6 +170,7 @@
     "Dagger"
   ],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/gourd-leshy-witch",
   "immunities": [],
   "languages": [
@@ -170,12 +184,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 14,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

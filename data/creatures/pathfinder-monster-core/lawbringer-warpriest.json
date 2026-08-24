@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -35,10 +36,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Crossbow",
       "traits": [
@@ -50,10 +53,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greatsword",
       "traits": [
@@ -69,6 +74,7 @@
     "Half Plate"
   ],
   "hp": 64,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/lawbringer-warpriest",
   "immunities": [],
   "languages": [
@@ -82,12 +88,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 8,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Bastard Sword",
       "traits": [
@@ -49,10 +52,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -65,10 +70,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Javelin",
       "traits": [
@@ -83,6 +90,7 @@
     "Leather Armor"
   ],
   "hp": 34,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/bugbear-prowler",
   "immunities": [],
   "languages": [
@@ -96,13 +104,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 8,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

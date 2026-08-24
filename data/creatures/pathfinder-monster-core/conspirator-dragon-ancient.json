@@ -8,6 +8,7 @@
     "wis": 7
   },
   "ac": 40,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -116,7 +117,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -133,10 +134,12 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+17",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -150,10 +153,12 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+17",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -166,10 +171,12 @@
       "bonus": 31,
       "damage": [
         {
+          "category": null,
           "formula": "6d6+6",
           "type": "mental"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Mental Blast",
       "traits": [
@@ -181,10 +188,12 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+17",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -196,11 +205,24 @@
   "foundryId": "7ikLoTK1gQJ08YDR",
   "gear": [],
   "hp": 345,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/conspirator-dragon-ancient",
   "immunities": [
-    "controlled",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "aklo",
@@ -216,13 +238,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 27,
-    "reflex": 28,
-    "will": 32
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 32
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

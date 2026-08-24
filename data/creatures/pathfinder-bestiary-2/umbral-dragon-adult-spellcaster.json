@@ -8,11 +8,12 @@
     "wis": 6
   },
   "ac": 37,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "reaction",
-      "description": "<p>Jaws only</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p>Jaws only</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity (Jaws Only)",
       "requirements": null,
@@ -46,7 +47,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>90 feet. @Check[will|dc:34]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>90 feet. @Check[will|dc:34]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -73,7 +74,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -86,9 +87,13 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+14",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "ghost-bane"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -103,13 +108,18 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+14",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "void"
         }
+      ],
+      "effects": [
+        "ghost-bane"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -123,9 +133,13 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+14",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "ghost-bane"
       ],
       "kind": "melee",
       "name": "Tail",
@@ -138,9 +152,13 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+14",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "ghost-bane"
       ],
       "kind": "melee",
       "name": "Wing",
@@ -154,11 +172,24 @@
   "foundryId": "TRXxfSSk8oKHvMn5",
   "gear": [],
   "hp": 275,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/umbral-dragon-adult-spellcaster",
   "immunities": [
-    "paralyzed",
-    "sleep",
-    "void"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void"
+    }
   ],
   "languages": [
     "common",
@@ -173,13 +204,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 27,
-    "reflex": 25,
-    "will": 27
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 27
+    }
   },
   "senses": [
-    "greater-darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

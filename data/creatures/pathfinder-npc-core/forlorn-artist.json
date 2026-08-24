@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -65,10 +66,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -82,10 +85,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -102,6 +107,7 @@
     "Rapier"
   ],
   "hp": 26,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/forlorn-artist",
   "immunities": [],
   "languages": [
@@ -115,12 +121,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 3,
-    "reflex": 9,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

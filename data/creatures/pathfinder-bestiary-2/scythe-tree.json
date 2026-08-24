@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -54,7 +55,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
       "frequency": null,
       "name": "Lifesense 30 feet",
       "requirements": null,
@@ -67,10 +68,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Scythe Branch",
       "traits": [
@@ -83,6 +86,7 @@
   "foundryId": "Aa652cDdKTani3DY",
   "gear": [],
   "hp": 105,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/scythe-tree",
   "immunities": [],
   "languages": [
@@ -97,22 +101,43 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 17,
-    "reflex": 8,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "lifesense",
-    "low-light-vision"
+    {
+      "acuity": "precise",
+      "range": 30,
+      "type": "lifesense"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -137,6 +162,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "axe-vulnerability",
       "value": 5
     }

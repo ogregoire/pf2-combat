@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -71,7 +72,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -88,10 +89,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tentacle",
       "traits": [
@@ -107,9 +110,14 @@
   "foundryId": "byShcvERXQVHNaoL",
   "gear": [],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/venedaemon",
   "immunities": [
-    "death-effects"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    }
   ],
   "languages": [
     "aklo",
@@ -127,12 +135,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 11,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -264,6 +285,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 5
     }

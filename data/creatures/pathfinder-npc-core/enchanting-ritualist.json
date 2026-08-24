@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 40,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -51,14 +52,17 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "mental"
         },
         {
+          "category": null,
           "formula": "3d6+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Club",
       "traits": [
@@ -69,14 +73,17 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "mental"
         },
         {
+          "category": null,
           "formula": "3d6+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Club",
       "traits": [
@@ -88,11 +95,13 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "9d6",
           "type": "mental"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Enchanting Wisps",
       "traits": [
         "magical",
@@ -104,14 +113,17 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+12",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "2d6",
           "type": "mental"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -128,6 +140,7 @@
     "Ornate Ritual Book"
   ],
   "hp": 320,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/enchanting-ritualist",
   "immunities": [],
   "languages": [
@@ -143,14 +156,25 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 20
     }
   ],
   "saves": {
-    "fortitude": 27,
-    "reflex": 28,
-    "will": 33
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
   },
   "senses": [],
   "size": "medium",

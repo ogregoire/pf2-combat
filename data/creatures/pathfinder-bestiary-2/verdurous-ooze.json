@@ -8,11 +8,12 @@
     "wis": 0
   },
   "ac": 12,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Damage[2d6[bludgeoning],1d6[acid]]{2d6 bludgeoning plus 1d6 acid}, @Check[fortitude|dc:24|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "description": "<p>@Damage[2d6[bludgeoning],1d6[acid]]{2d6 bludgeoning plus 1d6 acid}, @Check[fortitude|dc:24|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
       "frequency": null,
       "name": "Constrict",
       "requirements": null,
@@ -22,10 +23,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -103,13 +104,18 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Pseudopod",
@@ -121,15 +127,44 @@
   "foundryId": "zXZrUTQSI0WxAsF5",
   "gear": [],
   "hp": 157,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/verdurous-ooze",
   "immunities": [
-    "acid",
-    "critical-hits",
-    "piercing",
-    "precision",
-    "slashing",
-    "unconscious",
-    "visual"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "piercing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
   ],
   "languages": [],
   "level": 6,
@@ -139,12 +174,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 8,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "motion-sense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
   ],
   "size": "medium",
   "skills": {

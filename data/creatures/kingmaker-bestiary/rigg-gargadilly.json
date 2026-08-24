@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -65,9 +66,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "hunting-spider-venom"
       ],
       "kind": "melee",
       "name": "Shortsword",
@@ -85,6 +90,7 @@
     "Shortsword"
   ],
   "hp": 70,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/rigg-gargadilly",
   "immunities": [],
   "languages": [
@@ -99,12 +105,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 17,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -161,6 +180,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

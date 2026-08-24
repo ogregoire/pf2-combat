@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -27,7 +28,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy (Touch)",
       "requirements": null,
@@ -44,10 +45,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+3",
           "type": "mental"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Euphoric Spark",
       "traits": [
@@ -59,10 +62,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -76,6 +81,7 @@
   "foundryId": "UuQHd4v6gG8ONdCt",
   "gear": [],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/draxie",
   "immunities": [],
   "languages": [
@@ -89,12 +95,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 11,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "tiny",
   "skills": {
@@ -162,6 +181,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

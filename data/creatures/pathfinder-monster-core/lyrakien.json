@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,7 +26,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
       "frequency": null,
       "name": "Constant Spells",
       "requirements": null,
@@ -38,10 +39,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -57,10 +60,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "2d4",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Starlight Ray",
       "traits": [
@@ -73,6 +78,7 @@
   "foundryId": "iNwaxIYuD0OTDNjJ",
   "gear": [],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/lyrakien",
   "immunities": [],
   "languages": [
@@ -88,12 +94,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 4,
-    "reflex": 7,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "tiny",
   "skills": {
@@ -166,10 +185,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 3
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "unholy",
       "value": 3
     }

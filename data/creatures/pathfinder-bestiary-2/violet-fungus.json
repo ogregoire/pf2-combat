@@ -8,11 +8,12 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense 60 feet",
       "requirements": null,
@@ -37,9 +38,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+4",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "violet-rot"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -53,13 +58,34 @@
   "foundryId": "GsrqCDf0Dc9PisEt",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/violet-fungus",
   "immunities": [
-    "bleed",
-    "fatigued",
-    "poison",
-    "sleep",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fatigued"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [],
   "level": 3,
@@ -69,12 +95,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 7,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "tremorsense"
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -99,6 +138,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     }

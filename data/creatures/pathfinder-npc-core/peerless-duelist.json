@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -90,11 +91,13 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+13",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Dueling Pistol",
       "traits": [
         "concealable",
@@ -109,10 +112,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+11",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -130,6 +135,7 @@
     "Rounds (Dueling Pistol)"
   ],
   "hp": 200,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/peerless-duelist",
   "immunities": [],
   "languages": [
@@ -142,12 +148,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 21,
-    "reflex": 25,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "tremorsense"
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
   ],
   "size": "medium",
   "skills": {

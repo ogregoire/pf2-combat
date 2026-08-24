@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -104,10 +105,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claws",
       "traits": [
@@ -120,10 +123,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -136,10 +141,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -151,11 +158,24 @@
   "foundryId": "sK514S9XUfkNXcy8",
   "gear": [],
   "hp": 235,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/mirage-dragon-adult-spellcaster",
   "immunities": [
-    "fascinated",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fascinated"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -169,13 +189,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 22,
-    "reflex": 23,
-    "will": 25
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

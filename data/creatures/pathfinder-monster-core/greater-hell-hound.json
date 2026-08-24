@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -48,14 +49,17 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -68,9 +72,14 @@
   "foundryId": "15TyWlbDQWNjMKeL",
   "gear": [],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/greater-hell-hound",
   "immunities": [
-    "fire"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
   ],
   "languages": [
     "diabolic"
@@ -82,13 +91,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 21,
-    "reflex": 19,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 120,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -118,6 +144,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     }

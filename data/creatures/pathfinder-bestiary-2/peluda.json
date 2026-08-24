@@ -8,14 +8,15 @@
     "wis": 5
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedKnockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature as a free action. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Improved Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Improved Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -90,10 +91,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+13",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -105,9 +108,13 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "peluda-venom"
       ],
       "kind": "melee",
       "name": "Quill",
@@ -120,9 +127,13 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+13",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "improved-knockdown"
       ],
       "kind": "melee",
       "name": "Tail",
@@ -135,11 +146,24 @@
   "foundryId": "drtCZDDoESPSUqH7",
   "gear": [],
   "hp": 170,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/peluda",
   "immunities": [
-    "fire",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "draconic"
@@ -151,12 +175,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 21,
-    "reflex": 17,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

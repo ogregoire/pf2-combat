@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -24,7 +25,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>Harmed by fire (@Damage[4d6[untyped]], @Damage[1d8[untyped]] from areas or persistent damage); healed by electricity (area @Damage[1d6[healing]] HP); slowed by cold</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.GolemAntimagic]</p>",
+      "description": "<p>Harmed by fire (@Damage[4d6[untyped]], @Damage[1d8[untyped]] from areas or persistent damage); healed by electricity (area @Damage[1d6[healing]] HP); slowed by cold</p><hr /><p><p>A golem is immune to spells and magical abilities other than its own, but each type of golem is affected by a few types of magic in special ways. These exceptions are listed in shortened form in the golem's stat block, with the full rules appearing here. If an entry lists multiple types (such as \"cold and water\"), either type of spell can affect the golem.</p><ul><li><strong>Harmed By</strong> Any magic of this type that targets the golem causes it to take the listed amount of damage (this damage has no type) instead of the usual effect. If the golem starts its turn in an area of magic of this type or is affected by a persistent effect of the appropriate type, it takes the damage listed in the parenthetical.</li><li><strong>Healed By</strong> Any magic of this type that targets the golem makes the golem lose the slowed condition and gain HP equal to half the damage the spell would have dealt. If the golem starts its turn in an area of this type of magic, it gains the HP listed in the parenthetical.</li><li><strong>Slowed By</strong> Any magic of this type that targets the golem causes it to be Slowed 1 for [[/gmr 2d6 #rounds]]{2d6 rounds} instead of the usual effect. If the golem starts its turn in an area of this type of magic, it's slowed 1 for that round.</li><li><strong>Vulnerable To</strong> Each golem is vulnerable to one or more specific spells, with the effects described in its stat block.</li></ul></p>",
       "frequency": null,
       "name": "Golem Antimagic",
       "requirements": null,
@@ -61,9 +62,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+4",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "filth-fever"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -77,9 +82,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+4",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "filth-fever"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -92,10 +101,19 @@
   "foundryId": "sbVdWfLZ2rdPh9Ec",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/carrion-golem",
   "immunities": [
-    "electricity",
-    "magic"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "magic"
+    }
   ],
   "languages": [],
   "level": 4,
@@ -105,17 +123,35 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine",
+        "slashing"
+      ],
       "type": "physical",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 13,
-    "reflex": 8,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

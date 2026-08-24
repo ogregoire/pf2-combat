@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -48,10 +49,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Cold Iron Elven Branched Spear",
       "traits": [
@@ -65,11 +68,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Composite Shortbow",
       "traits": [
         "deadly-d10",
@@ -82,10 +87,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -104,6 +111,7 @@
     "Elven Branched Spear"
   ],
   "hp": 76,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/demonbane-warrior",
   "immunities": [],
   "languages": [
@@ -118,12 +126,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 13,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

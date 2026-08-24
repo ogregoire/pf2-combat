@@ -8,16 +8,17 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
       "frequency": null,
       "name": "Ferocity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is reduced to 0 HP."
     },
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tusk",
       "traits": [
@@ -49,6 +52,7 @@
   "foundryId": "v4KP0HYaygoFOIlo",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/daeodon",
   "immunities": [],
   "languages": [],
@@ -59,13 +63,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 9,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

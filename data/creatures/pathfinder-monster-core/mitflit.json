@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -41,10 +42,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dart",
       "traits": [
@@ -56,10 +59,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6-1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -75,6 +80,7 @@
     "Shortsword"
   ],
   "hp": 10,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/mitflit",
   "immunities": [],
   "languages": [
@@ -87,13 +93,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 2,
-    "reflex": 7,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "small",
   "skills": {
@@ -149,6 +172,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 2
     }

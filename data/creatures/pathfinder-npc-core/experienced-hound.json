@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,10 +23,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -55,9 +56,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+9",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "knockdown"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -69,6 +74,7 @@
   "foundryId": "KOgFliu3yM3avhv5",
   "gear": [],
   "hp": 115,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/experienced-hound",
   "immunities": [],
   "languages": [],
@@ -79,13 +85,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 14,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

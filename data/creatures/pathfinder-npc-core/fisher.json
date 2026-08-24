@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -35,15 +36,20 @@
       "bonus": 6,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "1",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [
+        "fishhooked"
+      ],
+      "kind": "ranged",
       "name": "Fishing Line",
       "traits": [
         "range-increment-20"
@@ -53,10 +59,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -69,10 +77,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": []
@@ -81,10 +91,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": [
@@ -101,6 +113,7 @@
     "Spear"
   ],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/fisher",
   "immunities": [],
   "languages": [
@@ -113,9 +126,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 6,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [],
   "size": "medium",

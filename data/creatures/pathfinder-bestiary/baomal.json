@@ -8,26 +8,27 @@
     "wis": 6
   },
   "ac": 48,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Improved Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -44,10 +45,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
       "frequency": null,
       "name": "Push 40 feet",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Push in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -76,7 +77,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -123,9 +124,13 @@
       "bonus": 38,
       "damage": [
         {
+          "category": null,
           "formula": "4d12+18",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "improved-grab"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -138,9 +143,13 @@
       "bonus": 38,
       "damage": [
         {
+          "category": null,
           "formula": "4d10+18",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "push"
       ],
       "kind": "ranged",
       "name": "Tsunami Jet",
@@ -153,6 +162,7 @@
   "foundryId": "JiThbhDfjUoPaTP1",
   "gear": [],
   "hp": 315,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/baomal",
   "immunities": [],
   "languages": [
@@ -165,18 +175,37 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "physical",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 36,
-    "reflex": 30,
-    "will": 34
+    "fortitude": {
+      "detail": null,
+      "value": 36
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 34
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 80,
+      "type": "scent"
+    }
   ],
   "size": "gargantuan",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -47,7 +48,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>Harmed by cold and water (@Damage[5d10[untyped]], @Damage[2d8[untyped]] from areas or persistent damage); healed by acid (area @Damage[2d8[healing]] HP); slowed by earth</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.GolemAntimagic]</p>",
+      "description": "<p>Harmed by cold and water (@Damage[5d10[untyped]], @Damage[2d8[untyped]] from areas or persistent damage); healed by acid (area @Damage[2d8[healing]] HP); slowed by earth</p><hr /><p><p>A golem is immune to spells and magical abilities other than its own, but each type of golem is affected by a few types of magic in special ways. These exceptions are listed in shortened form in the golem's stat block, with the full rules appearing here. If an entry lists multiple types (such as \"cold and water\"), either type of spell can affect the golem.</p><ul><li><strong>Harmed By</strong> Any magic of this type that targets the golem causes it to take the listed amount of damage (this damage has no type) instead of the usual effect. If the golem starts its turn in an area of magic of this type or is affected by a persistent effect of the appropriate type, it takes the damage listed in the parenthetical.</li><li><strong>Healed By</strong> Any magic of this type that targets the golem makes the golem lose the slowed condition and gain HP equal to half the damage the spell would have dealt. If the golem starts its turn in an area of this type of magic, it gains the HP listed in the parenthetical.</li><li><strong>Slowed By</strong> Any magic of this type that targets the golem causes it to be Slowed 1 for [[/gmr 2d6 #rounds]]{2d6 rounds} instead of the usual effect. If the golem starts its turn in an area of this type of magic, it's slowed 1 for that round.</li><li><strong>Vulnerable To</strong> Each golem is vulnerable to one or more specific spells, with the effects described in its stat block.</li></ul></p>",
       "frequency": null,
       "name": "Golem Antimagic",
       "requirements": null,
@@ -70,10 +71,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+13",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -86,9 +89,14 @@
   "foundryId": "Upf2fOZ6QgGG3seI",
   "gear": [],
   "hp": 175,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/stone-golem",
   "immunities": [
-    "acid"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    }
   ],
   "languages": [],
   "level": 11,
@@ -98,12 +106,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 24,
-    "reflex": 18,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 24
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

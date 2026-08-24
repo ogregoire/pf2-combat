@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 32,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -28,17 +29,17 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
       "frequency": null,
       "name": "Ferocity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is reduced to 0 HP."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -61,10 +62,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "3d4+13",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -77,10 +80,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+13",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greatclub",
       "traits": [
@@ -93,10 +98,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+13",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Horn",
       "traits": [
@@ -108,10 +115,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "4d6+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Rock",
       "traits": [
@@ -126,6 +135,7 @@
     "Hide Armor"
   ],
   "hp": 235,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/great-cyclops",
   "immunities": [],
   "languages": [
@@ -140,12 +150,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 25,
-    "reflex": 19,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "huge",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -80,10 +81,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -97,11 +100,15 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+3",
           "type": "bludgeoning"
         }
       ],
-      "kind": "melee",
+      "effects": [
+        "resonant-weapons"
+      ],
+      "kind": "ranged",
       "name": "Halfling Sling Staff",
       "traits": [
         "magical",
@@ -114,9 +121,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "resonant-weapons"
       ],
       "kind": "melee",
       "name": "Shortsword",
@@ -137,6 +148,7 @@
     "Sling Bullets"
   ],
   "hp": 110,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/halfling-yarnspinner",
   "immunities": [],
   "languages": [
@@ -150,9 +162,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 15,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [],
   "size": "small",

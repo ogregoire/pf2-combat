@@ -8,11 +8,12 @@
     "wis": 6
   },
   "ac": 44,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>Tail Only.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p>Tail Only.</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity (Tail Only)",
       "requirements": null,
@@ -71,7 +72,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Fast Healing 15",
       "requirements": null,
@@ -134,10 +135,12 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "4d8+18",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claws",
       "traits": [
@@ -150,10 +153,12 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "4d12+18",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -166,9 +171,13 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "4d4+18",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "pain"
       ],
       "kind": "ranged",
       "name": "Quill",
@@ -180,9 +189,13 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "4d4+18",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "pain"
       ],
       "kind": "melee",
       "name": "Tail",
@@ -196,9 +209,14 @@
   "foundryId": "hLBHFloWuXLjCQYH",
   "gear": [],
   "hp": 395,
+  "hpDetails": "fast healing 15",
   "id": "kingmaker-bestiary/primal-bandersnatch",
   "immunities": [
-    "confused"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "confused"
+    }
   ],
   "languages": [],
   "level": 19,
@@ -208,13 +226,30 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 35,
-    "reflex": 33,
-    "will": 31
+    "fortitude": {
+      "detail": null,
+      "value": 35
+    },
+    "reflex": {
+      "detail": null,
+      "value": 33
+    },
+    "will": {
+      "detail": null,
+      "value": 31
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 120,
+      "type": "scent"
+    }
   ],
   "size": "gargantuan",
   "skills": {
@@ -247,6 +282,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

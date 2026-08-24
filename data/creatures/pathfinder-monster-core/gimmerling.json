@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 34,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -22,7 +23,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>The gimmerling takes on the appearance of any humanoid. In humanoid form, They lose their treacherous aura, and their equipment appears to be trinkets or toys. If the chosen form lacks claws or fangs, they lose the matching Strike. If they lose their claw Strike, they gain a fist Strike that is identical except that it deals bludgeoning damage.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>The gimmerling takes on the appearance of any humanoid. In humanoid form, They lose their treacherous aura, and their equipment appears to be trinkets or toys. If the chosen form lacks claws or fangs, they lose the matching Strike. If they lose their claw Strike, they gain a fist Strike that is identical except that it deals bludgeoning damage.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -92,9 +93,13 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+7",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "disarm"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -108,14 +113,17 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "2d6+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
@@ -127,14 +135,17 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "3d8+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -149,6 +160,7 @@
     "Hand Crossbow"
   ],
   "hp": 235,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/gimmerling",
   "immunities": [],
   "languages": [
@@ -163,12 +175,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 22,
-    "reflex": 25,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -197,6 +222,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 10
     }

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -27,14 +28,17 @@
       "bonus": 10,
       "damage": [
         {
+          "category": "splash",
           "formula": "2",
           "type": "acid"
         },
         {
+          "category": "persistent",
           "formula": "2d6",
           "type": "acid"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Acid Flask (Moderate)",
       "traits": [
@@ -46,10 +50,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -62,10 +68,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -78,10 +86,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -101,6 +111,7 @@
     "Healer's Toolkit"
   ],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tonic-merchant",
   "immunities": [],
   "languages": [
@@ -113,9 +124,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 9,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [],
   "size": "medium",

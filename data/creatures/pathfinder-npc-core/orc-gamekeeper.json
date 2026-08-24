@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -45,10 +46,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Bola",
       "traits": [
@@ -61,10 +64,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -78,10 +83,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whip",
       "traits": [
@@ -101,6 +108,7 @@
     "Whip"
   ],
   "hp": 65,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/orc-gamekeeper",
   "immunities": [],
   "languages": [
@@ -114,12 +122,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 12,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

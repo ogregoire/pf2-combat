@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -49,14 +52,17 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Talon",
       "traits": [
@@ -68,6 +74,7 @@
   "foundryId": "wNkS1ArFjS6ZsrPS",
   "gear": [],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/deinonychus",
   "immunities": [],
   "languages": [],
@@ -78,13 +85,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 9,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,21 +8,22 @@
     "wis": 6
   },
   "ac": 42,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Improved Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedPush]</p>",
+      "description": "<p><p>The monster can use Push as a free action triggered by a hit with its initial attack.</p></p>",
       "frequency": null,
       "name": "Improved Push 20 feet",
       "requirements": null,
@@ -54,7 +55,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
       "frequency": null,
       "name": "Regeneration 25 (Deactivated by Cold)",
       "requirements": null,
@@ -99,7 +100,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 120 feet",
       "requirements": null,
@@ -112,13 +113,19 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "4d8+8",
           "type": "poison"
         }
+      ],
+      "effects": [
+        "spore-blight",
+        "sticky-spores"
       ],
       "kind": "ranged",
       "name": "Spores",
@@ -133,13 +140,19 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "4d10+18",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "improved-grab",
+        "improved-push"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -154,12 +167,29 @@
   "foundryId": "3IPLvfez8DzwwNqm",
   "gear": [],
   "hp": 370,
+  "hpDetails": "regeneration 25 (deactivated by cold)",
   "id": "pathfinder-monster-core/terotricus",
   "immunities": [
-    "controlled",
-    "disease",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "chthonian",
@@ -173,18 +203,37 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 34,
-    "reflex": 28,
-    "will": 33
+    "fortitude": {
+      "detail": null,
+      "value": 34
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 120,
+      "type": "tremorsense"
+    }
   ],
   "size": "gargantuan",
   "skills": {
@@ -225,18 +274,26 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 10
     }

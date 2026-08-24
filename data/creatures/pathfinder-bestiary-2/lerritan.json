@@ -8,21 +8,22 @@
     "wis": 7
   },
   "ac": 46,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>A lerritan can break stony scales off its body to throw; these scales reform at the end of each round, so the lerritan is never without a supply of rocks to hurl.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p>A lerritan can break stony scales off its body to throw; these scales reform at the end of each round, so the lerritan is never without a supply of rocks to hurl.</p>\n<hr />\n<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -63,14 +64,17 @@
       "bonus": 39,
       "damage": [
         {
+          "category": "persistent",
           "formula": "2d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "4d10+18",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -83,14 +87,17 @@
       "bonus": 39,
       "damage": [
         {
+          "category": "persistent",
           "formula": "2d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "4d6+18",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Rock",
       "traits": [
@@ -102,14 +109,17 @@
       "bonus": 40,
       "damage": [
         {
+          "category": "persistent",
           "formula": "2d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "4d12+18",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Warhammer",
       "traits": [
@@ -124,12 +134,29 @@
     "+3 Greater Striking Warhammer"
   ],
   "hp": 490,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/lerritan",
   "immunities": [
-    "fire",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -144,21 +171,38 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 20
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 20
     }
   ],
   "saves": {
-    "fortitude": 38,
-    "reflex": 34,
-    "will": 36
+    "fortitude": {
+      "detail": null,
+      "value": 38
+    },
+    "reflex": {
+      "detail": null,
+      "value": 34
+    },
+    "will": {
+      "detail": null,
+      "value": 36
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "gargantuan",
   "skills": {
@@ -244,6 +288,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 20
     }

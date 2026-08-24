@@ -8,21 +8,22 @@
     "wis": 4
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>Human with fist +16 for 1d4+7 bludgeoning, or wolf with Speed 40 feet and jaws with Knockdown.</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>Human with fist +16 for 1d4+7 bludgeoning, or wolf with Speed 40 feet and jaws with Knockdown.</p>\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -36,10 +37,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -107,10 +108,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -122,10 +125,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -136,9 +141,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+7",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "curse-of-the-werewolf"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -150,9 +159,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+9",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "knockdown"
       ],
       "kind": "melee",
       "name": "Wolf Jaws",
@@ -162,6 +175,7 @@
   "foundryId": "ZGVQcWl03kBIStS0",
   "gear": [],
   "hp": 140,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/kundal",
   "immunities": [],
   "languages": [
@@ -175,13 +189,30 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 13,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -211,6 +242,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "silver",
       "value": 10
     }

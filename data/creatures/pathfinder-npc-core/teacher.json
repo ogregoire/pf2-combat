@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 12,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -49,10 +50,12 @@
       "bonus": 4,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Cane",
       "traits": [
@@ -63,10 +66,12 @@
       "bonus": 4,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -83,6 +88,7 @@
     "Writing Set"
   ],
   "hp": 5,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/teacher",
   "immunities": [],
   "languages": [
@@ -95,9 +101,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 1,
-    "reflex": 2,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 1
+    },
+    "reflex": {
+      "detail": null,
+      "value": 2
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [],
   "size": "medium",

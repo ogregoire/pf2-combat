@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 13,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -46,7 +47,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
       "frequency": null,
       "name": "Swarm Mind",
       "requirements": null,
@@ -58,10 +59,19 @@
   "foundryId": "7lL7APeHQgkVxU1B",
   "gear": [],
   "hp": 155,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/fire-jellyfish-swarm",
   "immunities": [
-    "precision",
-    "swarm-mind"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
   ],
   "languages": [],
   "level": 6,
@@ -71,29 +81,50 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 9
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 9
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 16,
-    "reflex": 15,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -124,10 +155,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "area-damage",
       "value": 7
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "splash-damage",
       "value": 7
     }

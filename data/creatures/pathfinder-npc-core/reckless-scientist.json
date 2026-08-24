@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -68,19 +69,23 @@
       "bonus": 16,
       "damage": [
         {
+          "category": "splash",
           "formula": "2",
           "type": "untyped"
         },
         {
+          "category": "persistent",
           "formula": "2",
           "type": "untyped"
         },
         {
+          "category": null,
           "formula": "2d6",
           "type": "untyped"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Alchemical Grenade",
       "traits": [
         "range-increment-20",
@@ -91,10 +96,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -108,10 +115,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -130,6 +139,7 @@
     "Work Coat"
   ],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/reckless-scientist",
   "immunities": [],
   "languages": [
@@ -142,14 +152,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 16,
-    "reflex": 14,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [],
   "size": "medium",

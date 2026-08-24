@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -47,9 +48,13 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "spear-frog-venom"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -63,6 +68,7 @@
   "foundryId": "QHNXT5bZDqKRzwEF",
   "gear": [],
   "hp": 12,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/spear-frog",
   "immunities": [],
   "languages": [],
@@ -73,12 +79,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 7,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "tiny",
   "skills": {

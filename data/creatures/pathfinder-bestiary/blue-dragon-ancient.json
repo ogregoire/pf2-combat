@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 42,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -94,7 +95,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>90 feet. @Check[will|dc:39]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>90 feet. @Check[will|dc:39]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -132,10 +133,12 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+15",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -149,10 +152,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+13",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Horns",
       "traits": [
@@ -164,14 +169,17 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "2d12",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "3d10+15",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -185,10 +193,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+13",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -200,11 +210,24 @@
   "foundryId": "uPxh3VpA80zZdWfx",
   "gear": [],
   "hp": 370,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/blue-dragon-ancient",
   "immunities": [
-    "electricity",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -221,13 +244,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 32,
-    "reflex": 30,
-    "will": 33
+    "fortitude": {
+      "detail": null,
+      "value": 32
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

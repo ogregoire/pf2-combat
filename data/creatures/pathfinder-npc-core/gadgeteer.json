@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -38,11 +39,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Crossbow",
       "traits": [
         "range-increment-120",
@@ -53,10 +56,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -70,10 +75,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Heavy Wrench",
       "traits": [
@@ -89,6 +96,7 @@
     "Leather Armor"
   ],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/gadgeteer",
   "immunities": [],
   "languages": [
@@ -101,9 +109,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 16,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [],
   "size": "medium",

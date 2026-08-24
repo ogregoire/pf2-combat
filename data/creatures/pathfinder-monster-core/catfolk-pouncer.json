@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -40,10 +41,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -56,10 +59,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -72,10 +77,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+3",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greataxe",
       "traits": [
@@ -89,6 +96,7 @@
     "Greataxe"
   ],
   "hp": 17,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/catfolk-pouncer",
   "immunities": [],
   "languages": [
@@ -102,12 +110,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 9,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

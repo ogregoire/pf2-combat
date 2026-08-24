@@ -8,6 +8,7 @@
     "wis": 7
   },
   "ac": 39,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -86,9 +87,13 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "4d10+14",
           "type": "void"
         }
+      ],
+      "effects": [
+        "terrifying-touch"
       ],
       "kind": "melee",
       "name": "Hand",
@@ -101,16 +106,49 @@
   "foundryId": "XKOQ3ll9TGNso0uB",
   "gear": [],
   "hp": 250,
+  "hpDetails": "void healing",
   "id": "pathfinder-monster-core/banshee",
   "immunities": [
-    "bleed",
-    "death-effects",
-    "disease",
-    "paralyzed",
-    "paralyzed",
-    "poison",
-    "precision",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "common",
@@ -123,17 +161,39 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [
+        "non-magical"
+      ],
+      "exceptions": [
+        "force",
+        "ghost-touch",
+        "spirit",
+        "vitality"
+      ],
       "type": "all-damage",
       "value": 12
     }
   ],
   "saves": {
-    "fortitude": 25,
-    "reflex": 29,
-    "will": 32
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 29
+    },
+    "will": {
+      "detail": null,
+      "value": 32
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

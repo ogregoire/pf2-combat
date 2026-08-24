@@ -8,11 +8,12 @@
     "wis": 0
   },
   "ac": 13,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -35,10 +36,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -52,9 +55,14 @@
   "foundryId": "kohQQtOfhwxbzWZB",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/ort",
   "immunities": [
-    "fire"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
   ],
   "languages": [],
   "level": 0,
@@ -64,21 +72,40 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "silver"
+      ],
       "type": "physical",
       "value": 3
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 9,
-    "reflex": 6,
-    "will": 2
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 2
+    }
   },
   "senses": [
-    "greater-darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -105,6 +132,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 3
     }

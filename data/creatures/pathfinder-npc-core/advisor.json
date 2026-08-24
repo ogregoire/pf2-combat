@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -25,10 +26,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -41,10 +44,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -58,10 +63,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whip",
       "traits": [
@@ -82,6 +89,7 @@
     "Whip"
   ],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/advisor",
   "immunities": [],
   "languages": [
@@ -94,9 +102,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 11,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [],
   "size": "medium",

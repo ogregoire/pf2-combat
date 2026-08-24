@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -25,7 +26,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>The barghest takes on the shape of a humanoid, a dog, or its true form. Their size changes to match the new form. When the barghest is a humanoid, their claw Strike deals bludgeoning damage and they lose their jaws Strike. When the barghest is a dog, their Speed changes to 35 feet. Each individual barghest has only one humanoid form and one dog form.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>The barghest takes on the shape of a humanoid, a dog, or its true form. Their size changes to match the new form. When the barghest is a humanoid, their claw Strike deals bludgeoning damage and they lose their jaws Strike. When the barghest is a dog, their Speed changes to 35 feet. Each individual barghest has only one humanoid form and one dog form.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -39,10 +40,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -65,9 +66,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+5",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "unhealing-wound"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -81,6 +86,7 @@
   "foundryId": "8CYHgj4SV2LvlaUs",
   "gear": [],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/barghest",
   "immunities": [],
   "languages": [
@@ -96,18 +102,39 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "cold-iron"
+      ],
       "type": "physical",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 11,
-    "reflex": 12,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -164,6 +191,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 5
     }

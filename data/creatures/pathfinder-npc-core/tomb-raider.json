@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -52,11 +55,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
         "range-increment-60",
@@ -67,10 +72,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Kukri",
       "traits": [
@@ -87,6 +94,7 @@
     "Kukri"
   ],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tomb-raider",
   "immunities": [],
   "languages": [
@@ -99,9 +107,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 15,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

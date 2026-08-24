@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -30,10 +31,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "sonic"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dissonant Note",
       "traits": [
@@ -46,10 +49,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -63,6 +68,7 @@
   "foundryId": "j1mm6bb3hZ56jSrK",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/grig",
   "immunities": [],
   "languages": [
@@ -76,12 +82,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 9,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "tiny",
   "skills": {
@@ -140,6 +159,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

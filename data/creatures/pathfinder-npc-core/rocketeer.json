@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,10 +59,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -75,10 +78,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Heavy Wrench",
       "traits": [
@@ -89,11 +94,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Slide Pistol",
       "traits": [
         "capacity-5",
@@ -114,6 +121,7 @@
     "Slide Pistol"
   ],
   "hp": 85,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/rocketeer",
   "immunities": [],
   "languages": [
@@ -126,9 +134,18 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 16,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [],
   "size": "medium",

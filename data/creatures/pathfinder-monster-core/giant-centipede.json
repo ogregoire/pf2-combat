@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -27,9 +28,13 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "giant-centipede-venom"
       ],
       "kind": "melee",
       "name": "Mandibles",
@@ -41,6 +46,7 @@
   "foundryId": "NRBgcu0LkXXp8mtp",
   "gear": [],
   "hp": 8,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/giant-centipede",
   "immunities": [],
   "languages": [],
@@ -51,12 +57,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 6,
-    "will": 2
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 2
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

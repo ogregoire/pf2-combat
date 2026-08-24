@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 37,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -45,10 +46,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+15",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Branch",
       "traits": [
@@ -59,10 +62,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+15",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Root",
       "traits": [
@@ -73,9 +78,14 @@
   "foundryId": "BJbe6BzLSIx8Jsix",
   "gear": [],
   "hp": 370,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/storm-struck-arboreal",
   "immunities": [
-    "electricity"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    }
   ],
   "languages": [
     "aklo",
@@ -88,25 +98,44 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 28,
-    "reflex": 25,
-    "will": 30
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 30
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -152,6 +181,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "axe-vulnerability",
       "value": 15
     }

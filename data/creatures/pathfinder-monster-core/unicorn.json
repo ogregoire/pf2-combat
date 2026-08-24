@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -55,10 +56,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hoof",
       "traits": [
@@ -70,14 +73,17 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+4",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "1d4",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Horn",
       "traits": [
@@ -90,9 +96,14 @@
   "foundryId": "lYoAwofYGbhWL75Q",
   "gear": [],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/unicorn",
   "immunities": [
-    "poison"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
   ],
   "languages": [
     "common",
@@ -105,13 +116,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 8,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

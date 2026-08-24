@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -63,7 +64,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 30 feet",
       "requirements": null,
@@ -73,7 +74,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
       "frequency": null,
       "name": "Void Healing",
       "requirements": null,
@@ -86,9 +87,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "bog-rot"
       ],
       "kind": "melee",
       "name": "Fist",
@@ -103,13 +108,34 @@
     "Leather Armor"
   ],
   "hp": 135,
+  "hpDetails": "void healing",
   "id": "kingmaker-bestiary/bog-mummy-cultist",
   "immunities": [
-    "death-effects",
-    "disease",
-    "paralyzed",
-    "poison",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "common",
@@ -122,22 +148,43 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 19,
-    "reflex": 16,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -195,6 +242,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     }

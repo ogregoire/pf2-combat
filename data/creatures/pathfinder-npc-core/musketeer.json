@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -62,11 +65,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Flintlock Musket",
       "traits": [
         "concussive",
@@ -79,10 +84,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -100,6 +107,7 @@
     "Rounds (Flintlock Musket)"
   ],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/musketeer",
   "immunities": [],
   "languages": [
@@ -112,9 +120,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 11,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [],
   "size": "medium",

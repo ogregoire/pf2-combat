@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -39,14 +40,17 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "sonic"
         },
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -59,14 +63,17 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "sonic"
         },
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -79,14 +86,17 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "sonic"
         },
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -103,6 +113,7 @@
     "Lute"
   ],
   "hp": 70,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/dromaar-lorekeeper",
   "immunities": [],
   "languages": [
@@ -116,12 +127,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 12,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

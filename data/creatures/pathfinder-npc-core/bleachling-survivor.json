@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -45,10 +46,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -61,10 +64,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -78,10 +83,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -95,11 +102,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Longbow",
       "traits": [
         "deadly-d10",
@@ -116,6 +125,7 @@
     "Longbow"
   ],
   "hp": 34,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/bleachling-survivor",
   "immunities": [],
   "languages": [
@@ -130,12 +140,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 8,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

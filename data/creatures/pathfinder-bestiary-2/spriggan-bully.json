@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -50,10 +51,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Crossbow",
       "traits": [
@@ -65,10 +68,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Morningstar",
       "traits": [
@@ -83,6 +88,7 @@
     "Morningstar"
   ],
   "hp": 48,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/spriggan-bully",
   "immunities": [],
   "languages": [
@@ -96,12 +102,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 11,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

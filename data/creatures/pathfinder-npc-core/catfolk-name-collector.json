@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -42,10 +43,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -58,10 +61,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -80,6 +85,7 @@
     "Sickle"
   ],
   "hp": 70,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/catfolk-name-collector",
   "immunities": [],
   "languages": [
@@ -93,13 +99,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 14,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "low-light-vision",
-    "spiritsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "spiritsense"
+    }
   ],
   "size": "medium",
   "skills": {

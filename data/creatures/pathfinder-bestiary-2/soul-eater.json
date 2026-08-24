@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -52,7 +53,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -78,13 +79,18 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "void"
         },
         {
+          "category": null,
           "formula": "2d6+3",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "mind-numbing-touch"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -99,14 +105,39 @@
   "foundryId": "SY8pvLPqc2EgP9Xj",
   "gear": [],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/soul-eater",
   "immunities": [
-    "critical-hits",
-    "disease",
-    "paralyzed",
-    "poison",
-    "precision",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "daemonic"
@@ -118,17 +149,32 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "physical",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 13,
-    "reflex": 19,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "greater-darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -159,6 +205,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 10
     }

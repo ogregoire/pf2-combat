@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -116,7 +117,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -133,10 +134,12 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -149,10 +152,12 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -165,10 +170,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+3",
           "type": "mental"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Mental Blast",
       "traits": [
@@ -180,10 +187,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -195,11 +204,24 @@
   "foundryId": "DQbHmsmYuodcQ2KC",
   "gear": [],
   "hp": 135,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/conspirator-dragon-young",
   "immunities": [
-    "controlled",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -213,13 +235,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 15,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

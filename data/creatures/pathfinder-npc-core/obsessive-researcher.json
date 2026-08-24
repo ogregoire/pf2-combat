@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -60,10 +61,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -77,10 +80,12 @@
       "bonus": 4,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Pen",
       "traits": [
@@ -96,6 +101,7 @@
     "Writing Set"
   ],
   "hp": 7,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/obsessive-researcher",
   "immunities": [],
   "languages": [
@@ -108,9 +114,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 3,
-    "reflex": 2,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 2
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [],
   "size": "medium",

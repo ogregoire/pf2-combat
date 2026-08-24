@@ -8,11 +8,12 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p><strong>Damage Reduction</strong> 3</p>\n<p>A lantern archon can also make a Retributive Strike with its light ray.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.RetributiveStrike]</p>",
+      "description": "<p><strong>Damage Reduction</strong> 3</p>\n<p>A lantern archon can also make a Retributive Strike with its light ray.</p>\n<hr />\n<p><p><strong>Trigger</strong> An enemy damages the monster's ally, and both are within 15 feet of the monster.</p>\n<hr />\n<p><strong>Effect</strong> The ally gains resistance to all damage against the triggering damage equal to 2 + the monster's level. If the foe is within reach, the monster makes a melee Strike against it.</p></p>",
       "frequency": null,
       "name": "Retributive Strike",
       "requirements": null,
@@ -53,14 +54,17 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "1d4",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Light Ray",
       "traits": [
@@ -76,6 +80,7 @@
   "foundryId": "0HjVFx8qIKDCfblg",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/lantern-archon",
   "immunities": [],
   "languages": [
@@ -90,17 +95,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 3
     }
   ],
   "saves": {
-    "fortitude": 6,
-    "reflex": 10,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -159,6 +179,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "unholy",
       "value": 3
     }

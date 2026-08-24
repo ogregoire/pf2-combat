@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -48,10 +49,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+1",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Scythe",
       "traits": [
@@ -67,6 +70,7 @@
     "Wand of Glitterdust (Level 2)"
   ],
   "hp": 65,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/lickweed",
   "immunities": [],
   "languages": [
@@ -82,12 +86,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 12,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

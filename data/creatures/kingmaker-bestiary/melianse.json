@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -50,10 +51,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -66,6 +69,7 @@
   "foundryId": "RTd4FwqGq8gBjdAO",
   "gear": [],
   "hp": 78,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/melianse",
   "immunities": [],
   "languages": [
@@ -80,12 +84,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 13,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -231,6 +248,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

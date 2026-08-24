@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 35,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -70,11 +71,13 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Composite Longbow",
       "traits": [
         "deadly-d10",
@@ -89,10 +92,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Elven Curve Blade",
       "traits": [
@@ -105,10 +110,12 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -126,6 +133,7 @@
     "Elven Curve Blade"
   ],
   "hp": 225,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/elven-court-guard",
   "immunities": [],
   "languages": [
@@ -140,12 +148,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 20,
-    "reflex": 27,
-    "will": 23
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

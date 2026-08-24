@@ -8,24 +8,25 @@
     "wis": 4
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
       "frequency": null,
       "name": "Ferocity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is reduced to 0 HP."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -65,10 +66,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -80,10 +83,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -94,9 +99,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "knockdown"
       ],
       "kind": "melee",
       "name": "Spiked Tail",
@@ -109,6 +118,7 @@
   "foundryId": "1QWZDaBoefL5rWkz",
   "gear": [],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/hodag",
   "immunities": [],
   "languages": [
@@ -121,13 +131,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 14,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

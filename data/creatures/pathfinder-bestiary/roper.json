@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 29,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -75,10 +76,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -88,6 +91,9 @@
     {
       "bonus": 23,
       "damage": [],
+      "effects": [
+        "sticky-strand"
+      ],
       "kind": "melee",
       "name": "Strand",
       "traits": [
@@ -98,6 +104,7 @@
   "foundryId": "ZXbr1ke1vF0ZFKY3",
   "gear": [],
   "hp": 215,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/roper",
   "immunities": [],
   "languages": [
@@ -111,17 +118,32 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "electricity",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 20,
-    "reflex": 15,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -152,6 +174,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }

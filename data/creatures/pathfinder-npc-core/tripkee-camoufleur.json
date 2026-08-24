@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -45,10 +46,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dart",
       "traits": [
@@ -60,10 +63,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -77,10 +82,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hand Adze",
       "traits": [
@@ -93,10 +100,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hand Adze",
       "traits": [
@@ -114,6 +123,7 @@
     "Leather Armor"
   ],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tripkee-camoufleur",
   "immunities": [],
   "languages": [
@@ -127,12 +137,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 11,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

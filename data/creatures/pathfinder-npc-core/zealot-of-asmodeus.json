@@ -8,16 +8,17 @@
     "wis": 3
   },
   "ac": 22,
+  "acDetails": "(24 with shield raised)",
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
       "frequency": null,
       "name": "Shield Block",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
     },
     {
       "category": "defensive",
@@ -57,11 +58,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Composite Shortbow",
       "traits": [
         "deadly-d10",
@@ -74,10 +77,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -90,10 +95,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Mace",
       "traits": [
@@ -110,6 +117,7 @@
     "Steel Shield"
   ],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/zealot-of-asmodeus",
   "immunities": [],
   "languages": [
@@ -122,9 +130,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 7,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

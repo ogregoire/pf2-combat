@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -28,10 +29,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -43,10 +46,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tentacles",
       "traits": [
@@ -58,6 +63,7 @@
   "foundryId": "3MDlKPlPhHBo1DId",
   "gear": [],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/vampire-squid",
   "immunities": [],
   "languages": [],
@@ -68,17 +74,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 4,
-    "reflex": 8,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

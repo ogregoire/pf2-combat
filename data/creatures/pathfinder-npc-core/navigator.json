@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -37,9 +38,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "navigators-edge"
       ],
       "kind": "melee",
       "name": "Dagger",
@@ -53,9 +58,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "navigators-edge"
       ],
       "kind": "melee",
       "name": "Dagger",
@@ -73,6 +82,7 @@
     "Writing Set"
   ],
   "hp": 28,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/navigator",
   "immunities": [],
   "languages": [
@@ -85,9 +95,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 8,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [],
   "size": "medium",

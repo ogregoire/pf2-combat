@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 36,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,7 +26,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>The elemental tsunami can also pull the creature.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "description": "<p>The elemental tsunami can also pull the creature.</p>\n<hr />\n<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
       "frequency": null,
       "name": "Push or Pull 10 feet",
       "requirements": null,
@@ -83,9 +84,14 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+16",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "blinding-sickness",
+        "push-or-pull-10-feet"
       ],
       "kind": "melee",
       "name": "Wave",
@@ -97,12 +103,29 @@
   "foundryId": "L6ANJQoCyk5dWcdH",
   "gear": [],
   "hp": 260,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/elder-elemental-tsunami",
   "immunities": [
-    "bleed",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "thalassic"
@@ -114,17 +137,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 26,
-    "reflex": 28,
-    "will": 23
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -51,10 +52,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -66,14 +69,17 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -85,9 +91,14 @@
   "foundryId": "RJFpwZIGbuOuCtXr",
   "gear": [],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/elananx",
   "immunities": [
-    "fire"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
   ],
   "languages": [
     "fey"
@@ -99,12 +110,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 16,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -131,6 +155,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

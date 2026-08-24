@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -49,10 +50,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -65,10 +68,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -85,6 +90,7 @@
     "Dagger"
   ],
   "hp": 18,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/fetchling-scout",
   "immunities": [],
   "languages": [
@@ -98,12 +104,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 9,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

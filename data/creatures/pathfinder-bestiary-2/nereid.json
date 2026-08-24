@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -54,10 +55,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "6d6",
           "type": "poison"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Poisonous Touch",
       "traits": [
@@ -70,9 +73,14 @@
   "foundryId": "FHnWzK7DsniqZWzG",
   "gear": [],
   "hp": 175,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/nereid",
   "immunities": [
-    "poison"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
   ],
   "languages": [
     "common",
@@ -86,12 +94,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 22,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 22
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -164,6 +185,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 10
     }

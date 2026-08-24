@@ -8,21 +8,22 @@
     "wis": 4
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Improved Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedPush]</p>",
+      "description": "<p><p>The monster can use Push as a free action triggered by a hit with its initial attack.</p></p>",
       "frequency": null,
       "name": "Improved Push 10 feet",
       "requirements": null,
@@ -75,10 +76,12 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -90,9 +93,13 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "improved-grab"
       ],
       "kind": "melee",
       "name": "Talon",
@@ -106,9 +113,13 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+12",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "improved-push"
       ],
       "kind": "melee",
       "name": "Wing",
@@ -121,6 +132,7 @@
   "foundryId": "kiUlJn4FzWMzgkbW",
   "gear": [],
   "hp": 220,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/talon-peak-roc",
   "immunities": [],
   "languages": [],
@@ -131,12 +143,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 25,
-    "reflex": 23,
-    "will": 20
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "gargantuan",
   "skills": {

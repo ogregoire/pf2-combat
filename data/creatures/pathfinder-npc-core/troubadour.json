@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -25,10 +26,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -42,10 +45,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -64,6 +69,7 @@
     "Rapier"
   ],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/troubadour",
   "immunities": [],
   "languages": [
@@ -76,9 +82,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 11,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [],
   "size": "medium",

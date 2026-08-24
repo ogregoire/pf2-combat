@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,7 +59,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Fast Healing 10",
       "requirements": null,
@@ -83,10 +84,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Halberd",
       "traits": [
@@ -98,10 +101,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Iron Boot",
       "traits": [
@@ -117,6 +122,7 @@
     "Red Cap"
   ],
   "hp": 60,
+  "hpDetails": "fast healing 10",
   "id": "pathfinder-monster-core/redcap",
   "immunities": [],
   "languages": [
@@ -130,12 +136,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 15,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -164,6 +183,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

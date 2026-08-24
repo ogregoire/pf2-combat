@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -55,10 +56,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -69,6 +72,7 @@
   "foundryId": "uNNOQFvuMq8ZsQkn",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/great-white-shark",
   "immunities": [],
   "languages": [],
@@ -79,12 +83,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 10,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "scent"
+    {
+      "acuity": "imprecise",
+      "range": 100,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

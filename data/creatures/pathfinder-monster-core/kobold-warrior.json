@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Sling",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 3,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": []
@@ -63,10 +68,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Spear",
       "traits": [
@@ -82,6 +89,7 @@
     "Spear"
   ],
   "hp": 7,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/kobold-warrior",
   "immunities": [],
   "languages": [
@@ -95,12 +103,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 3,
-    "reflex": 7,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

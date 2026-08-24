@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -50,10 +53,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -66,10 +71,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -85,6 +92,7 @@
     "Sickle"
   ],
   "hp": 44,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/bugbear-tormentor",
   "immunities": [],
   "languages": [
@@ -98,13 +106,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 10,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

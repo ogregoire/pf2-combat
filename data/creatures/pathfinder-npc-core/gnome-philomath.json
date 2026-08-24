@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 12,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -62,10 +65,12 @@
       "bonus": 4,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -79,6 +84,7 @@
     "Writing Set"
   ],
   "hp": 7,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/gnome-philomath",
   "immunities": [],
   "languages": [
@@ -93,12 +99,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 2,
-    "reflex": 5,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

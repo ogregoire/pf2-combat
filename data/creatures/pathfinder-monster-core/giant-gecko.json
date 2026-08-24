@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -25,10 +26,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -39,6 +42,7 @@
   "foundryId": "mathcxCcrQmn9Jj8",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/giant-gecko",
   "immunities": [],
   "languages": [],
@@ -49,12 +53,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 10,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

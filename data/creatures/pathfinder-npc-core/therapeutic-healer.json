@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -59,10 +60,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -75,10 +78,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -93,6 +98,7 @@
     "Staff"
   ],
   "hp": 110,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/therapeutic-healer",
   "immunities": [],
   "languages": [
@@ -105,14 +111,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 15,
-    "reflex": 12,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [],
   "size": "medium",

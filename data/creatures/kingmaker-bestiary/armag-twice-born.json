@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 35,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,12 +23,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
@@ -85,14 +86,17 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "2d12+13",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Ovinrbaane",
       "traits": [
@@ -107,10 +111,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+13",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shoulder Spikes",
       "traits": []
@@ -122,6 +128,7 @@
     "Ovinrbaane"
   ],
   "hp": 300,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/armag-twice-born",
   "immunities": [],
   "languages": [
@@ -134,9 +141,18 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 28,
-    "reflex": 23,
-    "will": 25
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -76,11 +77,15 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [
+        "primal-fear"
+      ],
+      "kind": "ranged",
       "name": "Composite Longbow",
       "traits": [
         "deadly-d10",
@@ -94,9 +99,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+8",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "primal-fear"
       ],
       "kind": "melee",
       "name": "Greataxe",
@@ -114,6 +123,7 @@
     "Hide Armor"
   ],
   "hp": 105,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/monster-hunter",
   "immunities": [],
   "languages": [
@@ -126,9 +136,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 11,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [],
   "size": "medium",

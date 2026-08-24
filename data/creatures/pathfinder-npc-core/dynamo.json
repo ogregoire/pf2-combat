@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,11 +46,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Dragon Mouth Pistol",
       "traits": [
         "concussive",
@@ -62,10 +65,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Modular Prosthesis",
       "traits": []
@@ -81,6 +86,7 @@
     "Steel Shield (Modular Prostheses Only)"
   ],
   "hp": 145,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/dynamo",
   "immunities": [],
   "languages": [
@@ -93,9 +99,18 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 17,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [],
   "size": "medium",

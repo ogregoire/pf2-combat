@@ -8,26 +8,27 @@
     "wis": 6
   },
   "ac": 43,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
       "frequency": null,
       "name": "Catch Rock",
-      "requirements": null,
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
     },
     {
       "category": "offensive",
@@ -55,7 +56,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -85,7 +86,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Fast Healing 20",
       "requirements": null,
@@ -118,14 +119,17 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "3d6+18",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hatchet",
       "traits": [
@@ -138,9 +142,13 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "2d10 + 18",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "rock"
       ],
       "kind": "ranged",
       "name": "Rock",
@@ -158,9 +166,14 @@
     "Sack"
   ],
   "hp": 360,
+  "hpDetails": "fast healing 20",
   "id": "kingmaker-bestiary/kargstaad",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [
     "aklo",
@@ -175,12 +188,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 35,
-    "reflex": 31,
-    "will": 33
+    "fortitude": {
+      "detail": null,
+      "value": 35
+    },
+    "reflex": {
+      "detail": null,
+      "value": 31
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -209,6 +235,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 20
     }

@@ -8,21 +8,22 @@
     "wis": 2
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Fast Healing 10",
       "requirements": null,
@@ -44,7 +45,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "description": "<p><p>A creature with void healing draws health from void energy rather than vitality energy. It is damaged by vitality damage and is not healed by vitality healing effects. It does not take void damage, and it is healed by void effects that heal undead.</p></p>",
       "frequency": null,
       "name": "Void Healing",
       "requirements": null,
@@ -57,10 +58,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Composite Longbow",
       "traits": [
@@ -75,14 +78,17 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+10",
           "type": "slashing"
         },
         {
+          "category": null,
           "formula": "2d6",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greatsword",
       "traits": [
@@ -98,14 +104,39 @@
     "Greatsword"
   ],
   "hp": 99,
+  "hpDetails": "void healing, fast healing 10",
   "id": "kingmaker-bestiary/skeletal-tiger-lord",
   "immunities": [
-    "death-effects",
-    "disease",
-    "mental",
-    "paralyzed",
-    "poison",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "mental"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "hallit"
@@ -117,30 +148,49 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "electricity",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 18,
-    "reflex": 16,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [],
   "size": "medium",

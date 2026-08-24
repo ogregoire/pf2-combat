@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -85,9 +86,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "briny-wound"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -99,10 +104,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -114,11 +121,24 @@
   "foundryId": "tIDbOvltrFsgnwgf",
   "gear": [],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/sea-drake",
   "immunities": [
-    "electricity",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "draconic"
@@ -130,13 +150,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 14,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 15,
+  "acDetails": "(13 when broken); construct armor",
   "actions": [
     {
       "category": "defensive",
@@ -35,9 +36,13 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "dust"
       ],
       "kind": "melee",
       "name": "Bristles",
@@ -51,6 +56,7 @@
   "foundryId": "ybkelAOtSIA06fnj",
   "gear": [],
   "hp": 6,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/animated-broom",
   "immunities": [],
   "languages": [],
@@ -61,12 +67,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 3,
-    "reflex": 6,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

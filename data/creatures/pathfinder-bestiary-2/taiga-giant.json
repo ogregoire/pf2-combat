@@ -8,16 +8,17 @@
     "wis": 4
   },
   "ac": 32,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
       "frequency": null,
       "name": "Catch Rock",
-      "requirements": null,
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
     },
     {
       "category": "defensive",
@@ -44,7 +45,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -90,10 +91,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+15",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -106,10 +109,12 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+15",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Longspear",
       "traits": [
@@ -121,10 +126,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+15",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Rock",
       "traits": [
@@ -139,9 +146,14 @@
     "Sack of Rocks"
   ],
   "hp": 230,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/taiga-giant",
   "immunities": [
-    "controlled"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    }
   ],
   "languages": [
     "common",
@@ -154,13 +166,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 25,
-    "reflex": 20,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [
-    "low-light-vision",
-    "see-invisibility"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "see-invisibility"
+    }
   ],
   "size": "huge",
   "skills": {

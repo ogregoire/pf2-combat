@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -57,11 +58,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Crossbow",
       "traits": [
         "range-increment-120",
@@ -72,10 +75,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Falchion",
       "traits": [
@@ -93,6 +98,7 @@
     "Studded Leather Armor"
   ],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/bounty-hunter",
   "immunities": [],
   "languages": [
@@ -105,9 +111,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 12,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

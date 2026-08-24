@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -65,14 +66,17 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d10+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -84,13 +88,18 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d8+4",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "fate-drain"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -104,6 +113,7 @@
   "foundryId": "OaKx1ZaU25i3cypS",
   "gear": [],
   "hp": 125,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/theletos",
   "immunities": [],
   "languages": [],
@@ -114,12 +124,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 13,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

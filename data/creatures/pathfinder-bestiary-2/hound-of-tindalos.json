@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -71,10 +72,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -86,10 +89,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -100,10 +105,19 @@
   "foundryId": "JgePINrFINmlsvn3",
   "gear": [],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/hound-of-tindalos",
   "immunities": [
-    "controlled",
-    "emotion"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "emotion"
+    }
   ],
   "languages": [
     "aklo"
@@ -115,21 +129,38 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 13,
-    "reflex": 17,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "greater-darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

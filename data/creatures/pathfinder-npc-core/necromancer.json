@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -71,10 +72,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -88,10 +91,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Mace",
       "traits": [
@@ -107,6 +112,7 @@
     "Light Mace"
   ],
   "hp": 65,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/necromancer",
   "immunities": [],
   "languages": [
@@ -120,9 +126,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 12,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

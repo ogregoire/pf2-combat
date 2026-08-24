@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 23,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "offensive",
@@ -39,7 +40,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -62,7 +63,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.GreaterDarkvision]</p>",
+      "description": "<p><p>A creature with greater darkvision can see perfectly well in areas of darkness and dim light, though such vision is in black and white only. A creature with greater darkvision can see through even forms of magical darkness.</p></p>",
       "frequency": null,
       "name": "Greater Darkvision",
       "requirements": null,
@@ -82,7 +83,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -109,13 +110,18 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "mental"
         },
         {
+          "category": null,
           "formula": "2d4+6",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "excruciating-enzyme"
       ],
       "kind": "melee",
       "name": "Tendril",
@@ -127,6 +133,7 @@
   "foundryId": "yj2nhIS8ZsAJh2l5",
   "gear": [],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/rhu-chalik",
   "immunities": [],
   "languages": [
@@ -139,13 +146,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 11,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "greater-darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "greater-darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "small",
   "skills": {

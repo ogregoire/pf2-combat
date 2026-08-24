@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -49,7 +50,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>The goliath spider has imprecise tremorsense to detect the vibrations of creatures touching its web.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p>The goliath spider has imprecise tremorsense to detect the vibrations of creatures touching its web.</p>\n<hr />\n<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Web Sense",
       "requirements": null,
@@ -72,9 +73,13 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+12",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "goliath-spider-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -85,6 +90,9 @@
     {
       "bonus": 22,
       "damage": [],
+      "effects": [
+        "web-tether"
+      ],
       "kind": "ranged",
       "name": "Web",
       "traits": [
@@ -95,6 +103,7 @@
   "foundryId": "eP4a0FAbus3tNTbc",
   "gear": [],
   "hp": 220,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/goliath-spider",
   "immunities": [],
   "languages": [],
@@ -105,12 +114,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 25,
-    "reflex": 21,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "gargantuan",
   "skills": {

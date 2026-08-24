@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -65,10 +66,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -81,10 +84,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sap",
       "traits": [
@@ -99,6 +104,7 @@
     "Supplies for the boss"
   ],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/toady",
   "immunities": [],
   "languages": [
@@ -111,9 +117,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 6,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [],
   "size": "medium",
@@ -142,6 +157,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 2
     }

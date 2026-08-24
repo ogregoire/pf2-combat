@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rock",
       "traits": [
@@ -65,10 +70,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shiv",
       "traits": [
@@ -81,6 +88,7 @@
     "Shiv"
   ],
   "hp": 8,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/urchin",
   "immunities": [],
   "languages": [
@@ -93,9 +101,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 2,
-    "reflex": 7,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [],
   "size": "small",

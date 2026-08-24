@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -55,11 +56,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Arbalest",
       "traits": [
         "backstabber",
@@ -71,10 +74,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -86,10 +91,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Ranseur",
       "traits": [
@@ -107,6 +114,7 @@
     "Scale Mail"
   ],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tunnel-viper",
   "immunities": [],
   "languages": [
@@ -121,12 +129,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 9,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

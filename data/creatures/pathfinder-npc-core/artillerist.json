@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -57,11 +58,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Dueling Pistol",
       "traits": [
         "concealable",
@@ -75,10 +78,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -92,10 +97,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Hammer",
       "traits": [
@@ -106,10 +113,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Hammer",
       "traits": [
@@ -127,6 +136,7 @@
     "Rounds (Dueling Pistol)"
   ],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/artillerist",
   "immunities": [],
   "languages": [
@@ -139,9 +149,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 12,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [],
   "size": "medium",

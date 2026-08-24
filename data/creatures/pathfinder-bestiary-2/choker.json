@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -24,7 +25,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Damage[(1d6+3)[bludgeoning]], @Check[fortitude|dc:19|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "description": "<p>@Damage[(1d6+3)[bludgeoning]], @Check[fortitude|dc:19|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
       "frequency": null,
       "name": "Constrict",
       "requirements": null,
@@ -57,9 +58,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "strangling-fingers"
       ],
       "kind": "melee",
       "name": "Arm",
@@ -71,6 +76,7 @@
   "foundryId": "O69kXMo6shkA606k",
   "gear": [],
   "hp": 28,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/choker",
   "immunities": [],
   "languages": [
@@ -84,12 +90,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 10,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

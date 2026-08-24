@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -62,11 +63,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Arbalest",
       "traits": [
         "backstabber",
@@ -79,10 +82,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Club",
       "traits": []
@@ -91,10 +96,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -113,6 +120,7 @@
     "Club"
   ],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/gamekeeper",
   "immunities": [],
   "languages": [
@@ -125,9 +133,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 13,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [],
   "size": "medium",

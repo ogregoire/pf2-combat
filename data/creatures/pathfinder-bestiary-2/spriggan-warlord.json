@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -60,10 +61,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Crossbow",
       "traits": [
@@ -76,10 +79,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Morningstar",
       "traits": [
@@ -95,6 +100,7 @@
     "Bolts"
   ],
   "hp": 120,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/spriggan-warlord",
   "immunities": [],
   "languages": [
@@ -108,12 +114,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 17,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

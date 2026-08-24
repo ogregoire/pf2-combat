@@ -8,11 +8,12 @@
     "wis": 2
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p><strong>Damage Reduction</strong> 9</p>\n<p>A lantern archon can also make a Retributive Strike with its light ray.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.RetributiveStrike]</p>",
+      "description": "<p><strong>Damage Reduction</strong> 9</p>\n<p>A lantern archon can also make a Retributive Strike with its light ray.</p>\n<hr />\n<p><p><strong>Trigger</strong> An enemy damages the monster's ally, and both are within 15 feet of the monster.</p>\n<hr />\n<p><strong>Effect</strong> The ally gains resistance to all damage against the triggering damage equal to 2 + the monster's level. If the foe is within reach, the monster makes a melee Strike against it.</p></p>",
       "frequency": null,
       "name": "Retributive Strike",
       "requirements": null,
@@ -61,14 +62,17 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Flame of Justice",
       "traits": [
@@ -81,14 +85,17 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Flame of Justice",
       "traits": [
@@ -102,14 +109,17 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "3d4",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "3d4",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Light Ray",
       "traits": [
@@ -125,6 +135,7 @@
   "foundryId": "gztjujplfVCBVXv0",
   "gear": [],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/lantern-archon-gestalt",
   "immunities": [],
   "languages": [
@@ -139,17 +150,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 17,
-    "reflex": 11,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -211,6 +237,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "unholy",
       "value": 10
     }

@@ -8,21 +8,22 @@
     "wis": 2
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
       "frequency": null,
       "name": "Ferocity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is reduced to 0 HP."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>The werecreature changes into their humanoid, hybrid, or animal shape. Each shape has a specific, persistent appearance. A true werecreature's natural form is their hybrid shape. In humanoid shape, the werecreature uses their original humanoid size, loses their jaws and claw Strikes, and gains a melee fist Strike that deals bludgeoning damage equal to the slashing damage dealt by their claw. In animal shape, their Speed and size change to that of the animal, they gain any special Strike effects of the animal that they didn't already have (such as Grab), and they lose their weapon Strikes.</p>\n<p>Human with fist +10 for @Damage[(1d4+2)[bludgeoning]] damage, or Boar with Speed 40 feet and tusk for @Damage[(2d6+4)[piercing]] damage.</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>The werecreature changes into their humanoid, hybrid, or animal shape. Each shape has a specific, persistent appearance. A true werecreature's natural form is their hybrid shape. In humanoid shape, the werecreature uses their original humanoid size, loses their jaws and claw Strikes, and gains a melee fist Strike that deals bludgeoning damage equal to the slashing damage dealt by their claw. In animal shape, their Speed and size change to that of the animal, they gain any special Strike effects of the animal that they didn't already have (such as Grab), and they lose their weapon Strikes.</p>\n<p>Human with fist +10 for @Damage[(1d4+2)[bludgeoning]] damage, or Boar with Speed 40 feet and tusk for @Damage[(2d6+4)[piercing]] damage.</p><hr /><p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -87,10 +88,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -102,10 +105,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -117,10 +122,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -133,9 +140,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "curse-of-the-wereboar"
       ],
       "kind": "melee",
       "name": "Tusk",
@@ -150,6 +161,7 @@
     "Studded Leather Armor"
   ],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/wereboar",
   "immunities": [],
   "languages": [
@@ -162,13 +174,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 5,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -198,6 +227,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "silver",
       "value": 5
     }

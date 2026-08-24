@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,12 +26,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -48,10 +49,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -62,10 +65,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Cold Iron Wakizashi",
       "traits": [
@@ -79,14 +84,17 @@
       "bonus": 17,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d4",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Katana",
       "traits": [
@@ -103,6 +111,7 @@
     "Wakizashi"
   ],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tengu-bladesmith",
   "immunities": [],
   "languages": [
@@ -116,12 +125,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 16,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

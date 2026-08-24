@@ -8,11 +8,12 @@
     "wis": 3
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
       "frequency": null,
       "name": "Constant Spells",
       "requirements": null,
@@ -57,7 +58,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>A denizen of Leng maintains a connection to Leng at all times, and when away from Leng, they have fast healing 5. They lose this ability on Leng or in areas where planar connections do not function. If killed, their body dissolves into nothingness in [[/gmr 1d4 #Dissolve Body]]{1d4 rounds}, leaving behind their equipment. A slain denizen reforms in Leng; they can be permanently killed only when their planar fast healing doesn't function.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FastHealing]</p>",
+      "description": "<p>A denizen of Leng maintains a connection to Leng at all times, and when away from Leng, they have fast healing 5. They lose this ability on Leng or in areas where planar connections do not function. If killed, their body dissolves into nothingness in [[/gmr 1d4 #Dissolve Body]]{1d4 rounds}, leaving behind their equipment. A slain denizen reforms in Leng; they can be permanently killed only when their planar fast healing doesn't function.</p>\n<hr />\n<p><p>A monster with this ability regains the given number of Hit Points each round at the beginning of its turn.</p></p>",
       "frequency": null,
       "name": "Planar Fast Healing",
       "requirements": null,
@@ -70,9 +71,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "debilitating-bite"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -86,14 +91,17 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "2d6+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Kukri",
       "traits": [
@@ -110,9 +118,14 @@
     "Leng Ruby"
   ],
   "hp": 100,
+  "hpDetails": "planar fast healing 5",
   "id": "pathfinder-bestiary-2/denizen-of-leng",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [
     "aklo"
@@ -124,21 +137,38 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "critical-hits",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "precision",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 16,
-    "reflex": 19,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,16 +8,17 @@
     "wis": 4
   },
   "ac": 20,
+  "acDetails": "22 with shield raised",
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
       "frequency": null,
       "name": "Shield Block",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
     },
     {
       "category": "defensive",
@@ -42,7 +43,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.LightBlindness]</p>",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
       "frequency": null,
       "name": "Light Blindness",
       "requirements": null,
@@ -55,9 +56,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "lethargy-poison"
       ],
       "kind": "ranged",
       "name": "Hand Crossbow",
@@ -70,10 +75,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -94,9 +101,14 @@
     "Steel Shield"
   ],
   "hp": 39,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/drow-priestess",
   "immunities": [
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "chthonian",
@@ -110,12 +122,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 7,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

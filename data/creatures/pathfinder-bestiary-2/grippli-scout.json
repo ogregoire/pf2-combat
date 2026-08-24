@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dart",
       "traits": [
@@ -50,10 +53,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -71,6 +76,7 @@
     "Sickle"
   ],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/grippli-scout",
   "immunities": [],
   "languages": [
@@ -84,12 +90,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 9,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

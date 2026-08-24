@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -57,9 +58,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "ogre-spider-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -68,6 +73,9 @@
     {
       "bonus": 13,
       "damage": [],
+      "effects": [
+        "web-trap"
+      ],
       "kind": "ranged",
       "name": "Web",
       "traits": [
@@ -78,6 +86,7 @@
   "foundryId": "Kr5LtF0bqZJAC2Wn",
   "gear": [],
   "hp": 70,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/ogre-spider",
   "immunities": [],
   "languages": [],
@@ -88,12 +97,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 13,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {

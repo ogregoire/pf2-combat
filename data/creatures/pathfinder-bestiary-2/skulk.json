@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -45,10 +46,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -61,10 +64,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -80,6 +85,7 @@
     "Shortsword"
   ],
   "hp": 21,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/skulk",
   "immunities": [],
   "languages": [
@@ -92,12 +98,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 8,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

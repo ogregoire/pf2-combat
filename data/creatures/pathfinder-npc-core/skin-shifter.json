@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 25,
+  "acDetails": "26 in animal form",
   "actions": [
     {
       "category": "offensive",
@@ -37,11 +38,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Longbow",
       "traits": [
         "deadly-d10",
@@ -55,10 +58,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spiked Gauntlet",
       "traits": [
@@ -75,6 +80,7 @@
     "Spiked Gauntlet"
   ],
   "hp": 140,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/skin-shifter",
   "immunities": [],
   "languages": [],
@@ -85,9 +91,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 14,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [],
   "size": "medium",

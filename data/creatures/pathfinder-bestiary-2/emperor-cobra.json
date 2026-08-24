@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -42,9 +43,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "emperor-cobra-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -56,6 +61,7 @@
   "foundryId": "iLZpGlyBWxS4Idbi",
   "gear": [],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/emperor-cobra",
   "immunities": [],
   "languages": [],
@@ -66,13 +72,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 11,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -38,10 +39,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+14",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -54,10 +57,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+14",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Gaff",
       "traits": [
@@ -71,10 +76,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "5d6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Spit",
       "traits": [
@@ -89,6 +96,7 @@
     "Gaff"
   ],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/marsh-giant",
   "immunities": [],
   "languages": [
@@ -104,12 +112,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 18,
-    "reflex": 13,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {

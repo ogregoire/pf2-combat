@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 31,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -70,14 +71,17 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Mace",
       "traits": [
@@ -88,6 +92,9 @@
     {
       "bonus": 21,
       "damage": [],
+      "effects": [
+        "tongue-grab"
+      ],
       "kind": "melee",
       "name": "Tongue",
       "traits": [
@@ -102,6 +109,7 @@
     "Religious Symbol of Gogunta (Silver)"
   ],
   "hp": 200,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/sepoko",
   "immunities": [],
   "languages": [
@@ -114,12 +122,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 21,
-    "reflex": 18,
-    "will": 24
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

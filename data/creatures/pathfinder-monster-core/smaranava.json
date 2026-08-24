@@ -8,11 +8,12 @@
     "wis": 2
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Damage[(2d8+5)[bludgeoning]], @Check[fortitude|dc:25|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "description": "<p>@Damage[(2d8+5)[bludgeoning]], @Check[fortitude|dc:25|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
       "frequency": null,
       "name": "Constrict",
       "requirements": null,
@@ -52,9 +53,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "smaranava-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -67,9 +72,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+5",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "coils-of-knowledge"
       ],
       "kind": "melee",
       "name": "Tail",
@@ -84,6 +93,7 @@
   "foundryId": "CYyxzpymkIZxX4Zo",
   "gear": [],
   "hp": 115,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/smaranava",
   "immunities": [],
   "languages": [
@@ -97,12 +107,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 17,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,11 +8,12 @@
     "wis": 4
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>30 feet</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AquaticAmbush]</p>",
+      "description": "<p>30 feet</p>\n<hr />\n<p><p><strong>Requirements</strong> The monster is hiding in water and a creature that hasn't detected it is within the listed number of feet.</p>\n<hr />\n<p><strong>Effect</strong> The monster moves up to its swim Speed + 10 feet toward the triggering creature, traveling on water and on land. Once the creature is in reach, the monster makes a Strike against it. The creature is Off-Guard against this Strike.</p></p>",
       "frequency": null,
       "name": "Aquatic Ambush",
       "requirements": null,
@@ -34,7 +35,7 @@
     {
       "category": "offensive",
       "cost": "3",
-      "description": "<p>Medium or smaller, foot, @Check[reflex|dc:23|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Medium or smaller, foot, @Check[reflex|dc:23|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
       "frequency": null,
       "name": "Trample",
       "requirements": null,
@@ -57,10 +58,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Foot",
       "traits": [
@@ -71,10 +74,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -86,6 +91,7 @@
   "foundryId": "5CixyyBkCLj2VI8q",
   "gear": [],
   "hp": 85,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/hippopotamus",
   "immunities": [],
   "languages": [],
@@ -96,13 +102,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 9,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

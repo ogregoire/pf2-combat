@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -25,10 +26,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claws",
       "traits": [
@@ -39,10 +42,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -54,10 +59,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -72,6 +79,7 @@
     "Staff"
   ],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/changeling-exile",
   "immunities": [],
   "languages": [
@@ -85,12 +93,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 8,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

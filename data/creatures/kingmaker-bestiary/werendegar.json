@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 47,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -22,7 +23,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>Werendegar changes into his natural form or that of any humanoid. In humanoid form, he loses his thorny aura, and his equipment appears to be trinkets or toys. As a humanoid that lacks claws or fangs, he loses the matching Strike. If he loses his claw Strike, he gains a fist Strike that is identical except that it deals bludgeoning damage.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>Werendegar changes into his natural form or that of any humanoid. In humanoid form, he loses his thorny aura, and his equipment appears to be trinkets or toys. As a humanoid that lacks claws or fangs, he loses the matching Strike. If he loses his claw Strike, he gains a fist Strike that is identical except that it deals bludgeoning damage.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -92,9 +93,13 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "4d6+16",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "disarm"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -108,14 +113,17 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d8",
           "type": "poison"
         },
         {
+          "category": null,
           "formula": "4d8+16",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -127,18 +135,22 @@
       "bonus": 39,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "4d6+16",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -155,6 +167,7 @@
     "Rapier"
   ],
   "hp": 374,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/werendegar",
   "immunities": [],
   "languages": [
@@ -171,12 +184,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 36,
-    "reflex": 39,
-    "will": 33
+    "fortitude": {
+      "detail": null,
+      "value": 36
+    },
+    "reflex": {
+      "detail": null,
+      "value": 39
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -273,6 +299,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 20
     }

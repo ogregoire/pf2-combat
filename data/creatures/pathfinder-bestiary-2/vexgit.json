@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -75,10 +76,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Bite",
       "traits": [
@@ -90,9 +93,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+1",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "destructive-smash"
       ],
       "kind": "melee",
       "name": "Maul",
@@ -106,6 +113,7 @@
     "Maul"
   ],
   "hp": 24,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/vexgit",
   "immunities": [],
   "languages": [
@@ -118,12 +126,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 9,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "tiny",
   "skills": {
@@ -176,6 +197,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 2
     }

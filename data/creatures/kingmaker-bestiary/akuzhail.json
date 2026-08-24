@@ -8,16 +8,17 @@
     "wis": 5
   },
   "ac": 29,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
@@ -133,14 +134,17 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "2d6+11",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Centipede Mandibles",
       "traits": []
@@ -149,10 +153,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+11",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -164,9 +170,13 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+11",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "bloom-venom"
       ],
       "kind": "melee",
       "name": "Snake Fangs",
@@ -176,14 +186,17 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "2d8+11",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Vulture Beak",
       "traits": []
@@ -192,6 +205,7 @@
   "foundryId": "pcct13qdrriJf3OL",
   "gear": [],
   "hp": 195,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/akuzhail",
   "immunities": [],
   "languages": [
@@ -204,22 +218,43 @@
   "rarity": "unique",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "acid",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 21,
-    "reflex": 17,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 21
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

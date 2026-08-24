@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 29,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -40,12 +41,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
       "frequency": null,
       "name": "Shield Block",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
     },
     {
       "category": "defensive",
@@ -63,10 +64,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+11",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -79,10 +82,12 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+11",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Mace",
       "traits": [
@@ -99,6 +104,7 @@
     "Steel Shield"
   ],
   "hp": 140,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/mage-knight",
   "immunities": [],
   "languages": [
@@ -111,9 +117,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 18,
-    "reflex": 13,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -30,10 +31,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -46,10 +49,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -60,6 +65,7 @@
   "foundryId": "PlkRv9NMKq9TShYf",
   "gear": [],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/gorilla",
   "immunities": [],
   "languages": [],
@@ -70,13 +76,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 9,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

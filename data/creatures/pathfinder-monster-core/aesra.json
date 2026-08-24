@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 27,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "defensive",
@@ -47,7 +48,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -57,7 +58,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AtWillSpells]</p>",
+      "description": "<p><p>The monster can cast its at-will spells any number of times without using up spell slots.</p></p>",
       "frequency": null,
       "name": "At-Will Spells",
       "requirements": null,
@@ -67,7 +68,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
       "frequency": null,
       "name": "Constant Spells",
       "requirements": null,
@@ -103,13 +104,18 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "flame-of-justice"
       ],
       "kind": "melee",
       "name": "Flame of Justice",
@@ -123,13 +129,18 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "flame-of-justice"
       ],
       "kind": "ranged",
       "name": "Flame of Justice",
@@ -146,9 +157,14 @@
     "Full Plate"
   ],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/aesra",
   "immunities": [
-    "fear-effects"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
   ],
   "languages": [
     "diabolic",
@@ -163,17 +179,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 17,
-    "reflex": 11,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -239,6 +270,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "unholy",
       "value": 10
     }

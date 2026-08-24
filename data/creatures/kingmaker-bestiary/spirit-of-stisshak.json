@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -80,10 +81,12 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shock",
       "traits": [
@@ -95,6 +98,7 @@
   "foundryId": "ZoUIXzygFDuHKebr",
   "gear": [],
   "hp": 65,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/spirit-of-stisshak",
   "immunities": [],
   "languages": [
@@ -110,12 +114,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 18,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

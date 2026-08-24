@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -57,7 +58,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Wavesense]</p>",
+      "description": "<p><p>This sense allows a monster to feel vibrations caused by movement through a liquid. It's an imprecise sense with a limited range (listed in the ability). Wavesense functions only if monster and the subject are in the same body of liquid, and only if the subject is moving through the liquid.</p></p>",
       "frequency": null,
       "name": "Wavesense (Imprecise) 30 feet",
       "requirements": null,
@@ -70,10 +71,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -85,14 +88,17 @@
       "bonus": 14,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d4",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -103,10 +109,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": []
@@ -115,10 +123,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Spear",
       "traits": [
@@ -132,6 +142,7 @@
     "Spear"
   ],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/sedacthy-marauder",
   "immunities": [],
   "languages": [
@@ -144,13 +155,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 9,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "darkvision",
-    "wavesense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "wavesense"
+    }
   ],
   "size": "medium",
   "skills": {

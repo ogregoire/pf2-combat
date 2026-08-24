@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -42,10 +43,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -59,10 +62,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -77,6 +82,7 @@
     "Staff"
   ],
   "hp": 86,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/sage",
   "immunities": [],
   "languages": [
@@ -89,9 +95,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 12,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [],
   "size": "medium",

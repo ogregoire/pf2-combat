@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -27,9 +28,13 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "spirit-naga-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -42,6 +47,7 @@
   "foundryId": "ZbgFOoDCOXqhJWhz",
   "gear": [],
   "hp": 215,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/ngara",
   "immunities": [],
   "languages": [
@@ -55,12 +61,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 19,
-    "reflex": 24,
-    "will": 23
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 24
+    },
+    "will": {
+      "detail": null,
+      "value": 23
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

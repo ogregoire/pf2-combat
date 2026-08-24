@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,10 +26,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -39,10 +42,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Thumb Spike",
       "traits": [
@@ -54,6 +59,7 @@
   "foundryId": "SsR4wiSWA7xhlkH9",
   "gear": [],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/iguanodon",
   "immunities": [],
   "languages": [],
@@ -64,13 +70,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 12,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

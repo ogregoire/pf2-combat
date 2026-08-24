@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -69,9 +70,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "clawing-fear"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -84,9 +89,14 @@
   "foundryId": "2p7MEk4SdXfLbzxO",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/scarecrow",
   "immunities": [
-    "fear-effects"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
   ],
   "languages": [],
   "level": 4,
@@ -96,17 +106,34 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "slashing"
+      ],
       "type": "physical",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 13,
-    "reflex": 8,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -130,6 +157,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     }

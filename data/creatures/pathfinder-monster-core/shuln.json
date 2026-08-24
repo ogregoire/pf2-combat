@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,7 +36,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 60 feet",
       "requirements": null,
@@ -58,10 +59,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Adamantine Claw",
       "traits": [
@@ -74,9 +77,13 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+10",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "shuln-saliva"
       ],
       "kind": "melee",
       "name": "Adamantine Fangs",
@@ -89,6 +96,7 @@
   "foundryId": "xz2NZqSG5YVl17dc",
   "gear": [],
   "hp": 195,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/shuln",
   "immunities": [],
   "languages": [],
@@ -99,22 +107,46 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine",
+        "bludgeoning"
+      ],
       "type": "physical",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 25,
-    "reflex": 19,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "scent",
-    "tremorsense"
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "huge",
   "skills": {

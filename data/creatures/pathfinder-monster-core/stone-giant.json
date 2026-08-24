@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -48,10 +49,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+14",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -64,10 +67,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greatclub",
       "traits": [
@@ -81,10 +86,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Rock",
       "traits": [
@@ -98,6 +105,7 @@
     "Greatclub"
   ],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/stone-giant",
   "immunities": [],
   "languages": [
@@ -112,12 +120,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 18,
-    "reflex": 14,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+1",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Bonesaw",
       "traits": [
@@ -59,10 +62,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -76,10 +81,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Scalpel",
       "traits": [
@@ -92,10 +99,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Scalpel",
       "traits": [
@@ -113,6 +122,7 @@
     "Scalpel"
   ],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/surgeon",
   "immunities": [],
   "languages": [
@@ -125,9 +135,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 7,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [],
   "size": "medium",

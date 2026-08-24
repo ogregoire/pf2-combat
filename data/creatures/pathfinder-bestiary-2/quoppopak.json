@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 31,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,7 +26,7 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>Tentacle only</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p>Tentacle only</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity (Tentacle Only)",
       "requirements": null,
@@ -35,20 +36,20 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
       "frequency": null,
       "name": "Push",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Push in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -78,10 +79,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+13",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -93,9 +96,13 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+13",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -109,14 +116,17 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "2d6+13",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Ventral Tube",
       "traits": [
@@ -127,9 +137,13 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+13",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "push"
       ],
       "kind": "ranged",
       "name": "Water Jet",
@@ -142,6 +156,7 @@
   "foundryId": "3u4toki9EeSRvcs2",
   "gear": [],
   "hp": 195,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/quoppopak",
   "immunities": [],
   "languages": [
@@ -154,12 +169,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 22,
-    "reflex": 23,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -42,9 +43,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "slime"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -59,6 +64,7 @@
   "foundryId": "tuIqEvsct8EO33xs",
   "gear": [],
   "hp": 135,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/alghollthu-master",
   "immunities": [],
   "languages": [
@@ -75,12 +81,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 10,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {

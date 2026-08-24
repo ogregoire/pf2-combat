@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -48,14 +49,17 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d6+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Flower",
       "traits": [
@@ -66,14 +70,17 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d4+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tendril",
       "traits": [
@@ -85,9 +92,14 @@
   "foundryId": "DC9b8mG1KdyXZkLp",
   "gear": [],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/calathgar",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [
     "fey"
@@ -99,13 +111,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 13,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "small",
   "skills": {
@@ -135,10 +164,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }

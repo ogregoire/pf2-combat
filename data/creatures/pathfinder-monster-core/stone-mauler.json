@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -22,10 +23,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
       "frequency": null,
       "name": "Push 10 feet",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Push in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -66,7 +67,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 80 feet",
       "requirements": null,
@@ -79,9 +80,13 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+10",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "push"
       ],
       "kind": "melee",
       "name": "Fist",
@@ -94,10 +99,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Rock",
       "traits": [
@@ -109,12 +116,29 @@
   "foundryId": "ToteDLIM7jCyHwDH",
   "gear": [],
   "hp": 180,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/stone-mauler",
   "immunities": [
-    "bleed",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "petran"
@@ -126,13 +150,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 15,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 80,
+      "type": "tremorsense"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,11 +8,12 @@
     "wis": 0
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedPush]</p>",
+      "description": "<p><p>The monster can use Push as a free action triggered by a hit with its initial attack.</p></p>",
       "frequency": null,
       "name": "Improved Push",
       "requirements": null,
@@ -67,9 +68,14 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+5",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "improved-push",
+        "pollen-touch"
       ],
       "kind": "melee",
       "name": "Fist",
@@ -82,6 +88,7 @@
   "foundryId": "Kw4UUxt5rorsGjsK",
   "gear": [],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/yellow-musk-brute",
   "immunities": [],
   "languages": [],
@@ -92,12 +99,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 3,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -122,6 +142,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }

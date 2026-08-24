@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -38,9 +39,13 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "3d10 + 13",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "fossilization"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -55,6 +60,7 @@
   "foundryId": "wfZoM7RfFzkmK7hI",
   "gear": [],
   "hp": 195,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/paleohemoth",
   "immunities": [],
   "languages": [],
@@ -65,21 +71,45 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine",
+        "bludgeoning"
+      ],
       "type": "physical",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [
+        "cold",
+        "earth",
+        "water"
+      ],
       "type": "spells",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 26,
-    "reflex": 20,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -104,14 +134,20 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "earth",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "water",
       "value": 10
     }

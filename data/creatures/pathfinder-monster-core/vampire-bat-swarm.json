@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -32,7 +33,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
       "frequency": null,
       "name": "Swarm Mind",
       "requirements": null,
@@ -44,10 +45,19 @@
   "foundryId": "2mg30nJR6P3HJDSd",
   "gear": [],
   "hp": 11,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/vampire-bat-swarm",
   "immunities": [
-    "precision",
-    "swarm-mind"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
   ],
   "languages": [],
   "level": 1,
@@ -57,26 +67,49 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 6
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 6
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 3
     }
   ],
   "saves": {
-    "fortitude": 6,
-    "reflex": 9,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "echolocation",
-    "low-light-vision"
+    {
+      "acuity": "precise",
+      "range": 20,
+      "type": "echolocation"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -107,10 +140,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "area-damage",
       "value": 3
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "splash-damage",
       "value": 3
     }

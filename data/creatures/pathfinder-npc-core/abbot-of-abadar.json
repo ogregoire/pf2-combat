@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -50,11 +51,13 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+2",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Crossbow",
       "traits": [
         "range-increment-120",
@@ -65,10 +68,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -82,10 +87,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Griffon Cane",
       "traits": [
@@ -101,6 +108,7 @@
     "Religious Symbol of Abadar"
   ],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/abbot-of-abadar",
   "immunities": [],
   "languages": [
@@ -115,9 +123,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 3,
-    "reflex": 4,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

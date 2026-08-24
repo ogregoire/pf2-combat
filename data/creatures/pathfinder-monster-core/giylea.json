@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 41,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "defensive",
@@ -62,7 +63,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -90,14 +91,17 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "3d12+14",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Slam",
       "traits": [
@@ -110,10 +114,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "7d6",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Tongue of Flame",
       "traits": [
@@ -127,9 +133,14 @@
   "foundryId": "GmKNb1UIjAkTMDOt",
   "gear": [],
   "hp": 230,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/giylea",
   "immunities": [
-    "fear-effects"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
   ],
   "languages": [
     "diabolic",
@@ -144,13 +155,30 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 26,
-    "reflex": 31,
-    "will": 28
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 31
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
   },
   "senses": [
-    "darkvision",
-    "truesight"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "truesight"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -234,6 +262,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "unholy",
       "value": 15
     }

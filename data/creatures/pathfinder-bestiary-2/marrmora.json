@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 37,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -50,18 +51,22 @@
       "bonus": 29,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "3d6+14",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -72,14 +77,17 @@
       "bonus": 29,
       "damage": [
         {
+          "category": "persistent",
           "formula": "2d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "6d6",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Flame Jet",
       "traits": [
@@ -91,9 +99,14 @@
   "foundryId": "jCF9HjF42SPXTptP",
   "gear": [],
   "hp": 280,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/marrmora",
   "immunities": [
-    "fire"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
   ],
   "languages": [
     "common",
@@ -107,17 +120,34 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "slashing"
+      ],
       "type": "physical",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 29,
-    "reflex": 25,
-    "will": 27
+    "fortitude": {
+      "detail": null,
+      "value": 29
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 27
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -216,6 +246,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

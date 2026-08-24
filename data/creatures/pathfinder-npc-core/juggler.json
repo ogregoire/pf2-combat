@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -58,10 +59,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dart",
       "traits": [
@@ -73,10 +76,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -90,10 +95,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Juggling Club",
       "traits": [
@@ -104,10 +111,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Juggling Club",
       "traits": [
@@ -119,14 +128,17 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Torch",
       "traits": [
@@ -141,6 +153,7 @@
     "Torch"
   ],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/juggler",
   "immunities": [],
   "languages": [
@@ -153,9 +166,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 11,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [],
   "size": "medium",

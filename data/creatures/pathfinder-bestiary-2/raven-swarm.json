@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -32,7 +33,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.SwarmMind]</p>",
+      "description": "<p><p>This monster doesn't have a single mind (typically because it's a swarm of smaller creatures), and is immune to mental effects that target only a specific number of creatures. It is still subject to mental effects that affect all creatures in an area.</p></p>",
       "frequency": null,
       "name": "Swarm Mind",
       "requirements": null,
@@ -44,10 +45,19 @@
   "foundryId": "wrzlJufGEfMg5kVE",
   "gear": [],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/raven-swarm",
   "immunities": [
-    "precision",
-    "swarm-mind"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
   ],
   "languages": [],
   "level": 3,
@@ -57,25 +67,44 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 2
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 7,
-    "reflex": 12,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -105,10 +134,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "area-damage",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "splash-damage",
       "value": 5
     }

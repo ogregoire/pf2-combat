@@ -8,16 +8,17 @@
     "wis": 0
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
       "frequency": null,
       "name": "Shield Block",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
     },
     {
       "category": "offensive",
@@ -70,10 +71,12 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -88,9 +91,14 @@
     "Steel Shield"
   ],
   "hp": 190,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/iron-warden",
   "immunities": [
-    "fire"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    }
   ],
   "languages": [],
   "level": 13,
@@ -100,17 +108,34 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
       "type": "physical",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 26,
-    "reflex": 19,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,10 +59,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -74,10 +77,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw Blade",
       "traits": [
@@ -96,6 +101,7 @@
     "Thieves' Toolkit"
   ],
   "hp": 38,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/leaping-thief",
   "immunities": [],
   "languages": [
@@ -109,12 +115,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 11,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -76,10 +77,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -93,10 +96,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Mace",
       "traits": [
@@ -116,6 +121,7 @@
     "Wall Charge"
   ],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/demolitionist",
   "immunities": [],
   "languages": [
@@ -128,14 +134,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 11,
-    "reflex": 13,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [],
   "size": "medium",

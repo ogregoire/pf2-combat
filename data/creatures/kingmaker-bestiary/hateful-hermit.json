@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,9 +59,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "graveroot"
       ],
       "kind": "ranged",
       "name": "Blowgun",
@@ -75,10 +80,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -91,10 +98,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whip",
       "traits": [
@@ -117,6 +126,7 @@
     "Whip"
   ],
   "hp": 80,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/hateful-hermit",
   "immunities": [],
   "languages": [
@@ -129,14 +139,25 @@
   "rarity": "unique",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 15,
-    "reflex": 11,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [],
   "size": "medium",

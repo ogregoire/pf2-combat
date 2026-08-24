@@ -8,11 +8,12 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": "+1 status vs. unholy creatures",
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>A cassisian can take the appearance of a dove, a winged humanoid, a dog, or a fish. Normally, this doesn't change their Speed or the attack and damage bonuses for their Strikes, but it might change the damage type Strikes deal (typically to bludgeoning). Any further changes for specific forms are noted below.</p><ul><li><p><strong>Dog</strong></p><ul><li><strong>Size</strong> Small;</li><li>Scent (Imprecise) 30 feet,</li><li><strong>Speed</strong> 40 feet;</li><li><strong>Skills</strong> Athletics [[/r 1d20+6]]{+6};</li><li><strong>Melee</strong> <span class=\"action-glyph\">1</span> jaws +7, <strong>Damage</strong> 1d6+2 piercing plus Knockdown</li></ul></li><li><p><strong>Fish</strong></p><ul><li><strong>Speed</strong> Swim 30 feet</li></ul></li></ul><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>A cassisian can take the appearance of a dove, a winged humanoid, a dog, or a fish. Normally, this doesn't change their Speed or the attack and damage bonuses for their Strikes, but it might change the damage type Strikes deal (typically to bludgeoning). Any further changes for specific forms are noted below.</p><ul><li><p><strong>Dog</strong></p><ul><li><strong>Size</strong> Small;</li><li>Scent (Imprecise) 30 feet,</li><li><strong>Speed</strong> 40 feet;</li><li><strong>Skills</strong> Athletics [[/r 1d20+6]]{+6};</li><li><strong>Melee</strong> <span class=\"action-glyph\">1</span> jaws +7, <strong>Damage</strong> 1d6+2 piercing plus Knockdown</li></ul></li><li><p><strong>Fish</strong></p><ul><li><strong>Speed</strong> Swim 30 feet</li></ul></li></ul><hr /><p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -26,10 +27,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -95,10 +96,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6-1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Headbutt",
       "traits": [
@@ -113,6 +116,7 @@
   "foundryId": "9qERA2jk7Yv74Hqq",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/cassisian",
   "immunities": [],
   "languages": [
@@ -128,21 +132,38 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 3
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 3
     }
   ],
   "saves": {
-    "fortitude": 7,
-    "reflex": 6,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "tiny",
   "skills": {
@@ -202,6 +223,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "unholy",
       "value": 3
     }

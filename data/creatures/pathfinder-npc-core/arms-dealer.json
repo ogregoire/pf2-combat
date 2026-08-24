@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -60,10 +61,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -77,11 +80,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Flintlock Musket",
       "traits": [
         "concussive",
@@ -94,11 +99,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Cannon",
       "traits": [
         "modular",
@@ -110,10 +117,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sword Cane",
       "traits": [
@@ -132,6 +141,7 @@
     "Sword Cane"
   ],
   "hp": 28,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/arms-dealer",
   "immunities": [],
   "languages": [
@@ -144,9 +154,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 7,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [],
   "size": "medium",

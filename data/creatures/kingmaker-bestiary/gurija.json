@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,7 +26,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
       "frequency": null,
       "name": "Regeneration 20 (Deactivated by Acid or Fire)",
       "requirements": null,
@@ -38,10 +39,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claws",
       "traits": [
@@ -53,10 +56,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -71,6 +76,7 @@
     "Wand of Shocking Grasp (Level 2)"
   ],
   "hp": 95,
+  "hpDetails": "regeneration 20 (deactivated by acid or fire)",
   "id": "kingmaker-bestiary/gurija",
   "immunities": [],
   "languages": [
@@ -85,14 +91,25 @@
   "rarity": "unique",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "electricity",
       "value": 2
     }
   ],
   "saves": {
-    "fortitude": 13,
-    "reflex": 13,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "large",
@@ -197,6 +214,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }

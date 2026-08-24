@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 37,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "defensive",
@@ -32,10 +33,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -74,7 +75,7 @@
     {
       "category": "offensive",
       "cost": "3",
-      "description": "<p>Huge or smaller, leg, @Check[reflex|dc:36|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Huge or smaller, leg, @Check[reflex|dc:36|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
       "frequency": null,
       "name": "Trample",
       "requirements": null,
@@ -84,7 +85,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -94,7 +95,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 60 feet",
       "requirements": null,
@@ -107,14 +108,17 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+17",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "acid"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Acid Maw",
       "traits": [
@@ -126,14 +130,17 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+17",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Flame Maw",
       "traits": [
@@ -145,10 +152,12 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+17",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Leg",
       "traits": [
@@ -161,14 +170,17 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+17",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shock Maw",
       "traits": [
@@ -180,9 +192,13 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+17",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "knockdown"
       ],
       "kind": "melee",
       "name": "Tail Lash",
@@ -195,6 +211,7 @@
   "foundryId": "IGzoFGlVbkit8hnH",
   "gear": [],
   "hp": 300,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/mukradi",
   "immunities": [],
   "languages": [],
@@ -205,26 +222,49 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "acid",
       "value": 20
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "electricity",
       "value": 20
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 20
     }
   ],
   "saves": {
-    "fortitude": 32,
-    "reflex": 23,
-    "will": 26
+    "fortitude": {
+      "detail": null,
+      "value": 32
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "gargantuan",
   "skills": {

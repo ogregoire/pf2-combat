@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -65,11 +66,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Arquebus",
       "traits": [
         "concussive",
@@ -83,10 +86,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -99,10 +104,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -115,10 +122,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -137,6 +146,7 @@
     "Silencer"
   ],
   "hp": 65,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/sniper",
   "immunities": [],
   "languages": [
@@ -149,9 +159,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 15,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

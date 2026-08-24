@@ -8,11 +8,12 @@
     "wis": 1
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Check[reflex|dc:17]</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Buck]</p>",
+      "description": "<p>@Check[reflex|dc:17]</p>\n<p><hr />\n<p>Most monsters that serve as mounts can attempt to buck off unwanted or annoying riders, but most mounts will not use this reaction against a trusted creature unless the mounts are spooked or mistreated.</p>\n<p><strong>Trigger</strong> A creature Mounts or uses the Command an Animal action while riding the monster.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must succeed at a Reflex saving throw against the listed DC or fall off the creature and land Prone. If the save is a critical failure, the triggering creature also takes @Damage[1d6[bludgeoning]] damage in addition to the normal damage for the fall.</p></p>",
       "frequency": null,
       "name": "Buck",
       "requirements": null,
@@ -69,9 +70,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "goblin-pox"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -83,6 +88,7 @@
   "foundryId": "yclRuradTmZbdKFQ",
   "gear": [],
   "hp": 17,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/goblin-dog",
   "immunities": [],
   "languages": [],
@@ -93,13 +99,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 8,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

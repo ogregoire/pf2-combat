@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,10 +26,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -41,10 +44,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -57,10 +62,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -74,11 +81,13 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
         "range-increment-60",
@@ -89,14 +98,17 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Torch",
       "traits": []
@@ -112,6 +124,7 @@
     "Torch"
   ],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/torchbearer",
   "immunities": [],
   "languages": [
@@ -124,9 +137,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 9,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -47,11 +48,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+8",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Composite Longbow",
       "traits": [
         "deadly-d10",
@@ -66,10 +69,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -82,10 +87,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -98,10 +105,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -120,6 +129,7 @@
     "Shortsword"
   ],
   "hp": 115,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/hunter",
   "immunities": [],
   "languages": [
@@ -132,9 +142,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 17,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [],
   "size": "medium",

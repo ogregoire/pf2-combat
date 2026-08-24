@@ -8,11 +8,12 @@
     "wis": 2
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Damage[(2d6+2)[bludgeoning]], @Check[fortitude|dc:29|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "description": "<p>@Damage[(2d6+2)[bludgeoning]], @Check[fortitude|dc:29|basic]</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
       "frequency": null,
       "name": "Constrict",
       "requirements": null,
@@ -22,10 +23,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -57,7 +58,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
       "frequency": null,
       "name": "Regeneration 15 (Deactivated by Fire)",
       "requirements": null,
@@ -67,7 +68,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>30 feet, @Check[fortitude|dc:27]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Stench]</p>",
+      "description": "<p>30 feet, @Check[fortitude|dc:27]</p>\n<hr />\n<p><p>A creature entering the aura or starting its turn in the area must succeed at a Fortitude save or become Sickened 1 (plus Slowed 1 as long as it's sickened on a critical failure). A creature that succeeds at its save or recovers from being sickened is temporarily immune to all stench auras for 1 minute.</p></p>",
       "frequency": null,
       "name": "Stench",
       "requirements": null,
@@ -83,9 +84,13 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "4d8",
           "type": "acid"
         }
+      ],
+      "effects": [
+        "amnesia-venom"
       ],
       "kind": "ranged",
       "name": "Acid Glob",
@@ -98,13 +103,18 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "3d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "3d6+8",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Vine",
@@ -117,6 +127,7 @@
   "foundryId": "jR4E2I2tmQ6sd5DR",
   "gear": [],
   "hp": 130,
+  "hpDetails": "regeneration 15 (deactivated by fire)",
   "id": "pathfinder-monster-core/dezullon",
   "immunities": [],
   "languages": [],
@@ -127,17 +138,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "acid",
       "value": 20
     }
   ],
   "saves": {
-    "fortitude": 17,
-    "reflex": 21,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

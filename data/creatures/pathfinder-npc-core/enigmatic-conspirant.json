@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -68,10 +69,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -85,9 +88,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "spill-secrets"
       ],
       "kind": "melee",
       "name": "Rapier",
@@ -101,11 +108,15 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [
+        "spill-secrets"
+      ],
+      "kind": "ranged",
       "name": "Shortbow",
       "traits": [
         "deadly-d10",
@@ -123,6 +134,7 @@
     "Shortbow"
   ],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/enigmatic-conspirant",
   "immunities": [],
   "languages": [
@@ -138,14 +150,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 8,
-    "reflex": 12,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [],
   "size": "medium",

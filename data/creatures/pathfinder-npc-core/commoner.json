@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 13,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,10 +26,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -41,10 +44,12 @@
       "bonus": 3,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rock",
       "traits": [
@@ -55,10 +60,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -72,6 +79,7 @@
     "Sickle"
   ],
   "hp": 10,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/commoner",
   "immunities": [],
   "languages": [
@@ -84,9 +92,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 3,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [],
   "size": "medium",

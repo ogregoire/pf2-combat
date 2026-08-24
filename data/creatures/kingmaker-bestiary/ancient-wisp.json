@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -62,10 +63,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+10",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shock",
       "traits": [
@@ -77,6 +80,7 @@
   "foundryId": "etIP2Mdv3Xnr0wto",
   "gear": [],
   "hp": 130,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/ancient-wisp",
   "immunities": [],
   "languages": [
@@ -90,12 +94,25 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 23,
-    "will": 20
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

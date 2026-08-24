@@ -8,21 +8,22 @@
     "wis": 8
   },
   "ac": 46,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Improved Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedPush]</p>",
+      "description": "<p><p>The monster can use Push as a free action triggered by a hit with its initial attack.</p></p>",
       "frequency": null,
       "name": "Improved Push 10 feet",
       "requirements": null,
@@ -32,7 +33,7 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Check[reflex|dc:42]</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Buck]</p>",
+      "description": "<p>@Check[reflex|dc:42]</p>\n<p><hr />\n<p>Most monsters that serve as mounts can attempt to buck off unwanted or annoying riders, but most mounts will not use this reaction against a trusted creature unless the mounts are spooked or mistreated.</p>\n<p><strong>Trigger</strong> A creature Mounts or uses the Command an Animal action while riding the monster.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must succeed at a Reflex saving throw against the listed DC or fall off the creature and land Prone. If the save is a critical failure, the triggering creature also takes @Damage[1d6[bludgeoning]] damage in addition to the normal damage for the fall.</p></p>",
       "frequency": null,
       "name": "Buck",
       "requirements": null,
@@ -62,7 +63,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>60 feet. @Check[will|dc:39]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>60 feet. @Check[will|dc:39]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -77,7 +78,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
       "frequency": null,
       "name": "Regeneration 20 (Deactivated by Cold Iron or Lawful)",
       "requirements": null,
@@ -110,10 +111,12 @@
       "bonus": 38,
       "damage": [
         {
+          "category": null,
           "formula": "4d12 + 18",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -125,9 +128,13 @@
       "bonus": 38,
       "damage": [
         {
+          "category": null,
           "formula": "4d8 + 18",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "improved-grab"
       ],
       "kind": "melee",
       "name": "Talon",
@@ -141,9 +148,13 @@
       "bonus": 38,
       "damage": [
         {
+          "category": null,
           "formula": "4d8 + 18",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "improved-push"
       ],
       "kind": "melee",
       "name": "Wing",
@@ -156,6 +167,7 @@
   "foundryId": "L3q7yQ0jKqH2IWy7",
   "gear": [],
   "hp": 380,
+  "hpDetails": "regeneration 20 (deactivated by cold iron or lawful)",
   "id": "kingmaker-bestiary/nightmare-rook",
   "immunities": [],
   "languages": [
@@ -170,17 +182,34 @@
   "rarity": "unique",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "cold-iron"
+      ],
       "type": "physical",
       "value": 20
     }
   ],
   "saves": {
-    "fortitude": 34,
-    "reflex": 34,
-    "will": 38
+    "fortitude": {
+      "detail": null,
+      "value": 34
+    },
+    "reflex": {
+      "detail": null,
+      "value": 34
+    },
+    "will": {
+      "detail": null,
+      "value": 38
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "gargantuan",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -35,10 +36,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dogslicer",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Shortbow",
       "traits": [
@@ -72,6 +77,7 @@
     "Shortbow"
   ],
   "hp": 16,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/goblin-war-chanter",
   "immunities": [],
   "languages": [
@@ -85,12 +91,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 8,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

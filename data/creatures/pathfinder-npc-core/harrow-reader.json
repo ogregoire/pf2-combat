@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -49,10 +50,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -66,10 +69,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -85,6 +90,7 @@
     "Sickle"
   ],
   "hp": 8,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/harrow-reader",
   "immunities": [],
   "languages": [
@@ -97,9 +103,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 3,
-    "reflex": 6,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [],
   "size": "medium",

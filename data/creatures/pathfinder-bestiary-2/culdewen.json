@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -84,9 +85,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+7",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "hooked"
       ],
       "kind": "melee",
       "name": "Fish Hook",
@@ -98,9 +103,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+7",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "hooked"
       ],
       "kind": "ranged",
       "name": "Fish Hook",
@@ -112,10 +121,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Oar",
       "traits": [
@@ -129,6 +140,7 @@
     "Oar (Functions as Mace)"
   ],
   "hp": 105,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/culdewen",
   "immunities": [],
   "languages": [
@@ -143,12 +155,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 18,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -182,6 +207,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

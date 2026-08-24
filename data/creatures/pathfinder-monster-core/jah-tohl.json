@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -66,7 +67,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -93,10 +94,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -108,9 +111,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "brain-collector-venom"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -122,9 +129,14 @@
   "foundryId": "YUI465JYqM65iimj",
   "gear": [],
   "hp": 140,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/jah-tohl",
   "immunities": [
-    "confused"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "confused"
+    }
   ],
   "languages": [
     "aklo",
@@ -140,13 +152,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 13,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "darkvision",
-    "thoughtsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "thoughtsense"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -53,10 +54,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6-1",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -69,10 +72,12 @@
       "bonus": 3,
       "damage": [
         {
+          "category": null,
           "formula": "1d4-1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -85,6 +90,7 @@
     "Staff"
   ],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/kobold-dragon-mage-black",
   "immunities": [],
   "languages": [
@@ -98,17 +104,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "acid",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 4,
-    "reflex": 7,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -52,7 +53,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.LightBlindness]</p>",
+      "description": "<p><p>When first exposed to bright light, the monster is Blinded until the end of its next turn. After this exposure, light doesn't blind the monster again until after it spends 1 hour in darkness. However, as long as the monster is in an area of bright light, it's Dazzled.</p></p>",
       "frequency": null,
       "name": "Light Blindness",
       "requirements": null,
@@ -75,9 +76,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "lethargy-poison"
       ],
       "kind": "ranged",
       "name": "Hand Crossbow",
@@ -90,10 +95,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -112,9 +119,14 @@
     "Studded Leather Armor"
   ],
   "hp": 26,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/drow-rogue",
   "immunities": [
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "elven",
@@ -127,12 +139,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 10,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

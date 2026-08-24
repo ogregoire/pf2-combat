@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 35,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -92,10 +93,12 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "3d4+11",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Decaying Frost Fist",
       "traits": [
@@ -109,10 +112,12 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+11",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Decaying Frost Scythe",
       "traits": [
@@ -126,15 +131,18 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "2d8",
           "type": "void"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "cold"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Grave Pulse",
       "traits": [
         "cold",
@@ -150,12 +158,29 @@
     "Scythe"
   ],
   "hp": 300,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/deific-vessel-of-urgathoa",
   "immunities": [
-    "death-effects",
-    "disease",
-    "paralyzed",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "common",
@@ -168,17 +193,32 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "void",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 28,
-    "reflex": 24,
-    "will": 26
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 24
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
   },
   "senses": [
-    "lifesense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "lifesense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -279,6 +319,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 15
     }

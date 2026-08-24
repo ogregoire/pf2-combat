@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -51,10 +52,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -67,10 +70,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greataxe",
       "traits": [
@@ -86,6 +91,7 @@
     "Hood"
   ],
   "hp": 105,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/executioner",
   "immunities": [],
   "languages": [
@@ -98,9 +104,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 12,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,16 +8,17 @@
     "wis": 3
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Ferocity]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster is reduced to 0 HP.</p>\n<hr />\n<p><strong>Effect</strong> The monster avoids being knocked out and remains at 1 HP, but its Wounded value increases by 1. When it is Wounded 3, it can no longer use this ability</p></p>",
       "frequency": null,
       "name": "Ferocity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is reduced to 0 HP."
     },
     {
       "category": "offensive",
@@ -32,7 +33,7 @@
     {
       "category": "offensive",
       "cost": "3",
-      "description": "<p>Medium or smaller, foot, @Check[reflex|dc:21|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Medium or smaller, foot, @Check[reflex|dc:21|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
       "frequency": null,
       "name": "Trample",
       "requirements": null,
@@ -65,10 +66,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Foot",
       "traits": [
@@ -79,10 +82,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Horn",
       "traits": [
@@ -94,6 +99,7 @@
   "foundryId": "loYbh3SealeYmxai",
   "gear": [],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/woolly-rhinoceros",
   "immunities": [],
   "languages": [],
@@ -104,12 +110,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 11,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "scent"
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

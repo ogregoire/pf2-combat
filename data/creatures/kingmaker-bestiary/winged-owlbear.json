@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 41,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -37,10 +38,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -65,14 +66,17 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "1d12",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "3d12+17",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -84,9 +88,13 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+17",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Talon",
@@ -100,6 +108,7 @@
   "foundryId": "xqTVUqUs5UsGcSuH",
   "gear": [],
   "hp": 380,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/winged-owlbear",
   "immunities": [],
   "languages": [
@@ -112,13 +121,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 32,
-    "reflex": 30,
-    "will": 30
+    "fortitude": {
+      "detail": null,
+      "value": 32
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 30
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "gargantuan",
   "skills": {

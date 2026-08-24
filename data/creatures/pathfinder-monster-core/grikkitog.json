@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 36,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -68,7 +69,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 30 feet",
       "requirements": null,
@@ -81,9 +82,13 @@
       "bonus": 29,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+14",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "barbed-maw"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -96,6 +101,7 @@
   "foundryId": "702acAJ1OPRBjcni",
   "gear": [],
   "hp": 200,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/grikkitog",
   "immunities": [],
   "languages": [
@@ -108,18 +114,39 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
       "type": "all-damage",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 28,
-    "reflex": 23,
-    "will": 24
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
   ],
   "size": "huge",
   "skills": {

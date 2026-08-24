@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -65,11 +66,15 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+9",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [
+        "resonating-weaponry"
+      ],
+      "kind": "ranged",
       "name": "Composite Shortbow",
       "traits": [
         "deadly-d10",
@@ -83,10 +88,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -99,9 +106,13 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+10",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "resonating-weaponry"
       ],
       "kind": "melee",
       "name": "Rapier",
@@ -122,6 +133,7 @@
     "Rapier"
   ],
   "hp": 180,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/maestro",
   "immunities": [],
   "languages": [],
@@ -132,9 +144,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 18,
-    "reflex": 24,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 24
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [],
   "size": "medium",

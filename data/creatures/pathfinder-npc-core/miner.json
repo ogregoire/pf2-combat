@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -27,10 +28,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -43,10 +46,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Pick",
       "traits": [
@@ -64,6 +69,7 @@
     "Rope"
   ],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/miner",
   "immunities": [],
   "languages": [
@@ -76,9 +82,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 5,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [],
   "size": "medium",

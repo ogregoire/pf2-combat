@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -50,10 +51,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Club",
       "traits": []
@@ -62,10 +65,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Club",
       "traits": [
@@ -76,10 +81,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Javelin",
       "traits": [
@@ -89,6 +96,9 @@
     {
       "bonus": 10,
       "damage": [],
+      "effects": [
+        "tongue-grab"
+      ],
       "kind": "melee",
       "name": "Tongue",
       "traits": [
@@ -103,6 +113,7 @@
     "Studded Leather Armor"
   ],
   "hp": 38,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/boggard-warrior",
   "immunities": [],
   "languages": [
@@ -115,12 +126,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 5,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

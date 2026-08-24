@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,7 +23,7 @@
     {
       "category": "offensive",
       "cost": "3",
-      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:20|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Medium or smaller, hoof, @Check[reflex|dc:20|basic]</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of creatures of the listed size, Trampling each creature whose space it enters. The monster can attempt to Trample the same creature only once in a single use of Trample. The monster deals the damage of the listed Strike, but trampled creatures can attempt a basic Reflex save at the listed DC (no damage on a critical success, half damage on a success, double damage on a critical failure).</p></p>",
       "frequency": null,
       "name": "Trample",
       "requirements": null,
@@ -52,7 +53,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense 60 feet",
       "requirements": null,
@@ -65,10 +66,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hoof",
       "traits": []
@@ -77,9 +80,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "lancing-charge"
       ],
       "kind": "melee",
       "name": "Lance Arm",
@@ -92,12 +99,29 @@
   "foundryId": "CrAsEzLl3F2vejd3",
   "gear": [],
   "hp": 72,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/earthen-destrier",
   "immunities": [
-    "bleed",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "petran"
@@ -109,13 +133,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 9,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "large",
   "skills": {

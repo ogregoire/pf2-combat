@@ -8,16 +8,17 @@
     "wis": 5
   },
   "ac": 38,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>\n<p>If the grand inquisitor's attack hits and this reaction was triggered by a frightened creature, the triggering action is disrupted.</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>\n<p>If the grand inquisitor's attack hits and this reaction was triggered by a frightened creature, the triggering action is disrupted.</p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -112,10 +113,12 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+15",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -128,10 +131,12 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+15",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Scimitar",
       "traits": [
@@ -144,10 +149,12 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+15",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Starknife",
       "traits": [
@@ -162,10 +169,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+15",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Starknife",
       "traits": [
@@ -184,6 +193,7 @@
     "Starknife"
   ],
   "hp": 215,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/grand-inquisitor",
   "immunities": [],
   "languages": [],
@@ -194,9 +204,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 26,
-    "reflex": 20,
-    "will": 28
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
   },
   "senses": [],
   "size": "medium",

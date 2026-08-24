@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -83,10 +84,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Filcher's Fork",
       "traits": [
@@ -99,10 +102,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Filcher's Fork",
       "traits": [
@@ -116,10 +121,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -133,14 +140,17 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hot Frying Pan",
       "traits": [
@@ -156,6 +166,7 @@
     "Herbs and Spices"
   ],
   "hp": 36,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/halfling-head-chef",
   "immunities": [],
   "languages": [
@@ -169,12 +180,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 7,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "scent"
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "small",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -49,10 +50,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -66,10 +69,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -82,11 +87,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "bludgeoning"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Sling",
       "traits": [
         "propulsive",
@@ -103,6 +110,7 @@
     "Sling Bullets"
   ],
   "hp": 55,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/pack-leader",
   "immunities": [],
   "languages": [
@@ -116,9 +124,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 9,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [],
   "size": "medium",

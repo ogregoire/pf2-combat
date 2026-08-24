@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -22,7 +23,7 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Check[reflex|dc:21]</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Buck]</p>",
+      "description": "<p>@Check[reflex|dc:21]</p>\n<p><hr />\n<p>Most monsters that serve as mounts can attempt to buck off unwanted or annoying riders, but most mounts will not use this reaction against a trusted creature unless the mounts are spooked or mistreated.</p>\n<p><strong>Trigger</strong> A creature Mounts or uses the Command an Animal action while riding the monster.</p>\n<hr />\n<p><strong>Effect</strong> The triggering creature must succeed at a Reflex saving throw against the listed DC or fall off the creature and land Prone. If the save is a critical failure, the triggering creature also takes @Damage[1d6[bludgeoning]] damage in addition to the normal damage for the fall.</p></p>",
       "frequency": null,
       "name": "Buck",
       "requirements": null,
@@ -32,10 +33,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -68,13 +69,18 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+6",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "cold"
         }
+      ],
+      "effects": [
+        "knockdown"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -87,9 +93,14 @@
   "foundryId": "diU0V2M3LiMDMsS0",
   "gear": [],
   "hp": 70,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/witchwarg",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [
     "common",
@@ -102,13 +113,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 15,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -138,6 +166,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     }

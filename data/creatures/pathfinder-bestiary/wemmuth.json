@@ -8,14 +8,15 @@
     "wis": 4
   },
   "ac": 37,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedGrab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with as a free action. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead spend an action to use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Improved Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Improved Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -32,7 +33,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Damage[(2d12+10)[bludgeoning]] damage, @Check[fortitude|dc:37|basic] save</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "description": "<p>@Damage[(2d12+10)[bludgeoning]] damage, @Check[fortitude|dc:37|basic] save</p>\n<hr />\n<p><p>The monster deals the listed amount of damage to any number of creatures Grabbed or Restrained by it. Each of those creatures can attempt a basic Fortitude save with the listed DC.</p></p>",
       "frequency": null,
       "name": "Constrict",
       "requirements": null,
@@ -42,7 +43,7 @@
     {
       "category": "offensive",
       "cost": "2",
-      "description": "<p>@Check[reflex|dc:37|traits:damaging-effect], @Damage[4d8[bludgeoning]] damage, Escape DC 35, Rupture 36</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Engulf]</p>",
+      "description": "<p>@Check[reflex|dc:37|traits:damaging-effect], @Damage[4d8[bludgeoning]] damage, Escape DC 35, Rupture 36</p>\n<hr />\n<p><p>The monster Strides up to double its Speed and can move through the spaces of any creatures in its path. Any creature of the monster's size or smaller whose space the monster moves through can attempt a Reflex save with the listed DC to avoid being engulfed. A creature unable to act automatically critically fails this save. If a creature succeeds at its save, it can choose to be either pushed aside (out of the monster's path) or pushed in front of the monster to the end of the monster's movement. The monster can attempt to Engulf the same creature only once in a single use of Engulf. The monster can contain as many creatures as can fit in its space.</p>\n<p>A creature that fails its save is pulled into the monster's body. It is Grabbed, is Slowed 1, and has to hold its breath or start suffocating. The creature takes the listed amount of damage when first engulfed and at the end of each of its turns while it's engulfed. An engulfed creature can get free by Escaping against the listed escape DC. An engulfed creature can attack the monster engulfing it, but only with unarmed attacks or with weapons of light Bulk or less. The engulfing creature is Off-Guard against the attack. If the monster takes piercing or slashing damage equaling or exceeding the listed Rupture value from a single attack or spell, the engulfed creature cuts itself free.\n<p>Effect: Engulf and Swallow Whole</p>\n<p>A creature that gets free by either method can immediately breathe and exits the swallowing monster's space.</p>\n<p>If the monster dies, all creatures it has engulfed are automatically released as the monster's form loses cohesion.</p></p>",
       "frequency": null,
       "name": "Engulf",
       "requirements": null,
@@ -62,7 +63,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 60 feet",
       "requirements": null,
@@ -75,10 +76,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "4d10+10",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Boulder",
       "traits": [
@@ -90,9 +93,13 @@
       "bonus": 29,
       "damage": [
         {
+          "category": null,
           "formula": "4d12+10",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "improved-grab"
       ],
       "kind": "melee",
       "name": "Pummel",
@@ -106,6 +113,7 @@
   "foundryId": "NTXm3ee7WZJ92Sww",
   "gear": [],
   "hp": 335,
+  "hpDetails": "blood leech",
   "id": "pathfinder-bestiary/wemmuth",
   "immunities": [],
   "languages": [
@@ -119,13 +127,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 27,
-    "reflex": 27,
-    "will": 24
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -160,10 +185,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 20
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 15
     }

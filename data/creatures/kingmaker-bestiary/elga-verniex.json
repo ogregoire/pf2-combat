@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -37,9 +38,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "owlbear-claw"
       ],
       "kind": "melee",
       "name": "Staff",
@@ -57,6 +62,7 @@
     "Staff"
   ],
   "hp": 90,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/elga-verniex",
   "immunities": [],
   "languages": [
@@ -69,9 +75,18 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 14,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [],
   "size": "medium",

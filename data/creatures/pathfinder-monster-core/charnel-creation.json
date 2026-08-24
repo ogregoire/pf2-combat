@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -55,10 +56,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -71,9 +74,14 @@
   "foundryId": "GUjtk2h6Yj0NKifF",
   "gear": [],
   "hp": 140,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/charnel-creation",
   "immunities": [
-    "electricity"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    }
   ],
   "languages": [],
   "level": 8,
@@ -83,21 +91,42 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
       "type": "physical",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [
+        "fire"
+      ],
       "type": "spells",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 18,
-    "reflex": 14,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 8,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -38,14 +39,17 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Pseudopod",
       "traits": [
@@ -56,14 +60,39 @@
   "foundryId": "9InGpxq5xbbHaL9f",
   "gear": [],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/sewer-ooze",
   "immunities": [
-    "acid",
-    "bleed",
-    "critical-hits",
-    "precision",
-    "unconscious",
-    "visual"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
   ],
   "languages": [],
   "level": 1,
@@ -73,12 +102,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 1,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 1
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "motion-sense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -60,7 +61,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -86,14 +87,17 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d8",
           "type": "cold"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -108,11 +112,24 @@
   "foundryId": "M2BkGD9YwEmCvD9D",
   "gear": [],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/invidiak",
   "immunities": [
-    "disease",
-    "poison",
-    "precision"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    }
   ],
   "languages": [
     "chthonian",
@@ -125,17 +142,38 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [
+        "non-magical"
+      ],
+      "exceptions": [
+        "force",
+        "ghost-touch",
+        "vitality"
+      ],
       "type": "all-damage",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 15,
-    "reflex": 16,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -209,10 +247,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 5
     }

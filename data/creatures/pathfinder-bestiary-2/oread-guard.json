@@ -8,31 +8,32 @@
     "wis": 2
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
       "frequency": null,
       "name": "Shield Block",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
     },
     {
       "category": "offensive",
       "cost": "2",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.PowerAttack]</p>",
+      "description": "<p><p><strong>Frequency</strong> once per round</p>\n<hr />\n<p><strong>Effect</strong> The monster makes a melee Strike. This counts as two attacks when calculating the monster's multiple attack penalty. If this Strike hits, the monster deals an extra die of weapon damage.</p></p>",
       "frequency": null,
       "name": "Power Attack",
       "requirements": null,
@@ -45,10 +46,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Bastard Sword",
       "traits": [
@@ -59,10 +62,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Light Hammer",
       "traits": [
@@ -79,6 +84,7 @@
     "Steel Shield"
   ],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/oread-guard",
   "immunities": [],
   "languages": [
@@ -92,9 +98,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 6,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [],
   "size": "medium",

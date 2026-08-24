@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -35,11 +36,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Composite Shortbow",
       "traits": [
         "deadly-d10",
@@ -52,10 +55,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -68,10 +73,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greataxe",
       "traits": [
@@ -87,6 +94,7 @@
     "Scale Mail"
   ],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/guide",
   "immunities": [],
   "languages": [
@@ -99,9 +107,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 8,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

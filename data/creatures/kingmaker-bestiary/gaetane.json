@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 36,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,7 +26,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<ul>\n<li><strong>Human</strong>\n<ul>\n<li><strong>Melee</strong> fist [[/r 1d20+24 #Fist]]{+24} (agile, nonlethal), <strong>Damage</strong> @Damage[(1d4+10)[bludgeoning]] damage</li>\n</ul>\n</li>\n<li><strong>Rat</strong>\n<ul>\n<li><strong>Size</strong> Small</li>\n<li><strong>Speed</strong> 30 feet, climb 10 feet</li>\n</ul>\n</li>\n</ul>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<ul>\n<li><strong>Human</strong>\n<ul>\n<li><strong>Melee</strong> fist [[/r 1d20+24 #Fist]]{+24} (agile, nonlethal), <strong>Damage</strong> @Damage[(1d4+10)[bludgeoning]] damage</li>\n</ul>\n</li>\n<li><strong>Rat</strong>\n<ul>\n<li><strong>Size</strong> Small</li>\n<li><strong>Speed</strong> 30 feet, climb 10 feet</li>\n</ul>\n</li>\n</ul>\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -111,10 +112,12 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -127,9 +130,13 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+10",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "curse-of-the-wererat"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -142,10 +149,12 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Oathbow",
       "traits": [
@@ -163,6 +172,7 @@
     "Oathbow"
   ],
   "hp": 315,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/gaetane",
   "immunities": [],
   "languages": [
@@ -175,13 +185,30 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 25,
-    "reflex": 28,
-    "will": 25
+    "fortitude": {
+      "detail": null,
+      "value": 25
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 25
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -212,6 +239,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "silver",
       "value": 15
     }

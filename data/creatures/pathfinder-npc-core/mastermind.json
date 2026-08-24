@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -65,10 +66,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -82,11 +85,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
         "range-increment-60",
@@ -97,10 +102,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -119,6 +126,7 @@
     "Shortsword"
   ],
   "hp": 55,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/mastermind",
   "immunities": [],
   "languages": [
@@ -131,9 +139,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 11,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [],
   "size": "medium",

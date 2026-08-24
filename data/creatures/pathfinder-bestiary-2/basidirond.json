@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -51,9 +52,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "basidirond-spores"
       ],
       "kind": "melee",
       "name": "Frond",
@@ -63,9 +68,14 @@
   "foundryId": "bAaVfrdNLfFh7iHv",
   "gear": [],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/basidirond",
   "immunities": [
-    "cold"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    }
   ],
   "languages": [],
   "level": 5,
@@ -75,13 +85,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 11,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "low-light-vision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "tremorsense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -107,6 +134,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }

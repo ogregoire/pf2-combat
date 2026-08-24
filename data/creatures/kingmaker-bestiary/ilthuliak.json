@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 47,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -71,7 +72,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>90 feet. @Check[will|dc:41]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>90 feet. @Check[will|dc:41]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -89,10 +90,12 @@
       "bonus": 39,
       "damage": [
         {
+          "category": null,
           "formula": "4d8+18",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -106,10 +109,12 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+16",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Horns",
       "traits": [
@@ -121,18 +126,22 @@
       "bonus": 39,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "acid"
         },
         {
+          "category": "persistent",
           "formula": "2d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "4d12+18",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -146,10 +155,12 @@
       "bonus": 37,
       "damage": [
         {
+          "category": null,
           "formula": "4d6+16",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -161,11 +172,24 @@
   "foundryId": "n82GZhM6joceE91v",
   "gear": [],
   "hp": 450,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/ilthuliak",
   "immunities": [
-    "acid",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "aklo",
@@ -183,13 +207,30 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 38,
-    "reflex": 35,
-    "will": 35
+    "fortitude": {
+      "detail": null,
+      "value": 38
+    },
+    "reflex": {
+      "detail": null,
+      "value": 35
+    },
+    "will": {
+      "detail": null,
+      "value": 35
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "gargantuan",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "defensive",
@@ -51,7 +52,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -64,10 +65,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Eye Ray",
       "traits": [
@@ -82,9 +85,14 @@
   "foundryId": "wycu7XN9VgiSpSfB",
   "gear": [],
   "hp": 20,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/zoaem",
   "immunities": [
-    "fear-effects"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
   ],
   "languages": [
     "diabolic",
@@ -99,17 +107,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 3
     }
   ],
   "saves": {
-    "fortitude": 6,
-    "reflex": 10,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -164,6 +187,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "unholy",
       "value": 3
     }

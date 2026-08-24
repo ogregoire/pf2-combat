@@ -8,17 +8,20 @@
     "wis": 4
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [],
   "attacks": [
     {
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Crossbow",
       "traits": [
         "range-increment-120",
@@ -29,10 +32,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -46,10 +51,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+1",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Longsword",
       "traits": [
@@ -66,6 +73,7 @@
     "Religious Text of Iomedae"
   ],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/acolyte-of-iomedae",
   "immunities": [],
   "languages": [
@@ -78,9 +86,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 2,
-    "reflex": 5,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [],
   "size": "medium",

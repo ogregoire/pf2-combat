@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -35,10 +36,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -52,10 +55,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Dagger",
       "traits": [
@@ -73,6 +78,7 @@
     "Sack"
   ],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/azarketi-crab-catcher",
   "immunities": [],
   "languages": [
@@ -86,9 +92,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 9,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [],
   "size": "medium",

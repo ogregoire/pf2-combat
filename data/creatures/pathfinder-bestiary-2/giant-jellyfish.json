@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -37,9 +38,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "jellyfish-venom"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -53,9 +58,14 @@
   "foundryId": "SKooDsYDMEloMG16",
   "gear": [],
   "hp": 165,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/giant-jellyfish",
   "immunities": [
-    "precision"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    }
   ],
   "languages": [],
   "level": 7,
@@ -65,21 +75,38 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 17,
-    "reflex": 15,
-    "will": 1
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 1
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -111,10 +138,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 5
     }

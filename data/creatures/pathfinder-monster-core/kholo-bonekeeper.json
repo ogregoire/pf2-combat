@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+3",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Falchion",
       "traits": [
@@ -50,10 +53,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -69,6 +74,7 @@
     "Religious Symbol (Wooden)"
   ],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/kholo-bonekeeper",
   "immunities": [],
   "languages": [
@@ -83,12 +89,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 6,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

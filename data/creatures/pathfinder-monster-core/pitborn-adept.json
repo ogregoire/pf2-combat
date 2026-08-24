@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -28,10 +29,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -46,6 +49,7 @@
     "Staff"
   ],
   "hp": 29,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/pitborn-adept",
   "immunities": [],
   "languages": [
@@ -59,12 +63,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 7,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

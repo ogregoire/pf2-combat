@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -71,9 +72,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "void-death"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -86,11 +91,24 @@
   "foundryId": "nRsH7unLIRWq0ZHC",
   "gear": [],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/akata",
   "immunities": [
-    "auditory",
-    "disease",
-    "inhaled"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "auditory"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "inhaled"
+    }
   ],
   "languages": [],
   "level": 1,
@@ -100,22 +118,43 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 9,
-    "reflex": 5,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -145,6 +184,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "salt-water",
       "value": 5
     }

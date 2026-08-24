@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 32,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -70,7 +71,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>60 feet.</p>\n<p>This aura functions as a @Check[will|dc:32] frightful presence aura, but a creature doesn't attempt its save until it sees the quai dau to.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>60 feet.</p>\n<p>This aura functions as a @Check[will|dc:32] frightful presence aura, but a creature doesn't attempt its save until it sees the quai dau to.</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Sight",
       "requirements": null,
@@ -99,10 +100,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+14",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Foot",
       "traits": [
@@ -114,10 +117,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+14",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -129,10 +134,12 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+14",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -143,10 +150,19 @@
   "foundryId": "Ao8hNYvOeo2HbJ5p",
   "gear": [],
   "hp": 300,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/quai-dau-to",
   "immunities": [
-    "blinded",
-    "dazzled"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "blinded"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "dazzled"
+    }
   ],
   "languages": [],
   "level": 13,
@@ -156,13 +172,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 26,
-    "reflex": 19,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 120,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -192,6 +225,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "sonic",
       "value": 15
     }

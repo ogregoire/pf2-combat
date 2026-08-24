@@ -8,14 +8,15 @@
     "wis": 1
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Push in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to Shove the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty. If Push lists a distance, change the distance the creature is pushed on a success to that distance.</p></p>",
       "frequency": null,
       "name": "Push",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Push in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -49,9 +50,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+6",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "push"
       ],
       "kind": "melee",
       "name": "Gust",
@@ -64,10 +69,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d12",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Lightning Bolt",
       "traits": [
@@ -79,13 +86,34 @@
   "foundryId": "mZxVXRI1Zh3HUXxn",
   "gear": [],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/living-thunderclap",
   "immunities": [
-    "bleed",
-    "paralyzed",
-    "poison",
-    "sleep",
-    "sonic"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sonic"
+    }
   ],
   "languages": [
     "sussuran"
@@ -97,12 +125,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 12,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

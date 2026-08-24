@@ -8,11 +8,12 @@
     "wis": 6
   },
   "ac": 42,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>Fangs only.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p>Fangs only.</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity (Fangs Only)",
       "requirements": null,
@@ -68,10 +69,12 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Frenzied Fangs",
       "traits": [
@@ -82,10 +85,12 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whiplashing Tail",
       "traits": [
@@ -98,13 +103,34 @@
   "foundryId": "SfFMqKTUQ1Dwu5lT",
   "gear": [],
   "hp": 280,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/whimwyrm",
   "immunities": [
-    "confused",
-    "controlled",
-    "paralyzed",
-    "petrified",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "confused"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "petrified"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "common",
@@ -118,18 +144,37 @@
   "rarity": "rare",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 29,
-    "reflex": 34,
-    "will": 29
+    "fortitude": {
+      "detail": null,
+      "value": 29
+    },
+    "reflex": {
+      "detail": null,
+      "value": 34
+    },
+    "will": {
+      "detail": null,
+      "value": 29
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -216,6 +261,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

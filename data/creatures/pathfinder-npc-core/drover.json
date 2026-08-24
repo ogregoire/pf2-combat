@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,10 +46,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -61,11 +64,13 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+1",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Sling",
       "traits": [
         "propulsive",
@@ -77,10 +82,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whip",
       "traits": [
@@ -101,6 +108,7 @@
     "Whip"
   ],
   "hp": 18,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/drover",
   "immunities": [],
   "languages": [
@@ -113,9 +121,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 6,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [],
   "size": "medium",

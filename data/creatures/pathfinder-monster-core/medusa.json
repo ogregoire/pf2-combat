@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 25,
+  "acDetails": "all-around vision",
   "actions": [
     {
       "category": "defensive",
@@ -37,7 +38,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AllAroundVision]</p>",
+      "description": "<p><p>This monster can see in all directions simultaneously and therefore can't be flanked.</p></p>",
       "frequency": null,
       "name": "All-Around Vision",
       "requirements": null,
@@ -76,9 +77,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpent-venom"
       ],
       "kind": "ranged",
       "name": "Composite Shortbow",
@@ -94,9 +99,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpent-venom"
       ],
       "kind": "melee",
       "name": "Shortsword",
@@ -110,9 +119,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpent-venom"
       ],
       "kind": "melee",
       "name": "Snake Fangs",
@@ -129,6 +142,7 @@
     "Shortsword"
   ],
   "hp": 105,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/medusa",
   "immunities": [],
   "languages": [
@@ -141,12 +155,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 16,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

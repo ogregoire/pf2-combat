@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -38,14 +39,17 @@
       "bonus": 10,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d4",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "fire"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -57,13 +61,34 @@
   "foundryId": "xN5J9S485LxFZMkL",
   "gear": [],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/cinder-rat",
   "immunities": [
-    "bleed",
-    "fire",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fire"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [],
   "level": 3,
@@ -73,12 +98,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 12,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -105,10 +143,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "water",
       "value": 5
     }

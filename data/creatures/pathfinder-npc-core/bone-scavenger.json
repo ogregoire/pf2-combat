@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -35,10 +36,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -68,10 +73,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -84,6 +91,7 @@
     "Dagger"
   ],
   "hp": 16,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/bone-scavenger",
   "immunities": [],
   "languages": [
@@ -97,12 +105,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 3,
-    "reflex": 6,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 3
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

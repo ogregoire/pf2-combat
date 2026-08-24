@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -47,10 +48,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -62,10 +65,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Falchion",
       "traits": [
@@ -83,6 +88,7 @@
     "Religious Symbol of Lamashtu (Gold)"
   ],
   "hp": 220,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/darivan",
   "immunities": [],
   "languages": [
@@ -99,12 +105,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 18,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -307,6 +326,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 10
     }

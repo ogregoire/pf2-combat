@@ -8,11 +8,12 @@
     "wis": 5
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>The mummy pharaoh can use Reactive Strike when a creature within its reach uses a concentrate action, in addition to its normal trigger. It can disrupt triggering concentrate actions, and it disrupts actions on any hit, not just a critical hit.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p>The mummy pharaoh can use Reactive Strike when a creature within its reach uses a concentrate action, in addition to its normal trigger. It can disrupt triggering concentrate actions, and it disrupts actions on any hit, not just a critical hit.</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike (Special)",
       "requirements": null,
@@ -101,14 +102,17 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+11",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "void"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -120,14 +124,17 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "void"
         },
         {
+          "category": null,
           "formula": "2d8+11",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Longspear",
       "traits": [
@@ -141,14 +148,39 @@
     "Longspear"
   ],
   "hp": 175,
+  "hpDetails": "sacred wrappings, void healing",
   "id": "pathfinder-monster-core/mummy-pharaoh",
   "immunities": [
-    "bleed",
-    "death-effects",
-    "disease",
-    "paralyzed",
-    "poison",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "death-effects"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "necril"
@@ -160,12 +192,25 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 19,
-    "reflex": 15,
-    "will": 20
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -195,10 +240,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "water",
       "value": 10
     }

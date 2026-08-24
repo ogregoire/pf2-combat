@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -85,7 +86,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Wavesense]</p>",
+      "description": "<p><p>This sense allows a monster to feel vibrations caused by movement through a liquid. It's an imprecise sense with a limited range (listed in the ability). Wavesense functions only if monster and the subject are in the same body of liquid, and only if the subject is moving through the liquid.</p></p>",
       "frequency": null,
       "name": "Wavesense (Imprecise) 30 feet",
       "requirements": null,
@@ -98,10 +99,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -113,14 +116,17 @@
       "bonus": 16,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d4",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -131,10 +137,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Trident",
       "traits": [
@@ -145,10 +153,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Trident",
       "traits": [
@@ -162,6 +172,7 @@
     "Trident"
   ],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/sedacthy-speaker",
   "immunities": [],
   "languages": [
@@ -174,13 +185,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 13,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision",
-    "wavesense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "wavesense"
+    }
   ],
   "size": "medium",
   "skills": {

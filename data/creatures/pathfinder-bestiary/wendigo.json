@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 40,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -46,10 +47,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -88,7 +89,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Regeneration]</p>",
+      "description": "<p><p>This monster regains the listed number of Hit Points each round at the beginning of its turn. Its Dying condition never increases beyond Dying 3 as long as its regeneration is active. However, if it takes damage of a type listed in the regeneration entry, its regeneration deactivates until the end of its next turn. Deactivate the regeneration before applying any damage of a listed type, since that damage might kill the monster by bringing it to Dying 4.</p></p>",
       "frequency": null,
       "name": "Regeneration 30 (Deactivated by Cold Iron)",
       "requirements": null,
@@ -98,7 +99,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 1 mile",
       "requirements": null,
@@ -128,13 +129,18 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "3d8+12",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -150,14 +156,17 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "3d10+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -171,10 +180,19 @@
   "foundryId": "RDFvGocLW0OuHmlC",
   "gear": [],
   "hp": 315,
+  "hpDetails": "regeneration 30 (deactivated by cold iron)",
   "id": "pathfinder-bestiary/wendigo",
   "immunities": [
-    "cold",
-    "fear-effects"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
   ],
   "languages": [
     "aklo",
@@ -188,13 +206,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 32,
-    "reflex": 30,
-    "will": 26
+    "fortitude": {
+      "detail": null,
+      "value": 32
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
   },
   "senses": [
-    "darkvision",
-    "infrared-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "infrared-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -250,10 +285,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 10
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 15
     }

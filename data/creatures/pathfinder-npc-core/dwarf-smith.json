@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -47,10 +48,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Clan Dagger",
       "traits": [
@@ -63,10 +66,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -79,10 +84,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Hammer",
       "traits": [
@@ -93,10 +100,12 @@
       "bonus": 4,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Light Hammer",
       "traits": [
@@ -113,6 +122,7 @@
     "Light Hammer"
   ],
   "hp": 12,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/dwarf-smith",
   "immunities": [],
   "languages": [
@@ -126,17 +136,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 1
     }
   ],
   "saves": {
-    "fortitude": 6,
-    "reflex": 3,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 3
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

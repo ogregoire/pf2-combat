@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -48,6 +51,9 @@
     {
       "bonus": 11,
       "damage": [],
+      "effects": [
+        "sticky-filament"
+      ],
       "kind": "ranged",
       "name": "Filament",
       "traits": [
@@ -58,6 +64,7 @@
   "foundryId": "OERK0GGnaEOthcdV",
   "gear": [],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/cave-fisher",
   "immunities": [],
   "languages": [],
@@ -68,12 +75,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 9,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

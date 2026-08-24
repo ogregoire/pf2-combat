@@ -8,41 +8,42 @@
     "wis": 5
   },
   "ac": 39,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
       "frequency": null,
       "name": "Catch Rock",
-      "requirements": null,
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -75,9 +76,13 @@
       "bonus": 31,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+17",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Fist",
@@ -91,9 +96,13 @@
       "bonus": 29,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+17",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "rock"
       ],
       "kind": "ranged",
       "name": "Rock",
@@ -106,10 +115,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+17",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spiked Greatclub",
       "traits": [
@@ -128,6 +139,7 @@
     "Sack"
   ],
   "hp": 295,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/kob-moleg",
   "immunities": [],
   "languages": [
@@ -141,12 +153,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 30,
-    "reflex": 27,
-    "will": 27
+    "fortitude": {
+      "detail": null,
+      "value": 30
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 27
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {

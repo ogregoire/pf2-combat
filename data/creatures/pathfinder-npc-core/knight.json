@@ -8,21 +8,22 @@
     "wis": 2
   },
   "ac": 25,
+  "acDetails": "(27 with shield raised)",
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>The knight can Shield Block for an adjacent ally, preventing that ally from taking damage instead of themself.</p><hr /><p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "description": "<p>The knight can Shield Block for an adjacent ally, preventing that ally from taking damage instead of themself.</p><hr /><p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
       "frequency": null,
       "name": "Shield Block",
       "requirements": null,
@@ -80,10 +81,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Bastard Sword",
       "traits": [
@@ -95,10 +98,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Gauntlet",
       "traits": [
@@ -110,10 +115,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": []
@@ -122,10 +129,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Spear",
       "traits": [
@@ -141,6 +150,7 @@
     "Steel Shield"
   ],
   "hp": 110,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/knight",
   "immunities": [],
   "languages": [
@@ -153,9 +163,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 14,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 42,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -83,7 +84,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>90 feet. @Check[will|dc:37]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "description": "<p>90 feet. @Check[will|dc:37]</p>\n<hr />\n<p><p>A creature that first enters the area must attempt a Will save.</p>\n<p>Regardless of the result of the saving throw, the creature is temporarily immune to this monster's Frightful Presence for 1 minute.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature is unaffected by the presence.</p>\n<p><strong>Success</strong> The creature is Frightened 1.</p>\n<p><strong>Failure</strong> The creature is Frightened 2.</p>\n<p><strong>Critical Failure</strong> The creature is Frightened 4.</p></p>",
       "frequency": null,
       "name": "Frightful Presence",
       "requirements": null,
@@ -114,7 +115,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 60 feet",
       "requirements": null,
@@ -127,10 +128,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+17",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -144,14 +147,17 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+17",
           "type": "slashing"
         },
         {
+          "category": null,
           "formula": "4d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -164,10 +170,12 @@
       "bonus": 31,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+17",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -179,10 +187,19 @@
   "foundryId": "DWEk6i42qAhckgqF",
   "gear": [],
   "hp": 275,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/crystal-dragon-ancient-spellcaster",
   "immunities": [
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -198,14 +215,35 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 30,
-    "reflex": 27,
-    "will": 29
+    "fortitude": {
+      "detail": null,
+      "value": 30
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 29
+    }
   },
   "senses": [
-    "darkvision",
-    "scent",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "gargantuan",
   "skills": {
@@ -276,6 +314,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "sonic",
       "value": 15
     }

@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -50,14 +51,17 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -70,14 +74,17 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -90,14 +97,17 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "1d6",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -114,6 +124,7 @@
     "Dagger"
   ],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/sibyl",
   "immunities": [],
   "languages": [
@@ -126,12 +137,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 8,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "lifesense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "lifesense"
+    }
   ],
   "size": "medium",
   "skills": {

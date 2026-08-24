@@ -8,11 +8,12 @@
     "wis": 3
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<ul>\n<li><strong>Human</strong>\n<ul>\n<li><strong>Size</strong> Medium</li>\n<li><strong>Melee</strong> fist +13 <strong>Damage</strong> 1d4+7</li>\n</ul>\n</li>\n<li><strong>Grizzly Bear</strong>\n<ul>\n<li><strong>Speed</strong> 35 feet</li>\n</ul>\n</li>\n</ul>\n<hr />\n<p>The werecreature changes into its humanoid, hybrid, or animal shape. Each shape has a specific, persistent appearance. A true werecreature's natural form is its hybrid shape.</p>\n<p>In humanoid shape, the werecreature uses its original humanoid size, loses its jaws and claws Strikes, and gains a melee fist Strike that deals bludgeoning damage equal to the slashing damage dealt by its claw.</p>\n<p>In animal shape, its Speed and size change to that of the animal, it gains any special Strike effects of the animal that it didn't already have (such as Grab), and it loses its weapon Strikes.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<ul>\n<li><strong>Human</strong>\n<ul>\n<li><strong>Size</strong> Medium</li>\n<li><strong>Melee</strong> fist +13 <strong>Damage</strong> 1d4+7</li>\n</ul>\n</li>\n<li><strong>Grizzly Bear</strong>\n<ul>\n<li><strong>Speed</strong> 35 feet</li>\n</ul>\n</li>\n</ul>\n<hr />\n<p>The werecreature changes into its humanoid, hybrid, or animal shape. Each shape has a specific, persistent appearance. A true werecreature's natural form is its hybrid shape.</p>\n<p>In humanoid shape, the werecreature uses its original humanoid size, loses its jaws and claws Strikes, and gains a melee fist Strike that deals bludgeoning damage equal to the slashing damage dealt by its claw.</p>\n<p>In animal shape, its Speed and size change to that of the animal, it gains any special Strike effects of the animal that it didn't already have (such as Grab), and it loses its weapon Strikes.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -26,10 +27,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Grab]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained</p><hr /><p><strong>Effect</strong> If used after a Strike, the monster attempts to [[/act grapple]] the creature using the body part it attacked with. This attempt neither applies nor counts toward the creature's multiple attack penalty.</p><p>The monster can instead use Grab and choose one creature it's grabbing or restraining with an appendage that has Grab to automatically extend that condition to the end of the monster's next turn.</p></p>",
       "frequency": null,
       "name": "Grab",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Grab in its damage entry, or the monster has a creature Grabbed or Restrained",
       "traits": [],
       "trigger": null
     },
@@ -97,9 +98,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+7",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -113,10 +118,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greataxe",
       "traits": [
@@ -128,10 +135,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hatchet",
       "traits": [
@@ -143,10 +152,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Hatchet",
       "traits": [
@@ -159,9 +170,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+7",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "werecreature-curse-of-the-werecreature"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -178,6 +193,7 @@
     "Hatchet"
   ],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/werebear",
   "immunities": [],
   "languages": [
@@ -190,13 +206,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 10,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {
@@ -227,6 +260,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "silver",
       "value": 5
     }

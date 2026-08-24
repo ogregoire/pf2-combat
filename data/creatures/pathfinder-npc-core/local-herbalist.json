@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 13,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -63,10 +64,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -79,15 +82,18 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "poison"
         },
         {
+          "category": "persistent",
           "formula": "1d4",
           "type": "poison"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Fungal Spores",
       "traits": [
         "fungus",
@@ -99,10 +105,12 @@
       "bonus": 5,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -117,6 +125,7 @@
     "Staff"
   ],
   "hp": 24,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/local-herbalist",
   "immunities": [],
   "languages": [
@@ -129,9 +138,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 5,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [],
   "size": "medium",

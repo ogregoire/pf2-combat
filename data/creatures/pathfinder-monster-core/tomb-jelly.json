@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 12,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -62,13 +63,18 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "tomb-curse"
       ],
       "kind": "melee",
       "name": "Pseudopod",
@@ -80,16 +86,49 @@
   "foundryId": "C1MfXltrIJRnFaZg",
   "gear": [],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/tomb-jelly",
   "immunities": [
-    "acid",
-    "bleed",
-    "critical-hits",
-    "precision",
-    "slashing",
-    "unconscious",
-    "visual",
-    "void"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "void"
+    }
   ],
   "languages": [],
   "level": 5,
@@ -99,12 +138,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 15,
-    "reflex": 4,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 4
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "motion-sense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
   ],
   "size": "large",
   "skills": {

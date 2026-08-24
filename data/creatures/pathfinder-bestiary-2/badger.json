@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -25,10 +26,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -40,10 +43,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -54,6 +59,7 @@
   "foundryId": "PKAs8bMBMpnegmwq",
   "gear": [],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/badger",
   "immunities": [],
   "languages": [],
@@ -64,13 +70,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 5,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 5
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "small",
   "skills": {

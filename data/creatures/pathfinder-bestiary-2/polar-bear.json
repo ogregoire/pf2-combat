@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,9 +46,13 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "grab"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -60,10 +65,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -74,6 +81,7 @@
   "foundryId": "UqFObUjgFAlWrriA",
   "gear": [],
   "hp": 73,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/polar-bear",
   "immunities": [],
   "languages": [],
@@ -84,13 +92,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 10,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

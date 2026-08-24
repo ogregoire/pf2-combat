@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -40,10 +41,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -55,10 +58,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Talon",
       "traits": [
@@ -70,6 +75,7 @@
   "foundryId": "nlnPjvP35lPLUYQp",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/alce",
   "immunities": [],
   "languages": [],
@@ -80,13 +86,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 13,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

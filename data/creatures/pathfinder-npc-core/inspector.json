@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -60,14 +61,17 @@
       "bonus": 12,
       "damage": [
         {
+          "category": "precision",
           "formula": "1",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -81,14 +85,17 @@
       "bonus": 12,
       "damage": [
         {
+          "category": "precision",
           "formula": "1",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -104,6 +111,7 @@
     "Shortsword"
   ],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/inspector",
   "immunities": [],
   "languages": [
@@ -116,9 +124,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 10,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [],
   "size": "medium",

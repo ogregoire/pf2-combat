@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -44,10 +45,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+11",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -61,15 +64,18 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "2d4+8",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Flintlock Pistol",
       "traits": [
         "concussive",
@@ -83,14 +89,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d4+11",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Frost Dagger",
       "traits": [
@@ -104,14 +113,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d4+11",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Frost Dagger",
       "traits": [
@@ -132,6 +144,7 @@
     "Writing Set"
   ],
   "hp": 235,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/globetrotting-scholar",
   "immunities": [],
   "languages": [
@@ -144,9 +157,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 26,
-    "will": 20
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 26
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
   },
   "senses": [],
   "size": "medium",

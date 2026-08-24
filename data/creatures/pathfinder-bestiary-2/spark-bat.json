@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 19,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -29,10 +30,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -45,13 +48,34 @@
   "foundryId": "jpjhbGvaduK4iqwq",
   "gear": [],
   "hp": 18,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/spark-bat",
   "immunities": [
-    "bleed",
-    "electricity",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [],
   "level": 2,
@@ -61,12 +85,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 11,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "tiny",
   "skills": {

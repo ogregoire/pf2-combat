@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 40,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -66,9 +67,13 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+15",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "radiant-blow"
       ],
       "kind": "melee",
       "name": "Hammer",
@@ -82,10 +87,12 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "4d10",
           "type": "force"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Radiant Beam",
       "traits": [
@@ -97,6 +104,7 @@
   "foundryId": "Nk3Inn5jel1VQMLt",
   "gear": [],
   "hp": 300,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/radiant-warden",
   "immunities": [],
   "languages": [],
@@ -107,21 +115,40 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 15
     },
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
       "type": "physical",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 32,
-    "reflex": 29,
-    "will": 28
+    "fortitude": {
+      "detail": null,
+      "value": 32
+    },
+    "reflex": {
+      "detail": null,
+      "value": 29
+    },
+    "will": {
+      "detail": null,
+      "value": 28
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "gargantuan",
   "skills": {

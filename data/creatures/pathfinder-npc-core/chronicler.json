@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -38,11 +39,13 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Crossbow",
       "traits": [
         "range-increment-120",
@@ -53,10 +56,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -68,10 +73,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -84,10 +91,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -100,10 +109,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -124,6 +135,7 @@
     "Staff"
   ],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/chronicler",
   "immunities": [],
   "languages": [
@@ -136,9 +148,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 9,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [],
   "size": "medium",

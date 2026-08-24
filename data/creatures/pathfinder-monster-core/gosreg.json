@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 31,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -26,7 +27,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>The gosreg takes on the appearance of any Small or Medium humanoid. This doesn't change its Speed or attack and damage modifiers with its claw, but it might change the damage type it deals (typically to bludgeoning). It cannot use its jaws Strike while in humanoid form.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p>The gosreg takes on the appearance of any Small or Medium humanoid. This doesn't change its Speed or attack and damage modifiers with its claw, but it might change the damage type it deals (typically to bludgeoning). It cannot use its jaws Strike while in humanoid form.</p>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -73,7 +74,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -117,10 +118,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -133,14 +136,17 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "mental"
         },
         {
+          "category": null,
           "formula": "2d10+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -152,9 +158,14 @@
   "foundryId": "TwFcW5O5J1SdsYv3",
   "gear": [],
   "hp": 195,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/gosreg",
   "immunities": [
-    "confused"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "confused"
+    }
   ],
   "languages": [
     "aklo",
@@ -167,18 +178,37 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "mental",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 18,
-    "reflex": 23,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 23
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [
-    "darkvision",
-    "thoughtsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "thoughtsense"
+    }
   ],
   "size": "medium",
   "skills": {

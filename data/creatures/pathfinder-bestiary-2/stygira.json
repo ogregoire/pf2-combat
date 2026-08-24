@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -73,9 +74,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+10",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "stone-curse"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -90,11 +95,24 @@
     "Gemstone"
   ],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/stygira",
   "immunities": [
-    "paralyzed",
-    "petrified",
-    "visual"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "petrified"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
   ],
   "languages": [
     "aklo",
@@ -109,14 +127,27 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [
+        "adamantine"
+      ],
       "type": "physical",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 15,
-    "reflex": 13,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [],
   "size": "medium",
@@ -192,6 +223,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 17,
+  "acDetails": "(20 vs. traps)",
   "actions": [
     {
       "category": "defensive",
@@ -55,10 +56,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -72,11 +75,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
         "range-increment-60",
@@ -87,10 +92,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sap",
       "traits": [
@@ -110,6 +117,7 @@
     "Thieves' Toolkit"
   ],
   "hp": 28,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/saboteur",
   "immunities": [],
   "languages": [
@@ -122,9 +130,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 9,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": "(+11 vs. traps)",
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [],
   "size": "medium",

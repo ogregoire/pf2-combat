@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -35,10 +36,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fangs",
       "traits": []
@@ -47,10 +50,12 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wing",
       "traits": [
@@ -61,6 +66,7 @@
   "foundryId": "xnpuGO8jEMba9wy5",
   "gear": [],
   "hp": 30,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/giant-bat",
   "immunities": [],
   "languages": [],
@@ -71,13 +77,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 8,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "echolocation",
-    "low-light-vision"
+    {
+      "acuity": "precise",
+      "range": 40,
+      "type": "echolocation"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {

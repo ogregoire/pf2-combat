@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -40,9 +41,13 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "homunculus-poison"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -57,6 +62,7 @@
   "foundryId": "9wNjq9BirBoxyJVH",
   "gear": [],
   "hp": 17,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/homunculus",
   "immunities": [],
   "languages": [
@@ -69,12 +75,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 2,
-    "reflex": 7,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "tiny",
   "skills": {

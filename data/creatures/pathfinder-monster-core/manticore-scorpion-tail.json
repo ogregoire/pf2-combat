@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -27,10 +28,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -42,10 +45,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -56,9 +61,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "manticore-venom"
       ],
       "kind": "melee",
       "name": "Stinger",
@@ -70,6 +79,7 @@
   "foundryId": "k89Kw65a4Ip2ZSGA",
   "gear": [],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/manticore-scorpion-tail",
   "immunities": [],
   "languages": [
@@ -82,13 +92,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 12,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 10,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -55,14 +56,17 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Pseudopod",
       "traits": [
@@ -73,15 +77,44 @@
   "foundryId": "r3EXyntNIazKf2gP",
   "gear": [],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/string-slime",
   "immunities": [
-    "acid",
-    "bleed",
-    "critical-hits",
-    "precision",
-    "slashing",
-    "unconscious",
-    "visual"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "slashing"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
   ],
   "languages": [],
   "level": 3,
@@ -91,12 +124,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 0,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 0
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "motion-sense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 31,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -86,14 +87,17 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+12",
           "type": "piercing"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "electricity"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -104,10 +108,12 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Talon",
       "traits": [
@@ -119,13 +125,18 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "3d6",
           "type": "electricity"
         },
         {
+          "category": null,
           "formula": "3d6",
           "type": "sonic"
         }
+      ],
+      "effects": [
+        "thunderstrike"
       ],
       "kind": "ranged",
       "name": "Thunderbolt",
@@ -137,9 +148,14 @@
   "foundryId": "fpBJiCOoHDlefgpO",
   "gear": [],
   "hp": 200,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/thunderbird",
   "immunities": [
-    "electricity"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "electricity"
+    }
   ],
   "languages": [
     "common",
@@ -152,17 +168,32 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "sonic",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 24,
-    "reflex": 20,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 24
+    },
+    "reflex": {
+      "detail": null,
+      "value": 20
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "gargantuan",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -51,9 +52,13 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "giant-wasp-venom"
       ],
       "kind": "ranged",
       "name": "Blowgun",
@@ -67,6 +72,9 @@
     {
       "bonus": 16,
       "damage": [],
+      "effects": [
+        "tongue-grab"
+      ],
       "kind": "melee",
       "name": "Tongue",
       "traits": [
@@ -77,10 +85,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whip",
       "traits": [
@@ -102,6 +112,7 @@
     "Whip"
   ],
   "hp": 135,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/boggard-cultist",
   "immunities": [],
   "languages": [
@@ -116,12 +127,25 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 17,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 125,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -59,10 +60,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Cruuk",
       "traits": [
@@ -74,10 +77,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Cruuk",
       "traits": [
@@ -89,10 +94,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -109,6 +116,7 @@
     "Leather Armor"
   ],
   "hp": 125,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/tripkee-fiend-keeper",
   "immunities": [],
   "languages": [
@@ -124,12 +132,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 15,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,10 +26,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Chain",
       "traits": [
@@ -39,10 +42,19 @@
   "foundryId": "ZyZMJ19Ea0cfydK4",
   "gear": [],
   "hp": 22,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/petitioner-shadow-plane",
   "immunities": [
-    "bleed",
-    "fear-effects"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fear-effects"
+    }
   ],
   "languages": [
     "shadowtongue"
@@ -54,12 +66,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 7,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

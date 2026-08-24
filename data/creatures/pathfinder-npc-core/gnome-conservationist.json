@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -39,10 +40,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -56,11 +59,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "bludgeoning"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Sling",
       "traits": [
         "magical",
@@ -73,10 +78,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Trowel",
       "traits": [
@@ -93,6 +100,7 @@
     "Trowel (Functions as a Sickle)"
   ],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/gnome-conservationist",
   "immunities": [],
   "languages": [
@@ -106,12 +114,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 11,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

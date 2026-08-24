@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 29,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -49,9 +50,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "ankle-bite"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -65,6 +70,7 @@
   "foundryId": "xMuLJmx51eBv9FcE",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/jewel",
   "immunities": [],
   "languages": [],
@@ -75,13 +81,30 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 21,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "tiny",
   "skills": {

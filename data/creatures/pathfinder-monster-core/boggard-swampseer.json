@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -75,10 +76,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -88,6 +91,9 @@
     {
       "bonus": 10,
       "damage": [],
+      "effects": [
+        "tongue-grab"
+      ],
       "kind": "melee",
       "name": "Tongue",
       "traits": [
@@ -100,6 +106,7 @@
     "Staff"
   ],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/boggard-swampseer",
   "immunities": [],
   "languages": [
@@ -114,12 +121,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 7,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

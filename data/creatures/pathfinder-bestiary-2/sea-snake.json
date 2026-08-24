@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -49,9 +50,13 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "sea-snake-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -64,6 +69,7 @@
   "foundryId": "6EX8nxH3zRotLRJG",
   "gear": [],
   "hp": 15,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/sea-snake",
   "immunities": [],
   "languages": [],
@@ -74,13 +80,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 5,
-    "reflex": 9,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 5
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "small",
   "skills": {

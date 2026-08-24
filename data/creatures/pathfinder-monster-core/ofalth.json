@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 31,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -32,7 +33,7 @@
     {
       "category": "defensive",
       "cost": "passive",
-      "description": "<p>30 feet, @Check[fortitude|dc:28]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Stench]</p>",
+      "description": "<p>30 feet, @Check[fortitude|dc:28]</p>\n<hr />\n<p><p>A creature entering the aura or starting its turn in the area must succeed at a Fortitude save or become Sickened 1 (plus Slowed 1 as long as it's sickened on a critical failure). A creature that succeeds at its save or recovers from being sickened is temporarily immune to all stench auras for 1 minute.</p></p>",
       "frequency": null,
       "name": "Stench",
       "requirements": null,
@@ -60,9 +61,13 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+13",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "wretched-weeps"
       ],
       "kind": "melee",
       "name": "Fist",
@@ -75,9 +80,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+9",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "wretched-weeps"
       ],
       "kind": "ranged",
       "name": "Offal",
@@ -89,10 +98,19 @@
   "foundryId": "2jtRdYo9ey7osDUH",
   "gear": [],
   "hp": 170,
+  "hpDetails": "filth wallow",
   "id": "pathfinder-monster-core/ofalth",
   "immunities": [
-    "disease",
-    "poison"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
   ],
   "languages": [
     "common"
@@ -104,12 +122,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 22,
-    "reflex": 17,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

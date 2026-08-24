@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -36,10 +37,19 @@
   "foundryId": "5SFDHViyTCZ47TR5",
   "gear": [],
   "hp": 55,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/scorpion-swarm",
   "immunities": [
-    "precision",
-    "swarm-mind"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "swarm-mind"
+    }
   ],
   "languages": [],
   "level": 4,
@@ -49,25 +59,44 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 3
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 7
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 7
     }
   ],
   "saves": {
-    "fortitude": 10,
-    "reflex": 13,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -94,10 +123,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "area-damage",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "splash-damage",
       "value": 5
     }

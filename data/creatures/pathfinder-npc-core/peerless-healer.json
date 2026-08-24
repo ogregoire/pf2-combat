@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 35,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -78,14 +79,17 @@
       "bonus": 24,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+9",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "4d8",
           "type": "vitality"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -98,14 +102,17 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+9",
           "type": "bludgeoning"
         },
         {
+          "category": null,
           "formula": "4d8",
           "type": "vitality"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -121,6 +128,7 @@
     "Healer's Toolkit (Expanded)"
   ],
   "hp": 200,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/peerless-healer",
   "immunities": [],
   "languages": [
@@ -134,14 +142,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 26,
-    "reflex": 24,
-    "will": 27
+    "fortitude": {
+      "detail": null,
+      "value": 26
+    },
+    "reflex": {
+      "detail": null,
+      "value": 24
+    },
+    "will": {
+      "detail": null,
+      "value": 27
+    }
   },
   "senses": [],
   "size": "medium",

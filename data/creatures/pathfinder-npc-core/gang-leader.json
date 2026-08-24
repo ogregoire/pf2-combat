@@ -8,6 +8,7 @@
     "wis": -1
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -100,10 +101,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -117,10 +120,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -133,11 +138,13 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "bludgeoning"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Sling",
       "traits": [
         "propulsive",
@@ -156,6 +163,7 @@
     "Studded Leather Armor"
   ],
   "hp": 110,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/gang-leader",
   "immunities": [],
   "languages": [
@@ -168,9 +176,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 17,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [],
   "size": "medium",

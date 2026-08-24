@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,10 +26,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+3",
           "type": "spirit"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -40,6 +43,7 @@
   "foundryId": "oOPf7VG4tuMvzrgA",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/dog-ekundayos-companion",
   "immunities": [],
   "languages": [],
@@ -50,13 +54,30 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 14,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

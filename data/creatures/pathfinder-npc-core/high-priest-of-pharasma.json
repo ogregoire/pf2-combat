@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -69,14 +70,17 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d4+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -90,14 +94,17 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "2d4+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -111,14 +118,17 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "1d4+7",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -132,15 +142,18 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
         "range-increment-60",
@@ -160,6 +173,7 @@
     "Scroll of Cleanse Affliction (Rank 4)"
   ],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/high-priest-of-pharasma",
   "immunities": [],
   "languages": [
@@ -173,9 +187,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 17,
-    "will": 21
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 21
+    }
   },
   "senses": [],
   "size": "medium",

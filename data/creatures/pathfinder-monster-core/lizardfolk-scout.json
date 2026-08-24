@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -67,9 +68,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "giant-centipede-venom"
       ],
       "kind": "ranged",
       "name": "Blowgun",
@@ -84,10 +89,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -98,10 +105,12 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -117,6 +126,7 @@
     "Blowgun Darts (Giant Centipede Venom)"
   ],
   "hp": 17,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/lizardfolk-scout",
   "immunities": [],
   "languages": [
@@ -131,9 +141,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 8,
-    "will": 6
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 6
+    }
   },
   "senses": [],
   "size": "medium",

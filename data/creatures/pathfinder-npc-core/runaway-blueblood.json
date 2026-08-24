@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,11 +36,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Dueling Pistol",
       "traits": [
         "concealable",
@@ -53,10 +56,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -70,10 +75,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Shortsword",
       "traits": [
@@ -92,6 +99,7 @@
     "Signet Ring"
   ],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/runaway-blueblood",
   "immunities": [],
   "languages": [
@@ -104,9 +112,18 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 10,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [],
   "size": "medium",

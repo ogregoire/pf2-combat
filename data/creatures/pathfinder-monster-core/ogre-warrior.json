@@ -8,16 +8,19 @@
     "wis": 0
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [],
   "attacks": [
     {
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Javelin",
       "traits": [
@@ -28,10 +31,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Ogre Hook",
       "traits": [
@@ -48,6 +53,7 @@
     "Ogre Hook"
   ],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/ogre-warrior",
   "immunities": [],
   "languages": [
@@ -60,12 +66,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 6,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

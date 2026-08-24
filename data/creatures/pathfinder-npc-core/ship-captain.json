@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -51,11 +52,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Hand Crossbow",
       "traits": [
         "range-increment-60",
@@ -66,10 +69,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Main-Gauche",
       "traits": [
@@ -83,10 +88,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Rapier",
       "traits": [
@@ -105,6 +112,7 @@
     "Rapier"
   ],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/ship-captain",
   "immunities": [],
   "languages": [
@@ -117,9 +125,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 12,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [],
   "size": "medium",

@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -30,10 +31,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -46,10 +49,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -60,6 +65,7 @@
   "foundryId": "4GXL5FLmN7IxPzVC",
   "gear": [],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/gigantopithecus",
   "immunities": [],
   "languages": [],
@@ -70,13 +76,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 11,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,14 +8,15 @@
     "wis": 6
   },
   "ac": 42,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ImprovedKnockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Improved Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature as a free action. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Improved Knockdown",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Improved Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -123,14 +124,17 @@
       "bonus": 34,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "sonic"
         },
         {
+          "category": null,
           "formula": "3d6+16",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Composite Shortbow",
       "traits": [
@@ -143,9 +147,13 @@
       "bonus": 34,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+16",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "improved-knockdown"
       ],
       "kind": "melee",
       "name": "Horns",
@@ -164,6 +172,7 @@
     "Wineskin"
   ],
   "hp": 350,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/the-horned-hunter",
   "immunities": [],
   "languages": [
@@ -177,12 +186,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 32,
-    "reflex": 30,
-    "will": 30
+    "fortitude": {
+      "detail": null,
+      "value": 32
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 30
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -261,6 +283,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -70,9 +71,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "hunting-spider-venom"
       ],
       "kind": "ranged",
       "name": "Blowgun",
@@ -87,6 +92,9 @@
     {
       "bonus": 21,
       "damage": [],
+      "effects": [
+        "tongue-grab"
+      ],
       "kind": "melee",
       "name": "Tongue",
       "traits": [
@@ -97,10 +105,12 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Trident",
       "traits": [
@@ -112,10 +122,12 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Trident",
       "traits": [
@@ -133,6 +145,7 @@
     "Trident"
   ],
   "hp": 160,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/boggard-warden",
   "immunities": [],
   "languages": [
@@ -147,12 +160,25 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 18,
-    "reflex": 19,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

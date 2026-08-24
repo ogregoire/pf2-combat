@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -65,9 +66,13 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+2",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "lethargy-poison"
       ],
       "kind": "melee",
       "name": "Shortsword",
@@ -84,6 +89,7 @@
     "Shortsword"
   ],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/quickling",
   "immunities": [],
   "languages": [
@@ -98,12 +104,25 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 6,
-    "reflex": 13,
-    "will": 8
+    "fortitude": {
+      "detail": null,
+      "value": 6
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 8
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {
@@ -160,6 +179,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 5
     }

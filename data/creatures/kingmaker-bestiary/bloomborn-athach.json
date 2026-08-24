@@ -8,11 +8,12 @@
     "wis": 6
   },
   "ac": 40,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>An athach gains an extra reaction at the start of each of its turns that it can use only to make an Attack of Opportunity with its claw. It can't use more than one Attack of Opportunity triggered by the same action.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p>An athach gains an extra reaction at the start of each of its turns that it can use only to make an Attack of Opportunity with its claw. It can't use more than one Attack of Opportunity triggered by the same action.</p>\n<hr />\n<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity (Special)",
       "requirements": null,
@@ -22,12 +23,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.CatchRock]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster must have a free hand but can Release anything it's holding as part of this reaction.</p>\n<p><strong>Trigger</strong> The monster is targeted with a thrown rock Strike or a rock would fall on the monster.</p>\n<hr />\n<p><strong>Effect</strong> The monster gains a +4 circumstance bonus to its AC against the triggering attack or to any defense against the falling rock. If the attack misses or the monster successfully defends against the falling rock, the monster catches the rock, takes no damage, and is now holding the rock.</p></p>",
       "frequency": null,
       "name": "Catch Rock",
-      "requirements": null,
+      "requirements": "The monster must have a free hand but can Release anything it's holding as part of this reaction.",
       "traits": [],
-      "trigger": null
+      "trigger": "The monster is targeted with a thrown rock Strike or a rock would fall on the monster."
     },
     {
       "category": "offensive",
@@ -42,7 +43,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ThrowRock]</p>",
+      "description": "<p><p>The monster picks up a rock within reach or retrieves a stowed rock and throws it, making a ranged Strike.</p></p>",
       "frequency": null,
       "name": "Throw Rock",
       "requirements": null,
@@ -67,10 +68,12 @@
       "bonus": 34,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+17",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -82,10 +85,12 @@
       "bonus": 34,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+17",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -97,9 +102,13 @@
       "bonus": 34,
       "damage": [
         {
+          "category": null,
           "formula": "3d12+17",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "athach-venom"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -111,10 +120,12 @@
       "bonus": 34,
       "damage": [
         {
+          "category": null,
           "formula": "3d4+17",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Rock",
       "traits": [
@@ -126,6 +137,7 @@
   "foundryId": "fbsy6zPV4HjHiis7",
   "gear": [],
   "hp": 375,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/bloomborn-athach",
   "immunities": [],
   "languages": [
@@ -140,12 +152,25 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 33,
-    "reflex": 30,
-    "will": 31
+    "fortitude": {
+      "detail": null,
+      "value": 33
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 31
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -171,6 +196,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

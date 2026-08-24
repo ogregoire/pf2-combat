@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -29,19 +30,23 @@
       "bonus": 16,
       "damage": [
         {
+          "category": "persistent",
           "formula": "2",
           "type": "acid"
         },
         {
+          "category": "splash",
           "formula": "2",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "2d8",
           "type": "acid"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Alchemical Grenade",
       "traits": [
         "range-increment-20",
@@ -52,10 +57,12 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -68,9 +75,13 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+8",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "knockdown"
       ],
       "kind": "melee",
       "name": "Maul",
@@ -88,6 +99,7 @@
     "Maul"
   ],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/hobgoblin-vanguard",
   "immunities": [],
   "languages": [
@@ -101,12 +113,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 19,
-    "reflex": 13,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

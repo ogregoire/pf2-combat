@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,7 +59,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Wavesense]</p>",
+      "description": "<p><p>This sense allows a monster to feel vibrations caused by movement through a liquid. It's an imprecise sense with a limited range (listed in the ability). Wavesense functions only if monster and the subject are in the same body of liquid, and only if the subject is moving through the liquid.</p></p>",
       "frequency": null,
       "name": "Wavesense 30 feet",
       "requirements": null,
@@ -71,10 +72,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -86,10 +89,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -100,10 +105,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+11",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Longspear",
       "traits": [
@@ -114,10 +121,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+11",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Spear",
       "traits": [
@@ -131,6 +140,7 @@
     "Spear"
   ],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/sea-devil-baron",
   "immunities": [],
   "languages": [
@@ -143,13 +153,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 16,
-    "reflex": 14,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "darkvision",
-    "wavesense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "wavesense"
+    }
   ],
   "size": "medium",
   "skills": {

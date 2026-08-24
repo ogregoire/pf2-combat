@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -45,10 +46,12 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Composite Shortbow",
       "traits": [
@@ -63,10 +66,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Glaive",
       "traits": [
@@ -84,6 +89,7 @@
     "Half Plate"
   ],
   "hp": 90,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/hobgoblin-general",
   "immunities": [],
   "languages": [
@@ -97,12 +103,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 15,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

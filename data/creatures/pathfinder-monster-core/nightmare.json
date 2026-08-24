@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -41,14 +42,17 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "fire"
         },
         {
+          "category": null,
           "formula": "1d8+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hoof",
       "traits": [
@@ -62,10 +66,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -78,6 +84,7 @@
   "foundryId": "qRUqoezeEnQ2KdyT",
   "gear": [],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/nightmare",
   "immunities": [],
   "languages": [
@@ -92,17 +99,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 15,
-    "reflex": 15,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 15
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

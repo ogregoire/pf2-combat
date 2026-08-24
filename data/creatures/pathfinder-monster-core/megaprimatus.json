@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -40,10 +41,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -56,10 +59,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -71,6 +76,7 @@
   "foundryId": "pyTr1VOPrPYH8UNg",
   "gear": [],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/megaprimatus",
   "immunities": [],
   "languages": [],
@@ -81,13 +87,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 19,
-    "reflex": 16,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "gargantuan",
   "skills": {

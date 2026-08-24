@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -57,10 +58,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Phantom Bow",
       "traits": [
@@ -74,10 +77,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Phantom Sword",
       "traits": [
@@ -90,13 +95,34 @@
   "foundryId": "9VMoTqyVaKc4ZR4H",
   "gear": [],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/phantom-knight",
   "immunities": [
-    "bleed",
-    "disease",
-    "paralyzed",
-    "poison",
-    "precision"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "disease"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    }
   ],
   "languages": [
     "common"
@@ -108,17 +134,38 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [
+        "non-magical"
+      ],
+      "exceptions": [
+        "force",
+        "ghost-touch",
+        "spirit"
+      ],
       "type": "all-damage",
       "value": 3
     }
   ],
   "saves": {
-    "fortitude": 8,
-    "reflex": 12,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

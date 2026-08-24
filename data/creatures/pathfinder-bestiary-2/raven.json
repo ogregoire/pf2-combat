@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 15,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -25,10 +26,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -40,6 +43,7 @@
   "foundryId": "hFbfXmjMkGEzMkQ1",
   "gear": [],
   "hp": 7,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/raven",
   "immunities": [],
   "languages": [],
@@ -50,12 +54,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 2,
-    "reflex": 7,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "tiny",
   "skills": {

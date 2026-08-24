@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -50,10 +51,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -67,10 +70,12 @@
       "bonus": 6,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Quill Pen",
       "traits": [
@@ -82,10 +87,12 @@
       "bonus": 4,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Staff",
       "traits": [
@@ -101,6 +108,7 @@
     "Writing Set"
   ],
   "hp": 12,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/aiuvarin-translator",
   "immunities": [],
   "languages": [
@@ -114,12 +122,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 2,
-    "reflex": 6,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 2
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

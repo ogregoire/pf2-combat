@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -38,7 +39,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 10 feet",
       "requirements": null,
@@ -51,10 +52,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -68,10 +71,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -84,6 +89,7 @@
   "foundryId": "WNUvjcKRAqdguWfN",
   "gear": [],
   "hp": 50,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/poracha",
   "immunities": [],
   "languages": [
@@ -97,13 +103,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 13,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 10
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 10,
+      "type": "tremorsense"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -132,6 +155,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "sonic",
       "value": 5
     }

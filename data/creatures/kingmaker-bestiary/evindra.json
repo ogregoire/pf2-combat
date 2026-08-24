@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 35,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -54,10 +55,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "6d6",
           "type": "poison"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Poisonous Touch",
       "traits": [
@@ -70,9 +73,14 @@
   "foundryId": "cPcregujkG0LUHiG",
   "gear": [],
   "hp": 210,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/evindra",
   "immunities": [
-    "poison"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    }
   ],
   "languages": [
     "common",
@@ -86,12 +94,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 22,
-    "reflex": 27,
-    "will": 24
+    "fortitude": {
+      "detail": null,
+      "value": 22
+    },
+    "reflex": {
+      "detail": null,
+      "value": 27
+    },
+    "will": {
+      "detail": null,
+      "value": 24
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {
@@ -172,6 +193,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

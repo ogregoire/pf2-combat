@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 37,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -99,9 +100,13 @@
       "bonus": 29,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+11",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "spectacular-attack"
       ],
       "kind": "melee",
       "name": "Dagger",
@@ -116,9 +121,13 @@
       "bonus": 29,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+11",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "spectacular-attack"
       ],
       "kind": "melee",
       "name": "Dagger",
@@ -133,9 +142,13 @@
       "bonus": 27,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+11",
           "type": "bludgeoning"
         }
+      ],
+      "effects": [
+        "spectacular-attack"
       ],
       "kind": "melee",
       "name": "Fist",
@@ -158,6 +171,7 @@
     "Thieves' Toolkit (Infiltrator)"
   ],
   "hp": 225,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/flamboyant-thief",
   "immunities": [],
   "languages": [
@@ -170,9 +184,18 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 30,
-    "will": 26
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 26
+    }
   },
   "senses": [],
   "size": "medium",

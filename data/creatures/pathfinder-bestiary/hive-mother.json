@@ -8,16 +8,17 @@
     "wis": 2
   },
   "ac": 29,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -54,7 +55,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense (Imprecise) 90 feet",
       "requirements": null,
@@ -67,10 +68,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "5d6",
           "type": "acid"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Acid Spit",
       "traits": [
@@ -82,14 +85,17 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "acid"
         },
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Mandibles",
       "traits": [
@@ -100,6 +106,7 @@
   "foundryId": "pTkz08ak9YlKRsOY",
   "gear": [],
   "hp": 120,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/hive-mother",
   "immunities": [],
   "languages": [],
@@ -110,13 +117,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 18,
-    "reflex": 15,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 18
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 90,
+      "type": "tremorsense"
+    }
   ],
   "size": "huge",
   "skills": {

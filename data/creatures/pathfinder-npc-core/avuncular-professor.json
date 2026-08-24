@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "interaction",
@@ -35,10 +36,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -52,10 +55,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sword Cane",
       "traits": [
@@ -72,6 +77,7 @@
     "Writing Set"
   ],
   "hp": 75,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/avuncular-professor",
   "immunities": [],
   "languages": [
@@ -84,9 +90,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 11,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [],
   "size": "medium",

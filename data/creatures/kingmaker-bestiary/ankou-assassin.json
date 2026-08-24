@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 40,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -32,7 +33,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Lifesense]</p>",
+      "description": "<p><p>Lifesense allows a monster to sense the vital essence of living and undead creatures within the listed range. The sense can distinguish between the vitality energy animating living creatures and the void energy animating undead creatures, much as sight distinguishes colors.</p></p>",
       "frequency": null,
       "name": "Lifesense 120 feet",
       "requirements": null,
@@ -52,7 +53,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -68,10 +69,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+16",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -84,14 +87,17 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "2d6",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "2d8+16",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wing",
       "traits": [
@@ -103,6 +109,7 @@
   "foundryId": "m8kwG6NskYDlBSCy",
   "gear": [],
   "hp": 333,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/ankou-assassin",
   "immunities": [],
   "languages": [
@@ -117,13 +124,30 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 28,
-    "reflex": 32,
-    "will": 29
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 32
+    },
+    "will": {
+      "detail": null,
+      "value": 29
+    }
   },
   "senses": [
-    "lifesense",
-    "low-light-vision"
+    {
+      "acuity": "precise",
+      "range": 120,
+      "type": "lifesense"
+    },
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -202,6 +226,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 15
     }

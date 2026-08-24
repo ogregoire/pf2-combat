@@ -8,6 +8,7 @@
     "wis": 7
   },
   "ac": 41,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -124,10 +125,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+15",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claws",
       "traits": [
@@ -140,10 +143,12 @@
       "bonus": 33,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+15",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -156,10 +161,12 @@
       "bonus": 31,
       "damage": [
         {
+          "category": null,
           "formula": "3d8+15",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -171,11 +178,24 @@
   "foundryId": "uc61UL57ywxLy0q0",
   "gear": [],
   "hp": 345,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/mirage-dragon-ancient",
   "immunities": [
-    "fascinated",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "fascinated"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -189,13 +209,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 28,
-    "reflex": 29,
-    "will": 33
+    "fortitude": {
+      "detail": null,
+      "value": 28
+    },
+    "reflex": {
+      "detail": null,
+      "value": 29
+    },
+    "will": {
+      "detail": null,
+      "value": 33
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

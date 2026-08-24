@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -29,7 +30,7 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<ul>\n<li><strong>Bat</strong>\n<ul>\n<li><strong>Senses</strong> Echolocation 40 feet</li>\n<li><strong>Speed</strong> 15 feet, fly 30 feet</li>\n<li><strong>Melee</strong> fangs +7, <strong>Damage</strong> 1d4-1 piercing damage</li>\n<li><strong>Melee</strong> wing +7 (agile), <strong>Damage</strong> 1d4-1 bludgeoning damage</li>\n</ul>\n</li>\n<li><strong>Centipede</strong>\n<ul>\n<li><strong>Speed</strong> 10 feet, climb 10 feet</li>\n<li><strong>Melee</strong> mandibles +7 (poison), <strong>Damage</strong> 1 piercing damage + 1d4 poison damage</li>\n</ul>\n</li>\n<li><strong>Toad</strong>\n<ul>\n<li><strong>Senses</strong> Scent (Imprecise) 30 feet</li>\n<li><strong>Speed</strong> 5 feet</li>\n<li><strong>Melee</strong> jaws +7, <strong>Damage</strong> 1 bludgeoning damage</li>\n</ul>\n</li>\n<li><strong>Wolf</strong>\n<ul>\n<li><strong>Size</strong> Medium</li>\n<li><strong>Senses</strong> Scent (Imprecise) 30 feet</li>\n<li><strong>Speed</strong> 40 feet, climb 10 feet</li>\n<li><strong>Melee</strong> jaws +7, <strong>Damage</strong> 1d10-1 piercing damage plus Knockdown</li>\n</ul>\n</li>\n</ul>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<ul>\n<li><strong>Bat</strong>\n<ul>\n<li><strong>Senses</strong> Echolocation 40 feet</li>\n<li><strong>Speed</strong> 15 feet, fly 30 feet</li>\n<li><strong>Melee</strong> fangs +7, <strong>Damage</strong> 1d4-1 piercing damage</li>\n<li><strong>Melee</strong> wing +7 (agile), <strong>Damage</strong> 1d4-1 bludgeoning damage</li>\n</ul>\n</li>\n<li><strong>Centipede</strong>\n<ul>\n<li><strong>Speed</strong> 10 feet, climb 10 feet</li>\n<li><strong>Melee</strong> mandibles +7 (poison), <strong>Damage</strong> 1 piercing damage + 1d4 poison damage</li>\n</ul>\n</li>\n<li><strong>Toad</strong>\n<ul>\n<li><strong>Senses</strong> Scent (Imprecise) 30 feet</li>\n<li><strong>Speed</strong> 5 feet</li>\n<li><strong>Melee</strong> jaws +7, <strong>Damage</strong> 1 bludgeoning damage</li>\n</ul>\n</li>\n<li><strong>Wolf</strong>\n<ul>\n<li><strong>Size</strong> Medium</li>\n<li><strong>Senses</strong> Scent (Imprecise) 30 feet</li>\n<li><strong>Speed</strong> 40 feet, climb 10 feet</li>\n<li><strong>Melee</strong> jaws +7, <strong>Damage</strong> 1d10-1 piercing damage plus Knockdown</li>\n</ul>\n</li>\n</ul>\n<hr />\n<p><p>The monster changes its shape indefinitely. It can use this action again to return to its natural shape or adopt a new shape. Unless otherwise noted, a monster cannot use Change Shape to appear as a specific individual. Using Change Shape counts as creating a disguise for the Impersonate use of Deception. The monster's transformation automatically defeats Perception DCs to determine whether the creature is a member of the ancestry or creature type into which it transformed, and it gains a +4 status bonus to its Deception DC to prevent others from seeing through its disguise. Change Shape abilities specify what shapes the monster can adopt. The monster doesn't gain any special abilities of the new shape, only its physical form. For example, in each shape, it replaces its normal Speeds and Strikes, and might potentially change its senses or size. Any changes are listed in its stat block.</p></p>",
       "frequency": null,
       "name": "Change Shape",
       "requirements": null,
@@ -43,10 +44,10 @@
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Knockdown]</p>",
+      "description": "<p><p><strong>Requirements</strong> The monster's last action was a successful Strike that lists Knockdown in its damage entry</p><hr /><p><strong>Effect</strong> The monster attempts to [[/act trip]] the creature. This attempt neither applies nor counts toward the monster's multiple attack penalty.</p></p>",
       "frequency": null,
       "name": "Knockdown (Wolf Form)",
-      "requirements": null,
+      "requirements": "The monster's last action was a successful Strike that lists Knockdown in its damage entry",
       "traits": [],
       "trigger": null
     },
@@ -75,7 +76,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy (Touch)",
       "requirements": null,
@@ -101,13 +102,18 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1d4",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "1d6-1",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "quasit-venom"
       ],
       "kind": "melee",
       "name": "Claw",
@@ -124,6 +130,7 @@
   "foundryId": "9jF564DF6ylEovna",
   "gear": [],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/quasit",
   "immunities": [],
   "languages": [
@@ -137,12 +144,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 4,
-    "reflex": 10,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 4
+    },
+    "reflex": {
+      "detail": null,
+      "value": 10
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "tiny",
   "skills": {
@@ -208,10 +228,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold-iron",
       "value": 3
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "holy",
       "value": 3
     }

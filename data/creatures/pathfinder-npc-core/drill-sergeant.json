@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -76,10 +77,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -92,10 +95,12 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+12",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Javelin",
       "traits": [
@@ -106,10 +111,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Longsword",
       "traits": [
@@ -125,6 +132,7 @@
     "Longsword"
   ],
   "hp": 120,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/drill-sergeant",
   "immunities": [],
   "languages": [
@@ -137,9 +145,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 15,
-    "will": 20
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 20
+    }
   },
   "senses": [],
   "size": "medium",

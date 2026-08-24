@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,10 +59,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+11",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -73,9 +76,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+11",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "mind-lash"
       ],
       "kind": "melee",
       "name": "Tentacle",
@@ -89,6 +96,7 @@
   "foundryId": "DEZNEMDhWXvv7BrT",
   "gear": [],
   "hp": 152,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/irnakurse",
   "immunities": [],
   "languages": [
@@ -103,12 +111,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 20,
-    "reflex": 18,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 18
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 6
   },
   "ac": 27,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -76,10 +77,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -91,14 +94,17 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "sonic"
         },
         {
+          "category": null,
           "formula": "2d8+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -109,10 +115,19 @@
   "foundryId": "xUtl7Nkb6iJpPUMK",
   "gear": [],
   "hp": 135,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/destrachan",
   "immunities": [
-    "blinded",
-    "visual"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "blinded"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
   ],
   "languages": [
     "destrachan",
@@ -125,17 +140,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "sonic",
       "value": 15
     }
   ],
   "saves": {
-    "fortitude": 16,
-    "reflex": 13,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "echolocation"
+    {
+      "acuity": "precise",
+      "range": 120,
+      "type": "echolocation"
+    }
   ],
   "size": "large",
   "skills": {

@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -87,9 +88,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpentfolk-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -101,9 +106,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpentfolk-venom"
       ],
       "kind": "ranged",
       "name": "Hand Crossbow (Serpentfolk Venom)",
@@ -116,9 +125,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+3",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "spider-venom"
       ],
       "kind": "ranged",
       "name": "Hand Crossbow (Spider Venom)",
@@ -131,9 +144,13 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+5",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "serpentfolk-venom"
       ],
       "kind": "melee",
       "name": "Shortsword",
@@ -153,6 +170,7 @@
     "Thieves' Toolkit"
   ],
   "hp": 48,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/coil-spy",
   "immunities": [],
   "languages": [
@@ -169,18 +187,37 @@
   "rarity": "uncommon",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 9,
-    "reflex": 12,
-    "will": 10
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": "; +1 status to all saves vs. magic",
+      "value": 10
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "medium",
   "skills": {

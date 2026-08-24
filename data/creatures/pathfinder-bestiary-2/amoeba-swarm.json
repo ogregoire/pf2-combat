@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 9,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -44,13 +45,34 @@
   "foundryId": "kapPWNOxXOLcd4VF",
   "gear": [],
   "hp": 35,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/amoeba-swarm",
   "immunities": [
-    "acid",
-    "critical-hits",
-    "precision",
-    "unconscious",
-    "visual"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "acid"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "critical-hits"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "visual"
+    }
   ],
   "languages": [],
   "level": 1,
@@ -60,21 +82,38 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 4
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "slashing",
       "value": 4
     }
   ],
   "saves": {
-    "fortitude": 8,
-    "reflex": 1,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 1
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [
-    "motion-sense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "motion-sense"
+    }
   ],
   "size": "large",
   "skills": {
@@ -109,14 +148,20 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "area-damage",
       "value": 3
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 3
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "splash-damage",
       "value": 3
     }

@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -58,7 +59,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Telepathy]</p>",
+      "description": "<p><p>A monster with telepathy can communicate mentally with any creatures within the listed radius, as long as they share a language. This doesn't give any special access to their thoughts, and communicates no more information than normal speech would.</p></p>",
       "frequency": null,
       "name": "Telepathy 100 feet",
       "requirements": null,
@@ -82,7 +83,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "description": "<p><p>Tremorsense allows a monster to feel the vibrations through a solid surface caused by movement. It is an imprecise sense with a limited range (listed in the ability). Tremorsense functions only if the monster is on the same surface as the subject, and only if the subject is moving along (or burrowing through) the surface.</p></p>",
       "frequency": null,
       "name": "Tremorsense 60 feet",
       "requirements": null,
@@ -95,10 +96,12 @@
       "bonus": 18,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tentacle",
       "traits": [
@@ -111,12 +114,29 @@
   "foundryId": "mpkGWfPHmwAYPYJH",
   "gear": [],
   "hp": 130,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/xoarian",
   "immunities": [
-    "blinded",
-    "controlled",
-    "emotion",
-    "possession"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "blinded"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "controlled"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "emotion"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "possession"
+    }
   ],
   "languages": [
     "aklo"
@@ -128,13 +148,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 14,
-    "reflex": 16,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 16
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [
-    "thoughtsense",
-    "tremorsense"
+    {
+      "acuity": "precise",
+      "range": 60,
+      "type": "thoughtsense"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "tremorsense"
+    }
   ],
   "size": "small",
   "skills": {

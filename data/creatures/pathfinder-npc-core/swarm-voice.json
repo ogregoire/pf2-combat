@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -74,19 +75,23 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "acid"
         },
         {
+          "category": "splash",
           "formula": "1",
           "type": "acid"
         },
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "acid"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Alchemical Bomb",
       "traits": [
         "bomb",
@@ -99,11 +104,13 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Crossbow",
       "traits": [
         "range-increment-120",
@@ -114,10 +121,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -129,10 +138,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+5",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Longspear",
       "traits": [
@@ -148,6 +159,7 @@
     "Longspear"
   ],
   "hp": 45,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/swarm-voice",
   "immunities": [],
   "languages": [
@@ -161,12 +173,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 7,
-    "reflex": 8,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 8
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

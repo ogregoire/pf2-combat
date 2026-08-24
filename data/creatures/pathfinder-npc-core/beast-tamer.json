@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 12,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whip",
       "traits": [
@@ -73,6 +78,7 @@
     "Whip"
   ],
   "hp": 55,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/beast-tamer",
   "immunities": [],
   "languages": [
@@ -86,9 +92,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 10,
-    "reflex": 7,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 10
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [],
   "size": "medium",

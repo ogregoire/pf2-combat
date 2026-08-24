@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 42,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -22,12 +23,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "defensive",
@@ -77,9 +78,13 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "3d6+17",
           "type": "slashing"
         }
+      ],
+      "effects": [
+        "ripping-grab"
       ],
       "kind": "melee",
       "name": "Barbed Tongue",
@@ -91,14 +96,17 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "bleed"
         },
         {
+          "category": null,
           "formula": "3d12+17",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fangs",
       "traits": [
@@ -109,9 +117,13 @@
       "bonus": 35,
       "damage": [
         {
+          "category": null,
           "formula": "3d10+17",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "barbtongued-wyvern-venom"
       ],
       "kind": "melee",
       "name": "Stinger",
@@ -124,10 +136,19 @@
   "foundryId": "oM1AvORITfhzwrDk",
   "gear": [],
   "hp": 330,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/barbtongued-wyvern",
   "immunities": [
-    "paralyzed",
-    "unconscious"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "unconscious"
+    }
   ],
   "languages": [
     "draconic"
@@ -139,13 +160,30 @@
   "rarity": "rare",
   "resistances": [],
   "saves": {
-    "fortitude": 34,
-    "reflex": 30,
-    "will": 27
+    "fortitude": {
+      "detail": null,
+      "value": 34
+    },
+    "reflex": {
+      "detail": null,
+      "value": 30
+    },
+    "will": {
+      "detail": null,
+      "value": 27
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 30,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

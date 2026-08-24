@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 25,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -55,10 +56,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+5",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -71,10 +74,12 @@
       "bonus": 17,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+5",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wing",
       "traits": [
@@ -87,13 +92,34 @@
   "foundryId": "QLY246Z6hP41LnCF",
   "gear": [],
   "hp": 78,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/belker",
   "immunities": [
-    "bleed",
-    "paralyzed",
-    "poison",
-    "precision",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "precision"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "sussuran"
@@ -105,12 +131,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 17,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

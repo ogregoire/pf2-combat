@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -93,10 +94,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Elemental Blast",
       "traits": [
@@ -109,11 +112,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d8",
           "type": "bludgeoning"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Elemental Blast",
       "traits": [
         "earth",
@@ -126,10 +131,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -142,6 +149,7 @@
   "foundryId": "mD4gjp3Yus8TXGUs",
   "gear": [],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/mountain-guardian",
   "immunities": [],
   "languages": [
@@ -155,18 +163,31 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "earth",
       "value": 6
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 6
     }
   ],
   "saves": {
-    "fortitude": 14,
-    "reflex": 11,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 14
+    },
+    "reflex": {
+      "detail": null,
+      "value": 11
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [],
   "size": "medium",

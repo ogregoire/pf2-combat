@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 30,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -50,14 +51,17 @@
       "bonus": 23,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "1d6+13",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Ice Shard",
       "traits": [
@@ -68,10 +72,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+13",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -83,14 +89,17 @@
       "bonus": 23,
       "damage": [
         {
+          "category": "persistent",
           "formula": "1d6",
           "type": "cold"
         },
         {
+          "category": null,
           "formula": "2d6+13",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -102,13 +111,34 @@
   "foundryId": "N3XfcwDn1Nu7milG",
   "gear": [],
   "hp": 185,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/icewyrm",
   "immunities": [
-    "bleed",
-    "cold",
-    "paralyzed",
-    "poison",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "bleed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "cold"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "poison"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "thalassic"
@@ -120,12 +150,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 20,
-    "reflex": 21,
-    "will": 17
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 17
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -160,6 +203,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }

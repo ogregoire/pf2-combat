@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -52,10 +53,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d10+7",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -66,10 +69,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+7",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -81,6 +86,7 @@
   "foundryId": "bkaDwBD3mIBgvULs",
   "gear": [],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/cloaker",
   "immunities": [],
   "languages": [
@@ -94,12 +100,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 12,
-    "will": 12
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 12
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

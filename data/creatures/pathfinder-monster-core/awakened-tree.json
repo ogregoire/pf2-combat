@@ -8,16 +8,19 @@
     "wis": 3
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [],
   "attacks": [
     {
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Branch",
       "traits": [
@@ -28,10 +31,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Root",
       "traits": [
@@ -42,6 +47,7 @@
   "foundryId": "0Dsy2I3mu86Czjm0",
   "gear": [],
   "hp": 100,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/awakened-tree",
   "immunities": [],
   "languages": [
@@ -54,21 +60,38 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "bludgeoning",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "piercing",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 16,
-    "reflex": 9,
-    "will": 13
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 13
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "huge",
   "skills": {
@@ -94,10 +117,14 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "axe-vulnerability",
       "value": 5
     },
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "fire",
       "value": 10
     }

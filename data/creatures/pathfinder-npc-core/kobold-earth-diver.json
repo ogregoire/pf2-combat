@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 20,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -50,11 +53,13 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Crossbow",
       "traits": [
         "range-increment-120",
@@ -65,10 +70,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Pick",
       "traits": [
@@ -85,6 +92,7 @@
     "Pick"
   ],
   "hp": 60,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/kobold-earth-diver",
   "immunities": [],
   "languages": [
@@ -99,13 +107,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 14,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "darkvision",
-    "tremorsense"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 10,
+      "type": "tremorsense"
+    }
   ],
   "size": "small",
   "skills": {

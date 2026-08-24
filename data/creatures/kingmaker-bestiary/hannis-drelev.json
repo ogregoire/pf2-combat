@@ -8,6 +8,7 @@
     "wis": -1
   },
   "ac": 33,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -25,12 +26,12 @@
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.AttackOfOpportunity]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Attack of Opportunity",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -78,10 +79,12 @@
       "bonus": 23,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Crossbow",
       "traits": [
@@ -93,10 +96,12 @@
       "bonus": 25,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+11",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Hatchet",
       "traits": [
@@ -108,10 +113,12 @@
       "bonus": 26,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+11",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Longsword",
       "traits": [
@@ -132,6 +139,7 @@
     "Longsword"
   ],
   "hp": 220,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/hannis-drelev",
   "immunities": [],
   "languages": [
@@ -145,9 +153,18 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 25,
-    "will": 18
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 25
+    },
+    "will": {
+      "detail": null,
+      "value": 18
+    }
   },
   "senses": [],
   "size": "medium",

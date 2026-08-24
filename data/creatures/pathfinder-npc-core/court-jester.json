@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 29,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -45,14 +46,17 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+8",
           "type": "piercing"
         },
         {
+          "category": "persistent",
           "formula": "4d4",
           "type": "poison"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -66,14 +70,17 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+8",
           "type": "piercing"
         },
         {
+          "category": "persistent",
           "formula": "4d4",
           "type": "poison"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -87,10 +94,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -106,6 +115,7 @@
     "Face Paints"
   ],
   "hp": 170,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/court-jester",
   "immunities": [],
   "languages": [],
@@ -116,14 +126,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "poison",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 16,
-    "reflex": 19,
-    "will": 22
+    "fortitude": {
+      "detail": null,
+      "value": 16
+    },
+    "reflex": {
+      "detail": null,
+      "value": 19
+    },
+    "will": {
+      "detail": null,
+      "value": 22
+    }
   },
   "senses": [],
   "size": "medium",

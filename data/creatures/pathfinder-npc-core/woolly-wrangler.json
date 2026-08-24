@@ -8,16 +8,17 @@
     "wis": 2
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
@@ -57,10 +58,12 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -73,10 +76,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+12",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Greatclub",
       "traits": [
@@ -89,10 +94,12 @@
       "bonus": 19,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+12",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Whip",
       "traits": [
@@ -111,6 +118,7 @@
     "Whip"
   ],
   "hp": 125,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/woolly-wrangler",
   "immunities": [],
   "languages": [
@@ -123,14 +131,25 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 10
     }
   ],
   "saves": {
-    "fortitude": 19,
-    "reflex": 12,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 19
+    },
+    "reflex": {
+      "detail": null,
+      "value": 12
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [],
   "size": "medium",

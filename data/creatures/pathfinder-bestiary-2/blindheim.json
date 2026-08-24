@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 18,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -28,10 +29,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -44,10 +47,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d12+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -58,10 +63,19 @@
   "foundryId": "B8dOh27iarR7rZI3",
   "gear": [],
   "hp": 27,
+  "hpDetails": null,
   "id": "pathfinder-bestiary-2/blindheim",
   "immunities": [
-    "blinded",
-    "light"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "blinded"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "light"
+    }
   ],
   "languages": [],
   "level": 2,
@@ -71,12 +85,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 9,
-    "will": 5
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 5
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

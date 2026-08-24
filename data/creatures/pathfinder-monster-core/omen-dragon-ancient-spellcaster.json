@@ -8,6 +8,7 @@
     "wis": 7
   },
   "ac": 38,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -93,14 +94,17 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "mental"
         },
         {
+          "category": null,
           "formula": "3d6+14",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -114,14 +118,17 @@
       "bonus": 30,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "mental"
         },
         {
+          "category": null,
           "formula": "3d8+14",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -134,14 +141,17 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "mental"
         },
         {
+          "category": null,
           "formula": "3d8+14",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -153,14 +163,17 @@
       "bonus": 28,
       "damage": [
         {
+          "category": null,
           "formula": "1d8",
           "type": "mental"
         },
         {
+          "category": null,
           "formula": "2d8+14",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Wing",
       "traits": [
@@ -173,12 +186,29 @@
   "foundryId": "2QFhhm6cGqqaVlyK",
   "gear": [],
   "hp": 280,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/omen-dragon-ancient-spellcaster",
   "immunities": [
-    "confused",
-    "doomed",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "confused"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "doomed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "aklo",
@@ -194,13 +224,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 27,
-    "reflex": 28,
-    "will": 29
+    "fortitude": {
+      "detail": null,
+      "value": 27
+    },
+    "reflex": {
+      "detail": null,
+      "value": 28
+    },
+    "will": {
+      "detail": null,
+      "value": 29
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "huge",
   "skills": {

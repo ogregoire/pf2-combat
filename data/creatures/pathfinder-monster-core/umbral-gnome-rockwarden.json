@@ -8,16 +8,19 @@
     "wis": 5
   },
   "ac": 22,
+  "acDetails": null,
   "actions": [],
   "attacks": [
     {
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Pick",
       "traits": [
@@ -28,10 +31,12 @@
       "bonus": 11,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Sling",
       "traits": [
@@ -50,6 +55,7 @@
     "Sling Bullets"
   ],
   "hp": 63,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/umbral-gnome-rockwarden",
   "immunities": [],
   "languages": [
@@ -64,12 +70,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 9,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 9
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "small",
   "skills": {

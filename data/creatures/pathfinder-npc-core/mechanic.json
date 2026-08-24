@@ -8,6 +8,7 @@
     "wis": 0
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -48,11 +49,13 @@
       "bonus": 8,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Arbalest",
       "traits": [
         "backstabber",
@@ -64,10 +67,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -80,10 +85,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Heavy Wrench",
       "traits": [
@@ -99,6 +106,7 @@
     "Repair Toolkit"
   ],
   "hp": 22,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/mechanic",
   "immunities": [],
   "languages": [
@@ -111,9 +119,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 6,
-    "will": 3
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 3
+    }
   },
   "senses": [],
   "size": "medium",

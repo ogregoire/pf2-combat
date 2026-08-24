@@ -8,6 +8,7 @@
     "wis": 2
   },
   "ac": 17,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -38,10 +39,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -56,6 +59,7 @@
     "Battered Breastplate"
   ],
   "hp": 50,
+  "hpDetails": "wounded arm",
   "id": "kingmaker-bestiary/jurgrindor",
   "immunities": [],
   "languages": [
@@ -69,12 +73,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 6,
-    "will": 9
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 9
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "large",
   "skills": {

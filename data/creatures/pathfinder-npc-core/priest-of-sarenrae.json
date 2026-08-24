@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -35,10 +36,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -51,10 +54,12 @@
       "bonus": 14,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Scimitar",
       "traits": [
@@ -70,6 +75,7 @@
     "Scimitar"
   ],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/priest-of-sarenrae",
   "immunities": [],
   "languages": [
@@ -82,9 +88,18 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 11,
-    "reflex": 13,
-    "will": 16
+    "fortitude": {
+      "detail": null,
+      "value": 11
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 16
+    }
   },
   "senses": [],
   "size": "medium",

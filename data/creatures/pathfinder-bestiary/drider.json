@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 24,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -47,10 +48,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Composite Longbow",
       "traits": [
@@ -66,9 +69,13 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+10",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "drider-venom"
       ],
       "kind": "melee",
       "name": "Fangs",
@@ -78,10 +85,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+10",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Glaive",
       "traits": [
@@ -93,6 +102,9 @@
     {
       "bonus": 15,
       "damage": [],
+      "effects": [
+        "web-trap"
+      ],
       "kind": "ranged",
       "name": "Web",
       "traits": [
@@ -107,9 +119,14 @@
     "Glaive"
   ],
   "hp": 95,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/drider",
   "immunities": [
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "elven",
@@ -122,12 +139,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 13,
-    "reflex": 13,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 13
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {

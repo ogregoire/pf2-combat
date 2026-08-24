@@ -8,6 +8,7 @@
     "wis": 1
   },
   "ac": 21,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -54,10 +55,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Beak",
       "traits": [
@@ -69,10 +72,12 @@
       "bonus": 13,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tengu Gale Blade",
       "traits": [
@@ -89,6 +94,7 @@
     "Tengu Gale Blade"
   ],
   "hp": 65,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/jinx-eater",
   "immunities": [],
   "languages": [
@@ -102,12 +108,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 8,
-    "reflex": 14,
-    "will": 11
+    "fortitude": {
+      "detail": null,
+      "value": 8
+    },
+    "reflex": {
+      "detail": null,
+      "value": 14
+    },
+    "will": {
+      "detail": null,
+      "value": 11
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "medium",
   "skills": {

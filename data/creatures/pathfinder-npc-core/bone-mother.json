@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 23,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -28,14 +29,17 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -49,14 +53,17 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Dagger",
       "traits": [
@@ -70,14 +77,17 @@
       "bonus": 15,
       "damage": [
         {
+          "category": null,
           "formula": "1d10",
           "type": "spirit"
         },
         {
+          "category": null,
           "formula": "1d4+6",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -93,6 +103,7 @@
     "Dagger"
   ],
   "hp": 80,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/bone-mother",
   "immunities": [],
   "languages": [
@@ -108,12 +119,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 12,
-    "reflex": 13,
-    "will": 15
+    "fortitude": {
+      "detail": null,
+      "value": 12
+    },
+    "reflex": {
+      "detail": null,
+      "value": 13
+    },
+    "will": {
+      "detail": null,
+      "value": 15
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

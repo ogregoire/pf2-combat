@@ -8,6 +8,7 @@
     "wis": 4
   },
   "ac": 14,
+  "acDetails": null,
   "actions": [
     {
       "category": "offensive",
@@ -48,11 +49,13 @@
       "bonus": 9,
       "damage": [
         {
+          "category": null,
           "formula": "1",
           "type": "piercing"
         }
       ],
-      "kind": "melee",
+      "effects": [],
+      "kind": "ranged",
       "name": "Blowgun",
       "traits": [
         "agile",
@@ -65,10 +68,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fist",
       "traits": [
@@ -81,10 +86,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+2",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Pitchfork",
       "traits": [
@@ -95,10 +102,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d4+2",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Sickle",
       "traits": [
@@ -116,6 +125,7 @@
     "Sickle"
   ],
   "hp": 25,
+  "hpDetails": null,
   "id": "pathfinder-npc-core/orc-agriculturist",
   "immunities": [],
   "languages": [
@@ -129,12 +139,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 9,
-    "reflex": 6,
-    "will": 7
+    "fortitude": {
+      "detail": null,
+      "value": 9
+    },
+    "reflex": {
+      "detail": null,
+      "value": 6
+    },
+    "will": {
+      "detail": null,
+      "value": 7
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {

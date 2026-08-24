@@ -8,21 +8,22 @@
     "wis": 2
   },
   "ac": 26,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "description": "<p><p><strong>Trigger</strong> A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using.</p>\n<hr />\n<p><strong>Effect</strong> The monster attempts a melee Strike against the triggering creature. If the attack is a critical hit and the trigger was a manipulate action, the monster disrupts that action. This Strike doesn't count toward the monster's multiple attack penalty, and its multiple attack penalty doesn't apply to this Strike.</p></p>",
       "frequency": null,
       "name": "Reactive Strike (Tail Only)",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "A creature within the monster's reach uses a manipulate action or a move action, makes a ranged attack, or leaves a square during a move action it's using."
     },
     {
       "category": "offensive",
       "cost": "1",
-      "description": "<p>40 feet</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.AquaticAmbush]</p>",
+      "description": "<p>40 feet</p>\n<hr />\n<p><p><strong>Requirements</strong> The monster is hiding in water and a creature that hasn't detected it is within the listed number of feet.</p>\n<hr />\n<p><strong>Effect</strong> The monster moves up to its swim Speed + 10 feet toward the triggering creature, traveling on water and on land. Once the creature is in reach, the monster makes a Strike against it. The creature is Off-Guard against this Strike.</p></p>",
       "frequency": null,
       "name": "Aquatic Ambush",
       "requirements": null,
@@ -67,10 +68,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -82,9 +85,13 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d12+9",
           "type": "piercing"
         }
+      ],
+      "effects": [
+        "poison-tooth"
       ],
       "kind": "melee",
       "name": "Jaws",
@@ -99,10 +106,12 @@
       "bonus": 20,
       "damage": [
         {
+          "category": null,
           "formula": "2d8+9",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -113,6 +122,7 @@
   "foundryId": "f15mNNhOT3aq66VQ",
   "gear": [],
   "hp": 150,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/krooth",
   "immunities": [],
   "languages": [],
@@ -123,13 +133,30 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 20,
-    "reflex": 17,
-    "will": 14
+    "fortitude": {
+      "detail": null,
+      "value": 20
+    },
+    "reflex": {
+      "detail": null,
+      "value": 17
+    },
+    "will": {
+      "detail": null,
+      "value": 14
+    }
   },
   "senses": [
-    "low-light-vision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "large",
   "skills": {

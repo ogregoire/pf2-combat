@@ -8,6 +8,7 @@
     "wis": 5
   },
   "ac": 43,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -113,14 +114,17 @@
       "bonus": 34,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "force"
         },
         {
+          "category": null,
           "formula": "4d6+15",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -134,14 +138,17 @@
       "bonus": 34,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "force"
         },
         {
+          "category": null,
           "formula": "4d10+15",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Jaws",
       "traits": [
@@ -154,14 +161,17 @@
       "bonus": 32,
       "damage": [
         {
+          "category": null,
           "formula": "1d6",
           "type": "force"
         },
         {
+          "category": null,
           "formula": "4d10+15",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Tail",
       "traits": [
@@ -173,11 +183,24 @@
   "foundryId": "dbElCgziDp8ysxqR",
   "gear": [],
   "hp": 300,
+  "hpDetails": null,
   "id": "pathfinder-monster-core/fortune-dragon-ancient",
   "immunities": [
-    "drained",
-    "paralyzed",
-    "sleep"
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "drained"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "paralyzed"
+    },
+    {
+      "doubleVs": [],
+      "exceptions": [],
+      "type": "sleep"
+    }
   ],
   "languages": [
     "common",
@@ -192,13 +215,30 @@
   "rarity": "uncommon",
   "resistances": [],
   "saves": {
-    "fortitude": 31,
-    "reflex": 34,
-    "will": 32
+    "fortitude": {
+      "detail": null,
+      "value": 31
+    },
+    "reflex": {
+      "detail": null,
+      "value": 34
+    },
+    "will": {
+      "detail": null,
+      "value": 32
+    }
   },
   "senses": [
-    "darkvision",
-    "scent"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    },
+    {
+      "acuity": "imprecise",
+      "range": 60,
+      "type": "scent"
+    }
   ],
   "size": "gargantuan",
   "skills": {

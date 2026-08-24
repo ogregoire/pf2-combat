@@ -8,21 +8,22 @@
     "wis": 3
   },
   "ac": 31,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
       "cost": "free",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ShieldBlock]</p>",
+      "description": "<p><p><strong>Trigger</strong> The monster has its shield raised and takes damage from a physical attack.</p>\n<hr />\n<p><strong>Effect</strong> The monster snaps its shield into place to deflect a blow. The shield prevents the monster from taking an amount of damage up to the shield's Hardness. The monster and the shield each take any remaining damage, possibly breaking or destroying the shield.</p></p>",
       "frequency": null,
       "name": "Shield Block",
       "requirements": null,
       "traits": [],
-      "trigger": null
+      "trigger": "The monster has its shield raised and takes damage from a physical attack."
     },
     {
       "category": "defensive",
       "cost": "reaction",
-      "description": "<p><strong>Damage Reduction</strong> 12</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.RetributiveStrike]</p>",
+      "description": "<p><strong>Damage Reduction</strong> 12</p>\n<hr />\n<p><p><strong>Trigger</strong> An enemy damages the monster's ally, and both are within 15 feet of the monster.</p>\n<hr />\n<p><strong>Effect</strong> The ally gains resistance to all damage against the triggering damage equal to 2 + the monster's level. If the foe is within reach, the monster makes a melee Strike against it.</p></p>",
       "frequency": null,
       "name": "Retributive Strike",
       "requirements": null,
@@ -64,7 +65,7 @@
     {
       "category": "interaction",
       "cost": "passive",
-      "description": "<p>@Localize[PF2E.NPC.Abilities.Glossary.ConstantSpells]</p>",
+      "description": "<p><p>A constant spell affects the monster without the monster needing to cast it, and its duration is unlimited. If a constant spell gets counteracted, the monster can reactivate it by spending the normal spellcasting actions the spell requires.</p></p>",
       "frequency": null,
       "name": "Constant Spells",
       "requirements": null,
@@ -110,10 +111,12 @@
       "bonus": 22,
       "damage": [
         {
+          "category": null,
           "formula": "2d6+10",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Holy Striking Spear",
       "traits": [
@@ -130,6 +133,7 @@
     "Sturdy Shield (Lesser)"
   ],
   "hp": 125,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/shield-archon",
   "immunities": [],
   "languages": [
@@ -144,12 +148,25 @@
   "rarity": "common",
   "resistances": [],
   "saves": {
-    "fortitude": 23,
-    "reflex": 15,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 23
+    },
+    "reflex": {
+      "detail": null,
+      "value": 15
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "large",
   "skills": {
@@ -214,6 +231,8 @@
   ],
   "weaknesses": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "unholy",
       "value": 10
     }

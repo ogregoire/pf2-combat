@@ -8,6 +8,7 @@
     "wis": 3
   },
   "ac": 28,
+  "acDetails": null,
   "actions": [
     {
       "category": "defensive",
@@ -60,10 +61,12 @@
       "bonus": 21,
       "damage": [
         {
+          "category": null,
           "formula": "2d10+8",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Crossbow",
       "traits": [
@@ -76,10 +79,12 @@
       "bonus": 16,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+8",
           "type": "bludgeoning"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Morningstar",
       "traits": [
@@ -99,6 +104,7 @@
     "Healing Potion (Lesser)"
   ],
   "hp": 155,
+  "hpDetails": null,
   "id": "kingmaker-bestiary/agai",
   "immunities": [],
   "languages": [
@@ -113,12 +119,25 @@
   "rarity": "unique",
   "resistances": [],
   "saves": {
-    "fortitude": 17,
-    "reflex": 21,
-    "will": 19
+    "fortitude": {
+      "detail": null,
+      "value": 17
+    },
+    "reflex": {
+      "detail": null,
+      "value": 21
+    },
+    "will": {
+      "detail": null,
+      "value": 19
+    }
   },
   "senses": [
-    "low-light-vision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "low-light-vision"
+    }
   ],
   "size": "small",
   "skills": {

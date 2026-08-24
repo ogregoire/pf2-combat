@@ -8,16 +8,19 @@
     "wis": 0
   },
   "ac": 16,
+  "acDetails": null,
   "actions": [],
   "attacks": [
     {
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d6+4",
           "type": "slashing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Claw",
       "traits": [
@@ -29,10 +32,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "2d4+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Fangs",
       "traits": []
@@ -41,10 +46,12 @@
       "bonus": 10,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+4",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "melee",
       "name": "Trident",
       "traits": []
@@ -53,10 +60,12 @@
       "bonus": 7,
       "damage": [
         {
+          "category": null,
           "formula": "1d8+3",
           "type": "piercing"
         }
       ],
+      "effects": [],
       "kind": "ranged",
       "name": "Trident",
       "traits": [
@@ -69,6 +78,7 @@
     "Trident"
   ],
   "hp": 40,
+  "hpDetails": null,
   "id": "pathfinder-bestiary/skum",
   "immunities": [],
   "languages": [
@@ -81,17 +91,32 @@
   "rarity": "common",
   "resistances": [
     {
+      "doubleVs": [],
+      "exceptions": [],
       "type": "cold",
       "value": 5
     }
   ],
   "saves": {
-    "fortitude": 7,
-    "reflex": 7,
-    "will": 4
+    "fortitude": {
+      "detail": null,
+      "value": 7
+    },
+    "reflex": {
+      "detail": null,
+      "value": 7
+    },
+    "will": {
+      "detail": null,
+      "value": 4
+    }
   },
   "senses": [
-    "darkvision"
+    {
+      "acuity": null,
+      "range": null,
+      "type": "darkvision"
+    }
   ],
   "size": "medium",
   "skills": {
