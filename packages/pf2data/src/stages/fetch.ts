@@ -22,6 +22,14 @@ export interface FetchResult {
 /** Glossary ability text lives here, not in the packs. See Task 18. */
 export const LANG_PATH = "static/lang/en.json";
 
+/**
+ * Sparse-checkout runs in cone mode, which accepts DIRECTORY patterns only:
+ * passing the bare file path above makes git fail with
+ * "fatal: 'static/lang/en.json' is not a directory". The whole directory is
+ * 4 files / ~1 MB, so checking it out wholesale costs nothing.
+ */
+export const LANG_DIR = "static/lang";
+
 const defaultRun: RunGit = (args, cwd) =>
   execFileSync("git", args, { cwd, encoding: "utf8" });
 
@@ -62,7 +70,7 @@ export function fetchUpstream(options: FetchOptions): FetchResult {
       "sparse-checkout",
       "set",
       ...config.packs.map((p) => `packs/${p.name}`),
-      LANG_PATH,
+      LANG_DIR,
     ],
     cacheDir,
   );

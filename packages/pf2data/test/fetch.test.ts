@@ -34,7 +34,7 @@ describe("fetchUpstream", () => {
     const { calls, run } = recorder();
     fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: true, run });
     const sparse = calls.find((c) => c[0] === "sparse-checkout")!;
-    expect(sparse).toContain("static/lang/en.json");
+    expect(sparse).toContain("static/lang");
   });
 
   it("checks out the pinned ref when not using latest", () => {
