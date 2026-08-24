@@ -876,7 +876,7 @@ git commit -m "feat(app): multiple attack penalty and action pool"
   - `interface ConditionDef { slug: ConditionSlug; name: string; valued: boolean; modifiers(value: number): Modifier[]; startOfTurn?: "reduce-actions" | "recovery-check"; endOfTurn?: "decrement" | "persistent-damage"; implies?: ConditionSlug[] }`
   - `CONDITIONS: Record<ConditionSlug, ConditionDef>`
   - `interface AppliedCondition { slug: ConditionSlug; value: number }`
-  - `conditionModifiers(applied: AppliedCondition[], selector: Selector): Modifier[]` where `Selector = "attack" | "ac" | "fortitude" | "reflex" | "will" | "perception" | "skill"`
+  - `conditionModifiers(applied: AppliedCondition[], selector: Selector): Modifier[]` where `Selector = "melee-attack" | "ranged-attack" | "ac" | "fortitude" | "reflex" | "will" | "perception" | "skill"`
 
 The curated set for phase 1, with their mechanical effect:
 
@@ -885,9 +885,9 @@ The curated set for phase 1, with their mechanical effect:
 | off-guard | no | −2 circumstance to AC |
 | frightened | yes | −N status to all checks and DCs; decrements at end of turn |
 | sickened | yes | −N status to all checks and DCs |
-| clumsy | yes | −N status to Dex-based: AC, Reflex |
-| enfeebled | yes | −N status to Str-based: melee attack |
-| stupefied | yes | −N status to Int/Wis/Cha-based and spell DCs |
+| clumsy | yes | −N status to AC, Reflex and ranged attacks (Dex-based) |
+| enfeebled | yes | −N status to melee attacks only (Str-based) |
+| stupefied | yes | −N status to Will and Perception (Int/Wis/Cha-based) |
 | drained | yes | −N status to Fortitude |
 | slowed | yes | start of turn: lose N actions |
 | stunned | yes | start of turn: lose N actions, then reduce |
@@ -896,7 +896,7 @@ The curated set for phase 1, with their mechanical effect:
 | grabbed | no | implies off-guard, immobilized |
 | restrained | no | implies off-guard, immobilized |
 | immobilized | no | no modifier |
-| blinded | no | implies off-guard |
+| blinded | no | no modifier; does NOT confer off-guard (mediated by visibility rules we do not model) |
 | dazzled | no | no modifier in phase 1 |
 | deafened | no | no modifier in phase 1 |
 | fatigued | no | −1 status to AC and saves |
