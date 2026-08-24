@@ -122,7 +122,7 @@ interface EncounterStore {
   setInitiative(entryId: string, initiative: number): void;
   applyDamage(id: string, amount: number): void;
   applyHealing(id: string, amount: number): void;
-  addCondition(id: string, slug: ConditionSlug, value: number): void;
+  addCondition(id: string, slug: ConditionSlug, value: number, formula?: string): void;
   removeCondition(id: string, slug: ConditionSlug): void;
   recordStrike(id: string): void;
   resetStrikes(id: string): void;
@@ -265,13 +265,17 @@ export const useEncounter = create<EncounterStore>()(
         c.defeated = false;
       }),
 
-    addCondition: (id, slug, value) =>
+    addCondition: (id, slug, value, formula) =>
       set((state) => {
         const c = state.encounter.combatants[id];
         if (!c) return;
         const existing = c.conditions.find((cond) => cond.slug === slug);
-        if (existing) existing.value = value;
-        else c.conditions.push({ slug, value });
+        if (existing) {
+          existing.value = value;
+          existing.formula = formula;
+        } else {
+          c.conditions.push({ slug, value, formula });
+        }
       }),
 
     removeCondition: (id, slug) =>

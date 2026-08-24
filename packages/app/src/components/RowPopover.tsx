@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useEncounter } from "../state/store.js";
 import { relevantDamageTypes } from "../rules/damage.js";
+import { CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
+import { compareStrings } from "../rules/compare.js";
+
+const CONDITION_OPTIONS = Object.values(CONDITIONS).sort((a, b) => compareStrings(a.name, b.name));
 
 /**
  * The hover popover for a single row. Rendered by CombatantRow while the
@@ -9,11 +13,20 @@ import { relevantDamageTypes } from "../rules/damage.js";
  */
 export function RowPopover({ combatantId }: { combatantId: string }): React.ReactElement | null {
   const combatant = useEncounter((s) => s.encounter.combatants[combatantId]);
+  const entry = useEncounter((s) => s.encounter.entries.find((e) => e.combatantIds.includes(combatantId)));
   const applyDamage = useEncounter((s) => s.applyDamage);
   const applyHealing = useEncounter((s) => s.applyHealing);
+  const removeCombatant = useEncounter((s) => s.removeCombatant);
+  const setInitiative = useEncounter((s) => s.setInitiative);
+  const addCondition = useEncounter((s) => s.addCondition);
+  const removeCondition = useEncounter((s) => s.removeCondition);
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
+  const [initiativeDraft, setInitiativeDraft] = useState<string | null>(null);
+  const [conditionSlug, setConditionSlug] = useState<ConditionSlug>("off-guard");
+  const [conditionValue, setConditionValue] = useState("1");
+  const [conditionFormula, setConditionFormula] = useState("");
   // Which action the panel is currently set up for. Starts on "damage" (the
   // common case) so hovering alone still shows the selector for a creature
   // with relevant IWR. Healing has no damage type — DamagePopover.dc.html:
@@ -40,6 +53,23 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
     setDamageType("none");
   };
 
+  const commitInitiative = (): void => {
+    if (entry && initiativeDraft !== null) {
+      const value = Number(initiativeDraft);
+      if (Number.isFinite(value)) setInitiative(entry.id, value);
+    }
+    setInitiativeDraft(null);
+  };
+
+  const conditionDef = CONDITIONS[conditionSlug];
+  const handleAddCondition = (): void => {
+    const value = conditionDef.valued ? Number(conditionValue) || 0 : 0;
+    const formula = conditionSlug === "persistent-damage" && conditionFormula.trim() !== ""
+      ? conditionFormula.trim()
+      : undefined;
+    addCondition(combatantId, conditionSlug, value, formula);
+  };
+
   return (
     <div
       // The row beneath this popover is now click-to-target. The popover
@@ -64,13 +94,54 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
         gap: "10px",
       }}
     >
-      <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <span style={{ fontSize: "13px", fontWeight: 600 }}>{combatant.name}</span>
         {combatant.hp !== null && (
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-dim)" }}>
             {combatant.hp.current}/{combatant.hp.max}
           </span>
         )}
+        <div style={{ flexGrow: 1 }} />
+        {entry && (
+          <input
+            aria-label="Initiative"
+            value={initiativeDraft ?? String(entry.initiative)}
+            onFocus={() => setInitiativeDraft(String(entry.initiative))}
+            onChange={(e) => setInitiativeDraft(e.target.value)}
+            onBlur={commitInitiative}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+            }}
+            style={{
+              width: "38px",
+              fontFamily: "var(--font-mono)",
+              fontSize: "12px",
+              textAlign: "center",
+              padding: "3px 4px",
+              borderRadius: "3px",
+              border: "1px solid var(--border-strong)",
+              background: "var(--bg)",
+              color: "var(--text)",
+            }}
+          />
+        )}
+        <button
+          type="button"
+          aria-label={`Remove ${combatant.name}`}
+          onClick={() => removeCombatant(combatantId)}
+          style={{
+            fontFamily: "inherit",
+            fontSize: "11px",
+            padding: "3px 8px",
+            borderRadius: "3px",
+            border: "1px solid var(--border)",
+            background: "var(--panel-raised)",
+            color: "var(--text-dim)",
+            cursor: "pointer",
+          }}
+        >
+          Remove
+        </button>
       </div>
 
       {intent === "damage" && relevant.length === 0 ? (
@@ -200,6 +271,116 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
         >
           Heal
         </button>
+      </div>
+
+      <div style={{ borderTop: "1px solid var(--border)", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "6px" }}>
+        <div style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
+          Add condition
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <select
+            aria-label="Condition"
+            value={conditionSlug}
+            onChange={(e) => setConditionSlug(e.target.value as ConditionSlug)}
+            style={{
+              flexGrow: 1,
+              fontFamily: "inherit",
+              fontSize: "12.5px",
+              padding: "6px 7px",
+              borderRadius: "3px",
+              border: "1px solid var(--border-strong)",
+              background: "var(--bg)",
+              color: "var(--text)",
+            }}
+          >
+            {CONDITION_OPTIONS.map((c) => (
+              <option key={c.slug} value={c.slug}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+          {conditionDef.valued && (
+            <input
+              aria-label="Condition value"
+              value={conditionValue}
+              onChange={(e) => setConditionValue(e.target.value)}
+              style={{
+                width: "42px",
+                fontFamily: "var(--font-mono)",
+                fontSize: "13px",
+                textAlign: "center",
+                padding: "6px 4px",
+                borderRadius: "3px",
+                border: "1px solid var(--border-strong)",
+                background: "var(--bg)",
+                color: "var(--text)",
+              }}
+            />
+          )}
+          <button
+            type="button"
+            onClick={handleAddCondition}
+            style={{
+              fontFamily: "inherit",
+              fontSize: "12px",
+              fontWeight: 600,
+              padding: "6px 10px",
+              borderRadius: "3px",
+              border: "1px solid var(--border-strong)",
+              background: "var(--panel-raised)",
+              color: "var(--text)",
+              cursor: "pointer",
+            }}
+          >
+            Add
+          </button>
+        </div>
+        {conditionSlug === "persistent-damage" && (
+          <input
+            aria-label="Persistent damage formula"
+            placeholder="e.g. 2d6"
+            value={conditionFormula}
+            onChange={(e) => setConditionFormula(e.target.value)}
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "12.5px",
+              padding: "6px 7px",
+              borderRadius: "3px",
+              border: "1px solid var(--border-strong)",
+              background: "var(--bg)",
+              color: "var(--text)",
+            }}
+          />
+        )}
+        {combatant.conditions.length > 0 && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "5px", marginTop: "2px" }}>
+            {combatant.conditions.map((c) => (
+              <button
+                key={c.slug}
+                type="button"
+                aria-label={`Remove ${CONDITIONS[c.slug].name}`}
+                onClick={() => removeCondition(combatantId, c.slug)}
+                style={{
+                  fontFamily: "inherit",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  fontSize: "10.5px",
+                  letterSpacing: "0.04em",
+                  padding: "2px 4px 2px 7px",
+                  borderRadius: "3px",
+                  border: "1px solid var(--border)",
+                  background: "var(--cond-bg)",
+                  color: "var(--cond)",
+                  cursor: "pointer",
+                }}
+              >
+                {CONDITIONS[c.slug].valued ? `${CONDITIONS[c.slug].name.toUpperCase()} ${c.value}` : CONDITIONS[c.slug].name.toUpperCase()}
+                <span aria-hidden="true">×</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

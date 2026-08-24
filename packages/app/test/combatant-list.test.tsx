@@ -145,6 +145,77 @@ describe("CombatantList", () => {
     expect(screen.queryByRole("group", { name: "damage type" })).toBeNull();
   });
 
+  it("adds a condition through the row popover's picker", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    await user.selectOptions(screen.getByLabelText("Condition"), "frightened");
+    const value = screen.getByLabelText("Condition value");
+    await user.clear(value);
+    await user.type(value, "2");
+    await user.click(screen.getByRole("button", { name: "Add" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([
+      { slug: "frightened", value: 2, formula: undefined },
+    ]);
+    // Shows once on the row itself and once as the popover's removable chip.
+    expect(screen.getAllByText("FRIGHTENED 2")).toHaveLength(2);
+  });
+
+  it("removes a condition from the popover's chip", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    useEncounter.getState().addCondition(id, "prone", 0);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    await user.click(screen.getByRole("button", { name: "Remove Prone" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
+  });
+
+  it("carries a formula for persistent damage", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    await user.selectOptions(screen.getByLabelText("Condition"), "persistent-damage");
+    await user.type(screen.getByLabelText("Persistent damage formula"), "2d6");
+    await user.click(screen.getByRole("button", { name: "Add" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([
+      { slug: "persistent-damage", value: 0, formula: "2d6" },
+    ]);
+  });
+
+  it("removes a combatant from the row popover", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    await user.click(screen.getByRole("button", { name: "Remove Stag Lord Bandit" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]).toBeUndefined();
+  });
+
+  it("edits an entry's initiative from the row popover", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    const initiative = screen.getByLabelText("Initiative");
+    await user.clear(initiative);
+    await user.type(initiative, "25");
+    await user.tab();
+
+    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(25);
+  });
+
   it("greys out a defeated combatant", () => {
     const id = useEncounter.getState().addCombatant(seed(), 19);
     useEncounter.getState().applyDamage(id, 99);

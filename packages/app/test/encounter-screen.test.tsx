@@ -79,6 +79,31 @@ describe("EncounterScreen", () => {
     expect(useEncounter.getState().encounter.activeEntryIndex).toBe(1);
   });
 
+  it("applies a condition through the row popover and shows the resulting prompt in TurnManager", async () => {
+    // The whole point of C1: nothing before this wired addCondition to any
+    // UI, so this drives the real path (hover -> pick a condition -> Add)
+    // and checks the effect reaches all the way to a rendered prompt.
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Alpha", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      20,
+    );
+    render(<EncounterScreen />);
+
+    const list = within(screen.getByTestId("combatant-list"));
+    await user.hover(list.getByText("Alpha"));
+    await user.selectOptions(screen.getByLabelText("Condition"), "slowed");
+    const value = screen.getByLabelText("Condition value");
+    await user.clear(value);
+    await user.type(value, "1");
+    await user.click(screen.getByRole("button", { name: "Add" }));
+
+    expect(
+      within(screen.getByTestId("turn-manager")).getByText(/Lose 1 action/),
+    ).toBeDefined();
+  });
+
   it("selects a target by clicking a combatant row and reaches the roll assistant", async () => {
     const user = userEvent.setup();
     useEncounter.getState().addCombatant(
