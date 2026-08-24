@@ -758,7 +758,8 @@ const SystemSchema = z.object({
     ac: z.object({ value: z.number() }),
     hp: z.object({ max: z.number() }),
     speed: z.object({
-      value: z.number(),
+      // Null means the creature has no land speed at all (the Banshee flies).
+      value: z.number().nullable(),
       otherSpeeds: z
         .array(z.object({ type: z.string(), value: z.number() }))
         .default([]),
@@ -779,7 +780,10 @@ const SystemSchema = z.object({
     reflex: z.object({ value: z.number() }),
     will: z.object({ value: z.number() }),
   }),
-  skills: z.record(z.object({ base: z.number() })).default({}),
+  // A null base marks an upstream data-entry artefact: three NPC Core actors
+  // carry junk keys such as "+6", "athletics+15" and "occultism -1" alongside
+  // their real skills. Those entries are dropped during normalization.
+  skills: z.record(z.object({ base: z.number().nullable() })).default({}),
 });
 
 export interface Defenses {
@@ -809,7 +813,9 @@ export function normalizeDefenses(system: unknown): Defenses {
 
   const skills: Record<string, number> = {};
   for (const name of Object.keys(s.skills).sort()) {
-    skills[name] = s.skills[name]!.base;
+    const base = s.skills[name]!.base;
+    if (base === null) continue;
+    skills[name] = base;
   }
 
   const abilityMods: Record<string, number> = {};
@@ -840,7 +846,9 @@ export function normalizeDefenses(system: unknown): Defenses {
     skills,
     abilityMods,
     speeds: [
-      { type: "land", value: s.attributes.speed.value },
+      ...(s.attributes.speed.value === null
+        ? []
+        : [{ type: "land", value: s.attributes.speed.value }]),
       ...[...s.attributes.speed.otherSpeeds].sort((a, b) =>
         a.type.localeCompare(b.type),
       ),
@@ -1588,11 +1596,17 @@ const CONDITION_LABELS: Record<string, string> = {
 // human-readable name that may contain hyphens, spaces, colons and apostrophes
 // (`Item.Off-Guard`, `Item.Interplanar Teleport`). A bare reference renders as
 // its identifier, which is why the name form is safe to display.
+//
+// The document type is NOT always `Item`. Across the real dataset it is Item
+// (11405), Actor (66), Macro (24) and JournalEntry (8) — the last of which
+// nests a further `.JournalEntryPage.<id>` inside the identifier. Every one of
+// those carries a usable label, so the greedy identifier is safe.
 const UUID_PATTERN =
-  /@UUID\[Compendium\.pf2e\.([a-z0-9-]+)\.Item\.([^\]]+)\](?:\{([^}]*)\})?/g;
+  /@UUID\[Compendium\.pf2e\.([a-z0-9-]+)\.([A-Za-z]+)\.([^\]]+)\](?:\{([^}]*)\})?/g;
 
 export interface LinkRef {
   pack: string;
+  docType: string;
   id: string;
   label: string;
 }
@@ -1606,7 +1620,7 @@ const displayOf = (identifier: string, label: string | undefined): string =>
 export function resolveLinks(html: string): string {
   return html.replace(
     UUID_PATTERN,
-    (_match, _pack: string, identifier: string, label?: string) =>
+    (_match, _pack: string, _docType: string, identifier: string, label?: string) =>
       displayOf(identifier, label),
   );
 }
@@ -1615,11 +1629,12 @@ export function collectLinks(html: string): LinkRef[] {
   const refs: LinkRef[] = [];
   for (const match of html.matchAll(UUID_PATTERN)) {
     const rawPack = match[1] ?? "";
-    const identifier = match[2] ?? "";
+    const identifier = match[3] ?? "";
     refs.push({
       pack: PACK_ALIASES[rawPack] ?? rawPack,
+      docType: match[2] ?? "Item",
       id: identifier,
-      label: displayOf(identifier, match[3]),
+      label: displayOf(identifier, match[4]),
     });
   }
   return refs;
@@ -2307,7 +2322,7 @@ git commit -m "feat(pf2data): per-book indexes, book catalog and collision detec
 
 **Interfaces:**
 - Consumes: `Pf2DataConfig` (Task 2).
-- Produces: `fetchUpstream(options: FetchOptions): FetchResult` where `FetchOptions = { config: Pf2DataConfig; cacheDir: string; pinnedRef: string | null; useLatest: boolean; run?: RunGit }` and `FetchResult = { ref: string; packsDir: string; langPath: string }`, plus the constant `LANG_PATH = "static/lang/en.json"`. `RunGit = (args: string[], cwd: string) => string` is injected so the stage is testable without touching the network.
+- Produces: `fetchUpstream(options: FetchOptions): FetchResult` where `FetchOptions = { config: Pf2DataConfig; cacheDir: string; pinnedRef: string | null; useLatest: boolean; run?: RunGit }` and `FetchResult = { ref: string; packsDir: string; langPath: string }`, plus the constants `LANG_PATH = "static/lang/en.json"` (where the file is read from) and `LANG_DIR = "static/lang"` (what sparse-checkout is given, because cone mode rejects file patterns). `RunGit = (args: string[], cwd: string) => string` is injected so the stage is testable without touching the network.
 
 Uses `git clone --filter=blob:none --sparse` then `git sparse-checkout set` limited to the allowlisted packs, then `git checkout <ref>`. Without `--latest` it checks out the pinned SHA, which is what makes `update` byte-for-byte idempotent.
 
@@ -2352,7 +2367,7 @@ describe("fetchUpstream", () => {
     const { calls, run } = recorder();
     fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: true, run });
     const sparse = calls.find((c) => c[0] === "sparse-checkout")!;
-    expect(sparse).toContain("static/lang/en.json");
+    expect(sparse).toContain("static/lang");
   });
 
   it("checks out the pinned ref when not using latest", () => {
@@ -2438,6 +2453,14 @@ export interface FetchResult {
 /** Glossary ability text lives here, not in the packs. See Task 18. */
 export const LANG_PATH = "static/lang/en.json";
 
+/**
+ * Sparse-checkout runs in cone mode, which accepts DIRECTORY patterns only:
+ * passing the bare file path above makes git fail with
+ * "fatal: 'static/lang/en.json' is not a directory". The whole directory is
+ * 4 files / ~1 MB, so checking it out wholesale costs nothing.
+ */
+export const LANG_DIR = "static/lang";
+
 const defaultRun: RunGit = (args, cwd) =>
   execFileSync("git", args, { cwd, encoding: "utf8" });
 
@@ -2473,7 +2496,7 @@ export function fetchUpstream(options: FetchOptions): FetchResult {
       "sparse-checkout",
       "set",
       ...config.packs.map((p) => `packs/${p.name}`),
-      LANG_PATH,
+      LANG_DIR,
     ],
     cacheDir,
   );
