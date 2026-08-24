@@ -59,6 +59,31 @@ function targetRowProps(
   };
 }
 
+/** The multi-select checkbox that feeds CombatantList's group builder.
+ * Rendered inside the row's own click-to-target div, so its own click (and
+ * the label click that would otherwise re-trigger it) must not bubble up
+ * and toggle the target instead. */
+function SelectCheckbox({
+  name,
+  checked,
+  onToggle,
+}: {
+  name: string;
+  checked: boolean;
+  onToggle: () => void;
+}): React.ReactElement {
+  return (
+    <input
+      type="checkbox"
+      aria-label={`Select ${name} for grouping`}
+      checked={checked}
+      onChange={onToggle}
+      onClick={(e) => e.stopPropagation()}
+      style={{ flexShrink: 0, width: "14px", height: "14px", cursor: "pointer" }}
+    />
+  );
+}
+
 function hpColor(current: number, max: number): string {
   if (max <= 0) return "var(--text-faint)";
   const ratio = current / max;
@@ -127,12 +152,16 @@ function StandaloneRow({
   active,
   targeted,
   onToggleTarget,
+  selected,
+  onToggleSelect,
 }: {
   combatant: Combatant;
   initiative?: number;
   active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
+  selected: boolean;
+  onToggleSelect: () => void;
 }): React.ReactElement {
   const borderColor = active
     ? ACTIVE_BORDER
@@ -158,6 +187,8 @@ function StandaloneRow({
         cursor: "pointer",
       }}
     >
+      <SelectCheckbox name={combatant.name} checked={selected} onToggle={onToggleSelect} />
+
       {initiative !== undefined && (
         <div
           style={{
@@ -230,11 +261,15 @@ function GroupMemberRow({
   active,
   targeted,
   onToggleTarget,
+  selected,
+  onToggleSelect,
 }: {
   combatant: Combatant;
   active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
+  selected: boolean;
+  onToggleSelect: () => void;
 }): React.ReactElement {
   return (
     <div
@@ -253,6 +288,8 @@ function GroupMemberRow({
         cursor: "pointer",
       }}
     >
+      <SelectCheckbox name={combatant.name} checked={selected} onToggle={onToggleSelect} />
+
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "5px" }}>
           <span style={{ fontSize: "13px", fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
@@ -309,11 +346,18 @@ export function CombatantRow({
   initiative,
   grouped = false,
   active = false,
+  selected = false,
+  onToggleSelect,
 }: {
   id: string;
   initiative?: number;
   grouped?: boolean;
   active?: boolean;
+  /** Multi-select for the group builder (CombatantList) — defaults are a
+   * safe no-op so existing callers (tests, future call sites) that don't
+   * care about grouping don't have to pass anything. */
+  selected?: boolean;
+  onToggleSelect?: () => void;
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -354,7 +398,14 @@ export function CombatantRow({
   return (
     <div style={{ position: "relative" }} onMouseEnter={openPopover} onMouseLeave={scheduleClose}>
       {grouped ? (
-        <GroupMemberRow combatant={combatant} active={active} targeted={targeted} onToggleTarget={toggleTarget} />
+        <GroupMemberRow
+          combatant={combatant}
+          active={active}
+          targeted={targeted}
+          onToggleTarget={toggleTarget}
+          selected={selected}
+          onToggleSelect={onToggleSelect ?? (() => {})}
+        />
       ) : (
         <StandaloneRow
           combatant={combatant}
@@ -362,6 +413,8 @@ export function CombatantRow({
           active={active}
           targeted={targeted}
           onToggleTarget={toggleTarget}
+          selected={selected}
+          onToggleSelect={onToggleSelect ?? (() => {})}
         />
       )}
 

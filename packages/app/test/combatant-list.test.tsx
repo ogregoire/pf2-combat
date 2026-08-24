@@ -287,6 +287,44 @@ describe("CombatantList", () => {
     expect(screen.getByText("DEFEATED")).toBeDefined();
   });
 
+  it("groups two combatants through the UI — the group() action's missing call site", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(seed({ name: "Goblin Chief" }), 20);
+    useEncounter.getState().addCombatant(seed({ name: "Goblin Minion" }), 8);
+    render(<CombatantList />);
+
+    // Selecting fewer than two rows doesn't surface the builder yet.
+    expect(screen.queryByLabelText("Group name")).toBeNull();
+    await user.click(screen.getByLabelText("Select Goblin Chief for grouping"));
+    expect(screen.queryByLabelText("Group name")).toBeNull();
+    await user.click(screen.getByLabelText("Select Goblin Minion for grouping"));
+
+    expect(screen.getByText("2 selected")).toBeDefined();
+    await user.type(screen.getByLabelText("Group name"), "Goblin Ambush");
+    await user.type(screen.getByLabelText("Group initiative"), "14");
+    await user.click(screen.getByRole("button", { name: "Create group" }));
+
+    const enc = useEncounter.getState().encounter;
+    expect(enc.entries).toHaveLength(1);
+    expect(enc.entries[0]!.groupName).toBe("Goblin Ambush");
+    expect(enc.entries[0]!.initiative).toBe(14);
+    expect(enc.entries[0]!.combatantIds).toHaveLength(2);
+
+    // The builder closes and the selection clears once the group is made.
+    expect(screen.queryByLabelText("Group name")).toBeNull();
+    expect(screen.getByText("GOBLIN AMBUSH")).toBeDefined();
+  });
+
+  it("selecting a row's checkbox doesn't also toggle it as the target", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(seed({ name: "Akiros" }), 20);
+    render(<CombatantList />);
+
+    await user.click(screen.getByLabelText("Select Akiros for grouping"));
+
+    expect(useEncounter.getState().encounter.targetId).toBeNull();
+  });
+
   it("renders a group header with its shared initiative", () => {
     const a = useEncounter.getState().addCombatant(seed({ name: "Akiros" }), 20);
     const b = useEncounter.getState().addCombatant(seed({ name: "Dovan" }), 10);
