@@ -10,7 +10,7 @@ import {
 } from "@pf2/schema";
 import { loadConfig } from "./config.js";
 import { writeJson, stableStringify } from "./io/write.js";
-import { fetchUpstream } from "./stages/fetch.js";
+import { fetchUpstream, type RunGit } from "./stages/fetch.js";
 import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
 import { verifyDataset } from "./stages/verify.js";
@@ -48,16 +48,25 @@ export interface CliIo {
   isTty: boolean;
 }
 
+export interface CliDeps {
+  dataDir: string;
+  cacheDir: string;
+  configPath: string;
+  runGit?: RunGit; // forwarded to fetchUpstream; undefined means the real git CLI
+}
+
 const ROOT = fileURLToPath(new URL("../../..", import.meta.url));
-const DATA_DIR = join(ROOT, "data");
-const CACHE_DIR = join(ROOT, ".cache", "pf2e");
-const CONFIG_PATH = join(ROOT, "packages/pf2data/pf2data.config.json");
-const MANIFEST_PATH = join(DATA_DIR, "manifest.json");
 const TOOL_VERSION = "0.1.0";
 
-function readManifest(): Manifest | null {
-  if (!existsSync(MANIFEST_PATH)) return null;
-  return ManifestSchema.parse(JSON.parse(readFileSync(MANIFEST_PATH, "utf8")));
+const DEFAULT_DEPS: CliDeps = {
+  dataDir: join(ROOT, "data"),
+  cacheDir: join(ROOT, ".cache", "pf2e"),
+  configPath: join(ROOT, "packages/pf2data/pf2data.config.json"),
+};
+
+function readManifest(manifestPath: string): Manifest | null {
+  if (!existsSync(manifestPath)) return null;
+  return ManifestSchema.parse(JSON.parse(readFileSync(manifestPath, "utf8")));
 }
 
 interface OnDiskDataset {
@@ -68,7 +77,7 @@ interface OnDiskDataset {
 }
 
 /** Reads the committed dataset. Used by `verify`, and by `update` to diff. */
-function readDataset(manifest: Manifest | null): OnDiskDataset {
+function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset {
   const empty: OnDiskDataset = {
     creatures: [],
     raw: new Map(),
@@ -77,7 +86,7 @@ function readDataset(manifest: Manifest | null): OnDiskDataset {
   };
   if (manifest === null) return empty;
 
-  const booksPath = join(DATA_DIR, "books.json");
+  const booksPath = join(dataDir, "books.json");
   const books: BookCatalogEntry[] = existsSync(booksPath)
     ? JSON.parse(readFileSync(booksPath, "utf8"))
     : [];
@@ -87,12 +96,12 @@ function readDataset(manifest: Manifest | null): OnDiskDataset {
   const raw = new Map<string, string>();
 
   for (const pack of manifest.packs) {
-    const indexPath = join(DATA_DIR, "index", `${pack}.json`);
+    const indexPath = join(dataDir, "index", `${pack}.json`);
     if (!existsSync(indexPath)) continue;
     const entries: IndexEntry[] = JSON.parse(readFileSync(indexPath, "utf8"));
     indexes[pack] = entries;
     for (const entry of entries) {
-      const file = join(DATA_DIR, "creatures", `${entry.id}.json`);
+      const file = join(dataDir, "creatures", `${entry.id}.json`);
       if (!existsSync(file)) continue;
       const text = readFileSync(file, "utf8");
       raw.set(entry.id, text);
@@ -103,7 +112,7 @@ function readDataset(manifest: Manifest | null): OnDiskDataset {
   return { creatures, raw, books, indexes };
 }
 
-export function runCli(argv: string[], io: CliIo): number {
+export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS): number {
   let command: Command;
   try {
     command = parseArgs(argv);
@@ -112,8 +121,11 @@ export function runCli(argv: string[], io: CliIo): number {
     return EXIT.usageError;
   }
 
-  const config = loadConfig(CONFIG_PATH);
-  const manifest = readManifest();
+  const { dataDir, cacheDir, configPath, runGit } = deps;
+  const manifestPath = join(dataDir, "manifest.json");
+
+  const config = loadConfig(configPath);
+  const manifest = readManifest(manifestPath);
   const emit = (payload: unknown): void => {
     if (!io.isTty) io.out(stableStringify(payload));
   };
@@ -134,7 +146,7 @@ export function runCli(argv: string[], io: CliIo): number {
       emit({ command: "verify", ok: false, failures: ["no dataset"] });
       return EXIT.verifyFailed;
     }
-    const onDisk = readDataset(manifest);
+    const onDisk = readDataset(manifest, dataDir);
     const result = verifyDataset({
       creatures: onDisk.creatures,
       books: onDisk.books,
@@ -151,9 +163,10 @@ export function runCli(argv: string[], io: CliIo): number {
   try {
     fetched = fetchUpstream({
       config,
-      cacheDir: CACHE_DIR,
+      cacheDir,
       pinnedRef: manifest?.upstreamRef ?? null,
       useLatest: command.latest,
+      run: runGit,
     });
   } catch (error) {
     io.err(`upstream error: ${(error as Error).message}\n`);
@@ -187,7 +200,7 @@ export function runCli(argv: string[], io: CliIo): number {
     return EXIT.verifyFailed;
   }
 
-  const previous = readDataset(manifest).raw;
+  const previous = readDataset(manifest, dataDir).raw;
   const next = new Map(creatures.map((c) => [c.id, stableStringify(c)]));
   const diff = diffDataset(previous, next);
   const status = statusOf(diff);
@@ -197,16 +210,25 @@ export function runCli(argv: string[], io: CliIo): number {
   }
 
   for (const id of diff.removed) {
-    rmSync(join(DATA_DIR, "creatures", `${id}.json`), { force: true });
+    rmSync(join(dataDir, "creatures", `${id}.json`), { force: true });
+  }
+  // A pack that loses its last creature has no entry in build.indexes, so the
+  // write loop below never touches (or removes) its old index file, even
+  // though the creature files it pointed at were just deleted above. Delete
+  // any pack the previous manifest indexed that build.indexes no longer has.
+  for (const pack of manifest?.packs ?? []) {
+    if (!(pack in build.indexes)) {
+      rmSync(join(dataDir, "index", `${pack}.json`), { force: true });
+    }
   }
   for (const creature of creatures) {
-    writeJson(join(DATA_DIR, "creatures", `${creature.id}.json`), creature);
+    writeJson(join(dataDir, "creatures", `${creature.id}.json`), creature);
   }
   for (const [pack, entries] of Object.entries(build.indexes)) {
-    writeJson(join(DATA_DIR, "index", `${pack}.json`), entries);
+    writeJson(join(dataDir, "index", `${pack}.json`), entries);
   }
-  writeJson(join(DATA_DIR, "books.json"), build.books);
-  writeJson(MANIFEST_PATH, nextManifest);
+  writeJson(join(dataDir, "books.json"), build.books);
+  writeJson(manifestPath, nextManifest);
 
   io.err(
     `${status}: +${diff.added.length} -${diff.removed.length} ~${diff.modified.length} at ${fetched.ref}\n`,
