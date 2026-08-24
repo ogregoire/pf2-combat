@@ -231,15 +231,27 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   }
   writeJson(join(dataDir, "books.json"), build.books);
 
-  const lang = loadGlossaryLang(fetched.langPath);
-  const glossaryPacks = config.packs
-    .filter((p) => p.kind === "glossary")
-    .map((p) => p.name);
-  writeJson(join(dataDir, "conditions.json"), buildConditions(fetched.packsDir));
-  writeJson(
-    join(dataDir, "glossary.json"),
-    buildGlossary(fetched.packsDir, lang, glossaryPacks),
-  );
+  try {
+    const lang = loadGlossaryLang(fetched.langPath);
+    const conditionPacks = config.packs
+      .filter((p) => p.kind === "conditions")
+      .map((p) => p.name);
+    const glossaryPacks = config.packs
+      .filter((p) => p.kind === "glossary")
+      .map((p) => p.name);
+    writeJson(
+      join(dataDir, "conditions.json"),
+      buildConditions(fetched.packsDir, conditionPacks),
+    );
+    writeJson(
+      join(dataDir, "glossary.json"),
+      buildGlossary(fetched.packsDir, lang, glossaryPacks),
+    );
+  } catch (error) {
+    io.err(`upstream error: ${(error as Error).message}\n`);
+    emit({ command: command.name, error: (error as Error).message });
+    return EXIT.upstreamError;
+  }
 
   writeJson(manifestPath, nextManifest);
 

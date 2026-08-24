@@ -122,10 +122,10 @@ describe("runCli", () => {
     );
     writeFileSync(join(packDir, "the-stag-lord.json"), fixture);
 
-    // The reference stage (Task 18) always reads a "conditions" pack and the
-    // upstream lang file. Real sparse-checkouts always fetch these; this
-    // mocked-git test has to lay them down itself.
-    mkdirSync(join(cacheDir, "packs", "conditions"), { recursive: true });
+    // The reference stage (Task 18) always reads the upstream lang file. Real
+    // sparse-checkouts always fetch it; this mocked-git test has to lay it
+    // down itself. This config has no "conditions"-kind pack, so
+    // buildConditions reads no directory and none needs to exist here.
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
     writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
 

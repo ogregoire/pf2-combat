@@ -28,19 +28,21 @@ const GlossaryItemSchema = z.object({
   }),
 });
 
-export function buildConditions(packsDir: string): Condition[] {
+export function buildConditions(packsDir: string, packs: string[]): Condition[] {
   const conditions: Condition[] = [];
 
-  for (const file of walkPack(join(packsDir, "conditions"))) {
-    const raw: unknown = JSON.parse(readFileSync(file.absolutePath, "utf8"));
-    const parsed = ConditionItemSchema.safeParse(raw);
-    if (!parsed.success) continue;
-    conditions.push({
-      slug: file.slug,
-      name: parsed.data.name,
-      isValued: parsed.data.system.value.isValued,
-      description: resolveLinks(parsed.data.system.description.value),
-    });
+  for (const pack of packs) {
+    for (const file of walkPack(join(packsDir, pack))) {
+      const raw: unknown = JSON.parse(readFileSync(file.absolutePath, "utf8"));
+      const parsed = ConditionItemSchema.safeParse(raw);
+      if (!parsed.success) continue;
+      conditions.push({
+        slug: file.slug,
+        name: parsed.data.name,
+        isValued: parsed.data.system.value.isValued,
+        description: resolveLinks(parsed.data.system.description.value),
+      });
+    }
   }
 
   return conditions.sort((a, b) => a.slug.localeCompare(b.slug));
