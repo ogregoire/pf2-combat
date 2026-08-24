@@ -303,6 +303,20 @@ Prompts are split by PF2's actual timing, which is not uniform:
 Treating everything as start-of-turn would apply persistent damage a full turn
 early, every turn.
 
+### Prompts are dismissed by click, never by a timer
+
+Each prompt persists until the GM explicitly acknowledges it. There is no
+auto-dismiss, no fade, no timeout: the click *is* the record that the effect was
+applied, and a prompt that vanished on its own would leave the GM unsure whether
+they had dealt with it. A prompt whose effect the app applies itself (slowed
+reducing the pool) still requires acknowledgement, so the GM knows the number
+changed and why.
+
+Unacknowledged prompts survive re-renders, target changes and navigation within
+the encounter. Pressing Next with outstanding prompts is **allowed** — the same
+indicator-not-blocker rule the action economy follows — but the button shows the
+outstanding count, so skipping is a visible choice rather than an accident.
+
 ## Targeting and the roll assistant
 
 A combatant may be selected as the **target**. With a target set, every action
