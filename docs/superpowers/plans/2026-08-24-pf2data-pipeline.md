@@ -2495,7 +2495,7 @@ export function fetchUpstream(options: FetchOptions): FetchResult {
 - [ ] **Step 5: Run test to verify it passes**
 
 Run: `npx vitest run packages/pf2data/test/fetch.test.ts`
-Expected: PASS, 4 tests.
+Expected: PASS, 5 tests.
 
 - [ ] **Step 6: Commit**
 
