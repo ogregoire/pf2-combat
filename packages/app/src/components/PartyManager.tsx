@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
 
@@ -72,6 +73,30 @@ const inputStyle: React.CSSProperties = {
 export function PartyManager(): React.ReactElement {
   const players = useEncounter((s) => s.players);
   const setPlayers = useEncounter((s) => s.setPlayers);
+  const addCombatant = useEncounter((s) => s.addCombatant);
+
+  // Draft initiative per player, entered here and consumed by "Add to
+  // encounter" below — this is the only place a kind:"pc" combatant is ever
+  // constructed, carrying the player's AC and saves onto it so the roll
+  // assistant can compute against them (the entire reason those are
+  // collected here in the first place).
+  const [initiatives, setInitiatives] = useState<Record<string, string>>({});
+
+  const addToEncounter = (p: Player): void => {
+    const initiative = Number(initiatives[p.id]) || 0;
+    addCombatant(
+      {
+        kind: "pc",
+        name: p.name,
+        hp: p.hp !== undefined ? { current: p.hp, max: p.hp } : null,
+        ac: p.ac,
+        saves: p.saves,
+        level: p.level,
+      },
+      initiative,
+    );
+    setInitiatives((prev) => ({ ...prev, [p.id]: "" }));
+  };
 
   const update = (id: string, patch: Partial<Player>): void => {
     setPlayers(players.map((p) => (p.id === id ? { ...p, ...patch } : p)));
@@ -186,6 +211,37 @@ export function PartyManager(): React.ReactElement {
               />
               Present
             </label>
+
+            {p.present && (
+              <>
+                <label style={{ ...fieldStyle, width: "56px" }}>
+                  Initiative
+                  <input
+                    aria-label={`Initiative for ${p.name.trim() === "" ? "player" : p.name}`}
+                    value={initiatives[p.id] ?? ""}
+                    onChange={(e) => setInitiatives((prev) => ({ ...prev, [p.id]: e.target.value }))}
+                    style={inputStyle}
+                  />
+                </label>
+                <button
+                  type="button"
+                  onClick={() => addToEncounter(p)}
+                  style={{
+                    fontFamily: "inherit",
+                    fontSize: "12px",
+                    padding: "7px 10px",
+                    borderRadius: "3px",
+                    border: "1px solid var(--border-strong)",
+                    background: "var(--accent-bg)",
+                    color: "var(--accent-text)",
+                    cursor: "pointer",
+                    marginBottom: "1px",
+                  }}
+                >
+                  Add to encounter
+                </button>
+              </>
+            )}
 
             <button
               type="button"
