@@ -2068,7 +2068,7 @@ export function clearCreatureCache(): void {
 
 - [ ] **Step 5: Verify**
 
-Run: `npx vitest run packages/app/test/catalog.test.ts` → PASS, 9 tests.
+Run: `npx vitest run packages/app/test/catalog.test.ts` → PASS, 8 tests.
 
 - [ ] **Step 6: Commit**
 
