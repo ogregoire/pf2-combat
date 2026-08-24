@@ -1815,7 +1815,7 @@ export function promptsFor(input: PromptsInput): Prompt[] {
         derivation: null,
         outcomes: [
           { label: "15+", effect: "the condition ends" },
-          { label: "2–14", effect: "it persists" },
+          { label: "1–14", effect: "it persists" },
         ],
         autoApplied: null,
       });
