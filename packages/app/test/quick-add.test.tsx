@@ -69,14 +69,14 @@ describe("QuickAdd", () => {
   it("shows no dropdown before the name query reaches 3 characters", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    await user.type(screen.getByRole("textbox", { name: /quick add/i }), "go");
+    await user.type(screen.getByRole("combobox", { name: /quick add/i }), "go");
     expect(screen.queryByRole("listbox")).toBeNull();
   });
 
   it("shows a ranked dropdown once the name query reaches 3 characters", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    await user.type(screen.getByRole("textbox", { name: /quick add/i }), "gob");
+    await user.type(screen.getByRole("combobox", { name: /quick add/i }), "gob");
     const listbox = await screen.findByRole("listbox");
     const options = within(listbox).getAllByRole("option");
     expect(options.map((o) => o.textContent)).toEqual(
@@ -87,7 +87,7 @@ describe("QuickAdd", () => {
   it("marks remaster entries and shows level and source book in each row", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    await user.type(screen.getByRole("textbox", { name: /quick add/i }), "troll");
+    await user.type(screen.getByRole("combobox", { name: /quick add/i }), "troll");
     const listbox = await screen.findByRole("listbox");
     expect(listbox.textContent).toContain("Forest Troll");
     expect(listbox.textContent).toContain("Troll");
@@ -99,7 +99,7 @@ describe("QuickAdd", () => {
   it("types a full command and adds six goblins at initiative 13 with populated attacks", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    const input = screen.getByRole("textbox", { name: /quick add/i });
+    const input = screen.getByRole("combobox", { name: /quick add/i });
     await user.type(input, "6 goblin warrior 13");
     await user.keyboard("{Enter}");
 
@@ -115,7 +115,7 @@ describe("QuickAdd", () => {
   it("adds a single creature with default quantity when none is typed", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    const input = screen.getByRole("textbox", { name: /quick add/i });
+    const input = screen.getByRole("combobox", { name: /quick add/i });
     await user.type(input, "goblin warrior 20");
     await user.keyboard("{Enter}");
 
@@ -127,7 +127,7 @@ describe("QuickAdd", () => {
   it("clears the input and keeps focus after a successful add", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    const input = screen.getByRole("textbox", { name: /quick add/i });
+    const input = screen.getByRole("combobox", { name: /quick add/i });
     await user.type(input, "goblin warrior 20");
     await user.keyboard("{Enter}");
 
@@ -138,7 +138,7 @@ describe("QuickAdd", () => {
   it("shows what was added", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    const input = screen.getByRole("textbox", { name: /quick add/i });
+    const input = screen.getByRole("combobox", { name: /quick add/i });
     await user.type(input, "6 goblin warrior 13");
     await user.keyboard("{Enter}");
 
@@ -148,7 +148,7 @@ describe("QuickAdd", () => {
   it("moves the highlight with arrow keys and adds the highlighted entry on Enter", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    const input = screen.getByRole("textbox", { name: /quick add/i });
+    const input = screen.getByRole("combobox", { name: /quick add/i });
     await user.type(input, "gob");
     await screen.findByRole("listbox");
 
@@ -163,7 +163,7 @@ describe("QuickAdd", () => {
   it("closes the dropdown on Escape without clearing the typed text", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    const input = screen.getByRole("textbox", { name: /quick add/i });
+    const input = screen.getByRole("combobox", { name: /quick add/i });
     await user.type(input, "gob");
     await screen.findByRole("listbox");
     await user.keyboard("{Escape}");
@@ -174,7 +174,7 @@ describe("QuickAdd", () => {
   it("completes the highlighted name into the input on Tab without adding", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    const input = screen.getByRole("textbox", { name: /quick add/i }) as HTMLInputElement;
+    const input = screen.getByRole("combobox", { name: /quick add/i }) as HTMLInputElement;
     await user.type(input, "6 goblin war");
     await screen.findByRole("listbox");
     await user.tab();
@@ -186,7 +186,7 @@ describe("QuickAdd", () => {
   it("adds directly on Enter when exactly one match exists", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
-    const input = screen.getByRole("textbox", { name: /quick add/i });
+    const input = screen.getByRole("combobox", { name: /quick add/i });
     await user.type(input, "goblin warrior");
     await screen.findByRole("listbox");
     await user.keyboard("{Enter}");
@@ -194,5 +194,47 @@ describe("QuickAdd", () => {
     await waitFor(() => {
       expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(1);
     });
+  });
+
+  it("exposes the input as a combobox, so aria-expanded/aria-controls/aria-activedescendant are meaningful to assistive tech", () => {
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    const input = screen.getByRole("combobox", { name: /quick add/i });
+    expect(input.getAttribute("role")).toBe("combobox");
+  });
+
+  it("caps a quantity above the limit at 30 instead of adding what was typed", async () => {
+    const user = userEvent.setup();
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    const input = screen.getByRole("combobox", { name: /quick add/i });
+    await user.type(input, "500 goblin warrior 13");
+    await user.keyboard("{Enter}");
+
+    await waitFor(() => {
+      expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(30);
+    });
+    expect(useEncounter.getState().encounter.entries.every((e) => e.initiative === 13)).toBe(true);
+  });
+
+  it("says a quantity was capped instead of clamping silently", async () => {
+    const user = userEvent.setup();
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    const input = screen.getByRole("combobox", { name: /quick add/i });
+    await user.type(input, "500 goblin warrior 13");
+    await user.keyboard("{Enter}");
+
+    await waitFor(() =>
+      expect(screen.getByText(/added 30 × Goblin Warrior at 13 \(capped from 500\)/i)).toBeDefined(),
+    );
+  });
+
+  it("does not mention a cap when the typed quantity was within the limit", async () => {
+    const user = userEvent.setup();
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    const input = screen.getByRole("combobox", { name: /quick add/i });
+    await user.type(input, "6 goblin warrior 13");
+    await user.keyboard("{Enter}");
+
+    await waitFor(() => expect(screen.getByText(/added 6 × Goblin Warrior at 13/i)).toBeDefined());
+    expect(screen.queryByText(/capped/i)).toBeNull();
   });
 });

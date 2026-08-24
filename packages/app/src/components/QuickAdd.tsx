@@ -57,12 +57,15 @@ function optionStyle(active: boolean): React.CSSProperties {
   };
 }
 
-/** Builds the "added N × Name[ at I]" confirmation line the brief asks for,
- * so a mistyped name is visible immediately rather than silently adding the
- * wrong creature. */
-function addedMessage(quantity: number, name: string, initiative: number | null): string {
+/** Builds the "added N × Name[ at I][ (capped from R)]" confirmation line the
+ * brief asks for, so a mistyped name — or a quantity the cap silently
+ * reduced — is visible immediately rather than assumed. `requestedQuantity`
+ * is what the GM actually typed; it only differs from `quantity` when
+ * `parseAddCommand` clamped it down to `MAX_ADD_QUANTITY`. */
+function addedMessage(quantity: number, requestedQuantity: number, name: string, initiative: number | null): string {
   const suffix = initiative !== null ? ` at ${initiative}` : "";
-  return `added ${quantity} × ${name}${suffix}`;
+  const capped = requestedQuantity > quantity ? ` (capped from ${requestedQuantity})` : "";
+  return `added ${quantity} × ${name}${suffix}${capped}`;
 }
 
 /**
@@ -109,7 +112,7 @@ export function QuickAdd({
 
   const optionId = (index: number): string => `${listboxId}-option-${index}`;
 
-  const commit = (entry: IndexEntry, quantity: number, initiative: number | null): void => {
+  const commit = (entry: IndexEntry, quantity: number, requestedQuantity: number, initiative: number | null): void => {
     const slotInitiative = initiative ?? 0;
     void loadCreatureFn(entry.id)
       .catch(() => null)
@@ -118,7 +121,7 @@ export function QuickAdd({
         if (quantity === 1) addCombatant(seed, slotInitiative);
         else addMany(seed, quantity, slotInitiative);
 
-        setMessage(addedMessage(quantity, entry.name, initiative));
+        setMessage(addedMessage(quantity, requestedQuantity, entry.name, initiative));
         setQuery("");
         setDismissed(false);
         setHighlightedIndex(0);
@@ -129,7 +132,10 @@ export function QuickAdd({
   const completeHighlighted = (): void => {
     const entry = shown[clampedIndex];
     if (entry === undefined) return;
-    const prefix = parsed.quantity > 1 ? `${parsed.quantity} ` : "";
+    // Uses the raw requestedQuantity, not the clamped quantity — completing
+    // a name is not committing an add, so a typed "500" shouldn't be
+    // silently rewritten to "30" before the GM has even confirmed it.
+    const prefix = parsed.requestedQuantity > 1 ? `${parsed.requestedQuantity} ` : "";
     const suffix = parsed.initiative !== null ? ` ${parsed.initiative}` : "";
     setQuery(`${prefix}${entry.name}${suffix}`);
   };
@@ -156,7 +162,7 @@ export function QuickAdd({
       const entry = shown[clampedIndex];
       if (entry === undefined) return;
       e.preventDefault();
-      commit(entry, parsed.quantity, parsed.initiative);
+      commit(entry, parsed.quantity, parsed.requestedQuantity, parsed.initiative);
     }
   };
 
@@ -172,6 +178,7 @@ export function QuickAdd({
         id="quick-add-input"
         ref={inputRef}
         aria-label="Quick add creatures"
+        role="combobox"
         aria-expanded={showDropdown}
         aria-controls={listboxId}
         aria-activedescendant={showDropdown ? optionId(clampedIndex) : undefined}
@@ -206,7 +213,7 @@ export function QuickAdd({
                 onMouseEnter={() => setHighlightedIndex(index)}
                 onMouseDown={(e) => {
                   e.preventDefault();
-                  commit(entry, parsed.quantity, parsed.initiative);
+                  commit(entry, parsed.quantity, parsed.requestedQuantity, parsed.initiative);
                 }}
               >
                 <span style={{ fontSize: "14px", fontWeight: 600 }}>{entry.name}</span>
