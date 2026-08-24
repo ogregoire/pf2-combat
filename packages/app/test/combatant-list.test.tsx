@@ -164,6 +164,11 @@ describe("CombatantList", () => {
   });
 
   it("puts the group's left border only on the wrapper, not each member row", () => {
+    // A decoy combatant above the group in initiative keeps the group from
+    // being the active entry, so its border-left stays the plain group
+    // colour rather than the active-entry ember — this test is about border
+    // placement, not the active-row treatment (covered separately below).
+    useEncounter.getState().addCombatant(seed({ name: "Scout" }), 30);
     const a = useEncounter.getState().addCombatant(seed({ name: "Akiros" }), 20);
     const b = useEncounter.getState().addCombatant(seed({ name: "Dovan" }), 10);
     useEncounter.getState().group([a, b], "Gate Watch", 15);
@@ -174,5 +179,32 @@ describe("CombatantList", () => {
 
     const wrapper = memberRow.parentElement!.parentElement as HTMLElement;
     expect(wrapper.style.borderLeft).toBe("3px solid oklch(0.34 0.04 200)");
+  });
+
+  it("highlights the active combatant row distinctly from a non-active one", () => {
+    // The first entry added is at the top of initiative order, so it is
+    // active by default (activeEntryIndex starts at 0).
+    useEncounter.getState().addCombatant(seed({ name: "Leader" }), 20);
+    useEncounter.getState().addCombatant(seed({ name: "Follower" }), 10);
+    render(<CombatantList />);
+
+    const activeRow = screen.getByRole("button", { name: "Target Leader" });
+    const otherRow = screen.getByRole("button", { name: "Target Follower" });
+
+    expect(activeRow.getAttribute("data-active")).toBe("true");
+    expect(otherRow.getAttribute("data-active")).toBe("false");
+    expect(activeRow.style.boxShadow).not.toBe(otherRow.style.boxShadow);
+  });
+
+  it("shows both the active and targeted treatments at once, neither overriding the other", () => {
+    const id = useEncounter.getState().addCombatant(seed({ name: "Leader" }), 20);
+    useEncounter.getState().setTarget(id);
+    render(<CombatantList />);
+
+    const row = screen.getByRole("button", { name: "Target Leader" });
+    expect(row.getAttribute("data-active")).toBe("true");
+    expect(row.getAttribute("data-targeted")).toBe("true");
+    // Two layered shadows, not one replacing the other.
+    expect(row.style.boxShadow.split(",")).toHaveLength(2);
   });
 });

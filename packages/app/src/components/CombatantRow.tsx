@@ -7,10 +7,28 @@ import type { Combatant } from "../state/types.js";
 const HP_TRACK = "oklch(0.28 0.02 30)";
 const GROUP_BG = "oklch(0.205 0.014 200)";
 // Deliberately not the ember/accent hue Main.dc.html uses for "whose turn it
-// is" — the GM must tell "active" and "targeted" apart at a glance, and they
-// are frequently different combatants. This app has no active-row highlight
-// yet, but the colour is chosen to stay distinct from it either way.
+// is" (ACTIVE_* below) — the GM must tell "active" and "targeted" apart at a
+// glance, and they are frequently different combatants.
 const TARGET_RING = "oklch(0.80 0.15 95)";
+
+// Main.dc.html's active-row treatment: ember border-left, a warmer panel
+// background, a thin ring, and a warmer initiative colour (vs the muted
+// var(--text-dim), which is oklch(0.72 0.012 75)).
+const ACTIVE_BORDER = "oklch(0.70 0.15 55)";
+const ACTIVE_BG = "oklch(0.27 0.030 55)";
+const ACTIVE_RING = "0 0 0 1px oklch(0.44 0.08 55)";
+const ACTIVE_INITIATIVE_COLOR = "oklch(0.86 0.12 60)";
+
+/** Layers the active-entry ring and the target ring as two concentric
+ * shadows rather than letting one replace the other, so a combatant that is
+ * both active and targeted — a creature can target itself, or the GM may
+ * attack the active creature with a readied action — shows both at once. */
+function combinedRing(active: boolean, targeted: boolean): string {
+  const layers: string[] = [];
+  if (active) layers.push(ACTIVE_RING);
+  if (targeted) layers.push(`0 0 0 3px ${TARGET_RING}`);
+  return layers.length > 0 ? layers.join(", ") : "none";
+}
 
 /** Handles both the click-to-target toggle and Enter/Space activation, since
  * every row is now a keyboard-reachable target picker, not a bare div. */
@@ -106,19 +124,27 @@ function levelLabel(combatant: Combatant): string {
 function StandaloneRow({
   combatant,
   initiative,
+  active,
   targeted,
   onToggleTarget,
 }: {
   combatant: Combatant;
   initiative?: number;
+  active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
 }): React.ReactElement {
-  const borderColor = combatant.kind === "pc" ? "oklch(0.55 0.10 240)" : "oklch(0.38 0.015 60)";
+  const borderColor = active
+    ? ACTIVE_BORDER
+    : combatant.kind === "pc"
+      ? "oklch(0.55 0.10 240)"
+      : "oklch(0.38 0.015 60)";
 
   return (
     <div
       {...targetRowProps(combatant, targeted, onToggleTarget)}
+      data-active={active}
+      data-targeted={targeted}
       style={{
         display: "flex",
         alignItems: "center",
@@ -126,9 +152,9 @@ function StandaloneRow({
         padding: "8px 10px",
         borderRadius: "4px",
         borderLeft: `3px solid ${borderColor}`,
-        background: "var(--panel-raised)",
+        background: active ? ACTIVE_BG : "var(--panel-raised)",
         opacity: combatant.defeated ? 0.42 : 1,
-        boxShadow: targeted ? `0 0 0 2px ${TARGET_RING}` : "none",
+        boxShadow: combinedRing(active, targeted),
         cursor: "pointer",
       }}
     >
@@ -140,7 +166,7 @@ function StandaloneRow({
             fontWeight: 600,
             width: "24px",
             textAlign: "right",
-            color: "var(--text-dim)",
+            color: active ? ACTIVE_INITIATIVE_COLOR : "var(--text-dim)",
           }}
         >
           {initiative}
@@ -201,25 +227,29 @@ function StandaloneRow({
  * the mockup only draws it once. */
 function GroupMemberRow({
   combatant,
+  active,
   targeted,
   onToggleTarget,
 }: {
   combatant: Combatant;
+  active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
 }): React.ReactElement {
   return (
     <div
       {...targetRowProps(combatant, targeted, onToggleTarget)}
+      data-active={active}
+      data-targeted={targeted}
       style={{
         display: "flex",
         alignItems: "center",
         gap: "9px",
         padding: "7px 10px",
         borderRadius: "3px",
-        background: GROUP_BG,
+        background: active ? ACTIVE_BG : GROUP_BG,
         opacity: combatant.defeated ? 0.42 : 1,
-        boxShadow: targeted ? `0 0 0 2px ${TARGET_RING}` : "none",
+        boxShadow: combinedRing(active, targeted),
         cursor: "pointer",
       }}
     >
@@ -278,10 +308,12 @@ export function CombatantRow({
   id,
   initiative,
   grouped = false,
+  active = false,
 }: {
   id: string;
   initiative?: number;
   grouped?: boolean;
+  active?: boolean;
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -322,9 +354,15 @@ export function CombatantRow({
   return (
     <div style={{ position: "relative" }} onMouseEnter={openPopover} onMouseLeave={scheduleClose}>
       {grouped ? (
-        <GroupMemberRow combatant={combatant} targeted={targeted} onToggleTarget={toggleTarget} />
+        <GroupMemberRow combatant={combatant} active={active} targeted={targeted} onToggleTarget={toggleTarget} />
       ) : (
-        <StandaloneRow combatant={combatant} initiative={initiative} targeted={targeted} onToggleTarget={toggleTarget} />
+        <StandaloneRow
+          combatant={combatant}
+          initiative={initiative}
+          active={active}
+          targeted={targeted}
+          onToggleTarget={toggleTarget}
+        />
       )}
 
       {hovered && <RowPopover combatantId={id} />}
