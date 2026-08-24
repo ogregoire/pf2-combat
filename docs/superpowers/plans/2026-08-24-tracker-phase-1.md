@@ -133,7 +133,7 @@ export default defineConfig({
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "dist-tsc",
+    "outDir": "dist",
     "rootDir": "src",
     "jsx": "react-jsx",
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
