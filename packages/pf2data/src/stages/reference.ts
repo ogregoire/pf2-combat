@@ -5,6 +5,7 @@ import type { Condition, GlossaryEntry } from "@pf2/schema";
 import { walkPack } from "../io/walk.js";
 import { resolveLinks } from "../normalize/links.js";
 import { resolveLocalize, type LangTable } from "../normalize/localize.js";
+import { compareStrings } from "../util.js";
 
 const ConditionItemSchema = z.object({
   name: z.string(),
@@ -45,7 +46,7 @@ export function buildConditions(packsDir: string, packs: string[]): Condition[] 
     }
   }
 
-  return conditions.sort((a, b) => a.slug.localeCompare(b.slug));
+  return conditions.sort((a, b) => compareStrings(a.slug, b.slug));
 }
 
 export function buildGlossary(
@@ -75,9 +76,7 @@ export function buildGlossary(
         slug: file.slug,
         name,
         cost,
-        traits: [...(system.traits?.value ?? [])].sort((a, b) =>
-          a.localeCompare(b),
-        ),
+        traits: [...(system.traits?.value ?? [])].sort(compareStrings),
         description: resolveLinks(
           resolveLocalize(system.description.value, lang),
         ),
@@ -85,5 +84,5 @@ export function buildGlossary(
     }
   }
 
-  return entries.sort((a, b) => a.slug.localeCompare(b.slug));
+  return entries.sort((a, b) => compareStrings(a.slug, b.slug));
 }

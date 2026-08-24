@@ -15,6 +15,7 @@ const stagLord = normalizeCreature(
   ),
   "kingmaker-bestiary",
   "the-stag-lord",
+  {},
 );
 
 const manifest = (overrides: Partial<Manifest> = {}): Manifest => ({
@@ -28,27 +29,28 @@ const manifest = (overrides: Partial<Manifest> = {}): Manifest => ({
   ...overrides,
 });
 
+const baseInput = () => {
+  const build = buildIndexes([stagLord]);
+  return {
+    creatures: [stagLord],
+    books: build.books,
+    indexes: build.indexes,
+    conditions: [],
+    glossary: [],
+    manifest: manifest(),
+  };
+};
+
 describe("verifyDataset", () => {
   it("passes on a consistent dataset", () => {
-    const build = buildIndexes([stagLord]);
-    const result = verifyDataset({
-      creatures: [stagLord],
-      books: build.books,
-      indexes: build.indexes,
-      manifest: manifest(),
-    });
+    const result = verifyDataset(baseInput());
     expect(result).toEqual({ ok: true, failures: [] });
   });
 
   it("fails when a book count disagrees with its index", () => {
-    const build = buildIndexes([stagLord]);
-    build.books[0]!.creatureCount = 99;
-    const result = verifyDataset({
-      creatures: [stagLord],
-      books: build.books,
-      indexes: build.indexes,
-      manifest: manifest(),
-    });
+    const input = baseInput();
+    input.books[0]!.creatureCount = 99;
+    const result = verifyDataset(input);
     expect(result.ok).toBe(false);
     expect(result.failures.join(" ")).toMatch(/creatureCount/);
   });
@@ -60,6 +62,8 @@ describe("verifyDataset", () => {
       creatures: [tainted],
       books: build.books,
       indexes: build.indexes,
+      conditions: [],
+      glossary: [],
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -73,23 +77,91 @@ describe("verifyDataset", () => {
       creatures: [tainted],
       books: build.books,
       indexes: build.indexes,
+      conditions: [],
+      glossary: [],
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
     expect(result.failures.join(" ")).toMatch(/@UUID/);
   });
 
-  it("fails when the collision set drifts from the manifest", () => {
-    const build = buildIndexes([stagLord]);
+  it("fails when an unresolved @Localize placeholder remains", () => {
+    const tainted = { ...stagLord, publicNotes: "see @Localize[PF2E.NPC.Abilities.Glossary.Grab]" };
+    const build = buildIndexes([tainted]);
     const result = verifyDataset({
-      creatures: [stagLord],
+      creatures: [tainted],
       books: build.books,
       indexes: build.indexes,
-      manifest: manifest({
-        collisions: [{ slug: "barghest", ids: ["a/barghest", "b/barghest"] }],
-      }),
+      conditions: [],
+      glossary: [],
+      manifest: manifest(),
     });
     expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/@Localize/);
+  });
+
+  it("fails when the collision set drifts from the manifest", () => {
+    const input = baseInput();
+    input.manifest = manifest({
+      collisions: [{ slug: "barghest", ids: ["a/barghest", "b/barghest"] }],
+    });
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
     expect(result.failures.join(" ")).toMatch(/collision/i);
+  });
+
+  it("fails when a book's mixed flag does not match its creatures' source uniformity", () => {
+    const input = baseInput();
+    // stagLord is the only creature in its pack, so mixed must be false;
+    // asserting true is a lie the verifier should catch.
+    input.books[0]!.mixed = true;
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/mixed/i);
+  });
+
+  it("fails when a book entry does not validate against its schema", () => {
+    const input = baseInput();
+    (input.books[0] as { license: string }).license = "not-a-license";
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/schema: book/);
+  });
+
+  it("fails when an index entry does not validate against its schema", () => {
+    const input = baseInput();
+    const pack = Object.keys(input.indexes)[0]!;
+    (input.indexes[pack]![0] as { level: unknown }).level = "not-a-number";
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/schema: index/);
+  });
+
+  it("fails when a condition does not validate against its schema", () => {
+    const input = baseInput();
+    input.conditions = [{ slug: "prone", name: "Prone" /* missing isValued/description */ }];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/schema: condition/);
+  });
+
+  it("fails when a glossary entry does not validate against its schema", () => {
+    const input = baseInput();
+    input.glossary = [{ slug: "grab", name: "Grab", cost: "not-a-cost" }];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/schema: glossary/);
+  });
+
+  it("passes with well-formed conditions and glossary entries", () => {
+    const input = baseInput();
+    input.conditions = [
+      { slug: "prone", name: "Prone", isValued: false, description: "<p>...</p>" },
+    ];
+    input.glossary = [
+      { slug: "grab", name: "Grab", cost: "1", traits: [], description: "<p>...</p>" },
+    ];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(true);
   });
 });

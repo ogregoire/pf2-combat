@@ -2,19 +2,14 @@
 import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import {
-  ManifestSchema,
-  type BookCatalogEntry,
-  type IndexEntry,
-  type Manifest,
-} from "@pf2/schema";
+import { ManifestSchema, type IndexEntry, type Manifest } from "@pf2/schema";
 import { loadConfig } from "./config.js";
 import { writeJson, stableStringify } from "./io/write.js";
 import { fetchUpstream, type RunGit } from "./stages/fetch.js";
 import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
 import { verifyDataset } from "./stages/verify.js";
-import { diffDataset, statusOf } from "./report.js";
+import { diffDataset, statusOf, type ChangeStatus } from "./report.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
 import { buildConditions, buildGlossary } from "./stages/reference.js";
 import { renderSchemaDoc } from "./docs/schema-doc.js";
@@ -37,11 +32,22 @@ const USAGE = "usage: pf2data <update [--latest] | status | verify>";
 export function parseArgs(argv: string[]): Command {
   const [command, ...rest] = argv;
   if (command === undefined) throw new Error(USAGE);
+
   if (command === "update") {
+    const unknown = rest.find((a) => a !== "--latest");
+    if (unknown !== undefined) {
+      throw new Error(`unknown flag "${unknown}". ${USAGE}`);
+    }
     return { name: "update", latest: rest.includes("--latest") };
   }
-  if (command === "status") return { name: "status" };
-  if (command === "verify") return { name: "verify" };
+
+  if (command === "status" || command === "verify") {
+    if (rest.length > 0) {
+      throw new Error(`unknown flag "${rest[0]}". ${USAGE}`);
+    }
+    return command === "status" ? { name: "status" } : { name: "verify" };
+  }
+
   throw new Error(`unknown command "${command}". ${USAGE}`);
 }
 
@@ -67,6 +73,9 @@ const DEFAULT_DEPS: CliDeps = {
   configPath: join(ROOT, "packages/pf2data/pf2data.config.json"),
 };
 
+/** A corrupt on-disk manifest is a verification failure (exit 20), not an
+ * uncaught crash: JSON.parse and ManifestSchema.parse both throw on bad
+ * input. */
 function readManifest(manifestPath: string): Manifest | null {
   if (!existsSync(manifestPath)) return null;
   return ManifestSchema.parse(JSON.parse(readFileSync(manifestPath, "utf8")));
@@ -74,45 +83,92 @@ function readManifest(manifestPath: string): Manifest | null {
 
 interface OnDiskDataset {
   creatures: unknown[];
-  raw: Map<string, string>;
-  books: BookCatalogEntry[];
-  indexes: Record<string, IndexEntry[]>;
+  books: unknown[];
+  indexes: Record<string, unknown[]>;
+  conditions: unknown[];
+  glossary: unknown[];
 }
 
-/** Reads the committed dataset. Used by `verify`, and by `update` to diff. */
+/** Reads the committed dataset for `verify`. A corrupt file (bad JSON) is
+ * left to throw; the caller treats that as a verification failure. */
 function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset {
   const empty: OnDiskDataset = {
     creatures: [],
-    raw: new Map(),
     books: [],
     indexes: {},
+    conditions: [],
+    glossary: [],
   };
   if (manifest === null) return empty;
 
-  const booksPath = join(dataDir, "books.json");
-  const books: BookCatalogEntry[] = existsSync(booksPath)
-    ? JSON.parse(readFileSync(booksPath, "utf8"))
-    : [];
+  const readJson = (relPath: string, fallback: unknown): unknown => {
+    const abs = join(dataDir, relPath);
+    return existsSync(abs) ? JSON.parse(readFileSync(abs, "utf8")) : fallback;
+  };
 
-  const indexes: Record<string, IndexEntry[]> = {};
+  const books = readJson("books.json", []) as unknown[];
+  const conditions = readJson("conditions.json", []) as unknown[];
+  const glossary = readJson("glossary.json", []) as unknown[];
+
+  const indexes: Record<string, unknown[]> = {};
   const creatures: unknown[] = [];
-  const raw = new Map<string, string>();
 
   for (const pack of manifest.packs) {
     const indexPath = join(dataDir, "index", `${pack}.json`);
     if (!existsSync(indexPath)) continue;
-    const entries: IndexEntry[] = JSON.parse(readFileSync(indexPath, "utf8"));
+    const entries = JSON.parse(readFileSync(indexPath, "utf8")) as IndexEntry[];
     indexes[pack] = entries;
     for (const entry of entries) {
       const file = join(dataDir, "creatures", `${entry.id}.json`);
       if (!existsSync(file)) continue;
-      const text = readFileSync(file, "utf8");
-      raw.set(entry.id, text);
-      creatures.push(JSON.parse(text));
+      creatures.push(JSON.parse(readFileSync(file, "utf8")));
     }
   }
 
-  return { creatures, raw, books, indexes };
+  return { creatures, books, indexes, conditions, glossary };
+}
+
+interface OnDiskFiles {
+  /** creature id -> raw file text */
+  creatures: Map<string, string>;
+  /** relative path (books.json, index/<pack>.json, conditions.json,
+   * glossary.json, SCHEMA.md) -> raw file text */
+  others: Map<string, string>;
+}
+
+/** Reads the raw text of every emitted file (creature and non-creature
+ * alike) so `update` can detect a change confined to a non-creature file --
+ * see Task C3. Deliberately excludes manifest.json, which carries
+ * `generatedAt` and would self-trigger. A corrupt on-disk file is left to
+ * throw; the caller treats that as a verification failure. */
+function readOnDiskFiles(manifest: Manifest | null, dataDir: string): OnDiskFiles {
+  const creatures = new Map<string, string>();
+  const others = new Map<string, string>();
+  if (manifest === null) return { creatures, others };
+
+  const tryReadOther = (relPath: string): void => {
+    const abs = join(dataDir, relPath);
+    if (existsSync(abs)) others.set(relPath, readFileSync(abs, "utf8"));
+  };
+
+  tryReadOther("books.json");
+  tryReadOther("conditions.json");
+  tryReadOther("glossary.json");
+  tryReadOther("SCHEMA.md");
+
+  for (const pack of manifest.packs) {
+    const indexRel = `index/${pack}.json`;
+    tryReadOther(indexRel);
+    const indexAbs = join(dataDir, indexRel);
+    if (!existsSync(indexAbs)) continue;
+    const entries = JSON.parse(readFileSync(indexAbs, "utf8")) as IndexEntry[];
+    for (const entry of entries) {
+      const file = join(dataDir, "creatures", `${entry.id}.json`);
+      if (existsSync(file)) creatures.set(entry.id, readFileSync(file, "utf8"));
+    }
+  }
+
+  return { creatures, others };
 }
 
 export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS): number {
@@ -128,10 +184,18 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   const manifestPath = join(dataDir, "manifest.json");
 
   const config = loadConfig(configPath);
-  const manifest = readManifest(manifestPath);
   const emit = (payload: unknown): void => {
     if (!io.isTty) io.out(stableStringify(payload));
   };
+
+  let manifest: Manifest | null;
+  try {
+    manifest = readManifest(manifestPath);
+  } catch (error) {
+    io.err(`verification failed: manifest.json is invalid: ${(error as Error).message}\n`);
+    emit({ command: command.name, ok: false, failures: [`manifest: ${(error as Error).message}`] });
+    return EXIT.verifyFailed;
+  }
 
   if (command.name === "status") {
     io.err(
@@ -149,11 +213,20 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
       emit({ command: "verify", ok: false, failures: ["no dataset"] });
       return EXIT.verifyFailed;
     }
-    const onDisk = readDataset(manifest, dataDir);
+    let onDisk: OnDiskDataset;
+    try {
+      onDisk = readDataset(manifest, dataDir);
+    } catch (error) {
+      io.err(`verification failed: corrupt dataset: ${(error as Error).message}\n`);
+      emit({ command: "verify", ok: false, failures: [`dataset: ${(error as Error).message}`] });
+      return EXIT.verifyFailed;
+    }
     const result = verifyDataset({
       creatures: onDisk.creatures,
       books: onDisk.books,
       indexes: onDisk.indexes,
+      conditions: onDisk.conditions,
+      glossary: onDisk.glossary,
       manifest,
     });
     for (const failure of result.failures) io.err(`${failure}\n`);
@@ -177,7 +250,30 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     return EXIT.upstreamError;
   }
 
-  const normalized = normalizePacks(fetched.packsDir, config);
+  // The lang table is loaded BEFORE normalization (not just before
+  // buildGlossary) so normalizeCreature can resolve @Localize placeholders
+  // in ability descriptions (Grab, Attack of Opportunity, ...) -- see C1.
+  let lang;
+  try {
+    lang = loadGlossaryLang(fetched.langPath);
+  } catch (error) {
+    io.err(`upstream error: ${(error as Error).message}\n`);
+    emit({ command: command.name, error: (error as Error).message });
+    return EXIT.upstreamError;
+  }
+
+  // Any throw escaping normalizePacks itself (as opposed to a per-creature
+  // failure, which is caught internally and reported via `.failures`) means
+  // a pack directory is missing or unreadable -- e.g. upstream renamed or
+  // removed a pack. That is an upstream problem, not a verification one.
+  let normalized;
+  try {
+    normalized = normalizePacks(fetched.packsDir, config, lang);
+  } catch (error) {
+    io.err(`upstream error: ${(error as Error).message}\n`);
+    emit({ command: command.name, error: (error as Error).message });
+    return EXIT.upstreamError;
+  }
   if (normalized.failures.length > 0) {
     for (const failure of normalized.failures) io.err(`${failure}\n`);
     emit({ command: command.name, ok: false, failures: normalized.failures });
@@ -185,6 +281,21 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   }
   const creatures = normalized.creatures;
   const build = buildIndexes(creatures);
+
+  const conditionPacks = config.packs.filter((p) => p.kind === "conditions").map((p) => p.name);
+  const glossaryPacks = config.packs.filter((p) => p.kind === "glossary").map((p) => p.name);
+
+  let conditions, glossary;
+  try {
+    conditions = buildConditions(fetched.packsDir, conditionPacks);
+    glossary = buildGlossary(fetched.packsDir, lang, glossaryPacks);
+  } catch (error) {
+    io.err(`upstream error: ${(error as Error).message}\n`);
+    emit({ command: command.name, error: (error as Error).message });
+    return EXIT.upstreamError;
+  }
+
+  const schemaDoc = renderSchemaDoc();
 
   const nextManifest: Manifest = {
     toolVersion: TOOL_VERSION,
@@ -200,6 +311,8 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     creatures,
     books: build.books,
     indexes: build.indexes,
+    conditions,
+    glossary,
     manifest: nextManifest,
   });
 
@@ -209,16 +322,43 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     return EXIT.verifyFailed;
   }
 
-  const previous = readDataset(manifest, dataDir).raw;
-  const next = new Map(creatures.map((c) => [c.id, stableStringify(c)]));
-  const diff = diffDataset(previous, next);
-  const status = statusOf(diff);
+  let onDisk: OnDiskFiles;
+  try {
+    onDisk = readOnDiskFiles(manifest, dataDir);
+  } catch (error) {
+    io.err(`verification failed: corrupt dataset: ${(error as Error).message}\n`);
+    emit({ command: command.name, ok: false, failures: [`dataset: ${(error as Error).message}`] });
+    return EXIT.verifyFailed;
+  }
+
+  // Two diffs: `creatureDiff` is the documented, agent-facing "what changed"
+  // report (creature ids only). `otherDiff` covers every other emitted file
+  // (index/<pack>.json, books.json, conditions.json, glossary.json,
+  // SCHEMA.md) purely to decide the change status -- see C3. Without it, a
+  // change confined to a non-creature file reported "unchanged" and exit 0
+  // while `git diff data/` was non-empty.
+  const nextCreatureRaw = new Map(creatures.map((c) => [c.id, stableStringify(c)]));
+  const creatureDiff = diffDataset(onDisk.creatures, nextCreatureRaw);
+
+  const nextOtherRaw = new Map<string, string>();
+  for (const [pack, entries] of Object.entries(build.indexes)) {
+    nextOtherRaw.set(`index/${pack}.json`, stableStringify(entries));
+  }
+  nextOtherRaw.set("books.json", stableStringify(build.books));
+  nextOtherRaw.set("conditions.json", stableStringify(conditions));
+  nextOtherRaw.set("glossary.json", stableStringify(glossary));
+  nextOtherRaw.set("SCHEMA.md", schemaDoc);
+  const otherDiff = diffDataset(onDisk.others, nextOtherRaw);
+
+  const otherFilesChanged = statusOf(otherDiff) === "updated";
+  const status: ChangeStatus =
+    statusOf(creatureDiff) === "updated" || otherFilesChanged ? "updated" : "unchanged";
 
   if (status === "updated") {
     nextManifest.generatedAt = new Date().toISOString();
   }
 
-  for (const id of diff.removed) {
+  for (const id of creatureDiff.removed) {
     rmSync(join(dataDir, "creatures", `${id}.json`), { force: true });
   }
   // A pack that loses its last creature has no entry in build.indexes, so the
@@ -237,34 +377,14 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     writeJson(join(dataDir, "index", `${pack}.json`), entries);
   }
   writeJson(join(dataDir, "books.json"), build.books);
-
-  try {
-    const lang = loadGlossaryLang(fetched.langPath);
-    const conditionPacks = config.packs
-      .filter((p) => p.kind === "conditions")
-      .map((p) => p.name);
-    const glossaryPacks = config.packs
-      .filter((p) => p.kind === "glossary")
-      .map((p) => p.name);
-    writeJson(
-      join(dataDir, "conditions.json"),
-      buildConditions(fetched.packsDir, conditionPacks),
-    );
-    writeJson(
-      join(dataDir, "glossary.json"),
-      buildGlossary(fetched.packsDir, lang, glossaryPacks),
-    );
-  } catch (error) {
-    io.err(`upstream error: ${(error as Error).message}\n`);
-    emit({ command: command.name, error: (error as Error).message });
-    return EXIT.upstreamError;
-  }
-
+  writeJson(join(dataDir, "conditions.json"), conditions);
+  writeJson(join(dataDir, "glossary.json"), glossary);
   writeJson(manifestPath, nextManifest);
-  writeFileSync(join(dataDir, "SCHEMA.md"), renderSchemaDoc(), "utf8");
+  writeFileSync(join(dataDir, "SCHEMA.md"), schemaDoc, "utf8");
 
   io.err(
-    `${status}: +${diff.added.length} -${diff.removed.length} ~${diff.modified.length} at ${fetched.ref}\n`,
+    `${status}: +${creatureDiff.added.length} -${creatureDiff.removed.length} ~${creatureDiff.modified.length}` +
+      `${otherFilesChanged ? " (other emitted files also changed)" : ""} at ${fetched.ref}\n`,
   );
   emit({
     command: "update",
@@ -272,7 +392,8 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     status,
     upstreamRef: fetched.ref,
     creatureCount: creatures.length,
-    ...diff,
+    otherFilesChanged,
+    ...creatureDiff,
   });
 
   return status === "updated" ? EXIT.updated : EXIT.unchanged;

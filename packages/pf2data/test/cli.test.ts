@@ -30,6 +30,21 @@ describe("parseArgs", () => {
   it("rejects no command", () => {
     expect(() => parseArgs([])).toThrow(/usage/i);
   });
+
+  it("rejects the removed --pack flag on update", () => {
+    expect(() => parseArgs(["update", "--pack", "kingmaker-bestiary"])).toThrow(
+      /unknown flag/i,
+    );
+  });
+
+  it("rejects any unrecognised flag on update", () => {
+    expect(() => parseArgs(["update", "--bogus"])).toThrow(/unknown flag/i);
+  });
+
+  it("rejects extra arguments on status and verify", () => {
+    expect(() => parseArgs(["status", "extra"])).toThrow(/unknown flag/i);
+    expect(() => parseArgs(["verify", "--pack", "x"])).toThrow(/unknown flag/i);
+  });
 });
 
 // --- runCli, with a temp filesystem and a recording (never-networked) git ---
@@ -188,5 +203,122 @@ describe("runCli", () => {
     expect(exit).toBe(20);
     expect(errLines.some((l) => l.includes("kingmaker-bestiary/broken-creature"))).toBe(true);
     expect(existsSync(join(dataDir, "manifest.json"))).toBe(false);
+  });
+
+  function seededDeps(): { deps: CliDeps; dataDir: string; cacheDir: string } {
+    const dataDir = tmpDir("pf2data-data-");
+    const cacheDir = tmpDir("pf2data-cache-");
+    const configDir = tmpDir("pf2data-config-");
+
+    const configPath = join(configDir, "pf2data.config.json");
+    writeFileSync(
+      configPath,
+      JSON.stringify({
+        upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        packs: [{ name: "kingmaker-bestiary", kind: "creatures" }],
+      }),
+    );
+
+    const packDir = join(cacheDir, "packs", "kingmaker-bestiary");
+    mkdirSync(packDir, { recursive: true });
+    const fixture = readFileSync(
+      fileURLToPath(new URL("./fixtures/the-stag-lord.json", import.meta.url)),
+      "utf8",
+    );
+    writeFileSync(join(packDir, "the-stag-lord.json"), fixture);
+
+    mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+
+    const { run } = recordingGit();
+    return { deps: { dataDir, cacheDir, configPath, runGit: run }, dataDir, cacheDir };
+  }
+
+  it("C3: a change confined to a non-creature emitted file yields exit 10, not 0", () => {
+    const { deps, dataDir } = seededDeps();
+
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    expect(runCli(["update"], silentIo(), deps)).toBe(0);
+
+    // Mutate an on-disk index file so it no longer matches what a fresh
+    // regeneration from the same pinned SHA would produce, while every
+    // creature file is untouched. Before Task C3 this reported "unchanged"
+    // and exited 0 even though `git diff data/` would be non-empty.
+    const indexPath = join(dataDir, "index", "kingmaker-bestiary.json");
+    const original = readFileSync(indexPath, "utf8");
+    writeFileSync(indexPath, original.replace('"rarity"', '"driftedField"'));
+
+    const exit = runCli(["update"], silentIo(), deps);
+    expect(exit).toBe(10);
+
+    // And the drifted content is corrected back to the regenerated form.
+    expect(readFileSync(indexPath, "utf8")).toContain('"rarity"');
+  });
+
+  it("I6: a missing/renamed upstream pack directory is an upstream error (exit 30), not a crash", () => {
+    const dataDir = tmpDir("pf2data-data-");
+    const cacheDir = tmpDir("pf2data-cache-");
+    const configDir = tmpDir("pf2data-config-");
+
+    const configPath = join(configDir, "pf2data.config.json");
+    writeFileSync(
+      configPath,
+      JSON.stringify({
+        upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        packs: [{ name: "renamed-away-bestiary", kind: "creatures" }],
+      }),
+    );
+
+    // Deliberately do NOT create packs/renamed-away-bestiary: this simulates
+    // upstream renaming or removing the pack directory between pinned SHAs.
+    mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+
+    const { run } = recordingGit();
+    const deps: CliDeps = { dataDir, cacheDir, configPath, runGit: run };
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["update", "--latest"],
+      { out: () => {}, err: (s) => errLines.push(s), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(30);
+    expect(errLines.some((l) => l.includes("upstream error"))).toBe(true);
+    expect(existsSync(join(dataDir, "manifest.json"))).toBe(false);
+  });
+
+  it("I6: a corrupt manifest.json is a verification failure (exit 20), not a crash", () => {
+    const { deps, dataDir } = seededDeps();
+    mkdirSync(dataDir, { recursive: true });
+    writeFileSync(join(dataDir, "manifest.json"), "{ not valid json");
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["status"],
+      { out: () => {}, err: (s) => errLines.push(s), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.some((l) => l.toLowerCase().includes("manifest"))).toBe(true);
+  });
+
+  it("I6: a corrupt on-disk dataset file fails verify with exit 20 instead of throwing", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    writeFileSync(join(dataDir, "books.json"), "{ not valid json");
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["verify"],
+      { out: () => {}, err: (s) => errLines.push(s), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.some((l) => l.toLowerCase().includes("corrupt"))).toBe(true);
   });
 });

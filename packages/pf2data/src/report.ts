@@ -1,3 +1,5 @@
+import { compareStrings } from "./util.js";
+
 export interface DatasetDiff {
   added: string[];
   removed: string[];
@@ -23,7 +25,7 @@ export function diffDataset(
     if (!next.has(id)) removed.push(id);
   }
 
-  const sort = (xs: string[]): string[] => xs.sort((a, b) => a.localeCompare(b));
+  const sort = (xs: string[]): string[] => xs.sort(compareStrings);
   return { added: sort(added), removed: sort(removed), modified: sort(modified) };
 }
 

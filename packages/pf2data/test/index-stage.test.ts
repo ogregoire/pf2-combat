@@ -62,8 +62,39 @@ describe("buildIndexes", () => {
         remaster: false,
         creatureCount: 2,
         indexPath: "index/pathfinder-bestiary.json",
+        mixed: false,
       },
     ]);
+  });
+
+  it("picks the book title from the majority source and flags a mixed pack", () => {
+    const remasterSource = {
+      pack: "pathfinder-bestiary",
+      book: "Monster Core",
+      license: "ORC" as const,
+      remaster: true,
+    };
+    const build = buildIndexes([
+      creature("pathfinder-bestiary", "troll"),
+      creature("pathfinder-bestiary", "owlbear"),
+      // A single out-of-place remaster creature must not decide the book's
+      // catalog entry (I5) -- the majority (two OGL/legacy creatures) does,
+      // and `mixed` records that the pack isn't uniform.
+      creature("pathfinder-bestiary", "phantasmal-minion", { source: remasterSource }),
+    ]);
+    const book = build.books.find((b) => b.pack === "pathfinder-bestiary")!;
+    expect(book.title).toBe("pathfinder-bestiary");
+    expect(book.license).toBe("OGL");
+    expect(book.remaster).toBe(false);
+    expect(book.mixed).toBe(true);
+  });
+
+  it("does not flag a uniform pack as mixed", () => {
+    const build = buildIndexes([
+      creature("pathfinder-bestiary", "troll"),
+      creature("pathfinder-bestiary", "owlbear"),
+    ]);
+    expect(build.books[0]!.mixed).toBe(false);
   });
 
   it("records cross-pack slug collisions without resolving them", () => {
