@@ -122,6 +122,13 @@ describe("runCli", () => {
     );
     writeFileSync(join(packDir, "the-stag-lord.json"), fixture);
 
+    // The reference stage (Task 18) always reads a "conditions" pack and the
+    // upstream lang file. Real sparse-checkouts always fetch these; this
+    // mocked-git test has to lay them down itself.
+    mkdirSync(join(cacheDir, "packs", "conditions"), { recursive: true });
+    mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+
     const { run } = recordingGit();
     const deps: CliDeps = { dataDir, cacheDir, configPath, runGit: run };
 

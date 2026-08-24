@@ -15,6 +15,8 @@ import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
 import { verifyDataset } from "./stages/verify.js";
 import { diffDataset, statusOf } from "./report.js";
+import { loadGlossaryLang } from "./normalize/localize.js";
+import { buildConditions, buildGlossary } from "./stages/reference.js";
 
 export const EXIT = {
   unchanged: 0,
@@ -228,6 +230,17 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     writeJson(join(dataDir, "index", `${pack}.json`), entries);
   }
   writeJson(join(dataDir, "books.json"), build.books);
+
+  const lang = loadGlossaryLang(fetched.langPath);
+  const glossaryPacks = config.packs
+    .filter((p) => p.kind === "glossary")
+    .map((p) => p.name);
+  writeJson(join(dataDir, "conditions.json"), buildConditions(fetched.packsDir));
+  writeJson(
+    join(dataDir, "glossary.json"),
+    buildGlossary(fetched.packsDir, lang, glossaryPacks),
+  );
+
   writeJson(manifestPath, nextManifest);
 
   io.err(
