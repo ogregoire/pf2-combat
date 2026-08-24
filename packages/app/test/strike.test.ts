@@ -61,6 +61,22 @@ describe("resolveStrike", () => {
     expect(r.outcomes.find((o) => o.degree === "success")!.dieFrom).toBe(4);
   });
 
+  it("lowers a frightened target's effective AC — frightened penalises all checks and DCs", () => {
+    const r = resolveStrike({
+      ...base,
+      targetConditions: [{ slug: "frightened", value: 2 }],
+    });
+    expect(r.effectiveAc).toBe(19);
+  });
+
+  it("lowers a prone target's effective AC through the implied off-guard, not just the declared field", () => {
+    const r = resolveStrike({
+      ...base,
+      targetConditions: [{ slug: "prone", value: 0 }],
+    });
+    expect(r.effectiveAc).toBe(19);
+  });
+
   it("doubles damage on a critical hit", () => {
     const crit = resolveStrike(base).outcomes.find(
       (o) => o.degree === "critical-success",

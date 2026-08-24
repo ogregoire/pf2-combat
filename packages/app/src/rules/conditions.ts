@@ -29,8 +29,11 @@ export interface ConditionDef {
   implies?: ConditionSlug[];
 }
 
+// "All your checks and DCs" (data/conditions.json, frightened/sickened) — AC
+// is a DC, so it belongs here. An earlier review praised its omission as
+// correct; that was wrong (see task C3).
 const ALL_CHECKS: Selector[] = [
-  "melee-attack", "ranged-attack", "fortitude", "reflex", "will", "perception", "skill",
+  "melee-attack", "ranged-attack", "ac", "fortitude", "reflex", "will", "perception", "skill",
 ];
 
 const status = (value: number, source: string): Modifier => ({
@@ -161,12 +164,36 @@ export interface AppliedCondition {
   formula?: string;
 }
 
+/**
+ * `implies` is declared on prone/grabbed/restrained but was never consumed —
+ * their own condition text states off-guard (and, for grabbed/restrained,
+ * immobilized) without a value ever applying it. This expands the applied
+ * set with those implied conditions (synthetic, value 0 — every implied
+ * condition in the curated set is unvalued) before modifiers are computed,
+ * so the effect actually lands wherever conditions are read. Idempotent: a
+ * condition already present (explicit or already implied) is never added
+ * twice, so off-guard's -2 circumstance penalty doesn't stack with itself
+ * when e.g. both prone and grabbed apply.
+ */
+function expandImplied(applied: AppliedCondition[]): AppliedCondition[] {
+  const present = new Set(applied.map((c) => c.slug));
+  const expanded = [...applied];
+  for (const c of applied) {
+    for (const implied of CONDITIONS[c.slug].implies ?? []) {
+      if (present.has(implied)) continue;
+      present.add(implied);
+      expanded.push({ slug: implied, value: 0 });
+    }
+  }
+  return expanded;
+}
+
 export function conditionModifiers(
   applied: AppliedCondition[],
   selector: Selector,
 ): Modifier[] {
   const mods: Modifier[] = [];
-  for (const c of applied) {
+  for (const c of expandImplied(applied)) {
     const effect = CONDITIONS[c.slug].affects(c.value);
     if (effect === null) continue;
     if (!effect.selectors.includes(selector)) continue;

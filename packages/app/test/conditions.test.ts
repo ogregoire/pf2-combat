@@ -109,6 +109,36 @@ describe("conditionModifiers", () => {
     expect(conditionModifiers(c, "ranged-attack")).toHaveLength(1);
   });
 
+  it("penalises AC too — frightened/sickened apply to all checks and DCs, and AC is a DC", () => {
+    expect(conditionModifiers([{ slug: "frightened", value: 2 }], "ac")).toEqual([
+      { value: -2, type: "status", source: "frightened 2" },
+    ]);
+    expect(conditionModifiers([{ slug: "sickened", value: 1 }], "ac")).toEqual([
+      { value: -1, type: "status", source: "sickened 1" },
+    ]);
+  });
+
+  it("expands prone/grabbed/restrained through `implies` into an off-guard AC penalty", () => {
+    expect(conditionModifiers([{ slug: "prone", value: 0 }], "ac")).toEqual([
+      { value: -2, type: "circumstance", source: "off-guard" },
+    ]);
+    expect(conditionModifiers([{ slug: "grabbed", value: 0 }], "ac")).toEqual([
+      { value: -2, type: "circumstance", source: "off-guard" },
+    ]);
+    expect(conditionModifiers([{ slug: "restrained", value: 0 }], "ac")).toEqual([
+      { value: -2, type: "circumstance", source: "off-guard" },
+    ]);
+  });
+
+  it("does not double the off-guard penalty when it's both explicit and implied", () => {
+    const mods = conditionModifiers(
+      [{ slug: "prone", value: 0 }, { slug: "off-guard", value: 0 }],
+      "ac",
+    );
+    expect(mods).toHaveLength(1);
+    expect(mods[0]).toEqual({ value: -2, type: "circumstance", source: "off-guard" });
+  });
+
   it("returns modifiers sorted deterministically", () => {
     const mods = conditionModifiers(
       [
