@@ -104,6 +104,32 @@ describe("EncounterScreen", () => {
     ).toBeDefined();
   });
 
+  it("spends the action pool when the GM uses an action, and Next becomes prominent at zero", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Alpha", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 },
+        actions: [
+          { name: "Stride", cost: "1", category: "basic", traits: [], trigger: null,
+            requirements: null, frequency: null, description: "Move up to your Speed." },
+        ] },
+      20,
+    );
+    render(<EncounterScreen />);
+
+    const next = screen.getByRole("button", { name: /next combatant/i });
+    expect(next.style.background).not.toBe("var(--accent-bg)");
+    expect(screen.getByText("3 actions")).toBeDefined();
+
+    const use = screen.getByRole("button", { name: /stride/i });
+    await user.click(use);
+    await user.click(use);
+    await user.click(use);
+
+    expect(screen.getByText("0 actions")).toBeDefined();
+    expect(next.style.background).toBe("var(--accent-bg)");
+  });
+
   it("selects a target by clicking a combatant row and reaches the roll assistant", async () => {
     const user = userEvent.setup();
     useEncounter.getState().addCombatant(

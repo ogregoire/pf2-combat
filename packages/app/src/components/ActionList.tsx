@@ -1,6 +1,7 @@
 import type { Action } from "@pf2/schema";
 import { actionPool } from "../rules/actions.js";
 import { compareStrings } from "../rules/compare.js";
+import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { ActionCard } from "./ActionCard.js";
 
@@ -43,9 +44,14 @@ function costValue(cost: Action["cost"]): number {
  * Passives (`cost: "passive"`) render in their own strip at the end,
  * matching the mockup's separate two-column passive block. */
 export function ActionList({ combatant }: { combatant: Combatant }): React.ReactElement | null {
+  const spendActions = useEncounter((s) => s.spendActions);
   if (combatant.actions.length === 0) return null;
 
   const pool = actionPool(poolInputFor(combatant));
+  // Actions consumed so far this turn come out of the pool the conditions
+  // allow — this is the piece that was never wired: the pool never moved
+  // no matter what the GM pressed.
+  const remaining = Math.max(0, pool.total - combatant.actionsSpent);
   const sorted = [...combatant.actions].sort(compareActions);
   const activatable = sorted.filter((a) => a.cost !== "passive");
   const passives = sorted.filter((a) => a.cost === "passive");
@@ -62,13 +68,14 @@ export function ActionList({ combatant }: { combatant: Combatant }): React.React
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
         {activatable.map((action) => {
           const cost = costValue(action.cost);
-          const disabled = cost > pool.total;
+          const disabled = cost > remaining;
           return (
             <ActionCard
               key={action.name}
               action={action}
               disabled={disabled}
-              needsLabel={disabled ? `NEEDS ${cost} — ${pool.total} LEFT` : null}
+              needsLabel={disabled ? `NEEDS ${cost} — ${remaining} LEFT` : null}
+              onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
             />
           );
         })}

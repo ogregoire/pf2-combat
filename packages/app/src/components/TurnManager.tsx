@@ -1,8 +1,23 @@
+import { actionPool } from "../rules/actions.js";
 import { useEncounter } from "../state/store.js";
+import type { Combatant } from "../state/types.js";
 import { ActionPips } from "./ActionPips.js";
 import { NextButton } from "./NextButton.js";
 import { ReactionWatch } from "./ReactionWatch.js";
 import { TurnPrompts, activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
+
+/** Same pool computation ActionPips/ActionList already make from a
+ * combatant's conditions — duplicated locally (as those two already
+ * duplicate it from each other) rather than adding a new shared module for
+ * three call sites. */
+function remainingActionsFor(combatant: Combatant): number {
+  const pool = actionPool({
+    slowed: combatant.conditions.find((c) => c.slug === "slowed")?.value ?? 0,
+    stunned: combatant.conditions.find((c) => c.slug === "stunned")?.value ?? 0,
+    quickened: combatant.conditions.some((c) => c.slug === "quickened"),
+  });
+  return Math.max(0, pool.total - combatant.actionsSpent);
+}
 
 /** The right-pane turn manager — Main.dc.html's round/pips/Next/reactions
  * plus TurnAssistant.dc.html's start/end prompts, merged into one panel
@@ -31,7 +46,10 @@ export function TurnManager(): React.ReactElement {
 
       <TurnPrompts />
 
-      <NextButton unacknowledgedCount={unacknowledgedCount} />
+      <NextButton
+        unacknowledgedCount={unacknowledgedCount}
+        actionsRemaining={combatant ? remainingActionsFor(combatant) : undefined}
+      />
 
       <ReactionWatch />
     </div>

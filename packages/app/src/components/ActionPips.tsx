@@ -22,8 +22,9 @@ function poolInputFor(combatant: Combatant): { slowed: number; stunned: number; 
  * empty rather than shrinking the row. */
 export function ActionPips({ combatant }: { combatant: Combatant }): React.ReactElement {
   const pool = actionPool(poolInputFor(combatant));
+  const remaining = Math.max(0, pool.total - combatant.actionsSpent);
   const pipCount = Math.max(BASE_ACTIONS, pool.total);
-  const pips = Array.from({ length: pipCount }, (_, i) => i < pool.total);
+  const pips = Array.from({ length: pipCount }, (_, i) => i < remaining);
 
   return (
     <div>
@@ -46,7 +47,7 @@ export function ActionPips({ combatant }: { combatant: Combatant }): React.React
         ))}
       </div>
       <div style={{ textAlign: "center", marginTop: "8px", fontSize: "11px", color: "var(--text-dim)" }}>
-        {pool.reasons.length > 0 ? `${pool.total} of ${pipCount} — ${pool.reasons.join(", ")}` : `${pool.total} actions`}
+        {pool.reasons.length > 0 ? `${remaining} of ${pipCount} — ${pool.reasons.join(", ")}` : `${remaining} actions`}
       </div>
     </div>
   );

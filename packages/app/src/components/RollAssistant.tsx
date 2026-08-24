@@ -41,6 +41,7 @@ export function RollAssistant({
   attack: Attack | undefined;
 }): React.ReactElement {
   const recordStrike = useEncounter((s) => s.recordStrike);
+  const spendActions = useEncounter((s) => s.spendActions);
 
   if (!target) {
     return (
@@ -157,7 +158,11 @@ export function RollAssistant({
 
                 <button
                   type="button"
-                  onClick={() => recordStrike(combatant.id)}
+                  onClick={() => {
+                    recordStrike(combatant.id);
+                    // A Strike is always a 1-action activity.
+                    spendActions(combatant.id, 1);
+                  }}
                   style={{
                     marginTop: "12px",
                     fontFamily: "inherit",

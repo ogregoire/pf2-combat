@@ -31,10 +31,13 @@ export function ActionCard({
   action,
   disabled,
   needsLabel,
+  onUse,
 }: {
   action: Action;
   disabled: boolean;
   needsLabel: string | null;
+  /** Omitted for passives, which have no pool to spend from. */
+  onUse?: () => void;
 }): React.ReactElement {
   if (action.cost === "passive") {
     return (
@@ -55,6 +58,7 @@ export function ActionCard({
     <button
       type="button"
       disabled={disabled}
+      onClick={onUse}
       style={{
         fontFamily: "inherit",
         textAlign: "left",

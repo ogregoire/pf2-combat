@@ -300,6 +300,13 @@ describe("encounter store", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it("spends actions, accumulating across multiple spends", () => {
+    const a = addCreature("a", 20);
+    useEncounter.getState().spendActions(a, 1);
+    useEncounter.getState().spendActions(a, 2);
+    expect(useEncounter.getState().encounter.combatants[a]!.actionsSpent).toBe(3);
+  });
+
   it("resets actions spent at the start of a turn", () => {
     const a = addCreature("a", 20);
     addCreature("b", 10);
