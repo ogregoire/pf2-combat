@@ -5,7 +5,6 @@ import { RowPopover } from "./RowPopover.js";
 import type { Combatant } from "../state/types.js";
 
 const HP_TRACK = "oklch(0.28 0.02 30)";
-const GROUP_BORDER = "oklch(0.34 0.04 200)";
 const GROUP_BG = "oklch(0.205 0.014 200)";
 
 function hpColor(current: number, max: number): string {
@@ -44,10 +43,20 @@ function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactEle
   );
 }
 
-function HpBar({ current, max, width }: { current: number; max: number; width: string }): React.ReactElement {
+function HpBar({
+  current,
+  max,
+  width,
+  height = 5,
+}: {
+  current: number;
+  max: number;
+  width: string;
+  height?: number;
+}): React.ReactElement {
   const pct = max > 0 ? Math.min(100, Math.max(0, (current / max) * 100)) : 0;
   return (
-    <div style={{ width, height: "5px", borderRadius: "3px", background: HP_TRACK, overflow: "hidden", flexShrink: 0 }}>
+    <div style={{ width, height: `${height}px`, borderRadius: "3px", background: HP_TRACK, overflow: "hidden", flexShrink: 0 }}>
       <div style={{ width: `${pct}%`, height: "100%", background: hpColor(current, max) }} />
     </div>
   );
@@ -142,12 +151,13 @@ function StandaloneRow({
   );
 }
 
-/** Grouped-member anatomy, matching Main.dc.html's indented group rows: a
- * per-row left border in the group's colour, the HP bar beside the name
- * (not stacked below it), and AC only — no saves; those only fit next to a
- * standalone row's stacked initiative/AC column, and the mockup omits them
- * for members. No per-row initiative either — it's shared on the
- * GroupHeader. */
+/** Grouped-member anatomy, matching Main.dc.html's indented group rows: the
+ * HP bar beside the name (not stacked below it), and AC only — no saves;
+ * those only fit next to a standalone row's stacked initiative/AC column,
+ * and the mockup omits them for members. No per-row initiative either —
+ * it's shared on the GroupHeader. The left border in the group's colour
+ * belongs to the group wrapper (CombatantList.tsx), not each member row —
+ * the mockup only draws it once. */
 function GroupMemberRow({ combatant }: { combatant: Combatant }): React.ReactElement {
   return (
     <div
@@ -157,7 +167,6 @@ function GroupMemberRow({ combatant }: { combatant: Combatant }): React.ReactEle
         gap: "9px",
         padding: "7px 10px",
         borderRadius: "3px",
-        borderLeft: `3px solid ${GROUP_BORDER}`,
         background: GROUP_BG,
         opacity: combatant.defeated ? 0.42 : 1,
       }}
@@ -178,7 +187,7 @@ function GroupMemberRow({ combatant }: { combatant: Combatant }): React.ReactEle
         <>
           {combatant.hp !== null && (
             <>
-              <HpBar current={combatant.hp.current} max={combatant.hp.max} width="46px" />
+              <HpBar current={combatant.hp.current} max={combatant.hp.max} width="46px" height={4} />
               <span
                 style={{
                   fontFamily: "var(--font-mono)",

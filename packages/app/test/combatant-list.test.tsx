@@ -162,4 +162,17 @@ describe("CombatantList", () => {
     expect(screen.getByText("Akiros")).toBeDefined();
     expect(screen.getByText("Dovan")).toBeDefined();
   });
+
+  it("puts the group's left border only on the wrapper, not each member row", () => {
+    const a = useEncounter.getState().addCombatant(seed({ name: "Akiros" }), 20);
+    const b = useEncounter.getState().addCombatant(seed({ name: "Dovan" }), 10);
+    useEncounter.getState().group([a, b], "Gate Watch", 15);
+    render(<CombatantList />);
+
+    const memberRow = screen.getByText("Akiros").closest("div[style]")!.parentElement!.parentElement as HTMLElement;
+    expect(memberRow.style.borderLeft).toBe("");
+
+    const wrapper = memberRow.parentElement!.parentElement as HTMLElement;
+    expect(wrapper.style.borderLeft).toBe("3px solid oklch(0.34 0.04 200)");
+  });
 });
