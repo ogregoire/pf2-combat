@@ -22,6 +22,19 @@ describe("EncounterScreen", () => {
     expect(screen.getByTestId("turn-manager")).toBeDefined();
   });
 
+  it("does not let the turn-manager pane itself scroll — only its reaction list does", () => {
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "The Stag Lord", level: 6, ac: 23,
+        saves: { fortitude: 15, reflex: 16, will: 9 },
+        hp: { current: 78, max: 110 } },
+      19,
+    );
+    render(<EncounterScreen />);
+    const pane = screen.getByTestId("turn-manager");
+    expect(pane.style.overflowY).toBe("");
+    expect(pane.style.minHeight).toBe("0");
+  });
+
   it("shows the XP award, which does not change with party size", () => {
     useEncounter.getState().setPlayers([
       { id: "p1", name: "A", level: 4, ac: 20, saves: { fortitude: 9, reflex: 9, will: 9 }, present: true },

@@ -195,7 +195,14 @@ export function EncounterScreen({
             flexShrink: 0,
             borderLeft: "1px solid var(--border)",
             background: "var(--panel)",
-            overflowY: "auto",
+            // No overflow here — the panel itself must not scroll as a
+            // whole (that would drag the round counter and Next button out
+            // of view with it). Height is instead constrained through this
+            // flex chain (display:flex + minHeight:0) down to TurnManager,
+            // whose own ReactionWatch child is the only part that scrolls.
+            display: "flex",
+            flexDirection: "column",
+            minHeight: 0,
           }}
         >
           <TurnManager />

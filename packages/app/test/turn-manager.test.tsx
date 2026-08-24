@@ -73,6 +73,18 @@ describe("TurnManager", () => {
     expect(list.style.overflowY).toBe("auto");
   });
 
+  it("constrains its own height so the reaction list is what scrolls, not the whole panel", () => {
+    add("a", 20);
+    const { container } = render(<TurnManager />);
+    const root = container.firstElementChild as HTMLElement;
+    // flexGrow + minHeight:0 is what lets the reaction-scroll child's own
+    // overflow:auto actually clip instead of the panel just growing taller
+    // than its allotted space — see EncounterScreen's matching turn-manager
+    // wrapper, which must not itself scroll.
+    expect(root.style.flexGrow).toBe("1");
+    expect(root.style.minHeight).toBe("0");
+  });
+
   it("shows the reaction's name and trigger text", () => {
     useEncounter.getState().addCombatant(
       { kind: "creature", name: "Akiros Ismort", level: 3, ac: 18,

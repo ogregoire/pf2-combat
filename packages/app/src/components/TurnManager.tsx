@@ -19,7 +19,7 @@ export function TurnManager(): React.ReactElement {
   const unacknowledgedCount = combatant ? unacknowledgedCountFor(combatant, acknowledgedPrompts) : 0;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: 0, padding: "16px 14px", gap: "16px" }}>
+    <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, minHeight: 0, padding: "16px 14px", gap: "16px" }}>
       <div style={{ textAlign: "center" }}>
         <div style={{ fontSize: "10px", letterSpacing: "0.12em", color: "var(--text-faint)" }}>ROUND</div>
         <div style={{ fontFamily: "var(--font-mono)", fontSize: "40px", fontWeight: 600, lineHeight: 1.05, marginTop: "2px" }}>

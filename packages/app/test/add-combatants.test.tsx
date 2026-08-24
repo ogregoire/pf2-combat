@@ -33,6 +33,18 @@ describe("AddCombatants", () => {
     expect(screen.getByText(/Pathfinder Bestiary/)).toBeDefined();
   });
 
+  it("caps the render for a broad query and shows how many are hidden", () => {
+    const many: IndexEntry[] = Array.from({ length: 80 }, (_, i) => ({
+      id: `pack/creature-${i}`, slug: `creature-${i}`, name: `Creature ${i}`,
+      level: 1, rarity: "common", size: "medium", traits: [],
+      ac: 15, hp: 10, remaster: true, book: "Pack",
+    })) as IndexEntry[];
+    render(<AddCombatants entries={many} />);
+    expect(screen.getByText(/80 matches/)).toBeDefined();
+    expect(screen.getAllByRole("button", { name: /^Add Creature/ })).toHaveLength(50);
+    expect(screen.getByText(/showing 50, refine your search/i)).toBeDefined();
+  });
+
   it("adds several at once", async () => {
     const user = userEvent.setup();
     render(<AddCombatants entries={entries} />);

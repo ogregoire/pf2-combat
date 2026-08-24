@@ -59,6 +59,12 @@ export function seedFromEntry(entry: IndexEntry, creature: Creature | null): Com
   };
 }
 
+// An empty query matches the whole 1443-creature dataset; rendering every
+// row froze the drawer for no GM benefit — nobody reads past the first
+// screenful before narrowing the search. Capped, with a count of what's
+// hidden so it's clear the rest exists rather than having vanished.
+const RESULT_CAP = 50;
+
 function pluralize(name: string, quantity: number): string {
   return quantity === 1 ? name : `${name}s`;
 }
@@ -111,6 +117,8 @@ export function AddCombatants({
 
   const resolved = resolveCollisions(entries);
   const results = searchCreatures(resolved, query);
+  const shownResults = results.slice(0, RESULT_CAP);
+  const hiddenCount = results.length - shownResults.length;
   const selected = resolved.find((e) => e.id === selectedId) ?? null;
 
   const running = encounterEntries.length > 0;
@@ -189,10 +197,11 @@ export function AddCombatants({
 
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
         {results.length} match{results.length === 1 ? "" : "es"}
+        {hiddenCount > 0 && ` — showing ${shownResults.length}, refine your search to see the rest`}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-        {results.map((entry) => {
+        {shownResults.map((entry) => {
           const isSelected = selectedId === entry.id;
           return (
             <div key={entry.id} style={rowStyle(isSelected)}>
