@@ -35,6 +35,11 @@ export function fetchUpstream(options: FetchOptions): FetchResult {
     );
   }
 
+  // No rollback on partial failure, deliberately. Every step here is
+  // retry-safe: a failed `checkout` still leaves a valid `.git`, and the next
+  // run redoes fetch + sparse-checkout + checkout from scratch. An interrupted
+  // initial clone surfaces as a visible git error (exit code 30) on the next
+  // run, not as silent corruption. Recovery is `rm -rf .cache`.
   if (!existsSync(join(cacheDir, ".git"))) {
     run(
       [
