@@ -18,6 +18,7 @@ export function doubleFormula(formula: string): string {
 
 export interface StrikeInput {
   bonus: number;
+  kind: "melee" | "ranged";
   agile: boolean;
   strikesMade: number;
   attackerConditions: AppliedCondition[];
@@ -62,7 +63,10 @@ const damageText = (
 export function resolveStrike(input: StrikeInput): StrikeResolution {
   const attackMods: Modifier[] = [
     { value: input.bonus, type: "untyped", source: "attack bonus" },
-    ...conditionModifiers(input.attackerConditions, "attack"),
+    ...conditionModifiers(
+      input.attackerConditions,
+      input.kind === "melee" ? "melee-attack" : "ranged-attack",
+    ),
   ];
   const map = mapPenalty(input.strikesMade, input.agile);
   if (map !== 0) {

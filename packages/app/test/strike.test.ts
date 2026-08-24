@@ -16,6 +16,7 @@ describe("doubleFormula", () => {
 describe("resolveStrike", () => {
   const base = {
     bonus: 15,
+    kind: "melee" as const,
     agile: false,
     strikesMade: 0,
     attackerConditions: [],

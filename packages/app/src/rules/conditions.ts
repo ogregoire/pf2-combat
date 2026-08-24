@@ -2,7 +2,8 @@ import { compareStrings } from "./compare.js";
 import type { Modifier } from "./modifiers.js";
 
 export type Selector =
-  | "attack"
+  | "melee-attack"
+  | "ranged-attack"
   | "ac"
   | "fortitude"
   | "reflex"
@@ -29,7 +30,7 @@ export interface ConditionDef {
 }
 
 const ALL_CHECKS: Selector[] = [
-  "attack", "fortitude", "reflex", "will", "perception", "skill",
+  "melee-attack", "ranged-attack", "fortitude", "reflex", "will", "perception", "skill",
 ];
 
 const status = (value: number, source: string): Modifier => ({
@@ -62,11 +63,18 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   }),
   clumsy: def({
     slug: "clumsy", name: "Clumsy", valued: true,
-    affects: (v) => ({ selectors: ["ac", "reflex"], mod: status(v, `clumsy ${v}`) }),
+    // PF2e clumsy is Dex-based, which includes AC, Reflex, and ranged
+    // attack rolls (per data/conditions.json) — not melee.
+    affects: (v) => ({
+      selectors: ["ac", "reflex", "ranged-attack"],
+      mod: status(v, `clumsy ${v}`),
+    }),
   }),
   enfeebled: def({
     slug: "enfeebled", name: "Enfeebled", valued: true,
-    affects: (v) => ({ selectors: ["attack"], mod: status(v, `enfeebled ${v}`) }),
+    // PF2e enfeebled is Str-based, which includes Strength-based melee
+    // attack rolls (per data/conditions.json) — not ranged.
+    affects: (v) => ({ selectors: ["melee-attack"], mod: status(v, `enfeebled ${v}`) }),
   }),
   stupefied: def({
     slug: "stupefied", name: "Stupefied", valued: true,
@@ -93,7 +101,10 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   }),
   prone: def({
     slug: "prone", name: "Prone", valued: false,
-    affects: () => ({ selectors: ["attack"], mod: circumstance(2, "prone") }),
+    affects: () => ({
+      selectors: ["melee-attack", "ranged-attack"],
+      mod: circumstance(2, "prone"),
+    }),
     implies: ["off-guard"],
   }),
   grabbed: def({
