@@ -278,7 +278,7 @@ export function AddCombatants({
                     type="button"
                     aria-label={`Fewer ${entry.name}`}
                     onClick={() => setQuantity(String(Math.max(1, qtyForLabel - 1)))}
-                    style={{ ...addButtonStyle, borderRadius: "4px 0 0 4px", width: "34px" }}
+                    style={{ ...addButtonStyle, borderRadius: "4px 0 0 4px", width: "34px", height: "34px" }}
                   >
                     &minus;
                   </button>
@@ -304,7 +304,7 @@ export function AddCombatants({
                     type="button"
                     aria-label={`More ${entry.name}`}
                     onClick={() => setQuantity(String(qtyForLabel + 1))}
-                    style={{ ...addButtonStyle, borderRadius: "0 4px 4px 0", width: "34px" }}
+                    style={{ ...addButtonStyle, borderRadius: "0 4px 4px 0", width: "34px", height: "34px" }}
                   >
                     +
                   </button>
