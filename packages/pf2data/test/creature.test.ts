@@ -35,6 +35,27 @@ describe("normalizeCreature", () => {
     expect(c.source.license).toBe("OGL");
   });
 
+  it("keeps treasure and other carried items in gear", () => {
+    const akiros = normalizeCreature(
+      load("akiros-ismort"),
+      "kingmaker-bestiary",
+      "akiros-ismort",
+    );
+    expect(akiros.gear).toContain("Silver Stag Lord Amulet");
+    expect(akiros.gear).toContain("Gold Pieces");
+  });
+
+  it("keeps gear free of items the other normalizers own", () => {
+    const nyrissa = normalizeCreature(
+      load("nyrissa"),
+      "kingmaker-bestiary",
+      "nyrissa",
+    );
+    expect(nyrissa.gear).not.toContain("Wish");
+    expect(nyrissa.gear).not.toContain("Arcane Spontaneous Spells");
+    expect(nyrissa.gear).not.toContain("First World Lore");
+  });
+
   it("carries actions, attacks and spellcasting through", () => {
     const nyrissa = normalizeCreature(
       load("nyrissa"),
