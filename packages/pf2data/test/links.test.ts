@@ -55,9 +55,52 @@ describe("collectLinks", () => {
   it("applies legacy pack aliases on bare and labelled real forms", () => {
     const refs = collectLinks(html);
     expect(refs).toEqual([
-      { pack: "conditions", id: "Off-Guard", label: "Off-Guard" },
-      { pack: "spells", id: "Interplanar Teleport", label: "a save" },
-      { pack: "conditions", id: "Flat-Footed", label: "Off-Guard" },
+      { pack: "conditions", docType: "Item", id: "Off-Guard", label: "Off-Guard" },
+      { pack: "spells", docType: "Item", id: "Interplanar Teleport", label: "a save" },
+      { pack: "conditions", docType: "Item", id: "Flat-Footed", label: "Off-Guard" },
+    ]);
+  });
+});
+
+describe("document types other than Item", () => {
+  const actorHtml =
+    "@UUID[Compendium.pf2e.pathfinder-monster-core.Actor.Wight]{Spawned Wight}";
+  const macroHtml =
+    "@UUID[Compendium.pf2e.action-macros.Macro.Impersonate: Deception]{Impersonate}";
+  const journalHtml =
+    "@UUID[Compendium.pf2e.journals.JournalEntry.abc123.JournalEntryPage.def456]{Kingmaker Chronicle}";
+
+  it("resolves an Actor reference to its label", () => {
+    expect(resolveLinks(actorHtml)).toBe("Spawned Wight");
+  });
+
+  it("resolves a Macro reference whose identifier contains a colon", () => {
+    expect(resolveLinks(macroHtml)).toBe("Impersonate");
+  });
+
+  it("resolves a JournalEntry reference nesting a JournalEntryPage", () => {
+    expect(resolveLinks(journalHtml)).toBe("Kingmaker Chronicle");
+  });
+
+  it("reports the correct docType for each", () => {
+    expect(collectLinks(actorHtml)).toEqual([
+      { pack: "pathfinder-monster-core", docType: "Actor", id: "Wight", label: "Spawned Wight" },
+    ]);
+    expect(collectLinks(macroHtml)).toEqual([
+      {
+        pack: "action-macros",
+        docType: "Macro",
+        id: "Impersonate: Deception",
+        label: "Impersonate",
+      },
+    ]);
+    expect(collectLinks(journalHtml)).toEqual([
+      {
+        pack: "journals",
+        docType: "JournalEntry",
+        id: "abc123.JournalEntryPage.def456",
+        label: "Kingmaker Chronicle",
+      },
     ]);
   });
 });
