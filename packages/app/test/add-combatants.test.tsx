@@ -188,8 +188,8 @@ describe("seedFromEntry", () => {
     expect(seed.iwr).toEqual({
       immunities: [],
       weaknesses: [
-        { type: "fire", value: 10 },
-        { type: "acid", value: 10 },
+        { type: "fire", value: 10, exceptions: [] },
+        { type: "acid", value: 10, exceptions: [] },
       ],
       resistances: [],
     });
@@ -228,8 +228,8 @@ describe("AddCombatants creature enrichment", () => {
     expect(combatant.iwr).toEqual({
       immunities: [],
       weaknesses: [
-        { type: "fire", value: 10 },
-        { type: "acid", value: 10 },
+        { type: "fire", value: 10, exceptions: [] },
+        { type: "acid", value: 10, exceptions: [] },
       ],
       resistances: [],
     });

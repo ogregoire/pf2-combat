@@ -42,7 +42,9 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
   const handleDamage = (): void => {
     setIntent("damage");
     const value = Number(amount);
-    if (Number.isFinite(value) && value > 0) applyDamage(combatantId, value);
+    // The selected type used to be dropped here entirely — IWR (including
+    // immunity reducing the hit to nothing) is resolved in the store.
+    if (Number.isFinite(value) && value > 0) applyDamage(combatantId, value, damageType);
     setDamageType("none");
   };
 

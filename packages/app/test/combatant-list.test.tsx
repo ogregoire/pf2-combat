@@ -117,6 +117,55 @@ describe("CombatantList", () => {
     expect(screen.getByRole("group", { name: "damage type" }).textContent).toContain("holy");
   });
 
+  it("applies resistance for the selected damage type instead of dropping it", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      seed({
+        name: "Skeletal Tiger Lord",
+        hp: { current: 30, max: 30 },
+        iwr: {
+          immunities: [],
+          weaknesses: [],
+          resistances: [{ type: "cold", value: 10 }],
+        },
+      }),
+      19,
+    );
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Skeletal Tiger Lord"));
+    await user.click(screen.getByRole("button", { name: "cold 10" }));
+    const amount = screen.getByLabelText("amount");
+    await user.clear(amount);
+    await user.type(amount, "16");
+    await user.click(screen.getByRole("button", { name: "Damage" }));
+
+    // 16 cold damage resisted by 10 -> 6 taken, not 16.
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(24);
+  });
+
+  it("reduces damage to zero when the selected type matches an immunity", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      seed({
+        name: "Skeletal Tiger Lord",
+        hp: { current: 30, max: 30 },
+        iwr: { immunities: ["poison"], weaknesses: [], resistances: [] },
+      }),
+      19,
+    );
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Skeletal Tiger Lord"));
+    await user.click(screen.getByRole("button", { name: "poison IMM" }));
+    const amount = screen.getByLabelText("amount");
+    await user.clear(amount);
+    await user.type(amount, "20");
+    await user.click(screen.getByRole("button", { name: "Damage" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(30);
+  });
+
   it("never shows the damage-type selector once Heal is pressed", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(

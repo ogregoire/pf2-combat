@@ -18,8 +18,8 @@ import type { CombatantSeed } from "../state/store.js";
 function toIwr(creature: Creature): Iwr {
   return {
     immunities: creature.immunities.map((i) => i.type),
-    weaknesses: creature.weaknesses.map((w) => ({ type: w.type, value: w.value })),
-    resistances: creature.resistances.map((r) => ({ type: r.type, value: r.value })),
+    weaknesses: creature.weaknesses.map((w) => ({ type: w.type, value: w.value, exceptions: w.exceptions })),
+    resistances: creature.resistances.map((r) => ({ type: r.type, value: r.value, exceptions: r.exceptions })),
   };
 }
 

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import type { Action, Attack } from "@pf2/schema";
 import type { ConditionSlug } from "../rules/conditions.js";
-import type { Iwr } from "../rules/damage.js";
+import { applyIwr, type Iwr } from "../rules/damage.js";
 import type { Combatant, Encounter, Entry, Player } from "./types.js";
 
 /** Fields a caller supplies to create a combatant; the rest is derived. */
@@ -120,7 +120,7 @@ interface EncounterStore {
   ): string[];
   removeCombatant(id: string): void;
   setInitiative(entryId: string, initiative: number): void;
-  applyDamage(id: string, amount: number): void;
+  applyDamage(id: string, amount: number, damageType?: string): void;
   applyHealing(id: string, amount: number): void;
   addCondition(id: string, slug: ConditionSlug, value: number, formula?: string): void;
   removeCondition(id: string, slug: ConditionSlug): void;
@@ -249,11 +249,12 @@ export const useEncounter = create<EncounterStore>()(
         }
       }),
 
-    applyDamage: (id, amount) =>
+    applyDamage: (id, amount, damageType) =>
       set((state) => {
         const c = state.encounter.combatants[id];
         if (!c || c.hp === null) return;
-        c.hp.current = Math.max(0, c.hp.current - amount);
+        const applied = applyIwr(amount, damageType ?? "none", c.iwr);
+        c.hp.current = Math.max(0, c.hp.current - applied);
         if (c.hp.current === 0) c.defeated = true;
       }),
 
