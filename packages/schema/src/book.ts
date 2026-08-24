@@ -21,6 +21,7 @@ export const BookCatalogEntrySchema = z.object({
   remaster: z.boolean(),
   creatureCount: z.number().int().nonnegative(),
   indexPath: z.string(),
+  mixed: z.boolean(),
 });
 
 export const CollisionSchema = z.object({
