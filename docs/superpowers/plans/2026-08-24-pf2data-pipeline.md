@@ -2892,6 +2892,13 @@ git commit -m "feat(pf2data): normalize stage and dataset change reporting"
 
 **Interfaces:**
 - Consumes: everything from Tasks 2, 12, 14, 15, 16.
+- **Amended during implementation** (review finding, ruled on): `runCli` takes an
+  optional third parameter `deps: CliDeps = DEFAULT_DEPS`, where
+  `CliDeps = { dataDir: string; cacheDir: string; configPath: string; runGit?: RunGit }`.
+  `DEFAULT_DEPS` reproduces the module-level constants, so production behaviour is
+  unchanged; `runGit` is threaded to `fetchUpstream`'s `run` option. This exists so the
+  CLI contract can be tested against a temp directory with a recording git runner and
+  no network. `readManifest` and `readDataset` were parameterised to match.
 - Produces: `parseArgs(argv: string[]): Command` where `Command = { name: "update"; latest: boolean } | { name: "status" } | { name: "verify" }`, and `runCli(argv: string[], io: CliIo): number` returning the exit code. `CliIo = { out: (s: string) => void; err: (s: string) => void; isTty: boolean }`.
 
 Contract from the spec: JSON to stdout when stdout is not a TTY, prose to stderr always, exit codes `0` / `10` / `20` / `30` / `1`.
