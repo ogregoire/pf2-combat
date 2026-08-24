@@ -46,6 +46,19 @@ function toNumber(raw: string): number {
   return raw.trim() === "" ? 0 : Number(raw) || 0;
 }
 
+/** Unlike the other numeric fields, HP is genuinely optional — an empty
+ * field means "unknown", not zero, so a blank input must map back to
+ * `undefined`, not 0. This is the fix for HP never having a field at all:
+ * every PC seeded from PartyManager got `hp: null`, so the row popover's
+ * Damage/Heal buttons silently did nothing against them. */
+function toOptionalNumber(raw: string): number | undefined {
+  return raw.trim() === "" ? undefined : Number(raw) || 0;
+}
+
+function hpDisplay(hp: number | undefined): string {
+  return hp === undefined ? "" : String(hp);
+}
+
 const fieldStyle: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
@@ -168,6 +181,16 @@ export function PartyManager(): React.ReactElement {
                 aria-label="AC"
                 value={numDisplay(p.ac)}
                 onChange={(e) => update(p.id, { ac: toNumber(e.target.value) })}
+                style={inputStyle}
+              />
+            </label>
+
+            <label style={{ ...fieldStyle, width: "56px" }}>
+              HP
+              <input
+                aria-label="HP"
+                value={hpDisplay(p.hp)}
+                onChange={(e) => update(p.id, { hp: toOptionalNumber(e.target.value) })}
                 style={inputStyle}
               />
             </label>

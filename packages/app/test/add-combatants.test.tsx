@@ -99,6 +99,30 @@ describe("PartyManager", () => {
     expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(18);
   });
 
+  it("captures HP through the party roster's own field", async () => {
+    const user = userEvent.setup();
+    render(<PartyManager />);
+    await user.click(screen.getByRole("button", { name: /add player/i }));
+    await user.type(screen.getByLabelText(/^name/i), "Kesten");
+    await user.type(screen.getByLabelText(/^hp/i), "37");
+
+    expect(useEncounter.getState().players[0]!.hp).toBe(37);
+  });
+
+  it("seeds the PC's HP from the party roster instead of leaving it null", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "p1", name: "Kesten", level: 5, ac: 22, hp: 60,
+        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true },
+    ]);
+    render(<PartyManager />);
+    await user.type(screen.getByLabelText(/initiative for kesten/i), "10");
+    await user.click(screen.getByRole("button", { name: /add to encounter/i }));
+
+    const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    expect(combatant.hp).toEqual({ current: 60, max: 60 });
+  });
+
   it("does not offer to add an absent player to the encounter", () => {
     useEncounter.getState().setPlayers([
       { id: "p1", name: "Absent Al", level: 4, ac: 21,

@@ -219,10 +219,29 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
         </div>
       ) : null}
 
+      {combatant.hp === null && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "7px",
+            padding: "7px 9px",
+            borderRadius: "3px",
+            background: "var(--bg)",
+            border: "1px solid var(--border)",
+          }}
+        >
+          <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
+            No HP on record — Damage and Heal are disabled.
+          </span>
+        </div>
+      )}
+
       <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
         <input
           aria-label="amount"
           value={amount}
+          disabled={combatant.hp === null}
           onChange={(e) => setAmount(e.target.value)}
           style={{
             width: "62px",
@@ -235,10 +254,12 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
             border: "1px solid oklch(0.46 0.05 200)",
             background: "var(--bg)",
             color: "var(--text)",
+            opacity: combatant.hp === null ? 0.5 : 1,
           }}
         />
         <button
           type="button"
+          disabled={combatant.hp === null}
           onClick={handleDamage}
           style={{
             fontFamily: "inherit",
@@ -250,13 +271,15 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
             border: "1px solid oklch(0.48 0.14 28)",
             background: "var(--danger-bg)",
             color: "oklch(0.93 0.06 35)",
-            cursor: "pointer",
+            cursor: combatant.hp === null ? "default" : "pointer",
+            opacity: combatant.hp === null ? 0.45 : 1,
           }}
         >
           Damage
         </button>
         <button
           type="button"
+          disabled={combatant.hp === null}
           onClick={handleHeal}
           style={{
             fontFamily: "inherit",
@@ -268,7 +291,8 @@ export function RowPopover({ combatantId }: { combatantId: string }): React.Reac
             border: "1px solid oklch(0.42 0.11 145)",
             background: "var(--ok-bg)",
             color: "oklch(0.90 0.07 145)",
-            cursor: "pointer",
+            cursor: combatant.hp === null ? "default" : "pointer",
+            opacity: combatant.hp === null ? 0.45 : 1,
           }}
         >
           Heal

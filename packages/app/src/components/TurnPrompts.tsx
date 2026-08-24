@@ -1,4 +1,5 @@
 import { useEncounter } from "../state/store.js";
+import { actionPool } from "../rules/actions.js";
 import { CONDITIONS } from "../rules/conditions.js";
 import { promptsFor, type Prompt } from "../rules/prompts.js";
 import type { Combatant, Entry } from "../state/types.js";
@@ -43,6 +44,7 @@ export function TurnPrompts(): React.ReactElement | null {
   const acknowledgePrompt = useEncounter((s) => s.acknowledgePrompt);
   const addCondition = useEncounter((s) => s.addCondition);
   const removeCondition = useEncounter((s) => s.removeCondition);
+  const spendActions = useEncounter((s) => s.spendActions);
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   if (!combatant) return null;
@@ -63,10 +65,20 @@ export function TurnPrompts(): React.ReactElement | null {
         if (next <= 0) removeCondition(combatant.id, prompt.slug);
         else addCondition(combatant.id, prompt.slug, next);
       }
-      // Stunned's whole value is what the action-pool math already
-      // subtracted this turn (see rules/actions.ts) — once the GM has seen
-      // and acknowledged that loss, the condition is spent.
+      // Removing stunned here alone used to hand the actions it just took
+      // back — ActionPips/ActionList/NextButton all recompute actionPool
+      // from `conditions` every render, so the moment stunned was gone the
+      // pool read as if it never happened. spendActions makes the loss
+      // permanent for this turn (via actionsSpent, reset at the next
+      // start-of-turn like every other spend) before the condition that
+      // caused it is cleared.
       if (prompt.timing === "start" && prompt.slug === "stunned") {
+        const pool = actionPool({
+          slowed: combatant.conditions.find((c) => c.slug === "slowed")?.value ?? 0,
+          stunned: applied.value,
+          quickened: combatant.conditions.some((c) => c.slug === "quickened"),
+        });
+        spendActions(combatant.id, pool.lost);
         removeCondition(combatant.id, "stunned");
       }
     }

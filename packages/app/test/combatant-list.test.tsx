@@ -265,6 +265,21 @@ describe("CombatantList", () => {
     expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(25);
   });
 
+  it("disables Damage and Heal when the combatant has no HP on record", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, hp: null },
+      18,
+    );
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Valeria"));
+
+    expect(screen.getByRole("button", { name: "Damage" }).hasAttribute("disabled")).toBe(true);
+    expect(screen.getByRole("button", { name: "Heal" }).hasAttribute("disabled")).toBe(true);
+    expect(screen.getByText(/no hp on record/i)).toBeDefined();
+  });
+
   it("greys out a defeated combatant", () => {
     const id = useEncounter.getState().addCombatant(seed(), 19);
     useEncounter.getState().applyDamage(id, 99);

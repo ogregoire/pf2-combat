@@ -204,7 +204,29 @@ export const useEncounter = create<EncounterStore>()(
           activeEntry !== undefined &&
           activeEntry.combatantIds.length === 1 &&
           activeEntry.combatantIds[0] === id;
-        const activeEntryId = activeEntryDissolves ? null : (activeEntry?.id ?? null);
+
+        // Identity, not position, is what survives a removal — same
+        // convention as addCombatant/group. If the active entry merely
+        // shrinks (a non-active combatant removed, or one member of a
+        // multi-member active entry), pin its own id. If the active entry
+        // itself dissolves, pin whichever entry is *next* in turn order —
+        // the same target nextTurn would advance to — wrapping to the
+        // front (and counting that as a new round) if it was last.
+        let pinnedEntryId: string | null;
+        let wrapsRound = false;
+        if (activeEntryDissolves) {
+          let nextIndex = oldActiveIndex + 1;
+          if (nextIndex >= enc.entries.length) {
+            nextIndex = 0;
+            wrapsRound = true;
+          }
+          // The dissolving entry can't be its own "next" (it has no other
+          // combatants to survive the filter below), so this is always a
+          // different, surviving entry — or null if it was the only entry.
+          pinnedEntryId = enc.entries[nextIndex]?.id ?? null;
+        } else {
+          pinnedEntryId = activeEntry?.id ?? null;
+        }
 
         delete enc.combatants[id];
         if (enc.targetId === id) enc.targetId = null;
@@ -221,15 +243,13 @@ export const useEncounter = create<EncounterStore>()(
 
         if (enc.entries.length === 0) {
           enc.activeEntryIndex = 0;
-        } else if (activeEntryId !== null) {
-          const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
-          enc.activeEntryIndex = idx >= 0 ? idx : 0;
-        } else {
-          // The active entry itself was removed — whichever entry now sits
-          // at its old numeric slot is the one that was next (removal
-          // shifts later entries down); wrap to the front if it was last.
-          enc.activeEntryIndex = Math.min(oldActiveIndex, enc.entries.length - 1);
+          return;
         }
+
+        if (wrapsRound) enc.round += 1;
+
+        const idx = pinnedEntryId === null ? -1 : enc.entries.findIndex((e) => e.id === pinnedEntryId);
+        enc.activeEntryIndex = idx >= 0 ? idx : 0;
       }),
 
     setInitiative: (entryId, initiative) =>

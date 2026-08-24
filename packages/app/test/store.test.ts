@@ -235,6 +235,26 @@ describe("encounter store", () => {
     expect(enc.entries[0]!.combatantIds).toEqual([a]);
   });
 
+  it("wraps to the front (not the entry before it) when the last of three active entries is removed", () => {
+    // Regression: with only two entries, min(oldActiveIndex, len-1) happens
+    // to land on the same index a correct wrap would — masking a bug where
+    // removing the last of a/b/c (c active) landed on b instead of
+    // wrapping to a. Three entries is the minimum that can tell them apart.
+    const a = addCreature("a", 30);
+    const b = addCreature("b", 20);
+    const c = addCreature("c", 10);
+    useEncounter.getState().nextTurn(); // a -> b
+    useEncounter.getState().nextTurn(); // b -> c (active, last entry)
+    const roundBefore = useEncounter.getState().encounter.round;
+    useEncounter.getState().removeCombatant(c);
+    const enc = useEncounter.getState().encounter;
+    expect(enc.entries[enc.activeEntryIndex]!.combatantIds).toEqual([a]);
+    expect(enc.activeEntryIndex).toBe(0);
+    expect(enc.round).toBe(roundBefore + 1);
+    // b is still present, just no longer active.
+    expect(enc.entries.some((e) => e.combatantIds.includes(b))).toBe(true);
+  });
+
   it("keeps the active combatant unchanged when a different combatant is removed", () => {
     const a = addCreature("a", 20);
     const b = addCreature("b", 10);

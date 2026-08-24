@@ -60,14 +60,25 @@ describe("TurnManager", () => {
     expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
   });
 
-  it("clears stunned once its start-of-turn action-loss prompt is acknowledged", async () => {
+  it("clears stunned once its start-of-turn action-loss prompt is acknowledged, without refunding the actions it took", async () => {
     const user = userEvent.setup();
     const id = add("a", 20);
     useEncounter.getState().addCondition(id, "stunned", 2);
     render(<TurnManager />);
 
+    expect(screen.getAllByTestId("action-pip-filled")).toHaveLength(1); // 3 - stunned 2
+
     await user.click(screen.getByRole("button", { name: /got it/i }));
+
     expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
+    // The regression this guards: removing the condition alone used to let
+    // ActionPips recompute the pool as if stunned had never happened,
+    // handing the two lost actions straight back.
+    expect(useEncounter.getState().encounter.combatants[id]!.actionsSpent).toBe(2);
+    expect(screen.getAllByTestId("action-pip-filled")).toHaveLength(1);
+    // Condition is gone, so the pool's own `reasons` no longer mentions
+    // stunned — it's actionsSpent alone keeping the pips down now.
+    expect(screen.getByText("1 actions")).toBeDefined();
   });
 
   it("dismisses a prompt only on click", async () => {

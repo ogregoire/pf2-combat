@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { applyIwr, type Iwr } from "../src/rules/damage.js";
+import { applyIwr, relevantDamageTypes, type Iwr } from "../src/rules/damage.js";
 
 describe("applyIwr", () => {
   it("passes damage through unchanged when no type is chosen", () => {
@@ -43,5 +43,54 @@ describe("applyIwr", () => {
       resistances: [{ type: "physical", value: 5, exceptions: ["physical"] }],
     };
     expect(applyIwr(10, "physical", iwr)).toBe(10);
+  });
+
+  it("applies a same-type weakness and resistance together, not one cancelling the whole other out", () => {
+    // Bog Mummy Cultist: weakness cold 10, resistance cold 5 — both real.
+    const iwr: Iwr = {
+      immunities: [],
+      weaknesses: [{ type: "cold", value: 10 }],
+      resistances: [{ type: "cold", value: 5 }],
+    };
+    // 20 cold -> +10 weakness -> 30 -> -5 resistance -> 25.
+    expect(applyIwr(20, "cold", iwr)).toBe(25);
+  });
+
+  it("applies only the first entry when one category repeats a type", () => {
+    const iwr: Iwr = {
+      immunities: [],
+      weaknesses: [],
+      resistances: [
+        { type: "cold", value: 10 },
+        { type: "cold", value: 5 },
+      ],
+    };
+    expect(applyIwr(20, "cold", iwr)).toBe(10);
+  });
+});
+
+describe("relevantDamageTypes", () => {
+  it("merges a same-type weakness and resistance into one row instead of two colliding rows", () => {
+    const iwr: Iwr = {
+      immunities: [],
+      weaknesses: [{ type: "cold", value: 10 }],
+      resistances: [{ type: "cold", value: 5 }],
+    };
+    const relevant = relevantDamageTypes(iwr);
+    expect(relevant).toEqual([{ type: "cold", label: "+10 / −5" }]);
+  });
+
+  it("shows only IMM when a type is both immune and (nonsensically) weak or resistant", () => {
+    const iwr: Iwr = {
+      immunities: ["fire"],
+      weaknesses: [{ type: "fire", value: 5 }],
+      resistances: [],
+    };
+    expect(relevantDamageTypes(iwr)).toEqual([{ type: "fire", label: "IMM" }]);
+  });
+
+  it("keeps the plain numeric label when only one of weakness/resistance is present", () => {
+    const iwr: Iwr = { immunities: [], weaknesses: [{ type: "cold", value: 5 }], resistances: [] };
+    expect(relevantDamageTypes(iwr)).toEqual([{ type: "cold", label: "5" }]);
   });
 });
