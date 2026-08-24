@@ -391,6 +391,51 @@ Vitest.
   matter: adding N creatures at once, group creation, mid-combat insertion,
   damage entry, advancing the turn.
 
+## Phase 1 as delivered
+
+Merged 2026-08-24. 331 tests, ~255 KB first load against a 10.25 MB dataset
+fetched lazily.
+
+Built and working end to end through the UI: book catalog loading with
+collision resolution across the active set; creature search with bulk add;
+initiative order including heterogeneous groups; click-dismissed turn prompts
+stating their computation; per-combatant damage and healing with immunities,
+weaknesses and resistances applied to the chosen type; targeting; and the roll
+assistant resolving a Strike to its die-face bands and per-outcome damage,
+including `deadly` and `fatal`.
+
+Two departures from this document, both deliberate:
+
+- **Group creation is a minimal control**, not the `<GroupBuilder>` screen
+  described above — checkbox selection in the list plus a name and shared
+  initiative. The full screen is deferred; the capability is not, because
+  heterogeneous groups are a core requirement.
+- **Difficulty rating badges are absent.** The XP award is shown; the dual
+  Moderate/Severe rating is phase 2.
+
+### What this build got wrong, and what phase 2 should do first
+
+The parts of this system were verified heavily and the *connections between
+them* barely at all. Five Critical defects reached the final review, and
+per-task review could not have caught any of them:
+
+- Four store actions — `addCondition`, `setTarget`, `setReactionSpent`,
+  `group` — were built, reviewed, and never called from any component. Each
+  made a whole feature unreachable while every test passed, because the tests
+  reached past the UI into the store.
+- No orchestration existed at all until the final task: no book loading, and
+  the add-combatants panel was never mounted, so the assembled app had no way
+  to add a creature.
+- Frightened and sickened did not lower AC, because the condition catalogue
+  excluded AC from "all checks" — and an earlier review explicitly endorsed
+  that exclusion. The Remaster text is "all your checks **and DCs**", and AC is
+  a DC.
+
+**Phase 2 starts by auditing every exported store action for a real component
+call site, and every rendered piece of state for a code path that writes it.**
+A test that drives the store directly proves the store; only a test that drives
+the UI proves the feature.
+
 ## Deferred
 
 - **Delay and Ready.** These move a combatant's slot in the initiative order and
@@ -398,3 +443,25 @@ Vitest.
   in scope for the first version.
 - Bestiary 3 and other Adventure Path bestiaries — a data pipeline config
   change plus a book toggle.
+- **Difficulty rating badges** — dual Moderate/Severe against party-of-4 and
+  actually-present. The XP award ships; the rating does not.
+- **The full `<GroupBuilder>` screen** described under Component tree. The
+  minimal in-list control covers the capability.
+- **Per-book enable/disable UI.** All books load; the catalog render is capped
+  at 50 results with a hidden count, which is what made that acceptable.
+- **Immunity `exceptions`.** Modelled for weaknesses and resistances only.
+  Verified against the dataset: 0 of 1450 creatures carry an immunity
+  exception, 107 carry resistance exceptions.
+- **`doubleVs`** on immunities, weaknesses and resistances — 20 entries in the
+  dataset, unmodelled.
+- **The popover's Flanked toggle and stat-block link.** Flanked reduces to
+  off-guard, which the condition picker offers; the stat block is visible for
+  the active combatant but not for an arbitrary row.
+- **Drained's HP loss, doomed's dying threshold, wounded's dying increase**,
+  and clumsy's skill penalties — the conditions exist and carry their other
+  effects, but these secondary consequences are not applied.
+- **Nested `<p>` in 887 creature descriptions**, where `resolveLocalize`
+  inlines a block inside an enclosing paragraph. Browsers auto-close it; a
+  strict sanitizer may not.
+- **Offline use.** Google Fonts is the only external fetch, but there is no
+  service worker and no offline story.
