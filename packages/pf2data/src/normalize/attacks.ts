@@ -2,6 +2,7 @@ import { z } from "zod";
 import { compareStrings } from "../util.js";
 
 const AttackItemSchema = z.object({
+  _id: z.string(),
   name: z.string(),
   type: z.literal("melee"),
   system: z.object({
@@ -22,6 +23,7 @@ const AttackItemSchema = z.object({
 });
 
 export interface NormalizedAttack {
+  foundryId: string;
   name: string;
   kind: "melee" | "ranged";
   bonus: number;
@@ -36,7 +38,7 @@ export function normalizeAttacks(items: unknown[]): NormalizedAttack[] {
   for (const item of items) {
     const parsed = AttackItemSchema.safeParse(item);
     if (!parsed.success) continue;
-    const { name, system } = parsed.data;
+    const { _id, name, system } = parsed.data;
     const traits = [...(system.traits?.value ?? [])].sort(compareStrings);
 
     // Foundry omits `weaponType` for some ranged weapons (thrown items,
@@ -53,6 +55,7 @@ export function normalizeAttacks(items: unknown[]): NormalizedAttack[] {
         : "melee");
 
     attacks.push({
+      foundryId: _id,
       name,
       kind,
       bonus: system.bonus.value,

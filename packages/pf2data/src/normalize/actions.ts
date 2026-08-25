@@ -4,6 +4,7 @@ import { resolveLocalize, type LangTable } from "./localize.js";
 import { compareStrings } from "../util.js";
 
 const ActionItemSchema = z.object({
+  _id: z.string(),
   name: z.string(),
   type: z.literal("action"),
   system: z.object({
@@ -24,6 +25,7 @@ const ActionItemSchema = z.object({
 export type ActionCost = "1" | "2" | "3" | "reaction" | "free" | "passive";
 
 export interface NormalizedAction {
+  foundryId: string;
   name: string;
   cost: ActionCost;
   category: string | null;
@@ -60,12 +62,13 @@ export function normalizeActions(
   for (const item of items) {
     const parsed = ActionItemSchema.safeParse(item);
     if (!parsed.success) continue;
-    const { name, system } = parsed.data;
+    const { _id, name, system } = parsed.data;
     // Localize first, links later (in normalizeCreature): localized glossary
     // text itself contains @UUID references that must survive to be resolved.
     const html = resolveLocalize(system.description.value, lang);
 
     actions.push({
+      foundryId: _id,
       name,
       cost: costOf(system),
       category: system.category ?? null,

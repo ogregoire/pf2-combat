@@ -54,4 +54,16 @@ describe("normalizeActions", () => {
     const constantSpells = actions.find((a) => a.name === "Constant Spells")!;
     expect(constantSpells.description).toContain("@Localize[");
   });
+
+  it("carries the source item's _id, so a translation can be aligned to the sorted array", () => {
+    const actions = normalizeActions(
+      [
+        { _id: "aaaaaaaaaaaaaaaa", name: "Zeta", type: "action", system: { actionType: { value: "action" }, actions: { value: 1 }, description: { value: "" } } },
+        { _id: "bbbbbbbbbbbbbbbb", name: "Alpha", type: "action", system: { actionType: { value: "action" }, actions: { value: 1 }, description: { value: "" } } },
+      ],
+      {},
+    );
+    // Sorted by name, so the ids come back in the sorted order, not input order.
+    expect(actions.map((a) => a.foundryId)).toEqual(["bbbbbbbbbbbbbbbb", "aaaaaaaaaaaaaaaa"]);
+  });
 });
