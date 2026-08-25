@@ -194,6 +194,83 @@ describe("CombatantList", () => {
     expect(screen.queryByRole("group", { name: "damage type" })).toBeNull();
   });
 
+  it("shows a last-change indicator with before/after after applying damage, and supersedes it on the next apply", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      seed({ name: "Stag Lord Bandit", hp: { current: 110, max: 110 } }),
+      19,
+    );
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    const amount = screen.getByLabelText("amount");
+    await user.clear(amount);
+    await user.type(amount, "14");
+    await user.click(screen.getByRole("button", { name: "Damage" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(96);
+    expect(screen.getByText("−14")).toBeDefined();
+    expect(screen.getByText(/110 → 96/)).toBeDefined();
+
+    // A second apply supersedes rather than accumulates — only the latest
+    // change is shown, not "−14" alongside a new "−9".
+    await user.clear(amount);
+    await user.type(amount, "9");
+    await user.click(screen.getByRole("button", { name: "Damage" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(87);
+    expect(screen.queryByText("−14")).toBeNull();
+    expect(screen.getByText("−9")).toBeDefined();
+    expect(screen.getByText(/96 → 87/)).toBeDefined();
+  });
+
+  it("shows a last-change indicator in the ok colour after healing", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      seed({ name: "Stag Lord Bandit", hp: { current: 40, max: 110 } }),
+      19,
+    );
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    const amount = screen.getByLabelText("amount");
+    await user.clear(amount);
+    await user.type(amount, "8");
+    await user.click(screen.getByRole("button", { name: "Heal" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(48);
+    const indicator = screen.getByText("+8");
+    expect(indicator).toBeDefined();
+    expect(indicator.style.color).toBe("var(--ok)");
+    expect(screen.getByText(/40 → 48/)).toBeDefined();
+  });
+
+  it("shows what was actually applied and why when IWR changes the typed amount", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      seed({
+        name: "Skeletal Tiger Lord",
+        hp: { current: 30, max: 30 },
+        iwr: { immunities: [], weaknesses: [], resistances: [{ type: "cold", value: 10 }] },
+      }),
+      19,
+    );
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Skeletal Tiger Lord"));
+    await user.click(screen.getByRole("button", { name: "cold 10" }));
+    const amount = screen.getByLabelText("amount");
+    await user.clear(amount);
+    await user.type(amount, "30");
+    await user.click(screen.getByRole("button", { name: "Damage" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(10);
+    // The applied total (−20), not the bare typed amount, plus the reason.
+    expect(screen.getByText("−20")).toBeDefined();
+    expect(screen.getByText(/30 → 10/)).toBeDefined();
+    expect(screen.getByText(/30 cold, resistance 10/)).toBeDefined();
+  });
+
   it("adds a condition through the row popover's picker", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(seed(), 19);

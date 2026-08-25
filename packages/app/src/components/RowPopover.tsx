@@ -1,10 +1,39 @@
 import { useState } from "react";
 import { useEncounter } from "../state/store.js";
-import { relevantDamageTypes } from "../rules/damage.js";
+import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { compareStrings } from "../rules/compare.js";
 
 const CONDITION_OPTIONS = Object.values(CONDITIONS).sort((a, b) => compareStrings(a.name, b.name));
+
+/** Last damage/heal applied to this combatant, shown beside the HP line
+ * until the next apply or the popover closes (component-local state, so
+ * unmounting the popover — see CombatantRow — is what clears it). */
+interface LastChange {
+  delta: number; // negative for damage, positive for healing
+  before: number;
+  after: number;
+  /** Set only when IWR changed the raw typed amount — explains the gap
+   * between what the GM typed and what actually landed. */
+  reason?: string;
+}
+
+/**
+ * Describes why the applied amount differs from what the GM typed, e.g.
+ * "30 cold, resistance 10". Mirrors applyIwr's own immunity/weakness/
+ * resistance lookup (kept local rather than exported from damage.ts since
+ * it's presentation, not rules logic).
+ */
+function describeIwrAdjustment(raw: number, type: string, iwr: Iwr | null): string {
+  if (iwr === null || type === "none") return `${raw} ${type}`;
+  if (iwr.immunities.includes(type)) return `${raw} ${type}, immune`;
+  const weakness = iwr.weaknesses.find((w) => w.type === type && !(w.exceptions ?? []).includes(type));
+  const resistance = iwr.resistances.find((r) => r.type === type && !(r.exceptions ?? []).includes(type));
+  const parts: string[] = [];
+  if (weakness) parts.push(`weakness ${weakness.value}`);
+  if (resistance) parts.push(`resistance ${resistance.value}`);
+  return parts.length > 0 ? `${raw} ${type}, ${parts.join(" / ")}` : `${raw} ${type}`;
+}
 
 /**
  * The row popover. On desktop it's the hover popover: rendered by
@@ -55,6 +84,7 @@ export function RowPopover({
   // "Heal never shows the row at all" — so the selector is gated on this,
   // not just on whether the creature has relevant IWR.
   const [intent, setIntent] = useState<"damage" | "heal">("damage");
+  const [lastChange, setLastChange] = useState<LastChange | null>(null);
 
   if (!combatant) return null;
 
@@ -66,14 +96,30 @@ export function RowPopover({
     const value = Number(amount);
     // The selected type used to be dropped here entirely — IWR (including
     // immunity reducing the hit to nothing) is resolved in the store.
-    if (Number.isFinite(value) && value > 0) applyDamage(combatantId, value, damageType);
+    if (Number.isFinite(value) && value > 0 && combatant.hp !== null) {
+      const before = combatant.hp.current;
+      const applied = applyIwr(value, damageType, combatant.iwr);
+      const after = Math.max(0, before - applied);
+      applyDamage(combatantId, value, damageType);
+      setLastChange({
+        delta: -applied,
+        before,
+        after,
+        reason: applied !== value ? describeIwrAdjustment(value, damageType, combatant.iwr) : undefined,
+      });
+    }
     setDamageType("none");
   };
 
   const handleHeal = (): void => {
     setIntent("heal");
     const value = Number(amount);
-    if (Number.isFinite(value) && value > 0) applyHealing(combatantId, value);
+    if (Number.isFinite(value) && value > 0 && combatant.hp !== null) {
+      const before = combatant.hp.current;
+      const after = Math.min(combatant.hp.max, before + value);
+      applyHealing(combatantId, value);
+      setLastChange({ delta: value, before, after });
+    }
     setDamageType("none");
   };
 
@@ -232,6 +278,26 @@ export function RowPopover({
           Remove
         </button>
       </div>
+
+      {lastChange && (
+        <div style={{ display: "flex", alignItems: "baseline", gap: "6px", flexWrap: "wrap" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "12px",
+              fontWeight: 600,
+              color: lastChange.delta < 0 ? "var(--danger)" : "var(--ok)",
+            }}
+          >
+            {lastChange.delta < 0 ? "−" : "+"}
+            {Math.abs(lastChange.delta)}
+          </span>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>
+            {lastChange.before} → {lastChange.after}
+            {lastChange.reason ? ` (${lastChange.reason})` : ""}
+          </span>
+        </div>
+      )}
 
       {intent === "damage" && relevant.length === 0 ? (
         <div
