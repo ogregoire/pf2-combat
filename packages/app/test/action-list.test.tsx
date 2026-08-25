@@ -223,9 +223,9 @@ describe("ActionList — Strikes merged into the action list", () => {
     // Rend appears exactly once — nested, not also as a top-level action.
     expect(screen.getAllByRole("button", { name: /^Rend/ })).toHaveLength(1);
 
-    // Its Requirements and Effect are visible with no interaction needed.
-    expect(screen.getByText(/hit the same enemy with two consecutive Strikes/)).toBeDefined();
-    expect(screen.getByText(/automatically deals that Strike's damage again/)).toBeDefined();
+    // Folded by default: description text hidden until selected.
+    expect(screen.queryByText(/hit the same enemy with two consecutive Strikes/)).toBeNull();
+    expect(screen.queryByText(/automatically deals that Strike's damage again/)).toBeNull();
 
     // It sits directly after Claw and before Jaws in the list.
     const names = screen.getAllByRole("button").map((b) => b.textContent ?? "");
@@ -304,10 +304,12 @@ describe("ActionList — unaffordable actions fold to their header line", () => 
     );
     const { id } = Object.values(useEncounter.getState().encounter.combatants)[0]!;
 
-    // Affordable at a full pool: the body renders.
+    // Affordable at a full pool: action card shows but folded by default.
     const view = render(<ActiveCombatant />);
-    expect(screen.getByText("Rushes in and swings wide.")).toBeTruthy();
-    expect(screen.getByText("FLOURISH")).toBeTruthy();
+    expect(screen.getByRole("button", { name: /Brutal Charge/ })).toBeDefined();
+    // Folded by default: body and traits don't show until selected.
+    expect(screen.queryByText("Rushes in and swings wide.")).toBeNull();
+    expect(screen.queryByText("FLOURISH")).toBeNull();
 
     // One action spent leaves 2 of 3 — the 3-action ability no longer fits.
     useEncounter.getState().spendActions(id, 1);

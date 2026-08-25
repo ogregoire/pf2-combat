@@ -536,7 +536,7 @@ describe("CombatantList", () => {
     expect(screen.queryByLabelText("Group name")).toBeNull();
     await user.click(screen.getByLabelText("Select Goblin Minion for grouping"));
 
-    expect(screen.getByText("2 selected")).toBeDefined();
+    expect(screen.getByLabelText("Group name")).toBeDefined();
     await user.type(screen.getByLabelText("Group name"), "Goblin Ambush");
     await user.type(screen.getByLabelText("Group initiative"), "14");
     await user.click(screen.getByRole("button", { name: "Create group" }));
