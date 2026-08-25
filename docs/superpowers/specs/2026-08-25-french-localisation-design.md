@@ -167,14 +167,21 @@ assumed:
   "Quatoïde (Élémentaire, eau)") participate in matching but must not outrank
   a hit on the name proper.
 
-**Ten French names are shared by two creatures each.** Seven are the
-legacy/remaster collisions the dataset already knows about (Barghest, Giant
-Mantis, Quatoid, Quelaunt, Terotricus, Twigjack, Shambler); two are remaster
-renames that genuinely converge (Grippli/Tripkee Scout → "Éclaireur tripkee",
-Jann/Janni → "Jann (Génie)"). One is a real clash of distinct creatures:
-**Sea Serpent and Sea Snake are both "Serpent de mer"** at wildly different
-levels. Search results must therefore show level and book, so the GM can tell
-those two apart at the moment of choosing.
+**Ten French names are shared by two creatures each, and FOUR survive
+`resolveCollisions` into the search list** (measured against the real merged
+catalogue, not estimated):
+
+| French name | Colliding creatures | Distinguished by |
+|---|---|---|
+| Pilleur de tombes | Grave Robber (1) · Tomb Raider (5) | level |
+| Éclaireur tripkee | Tripkee Scout (1, NPC Core) · Grippli Scout (1, Bestiary 2) | **book only** |
+| Jann (Génie) | Jann (4, Monster Core) · Janni (4, Bestiary) | **book only** |
+| Serpent de mer | Sea Serpent (12) · Sea Snake (0) | level |
+
+The other six are legacy/remaster collisions `resolveCollisions` already drops.
+Search results must show **both level and book**: for two of the four the levels
+are identical, so level alone leaves them indistinguishable at the moment of
+choosing.
 
 ### Interface strings
 
