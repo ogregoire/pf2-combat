@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useEncounter } from "../state/store.js";
+import { format, useT, type StringKey } from "../i18n/index.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { compareStrings } from "../rules/compare.js";
@@ -25,14 +26,19 @@ interface LastChange {
  * resistance lookup (kept local rather than exported from damage.ts since
  * it's presentation, not rules logic).
  */
-function describeIwrAdjustment(raw: number, type: string, iwr: Iwr | null): string {
+function describeIwrAdjustment(
+  t: (key: StringKey) => string,
+  raw: number,
+  type: string,
+  iwr: Iwr | null,
+): string {
   if (iwr === null || type === "none") return `${raw} ${type}`;
-  if (iwr.immunities.includes(type)) return `${raw} ${type}, immune`;
+  if (iwr.immunities.includes(type)) return `${raw} ${type}, ${t("IWR_IMMUNE_SUFFIX")}`;
   const weakness = iwr.weaknesses.find((w) => w.type === type && !(w.exceptions ?? []).includes(type));
   const resistance = iwr.resistances.find((r) => r.type === type && !(r.exceptions ?? []).includes(type));
   const parts: string[] = [];
-  if (weakness) parts.push(`weakness ${weakness.value}`);
-  if (resistance) parts.push(`resistance ${resistance.value}`);
+  if (weakness) parts.push(format(t("IWR_WEAKNESS"), { value: weakness.value }));
+  if (resistance) parts.push(format(t("IWR_RESISTANCE"), { value: resistance.value }));
   return parts.length > 0 ? `${raw} ${type}, ${parts.join(" / ")}` : `${raw} ${type}`;
 }
 
@@ -70,6 +76,7 @@ export function RowPopover({
   onToggleTarget?: () => void;
   onClose?: () => void;
 }): React.ReactElement | null {
+  const t = useT();
   const combatant = useEncounter((s) => s.encounter.combatants[combatantId]);
   const entry = useEncounter((s) => s.encounter.entries.find((e) => e.combatantIds.includes(combatantId)));
   const applyDamage = useEncounter((s) => s.applyDamage);
@@ -112,7 +119,7 @@ export function RowPopover({
         delta: -applied,
         before,
         after,
-        reason: applied !== value ? describeIwrAdjustment(value, damageType, combatant.iwr) : undefined,
+        reason: applied !== value ? describeIwrAdjustment(t, value, damageType, combatant.iwr) : undefined,
       });
     }
     setDamageType("none");
@@ -213,12 +220,12 @@ export function RowPopover({
               cursor: "pointer",
             }}
           >
-            {targeted ? "Targeted" : "Target"}
+            {targeted ? t("LABEL_TARGETED") : t("LABEL_TARGET")}
           </button>
           <div style={{ flexGrow: 1 }} />
           <button
             type="button"
-            aria-label="Close"
+            aria-label={t("LABEL_CLOSE")}
             onClick={onClose}
             style={{
               fontFamily: "inherit",
@@ -232,7 +239,7 @@ export function RowPopover({
               cursor: "pointer",
             }}
           >
-            Close
+            {t("LABEL_CLOSE")}
           </button>
         </div>
       )}
@@ -247,7 +254,7 @@ export function RowPopover({
         <div style={{ flexGrow: 1 }} />
         {entry && (
           <input
-            aria-label="Initiative"
+            aria-label={t("LABEL_INITIATIVE")}
             value={initiativeDraft ?? String(entry.initiative)}
             onFocus={() => setInitiativeDraft(String(entry.initiative))}
             onChange={(e) => setInitiativeDraft(e.target.value)}
@@ -270,7 +277,7 @@ export function RowPopover({
         )}
         <button
           type="button"
-          aria-label={`Remove ${combatant.name}`}
+          aria-label={format(t("REMOVE_NAME_ARIA"), { name: combatant.name })}
           onClick={() => removeCombatant(combatantId)}
           style={{
             fontFamily: "inherit",
@@ -283,7 +290,7 @@ export function RowPopover({
             cursor: "pointer",
           }}
         >
-          Remove
+          {t("LABEL_REMOVE")}
         </button>
       </div>
 
@@ -320,7 +327,7 @@ export function RowPopover({
           }}
         >
           <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
-            No immunities, weaknesses or resistances — damage type is irrelevant here.
+            {t("NO_IWR_MSG")}
           </span>
         </div>
       ) : showSelector ? (
@@ -334,9 +341,9 @@ export function RowPopover({
               marginBottom: "6px",
             }}
           >
-            Damage type — {relevant.length} relevant
+            {format(t("DAMAGE_TYPE_HEADING"), { n: relevant.length })}
           </div>
-          <div role="group" aria-label="damage type" style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+          <div role="group" aria-label={t("DAMAGE_TYPE_GROUP_ARIA")} style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
             <button
               type="button"
               aria-pressed={damageType === "none"}
@@ -353,7 +360,7 @@ export function RowPopover({
                 color: "var(--text)",
               }}
             >
-              None
+              {t("DAMAGE_TYPE_NONE")}
             </button>
             {relevant.map((r) => (
               <button
@@ -393,14 +400,14 @@ export function RowPopover({
           }}
         >
           <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
-            No HP on record — Damage and Heal are disabled.
+            {t("NO_HP_MSG")}
           </span>
         </div>
       )}
 
       <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
         <input
-          aria-label="amount"
+          aria-label={t("AMOUNT_ARIA")}
           value={amount}
           disabled={combatant.hp === null}
           onChange={(e) => setAmount(e.target.value)}
@@ -436,7 +443,7 @@ export function RowPopover({
             opacity: combatant.hp === null ? 0.45 : 1,
           }}
         >
-          Damage
+          {t("LABEL_DAMAGE")}
         </button>
         <button
           type="button"
@@ -456,17 +463,17 @@ export function RowPopover({
             opacity: combatant.hp === null ? 0.45 : 1,
           }}
         >
-          Heal
+          {t("LABEL_HEAL")}
         </button>
       </div>
 
       <div style={{ borderTop: "1px solid var(--border)", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "6px" }}>
         <div style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-          Add condition
+          {t("ADD_CONDITION_HEADING")}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
           <select
-            aria-label="Condition"
+            aria-label={t("LABEL_CONDITION")}
             value={conditionSlug}
             onChange={(e) => setConditionSlug(e.target.value as ConditionSlug)}
             style={{
@@ -488,7 +495,7 @@ export function RowPopover({
           </select>
           {conditionDef.valued && (
             <input
-              aria-label="Condition value"
+              aria-label={t("CONDITION_VALUE_ARIA")}
               value={conditionValue}
               onChange={(e) => setConditionValue(e.target.value)}
               style={{
@@ -519,13 +526,13 @@ export function RowPopover({
               cursor: "pointer",
             }}
           >
-            Add
+            {t("LABEL_ADD")}
           </button>
         </div>
         {conditionSlug === "persistent-damage" && (
           <input
-            aria-label="Persistent damage formula"
-            placeholder="e.g. 2d6"
+            aria-label={t("PERSISTENT_DAMAGE_FORMULA_ARIA")}
+            placeholder={t("PERSISTENT_DAMAGE_PLACEHOLDER")}
             value={conditionFormula}
             onChange={(e) => setConditionFormula(e.target.value)}
             style={{
@@ -545,7 +552,7 @@ export function RowPopover({
               <button
                 key={c.slug}
                 type="button"
-                aria-label={`Remove ${CONDITIONS[c.slug].name}`}
+                aria-label={format(t("REMOVE_NAME_ARIA"), { name: CONDITIONS[c.slug].name })}
                 onClick={() => removeCondition(combatantId, c.slug)}
                 style={{
                   fontFamily: "inherit",

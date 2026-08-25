@@ -1,7 +1,8 @@
+import { useT, type StringKey } from "../i18n/index.js";
 import type { Combatant } from "../state/types.js";
 
-function levelLabel(combatant: Combatant): string {
-  return combatant.kind === "pc" ? `PC ${combatant.level}` : `Creature ${combatant.level}`;
+function levelLabel(combatant: Combatant, t: (key: StringKey) => string): string {
+  return `${combatant.kind === "pc" ? t("PC_PREFIX") : t("CREATURE_PREFIX")} ${combatant.level}`;
 }
 
 /** Main.dc.html's stat block header: name and level. The mockup also shows
@@ -11,6 +12,7 @@ function levelLabel(combatant: Combatant): string {
  * actions). Adding those chips would mean inventing fields no ruling has
  * asked for, so this renders only what the combatant actually carries. */
 export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.ReactElement {
+  const t = useT();
   return (
     <div style={{ padding: "18px 24px 14px", borderBottom: "1px solid var(--border)", flexShrink: 0 }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>
@@ -18,7 +20,7 @@ export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.
           {combatant.name}
         </h1>
         <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "var(--accent-text)" }}>
-          {levelLabel(combatant)}
+          {levelLabel(combatant, t)}
         </span>
       </div>
     </div>

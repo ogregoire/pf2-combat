@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useEncounter } from "../state/store.js";
+import { format, useT, type StringKey } from "../i18n/index.js";
 import { CONDITIONS } from "../rules/conditions.js";
 import { RowPopover } from "./RowPopover.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
@@ -46,6 +47,7 @@ function targetRowProps(
   narrow: boolean,
   open: boolean,
   onTap: () => void,
+  t: (key: StringKey) => string,
 ): {
   role: "button";
   tabIndex: number;
@@ -60,7 +62,7 @@ function targetRowProps(
       role: "button",
       tabIndex: 0,
       "aria-expanded": open,
-      "aria-label": `Show actions for ${combatant.name}`,
+      "aria-label": format(t("SHOW_ACTIONS_ARIA"), { name: combatant.name }),
       onClick: onTap,
       onKeyDown: (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -74,7 +76,7 @@ function targetRowProps(
     role: "button",
     tabIndex: 0,
     "aria-pressed": targeted,
-    "aria-label": `Target ${combatant.name}`,
+    "aria-label": format(t("TARGET_NAME_ARIA"), { name: combatant.name }),
     onClick: onToggleTarget,
     onKeyDown: (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -98,10 +100,11 @@ function SelectCheckbox({
   checked: boolean;
   onToggle: () => void;
 }): React.ReactElement {
+  const t = useT();
   return (
     <input
       type="checkbox"
-      aria-label={`Select ${name} for grouping`}
+      aria-label={format(t("SELECT_FOR_GROUPING_ARIA"), { name })}
       checked={checked}
       onChange={onToggle}
       onClick={(e) => e.stopPropagation()}
@@ -172,11 +175,11 @@ function HpBar({
   );
 }
 
-function levelLabel(combatant: Combatant): string {
-  return combatant.kind === "pc" ? `PC ${combatant.level}` : `${combatant.level}`;
+function levelLabel(combatant: Combatant, t: (key: StringKey) => string): string {
+  return combatant.kind === "pc" ? `${t("PC_PREFIX")} ${combatant.level}` : `${combatant.level}`;
 }
 
-const SAVE_NAMES = { F: "Fortitude", R: "Reflex", W: "Will" } as const;
+const SAVE_NAME_KEYS = { F: "LABEL_FORTITUDE", R: "LABEL_REFLEX", W: "LABEL_WILL" } as const;
 
 /** Programmatic, not a concatenated literal "+", so a zero or negative save
  * (none exist in the dataset today, but nothing here should assume that
@@ -191,9 +194,11 @@ function formatSigned(n: number): string {
  * instead of hover. The letter is bold, the value regular weight, with a
  * tight gap between them (not a full word space) so the pair reads as one
  * unit rather than two words. */
-function SaveUnit({ letter, value }: { letter: keyof typeof SAVE_NAMES; value: number }): React.ReactElement {
+function SaveUnit({ letter, value }: { letter: keyof typeof SAVE_NAME_KEYS; value: number }): React.ReactElement {
+  const t = useT();
+  const saveName = t(SAVE_NAME_KEYS[letter]);
   return (
-    <span title={SAVE_NAMES[letter]} aria-label={`${SAVE_NAMES[letter]} ${formatSigned(value)}`} style={{ whiteSpace: "nowrap" }}>
+    <span title={saveName} aria-label={`${saveName} ${formatSigned(value)}`} style={{ whiteSpace: "nowrap" }}>
       <span style={{ fontWeight: 700 }}>{letter}</span>
       <span style={{ marginLeft: "2px" }}>{formatSigned(value)}</span>
     </span>
@@ -241,6 +246,7 @@ function StandaloneRow({
   selected: boolean;
   onToggleSelect: () => void;
 }): React.ReactElement {
+  const t = useT();
   const borderColor = active
     ? ACTIVE_BORDER
     : combatant.kind === "pc"
@@ -249,7 +255,7 @@ function StandaloneRow({
 
   return (
     <div
-      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap)}
+      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap, t)}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -287,7 +293,7 @@ function StandaloneRow({
           <span style={{ fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
             {combatant.name}
           </span>
-          <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant)}</span>
+          <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
         </div>
 
         {!combatant.defeated && combatant.hp !== null && (
@@ -311,7 +317,7 @@ function StandaloneRow({
       </div>
 
       {combatant.defeated ? (
-        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>DEFEATED</span>
+        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{t("DEFEATED_BADGE")}</span>
       ) : (
         <div
           style={{
@@ -323,7 +329,7 @@ function StandaloneRow({
             fontSize: "11px",
           }}
         >
-          <span style={{ color: "var(--text)" }}>{combatant.ac !== null ? `AC ${combatant.ac}` : "—"}</span>
+          <span style={{ color: "var(--text)" }}>{combatant.ac !== null ? `${t("LABEL_AC")} ${combatant.ac}` : "—"}</span>
           <span style={{ color: "var(--text-faint)", letterSpacing: "-0.01em" }}>
             <Saves saves={combatant.saves} />
           </span>
@@ -361,9 +367,10 @@ function GroupMemberRow({
   selected: boolean;
   onToggleSelect: () => void;
 }): React.ReactElement {
+  const t = useT();
   return (
     <div
-      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap)}
+      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap, t)}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -385,13 +392,13 @@ function GroupMemberRow({
           <span style={{ fontSize: "13px", fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
             {combatant.name}
           </span>
-          <span style={{ fontSize: "10.5px", color: "var(--text-faint)" }}>{levelLabel(combatant)}</span>
+          <span style={{ fontSize: "10.5px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
         </div>
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
       </div>
 
       {combatant.defeated ? (
-        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>DEFEATED</span>
+        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{t("DEFEATED_BADGE")}</span>
       ) : (
         <>
           {combatant.hp !== null && (
@@ -419,7 +426,7 @@ function GroupMemberRow({
               textAlign: "right",
             }}
           >
-            {combatant.ac !== null ? `AC ${combatant.ac}` : "—"}
+            {combatant.ac !== null ? `${t("LABEL_AC")} ${combatant.ac}` : "—"}
           </span>
         </>
       )}

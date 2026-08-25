@@ -1,9 +1,11 @@
 import type { Action } from "@pf2/schema";
+import { useT } from "../i18n/index.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { TraitTag } from "./TraitTag.js";
 
 export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement {
+  const t = useT();
   const count = cost === "1" || cost === "2" || cost === "3" ? Number(cost) : 0;
   if (count > 0) {
     return (
@@ -18,7 +20,7 @@ export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement
   }
   return (
     <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>
-      {cost === "free" ? "FREE" : "REACTION"}
+      {cost === "free" ? t("COST_FREE") : t("COST_REACTION")}
     </span>
   );
 }
@@ -65,11 +67,12 @@ export function ActionCard({
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
+  const t = useT();
   if (action.cost === "passive") {
     return (
       <div style={{ flexGrow: 1, padding: "9px 12px", borderRadius: "4px", background: "var(--panel)", border: "1px solid var(--border)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--text-faint)" }}>PASSIVE</span>
+          <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--text-faint)" }}>{t("COST_PASSIVE")}</span>
           <span style={{ fontWeight: 500, fontSize: "13px" }}>{action.name}</span>
         </div>
         <TraitRow traits={action.traits} glossary={glossary} />

@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Creature, IndexEntry } from "@pf2/schema";
 import { resolveCollisions, searchCreatures } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
+import { format, useT } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
 import type { Iwr } from "../rules/damage.js";
 import { useEncounter } from "../state/store.js";
@@ -101,6 +102,7 @@ export function AddCombatants({
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
 }): React.ReactElement {
+  const t = useT();
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [quantity, setQuantity] = useState("1");
@@ -179,18 +181,20 @@ export function AddCombatants({
     <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>
         <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "22px", fontWeight: 600 }}>
-          Add combatants
+          {t("ADD_COMBATANTS_TITLE")}
         </h2>
         {running && (
-          <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>encounter is running &mdash; round {round}</span>
+          <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>
+            {format(t("ENCOUNTER_RUNNING_ROUND"), { round })}
+          </span>
         )}
       </div>
 
       <input
-        aria-label="Search creatures"
+        aria-label={t("SEARCH_CREATURES_ARIA")}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search creatures…"
+        placeholder={t("SEARCH_CREATURES_PLACEHOLDER")}
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: "14px",
@@ -203,8 +207,8 @@ export function AddCombatants({
       />
 
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-        {results.length} match{results.length === 1 ? "" : "es"}
-        {hiddenCount > 0 && ` — showing ${shownResults.length}, refine your search to see the rest`}
+        {results.length} {results.length === 1 ? t("MATCH_SINGULAR") : t("MATCH_PLURAL")}
+        {hiddenCount > 0 && format(t("MATCH_HIDDEN_SUFFIX"), { shown: shownResults.length })}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -234,21 +238,23 @@ export function AddCombatants({
                           color: "var(--ok)",
                         }}
                       >
-                        REMASTER
+                        {t("REMASTER_BADGE")}
                       </span>
                     </>
                   ) : (
-                    <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>{entry.book} &middot; legacy</span>
+                    <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
+                      {entry.book} &middot; {t("LEGACY_LABEL")}
+                    </span>
                   )}
                 </div>
               </div>
 
               <div style={{ display: "flex", gap: "20px", fontFamily: "var(--font-mono)", fontSize: "13px" }}>
                 <span>
-                  AC <span style={{ fontWeight: 600 }}>{entry.ac}</span>
+                  {t("LABEL_AC")} <span style={{ fontWeight: 600 }}>{entry.ac}</span>
                 </span>
                 <span>
-                  HP <span style={{ fontWeight: 600 }}>{entry.hp}</span>
+                  {t("LABEL_HP")} <span style={{ fontWeight: 600 }}>{entry.hp}</span>
                 </span>
               </div>
 
@@ -276,14 +282,14 @@ export function AddCombatants({
                 <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
                   <button
                     type="button"
-                    aria-label={`Fewer ${entry.name}`}
+                    aria-label={format(t("FEWER_NAME_ARIA"), { name: entry.name })}
                     onClick={() => setQuantity(String(Math.max(1, qtyForLabel - 1)))}
                     style={{ ...addButtonStyle, borderRadius: "4px 0 0 4px", width: "34px", height: "34px" }}
                   >
                     &minus;
                   </button>
                   <input
-                    aria-label="Quantity"
+                    aria-label={t("QUANTITY_ARIA")}
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                     style={{
@@ -302,7 +308,7 @@ export function AddCombatants({
                   />
                   <button
                     type="button"
-                    aria-label={`More ${entry.name}`}
+                    aria-label={format(t("MORE_NAME_ARIA"), { name: entry.name })}
                     onClick={() => setQuantity(String(qtyForLabel + 1))}
                     style={{ ...addButtonStyle, borderRadius: "0 4px 4px 0", width: "34px", height: "34px" }}
                   >
@@ -310,8 +316,13 @@ export function AddCombatants({
                   </button>
                 </div>
               ) : (
-                <button type="button" aria-label={`Add ${entry.name}`} onClick={() => select(entry)} style={addButtonStyle}>
-                  Add
+                <button
+                  type="button"
+                  aria-label={format(t("ADD_NAME_ARIA"), { name: entry.name })}
+                  onClick={() => select(entry)}
+                  style={addButtonStyle}
+                >
+                  {t("LABEL_ADD")}
                 </button>
               )}
             </div>
@@ -334,10 +345,10 @@ export function AddCombatants({
         >
           <div style={{ display: "flex", alignItems: "center", gap: "9px" }}>
             <span style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-              Initiative
+              {t("LABEL_INITIATIVE")}
             </span>
             <input
-              aria-label="Initiative"
+              aria-label={t("LABEL_INITIATIVE")}
               value={initiative}
               onChange={(e) => setInitiative(e.target.value)}
               style={{
@@ -357,7 +368,7 @@ export function AddCombatants({
 
           {creatureLoading && (
             <span data-testid="creature-loading" style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
-              loading creature record&hellip;
+              {t("CREATURE_LOADING")}
             </span>
           )}
 
@@ -374,7 +385,7 @@ export function AddCombatants({
               }}
             >
               <span style={{ fontSize: "12.5px", color: "var(--info)" }}>
-                Slot {typedInitiative} has passed &mdash; acts <strong>next round</strong>
+                {format(t("SLOT_PASSED_PREFIX"), { slot: typedInitiative })} <strong>{t("NEXT_ROUND_BOLD")}</strong>
               </span>
               <button
                 type="button"
@@ -390,7 +401,7 @@ export function AddCombatants({
                   cursor: "pointer",
                 }}
               >
-                act this round instead
+                {t("ACT_THIS_ROUND_BUTTON")}
               </button>
             </div>
           )}
@@ -412,7 +423,7 @@ export function AddCombatants({
               cursor: "pointer",
             }}
           >
-            Add {qtyForLabel} {pluralize(selected.name, qtyForLabel)}
+            {t("LABEL_ADD")} {qtyForLabel} {pluralize(selected.name, qtyForLabel)}
           </button>
         </div>
       )}

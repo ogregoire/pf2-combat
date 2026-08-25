@@ -1,3 +1,5 @@
+import { format, useT } from "../i18n/index.js";
+
 // Same active-entry treatment as CombatantRow's standalone row, per
 // Main.dc.html: ember border-left, warmer background, a thin ring, and a
 // warmer initiative colour. Kept in sync with CombatantRow's own constants
@@ -21,6 +23,7 @@ export function GroupHeader({
   memberCount: number;
   active?: boolean;
 }): React.ReactElement {
+  const t = useT();
   return (
     <div
       data-active={active}
@@ -59,7 +62,7 @@ export function GroupHeader({
         {name.toUpperCase()}
       </span>
       <div style={{ flexGrow: 1 }} />
-      <span style={{ fontSize: "10.5px", color: "oklch(0.68 0.03 200)" }}>{memberCount} combatants</span>
+      <span style={{ fontSize: "10.5px", color: "oklch(0.68 0.03 200)" }}>{format(t("COMBATANTS_COUNT"), { n: memberCount })}</span>
     </div>
   );
 }

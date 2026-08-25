@@ -2,6 +2,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Creature, IndexEntry } from "@pf2/schema";
 import { resolveCollisions } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
+import { format, useT, type StringKey } from "../i18n/index.js";
 import { parseAddCommand } from "../rules/parseAddCommand.js";
 import { rankMatches } from "../rules/rankMatches.js";
 import { useEncounter } from "../state/store.js";
@@ -62,10 +63,16 @@ function optionStyle(active: boolean): React.CSSProperties {
  * reduced — is visible immediately rather than assumed. `requestedQuantity`
  * is what the GM actually typed; it only differs from `quantity` when
  * `parseAddCommand` clamped it down to `MAX_ADD_QUANTITY`. */
-function addedMessage(quantity: number, requestedQuantity: number, name: string, initiative: number | null): string {
-  const suffix = initiative !== null ? ` at ${initiative}` : "";
-  const capped = requestedQuantity > quantity ? ` (capped from ${requestedQuantity})` : "";
-  return `added ${quantity} × ${name}${suffix}${capped}`;
+function addedMessage(
+  t: (key: StringKey) => string,
+  quantity: number,
+  requestedQuantity: number,
+  name: string,
+  initiative: number | null,
+): string {
+  const suffix = initiative !== null ? format(t("ADDED_AT_INITIATIVE"), { initiative }) : "";
+  const capped = requestedQuantity > quantity ? format(t("ADDED_CAPPED"), { requested: requestedQuantity }) : "";
+  return format(t("ADDED_MESSAGE"), { quantity, name, suffix, capped });
 }
 
 /**
@@ -86,6 +93,7 @@ export function QuickAdd({
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
 }): React.ReactElement {
+  const t = useT();
   const [query, setQuery] = useState("");
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [dismissed, setDismissed] = useState(false);
@@ -121,7 +129,7 @@ export function QuickAdd({
         if (quantity === 1) addCombatant(seed, slotInitiative);
         else addMany(seed, quantity, slotInitiative);
 
-        setMessage(addedMessage(quantity, requestedQuantity, entry.name, initiative));
+        setMessage(addedMessage(t, quantity, requestedQuantity, entry.name, initiative));
         setQuery("");
         setDismissed(false);
         setHighlightedIndex(0);
@@ -172,12 +180,12 @@ export function QuickAdd({
         htmlFor="quick-add-input"
         style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}
       >
-        Quick add
+        {t("QUICK_ADD_LABEL")}
       </label>
       <input
         id="quick-add-input"
         ref={inputRef}
-        aria-label="Quick add creatures"
+        aria-label={t("QUICK_ADD_ARIA")}
         role="combobox"
         aria-expanded={showDropdown}
         aria-controls={listboxId}
@@ -190,7 +198,7 @@ export function QuickAdd({
           setHighlightedIndex(0);
         }}
         onKeyDown={handleKeyDown}
-        placeholder="6 goblin warrior 13"
+        placeholder={t("QUICK_ADD_PLACEHOLDER")}
         style={inputStyle}
       />
 
@@ -202,7 +210,7 @@ export function QuickAdd({
 
       {showDropdown && (
         <div style={dropdownStyle}>
-          <ul id={listboxId} role="listbox" aria-label="Matching creatures" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          <ul id={listboxId} role="listbox" aria-label={t("MATCHING_CREATURES_ARIA")} style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {shown.map((entry, index) => (
               <li
                 key={entry.id}
@@ -233,7 +241,7 @@ export function QuickAdd({
                       color: "var(--ok)",
                     }}
                   >
-                    REMASTER
+                    {t("REMASTER_BADGE")}
                   </span>
                 )}
               </li>
@@ -241,7 +249,7 @@ export function QuickAdd({
           </ul>
           {hiddenCount > 0 && (
             <div style={{ padding: "6px 10px", fontSize: "11px", color: "var(--text-faint)" }}>
-              +{hiddenCount} more — keep typing to narrow it down
+              {format(t("MORE_HIDDEN"), { n: hiddenCount })}
             </div>
           )}
         </div>

@@ -1,4 +1,5 @@
 import { useEncounter } from "../state/store.js";
+import { format, useT } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
 
 /** Main.dc.html's "REACTIONS READY" list — every non-defeated combatant who
@@ -15,6 +16,7 @@ import { compareStrings } from "../rules/compare.js";
  * this container is the flex child that grows and gets `overflow-y: auto`,
  * while everything else in the panel has `flexShrink: 0` and stays put. */
 export function ReactionWatch(): React.ReactElement {
+  const t = useT();
   const combatants = useEncounter((s) => s.encounter.combatants);
   const setReactionSpent = useEncounter((s) => s.setReactionSpent);
   const ready = Object.values(combatants)
@@ -33,9 +35,11 @@ export function ReactionWatch(): React.ReactElement {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "9px", flexShrink: 0 }}>
-        <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--info)" }}>REACTIONS READY</span>
+        <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--info)" }}>{t("REACTIONS_READY_HEADING")}</span>
         <div style={{ flexGrow: 1 }} />
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>{ready.length} ready</span>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>
+          {format(t("READY_COUNT"), { n: ready.length })}
+        </span>
       </div>
 
       <div
@@ -78,7 +82,7 @@ export function ReactionWatch(): React.ReactElement {
                   cursor: "pointer",
                 }}
               >
-                Spent
+                {t("SPENT_BUTTON")}
               </button>
             </div>
             {c.reactions.map((r) => (
@@ -86,7 +90,7 @@ export function ReactionWatch(): React.ReactElement {
                 <div style={{ fontSize: "12px", color: "var(--info)", marginTop: "2px" }}>{r.name}</div>
                 {r.trigger && (
                   <div style={{ fontSize: "11.5px", lineHeight: 1.45, color: "var(--text-faint)", marginTop: "4px" }}>
-                    <span style={{ fontWeight: 600 }}>Trigger</span> {r.trigger}
+                    <span style={{ fontWeight: 600 }}>{t("TRIGGER_LABEL")}</span> {r.trigger}
                   </div>
                 )}
               </div>

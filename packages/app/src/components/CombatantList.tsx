@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Creature, IndexEntry } from "@pf2/schema";
 import { loadCreature } from "../data/creatures.js";
+import { format, useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import { CombatantRow } from "./CombatantRow.js";
 import { GroupHeader } from "./GroupHeader.js";
@@ -34,6 +35,7 @@ function GroupBuilder({
   onCancel: () => void;
   onCreate: (name: string, initiative: number) => void;
 }): React.ReactElement {
+  const t = useT();
   const [name, setName] = useState("");
   const [initiative, setInitiative] = useState("");
 
@@ -50,25 +52,25 @@ function GroupBuilder({
       }}
     >
       <span style={{ fontSize: "11.5px", color: "var(--text-dim)", flexShrink: 0 }}>
-        {selectedIds.length} selected
+        {format(t("GROUP_SELECTED_COUNT"), { n: selectedIds.length })}
       </span>
       <input
-        aria-label="Group name"
-        placeholder="Group name"
+        aria-label={t("GROUP_NAME_LABEL")}
+        placeholder={t("GROUP_NAME_LABEL")}
         value={name}
         onChange={(e) => setName(e.target.value)}
         style={{ ...inputStyle, flexGrow: 1, fontFamily: "var(--font-ui)" }}
       />
       <input
-        aria-label="Group initiative"
-        placeholder="Init"
+        aria-label={t("GROUP_INITIATIVE_ARIA")}
+        placeholder={t("GROUP_INITIATIVE_PLACEHOLDER")}
         value={initiative}
         onChange={(e) => setInitiative(e.target.value)}
         style={{ ...inputStyle, width: "48px", textAlign: "center" }}
       />
       <button
         type="button"
-        onClick={() => onCreate(name.trim() === "" ? "Group" : name.trim(), Number(initiative) || 0)}
+        onClick={() => onCreate(name.trim() === "" ? t("DEFAULT_GROUP_NAME") : name.trim(), Number(initiative) || 0)}
         style={{
           fontFamily: "inherit",
           fontSize: "12px",
@@ -82,7 +84,7 @@ function GroupBuilder({
           flexShrink: 0,
         }}
       >
-        Create group
+        {t("CREATE_GROUP_BUTTON")}
       </button>
       <button
         type="button"
@@ -99,7 +101,7 @@ function GroupBuilder({
           flexShrink: 0,
         }}
       >
-        Cancel
+        {t("LABEL_CANCEL")}
       </button>
     </div>
   );

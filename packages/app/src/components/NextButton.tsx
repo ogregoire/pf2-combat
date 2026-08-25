@@ -1,3 +1,4 @@
+import { format, useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 
 /** Advances the turn. Always enabled — per the brief, skipping outstanding
@@ -13,6 +14,7 @@ export function NextButton({
   actionsRemaining?: number;
 }): React.ReactElement {
   const nextTurn = useEncounter((s) => s.nextTurn);
+  const t = useT();
   const prominent = actionsRemaining === 0;
 
   return (
@@ -32,11 +34,11 @@ export function NextButton({
           cursor: "pointer",
         }}
       >
-        Next combatant
+        {t("NEXT_COMBATANT_BUTTON")}
       </button>
       {unacknowledgedCount > 0 && (
         <div style={{ textAlign: "center", marginTop: "6px", fontSize: "11.5px", color: "var(--accent-text)" }}>
-          {unacknowledgedCount} unacknowledged
+          {format(t("UNACKNOWLEDGED_COUNT"), { n: unacknowledgedCount })}
         </div>
       )}
     </div>

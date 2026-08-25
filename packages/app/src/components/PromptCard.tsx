@@ -1,3 +1,4 @@
+import { useT } from "../i18n/index.js";
 import { CONDITIONS } from "../rules/conditions.js";
 import type { Prompt } from "../rules/prompts.js";
 
@@ -8,6 +9,7 @@ import type { Prompt } from "../rules/prompts.js";
  * including prompts the app already applied (autoApplied), because the
  * click is the GM's record that they saw the number change. */
 export function PromptCard({ prompt, onAcknowledge }: { prompt: Prompt; onAcknowledge: () => void }): React.ReactElement {
+  const t = useT();
   return (
     <div
       style={{
@@ -76,7 +78,7 @@ export function PromptCard({ prompt, onAcknowledge }: { prompt: Prompt; onAcknow
             cursor: "pointer",
           }}
         >
-          Got it
+          {t("GOT_IT_BUTTON")}
         </button>
       </div>
     </div>

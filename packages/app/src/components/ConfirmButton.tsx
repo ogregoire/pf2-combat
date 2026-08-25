@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useT } from "../i18n/index.js";
 
 /**
  * A destructive action with no undo (clear enemies, clear players, reset the
@@ -19,6 +20,7 @@ export function ConfirmButton({
   onConfirm: () => void;
   disabled?: boolean;
 }): React.ReactElement {
+  const t = useT();
   const [confirming, setConfirming] = useState(false);
 
   if (confirming) {
@@ -43,7 +45,7 @@ export function ConfirmButton({
             cursor: "pointer",
           }}
         >
-          Confirm
+          {t("LABEL_CONFIRM")}
         </button>
         <button
           type="button"
@@ -59,7 +61,7 @@ export function ConfirmButton({
             cursor: "pointer",
           }}
         >
-          Cancel
+          {t("LABEL_CANCEL")}
         </button>
       </div>
     );

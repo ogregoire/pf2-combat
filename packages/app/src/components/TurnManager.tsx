@@ -1,3 +1,4 @@
+import { format, useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
@@ -20,18 +21,25 @@ function EncounterControls(): React.ReactElement {
   const combatantCount = useEncounter((s) => Object.keys(s.encounter.combatants).length);
   const clearEnemies = useEncounter((s) => s.clearEnemies);
   const resetEncounter = useEncounter((s) => s.resetEncounter);
+  const t = useT();
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", flexShrink: 0 }}>
       <ConfirmButton
-        label="Clear enemies"
-        confirmMessage={`Clear ${enemyCount} ${enemyCount === 1 ? "enemy" : "enemies"}?`}
+        label={t("CLEAR_ENEMIES_LABEL")}
+        confirmMessage={format(t("CLEAR_ENEMIES_CONFIRM"), {
+          n: enemyCount,
+          word: enemyCount === 1 ? t("ENEMY_SINGULAR") : t("ENEMY_PLURAL"),
+        })}
         onConfirm={clearEnemies}
         disabled={enemyCount === 0}
       />
       <ConfirmButton
-        label="Reset encounter"
-        confirmMessage={`Reset the encounter? Clears all ${combatantCount} combatant${combatantCount === 1 ? "" : "s"} and returns to round 1. Players are kept.`}
+        label={t("RESET_ENCOUNTER_LABEL")}
+        confirmMessage={format(t("RESET_ENCOUNTER_CONFIRM"), {
+          n: combatantCount,
+          word: `${t("COMBATANT_WORD")}${combatantCount === 1 ? "" : "s"}`,
+        })}
         onConfirm={resetEncounter}
       />
     </div>
@@ -60,6 +68,7 @@ export function remainingActionsFor(combatant: Combatant): number {
  * its own single NextButton to the bottom of the screen instead — without
  * this, the Turn tab would show two Next buttons at once. */
 export function TurnManager({ showNextButton = true }: { showNextButton?: boolean } = {}): React.ReactElement {
+  const t = useT();
   const round = useEncounter((s) => s.encounter.round);
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
@@ -73,7 +82,7 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
   return (
     <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, minHeight: 0, padding: "16px 14px", gap: "16px" }}>
       <div style={{ textAlign: "center" }}>
-        <div style={{ fontSize: "10px", letterSpacing: "0.12em", color: "var(--text-faint)" }}>ROUND</div>
+        <div style={{ fontSize: "10px", letterSpacing: "0.12em", color: "var(--text-faint)" }}>{t("ROUND_LABEL")}</div>
         <div style={{ fontFamily: "var(--font-mono)", fontSize: "40px", fontWeight: 600, lineHeight: 1.05, marginTop: "2px" }}>
           {round}
         </div>
@@ -91,14 +100,14 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
       {combatant && (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }} data-testid="strikes-this-turn">
           <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>
-            STRIKES THIS TURN
+            {t("STRIKES_THIS_TURN_LABEL")}
           </span>
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600 }}>
             {combatant.strikesMade}
           </span>
           <button
             type="button"
-            aria-label="Reset strikes this turn"
+            aria-label={t("RESET_STRIKES_ARIA")}
             onClick={() => resetStrikes(combatant.id)}
             style={{
               fontFamily: "inherit",
@@ -111,7 +120,7 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
               cursor: "pointer",
             }}
           >
-            reset
+            {t("RESET_BUTTON")}
           </button>
         </div>
       )}

@@ -1,4 +1,5 @@
 import { useEncounter } from "../state/store.js";
+import { format, useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import { CONDITIONS } from "../rules/conditions.js";
 import { promptsFor, type Prompt } from "../rules/prompts.js";
@@ -37,6 +38,7 @@ export function unacknowledgedCountFor(combatant: Combatant, acknowledgedPrompts
  * derived entirely by the reviewed promptsFor — this component never
  * re-decides which conditions fire when. */
 export function TurnPrompts(): React.ReactElement | null {
+  const t = useT();
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const combatants = useEncounter((s) => s.encounter.combatants);
@@ -99,7 +101,7 @@ export function TurnPrompts(): React.ReactElement | null {
       {startPrompts.length > 0 && (
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>RESOLVE NOW</span>
+            <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>{t("RESOLVE_NOW_LABEL")}</span>
             <span
               style={{
                 fontFamily: "var(--font-mono)",
@@ -111,7 +113,7 @@ export function TurnPrompts(): React.ReactElement | null {
                 color: "var(--accent-text)",
               }}
             >
-              {startPrompts.length} TO RESOLVE
+              {format(t("TO_RESOLVE_BADGE"), { n: startPrompts.length })}
             </span>
           </div>
           {startPrompts.map((p) => (
@@ -133,7 +135,10 @@ export function TurnPrompts(): React.ReactElement | null {
           }}
         >
           <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>
-            WAITING FOR END OF TURN — {endPrompts.length} ITEM{endPrompts.length === 1 ? "" : "S"}
+            {format(t("WAITING_END_OF_TURN"), {
+              n: endPrompts.length,
+              word: `${t("ITEM_WORD")}${endPrompts.length === 1 ? "" : "S"}`,
+            })}
           </span>
           {endPrompts.map((p) => (
             <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} />

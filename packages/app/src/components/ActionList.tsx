@@ -1,4 +1,5 @@
 import type { Action } from "@pf2/schema";
+import { useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
 import { useEncounter } from "../state/store.js";
@@ -43,6 +44,7 @@ export function ActionList({
 }): React.ReactElement | null {
   const spendActions = useEncounter((s) => s.spendActions);
   const glossary = useTraitGlossary(fetchFn);
+  const t = useT();
 
   if (combatant.actions.length === 0 && combatant.attacks.length === 0) return null;
 
@@ -74,7 +76,7 @@ export function ActionList({
   return (
     <div>
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)", marginBottom: "8px" }}>
-        Actions
+        {t("ACTIONS_HEADING")}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>

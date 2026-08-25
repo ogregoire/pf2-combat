@@ -26,6 +26,7 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   LABEL_NAME: "Nom",
   LABEL_PRESENT: "Présent",
   LABEL_TARGET: "Cibler",
+  TARGET_NAME_ARIA: "Cibler {name}",
   LABEL_TARGETED: "Ciblé",
   LABEL_ADD: "Ajouter",
   LABEL_REMOVE: "Retirer",
