@@ -56,6 +56,27 @@ describe("encounter store", () => {
     expect(names).toEqual(["Alpha", "Gamma", "Beta"]);
   });
 
+  // Defence in depth behind persist.ts's migrate(), which is what actually
+  // fills a missing orderKey in (see its own tests). This pins the sorter's
+  // fallback itself: state that reaches it with no orderKey at all — an old
+  // save read by some path that skipped the migration, or a hand-built
+  // entry — still sorts by initiative rather than tying every entry at 0
+  // and scrambling the order.
+  it("falls back to initiative when an entry has no orderKey, rather than tying every entry at 0", () => {
+    addCreature("Alpha", 20);
+    addCreature("Beta", 15);
+    addCreature("Gamma", 10);
+    useEncounter.setState((st) => {
+      for (const e of st.encounter.entries) delete (e as { orderKey?: number }).orderKey;
+    });
+
+    addCreature("Delta", 12); // any add re-sorts, which is what exercises keyOf
+
+    const names = useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names).toEqual(["Alpha", "Beta", "Delta", "Gamma"]);
+  });
+
   it("adds N copies with numbered labels", () => {
     useEncounter.getState().addMany(
       { kind: "creature", name: "Goblin Warrior", level: 1, ac: 16,

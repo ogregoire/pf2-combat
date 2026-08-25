@@ -69,6 +69,22 @@ function withDelayDefaults<T extends object>(entry: T): T {
 }
 
 /**
+ * `Entry.orderKey` is the key the entire turn order sorts on, and it landed
+ * on `Entry` without a SCHEMA_VERSION bump too — so an encounter saved
+ * before it existed arrives with none, while the type promises a `number`.
+ * The sorter keeps its own `?? 0` fallback as defence in depth, but that
+ * fallback alone would tie *every* entry in an old save at 0 and scramble a
+ * returning GM's fight; the entry's own initiative is what it was actually
+ * ordered by, and is exactly what the store seeds a new entry's key from
+ * (`orderKey: initiative ?? 0`). Unrolled entries land on 0 the same way,
+ * and are sorted above everything on `initiative === null` regardless. */
+function withOrderKeyDefault<T extends object>(entry: T): T {
+  if ("orderKey" in entry) return entry;
+  const { initiative } = entry as { initiative?: number | null };
+  return { ...entry, orderKey: initiative ?? 0 };
+}
+
+/**
  * Stamps a payload with the current schema version, upgrading a payload
  * that predates `schemaVersion` (version 0). Refuses a payload newer than
  * what this build understands, rather than silently truncating it —
@@ -76,7 +92,8 @@ function withDelayDefaults<T extends object>(entry: T): T {
  *
  * Also defaults a handful of fields that were added to `Player`,
  * `Combatant` and `Entry` without a `SCHEMA_VERSION` bump (see those types'
- * `initiativeModifier` and `delayed`/`initiativeBeforeDelay` doc comments) — a real shape change would earn its
+ * `initiativeModifier`, `orderKey` and `delayed`/`initiativeBeforeDelay`/
+ * `endOfTurnResolved` doc comments) — a real shape change would earn its
  * own version and its own migration step here, but this is just a reader
  * filling in a field older data never had, so the version stays put.
  * Doing it once here, rather than at every call site that reads the field,
@@ -111,7 +128,10 @@ export function migrate(raw: unknown): Record<string, unknown> {
       patched = { ...patched, combatants: defaulted };
     }
     if (Array.isArray(patched.entries)) {
-      patched = { ...patched, entries: (patched.entries as object[]).map(withDelayDefaults) };
+      patched = {
+        ...patched,
+        entries: (patched.entries as object[]).map((e) => withOrderKeyDefault(withDelayDefaults(e))),
+      };
     }
     payload.encounter = patched;
   }

@@ -78,6 +78,64 @@ describe("migrate", () => {
     expect(out.encounter.entries[0]!.initiativeBeforeDelay).toBe(20);
   });
 
+  // `orderKey` is the sort key the whole turn order is built on, and it
+  // arrived on `Entry` the same way the fields above did: no
+  // SCHEMA_VERSION bump, so an encounter saved before it existed comes back
+  // without one. `Entry.orderKey: number` promises otherwise, and the
+  // sorter's own `?? 0` fallback would then tie every single entry at 0 and
+  // scramble a returning GM's fight. Defaulting here, at the one boundary
+  // stored data crosses, is what lets `orderKey: number` be true.
+  it("defaults an entry's missing orderKey from its own initiative, so an old save keeps its order", () => {
+    const payload = {
+      schemaVersion: SCHEMA_VERSION,
+      encounter: {
+        round: 1,
+        entries: [
+          { id: "e1", initiative: 21, combatantIds: ["c1"], groupName: null, trueInitiative: null },
+          { id: "e2", initiative: 9, combatantIds: ["c2"], groupName: null, trueInitiative: null },
+        ],
+        combatants: {},
+      },
+    };
+    const out = migrate(payload) as { encounter: { entries: { orderKey: unknown }[] } };
+    expect(out.encounter.entries[0]!.orderKey).toBe(21);
+    expect(out.encounter.entries[1]!.orderKey).toBe(9);
+  });
+
+  // Matches what the store itself writes for a combatant added with no roll
+  // (`orderKey: initiative ?? 0`): an unrolled entry sorts above everything
+  // on `initiative === null` alone, so its key is never consulted — but it
+  // still has to be a number rather than null, per the type.
+  it("defaults an unrolled entry's orderKey to 0, exactly as the store does when creating one", () => {
+    const payload = {
+      schemaVersion: SCHEMA_VERSION,
+      encounter: {
+        round: 1,
+        entries: [{ id: "e1", initiative: null, combatantIds: ["c1"], groupName: null, trueInitiative: null }],
+        combatants: {},
+      },
+    };
+    const out = migrate(payload) as { encounter: { entries: { orderKey: unknown }[] } };
+    expect(out.encounter.entries[0]!.orderKey).toBe(0);
+  });
+
+  // A saved orderKey is routinely *not* the initiative — that is the entire
+  // point of the field (a Delay return or a drag places an entry between two
+  // neighbours). Defaulting over one would silently undo every such
+  // placement the GM made before closing the app.
+  it("leaves an entry's existing orderKey alone, including a fractional one from a drag or a Delay return", () => {
+    const payload = {
+      schemaVersion: SCHEMA_VERSION,
+      encounter: {
+        round: 1,
+        entries: [{ id: "e1", initiative: 17, orderKey: 12.5, combatantIds: ["c1"], groupName: null, trueInitiative: null }],
+        combatants: {},
+      },
+    };
+    const out = migrate(payload) as { encounter: { entries: { orderKey: unknown }[] } };
+    expect(out.encounter.entries[0]!.orderKey).toBe(12.5);
+  });
+
   it("defaults a combatant's missing initiativeModifier to null, not undefined", () => {
     const payload = {
       schemaVersion: SCHEMA_VERSION,
