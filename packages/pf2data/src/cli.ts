@@ -334,6 +334,11 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     toolVersion: TOOL_VERSION,
     upstreamRepo: config.upstream.repo,
     upstreamRef: fetched.ref,
+    frRepo: config.french.repo,
+    // TODO(task-7): the French source isn't fetched yet, so there is no ref
+    // to pin. A later task wires the French fetch stage and replaces this
+    // with the real fetched ref.
+    frRef: manifest?.frRef ?? "",
     generatedAt: manifest?.generatedAt ?? new Date().toISOString(),
     packs: config.packs.map((p) => p.name),
     creatureCount: creatures.length,

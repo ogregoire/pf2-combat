@@ -4,6 +4,7 @@ import type { Pf2DataConfig } from "../src/config.js";
 
 const config: Pf2DataConfig = {
   upstream: { repo: "https://github.com/foundryvtt/pf2e", branch: "master" },
+  french: { repo: "https://gitlab.com/pathfinder-fr/foundryvtt-pathfinder2-fr", branch: "master" },
   packs: [
     { name: "conditions", kind: "conditions" },
     { name: "kingmaker-bestiary", kind: "creatures" },

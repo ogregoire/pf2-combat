@@ -125,6 +125,7 @@ describe("runCli", () => {
       configPath,
       JSON.stringify({
         upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        french: { repo: "https://example.invalid/pf2e-fr", branch: "master" },
         packs: [{ name: "kingmaker-bestiary", kind: "creatures" }],
       }),
     );
@@ -168,6 +169,7 @@ describe("runCli", () => {
       configPath,
       JSON.stringify({
         upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        french: { repo: "https://example.invalid/pf2e-fr", branch: "master" },
         packs: [{ name: "kingmaker-bestiary", kind: "creatures" }],
       }),
     );
@@ -215,6 +217,7 @@ describe("runCli", () => {
       configPath,
       JSON.stringify({
         upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        french: { repo: "https://example.invalid/pf2e-fr", branch: "master" },
         packs: [{ name: "kingmaker-bestiary", kind: "creatures" }],
       }),
     );
@@ -265,6 +268,7 @@ describe("runCli", () => {
       configPath,
       JSON.stringify({
         upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        french: { repo: "https://example.invalid/pf2e-fr", branch: "master" },
         packs: [{ name: "renamed-away-bestiary", kind: "creatures" }],
       }),
     );
