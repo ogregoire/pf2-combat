@@ -9,31 +9,60 @@ export interface BabeleEntry {
   items?: Record<string, { name?: string; description?: string }>;
 }
 
-/** English creature/condition/glossary name -> its French entry. */
-export type BabeleTable = Map<string, BabeleEntry>;
+/** Which kind of thing a Babele file translates. One English string can name
+ * more than one kind — `Guard` is "Garde" the creature and "Se défendre" the
+ * action — so lookups never cross a kind boundary. */
+export type BabeleKind = "creature" | "condition" | "glossary" | "other";
 
-interface Source {
-  file: string;
-  entry: BabeleEntry;
+export interface BabeleTable {
+  /** pack name (the `pf2e.<pack>.json` stem) -> that pack's entries. */
+  byPack: Map<string, Map<string, BabeleEntry>>;
+  kindOf(pack: string): BabeleKind;
+  /** Own pack first, then every other pack of the same kind in
+   * `compareStrings` filename order. Throws if the fallback sources disagree. */
+  lookup(kind: BabeleKind, ownPack: string, englishName: string): BabeleEntry | null;
+}
+
+const EXPLICIT_CREATURE_STEMS = new Set([
+  "pathfinder-monster-core",
+  "pathfinder-monster-core-2",
+  "pathfinder-npc-core",
+]);
+
+function classify(stem: string): BabeleKind {
+  if (stem === "conditionitems") return "condition";
+  if (stem.includes("ability-glossary")) return "glossary";
+  if (
+    (stem.includes("bestiary") && !stem.includes("glossary")) ||
+    EXPLICIT_CREATURE_STEMS.has(stem)
+  ) {
+    return "creature";
+  }
+  return "other";
+}
+
+function stemOf(file: string): string {
+  return file.slice("pf2e.".length, -".json".length);
 }
 
 /**
- * Reads every `pf2e.*.json` Babele translation file in `babeleDir` and
- * merges their `entries` objects into one table keyed by English name.
+ * Reads every `pf2e.*.json` Babele translation file in `babeleDir`, keeping
+ * each pack's `entries` separate rather than merging them into one flat
+ * table: `lookup` needs to know which pack an entry came from so it can
+ * prefer the caller's own pack, and only fall back to other packs of the
+ * SAME kind when the own pack has no entry.
  *
- * Files are read in `compareStrings` filename order so a name that appears
- * in more than one file always resolves the same way on every run. The
- * first file to define a name wins; if a later file defines the same name
- * with a *different* French `name`, that's a real disagreement upstream
- * and this throws rather than silently picking one.
+ * Files are read in `compareStrings` filename order — never raw
+ * `readdirSync` order, which is not guaranteed — so that fallback
+ * resolution is deterministic across runs.
  */
 export function loadBabele(babeleDir: string): BabeleTable {
   const files = readdirSync(babeleDir)
     .filter((name) => name.startsWith("pf2e.") && name.endsWith(".json"))
     .sort(compareStrings);
 
-  const table: BabeleTable = new Map();
-  const sources = new Map<string, Source>();
+  const byPack = new Map<string, Map<string, BabeleEntry>>();
+  const packOrder: string[] = [];
 
   for (const file of files) {
     const raw = JSON.parse(readFileSync(join(babeleDir, file), "utf8"));
@@ -42,24 +71,53 @@ export function loadBabele(babeleDir: string): BabeleTable {
       continue;
     }
 
+    const packEntries = new Map<string, BabeleEntry>();
     for (const [englishName, entry] of Object.entries(
-      entries as Record<string, BabeleEntry>,
+      entries as Record<string, unknown>,
     )) {
-      const existing = sources.get(englishName);
-      if (existing) {
-        if (existing.entry.name !== entry.name) {
-          throw new Error(
-            `Babele files disagree about the French name for "${englishName}": ` +
-              `${existing.file} says "${existing.entry.name}", ` +
-              `${file} says "${entry.name}".`,
-          );
-        }
+      if (entry === null || typeof entry !== "object" || Array.isArray(entry)) {
         continue;
       }
-      sources.set(englishName, { file, entry });
-      table.set(englishName, entry);
+      packEntries.set(englishName, entry as BabeleEntry);
     }
+
+    const stem = stemOf(file);
+    byPack.set(stem, packEntries);
+    packOrder.push(stem);
   }
 
-  return table;
+  const kindOf = (pack: string): BabeleKind => classify(pack);
+
+  const lookup = (
+    kind: BabeleKind,
+    ownPack: string,
+    englishName: string,
+  ): BabeleEntry | null => {
+    const own = byPack.get(ownPack)?.get(englishName);
+    if (own) return own;
+
+    let winner: { pack: string; entry: BabeleEntry } | null = null;
+    for (const pack of packOrder) {
+      if (pack === ownPack) continue;
+      if (classify(pack) !== kind) continue;
+      const entry = byPack.get(pack)?.get(englishName);
+      if (!entry) continue;
+
+      if (winner === null) {
+        winner = { pack, entry };
+        continue;
+      }
+      if (winner.entry.name !== entry.name) {
+        throw new Error(
+          `Babele fallback sources disagree about the French name for "${englishName}": ` +
+            `pf2e.${winner.pack}.json says "${winner.entry.name}", ` +
+            `pf2e.${pack}.json says "${entry.name}".`,
+        );
+      }
+    }
+
+    return winner ? winner.entry : null;
+  };
+
+  return { byPack, kindOf, lookup };
 }
