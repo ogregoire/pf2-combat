@@ -146,10 +146,14 @@ export function AddCombatants({
     setActThisRound(false);
   };
 
+  // A blank field means "not rolled yet", same as QuickAdd — not a 0. Also
+  // drives the "will act next round" hint below, so there is only one
+  // reading of what the GM typed.
+  const typedInitiative = initiative.trim() === "" ? null : Number(initiative) || 0;
+
   const handleAdd = (): void => {
     if (!selected) return;
     const qty = Math.max(1, Math.trunc(Number(quantity)) || 1);
-    const typedInitiative = Number(initiative) || 0;
     const seed = seedFromEntry(selected, loadedCreature);
 
     // "act this round instead": the combatant's turn-order slot is lowered
@@ -157,18 +161,24 @@ export function AddCombatants({
     // initiative is never overwritten — it's parked as trueInitiative and
     // restored (see store.nextTurn) the moment the round wraps. An active
     // entry with no initiative rolled yet is treated as a 0 for this
-    // comparison — there's no real value to measure against.
+    // comparison — there's no real value to measure against. An unrolled
+    // newcomer (typedInitiative null) can't be "acting early" either — there
+    // is no numeric value to compare or to restore later — so it always
+    // falls through to the plain (null) slot, which already sorts above
+    // everything.
     const activeInitiative = activeEntry?.initiative ?? 0;
-    const actingEarly = actThisRound && activeEntry !== undefined && typedInitiative > activeInitiative;
-    const slotInitiative = actingEarly ? Math.min(typedInitiative, activeInitiative) : typedInitiative;
-    const trueInitiative = actingEarly ? typedInitiative : undefined;
+    let slotInitiative = typedInitiative;
+    let trueInitiative: number | undefined;
+    if (typedInitiative !== null && actThisRound && activeEntry !== undefined && typedInitiative > activeInitiative) {
+      slotInitiative = Math.min(typedInitiative, activeInitiative);
+      trueInitiative = typedInitiative;
+    }
 
     if (qty === 1) addCombatant(seed, slotInitiative, trueInitiative);
     else addMany(seed, qty, slotInitiative, trueInitiative);
     clearSelection();
   };
 
-  const typedInitiative = initiative.trim() === "" ? null : Number(initiative) || 0;
   const willActNextRound =
     running &&
     activeEntry !== undefined &&

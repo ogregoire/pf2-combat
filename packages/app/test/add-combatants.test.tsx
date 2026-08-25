@@ -56,6 +56,14 @@ describe("AddCombatants", () => {
     await user.click(screen.getByRole("button", { name: /add 6/i }));
     expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(6);
   });
+
+  it("leaves the entry unrolled when the GM adds without typing an initiative", async () => {
+    const user = userEvent.setup();
+    render(<AddCombatants entries={entries} />);
+    await user.click(screen.getByRole("button", { name: /add Goblin Warrior/i }));
+    await user.click(screen.getByRole("button", { name: /add 1 goblin warrior/i }));
+    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBeNull();
+  });
 });
 
 describe("PartyManager", () => {

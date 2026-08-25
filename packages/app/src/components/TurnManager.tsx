@@ -1,5 +1,5 @@
 import { actionPool } from "../rules/actions.js";
-import { useEncounter } from "../state/store.js";
+import { unrolledCount, useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { ActionPips } from "./ActionPips.js";
 import { ConfirmButton } from "./ConfirmButton.js";
@@ -66,6 +66,7 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
   const combatants = useEncounter((s) => s.encounter.combatants);
   const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
   const resetStrikes = useEncounter((s) => s.resetStrikes);
+  const unrolled = useEncounter((s) => unrolledCount(s.encounter));
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const unacknowledgedCount = combatant ? unacknowledgedCountFor(combatant, acknowledgedPrompts) : 0;
@@ -123,6 +124,15 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
           unacknowledgedCount={unacknowledgedCount}
           actionsRemaining={combatant ? remainingActionsFor(combatant) : undefined}
         />
+      )}
+
+      {/* nextTurn refuses to advance while anyone is unrolled (store.ts) —
+         this is the only place that says why, so the GM isn't left
+         wondering why the button did nothing. */}
+      {unrolled > 0 && (
+        <span style={{ fontSize: "11.5px", color: "var(--danger)", textAlign: "center" }}>
+          {unrolled} combatant{unrolled === 1 ? " has" : "s have"} no initiative
+        </span>
       )}
 
       <ReactionWatch />

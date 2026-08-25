@@ -113,13 +113,12 @@ export function QuickAdd({
   const optionId = (index: number): string => `${listboxId}-option-${index}`;
 
   const commit = (entry: IndexEntry, quantity: number, requestedQuantity: number, initiative: number | null): void => {
-    const slotInitiative = initiative ?? 0;
     void loadCreatureFn(entry.id)
       .catch(() => null)
       .then((creature) => {
         const seed = seedFromEntry(entry, creature);
-        if (quantity === 1) addCombatant(seed, slotInitiative);
-        else addMany(seed, quantity, slotInitiative);
+        if (quantity === 1) addCombatant(seed, initiative);
+        else addMany(seed, quantity, initiative);
 
         setMessage(addedMessage(quantity, requestedQuantity, entry.name, initiative));
         setQuery("");

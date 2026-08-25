@@ -22,6 +22,24 @@ describe("TurnManager", () => {
     expect(screen.getAllByTestId("action-pip")).toHaveLength(3);
   });
 
+  it("refuses to advance the turn while a combatant has no initiative, and says how many", async () => {
+    const user = userEvent.setup();
+    add("Alpha", 20);
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Beta", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 },
+        hp: { current: 20, max: 20 } },
+      null,
+    );
+    render(<TurnManager />);
+
+    const before = useEncounter.getState().encounter.activeEntryIndex;
+    await user.click(screen.getByRole("button", { name: /next combatant/i }));
+
+    expect(useEncounter.getState().encounter.activeEntryIndex).toBe(before);
+    expect(screen.getByText(/1 combatant has no initiative/i)).toBeDefined();
+  });
+
   it("shows strikes made this turn beside the action pips", () => {
     const id = add("a", 20);
     render(<TurnManager />);

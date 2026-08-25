@@ -196,6 +196,20 @@ describe("QuickAdd", () => {
     });
   });
 
+  it("leaves the entry unrolled when no initiative is typed", async () => {
+    const user = userEvent.setup();
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    const input = screen.getByRole("combobox", { name: /quick add/i });
+    await user.type(input, "goblin warrior");
+    await screen.findByRole("listbox");
+    await user.keyboard("{Enter}");
+
+    await waitFor(() => {
+      expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(1);
+    });
+    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBeNull();
+  });
+
   it("exposes the input as a combobox, so aria-expanded/aria-controls/aria-activedescendant are meaningful to assistive tech", () => {
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
     const input = screen.getByRole("combobox", { name: /quick add/i });

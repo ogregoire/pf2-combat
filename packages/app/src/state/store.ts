@@ -107,6 +107,13 @@ function keyOf(e: Entry): number {
   return e.orderKey ?? e.initiative ?? 0;
 }
 
+/** How many entries still have no rolled initiative. A fight where someone
+ * never rolled is a mistake to surface, not to route around, so `nextTurn`
+ * refuses rather than skipping them. */
+export function unrolledCount(enc: Encounter): number {
+  return enc.entries.filter((e) => e.initiative === null).length;
+}
+
 /** Entries stay sorted by `orderKey` descending; Array#sort is stable, and
  * new entries are always appended before sorting, so ties preserve
  * insertion order. An entry with no initiative rolled yet is placed above
@@ -369,6 +376,7 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         const enc = state.encounter;
         if (enc.entries.length === 0) return;
+        if (unrolledCount(enc) > 0) return;
 
         let nextIndex = enc.activeEntryIndex + 1;
         if (nextIndex >= enc.entries.length) {
