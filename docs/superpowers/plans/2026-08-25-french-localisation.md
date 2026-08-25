@@ -37,7 +37,7 @@
 - `i18n.ts` — *create*: overlay schemas
 
 **`packages/app/src/`**
-- `i18n/en.ts`, `i18n/fr.ts`, `i18n/index.ts` — *create*: the chrome catalogue and `t()`
+- `i18n/en.ts`, `i18n/fr.ts`, `i18n/index.ts` — *create*: the chrome catalogue and `useT()`
 - `data/catalog.ts` — *modify*: overlay loaders
 - `data/i18nOverlay.ts` — *create*: the resolution rule, one place
 - `rules/fold.ts` — *create*: diacritic folding (pure)
@@ -510,8 +510,17 @@ The 404 case matters: 30 creatures have no overlay file at all, and a throw ther
 **Files:**
 - Modify: `packages/app/src/state/store.ts`
 - Modify: `packages/app/src/state/persist.ts`
+- Modify: `packages/app/src/main.tsx` — **the hydration call site**
 - Modify: `packages/app/src/components/EncounterScreen.tsx` (the header)
 - Test: `packages/app/test/lang.test.tsx`
+
+**Hydration is not a store action.** `main.tsx:26` does
+`Promise.all([loadEncounter(), loadPlayers()]).then(...)` and pushes the
+result into the store; there is no `hydrate()` to call. `loadSettings()` joins
+that `Promise.all` and its result is applied the same way. Adding
+`loadSettings` without touching `main.tsx` leaves the "remembered" half of
+this feature dead while every store-level test passes — the exact failure
+this project has hit six times.
 
 **Interfaces:**
 - Produces: `Lang = "en" | "fr"`; store field `lang`; action `setLang(lang: Lang): void`; `saveSettings`/`loadSettings` in `persist.ts`.
@@ -527,17 +536,24 @@ it("setLang switches and persists", async () => {
   await waitFor(async () => expect(await loadSettings()).toEqual({ lang: "fr" }));
 });
 
-it("restores the saved language on load", async () => {
+it("round-trips the language through the persistence layer", async () => {
   await saveSettings({ lang: "fr" });
-  await useEncounter.getState().hydrate();   // whatever the existing load action is called
-  expect(useEncounter.getState().lang).toBe("fr");
+  expect(await loadSettings()).toEqual({ lang: "fr" });
 });
 
 it("reads a payload saved before lang existed as English", async () => {
   // An existing saved fight must still open.
   await putRawSettings({ schemaVersion: 1 });
-  await useEncounter.getState().hydrate();
-  expect(useEncounter.getState().lang).toBe("en");
+  expect((await loadSettings()).lang).toBe("en");
+});
+
+it("main.tsx applies the loaded language to the store", async () => {
+  // Guards the wiring, not the loader. Extract main.tsx's hydration body
+  // into an exported `hydrate()` function it calls on startup, so this can
+  // drive it; leaving the logic inline and untestable is not acceptable here.
+  await saveSettings({ lang: "fr" });
+  await hydrate();
+  expect(useEncounter.getState().lang).toBe("fr");
 });
 
 it("renders a toggle that switches the language", async () => {
