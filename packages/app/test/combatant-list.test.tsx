@@ -408,6 +408,24 @@ describe("CombatantList", () => {
     expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(25);
   });
 
+  it("shows the entry's current initiative, read-only, beside the name and HP", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    expect(screen.getByTitle("Current initiative").textContent).toBe("19");
+  });
+
+  it("shows an em dash, not the literal text \"null\", for an unrolled entry's current initiative", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(seed(), null);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    expect(screen.getByTitle("Current initiative").textContent).toBe("—");
+  });
+
   it("adds the combatant's modifier to the die result and commits the total", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant({ ...seed(), initiativeModifier: 7 }, null);

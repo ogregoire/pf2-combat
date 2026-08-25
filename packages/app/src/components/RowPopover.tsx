@@ -347,6 +347,19 @@ export function RowPopover({
             {combatant.hp.current}/{combatant.hp.max}
           </span>
         )}
+        {entry && (
+          // Read-only — the Initiative section below is where the GM sets a
+          // new value. Without this the panel edits a number it never
+          // shows, which is confusing when the GM is looking at the panel,
+          // not the row behind it. Em dash for unrolled, matching the row.
+          <span
+            title="Current initiative"
+            aria-label={`Current initiative ${entry.initiative === null ? "unrolled" : entry.initiative}`}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-dim)" }}
+          >
+            {entry.initiative === null ? "—" : entry.initiative}
+          </span>
+        )}
         <div style={{ flexGrow: 1 }} />
         <button
           type="button"
