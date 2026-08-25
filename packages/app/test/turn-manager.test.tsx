@@ -622,6 +622,36 @@ describe("Delay", () => {
     expect(entryOf(late).trueInitiative).toBeNull();
   });
 
+  it("treats a GM typing a new initiative for a delayed combatant as a manual return", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    const alpha = entryIdOf("Alpha");
+    useEncounter.getState().delay(alpha); // Beta is up
+    expect(entryOf(alpha).delayed).toBe(true);
+
+    useEncounter.getState().setInitiative(alpha, 12);
+
+    // Naming a position IS rejoining the order at it — the same thing
+    // returning does, just chosen by hand rather than triggered by a turn
+    // ending. Leaving `delayed` set here would also move a delayed entry,
+    // and the expiry rule reads position as elapsed time: Alpha would sit
+    // one slot below the active entry and have its Delay expire on the very
+    // next advance, a single turn instead of a full round.
+    const edited = entryOf(alpha);
+    expect(edited.delayed).toBe(false);
+    expect(edited.initiative).toBe(12);
+    expect(edited.orderKey).toBe(12);
+    expect(order()).toEqual(["Beta", "Alpha", "Gamma"]);
+    expect(activeName()).toBe("Beta"); // the edit must not steal the turn
+
+    useEncounter.getState().nextTurn();
+
+    // An ordinary turn at the slot the GM named, not an expiring Delay.
+    expect(activeName()).toBe("Alpha");
+    expect(entryOf(alpha).delayed).toBe(false);
+  });
+
   it("strikes a delayed group's shared initiative through on its header", () => {
     const g1 = add("Goblin 1", 12);
     const g2 = add("Goblin 2", 12);

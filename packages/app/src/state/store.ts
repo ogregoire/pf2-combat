@@ -176,19 +176,21 @@ function advanceTurn(enc: Encounter): void {
     // order is exactly who should lead the new round, so there's no identity
     // to preserve here (unlike addCombatant/group, which insert mid-round
     // and must not steal the turn from whoever the GM is already resolving).
-    // Delayed entries are deliberately skipped. A delayed entry holds no
-    // position in the order at all, so there is no slot for a pending "act
-    // this round instead" value to be restored into yet — and moving one
-    // here would break the invariant the expiry rule below depends on: that
-    // a delayed entry never moves, so the order *arriving* at its slot
-    // really does mean a full round has passed. Without this, an entry that
-    // Delays while last gets re-sorted to index 0 by this very sort and then
-    // has `delayed` cleared by the check below on the same advance, with
-    // zero intervening turns — Delay as a no-op, the exact failure the
-    // slot-based rule exists to prevent. The restore isn't lost, only
-    // deferred: `trueInitiative` stays armed and lands at the next wrap
-    // after the Delay resolves, which is right, because the entry spent this
-    // round outside the order.
+    // Delayed entries are deliberately skipped — and not because there is
+    // nowhere to restore into. A delayed entry keeps its initiative, its
+    // orderKey and its place in this array, exactly as `delay` left them;
+    // that is the point. The expiry rule below reads position as elapsed
+    // time — the order *arriving* at an entry's slot is what counts as a
+    // full round — and that proxy holds only while the entry doesn't move.
+    // This restore rewrites orderKey and re-sorts, so it moves one.
+    // Concretely, without the skip: an entry that Delays while last is
+    // re-sorted to index 0 by this very sort, and the check below then
+    // clears `delayed` on the same advance with zero intervening turns —
+    // Delay as a no-op, the exact failure the slot-based rule exists to
+    // prevent. The restore isn't lost, only deferred: `trueInitiative`
+    // stays armed and lands at the next wrap after the Delay resolves,
+    // which is right, because the creature spent that round out of the
+    // initiative order.
     if (enc.entries.some((e) => e.trueInitiative !== null && !e.delayed)) {
       for (const e of enc.entries) {
         if (e.trueInitiative !== null && !e.delayed) {
@@ -431,6 +433,17 @@ export const useEncounter = create<EncounterStore>()(
         // has overwritten by hand.
         entry.trueInitiative = null;
         entry.initiativeBeforeDelay = null;
+        // Typing a position for a delayed entry is the manual equivalent of
+        // returning it: the GM has named where this creature acts, which is
+        // exactly what returning does, so it rejoins the order there rather
+        // than staying out of it at a number the GM just chose. It also has
+        // to clear for a mechanical reason — this edit re-sorts, and the
+        // expiry rule in advanceTurn reads "the order arrived at this
+        // entry's slot" as "a full round has passed", which only holds while
+        // a delayed entry stays put. Leaving it delayed *and* moving it
+        // would expire the Delay after a single turn or never at all,
+        // depending on which side of the active entry it landed.
+        entry.delayed = false;
         sortEntries(enc.entries);
         if (activeEntryId !== null) {
           const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
