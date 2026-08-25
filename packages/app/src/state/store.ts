@@ -179,6 +179,36 @@ function settleEndOfTurn(enc: Encounter, entry: Entry): void {
 }
 
 /**
+ * The third way a delayed turn can end, after returning and lapsing: the GM
+ * places the entry by hand, by typing an initiative or dragging the row.
+ * Unlike the other two, this one can go either way, and the placement is
+ * what decides which — specifically, whether the turn pointer has already
+ * gone past where the entry now sits.
+ *
+ * Below the active entry, the order still reaches it this round, and the
+ * turn it takes there *is* the delayed turn: its effects ran early, at
+ * Delay, so its end must not run them again and the flag stands.
+ *
+ * Above the active entry, the pointer has passed. The entry takes no turn
+ * this round at all, so the effects Delay resolved early belong to a turn
+ * that is now never taken — exactly the forfeiture `advanceTurn` handles
+ * when a Delay lapses, and handled the same way: the flag is spent, and the
+ * fresh turn this entry takes next round resolves on its own account.
+ * Without this, the suppression outlives the round it was for and silently
+ * eats a round of frightened and persistent damage.
+ *
+ * Must run *after* the caller has re-sorted and re-resolved
+ * `activeEntryIndex`, since it reads both.
+ */
+function expireResolvedTurn(enc: Encounter, entry: Entry): void {
+  if (!entry.endOfTurnResolved) return;
+  const index = enc.entries.findIndex((e) => e.id === entry.id);
+  // Equal, not just greater, keeps the flag: an entry placed *at* the active
+  // index is the one acting right now, mid-delayed-turn.
+  if (index >= 0 && index < enc.activeEntryIndex) entry.endOfTurnResolved = false;
+}
+
+/**
  * Moves the turn pointer to the next entry, wrapping the round, and resets
  * the incoming combatants' per-turn counters. Deliberately does *not* fire
  * end-of-turn hooks: both callers (`nextTurn` and `delay`) have already
@@ -489,6 +519,10 @@ export const useEncounter = create<EncounterStore>()(
           const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
           enc.activeEntryIndex = idx >= 0 ? idx : 0;
         }
+        // A typed position can land either side of the entry currently
+        // acting, and that decides whether a delayed turn's already-resolved
+        // effects still belong to a turn this entry will take. See there.
+        expireResolvedTurn(enc, entry);
       }),
 
     applyDamage: (id, amount, damageType) =>
@@ -743,6 +777,10 @@ export const useEncounter = create<EncounterStore>()(
           const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
           enc.activeEntryIndex = idx >= 0 ? idx : 0;
         }
+        // Same as setInitiative: a drop above the entry currently acting
+        // forfeits this round's turn, and with it the early resolution
+        // Delay made for that turn. See expireResolvedTurn.
+        expireResolvedTurn(enc, moved!);
       }),
 
     acknowledgePrompt: (promptId) =>

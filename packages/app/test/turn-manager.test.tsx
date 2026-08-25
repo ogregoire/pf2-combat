@@ -539,6 +539,143 @@ describe("Delay", () => {
     expect(frightened()).toBe(1);
   });
 
+  /*
+   * A manual return — the GM typing a position (setInitiative) or dragging
+   * one (moveEntry) for a delayed entry — is the third way a delayed turn
+   * can end, alongside returning and lapsing, and it can go either way.
+   * Which way depends on one thing: whether the position the GM chose is
+   * still ahead of the turn pointer this round.
+   *
+   *   Below the active entry — the order will still reach it this round, and
+   *   the turn it takes there IS the delayed turn. Its effects already ran
+   *   at Delay, so its end must not run them again.
+   *
+   *   Above the active entry — the pointer has gone past. This round's turn
+   *   is forfeit exactly as a lapsed Delay's is, and the next turn this
+   *   entry takes is a fresh one next round, whose end must resolve
+   *   normally.
+   *
+   * Getting this wrong is silent either way: a suppression that leaks costs
+   * a whole round of frightened and persistent damage, and one that fires
+   * early costs a doubled round. Both directions are pinned here, for both
+   * call sites.
+   */
+  const frightenedOn = (id: string): number =>
+    useEncounter.getState().encounter.combatants[id]!.conditions.find((c) => c.slug === "frightened")!.value;
+
+  it("resolves the next round's end-of-turn effects when a typed initiative lands above the active entry", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // 3 -> 2. Beta is up.
+    useEncounter.getState().setInitiative(alpha, 25); // above Beta: this round has passed Alpha by
+
+    expect(activeName()).toBe("Beta");
+    expect(order()).toEqual(["Alpha", "Beta"]);
+
+    useEncounter.getState().nextTurn(); // Beta's turn ends, round wraps; Alpha leads round 2
+    expect(activeName()).toBe("Alpha");
+    useEncounter.getState().nextTurn(); // Alpha's round-2 turn ends — a fresh turn, resolved afresh
+
+    expect(frightenedOn(id)).toBe(1);
+  });
+
+  it("does not resolve them twice when a typed initiative lands below the active entry", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // 3 -> 2. Beta is up.
+    useEncounter.getState().setInitiative(alpha, 12); // below Beta: Alpha still has this round's turn coming
+
+    expect(order()).toEqual(["Beta", "Alpha", "Gamma"]);
+
+    useEncounter.getState().nextTurn(); // Beta ends; Alpha takes the delayed turn
+    expect(activeName()).toBe("Alpha");
+    useEncounter.getState().nextTurn(); // that delayed turn ends — already resolved at Delay
+
+    expect(frightenedOn(id)).toBe(2);
+
+    useEncounter.getState().nextTurn(); // Gamma ends, round wraps
+    useEncounter.getState().nextTurn(); // Beta's round-2 turn ends
+    useEncounter.getState().nextTurn(); // Alpha's round-2 turn ends — normal again
+
+    expect(frightenedOn(id)).toBe(1);
+  });
+
+  it("resolves the next round's end-of-turn effects when a drag lands above the active entry", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // 3 -> 2. Beta is up.
+    useEncounter.getState().moveEntry(alpha, entryIdOf("Beta")); // dropped above Beta
+
+    expect(order()).toEqual(["Alpha", "Beta", "Gamma"]);
+    expect(activeName()).toBe("Beta");
+
+    useEncounter.getState().nextTurn(); // Beta ends
+    useEncounter.getState().nextTurn(); // Gamma ends, round wraps; Alpha leads round 2
+    expect(activeName()).toBe("Alpha");
+    useEncounter.getState().nextTurn(); // Alpha's round-2 turn ends
+
+    expect(frightenedOn(id)).toBe(1);
+  });
+
+  it("does not resolve them twice when a drag lands below the active entry", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // 3 -> 2. Beta is up.
+    useEncounter.getState().moveEntry(alpha, null); // dropped at the very end, still ahead of the pointer
+
+    expect(order()).toEqual(["Beta", "Gamma", "Alpha"]);
+
+    useEncounter.getState().nextTurn(); // Beta ends
+    useEncounter.getState().nextTurn(); // Gamma ends; Alpha takes the delayed turn
+    expect(activeName()).toBe("Alpha");
+    useEncounter.getState().nextTurn(); // that delayed turn ends
+
+    expect(frightenedOn(id)).toBe(2);
+  });
+
+  // The boundary between the two cases above. An entry placed *at* the
+  // active index is neither ahead of the pointer nor behind it — it is the
+  // one acting right now, part way through the very turn Delay resolved
+  // early. "Passed by" has to mean strictly above, or nudging the row of the
+  // combatant currently taking its returned turn resolves that turn's
+  // effects a second time, which is the original defect all over again.
+  it("keeps the suppression when a drag leaves the entry exactly where it is, mid-returned-turn", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // 3 -> 2. Beta is up.
+    useEncounter.getState().returnFromDelay(alpha); // slots between Beta and Gamma
+    useEncounter.getState().nextTurn(); // Beta ends; Alpha is now taking its delayed turn
+    expect(activeName()).toBe("Alpha");
+
+    // The GM nudges the acting row — same slot, between Beta and Gamma.
+    useEncounter.getState().moveEntry(alpha, entryIdOf("Gamma"));
+    expect(order()).toEqual(["Beta", "Alpha", "Gamma"]);
+    expect(activeName()).toBe("Alpha");
+
+    useEncounter.getState().nextTurn(); // the delayed turn ends, already resolved
+
+    expect(frightenedOn(id)).toBe(2);
+  });
+
   it("refuses to Delay while a combatant has no initiative, since Delaying advances the turn", () => {
     add("Alpha", 20);
     useEncounter.getState().addCombatant(
