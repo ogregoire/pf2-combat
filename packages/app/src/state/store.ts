@@ -684,6 +684,9 @@ export const useEncounter = create<EncounterStore>()(
                 combatantIds: [cid],
                 groupName: null,
                 trueInitiative: entry.trueInitiative,
+                orderKey: entry.orderKey,
+                delayed: entry.delayed,
+                initiativeBeforeDelay: entry.initiativeBeforeDelay,
               });
             }
           } else {
