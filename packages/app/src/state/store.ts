@@ -176,9 +176,22 @@ function advanceTurn(enc: Encounter): void {
     // order is exactly who should lead the new round, so there's no identity
     // to preserve here (unlike addCombatant/group, which insert mid-round
     // and must not steal the turn from whoever the GM is already resolving).
-    if (enc.entries.some((e) => e.trueInitiative !== null)) {
+    // Delayed entries are deliberately skipped. A delayed entry holds no
+    // position in the order at all, so there is no slot for a pending "act
+    // this round instead" value to be restored into yet — and moving one
+    // here would break the invariant the expiry rule below depends on: that
+    // a delayed entry never moves, so the order *arriving* at its slot
+    // really does mean a full round has passed. Without this, an entry that
+    // Delays while last gets re-sorted to index 0 by this very sort and then
+    // has `delayed` cleared by the check below on the same advance, with
+    // zero intervening turns — Delay as a no-op, the exact failure the
+    // slot-based rule exists to prevent. The restore isn't lost, only
+    // deferred: `trueInitiative` stays armed and lands at the next wrap
+    // after the Delay resolves, which is right, because the entry spent this
+    // round outside the order.
+    if (enc.entries.some((e) => e.trueInitiative !== null && !e.delayed)) {
       for (const e of enc.entries) {
-        if (e.trueInitiative !== null) {
+        if (e.trueInitiative !== null && !e.delayed) {
           e.initiative = e.trueInitiative;
           e.orderKey = e.trueInitiative;
           e.trueInitiative = null;
@@ -561,6 +574,14 @@ export const useEncounter = create<EncounterStore>()(
         entry.initiative = active.initiative;
         entry.orderKey = newKey;
         entry.delayed = false;
+        // RAW: returning "permanently changes your initiative" — so, exactly
+        // as setInitiative does for a typed value, this retires any pending
+        // "act this round instead" restoration. An entry added mid-round
+        // still carries the GM's real typed initiative in trueInitiative;
+        // left armed, the next round wrap would restore it straight over the
+        // top of the position just returned to, and the permanent change
+        // would silently last less than a round.
+        entry.trueInitiative = null;
 
         // Splicing the entry into place *and* setting orderKey looks
         // redundant, and for distinct initiatives it is — but tied ones are

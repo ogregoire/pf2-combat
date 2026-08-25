@@ -537,6 +537,109 @@ describe("Delay", () => {
     expect(entryOf(entryIdOf("Alpha")).delayed).toBe(false);
   });
 
+  // The two tests below cover Delay's interaction with Entry.trueInitiative —
+  // the *other* mechanism in this store that rewrites an initiative at a
+  // round wrap ("act this round instead", see AddCombatants). Delay and that
+  // feature both move numbers around at wrap time, and they were written a
+  // task apart, so this is exactly the seam where each one silently undoes
+  // the other.
+  it("keeps a returned initiative through the next round wrap, even with an 'act this round' restore still pending", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    // Added mid-round the way AddCombatants does it: a lowered slot so the
+    // turn order still reaches them today, with the GM's real typed value
+    // parked for the wrap to restore.
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Late", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      18, 25,
+    );
+    const late = entryIdOf("Late");
+    expect(entryOf(late).trueInitiative).toBe(25);
+
+    useEncounter.getState().nextTurn(); // Alpha acts; Late is up at its temporary slot
+    useEncounter.getState().delay(late); // Beta is up
+    useEncounter.getState().returnFromDelay(late);
+    expect(entryOf(late).initiative).toBe(15);
+    expect(entryOf(late).orderKey).toBe(14);
+
+    useEncounter.getState().nextTurn(); // Late takes its returned turn
+    useEncounter.getState().nextTurn(); // round wraps
+
+    // RAW: returning "permanently changes your initiative". A pending
+    // trueInitiative left armed would restore 25 over the top of it here,
+    // putting Late back at the head of the order with a struck-through 18
+    // beside a live 25 that describes nothing that ever happened.
+    expect(useEncounter.getState().encounter.round).toBe(2);
+    const back = entryOf(late);
+    expect(back.initiative).toBe(15);
+    expect(back.orderKey).toBe(14);
+    expect(back.trueInitiative).toBeNull();
+    expect(back.initiativeBeforeDelay).toBe(18);
+    expect(order()).toEqual(["Alpha", "Beta", "Late"]);
+  });
+
+  it("does not let a pending 'act this round' restore cut a Delay short at the wrap", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    // Same mid-round add, but slotted below everyone, so this entry is last
+    // in the order — the case where a wrap-time re-sort would float it to
+    // index 0 and expire its Delay with no turns in between at all.
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Late", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      10, 25,
+    );
+    const late = entryIdOf("Late");
+
+    useEncounter.getState().nextTurn(); // Beta
+    useEncounter.getState().nextTurn(); // Late, last in the order
+    expect(activeName()).toBe("Late");
+
+    useEncounter.getState().delay(late); // wraps the round immediately
+
+    // Delaying as the last entry must still buy a full round. Restoring
+    // trueInitiative here would re-sort Late to the top and clear `delayed`
+    // on the very same advance — Delay as a no-op, which is the failure the
+    // slot-based expiry rule exists to prevent.
+    expect(useEncounter.getState().encounter.round).toBe(2);
+    expect(entryOf(late).delayed).toBe(true);
+    expect(activeName()).toBe("Alpha");
+    expect(entryOf(late).initiative).toBe(10); // restore deferred, not lost
+
+    useEncounter.getState().nextTurn(); // Beta
+    useEncounter.getState().nextTurn(); // Late's own slot, one full round on
+
+    expect(entryOf(late).delayed).toBe(false);
+    expect(activeName()).toBe("Late");
+
+    // And the deferred restore still happens, one wrap later than it would
+    // have: the entry was out of the order for that round, so its real typed
+    // initiative takes over at the next wrap instead.
+    useEncounter.getState().nextTurn(); // wraps into round 3
+    expect(useEncounter.getState().encounter.round).toBe(3);
+    expect(entryOf(late).initiative).toBe(25);
+    expect(entryOf(late).trueInitiative).toBeNull();
+  });
+
+  it("strikes a delayed group's shared initiative through on its header", () => {
+    const g1 = add("Goblin 1", 12);
+    const g2 = add("Goblin 2", 12);
+    add("Beta", 8);
+    useEncounter.getState().group([g1, g2], "Goblins", 12);
+    // Grouping the active entry's only combatant hands the turn to the new
+    // group entry, so the group is the one that can Delay.
+    const goblins = useEncounter.getState().encounter.entries.find((e) => e.groupName === "Goblins")!;
+    useEncounter.getState().delay(goblins.id);
+
+    render(<CombatantList />);
+
+    // A group is a single turn-order entry, so it Delays as a unit — and its
+    // header is the only place its initiative is shown, since group members
+    // render without one of their own.
+    expect(screen.getByText("12").style.textDecoration).toBe("line-through");
+  });
+
   it("shows the pre-delay initiative struck through on the row", () => {
     add("Alpha", 20);
     add("Beta", 15);
