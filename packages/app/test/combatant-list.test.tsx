@@ -64,6 +64,33 @@ describe("CombatantList", () => {
     expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(9);
   });
 
+  // Regression guard. The combatant list is a fixed-width `overflow-y: auto`
+  // scroller, and CSS forces such a box's overflow-x to `auto` as well. The
+  // popover used to be `position: absolute; left: calc(100% + 10px)`, i.e.
+  // entirely outside that box, so a real browser clipped it to zero visible
+  // width while jsdom — which does no layout — saw nothing wrong. Portalling
+  // it to document.body is what keeps it out of any scroller's clip; assert
+  // the structure, since jsdom can't assert the pixels.
+  it("renders the desktop popover outside the scrolling list, as a child of document.body", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(seed(), 19);
+    const { container } = render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    const panel = screen.getByLabelText("amount").closest("div[style]");
+    expect(panel).not.toBeNull();
+    // Not anywhere inside the rendered list subtree...
+    expect(container.contains(panel)).toBe(false);
+    // ...and its own top-level ancestor is document.body itself.
+    let top = panel as HTMLElement;
+    while (top.parentElement && top.parentElement !== document.body) top = top.parentElement;
+    expect(top.parentElement).toBe(document.body);
+    // Fixed positioning is the other half of escaping the scroller.
+    const positioned = screen.getByLabelText("amount").closest<HTMLElement>('[style*="position: fixed"]');
+    expect(positioned).not.toBeNull();
+  });
+
   it("hides the damage-type selector when the creature has no damage-type IWR", async () => {
     const user = userEvent.setup();
     useEncounter.getState().addCombatant(seed(), 19);

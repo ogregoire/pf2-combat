@@ -453,7 +453,9 @@ export function CombatantRow({
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
   const [tapOpen, setTapOpen] = useState(false);
+  const [anchor, setAnchor] = useState<DOMRect | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const combatant = useEncounter((s) => s.encounter.combatants[id]);
   const targetId = useEncounter((s) => s.encounter.targetId);
   const setTarget = useEncounter((s) => s.setTarget);
@@ -462,6 +464,24 @@ export function CombatantRow({
   useEffect(() => () => {
     if (closeTimer.current !== null) clearTimeout(closeTimer.current);
   }, []);
+
+  // The desktop panel is fixed-positioned outside the scrolling list, so it
+  // would stay put if the list scrolled or the window resized under an open
+  // hover. Re-measure while it's open; capture-phase, since the list's own
+  // scroll event doesn't bubble to window.
+  useEffect(() => {
+    if (!hovered || narrow) return undefined;
+    const remeasure = (): void => {
+      const rect = wrapperRef.current?.getBoundingClientRect();
+      if (rect) setAnchor(rect);
+    };
+    window.addEventListener("scroll", remeasure, true);
+    window.addEventListener("resize", remeasure);
+    return () => {
+      window.removeEventListener("scroll", remeasure, true);
+      window.removeEventListener("resize", remeasure);
+    };
+  }, [hovered, narrow]);
 
   if (!combatant) return null;
 
@@ -481,11 +501,17 @@ export function CombatantRow({
   // close by a tick and cancelling it on the immediately-following re-entry
   // absorbs that without adding any perceptible delay for a real pointer.
   // Desktop-only: narrow screens don't hover, so this never fires there.
+  const measure = (): void => {
+    const rect = wrapperRef.current?.getBoundingClientRect();
+    if (rect) setAnchor(rect);
+  };
+
   const openPopover = (): void => {
     if (closeTimer.current !== null) {
       clearTimeout(closeTimer.current);
       closeTimer.current = null;
     }
+    measure();
     setHovered(true);
   };
 
@@ -503,7 +529,7 @@ export function CombatantRow({
   const popoverVisible = narrow ? tapOpen : hovered;
 
   return (
-    <div style={{ position: "relative" }} onMouseEnter={openPopover} onMouseLeave={scheduleClose}>
+    <div ref={wrapperRef} style={{ position: "relative" }} onMouseEnter={openPopover} onMouseLeave={scheduleClose}>
       {grouped ? (
         <GroupMemberRow
           combatant={combatant}
@@ -535,6 +561,7 @@ export function CombatantRow({
         <RowPopover
           combatantId={id}
           narrow={narrow}
+          anchor={anchor}
           targeted={targeted}
           onToggleTarget={toggleTarget}
           onClose={closeTapPopover}

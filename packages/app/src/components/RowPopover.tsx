@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { useEncounter } from "../state/store.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
@@ -53,12 +54,18 @@ function describeIwrAdjustment(raw: number, type: string, iwr: Iwr | null): stri
 export function RowPopover({
   combatantId,
   narrow = false,
+  anchor = null,
   targeted = false,
   onToggleTarget,
   onClose,
 }: {
   combatantId: string;
   narrow?: boolean;
+  /** Viewport rect of the row this popover belongs to, from
+   * CombatantRow. Desktop-only: the panel is portalled to `document.body`,
+   * so it has no layout relationship to the row and must be placed from a
+   * measurement. Null before the first measurement. */
+  anchor?: DOMRect | null;
   targeted?: boolean;
   onToggleTarget?: () => void;
   onClose?: () => void;
@@ -140,10 +147,11 @@ export function RowPopover({
     addCondition(combatantId, conditionSlug, value, formula);
   };
 
-  // Desktop keeps the original anchored-off-the-row placement (it's the
-  // only thing hover ever needed). A narrow screen has no room to the side
-  // of a full-width row for that, so there the panel instead sits in normal
-  // flow inside a fixed full-screen backdrop below, bottom-sheet style.
+  // Desktop keeps the placement beside the row (it's the only thing hover
+  // ever needed), now measured rather than inherited from the row's box. A
+  // narrow screen has no room to the side of a full-width row for that, so
+  // there the panel instead sits in normal flow inside a fixed full-screen
+  // backdrop below, bottom-sheet style.
   const panelStyle: React.CSSProperties = narrow
     ? {
         width: "min(420px, 100%)",
@@ -160,11 +168,19 @@ export function RowPopover({
         gap: "10px",
       }
     : {
-        position: "absolute",
-        top: "-8px",
-        left: "calc(100% + 10px)",
+        // Fixed, not absolute: the combatant list is a 340px-wide
+        // `overflow-y: auto` scroller, and CSS forces its overflow-x to
+        // `auto` too, so an absolutely-positioned panel sitting to the
+        // right of the row was clipped to zero visible width. Fixed
+        // positioning takes the viewport as its containing block, and the
+        // portal below takes the panel out of the scroller entirely.
+        position: "fixed",
+        top: `${(anchor?.top ?? 0) - 8}px`,
+        left: `${(anchor?.right ?? 0) + 10}px`,
         width: "330px",
-        zIndex: 20,
+        maxHeight: "calc(100vh - 24px)",
+        overflowY: "auto",
+        zIndex: 60,
         padding: "12px 13px 13px",
         borderRadius: "5px",
         background: "var(--panel-high)",
@@ -564,7 +580,9 @@ export function RowPopover({
     </div>
   );
 
-  if (!narrow) return panel;
+  // document.body, so no ancestor's `overflow` can clip it. Guarded for a
+  // non-DOM environment (SSR/tests without a document).
+  if (!narrow) return typeof document === "undefined" ? panel : createPortal(panel, document.body);
 
   // Full-screen backdrop: this is what "tap elsewhere dismisses it" means
   // here. The panel above stops its own clicks from bubbling here, so only
