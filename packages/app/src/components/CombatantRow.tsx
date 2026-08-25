@@ -110,6 +110,24 @@ function SelectCheckbox({
   );
 }
 
+/** Purely a visual affordance — "this row can be dragged" — since the whole
+ * row is what's actually made `draggable` below (a real handle-only drag,
+ * where only this glyph could start the gesture, would drag just the glyph
+ * as the browser's default drag image; simpler to make the row itself the
+ * handle and use this only to invite the gesture). `cursor: grab` lives
+ * here rather than on the row so the rest of the row keeps its
+ * click-to-target pointer cursor. */
+function DragGrip(): React.ReactElement {
+  return (
+    <span
+      aria-hidden="true"
+      style={{ flexShrink: 0, cursor: "grab", color: "var(--text-faint)", fontSize: "13px", lineHeight: 1 }}
+    >
+      ⠿
+    </span>
+  );
+}
+
 function hpColor(current: number, max: number): string {
   if (max <= 0) return "var(--text-faint)";
   const ratio = current / max;
@@ -231,6 +249,8 @@ function StandaloneRow({
   onTap,
   selected,
   onToggleSelect,
+  entryId,
+  onDropEntry,
 }: {
   combatant: Combatant;
   initiative?: number | null;
@@ -244,6 +264,8 @@ function StandaloneRow({
   onTap: () => void;
   selected: boolean;
   onToggleSelect: () => void;
+  entryId?: string;
+  onDropEntry?: (draggedEntryId: string) => void;
 }): React.ReactElement {
   const borderColor = active
     ? ACTIVE_BORDER
@@ -251,9 +273,37 @@ function StandaloneRow({
       ? "oklch(0.55 0.10 240)"
       : "oklch(0.38 0.015 60)";
 
+  // Dragging is desktop-only in practice (jsdom/touch don't drive native
+  // HTML5 drag), and only meaningful once the caller (CombatantList) has
+  // handed down both the entry to carry and somewhere to deliver a drop —
+  // grouped members never get these, so they're simply not draggable.
+  const draggableProps =
+    entryId !== undefined && onDropEntry !== undefined
+      ? {
+          draggable: true,
+          onDragStart: (e: React.DragEvent<HTMLDivElement>) => {
+            e.dataTransfer.setData("text/plain", entryId);
+            e.dataTransfer.effectAllowed = "move";
+          },
+          // A drop only fires if dragover calls preventDefault — the
+          // browser's default for dragover is "reject this as a drop
+          // target".
+          onDragOver: (e: React.DragEvent<HTMLDivElement>) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = "move";
+          },
+          onDrop: (e: React.DragEvent<HTMLDivElement>) => {
+            e.preventDefault();
+            const draggedId = e.dataTransfer.getData("text/plain");
+            if (draggedId && draggedId !== entryId) onDropEntry(draggedId);
+          },
+        }
+      : {};
+
   return (
     <div
       {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap)}
+      {...draggableProps}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -270,6 +320,7 @@ function StandaloneRow({
       }}
     >
       <SelectCheckbox name={combatant.name} checked={selected} onToggle={onToggleSelect} />
+      {entryId !== undefined && <DragGrip />}
 
       {initiative !== undefined && (
         <div
@@ -472,6 +523,8 @@ export function CombatantRow({
   active = false,
   selected = false,
   onToggleSelect,
+  entryId,
+  onDropEntry,
 }: {
   id: string;
   initiative?: number | null;
@@ -487,6 +540,14 @@ export function CombatantRow({
    * care about grouping don't have to pass anything. */
   selected?: boolean;
   onToggleSelect?: () => void;
+  /** The entry this row can be dragged as, and where to deliver another
+   * entry dropped on it — both omitted (as for a grouped member, which has
+   * no entry of its own) means the row isn't draggable at all. Only
+   * `StandaloneRow` wires these; `moveEntry` itself is called by
+   * `onDropEntry`'s owner (CombatantList), which is the one that already
+   * knows every entry's id. */
+  entryId?: string;
+  onDropEntry?: (draggedEntryId: string) => void;
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
   const [tapOpen, setTapOpen] = useState(false);
@@ -593,6 +654,8 @@ export function CombatantRow({
           onTap={onTap}
           selected={selected}
           onToggleSelect={onToggleSelect ?? (() => {})}
+          entryId={entryId}
+          onDropEntry={onDropEntry}
         />
       )}
 

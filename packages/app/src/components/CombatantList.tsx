@@ -96,6 +96,33 @@ function GroupBuilder({
   );
 }
 
+/** `onDragOver`/`onDrop` for anywhere a dragged entry can land: shared by
+ * the group wrapper (a group is a drop target the same way a standalone
+ * row is) and the end-of-list zone below (where `beforeEntryId` is null, so
+ * a drag can reach the very last position — no row exists there to drop
+ * on). Standalone rows get the equivalent pair from CombatantRow's own
+ * `onDropEntry`, not this — they're also a drag *source*, which this isn't
+ * asked to be. */
+function dropTargetProps(
+  beforeEntryId: string | null,
+  moveEntry: (entryId: string, beforeEntryId: string | null) => void,
+): {
+  onDragOver: (e: React.DragEvent) => void;
+  onDrop: (e: React.DragEvent) => void;
+} {
+  return {
+    onDragOver: (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+    },
+    onDrop: (e) => {
+      e.preventDefault();
+      const draggedId = e.dataTransfer.getData("text/plain");
+      if (draggedId && draggedId !== beforeEntryId) moveEntry(draggedId, beforeEntryId);
+    },
+  };
+}
+
 /** The left-pane combatant list — reads the encounter store directly.
  * Entries are already kept sorted by initiative descending by the store.
  * `quickAddEntries`/`loadCreatureFn` feed `<QuickAdd>`, always visible above
@@ -111,6 +138,7 @@ export function CombatantList({
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const group = useEncounter((s) => s.group);
+  const moveEntry = useEncounter((s) => s.moveEntry);
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
@@ -160,12 +188,22 @@ export function CombatantList({
               active={isActive}
               selected={selectedIds.includes(id)}
               onToggleSelect={() => toggleSelect(id)}
+              entryId={entry.id}
+              onDropEntry={(draggedId) => moveEntry(draggedId, entry.id)}
             />
           );
         }
 
         return (
-          <div key={entry.id}>
+          <div
+            key={entry.id}
+            draggable
+            onDragStart={(e) => {
+              e.dataTransfer.setData("text/plain", entry.id);
+              e.dataTransfer.effectAllowed = "move";
+            }}
+            {...dropTargetProps(entry.id, moveEntry)}
+          >
             <GroupHeader
               entryId={entry.id}
               name={entry.groupName}
@@ -198,6 +236,15 @@ export function CombatantList({
           </div>
         );
       })}
+
+      {/* Dropping on a row always means "insert before this row" — which
+         leaves no way to drag a combatant to last place, since there's no
+         row below the last one to drop on. This closes that gap: a thin,
+         unstyled strip below the list that's droppable but not otherwise
+         visible, so the GM can still drag something to the very end. */}
+      {entries.length > 0 && (
+        <div aria-hidden="true" style={{ minHeight: "14px" }} {...dropTargetProps(null, moveEntry)} />
+      )}
     </div>
   );
 }

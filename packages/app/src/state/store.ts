@@ -277,6 +277,12 @@ interface EncounterStore {
   /** Returns a delayed entry to the order directly behind the creature
    * currently acting, permanently rewriting its initiative to match. */
   returnFromDelay(entryId: string): void;
+  /** The GM's rules-free override for the turn order: drags `entryId` to sit
+   * immediately before `beforeEntryId`, or to the very end when
+   * `beforeEntryId` is null. Only `orderKey` (and, for a delayed entry,
+   * `delayed`) ever changes — `initiative` is never touched, because a drag
+   * is a placement override, not a re-roll. */
+  moveEntry(entryId: string, beforeEntryId: string | null): void;
   acknowledgePrompt(promptId: string): void;
   group(ids: string[], name: string, initiative: number | null): void;
   ungroup(entryId: string): void;
@@ -615,6 +621,65 @@ export const useEncounter = create<EncounterStore>()(
         sortEntries(enc.entries);
         const idx = enc.entries.findIndex((e) => e.id === active.id);
         enc.activeEntryIndex = idx >= 0 ? idx : 0;
+      }),
+
+    moveEntry: (entryId, beforeEntryId) =>
+      set((state) => {
+        const enc = state.encounter;
+        const from = enc.entries.findIndex((e) => e.id === entryId);
+        if (from < 0 || entryId === beforeEntryId) return;
+
+        const activeEntryId = enc.entries[enc.activeEntryIndex]?.id ?? null;
+
+        const [moved] = enc.entries.splice(from, 1);
+        const target = beforeEntryId === null ? -1 : enc.entries.findIndex((e) => e.id === beforeEntryId);
+        // A stale/unknown beforeEntryId (shouldn't happen from the UI, which
+        // only ever passes another entry's live id or null) falls back to
+        // the end, same as an explicit null — there's no better place to
+        // guess than last.
+        const insertAt = target < 0 ? enc.entries.length : target;
+
+        // Same midpoint-between-neighbours placement returnFromDelay uses,
+        // and for the same reason: entries commonly share an initiative
+        // (addMany gives every member of a batch the same roll), so the key
+        // alone can't always separate two ties. Splicing `moved` into the
+        // array at the drop position *before* the stable re-sort below is
+        // what actually settles a tie in the GM's favour — the array
+        // position, not the number, decides who acts first among equals.
+        const above = insertAt > 0 ? enc.entries[insertAt - 1] : undefined;
+        const below = insertAt < enc.entries.length ? enc.entries[insertAt] : undefined;
+        moved!.orderKey =
+          above !== undefined && below !== undefined
+            ? (keyOf(above) + keyOf(below)) / 2
+            : above !== undefined
+              ? keyOf(above) - 1
+              : below !== undefined
+                ? keyOf(below) + 1
+                : moved!.orderKey;
+
+        // A delayed entry holds no position in the order — advanceTurn's
+        // round-wrap expiry rule reads "the order arrived back at this
+        // slot" as "a full round passed while delayed" (see that function's
+        // own comment), which only holds if a delayed entry never moves.
+        // Dragging it elsewhere breaks that invariant exactly the way a
+        // typed initiative used to, before setInitiative started treating
+        // the edit as a manual return (see there). This does the same
+        // thing here: the GM has just told the app precisely where this
+        // combatant acts, which is a return in every sense but the number —
+        // and the number is deliberately left alone, unlike setInitiative,
+        // because a drag never carries a new initiative to assign.
+        if (moved!.delayed) moved!.delayed = false;
+
+        enc.entries.splice(insertAt, 0, moved!);
+        sortEntries(enc.entries);
+
+        // Same identity-not-position rule as addCombatant/group/
+        // returnFromDelay: a reorder must never hand the turn to whoever
+        // now sits at the old active index.
+        if (activeEntryId !== null) {
+          const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
+          enc.activeEntryIndex = idx >= 0 ? idx : 0;
+        }
       }),
 
     acknowledgePrompt: (promptId) =>

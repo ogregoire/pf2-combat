@@ -617,4 +617,137 @@ describe("CombatantList", () => {
     // Two layered shadows, not one replacing the other.
     expect(row.style.boxShadow.split(",")).toHaveLength(2);
   });
+
+  describe("moveEntry (drag to reorder)", () => {
+    it("moves an entry between two neighbours without touching any initiative", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Beta" }), 15);
+      s.addCombatant(seed({ name: "Gamma" }), 10);
+      const [, , gamma] = useEncounter.getState().encounter.entries;
+
+      useEncounter.getState().moveEntry(gamma!.id, useEncounter.getState().encounter.entries[1]!.id);
+
+      const order = useEncounter.getState().encounter.entries
+        .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+      expect(order).toEqual(["Alpha", "Gamma", "Beta"]);
+      expect(useEncounter.getState().encounter.entries.map((e) => e.initiative)).toEqual([20, 10, 15]);
+    });
+
+    it("moves an entry to the very end of the order when beforeEntryId is null", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Beta" }), 15);
+      s.addCombatant(seed({ name: "Gamma" }), 10);
+      const [alpha] = useEncounter.getState().encounter.entries;
+
+      useEncounter.getState().moveEntry(alpha!.id, null);
+
+      const order = useEncounter.getState().encounter.entries
+        .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+      expect(order).toEqual(["Beta", "Gamma", "Alpha"]);
+      // Still untouched — a drag never rewrites the rolled number.
+      expect(useEncounter.getState().encounter.entries.map((e) => e.initiative)).toEqual([15, 10, 20]);
+    });
+
+    it("moves an entry to the very front of the order when dropped before the first entry", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Beta" }), 15);
+      const gamma = s.addCombatant(seed({ name: "Gamma" }), 10);
+      const [alpha] = useEncounter.getState().encounter.entries;
+
+      const gammaEntryId = useEncounter
+        .getState()
+        .encounter.entries.find((e) => e.combatantIds[0] === gamma)!.id;
+      useEncounter.getState().moveEntry(gammaEntryId, alpha!.id);
+
+      const order = useEncounter.getState().encounter.entries
+        .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+      expect(order).toEqual(["Gamma", "Alpha", "Beta"]);
+    });
+
+    it("does not steal the active turn when a drag reorders entries around it", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      const beta = s.addCombatant(seed({ name: "Beta" }), 15);
+      s.addCombatant(seed({ name: "Gamma" }), 10);
+      useEncounter.getState().nextTurn(); // Alpha -> Beta (active)
+      const [alpha] = useEncounter.getState().encounter.entries;
+
+      // Drag Alpha (not the active entry) to the end of the order — this
+      // must not hand the turn to whoever now sits at Beta's old index.
+      useEncounter.getState().moveEntry(alpha!.id, null);
+
+      const enc = useEncounter.getState().encounter;
+      expect(enc.entries[enc.activeEntryIndex]!.combatantIds[0]).toBe(beta);
+    });
+
+    it("clears delayed on a dragged entry, since expiry depends on a delayed entry never moving", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Beta" }), 15);
+      const gamma = s.addCombatant(seed({ name: "Gamma" }), 10);
+      const alphaEntryId = useEncounter.getState().encounter.entries[0]!.id;
+
+      useEncounter.getState().delay(alphaEntryId); // Alpha delays; Beta becomes active
+      expect(useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!.delayed).toBe(
+        true,
+      );
+
+      const gammaEntryId = useEncounter
+        .getState()
+        .encounter.entries.find((e) => e.combatantIds[0] === gamma)!.id;
+      useEncounter.getState().moveEntry(alphaEntryId, gammaEntryId);
+
+      const moved = useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!;
+      expect(moved.delayed).toBe(false);
+      // The drag places it, but a drag never rewrites the rolled initiative
+      // — unlike returning, which permanently changes it.
+      expect(moved.initiative).toBe(20);
+    });
+
+    it("does nothing when an entry is dropped onto itself", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Beta" }), 10);
+      const before = useEncounter.getState().encounter.entries.map((e) => e.id);
+
+      useEncounter.getState().moveEntry(before[0]!, before[0]!);
+
+      expect(useEncounter.getState().encounter.entries.map((e) => e.id)).toEqual(before);
+    });
+
+    it("does nothing when the dragged entry id no longer exists", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      const before = useEncounter.getState().encounter.entries.map((e) => e.id);
+
+      useEncounter.getState().moveEntry("no-such-entry", null);
+
+      expect(useEncounter.getState().encounter.entries.map((e) => e.id)).toEqual(before);
+    });
+
+    // sortEntries' null-first rule (an unrolled entry always leads,
+    // regardless of orderKey) is an existing invariant moveEntry must not
+    // let a drag defeat — the GM can adjudicate everything Delay doesn't
+    // cover, but "unrolled acts before anyone with a rolled initiative"
+    // isn't the GM's call to override with a drag any more than it is with
+    // a typed number.
+    it("keeps an unrolled entry sorted above every rolled entry even when dropped at the very end", () => {
+      const s = useEncounter.getState();
+      const unrolled = s.addCombatant(seed({ name: "Unrolled" }), null);
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Beta" }), 10);
+      const unrolledEntryId = useEncounter
+        .getState()
+        .encounter.entries.find((e) => e.combatantIds[0] === unrolled)!.id;
+
+      useEncounter.getState().moveEntry(unrolledEntryId, null);
+
+      const order = useEncounter.getState().encounter.entries
+        .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+      expect(order).toEqual(["Unrolled", "Alpha", "Beta"]);
+    });
+  });
 });
