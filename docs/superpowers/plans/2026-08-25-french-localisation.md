@@ -176,8 +176,21 @@ export interface BabeleEntry {
   blurb?: string;
   items?: Record<string, { name?: string; description?: string }>;
 }
-/** English creature/condition/glossary name -> its French entry. */
-export type BabeleTable = Map<string, BabeleEntry>;
+
+/** Which kind of thing a Babele file translates. One English string can name
+ * more than one kind — `Guard` is "Garde" the creature and "Se défendre" the
+ * action — so lookups never cross a kind boundary. */
+export type BabeleKind = "creature" | "condition" | "glossary" | "other";
+
+export interface BabeleTable {
+  /** pack name (the `pf2e.<pack>.json` stem) -> that pack's entries. */
+  byPack: Map<string, Map<string, BabeleEntry>>;
+  kindOf(pack: string): BabeleKind;
+  /** Own pack first, then every other pack of the same kind in
+   * `compareStrings` filename order. Throws if the fallback sources disagree. */
+  lookup(kind: BabeleKind, ownPack: string, englishName: string): BabeleEntry | null;
+}
+
 export function loadBabele(babeleDir: string): BabeleTable;
 ```
 
@@ -186,31 +199,53 @@ export function loadBabele(babeleDir: string): BabeleTable;
 Use fixture files written into a temp dir, not the real checkout.
 
 ```ts
-it("merges every pack file into one name-keyed table", () => {
-  // two files, one entry each
-  const table = loadBabele(dir);
-  expect(table.get("The Stag Lord")!.name).toBe("Seigneur Cerf");
-  expect(table.get("Manticore")!.name).toBe("Manticore FR");
+it("resolves a creature against its own pack first", () => {
+  // Shambler is "Tertre errant" in Kingmaker and "Grand tertre" in Bestiary 1.
+  // This is a Kingmaker campaign; the creature's own book wins.
+  expect(t.lookup("creature", "kingmaker-bestiary", "Shambler")!.name).toBe("Tertre errant");
+  expect(t.lookup("creature", "pathfinder-bestiary", "Shambler")!.name).toBe("Grand tertre");
 });
 
-it("keeps the first file's entry when two agree, deterministically by filename", () => {
-  // same English name in two files, same French name
-  expect(table.get("Barghest")!.name).toBe("Barghest");
+it("falls back to another pack of the SAME kind when the own pack has no entry", () => {
+  // 151 real creatures resolve only this way.
+  expect(t.lookup("creature", "pathfinder-bestiary", "Manticore")!.name).toBe("Manticore FR");
 });
 
-it("throws when two files disagree about a French name", () => {
-  // same English name, DIFFERENT French names
-  expect(() => loadBabele(dir)).toThrow(/disagree/i);
+it("never crosses a kind boundary", () => {
+  // `Guard` is a creature AND an action, translated differently. Pooling all
+  // files produced 109 collisions, 24 on names we consume. This is that guard.
+  expect(t.lookup("creature", "pathfinder-npc-core", "Guard")!.name).toBe("Garde");
+});
+
+it("returns null for a name with no entry of that kind", () => {
+  expect(t.lookup("creature", "pathfinder-bestiary", "Ankou")).toBeNull();
+});
+
+it("throws when two same-kind fallback sources disagree", () => {
+  expect(() => t.lookup("creature", "some-pack", "Contested")).toThrow(/disagree/i);
 });
 ```
 
-The third test is the important one. Cross-pack fallback is safe **because** it was measured to be unambiguous (zero disagreements across all 1450 creatures); this test is what keeps that true when the pin moves. It must name both files and both French values in the message so a future disagreement is diagnosable, not just fatal.
+The last test is the important one. Cross-pack fallback is safe **because** it
+was measured unambiguous — of the 151 creatures that fall back, zero have
+disagreeing sources. This test is what keeps that true when the pin moves. Its
+message must name both files and both French values, or a future failure is
+fatal but undiagnosable.
+
+Classify a file's kind from its `pf2e.<stem>.json` name: `creature` when the
+stem contains `bestiary` (but not `glossary`) or is one of
+`pathfinder-monster-core`, `pathfinder-monster-core-2`, `pathfinder-npc-core`;
+`condition` for `conditionitems`; `glossary` for the two `*ability-glossary*`
+files; `other` otherwise. Measured against the real module: 40 creature files,
+1 condition, 2 glossary, 32 other.
 
 - [ ] **Step 2: Run them and watch all three fail**
 
 - [ ] **Step 3: Implement**
 
-Read every `pf2e.*.json` in `babeleDir` in `compareStrings` filename order. Each file's `entries` is an object keyed by English name; skip any file whose `entries` is not an object. First writer wins; a second writer with a *different* `name` throws.
+Read every `pf2e.*.json` in `babeleDir` in `compareStrings` filename order — never raw `readdirSync` order, which is not guaranteed and would make the output non-deterministic. Each file's `entries` is an object keyed by English name; skip any file whose `entries` is not an object.
+
+Keep the packs SEPARATE rather than merging them into one flat map: `lookup` needs to know which pack an entry came from to prefer the caller's own pack. Only when the own pack has no entry does it consider the others, and only those of the same kind.
 
 - [ ] **Step 4: Tests pass**
 - [ ] **Step 5: Commit** — `feat(pf2data): load the Babele translation tables`
