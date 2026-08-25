@@ -30,6 +30,23 @@ describe("encounter store", () => {
     ).toEqual([20, 5]);
   });
 
+  it("sorts by orderKey, so an entry can be placed between two equal initiatives", () => {
+    addCreature("Alpha", 20);
+    addCreature("Beta", 20);
+    const [alpha, beta] = useEncounter.getState().encounter.entries;
+    expect(alpha!.orderKey).toBe(20);
+    expect(beta!.orderKey).toBe(20);
+
+    // Placed between them without touching either initiative.
+    useEncounter.setState((st) => {
+      st.encounter.entries[1]!.orderKey = 19.5;
+    });
+    addCreature("Gamma", 20);
+    const names = useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names).toEqual(["Alpha", "Gamma", "Beta"]);
+  });
+
   it("adds N copies with numbered labels", () => {
     useEncounter.getState().addMany(
       { kind: "creature", name: "Goblin Warrior", level: 1, ac: 16,

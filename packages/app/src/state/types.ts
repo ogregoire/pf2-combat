@@ -48,6 +48,12 @@ export interface Entry {
    * Restored into `initiative` (and cleared) the next time the round wraps.
    */
   trueInitiative: number | null;
+  /** Sort key for the turn order, distinct from the displayed initiative.
+   * Starts equal to `initiative` and is reset to it whenever an initiative
+   * is set. Delay's return and a manual drag both assign a value *between*
+   * two neighbours, which equal integer initiatives plus a stable sort
+   * cannot express. */
+  orderKey: number;
 }
 
 export interface Encounter {

@@ -101,11 +101,17 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
   };
 }
 
-/** Entries stay sorted by initiative descending; Array#sort is stable, and
+/** `orderKey` is defaulted from `initiative` for any entry persisted before
+ * the field existed — SCHEMA_VERSION deliberately did not move. */
+function keyOf(e: Entry): number {
+  return e.orderKey ?? e.initiative ?? 0;
+}
+
+/** Entries stay sorted by `orderKey` descending; Array#sort is stable, and
  * new entries are always appended before sorting, so ties preserve
  * insertion order. */
 function sortEntries(entries: Entry[]): void {
-  entries.sort((a, b) => b.initiative - a.initiative);
+  entries.sort((a, b) => keyOf(b) - keyOf(a));
 }
 
 interface EncounterStore {
@@ -165,6 +171,7 @@ export const useEncounter = create<EncounterStore>()(
         enc.entries.push({
           id: nextEntryId(),
           initiative,
+          orderKey: initiative,
           combatantIds: [id],
           groupName: null,
           trueInitiative: trueInitiative ?? null,
@@ -190,6 +197,7 @@ export const useEncounter = create<EncounterStore>()(
           enc.entries.push({
             id: nextEntryId(),
             initiative,
+            orderKey: initiative,
             combatantIds: [id],
             groupName: null,
             trueInitiative: trueInitiative ?? null,
@@ -270,6 +278,10 @@ export const useEncounter = create<EncounterStore>()(
         if (!entry) return;
         const activeEntryId = enc.entries[enc.activeEntryIndex]?.id ?? null;
         entry.initiative = initiative;
+        // A typed initiative resets orderKey too, so a stale mid-round
+        // placement (drag or delay) doesn't outlive the value the GM just
+        // overwrote it with.
+        entry.orderKey = initiative;
         // An explicit GM edit is authoritative — it overrides any pending
         // "acts this round instead" restoration.
         entry.trueInitiative = null;
@@ -367,6 +379,7 @@ export const useEncounter = create<EncounterStore>()(
             for (const e of enc.entries) {
               if (e.trueInitiative !== null) {
                 e.initiative = e.trueInitiative;
+                e.orderKey = e.trueInitiative;
                 e.trueInitiative = null;
               }
             }
@@ -422,6 +435,7 @@ export const useEncounter = create<EncounterStore>()(
         remaining.push({
           id: groupEntryId,
           initiative,
+          orderKey: initiative,
           combatantIds: [...ids],
           groupName: name,
           trueInitiative: null,
