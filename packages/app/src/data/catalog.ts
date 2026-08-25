@@ -5,9 +5,9 @@ export type FetchFn = (url: string) => Promise<Response>;
 
 const defaultFetch: FetchFn = (url) => fetch(url);
 
-const BASE = import.meta.env.BASE_URL ?? "/";
+export const BASE = import.meta.env.BASE_URL ?? "/";
 
-async function getJson<T>(path: string, fetchFn: FetchFn): Promise<T> {
+export async function getJson<T>(path: string, fetchFn: FetchFn): Promise<T> {
   const res = await fetchFn(`${BASE}data/${path}`);
   if (!res.ok) throw new Error(`failed to load data/${path}: ${res.status}`);
   return (await res.json()) as T;
