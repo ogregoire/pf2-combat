@@ -321,6 +321,8 @@ export const CreatureI18nSchema = z.object({
 });
 export function buildCreatureI18n(args: {
   creatureName: string;
+  /** The pack this creature ships in — `lookup` prefers its translation. */
+  ownPack: string;
   actions: { name: string; foundryId: string }[];
   attacks: { name: string; foundryId: string }[];
   table: BabeleTable;
@@ -354,7 +356,20 @@ it("records the English name at each position, so verify can catch drift", () =>
 });
 
 it("returns null for a creature with no French entry", () => {
-  expect(buildCreatureI18n({ creatureName: "Manticore", actions: [], attacks: [], table: new Map() })).toBeNull();
+  // 30 real creatures look like this.
+  expect(buildCreatureI18n({ creatureName: "Manticore", ownPack: "pathfinder-bestiary",
+    actions: [], attacks: [], table: emptyTable() })).toBeNull();
+});
+
+it("resolves through the table's own-pack-first lookup, not a flat name map", () => {
+  // Shambler is "Tertre errant" in Kingmaker and "Grand tertre" in Bestiary 1.
+  // A flat `table.get(name)` cannot tell these apart and silently returns
+  // whichever pack happened to load first — which is the bug Task 3 exists to
+  // prevent. Same story for `Guard`, a creature AND an action.
+  expect(buildCreatureI18n({ creatureName: "Shambler", ownPack: "kingmaker-bestiary",
+    actions: [], attacks: [], table })!.name).toBe("Tertre errant");
+  expect(buildCreatureI18n({ creatureName: "Shambler", ownPack: "pathfinder-bestiary",
+    actions: [], attacks: [], table })!.name).toBe("Grand tertre");
 });
 
 it("uses null, never the English text, for an item the table does not cover", () => {
@@ -366,7 +381,7 @@ it("uses null, never the English text, for an item the table does not cover", ()
 
 - [ ] **Step 3: Implement**
 
-Look the creature up by English name. For each action/attack position, look its `foundryId` up in the entry's `items`. `description` comes from `items[id].description`, `publicNotes` from the entry's `description` field (Babele's mapping calls it `description` → `system.details.publicNotes`). Absent → `null`.
+Resolve the entry with `args.table.lookup("creature", args.ownPack, args.creatureName)` — NEVER a flat `table.get(name)`. Task 3's whole purpose is that resolution order; calling `.get` throws it away and reintroduces the cross-book and cross-kind collisions it was built to prevent. For each action/attack position, look its `foundryId` up in the entry's `items`. `description` comes from `items[id].description`, `publicNotes` from the entry's `description` field (Babele's mapping calls it `description` → `system.details.publicNotes`). Absent → `null`.
 
 - [ ] **Step 4: Tests pass**
 - [ ] **Step 5: Commit** — `feat(pf2data): build the per-creature French overlay`
