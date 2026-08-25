@@ -30,16 +30,22 @@ Two shapes matter:
 
 | What | Join key | Coverage |
 |---|---|---|
-| Creatures | English creature name | **1271 / 1450 (87.7%)** |
+| Creatures | English creature name | **1420 / 1450 (97.9%)** |
 | Conditions | English condition name | **43 / 43** |
 | Ability glossary | English entry name | **445 / 447** |
-| Traits (name + description) | `PF2E.Trait<Pascal>` from our `slug` | 904 / 535 available vs. our 426 slugs |
+| Traits (name + description) | `PF2E.Trait<Pascal>` from our `slug` | 904 names / 535 descriptions available vs. our 426 slugs |
 
-The 179 creatures with no French are almost all legacy Bestiary entries the
-module never covered (Ahuizotl, Badger, Manticore, Mimic, Shoggoth). Two
-creatures translate only via another pack's file; cross-pack fallback by name
-is allowed and picks up both. The two unmatched glossary entries are
-parenthesised Strigoi vampire abilities.
+Creature lookup falls back across packs: 1269 resolve inside their own pack's
+file, another 151 only via some other pack's (a legacy Bestiary creature
+translated under Monster Core, say). The fallback is safe by measurement, not
+assumption — of every English name that appears in more than one French file,
+**zero** disagree about the French name.
+
+Thirty creatures have no French anywhere, and nineteen of those are the
+`Petitioner (Plane)` series — so it is really eleven distinct misses (Ankou,
+Belker, Dread Wraith, Frost Troll, Hive Mother, Ifrit Pyrochemist, Manticore,
+Quetz Couatl, Raven, Spark Bat, and the Petitioners). The two unmatched
+glossary entries are parenthesised Strigoi vampire abilities.
 
 ## Data pipeline
 
@@ -105,7 +111,7 @@ A single `useLang()`-backed `t()` resolves in one order, everywhere:
 1. French string, if the overlay has one for this creature/condition/trait/key
 2. otherwise the English string
 
-So the 179 untranslated creatures render in English inside an otherwise
+So the 30 untranslated creatures render in English inside an otherwise
 French UI. That is the intended behaviour, not a defect — but it is
 *visible*: the creature panel marks a fallback name, so the GM knows the
 tracker is showing them the English one rather than a translation.
@@ -113,6 +119,46 @@ tracker is showing them the English one rather than a translation.
 Loading is per-creature and lazy, matching the existing creature loader: the
 French file for a creature is fetched when that creature is, and only when
 `lang === "fr"`. Conditions, traits and glossary are small and load once.
+
+### Creature search
+
+Reading the French Kingmaker book, the GM types what is printed there. So
+when `lang === "fr"`, search matches **French names**, and the whole quick-add
+path — `parseAddCommand` then `rankMatches` — runs against them.
+
+The pipeline emits a French name overlay for the search index,
+`data/i18n/fr/index/<pack>.json` (`id → French name`), loaded once alongside
+the English index when French is on.
+
+Three properties, each measured against all 1420 French names rather than
+assumed:
+
+- **`parseAddCommand` is unchanged.** Its quantity/initiative rule depends on
+  no creature name starting or ending with a digit. Zero French names do —
+  the same property that holds for the English names. `6 gobelin 13` parses
+  exactly like `6 goblin 13`.
+- **Matching ignores diacritics.** 41.4% of French names carry accents, and a
+  GM typing at speed will not reach for them: `elementaire` must find
+  `Quatoïde (Élémentaire, eau)`, `seigneur cerf` must find `Seigneur Cerf`.
+  Both query and candidate are compared NFD-normalised with combining marks
+  stripped, at every tier of `rankMatches` (exact, name-prefix, word-prefix,
+  substring, subsequence). Ordering still breaks ties with `compareStrings` on
+  the original strings — code-unit, never `localeCompare`, which is what made
+  the dataset non-deterministic once already.
+- **Punctuation is limited and known.** Across every French name the only
+  non-alphanumeric characters are `'`, `(`, `)`, `,` and `-` — all straight
+  ASCII, no typographic apostrophes. Parenthesised qualifiers ("Jann (Génie)",
+  "Quatoïde (Élémentaire, eau)") participate in matching but must not outrank
+  a hit on the name proper.
+
+**Ten French names are shared by two creatures each.** Seven are the
+legacy/remaster collisions the dataset already knows about (Barghest, Giant
+Mantis, Quatoid, Quelaunt, Terotricus, Twigjack, Shambler); two are remaster
+renames that genuinely converge (Grippli/Tripkee Scout → "Éclaireur tripkee",
+Jann/Janni → "Jann (Génie)"). One is a real clash of distinct creatures:
+**Sea Serpent and Sea Snake are both "Serpent de mer"** at wildly different
+levels. Search results must therefore show level and book, so the GM can tell
+those two apart at the moment of choosing.
 
 ### Interface strings
 
@@ -148,6 +194,10 @@ exclusion is an explicit, commented allowlist entry.
   failure.
 - App: the resolution order above, both toggle directions, persistence across
   a reload, and a French render of a creature that has no French entry.
+- Search: an accented name found by an unaccented query, a French name found
+  when `lang === "fr"` and not when it is `"en"`, `6 gobelin 13` parsing to
+  quantity/initiative, and "Serpent de mer" returning both creatures
+  distinguishably.
 - The catalogue guardrail above.
 
 ## Out of scope
@@ -155,8 +205,5 @@ exclusion is an explicit, commented allowlist entry.
 - Languages other than French. `lang` is a two-value union; widening it is a
   later decision, and nothing here should pretend to be a general i18n
   framework it has not been tested as.
-- Translating creature *search*. The quick-add parser matches English names;
-  making it match French names too is a follow-up, called out here so it is
-  not mistaken for an oversight.
-- The 179 untranslated creatures. We do not machine-translate or hand-fill
-  them; they fall back and say so.
+- The 30 untranslated creatures. We do not machine-translate or hand-fill
+  them; they fall back to English and say so.
