@@ -279,9 +279,12 @@ interface EncounterStore {
   returnFromDelay(entryId: string): void;
   /** The GM's rules-free override for the turn order: drags `entryId` to sit
    * immediately before `beforeEntryId`, or to the very end when
-   * `beforeEntryId` is null. Only `orderKey` (and, for a delayed entry,
-   * `delayed`) ever changes — `initiative` is never touched, because a drag
-   * is a placement override, not a re-roll. */
+   * `beforeEntryId` is null. Only `orderKey` ever moves the entry —
+   * `initiative` is never touched, because a drag is a placement override,
+   * not a re-roll. It's still authoritative enough to retire every pending
+   * automatic reposition, same as setInitiative and returnFromDelay: clears
+   * `trueInitiative` (so a later round wrap can't silently undo the drag)
+   * and, for a delayed entry, `delayed` and its stale `initiativeBeforeDelay`. */
   moveEntry(entryId: string, beforeEntryId: string | null): void;
   acknowledgePrompt(promptId: string): void;
   group(ids: string[], name: string, initiative: number | null): void;
@@ -657,6 +660,21 @@ export const useEncounter = create<EncounterStore>()(
                 ? keyOf(below) + 1
                 : moved!.orderKey;
 
+        // An explicit GM placement is authoritative and retires every
+        // pending automatic reposition — the same rule setInitiative and
+        // returnFromDelay already apply to a typed initiative and a Delay
+        // return, and a drag is the most explicit placement of the three.
+        // Concretely: an entry added mid-round with "act this round
+        // instead" carries a real typed initiative parked in
+        // trueInitiative, waiting for the next round wrap to restore it
+        // (see addCombatant/advanceTurn). Left armed, that restore would
+        // silently overwrite wherever the GM just dragged the entry to, the
+        // next time the round turns over — the GM would see the row land
+        // where dropped and then, one wrap later, watch it jump away with
+        // no explanation. Clearing it here is what makes the drag actually
+        // stick.
+        moved!.trueInitiative = null;
+
         // A delayed entry holds no position in the order — advanceTurn's
         // round-wrap expiry rule reads "the order arrived back at this
         // slot" as "a full round passed while delayed" (see that function's
@@ -668,7 +686,18 @@ export const useEncounter = create<EncounterStore>()(
         // combatant acts, which is a return in every sense but the number —
         // and the number is deliberately left alone, unlike setInitiative,
         // because a drag never carries a new initiative to assign.
-        if (moved!.delayed) moved!.delayed = false;
+        if (moved!.delayed) {
+          moved!.delayed = false;
+          // initiativeBeforeDelay is only meant to record the number this
+          // entry held immediately before a *just-happened* Delay return,
+          // so the row can show it struck through. delay() doesn't clear it
+          // on a second Delay, so an entry that returned once, delayed
+          // again, and is now dragged could still be carrying that old
+          // value — which this un-delay didn't produce and has nothing to
+          // do with. Left in place, it would resurface as a struck-through
+          // number the GM never asked to see.
+          moved!.initiativeBeforeDelay = null;
+        }
 
         enc.entries.splice(insertAt, 0, moved!);
         sortEntries(enc.entries);

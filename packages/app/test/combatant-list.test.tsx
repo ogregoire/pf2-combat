@@ -749,5 +749,101 @@ describe("CombatantList", () => {
         .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
       expect(order).toEqual(["Unrolled", "Alpha", "Beta"]);
     });
+
+    // Regression: a drag is a placement just as authoritative as a typed
+    // initiative or a Delay return — setInitiative and returnFromDelay both
+    // already retire any pending "act this round instead" restore when the
+    // GM places an entry by hand (see their own comments), and a drag is
+    // the most explicit placement of the three. Without clearing
+    // trueInitiative here, a dragged entry would sit exactly where the GM
+    // dropped it right up until the next round wrap, then silently jump to
+    // the typed value the GM never asked to see yet — the same failure
+    // Task 8 fixed for setInitiative, arriving through a new door.
+    it("clears a pending 'act this round instead' restore when the entry is dragged, so a later round wrap can't silently move it", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Active" }), 20);
+      s.addCombatant(seed({ name: "Tail" }), 5);
+      // Mirrors AddCombatants' "act this round instead": the GM rolled 25,
+      // but the entry is slotted in at 12 (behind Active, ahead of Tail) so
+      // it still acts this round instead of waiting for the next one — 25
+      // is parked in trueInitiative for the next wrap to restore.
+      const newcomerId = s.addCombatant(seed({ name: "Newcomer" }), 12, 25);
+      const newcomerEntryId = useEncounter
+        .getState()
+        .encounter.entries.find((e) => e.combatantIds[0] === newcomerId)!.id;
+      expect(
+        useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.trueInitiative,
+      ).toBe(25);
+
+      // The GM instead drags Newcomer to the very end of the order.
+      useEncounter.getState().moveEntry(newcomerEntryId, null);
+      expect(
+        useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.trueInitiative,
+      ).toBeNull();
+
+      const nameOrder = () =>
+        useEncounter
+          .getState()
+          .encounter.entries.map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+      expect(nameOrder()).toEqual(["Active", "Tail", "Newcomer"]);
+
+      // Active -> Tail -> Newcomer -> wraps to round 2.
+      useEncounter.getState().nextTurn();
+      useEncounter.getState().nextTurn();
+      useEncounter.getState().nextTurn();
+
+      // If trueInitiative had survived the drag, this wrap would restore 25
+      // and re-sort Newcomer to the front — well above Active and Tail.
+      // It must instead stay exactly where the GM dropped it.
+      expect(nameOrder()).toEqual(["Active", "Tail", "Newcomer"]);
+      expect(
+        useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.initiative,
+      ).toBe(12);
+    });
+
+    // Regression: initiativeBeforeDelay is only ever meant to record the
+    // number an entry held immediately before a *just-happened* Delay
+    // return, so the row can show it struck through. It's possible to
+    // delay, return, and later delay again on the same entry without ever
+    // clearing that old record (delay() itself doesn't touch it). A drag
+    // that un-delays such an entry must not let that stale value resurface
+    // as a struck-through initiative that has nothing to do with the drag.
+    it("clears a stale initiativeBeforeDelay when a drag un-delays an entry, so no unrelated struck-through number resurfaces", () => {
+      const s = useEncounter.getState();
+      const alpha = s.addCombatant(seed({ name: "Alpha" }), 20);
+      const beta = s.addCombatant(seed({ name: "Beta" }), 15);
+      const alphaEntryId = useEncounter
+        .getState()
+        .encounter.entries.find((e) => e.combatantIds[0] === alpha)!.id;
+
+      useEncounter.getState().delay(alphaEntryId); // Alpha delays; Beta becomes active
+      useEncounter.getState().returnFromDelay(alphaEntryId); // Alpha returns behind Beta
+      expect(
+        useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!.initiativeBeforeDelay,
+      ).toBe(20);
+
+      useEncounter.getState().nextTurn(); // Beta -> Alpha (active again)
+      useEncounter.getState().delay(alphaEntryId); // Alpha delays a second time
+      expect(
+        useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!.delayed,
+      ).toBe(true);
+      // The stale record from the first return is still sitting there,
+      // untouched by this second delay — exactly the setup that would
+      // otherwise leak through a drag.
+      expect(
+        useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!.initiativeBeforeDelay,
+      ).toBe(20);
+
+      const betaEntryId = useEncounter
+        .getState()
+        .encounter.entries.find((e) => e.combatantIds[0] === beta)!.id;
+      useEncounter.getState().moveEntry(alphaEntryId, betaEntryId);
+
+      const moved = useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!;
+      expect(moved.delayed).toBe(false);
+      expect(moved.initiativeBeforeDelay).toBeNull();
+      // Still never rewritten by the drag itself.
+      expect(moved.initiative).toBe(15);
+    });
   });
 });
