@@ -178,24 +178,38 @@ function levelLabel(combatant: Combatant): string {
 
 const SAVE_NAMES = { F: "Fortitude", R: "Reflex", W: "Will" } as const;
 
-/** One "F 6" unit: `title` names the save on hover (works without any JS
+/** Programmatic, not a concatenated literal "+", so a zero or negative save
+ * (none exist in the dataset today, but nothing here should assume that
+ * stays true) still renders correctly. */
+function formatSigned(n: number): string {
+  return n >= 0 ? `+${n}` : `${n}`;
+}
+
+/** One "F +6" unit: `title` names the save on hover (works without any JS
  * state, per the brief) and `aria-label` gives it an accessible name that
- * includes the value too, for anyone relying on a screen reader instead of
- * hover. */
+ * includes the signed value too, for anyone relying on a screen reader
+ * instead of hover. The letter is bold, the value regular weight, with a
+ * tight gap between them (not a full word space) so the pair reads as one
+ * unit rather than two words. */
 function SaveUnit({ letter, value }: { letter: keyof typeof SAVE_NAMES; value: number }): React.ReactElement {
   return (
-    <span title={SAVE_NAMES[letter]} aria-label={`${SAVE_NAMES[letter]} ${value}`}>
-      {`${letter} ${value}`}
+    <span title={SAVE_NAMES[letter]} aria-label={`${SAVE_NAMES[letter]} ${formatSigned(value)}`} style={{ whiteSpace: "nowrap" }}>
+      <span style={{ fontWeight: 700 }}>{letter}</span>
+      <span style={{ marginLeft: "2px" }}>{formatSigned(value)}</span>
     </span>
   );
 }
 
+/** ", " (a real comma, then a space) between units — not flex gap, which
+ * only spaces them apart without the comma the brief asked for. */
 function Saves({ saves }: { saves: Combatant["saves"] }): React.ReactElement {
   if (saves === null) return <span>—</span>;
   return (
-    <span style={{ display: "flex", gap: "6px" }}>
+    <span style={{ whiteSpace: "nowrap" }}>
       <SaveUnit letter="F" value={saves.fortitude} />
+      {", "}
       <SaveUnit letter="R" value={saves.reflex} />
+      {", "}
       <SaveUnit letter="W" value={saves.will} />
     </span>
   );

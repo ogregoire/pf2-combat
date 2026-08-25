@@ -38,9 +38,9 @@ describe("CombatantList", () => {
     expect(screen.getByText("Stag Lord Bandit")).toBeDefined();
     expect(screen.getByText("16/16")).toBeDefined();
     expect(screen.getByText(/AC 15/)).toBeDefined();
-    expect(screen.getByText("F 6")).toBeDefined();
-    expect(screen.getByText("R 7")).toBeDefined();
-    expect(screen.getByText("W 4")).toBeDefined();
+    expect(screen.getByTitle("Fortitude").textContent).toBe("F+6");
+    expect(screen.getByTitle("Reflex").textContent).toBe("R+7");
+    expect(screen.getByTitle("Will").textContent).toBe("W+4");
   });
 
   it("renders condition chips", () => {
