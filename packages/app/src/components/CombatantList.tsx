@@ -151,6 +151,8 @@ export function CombatantList({
               key={entry.id}
               id={id}
               initiative={entry.initiative}
+              delayed={entry.delayed}
+              initiativeBeforeDelay={entry.initiativeBeforeDelay}
               active={isActive}
               selected={selectedIds.includes(id)}
               onToggleSelect={() => toggleSelect(id)}
@@ -163,6 +165,8 @@ export function CombatantList({
             <GroupHeader
               name={entry.groupName}
               initiative={entry.initiative}
+              delayed={entry.delayed}
+              initiativeBeforeDelay={entry.initiativeBeforeDelay}
               memberCount={entry.combatantIds.length}
               active={isActive}
             />

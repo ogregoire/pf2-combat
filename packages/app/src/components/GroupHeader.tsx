@@ -13,11 +13,18 @@ const ACTIVE_INITIATIVE_COLOR = "oklch(0.86 0.12 60)";
 export function GroupHeader({
   name,
   initiative,
+  delayed = false,
+  initiativeBeforeDelay = null,
   memberCount,
   active = false,
 }: {
   name: string;
   initiative: number | null;
+  /** A whole group can Delay — Delay is a property of the turn-order entry,
+   * and a group is one entry — so the header carries the same struck-through
+   * treatment a standalone row does (see StandaloneRow). */
+  delayed?: boolean;
+  initiativeBeforeDelay?: number | null;
   memberCount: number;
   active?: boolean;
 }): React.ReactElement {
@@ -44,10 +51,19 @@ export function GroupHeader({
           width: "24px",
           textAlign: "right",
           color: active ? ACTIVE_INITIATIVE_COLOR : "oklch(0.74 0.04 200)",
+          textDecoration: delayed ? "line-through" : "none",
         }}
       >
         {initiative === null ? "—" : initiative}
       </div>
+      {delayed && (
+        <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--info)" }}>delayed</span>
+      )}
+      {!delayed && initiativeBeforeDelay !== null && (
+        <span style={{ fontSize: "11px", color: "var(--text-faint)", textDecoration: "line-through" }}>
+          {initiativeBeforeDelay}
+        </span>
+      )}
       <span
         style={{
           fontSize: "12px",

@@ -35,6 +35,46 @@ describe("migrate", () => {
     expect(out.players[0]!.initiativeModifier).toBe(5);
   });
 
+  // Delay's two Entry fields landed the same way initiativeModifier did:
+  // added without a SCHEMA_VERSION bump, so an encounter saved before they
+  // existed comes back with neither. `delayed: undefined` would at least be
+  // falsy, but `initiativeBeforeDelay: undefined` is not `null`, and the row
+  // renders the parked initiative on exactly that check — an old save would
+  // have printed a struck-through "undefined" beside every combatant.
+  it("defaults an entry's missing delay fields, so an encounter saved before Delay existed loads clean", () => {
+    const payload = {
+      schemaVersion: SCHEMA_VERSION,
+      encounter: {
+        round: 1,
+        entries: [{ id: "e1", initiative: 17, combatantIds: ["c1"], groupName: null, trueInitiative: null }],
+        combatants: {},
+      },
+    };
+    const out = migrate(payload) as {
+      encounter: { entries: { initiative: number; delayed: unknown; initiativeBeforeDelay: unknown }[] };
+    };
+    expect(out.encounter.entries[0]!.delayed).toBe(false);
+    expect(out.encounter.entries[0]!.initiativeBeforeDelay).toBeNull();
+    expect(out.encounter.entries[0]!.initiativeBeforeDelay).not.toBeUndefined();
+    expect(out.encounter.entries[0]!.initiative).toBe(17); // nothing else touched
+  });
+
+  it("leaves an entry's existing delay state alone", () => {
+    const payload = {
+      schemaVersion: SCHEMA_VERSION,
+      encounter: {
+        round: 1,
+        entries: [{ id: "e1", initiative: 12, combatantIds: ["c1"], delayed: true, initiativeBeforeDelay: 20 }],
+        combatants: {},
+      },
+    };
+    const out = migrate(payload) as {
+      encounter: { entries: { delayed: unknown; initiativeBeforeDelay: unknown }[] };
+    };
+    expect(out.encounter.entries[0]!.delayed).toBe(true);
+    expect(out.encounter.entries[0]!.initiativeBeforeDelay).toBe(20);
+  });
+
   it("defaults a combatant's missing initiativeModifier to null, not undefined", () => {
     const payload = {
       schemaVersion: SCHEMA_VERSION,

@@ -69,6 +69,25 @@ export interface Entry {
    * two neighbours, which equal integer initiatives plus a stable sort
    * cannot express. */
   orderKey: number;
+  /**
+   * True between using Delay and either returning to the order or losing
+   * the delayed turn (Player Core p. 416). The entry stays in `entries` at
+   * its original `orderKey` throughout — nothing about its position moves
+   * until it returns — so this flag is what marks it as holding no place in
+   * the order: it can't use reactions, and reaching its own slot again means
+   * a full round has elapsed and the delayed turn is forfeit.
+   */
+  delayed: boolean;
+  /**
+   * The initiative this entry held before a Delay *return* rewrote it, kept
+   * purely as a record for the row to show struck through. Null unless a
+   * return has actually changed the number — in particular it stays null
+   * while an entry is merely delayed (nothing has been rewritten yet) and
+   * when a delayed turn expires unused (RAW: "your initiative doesn't
+   * change"). Returning is permanent; this is never restored into
+   * `initiative`, unlike `trueInitiative` above.
+   */
+  initiativeBeforeDelay: number | null;
 }
 
 export interface Encounter {

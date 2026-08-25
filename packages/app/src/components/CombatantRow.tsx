@@ -221,6 +221,8 @@ function Saves({ saves }: { saves: Combatant["saves"] }): React.ReactElement {
 function StandaloneRow({
   combatant,
   initiative,
+  delayed,
+  initiativeBeforeDelay,
   active,
   targeted,
   onToggleTarget,
@@ -232,6 +234,8 @@ function StandaloneRow({
 }: {
   combatant: Combatant;
   initiative?: number | null;
+  delayed: boolean;
+  initiativeBeforeDelay: number | null;
   active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
@@ -276,10 +280,28 @@ function StandaloneRow({
             width: "24px",
             textAlign: "right",
             color: active ? ACTIVE_INITIATIVE_COLOR : "var(--text-dim)",
+            // A Delayed combatant holds no position in the order at all
+            // (Player Core p. 416), so the number it is parked on is struck
+            // out rather than shown as a live slot. The "delayed" tag beside
+            // it is what keeps this from reading as the defeated styling,
+            // which strikes the name through in the same way.
+            textDecoration: delayed ? "line-through" : "none",
           }}
         >
           {initiative === null ? "—" : initiative}
         </div>
+      )}
+
+      {delayed && (
+        <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--info)" }}>delayed</span>
+      )}
+
+      {/* Returning permanently rewrites the initiative, so the old value
+         survives only as this record of where the combatant used to act. */}
+      {!delayed && initiativeBeforeDelay !== null && (
+        <span style={{ fontSize: "11px", color: "var(--text-faint)", textDecoration: "line-through" }}>
+          {initiativeBeforeDelay}
+        </span>
       )}
 
       <div style={{ flexGrow: 1, minWidth: 0 }}>
@@ -436,6 +458,8 @@ function GroupMemberRow({
 export function CombatantRow({
   id,
   initiative,
+  delayed = false,
+  initiativeBeforeDelay = null,
   grouped = false,
   active = false,
   selected = false,
@@ -443,6 +467,11 @@ export function CombatantRow({
 }: {
   id: string;
   initiative?: number | null;
+  /** Both describe the row's *entry*, not the combatant, and default to the
+   * un-delayed state so the group-member anatomy and any caller that doesn't
+   * track entries can keep passing nothing. */
+  delayed?: boolean;
+  initiativeBeforeDelay?: number | null;
   grouped?: boolean;
   active?: boolean;
   /** Multi-select for the group builder (CombatantList) — defaults are a
@@ -546,6 +575,8 @@ export function CombatantRow({
         <StandaloneRow
           combatant={combatant}
           initiative={initiative}
+          delayed={delayed}
+          initiativeBeforeDelay={initiativeBeforeDelay}
           active={active}
           targeted={targeted}
           onToggleTarget={toggleTarget}

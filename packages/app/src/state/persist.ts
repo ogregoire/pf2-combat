@@ -51,15 +51,29 @@ function withInitiativeModifierDefault<T extends object>(entity: T): T {
   return "initiativeModifier" in entity ? entity : { ...entity, initiativeModifier: null };
 }
 
+/** Same idea for the two fields Delay added to `Entry` (see their doc
+ * comments in types.ts). `delayed` missing would merely be falsy, but a
+ * missing `initiativeBeforeDelay` is `undefined`, and the row's "did a
+ * return rewrite this initiative?" test is `!== null` — so without this an
+ * encounter saved before Delay existed would render a struck-through
+ * "undefined" on every row. */
+function withDelayDefaults<T extends object>(entry: T): T {
+  return {
+    ...("delayed" in entry ? {} : { delayed: false }),
+    ...("initiativeBeforeDelay" in entry ? {} : { initiativeBeforeDelay: null }),
+    ...entry,
+  };
+}
+
 /**
  * Stamps a payload with the current schema version, upgrading a payload
  * that predates `schemaVersion` (version 0). Refuses a payload newer than
  * what this build understands, rather than silently truncating it —
  * opening an old save with a new client is fine; the reverse isn't.
  *
- * Also defaults a couple of fields that were added to `Player` and
- * `Combatant` without a `SCHEMA_VERSION` bump (see those types'
- * `initiativeModifier` doc comments) — a real shape change would earn its
+ * Also defaults a handful of fields that were added to `Player`,
+ * `Combatant` and `Entry` without a `SCHEMA_VERSION` bump (see those types'
+ * `initiativeModifier` and `delayed`/`initiativeBeforeDelay` doc comments) — a real shape change would earn its
  * own version and its own migration step here, but this is just a reader
  * filling in a field older data never had, so the version stays put.
  * Doing it once here, rather than at every call site that reads the field,
@@ -81,8 +95,9 @@ export function migrate(raw: unknown): Record<string, unknown> {
   }
 
   const encounter = payload.encounter;
-  if (encounter !== null && typeof encounter === "object" && "combatants" in encounter) {
-    const combatants = (encounter as { combatants: unknown }).combatants;
+  if (encounter !== null && typeof encounter === "object") {
+    let patched = encounter as Record<string, unknown>;
+    const combatants = patched.combatants;
     if (combatants !== null && typeof combatants === "object") {
       const defaulted = Object.fromEntries(
         Object.entries(combatants as Record<string, object>).map(([id, c]) => [
@@ -90,8 +105,12 @@ export function migrate(raw: unknown): Record<string, unknown> {
           withInitiativeModifierDefault(c),
         ]),
       );
-      payload.encounter = { ...(encounter as object), combatants: defaulted };
+      patched = { ...patched, combatants: defaulted };
     }
+    if (Array.isArray(patched.entries)) {
+      patched = { ...patched, entries: (patched.entries as object[]).map(withDelayDefaults) };
+    }
+    payload.encounter = patched;
   }
 
   return payload;

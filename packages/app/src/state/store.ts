@@ -133,6 +133,92 @@ function dealDamage(c: Combatant, amount: number, damageType?: string): void {
   if (c.hp.current === 0) c.defeated = true;
 }
 
+/**
+ * Fires the end-of-turn condition hooks for every combatant in `entry` and
+ * lands any persistent damage. Pulled out of `nextTurn` because Delay is the
+ * second caller: RAW, "any persistent damage or other negative effects that
+ * normally occur at the start or end of your turn occur immediately when you
+ * use the Delay action" — which is precisely what stops Delay being a free
+ * way to skip a turn of persistent damage. Sharing the function (rather than
+ * having `delay` call `nextTurn`) is also what keeps the hooks firing
+ * *once*: `delay` runs this itself and then advances with `advanceTurn`,
+ * which never runs it.
+ */
+function endTurnEffects(enc: Encounter, entry: Entry): void {
+  for (const cid of entry.combatantIds) {
+    const c = enc.combatants[cid];
+    if (!c) continue;
+    const { conditions, persistentDamage } = applyEndOfTurn(c.conditions);
+    c.conditions = conditions;
+    // Persistent damage carries no damage type (see AppliedCondition.formula's
+    // own comment), so it goes through dealDamage exactly as an untyped
+    // ("none") hit would — IWR is deliberately not applied, same as
+    // applyDamage's own default.
+    if (persistentDamage > 0) dealDamage(c, persistentDamage);
+  }
+}
+
+/**
+ * Moves the turn pointer to the next entry, wrapping the round, and resets
+ * the incoming combatants' per-turn counters. Deliberately does *not* fire
+ * end-of-turn hooks: both callers (`nextTurn` and `delay`) have already
+ * settled the outgoing turn their own way before calling this.
+ */
+function advanceTurn(enc: Encounter): void {
+  let nextIndex = enc.activeEntryIndex + 1;
+  if (nextIndex >= enc.entries.length) {
+    nextIndex = 0;
+    enc.round += 1;
+
+    // The round just wrapped — restore the true typed initiative for any
+    // entry that was only acting this round early (see
+    // Entry.trueInitiative), then re-sort. Index 0 of the freshly sorted
+    // order is exactly who should lead the new round, so there's no identity
+    // to preserve here (unlike addCombatant/group, which insert mid-round
+    // and must not steal the turn from whoever the GM is already resolving).
+    if (enc.entries.some((e) => e.trueInitiative !== null)) {
+      for (const e of enc.entries) {
+        if (e.trueInitiative !== null) {
+          e.initiative = e.trueInitiative;
+          e.orderKey = e.trueInitiative;
+          e.trueInitiative = null;
+        }
+      }
+      sortEntries(enc.entries);
+    }
+  }
+  enc.activeEntryIndex = nextIndex;
+
+  const active = enc.entries[nextIndex];
+  if (!active) return;
+
+  // Arriving back at a delayed entry's own slot is what "Delay an entire
+  // round without returning" means — the order has come all the way round to
+  // where it left. Note this is measured from the delayer's slot back to
+  // that same slot, NOT from the round counter ticking over: an entry that
+  // delays from the middle of the order is still legitimately delaying while
+  // the round counter increments and the entries above it take their round-2
+  // turns. RAW then says the delayed turn's actions are lost and "your
+  // initiative doesn't change" — so there is nothing to restore (Delay never
+  // moved `initiative` or `orderKey` in the first place; only returning
+  // does), and this entry simply takes an ordinary turn here and now. The
+  // lost actions are lost by never having been made available, which is why
+  // actionsSpent is reset below exactly as for any other incoming turn.
+  if (active.delayed) active.delayed = false;
+
+  for (const cid of active.combatantIds) {
+    const c = enc.combatants[cid];
+    if (c) {
+      c.strikesMade = 0;
+      c.actionsSpent = 0;
+      c.reactionSpent = false;
+    }
+  }
+  enc.acknowledgedPrompts = enc.acknowledgedPrompts.filter(
+    (pid) => !active.combatantIds.some((cid) => pid.startsWith(`${cid}:`)),
+  );
+}
+
 /** Entries stay sorted by `orderKey` descending; Array#sort is stable, and
  * new entries are always appended before sorting, so ties preserve
  * insertion order. An entry with no initiative rolled yet is placed above
@@ -169,6 +255,13 @@ interface EncounterStore {
   setReactionSpent(id: string, spent: boolean): void;
   setTarget(id: string | null): void;
   nextTurn(): void;
+  /** Delay (Player Core p. 416) for the entry whose turn it currently is:
+   * fires its end-of-turn effects immediately and hands the turn on, leaving
+   * the entry parked in place with no position in the order. */
+  delay(entryId: string): void;
+  /** Returns a delayed entry to the order directly behind the creature
+   * currently acting, permanently rewriting its initiative to match. */
+  returnFromDelay(entryId: string): void;
   acknowledgePrompt(promptId: string): void;
   group(ids: string[], name: string, initiative: number | null): void;
   setPlayers(players: Player[]): void;
@@ -208,6 +301,8 @@ export const useEncounter = create<EncounterStore>()(
           combatantIds: [id],
           groupName: null,
           trueInitiative: trueInitiative ?? null,
+          delayed: false,
+          initiativeBeforeDelay: null,
         });
         sortEntries(enc.entries);
         if (activeEntryId !== null) {
@@ -234,6 +329,8 @@ export const useEncounter = create<EncounterStore>()(
             combatantIds: [id],
             groupName: null,
             trueInitiative: trueInitiative ?? null,
+            delayed: false,
+            initiativeBeforeDelay: null,
           });
         }
         sortEntries(enc.entries);
@@ -316,8 +413,11 @@ export const useEncounter = create<EncounterStore>()(
         // overwrote it with.
         entry.orderKey = initiative;
         // An explicit GM edit is authoritative — it overrides any pending
-        // "acts this round instead" restoration.
+        // "acts this round instead" restoration, and retires the record of
+        // what a Delay return replaced, which now describes a number the GM
+        // has overwritten by hand.
         entry.trueInitiative = null;
+        entry.initiativeBeforeDelay = null;
         sortEntries(enc.entries);
         if (activeEntryId !== null) {
           const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
@@ -396,63 +496,89 @@ export const useEncounter = create<EncounterStore>()(
         if (unrolledCount(enc) > 0) return;
 
         // Fire end-of-turn condition hooks for the entry whose turn is
-        // ENDING — the one still active, before the index below moves off
-        // it — not the entry about to become active. This is the first
-        // caller of applyEndOfTurn; Task 8 (Delay) is the second, calling it
-        // immediately instead of waiting for nextTurn.
+        // ENDING — the one still active, before advanceTurn moves off it —
+        // not the entry about to become active.
         const endingEntry = enc.entries[enc.activeEntryIndex];
-        if (endingEntry) {
-          for (const cid of endingEntry.combatantIds) {
-            const c = enc.combatants[cid];
-            if (!c) continue;
-            const { conditions, persistentDamage } = applyEndOfTurn(c.conditions);
-            c.conditions = conditions;
-            // Persistent damage carries no damage type (see
-            // AppliedCondition.formula's own comment), so it goes through
-            // dealDamage exactly as an untyped ("none") hit would — IWR is
-            // deliberately not applied, same as applyDamage's own default.
-            if (persistentDamage > 0) dealDamage(c, persistentDamage);
-          }
-        }
+        if (endingEntry) endTurnEffects(enc, endingEntry);
 
-        let nextIndex = enc.activeEntryIndex + 1;
-        if (nextIndex >= enc.entries.length) {
-          nextIndex = 0;
-          enc.round += 1;
+        advanceTurn(enc);
+      }),
 
-          // The round just wrapped — restore the true typed initiative for
-          // any entry that was only acting this round early (see
-          // Entry.trueInitiative), then re-sort. Index 0 of the freshly
-          // sorted order is exactly who should lead the new round, so
-          // there's no identity to preserve here (unlike addCombatant/
-          // group, which insert mid-round and must not steal the turn from
-          // whoever the GM is already resolving).
-          if (enc.entries.some((e) => e.trueInitiative !== null)) {
-            for (const e of enc.entries) {
-              if (e.trueInitiative !== null) {
-                e.initiative = e.trueInitiative;
-                e.orderKey = e.trueInitiative;
-                e.trueInitiative = null;
-              }
-            }
-            sortEntries(enc.entries);
-          }
-        }
-        enc.activeEntryIndex = nextIndex;
+    delay: (entryId) =>
+      set((state) => {
+        const enc = state.encounter;
+        // Delaying advances the turn, so it inherits nextTurn's refusal to
+        // move while anyone is unrolled — the GM sees UnrolledNotice either
+        // way, and Delay must not be a back door around that guard.
+        if (unrolledCount(enc) > 0) return;
+        // RAW trigger: "Your turn begins." Only the entry whose turn it
+        // actually is can Delay, so this resolves the active entry and
+        // checks the caller meant that one, rather than trusting the id.
+        const entry = enc.entries[enc.activeEntryIndex];
+        if (!entry || entry.id !== entryId || entry.delayed) return;
 
-        const active = enc.entries[nextIndex];
-        if (!active) return;
-        for (const cid of active.combatantIds) {
-          const c = enc.combatants[cid];
-          if (c) {
-            c.strikesMade = 0;
-            c.actionsSpent = 0;
-            c.reactionSpent = false;
-          }
-        }
-        enc.acknowledgedPrompts = enc.acknowledgedPrompts.filter(
-          (pid) => !active.combatantIds.some((cid) => pid.startsWith(`${cid}:`)),
-        );
+        endTurnEffects(enc, entry);
+        // Nothing about the entry's position changes here. It keeps its
+        // initiative and orderKey (and so its place in the list) until it
+        // either returns — which rewrites both — or the order comes back
+        // round to this slot and the delayed turn is simply lost.
+        entry.delayed = true;
+        advanceTurn(enc);
+      }),
+
+    returnFromDelay: (entryId) =>
+      set((state) => {
+        const enc = state.encounter;
+        const entry = enc.entries.find((e) => e.id === entryId);
+        if (!entry || !entry.delayed) return;
+
+        // RAW: you return "triggered by the end of any other creature's
+        // turn". The creature the GM is resolving right now is that other
+        // creature, so the returning entry slots in directly behind it —
+        // which is also the only placement the GM can express with one
+        // click, at the moment they'd say it out loud at the table.
+        const activeIndex = enc.activeEntryIndex;
+        const active = enc.entries[activeIndex];
+        // An unrolled active entry has no initiative to inherit; copying its
+        // null would make the returning entry unrolled too and freeze the
+        // whole turn order. Only reachable by adding a combatant with no
+        // roll while someone is delayed, and the same condition disables the
+        // Return button (see TurnManager).
+        if (!active || active.id === entryId || active.initiative === null) return;
+
+        // The entry immediately below the active one in the order, skipping
+        // the returning entry itself — it is still parked at its pre-delay
+        // key and is about to move.
+        const belowIndex = enc.entries.findIndex((e, i) => i > activeIndex && e.id !== entryId);
+        const activeKey = keyOf(active);
+        // Halfway between the two neighbours, or a whole step below the
+        // active entry when it is last in the order and there is no lower
+        // neighbour to split the difference with.
+        const belowKey = belowIndex >= 0 ? keyOf(enc.entries[belowIndex]!) : activeKey - 2;
+        const newKey = (activeKey + belowKey) / 2;
+
+        entry.initiativeBeforeDelay = entry.initiative;
+        entry.initiative = active.initiative;
+        entry.orderKey = newKey;
+        entry.delayed = false;
+
+        // Splicing the entry into place *and* setting orderKey looks
+        // redundant, and for distinct initiatives it is — but tied ones are
+        // the norm here (addMany gives every member of a batch the same
+        // roll), and then the midpoint above equals both neighbours' key.
+        // sortEntries is stable, so with a tie it is this array position,
+        // not the number, that decides who acts first.
+        const from = enc.entries.findIndex((e) => e.id === entryId);
+        const [moved] = enc.entries.splice(from, 1);
+        const behindActive = enc.entries.findIndex((e) => e.id === active.id) + 1;
+        enc.entries.splice(behindActive, 0, moved!);
+
+        // Same identity-not-position rule as addCombatant/group: the GM is
+        // mid-turn with the active creature, and a re-sort must not hand the
+        // turn to whoever now sits at the old index.
+        sortEntries(enc.entries);
+        const idx = enc.entries.findIndex((e) => e.id === active.id);
+        enc.activeEntryIndex = idx >= 0 ? idx : 0;
       }),
 
     acknowledgePrompt: (promptId) =>
@@ -491,6 +617,8 @@ export const useEncounter = create<EncounterStore>()(
           combatantIds: [...ids],
           groupName: name,
           trueInitiative: null,
+          delayed: false,
+          initiativeBeforeDelay: null,
         });
         sortEntries(remaining);
         enc.entries = remaining;

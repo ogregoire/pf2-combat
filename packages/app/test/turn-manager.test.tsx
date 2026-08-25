@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { CombatantList } from "../src/components/CombatantList.js";
 import { TurnManager } from "../src/components/TurnManager.js";
 import { useEncounter } from "../src/state/store.js";
 
@@ -335,5 +336,237 @@ describe("TurnManager", () => {
     expect(enc.combatants).toEqual({});
     expect(enc.round).toBe(1);
     expect(useEncounter.getState().players).toHaveLength(1);
+  });
+});
+
+/**
+ * Delay (Player Core p. 416), rules as written:
+ *
+ *   "You can return to the initiative order as a free action triggered by
+ *   the end of any other creature's turn. This permanently changes your
+ *   initiative to the new position. If you Delay an entire round without
+ *   returning to the initiative order, the actions from the Delayed turn
+ *   are lost, your initiative doesn't change, and your next turn occurs at
+ *   your original position. You can't use reactions until you return to the
+ *   initiative order. When you Delay, any persistent damage or other
+ *   negative effects that normally occur at the start or end of your turn
+ *   occur immediately when you use the Delay action."
+ *
+ * Three consequences these tests pin down, because each is a place the
+ * implementation could plausibly do the opposite: the returning entry's
+ * initiative is *rewritten* (the old one survives only as a display record,
+ * it is not restored later); the "entire round" that expires a Delay is
+ * measured from the delayer's own slot back round to that same slot, not
+ * from the round counter ticking over; and the end-of-turn effects fire on
+ * Delay itself, exactly once, which is what stops Delay being a free way to
+ * skip a turn of persistent damage.
+ */
+describe("Delay", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  const entryIdOf = (name: string): string => {
+    const enc = useEncounter.getState().encounter;
+    return enc.entries.find((e) => e.combatantIds.some((id) => enc.combatants[id]!.name === name))!.id;
+  };
+  const entryOf = (entryId: string) =>
+    useEncounter.getState().encounter.entries.find((e) => e.id === entryId)!;
+  const order = (): string[] => {
+    const enc = useEncounter.getState().encounter;
+    return enc.entries.map((e) => enc.combatants[e.combatantIds[0]!]!.name);
+  };
+  const activeName = (): string => {
+    const enc = useEncounter.getState().encounter;
+    return enc.combatants[enc.entries[enc.activeEntryIndex]!.combatantIds[0]!]!.name;
+  };
+
+  it("places a returning combatant immediately after whoever just acted, and rewrites its initiative", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha);
+    expect(entryOf(alpha).delayed).toBe(true);
+    expect(activeName()).toBe("Beta"); // Delaying hands the turn on immediately
+
+    useEncounter.getState().nextTurn(); // Beta's turn ends; Gamma is the one acting now
+    useEncounter.getState().returnFromDelay(alpha);
+
+    expect(order()).toEqual(["Beta", "Gamma", "Alpha"]);
+    // RAW: returning permanently changes initiative; the original is kept only for display.
+    const back = entryOf(alpha);
+    expect(back.initiative).toBe(10);
+    expect(back.initiativeBeforeDelay).toBe(20);
+    expect(back.delayed).toBe(false);
+    // The re-sort must not steal the turn from whoever the GM is resolving.
+    expect(activeName()).toBe("Gamma");
+  });
+
+  it("slots a returning combatant behind the acting one even when their initiatives tie", () => {
+    add("Alpha", 20);
+    add("Beta", 12);
+    add("Gamma", 12); // same initiative as Beta — addMany makes this the common case, not an edge one
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // Beta is up
+    useEncounter.getState().returnFromDelay(alpha);
+
+    expect(order()).toEqual(["Beta", "Alpha", "Gamma"]);
+    expect(entryOf(alpha).initiative).toBe(12);
+    expect(activeName()).toBe("Beta");
+  });
+
+  it("loses the turn and restores the original slot when a delayed round wraps", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha);
+    useEncounter.getState().nextTurn(); // round wraps back onto Alpha's own slot
+
+    // The Delay expired the moment the order came back round to Alpha: it
+    // takes a normal turn at its original position, and the actions it
+    // delayed are gone because they were never made available.
+    expect(useEncounter.getState().encounter.round).toBe(2);
+    expect(entryOf(alpha).delayed).toBe(false);
+    expect(activeName()).toBe("Alpha");
+
+    useEncounter.getState().nextTurn();
+
+    const back = entryOf(alpha);
+    expect(back.delayed).toBe(false);
+    expect(back.initiative).toBe(20);
+    expect(back.initiativeBeforeDelay).toBeNull();
+    expect(useEncounter.getState().encounter.entries[0]!.id).toBe(alpha);
+  });
+
+  it("keeps a mid-order Delay alive past the round counter, expiring it only at that combatant's own slot", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().nextTurn(); // Alpha acts; Beta is up
+    const beta = entryIdOf("Beta");
+
+    useEncounter.getState().delay(beta); // Gamma is up
+    useEncounter.getState().nextTurn(); // round wraps; Alpha leads round 2
+
+    // A round has *not* elapsed for Beta yet — only two turns have. Expiring
+    // on the round counter here would cut the Delay short by most of a round
+    // and silently hand Beta its reactions back.
+    expect(useEncounter.getState().encounter.round).toBe(2);
+    expect(activeName()).toBe("Alpha");
+    expect(entryOf(beta).delayed).toBe(true);
+
+    useEncounter.getState().nextTurn(); // Alpha's round-2 turn ends: Beta's own slot, one full round on
+
+    expect(entryOf(beta).delayed).toBe(false);
+    expect(activeName()).toBe("Beta");
+  });
+
+  it("fires end-of-turn effects the moment you Delay, exactly once, so Delaying can't dodge persistent damage", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 10);
+    useEncounter.getState().addCondition(id, "frightened", 2);
+    useEncounter.getState().addCondition(id, "persistent-damage", 0, "1d6");
+    const hpBefore = useEncounter.getState().encounter.combatants[id]!.hp!.current;
+
+    useEncounter.getState().delay(entryIdOf("Alpha"));
+
+    const combatant = useEncounter.getState().encounter.combatants[id]!;
+    // 1, not 0: Delay advances the turn, and the advance must not re-run the
+    // hooks Delay has already run (the same double-fire that shipped once
+    // already between prompt acknowledgement and Next).
+    expect(combatant.conditions.find((c) => c.slug === "frightened")!.value).toBe(1);
+    // Bounded rather than exact — a real 1d6 through the store's own wiring
+    // (Math.random, no injected rng, same as the Next-button test above).
+    const lost = hpBefore - combatant.hp!.current;
+    expect(lost).toBeGreaterThanOrEqual(1);
+    expect(lost).toBeLessThanOrEqual(6);
+  });
+
+  it("refuses to Delay while a combatant has no initiative, since Delaying advances the turn", () => {
+    add("Alpha", 20);
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Beta", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      null,
+    );
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha);
+
+    expect(entryOf(alpha).delayed).toBe(false);
+  });
+
+  it("locks a delayed combatant's reactions until it returns", () => {
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Akiros Ismort", level: 3, ac: 18,
+        saves: { fortitude: 10, reflex: 8, will: 6 }, hp: { current: 53, max: 53 },
+        reactions: [{ name: "No Escape", trigger: "An adjacent foe moves away." }] },
+      20,
+    );
+    add("Beta", 10);
+    render(<TurnManager />);
+    expect(screen.getByText("1 ready")).toBeDefined();
+
+    act(() => useEncounter.getState().delay(entryIdOf("Akiros Ismort")));
+
+    // RAW: "You can't use reactions until you return to the initiative order."
+    expect(screen.getByText("0 ready")).toBeDefined();
+
+    act(() => useEncounter.getState().returnFromDelay(entryIdOf("Akiros Ismort")));
+
+    expect(screen.getByText("1 ready")).toBeDefined();
+  });
+
+  it("delays and returns through the turn panel's own buttons", async () => {
+    const user = userEvent.setup();
+    add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    render(<TurnManager />);
+
+    await user.click(screen.getByRole("button", { name: /^delay$/i }));
+    expect(entryOf(entryIdOf("Alpha")).delayed).toBe(true);
+    expect(activeName()).toBe("Beta");
+
+    await user.click(screen.getByRole("button", { name: /next combatant/i })); // Gamma is up
+    await user.click(screen.getByRole("button", { name: /return alpha/i }));
+
+    expect(order()).toEqual(["Beta", "Gamma", "Alpha"]);
+    expect(entryOf(entryIdOf("Alpha")).delayed).toBe(false);
+  });
+
+  it("shows the pre-delay initiative struck through on the row", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    useEncounter.getState().delay(entryIdOf("Alpha"));
+
+    render(<CombatantList />);
+
+    // While delayed the combatant holds no position at all, so the row's own
+    // initiative is what reads as struck out.
+    expect(screen.getByText("20").style.textDecoration).toBe("line-through");
+  });
+
+  it("keeps the pre-delay initiative visible, struck through, after returning", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    const alpha = entryIdOf("Alpha");
+    useEncounter.getState().delay(alpha);
+    useEncounter.getState().nextTurn();
+    useEncounter.getState().returnFromDelay(alpha);
+
+    render(<CombatantList />);
+
+    // Now there are two numbers on Alpha's row: the live 10 it returned at
+    // and the struck-through 20 it left behind. This is the assertion that
+    // stops initiativeBeforeDelay being stored and never shown — the defect
+    // this codebase has shipped six times.
+    const parked = screen.getByText("20");
+    expect(parked.style.textDecoration).toBe("line-through");
+    expect(parked.style.fontSize).toBe("11px");
+    expect(screen.getAllByText("10")).toHaveLength(2); // Gamma's, and Alpha's new one
   });
 });

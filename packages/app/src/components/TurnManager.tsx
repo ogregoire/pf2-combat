@@ -1,6 +1,6 @@
 import { actionPool } from "../rules/actions.js";
 import { unrolledCount, useEncounter } from "../state/store.js";
-import type { Combatant } from "../state/types.js";
+import type { Combatant, Entry } from "../state/types.js";
 import { ActionPips } from "./ActionPips.js";
 import { ConfirmButton } from "./ConfirmButton.js";
 import { NextButton } from "./NextButton.js";
@@ -51,6 +51,84 @@ export function UnrolledNotice(): React.ReactElement | null {
     <span style={{ fontSize: "11.5px", color: "var(--danger)", textAlign: "center" }}>
       {unrolled} combatant{unrolled === 1 ? " has" : "s have"} no initiative
     </span>
+  );
+}
+
+/** Shared by the two small controls below and the Return button's label —
+ * an entry is a group or a lone combatant, and the GM knows it by whichever
+ * name is on its row. */
+function entryLabel(entry: Entry, combatants: Record<string, Combatant>): string {
+  return entry.groupName ?? combatants[entry.combatantIds[0] ?? ""]?.name ?? "Combatant";
+}
+
+/**
+ * Delay (Player Core p. 416) and its matching Return. Delay belongs beside
+ * Next because it is the other thing a GM does at the top of a turn, and
+ * because it *is* a turn advance — it hands play straight on.
+ *
+ * Return is per delayed entry rather than one button, since several
+ * creatures can be delayed at once and they return independently. Each is
+ * disabled unless there is some *other* entry currently acting for the
+ * return to be triggered by (RAW: "triggered by the end of any other
+ * creature's turn"), which is also the exact condition under which the store
+ * action would refuse.
+ *
+ * Rendered outside TurnManager's `showNextButton` gate on purpose: that flag
+ * exists because the narrow layout pins its own single Next button to the
+ * bottom of the screen, and that pinned bar carries Next only. Gating these
+ * on it as well would leave the narrow layout with no way to Delay at all.
+ */
+function DelayControls(): React.ReactElement | null {
+  const entries = useEncounter((s) => s.encounter.entries);
+  const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
+  const combatants = useEncounter((s) => s.encounter.combatants);
+  const delay = useEncounter((s) => s.delay);
+  const returnFromDelay = useEncounter((s) => s.returnFromDelay);
+
+  const activeEntry = entries[activeEntryIndex];
+  const delayedEntries = entries.filter((e) => e.delayed);
+  if (!activeEntry && delayedEntries.length === 0) return null;
+
+  const smallButton: React.CSSProperties = {
+    fontFamily: "inherit",
+    fontSize: "11.5px",
+    padding: "6px 10px",
+    borderRadius: "4px",
+    border: "1px solid var(--border)",
+    background: "var(--panel-raised)",
+    color: "var(--text)",
+    cursor: "pointer",
+  };
+
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", flexShrink: 0 }}>
+      {activeEntry && !activeEntry.delayed && (
+        <button type="button" onClick={() => delay(activeEntry.id)} style={smallButton}>
+          Delay
+        </button>
+      )}
+      {delayedEntries.map((entry) => {
+        const canReturn =
+          activeEntry !== undefined && activeEntry.id !== entry.id && activeEntry.initiative !== null;
+        return (
+          <button
+            key={entry.id}
+            type="button"
+            onClick={() => returnFromDelay(entry.id)}
+            disabled={!canReturn}
+            title={`Returns to the order just after ${activeEntry ? entryLabel(activeEntry, combatants) : "the current turn"}, permanently taking that initiative`}
+            style={{
+              ...smallButton,
+              background: canReturn ? "var(--accent-bg)" : "var(--panel-raised)",
+              color: canReturn ? "var(--accent-text)" : "var(--text-faint)",
+              cursor: canReturn ? "pointer" : "default",
+            }}
+          >
+            Return {entryLabel(entry, combatants)}
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
@@ -147,6 +225,8 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
           <UnrolledNotice />
         </>
       )}
+
+      <DelayControls />
 
       <ReactionWatch />
 
