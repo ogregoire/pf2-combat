@@ -1,5 +1,6 @@
 import type { BookCatalogEntry, Condition, GlossaryEntry, IndexEntry, Trait } from "@pf2/schema";
 import { compareStrings } from "../rules/compare.js";
+import { fold, namePart } from "../rules/fold.js";
 
 export type FetchFn = (url: string) => Promise<Response>;
 
@@ -62,8 +63,24 @@ export function resolveCollisions(entries: IndexEntry[]): IndexEntry[] {
   return [...bySlug.values()].sort((a, b) => compareStrings(a.id, b.id));
 }
 
+/**
+ * Substring search for the AddCombatants drawer. Both the query and every
+ * candidate name are folded (`fold.js`) before comparison, so an unaccented
+ * query finds an accented French name. A hit on the name's part before any
+ * parenthesised qualifier ranks ahead of a hit confined to the qualifier
+ * ("Jann (Génie)") — never `localeCompare`, same reasoning as `rankMatches`.
+ */
 export function searchCreatures(entries: IndexEntry[], query: string): IndexEntry[] {
-  const q = query.trim().toLowerCase();
-  const hits = q === "" ? [...entries] : entries.filter((e) => e.name.toLowerCase().includes(q));
-  return hits.sort((a, b) => compareStrings(a.name, b.name) || compareStrings(a.id, b.id));
+  const q = fold(query.trim());
+  const byName = (a: IndexEntry, b: IndexEntry): number => compareStrings(a.name, b.name) || compareStrings(a.id, b.id);
+  if (q === "") return [...entries].sort(byName);
+
+  const tiered: { entry: IndexEntry; tier: number }[] = [];
+  for (const entry of entries) {
+    if (fold(namePart(entry.name)).includes(q)) tiered.push({ entry, tier: 1 });
+    else if (fold(entry.name).includes(q)) tiered.push({ entry, tier: 2 });
+  }
+
+  tiered.sort((a, b) => a.tier - b.tier || byName(a.entry, b.entry));
+  return tiered.map((t) => t.entry);
 }

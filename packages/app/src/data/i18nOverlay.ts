@@ -1,4 +1,4 @@
-import type { Action, Attack, CreatureI18n } from "@pf2/schema";
+import type { Action, Attack, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { BASE, getJson, type FetchFn } from "./catalog.js";
 
 const defaultFetch: FetchFn = (url) => fetch(url);
@@ -38,6 +38,24 @@ export async function loadCreatureI18n(
 
 export function loadIndexI18n(pack: string, fetchFn: FetchFn = defaultFetch): Promise<IndexI18n> {
   return getJson<IndexI18n>(`i18n/fr/index/${pack}.json`, fetchFn);
+}
+
+/**
+ * Fetches and merges the index overlay for every pack referenced by
+ * `entries` (the segment of each id before its first "/"), so a catalog
+ * merged across multiple books — as AddCombatants/QuickAdd receive it — ends
+ * up with one `id -> French name` record covering all of them. A pack whose
+ * overlay fails to load (e.g. none exists) contributes nothing rather than
+ * failing the whole merge, the same "untranslated is normal" stance as
+ * `loadCreatureI18n`.
+ */
+export async function loadMergedIndexI18n(
+  entries: IndexEntry[],
+  loadIndexI18nFn: (pack: string) => Promise<IndexI18n> = loadIndexI18n,
+): Promise<IndexI18n> {
+  const packs = [...new Set(entries.map((e) => e.id.split("/")[0]!))];
+  const maps = await Promise.all(packs.map((pack) => loadIndexI18nFn(pack).catch(() => ({}) as IndexI18n)));
+  return Object.assign({}, ...maps);
 }
 
 export function loadConditionsI18n(fetchFn: FetchFn = defaultFetch): Promise<ReferenceI18n> {
@@ -94,5 +112,21 @@ export function resolveAttacks(attacks: Attack[], i18n: CreatureI18n | null, lan
     const fr = i18n.attacks[index];
     if (!fr) return attack;
     return { ...attack, name: pick(fr.name, attack.name) };
+  });
+}
+
+/**
+ * Applies a merged pack index overlay (`IndexI18n`, id -> French name) onto
+ * a list of catalog entries: the French name when `lang` is "fr" and the
+ * overlay has one for that id, the original name otherwise — the same rule
+ * as `resolveCreatureName`. Used to localise AddCombatants/QuickAdd's
+ * catalog before it reaches `rankMatches`/`searchCreatures`, so the GM
+ * searches — and sees — whichever language they're reading from.
+ */
+export function localizeEntries(entries: IndexEntry[], indexI18n: IndexI18n, lang: "en" | "fr"): IndexEntry[] {
+  if (lang !== "fr") return entries;
+  return entries.map((entry) => {
+    const fr = indexI18n[entry.id];
+    return fr === undefined ? entry : { ...entry, name: fr };
   });
 }

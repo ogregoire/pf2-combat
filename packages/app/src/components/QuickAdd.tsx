@@ -2,7 +2,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { resolveCollisions } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
-import { loadCreatureI18n } from "../data/i18nOverlay.js";
+import { loadCreatureI18n, loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { parseAddCommand } from "../rules/parseAddCommand.js";
 import { rankMatches } from "../rules/rankMatches.js";
@@ -91,16 +91,19 @@ export function QuickAdd({
   entries,
   loadCreatureFn = loadCreature,
   loadCreatureI18nFn = loadCreatureI18n,
+  loadIndexI18nFn = loadIndexI18n,
 }: {
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
   loadCreatureI18nFn?: (id: string) => Promise<CreatureI18n | null>;
+  loadIndexI18nFn?: (pack: string) => Promise<IndexI18n>;
 }): React.ReactElement {
   const t = useT();
   const [query, setQuery] = useState("");
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [dismissed, setDismissed] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [indexI18n, setIndexI18n] = useState<IndexI18n>({});
 
   const inputRef = useRef<HTMLInputElement>(null);
   const listboxId = useId();
@@ -108,9 +111,28 @@ export function QuickAdd({
   const addMany = useEncounter((s) => s.addMany);
   const lang = useEncounter((s) => s.lang);
 
+  // The catalog's own index files are English-only; the French names come
+  // from a per-pack overlay (see i18nOverlay.js) fetched and merged here,
+  // only when French is on — same rule as the per-creature overlay fetched
+  // in `commit` below.
+  useEffect(() => {
+    if (lang !== "fr") {
+      setIndexI18n({});
+      return;
+    }
+    let cancelled = false;
+    loadMergedIndexI18n(entries, loadIndexI18nFn).then((merged) => {
+      if (!cancelled) setIndexI18n(merged);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, entries, loadIndexI18nFn]);
+
   const resolved = useMemo(() => resolveCollisions(entries), [entries]);
+  const localized = useMemo(() => localizeEntries(resolved, indexI18n, lang), [resolved, indexI18n, lang]);
   const parsed = useMemo(() => parseAddCommand(query), [query]);
-  const matches = useMemo(() => rankMatches(resolved, parsed.nameQuery), [resolved, parsed.nameQuery]);
+  const matches = useMemo(() => rankMatches(localized, parsed.nameQuery), [localized, parsed.nameQuery]);
   const shown = matches.slice(0, DROPDOWN_CAP);
   const hiddenCount = matches.length - shown.length;
   const showDropdown = !dismissed && parsed.nameQuery.length >= MIN_QUERY_LENGTH && shown.length > 0;

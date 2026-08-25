@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { resolveCollisions, searchCreatures } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
-import { loadCreatureI18n } from "../data/i18nOverlay.js";
+import { loadCreatureI18n, loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
 import { format, useT } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
 import type { Iwr } from "../rules/damage.js";
@@ -103,10 +103,12 @@ export function AddCombatants({
   entries,
   loadCreatureFn = loadCreature,
   loadCreatureI18nFn = loadCreatureI18n,
+  loadIndexI18nFn = loadIndexI18n,
 }: {
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
   loadCreatureI18nFn?: (id: string) => Promise<CreatureI18n | null>;
+  loadIndexI18nFn?: (pack: string) => Promise<IndexI18n>;
 }): React.ReactElement {
   const t = useT();
   const [query, setQuery] = useState("");
@@ -117,6 +119,7 @@ export function AddCombatants({
   const [loadedCreature, setLoadedCreature] = useState<Creature | null>(null);
   const [loadedI18n, setLoadedI18n] = useState<CreatureI18n | null>(null);
   const [creatureLoading, setCreatureLoading] = useState(false);
+  const [indexI18n, setIndexI18n] = useState<IndexI18n>({});
 
   const round = useEncounter((s) => s.encounter.round);
   const encounterEntries = useEncounter((s) => s.encounter.entries);
@@ -125,11 +128,30 @@ export function AddCombatants({
   const addMany = useEncounter((s) => s.addMany);
   const lang = useEncounter((s) => s.lang);
 
+  // The catalog's own index files are English-only; the French names come
+  // from a per-pack overlay (see i18nOverlay.js) fetched and merged here,
+  // only when French is on — same rule as the per-creature overlay fetched
+  // in `select` below.
+  useEffect(() => {
+    if (lang !== "fr") {
+      setIndexI18n({});
+      return;
+    }
+    let cancelled = false;
+    loadMergedIndexI18n(entries, loadIndexI18nFn).then((merged) => {
+      if (!cancelled) setIndexI18n(merged);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, entries, loadIndexI18nFn]);
+
   const resolved = resolveCollisions(entries);
-  const results = searchCreatures(resolved, query);
+  const localized = localizeEntries(resolved, indexI18n, lang);
+  const results = searchCreatures(localized, query);
   const shownResults = results.slice(0, RESULT_CAP);
   const hiddenCount = results.length - shownResults.length;
-  const selected = resolved.find((e) => e.id === selectedId) ?? null;
+  const selected = localized.find((e) => e.id === selectedId) ?? null;
 
   const running = encounterEntries.length > 0;
   const activeEntry = running ? encounterEntries[activeEntryIndex] : undefined;
