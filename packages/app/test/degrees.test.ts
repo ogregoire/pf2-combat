@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { degreeOf, dieBands } from "../src/rules/degrees.js";
+import { degreeOf, degreeTotalRanges, dieBands } from "../src/rules/degrees.js";
 
 describe("degreeOf", () => {
   it("grades by margin against the DC", () => {
@@ -74,5 +74,46 @@ describe("dieBands", () => {
     expect(covered.sort((p, q) => p - q)).toEqual(
       Array.from({ length: 20 }, (_, i) => i + 1),
     );
+  });
+});
+
+describe("degreeTotalRanges", () => {
+  it("reports success as reachable only on a natural 20, and critical success as never (+2 vs DC 30)", () => {
+    // The highest reachable total is 22 (nat 20 + 2), below DC 30 — success
+    // only happens because a natural 20 raises a would-be failure one step.
+    // Critical success needs total >= 40, which no roll can ever reach, with
+    // or without the shift.
+    const r = degreeTotalRanges(2, 30);
+    expect(r).toEqual([
+      { degree: "critical-success", low: null, high: null },
+      { degree: "success", low: 22, high: 22 },
+      { degree: "failure", low: 21, high: 21 },
+      { degree: "critical-failure", low: 3, high: 20 },
+    ]);
+  });
+
+  it("reports the ordinary spread for the Stag Lord's longsword at +14 against AC 21", () => {
+    const r = degreeTotalRanges(14, 21);
+    expect(r).toEqual([
+      { degree: "critical-success", low: 31, high: 34 },
+      { degree: "success", low: 21, high: 30 },
+      { degree: "failure", low: 16, high: 20 },
+      { degree: "critical-failure", low: 15, high: 15 },
+    ]);
+  });
+
+  it("drops a would-be critical success to a plain success on a natural 1 (+50 vs DC 5)", () => {
+    // Every total from +50 crits arithmetically, but a natural 1 always
+    // drops one step, landing total 51 — numerically inside the critical
+    // band — as a plain success instead. Failure and critical failure are
+    // unreachable: nothing this modifier rolls can total low enough, even
+    // shifted.
+    const r = degreeTotalRanges(50, 5);
+    expect(r).toEqual([
+      { degree: "critical-success", low: 52, high: 70 },
+      { degree: "success", low: 51, high: 51 },
+      { degree: "failure", low: null, high: null },
+      { degree: "critical-failure", low: null, high: null },
+    ]);
   });
 });

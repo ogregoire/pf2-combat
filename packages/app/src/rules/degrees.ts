@@ -66,3 +66,36 @@ export function dieBands(modifier: number, dc: number): DieBands {
 
   return bands;
 }
+
+export interface DegreeTotalRange {
+  degree: Degree;
+  /** Lowest and highest `face + modifier` total any face produces for this
+   * degree (equal when only one face does), both null when no face reaches
+   * it at all. Converted straight from `dieBands`' face range — never
+   * recomputed from DC arithmetic — so a degree reachable only through the
+   * natural-1/natural-20 shift still gets the total that die roll actually
+   * produces, and a degree no face reaches (arithmetically or via the
+   * shift) is honestly reported as unreachable rather than printing a
+   * range, like "30+", that the roll can never produce. */
+  low: number | null;
+  high: number | null;
+}
+
+const OUTCOME_ORDER: Degree[] = [
+  "critical-success",
+  "success",
+  "failure",
+  "critical-failure",
+];
+
+export function degreeTotalRanges(modifier: number, dc: number): DegreeTotalRange[] {
+  const bands = dieBands(modifier, dc);
+  return OUTCOME_ORDER.map((degree) => {
+    const band = bands[degree];
+    return {
+      degree,
+      low: band === null ? null : band.from + modifier,
+      high: band === null ? null : band.to + modifier,
+    };
+  });
+}

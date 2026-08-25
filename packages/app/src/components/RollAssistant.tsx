@@ -1,5 +1,5 @@
 import type { Attack } from "@pf2/schema";
-import type { Degree } from "../rules/degrees.js";
+import { degreeTotalRanges, type Degree } from "../rules/degrees.js";
 import { resolveStrike } from "../rules/strike.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
@@ -9,16 +9,44 @@ function formatSigned(n: number): string {
 }
 
 const DEGREE_LABEL: Record<Degree, string> = {
-  "critical-success": "Critical hit",
-  success: "Hit",
-  failure: "Miss",
-  "critical-failure": "Critical miss",
+  "critical-success": "critical hit",
+  success: "hit",
+  failure: "miss",
+  "critical-failure": "critical miss",
 };
 
-function rangeLabel(from: number | null, to: number | null): string {
-  if (from === null || to === null) return "—";
-  if (from === to) return `nat ${from}`;
-  return `${from}–${to}`;
+/** A single endpoint of a total range, coloured when it's the exact total a
+ * natural 1 or natural 20 produces (`--danger`/`--ok`) — unconditionally,
+ * regardless of which degree that roll landed in, since the whole point of
+ * the natural-1/20 rule is that the shift can move it into a band its total
+ * wouldn't otherwise belong to. Plain text otherwise. */
+function Total({ value, natOne, natTwenty }: { value: number; natOne: number; natTwenty: number }): React.ReactElement {
+  const color = value === natTwenty ? "var(--ok)" : value === natOne ? "var(--danger)" : undefined;
+  return <span style={{ color }}>{value}</span>;
+}
+
+/** Renders one row's range cell: "—" when no face reaches the degree, a
+ * bare total when only one does, "low-high" otherwise — each endpoint
+ * coloured independently by `Total`. */
+function RangeCell({
+  low,
+  high,
+  natOne,
+  natTwenty,
+}: {
+  low: number | null;
+  high: number | null;
+  natOne: number;
+  natTwenty: number;
+}): React.ReactElement {
+  if (low === null || high === null) return <span>—</span>;
+  if (low === high) return <Total value={low} natOne={natOne} natTwenty={natTwenty} />;
+  return (
+    <span>
+      <Total value={low} natOne={natOne} natTwenty={natTwenty} />-
+      <Total value={high} natOne={natOne} natTwenty={natTwenty} />
+    </span>
+  );
 }
 
 const ORDINAL = ["first", "second", "third", "fourth", "fifth"];
@@ -138,22 +166,42 @@ export function RollAssistant({
                   <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>vs AC {resolution.effectiveAc}</span>
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginTop: "12px" }}>
-                  {resolution.outcomes.map((o) => (
-                    <div
-                      key={o.degree}
-                      data-testid={`outcome-${o.degree}`}
-                      style={{ display: "flex", alignItems: "center", gap: "12px", padding: "8px 11px", borderRadius: "3px", background: "var(--panel-raised)" }}
-                    >
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: "19px", fontWeight: 600, width: "66px" }}>
-                        {rangeLabel(o.dieFrom, o.dieTo)}
-                      </span>
-                      <span style={{ fontSize: "13px", fontWeight: 600, width: "108px" }}>{DEGREE_LABEL[o.degree]}</span>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>
-                        {o.damage ?? "no damage"}
-                      </span>
-                    </div>
-                  ))}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "108px 84px 1fr",
+                    alignItems: "center",
+                    columnGap: "12px",
+                    rowGap: "4px",
+                    marginTop: "12px",
+                  }}
+                >
+                  {(() => {
+                    const ranges = degreeTotalRanges(resolution.modifier, resolution.effectiveAc);
+                    const rangeByDegree = new Map(ranges.map((r) => [r.degree, r]));
+                    const natOne = 1 + resolution.modifier;
+                    const natTwenty = 20 + resolution.modifier;
+                    return resolution.outcomes.map((o) => {
+                      const r = rangeByDegree.get(o.degree)!;
+                      return (
+                        <div
+                          key={o.degree}
+                          data-testid={`outcome-${o.degree}`}
+                          style={{ display: "contents" }}
+                        >
+                          <span style={{ background: "var(--panel-raised)", fontSize: "13px", fontWeight: 600, padding: "8px 0 8px 11px" }}>
+                            {DEGREE_LABEL[o.degree]}
+                          </span>
+                          <span style={{ background: "var(--panel-raised)", fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, padding: "8px 0" }}>
+                            <RangeCell low={r.low} high={r.high} natOne={natOne} natTwenty={natTwenty} />
+                          </span>
+                          <span style={{ background: "var(--panel-raised)", fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)", padding: "8px 11px 8px 0" }}>
+                            {o.damage ?? "no damage"}
+                          </span>
+                        </div>
+                      );
+                    });
+                  })()}
                 </div>
 
                 <button
