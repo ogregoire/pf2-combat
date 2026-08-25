@@ -33,6 +33,22 @@ describe("TurnManager", () => {
     expect(screen.getByTestId("strikes-this-turn").textContent).toContain("1");
   });
 
+  it("resets a miscounted strike through its own button, the only UI entry point resetStrikes has left", async () => {
+    const user = userEvent.setup();
+    const id = add("a", 20);
+    act(() => {
+      useEncounter.getState().recordStrike(id);
+      useEncounter.getState().recordStrike(id);
+    });
+    render(<TurnManager />);
+    expect(screen.getByTestId("strikes-this-turn").textContent).toContain("2");
+
+    await user.click(screen.getByRole("button", { name: /reset strikes this turn/i }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.strikesMade).toBe(0);
+    expect(screen.getByTestId("strikes-this-turn").textContent).toContain("0");
+  });
+
   it("reduces the pips when the active combatant is slowed", () => {
     const id = add("a", 20);
     useEncounter.getState().addCondition(id, "slowed", 1);

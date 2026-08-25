@@ -65,6 +65,7 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const combatants = useEncounter((s) => s.encounter.combatants);
   const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
+  const resetStrikes = useEncounter((s) => s.resetStrikes);
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const unacknowledgedCount = combatant ? unacknowledgedCountFor(combatant, acknowledgedPrompts) : 0;
@@ -81,17 +82,37 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
       {combatant && <ActionPips combatant={combatant} />}
 
       {/* Turn-economy state belongs together with the action pips, not
-         buried in the actions list (see ActionList.tsx's own "STRIKES THIS
-         TURN" chip, which this doesn't replace — that file is owned by a
-         concurrent rework this branch must not touch, see the report). */}
+         buried in the actions list. The reset control lives here too — the
+         old ActionList.tsx chip that carried it is gone, so this is now
+         resetStrikes' only UI entry point; the GM needs it the moment a
+         miscounted Strike would otherwise keep feeding the wrong MAP rung
+         to the roll assistant. Small and secondary (a correction, not a
+         primary action), never bigger than the count itself. */}
       {combatant && (
-        <div style={{ textAlign: "center" }} data-testid="strikes-this-turn">
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }} data-testid="strikes-this-turn">
           <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>
             STRIKES THIS TURN
-          </span>{" "}
+          </span>
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600 }}>
             {combatant.strikesMade}
           </span>
+          <button
+            type="button"
+            aria-label="Reset strikes this turn"
+            onClick={() => resetStrikes(combatant.id)}
+            style={{
+              fontFamily: "inherit",
+              fontSize: "10px",
+              padding: "1px 6px",
+              borderRadius: "3px",
+              border: "1px solid var(--border)",
+              background: "var(--panel-raised)",
+              color: "var(--text-faint)",
+              cursor: "pointer",
+            }}
+          >
+            reset
+          </button>
         </div>
       )}
 
