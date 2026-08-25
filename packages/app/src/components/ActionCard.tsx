@@ -10,7 +10,7 @@ export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement
     return (
       <div style={{ display: "flex", gap: "3px" }}>
         {Array.from({ length: count }, (_, i) => (
-          <svg key={i} width="11" height="11" viewBox="0 0 12 12">
+          <svg key={i} data-testid="cost-pip" width="11" height="11" viewBox="0 0 12 12">
             <path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="var(--accent-text)" />
           </svg>
         ))}

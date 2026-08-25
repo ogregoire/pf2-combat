@@ -4,8 +4,52 @@ import { useEncounter } from "../state/store.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { compareStrings } from "../rules/compare.js";
+import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
 
 const CONDITION_OPTIONS = Object.values(CONDITIONS).sort((a, b) => compareStrings(a.name, b.name));
+
+/**
+ * One chip in the damage-type row. Each carries its own type's colour and
+ * glyph (see damageTypes.tsx) rather than a shared grey, so the GM picks the
+ * type by shape and hue instead of reading eight near-identical words.
+ */
+function DamageTypeButton({
+  type,
+  selected,
+  onSelect,
+  children,
+}: {
+  type: string;
+  selected: boolean;
+  onSelect: () => void;
+  children: React.ReactNode;
+}): React.ReactElement {
+  const style = damageTypeStyle(type);
+  return (
+    <button
+      type="button"
+      aria-pressed={selected}
+      onClick={onSelect}
+      style={{
+        fontFamily: "inherit",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "5px",
+        fontSize: "11.5px",
+        fontWeight: selected ? 600 : 400,
+        padding: "8px 10px", // bumped for a comfortable tap target on narrow screens
+        borderRadius: "3px",
+        cursor: "pointer",
+        background: selected ? style.activeBg : "var(--bg)",
+        border: `1px solid ${selected ? style.activeBorder : style.border}`,
+        color: style.color,
+      }}
+    >
+      <DamageTypeIcon type={type} />
+      {children}
+    </button>
+  );
+}
 
 /** Last damage/heal applied to this combatant, shown beside the HP line
  * until the next apply or the popover closes (component-local state, so
@@ -321,44 +365,23 @@ export function RowPopover({
             Damage type — {relevant.length} relevant
           </div>
           <div role="group" aria-label="damage type" style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
-            <button
-              type="button"
-              aria-pressed={damageType === "none"}
-              onClick={() => setDamageType("none")}
-              style={{
-                fontFamily: "inherit",
-                fontSize: "11.5px",
-                fontWeight: 600,
-                padding: "8px 10px", // bumped for a comfortable tap target on narrow screens
-                borderRadius: "3px",
-                cursor: "pointer",
-                background: damageType === "none" ? "oklch(0.38 0.03 60)" : "var(--bg)",
-                border: `1px solid ${damageType === "none" ? "oklch(0.56 0.05 60)" : "var(--border)"}`,
-                color: "var(--text)",
-              }}
+            <DamageTypeButton
+              type="none"
+              selected={damageType === "none"}
+              onSelect={() => setDamageType("none")}
             >
               None
-            </button>
+            </DamageTypeButton>
             {relevant.map((r) => (
-              <button
+              <DamageTypeButton
                 key={r.type}
-                type="button"
-                aria-pressed={damageType === r.type}
-                onClick={() => setDamageType(r.type)}
-                style={{
-                  fontFamily: "inherit",
-                  fontSize: "11.5px",
-                  padding: "8px 10px", // bumped for a comfortable tap target on narrow screens
-                  borderRadius: "3px",
-                  cursor: "pointer",
-                  background: damageType === r.type ? "oklch(0.30 0.03 60)" : "var(--bg)",
-                  border: `1px solid ${damageType === r.type ? "oklch(0.56 0.05 60)" : "var(--border)"}`,
-                  color: "var(--text-dim)",
-                }}
+                type={r.type}
+                selected={damageType === r.type}
+                onSelect={() => setDamageType(r.type)}
               >
                 {r.type}{" "}
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", opacity: 0.85 }}>{r.label}</span>
-              </button>
+              </DamageTypeButton>
             ))}
           </div>
         </div>

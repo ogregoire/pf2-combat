@@ -189,9 +189,11 @@ describe("ActionList — Strikes merged into the action list", () => {
     expect(chargeIdx).toBeGreaterThanOrEqual(0);
     expect(clawIdx).toBeGreaterThan(chargeIdx);
 
-    // The Strike shows exactly one cost-pip diamond, same as any 1-action card.
+    // The Strike shows exactly one cost-pip diamond, same as any 1-action
+    // card. Keyed on the pip's own testid rather than every <svg> in the row,
+    // since a Strike also carries a glyph per damage type.
     const clawButton = screen.getByRole("button", { name: /Claw/ });
-    expect(clawButton.querySelectorAll("svg").length).toBe(1);
+    expect(clawButton.querySelectorAll('[data-testid="cost-pip"]').length).toBe(1);
   });
 
   it("nests Rend under Claw with Requirements/Effect visible without expanding, matching forest-troll", () => {
