@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { resolveAttacks } from "../data/i18nOverlay.js";
 import { useEncounter } from "../state/store.js";
 import type { FetchFn } from "../data/catalog.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
@@ -19,6 +20,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const combatants = useEncounter((s) => s.encounter.combatants);
   const targetId = useEncounter((s) => s.encounter.targetId);
+  const lang = useEncounter((s) => s.lang);
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const [selectedAttackIndex, setSelectedAttackIndex] = useState<number | null>(null);
@@ -26,7 +28,11 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
   if (!combatant) return null;
 
   const target = targetId !== null ? combatants[targetId] : undefined;
-  const attack = selectedAttackIndex !== null ? combatant.attacks[selectedAttackIndex] : undefined;
+  // Resolved to French so the roll assistant's own Strike name (picked by
+  // index, not by identity, from the same list ActionList/StrikeCard
+  // render) never falls back to English on its own.
+  const attacks = resolveAttacks(combatant.attacks, combatant.i18n, lang);
+  const attack = selectedAttackIndex !== null ? attacks[selectedAttackIndex] : undefined;
 
   return (
     <div style={{ display: "flex", flexGrow: 1, minWidth: 0, minHeight: 0 }}>

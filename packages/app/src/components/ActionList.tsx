@@ -1,4 +1,5 @@
 import type { Action } from "@pf2/schema";
+import { resolveActions, resolveAttacks } from "../data/i18nOverlay.js";
 import { useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
@@ -43,6 +44,7 @@ export function ActionList({
   fetchFn?: FetchFn;
 }): React.ReactElement | null {
   const spendActions = useEncounter((s) => s.spendActions);
+  const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary(fetchFn);
   const t = useT();
 
@@ -55,7 +57,15 @@ export function ActionList({
   const remaining = Math.max(0, pool.total - combatant.actionsSpent);
   const activeRung = Math.min(combatant.strikesMade, 2);
 
-  const items = buildActionList(combatant.actions, combatant.attacks);
+  // Resolved to French (by array position against the creature's overlay,
+  // never by name) before the pure, language-agnostic layout code below
+  // ever sees them — buildActionList's own Rend-detection reads the
+  // description text, and the overlay keeps that signal intact in French
+  // (Rend's translated description still opens by naming the translated
+  // Claw attack).
+  const actions = resolveActions(combatant.actions, combatant.i18n, lang);
+  const attacks = resolveAttacks(combatant.attacks, combatant.i18n, lang);
+  const items = buildActionList(actions, attacks);
   const activatable = items.filter((i) => i.kind === "strike" || i.action.cost !== "passive");
   const passives = items.filter((i) => i.kind === "action" && i.action.cost === "passive");
 

@@ -1,4 +1,4 @@
-import type { CreatureI18n } from "@pf2/schema";
+import type { Action, Attack, CreatureI18n } from "@pf2/schema";
 import { BASE, getJson, type FetchFn } from "./catalog.js";
 
 const defaultFetch: FetchFn = (url) => fetch(url);
@@ -55,4 +55,47 @@ export function loadTraitsI18n(fetchFn: FetchFn = defaultFetch): Promise<TraitsI
 /** French if present, English otherwise. The ONLY place this rule lives. */
 export function pick<T>(fr: T | null | undefined, en: T): T {
   return fr ?? en;
+}
+
+/**
+ * A creature's display name for the given `lang`: French when `i18n` was
+ * fetched (its `name` is never null in `CreatureI18n`), English otherwise —
+ * whether that's because `i18n` is `null` (no overlay, or added while
+ * `lang` was "en") or because `lang` itself is "en". `fallback` is true
+ * only in the former case (French is on, but there's no French name to
+ * show), so a caller can mark that the name on screen is English.
+ */
+export function resolveCreatureName(
+  name: string,
+  i18n: CreatureI18n | null,
+  lang: "en" | "fr",
+): { name: string; fallback: boolean } {
+  if (lang !== "fr") return { name, fallback: false };
+  if (i18n) return { name: i18n.name, fallback: false };
+  return { name, fallback: true };
+}
+
+/**
+ * `actions`/`attacks` with their `name`/`description` resolved to French by
+ * array position against `i18n.actions`/`i18n.attacks` (Task 6's alignment
+ * guarantee) — never by name, since two Strikes can share one. A no-op
+ * outside French or without an overlay, so callers can pass the result
+ * straight to the pure layout code in `rules/actionLayout.js` unconditionally.
+ */
+export function resolveActions(actions: Action[], i18n: CreatureI18n | null, lang: "en" | "fr"): Action[] {
+  if (lang !== "fr" || !i18n) return actions;
+  return actions.map((action, index) => {
+    const fr = i18n.actions[index];
+    if (!fr) return action;
+    return { ...action, name: pick(fr.name, action.name), description: pick(fr.description, action.description) };
+  });
+}
+
+export function resolveAttacks(attacks: Attack[], i18n: CreatureI18n | null, lang: "en" | "fr"): Attack[] {
+  if (lang !== "fr" || !i18n) return attacks;
+  return attacks.map((attack, index) => {
+    const fr = i18n.attacks[index];
+    if (!fr) return attack;
+    return { ...attack, name: pick(fr.name, attack.name) };
+  });
 }

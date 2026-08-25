@@ -1,7 +1,8 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import type { Creature, IndexEntry } from "@pf2/schema";
+import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { resolveCollisions } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
+import { loadCreatureI18n } from "../data/i18nOverlay.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { parseAddCommand } from "../rules/parseAddCommand.js";
 import { rankMatches } from "../rules/rankMatches.js";
@@ -89,9 +90,11 @@ function addedMessage(
 export function QuickAdd({
   entries,
   loadCreatureFn = loadCreature,
+  loadCreatureI18nFn = loadCreatureI18n,
 }: {
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
+  loadCreatureI18nFn?: (id: string) => Promise<CreatureI18n | null>;
 }): React.ReactElement {
   const t = useT();
   const [query, setQuery] = useState("");
@@ -103,6 +106,7 @@ export function QuickAdd({
   const listboxId = useId();
   const addCombatant = useEncounter((s) => s.addCombatant);
   const addMany = useEncounter((s) => s.addMany);
+  const lang = useEncounter((s) => s.lang);
 
   const resolved = useMemo(() => resolveCollisions(entries), [entries]);
   const parsed = useMemo(() => parseAddCommand(query), [query]);
@@ -122,19 +126,20 @@ export function QuickAdd({
 
   const commit = (entry: IndexEntry, quantity: number, requestedQuantity: number, initiative: number | null): void => {
     const slotInitiative = initiative ?? 0;
-    void loadCreatureFn(entry.id)
-      .catch(() => null)
-      .then((creature) => {
-        const seed = seedFromEntry(entry, creature);
-        if (quantity === 1) addCombatant(seed, slotInitiative);
-        else addMany(seed, quantity, slotInitiative);
+    // The overlay is fetched alongside the creature record, only when
+    // French is on — see AddCombatants.select for the same rule.
+    const i18nPromise = lang === "fr" ? loadCreatureI18nFn(entry.id).catch(() => null) : Promise.resolve(null);
+    void Promise.all([loadCreatureFn(entry.id).catch(() => null), i18nPromise]).then(([creature, i18n]) => {
+      const seed = seedFromEntry(entry, creature, i18n);
+      if (quantity === 1) addCombatant(seed, slotInitiative);
+      else addMany(seed, quantity, slotInitiative);
 
-        setMessage(addedMessage(t, quantity, requestedQuantity, entry.name, initiative));
-        setQuery("");
-        setDismissed(false);
-        setHighlightedIndex(0);
-        inputRef.current?.focus();
-      });
+      setMessage(addedMessage(t, quantity, requestedQuantity, entry.name, initiative));
+      setQuery("");
+      setDismissed(false);
+      setHighlightedIndex(0);
+      inputRef.current?.focus();
+    });
   };
 
   const completeHighlighted = (): void => {

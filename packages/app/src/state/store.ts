@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import type { Action, Attack } from "@pf2/schema";
+import type { Action, Attack, CreatureI18n } from "@pf2/schema";
 import type { ConditionSlug } from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
 import type { Combatant, Encounter, Entry, Player } from "./types.js";
@@ -25,6 +25,10 @@ export interface CombatantSeed {
   attacks?: Attack[];
   /** Populated from the creature record when added from the dataset. */
   actions?: Action[];
+  /** The French overlay, fetched alongside the creature record only when
+   * `lang` was "fr" at add time; `null` (or omitted) otherwise. See
+   * `Combatant.i18n`. */
+  i18n?: CreatureI18n | null;
 }
 
 let combatantSeq = 0;
@@ -95,6 +99,7 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
     reactions: seed.reactions ?? [],
     attacks: seed.attacks ?? [],
     actions: seed.actions ?? [],
+    i18n: seed.i18n ?? null,
     conditions: [],
     strikesMade: 0,
     actionsSpent: 0,

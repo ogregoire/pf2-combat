@@ -190,6 +190,10 @@ export const STRINGS_EN = {
   TABS_ACTIVE: "Active",
   TABS_TURN: "Turn",
   TABS_ARIA_LABEL: "Encounter panes",
+
+  // StatBlockHeader.tsx
+  CREATURE_FALLBACK_BADGE: "EN",
+  CREATURE_FALLBACK_TITLE: "No French translation for this creature — showing the English name.",
 } as const;
 
 export type StringKey = keyof typeof STRINGS_EN;

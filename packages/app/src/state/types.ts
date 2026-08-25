@@ -1,4 +1,4 @@
-import type { Action, Attack } from "@pf2/schema";
+import type { Action, Attack, CreatureI18n } from "@pf2/schema";
 import type { AppliedCondition } from "../rules/conditions.js";
 import type { Iwr } from "../rules/damage.js";
 
@@ -26,6 +26,16 @@ export interface Combatant {
   reactions: { name: string; trigger: string }[];
   attacks: Attack[];
   actions: Action[];
+  /**
+   * The French overlay for this creature, fetched alongside the creature
+   * record when it was added (see AddCombatants/QuickAdd) and only when
+   * `lang` was "fr" at that moment. `null` for every PC, and for a
+   * creature added while `lang` was "en" or with no overlay file at all —
+   * both render in English, but only the latter is a genuine translation
+   * gap; the fallback marker (StatBlockHeader) doesn't distinguish them,
+   * since either way the tracker is showing English while French is on.
+   */
+  i18n: CreatureI18n | null;
   conditions: AppliedCondition[];
   strikesMade: number;
   /** Actions spent so far this turn, out of the pool `actionPool()` computes

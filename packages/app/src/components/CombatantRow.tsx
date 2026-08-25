@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { CONDITIONS } from "../rules/conditions.js";
@@ -247,6 +248,8 @@ function StandaloneRow({
   onToggleSelect: () => void;
 }): React.ReactElement {
   const t = useT();
+  const lang = useEncounter((s) => s.lang);
+  const { name: displayName } = resolveCreatureName(combatant.name, combatant.i18n, lang);
   const borderColor = active
     ? ACTIVE_BORDER
     : combatant.kind === "pc"
@@ -291,7 +294,7 @@ function StandaloneRow({
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
           <span style={{ fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
-            {combatant.name}
+            {displayName}
           </span>
           <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
         </div>
@@ -368,6 +371,8 @@ function GroupMemberRow({
   onToggleSelect: () => void;
 }): React.ReactElement {
   const t = useT();
+  const lang = useEncounter((s) => s.lang);
+  const { name: displayName } = resolveCreatureName(combatant.name, combatant.i18n, lang);
   return (
     <div
       {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap, t)}
@@ -390,7 +395,7 @@ function GroupMemberRow({
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "5px" }}>
           <span style={{ fontSize: "13px", fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
-            {combatant.name}
+            {displayName}
           </span>
           <span style={{ fontSize: "10.5px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
         </div>

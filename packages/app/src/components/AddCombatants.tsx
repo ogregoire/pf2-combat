@@ -1,7 +1,8 @@
 import { useState } from "react";
-import type { Creature, IndexEntry } from "@pf2/schema";
+import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { resolveCollisions, searchCreatures } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
+import { loadCreatureI18n } from "../data/i18nOverlay.js";
 import { format, useT } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
 import type { Iwr } from "../rules/damage.js";
@@ -36,8 +37,10 @@ function toReactions(creature: Creature): { name: string; trigger: string }[] {
 /** Builds the seed for a combatant added from the catalog. `entry` (AC, HP,
  * level, name) is always available; `creature` is only present once
  * `loadCreature` has resolved, so a null creature still yields a valid seed
- * with the four denormalised fields left empty, same as any other seed. */
-export function seedFromEntry(entry: IndexEntry, creature: Creature | null): CombatantSeed {
+ * with the four denormalised fields left empty, same as any other seed.
+ * `i18n` is the French overlay fetched alongside `creature` — `null` when
+ * there is none, or when it was never fetched (see `Combatant.i18n`). */
+export function seedFromEntry(entry: IndexEntry, creature: Creature | null, i18n: CreatureI18n | null = null): CombatantSeed {
   return {
     kind: "creature",
     name: entry.name,
@@ -57,6 +60,7 @@ export function seedFromEntry(entry: IndexEntry, creature: Creature | null): Com
     reactions: creature !== null ? toReactions(creature) : [],
     attacks: creature !== null ? creature.attacks : [],
     actions: creature !== null ? creature.actions : [],
+    i18n,
   };
 }
 
@@ -98,9 +102,11 @@ const addButtonStyle: React.CSSProperties = {
 export function AddCombatants({
   entries,
   loadCreatureFn = loadCreature,
+  loadCreatureI18nFn = loadCreatureI18n,
 }: {
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
+  loadCreatureI18nFn?: (id: string) => Promise<CreatureI18n | null>;
 }): React.ReactElement {
   const t = useT();
   const [query, setQuery] = useState("");
@@ -109,6 +115,7 @@ export function AddCombatants({
   const [initiative, setInitiative] = useState("");
   const [actThisRound, setActThisRound] = useState(false);
   const [loadedCreature, setLoadedCreature] = useState<Creature | null>(null);
+  const [loadedI18n, setLoadedI18n] = useState<CreatureI18n | null>(null);
   const [creatureLoading, setCreatureLoading] = useState(false);
 
   const round = useEncounter((s) => s.encounter.round);
@@ -116,6 +123,7 @@ export function AddCombatants({
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const addCombatant = useEncounter((s) => s.addCombatant);
   const addMany = useEncounter((s) => s.addMany);
+  const lang = useEncounter((s) => s.lang);
 
   const resolved = resolveCollisions(entries);
   const results = searchCreatures(resolved, query);
@@ -132,16 +140,25 @@ export function AddCombatants({
     setInitiative("");
     setActThisRound(false);
     setLoadedCreature(null);
+    setLoadedI18n(null);
     setCreatureLoading(true);
     loadCreatureFn(entry.id)
       .then((creature) => setLoadedCreature(creature))
       .catch(() => setLoadedCreature(null))
       .finally(() => setCreatureLoading(false));
+    // Fetched alongside the creature record, only when French is on — the
+    // overlay is otherwise never used, so there's no point fetching it.
+    if (lang === "fr") {
+      loadCreatureI18nFn(entry.id)
+        .then((i18n) => setLoadedI18n(i18n))
+        .catch(() => setLoadedI18n(null));
+    }
   };
 
   const clearSelection = (): void => {
     setSelectedId(null);
     setLoadedCreature(null);
+    setLoadedI18n(null);
     setCreatureLoading(false);
     setQuantity("1");
     setInitiative("");
@@ -152,7 +169,7 @@ export function AddCombatants({
     if (!selected) return;
     const qty = Math.max(1, Math.trunc(Number(quantity)) || 1);
     const typedInitiative = Number(initiative) || 0;
-    const seed = seedFromEntry(selected, loadedCreature);
+    const seed = seedFromEntry(selected, loadedCreature, loadedI18n);
 
     // "act this round instead": the combatant's turn-order slot is lowered
     // just enough to still be reached this round, but the GM's typed

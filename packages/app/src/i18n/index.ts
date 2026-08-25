@@ -22,6 +22,8 @@ export const ALLOWLIST = new Set<StringKey>([
   "REMASTER_BADGE",
   "GROUP_INITIATIVE_PLACEHOLDER",
   "ROUND_LABEL",
+  // A bare abbreviation, per the same rule as above.
+  "CREATURE_FALLBACK_BADGE",
 ]);
 
 /** Substitutes `{token}` placeholders in a catalogue string with `vars`.
