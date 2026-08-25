@@ -137,3 +137,40 @@ describe("ActionList — Strikes merged into the action list", () => {
     expect(screen.getByText("UNARMED").title).toBe("");
   });
 });
+
+describe("ActionList — unaffordable actions fold to their header line", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("hides an unaffordable action's traits and description, and never shows a needs-N label", () => {
+    useEncounter.getState().addCombatant(
+      {
+        kind: "creature", name: "Ogre", level: 3, ac: 18,
+        saves: { fortitude: 10, reflex: 6, will: 5 }, hp: { current: 30, max: 30 },
+        attacks: [],
+        actions: [
+          { name: "Brutal Charge", cost: "3", traits: ["flourish"], frequency: null, trigger: null,
+            requirements: null, description: "<p>Rushes in and swings wide.</p>", category: "offensive" },
+        ],
+      },
+      20,
+    );
+    const { id } = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+
+    // Affordable at a full pool: the body renders.
+    const view = render(<ActiveCombatant />);
+    expect(screen.getByText("Rushes in and swings wide.")).toBeTruthy();
+    expect(screen.getByText("FLOURISH")).toBeTruthy();
+
+    // One action spent leaves 2 of 3 — the 3-action ability no longer fits.
+    useEncounter.getState().spendActions(id, 1);
+    view.rerender(<ActiveCombatant />);
+
+    const card = screen.getByRole("button", { name: /Brutal Charge/ });
+    expect(card.getAttribute("disabled")).not.toBeNull();
+    // Folded: name survives, body and traits do not.
+    expect(screen.queryByText("Rushes in and swings wide.")).toBeNull();
+    expect(screen.queryByText("FLOURISH")).toBeNull();
+    // The old "NEEDS 3 — 2 LEFT" readout is gone for good.
+    expect(card.textContent).not.toMatch(/NEEDS|LEFT/i);
+  });
+});

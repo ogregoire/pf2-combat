@@ -25,7 +25,8 @@ function costValue(cost: "1" | "2" | "3" | "free" | "reaction" | "passive"): num
  * a Strike costs 1 action just like anything else, so it takes the same
  * cost pip and the same place in the cost-descending order (3 actions -> 2
  * -> 1 -> free -> reaction -> passive; limited-use first within a cost).
- * Unaffordable actions render `disabled` but stay visible — an indicator,
+ * Unaffordable actions render `disabled`, folded to their header line, but
+ * stay visible — an indicator,
  * never a blocker. Passives still render in their own strip at the end,
  * matching the mockup's separate two-column passive block; they're also
  * last in the cost order, so that isn't a contradiction. */
@@ -64,7 +65,6 @@ export function ActionList({
         key={child.name}
         action={child}
         disabled={disabled}
-        needsLabel={disabled ? `NEEDS ${cost} — ${remaining} LEFT` : null}
         onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
         glossary={glossary}
       />
@@ -101,8 +101,7 @@ export function ActionList({
               <ActionCard
                 action={item.action}
                 disabled={disabled}
-                needsLabel={disabled ? `NEEDS ${cost} — ${remaining} LEFT` : null}
-                onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
+                        onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
                 glossary={glossary}
               />
               {item.children.map(renderChild)}
@@ -114,7 +113,7 @@ export function ActionList({
           <div style={{ display: "flex", gap: "6px" }}>
             {passives.map((item) =>
               item.kind === "action" ? (
-                <ActionCard key={item.action.name} action={item.action} disabled={false} needsLabel={null} glossary={glossary} />
+                <ActionCard key={item.action.name} action={item.action} disabled={false} glossary={glossary} />
               ) : null,
             )}
           </div>

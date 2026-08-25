@@ -46,22 +46,21 @@ function ChildArrow(): React.ReactElement {
 }
 
 /** One action row from Main.dc.html's action list — cost pips, name, trait
- * chips and description. `disabled` renders it dimmed but the row stays in
- * the DOM: unaffordable is an indicator, never a blocker (the GM might
- * still spend a hero point, or the pool tracking might be wrong). A
+ * chips and description. `disabled` renders it dimmed and folded to its
+ * header line, but the row stays in the DOM: unaffordable is an indicator,
+ * never a blocker (the GM might still spend a hero point, or the pool
+ * tracking might be wrong). A
  * `cost: "passive"` action never has a pool to afford, so it renders as
  * Main.dc.html's separate passive-card anatomy instead of a pressable
  * button — there's nothing to "press" on a passive. */
 export function ActionCard({
   action,
   disabled,
-  needsLabel,
   onUse,
   glossary,
 }: {
   action: Action;
   disabled: boolean;
-  needsLabel: string | null;
   /** Omitted for passives, which have no pool to spend from. */
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
@@ -117,15 +116,16 @@ export function ActionCard({
             {action.frequency.max}/{action.frequency.per.toUpperCase()}
           </span>
         )}
-        {disabled && needsLabel && (
-          <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{needsLabel}</span>
-        )}
       </div>
-      <TraitRow traits={action.traits} glossary={glossary} />
-      <div
-        style={{ marginTop: "6px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" }}
-        dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
-      />
+      {!disabled && (
+        <>
+          <TraitRow traits={action.traits} glossary={glossary} />
+          <div
+            style={{ marginTop: "6px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" }}
+            dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
+          />
+        </>
+      )}
     </button>
   );
 }
@@ -140,13 +140,11 @@ export function ActionCard({
 export function ChildActionRow({
   action,
   disabled,
-  needsLabel,
   onUse,
   glossary,
 }: {
   action: Action;
   disabled: boolean;
-  needsLabel: string | null;
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
@@ -154,7 +152,7 @@ export function ChildActionRow({
     <div style={{ display: "flex", gap: "6px" }}>
       <ChildArrow />
       <div style={{ flexGrow: 1, minWidth: 0 }}>
-        <ActionCard action={action} disabled={disabled} needsLabel={needsLabel} onUse={onUse} glossary={glossary} />
+        <ActionCard action={action} disabled={disabled} onUse={onUse} glossary={glossary} />
       </div>
     </div>
   );
