@@ -612,6 +612,22 @@ Commit the generated `data/i18n/**` in this commit. Expect roughly 6 MB across ~
 **Interfaces:**
 - Produces: `loadCreatureI18n(id, fetchFn)`, `loadIndexI18n(pack, fetchFn)`, `loadConditionsI18n`, `loadGlossaryI18n`, `loadTraitsI18n`; and the single resolution helper:
 
+**The three overlay shapes differ, deliberately — do not "harmonise" them.** Each is
+honest to what the source actually provides:
+
+| File | Shape |
+|---|---|
+| `i18n/fr/index/<pack>.json` | `Record<creatureId, string>` — French name only |
+| `i18n/fr/conditions.json`, `glossary.json` | `Record<slug, { name: string; description: string \| null }>` |
+| `i18n/fr/traits.json` | `Array<{ slug: string; name: string \| null; description: string }>` |
+
+Traits are the mirror image of conditions/glossary: a trait always has a French
+description (they are keyed off `PF2E.TraitDescription*`) but 13 of 426 have no
+French name, whereas a condition or glossary entry always has a name and may
+lack a body (`Grab` is `"Agrippement"` with none). Type them exactly as above;
+a nullable field in the wrong place will pass tests and render "null" or an
+English word at the table.
+
 ```ts
 /** French if present, English otherwise. The ONLY place this rule lives. */
 export function pick<T>(fr: T | null | undefined, en: T): T;
