@@ -29,6 +29,12 @@ describe("ActionList — Strikes merged into the action list", () => {
     // No separate "Strikes" panel/heading remains.
     expect(screen.queryByText("Strikes")).toBeNull();
 
+    // The "STRIKES THIS TURN" counter and its reset control moved to
+    // TurnManager (beside "actions remaining") — ActionList no longer
+    // renders either, so the two can't duplicate.
+    expect(screen.queryByText("STRIKES THIS TURN")).toBeNull();
+    expect(screen.queryByRole("button", { name: /^reset$/i })).toBeNull();
+
     // The 2-action ability leads (cost order), the Strike follows as a
     // 1-action item — both are plain buttons in the same list.
     const names = screen.getAllByRole("button").map((b) => b.textContent ?? "");
@@ -108,6 +114,7 @@ describe("ActionList — Strikes merged into the action list", () => {
     ];
     const conditions: Condition[] = [];
     const fetchFn: FetchFn = (url) => {
+      if (url.includes("traits.json")) return Promise.resolve(new Response(JSON.stringify([])));
       if (url.includes("glossary.json")) return Promise.resolve(new Response(JSON.stringify(glossary)));
       if (url.includes("conditions.json")) return Promise.resolve(new Response(JSON.stringify(conditions)));
       return Promise.reject(new Error(`unexpected fetch: ${url}`));

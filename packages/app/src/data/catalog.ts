@@ -1,4 +1,4 @@
-import type { BookCatalogEntry, Condition, GlossaryEntry, IndexEntry } from "@pf2/schema";
+import type { BookCatalogEntry, Condition, GlossaryEntry, IndexEntry, Trait } from "@pf2/schema";
 import { compareStrings } from "../rules/compare.js";
 
 export type FetchFn = (url: string) => Promise<Response>;
@@ -27,10 +27,17 @@ export function loadGlossary(fetchFn: FetchFn = defaultFetch): Promise<GlossaryE
   return getJson<GlossaryEntry[]>("glossary.json", fetchFn);
 }
 
-/** Condition definitions (Blinded, Clumsy, ...) — the other source
+/** Condition definitions (Blinded, Clumsy, ...) — another source
  * `useTraitGlossary` looks trait/keyword hover text up in. */
 export function loadConditionDefs(fetchFn: FetchFn = defaultFetch): Promise<Condition[]> {
   return getJson<Condition[]>("conditions.json", fetchFn);
+}
+
+/** Weapon/action trait and keyword reference (Agile, Deadly, Reach, ...) —
+ * `useTraitGlossary`'s primary source; `glossary.json` is a monster-ability
+ * glossary and has nothing for these. */
+export function loadTraits(fetchFn: FetchFn = defaultFetch): Promise<Trait[]> {
+  return getJson<Trait[]>("traits.json", fetchFn);
 }
 
 /**

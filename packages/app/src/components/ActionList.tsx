@@ -41,7 +41,6 @@ export function ActionList({
   fetchFn?: FetchFn;
 }): React.ReactElement | null {
   const spendActions = useEncounter((s) => s.spendActions);
-  const resetStrikes = useEncounter((s) => s.resetStrikes);
   const glossary = useTraitGlossary(fetchFn);
 
   if (combatant.actions.length === 0 && combatant.attacks.length === 0) return null;
@@ -79,45 +78,6 @@ export function ActionList({
           Actions
         </div>
         <div style={{ fontSize: "11px", color: "var(--text-faint)" }}>3 actions first · limited use first · unaffordable dimmed</div>
-        <div style={{ flexGrow: 1 }} />
-        {combatant.attacks.length > 0 && (
-          <>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "7px",
-                padding: "2px 8px 3px",
-                borderRadius: "3px",
-                background: "var(--accent-bg)",
-                border: "1px solid var(--border-strong)",
-              }}
-            >
-              <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--accent-text)" }}>
-                STRIKES THIS TURN
-              </span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600, color: "var(--accent-text)" }}>
-                {combatant.strikesMade}
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={() => resetStrikes(combatant.id)}
-              style={{
-                fontFamily: "inherit",
-                fontSize: "11px",
-                padding: "2px 8px",
-                borderRadius: "3px",
-                border: "1px solid var(--border)",
-                background: "var(--panel-raised)",
-                color: "var(--text-dim)",
-                cursor: "pointer",
-              }}
-            >
-              reset
-            </button>
-          </>
-        )}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
