@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -5,6 +7,16 @@ import { AddCombatants, seedFromEntry } from "../src/components/AddCombatants.js
 import { PartyManager } from "../src/components/PartyManager.js";
 import { useEncounter } from "../src/state/store.js";
 import type { Creature, IndexEntry } from "@pf2/schema";
+
+// Loads a real creature record from the dataset (same idiom as
+// action-layout.test.ts and combatant-list.test.tsx) so the perception ->
+// initiativeModifier plumbing is exercised against the actual record shape
+// rather than a hand-picked fixture. Vitest runs from the repo root (see the
+// root vitest.config.ts's `include`).
+const dataDir = resolve(process.cwd(), "data/creatures");
+function loadRealCreature(id: string): Creature {
+  return JSON.parse(readFileSync(resolve(dataDir, `${id}.json`), "utf-8")) as Creature;
+}
 
 const entries: IndexEntry[] = [
   { id: "pathfinder-monster-core/goblin-warrior", slug: "goblin-warrior",
@@ -91,7 +103,7 @@ describe("PartyManager", () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
       { id: "p1", name: "Valeria", level: 4, ac: 21, hp: 44,
-        saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+        saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
     ]);
     render(<PartyManager />);
 
@@ -121,7 +133,7 @@ describe("PartyManager", () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
       { id: "p1", name: "Kesten", level: 5, ac: 22, hp: 60,
-        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true },
+        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true, initiativeModifier: null },
     ]);
     render(<PartyManager />);
     await user.type(screen.getByLabelText(/initiative for kesten/i), "10");
@@ -134,7 +146,7 @@ describe("PartyManager", () => {
   it("does not offer to add an absent player to the encounter", () => {
     useEncounter.getState().setPlayers([
       { id: "p1", name: "Absent Al", level: 4, ac: 21,
-        saves: { fortitude: 10, reflex: 12, will: 9 }, present: false },
+        saves: { fortitude: 10, reflex: 12, will: 9 }, present: false, initiativeModifier: null },
     ]);
     render(<PartyManager />);
     expect(screen.queryByRole("button", { name: /add to encounter/i })).toBeNull();
@@ -144,7 +156,7 @@ describe("PartyManager", () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
       { id: "p1", name: "Kesten", level: 5, ac: 22,
-        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true },
+        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true, initiativeModifier: null },
     ]);
     render(<PartyManager />);
     await user.click(screen.getByRole("checkbox", { name: /present/i }));
@@ -238,6 +250,17 @@ describe("seedFromEntry", () => {
     expect(seed.reactions).toEqual([]);
     expect(seed.attacks).toEqual([]);
     expect(seed.actions).toEqual([]);
+  });
+
+  it("carries the creature's perception onto the combatant as its initiative modifier", () => {
+    const creature = loadRealCreature("pathfinder-monster-core/forest-troll");
+    const entry: IndexEntry = {
+      id: creature.id, slug: "forest-troll", name: creature.name, level: creature.level,
+      rarity: creature.rarity, size: creature.size, traits: creature.traits,
+      ac: creature.ac, hp: creature.hp, remaster: creature.source.remaster, book: creature.source.book,
+    };
+    const seed = seedFromEntry(entry, creature);
+    expect(seed.initiativeModifier).toBe(creature.perception);
   });
 });
 

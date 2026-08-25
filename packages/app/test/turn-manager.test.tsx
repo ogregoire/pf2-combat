@@ -244,7 +244,7 @@ describe("TurnManager", () => {
   it("resets the encounter to round 1 with no combatants but keeps the players", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
-      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
     ]);
     add("a", 20);
     add("b", 10);

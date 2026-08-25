@@ -37,8 +37,8 @@ describe("EncounterScreen", () => {
 
   it("shows the XP award, which does not change with party size", () => {
     useEncounter.getState().setPlayers([
-      { id: "p1", name: "A", level: 4, ac: 20, saves: { fortitude: 9, reflex: 9, will: 9 }, present: true },
-      { id: "p2", name: "B", level: 4, ac: 20, saves: { fortitude: 9, reflex: 9, will: 9 }, present: true },
+      { id: "p1", name: "A", level: 4, ac: 20, saves: { fortitude: 9, reflex: 9, will: 9 }, present: true, initiativeModifier: null },
+      { id: "p2", name: "B", level: 4, ac: 20, saves: { fortitude: 9, reflex: 9, will: 9 }, present: true, initiativeModifier: null },
     ]);
     useEncounter.getState().addCombatant(
       { kind: "creature", name: "The Stag Lord", level: 6, ac: 23,

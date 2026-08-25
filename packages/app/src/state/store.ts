@@ -23,6 +23,11 @@ export interface CombatantSeed {
   attacks?: Attack[];
   /** Populated from the creature record when added from the dataset. */
   actions?: Action[];
+  /** Populated from the creature record's `perception` when added from the
+   * dataset, or carried over from `Player.initiativeModifier` for a PC. */
+  initiativeModifier?: number | null;
+  /** Set for a `kind: "pc"` seed: which roster player this combatant is. */
+  playerId?: string;
 }
 
 let combatantSeq = 0;
@@ -98,6 +103,8 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
     actionsSpent: 0,
     reactionSpent: false,
     defeated: false,
+    initiativeModifier: seed.initiativeModifier ?? null,
+    playerId: seed.playerId,
   };
 }
 

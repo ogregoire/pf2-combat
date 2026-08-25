@@ -15,8 +15,8 @@ describe("PartyManager clear players", () => {
   it("asks for confirmation naming the player count before clearing", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
-      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
-      { id: "player2", name: "Akiros", level: 4, ac: 19, saves: { fortitude: 12, reflex: 8, will: 6 }, present: true },
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
+      { id: "player2", name: "Akiros", level: 4, ac: 19, saves: { fortitude: 12, reflex: 8, will: 6 }, present: true, initiativeModifier: null },
     ]);
     render(<PartyManager />);
 
@@ -31,7 +31,7 @@ describe("PartyManager clear players", () => {
   it("does nothing when the confirmation is cancelled", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
-      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
     ]);
     render(<PartyManager />);
 
@@ -44,7 +44,7 @@ describe("PartyManager clear players", () => {
   it("also removes any of those players already sitting in the initiative order", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
-      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
     ]);
     const pcId = useEncounter.getState().addCombatant(
       { kind: "pc", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, hp: null },

@@ -56,6 +56,12 @@ export function seedFromEntry(entry: IndexEntry, creature: Creature | null): Com
     reactions: creature !== null ? toReactions(creature) : [],
     attacks: creature !== null ? creature.attacks : [],
     actions: creature !== null ? creature.actions : [],
+    // A creature's Perception is its initiative modifier — PF2e always
+    // rolls initiative with Perception unless the GM calls for a different
+    // skill, which this app doesn't model. Null (not the four fields'
+    // "empty" state) when no creature record has loaded yet, since there's
+    // no reasonable default for a number the GM will roll against.
+    initiativeModifier: creature?.perception ?? null,
   };
 }
 

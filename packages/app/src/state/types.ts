@@ -10,6 +10,10 @@ export interface Player {
   saves: { fortitude: number; reflex: number; will: number };
   hp?: number;
   present: boolean;
+  /** What gets added to the die when rolling initiative for this PC. Lives
+   * on the roster rather than the combatant so it survives between fights.
+   * Null when unknown. */
+  initiativeModifier: number | null;
 }
 
 export interface Combatant {
@@ -33,6 +37,14 @@ export interface Combatant {
   actionsSpent: number;
   reactionSpent: boolean;
   defeated: boolean;
+  /** What gets added to the die when rolling initiative. Creatures use
+   * Perception; a PC's lives on the roster (`Player.initiativeModifier`)
+   * so it survives between fights. Null when unknown. */
+  initiativeModifier: number | null;
+  /** Set on `kind: "pc"` combatants: which roster player this is. Lets a
+   * modifier entered mid-fight be written back, and lets Quick add know who
+   * is already in the order. */
+  playerId?: string;
 }
 
 export interface Entry {

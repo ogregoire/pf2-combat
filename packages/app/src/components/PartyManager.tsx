@@ -33,6 +33,7 @@ function emptyPlayer(): Player {
     ac: 0,
     saves: { fortitude: 0, reflex: 0, will: 0 },
     present: true,
+    initiativeModifier: null,
   };
 }
 

@@ -321,7 +321,7 @@ describe("encounter store", () => {
 
   it("empties the player roster and removes any PC already in the encounter", () => {
     useEncounter.getState().setPlayers([
-      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
     ]);
     const pc = addPc("Valeria", 20);
     const enemy = addCreature("Goblin", 10);
@@ -336,7 +336,7 @@ describe("encounter store", () => {
 
   it("resets the encounter to round 1 with no combatants, target or prompts, but keeps the players", () => {
     useEncounter.getState().setPlayers([
-      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
     ]);
     const a = addCreature("a", 20);
     useEncounter.getState().setTarget(a);
