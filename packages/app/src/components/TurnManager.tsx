@@ -2,9 +2,41 @@ import { actionPool } from "../rules/actions.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { ActionPips } from "./ActionPips.js";
+import { ConfirmButton } from "./ConfirmButton.js";
 import { NextButton } from "./NextButton.js";
 import { ReactionWatch } from "./ReactionWatch.js";
 import { TurnPrompts, activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
+
+/** Two of the app's three destructive clearing actions live here, next to
+ * the round counter whose state they affect — "clear enemies" keeps the
+ * fight running (round, turn order, PCs untouched), "reset encounter" starts
+ * it over from round 1 but leaves the player roster alone (the third action,
+ * "clear players", lives in PartyManager next to the roster it empties).
+ * Each confirmation names exactly what it's about to lose. */
+function EncounterControls(): React.ReactElement {
+  const enemyCount = useEncounter(
+    (s) => Object.values(s.encounter.combatants).filter((c) => c.kind === "creature").length,
+  );
+  const combatantCount = useEncounter((s) => Object.keys(s.encounter.combatants).length);
+  const clearEnemies = useEncounter((s) => s.clearEnemies);
+  const resetEncounter = useEncounter((s) => s.resetEncounter);
+
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", flexShrink: 0 }}>
+      <ConfirmButton
+        label="Clear enemies"
+        confirmMessage={`Clear ${enemyCount} ${enemyCount === 1 ? "enemy" : "enemies"}?`}
+        onConfirm={clearEnemies}
+        disabled={enemyCount === 0}
+      />
+      <ConfirmButton
+        label="Reset encounter"
+        confirmMessage={`Reset the encounter? Clears all ${combatantCount} combatant${combatantCount === 1 ? "" : "s"} and returns to round 1. Players are kept.`}
+        onConfirm={resetEncounter}
+      />
+    </div>
+  );
+}
 
 /** Same pool computation ActionPips/ActionList already make from a
  * combatant's conditions — duplicated locally (as those two already
@@ -48,6 +80,21 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
 
       {combatant && <ActionPips combatant={combatant} />}
 
+      {/* Turn-economy state belongs together with the action pips, not
+         buried in the actions list (see ActionList.tsx's own "STRIKES THIS
+         TURN" chip, which this doesn't replace — that file is owned by a
+         concurrent rework this branch must not touch, see the report). */}
+      {combatant && (
+        <div style={{ textAlign: "center" }} data-testid="strikes-this-turn">
+          <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>
+            STRIKES THIS TURN
+          </span>{" "}
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600 }}>
+            {combatant.strikesMade}
+          </span>
+        </div>
+      )}
+
       <TurnPrompts />
 
       {showNextButton && (
@@ -58,6 +105,8 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
       )}
 
       <ReactionWatch />
+
+      <EncounterControls />
     </div>
   );
 }

@@ -133,11 +133,22 @@ interface EncounterStore {
   acknowledgePrompt(promptId: string): void;
   group(ids: string[], name: string, initiative: number): void;
   setPlayers(players: Player[]): void;
+  /** Removes every `kind: "creature"` combatant; the fight keeps running
+   * (round, turn order, PCs untouched). */
+  clearEnemies(): void;
+  /** Empties the player roster and removes any `kind: "pc"` combatant
+   * already in the encounter — a cleared roster and a lingering PC in the
+   * turn order would disagree about who's playing. */
+  clearPlayers(): void;
+  /** Clears all combatants, resets the round to 1, empties the turn order,
+   * drops the target and any acknowledged prompts — but leaves the player
+   * roster alone, unlike `reset()`. */
+  resetEncounter(): void;
   reset(): void;
 }
 
 export const useEncounter = create<EncounterStore>()(
-  immer((set) => ({
+  immer((set, get) => ({
     encounter: emptyEncounter(),
     players: [],
 
@@ -426,6 +437,35 @@ export const useEncounter = create<EncounterStore>()(
     setPlayers: (players) =>
       set((state) => {
         state.players = players;
+      }),
+
+    // Both reuse `removeCombatant` one id at a time rather than a fresh
+    // batch implementation — that's the function that already carries the
+    // identity-preserving active-entry logic (see its own comment), and
+    // this app has shipped three separate bugs from a positional clamp
+    // reinventing that. Calling it in a loop composes correctly: each call
+    // resolves the active pointer from the *current* state, so it's exactly
+    // as if the GM removed the same combatants one at a time by hand.
+    clearEnemies: () => {
+      const ids = Object.values(get().encounter.combatants)
+        .filter((c) => c.kind === "creature")
+        .map((c) => c.id);
+      for (const id of ids) get().removeCombatant(id);
+    },
+
+    clearPlayers: () => {
+      const ids = Object.values(get().encounter.combatants)
+        .filter((c) => c.kind === "pc")
+        .map((c) => c.id);
+      for (const id of ids) get().removeCombatant(id);
+      set((state) => {
+        state.players = [];
+      });
+    },
+
+    resetEncounter: () =>
+      set((state) => {
+        state.encounter = emptyEncounter();
       }),
 
     reset: () => {

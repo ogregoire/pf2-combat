@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { TurnManager } from "../src/components/TurnManager.js";
 import { useEncounter } from "../src/state/store.js";
@@ -20,6 +20,17 @@ describe("TurnManager", () => {
     render(<TurnManager />);
     expect(screen.getByText("1")).toBeDefined();
     expect(screen.getAllByTestId("action-pip")).toHaveLength(3);
+  });
+
+  it("shows strikes made this turn beside the action pips", () => {
+    const id = add("a", 20);
+    render(<TurnManager />);
+    expect(screen.getByTestId("strikes-this-turn").textContent).toContain("0");
+    // Siblings in the turn panel, not off in the actions list.
+    expect(screen.getByTestId("strikes-this-turn").parentElement!.contains(screen.getAllByTestId("action-pip")[0]!)).toBe(true);
+
+    act(() => useEncounter.getState().recordStrike(id));
+    expect(screen.getByTestId("strikes-this-turn").textContent).toContain("1");
   });
 
   it("reduces the pips when the active combatant is slowed", () => {
@@ -161,5 +172,58 @@ describe("TurnManager", () => {
     render(<TurnManager />);
     expect(screen.getByText("No Escape")).toBeDefined();
     expect(screen.getByText(/An adjacent foe moves away\./)).toBeDefined();
+  });
+
+  it("clears enemies through a named confirmation, keeping the fight running", async () => {
+    const user = userEvent.setup();
+    add("a", 20); // creature
+    const pc = useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, hp: null },
+      15,
+    );
+    add("b", 10); // creature
+    render(<TurnManager />);
+
+    await user.click(screen.getByRole("button", { name: /clear enemies/i }));
+    expect(screen.getByText(/clear 2 enemies/i)).toBeDefined();
+    expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(3); // not yet cleared
+
+    await user.click(screen.getByRole("button", { name: /confirm/i }));
+
+    const enc = useEncounter.getState().encounter;
+    expect(Object.keys(enc.combatants)).toEqual([pc]);
+    expect(enc.round).toBe(1);
+  });
+
+  it("cancels clearing enemies without changing anything", async () => {
+    const user = userEvent.setup();
+    add("a", 20);
+    render(<TurnManager />);
+
+    await user.click(screen.getByRole("button", { name: /clear enemies/i }));
+    await user.click(screen.getByRole("button", { name: /cancel/i }));
+
+    expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(1);
+  });
+
+  it("resets the encounter to round 1 with no combatants but keeps the players", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+    ]);
+    add("a", 20);
+    add("b", 10);
+    render(<TurnManager />);
+    await user.click(screen.getByRole("button", { name: /next combatant/i }));
+
+    await user.click(screen.getByRole("button", { name: /reset encounter/i }));
+    expect(screen.getByText(/reset the encounter/i)).toBeDefined();
+    await user.click(screen.getByRole("button", { name: /confirm/i }));
+
+    const enc = useEncounter.getState().encounter;
+    expect(enc.combatants).toEqual({});
+    expect(enc.round).toBe(1);
+    expect(useEncounter.getState().players).toHaveLength(1);
   });
 });

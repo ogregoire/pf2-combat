@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
+import { ConfirmButton } from "./ConfirmButton.js";
 
 /** Local to this module — player ids never need to interleave with
  * combatant/entry ids from the store, just stay unique and non-random so a
@@ -87,6 +88,7 @@ export function PartyManager(): React.ReactElement {
   const players = useEncounter((s) => s.players);
   const setPlayers = useEncounter((s) => s.setPlayers);
   const addCombatant = useEncounter((s) => s.addCombatant);
+  const clearPlayers = useEncounter((s) => s.clearPlayers);
 
   // Draft initiative per player, entered here and consumed by "Add to
   // encounter" below — this is the only place a kind:"pc" combatant is ever
@@ -139,6 +141,19 @@ export function PartyManager(): React.ReactElement {
         >
           Add player
         </button>
+
+        <div style={{ flexGrow: 1 }} />
+
+        {/* Empties the roster, and — since a cleared roster and a PC still
+           sitting in the initiative order would disagree about who's
+           playing — also removes any `kind: "pc"` combatant already in the
+           encounter (see clearPlayers in the store). */}
+        <ConfirmButton
+          label="Clear players"
+          confirmMessage={`Clear ${players.length} ${players.length === 1 ? "player" : "players"}? Also removes any of them already in the initiative order.`}
+          onConfirm={clearPlayers}
+          disabled={players.length === 0}
+        />
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

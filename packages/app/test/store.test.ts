@@ -12,6 +12,13 @@ const addCreature = (name: string, initiative: number, hp = 20): string => {
   return id;
 };
 
+const addPc = (name: string, initiative: number): string =>
+  useEncounter.getState().addCombatant({
+    kind: "pc", name, level: 1, ac: 15,
+    saves: { fortitude: 5, reflex: 5, will: 5 },
+    hp: { current: 20, max: 20 },
+  }, initiative);
+
 describe("encounter store", () => {
   beforeEach(reset);
 
@@ -262,6 +269,63 @@ describe("encounter store", () => {
     useEncounter.getState().removeCombatant(a);
     const enc = useEncounter.getState().encounter;
     expect(enc.entries[enc.activeEntryIndex]!.combatantIds).toEqual([b]);
+  });
+
+  it("clears every creature but keeps the round, turn order and PCs running", () => {
+    const a = addCreature("a", 30);
+    const pc = addPc("Valeria", 20);
+    const b = addCreature("b", 10);
+    useEncounter.getState().nextTurn(); // a -> pc
+    useEncounter.getState().nextTurn(); // pc -> b (active)
+    const roundBefore = useEncounter.getState().encounter.round;
+
+    useEncounter.getState().clearEnemies();
+
+    const enc = useEncounter.getState().encounter;
+    expect(Object.keys(enc.combatants)).toEqual([pc]);
+    expect(enc.entries).toHaveLength(1);
+    expect(enc.entries[0]!.combatantIds).toEqual([pc]);
+    // b (active, last entry) dissolved along with a; the pointer wraps to
+    // the only survivor, exactly as removeCombatant already would.
+    expect(enc.activeEntryIndex).toBe(0);
+    expect(enc.round).toBe(roundBefore + 1);
+    expect(a in enc.combatants).toBe(false);
+    expect(b in enc.combatants).toBe(false);
+  });
+
+  it("empties the player roster and removes any PC already in the encounter", () => {
+    useEncounter.getState().setPlayers([
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+    ]);
+    const pc = addPc("Valeria", 20);
+    const enemy = addCreature("Goblin", 10);
+
+    useEncounter.getState().clearPlayers();
+
+    expect(useEncounter.getState().players).toEqual([]);
+    const enc = useEncounter.getState().encounter;
+    expect(pc in enc.combatants).toBe(false);
+    expect(enemy in enc.combatants).toBe(true);
+  });
+
+  it("resets the encounter to round 1 with no combatants, target or prompts, but keeps the players", () => {
+    useEncounter.getState().setPlayers([
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+    ]);
+    const a = addCreature("a", 20);
+    useEncounter.getState().setTarget(a);
+    useEncounter.getState().nextTurn();
+    useEncounter.getState().acknowledgePrompt(`${a}:dying`);
+
+    useEncounter.getState().resetEncounter();
+
+    const enc = useEncounter.getState().encounter;
+    expect(enc.combatants).toEqual({});
+    expect(enc.entries).toEqual([]);
+    expect(enc.round).toBe(1);
+    expect(enc.targetId).toBeNull();
+    expect(enc.acknowledgedPrompts).toEqual([]);
+    expect(useEncounter.getState().players).toHaveLength(1);
   });
 
   it("edits an entry's initiative and re-sorts", () => {
