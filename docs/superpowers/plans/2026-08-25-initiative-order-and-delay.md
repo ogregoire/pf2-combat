@@ -373,7 +373,7 @@ it("lists present players before any typing, and drops them once they are in the
     { id: "p1", name: "Valeros", level: 1, ac: 18, saves: { fortitude: 8, reflex: 5, will: 4 },
       present: true, initiativeModifier: 6 },
   ]);
-  render(<QuickAdd entries={[]} />);
+  render(<QuickAdd entries={[]} loadCreatureFn={async () => { throw new Error("no creature lookup in this test"); }} />);
 
   await user.click(screen.getByLabelText("Quick add creatures"));
   await user.click(await screen.findByRole("option", { name: /Valeros/ }));
@@ -543,16 +543,39 @@ In `nextTurn`'s round-wrap branch, before the existing `trueInitiative` restore:
 
 `TurnManager.tsx`: a **Delay** button beside Next for the active entry; a **Return** button for each delayed entry, enabled once a turn has ended.
 
+`CombatantRow.tsx`, `StandaloneRow`'s initiative cell: when `initiativeBeforeDelay !== null`, render the parked value struck through beside the live one. Without this step the field is stored and never seen — the spec calls for it explicitly, and this codebase has shipped six features whose only defect was that nothing rendered them.
+
+```tsx
+{entry.initiativeBeforeDelay !== null && (
+  <span style={{ fontSize: "11px", color: "var(--text-faint)", textDecoration: "line-through" }}>
+    {entry.initiativeBeforeDelay}
+  </span>
+)}
+```
+
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `npx vitest run packages/app`
 Expected: PASS.
 
-- [ ] **Step 5: Verify in a real browser**
+- [ ] **Step 5: Assert the parked initiative actually renders**
+
+```tsx
+it("shows the pre-delay initiative struck through on the row", () => {
+  const s = useEncounter.getState();
+  s.addCombatant(seed({ name: "Alpha" }), 20);
+  s.addCombatant(seed({ name: "Beta" }), 15);
+  useEncounter.getState().delay(useEncounter.getState().encounter.entries[0]!.id);
+  render(<CombatantList />);
+  expect(screen.getByText("20").style.textDecoration).toBe("line-through");
+});
+```
+
+- [ ] **Step 6: Verify in a real browser**
 
 Three combatants, Delay the first, advance, Return. Confirm the row lands after the creature that just acted, shows its original initiative struck through, and that its reactions read as locked while delayed.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
 git add packages/app
