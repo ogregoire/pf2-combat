@@ -395,7 +395,9 @@ Resolve the entry with `args.table.lookup("creature", args.ownPack, args.creatur
 - Test: `packages/pf2data/test/i18n.test.ts`
 
 **Interfaces:**
-- Produces: `buildIndexI18n`, `buildConditionsI18n`, `buildGlossaryI18n`, and a French `buildTraits` call.
+- Produces: `buildIndexI18n(entries, table): Record<string, string>` (creature id -> French name); `buildConditionsI18n(defs, table)` and `buildGlossaryI18n(defs, table)`, both `Record<slug, { name: string; description: string | null }>`; and a French `buildTraits` call.
+
+`buildIndexI18n` is name-only on purpose — a creature's description lives in its own per-creature overlay from Task 5. Conditions and glossary are NOT: `useTraitGlossary` builds a `slug -> { name, description }` map and renders the description as hover text, so those two must carry bodies and must be keyed by OUR slug, which is what the app looks up by.
 
 Four outputs:
 
@@ -439,10 +441,24 @@ it("omits an untranslated creature rather than echoing its English name", () => 
   expect(buildIndexI18n([{ id: "x/manticore", name: "Manticore" }], emptyTable())).toEqual({});
 });
 
+it("carries the DESCRIPTION as well as the name, keyed by our slug", () => {
+  // `useTraitGlossary` builds a slug -> {name, description} map and renders
+  // the description as hover text. A name-only overlay leaves every condition
+  // and glossary tooltip in English, which is precisely what this work is for.
+  // Measured: 42/43 conditions and 459/503 glossary entries have a French body.
+  expect(buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table))
+    .toEqual({ frightened: { name: "Effrayé", description: "<p>Vous êtes paralysé…</p>" } });
+});
+
+it("uses null for an entry translated by name only", () => {
+  // `Grab` really is name-only in the module — "Agrippement", no body.
+  expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table))
+    .toEqual({ grab: { name: "Agrippement", description: null } });
+});
+
 it("looks conditions and glossary entries up under their own kind", () => {
   // `Guard` is "Garde" the creature and "Se défendre" the action; kinds must
   // never be pooled. 109 English names collide across kinds, 24 of them ours.
-  expect(buildConditionsI18n(["Frightened"], table)).toEqual({ Frightened: "Effrayé" });
 });
 
 it("reuses buildTraits against the French lang table, so slugs stay identical", () => {
