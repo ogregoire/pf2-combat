@@ -488,6 +488,26 @@ it("reuses buildTraits against the French lang table, so slugs stay identical", 
 - Modify: `packages/pf2data/src/cli.ts`
 - Test: `packages/pf2data/test/verify.test.ts`, `packages/pf2data/test/cli.test.ts`
 
+**French text must be marker-resolved exactly like the English.** The English
+pipeline runs `resolveLocalize(html, lang)` then `resolveLinks(html)` over every
+description, which is why `data/creatures/**`, `data/conditions.json` and
+`data/glossary.json` contain ZERO `@UUID[...]` and ZERO `@Localize[...]`
+markers. Raw Babele text has not been through either.
+
+Measured on the first generated overlay: 3786 `@UUID` markers across 1082 of
+1420 creature overlays (76%), 466 `@Localize`, plus 60 `@UUID` in the French
+conditions and 367 `@UUID` + 15 `@Localize` in the French glossary. Shipping
+that renders literal
+`@UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}` to the GM
+in three quarters of translated creatures.
+
+Every French string that can carry markup — creature `publicNotes`, action and
+Strike descriptions, condition and glossary descriptions — goes through
+`resolveLocalize` against the FRENCH lang table (so `@Localize` resolves to
+French glossary text, not English) and then `resolveLinks`. Assert zero markers
+of either kind across all generated French output, in a test and as a
+post-generation check.
+
 **Ruling on the two pins, decided before dispatch.** There are now two
 independent upstreams. `--latest` moves BOTH pins — one flag, because the GM
 running this is the only operator and separate flags would be ceremony without
