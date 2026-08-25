@@ -85,38 +85,49 @@ export function buildIndexI18n(
  */
 const NO_OWN_PACK = "";
 
+/** slug -> French name/description, the shape `useTraitGlossary` looks up
+ * by slug for the app's hover tooltips. `description` is nullable: some
+ * entries (`Grab` -> "Agrippement") are translated by name only, with no
+ * French body -- that gap must reach `report` as `null`, never be papered
+ * over with the English text. */
+type ReferenceI18n = Record<string, { name: string; description: string | null }>;
+
 /**
- * English condition name -> French name, resolved under the "condition"
- * kind so a name that also happens to be a creature or glossary entry
- * (`Guard` names both a creature and an action) can never bleed in.
- * Untranslated names are OMITTED, never echoed in English.
+ * Condition name/slug pairs -> French name+description, resolved under the
+ * "condition" kind so a name that also happens to be a creature or glossary
+ * entry (`Guard` names both a creature and an action) can never bleed in.
+ * The English `name` is only the JOIN key into Babele; the OUTPUT is keyed
+ * by OUR slug, because that's what `useTraitGlossary` looks up by --
+ * name-keying here would just force a re-keying pass in the app.
+ * Untranslated entries are OMITTED, never echoed in English.
  */
 export function buildConditionsI18n(
-  names: string[],
+  defs: { slug: string; name: string }[],
   table: BabeleTable,
-): Record<string, string> {
-  const out: Record<string, string> = {};
-  for (const name of names) {
-    const found = table.lookup("condition", NO_OWN_PACK, name);
-    if (found) out[name] = found.name;
+): ReferenceI18n {
+  const out: ReferenceI18n = {};
+  for (const def of defs) {
+    const found = table.lookup("condition", NO_OWN_PACK, def.name);
+    if (found) out[def.slug] = { name: found.name, description: found.description ?? null };
   }
   return out;
 }
 
 /**
- * English glossary-entry name -> French name, resolved under the
- * "glossary" kind (the monster-ability glossary), never pooled with
- * conditions or creatures. Untranslated names are OMITTED, never echoed in
+ * Glossary-entry name/slug pairs -> French name+description, resolved
+ * under the "glossary" kind (the monster-ability glossary), never pooled
+ * with conditions or creatures. Keyed by OUR slug for the same reason as
+ * `buildConditionsI18n`. Untranslated entries are OMITTED, never echoed in
  * English.
  */
 export function buildGlossaryI18n(
-  names: string[],
+  defs: { slug: string; name: string }[],
   table: BabeleTable,
-): Record<string, string> {
-  const out: Record<string, string> = {};
-  for (const name of names) {
-    const found = table.lookup("glossary", NO_OWN_PACK, name);
-    if (found) out[name] = found.name;
+): ReferenceI18n {
+  const out: ReferenceI18n = {};
+  for (const def of defs) {
+    const found = table.lookup("glossary", NO_OWN_PACK, def.name);
+    if (found) out[def.slug] = { name: found.name, description: found.description ?? null };
   }
   return out;
 }

@@ -261,6 +261,41 @@ describe("buildIndexI18n", () => {
 });
 
 describe("buildConditionsI18n and buildGlossaryI18n", () => {
+  it("carries the description as well as the name, keyed by our slug", () => {
+    // `useTraitGlossary` builds a slug -> {name, description} map and
+    // renders the description as hover text. A name-only overlay leaves
+    // every condition/glossary tooltip in English.
+    const table = makeBabeleTable({
+      "pf2e.conditionitems.json": {
+        entries: {
+          Frightened: {
+            name: "Effrayé",
+            description: "<p>Vous êtes paralysé…</p>",
+          },
+        },
+      },
+    });
+
+    expect(
+      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table),
+    ).toEqual({
+      frightened: { name: "Effrayé", description: "<p>Vous êtes paralysé…</p>" },
+    });
+  });
+
+  it("uses null, not the English text, for an entry translated by name only", () => {
+    // `Grab` really is name-only in the module -- "Agrippement", no body.
+    const table = makeBabeleTable({
+      "pf2e.bestiary-ability-glossary-srd.json": {
+        entries: { Grab: { name: "Agrippement" } },
+      },
+    });
+
+    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table)).toEqual({
+      grab: { name: "Agrippement", description: null },
+    });
+  });
+
   it("looks conditions up under the condition kind", () => {
     const table = makeBabeleTable({
       "pf2e.conditionitems.json": {
@@ -268,9 +303,9 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
       },
     });
 
-    expect(buildConditionsI18n(["Frightened"], table)).toEqual({
-      Frightened: "Effrayé",
-    });
+    expect(
+      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table),
+    ).toEqual({ frightened: { name: "Effrayé", description: null } });
   });
 
   it("looks glossary entries up under the glossary kind, not the condition kind", () => {
@@ -287,10 +322,12 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
       },
     });
 
-    expect(buildGlossaryI18n(["Grab"], table)).toEqual({ Grab: "Saisie" });
-    expect(buildConditionsI18n(["Grab"], table)).toEqual({
-      Grab: "Condition FR (wrong kind)",
+    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table)).toEqual({
+      grab: { name: "Saisie", description: null },
     });
+    expect(
+      buildConditionsI18n([{ slug: "grab", name: "Grab" }], table),
+    ).toEqual({ grab: { name: "Condition FR (wrong kind)", description: null } });
   });
 
   it("reconciles a glossary entry across both ability-glossary files", () => {
@@ -303,13 +340,19 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
       },
     });
 
-    expect(buildGlossaryI18n(["Rend"], table)).toEqual({ Rend: "Déchirure" });
+    expect(buildGlossaryI18n([{ slug: "rend", name: "Rend" }], table)).toEqual({
+      rend: { name: "Déchirure", description: null },
+    });
   });
 
   it("omits an untranslated entry rather than echoing its English name", () => {
     const table = makeBabeleTable({});
-    expect(buildConditionsI18n(["Frightened"], table)).toEqual({});
-    expect(buildGlossaryI18n(["Grab"], table)).toEqual({});
+    expect(
+      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table),
+    ).toEqual({});
+    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table)).toEqual(
+      {},
+    );
   });
 });
 
