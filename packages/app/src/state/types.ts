@@ -39,7 +39,11 @@ export interface Combatant {
   defeated: boolean;
   /** What gets added to the die when rolling initiative. Creatures use
    * Perception; a PC's lives on the roster (`Player.initiativeModifier`)
-   * so it survives between fights. Null when unknown. */
+   * so it survives between fights, and for a PC this field is only a
+   * snapshot of it, copied in when the combatant was added. The roster is
+   * authoritative wherever it can be resolved through `playerId` — see
+   * RowPopover — so this answers for a creature, and for a PC with no
+   * roster entry left to read. Null when unknown. */
   initiativeModifier: number | null;
   /** Set on `kind: "pc"` combatants: which roster player this is. Lets a
    * modifier entered mid-fight be written back, and lets Quick add know who

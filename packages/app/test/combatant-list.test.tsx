@@ -481,6 +481,85 @@ describe("CombatantList", () => {
     expect(useEncounter.getState().players.find((p) => p.id === "player1")!.initiativeModifier).toBe(3);
   });
 
+  /*
+   * QuickAdd copies Player.initiativeModifier onto the combatant when a PC
+   * joins the order. If the popover preferred that copy, correcting the
+   * roster would not reach a PC already in the fight — which is exactly when
+   * a GM corrects it, because they notice the modifier is wrong when a roll
+   * comes out wrong, mid-fight. The roster is the declared home of a PC's
+   * modifier (see Player.initiativeModifier), so the popover reads through
+   * to it whenever a roster player resolves.
+   */
+  it("uses a corrected roster modifier for a PC already in the order, not the copy taken at add time", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: 50 },
+    ]);
+    const id = useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, hp: { current: 40, max: 40 },
+        playerId: "player1", initiativeModifier: 50 }, // the fat-fingered value, copied in
+      null,
+    );
+
+    // The GM fixes it in PartyManager, mid-fight.
+    useEncounter.getState().setPlayers(
+      useEncounter.getState().players.map((p) => ({ ...p, initiativeModifier: 5 })),
+    );
+
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Valeria"));
+    await user.type(screen.getByLabelText("Initiative die result"), "10");
+    expect(screen.getByText("10 + 5 = 15")).toBeDefined();
+
+    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
+    expect(entry!.initiative).toBe(15);
+  });
+
+  // Clearing the field in PartyManager means "unknown" (not +0), and reading
+  // through means that reaches the fight too: the popover asks again rather
+  // than quietly using the stale copy the combatant still carries.
+  it("asks again for a PC whose roster modifier has been cleared back to unknown", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
+    ]);
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, hp: { current: 40, max: 40 },
+        playerId: "player1", initiativeModifier: 50 },
+      null,
+    );
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Valeria"));
+
+    await user.type(screen.getByLabelText("Initiative modifier for Valeria"), "3");
+    await user.type(screen.getByLabelText("Initiative die result"), "10");
+    expect(screen.getByText("10 + 3 = 13")).toBeDefined();
+
+    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    expect(useEncounter.getState().players[0]!.initiativeModifier).toBe(3);
+  });
+
+  // The copy is not dead weight: it is what answers when there is no roster
+  // player to read through to — a PC removed from the roster on their own
+  // (which leaves the combatant in the order), or an old save.
+  it("falls back to the combatant's own modifier when the roster entry is gone", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, hp: { current: 40, max: 40 },
+        playerId: "player1", initiativeModifier: 7 },
+      null,
+    ); // no such player on the roster
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Valeria"));
+
+    await user.type(screen.getByLabelText("Initiative die result"), "10");
+    expect(screen.getByText("10 + 7 = 17")).toBeDefined();
+  });
+
   it("degrades gracefully for a PC combatant with no playerId yet", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(

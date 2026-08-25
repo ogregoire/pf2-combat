@@ -206,10 +206,24 @@ export function RowPopover({
     ? players.find((p) => p.id === combatant.playerId) ?? null
     : null;
 
-  // The combatant's own modifier (creature Perception, or a PC's already
-  // carried forward from a prior fight) if there is one; otherwise the
-  // roster's saved value for this PC. Null means genuinely unknown.
-  const knownModifier = combatant.initiativeModifier ?? player?.initiativeModifier ?? null;
+  // The roster is where a PC's modifier lives (see Player.
+  // initiativeModifier); the combatant's own field is a snapshot QuickAdd
+  // copies in at add time. So when a roster player resolves, the roster's
+  // value is the value — read through to it rather than preferring the
+  // copy, which is what makes a correction in PartyManager reach a PC
+  // already in the order. That is when a GM corrects it: they notice the
+  // modifier is wrong because a roll came out wrong, mid-fight, and the
+  // roster edit would otherwise fix only the next encounter.
+  //
+  // Including a null: clearing the field in PartyManager means "unknown",
+  // and it has to mean that here too, or the prompt below could never be
+  // reopened for a PC whose stale copy is precisely what's wrong.
+  //
+  // The copy still answers for everything with no roster player behind it —
+  // a creature's Perception, and a PC whose roster entry has gone (removed
+  // on its own, leaving the combatant in the order) or predates `playerId`.
+  // Null means genuinely unknown.
+  const knownModifier = player !== null ? player.initiativeModifier : combatant.initiativeModifier;
   // Only a PC gets the one-time prompt below — a creature with no
   // Perception on record has nowhere to look one up, so it just rolls with
   // no modifier instead of asking.
