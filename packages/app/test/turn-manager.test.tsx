@@ -83,10 +83,33 @@ describe("TurnManager", () => {
     expect(screen.getByText("DC 10 + dying 2 = 12")).toBeDefined();
   });
 
-  it("decrements frightened when its end-of-turn prompt is acknowledged", async () => {
+  // Frightened's decrement is a rule that fires on its own when the turn
+  // ends (nextTurn -> applyEndOfTurn, see store.ts and conditions.ts) — it
+  // used to be that acknowledging this card was the *only* place the
+  // decrement happened, but now that nextTurn does it too, acknowledging
+  // must be inert for it (see the "decrements once, not twice" test below
+  // for the regression this guards against). It should still behave as a
+  // GM's "I've seen this" record, though: the card itself disappears for
+  // the rest of the turn once acknowledged (acknowledgedPrompts).
+  it("acknowledging the end-of-turn frightened prompt does not itself decrement it, but does dismiss the card", async () => {
     const user = userEvent.setup();
     const id = add("a", 20);
     useEncounter.getState().addCondition(id, "frightened", 2);
+    render(<TurnManager />);
+
+    expect(screen.getByText("Frightened decreases")).toBeDefined();
+    await user.click(screen.getByRole("button", { name: /got it/i }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([
+      { slug: "frightened", value: 2, formula: undefined },
+    ]);
+    expect(screen.queryByText("Frightened decreases")).toBeNull();
+  });
+
+  it("acknowledging the end-of-turn frightened prompt at value 1 doesn't remove it either — same, removal is nextTurn's job", async () => {
+    const user = userEvent.setup();
+    const id = add("a", 20);
+    useEncounter.getState().addCondition(id, "frightened", 1);
     render(<TurnManager />);
 
     await user.click(screen.getByRole("button", { name: /got it/i }));
@@ -95,14 +118,27 @@ describe("TurnManager", () => {
     ]);
   });
 
-  it("removes frightened once its value would decrement to zero", async () => {
+  // The regression this guards against: handleAcknowledge used to mutate
+  // frightened's value directly, independently of nextTurn. After wiring
+  // applyEndOfTurn into nextTurn, leaving that mutation in place would have
+  // decremented frightened twice for a single turn ending — once when the
+  // GM clicked "got it" mid-turn, once more when they actually clicked
+  // Next. Acknowledging first (as a GM naturally would, reading the queued
+  // card before ending the turn) and then ending the turn must still only
+  // decrement once.
+  it("decrements frightened once, not twice, when its prompt is acknowledged and then the turn ends", async () => {
     const user = userEvent.setup();
     const id = add("a", 20);
-    useEncounter.getState().addCondition(id, "frightened", 1);
+    add("b", 10);
+    useEncounter.getState().addCondition(id, "frightened", 2);
     render(<TurnManager />);
 
     await user.click(screen.getByRole("button", { name: /got it/i }));
-    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
+    await user.click(screen.getByRole("button", { name: /next combatant/i }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([
+      { slug: "frightened", value: 1, formula: undefined },
+    ]);
   });
 
   it("clears stunned once its start-of-turn action-loss prompt is acknowledged, without refunding the actions it took", async () => {
