@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import type { CreatureI18n } from "@pf2/schema";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { CombatantList } from "../src/components/CombatantList.js";
@@ -155,7 +156,13 @@ describe("creatures render in French", () => {
     expect(screen.getByText(/Se précipite puis effectue deux Frappes/)).toBeTruthy();
   });
 
-  it("falls back to English for an untranslated creature, and marks that it did", () => {
+  // No fallback marker: the overlay can't tell "nobody translated this"
+  // from "the French name is identical to the English" — Manticore, Ankou
+  // and Belker genuinely ARE the French names, so a marker would fire
+  // exactly where English is already correct. An untranslated creature
+  // just renders in English, unannotated, same as any creature genuinely
+  // named the same in both languages.
+  it("falls back to English for an untranslated creature, unannotated", () => {
     useEncounter.getState().setLang("fr");
     useEncounter.getState().addCombatant(
       {
@@ -168,7 +175,9 @@ describe("creatures render in French", () => {
     render(<ActiveCombatant />);
 
     expect(screen.getByText("Manticore")).toBeTruthy();
-    expect(screen.getByTitle(/pas de traduction|not translated/i)).toBeTruthy();
+    // No title anywhere in the header names/marks this as a fallback.
+    const heading = screen.getByText("Manticore").closest("div")!;
+    expect(heading.querySelector("[title]")).toBeNull();
   });
 
   it("switching back to English restores the English names", async () => {
@@ -194,5 +203,46 @@ describe("creatures render in French", () => {
 
     expect(screen.getByText("Seigneur Cerf")).toBeTruthy();
     expect(screen.queryByText("The Stag Lord")).toBeNull();
+  });
+
+  it("names the targeted enemy in French in the roll assistant's TARGET panel", () => {
+    useEncounter.getState().setLang("fr");
+    // The active combatant (attacker) and the target are both creatures
+    // with overlays — targeting is the single most-used action during
+    // someone else's turn, so the roll assistant's own TARGET line must
+    // never be the one spot on screen still showing English.
+    useEncounter.getState().addCombatant({ ...forestTrollSeed, i18n: forestTrollI18n }, 20);
+    const targetId = useEncounter.getState().addCombatant({ ...stagLordSeed, i18n: stagLordI18n }, 5);
+    useEncounter.getState().setTarget(targetId);
+
+    render(<ActiveCombatant />);
+
+    expect(screen.getByText("Seigneur Cerf")).toBeTruthy();
+    expect(screen.queryByText("The Stag Lord")).toBeNull();
+  });
+
+  it("carries the French name into the turn-order row's own aria-label, not just its visible text", () => {
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant({ ...stagLordSeed, i18n: stagLordI18n }, 20);
+
+    render(<CombatantList />);
+
+    expect(screen.getByRole("button", { name: /Seigneur Cerf/ })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /The Stag Lord/ })).toBeNull();
+  });
+
+  it("names the combatant in French in the popover's own header and its Remove button's aria-label", async () => {
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant({ ...stagLordSeed, i18n: stagLordI18n }, 20);
+
+    const user = userEvent.setup();
+    render(<CombatantList />);
+    await user.hover(screen.getAllByText("Seigneur Cerf")[0]!);
+
+    // The row's own text plus the popover's header both now say "Seigneur
+    // Cerf" — never "The Stag Lord" anywhere.
+    expect(screen.getAllByText("Seigneur Cerf").length).toBeGreaterThanOrEqual(2);
+    expect(screen.queryByText("The Stag Lord")).toBeNull();
+    expect(screen.getByRole("button", { name: /Retirer Seigneur Cerf/ })).toBeTruthy();
   });
 });

@@ -23,9 +23,7 @@ export const ALLOWLIST = new Set<StringKey>([
   "REMASTER_BADGE",
   "GROUP_INITIATIVE_PLACEHOLDER",
   "ROUND_LABEL",
-  // Bare abbreviations and language-neutral `{token}` templates, per the
-  // same rule as above.
-  "CREATURE_FALLBACK_BADGE",
+  // Language-neutral `{token}` templates, per the same rule as above.
   "PROMPT_NAME_VALUE",
   "PROMPT_NAME_DECREASE",
 ]);

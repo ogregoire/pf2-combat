@@ -193,10 +193,6 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   TABS_TURN: "Tour",
   TABS_ARIA_LABEL: "Panneaux du combat",
 
-  // StatBlockHeader.tsx
-  CREATURE_FALLBACK_BADGE: "EN",
-  CREATURE_FALLBACK_TITLE: "Pas de traduction française pour cette créature — le nom anglais est affiché.",
-
   // rules/prompts.ts (start/end-of-turn notifications, TurnPrompts.tsx) —
   // "DD" (Degré de Difficulté) and "test/jet à l'aveugle" follow the
   // remaster's own vocabulary (checked against data/i18n/fr/traits.json and

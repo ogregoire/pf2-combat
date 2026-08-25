@@ -1,8 +1,32 @@
+import { CONDITIONS, type ConditionSlug } from "./conditions.js";
+
 /** Rules text looked up for a trait/keyword tag's hover tooltip, keyed by
  * its glossary or condition slug. */
 export interface TraitInfo {
   name: string;
   description: string;
+}
+
+/**
+ * A condition's display name for `lang` — French (from `glossary`, the
+ * merged map `useTraitGlossary` builds, which already folds the French
+ * conditions.json overlay in per-slug) when French is on and there's a
+ * translation, `CONDITIONS[slug].name` (the rules layer's own English
+ * name) otherwise. The one place both RowPopover (the condition picker/
+ * chip) and CombatantRow (the row's own condition chips) resolve a
+ * condition's name, so the two surfaces can never drift into showing two
+ * different languages for the same applied condition. Gated on `lang`
+ * rather than just falling through to whatever the glossary map holds, so
+ * English rendering can never differ from `CONDITIONS[slug].name` even if
+ * conditions.json's own English wording differs in some byte.
+ */
+export function conditionDisplayName(
+  slug: ConditionSlug,
+  glossary: Map<string, TraitInfo>,
+  lang: "en" | "fr",
+): string {
+  if (lang !== "fr") return CONDITIONS[slug].name;
+  return glossary.get(slug)?.name ?? CONDITIONS[slug].name;
 }
 
 /**

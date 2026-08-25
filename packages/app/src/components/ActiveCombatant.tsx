@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { resolveAttacks } from "../data/i18nOverlay.js";
+import { resolveAttacks, resolveCreatureName } from "../data/i18nOverlay.js";
 import { useEncounter } from "../state/store.js";
 import type { FetchFn } from "../data/catalog.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
@@ -27,7 +27,14 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
 
   if (!combatant) return null;
 
-  const target = targetId !== null ? combatants[targetId] : undefined;
+  const rawTarget = targetId !== null ? combatants[targetId] : undefined;
+  // Resolved to French so the roll assistant's TARGET panel never names the
+  // one combatant on screen still in English while everything around it is
+  // French — targeting is the single most-used action during someone
+  // else's turn.
+  const target = rawTarget
+    ? { ...rawTarget, name: resolveCreatureName(rawTarget.name, rawTarget.i18n, lang) }
+    : undefined;
   // Resolved to French so the roll assistant's own Strike name (picked by
   // index, not by identity, from the same list ActionList/StrikeCard
   // render) never falls back to English on its own.

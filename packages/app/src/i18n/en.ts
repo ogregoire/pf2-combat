@@ -191,10 +191,6 @@ export const STRINGS_EN = {
   TABS_TURN: "Turn",
   TABS_ARIA_LABEL: "Encounter panes",
 
-  // StatBlockHeader.tsx
-  CREATURE_FALLBACK_BADGE: "EN",
-  CREATURE_FALLBACK_TITLE: "No French translation for this creature — showing the English name.",
-
   // rules/prompts.ts (start/end-of-turn notifications, TurnPrompts.tsx)
   PROMPT_RECOVERY_TITLE: "Recovery check",
   PROMPT_RECOVERY_COMPUTATION: "1d20 flat check vs DC {dc}",

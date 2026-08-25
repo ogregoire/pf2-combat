@@ -3,7 +3,9 @@ import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { CONDITIONS } from "../rules/conditions.js";
+import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { RowPopover } from "./RowPopover.js";
+import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import type { Combatant } from "../state/types.js";
 
@@ -42,7 +44,7 @@ function combinedRing(active: boolean, targeted: boolean): string {
  * why this becomes a disclosure control (aria-expanded) rather than a
  * pressed toggle (aria-pressed) when narrow. */
 function targetRowProps(
-  combatant: Combatant,
+  displayName: string,
   targeted: boolean,
   onToggleTarget: () => void,
   narrow: boolean,
@@ -63,7 +65,7 @@ function targetRowProps(
       role: "button",
       tabIndex: 0,
       "aria-expanded": open,
-      "aria-label": format(t("SHOW_ACTIONS_ARIA"), { name: combatant.name }),
+      "aria-label": format(t("SHOW_ACTIONS_ARIA"), { name: displayName }),
       onClick: onTap,
       onKeyDown: (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -77,7 +79,7 @@ function targetRowProps(
     role: "button",
     tabIndex: 0,
     "aria-pressed": targeted,
-    "aria-label": format(t("TARGET_NAME_ARIA"), { name: combatant.name }),
+    "aria-label": format(t("TARGET_NAME_ARIA"), { name: displayName }),
     onClick: onToggleTarget,
     onKeyDown: (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -122,12 +124,24 @@ function hpColor(current: number, max: number): string {
   return "var(--accent)";
 }
 
-function conditionLabel(slug: Combatant["conditions"][number]["slug"], value: number): string {
+function conditionLabel(
+  slug: Combatant["conditions"][number]["slug"],
+  value: number,
+  glossary: Map<string, TraitInfo>,
+  lang: "en" | "fr",
+): string {
   const def = CONDITIONS[slug];
-  return def.valued ? `${def.name.toUpperCase()} ${value}` : def.name.toUpperCase();
+  const name = conditionDisplayName(slug, glossary, lang);
+  return def.valued ? `${name.toUpperCase()} ${value}` : name.toUpperCase();
 }
 
+/** Same French condition name RowPopover's own picker/chip resolve
+ * (`conditionDisplayName`, shared via rules/traitInfo.js) — otherwise a
+ * combatant could show "FRIGHTENED 2" here and "EFFRAYÉ 2" the moment its
+ * popover opens, two languages for the one applied condition at once. */
 function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactElement | null {
+  const lang = useEncounter((s) => s.lang);
+  const glossary = useTraitGlossary();
   if (combatant.conditions.length === 0) return null;
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginTop: "5px" }}>
@@ -143,7 +157,7 @@ function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactEle
             color: "var(--cond)",
           }}
         >
-          {conditionLabel(c.slug, c.value)}
+          {conditionLabel(c.slug, c.value, glossary, lang)}
         </span>
       ))}
     </div>
@@ -249,7 +263,7 @@ function StandaloneRow({
 }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
-  const { name: displayName } = resolveCreatureName(combatant.name, combatant.i18n, lang);
+  const displayName = resolveCreatureName(combatant.name, combatant.i18n, lang);
   const borderColor = active
     ? ACTIVE_BORDER
     : combatant.kind === "pc"
@@ -258,7 +272,7 @@ function StandaloneRow({
 
   return (
     <div
-      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap, t)}
+      {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -274,7 +288,7 @@ function StandaloneRow({
         cursor: "pointer",
       }}
     >
-      <SelectCheckbox name={combatant.name} checked={selected} onToggle={onToggleSelect} />
+      <SelectCheckbox name={displayName} checked={selected} onToggle={onToggleSelect} />
 
       {initiative !== undefined && (
         <div
@@ -372,10 +386,10 @@ function GroupMemberRow({
 }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
-  const { name: displayName } = resolveCreatureName(combatant.name, combatant.i18n, lang);
+  const displayName = resolveCreatureName(combatant.name, combatant.i18n, lang);
   return (
     <div
-      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap, t)}
+      {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -390,7 +404,7 @@ function GroupMemberRow({
         cursor: "pointer",
       }}
     >
-      <SelectCheckbox name={combatant.name} checked={selected} onToggle={onToggleSelect} />
+      <SelectCheckbox name={displayName} checked={selected} onToggle={onToggleSelect} />
 
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "5px" }}>

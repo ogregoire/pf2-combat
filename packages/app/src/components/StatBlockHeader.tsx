@@ -16,14 +16,15 @@ function levelLabel(combatant: Combatant, t: (key: StringKey) => string): string
  *
  * The name is French when `lang` is "fr" and the combatant carries an
  * overlay — the ONLY name shown, never "French (English)". A creature with
- * no overlay (added while `lang` was "en", or genuinely untranslated) still
- * renders in English, but with a quiet badge marking that fallback, so the
- * GM knows the tracker is showing English rather than wondering whether
- * that IS the French name. */
+ * no overlay (added while `lang` was "en", or genuinely untranslated)
+ * simply renders in English, unannotated: the overlay can't tell "nobody
+ * translated this" from "the French name is identical to the English"
+ * (Manticore, Ankou, Belker genuinely ARE the French names), so no marker
+ * is drawn — one would fire exactly where English is already correct. */
 export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
-  const { name, fallback } = resolveCreatureName(combatant.name, combatant.i18n, lang);
+  const name = resolveCreatureName(combatant.name, combatant.i18n, lang);
   return (
     <div style={{ padding: "18px 24px 14px", borderBottom: "1px solid var(--border)", flexShrink: 0 }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>
@@ -33,22 +34,6 @@ export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.
         <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "var(--accent-text)" }}>
           {levelLabel(combatant, t)}
         </span>
-        {fallback && (
-          <span
-            title={t("CREATURE_FALLBACK_TITLE")}
-            style={{
-              fontSize: "10px",
-              fontWeight: 600,
-              letterSpacing: "0.05em",
-              padding: "1px 6px",
-              borderRadius: "2px",
-              background: "var(--border)",
-              color: "var(--text-dim)",
-            }}
-          >
-            {t("CREATURE_FALLBACK_BADGE")}
-          </span>
-        )}
       </div>
     </div>
   );

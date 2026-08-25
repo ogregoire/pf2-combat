@@ -85,8 +85,10 @@ describe("conditions, traits and the glossary render in French", () => {
     render(<CombatantList />);
     await user.hover(screen.getByText("Ours effrayé"));
 
-    // The already-applied condition's own chip, inside the popover.
-    expect(screen.getByText("EFFRAYÉ 2")).toBeTruthy();
+    // Both the row's own chip (CombatantRow) and the popover's — the same
+    // applied condition can't show two languages at once.
+    expect(screen.getAllByText("EFFRAYÉ 2")).toHaveLength(2);
+    expect(screen.queryByText("FRIGHTENED 2")).toBeNull();
     // The picker's <option> for the same condition.
     expect(screen.getByRole("option", { name: "Effrayé" })).toBeTruthy();
   });

@@ -31,9 +31,7 @@ export interface Combatant {
    * record when it was added (see AddCombatants/QuickAdd) and only when
    * `lang` was "fr" at that moment. `null` for every PC, and for a
    * creature added while `lang` was "en" or with no overlay file at all —
-   * both render in English, but only the latter is a genuine translation
-   * gap; the fallback marker (StatBlockHeader) doesn't distinguish them,
-   * since either way the tracker is showing English while French is on.
+   * both simply render in English then.
    */
   i18n: CreatureI18n | null;
   conditions: AppliedCondition[];

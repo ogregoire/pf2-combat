@@ -61,18 +61,15 @@ export function pick<T>(fr: T | null | undefined, en: T): T {
  * A creature's display name for the given `lang`: French when `i18n` was
  * fetched (its `name` is never null in `CreatureI18n`), English otherwise —
  * whether that's because `i18n` is `null` (no overlay, or added while
- * `lang` was "en") or because `lang` itself is "en". `fallback` is true
- * only in the former case (French is on, but there's no French name to
- * show), so a caller can mark that the name on screen is English.
+ * `lang` was "en") or because `lang` itself is "en". No fallback marker:
+ * the overlay can't tell "nobody translated this" from "the French name is
+ * identical to the English" (Manticore, Ankou, Belker genuinely ARE the
+ * French names), so an untranslated creature just renders in English,
+ * unannotated, same as it would if it genuinely had no French name.
  */
-export function resolveCreatureName(
-  name: string,
-  i18n: CreatureI18n | null,
-  lang: "en" | "fr",
-): { name: string; fallback: boolean } {
-  if (lang !== "fr") return { name, fallback: false };
-  if (i18n) return { name: i18n.name, fallback: false };
-  return { name, fallback: true };
+export function resolveCreatureName(name: string, i18n: CreatureI18n | null, lang: "en" | "fr"): string {
+  if (lang !== "fr") return name;
+  return pick(i18n?.name, name);
 }
 
 /**

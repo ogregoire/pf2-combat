@@ -1,26 +1,15 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { useEncounter, type Lang } from "../state/store.js";
+import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
-import type { TraitInfo } from "../rules/traitInfo.js";
+import { conditionDisplayName } from "../rules/traitInfo.js";
+import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { compareStrings } from "../rules/compare.js";
 
 const CONDITION_OPTIONS = Object.values(CONDITIONS).sort((a, b) => compareStrings(a.name, b.name));
-
-/** The condition's display name for `lang` — French (from the glossary map
- * `useTraitGlossary` already merges conditions.json's overlay into) when
- * French is on and there's a translation, English (`CONDITIONS`, the rules
- * layer's own name) otherwise. Gated on `lang` rather than just falling
- * through to whatever the glossary map holds, so English rendering can
- * never drift from `CONDITIONS[slug].name` even if conditions.json's own
- * English wording differs in some byte. */
-function conditionDisplayName(slug: ConditionSlug, glossary: Map<string, TraitInfo>, lang: Lang): string {
-  if (lang !== "fr") return CONDITIONS[slug].name;
-  return glossary.get(slug)?.name ?? CONDITIONS[slug].name;
-}
 
 /** Last damage/heal applied to this combatant, shown beside the HP line
  * until the next apply or the popover closes (component-local state, so
@@ -118,6 +107,7 @@ export function RowPopover({
 
   if (!combatant) return null;
 
+  const displayName = resolveCreatureName(combatant.name, combatant.i18n, lang);
   const relevant = relevantDamageTypes(combatant.iwr);
   const showSelector = intent === "damage" && relevant.length > 0;
 
@@ -261,7 +251,7 @@ export function RowPopover({
       )}
 
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "13px", fontWeight: 600 }}>{combatant.name}</span>
+        <span style={{ fontSize: "13px", fontWeight: 600 }}>{displayName}</span>
         {combatant.hp !== null && (
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-dim)" }}>
             {combatant.hp.current}/{combatant.hp.max}
@@ -293,7 +283,7 @@ export function RowPopover({
         )}
         <button
           type="button"
-          aria-label={format(t("REMOVE_NAME_ARIA"), { name: combatant.name })}
+          aria-label={format(t("REMOVE_NAME_ARIA"), { name: displayName })}
           onClick={() => removeCombatant(combatantId)}
           style={{
             fontFamily: "inherit",
