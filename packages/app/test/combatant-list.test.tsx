@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Creature } from "@pf2/schema";
@@ -89,6 +89,41 @@ describe("CombatantList", () => {
     // Fixed positioning is the other half of escaping the scroller.
     const positioned = screen.getByLabelText("amount").closest<HTMLElement>('[style*="position: fixed"]');
     expect(positioned).not.toBeNull();
+  });
+
+  // Regression guard for the follow-up bug to the portalling above: with the
+  // panel placed at `left: rect.right + 10px`, those 10px were a dead zone
+  // belonging to neither the row nor the popover. Moving the pointer across
+  // them fired CombatantRow's mouseleave, which closed the popover before it
+  // could be reached — the panel was visible but unusable. Verified in a real
+  // browser: the popover was gone by the time the pointer sat mid-gap.
+  //
+  // The fix is that the visual gap now lives *inside* the hovered box, as
+  // left padding on a shell that starts flush with the row's right edge, so
+  // there is a continuous hoverable path. jsdom does no hit-testing, so pin
+  // the geometry contract instead: shell flush with the row, gap as padding.
+  it("leaves no dead gap between the row and the desktop popover", async () => {
+    const user = userEvent.setup();
+    const rect = { top: 180, right: 331, bottom: 233, left: 8, width: 323, height: 53, x: 8, y: 180 };
+    const spy = vi
+      .spyOn(Element.prototype, "getBoundingClientRect")
+      .mockReturnValue({ ...rect, toJSON: () => rect } as DOMRect);
+    try {
+      useEncounter.getState().addCombatant(seed(), 19);
+      render(<CombatantList />);
+
+      await user.hover(screen.getByText("Stag Lord Bandit"));
+
+      const shell = screen.getByLabelText("amount").closest<HTMLElement>('[style*="position: fixed"]');
+      expect(shell).not.toBeNull();
+      // Flush with the row: no horizontal strip the pointer can cross that
+      // belongs to neither element.
+      expect(shell!.style.left).toBe(`${rect.right}px`);
+      // The offset the GM sees is padding on that same hovered box.
+      expect(parseFloat(shell!.style.paddingLeft)).toBeGreaterThan(0);
+    } finally {
+      spy.mockRestore();
+    }
   });
 
   it("hides the damage-type selector when the creature has no damage-type IWR", async () => {

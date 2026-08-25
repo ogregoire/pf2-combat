@@ -168,19 +168,11 @@ export function RowPopover({
         gap: "10px",
       }
     : {
-        // Fixed, not absolute: the combatant list is a 340px-wide
-        // `overflow-y: auto` scroller, and CSS forces its overflow-x to
-        // `auto` too, so an absolutely-positioned panel sitting to the
-        // right of the row was clipped to zero visible width. Fixed
-        // positioning takes the viewport as its containing block, and the
-        // portal below takes the panel out of the scroller entirely.
-        position: "fixed",
-        top: `${(anchor?.top ?? 0) - 8}px`,
-        left: `${(anchor?.right ?? 0) + 10}px`,
+        // Placement lives on the shell below, which is what's positioned
+        // against the row; this is just the visible panel inside it.
         width: "330px",
         maxHeight: "calc(100vh - 24px)",
         overflowY: "auto",
-        zIndex: 60,
         padding: "12px 13px 13px",
         borderRadius: "5px",
         background: "var(--panel-high)",
@@ -580,9 +572,35 @@ export function RowPopover({
     </div>
   );
 
+  // Fixed, not absolute: the combatant list is a 340px-wide `overflow-y:
+  // auto` scroller, and CSS forces its overflow-x to `auto` too, so an
+  // absolutely-positioned panel sitting to the right of the row was clipped
+  // to zero visible width. Fixed positioning takes the viewport as its
+  // containing block, and the portal below takes the panel out of the
+  // scroller entirely.
+  //
+  // The shell starts flush with the row's right edge and carries the 10px
+  // offset as *padding*, so that strip is part of the hovered box. Placing
+  // the panel itself at `right + 10px` instead left those pixels belonging
+  // to neither element: the pointer crossing them fired CombatantRow's
+  // mouseleave and the popover closed before it could be reached.
+  const shell = (
+    <div
+      style={{
+        position: "fixed",
+        top: `${(anchor?.top ?? 0) - 8}px`,
+        left: `${anchor?.right ?? 0}px`,
+        paddingLeft: "10px",
+        zIndex: 60,
+      }}
+    >
+      {panel}
+    </div>
+  );
+
   // document.body, so no ancestor's `overflow` can clip it. Guarded for a
   // non-DOM environment (SSR/tests without a document).
-  if (!narrow) return typeof document === "undefined" ? panel : createPortal(panel, document.body);
+  if (!narrow) return typeof document === "undefined" ? shell : createPortal(shell, document.body);
 
   // Full-screen backdrop: this is what "tap elsewhere dismisses it" means
   // here. The panel above stops its own clicks from bubbling here, so only
