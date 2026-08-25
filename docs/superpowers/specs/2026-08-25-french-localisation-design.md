@@ -35,11 +35,27 @@ Two shapes matter:
 | Ability glossary | English entry name | **445 / 447** |
 | Traits (name + description) | `PF2E.Trait<Pascal>` from our `slug` | 904 names / 535 descriptions available vs. our 426 slugs |
 
-Creature lookup falls back across packs: 1269 resolve inside their own pack's
-file, another 151 only via some other pack's (a legacy Bestiary creature
-translated under Monster Core, say). The fallback is safe by measurement, not
-assumption — of every English name that appears in more than one French file,
-**zero** disagree about the French name.
+Creature lookup resolves **own pack first**, then falls back across packs:
+1269 resolve inside their own pack's file, another 151 only via some other
+pack's (a legacy Bestiary creature translated under Monster Core, say).
+
+Own-pack-first is load-bearing, not a tidiness preference. Five creatures we
+ship are translated differently in different books — `Shambler` is *Tertre
+errant* in Kingmaker and *Grand tertre* in Bestiary 1, and this is a Kingmaker
+campaign. Taking the creature's own book's word for it settles all five by
+construction. Of the 151 that must fall back, **zero** have sources that
+disagree, so the fallback remains unambiguous and a disagreement there stays a
+hard error.
+
+Lookup is also scoped **by entity kind**: creature names are resolved only
+against bestiary/monster-core/npc-core files, conditions only against
+`conditionitems`, glossary only against the two ability-glossary files. Pooling
+every `pf2e.*.json` together instead produces 109 name collisions, 24 of them
+on names we consume, because the module translates one English string
+differently for different kinds of thing — `Guard` is *Garde* the creature and
+*Se défendre* the action. Within a kind, conditions and glossary have zero
+disagreements and creatures have fourteen, five of which we ship and all five
+of which own-pack-first resolves.
 
 Thirty creatures have no French anywhere, and nineteen of those are the
 `Petitioner (Plane)` series — so it is really eleven distinct misses (Ankou,
