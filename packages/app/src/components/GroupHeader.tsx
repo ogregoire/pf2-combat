@@ -6,6 +6,16 @@ const ACTIVE_BG = "oklch(0.27 0.030 55)";
 const ACTIVE_RING = "0 0 0 1px oklch(0.44 0.08 55)";
 const ACTIVE_INITIATIVE_COLOR = "oklch(0.86 0.12 60)";
 
+function ChainIcon(): React.ReactElement {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" style={{ flexShrink: 0, color: "oklch(0.52 0.09 200)" }}>
+      <circle cx="3" cy="6" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+      <circle cx="9" cy="6" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+      <path d="M4.5 6h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
 export function GroupHeader({
   entryId,
   name,
@@ -62,6 +72,7 @@ export function GroupHeader({
         boxShadow: active ? ACTIVE_RING : "none",
       }}
     >
+      <ChainIcon />
       {editingInit ? (
         <input
           autoFocus
