@@ -82,6 +82,29 @@ describe("CombatantRow HP bar layout", () => {
     expect(hpText.style.flexShrink).toBe("0");
     expect(hpText.style.whiteSpace).toBe("nowrap");
     expect(screen.getByText("AC 23")).toBeDefined();
-    expect(screen.getByText("15 / 16 / 9")).toBeDefined();
+    expect(screen.getByText("F 15")).toBeDefined();
+    expect(screen.getByText("R 16")).toBeDefined();
+    expect(screen.getByText("W 9")).toBeDefined();
+  });
+});
+
+describe("CombatantRow saves", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("labels each save with its initial, and names the full save on hover via title", () => {
+    useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+
+    const fort = screen.getByText("F 6");
+    expect(fort.title).toBe("Fortitude");
+    expect(fort.getAttribute("aria-label")).toBe("Fortitude 6");
+
+    const reflex = screen.getByText("R 7");
+    expect(reflex.title).toBe("Reflex");
+    expect(reflex.getAttribute("aria-label")).toBe("Reflex 7");
+
+    const will = screen.getByText("W 4");
+    expect(will.title).toBe("Will");
+    expect(will.getAttribute("aria-label")).toBe("Will 4");
   });
 });

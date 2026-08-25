@@ -176,6 +176,31 @@ function levelLabel(combatant: Combatant): string {
   return combatant.kind === "pc" ? `PC ${combatant.level}` : `${combatant.level}`;
 }
 
+const SAVE_NAMES = { F: "Fortitude", R: "Reflex", W: "Will" } as const;
+
+/** One "F 6" unit: `title` names the save on hover (works without any JS
+ * state, per the brief) and `aria-label` gives it an accessible name that
+ * includes the value too, for anyone relying on a screen reader instead of
+ * hover. */
+function SaveUnit({ letter, value }: { letter: keyof typeof SAVE_NAMES; value: number }): React.ReactElement {
+  return (
+    <span title={SAVE_NAMES[letter]} aria-label={`${SAVE_NAMES[letter]} ${value}`}>
+      {`${letter} ${value}`}
+    </span>
+  );
+}
+
+function Saves({ saves }: { saves: Combatant["saves"] }): React.ReactElement {
+  if (saves === null) return <span>—</span>;
+  return (
+    <span style={{ display: "flex", gap: "6px" }}>
+      <SaveUnit letter="F" value={saves.fortitude} />
+      <SaveUnit letter="R" value={saves.reflex} />
+      <SaveUnit letter="W" value={saves.will} />
+    </span>
+  );
+}
+
 /** Standalone anatomy (ungrouped combatants and PCs): initiative, name, HP
  * bar with current/max, AC + the three saves right-aligned in mono,
  * condition chips beneath. Matches Main.dc.html's non-grouped rows. */
@@ -286,9 +311,7 @@ function StandaloneRow({
         >
           <span style={{ color: "var(--text)" }}>{combatant.ac !== null ? `AC ${combatant.ac}` : "—"}</span>
           <span style={{ color: "var(--text-faint)", letterSpacing: "-0.01em" }}>
-            {combatant.saves !== null
-              ? `${combatant.saves.fortitude} / ${combatant.saves.reflex} / ${combatant.saves.will}`
-              : "—"}
+            <Saves saves={combatant.saves} />
           </span>
         </div>
       )}
