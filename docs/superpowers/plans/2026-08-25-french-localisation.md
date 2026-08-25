@@ -989,6 +989,66 @@ If the check cannot avoid flagging legitimate non-copy (units, symbols, mono-spa
 
 ---
 
+## Task 17: Optional local name overrides (no names in this repo)
+
+**Licensing, and why this task is shaped oddly.** The `pf2-fr` module is a fan
+translation under an open licence — that is what the whole dataset is built
+from. The French PRINTED books are Black Book Editions', a commercial
+publisher, and their translations are their own creative work. A curated list
+of French creature names transcribed from those books is BBE content, and this
+repository is public and deploys to a public site. **No BBE-sourced name may be
+committed here, nor baked into the generated `data/i18n/**` that is committed.**
+
+So this task ships the MECHANISM and no data:
+
+- `pf2data` reads an optional override file whose path is given by an env var
+  or `--overrides` flag. It is not in the repo and has no default location
+  inside it.
+- The overrides apply at the app's RUNTIME, not at generation time, so nothing
+  BBE-derived is ever written into committed generated data. The app fetches
+  `data/i18n/fr/local-names.json` if present and merges it over the resolved
+  name; a 404 is the normal case and must not error.
+- `data/i18n/fr/local-names.json` is **gitignored**. Whether to place such a
+  file in a personal deployment is the operator's decision about their own
+  copy; this project neither ships one nor documents its contents.
+
+**The fallback marker is dropped regardless.** The overlay cannot distinguish
+"nobody translated this" from "the French name is identical to the English" —
+`Manticore`, `Ankou`, `Belker` and `Quetz Couatl` genuinely are the French
+names. A marker would fire precisely where English is already correct, so the
+thirty simply render in English with no annotation.
+
+**Files:**
+- Modify: `packages/app/src/data/i18nOverlay.ts` — optional local-name merge
+- Modify: `.gitignore` — `data/i18n/fr/local-names.json`
+- Test: `packages/app/test/i18n-overlay.test.ts`
+
+- [ ] **Step 1: Write the failing tests**
+
+```ts
+it("merges a local name override over the resolved French name", async () => {
+  expect(await resolveName("pathfinder-bestiary/manticore", { "pathfinder-bestiary/manticore": "X" }))
+    .toBe("X");
+});
+
+it("treats an absent local-names file as the normal case, not an error", async () => {
+  await expect(loadLocalNames(notFoundFetch)).resolves.toEqual({});
+});
+
+it("renders English, with no marker, for a creature with no translation", async () => {
+  // Manticore IS the French name. A "not translated" badge here would be wrong.
+  expect(screen.getByText("Manticore")).toBeTruthy();
+  expect(screen.queryByTitle(/traduction|translated/i)).toBeNull();
+});
+```
+
+- [ ] **Step 2: Run them and watch them fail**
+- [ ] **Step 3: Implement** — merge inside `pick`'s caller, one place only.
+- [ ] **Step 4: Confirm no committed file under `data/i18n/` gains any override-derived text.**
+- [ ] **Step 5: Commit** — `feat(app): optional local creature-name overrides`
+
+---
+
 ## Deferred
 
 - Languages other than French. `lang` is a two-value union; widening it is a later decision.
