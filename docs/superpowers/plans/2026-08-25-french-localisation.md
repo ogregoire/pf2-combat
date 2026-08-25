@@ -411,8 +411,23 @@ it("fails when an overlay position's English name disagrees with the creature", 
   expect(problems[0]).toMatch(/Grab/);
 });
 
-it("fails when the overlay has a different number of positions than the creature", () => { /* … */ });
-it("passes for an aligned overlay", () => { /* … */ });
+it("fails when the overlay has a different number of positions than the creature", () => {
+  // Creature has 2 actions, overlay has 1 — an upstream reorder or a dropped
+  // item. Index-keying is only safe while the lengths agree.
+  expect(verifyI18n(
+    { id: "p/c", actions: [{ name: "Rend" }, { name: "Grab" }], attacks: [] },
+    { name: "X", publicNotes: null, actions: [{ en: "Rend", name: null, description: null }], attacks: [] },
+  )).toHaveLength(1);
+});
+
+it("passes for an aligned overlay", () => {
+  expect(verifyI18n(
+    { id: "p/c", actions: [{ name: "Rend" }], attacks: [{ name: "Claw" }] },
+    { name: "X", publicNotes: null,
+      actions: [{ en: "Rend", name: "Déchiqueter", description: null }],
+      attacks: [{ en: "Claw", name: "Griffe" }] },
+  )).toEqual([]);
+});
 ```
 
 - [ ] **Step 2: Run and watch them fail**
@@ -512,7 +527,18 @@ it("setLang switches and persists", async () => {
   await waitFor(async () => expect(await loadSettings()).toEqual({ lang: "fr" }));
 });
 
-it("restores the saved language on load", async () => { /* … */ });
+it("restores the saved language on load", async () => {
+  await saveSettings({ lang: "fr" });
+  await useEncounter.getState().hydrate();   // whatever the existing load action is called
+  expect(useEncounter.getState().lang).toBe("fr");
+});
+
+it("reads a payload saved before lang existed as English", async () => {
+  // An existing saved fight must still open.
+  await putRawSettings({ schemaVersion: 1 });
+  await useEncounter.getState().hydrate();
+  expect(useEncounter.getState().lang).toBe("en");
+});
 
 it("renders a toggle that switches the language", async () => {
   render(<EncounterScreen />);
@@ -611,7 +637,12 @@ it("shows the French name only — never the English alongside it", async () => 
   expect(screen.queryByText(/Seigneur Cerf \(/)).toBeNull();
 });
 
-it("translates action and Strike names and descriptions", async () => { /* … */ });
+it("translates action and Strike names and descriptions", async () => {
+  // Forest Troll: the Claw Strike and the Rend nested under it.
+  expect(screen.getByText("Troll des forêts")).toBeTruthy();
+  expect(screen.getByRole("button", { name: /Griffe/ })).toBeTruthy();
+  expect(screen.queryByRole("button", { name: /^Claw/ })).toBeNull();
+});
 
 it("falls back to English for an untranslated creature, and marks that it did", async () => {
   // Manticore: no overlay at all
@@ -619,7 +650,11 @@ it("falls back to English for an untranslated creature, and marks that it did", 
   expect(screen.getByTitle(/pas de traduction|not translated/i)).toBeTruthy();
 });
 
-it("switching back to English restores the English names", async () => { /* … */ });
+it("switching back to English restores the English names", async () => {
+  useEncounter.getState().setLang("en");
+  await waitFor(() => expect(screen.getByText("Forest Troll")).toBeTruthy());
+  expect(screen.queryByText("Troll des forêts")).toBeNull();
+});
 ```
 
 - [ ] **Step 2: Run and watch them fail**
@@ -721,7 +756,13 @@ it("keeps the English trait text when French has none", async () => {
   expect(screen.getByText("GRIPPLI").title).toMatch(/^Grippli are/);
 });
 
-it("states start-of-turn notifications in French", async () => { /* … */ });
+it("states start-of-turn notifications in French", async () => {
+  // The notification states the computation, and is dismissed by click,
+  // never a timer — that contract is unchanged, only its language.
+  expect(screen.getByText(/dégâts persistants/i)).toBeTruthy();
+  await user.click(screen.getByRole("button", { name: /Compris|Fermer/ }));
+  expect(screen.queryByText(/dégâts persistants/i)).toBeNull();
+});
 ```
 
 - [ ] **Step 2: Run and watch them fail**
