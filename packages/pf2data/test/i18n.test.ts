@@ -2,8 +2,14 @@ import { describe, expect, it, beforeAll } from "vitest";
 import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { buildCreatureI18n } from "../src/stages/i18n.js";
+import {
+  buildCreatureI18n,
+  buildIndexI18n,
+  buildConditionsI18n,
+  buildGlossaryI18n,
+} from "../src/stages/i18n.js";
 import { loadBabele, type BabeleTable } from "../src/stages/babele.js";
+import { buildTraits } from "../src/stages/reference.js";
 
 /**
  * Fixtures build a REAL `BabeleTable` via `loadBabele` against temp files,
@@ -199,5 +205,124 @@ describe("buildCreatureI18n", () => {
 
       expect(out.publicNotes).toBeNull();
     });
+  });
+});
+
+describe("buildIndexI18n", () => {
+  it("emits an id -> french name map for the search index", () => {
+    const table = makeBabeleTable({
+      "pf2e.kingmaker-bestiary.json": {
+        entries: { "The Stag Lord": { name: "Seigneur Cerf" } },
+      },
+    });
+
+    expect(
+      buildIndexI18n(
+        [{ id: "kingmaker-bestiary/the-stag-lord", name: "The Stag Lord" }],
+        table,
+      ),
+    ).toEqual({ "kingmaker-bestiary/the-stag-lord": "Seigneur Cerf" });
+  });
+
+  it("takes each creature's own pack's translation", () => {
+    // Shambler: "Tertre errant" in Kingmaker, "Grand tertre" in Bestiary 1.
+    // A flat lookup returns whichever pack loaded first; deriving `ownPack`
+    // from the id's own prefix is what keeps the two apart.
+    const table = makeBabeleTable({
+      "pf2e.kingmaker-bestiary.json": {
+        entries: { Shambler: { name: "Tertre errant" } },
+      },
+      "pf2e.pathfinder-bestiary.json": {
+        entries: { Shambler: { name: "Grand tertre" } },
+      },
+    });
+
+    expect(
+      buildIndexI18n(
+        [
+          { id: "kingmaker-bestiary/shambler", name: "Shambler" },
+          { id: "pathfinder-bestiary/shambler", name: "Shambler" },
+        ],
+        table,
+      ),
+    ).toEqual({
+      "kingmaker-bestiary/shambler": "Tertre errant",
+      "pathfinder-bestiary/shambler": "Grand tertre",
+    });
+  });
+
+  it("omits an untranslated creature rather than echoing its English name", () => {
+    // 30 real creatures have no French entry at all.
+    const table = makeBabeleTable({});
+    expect(
+      buildIndexI18n([{ id: "x/manticore", name: "Manticore" }], table),
+    ).toEqual({});
+  });
+});
+
+describe("buildConditionsI18n and buildGlossaryI18n", () => {
+  it("looks conditions up under the condition kind", () => {
+    const table = makeBabeleTable({
+      "pf2e.conditionitems.json": {
+        entries: { Frightened: { name: "Effrayé" } },
+      },
+    });
+
+    expect(buildConditionsI18n(["Frightened"], table)).toEqual({
+      Frightened: "Effrayé",
+    });
+  });
+
+  it("looks glossary entries up under the glossary kind, not the condition kind", () => {
+    // `Guard` is "Garde" the creature and "Se défendre" the action; kinds
+    // must never be pooled. Here the same English name, "Grab", is used by
+    // both a condition-kind file and a glossary-kind file with different
+    // French text -- each builder must only ever see its own kind.
+    const table = makeBabeleTable({
+      "pf2e.conditionitems.json": {
+        entries: { Grab: { name: "Condition FR (wrong kind)" } },
+      },
+      "pf2e.bestiary-ability-glossary-srd.json": {
+        entries: { Grab: { name: "Saisie" } },
+      },
+    });
+
+    expect(buildGlossaryI18n(["Grab"], table)).toEqual({ Grab: "Saisie" });
+    expect(buildConditionsI18n(["Grab"], table)).toEqual({
+      Grab: "Condition FR (wrong kind)",
+    });
+  });
+
+  it("reconciles a glossary entry across both ability-glossary files", () => {
+    // The monster-ability glossary ships as two Babele files
+    // (bestiary-ability-glossary-srd, bestiary-family-ability-glossary).
+    // Neither is more "own" than the other, so both must be searched.
+    const table = makeBabeleTable({
+      "pf2e.bestiary-family-ability-glossary.json": {
+        entries: { Rend: { name: "Déchirure" } },
+      },
+    });
+
+    expect(buildGlossaryI18n(["Rend"], table)).toEqual({ Rend: "Déchirure" });
+  });
+
+  it("omits an untranslated entry rather than echoing its English name", () => {
+    const table = makeBabeleTable({});
+    expect(buildConditionsI18n(["Frightened"], table)).toEqual({});
+    expect(buildGlossaryI18n(["Grab"], table)).toEqual({});
+  });
+});
+
+describe("French buildTraits", () => {
+  it("reuses buildTraits against the French lang table, so slugs stay identical", () => {
+    const en = buildTraits({
+      "PF2E.TraitDescriptionAgile": "The multiple attack penalty…",
+      "PF2E.TraitAgile": "Agile",
+    });
+    const fr = buildTraits({
+      "PF2E.TraitDescriptionAgile": "La pénalité d'attaques multiples…",
+      "PF2E.TraitAgile": "Agile",
+    });
+    expect(fr.map((t) => t.slug)).toEqual(en.map((t) => t.slug));
   });
 });
