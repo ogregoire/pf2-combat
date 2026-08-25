@@ -28,7 +28,7 @@ separately in `faa85fe`.
 | Delay controls | Turn manager, beside Next |
 | Initiative modifier | Creature perception; asked once per player and remembered |
 | Unrolled initiative | Sorts to the top and blocks advancing the turn |
-| Condition picker | Lists all 43 dataset conditions |
+| Condition picker | Every dataset condition except the five attitudes |
 | Condition rules | Dying/wounded, doomed capping dying, 0 HP, end-of-turn ticks |
 | Players in Quick add | Present and not already added; ranked above creatures |
 | Persistence | `SCHEMA_VERSION` stays 1; readers default the new fields |
@@ -157,12 +157,15 @@ The panel keeps the "Add condition" title. Below it, two rows:
 - **Applied**, on top: each condition as a tag. A valued one renders
   `Frightened − 1 +`, with small spaces around the number; `−` and `+`
   change the value and never go below 0. Each tag keeps its small `×`.
-- **All the rest**, below: every remaining condition from
+- **All the rest**, below: every remaining pickable condition from
   `data/conditions.json` as a plain tag. Clicking one applies it, at
   value 1 for valued conditions.
 
-All 43 dataset conditions are pickable. The app currently curates 22 in
-`ConditionSlug`; the other 21 are not new or forgotten, they were simply
+Every condition in the dataset is pickable except the five attitudes
+(friendly, helpful, indifferent, unfriendly, hostile), which describe an
+NPC's disposition rather than anything that happens in a fight and are
+excluded outright — 38 of the 43. The app currently curates 22 in
+`ConditionSlug`; the rest are not new or forgotten, they were simply
 never modelled.
 
 ### Modelling
@@ -171,11 +174,6 @@ Every condition with something mechanical to compute gets a real
 `ConditionDef`: unconscious, paralyzed, petrified, fleeing, confused,
 invisible, concealed, hidden, undetected, encumbered, fascinated and
 broken join the existing 22.
-
-The five attitude conditions — friendly, helpful, indifferent,
-unfriendly, hostile — are pickable and tracked but carry no `affects`,
-because they describe an NPC's disposition and change no number in a
-fight.
 
 ### Linked rules
 
