@@ -619,14 +619,19 @@ honest to what the source actually provides:
 |---|---|
 | `i18n/fr/index/<pack>.json` | `Record<creatureId, string>` — French name only |
 | `i18n/fr/conditions.json`, `glossary.json` | `Record<slug, { name: string; description: string \| null }>` |
-| `i18n/fr/traits.json` | `Array<{ slug: string; name: string \| null; description: string }>` |
+| `i18n/fr/traits.json` | `Record<slug, { name: string \| null; description: string }>` |
 
-Traits are the mirror image of conditions/glossary: a trait always has a French
-description (they are keyed off `PF2E.TraitDescription*`) but 13 of 426 have no
-French name, whereas a condition or glossary entry always has a name and may
-lack a body (`Grab` is `"Agrippement"` with none). Type them exactly as above;
-a nullable field in the wrong place will pass tests and render "null" or an
-English word at the table.
+Traits are the mirror image of conditions/glossary: an entry that EXISTS always
+has a French description (they are keyed off `PF2E.TraitDescription*`), but 10
+of them have `name: null`, and 3 of our 426 slugs (`environment`, `gnoll`,
+`grippli` — remaster renames) are absent from the file entirely, leaving 423
+keys. A condition or glossary entry is the other way round: always a name,
+sometimes no body (`grab` is `{name:"Agrippement", description:null}`).
+
+Type them exactly as above; a nullable field in the wrong place will pass tests
+and render "null" or an English word at the table. Note the two distinct kinds
+of miss for traits — an absent KEY and a present key with a null NAME — because
+they need the same English fallback but are reached by different code paths.
 
 ```ts
 /** French if present, English otherwise. The ONLY place this rule lives. */
