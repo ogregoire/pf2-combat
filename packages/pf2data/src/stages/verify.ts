@@ -307,7 +307,7 @@ export function verifyDataset(input: VerifyInput): VerifyResult {
   for (const book of parsedBooks) {
     const packCreatures = byPack.get(book.pack) ?? [];
     const distinct = new Set(
-      packCreatures.map((c) => `${c.source.book} ${c.source.license} ${c.source.remaster}`),
+      packCreatures.map((c) => `${c.source.book}\0${c.source.license}\0${c.source.remaster}`),
     );
     const actuallyMixed = distinct.size > 1;
     if (actuallyMixed !== book.mixed) {
