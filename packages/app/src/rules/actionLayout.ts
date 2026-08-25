@@ -1,0 +1,88 @@
+import type { Action, Attack } from "@pf2/schema";
+import { compareStrings } from "./compare.js";
+
+export type ActionListItem =
+  | { kind: "action"; action: Action; children: Action[] }
+  | { kind: "strike"; attack: Attack; index: number; children: Action[] };
+
+/** 3 actions -> 2 -> 1 -> free -> reaction -> passive: the 3-action abilities
+ * are the most impressive, so they lead. A Strike is always a 1-action
+ * activity, ranked alongside cost-"1" actions. */
+const COST_RANK: Record<Action["cost"], number> = {
+  "3": 0,
+  "2": 1,
+  "1": 2,
+  free: 3,
+  reaction: 4,
+  passive: 5,
+};
+
+function itemCost(item: ActionListItem): Action["cost"] {
+  return item.kind === "strike" ? "1" : item.action.cost;
+}
+
+function itemLimited(item: ActionListItem): boolean {
+  return item.kind === "strike" ? false : item.action.frequency !== null;
+}
+
+function itemName(item: ActionListItem): string {
+  return item.kind === "strike" ? item.attack.name : item.action.name;
+}
+
+/** Limited-use (a `frequency`) first, then by cost descending, then name —
+ * the once-per-day ability shouldn't be buried under a pile of at-will
+ * ones. `compareStrings`, never `localeCompare`. */
+function compareItems(a: ActionListItem, b: ActionListItem): number {
+  const aLimited = itemLimited(a) ? 0 : 1;
+  const bLimited = itemLimited(b) ? 0 : 1;
+  if (aLimited !== bLimited) return aLimited - bLimited;
+  const costDiff = COST_RANK[itemCost(a)] - COST_RANK[itemCost(b)];
+  if (costDiff !== 0) return costDiff;
+  return compareStrings(itemName(a), itemName(b));
+}
+
+/** The first plain-text run of an HTML description, e.g. `<p>Claw</p><hr />
+ * ...` -> `"Claw"`. Used only to detect a Rend-shaped child action: one
+ * whose description opens by naming the Strike it belongs to. */
+function firstTextNode(html: string): string {
+  const m = /^\s*<[^>]*>([^<]*)</.exec(html);
+  return (m ? m[1]! : html.replace(/<[^>]*>/g, "")).trim();
+}
+
+/**
+ * Merges a creature's actions and Strikes into one list ordered by action
+ * cost (see `compareItems`). An action whose description's first text node
+ * names one of the creature's own attacks (Rend on a troll opens with
+ * "Claw") is pulled out as that Strike's child instead of appearing at the
+ * top level — narrowly, on that exact signal, not a broader heuristic.
+ */
+export function buildActionList(actions: Action[], attacks: Attack[]): ActionListItem[] {
+  const attackNames = new Set(attacks.map((a) => a.name));
+  const childrenByParent = new Map<string, Action[]>();
+  const topLevel: Action[] = [];
+
+  for (const action of actions) {
+    const parentName = firstTextNode(action.description);
+    if (attackNames.has(parentName)) {
+      const list = childrenByParent.get(parentName) ?? [];
+      list.push(action);
+      childrenByParent.set(parentName, list);
+    } else {
+      topLevel.push(action);
+    }
+  }
+  for (const list of childrenByParent.values()) list.sort((a, b) => compareStrings(a.name, b.name));
+
+  const items: ActionListItem[] = [
+    ...topLevel.map((action): ActionListItem => ({ kind: "action", action, children: [] })),
+    ...attacks.map(
+      (attack, index): ActionListItem => ({
+        kind: "strike",
+        attack,
+        index,
+        children: childrenByParent.get(attack.name) ?? [],
+      }),
+    ),
+  ];
+  return items.sort(compareItems);
+}

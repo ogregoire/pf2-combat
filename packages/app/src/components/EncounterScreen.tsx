@@ -299,7 +299,7 @@ export function EncounterScreen({
 
             {activeTab === "active" && (
               <div data-testid="active-combatant" style={{ display: "flex", flexDirection: "column", minHeight: 0 }}>
-                <ActiveCombatant />
+                <ActiveCombatant fetchFn={fetchFn} />
               </div>
             )}
 
@@ -350,7 +350,7 @@ export function EncounterScreen({
           </div>
 
           <div data-testid="active-combatant" style={{ display: "flex", flexGrow: 1, minWidth: 0, minHeight: 0 }}>
-            <ActiveCombatant />
+            <ActiveCombatant fetchFn={fetchFn} />
           </div>
 
           <div

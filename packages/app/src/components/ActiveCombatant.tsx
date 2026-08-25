@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useEncounter } from "../state/store.js";
+import type { FetchFn } from "../data/catalog.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
 import { DefensesPanel } from "./DefensesPanel.js";
-import { AttacksPanel } from "./AttacksPanel.js";
 import { ActionList } from "./ActionList.js";
 import { RollAssistant } from "./RollAssistant.js";
 import { activeCombatantOf } from "./TurnPrompts.js";
@@ -14,7 +14,7 @@ import { activeCombatantOf } from "./TurnPrompts.js";
  * member of the active entry. `addCombatant`/`addMany` now preserve the
  * active entry by identity across a re-sort, so this no longer needs a
  * workaround for combatants added mid-combat. */
-export function ActiveCombatant(): React.ReactElement | null {
+export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.ReactElement | null {
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const combatants = useEncounter((s) => s.encounter.combatants);
@@ -34,8 +34,12 @@ export function ActiveCombatant(): React.ReactElement | null {
         <StatBlockHeader combatant={combatant} />
         <DefensesPanel combatant={combatant} />
         <div style={{ flexGrow: 1, minHeight: 0, overflowY: "auto", padding: "16px 24px", display: "flex", flexDirection: "column", gap: "18px" }}>
-          <AttacksPanel combatant={combatant} selectedIndex={selectedAttackIndex} onSelect={setSelectedAttackIndex} />
-          <ActionList combatant={combatant} />
+          <ActionList
+            combatant={combatant}
+            selectedAttackIndex={selectedAttackIndex}
+            onSelectAttack={setSelectedAttackIndex}
+            fetchFn={fetchFn}
+          />
         </div>
       </div>
 
