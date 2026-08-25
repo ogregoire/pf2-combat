@@ -57,7 +57,7 @@ differently for different kinds of thing — `Guard` is *Garde* the creature and
 disagreements and creatures have fourteen, five of which we ship and all five
 of which own-pack-first resolves.
 
-Thirty creatures have no French anywhere, and nineteen of those are the
+Thirty creatures have no French anywhere, and twenty of those are the
 `Petitioner (Plane)` series — so it is really eleven distinct misses (Ankou,
 Belker, Dread Wraith, Frost Troll, Hive Mother, Ifrit Pyrochemist, Manticore,
 Quetz Couatl, Raven, Spark Bat, and the Petitioners). The two unmatched

@@ -557,7 +557,7 @@ loud-failure path. Add a test that a right-type item with no `_id` is reported
 rather than silently dropped, and mutate it to confirm the test fails without
 the change.
 
-Report gains a French block: creatures translated / total, and the untranslated **count plus the list** (30 today, 19 of them the `Petitioner (Plane)` series). A silent coverage drop is exactly the kind of regression this report exists to catch.
+Report gains a French block: creatures translated / total, and the untranslated **count plus the list** (30 today, 20 of them the `Petitioner (Plane)` series). A silent coverage drop is exactly the kind of regression this report exists to catch.
 
 - [ ] **Step 4: Regenerate and verify idempotency**
 
