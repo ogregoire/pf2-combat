@@ -11,7 +11,7 @@ import { buildIndexes } from "./stages/index.js";
 import { verifyDataset } from "./stages/verify.js";
 import { diffDataset, statusOf, type ChangeStatus } from "./report.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
-import { buildConditions, buildGlossary } from "./stages/reference.js";
+import { buildConditions, buildGlossary, buildTraits } from "./stages/reference.js";
 import { renderSchemaDoc } from "./docs/schema-doc.js";
 
 export const EXIT = {
@@ -87,6 +87,7 @@ interface OnDiskDataset {
   indexes: Record<string, unknown[]>;
   conditions: unknown[];
   glossary: unknown[];
+  traits: unknown[];
 }
 
 /** Reads the committed dataset for `verify`. A corrupt file (bad JSON) is
@@ -98,6 +99,7 @@ function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset 
     indexes: {},
     conditions: [],
     glossary: [],
+    traits: [],
   };
   if (manifest === null) return empty;
 
@@ -109,6 +111,7 @@ function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset 
   const books = readJson("books.json", []) as unknown[];
   const conditions = readJson("conditions.json", []) as unknown[];
   const glossary = readJson("glossary.json", []) as unknown[];
+  const traits = readJson("traits.json", []) as unknown[];
 
   const indexes: Record<string, unknown[]> = {};
   const creatures: unknown[] = [];
@@ -125,14 +128,14 @@ function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset 
     }
   }
 
-  return { creatures, books, indexes, conditions, glossary };
+  return { creatures, books, indexes, conditions, glossary, traits };
 }
 
 interface OnDiskFiles {
   /** creature id -> raw file text */
   creatures: Map<string, string>;
   /** relative path (books.json, index/<pack>.json, conditions.json,
-   * glossary.json, SCHEMA.md) -> raw file text */
+   * glossary.json, traits.json, SCHEMA.md) -> raw file text */
   others: Map<string, string>;
 }
 
@@ -155,6 +158,7 @@ function readOnDiskFiles(manifest: Manifest | null, dataDir: string): OnDiskFile
   tryReadOther("books.json");
   tryReadOther("conditions.json");
   tryReadOther("glossary.json");
+  tryReadOther("traits.json");
   tryReadOther("SCHEMA.md");
 
   for (const pack of manifest.packs) {
@@ -222,7 +226,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     // an index for every pack the manifest lists that is actually a
     // creatures-kind pack (the only kind that ever gets an index file).
     const missingFiles: string[] = [];
-    for (const relPath of ["books.json", "conditions.json", "glossary.json", "SCHEMA.md"]) {
+    for (const relPath of ["books.json", "conditions.json", "glossary.json", "traits.json", "SCHEMA.md"]) {
       if (!existsSync(join(dataDir, relPath))) missingFiles.push(relPath);
     }
     const creaturePacks = new Set(
@@ -254,6 +258,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
       indexes: onDisk.indexes,
       conditions: onDisk.conditions,
       glossary: onDisk.glossary,
+      traits: onDisk.traits,
       manifest,
     });
     for (const failure of result.failures) io.err(`${failure}\n`);
@@ -312,10 +317,11 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   const conditionPacks = config.packs.filter((p) => p.kind === "conditions").map((p) => p.name);
   const glossaryPacks = config.packs.filter((p) => p.kind === "glossary").map((p) => p.name);
 
-  let conditions, glossary;
+  let conditions, glossary, traits;
   try {
     conditions = buildConditions(fetched.packsDir, lang, conditionPacks);
     glossary = buildGlossary(fetched.packsDir, lang, glossaryPacks);
+    traits = buildTraits(lang);
   } catch (error) {
     io.err(`upstream error: ${(error as Error).message}\n`);
     emit({ command: command.name, error: (error as Error).message });
@@ -340,6 +346,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     indexes: build.indexes,
     conditions,
     glossary,
+    traits,
     manifest: nextManifest,
   });
 
@@ -361,7 +368,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   // Two diffs: `creatureDiff` is the documented, agent-facing "what changed"
   // report (creature ids only). `otherDiff` covers every other emitted file
   // (index/<pack>.json, books.json, conditions.json, glossary.json,
-  // SCHEMA.md) plus the manifest's own non-generatedAt fields, purely to
+  // traits.json, SCHEMA.md) plus the manifest's own non-generatedAt fields, purely to
   // decide the change status -- see C3 and N3. Without the manifest fields
   // here, a change to `upstreamRef` or `toolVersion` alone (every other
   // emitted file byte-identical) reported "unchanged" and exit 0.
@@ -379,6 +386,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   nextOtherRaw.set("books.json", stableStringify(build.books));
   nextOtherRaw.set("conditions.json", stableStringify(conditions));
   nextOtherRaw.set("glossary.json", stableStringify(glossary));
+  nextOtherRaw.set("traits.json", stableStringify(traits));
   nextOtherRaw.set("SCHEMA.md", schemaDoc);
   nextOtherRaw.set("manifest.json", stableStringify(withoutGeneratedAt(nextManifest)));
   if (manifest !== null) {
@@ -415,6 +423,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   writeJson(join(dataDir, "books.json"), build.books);
   writeJson(join(dataDir, "conditions.json"), conditions);
   writeJson(join(dataDir, "glossary.json"), glossary);
+  writeJson(join(dataDir, "traits.json"), traits);
   writeJson(manifestPath, nextManifest);
   writeFileSync(join(dataDir, "SCHEMA.md"), schemaDoc, "utf8");
 

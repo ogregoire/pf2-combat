@@ -327,6 +327,7 @@ describe("runCli", () => {
       ["books.json", (dataDir) => join(dataDir, "books.json")],
       ["conditions.json", (dataDir) => join(dataDir, "conditions.json")],
       ["glossary.json", (dataDir) => join(dataDir, "glossary.json")],
+      ["traits.json", (dataDir) => join(dataDir, "traits.json")],
       ["SCHEMA.md", (dataDir) => join(dataDir, "SCHEMA.md")],
       ["index/kingmaker-bestiary.json", (dataDir) => join(dataDir, "index", "kingmaker-bestiary.json")],
     ];

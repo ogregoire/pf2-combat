@@ -37,6 +37,7 @@ const baseInput = () => {
     indexes: build.indexes,
     conditions: [],
     glossary: [],
+    traits: [],
     manifest: manifest(),
   };
 };
@@ -64,6 +65,7 @@ describe("verifyDataset", () => {
       indexes: build.indexes,
       conditions: [],
       glossary: [],
+      traits: [],
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -79,6 +81,7 @@ describe("verifyDataset", () => {
       indexes: build.indexes,
       conditions: [],
       glossary: [],
+      traits: [],
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -94,6 +97,7 @@ describe("verifyDataset", () => {
       indexes: build.indexes,
       conditions: [],
       glossary: [],
+      traits: [],
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -184,7 +188,25 @@ describe("verifyDataset", () => {
     expect(result.failures.join(" ")).toMatch(/schema: glossary/);
   });
 
-  it("passes with well-formed conditions and glossary entries", () => {
+  it("fails when a trait entry does not validate against its schema", () => {
+    const input = baseInput();
+    input.traits = [{ slug: "agile" /* missing name/description */ }];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/schema: trait agile/);
+  });
+
+  it("fails when an unresolved @Localize placeholder remains in a trait description", () => {
+    const input = baseInput();
+    input.traits = [
+      { slug: "agile", name: "Agile", description: "@Localize[PF2E.TraitDescriptionAgile]" },
+    ];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/links: trait agile.*@Localize/);
+  });
+
+  it("passes with well-formed conditions, glossary and trait entries", () => {
     const input = baseInput();
     input.conditions = [
       { slug: "prone", name: "Prone", isValued: false, description: "<p>...</p>" },
@@ -192,6 +214,7 @@ describe("verifyDataset", () => {
     input.glossary = [
       { slug: "grab", name: "Grab", cost: "1", traits: [], description: "<p>...</p>" },
     ];
+    input.traits = [{ slug: "agile", name: "Agile", description: "<p>...</p>" }];
     const result = verifyDataset(input);
     expect(result.ok).toBe(true);
   });

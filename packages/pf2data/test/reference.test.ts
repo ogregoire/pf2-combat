@@ -3,7 +3,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { resolveLocalize } from "../src/normalize/localize.js";
-import { buildConditions } from "../src/stages/reference.js";
+import { buildConditions, buildTraits } from "../src/stages/reference.js";
 
 describe("resolveLocalize", () => {
   it("substitutes a localization key with its text", () => {
@@ -93,5 +93,65 @@ describe("buildConditions", () => {
 
     expect(conditions[0]!.description).toContain("You are gripped by fear.");
     expect(conditions[0]!.description).not.toContain("@Localize[");
+  });
+});
+
+describe("buildTraits", () => {
+  it("derives slug and name from PF2E.TraitDescription* / PF2E.Trait* keys", () => {
+    const lang = {
+      "PF2E.TraitDescriptionAgile": "Lowers the multiple attack penalty.",
+      "PF2E.TraitAgile": "Agile",
+    };
+    expect(buildTraits(lang)).toEqual([
+      { slug: "agile", name: "Agile", description: "Lowers the multiple attack penalty." },
+    ]);
+  });
+
+  it("splits an internal-capital suffix into a kebab-case slug", () => {
+    const lang = {
+      "PF2E.TraitDescriptionAwakenedAnimal": "An animal given sentience.",
+      "PF2E.TraitAwakenedAnimal": "Awakened Animal",
+    };
+    expect(buildTraits(lang)[0]!.slug).toBe("awakened-animal");
+  });
+
+  it("splits a letter-to-digit boundary too (Splash10 -> splash-10)", () => {
+    const lang = { "PF2E.TraitDescriptionSplash10": "Splash damage description." };
+    expect(buildTraits(lang)[0]!.slug).toBe("splash-10");
+  });
+
+  it("falls back to a title-cased slug when no PF2E.Trait<Suffix> name key exists", () => {
+    const lang = { "PF2E.TraitDescriptionMonkWeapon": "A monk weapon." };
+    expect(buildTraits(lang)[0]!).toEqual({
+      slug: "monk-weapon",
+      name: "Monk Weapon",
+      description: "A monk weapon.",
+    });
+  });
+
+  it("resolves @Localize and @UUID markers in the description, like the other reference builders", () => {
+    const lang = {
+      "PF2E.TraitDescriptionAgile": "See @Localize[PF2E.Other] and @UUID[Compendium.pf2e.x.Item.y]{Z}.",
+      "PF2E.Other": "elsewhere",
+    };
+    const [trait] = buildTraits(lang);
+    expect(trait!.description).toBe("See elsewhere and Z.");
+  });
+
+  it("ignores keys that aren't PF2E.TraitDescription*", () => {
+    const lang = {
+      "PF2E.TraitAgile": "Agile",
+      "PF2E.NPC.Abilities.Glossary.Grab": "The monster grabs you.",
+    };
+    expect(buildTraits(lang)).toEqual([]);
+  });
+
+  it("sorts by slug with compareStrings", () => {
+    const lang = {
+      "PF2E.TraitDescriptionZealous": "z",
+      "PF2E.TraitDescriptionAgile": "a",
+      "PF2E.TraitDescriptionMagical": "m",
+    };
+    expect(buildTraits(lang).map((t) => t.slug)).toEqual(["agile", "magical", "zealous"]);
   });
 });

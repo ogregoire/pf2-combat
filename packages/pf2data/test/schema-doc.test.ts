@@ -11,6 +11,7 @@ describe("renderSchemaDoc", () => {
       "creatures/<pack>/<slug>.json",
       "conditions.json",
       "glossary.json",
+      "traits.json",
     ]) {
       expect(doc).toContain(path);
     }
