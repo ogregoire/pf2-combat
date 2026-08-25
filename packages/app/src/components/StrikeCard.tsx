@@ -44,10 +44,13 @@ export function StrikeCard({
         fontFamily: "inherit",
         textAlign: "left",
         width: "100%",
-        padding: "10px 14px",
+        // Same frame as ActionCard's enabled state — a Strike is an action,
+        // and a thinner border here made the list read as two kinds of row.
+        // Selection is carried by the background alone.
+        padding: "11px 14px",
         borderRadius: "4px",
         background: selected ? "var(--panel-high)" : "var(--panel-raised)",
-        border: `1px solid ${selected ? "var(--border-strong)" : "var(--border)"}`,
+        border: "1px solid var(--border-strong)",
         cursor: "pointer",
         color: "var(--text)",
       }}

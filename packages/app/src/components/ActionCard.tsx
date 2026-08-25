@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Action } from "@pf2/schema";
 import { renderMarkers } from "../rules/renderMarkers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
@@ -45,47 +46,89 @@ function ChildArrow(): React.ReactElement {
   );
 }
 
+/** A passive ability: one line reading "Name PASSIVE", folded by default.
+ * Passives are reference material, not something the GM presses during a
+ * turn, so showing every one of their rules texts at once buried the actions
+ * that matter — the name alone is enough to remember it exists, and a click
+ * reveals the text when it doesn't. The PASSIVE label keeps its small-caps
+ * faint styling but now trails the name, which is what the GM reads for. */
+function PassiveCard({ action, glossary }: { action: Action; glossary: Map<string, TraitInfo> }): React.ReactElement {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <button
+      type="button"
+      aria-expanded={expanded}
+      onClick={() => setExpanded((prev) => !prev)}
+      style={{
+        fontFamily: "inherit",
+        textAlign: "left",
+        width: "100%",
+        padding: "9px 12px",
+        borderRadius: "4px",
+        background: "var(--panel)",
+        border: "1px solid var(--border)",
+        cursor: "pointer",
+        color: "var(--text)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <span style={{ fontWeight: 500, fontSize: "13px" }}>{action.name}</span>
+        <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--text-faint)" }}>PASSIVE</span>
+      </div>
+      {expanded && (
+        <>
+          <TraitRow traits={action.traits} glossary={glossary} />
+          <div
+            style={{ marginTop: "4px", fontSize: "12px", color: "var(--text-dim)" }}
+            dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
+          />
+        </>
+      )}
+    </button>
+  );
+}
+
 /** One action row from Main.dc.html's action list — cost pips, name, trait
- * chips and description. `disabled` renders it dimmed and folded to its
- * header line, but the row stays in the DOM: unaffordable is an indicator,
- * never a blocker (the GM might still spend a hero point, or the pool
- * tracking might be wrong). A
- * `cost: "passive"` action never has a pool to afford, so it renders as
- * Main.dc.html's separate passive-card anatomy instead of a pressable
- * button — there's nothing to "press" on a passive. */
+ * chips and description. `disabled` means unaffordable: the row renders
+ * dimmed and folded to its header line but stays pressable, because
+ * unaffordable is an indicator, never a blocker (the GM might still spend a
+ * hero point, or the pool tracking might be wrong) and the GM must be able
+ * to read an ability they can't currently pay for.
+ *
+ * Pressing the row *selects* it; it never spends. Spending is the separate
+ * Use button that selection reveals — pressing the row itself used to mark
+ * the ability used, so merely reading Chase Prey consumed it. That Use
+ * button is what `disabled` disables.
+ *
+ * A `cost: "passive"` action has no pool to afford and nothing to spend, so
+ * it renders as `PassiveCard` above instead. */
 export function ActionCard({
   action,
   disabled,
+  selected = false,
+  onSelect,
   onUse,
   glossary,
 }: {
   action: Action;
   disabled: boolean;
-  /** Omitted for passives, which have no pool to spend from. */
+  selected?: boolean;
+  onSelect?: () => void;
+  /** Omitted for passives and for costs that draw nothing from the pool
+   * (free actions, reactions), which have nothing to spend. */
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
-  if (action.cost === "passive") {
-    return (
-      <div style={{ flexGrow: 1, padding: "9px 12px", borderRadius: "4px", background: "var(--panel)", border: "1px solid var(--border)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--text-faint)" }}>PASSIVE</span>
-          <span style={{ fontWeight: 500, fontSize: "13px" }}>{action.name}</span>
-        </div>
-        <TraitRow traits={action.traits} glossary={glossary} />
-        <div
-          style={{ marginTop: "4px", fontSize: "12px", color: "var(--text-dim)" }}
-          dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
-        />
-      </div>
-    );
-  }
+  if (action.cost === "passive") return <PassiveCard action={action} glossary={glossary} />;
+
+  const cost = action.cost === "1" || action.cost === "2" || action.cost === "3" ? Number(action.cost) : 0;
 
   return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
     <button
       type="button"
-      disabled={disabled}
-      onClick={onUse}
+      aria-pressed={selected}
+      onClick={onSelect}
       style={{
         fontFamily: "inherit",
         textAlign: "left",
@@ -117,7 +160,7 @@ export function ActionCard({
           </span>
         )}
       </div>
-      {!disabled && (
+      {(!disabled || selected) && (
         <>
           <TraitRow traits={action.traits} glossary={glossary} />
           <div
@@ -127,6 +170,29 @@ export function ActionCard({
         </>
       )}
     </button>
+    {selected && onUse && cost > 0 && (
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={onUse}
+        style={{
+          fontFamily: "inherit",
+          alignSelf: "flex-start",
+          fontSize: "12px",
+          fontWeight: 600,
+          padding: "7px 12px",
+          borderRadius: "3px",
+          border: "1px solid var(--border-strong)",
+          background: disabled ? "var(--panel)" : "var(--accent-bg)",
+          color: disabled ? "var(--text-faint)" : "var(--accent-text)",
+          opacity: disabled ? 0.55 : 1,
+          cursor: disabled ? "default" : "pointer",
+        }}
+      >
+        Use {cost} {cost === 1 ? "action" : "actions"}
+      </button>
+    )}
+    </div>
   );
 }
 
@@ -140,11 +206,15 @@ export function ActionCard({
 export function ChildActionRow({
   action,
   disabled,
+  selected = false,
+  onSelect,
   onUse,
   glossary,
 }: {
   action: Action;
   disabled: boolean;
+  selected?: boolean;
+  onSelect?: () => void;
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
@@ -152,7 +222,14 @@ export function ChildActionRow({
     <div style={{ display: "flex", gap: "6px" }}>
       <ChildArrow />
       <div style={{ flexGrow: 1, minWidth: 0 }}>
-        <ActionCard action={action} disabled={disabled} onUse={onUse} glossary={glossary} />
+        <ActionCard
+          action={action}
+          disabled={disabled}
+          selected={selected}
+          onSelect={onSelect}
+          onUse={onUse}
+          glossary={glossary}
+        />
       </div>
     </div>
   );

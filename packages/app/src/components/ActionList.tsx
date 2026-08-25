@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Action } from "@pf2/schema";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
@@ -27,9 +28,10 @@ function costValue(cost: "1" | "2" | "3" | "free" | "reaction" | "passive"): num
  * -> 1 -> free -> reaction -> passive; limited-use first within a cost).
  * Unaffordable actions render `disabled`, folded to their header line, but
  * stay visible — an indicator,
- * never a blocker. Passives still render in their own strip at the end,
- * matching the mockup's separate two-column passive block; they're also
- * last in the cost order, so that isn't a contradiction. */
+ * never a blocker. Passives lead the list instead of trailing it, each on
+ * its own line and folded to its name — they're reference material the GM
+ * reads once, not something pressed during a turn, so they must not sit
+ * between the actions that are. */
 export function ActionList({
   combatant,
   selectedAttackIndex,
@@ -43,6 +45,9 @@ export function ActionList({
 }): React.ReactElement | null {
   const spendActions = useEncounter((s) => s.spendActions);
   const glossary = useTraitGlossary(fetchFn);
+  // Which ability the GM has pressed. Selection reveals its Use button;
+  // pressing the card itself never spends (see ActionCard).
+  const [selected, setSelected] = useState<string | null>(null);
 
   if (combatant.actions.length === 0 && combatant.attacks.length === 0) return null;
 
@@ -65,6 +70,8 @@ export function ActionList({
         key={child.name}
         action={child}
         disabled={disabled}
+        selected={selected === child.name}
+        onSelect={() => setSelected((prev) => (prev === child.name ? null : child.name))}
         onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
         glossary={glossary}
       />
@@ -76,6 +83,16 @@ export function ActionList({
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)", marginBottom: "8px" }}>
         Actions
       </div>
+
+      {passives.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "6px" }}>
+          {passives.map((item) =>
+            item.kind === "action" ? (
+              <ActionCard key={item.action.name} action={item.action} disabled={false} glossary={glossary} />
+            ) : null,
+          )}
+        </div>
+      )}
 
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
         {activatable.map((item) => {
@@ -101,7 +118,11 @@ export function ActionList({
               <ActionCard
                 action={item.action}
                 disabled={disabled}
-                        onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
+                selected={selected === item.action.name}
+                onSelect={() =>
+                  setSelected((prev) => (prev === item.action.name ? null : item.action.name))
+                }
+                onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
                 glossary={glossary}
               />
               {item.children.map(renderChild)}
@@ -109,15 +130,6 @@ export function ActionList({
           );
         })}
 
-        {passives.length > 0 && (
-          <div style={{ display: "flex", gap: "6px" }}>
-            {passives.map((item) =>
-              item.kind === "action" ? (
-                <ActionCard key={item.action.name} action={item.action} disabled={false} glossary={glossary} />
-              ) : null,
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

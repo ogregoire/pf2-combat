@@ -307,23 +307,7 @@ export function RowPopover({
         </div>
       )}
 
-      {intent === "damage" && relevant.length === 0 ? (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "7px",
-            padding: "7px 9px",
-            borderRadius: "3px",
-            background: "var(--bg)",
-            border: "1px solid var(--border)",
-          }}
-        >
-          <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
-            No immunities, weaknesses or resistances — damage type is irrelevant here.
-          </span>
-        </div>
-      ) : showSelector ? (
+      {showSelector ? (
         <div>
           <div
             style={{

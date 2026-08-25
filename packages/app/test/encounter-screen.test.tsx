@@ -121,7 +121,11 @@ describe("EncounterScreen", () => {
     expect(next.style.background).not.toBe("var(--accent-bg)");
     expect(screen.getByText("3 actions")).toBeDefined();
 
-    const use = screen.getByRole("button", { name: /stride/i });
+    // Selecting the ability reveals its Use button; Use is what spends. The
+    // card stays selected between presses, so the button can be pressed
+    // three times to drain the pool.
+    await user.click(screen.getByRole("button", { name: /stride/i }));
+    const use = screen.getByRole("button", { name: /^Use / });
     await user.click(use);
     await user.click(use);
     await user.click(use);

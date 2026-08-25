@@ -126,13 +126,17 @@ describe("CombatantList", () => {
     }
   });
 
-  it("hides the damage-type selector when the creature has no damage-type IWR", async () => {
+  // A creature with no damage-type IWR gets no selector and no explanation
+  // either: the GM asked for the "damage type is irrelevant here" line to go,
+  // since an absent selector already says it and the line was pure noise on
+  // the majority of creatures.
+  it("shows neither the damage-type selector nor an explanation when the creature has no damage-type IWR", async () => {
     const user = userEvent.setup();
     useEncounter.getState().addCombatant(seed(), 19);
     render(<CombatantList />);
     await user.hover(screen.getByText("Stag Lord Bandit"));
     expect(screen.queryByRole("group", { name: "damage type" })).toBeNull();
-    expect(screen.getByText(/damage type is irrelevant/i)).toBeDefined();
+    expect(screen.queryByText(/damage type is irrelevant/i)).toBeNull();
   });
 
   it("shows only the relevant damage types when the creature has IWR", async () => {

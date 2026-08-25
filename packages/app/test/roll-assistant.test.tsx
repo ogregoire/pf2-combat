@@ -69,13 +69,21 @@ describe("RollAssistant", () => {
     expect(screen.getByText(/sickened 1/)).toBeDefined();
   });
 
-  it("disables an action the pool cannot afford but keeps it visible", () => {
+  // Unaffordable blocks the *spend*, not the reading of it: the card stays
+  // pressable so the GM can open an ability they can't currently pay for,
+  // and it's the Use button inside that refuses.
+  it("disables the Use button for an action the pool cannot afford but keeps the action visible", async () => {
+    const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(stagLord, 19);
     useEncounter.getState().addCondition(id, "slowed", 2);
     render(<ActiveCombatant />);
+
     const unfair = screen.getByRole("button", { name: /Unfair Aim/ });
-    expect(unfair.hasAttribute("disabled")).toBe(true);
+    expect(unfair.hasAttribute("disabled")).toBe(false);
     expect(screen.getByText("Unfair Aim")).toBeDefined();
+
+    await user.click(unfair);
+    expect(screen.getByRole("button", { name: /^Use / }).hasAttribute("disabled")).toBe(true);
   });
 
   it("advances the MAP when a strike is recorded", async () => {

@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import type { Condition, GlossaryEntry } from "@pf2/schema";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { useEncounter } from "../src/state/store.js";
@@ -7,6 +8,151 @@ import type { FetchFn } from "../src/data/catalog.js";
 
 describe("ActionList — Strikes merged into the action list", () => {
   beforeEach(() => useEncounter.getState().reset());
+
+  const withCharge = () =>
+    useEncounter.getState().addCombatant(
+      {
+        kind: "creature", name: "Ogre", level: 3, ac: 18,
+        saves: { fortitude: 10, reflex: 6, will: 5 }, hp: { current: 30, max: 30 },
+        attacks: [],
+        actions: [
+          { name: "Brutal Charge", cost: "2", traits: [], frequency: null, trigger: null,
+            requirements: null, description: "<p>Rushes in.</p>", category: "offensive" },
+        ],
+      },
+      20,
+    );
+
+  // Pressing an ability used to spend from the pool immediately, so reading
+  // Chase Prey marked it used. Pressing now only selects; spending is a
+  // second, explicit press on the Use button that selection reveals.
+  it("selects an action instead of spending it, and reveals a Use button", async () => {
+    const user = userEvent.setup();
+    withCharge();
+    const { id } = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    render(<ActiveCombatant />);
+
+    expect(screen.queryByRole("button", { name: /^Use / })).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: /Brutal Charge/ }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.actionsSpent).toBe(0);
+    expect(screen.getByRole("button", { name: /^Use /})).toBeDefined();
+  });
+
+  it("spends the action's cost when the Use button is pressed", async () => {
+    const user = userEvent.setup();
+    withCharge();
+    const { id } = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    render(<ActiveCombatant />);
+
+    await user.click(screen.getByRole("button", { name: /Brutal Charge/ }));
+    await user.click(screen.getByRole("button", { name: /^Use / }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.actionsSpent).toBe(2);
+  });
+
+  it("disables the Use button when the pool can't afford the action", async () => {
+    const user = userEvent.setup();
+    withCharge();
+    const { id } = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    useEncounter.getState().spendActions(id, 2); // 1 of 3 left, Charge costs 2
+    render(<ActiveCombatant />);
+
+    await user.click(screen.getByRole("button", { name: /Brutal Charge/ }));
+
+    const use = screen.getByRole("button", { name: /^Use / });
+    expect(use.getAttribute("disabled")).not.toBeNull();
+
+    await user.click(use);
+    expect(useEncounter.getState().encounter.combatants[id]!.actionsSpent).toBe(2);
+  });
+
+  const withPassive = () =>
+    useEncounter.getState().addCombatant(
+      {
+        kind: "creature", name: "Ogre", level: 3, ac: 18,
+        saves: { fortitude: 10, reflex: 6, will: 5 }, hp: { current: 30, max: 30 },
+        attacks: [],
+        actions: [
+          { name: "Brutal Charge", cost: "2", traits: [], frequency: null, trigger: null,
+            requirements: null, description: "<p>Rushes in.</p>", category: "offensive" },
+          { name: "Grab", cost: "passive", traits: [], frequency: null, trigger: null,
+            requirements: null, description: "<p>The ogre can grab its prey.</p>", category: "offensive" },
+        ],
+      },
+      20,
+    );
+
+  // Passives used to trail the list in a side-by-side flex row, which the GM
+  // found unreadable at a glance. They now lead it, stacked one per line.
+  it("lists passives above the activatable actions, one per line", () => {
+    withPassive();
+    render(<ActiveCombatant />);
+
+    const names = screen.getAllByRole("button").map((b) => b.textContent ?? "");
+    const grabIdx = names.findIndex((t) => t.includes("Grab"));
+    const chargeIdx = names.findIndex((t) => t.includes("Brutal Charge"));
+    expect(grabIdx).toBeGreaterThanOrEqual(0);
+    expect(grabIdx).toBeLessThan(chargeIdx);
+
+    // Stacked, not columns: the strip they sit in is a column.
+    const grab = screen.getByRole("button", { name: /Grab/ });
+    expect(grab.parentElement!.style.flexDirection).toBe("column");
+  });
+
+  // "Ability name passive" — the name leads and the PASSIVE label keeps its
+  // existing small-caps faint styling; the rules text is folded away until
+  // the GM asks for it.
+  it("folds a passive's rules text away until its header is clicked", async () => {
+    const user = userEvent.setup();
+    withPassive();
+    render(<ActiveCombatant />);
+
+    const grab = screen.getByRole("button", { name: /Grab/ });
+    expect(grab.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.queryByText(/can grab its prey/i)).toBeNull();
+
+    // Name first, then the label.
+    expect(grab.textContent!.indexOf("Grab")).toBeLessThan(grab.textContent!.indexOf("PASSIVE"));
+
+    await user.click(grab);
+
+    expect(grab.getAttribute("aria-expanded")).toBe("true");
+    expect(screen.getByText(/can grab its prey/i)).toBeDefined();
+  });
+
+  // A Strike is an action, so it must not read as a different *kind* of
+  // thing: an unselected Strike card used a thinner border (var(--border))
+  // and 1px less vertical padding than every other action card, which made
+  // the list look like two interleaved kinds of row. Only the frame is
+  // pinned here — the MAP ladder, damage line and selection behaviour are
+  // deliberately unchanged.
+  it("frames an unselected Strike exactly like any other action card", () => {
+    useEncounter.getState().addCombatant(
+      {
+        kind: "creature", name: "Ogre", level: 3, ac: 18,
+        saves: { fortitude: 10, reflex: 6, will: 5 }, hp: { current: 30, max: 30 },
+        attacks: [
+          { name: "Claw", kind: "melee", bonus: 10, traits: [],
+            damage: [{ formula: "1d6+4", type: "slashing", category: null }], effects: [] },
+        ],
+        actions: [
+          { name: "Brutal Charge", cost: "2", traits: [], frequency: null, trigger: null,
+            requirements: null, description: "<p>Rushes in.</p>", category: "offensive" },
+        ],
+      },
+      20,
+    );
+    render(<ActiveCombatant />);
+
+    const strike = screen.getByRole("button", { name: /Claw/ });
+    const action = screen.getByRole("button", { name: /Brutal Charge/ });
+
+    expect(strike.style.border).toBe(action.style.border);
+    expect(strike.style.padding).toBe(action.style.padding);
+    expect(strike.style.borderRadius).toBe(action.style.borderRadius);
+  });
 
   it("orders a Strike alongside actions by cost, and gives it the same cost pip as any other 1-action ability", () => {
     useEncounter.getState().addCombatant(
@@ -166,7 +312,13 @@ describe("ActionList — unaffordable actions fold to their header line", () => 
     view.rerender(<ActiveCombatant />);
 
     const card = screen.getByRole("button", { name: /Brutal Charge/ });
-    expect(card.getAttribute("disabled")).not.toBeNull();
+    // Not `disabled` any more: spending moved to the Use button inside the
+    // card (which is what's disabled), so the card itself must stay
+    // pressable or the GM could never read an unaffordable ability. The
+    // dimmed, dashed frame is what carries "you can't afford this".
+    expect(card.getAttribute("disabled")).toBeNull();
+    expect(card.style.opacity).toBe("0.45");
+    expect(card.style.border).toBe("1px dashed var(--border)");
     // Folded: name survives, body and traits do not.
     expect(screen.queryByText("Rushes in and swings wide.")).toBeNull();
     expect(screen.queryByText("FLOURISH")).toBeNull();
