@@ -140,9 +140,10 @@ function dealDamage(c: Combatant, amount: number, damageType?: string): void {
  * normally occur at the start or end of your turn occur immediately when you
  * use the Delay action" — which is precisely what stops Delay being a free
  * way to skip a turn of persistent damage. Sharing the function (rather than
- * having `delay` call `nextTurn`) is also what keeps the hooks firing
+ * having `delay` call `nextTurn`) is half of what keeps the hooks firing
  * *once*: `delay` runs this itself and then advances with `advanceTurn`,
- * which never runs it.
+ * which never runs it. The other half is `settleEndOfTurn` below — call
+ * that, not this, from anywhere a turn ends.
  */
 function endTurnEffects(enc: Encounter, entry: Entry): void {
   for (const cid of entry.combatantIds) {
@@ -156,6 +157,25 @@ function endTurnEffects(enc: Encounter, entry: Entry): void {
     // applyDamage's own default.
     if (persistentDamage > 0) dealDamage(c, persistentDamage);
   }
+}
+
+/**
+ * The one gate every end-of-turn resolution goes through, so that a turn's
+ * effects land exactly once no matter which of the two paths gets there
+ * first. `delay` fires them early (RAW: on Delay they "occur immediately"),
+ * `nextTurn` fires them when the turn actually ends, and a delayed turn
+ * reaches both — Delay up front, and then again when the delayer returns
+ * and finishes the very same turn. `endOfTurnResolved` is what tells the
+ * second visit that this turn is already settled.
+ *
+ * This is the third shape of one recurring defect (prompt acknowledgement
+ * double-decrementing frightened, then `delay` calling `nextTurn`), so the
+ * "once" now lives in one function rather than in each caller's structure.
+ */
+function settleEndOfTurn(enc: Encounter, entry: Entry): void {
+  if (entry.endOfTurnResolved) return;
+  endTurnEffects(enc, entry);
+  entry.endOfTurnResolved = true;
 }
 
 /**
@@ -219,7 +239,14 @@ function advanceTurn(enc: Encounter): void {
   // does), and this entry simply takes an ordinary turn here and now. The
   // lost actions are lost by never having been made available, which is why
   // actionsSpent is reset below exactly as for any other incoming turn.
-  if (active.delayed) active.delayed = false;
+  // The lapsed turn's effects were resolved back when Delay ran them; this
+  // is a *new* turn, a full round later, so its own end must resolve afresh.
+  // (A delayer that returns instead never passes through here, and keeps the
+  // flag set — the turn it returns into is the delayed one, already settled.)
+  if (active.delayed) {
+    active.delayed = false;
+    active.endOfTurnResolved = false;
+  }
 
   for (const cid of active.combatantIds) {
     const c = enc.combatants[cid];
@@ -329,6 +356,7 @@ export const useEncounter = create<EncounterStore>()(
           trueInitiative: trueInitiative ?? null,
           delayed: false,
           initiativeBeforeDelay: null,
+          endOfTurnResolved: false,
         });
         sortEntries(enc.entries);
         if (activeEntryId !== null) {
@@ -357,6 +385,7 @@ export const useEncounter = create<EncounterStore>()(
             trueInitiative: trueInitiative ?? null,
             delayed: false,
             initiativeBeforeDelay: null,
+            endOfTurnResolved: false,
           });
         }
         sortEntries(enc.entries);
@@ -536,7 +565,12 @@ export const useEncounter = create<EncounterStore>()(
         // ENDING — the one still active, before advanceTurn moves off it —
         // not the entry about to become active.
         const endingEntry = enc.entries[enc.activeEntryIndex];
-        if (endingEntry) endTurnEffects(enc, endingEntry);
+        if (endingEntry) {
+          settleEndOfTurn(enc, endingEntry);
+          // The turn is over, so whatever settled it is spent: the entry's
+          // next turn end has to resolve on its own account.
+          endingEntry.endOfTurnResolved = false;
+        }
 
         advanceTurn(enc);
       }),
@@ -554,7 +588,7 @@ export const useEncounter = create<EncounterStore>()(
         const entry = enc.entries[enc.activeEntryIndex];
         if (!entry || entry.id !== entryId || entry.delayed) return;
 
-        endTurnEffects(enc, entry);
+        settleEndOfTurn(enc, entry);
         // Nothing about the entry's position changes here. It keeps its
         // initiative and orderKey (and so its place in the list) until it
         // either returns — which rewrites both — or the order comes back
@@ -749,6 +783,7 @@ export const useEncounter = create<EncounterStore>()(
           trueInitiative: null,
           delayed: false,
           initiativeBeforeDelay: null,
+          endOfTurnResolved: false,
         });
         sortEntries(remaining);
         enc.entries = remaining;

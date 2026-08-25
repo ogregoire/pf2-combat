@@ -51,16 +51,19 @@ function withInitiativeModifierDefault<T extends object>(entity: T): T {
   return "initiativeModifier" in entity ? entity : { ...entity, initiativeModifier: null };
 }
 
-/** Same idea for the two fields Delay added to `Entry` (see their doc
- * comments in types.ts). `delayed` missing would merely be falsy, but a
- * missing `initiativeBeforeDelay` is `undefined`, and the row's "did a
- * return rewrite this initiative?" test is `!== null` — so without this an
- * encounter saved before Delay existed would render a struck-through
- * "undefined" on every row. */
+/** Same idea for the three fields Delay added to `Entry` (see their doc
+ * comments in types.ts). `delayed` and `endOfTurnResolved` missing would
+ * merely be falsy, but a missing `initiativeBeforeDelay` is `undefined`,
+ * and the row's "did a return rewrite this initiative?" test is `!== null`
+ * — so without this an encounter saved before Delay existed would render a
+ * struck-through "undefined" on every row. The two booleans are defaulted
+ * anyway, so that no reader has to know which of these fields happens to
+ * survive being `undefined` and which doesn't. */
 function withDelayDefaults<T extends object>(entry: T): T {
   return {
     ...("delayed" in entry ? {} : { delayed: false }),
     ...("initiativeBeforeDelay" in entry ? {} : { initiativeBeforeDelay: null }),
+    ...("endOfTurnResolved" in entry ? {} : { endOfTurnResolved: false }),
     ...entry,
   };
 }

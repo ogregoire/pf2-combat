@@ -484,6 +484,61 @@ describe("Delay", () => {
     expect(lost).toBeLessThanOrEqual(6);
   });
 
+  // The other half of "exactly once". Delay runs the end-of-turn hooks up
+  // front, then hands the turn on; the turn the delayer takes when it
+  // *returns* is that same delayed turn, arriving late. Letting its end run
+  // the hooks again gives one combatant two end-of-turn resolutions in a
+  // single round — frightened falling twice as fast as everyone else's, and
+  // persistent damage rolled twice for one round of burning.
+  it("does not fire end-of-turn effects again when the turn a delayer returned to ends", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const frightened = (): number =>
+      useEncounter.getState().encounter.combatants[id]!.conditions.find((c) => c.slug === "frightened")!.value;
+
+    const alpha = entryIdOf("Alpha");
+    useEncounter.getState().delay(alpha); // hooks fire here, RAW: 3 -> 2. Beta is up.
+    expect(frightened()).toBe(2);
+
+    useEncounter.getState().returnFromDelay(alpha); // slots in behind Beta, still Beta's turn
+    useEncounter.getState().nextTurn(); // Beta's turn ends; Alpha takes its delayed turn
+    useEncounter.getState().nextTurn(); // that delayed turn ends
+
+    expect(frightened()).toBe(2);
+
+    // Suppressed for that one turn only — the flag is spent the moment the
+    // turn it describes is over, so the next round resolves normally again.
+    useEncounter.getState().nextTurn(); // Beta's round-2 turn
+    useEncounter.getState().nextTurn(); // Alpha's round-2 turn ends
+
+    expect(frightened()).toBe(1);
+  });
+
+  // ...but a Delay that lapses instead of returning is a different story:
+  // the delayed turn is forfeit entirely (RAW: "the actions from the Delayed
+  // turn are lost") and the turn the combatant takes back at its own slot is
+  // a fresh one, a whole round on. Its end must resolve normally, or the
+  // suppression above leaks forward and this combatant quietly skips a round
+  // of persistent damage — the very dodge Delay is written to prevent.
+  it("still fires end-of-turn effects at the end of the fresh turn a lapsed Delay lands in", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const frightened = (): number =>
+      useEncounter.getState().encounter.combatants[id]!.conditions.find((c) => c.slug === "frightened")!.value;
+
+    const alpha = entryIdOf("Alpha");
+    useEncounter.getState().delay(alpha); // 3 -> 2. Beta is up.
+    useEncounter.getState().nextTurn(); // Beta ends; the order is back at Alpha's slot, so the Delay lapses
+    expect(entryOf(alpha).delayed).toBe(false);
+    expect(activeName()).toBe("Alpha");
+
+    useEncounter.getState().nextTurn(); // Alpha's ordinary round-2 turn ends
+
+    expect(frightened()).toBe(1);
+  });
+
   it("refuses to Delay while a combatant has no initiative, since Delaying advances the turn", () => {
     add("Alpha", 20);
     useEncounter.getState().addCombatant(

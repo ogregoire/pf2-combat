@@ -88,6 +88,21 @@ export interface Entry {
    * `initiative`, unlike `trueInitiative` above.
    */
   initiativeBeforeDelay: number | null;
+  /**
+   * True once this entry's end-of-turn effects have already been resolved
+   * for the turn it is currently in the middle of. Only Delay ever sets it:
+   * RAW, delaying makes those effects "occur immediately when you use the
+   * Delay action" — so they have happened, ahead of time, for a turn that
+   * has not finished yet. The turn the delayer takes when it *returns* is
+   * that same delayed turn arriving late, and this flag is what stops its
+   * end resolving them a second time in the one round.
+   *
+   * Cleared the moment the turn it describes is over: at the end of that
+   * turn (`nextTurn`), and also when a Delay lapses unused (`advanceTurn`),
+   * because the turn taken back at the entry's own slot then is a fresh one
+   * a whole round later, whose end must resolve normally.
+   */
+  endOfTurnResolved: boolean;
 }
 
 export interface Encounter {

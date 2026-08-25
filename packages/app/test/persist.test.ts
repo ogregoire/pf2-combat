@@ -51,9 +51,12 @@ describe("migrate", () => {
       },
     };
     const out = migrate(payload) as {
-      encounter: { entries: { initiative: number; delayed: unknown; initiativeBeforeDelay: unknown }[] };
+      encounter: {
+        entries: { initiative: number; delayed: unknown; initiativeBeforeDelay: unknown; endOfTurnResolved: unknown }[];
+      };
     };
     expect(out.encounter.entries[0]!.delayed).toBe(false);
+    expect(out.encounter.entries[0]!.endOfTurnResolved).toBe(false);
     expect(out.encounter.entries[0]!.initiativeBeforeDelay).toBeNull();
     expect(out.encounter.entries[0]!.initiativeBeforeDelay).not.toBeUndefined();
     expect(out.encounter.entries[0]!.initiative).toBe(17); // nothing else touched
