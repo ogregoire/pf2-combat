@@ -1,4 +1,4 @@
-import { useT } from "../i18n/index.js";
+import { format, useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import type { Combatant } from "../state/types.js";
 
@@ -50,7 +50,7 @@ export function ActionPips({ combatant }: { combatant: Combatant }): React.React
       </div>
       <div style={{ textAlign: "center", marginTop: "8px", fontSize: "11px", color: "var(--text-dim)" }}>
         {pool.reasons.length > 0
-          ? `${remaining} of ${pipCount} — ${pool.reasons.join(", ")}`
+          ? format(t("ACTIONS_REMAINING_OF_TOTAL"), { remaining, total: pipCount, reasons: pool.reasons.join(", ") })
           : `${remaining} ${t("ACTIONS_UNIT")}`}
       </div>
     </div>

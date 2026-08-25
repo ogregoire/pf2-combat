@@ -137,7 +137,7 @@ export function TurnPrompts(): React.ReactElement | null {
           <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>
             {format(t("WAITING_END_OF_TURN"), {
               n: endPrompts.length,
-              word: `${t("ITEM_WORD")}${endPrompts.length === 1 ? "" : "S"}`,
+              word: endPrompts.length === 1 ? t("ITEM_WORD_SINGULAR") : t("ITEM_WORD_PLURAL"),
             })}
           </span>
           {endPrompts.map((p) => (

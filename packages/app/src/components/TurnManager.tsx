@@ -38,7 +38,7 @@ function EncounterControls(): React.ReactElement {
         label={t("RESET_ENCOUNTER_LABEL")}
         confirmMessage={format(t("RESET_ENCOUNTER_CONFIRM"), {
           n: combatantCount,
-          word: `${t("COMBATANT_WORD")}${combatantCount === 1 ? "" : "s"}`,
+          word: combatantCount === 1 ? t("COMBATANT_WORD_SINGULAR") : t("COMBATANT_WORD_PLURAL"),
         })}
         onConfirm={resetEncounter}
       />

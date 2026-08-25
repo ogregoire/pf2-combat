@@ -52,6 +52,7 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
 
   // ActionPips.tsx
   ACTIONS_REMAINING_HEADING: "ACTIONS RESTANTES",
+  ACTIONS_REMAINING_OF_TOTAL: "{remaining} sur {total} — {reasons}",
 
   // AddCombatants.tsx
   ADD_COMBATANTS_TITLE: "Ajouter des combattants",
@@ -166,7 +167,8 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   ENEMY_PLURAL: "ennemis",
   RESET_ENCOUNTER_LABEL: "Réinitialiser le combat",
   RESET_ENCOUNTER_CONFIRM: "Réinitialiser le combat ? Efface les {n} {word} et revient au round 1. Les joueurs sont conservés.",
-  COMBATANT_WORD: "combattant",
+  COMBATANT_WORD_SINGULAR: "combattant",
+  COMBATANT_WORD_PLURAL: "combattants",
   STRIKES_THIS_TURN_LABEL: "FRAPPES CE TOUR-CI",
   RESET_STRIKES_ARIA: "Réinitialiser les frappes de ce tour",
   RESET_BUTTON: "réinitialiser",
@@ -175,7 +177,8 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   RESOLVE_NOW_LABEL: "À RÉSOUDRE MAINTENANT",
   TO_RESOLVE_BADGE: "{n} À RÉSOUDRE",
   WAITING_END_OF_TURN: "EN ATTENTE DE FIN DE TOUR — {n} {word}",
-  ITEM_WORD: "ÉLÉMENT",
+  ITEM_WORD_SINGULAR: "ÉLÉMENT",
+  ITEM_WORD_PLURAL: "ÉLÉMENTS",
 
   // EncounterScreen.tsx
   XP_TOOLTIP: "Chaque personnage gagne tout l'XP du combat — la taille du groupe ne change pas le gain",

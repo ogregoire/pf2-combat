@@ -50,6 +50,7 @@ export const STRINGS_EN = {
 
   // ActionPips.tsx
   ACTIONS_REMAINING_HEADING: "ACTIONS REMAINING",
+  ACTIONS_REMAINING_OF_TOTAL: "{remaining} of {total} — {reasons}",
 
   // AddCombatants.tsx
   ADD_COMBATANTS_TITLE: "Add combatants",
@@ -164,7 +165,8 @@ export const STRINGS_EN = {
   ENEMY_PLURAL: "enemies",
   RESET_ENCOUNTER_LABEL: "Reset encounter",
   RESET_ENCOUNTER_CONFIRM: "Reset the encounter? Clears all {n} {word} and returns to round 1. Players are kept.",
-  COMBATANT_WORD: "combatant",
+  COMBATANT_WORD_SINGULAR: "combatant",
+  COMBATANT_WORD_PLURAL: "combatants",
   STRIKES_THIS_TURN_LABEL: "STRIKES THIS TURN",
   RESET_STRIKES_ARIA: "Reset strikes this turn",
   RESET_BUTTON: "reset",
@@ -173,7 +175,8 @@ export const STRINGS_EN = {
   RESOLVE_NOW_LABEL: "RESOLVE NOW",
   TO_RESOLVE_BADGE: "{n} TO RESOLVE",
   WAITING_END_OF_TURN: "WAITING FOR END OF TURN — {n} {word}",
-  ITEM_WORD: "ITEM",
+  ITEM_WORD_SINGULAR: "ITEM",
+  ITEM_WORD_PLURAL: "ITEMS",
 
   // EncounterScreen.tsx
   XP_TOOLTIP: "Each character gains the encounter's full XP — party size does not change the award",
