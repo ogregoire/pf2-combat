@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "description": "<p>Langue-crochet tente de faire chavirer une embarcation adjacente qui a sa taille ou plus petite. Il doit réussir un test d'Athlétisme contre le plus élevé entre un DD 35 ou le DD de Connaissance de la navigation maritime du pilote.</p>",
+      "en": "Capsize",
+      "name": "Chavirer"
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>Grande, @Damage[(2d10+10)[bludgeoning]]{2d10 dégâts contondants}, Rupture 28</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "en": "Swallow Whole",
+      "name": null
+    },
+    {
+      "description": "<p>Langue-crochet vaporise du poison qui sort de sa gorge sur une @Template[line|distance:80]{ligne de 24 mètres} qui inflige @Damage[15d6[poison]|options:area-damage]{15d6 dégâts de poison} (@Check[reflex|dc:34|basic|options:area-effect]). Langue-crochet ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Vaporisation de poison]]{1d4 rounds}</p>",
+      "en": "Poison Spray",
+      "name": "Vaporisation de poison"
+    },
+    {
+      "description": "<p>Langue-crochet peut se dissoudre dans l'eau et n'apparaître plus que comme une longue traînée d'eau serpentine et sombre. Tant qu'il est sous cette forme, la Vitesse de nage de l'orm aquatique passe à 180 mètres, il réussit automatiquement les tests d'Athlétisme pour @UUID[Compendium.pf2e.actionspf2e.Item.c8TGiZ48ygoSPofx]{Nager} et il obtient un bonus de circonstances de +4 aux tests de Discrétion tant qu'il est dans l'eau. Langue-crochet peut rester sous cette forme pendant 8 heures, mais il ne peut pas entrer dans de l'eau salée lorsqu'il se sert de ce pouvoir. Langue-crochet peut revenir à sa forme normale en utilisant une action unique avec le trait concentration.</p>",
+      "en": "Water Travel",
+      "name": "Voyage par l'eau"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:34]</p>\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[2d6[poison]]{2d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 1} (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[3d6[poison]]{3d6 dégâts de poison}, Maladroit 1, et @UUID[Compendium.pf2e.conditionitems.Item.yblD8fOR1J8rDwEQ]{Confus} (1 round)</p>\n<p><strong>Stade 3</strong> @Damage[4d6[poison]]{4d6 dégâts de poison}, @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 2}, and Confus (1 round)</p>",
+      "en": "Hooktongue Venom",
+      "name": "Venin de langue-crochet"
+    },
+    {
+      "description": "<p>Langue-crochet peut passer 10 ans sans se nourrir. Au-delà de cette limite, la faim qu'il ressent le fait devenir @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralenti 1}, mais n'a pas d'autre impact sur son espérance de vie. Un Langue-crochet qui est ralenti à cause du manque de nourriture peut se défaire de cet état en utilisant Gober pour avaler un repas.</p>",
+      "en": "Slow Metabolism",
+      "name": "Métabolisme lent"
+    },
+    {
+      "description": "<p>Langue-crochet tente automatiquement de contrer toute tentative de détection, de révélation ou de scrutation par divination qui le prend pour cible. Il utilise son modificateur de Discrétion pour le test de contre.</p>",
+      "en": "Undetectable",
+      "name": "Indétectable"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tongue",
+      "name": "Langue"
+    }
+  ],
+  "name": "Langue-crochet",
+  "publicNotes": "<p>Les orms aquatiques, des créatures légendaires rôdant dans des lacs isolés, sont souvent au coeur des histoires qui se racontent dans les tavernes des communautés bâties au bord de l'eau. Pour certains voyageurs, tout lac de taille respectable semble être entouré de villes remplies de pêcheurs qui affirment avoir vu un orm aquatique. Ces créatures insaisissables vivent majoritairement dans des lacs situés dans des régions fraîches et sombres. Certains affirment que les orms aquatiques sont de lointains parents des serpents de mer et des linnorms, mais il n'a jusqu'à présent été trouvé aucun lien crédible entre ces créatures.</p>\n<p>Les orms aquatiques possèdent de nombreuses caractéristiques qui font défaut aux serpents de mer, comme la capacité de comprendre les rudiments du langage. Leur inclinaison naturelle à éviter le contact et à rester cachés est souvent en conflit avec leur insatiable curiosité les enjoignant à espionner ceux qui vivent sur les rives de leurs lacs. Les orms aquatiques sont aperçus lorsqu'ils ne peuvent s'empêcher de remonter à la surface pour jeter un œil à quelqu'un (ou quelque chose) d'inhabituel sur la plage ou flottant à la surface de l'eau.</p>\n<p>Ces créatures possèdent une très longue espérance de vie et peuvent vivre pendant des décennies, ou même des siècles, en mangeant très peu. Cela permet aux orms aquatiques de vivre dans des lacs sans avoir à refaire surface pendant de nombreuses années, et ce, même dans des plans d'eau douce où la nourriture est peu abondante. Les orms aquatiques peuvent rester dissimulés dans le lit vaseux d'un lac pendant des années, ce qui ne fait qu'ajouter aux mythes qui les entourent. Lorsqu'un animal de compagnie ou un enfant disparaît près d'un lac, les rumeurs peuvent mettre en cause l'orm aquatique du coin, d'où certains contes populaires qui avertissent les habitants de ne pas s'aventurer seuls près de l'eau.</p>\n<p>Alors que la plupart des Orms aquatiques sont décrits comme des reptiles serpentins ou à long cou, d'autres ressemblent à des phoques ou des baleines bizarrement allongés, à des hippocampes impossiblement grands, ou à des créatures à long cou dont les nageoires ressemblent à celles des élasmosaures.</p>"
+}

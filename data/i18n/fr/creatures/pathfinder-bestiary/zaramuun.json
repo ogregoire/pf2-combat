@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Attack of Opportunity",
+      "name": null
+    },
+    {
+      "description": "<p>Le zaramuun ressemble à une dune de sable jusqu'à sa prochaine action. Il obtient un résultat automatique de 47 (50 en terrain sablonneux) à ses tests de Duperie et Discrétion et à ses DD pour passer pour une dune de sable. Toute créature qui marche sur le zaramuun pénètre dans son corps et se trouve Engloutie.</p>",
+      "en": "Dune",
+      "name": "Dune"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Lors de sa dernière action, le zaramuun a obtenu un succès à une Frappe au corps-à-corps contre une créature ou il contient une créature Engloutie.</p>\n<p><strong>Effet</strong> Le zaramuun tente de @UUID[Compendium.pf2e.actionspf2e.Item.Dt6B1slsBy8ipJu9]{Désarmer} la créature Frappée ou Engloutie d'un objet principalement composé de pierre ou de métal et lui lance son sort inné de @UUID[Compendium.pf2e.spells-srd.Item.ksLCg62cLOojw3gN]{Bride planaire}.</p>",
+      "en": "Raking Sand",
+      "name": "Ratisser le sable"
+    },
+    {
+      "description": "<p>@Check[reflex|dc:35|options:damaging-effect,inflicts:grabbed,inflicts:slowed], @Damage[4d12[bludgeoning]]{4d12 dégâts contondants} et @UUID[Compendium.pf2e.spells-srd.Item.ksLCg62cLOojw3gN]{Bride planaire}, [[/act escape dc=32]], Rupture 28</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Engulf]</p>",
+      "en": "Engulf",
+      "name": null
+    },
+    {
+      "description": "<p>Le zaramuun projette un jet de sable qui inflige @Damage[11d10[slashing]|options:area-damage]{11d10 dégâts tranchants} à toutes les créatures qui se trouvent sur une @Template[line|distance:60]{ligne de 18 mètres} (@Check[reflex|dc:38|options:area-effect,damaging-effect,inflicts:blinded]).</p>\n<p>Il ne peut plus faire de jet de sable pendant [[/gmr 1d4 #Recharger du jet de sable]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> La créature subit la moitié des dégâts.</p>\n<p><strong>Échec</strong> La créature subit la totalité des dégâts.</p>\n<p><strong>Échec critique</strong> La créature subit la totalité des dégâts et est @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Aveugle} pendant 1 round.</p>",
+      "en": "Sandblast",
+      "name": "Jet de sable"
+    },
+    {
+      "description": "<p>Le zaramuun peut @UUID[Compendium.pf2e.actionspf2e.Item.H6v1VgowHaKHnVlG]{Creuser} à travers le sable et la terre (mais pas la pierre) de toute sa Vitesse de creusement, sans laisser derrière lui de tunnel ou d'autre signe de son passage. Il laisse derrière lui toute créature Engloutie quand il Creuse. Le sable meuble et les éboulis ne constituent pas un terrain difficile pour un zaramuun.</p>",
+      "en": "Sand Glide",
+      "name": "Glisse à travers le sable"
+    },
+    {
+      "description": null,
+      "en": "Tremorsense (Imprecise) 60 feet",
+      "name": "Perception des vibrations 18 mètres (imprécis)"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fist",
+      "name": "Poing"
+    },
+    {
+      "en": "Rock Or Metal Debris",
+      "name": "Débris de roche ou de métal"
+    }
+  ],
+  "name": "Zaramuun",
+  "publicNotes": "<p>Les zaramuuns sont des êtres de sable élémentaire qui se cachent dans les déserts et les autres terres désolées. Ils restent tapis sous la forme de grandes dunes en attendant le passage de créatures vivantes afin de se dresser et les attaquer. Les plus tristement célèbres zaramuuns tuent toutes les créatures qu'ils croisent. D'autres se contentent de dérober à leurs victimes toutes leurs possessions en métal et en pierre avant de s'enfuir. Bien que des zaramuuns proclament qu'ils ne font que récupérer ce qui a été volé à leur terre ancestrale, ils sont en réalité dans le déni. La plupart d'entre eux utilisent en effet le fruit de leurs rapines comme paiement et composants matériels pour convoquer des fiélons. Les zaramuuns ont en effet été exilés du plan de la terre pour avoir adoré des fiélons qui leur ont promis des moyens de dominer les autres élémentaires. Cependant, ce culte s'est graduellement transformé en servitude et, maintenant, de nombreux zaramuuns sont convaincus que s'ils envoient assez d'âmes à leurs maîtres, ceux-ci les libéreront.</p>"
+}

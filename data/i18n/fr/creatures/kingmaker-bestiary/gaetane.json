@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Gaétane effectue deux Frappes à distance avec son <em>arc du serment</em>t contre une cible. Si les deux touchent la même créature, additionnez leurs dégâts avant d'appliquer les résistances et les faiblesses. Il applique sa pénalité d'attaques multiples aux Frappes</p>",
+      "en": "Hunted Shot",
+      "name": "Tir du chasseur"
+    },
+    {
+      "description": "<ul>\n<li><strong>Humain</strong>\n<ul>\n<li><strong>Corps-à-corps</strong> Poing +24 (agile, non-létal), <strong>Dégâts</strong> @Damage[(1d4+10)[bludgeoning]]{1d4+10 dégâts contondants}</li>\n</ul>\n</li>\n<li><strong>Rat</strong>\n<ul>\n<li><strong>Taille</strong> Petit</li>\n<li><strong>Vitesse</strong> 9 mètres, Escalade 3 mètres</li>\n</ul>\n</li>\n</ul>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "en": "Change Shape",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Gaétane n'a pas encore tenté une Frappe au cours de son tour</p>\n<hr />\n<p><strong>Effect</strong> Gaétane effectue une Frappe à distance avec une pénalité de -2. Il obtient un bonus de circonstances de +6 aux jets de dégâts de cette Frappe.</p>",
+      "en": "Deadly Aim",
+      "name": "Visée mortelle"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Gaétane subit la pénalité d'attaques multiples</p>\n<hr />\n<p><strong>Effet</strong> Gaétane vise avec soin, puis effectue une Frappe avec son <em>arc du serment</em>. Il ignore l'état @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masqué} et tous les abris dont la cible bénéficie.",
+      "en": "Targeting Shot",
+      "name": "Tir de ciblage"
+    },
+    {
+      "description": "<p>Cette malédiction affecte seulement les humanoïdes.</p>\n<hr />\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:34].</p>\n<p>À chaque pleine lune, la créature maudite doit réussir un nouveau jet de Vigueur ou se changer en garou jusqu'à l'aube. Le garou est alors sous le contrôle du MJ et saccage tout ce qu'il trouve pendant la moitié de la nuit, après quoi il sombre dans l'inconscience jusqu'à l'aube.</p>",
+      "en": "Curse of the Wererat",
+      "name": "Malédiction du rat-garou"
+    },
+    {
+      "description": "<p>Si Gaétane obtient un coup critique sur une Frappe avec une arme à distance, ou touche une créature minimum deux fois pendant son tour avec une Frappe à distance, et si la créature est celle qu'il a juré de détruire avec son <em>arc du serment</em>, cette dernière est @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Prise au dépourvu} jusqu'au début du prochain tour de Gaétane.</p>",
+      "en": "Distracting Shot",
+      "name": "Tir déroutant"
+    },
+    {
+      "description": "<p>Quand la pleine lune se lève dans le ciel nocturne, le garou revêt sa forme hybride. Ensuite, il ne peut plus Changer de forme. Il grossit d'une catégorie de taille, son allonge augmente de 1,50 mètre et ses dégâts de mâchoires (ou une Frappe similaire) de 2. Quand la lune se couche ou que le soleil se lève, le garou reprend sa forme humanoïde et est @UUID[Compendium.pf2e.conditionitems.Item.HL2l2VRSaQHu9lUw]{Fatigué} pendant [[/gmr 2d4 #Durée de la fatigue]]{2d4 heures}.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.dRe8n1nBWMIXd8jh]{Effet : Frénésie lunaire}</p>",
+      "en": "Moon Frenzy",
+      "name": "Frénésie lunaire"
+    },
+    {
+      "description": "<p>Gaétane peut communiquer avec les rongeurs.</p>",
+      "en": "Rat Empathy",
+      "name": "Empathie avec les rats"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": null
+    },
+    {
+      "en": "Jaws",
+      "name": null
+    },
+    {
+      "en": "Oathbow",
+      "name": "Arc du serment"
+    }
+  ],
+  "name": "Gaétane",
+  "publicNotes": null
+}

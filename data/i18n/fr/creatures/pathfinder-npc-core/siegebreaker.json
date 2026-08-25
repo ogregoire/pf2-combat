@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "description": "<p>Par une action Interagir, le briseur de siège dégaine une grenade alchimique puis effectue une Frappe avec.</p>",
+      "en": "Quick Grenadier",
+      "name": "Grenadier rapide"
+    },
+    {
+      "description": "<p>Un briseur de siège porte 15 grenades alchimiques infligeant des dégâts d'acide, de froid ou de feu, plus 10 dégâts persistants et 10 dégâts d'éclaboussure du même type (généralement cinq de chaque type de dégâts). Il reconstitue son stock de grenades chaque jour.</p>",
+      "en": "Alchemical Grenades",
+      "name": "Grenades alchimiques"
+    },
+    {
+      "description": "<p>Les bombes du briseur de siège dotées du trait éclaboussure infligent des dégâts d'éclaboussure dans une @Template[emanation|distance:10]{émanation de 3 mètres}.</p>",
+      "en": "Expanded Splash",
+      "name": "Éclaboussure élargie"
+    },
+    {
+      "description": "<p>Quand un attaquant obtient un coup critique contre le briseur de siège, l'une des grenades alchimiques du briseur de siège explose. Le MJ détermine la grenade aléatoirement. Le briseur de siège subit les dégâts de la grenade comme s'il avait été touché (en appliquant normalement ses résistances) et toute créature dans une @Template[type:emanation|distance:10]{émanation de 3 mètres} subit les dégâts d'éclaboussure.</p>",
+      "en": "Explosive Compounds",
+      "name": "Composés explosifs"
+    },
+    {
+      "description": null,
+      "en": "Resistance 10 to Alchemical Items",
+      "name": "Résistance 10 contre les objets alchimiques"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le briseur de siège se trouve au pied d'un mur fortifié</p>\n<hr />\n<p><strong>Effet</strong> Le briseur de siège a étudié pendant des années pour maîtriser la combinaison exacte d'ingrédients alchimiques qui multiplie exponentiellement la puissance de ses grenades, créant une bombe terrifiante capable de réduire le mur d'une ville en miettes. Le briseur de siège passe 10 minutes à combiner les ingrédients provenant de 9 grenades alchimiques de son choix. Il règle ensuite une mèche pouvant durer jusqu'à 1 minute. Lorsque le temps est écoulé, la bombe explose en une @Template[type:burst|distance:20]{explosion de 6 mètres}, infligeant @Damage[20d6[acid]|options:area-damage]{20d6 dégâts d'acide}, @Damage[20d6[cold]|options:area-damage]{20d6 dégâts de froid} ou @Damage[20d6[fire]|options:area-damage]{20d6 dégâts de feu} qui ignorent jusqu'à 10 points de Solidité des structures. Toute créature dans la zone peut réduire les dégâts subis avec un jet de @Check[reflex|dc:37|basic|options:area-effect].</p>",
+      "en": "The Wall Must Fall",
+      "name": "Le mur doit tomber"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Alchemical Grenade",
+      "name": "Grenade alchimique"
+    },
+    {
+      "en": "Fist",
+      "name": "Poing"
+    },
+    {
+      "en": "Light Mace",
+      "name": "Masse d'arme légère"
+    }
+  ],
+  "name": "Briseur de siège",
+  "publicNotes": "<p>Lorsqu'une fortification bien construite ou protégée par magie repousse tous les assauts, on fait appel à un briseur de siège. Ces maîtres de la destruction alchimique trouvent que plus un mur est imposant et bien défendu, plus il est gratifiant de le démolir.</p>\n<hr />\n<p>Qu'ils soient engagés pour faire la guerre, protéger une caravane ou infiltrer une forteresse réputée impénétrable, les mercenaires ne manquent pas de travail à travers tout Golarion.</p>"
+}

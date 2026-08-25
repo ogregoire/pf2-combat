@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature adjacente inflige des dégâts tranchants ou perforants au dragon.</p>\n<hr />\n<p><strong>Effet</strong> La créature est aspergée par le sang du dragon et subit @Damage[3d6[cold]]{3d6 dégâts de froid}. Une créature qui subit des dégâts de froid de cette manière est @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 1} pendant 1 round.</p>",
+      "en": "Freezing Blood",
+      "name": "Sang glacial"
+    },
+    {
+      "description": "<p>Le dragon percute le sol. Il peut agir ainsi s'il est au sol ou s'il Vole à moins de 3 mètres du sol. Chaque créature au sol dans une @Template[emanation|distance:10]{émanation de 3 mètres} doit réussir un jet de @Check[reflex|dc:37|options:area-effect,damaging-effect]. Si la créature obtient un échec, elle est @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre} et subit @Damage[5d6[bludgeoning]|options:area-damage]{5d6 dégâts contondants}.</p>\n<p>Puis le dragon peut Faire un pas.</p>",
+      "en": "Ground Slam",
+      "name": "Coup au sol"
+    },
+    {
+      "description": "<p>Le dragon souffle un nuage de froid qui inflige @Damage[16d6[cold]|options:area-damage]{16d6 dégâts de froid} dans un @Template[cone|distance:50]{cône de 15 mètres} (@Check[reflex|dc:36|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son Souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Le dragon modifie la forme d'un cube de glace ou de neige de 3 mètres d'arête qu'il touche. Toute créature qui se tient sur la glace doit réussir un jet de @Check[reflex|dc:15] ou un test d'@Check[acrobatics|dc:15].</p>\n<p>En cas d'échec, la créature tombe @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre} au-dessus de la glace. En cas d'échec critique, elle tombe de la glace entièrement et elle est aussi À terre.</p>",
+      "en": "Shape Ice",
+      "name": "Façonner la glace"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>15 mètres. Après avoir utilisé son Souffle, un violent blizzard de neige aveuglant entoure le corps du dragon pendant 1 round. Tout ce qui se trouve dans l'aura est considéré un terrain difficile pour les autres créatures au sol, en train d'escalader ou de voler. La neige qui souffle @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masque} les créatures dans la zone. Tant que le blizzard fait rage, le Froid du dragon s'étend à toute la zone affectée par le blizzard.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.lJGAJF9QiXCOPd2I]{Effet : Aura d'arme de souffle draconique}</p>",
+      "en": "Blizzard",
+      "name": "Blizzard"
+    },
+    {
+      "description": "<p>3 mètres. @Damage[3d6[cold]|options:area-damage]{3d6 dégâts de froid} (@Check[reflex|dc:34|basic|options:area-effect])</p>",
+      "en": "Dragon Chill",
+      "name": "Froid du dragon"
+    },
+    {
+      "description": "<p>27 mètres. @Check[will|dc:34|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": "<p>Un dragon blanc peut escalader la glace à la Vitesse d'escalade indiquée. Il ignore le terrain difficile et très difficile provoqué lié à la glace et à la neige et ne risque pas de tomber en traversant de la glace.</p>",
+      "en": "Ice Climb",
+      "name": "Escalade de la glace"
+    },
+    {
+      "description": "<p>La neige ne gêne pas la vision d'un dragon blanc. Il ignore l'état @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masqué} dû à une chute de neige.</p>",
+      "en": "Snow Vision",
+      "name": "Vision malgré la neige"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Dragon blanc (Vénérable, Incantateur)",
+  "publicNotes": "<p>Le plus féroce et le moins intelligent de tous les dragons chromatiques, le dragon blanc est brutal, prédateur et principalement motivé par l'instinct de conservation. Presque tous les autres dragons considèrent les dragons blancs comme des têtes brûlées sans espoir et insipides, ce qui ne les rend pas moins dangereux, bien au contraire. Il est pratiquement impossible de traiter avec les dragons blancs, non pas parce qu'ils n'en ont pas la capacité, mais parce qu'ils n'en ont tout simplement pas envie. Il est aussi difficile de traiter avec eux qu'ils sont prompts à la colère, et ils se mettent en colère pour pratiquement n'importe quoi. Lorsqu'un dragon blanc parle, il profère des menaces, des plaisanteries ineptes et des balbutiements incohérents en guise de prélude à son attaque - et lorsque celle-ci survient, elle est sanguinaire et impitoyable.</p>\n<p>Fort heureusement, ces créatures préfèrent les lieux isolés et très froids éloignés de toute communauté. Vivants sur les sommets glacials des montagnes ou dans des cavernes de glace sous des toundras austères, ils considèrent les terres qui les entourent comme leur domaine réservé et leur territoire de chasse. Ils s'envolent pour se nourrir ou terroriser les autres créatures, surtout celles qui osent s'approcher de leur domaine, puis rapportent des trésors dans leur tanière pour les exposer dans les niches glacées de leur repaire. Ils collectionnent toutes sortes d'objets de valeur avec une légère préférence pour les objets très utiles, comme les outils, les marchandises et la bonne nourriture, plutôt que pour les pièces de monnaie ou les bijoux. Leur pouvoir de façonner la glace permet aux dragons blancs de transformer leur tanière à leur convenance et ils se montrent généralement très fiers de leurs aménagements réalisés au fil des années.</p>\n<hr />\n<p>Bien qu'il existe de nombreux types de dragons, des puissants dragons planaires aux étranges dragons ésotériques, peu sont aussi connus et redoutés que les dragons chromatiques. Différenciée par la teinte des écailles, chaque couleur de dragon a sa propre manière de déchaîner sa cruauté meurtrière que ce soit avec ses griffes, ses crocs ou son souffle. Et, contrairement à la plupart des autres créatures, plus ils vieillissent, plus ils sont puissants. Leur avidité pour les trésors, la nourriture, les bains de sang et le pouvoir est légendaire. Physiquement puissants, avec un ego tout aussi développé, ces dragons sont souvent moralement dépravés et se comportent comme des cerveaux criminels, des tyrans cruels ou des prédateurs voraces.</p>"
+}

@@ -1,0 +1,37 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le ver du froid subit des dégâts perforants ou tranchants.</p>\n<hr />\n<p><strong>Effet</strong> Le sang glacial du ver de froid gicle sur une créature déterminée aléatoirement dans un rayon de 3 mètres du ver du froid. Cette créature subit @Damage[7d6[cold]]{7d6 dégâts de froid}(@Check[reflex|dc:29|basic]).</p>",
+      "en": "Freezing Blood",
+      "name": "Sang glacial"
+    },
+    {
+      "description": "<p>Le ver du givre émet un trille hypnotique. Chaque créature qui n'est pas un ver du givre dans un rayon de 30 mètres doit effectuer un jet de @Check[will|dc:32]. Les effets du Trille du ver durent 1 round mais si le ver utilise de nouveau ce pouvoir au cours des rounds suivants, il étend sa durée de 1 round pour toute créature déjà affectée.</p>\n<p><strong>Succès</strong> La créature n'est pas affectée et est temporairement immunisée contre Trille du ver pendant 24 heures.</p>\n<p><strong>Échec</strong> La créature est @UUID[Compendium.pf2e.conditionitems.Item.AdPVz7rbaVSRxHFg]{Fascinée} par le ver du givre.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec mais l'état Fasciné ne se termine pas si le ver du givre utilise une action hostile contre la créature.</p>",
+      "en": "Worm Trill",
+      "name": "Trille du ver"
+    },
+    {
+      "description": "<p>Le ver du givre souffle un nuage de froid qui inflige @Damage[13d6[cold]|options:area-damage]{13d6 dégâts de froid} dans un @Template[cone|distance:50]{cône de 15 mètres} (@Check[reflex|dc:32|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son Arme de souffle avant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Quand un ver du givre meurt, il explose et projette du sang glacial dans une @Template[burst|distance:100]{émanation de 30 mètres}. Toutes les créatures et objets à portée subissent @Damage[10d8[cold]|options:area-damage]{10d8 dégâts de froid} (@Check[reflex|dc:29|basic|options:area-effect]).</p>",
+      "en": "Death Throes",
+      "name": "Agonie fatale"
+    },
+    {
+      "description": "<p>1,50 mètre. Une créature qui pénètre dans cette émanation, ou qui y débute son tour, subit @Damage[3d6[cold]|options:area-damage]{3d6 dégâts de froid} (@Check[reflex|dc:29|basic|options:area-effect]).</p>",
+      "en": "Worm Chill",
+      "name": "Givre du ver"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Ver du givre",
+  "publicNotes": "<p>L'unique œil rouge et rond du ver du givre brille au sommet de sa masse monstrueuse aussi blanche qu'un manteau de neige. Ce qui semble être une mâchoire inférieure bifide est en fait une paire de parapodes que le ver utilise pour pelleter de la nourriture dans sa bouche semblable à celle d'une lamproie. Un ver du givre adulte mesure plus de 10 mètres de long et pèse environ 4 tonnes.</p>\n<p>Un ver du givre est un superprédateur qui utilise le camouflage, le creusement et la ruse pour tendre des embuscades à ses proies. Quand il attaque, le ver du givre émet un trille aiguë distinctif. Bien que certains survivants de leurs attaques le comparent à une lamentation, le trille a un effet fascinant sur les créatures proches, qui les pousse à se figer et à écouter alors que le monstre approche.</p>\n<p>Le froid généré par le ver du givre est aussi dangereux que son trille ou que sa mâchoire, et bien qu'il n'aime pas trop les climats chauds, il ne ressent aucune gêne particulière dans les régions qui y sont soumises. Un ver du givre qui se retrouve dans un environnement tempéré ou même tropical génère autour de lui du givre et de la glace, et il est capable avec le temps de créer des poches de terrains arctiques là où cela est a priori impossible.</p>"
+}

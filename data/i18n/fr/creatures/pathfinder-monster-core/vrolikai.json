@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "description": "<p>Le vrolikai fait apparaître une lame en forme de poignard faite de ce qui ressemble à une flamme noire cristallisée dans chacune de ses quatre mains. Ces armes fonctionnent comme des <em>dagues de frappe supérieures +2</em> qui infligent 2d6 dégâts supplémentaires de vide. Elles disparaissent dans le néant 1 minute après que le vrolikai ne les porte plus.</p>",
+      "en": "Black Flame Knives",
+      "name": "Lames de flamme noire"
+    },
+    {
+      "description": "<p>Le vrolikaï concentre son Regard voleur de mort sur une cible unique qu'il peut voir dans un rayon de 9 mètres. Cette cible doit immédiatement effectuer un jet de Vigueur contre le regard voleur de mort.</p>\n<hr />\n<p><strong>Succès</strong> La créature n'est pas affectée.</p>\n<p><strong>Échec</strong> La créature est affectée par le regard voleur de mort et devient @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainée 1}. Si elle était déjà Drainée 1 du fait de cette capacité avant de faire ce jet de sauvegarde, un échec augmente la valeur de l'état de 1 (sans pouvoir dépasser @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainé 4}). Le vrolikaï obtient 10 Points de vie temporaires et la créature Drainée est temporairement immunisée jusqu'au début du prochain tour du vrolikaï.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la créature augmente la valeur de son état Drainé de 2.</p>",
+      "en": "Consume Death",
+      "name": "Consommer la mort"
+    },
+    {
+      "description": "<p>Le vrolikai attaque une cible unique avec toutes ses lames de flamme noire. Le démon effectue une Frappe de lame de flamme noire avec les effets supplémentaires suivants. Ceci est pris en considération dans le calcul de la pénalité d'attaques multiples du vrolikai à hauteur du nombre de lames de flamme noire que le vrolikai a utilisé.</p>\n<hr />\n<p><strong>Succès critique</strong> La cible subit 2d6 dégâts supplémentaires pour chaque lame au-delà de la première (généralement @Damage[6d6[void]]{6d6 dégâts de vide supplémentaires}) ainsi que @Damage[4d6[persistent,void]]{4d6 dégâts de vide persistants}.</p>\n<p><strong>Succès</strong> La cible subit 2d6 dégâts supplémentaires pour chaque lame supplémentaire après la première.</p>\n<p><strong>Échec</strong> Le vrolikai inflige les dégâts que sa Frappe de lame de flamme noire infligerait normalement.</p>",
+      "en": "Focused Flames",
+      "name": "Flammes focalisées"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>9 mètres. Lorsqu'un non-démon termine son tour dans l'aura, il doit tenter un jet de @Check[fortitude|dc:38]. En cas d'échec, il devient @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainé 1}.</p>\n<p>Une créature qui meurt alors qu'elle est drainée par le regard d'un vrolikai se relève en tant que goule à minuit. Il appartient au MJ d'en déterminer le type.</p>",
+      "en": "Death-Stealing Gaze",
+      "name": "Regard voleur de mort"
+    },
+    {
+      "description": "<p>Le dard du vrolikaï perturbe l'esprit. Toute créature qu'il touche doit effectuer un jet de @Check[will|dc:44].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> La créature est @UUID[Compendium.pf2e.conditionitems.Item.e1XGnhKNSQIm5IXg]{Stupéfiée 1} pendant 1 minute.</p>\n<p><strong>Échec</strong> La créature est @UUID[Compendium.pf2e.conditionitems.Item.e1XGnhKNSQIm5IXg]{Stupéfiée 1}. Si elle est déjà stupéfiée, la valeur de l'état augmente de 1 à la place (jusqu'à un maximum de @UUID[Compendium.pf2e.conditionitems.Item.e1XGnhKNSQIm5IXg]{Stupéfié 4}).</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la créature est automatiquement @UUID[Compendium.pf2e.conditionitems.Item.yblD8fOR1J8rDwEQ]{Confuse} pendant 1 minute.</p>",
+      "en": "Mindwarping",
+      "name": "Distorsion mentale"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 Feet",
+      "name": "Télépathie 30 mètres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Black Flame Knife",
+      "name": "Lame de flamme noire"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Stinger",
+      "name": "Dard"
+    }
+  ],
+  "name": "Vrolikai (Démon de mort)",
+  "publicNotes": "<p>Les puissants vrolikais commandent aux armées indomptables des démons, les réunissant autour d'un même désir de mort et de destruction. Contrairement aux autres démons, le redoutable vrolikai ne se forme pas à partir d'une seule âme. Il se manifeste lorsqu'un démon dévore tant d'âmes damnées que ses propres désirs se perdent dans la cacophonie du péché. Un vrolikai qui survit à ce processus acquiert une immense puissance et peut revendiquer une région des Failles Extérieures comme son propre domaine.</p>\n<p>En embrassant avec enthousiasme la multitude des péchés, les vrolikais sont particulièrement aptes à diriger et à unir les démons, si bien que même les seigneurs démons doivent compter sur les vrolikais pour commander leurs forces. Les motivations chaotiques et conflictuelles du genre démoniaque laissent peu de place à la recherche d'un terrain d'entente, mais le vrolikai peut exalter la beauté de chaque sorte de péché tout en menant les armées démoniaques à la bataille.</p>\n<hr />\n<p>Lorsqu'une âme mortelle pécheresse est jugée et envoyée dans les Failles extérieures, elle peut devenir un fiélon mortel : un démon. Les démons sont les incarnations du péché, qu'il s'agisse de péchés classiques tels que la colère ou la gourmandise ou de dépravations plus « spécifiques » comme l'obsession de la torture ou la trahison et la traîtrise. Une fois créé, un démon poursuit deux buts en même temps : amasser du pouvoir pour lui-même et corrompre les âmes des mortels afin de les souiller par le péché. De la sorte, les démons s'assurent une réserve inépuisable de nouveaux démons pour renforcer leurs rangs toujours plus nombreux dans les Failles extérieures.</p>\n<p>Les démons sont des créatures égoïstes et la plupart d'entre eux croient fermement que les mortels font tout au plus semblant d'être plus vertueux que les fiélons. Ils n'adorent rien de plus que de pousser les mortels à la damnation à la fois pour satisfaire leur ego mais aussi pour gonfler leurs rangs. Comme pour beaucoup d'autres fiélons, l'une des principales récompenses de cette manipulation est d'assouvir leur soif d'âmes. Pour eux, ces âmes servent avant tout à engendrer de nouveaux démons, qui peuvent servir de soldats, d'esclaves, de pions ou même de monnaie d'échange pour leurs maîtres les plus puissants.</p>"
+}

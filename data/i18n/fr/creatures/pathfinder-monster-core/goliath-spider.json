@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Conditions</strong> L'initiative n'a pas encore été déterminée.</p>\n<p><strong>Déclencheur</strong> Une créature touche la toile de l'araignée goliath alors que celle-ci s'y trouve.</p>\n<hr />\n<p><strong>Effet</strong> L'araignée goliath repère automatiquement la créature et Marche rapidement, Escalade ou Descend sur un fil de toile avant de faire son jet d'initiative.</p>",
+      "en": "Spring Upon Prey",
+      "name": "Bondir sur sa proie"
+    },
+    {
+      "description": "<p>L'araignée goliath descend à la verticale d'une distance maximale de 36 mètres, suspendue à un fil de toile. Elle peut rester accrochée au fil ou s'en détacher. La distance descendue avec cette action ne compte pas dans le calcul des dégâts de chute.</p>\n<p>Une créature qui réussit à Frapper le fil de toile (CA 20, Solidité 5, 20 PV) le coupe, provoquant la chute de l'araignée.</p>",
+      "en": "Descend on a Web",
+      "name": "Descendre sur un fil de toile"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:30]</p>\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[3d6[poison]]{3d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralenti 1} (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[3d8[poison]]{3d8 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralenti 2} (1 round)</p>\n<p><strong>Stade 3</strong> @Damage[3d10[poison]]{3d10 dégâts de poison} @UUID[Compendium.pf2e.conditionitems.Item.6uEgoh53GbXuHpTF]{Paralysé} pendant [[/gmr 2d4 #heures]]{2d4 heures}</p>",
+      "en": "Goliath Spider Venom",
+      "name": "Venin d'araignée goliath"
+    },
+    {
+      "description": "<p>L'araignée goliath a une Perception des vibrations imprécise qui lui permet de détecter les vibrations engendrées par les créatures en contact avec sa toile.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Tremorsense]</p>",
+      "en": "Web Sense",
+      "name": "Perception sur les toiles"
+    },
+    {
+      "description": "<p>Une créature touchée par la Frappe de toile de l'araignée est @UUID[Compendium.pf2e.conditionitems.Item.VcDeM8A5oI6VqhbM]{Entravée} et reliée à l'araignée, ce qui l'empêche de s'en éloigner.</p>\n<p>L'araignée ne peut brider qu'une seule créature en même temps. Le DD pour @UUID[Compendium.pf2e.actionspf2e.Item.SkZAQRkLLkmBQNB9]{S'Échapper} ou pour @UUID[Compendium.pf2e.actionspf2e.Item.SjmKHgI7a5Z9JzBx]{Ouvrir de force} la toile s'élève à 30. Une Frappe permet de trancher la bride (CA 20, Solidité 5, 20 PV) mais ne libère pas la créature entravée.</p>",
+      "en": "Web Tether",
+      "name": "Bride de toile"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fangs",
+      "name": "Crocs"
+    },
+    {
+      "en": "Web",
+      "name": "Toile"
+    }
+  ],
+  "name": "Araignée goliath",
+  "publicNotes": "<p>Les araignées goliath vivent dans les jungles les plus profondes, où elles construisent des toiles aussi grandes que des temples et se repaissent de proies aussi grosses que des hippopotames.</p>\n<hr />\n<p>Peu de nuisibles du quotidien inspirent autant de crainte que les fameuses araignées.</p>"
+}

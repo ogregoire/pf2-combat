@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature obtient un échec critique en faisant une attaque au corps-à-corps contre Wérendegar ou se déplace dans une case au sein de son aura d'épines.</p>\n<hr />\n<p><strong>Effet</strong> La créature qui déclenche l'effet doit effectuer un jet de @Check[reflex|dc:44|traits:damaging-effect].</p>\n<hr />\n<p><strong>Succès critique</strong> La cible n'est pas affectée.</p>\n<p><strong>Succès</strong> La cible est @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Prise au dépourvu} jusqu'au début de son prochain tour.</p>\n<p><strong>Échec</strong> La créature subit @Damage[3d10[bludgeoning]]{3d10 dégâts contondants} de son et elle est Prise au dépourvu jusqu'au début de son prochain tour.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec et la créature est jetée @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre}.</p>",
+      "en": "Trip Up",
+      "name": "Croche-pied"
+    },
+    {
+      "description": "<p>Le gimmerling revêt une forme humanoïde ou reprend sa forme naturelle. Sous forme humanoïde, il perd son aura semée d'embûches et son équipement prend l'aspect de babioles et de jouets. S'il prend la forme d'un humanoïde sans griffes ni crocs, il perd la Frappe correspondante. S'il perd sa Frappe de griffe, il obtient une Frappe de poing identique, sauf qu'elle inflige des dégâts contondants.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "en": "Change Shape",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action de Wérendegar était une Frappe réussie qui comporte Désarmer dans l'entrée des dégâts.</p>\n<hr />\n<p><strong>Effet</strong> La cible lâche une arme qu'elle porte ou tient. L'arme se retrouve au sol dans la case que la cible occupe.</p>",
+      "en": "Disarm",
+      "name": "Désarmement"
+    },
+    {
+      "description": "<p>Perception de la faim permet au gimmerling de sentir la présence de créatures qui ont besoin de se nourrir pour vivre.</p>",
+      "en": "Hungersense (Imprecise) 30 feet",
+      "name": "Perception de la faim 9 mètres (imprécis)"
+    },
+    {
+      "description": "<p>Wérendegar inflige 4d6 dégâts de précision supplémentaires à toute créature @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Prises au dépourvu}.</p>",
+      "en": "Sneak Attack",
+      "name": null
+    },
+    {
+      "description": "<p>4,50 mètres. Des racines enchevêtrées et des lianes épineuses qui se tordent au sein de l'aura crée un surface de terrain difficile et dangereux infligeant @Damage[4d6[piercing]]{4d6 dégâts perforants} à toute créature non-volante qui se trouve dans la zone d'effet de l'aura.</p>",
+      "en": "Thorny Aura",
+      "name": "Aura d'épines"
+    },
+    {
+      "description": "<p>Wérendegar ignore le terrain difficile et ne déclenche pas de pièges en se déplaçant.</p>",
+      "en": "Trickster's Step",
+      "name": "Démarche de filou"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Rapier",
+      "name": "Rapière"
+    }
+  ],
+  "name": "Wérendegar",
+  "publicNotes": "<p>Les gimmerlings sont des petites fées métamorphes qui tendent des embuscades pour apaiser leur faim perpétuelle et leur avarice immature. Ces fées curieuses et cruelles sont obsédées par la fabrication de pièges bizarres et d'armes sadiques. Rien ne les amuse plus que de voir ces pièges se déclencher ou de tester ces armes. Dans l'Univers, on les rencontre le plus souvent dans des zones urbaines, surtout dans les taudis ou dans d'autres parties de la ville où elles peuvent passer facilement inaperçues, et où le choix de victimes est plus important.</p>\n<p>Un gimmerling typique prend l'aspect d'un enfant en danger en espérant inciter des créatures à se rapprocher suffisamment pour les dépouiller. Le gimmerling simule le danger avec un piège, une créature artificielle ou un complice allié, voire avec un monstre contraint, tel qu'un @UUID[Compendium.pf2e.pathfinder-monster-core.Actor.fWAjkhQ0y50Eh2BT]{Bonnet rouge}.</p>\n<p>Il arrive que les gimmerlings troquent leurs techniques de piégeur et de forgeur contre des choses qui satisfont leur curiosité, leur avarice ou leur faim. C'est pour cette raison qu'elles sont parfois adorées comme des dieux mineurs de la forge. Certains gimmerlings plus disciplinés deviennent des artisans honorés, des gardes d'élite ou des espions au service des demi-dieux appelés les Aînés qui vivent dans les tréfonds du Premier Monde.</p>"
+}

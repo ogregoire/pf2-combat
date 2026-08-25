@@ -1,0 +1,75 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par jour</p>\n<p><strong>Déclencheur</strong> Le ver de magma devrait être affecté par un état ou un effet néfaste (tel que @UUID[Compendium.pf2e.spells-srd.Item.dN8QBNuTiaBHCKUe]{Métamorphose maudite}).</p>\n<hr />\n<p><strong>Effet</strong> Le ver de magma annule l'état ou l'effet déclencheur en se débarrassant de la couche extérieure de sa peau. Les effets des artefacts, des divinités ou issus de sources tout aussi puissantes ne peuvent être évités de cette manière.</p>",
+      "en": "Slough Skin",
+      "name": "Mues de peau"
+    },
+    {
+      "description": null,
+      "en": "Improved Grab",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Le ver de magma a @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippé} une créature.</p>\n<hr />\n<p><strong>Effet</strong> Le ver de magma utilise Gober.</p>",
+      "en": "Fast Swallow",
+      "name": "Gober rapidement"
+    },
+    {
+      "description": "<p>Très grande, @Damage[(3d10+10)[bludgeoning],2d6[fire]]{3d10+10 dégâts contondants plus 2d6 dégâts de feu}, Rupture 36</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "en": "Swallow Whole",
+      "name": null
+    },
+    {
+      "description": "<p>Le ver de magma projette un souffle de feu dans un @Template[cone|distance:60]{cône de 18 mètres} qui inflige @Damage[18d6[fire]|options:area-damage]{18d6 dégâts de feu} à toutes les créatures dans la zone (@Check[reflex|dc:41|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son Souffle pendant [[/gmr 1d4 #Recharger Souffle de feu]]{1d4 rounds}.</p>",
+      "en": "Fire Breath",
+      "name": "Souffle de feu"
+    },
+    {
+      "description": "<p>Le ver effectue une Frappe contre chaque créature dans son allonge. Il peut Frapper une fois avec ses mâchoires, une fois avec son dard et n'importe quel nombre de fois avec son corps. Chaque attaque est prise en compte dans le calcul de la pénalité d'attaques multiples du ver mais cette pénalité n'augmente qu'une fois toutes les attaques effectuées.</p>",
+      "en": "Thrash",
+      "name": "Rosser"
+    },
+    {
+      "description": "<p>Tant que le ver de magma est au contact avec une zone de feu ou une étendue de magma aussi grande que lui, il obtient Guérison accélérée 20. Quand il est frappé par des effets de feu magique dont il n'est pas à l'origine, un ver de magma récupère autant de Points de vie que la moitié des dégâts de feu infligés par cet effet.</p>",
+      "en": "Fire Healing",
+      "name": "Guérison par le feu"
+    },
+    {
+      "description": "<p>Le ver de magma se remet des états @UUID[Compendium.pf2e.conditionitems.Item.dfCMdR4wnpbYNTix]{Étourdi}, @UUID[Compendium.pf2e.conditionitems.Item.6uEgoh53GbXuHpTF]{Paralysé} et @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralenti} à la fin de son tour. Il est également immunisé contre les pénalités à ses Vitesses et l'état @UUID[Compendium.pf2e.conditionitems.Item.eIcWbB5o3pP6OIMe]{Immobilisé} et il ignore le terrain difficile et le terrain très difficile.</p>",
+      "en": "Inexorable",
+      "name": "Inexorable"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:41]</p>\n<hr />\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[1d6[poison]]{1d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainé 1} (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[2d6[poison]]{2d6 dégâts de poison} et Drainé 1 (1 round)</p>\n<p><strong>Stade 3</strong> @Damage[2d6[poison]]{2d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainé 2} (1 round).</p>",
+      "en": "Magma Worm Venom",
+      "name": "Venin de ver de magma"
+    },
+    {
+      "description": "<p>Un ver de magma peut forer la roche solide à une Vitesse de 6 mètres. Il peut laisser un tunnel derrière lui s'il le souhaite, ce qui est généralement le cas.</p>",
+      "en": "Rock Tunneler",
+      "name": "Foreur de roche"
+    },
+    {
+      "description": null,
+      "en": "Tremorsense (Imprecise) 100 feet",
+      "name": "Perception des vibrations 30 mètres (imprécis)"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Body",
+      "name": "Corps"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Stinger",
+      "name": "Dard"
+    }
+  ],
+  "name": "Ver de magma",
+  "publicNotes": "<p>Les vers de magma comptent parmi les vers les plus dangereux de leur espèce. En plus d'être encore plus gros que les vers des abysses, ils sont tendance à creuser dans les régions volcaniques qui, au fil des générations, les ont imprégnés d'un lien surnaturel avec le Plan élémentaire du feu. Le cœur en fusion d'un volcan en activité est une tanière attrayante pour le ver de magma tout comme les vastes champs de magna bouillonnants dans les régions les plus profondes d'Ombreterre. Les légendes de peuples anciens, des premières sociétés naines et de colons des Plans élémentaires qui évoquent des douves de laves dans lesquelles ils conservaient des vers de magma ont sans doute un fondement de vérité. Cependant, ils devaient avoir recours à des méthodes drastiques pour y contenir ces créatures et les empêcher de se frayer un passage dans les fondations des forteresses.</p>\n<p>Les vers de magma se rendent parfois dans des zones de la surface où l'activité volcanique génère des sources chaudes et d'autres phénomènes géothermiques mais même dans ce cas, ils passent le plus clair de leur temps à forer le sol en quête de nourriture. Les terres en surface revendiquées par des vers de magma sont caractérisées par des terriers en forme de monticule qu'ils laissent derrière eux lorsqu'ils creusent.</p>\n<hr />\n<p>Les vers des cavernes sont de gigantesques charognards qui forent les profondeurs terrestres en dévorant tout ce qu'ils trouvent. Ainsi nommés du fait de leur habitat naturel, ces vers sont voraces et font preuve d'une capacité de dévastation impressionnante. Des vers des cavernes d'autres couleurs et de capacités différentes se cachent dans les coins les plus reculés du monde. Pour n'en nommer que quelques-uns, certaines légendes évoquent des vers des glaces qui séjournent dans d'immenses glaciers et des icebergs et des vers des cimetières qui creusent les ossuaires de ruines oubliées depuis longtemps.</p>"
+}

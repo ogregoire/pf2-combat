@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Le bataillon nain déclenche une tempête de coups de marteau de guerre contre chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre} (@Check[reflex|dc:21|basic|options:area-effect]). Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[1d8[bludgeoning]|options:area-damage]{1d8 dégâts contondants}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d8+5)[bludgeoning]|options:area-damage]{2d8+5 dégâts contondants}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d8+5)[bludgeoning]|options:area-damage]{3d8+5 dégâts contondants}</p>",
+      "en": "Coordinated Pummel",
+      "name": "Martèlement coordonné"
+    },
+    {
+      "description": null,
+      "en": "Reactive Strike",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Shield Block",
+      "name": null
+    },
+    {
+      "description": "<p>Le bataillon nain lève ses boucliers en acier. Il obtient un bonus de circonstances de +2 à la CA et aux jets de Réflexes jusqu'au début de son prochain tour.</p>",
+      "en": "Shields Up!",
+      "name": "Boucliers levés !"
+    },
+    {
+      "description": "<p>Le bataillon s'unit pour entonner un chant de bataille traditionnel. Chaque ennemi dans une @Template[type:emanation|distance:30]{émanation de 9 mètres} doit réussir un jet de @Check[will|dc:23|options:inflicts:frightened]. En cas d'échec, la créature est @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 1} (ou @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 2} en cas d'échec critique). Chaque ennemi est ensuite temporairement immunisé pendant 10 minutes.</p>",
+      "en": "Dwarven War Song",
+      "name": "Chant de guerre nain"
+    },
+    {
+      "description": "<p>Le bataillon nain dégaine des bombes alchimiques, puis les jette sur ses ennemis à distance. Cette salve crée une @Template[type:burst|distance:10]{explosion de 3 mètres} dans un rayon de 18 mètres, infligeant @Damage[3d6[@item.flags.system.rulesSelections.bombingBarrage]|options:area-damage]{3d6 dégâts} (@Check[reflex|dc:21|basic|options:area-effect]). Les dégâts sont de type acide, électricité ou feu, selon le type de bombes utilisées par le bataillon. Lorsque le bataillon nain est réduit à 2 sections ou moins, la zone d'effet diminue pour devenir une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Bombing Barrage",
+      "name": "Barrage de bombes"
+    },
+    {
+      "description": "<p>Un nain est souvent calme et réfléchi face à un danger imminent. À la fin du tour du bataillon nain, réduisez la valeur de son état @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayé} de 2 crans au lieu de 1.</p>",
+      "en": "Dwarven Doughtiness",
+      "name": "Bravoure naine"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 70 (3 sections), 35 (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    }
+  ],
+  "attacks": [],
+  "name": "Bataillon nain",
+  "publicNotes": "<p>Les soldats nains forment des unités formidables, capables de tenir face à la plupart des ennemis. Au combat, un bataillon nain est une machine bien huilée, déchainant des attaques coordonnées contre les ennemis.</p>\n<hr />\n<p>Du point de vue nain, il vaut mieux accomplir les choses correctement, quitte à y consacrer le temps nécessaire. Les nains sont un peuple appliqué et méthodique, capables de passer des années, voire des décennies, à perfectionner leur art, s'efforçant de rendre chaque détail irréprochable. La patience et la persévérance exigées par ces tâches portent leurs fruits et beaucoup de nains deviennent des maîtres dans leur domaine, métier ou spécialité. Nombre d'entre eux perpétuent les traditions ancestrales et, puisque leurs origines plongent dans la vie souterraine, beaucoup continuent d'affiner des compétences liées à cet environnement.</p>"
+}

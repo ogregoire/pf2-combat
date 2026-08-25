@@ -1,0 +1,36 @@
+{
+  "actions": [
+    {
+      "description": "<p>Un ofalth obtient Guérison accélérée 2 quand il est dans une zone avec une forte concentration de déchets, de détritus ou d'excréments comme un égout ou un tas d'ordures.</p>",
+      "en": "Filth Wallow",
+      "name": "Ablution d'immondice"
+    },
+    {
+      "description": "<p>Lorsqu'il n'est pas en danger, un ofalth peut passer 1 minute à prendre la forme d'un empilement de 3 mètres qui ressemble à un simple tas d'ordures. Jusqu'à la prochaine action qu'il entreprend, l'ofalth obtient un bonus de circonstances de +2 à la CA.</p>\n<p>Une créature qui pénètre dans la zone du tas d'ordures ou qui interagit avec lui doit effectuer un jet de sauvegarde contre la puanteur de l'ofalth.</p>",
+      "en": "Refuse Pile",
+      "name": "Tas de déchets"
+    },
+    {
+      "description": "<p>9 mètres. jet de @Check[fortitude|dc:28|options:area-effect,inflicts:sickened,inflicts:slowed]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Stench]</p>",
+      "en": "Stench",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:26]</p>\n<hr />\n<p><strong>Stade 1</strong> Porteur sans symptômes (1 jour)</p>\n<p><strong>Stade 2</strong> @Damage[2d4[bleed]]{2d4 dégâts de saignement} toutes les heures et @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaibli 1} (1 jour)</p>\n<p><strong>Stade 3</strong> @Damage[2d6[bleed]]{2d6 dégâts de saignement} toutes les heures et @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaibli 2} (1 jour)</p>",
+      "en": "Wretched Weeps",
+      "name": "Pleurs misérables"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fist",
+      "name": "Poing"
+    },
+    {
+      "en": "Offal",
+      "name": "Déchets"
+    }
+  ],
+  "name": "Ofalth",
+  "publicNotes": "<p>Les ofalths adultes capturent leurs victimes et les dévorent lentement vivants.</p>\n<hr />\n<p>Présents dans les amas d'ordures des châteaux, les décharges des villes ou les égouts, les ofalths sont des amalgames vivants de détritus humides, d'eaux usées et d'ordures. Ils sont porteurs d'une maladie appelée \"pleurs misérables\", qui fait suinter le sang de la victime par ses pores.</p>"
+}

@@ -34,3 +34,29 @@ export function statusOf(diff: DatasetDiff): ChangeStatus {
     diff.added.length + diff.removed.length + diff.modified.length;
   return total === 0 ? "unchanged" : "updated";
 }
+
+export interface FrenchCoverage {
+  translated: number;
+  total: number;
+  /** The ids with no French overlay, `compareStrings`-sorted. */
+  untranslated: string[];
+}
+
+/**
+ * French coverage for `update`'s report: how many creatures carry an overlay,
+ * and WHICH ones do not. The list is as important as the count -- 30
+ * creatures have no French entry today (19 of them the `Petitioner (Plane)`
+ * series), and a coverage drop that only showed up as a smaller number would
+ * not say which creature stopped being translated.
+ */
+export function frenchCoverage(
+  ids: string[],
+  translated: ReadonlySet<string>,
+): FrenchCoverage {
+  const untranslated = ids.filter((id) => !translated.has(id)).sort(compareStrings);
+  return {
+    translated: ids.length - untranslated.length,
+    total: ids.length,
+    untranslated,
+  };
+}

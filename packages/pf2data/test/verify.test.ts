@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import type { Manifest } from "@pf2/schema";
 import { normalizeCreature } from "../src/normalize/creature.js";
 import { buildIndexes } from "../src/stages/index.js";
-import { verifyDataset } from "../src/stages/verify.js";
+import { verifyDataset, verifyI18n } from "../src/stages/verify.js";
 
 const stagLord = normalizeCreature(
   JSON.parse(
@@ -22,6 +22,8 @@ const manifest = (overrides: Partial<Manifest> = {}): Manifest => ({
   toolVersion: "0.0.0",
   upstreamRepo: "https://github.com/foundryvtt/pf2e",
   upstreamRef: "abc123",
+  frRepo: "https://gitlab.com/pathfinder-fr/foundryvtt-pathfinder2-fr",
+  frRef: "def456",
   generatedAt: "2026-08-24T00:00:00.000Z",
   packs: ["kingmaker-bestiary"],
   creatureCount: 1,
@@ -217,5 +219,48 @@ describe("verifyDataset", () => {
     input.traits = [{ slug: "agile", name: "Agile", description: "<p>...</p>" }];
     const result = verifyDataset(input);
     expect(result.ok).toBe(true);
+  });
+});
+
+describe("verifyI18n", () => {
+  // The overlay is keyed by ARRAY POSITION, so it is only ever safe while the
+  // overlay and the creature agree position-for-position. An upstream reorder
+  // or a dropped item must be a loud failure here, never a silently
+  // mistranslated Strike.
+  it("fails when an overlay position's English name disagrees with the creature", () => {
+    const problems = verifyI18n(
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [] },
+      { name: "X", publicNotes: null, actions: [{ en: "Grab", name: "Agripper", description: null }], attacks: [] },
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/Rend/);
+    expect(problems[0]).toMatch(/Grab/);
+  });
+
+  it("fails when the overlay has a different number of positions than the creature", () => {
+    // Creature has 2 actions, overlay has 1 -- an upstream reorder or a dropped
+    // item. Index-keying is only safe while the lengths agree.
+    expect(verifyI18n(
+      { id: "p/c", actions: [{ name: "Rend" }, { name: "Grab" }], attacks: [] },
+      { name: "X", publicNotes: null, actions: [{ en: "Rend", name: null, description: null }], attacks: [] },
+    )).toHaveLength(1);
+  });
+
+  it("passes for an aligned overlay", () => {
+    expect(verifyI18n(
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [{ name: "Claw" }] },
+      { name: "X", publicNotes: null,
+        actions: [{ en: "Rend", name: "Déchiqueter", description: null }],
+        attacks: [{ en: "Claw", name: "Griffe" }] },
+    )).toEqual([]);
+  });
+
+  it("fails when an attack position's English name disagrees, naming the creature", () => {
+    const problems = verifyI18n(
+      { id: "kingmaker-bestiary/the-stag-lord", actions: [], attacks: [{ name: "Longsword" }] },
+      { name: "Seigneur Cerf", publicNotes: null, actions: [], attacks: [{ en: "Composite Longbow", name: "Arc long composite" }] },
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/kingmaker-bestiary\/the-stag-lord/);
   });
 });

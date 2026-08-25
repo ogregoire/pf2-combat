@@ -1,0 +1,46 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Trois fois par jour</p>\n<hr />\n<p><strong>Effet</strong> Le drake d'ombre Marche rapidement ou Vole deux fois.</p>",
+      "en": "Speed Surge",
+      "name": "Vitesse augmentée"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature attaque le drake d'ombre alors qu'il se trouve dans une zone de lumière faible </p>\n<hr />\n<p><strong>Effet</strong> Le drake d'ombre dissimule un peu plus sa position. L'attaquant doit réussir un @Check[flat|dc:11] pour pouvoir affecter le drake d'ombre comme si ce dernier était @UUID[Compendium.pf2e.conditionitems.Item.iU0fEDdBp3rXpTMC]{Caché} pour l'attaque ayant déclenché cet effet.</p>",
+      "en": "Shadow Evade",
+      "name": "Évasion des ombres"
+    },
+    {
+      "description": "<p>Le dragon porte deux Frappes de queue et une Frappe de mâchoire dans n'importe quel ordre.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": "<p>Un drake d'ombre crache une sphère de liquide noir qui explose en un nuage d'ombres glaciales. Cette attaque a une portée de 12 mètres et provoque une @Template[burst|distance:5]{explosion de 1,50 mètre}. Les créatures dans l'explosion subissent @Damage[3d6[cold]|options:area-damage]{3d6 dégâts de froid} (@Check[reflex|dc:18|basic|options:area-effect]). L'explosion d'ombre souffle également les sources de lumière normale de la taille d'une torche, d'une lanterne ou plus petites et tente de contrer la lumière magique avec un modificateur de contre de tente de contrer la lumière magique avec un modificateur de [[/r 1d20+12 #Contrer la lumière]]{+10}.</p>\n<p>Le drake d'ombre ne peut utiliser de nouveau ce pouvoir avant [[/gmr 1d6 #Recharger Souffle d'ombre]]{1d6 rounds}.</p>",
+      "en": "Shadow Breath",
+      "name": "Souffle d'ombre"
+    },
+    {
+      "description": null,
+      "en": "Light Blindness",
+      "name": "Aveuglé par la lumière"
+    },
+    {
+      "description": "<p>La forme du drake d'ombre se mêle et se fond aux ombres environnantes. Un drake d'ombre obtient une réaction supplémentaire à chaque round mais il ne peut l'utiliser que pour Évasion des ombres.</p>",
+      "en": "Shadow Blend",
+      "name": "Fusion dans les ombres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Drake d'Ombre",
+  "publicNotes": "<p>Les drakes d'ombre font généralement partie des membres les plus petits et les plus faibles de leur espèce. La plupart ne sont pas plus grands qu'un chat et ont des écailles couleur charbon avec des ailes membraneuses juste assez translucides pour passer pour des ombres. Attirés par les matériaux brillants, ils font preuve de duperie, travaillent en équipe ou utilisent même des pièges pour réussir leurs larcins. Les drakes d'ombre sont particulièrement fascinés par les dragons ombraux qu'ils admirent profondément, une différence notable dans la relation entre les drakes et les dragons.</p>"
+}

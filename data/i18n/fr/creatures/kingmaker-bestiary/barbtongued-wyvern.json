@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Conditions</strong> La vouivre a la créature @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippée} dans sa langue.</p>\n<hr />\n<p><strong>Effet</strong> La vouivre déplace la créature jusqu'à 6 mètres plus près d'elle.</p>",
+      "en": "Reel In",
+      "name": "Enroulement"
+    },
+    {
+      "description": null,
+      "en": "Attack of Opportunity",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippée} par la vouivre obtient un échec critique à son test pour S'échapper.</p>\n<hr />\n<p><strong>Effet</strong> La vouivre effectue une Frappe de dard contre la créature ayant déclenché ce pouvoir.</p>",
+      "en": "Savage",
+      "name": "Sauvage"
+    },
+    {
+      "description": "<p>Avec une force incroyable, la vouivre à langue crochue fait claquer sa langue et projette des barbillons sur sa longueur. Jusqu'à deux créatures situées à moins de 60 mètres de la wyvern peuvent être prises pour cible. Chaque créature doit faire un jet @Check[reflex|dc:40]. La vouivre à langue crochue ne peut plus utiliser Épingler en l'air avant sont prochain tour.</p>\n<p><strong>Succès critique</strong> La cible n'est pas affectée.</p>\n<p><strong>Succès</strong> La cible subit @Damage[(2d12+3)[piercing]]{2d12+3 dégâts perforants}.</p>\n<p><strong>Échec</strong> La cible subit @Damage[5d12[piercing]]{5d12 dégâts perforants} et est épinglée sur place, fixée à cause la nature magique sous-jacente de Mille souffles infusée dans les pointes (même si elle n'est pas adjacente à une surface solide). Elle est @UUID[Compendium.pf2e.conditionitems.Item.eIcWbB5o3pP6OIMe]{Immobilisée} jusqu'à ce qu'elle s'Échappe. Si la créature est sous les effets d'un sort qui pourrait l'empêcher d'être Immobilisée, Mille souffles contre d'abord le sort (+27).</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la cible subit @Damage[10d12[piercing]]{dégâts perforants} et devient @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralenti 1} jusqu'à ce qu'elle s'Échappe.</p>",
+      "en": "Pin to the Sky",
+      "name": "Épingler en l'air"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action de la vouivre était un succès sur sa Frappe de langue crochue ou elle a @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippé} une créature en utilisant cette action.</p>\n<hr />\n<p><strong>Effet</strong> Si la cible était @UUID[Compendium.pf2e.conditionitems.Item.eIcWbB5o3pP6OIMe]{Immobilisée} par Epinglé en l'air, la vouivre la libère lentement et douloureusement de l'effet, lui infligeant @Damage[4d12[piercing]]{4d12 dégâts perforants}. Que la cible ait été immobilisée ou non précédemment, la vouivre Agrippe la créature jusqu'à la fin du prochain tour du monstre. La vouivre ne peut plus utiliser sa langue crochue pour Frapper des créatures jusqu'à ce qu'elle cesse d'Agripper. Utiliser Agrippement lacérant étend la durée de la Saisie du monstre jusqu'à la fin de son prochain tour pour toutes les créatures qu'elle a Saisi avec cette capacité. Une créature Agrippée peut utiliser l'action @UUID[Compendium.pf2e.actionspf2e.Item.SkZAQRkLLkmBQNB9]{S'Échapper} pour se libérer de la Saisie et la Saisie se termine pour une créature Agrippée si la vouivre à langue crochue s'en éloigne.</p>",
+      "en": "Ripping Grab",
+      "name": "Agrippement lacérant"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:40]</p>\n<hr />\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[5d12[poison]] damage and @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 1} (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[6d12[poison]] damage and @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 2} (1 round)</p>\n<p><strong>Stade 3</strong> @Damage[7d12[poison]] damage and @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 3} (1 round)</p>",
+      "en": "Barbtongued Wyvern Venom",
+      "name": "Venin de Wynvern à langue crochue"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Barbed Tongue",
+      "name": "Langue barbelée"
+    },
+    {
+      "en": "Fangs",
+      "name": "Crocs"
+    },
+    {
+      "en": "Stinger",
+      "name": "Dard"
+    }
+  ],
+  "name": "Vouivre à langue crochue",
+  "publicNotes": "<p>Une vouivre est un drake venimeux ayant la réputation fort justifiée d'être impatiente et agressive. Pouvant mesurer jusqu'à 4,50 mètres de long et peser jusqu'à 500 kilos, le robuste corps de la vouivre lui permet de s'abattre à pleine vitesse et serres en avant sur de grandes proies sans prendre trop de risques. La vouivre utilise son élan pour étourdir sa proie avant de lui injecter son venin virulent ou de la transporter à flanc de falaise. Puisque la vouivre n'a pas la force nécessaire pour soulever sa charge intacte jusqu'à son nid, il est très probable qu'elle la soulève avant de la laisser tomber au-dessus d'un ravin ou d'un canyon afin de laisser la gravité faire son œuvre puis de descendre pour la décortiquer.</p>\n<p>Les conversations n'intéressent pas la vouivre car lorsqu'elle parle c'est le plus souvent pour provoquer sa proie, revendiquer un territoire ou exiger un tribut. Et même dans ce cas, les vouivres préfèrent l'humour noir et les récits d'actes violents surtout si ces actes ont été perpétrés par le narrateur. Une vouivre qui a bien mangé, qui a été divertie et qui a reçu un tribut peut parfois accepter de rendre des services comme indiquer une direction ou servir de monture à un puissant humanoïde. Cependant, un tel arrangement dure rarement plus de quelques semaines avant que l'orgueil de la vouivre, sa malice ou son insolence la pousse à fuir ou à trahir ses alliés. Seuls les plus cruels peuvent intimider suffisamment une vouivre pour l'asservir pendant une longue période de temps puisque ces créatures ne servent que leurs propres intérêts et font tout pour éviter d'aider les autres.</p>\n<hr />\n<p>Voraces, bestiaux et uniquement guidés par l'instinct, les drakes sont des monstres draconiques primitifs dotés d'une fraction de la terrible puissance de leurs cousins plus massifs mais dénués de leur ruse. Bien qu'ils soient plus faibles, plus lents et moins enclins à la raison que les dragons, les drakes n'en sont pas moins une véritable menace pour les créatures et les communautés. Leur propension à former des groupes de chasse, des petits groupes sociaux appelés à juste titre des « saccages », les rend encore plus dangereux. Un unique saccage de drakes des rivières peut rapidement ravager un village côtier et des saccages nomades de drakes du désert sont un fléau pour les caravanes marchandes. Les drakes partagent un certain nombre de caractéristiques physiques qui les définissent comme une même espèce malgré la grande variété de leurs habitats et de leurs pouvoirs. Par exemple, les drakes n'ont pas de bras et ils ne peuvent donc combattre au corps-à-corps qu'avec leur puissante mâchoire et leur queue couverte d'épaisses écailles. Cependant, la plupart d'entre eux préfèrent éviter le combat rapproché au profit de leur souffle afin de semer le chaos à distance confortable tout en restant en vol. Enfin, tous les drakes disposent d'un modeste héritage des pouvoirs draconiques de leurs ancêtres dont ils peuvent user pour d'incroyables prouesses de vitesse.</p>"
+}

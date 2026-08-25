@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature avec un effet de sort actif et située à moins de 9 mètres de l'azuretzi ne parvient pas à résister au Toucher moqueur d'un autre azuretzi.</p>\n<hr />\n<p><strong>Effet</strong> L'azuretzi tente de contrer un effet de sort en cours sur la créature ciblée avec un test de @Check[thievery]. S'il réussit, il transfère l'effet de sort sur lui-même. La créature est ensuite temporairement immunisée contre Vol-sort pendant 24 heures.",
+      "en": "Spell Pilfer",
+      "name": "Vol-sort"
+    },
+    {
+      "description": "<p>@Damage[(1d12+5)[bludgeoning]]{1d12+5 dégâts contondants}, @Check[fortitude|dc:21|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "en": "Constrict",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>Comme pour Changement de forme mais un azuretzi peut prendre la forme d'une créature de taille Moyenne ou inférieure. Il peut se transformer en une créature spécifique qu'il peut voi, mais il doit réussir un test de @Check[perception|dc:25] ou la tentative est interrompue. L'azuretzi peut se transformer dans la même créature de nouveau sans un test mais il ne peut retenir les détails que d'une seule apparence en même temps. L'azuretzi peut Révoquer l'effet par une action gratuite pour reprendre sa forme normale.</p>",
+      "en": "Mimic Form",
+      "name": "Imitation de forme"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> L'azuretzi n'est pas déjà en train d'utiliser Toucher moqueur sur un sort</p>\n<hr />\n<p><strong>Effet</strong> L'azuretzi parodie le pouvoir magique d'une créature par le toucher. L'azuretzi doit faire un test de @Check[thievery|defense:will] contre le DD de Volonté de la cible.\n<hr />\n<p><strong>Succès critique</strong> L'azuretzi apprend tous les sorts de rang 3 ou inférieur qui sont disponibles eet en choisit un. L'azuretzi obtient ce sort comme un sort inné divin imité et il peut le lancer une fois comme un sort inné divin en utilisant son propre DD et son propre modificateur d'attaque de sorts. Le sort est perdu s'il n'est pas lancé dans les 24 heures. La créature touchée ne peut pas lancer le sort imité jusqu'à ce que l'azuretzi l'ait lancé ou que 24 heures ne se soient écoulées, selon ce qui se produit en premier</p>\n<p><strong>Succès</strong> Comme en cas de succès critique mais l'azuretzi n'a qu'une heure pour lancer le sort imité avant de le perdre et la créature touchée peut lancer son sort normalement.</p>\n<p><strong>Échec</strong> Comme en cas de succès critique mais l'azuretzi doit lancer le sort parodié avant la fin de son prochain tour ou le perdre et la créature touchée peut lancer son sort normalement.</p>\n<p><strong>Échec critique</strong> Le Toucher moqueur n'a aucun effet.</p>",
+      "en": "Mocking Touch",
+      "name": "Toucher moqueur"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Un azuretzi peut anticiper la très probable présence d'une créature grâce à une perception surnaturelle des probabilités chaotiques et de la chance. Cela lui octroie la capacité de percevoir les créatures à 9 mètres. Une créature sous l'effet de @UUID[Compendium.pf2e.spells-srd.Item.EoKBlgf6Smt8opaU]{Voile de confidentialité} ou qui est protégée contre les divinations et les prédictions ne peut être remarquée par Perception de l'entropie (sans test de contre).</p>",
+      "en": "Entropy Sense",
+      "name": "Perception de l'entropie"
+    },
+    {
+      "description": null,
+      "en": "Fast Healing 2",
+      "name": "Guérison accélérée 2"
+    },
+    {
+      "description": "<p>Les organes vitaux d'un protéen changent constamment de forme et de position. Immédiatement après avoir subi des dégâts d'acide, d'électricité ou de son, il obtient une résistance 8 contre ce type de dégâts. Cet effet dure 1 heure ou jusqu'à la prochaine fois que le protéen subit des dégâts d'un autre type (auquel cas sa résistance change pour se conformer à ce nouveau type de dégâts).</p>\n<p>Le protéen est immunisé contre les effets de métamorphose à moins d'être une cible consentante. S'il est @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Aveugle} ou @UUID[Compendium.pf2e.conditionitems.Item.9PR9y0bi4JPKnHPR]{Sourd}, le protéen récupère automatiquement à la fin de son prochain tour alors que de nouveaux organes sensoriels poussent pour remplacer ceux qui ont été compromis.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.c6SiBB3mzV8lZUQr]{Effet : Anatomie protéenne}</p>",
+      "en": "Protean Anatomy",
+      "name": "Anatomie protéenne 8"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Azuretzi (Protéen)",
+  "publicNotes": "<p>Les azuretzis sont des créatures serpentines sinueuses dotées de dents aiguisées comme des rasoirs et recouvertes d'écailles bleues brillantes parsemées d'autres de couleur violette et rose qui scintillent en représentant, de façon paréidolique, des visages rieurs et cruels. Les forces chaotiques du Maelström engendrent ces petits protéens de différentes façons : l'accouplement physique d'azuretzis adultes, la promotion paradoxale de naunets bestiaux, voire la création à partir de pétitionnaires mortels. Cependant, les azuretzis peuvent simplement être de supposés souvenirs mortels déroutants aux expériences acquises à travers des jeux d'imitation. N'espérez pas que les azuretzis agissent de façon rationnelle et cohérente.</p>\n<p>Ils représentent l'humour du chaos, en particulier sous forme de moquerie et de parodie exercées par l'imitation, déformant les traits d'une cible pour la ridiculiser.</p>\n<hr />\n<p>Les protéens sont les gardiens du désordre et natifs du plan Primordial du Chaos connus sous le nom de Maelström. Ils considèrent que leur mission est de semer la pagaille et de précipiter des finales entropiques. Les plus puissants protéens sont des demi-dieux qui portent le titre de seigneur protéens. Cependant ce sont des entités mystérieuses dont le culte dans l'Univers tend à rester secret et obscur.</p>\n<p>Les protéens sont organisés en un système assez large de castes et possèdent une incroyable variété de pouvoirs. La plupart d'entre eux ont un corps de serpent avec la tête d'une bête primitive. Cela fait longtemps que les érudits sont intrigués par ce fait, que des rejetons de la dissolution et du désordre aient en commun autant de caractéristiques, et soulignent qu'il existe un semblant d'ordre dans le plus pur des chaos. D'autres notent que cet aspect de serpent est une des formes les plus primitives, ce qui pourrait laisser penser qu'elle est la seule qui domine dans une réalité primordiale. Quant aux protéens, cela ne semble guère les préoccuper ce qui, ironiquement, ne fait qu'ajouter à la confusion et à l'absence de consensus concernant leur espèce. Après tout, si même le chaos ne peut être chaotique n'est-ce pas la forme la plus pure d'entropie ?</p>"
+}

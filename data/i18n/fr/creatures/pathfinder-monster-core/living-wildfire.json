@@ -1,0 +1,31 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action du furole vivant était une Frappe qui a infligé des dégâts de feu</p>\n<hr />\n<p><strong>Effet</strong> Le feu se propage, infligeant @Damage[3d6[fire]]{3d6 dégâts de feu} à chaque créature adjacente à cette cible (@Check[reflex|dc:19|basic]).</p>",
+      "en": "Spreading Flames",
+      "name": "Propagation des flammes"
+    },
+    {
+      "description": "<p>Lorsque le furole vivant meurt, il explose infligeant @Damage[3d6[fire]|options:area-damage]{3d6 dégâts de feu} à toutes les créatures dans une @Template[emanation|distance:10|traits:fire,damaging-effect]{émanation de 3 mètres} (@Check[reflex|dc:19|basic|options:area-effect] save).</p>",
+      "en": "Explosion",
+      "name": "Explosion"
+    },
+    {
+      "description": "<p>Le furole vivant ignore l'état @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masqué} provoqué par la fumée.</p>",
+      "en": "Smoke Vision",
+      "name": "Vision malgré la fumée"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fire Mote",
+      "name": "Particule de feu"
+    },
+    {
+      "en": "Tendril",
+      "name": "Vrille"
+    }
+  ],
+  "name": "Furole vivant (Élémentaire, feu)",
+  "publicNotes": "<p>Les furoles vivants ressemblent à des humanoïdes de feu vivant, brûlant tout ce qu'ils rencontrent par pur plaisir. Les conjurateurs exploitent cette jubilation et les buts explosifs des élémentaires pour semer la destruction.</p>\n<hr />\n<p>Les élémentaires de feu sont des manifestations du Plan du feu destructrices. Comme la plupart des élémentaires de feu se réjouissent de pouvoir explorer de nouvelles formes de feux hors de leur plan originel, même les plus prévenants d'entre eux représentent un danger pour les humanoïdes et leurs biens.</p>"
+}

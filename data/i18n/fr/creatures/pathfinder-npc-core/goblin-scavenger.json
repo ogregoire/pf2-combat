@@ -1,0 +1,40 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature située à 4,50 mètres lâche un objet</p>\n<p><strong>Conditions</strong> Le ferrailleur gobelin dispose d'une main libre</p>\n<hr />\n<p><strong>Effet</strong> Le ferrailleur gobelin Marche rapidement jusqu'à sa vitesse vers un emplacement adjacent et Interagit pour ramasser l'objet. L'action de déplacement déclenche des réactions comme à l'ordinaire, mais pas l'action Interagir pour ramasser l'objet.</p>",
+      "en": "Finders Keepers",
+      "name": "Trouvé, à moi !"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le ferrailleur gobelin dispose d'une main libre</p>\n<hr />\n<p><strong>Effet</strong> Le ferrailleur gobelin dégaine un paquet de feux d'artifice et les lance vers un point situé dans un rayon de 18 mètres avant qu'ils n'explosent, infligeant @Damage[1d10[fire],1d10[sonic]|options:area-damage]{1d10 dégâts de feu et 1d10 dégâts de son} dans une @Template[type:burst|distance:10]{explosion de 3 mètres}. Chaque créature dans la zone doit tenter un jet de @Check[reflex|dc:21|options:area-effect,damaging-effect].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée. Le ferrailleur gobelin réalise qu'un feu d'artifice est tombé à ses pieds et subit @Damage[2[fire]]{2 dégâts de feu} lorsqu'il explose à son visage.</p>\n<p><strong>Succès</strong> La créature subit la moitié des dégâts.</p>\n<p><strong>Échec</strong> La créature subit la totalité des dégâts et est @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Éblouie} et @UUID[Compendium.pf2e.conditionitems.Item.9PR9y0bi4JPKnHPR]{Sourde} pendant 1 round.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la créature est aussi @UUID[Compendium.pf2e.conditionitems.Item.dfCMdR4wnpbYNTix]{Étourdie 1}.</p>",
+      "en": "Fireworks Barrage",
+      "name": "Barrage de feux d'artifice"
+    },
+    {
+      "description": "<p>L'arme du ferrailleur est une couleuvrine surdimensionnée dotée du trait fatal d12 et d'un facteur de portée de 6 mètres. Si une Frappe avec cette arme est un échec critique, l'arme a des ratés et explose en infligeant @Damage[1d12[fire]]{1d12 dégâts de feu} à son utilisateur. C'est une arme de guerre à une main de 2 Encombrement et un Prix de 10 po. Elle possède les traits peu courant, bricolé et gobelin. Le trait bricolé signifie qu'en cas d'échec sur un jet d'attaque avec cette arme, l'utilisateur doit réussir un @Check[flat|dc:5] ou l'arme a des ratés.</p>",
+      "en": "Big Boom Gun",
+      "name": "Fusil grand boum"
+    },
+    {
+      "description": "<p>Le ferrailleur gobelin sait instinctivement tirer parti des rebuts. Quand il utilise une arme avec le trait gobelin ou une arme improvisée, il inflige un dé de dégâts supplémentaire (déjà inclus dans les Frappes ci-dessus).</p>",
+      "en": "One Person's Junk",
+      "name": "Déchets des autres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Big Boom Gun",
+      "name": "Fusil grand boum"
+    },
+    {
+      "en": "Dogslicer",
+      "name": "Tranchechein"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Ferrailleur gobelin",
+  "publicNotes": "<p>Bien que de nombreux gobelins récupèrent matériaux, objets brillants et tout ce qu'ils peuvent saisir, le ferrailleur gobelin est le meilleur lorsqu'il s'agit de dénicher ces objets utiles. Plus important encore, il sait parfaitement les utiliser... sans se tuer. La plupart du temps.</p>\n<hr />\n<p>Les gobelins sont répandus à travers Golarion, tantôt menaçant les humanoïdes plus grands (qu'ils surnomment \"grandes perches\"), tantôt rachetant leur passé violent en collaborant avec autrui.</p>"
+}

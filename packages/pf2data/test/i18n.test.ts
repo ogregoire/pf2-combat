@@ -7,9 +7,10 @@ import {
   buildIndexI18n,
   buildConditionsI18n,
   buildGlossaryI18n,
+  buildTraitsI18n,
 } from "../src/stages/i18n.js";
 import { loadBabele, type BabeleTable } from "../src/stages/babele.js";
-import { buildTraits } from "../src/stages/reference.js";
+import { buildTraits, scanTraits } from "../src/stages/reference.js";
 
 /**
  * Fixtures build a REAL `BabeleTable` via `loadBabele` against temp files,
@@ -367,5 +368,48 @@ describe("French buildTraits", () => {
       "PF2E.TraitAgile": "Agile",
     });
     expect(fr.map((t) => t.slug)).toEqual(en.map((t) => t.slug));
+  });
+});
+
+describe("buildTraitsI18n", () => {
+  // Real French shapes, taken from the module: `agile` has both keys,
+  // `class` has a description but no `PF2E.TraitClass` display name, and
+  // `gnoll` has neither (a remaster rename -- the French module calls it
+  // `kholo` now).
+  const frLang = {
+    "PF2E.TraitDescriptionAgile": "La pénalité d'attaques multiples…",
+    "PF2E.TraitAgile": "Agile",
+    "PF2E.TraitDescriptionClass": "Description française de la classe…",
+    "PF2E.TraitDescriptionUnshipped": "Un trait que nous ne publions pas.",
+    "PF2E.TraitUnshipped": "Non publié",
+  };
+
+  it("keys the overlay by our slug and carries the French description", () => {
+    expect(buildTraitsI18n(["agile"], scanTraits(frLang))).toEqual({
+      agile: { name: "Agile", description: "La pénalité d'attaques multiples…" },
+    });
+  });
+
+  it("uses null, never a title-cased English slug, when the French name is missing", () => {
+    // buildTraits substitutes `titleCaseFromSlug` for a missing display name.
+    // That is English-derived text; in the French overlay it would hide the
+    // gap from `report`. 13 of our 426 slugs are in this state.
+    const out = buildTraitsI18n(["class"], scanTraits(frLang));
+    expect(out["class"]).toEqual({
+      name: null,
+      description: "Description française de la classe…",
+    });
+    expect(JSON.stringify(out)).not.toContain("Class");
+  });
+
+  it("omits a trait the French lang table has no description for", () => {
+    expect(buildTraitsI18n(["gnoll"], scanTraits(frLang))).toEqual({});
+  });
+
+  it("ignores French traits we do not ship", () => {
+    // The French lang table carries 535 trait descriptions to our 426.
+    expect(Object.keys(buildTraitsI18n(["agile"], scanTraits(frLang)))).toEqual([
+      "agile",
+    ]);
   });
 });

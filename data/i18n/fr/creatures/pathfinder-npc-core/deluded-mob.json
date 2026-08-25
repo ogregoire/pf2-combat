@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> La foule hallucinée utilise ses poings, des planches de bois et tout ce qu'elle peut saisir pour attaquer chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre} avec ferveur, mais sans coordination (@Check[reflex|dc:18|basic|options:area-effect]). Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[1d8[untyped]|options:area-damage]{1d8 dégâts}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(1d8+6)[untyped]|options:area-damage,action:cost:2]{1d8+6 dégâts}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(2d8+6)[untyped]|options:area-damage,action:cost:3]{2d8+6 dégâts}</p>",
+      "en": "Flail Desperately",
+      "name": "Frapper désespérément"
+    },
+    {
+      "description": "<p>La foule dévoyée lance des détritus dans une @Template[type:burst|distance:10]{explosion de 3 mètres} dans un rayon de 9 mètres, qui inflige @Damage[2d8[bludgeoning]|options:area-damage]{2d8 dégâts contondants} {@Check[reflex|dc:18|basic|options:area-effect]}. Lorsque la foule est réduite à 2 sections ou moins, la zone diminue pour passer à une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Throw Detritus",
+      "name": "Lancer des détritus"
+    },
+    {
+      "description": "<p>La foule dévoyée est complètement déconnectée de la réalité. Les tests de Diplomatie pour @UUID[Compendium.pf2e.actionspf2e.Item.OX4fy22hQgUHDr0q]{Faire Bonne Impression} ou autrement influencer leur vision du monde échouent automatiquement.</p>",
+      "en": "Irrational",
+      "name": "Irrationelle"
+    },
+    {
+      "description": "<p>Lorsqu'elle se sent acculée, la Foule dévoyée riposte avec plus de témérité. Tant que la Foule dévoyée est Prise en tenaille, les actions Frapper Désespérément et Lancer des Débris ont un DD 17 et infligent 2 dégâts supplémentaires par action dépensée.</p>",
+      "en": "Surrounded",
+      "name": "Encerclée"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 50 PV (3 sections), 25 PV (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    },
+    {
+      "description": "<p>Alors qu'elle perd des membres, la Foule dévoyée interprète l'opposition à son encontre comme une preuve qu'elle avait raison, renforçant sa résolution. La Foule dévoyée obtient un bonus de circonstances de +2 aux jets de Volonté à 50 PV et moins ou un bonus de circonstances de +4 lorsqu'elle a 25 PV ou moins.</p>",
+      "en": "Victim Complex",
+      "name": "Complexe de la victime"
+    }
+  ],
+  "attacks": [],
+  "name": "Foule dévoyée",
+  "publicNotes": "<p>Égarés par des mensonges, des pots-de-vin et de la propagande, ces gens désespérés sont persuadés de combattre pour le compte de véritables scélérats. Conspirationnistes, propagandistes, cerveaux, despotes et autres tirent parti de ces foules.</p>\n<hr />\n<p>Les scélérats poursuivent des objectifs égoïstes et cruels, écrasant quiconque se dresse sur leur route.</p>"
+}

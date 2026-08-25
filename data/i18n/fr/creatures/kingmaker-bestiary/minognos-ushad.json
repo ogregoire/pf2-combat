@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Improved Grab",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Attack of Opportunity",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippée} par Minognos-Ushad obtient un échec critique à son test pour @UUID[Compendium.pf2e.actionspf2e.Item.SkZAQRkLLkmBQNB9]{S'échapper}.</p>\n<hr />\n<p><strong>Effet</strong> Minognos-Ushad effectue une Frappe de dard contre la créature ayant déclenché ce pouvoir.</p>",
+      "en": "Savage",
+      "name": "Sauvage"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Minognos-Ushad a @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippé} une créature au cours de ce tour en utilisant Piqué en puissance.</p>\n<hr />\n<p><strong>Effet</strong> Minognos-Ushad peut Voler à la moitié de sa Vitesse en tenant la créature dans ses serres, en la transportant et en la laissant tomber à la fin de son déplacement. Sinon, elle peut Frapper la créature avec son dard avec un bonus de circonstances de +2.</p>",
+      "en": "Punishing Momentum",
+      "name": "Élan fatal"
+    },
+    {
+      "description": "<p>Minognos-Ushad souffle du poison dans un @Template[cone|distance:60]{cône de 18 mètres}. Les créatures dans le cône subissent @Damage[20d6[poison]|options:area-damage]{20d6 dégâts de poison} (@Check[reflex|dc:41|basic|options:area-effect]). Minognos-Ushad ne peut plus utiliser son arme de souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Minognos-Ushad Vole jusqu'à sa Vitesse de vol maximale et doit se déplacer en ligne droite d'au moins 6 mètres tout en réduisant son altitude d'au moins 3 mètres. Si elle termine son déplacement avec au moins un ennemi de sa taille ou plus petit dans son allonge, elle peut effectuer une Frappe de griffe contre cet ennemi. Si la griffe touche, en tant qu'action gratuite, Minognos-Ushad peut automatiquement soit @UUID[Compendium.pf2e.bestiary-ability-glossary-srd.Item.Tkd8sH4pwFIPzqTr]{Agripper} sa proie, soit la mettre @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre}.</p>",
+      "en": "Powerful Dive",
+      "name": "Piqué en puissance"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:22]</p>\n<hr />\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[5d6[poison]]{5d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 1} (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[6d6[poison]]{6d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 2}(1 round)</p>\n<p><strong>Stade 3</strong> @Damage[8d6[poison]]{8d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 3} (1 round)</p>",
+      "en": "Wyvern Venom",
+      "name": "Venin de vouivre"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Fangs",
+      "name": "Crocs"
+    },
+    {
+      "en": "Stinger",
+      "name": "Dard"
+    }
+  ],
+  "name": "Minognos-Ushad",
+  "publicNotes": "<p><em>Une immense vouivre, une matriarche, habite à Sombrefaim depuis près de deux cents ans. Les barbares de la région l'appellent Minognos-Ushad (la dévoreuse de rois). Elle a survécu à un nombre incalculable d'assauts et a plus que mérité son nom vu la quantité de seigneurs de guerre qu'elle a dévorés. Même si elle est âgée, elle est toujours dangereuse. Elle passe de plus en plus de temps à somnoler dans sa caverne et émerge tous les quelques mois pour chasser dans les collines de Glenebon.</em></p>\n<hr />\n<p>Une vouivre est un drake venimeux ayant la réputation fort justifiée d'être impatiente et agressive. Pouvant mesurer jusqu'à 4,50 mètres de long et peser jusqu'à 500 kilos, le robuste corps de la vouivre lui permet de s'abattre à pleine vitesse et serres en avant sur de grandes proies sans prendre trop de risques. La Vouivre utilise son élan pour étourdir sa proie avant de lui injecter son venin virulent ou de la transporter à flanc de falaise. Puisque la Vouivre n'a pas la force nécessaire pour soulever sa charge intacte jusqu'à son nid, il est très probable qu'elle la soulève avant de la laisser tomber au-dessus d'un ravin ou d'un canyon afin de laisser la gravité faire son œuvre puis de descendre pour la décortiquer.</p>\n<p>Les conversations n'intéressent pas la Vouivre car lorsqu'elle parle c'est le plus souvent pour provoquer sa proie, revendiquer un territoire ou exiger un tribut. Et même dans ce cas, les Vouivres préfèrent l'humour noir et les récits d'actes violents surtout si ces actes ont été perpétrés par le narrateur. Une Vouivre qui a bien mangé, qui a été divertie et qui a reçu un tribut peut parfois accepter de rendre des services comme indiquer une direction ou servir de monture à un puissant humanoïde. Cependant, un tel arrangement dure rarement plus de quelques semaines avant que l'orgueil de la Vouivre, sa malice ou son insolence la pousse à fuir ou à trahir ses alliés. Seuls les plus cruels peuvent intimider suffisamment une Vouivre pour l'asservir pendant une longue période de temps puisque ces créatures ne servent que leurs propres intérêts et font tout pour éviter d'aider les autres.</p>\n<hr />\n<p>Voraces, bestiaux et uniquement guidés par l'instinct, les drakes sont des monstres draconiques primitifs dotés d'une fraction de la terrible puissance de leurs cousins plus massifs mais dénués de leur ruse. Bien qu'ils soient plus faibles, plus lents et moins enclins à la raison que les dragons, les drakes n'en sont pas moins une véritable menace pour les créatures et les communautés. Leur propension à former des groupes de chasse, des petits groupes sociaux appelés à juste titre des « saccages », les rend encore plus dangereux. Un unique saccage de drakes des rivières peut rapidement ravager un village côtier et des saccages nomades de drakes du désert sont un fléau pour les caravanes marchandes. Les drakes partagent un certain nombre de caractéristiques physiques qui les définissent comme une même espèce malgré la grande variété de leurs habitats et de leurs pouvoirs. Par exemple, les drakes n'ont pas de bras et ils ne peuvent donc combattre au corps-à-corps qu'avec leur puissante mâchoire et leur queue couverte d'épaisses écailles. Cependant, la plupart d'entre eux préfèrent éviter le combat rapproché au profit de leur souffle afin de semer le chaos à distance confortable tout en restant en vol. Enfin, tous les drakes disposent d'un modeste héritage des pouvoirs draconiques de leurs ancêtres dont ils peuvent user pour d'incroyables prouesses de vitesse.</p>"
+}

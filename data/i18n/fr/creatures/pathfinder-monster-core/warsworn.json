@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le guerrlier se déplace dans l'espace occupé par une créature mourante.</p>\n<hr />\n<p><strong>Effet</strong> Le guerrlier absorbe la créature mourante au sein de sa propre masse, ce qui la tue instantanément et soigne le guerrlier d'un montant de Points de vie égal au niveau de la créature. Tant que le guerrlier existe, il est impossible de ressusciter une créature absorbée, à moins d'user d'un @UUID[Compendium.pf2e.spells-srd.Item.6dDtGIUerazSHIOu]{Souhait} ou d'un effet tout aussi puissant.</p>",
+      "en": "Absorb",
+      "name": "Absorption"
+    },
+    {
+      "description": null,
+      "en": "Reactive Strike",
+      "name": null
+    },
+    {
+      "description": "<p>Très Grande ou inférieure, vague de cadavres, @Check[reflex|dc:37|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "en": "Trample",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Vitality",
+      "name": "Bonus de statut de +1 aux jets de sauvegarde contre la vitalité"
+    },
+    {
+      "description": "<p>Le guerrlier contrôle automatiquement toutes les armes qui ne sont pas portées dans son aura, laquelle lévite autour de lui. Le guerrlier peut manier ces armes par télékinésie pour effectuer des Frappes au corps-à-corps avec une allonge de 30 mètres. Ces Frappes infligent 4 dés de dégâts de l'arme +9 et utilisent le type de dégâts de l'arme.</p>",
+      "en": "Animated Weapons",
+      "name": "Armes animées"
+    },
+    {
+      "description": "<p>Quand le guerrlier touche avec une Frappe de vague de cadavres ou inflige des dégâts avec Piétinement, la cible doit réussir un jet de @Check[fortitude|dc:35]. En cas d'échec, elle est @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainée 2} et @UUID[Compendium.pf2e.conditionitems.Item.3uh1r86TzbQvosxv]{Condamnée 1}. En cas de succès critique, la cible est immunisée contre l'Absorption d'énergie du guerrlier pendant 24 heures.</p>",
+      "en": "Energy Drain",
+      "name": "Absorption d'énergie"
+    },
+    {
+      "description": "<p>30 mètres. @Check[will|dc:35|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": "<p>Une créature touchée par la Frappe de boule de ferraille du guerrlier doit faire un jet de @Check[reflex|dc:37].</p>\n<p>Si elle obtient un échec, elle tombe @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre}. Si elle volait, elle tombe de 36 mètres. Elle subit des dégâts de chute et se retrouve À terre si cela lui fait atteindre le sol. Si la créature obtient un échec critique, la cible est coincée sous un monticule de débris ([[/act escape dc=37]]).</p>",
+      "en": "Plummet",
+      "name": "Chute"
+    },
+    {
+      "description": null,
+      "en": "Void Healing",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Animated Weapon",
+      "name": "Arme animée"
+    },
+    {
+      "en": "Corpse Wave",
+      "name": "Vague de cadavres"
+    },
+    {
+      "en": "Scrap Ball",
+      "name": "Boule de ferraille"
+    }
+  ],
+  "name": "Guerrlier",
+  "publicNotes": "<p>Un guerrlier est une masse de cadavres animée composée de dizaines, voire de centaines de victimes d'une bataille. Il naît par la volonté d'une divinité de la mort-vivance ou de la guerre ou, très rarement, spontanément suite à la dévastation provoquée par une bataille particulièrement affreuse.</p>"
+}

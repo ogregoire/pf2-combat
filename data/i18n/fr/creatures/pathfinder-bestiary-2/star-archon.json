@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Réduction de dégâts</strong> 21</p>\n<p>Un archon stellaire peut aussi porter une Frappe punitive en lançant sa lamétoile et l'ennemi et l'allié peuvent être à 18 mètres au lieu de 4,50 mètres.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.RetributiveStrike]</p>",
+      "en": "Retributive Strike",
+      "name": null
+    },
+    {
+      "description": "<p>L'archon stellaire conçoit une constellation céleste et lance sa lamétoile sur cette trajectoire pour toucher un ennemi après l'autre. Il effectue une Frappe de lamétoile contre une cible à moins de 18 mètres. Si la Frappe est un succès, il peut en faire une autre sur une autre cible à moins de 18 mètres de la première et ainsi de suite jusqu'à ce qu'il obtienne un échec ou qu'il n'y ait plus de nouvelle cible à portée de la plus récente.</p>\n<p>L'archon stellaire peut attaquer une cible donnée seulement une fois par utilisation de ce pouvoir. Ces attaques n'ont aucune pénalité de facteur de portée et l'archon stellaire résout toutes les attaques avant d'augmenter la pénalité d'attaques multiples.</p>",
+      "en": "Prudent Asterism",
+      "name": "Astérisme avisé"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>Une fois par jour, si un archon voit une autre créature lancer @UUID[Compendium.pf2e.spells-srd.Item.VlNcjmYyu95vOUe8]{Translocation}, il peut lancer un sort inné de <em>Translocation</em> (intensifié au rang 5) dans un délai d'un round pour tenter de suivre cette créature jusqu'à la distance maximale de la Translocation de l'archon. Si la Translocation de l'archon a une portée suffisante, il réapparaît à la même distance et avec la même orientation par rapport à la créature qu'avant l'utilisation de ce pouvoir.</p>",
+      "en": "Archon's Door",
+      "name": "Porte de l'archon"
+    },
+    {
+      "description": "<p>Lorsqu'un archon stellaire subit des dégâts tranchants, une lumière vive sort de ses plaies. Les créatures non-archons à moins de 3 mètres doivent effectuer un jet de @Check[fortitude|dc:38].</p>\n<p>Sur un échec, la créature est @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Éblouie} pendant 1 round. En cas d'échec critique, la créature est @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Aveuglée} pendant[[/gmr 1d4 #rounds]]{1d4 rounds} à la place.</p>\n<p>La créature est ensuite immunisée pendant 1 round.</p>",
+      "en": "Blinding Soul",
+      "name": "Âme aveuglante"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Lorsqu'il est tué, l'archon stellaire explose dans un flash aveuglant d'énergie sainte qui inflige@Damage[12d6[fire],12d6[spirit]|options:area-damage]{12d6 dégâts de feu et 12d6 dégâts spirituels} sur tout ce qui se trouve dans une @Template[emanation|distance:100]{émanation de 30 mètres}, avec jet de @Check[reflex|dc:40|basic|options:area-effect].</p>\n<p>Une créature non archon qui assiste à l'explosion et obtient un échec critique à son jet de sauvegarde est @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Aveuglée} de façon permanente.</p>\n<p>L'archon stellaire tué se réincarne [[/gmr 1d4 #rounds]]{1d4 rounds} plus tard en archon bouclier.</p>",
+      "en": "Explosive Rebirth",
+      "name": "Renaissance explosive"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Returning Starknife",
+      "name": "Lamétoile boomerang"
+    },
+    {
+      "en": "Starknife",
+      "name": "Lamétoile"
+    }
+  ],
+  "name": "Archon stellaire",
+  "publicNotes": "<p>Incarnation de la vertu de prudence, les archons stellaires servent de philosophes et d'administrateurs et, en temps de guerre, de tacticiens, de stratèges et de généraux des armées archoniques. Les archons stellaires brûlent avec la gloire et l'intensité d'un soleil, et leur sens du devoir et leur désir de vaincre le mal sont aussi immuables que la lumière des étoiles. Bien que leur intelligence éblouissante et leur intelligence stratégique inégalée les rendent plus utiles dans les cabinets de guerre que sur les champs de bataille, les archons stellaires sont des adversaires redoutables lorsqu'ils doivent entrer dans la mêlée. Ceux qui ont été témoins du sacrifice d'un archon stellaire et ont survécu pour en parler décrivent cette expérience avec des termes similaires à une supernova au moment de l'implosion d'une étoile.</p>\n<hr />\n<p>Agents inépuisables du Paradis, les archons incarnent diverses vertus et s'efforcent à guider les mortels tout en luttant contre les forces maléfiques des royaumes fiélons. La montagne à sept niveaux du Paradis est généralement considérée comme un lieu de contemplation et de philosophie comme le démontre le cinquième niveau, Illumis. Mais les habitants archons de Proelera, le deuxième niveau qui constitue également l'entrée du Paradis, se concentrent sur la défense et le rassemblement des troupes pour les combats incessants contre les Enfers et les Failles extérieures. Cependant, contrairement aux diables et démons qui prennent plaisir à faire du mal aux innocents, les gardiens du Paradis réservent leurs armes pour les êtres profondément mauvais et impénitents. Lorsqu'ils sont auprès des mortels, ils préfèrent les guider et entretenir la régulation par des lois se préoccupant des faibles et des impuissants. Ils aident ainsi les mortels à venir eux- mêmes à bout de menaces létales au lieu de s'en occuper pour eux.</p>\n<p>Les archons vivent dans l'immense montagne à sept niveaux du Paradis. Ils se manifestent dans le Jardin au sommet du pic montagneux à partir des âmes de mortels qui répondent à une voix mystérieuse. Là, elles font serment de servir à jamais la cause de la justice et adoptent leur nouvelle forme, celle d'un archon. Soumis à un cycle extrêmement strict de métamorphoses, les nouveaux archons commencent sous la forme d'un archon lumineux, ou d'une autre forme inférieure, et se transforment en archons de plus en plus prestigieux au fur et à mesure que se développe leur vertu et qu'ils accomplissent des exploits. Chaque archon incarne une vertu particulière telle que l'espoir, la charité, la justice ou le courage et il tire sa force de la présence de mortels qui illustrent cette vertu. En raison de leur nature extrêmement loyale, les archons se retrouvent parfois en conflit avec les azatas.</p>"
+}

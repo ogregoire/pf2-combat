@@ -3,12 +3,16 @@ import { join } from "node:path";
 import type { Creature } from "@pf2/schema";
 import type { Pf2DataConfig } from "../config.js";
 import { walkPack } from "../io/walk.js";
-import { normalizeCreature } from "../normalize/creature.js";
+import { normalizeCreatureWithItems, type CreatureItemIds } from "../normalize/creature.js";
 import type { LangTable } from "../normalize/localize.js";
 import { compareStrings } from "../util.js";
 
 export interface NormalizeResult {
   creatures: Creature[];
+  /** creature id -> the Foundry item ids behind its actions/attacks, which
+   * `CreatureSchema.parse` strips from the creature itself. The French
+   * overlay joins Babele's per-item translations on these. */
+  items: Map<string, CreatureItemIds>;
   failures: string[];
 }
 
@@ -23,6 +27,7 @@ export function normalizePacks(
   lang: LangTable,
 ): NormalizeResult {
   const creatures: Creature[] = [];
+  const items = new Map<string, CreatureItemIds>();
   const failures: string[] = [];
 
   for (const pack of config.packs) {
@@ -31,7 +36,9 @@ export function normalizePacks(
       const raw: unknown = JSON.parse(readFileSync(file.absolutePath, "utf8"));
       if ((raw as { type?: string }).type !== "npc") continue;
       try {
-        creatures.push(normalizeCreature(raw, pack.name, file.slug, lang));
+        const normalized = normalizeCreatureWithItems(raw, pack.name, file.slug, lang);
+        creatures.push(normalized.creature);
+        items.set(normalized.creature.id, normalized.items);
       } catch (error) {
         failures.push(`${pack.name}/${file.slug}: ${(error as Error).message}`);
       }
@@ -40,6 +47,7 @@ export function normalizePacks(
 
   return {
     creatures: creatures.sort((a, b) => compareStrings(a.id, b.id)),
+    items,
     failures,
   };
 }

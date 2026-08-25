@@ -1,0 +1,37 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Le bataillon pointe ses lances vers chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre} (@Check[reflex|dc:21|basic|options:area-effect]). Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d6+2)[slashing]|options:area-damage]{1d6+2 dégâts tranchants}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d6+5)[slashing]|options:area-damage]{2d6+5 dégâts tranchants}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d12+7)[slashing]|options:area-damage]{3d12+7 dégâts tranchants}</p>",
+      "en": "Coordinated Strikes",
+      "name": "Frappes coordonnées"
+    },
+    {
+      "description": null,
+      "en": "Reactive Strike",
+      "name": null
+    },
+    {
+      "description": "<p>Le bataillon adopte une garde parfaite contre les explosions. Il obtient un bonus d'objet de +2 à la CA et un bonus de statut de +2 aux jets de Réflexes jusqu'au début de son prochain tour.</p>",
+      "en": "Perfect Formation",
+      "name": "Formation parfaite"
+    },
+    {
+      "description": "<p>Les archers du bataillon hobgobelin arment ou rechargent leurs arbalètes, puis lancent une attaque à distance sous forme de volée. Cette volée est une @Template[type:burst|distance:10]{explosion de 3 mètres} dans un rayon de 36 mètres qui inflige @Damage[2d8[piercing]|options:area-damage]{2d8 dégâts perforants} (@Check[reflex|dc:21|basic|options:area-effect]). Lorsque le bataillon hobgobelin est réduit à 2 sections ou moins, la zone est réduite à une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Focused Volley",
+      "name": "Volée concentrée"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 60 PV (3 sections), 30 PV (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    }
+  ],
+  "attacks": [],
+  "name": "Bataillon hobgobelin",
+  "publicNotes": "<p>Un bataillon hobgobelin se compose généralement de plusieurs soldats et archers sous les ordres d'un capitaine, bien que chaque unité dispose aussi d'une hiérarchie interne définissant clairement la chaîne de commandement si le capitaine venait à tomber au combat.</p>\n<hr />\n<p>Les hobgobelins sont respectés dans tout Golarion pour leur incomparable expertise martiale. La récente fondation de la nation hobgobeline d'Oprak et ses actes diplomatiques sans précédent, incluant des pactes de non-agression avec les nations voisines du Nidal et du Nirmathas, ont fait naître l'espoir d'une paix durable. Cependant, les pillards hobgobelins non-affiliés restent nombreux.</p>"
+}

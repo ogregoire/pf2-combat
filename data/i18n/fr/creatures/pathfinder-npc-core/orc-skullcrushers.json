@@ -1,0 +1,32 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Les brise-crânes écrasent leurs masses et gourdins sur chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre} (@Check[reflex|dc:22|basic|options:area-effect]). Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[1d12[bludgeoning]|options:area-damage]{1d12 dégâts contondants}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(1d12+8)[bludgeoning]|options:area-damage]{1d12+8 dégâts contondants}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(2d12+8)[bludgeoning]|options:area-damage]{2d12+8 dégâts contondants}</p>",
+      "en": "Crush Skulls",
+      "name": "Briser des crânes"
+    },
+    {
+      "description": "<p><strong>Effet</strong> Les tambours de guerre orques entraînent les autres brise-crânes dans un chant sacré exaltant leur supériorité au combat. Toute créature blessée par les brise-crânes ce tour subit également 1d6 dégâts spirituels persistants.</p>",
+      "en": "Chant of Dominance",
+      "name": "Chant de domination"
+    },
+    {
+      "description": "<p>Les brise-crânes déchaînent une volée de balles de fronde enchantées d'énergie vitale destinée à détruire les morts-vivants. Ce barrage couvre une @Template[type:burst|distance:10]{explosion de 3 mètres} dans un rayon de 15 mètres, infligeant @Damage[3d6[bludgeoning]|options:area-damage]{3d6 dégâts contondants} plus @Damage[1d6[vitality]|options:area-damage]{1d6 dégâts de vitalité} aux morts-vivants (@Check[reflex|dc:22|basic|options:area-effect]). Lorsque la troupe est réduite à 2 sections ou moins, la zone est réduite à une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Sacred Salvo",
+      "name": "Salve sacrée"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 80 PV (3 sections), 40 PV (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    }
+  ],
+  "attacks": [],
+  "name": "Brise-crânes orques",
+  "publicNotes": "<p>Les guerriers orques recherchent des armes et tactiques plus efficaces - surtout physiques, mais parfois magiques. En combattant les morts-vivants à leurs frontières, ils ont formé des bandes de brise-crânes pour écraser les hordes de squelettes.</p>\n<hr />\n<p>Les orcs suivent un code moral strict basé sur la vaillance et l'accomplissement et bannissent ceux qui refusent de s'y conformer. Depuis quelques générations, les orcs tentent d'effacer l'image d'une culture uniquement axée sur la guerre et la violence. Ils invitent d'autres races et groupes d'aventuriers à visiter leurs forteresses pour qu'ils découvrent la véritable nature des orcs.</p>"
+}

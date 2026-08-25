@@ -1,0 +1,40 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois toutes les 10 minutes</p>\n<p><strong>Conditions</strong> L'aéronaute se tient sur une surface horizontale</p>\n<hr />\n<p><strong>Effet</strong> L'aéronaute libère toute la puissance de ses propulseurs pour s'élancer dans les airs, infligeant @Damage[7d6[fire],7d6[bludgeoning]|options:area-damage]{7d6 dégâts de feu et 7d6 dégâts contondants} à toutes les créatures dans une @Template[type:emanation|distance:15]{émanation de 4,50 mètres} (@Check[reflex|dc:24|basic|options:area-effect]). L'aéronaute Vole deux fois, droit vers le haut.</p>",
+      "en": "Explosive Liftoff",
+      "name": "Décollage explosif"
+    },
+    {
+      "description": "<p>L'aéronaute Vole deux fois, puis tente de faire un [[/act trip options=mid-air-collision]]{Croc-en-jambe} ou une [[/act shove options=mid-air-collision]]{Poussée} contre une autre créature volante. S'il obtient un succès sur son test d'Athlétisme, il obtient un succès critique à la place.</p>",
+      "en": "Mid-air Collision",
+      "name": "Collision en vol"
+    },
+    {
+      "description": "<p>L'aéronaute Vole et effectue deux Frappes au corps-à-corps à n'importe quel moment pendant ce déplacement. Chaque Frappe doit cibler une créature différente. L'aéronaute peut renoncer aux Frappes au corps-à-corps pour effectuer à la place une Frappe avec son pistolet semi-automatique à n'importe quel moment pendant ce déplacement et Interagir pour sélectionner la chambre suivante de son pistolet. Ces actions peuvent être effectuées dans n'importe quel ordre. Toute Frappe effectuée dans le cadre de Mitraille propulsée inflige 2d6 dégâts supplémentaires et est pris en compte dans le calcul de la pénalité d'attaques multiples comme à l'ordinaire.</p>",
+      "en": "Rocketing Strafe",
+      "name": "Mitraille propulsée"
+    },
+    {
+      "description": "<p>Lorsque l'aéronaute subit un coup critique infligeant des dégâts perforants ou de feu, il doit effectuer un @Check[flat|dc:5]. En cas d'échec, le réservoir de carburant explose, infligeant @Damage[6d6[fire]|options:area-damage]{6d6 dégâts de feu} à l'aéronaute et à toutes les créatures dans une @Template[type:emanation|distance:20]{émanation de 6 mètres}. L'aéronaute tombe @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre}. L'aéronaute perd sa Vitesse de Vol et ne peut plus utiliser Décollage explosif, Collision en vol ou Mitraille propulsée jusqu'à ce qu'il répare son propulseur, ce qui nécessite du matériel d'artisan approprié et lui prend 2 heures.</p>",
+      "en": "Fuel Tank Vulnerability",
+      "name": "Vulnérabilité du réservoir de carburant"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fist",
+      "name": "Poing"
+    },
+    {
+      "en": "Heavy Wrench",
+      "name": "Clé à molette lourde"
+    },
+    {
+      "en": "Slide Pistol",
+      "name": "Pistolet semi-automatique"
+    }
+  ],
+  "name": "Aéronaute",
+  "publicNotes": "<p>Il faut une personnalité bien particulière pour enfiler un réservoir rempli d'une substance alchimique hautement inflammable et y mettre le feu pour s'élancer dans le ciel. Il n'est donc peut-être pas surprenant que la plupart des aéronautes soient des individus téméraires et grandiloquents qui se délectent des effets théâtraux inhérents à leur art. Bien que l'imprévisibilité des dispositifs de propulsion et le taux élevé de victimes parmi leurs utilisateurs les rendent généralement inadaptés à des applications militaires, quelques âmes courageuses les ont utilisés pour devenir des héros populaires pleins de panache ou des cascadeurs spectaculaires, dont les performances les plus mémorables culminent souvent avec leur propre disparition dramatique.</p>\n<hr />\n<p>Bien que relativement rares dans la majeure partie de Golarion, les esprits fréquemment excentriques mais indéniablement brillants qui créent des dispositifs élaborés de créations artificielles, de poudre à canon et de vapeur occupent souvent une place bien plus importante dans l'imaginaire public que ne le suggérerait leur nombre.</p>"
+}

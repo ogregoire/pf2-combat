@@ -1,0 +1,37 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Les mages-vigiles tirent une volée contre chaque enemmi dans une @Template[type:burst|distance:10]{explosion de 3 mètres} dans les 45 mètres, avec un jet de @Check[reflex|dc:26|basic|options:area-effect]. Les dégâts dépendent du nombre d'actions dépensées. Lorsque l'escadron est réduit à 2 sections ou moins, cette zone est réduite et passe à une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d6+3)[piercing],1d6[force]|options:area-damage]{1d6+3 dégâts perforants plus 1d6 dégâts de force}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(3d6+6)[piercing],1d6[force]|options:area-damage]]{3d6+6 dégâts perforants plus 1d6 dégâts de force} damage</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(4d6+6)[piercing],1d6[force]|options:area-damage]{4d6+6 dégâts perforants plus 1d6 dégâts de force} damage</p>",
+      "en": "Fire Shortbows!",
+      "name": "Tirez à l'arc court !"
+    },
+    {
+      "description": "<p>Les mages-vigiles attaquent tous les ennemis dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre} à coups de poing, infligeant @Damage[(4d4+4)[bludgeoning]|options:area-damage]{4d4 dégâts contondants} (@Check[reflex|dc:29|basic|options:area-effect]).</p>",
+      "en": "Bash Heads",
+      "name": "Écraser des crânes"
+    },
+    {
+      "description": "<p>Invisibilité ne peut rendre quoi que ce soit @UUID[Compendium.pf2e.conditionitems.Item.VRSef5y1LmL2Hkjf]{Non-détecté} ou @UUID[Compendium.pf2e.conditionitems.Item.9evPzg9E6muFcoSk]{Inaperçu} contre un escadron de mages-vigiles.</p>",
+      "en": "Invisibility Scan",
+      "name": "Scan d'invisibilité"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 120 PV (3 sections), 60 PV (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    },
+    {
+      "description": "<p>Lorsque la troupe de mages-vigiles Lance un sort, les membres qui le constituent combinent leurs efforts afin de lancer une version plus puissante du sort qu'un de ses membres pourrait parvenir à atteindre en étant tout seul.</p>\n<p>Quand ils Lancent le sort qui possède une zone correspondant à une explosion, un cône ou une ligne et qui n'a pas de durée, augmentez la zone d'effet de ce sort. Si la zone d'effet est une explosion qui aurait un rayon minimal de 3 mètres, ajoutez 1,50 mètre à ce rayon (une explosion dont le rayon est inférieur n'est pas affectée). Si la zone d'effet est une ligne ou un cône de 4,50 mètres ou inférieur, ajoutez 1,50 mètre à la longueur du cône ou de la ligne. Si la zone d'effet est une ligne ou un cône supérieur à 4,50 mètres, ajoutez 3 mètres à la longueur du cône ou de la ligne.</p>",
+      "en": "Troop Spellcasting",
+      "name": "Incantation de troupes"
+    }
+  ],
+  "attacks": [],
+  "name": "Escadron de mages-vigiles",
+  "publicNotes": "<p>Les gouvernements organisent souvent et déploient des escadrons de mages-vigiles dans les zones où une magie dangereuse est pressentie. Les membres combinent leurs sorts pour incanter à un niveau supérieur à ce qu'ils pourraient atteindre individuellement.</p>\n<hr />\n<p>Les sociétés les plus importantes s'appuient sur ceux qui ont les capacités et l'autorité pour interpréter et faire respecter les lois. Certains exercent ces fonctions avec équité, tandis que d'autres se montrent sévères et cruels, imposant des châtiments draconiens à quiconque ne peut acheter leur clémence.</p>"
+}

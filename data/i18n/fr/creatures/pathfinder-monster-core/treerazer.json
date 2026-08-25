@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<p><strong>Déclencheur</strong> Fléau des arbres touche une créature, un objet ou un effet de sort avec une Frappe d'arme ou en soumet un à Défoliation.</p>\n<hr />\n<p><strong>Effet</strong> Fléau des Arbres lance son sort inné @UUID[Compendium.pf2e.spells-srd.Item.9HpwDN4MYQJnW0LG]{Dissipation de la magie} en ciblant la créature qu'il a touchée avec sa Frappe ou avec un sort qui affecte cette créature.</p>",
+      "en": "Dispelling Strike",
+      "name": "Frappe dissipante"
+    },
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par minute</p>\n<hr />\n<p><strong>Effet</strong> Faites une Frappe avec <em>Hache-noire</em> contre un arbre vivant. En cas de succès, l'arbre se flétrit et vous récupérez @Damage[250[healing]]{250 Points de vie} et bénéficiez des effets du sort de @UUID[Compendium.pf2e.spells-srd.Item.Et8RSCLx8w7uOLvo]{Corps assaini} au rang 6.</p>",
+      "en": "Blackaxe - Rejuvenating Deforestation",
+      "name": "Hache-noire - Redynamiser la déforestation"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Fléau des arbres ne manie pas <em>Hache-noire</em>.</p>\n<hr />\n<p><strong>Effet</strong> <em>Hache-noire</em> apparaît entre les mains de Fléau des arbres, se téléportant instantanément depuis l'endroit où elle se trouvait précédemment.</p>",
+      "en": "Blackaxe - Owner's Reclamation",
+      "name": "Hache-noire - Réappropriation"
+    },
+    {
+      "description": null,
+      "en": "Reactive Strike",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Fléau des arbres ne manie pas <em>Hache-noire</em>.</p>\n<hr />\n<p><strong>Effet</strong> Fléau des arbres perçoit le monde autour de Hache-noire comme s'il était à sa place et il peut utiliser n'importe lequel de ses sorts innés par le biais du lien qui l'unit comme si elle était la source de ses sorts. Si une autre créature vivante manie Hache-noire, elle doit réussir un jet de @Check[will|dc:50] ou être @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 2} jusqu'à ce qu'elle la lâche.</p>",
+      "en": "Blackaxe - Owner's Authority",
+      "name": "Hache-noire - Autorité du propriétaire"
+    },
+    {
+      "description": "<p>Fléau des arbres exsude une pulsation de lumière d'un vert maladif dans une @Template[emanation|distance:30]{émanation de 9 mètres} de rayon. Toutes les plantes dans la zone (y compris les créatures sous l'effet de son aura de corruption) noircissent et se flétrissent.</p>\n<p>Les plantes autres que des créatures végétales se flétrissent et meurent. Les créatures végétales subissent chacune @Damage[20d8[void]]{20d8 dégâts de vide} (@Check[fortitude|dc:49|basic]). Une créature est également @UUID[Compendium.pf2e.conditionitems.Item.3uh1r86TzbQvosxv]{Condamnée 1} pendant 1 minute et @UUID[Compendium.pf2e.conditionitems.Item.fesd1n5eVhpCSS18]{Nauséeuse 3} si elle rate son jet de sauvegarde.</p>\n<p>Fléau des arbres peut choisir n'importe quel nombre de plantes dans la zone pour qu'elles ne subissent pas cet effet. Il le fait pour préserver les champignons et les végétaux corrompus et difformes ou les créatures végétales qui le soutiennent.</p>\n<p>Fléau des arbres ne peut pas utiliser cette capacité pendant [[/gmr 1d4 #Recharger Défoliation]]{1d4 rounds}.</p>",
+      "en": "Defoliation",
+      "name": "Défoliation"
+    },
+    {
+      "description": null,
+      "en": "+2 Status to All Saves vs. Magic",
+      "name": "Bonus de statut de +2 aux jets de sauvegarde contre la magie"
+    },
+    {
+      "description": "<p>36 mètres.</p>\n<p>Les plantes proches de Fléau des arbres se tordent et se déforment pour devenir des caricatures fongiques ou hérissées d'épines de leur forme naturelle. Une créature vivante dans l'aura doit réussir un jet de @Check[fortitude|dc:47] chaque round ou se transformer partiellement en matière végétale. Une créature qui rate ce jet de sauvegarde est considérée comme une plante en ce qui concerne les effets qui blessent ou gênent plus particulièrement les créatures végétales. Elle n'obtient cependant aucun avantage du fait de cette transformation en créature végétale. Cet effet dure tant que la créature reste dans l'aura de corruption et pendant 1 minute par la suite.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.3MIZf42EhhKbIwLQ]{Effet : Aura de corruption}</p>",
+      "en": "Aura of Corruption",
+      "name": "Aura de corruption"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Regeneration 50 (Deactivated by Holy)",
+      "name": "Régénération 50 (Désactivé par saint)"
+    },
+    {
+      "description": "<p>Quand Fléau des arbres obtient un coup critique avec une attaque au corps-à-corps, la cible est @UUID[Compendium.pf2e.conditionitems.Item.dfCMdR4wnpbYNTix]{Étourdie 2}.</p>",
+      "en": "Staggering Strike",
+      "name": "Frappe sidérante"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Blackaxe",
+      "name": "Hache-noire"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Fléau des arbres",
+  "publicNotes": "<p>Fléau des arbres, le seigneur auto-proclamé du Lac dévasté, est un redoutable démon sur le point d'obtenir la véritable puissance des dirigeants des Failles extérieures : un seigneur démon. Pour l'instant, même en tant que seigneur démon émergent, Fléau des arbres reste un dangereux adversaire.</p>\n<p>Fléau des arbres sort rarement de son royaume marécageux de Roncier, une vaste étendue de végétaux corrompus et de détritus putréfiés située juste au sud de la forêt de Fiérani du Kyonin. On peut toutefois le rencontrer n'importe où dans ce bourbier toxique, souvent en compagnie d'une petite légion de démons, de fées corrompues et d'autres alliés redoutables. Certains rituels occultes sont assez puissants pour l'invoquer depuis le Roncier, ce qui lui offre l'occasion de répandre directement sa malveillance au-delà des frontières du royaume où on l'a exilé. Certains pensent qu'aucune force surnaturelle ne retient Fléau des arbres et que, s'il le voulait, il pourrait rôder partout sur Golarion en toute impunité, en répandant la corruption d'un simple toucher et par sa simple présence. Cependant, le seigneur du lac Dévasté est aussi intelligent et rusé qu'il est dangereux et il préfère répandre le mal sur le monde en restant à l'abri dans son royaume cauchemardesque.</p>"
+}

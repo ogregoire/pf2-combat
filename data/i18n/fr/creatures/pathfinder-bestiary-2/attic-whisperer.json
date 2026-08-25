@@ -1,0 +1,36 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature avec un effet d'émotion actif pénètre dans l'aura de pleurs du chuchoteur du grenier.</p>\n<hr />\n<p><strong>Effet</strong> Le chuchoteur du grenier tente de contrer l'effet d'émotion, avec un modificateur de contre de +13.</p>",
+      "en": "Whispered Despair",
+      "name": "Désespoir susurré"
+    },
+    {
+      "description": "<p>3 mètres. Un chuchoteur du grenier se drape dans un chœur de voix volées. Chaque créature vivante qui pénètre ou débute son tour dans l'aura doit réussir un jet de @Check[will|dc:19|options:area-effect,inflicts:stupefied] sous peine d'être bouleversée par les sanglots amers et troublants. Elle devient @UUID[Compendium.pf2e.conditionitems.Item.e1XGnhKNSQIm5IXg]{Stupéfiée 1} aussi longtemps qu'elle demeure dans l'aura. Une créature qui réussit son jet de sauvegarde est temporairement immunisée pendant 1 heure.</p>\n<p>Le chuchoteur du grenier peut activer ou désactiver l'aura en utilisant une unique action gratuite qui possède le trait concentration.</p>",
+      "en": "Aura of Sobs",
+      "name": "Aura de pleurs"
+    },
+    {
+      "description": "<p>Le chuchoteur du grenier absorbe le souffle d'une créature vivante, drainant sa force. Une créature vivante touchée par une Frappe Mâchoires doit faire un jet de @Check[fortitude|dc:21|options:inflicts:enfeebled,inflicts:fatigued,inflicts:unconscious].</p>\n<hr />\n<p><strong>Succès critique</strong> La cible n'est pas affectée.</p>\n<p><strong>Succès</strong> La cible est @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaiblie 1} pendant 1 round.</p>\n<p><strong>Échec/strong> La cible est Affaiblie 1 pendant 24 heures et @UUID[Compendium.pf2e.conditionitems.Item.HL2l2VRSaQHu9lUw]{Fatiguée}.</p>\n<p><strong>Échec critique</strong> La cible est Affaiblie 1 pendant 24 heures, est Fatiguée, et tombe @UUID[Compendium.pf2e.conditionitems.Item.fBnFDH2MTzgFijKf]{Inconsciente}.</p>",
+      "en": "Steal Breath",
+      "name": "Vol de souffle"
+    },
+    {
+      "description": "<p>Quand un chuchoteur du grenier touche une créature vivante avec une Frappe de main décharnée, il tente d'attirer la voix de sa victime dans son aura. La cible doit faire un jet de @Check[will|dc:21].</p>\n<hr />\n<p><strong>Succès critique</strong> La cible n'est pas affectée.</p>\n<p><strong>Succès</strong> La voix de la cible est affaiblie pendant 1 minute. Chaque fois qu'elle tente une action possédant le trait audible, elle doit réussir un @Check[flat|dc:5] sinon cette action est perdue.</p>\n<p><strong>Échec</strong> La cible perd sa capacité à parler pendant 1 heure, jusqu'à ce que la malédiction soit levée ou que le chuchoteur du grenier soit détruit, suivant ce qui se produit en premier. Jusque-là, le chuchoteur du grenier peut imiter à la perfection la voix de la cible, et celle-ci subit une pénalité de circonstances de -2 à ses jets de sauvegarde contre l'aura de pleurs de chuchoteur en particulier.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais l'effet dure jusqu'à ce que le chuchoteur du grenier soit détruit ou que la malédiction soit levée.</p>",
+      "en": "Steal Voice",
+      "name": "Voix volée"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Bony Hand",
+      "name": "Main décharnée"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Chuchoteur du grenier",
+  "publicNotes": "<p>Prenez garde aux sanglots obsédants du chuchoteur des greniers, car ils portent la colère douloureuse d'un enfant abandonné, mort par négligence ou par l'absence de ceux qui devaient veiller sur lui. Animé par une solitude infinie, cet esprit aigri s'ancre dans le monde matériel en se façonnant un corps à partir de fragments d'une enfance perdue — cubes de bois, lambeaux de couvertures, poupées usées, boutons, babioles sculptées et billes de verre. Pour se donner l'apparence d'une tête, il coiffe cette silhouette hétéroclite d'un petit crâne animal.</p>\n<p>Les chuchoteurs des greniers hantent le plus souvent d'anciens dispensaires, orphelinats et autres institutions où des enfants furent oubliés. Ils peuvent demeurer inactifs pendant des décennies, dans l'espoir de trouver un jour un compagnon de jeu capable d'apaiser leur solitude éternelle. Lorsqu'ils perçoivent la présence des vivants, ils tentent de les attirer dans leur emprise en les appelant d'une voix enfantine. Bien qu'ils ne cherchent d'abord qu'à jouer avec ceux qu'ils rencontrent, leurs pulsions obscures prennent rapidement le dessus, les poussant à aspirer le souffle et la voix des créatures vivantes.</p>"
+}

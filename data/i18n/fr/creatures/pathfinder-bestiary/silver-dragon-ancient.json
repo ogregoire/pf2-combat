@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le dragon obtient un succès critique sur un jet de sauvegarde contre un sort ou un incantateur essayant de cibler le dragon obtient un échec critique à son jet d'attaque de sort.</p>\n<hr />\n<p><strong>Effet</strong> Le sort est renvoyé sur l'incantateur avec les effets de @UUID[Compendium.pf2e.spells-srd.Item.OOELvfkTedBMlWtq]{Renvoi de sort}.</p>",
+      "en": "Reflect Spell",
+      "name": "Sort renvoyé"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Le dragon est ciblé par une attaque.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon dresse son aile et obtient un bonus de circonstances de +2 à sa CA contre l'attaque déclencheuse. Si le dragon est en vol, il descend de 3 mètres après la fin de l'attaque.</p>",
+      "en": "Wing Deflection",
+      "name": "Déflection de l'aile"
+    },
+    {
+      "description": "<p>Le dragon d'argent peut souffler de deux manières différentes.</p>\n<p>Le dragon ne peut utiliser son Souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>\n<ul>\n<li><strong>Froid</strong> (arcanique, froid) Le dragon souffle un nuage de froid qui inflige @Damage[20d6[cold]|options:area-damage]{20d6 dégâts de froid} dans un @Template[cone|distance:50]{cône de 15 mètres} (@Check[reflex|dc:42|basic|traits:arcane,cold|options:area-effect]).</li>\n<li><strong>Gaz paralysant</strong> (arcanique, mise hors de combat) Le dragon projette un souffle de gaz paralysant. Chaque créature dans un @Template[cone|distance:50]{cône de 15 mètres} doit réussir un jet de@Check[fortitude|dc:42|traits:arcane,incapacitation|options:area-effect]. En cas d'échec, la créature est @UUID[Compendium.pf2e.conditionitems.Item.6uEgoh53GbXuHpTF]{Paralysée} pendant 1 round (ou 3 rounds en cas d'échec critique).</li>\n</ul>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Le dragon d'argent effectue deux Frappes de griffes et une Frappe de queue dans n'importe quel ordre.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>Le dragon d'argent peut fouler les nuages et la brume comme s'il était sur de la terre ferme.</p>",
+      "en": "Cloud Walk",
+      "name": "Marche sur les nuages"
+    },
+    {
+      "description": "<p>4,50 mètres. @Damage[3d6[cold]|options:area-damage]{3d6 dégâts de froid}</p>\n<p>Le dragon d'argent peut activer ou désactiver cette aura avec une action unique, qui possède le trait concentration et il peut choisir de ne pas affecter des alliés présents dans l'aura.</p>",
+      "en": "Cold Aura",
+      "name": "Aura de froid"
+    },
+    {
+      "description": "<p>Le dragon recharge son Arme de souffle à chaque fois qu'il inflige un coup critique avec une Frappe.</p>",
+      "en": "Draconic Momentum",
+      "name": "Impulsion draconique"
+    },
+    {
+      "description": "<p>Le dragon d'argent ignore l'état @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masqué} lié au brouillard et aux nuages.</p>",
+      "en": "Fog Vision",
+      "name": "Vision malgré le brouillard"
+    },
+    {
+      "description": "<p>27 mètres. @Check[will|dc:40|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "en": "Frightful Presence",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Dragon d'argent (Vénérable, Métallique)",
+  "publicNotes": "<p>Les dragons d'argent font partie des individus les plus chevaleresques de leur espèce ; ils utilisent le froid comme arme, peuvent fouler les nuages et vivent au sommet des montagnes enneigées ou au fin fond de vallées escarpées et embrumées. Bien que généralement ils établissent leur tanière dans les terres en altitude, leur soif de justice les pousse à voyager loin de chez eux, souvent au cœur même de royaumes envahis par le mal. Ces justiciers exemplaires sont déterminés à aider les faibles, à répandre l'honneur et à écraser le mal.</p>\n<p>Les dragons d'argent sont élancés et sinueux. Leur peau ressemble à une armure étincelante ce qui renforce le mythe populaire selon lequel ils seraient les paladins de leur espèce. Le zèle avec lequel ils traquent, affrontent et terrassent le mal n'a pas d'équivalent même parmi leurs cousins métalliques. Ils adhèrent à un strict code de l'honneur qui se transmet de parents à jeune dragon. Parfois, ils apprennent ce code de l'honneur auprès de mentors de confiance, généralement d'autres dragons d'argent ou des dragons d'or. En vieillissant, ils se consacrent de plus en plus à leur code en complétant des règles qui guident leur attitude avec de nouvelles clauses encore plus restrictives.</p>\n<p>Les dragons d'argent sont incroyablement altruistes et fréquentent régulièrement les citoyens des sociétés honorables dont ils se considèrent les protecteurs et les guides. En plus de réagir aux menaces maléfiques, ils essaient aussi d'empêcher en premier lieu l'apparition de ces menaces et ils s'assurent que les mortels dont ils ont la garde soient bien nourris, éduqués et traités avec dignité. Bien que les dragons d'argent puissent paraître trop zélés ou même impatients de combattre le mal, ils savent que le meilleur moyen de débarrasser le monde de la corruption c'est d'éradiquer à la source la dissension et la désillusion, pas de rester passivement à les observer jusqu'à ce que cela devienne un problème insoluble. Ils peuvent se montrer vindicatifs mais ils peuvent aussi être miséricordieux ; pour les malfaiteurs qui veulent se repentir et tourner la page, le soutien d'un dragon d'argent est à la fois inconditionnel et précieux. De nombreux dragons d'argent sont aussi attirés par la religion, vénérant des dieux telles que Iomédae, Sarenrae et d'autres divinités en lien avec la justice, la vertu et à la rédemption.</p>\n<hr />\n<p>Parangons de vertu, de noblesse et de grâce, les dragons métalliques sont des entités bienveillantes vénérées comme des êtres mythiques semblables à des divinités aussi bien pour leur puissance que pour leur majesté. Rares sont ceux à avoir vu un dragon métallique mais les récits de leurs interventions dans la vie des mortels, et de leur mort, sont connus de tous. Nommés d'après la ressemblance de leurs écailles avec les métaux brillants utilisés par les humanoïdes pour le commerce, la guerre et l'industrie, ces êtres immenses ont des intérêts et des pouvoirs très divers et cela ne les gêne absolument pas d'être associés à des matériaux aussi ordinaires. Après tout, comparer un dragon d'or à une pièce d'or revient à comparer l'océan à un verre d'eau ; bien qu'ils puissent paraître semblables au premier abord, la puissance brute, l'ampleur et la grandeur de l'un surpasse celles de l'autre.</p>\n<p>En plus des dragons métalliques et chromatiques, il existe d'autres types de dragons qui parcourent le monde et le reste du multivers. Sur les terres légendaires de Tian Xia de l'autre côté de la planète, on trouve les dragons impériaux, des créatures serpentines qui protègent l'équilibre cosmique et défendent leurs terres ancestrales. Hors de l'Univers, les dragons primordiaux tels que le dominateur dragon de saumure et le solitaire dragon des nuages façonnent la nature et les événements des Plans élémentaires. Il est certain qu'il existe une multitude d'autres types de dragons y compris des créatures vivant sur de lointains plans d'existence.</p>"
+}

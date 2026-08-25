@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le tyrannosaure a réussi un coup critique sur une cible de Grande taille ou inférieure avec sa patte.</p>\n<hr />\n<p><strong>Effet</strong> La créature touchée est mise @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre} et le tyrannosaure utilise sa patte pour l'immobiliser. Tant que le dinosaure ne bouge pas de la position qu'il occupe, la créature immobilisée est @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippée}.</p>\n<p>Un tyrannosaure obtient un bonus de circonstances de +2 à ses attaques contre la créature qu'il a immobilisée de cette manière, mais il ne peut utiliser Gober sa cible que s'il a Agrippé cette créature avec ses mâchoires.</p>",
+      "en": "Pin Prey",
+      "name": "Immobiliser la proie"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Une créature est @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippée} dans les mâchoires du tyrannosaure.</p>\n<hr />\n<p><strong>Effet</strong> Le tyrannosaure projette la créature en l'air jusqu'à 3 mètres de hauteur de sa gueule et 6 mètres de distance. La créature tombe de 7.5 mètres de haut (en supposant que le tyrannosaure la lance aussi haut qu'il le peut) et subit des dégâts de chute en conséquence. Si la créature projetée atterrit sur une autre créature, celle-ci subit le même nombre de dégâts contondants. La créature sur laquelle elle atterrit peut effectuer un jet de @Check[reflex|dc:23|basic].</p>",
+      "en": "Fling",
+      "name": "Projection"
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>Moyenne, @Damage[(3d6+8)[bludgeoning]]{3d6+8 dégâts contondants}, Rupture 26</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.SwallowWhole]</p>",
+      "en": "Swallow Whole",
+      "name": null
+    },
+    {
+      "description": "<p>Très grande ou inférieure, patte, @Check[reflex|dc:29|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "en": "Trample",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Foot",
+      "name": "Patte"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Tyrannosaure (Dinosaure)",
+  "publicNotes": "<p>Largement considéré comme le roi des dinosaures, le tyrannosaure est un prédateur colossal doté d'une large gueule garnie de dents redoutablement acérées. Certaines tribus de géants ont même dressé des tyrannosaures comme montures ou comme bêtes de guerre.</p>\n<hr />\n<p>Vestiges de l'ère primitive du monde, ces énormes animaux reptiliens existent encore en grand nombre dans les régions sauvages reculées ou sous terre dans les cavernes magiques de l'Ombreterre. Les hommes-lézards, les orcs, les géants et les autres humanoïdes qui vivent à proximité des dinosaures les utilisent comme montures, gardiens ou bêtes de chasse. Il arrive que de riches nobles collectionnent des dinosaures pour les exposer dans des ménageries, ce qui conduit presque inévitablement les animaux rejetés à devoir être soignés par des druides ou d'autres défenseurs de la nature. Lorsque des dinosaures s'établissent dans des régions en dehors de leurs habitats habituels, c'est souvent le résultat de la libération d'une grande collection.</p>"
+}

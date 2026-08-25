@@ -1,17 +1,32 @@
 #!/usr/bin/env -S npx tsx
-import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { join, relative, sep } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { ManifestSchema, type IndexEntry, type Manifest } from "@pf2/schema";
+import {
+  CreatureI18nSchema,
+  CreatureSchema,
+  ManifestSchema,
+  type CreatureI18n,
+  type IndexEntry,
+  type Manifest,
+} from "@pf2/schema";
 import { loadConfig } from "./config.js";
 import { writeJson, stableStringify } from "./io/write.js";
-import { fetchUpstream, type RunGit } from "./stages/fetch.js";
+import { fetchFrench, fetchUpstream, type RunGit } from "./stages/fetch.js";
 import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
-import { verifyDataset } from "./stages/verify.js";
-import { diffDataset, statusOf, type ChangeStatus } from "./report.js";
+import { verifyDataset, verifyI18n } from "./stages/verify.js";
+import { diffDataset, frenchCoverage, statusOf, type ChangeStatus } from "./report.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
-import { buildConditions, buildGlossary, buildTraits } from "./stages/reference.js";
+import { buildConditions, buildGlossary, buildTraits, scanTraits } from "./stages/reference.js";
+import { loadBabele } from "./stages/babele.js";
+import {
+  buildConditionsI18n,
+  buildCreatureI18n,
+  buildGlossaryI18n,
+  buildIndexI18n,
+  buildTraitsI18n,
+} from "./stages/i18n.js";
 import { renderSchemaDoc } from "./docs/schema-doc.js";
 
 export const EXIT = {
@@ -60,8 +75,12 @@ export interface CliIo {
 export interface CliDeps {
   dataDir: string;
   cacheDir: string;
+  /** The French module's checkout. MUST be distinct from `cacheDir`: both
+   * stages drive `git sparse-checkout set` on their own directory, and a
+   * shared one would have the two upstreams overwrite each other's cone. */
+  frCacheDir: string;
   configPath: string;
-  runGit?: RunGit; // forwarded to fetchUpstream; undefined means the real git CLI
+  runGit?: RunGit; // forwarded to fetchUpstream/fetchFrench; undefined means the real git CLI
 }
 
 const ROOT = fileURLToPath(new URL("../../..", import.meta.url));
@@ -70,8 +89,15 @@ const TOOL_VERSION = "0.1.0";
 const DEFAULT_DEPS: CliDeps = {
   dataDir: join(ROOT, "data"),
   cacheDir: join(ROOT, ".cache", "pf2e"),
+  frCacheDir: join(ROOT, ".cache", "pf2e-fr"),
   configPath: join(ROOT, "packages/pf2data/pf2data.config.json"),
 };
+
+/** Everything under `data/i18n/` is emitted, so `update` owns the whole tree:
+ * a file it no longer produces (a creature that lost its French entry, a pack
+ * that went away) has to be deleted, not left behind to be served as stale
+ * translation. */
+const I18N_ROOT = "i18n";
 
 /** A corrupt on-disk manifest is a verification failure (exit 20), not an
  * uncaught crash: JSON.parse and ManifestSchema.parse both throw on bad
@@ -176,6 +202,62 @@ function readOnDiskFiles(manifest: Manifest | null, dataDir: string): OnDiskFile
   return { creatures, others };
 }
 
+/** Every emitted French file currently on disk, keyed by its path relative to
+ * `dataDir` (`i18n/fr/creatures/<pack>/<slug>.json`, ...). Read as raw text
+ * for the same reason the creature files are: the comparison that decides
+ * "changed" has to be byte-for-byte against what `writeJson` would produce. */
+function readOnDiskI18n(dataDir: string): Map<string, string> {
+  const files = new Map<string, string>();
+  const root = join(dataDir, I18N_ROOT);
+  if (!existsSync(root)) return files;
+
+  const visit = (dir: string): void => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        visit(full);
+        continue;
+      }
+      if (!entry.name.endsWith(".json")) continue;
+      files.set(relative(dataDir, full).split(sep).join("/"), readFileSync(full, "utf8"));
+    }
+  };
+
+  visit(root);
+  return files;
+}
+
+/** Checks every committed French overlay against the committed creature it
+ * indexes. See `verifyI18n`: the overlay is keyed by array POSITION, so the
+ * two files agreeing position-for-position is the whole safety property. A
+ * missing overlay is not a failure -- 30 creatures legitimately have none. */
+function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
+  const problems: string[] = [];
+
+  for (const raw of creatures) {
+    const parsed = CreatureSchema.safeParse(raw);
+    if (!parsed.success) continue; // already reported by verifyDataset
+    const creature = parsed.data;
+
+    const path = join(dataDir, I18N_ROOT, "fr", "creatures", `${creature.id}.json`);
+    if (!existsSync(path)) continue;
+
+    const overlay = CreatureI18nSchema.safeParse(
+      JSON.parse(readFileSync(path, "utf8")),
+    );
+    if (!overlay.success) {
+      problems.push(
+        `i18n: ${creature.id}: overlay is invalid: ${overlay.error.issues[0]?.message ?? "invalid"}`,
+      );
+      continue;
+    }
+
+    problems.push(...verifyI18n(creature, overlay.data));
+  }
+
+  return problems;
+}
+
 export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS): number {
   let command: Command;
   try {
@@ -185,7 +267,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     return EXIT.usageError;
   }
 
-  const { dataDir, cacheDir, configPath, runGit } = deps;
+  const { dataDir, cacheDir, frCacheDir, configPath, runGit } = deps;
   const manifestPath = join(dataDir, "manifest.json");
 
   const config = loadConfig(configPath);
@@ -261,10 +343,18 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
       traits: onDisk.traits,
       manifest,
     });
-    for (const failure of result.failures) io.err(`${failure}\n`);
-    if (result.ok) io.err("dataset verified\n");
-    emit({ command: "verify", ok: result.ok, failures: result.failures });
-    return result.ok ? EXIT.unchanged : EXIT.verifyFailed;
+
+    // The committed overlay is checked against the committed creature, not
+    // just against the one `update` happened to build in memory: the two are
+    // separate files that can drift apart between runs, and a position that
+    // no longer names the action it translates would otherwise ship as a
+    // quietly mistranslated Strike.
+    const failures = [...result.failures, ...verifyOnDiskI18n(onDisk.creatures, dataDir)];
+    for (const failure of failures) io.err(`${failure}\n`);
+    const ok = failures.length === 0;
+    if (ok) io.err("dataset verified\n");
+    emit({ command: "verify", ok, failures });
+    return ok ? EXIT.unchanged : EXIT.verifyFailed;
   }
 
   let fetched;
@@ -328,6 +418,94 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     return EXIT.upstreamError;
   }
 
+  // --- French overlay -------------------------------------------------
+  // `--latest` moves BOTH pins. One flag, deliberately: the GM running this
+  // is the only operator, and two flags would be ceremony without a user.
+  // An empty `frRef` means "never pinned" -- the field only exists from this
+  // version on, so an older manifest carries "" and must be treated as absent
+  // rather than checked out as a ref.
+  let french;
+  try {
+    french = fetchFrench({
+      config,
+      cacheDir: frCacheDir,
+      pinnedRef: manifest?.frRef ? manifest.frRef : null,
+      useLatest: command.latest,
+      run: runGit,
+    });
+  } catch (error) {
+    io.err(`upstream error: ${(error as Error).message}\n`);
+    emit({ command: command.name, error: (error as Error).message });
+    return EXIT.upstreamError;
+  }
+
+  let babele, frLang;
+  try {
+    babele = loadBabele(french.babeleDir);
+    frLang = loadGlossaryLang(french.langPath);
+  } catch (error) {
+    io.err(`upstream error: ${(error as Error).message}\n`);
+    emit({ command: command.name, error: (error as Error).message });
+    return EXIT.upstreamError;
+  }
+
+  // The overlay is joined per creature on its OWN pack (the id prefix, the
+  // same derivation `buildIndexI18n` uses): `Shambler` is "Tertre errant" in
+  // the Kingmaker bestiary and "Grand tertre" in Bestiary 1, so the English
+  // name alone cannot decide. A creature Babele does not cover gets NO file
+  // at all -- never an English echo -- and shows up in the coverage report.
+  const creatureI18n = new Map<string, CreatureI18n>();
+  let indexI18n: Record<string, Record<string, string>>;
+  let conditionsI18n, glossaryI18n, traitsI18n;
+  try {
+    for (const creature of creatures) {
+      const items = normalized.items.get(creature.id);
+      if (items === undefined) continue;
+      const overlay = buildCreatureI18n({
+        creatureName: creature.name,
+        ownPack: creature.id.slice(0, creature.id.indexOf("/")),
+        actions: items.actions,
+        attacks: items.attacks,
+        table: babele,
+      });
+      if (overlay !== null) creatureI18n.set(creature.id, overlay);
+    }
+
+    indexI18n = {};
+    for (const [pack, entries] of Object.entries(build.indexes)) {
+      indexI18n[pack] = buildIndexI18n(entries, babele);
+    }
+    conditionsI18n = buildConditionsI18n(conditions, babele);
+    glossaryI18n = buildGlossaryI18n(glossary, babele);
+    traitsI18n = buildTraitsI18n(traits.map((t) => t.slug), scanTraits(frLang));
+  } catch (error) {
+    // `lookup` throws when two same-kind Babele files disagree about a name.
+    // That is an upstream inconsistency, not a defect in our dataset.
+    io.err(`upstream error: ${(error as Error).message}\n`);
+    emit({ command: command.name, error: (error as Error).message });
+    return EXIT.upstreamError;
+  }
+
+  // The guard the index-keying scheme depends on: every overlay position must
+  // still name the action/attack it was built from. An upstream reorder has
+  // to fail loudly here, never ship as a quietly mistranslated Strike.
+  const i18nProblems: string[] = [];
+  for (const creature of creatures) {
+    const overlay = creatureI18n.get(creature.id);
+    if (overlay === undefined) continue;
+    i18nProblems.push(...verifyI18n(creature, overlay));
+  }
+  if (i18nProblems.length > 0) {
+    for (const problem of i18nProblems) io.err(`${problem}\n`);
+    emit({ command: command.name, ok: false, failures: i18nProblems });
+    return EXIT.verifyFailed;
+  }
+
+  const coverage = frenchCoverage(
+    creatures.map((c) => c.id),
+    new Set(creatureI18n.keys()),
+  );
+
   const schemaDoc = renderSchemaDoc();
 
   const nextManifest: Manifest = {
@@ -335,10 +513,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     upstreamRepo: config.upstream.repo,
     upstreamRef: fetched.ref,
     frRepo: config.french.repo,
-    // TODO(task-7): the French source isn't fetched yet, so there is no ref
-    // to pin. A later task wires the French fetch stage and replaces this
-    // with the real fetched ref.
-    frRef: manifest?.frRef ?? "",
+    frRef: french.ref,
     generatedAt: manifest?.generatedAt ?? new Date().toISOString(),
     packs: config.packs.map((p) => p.name),
     creatureCount: creatures.length,
@@ -362,8 +537,10 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   }
 
   let onDisk: OnDiskFiles;
+  let onDiskI18n: Map<string, string>;
   try {
     onDisk = readOnDiskFiles(manifest, dataDir);
+    onDiskI18n = readOnDiskI18n(dataDir);
   } catch (error) {
     io.err(`verification failed: corrupt dataset: ${(error as Error).message}\n`);
     emit({ command: command.name, ok: false, failures: [`dataset: ${(error as Error).message}`] });
@@ -399,7 +576,28 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   }
   const otherDiff = diffDataset(onDisk.others, nextOtherRaw);
 
-  const otherFilesChanged = statusOf(otherDiff) === "updated";
+  // The French tree is diffed as its own map rather than folded into
+  // `others`, because unlike the fixed English file set it GROWS AND SHRINKS:
+  // a creature that loses its Babele entry stops producing a file, and the
+  // stale one has to be deleted rather than left behind to be served as a
+  // translation that no longer exists.
+  const nextI18n = new Map<string, unknown>();
+  for (const [id, overlay] of creatureI18n) {
+    nextI18n.set(`${I18N_ROOT}/fr/creatures/${id}.json`, overlay);
+  }
+  for (const [pack, entries] of Object.entries(indexI18n)) {
+    nextI18n.set(`${I18N_ROOT}/fr/index/${pack}.json`, entries);
+  }
+  nextI18n.set(`${I18N_ROOT}/fr/conditions.json`, conditionsI18n);
+  nextI18n.set(`${I18N_ROOT}/fr/glossary.json`, glossaryI18n);
+  nextI18n.set(`${I18N_ROOT}/fr/traits.json`, traitsI18n);
+  const nextI18nRaw = new Map(
+    [...nextI18n].map(([relPath, value]) => [relPath, stableStringify(value)] as const),
+  );
+  const i18nDiff = diffDataset(onDiskI18n, nextI18nRaw);
+
+  const otherFilesChanged =
+    statusOf(otherDiff) === "updated" || statusOf(i18nDiff) === "updated";
   const status: ChangeStatus =
     statusOf(creatureDiff) === "updated" || otherFilesChanged ? "updated" : "unchanged";
 
@@ -429,6 +627,12 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   writeJson(join(dataDir, "conditions.json"), conditions);
   writeJson(join(dataDir, "glossary.json"), glossary);
   writeJson(join(dataDir, "traits.json"), traits);
+  for (const relPath of i18nDiff.removed) {
+    rmSync(join(dataDir, ...relPath.split("/")), { force: true });
+  }
+  for (const [relPath, value] of nextI18n) {
+    writeJson(join(dataDir, ...relPath.split("/")), value);
+  }
   writeJson(manifestPath, nextManifest);
   writeFileSync(join(dataDir, "SCHEMA.md"), schemaDoc, "utf8");
 
@@ -436,13 +640,22 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     `${status}: +${creatureDiff.added.length} -${creatureDiff.removed.length} ~${creatureDiff.modified.length}` +
       `${otherFilesChanged ? " (other emitted files also changed)" : ""} at ${fetched.ref}\n`,
   );
+  // The untranslated LIST, not just the count: a coverage drop that only
+  // showed up as a smaller number would never say which creature lost its
+  // translation. 30 today, 19 of them the `Petitioner (Plane)` series.
+  io.err(
+    `french: ${coverage.translated}/${coverage.total} creatures translated at ${french.ref}` +
+      `${coverage.untranslated.length > 0 ? `, ${coverage.untranslated.length} untranslated: ${coverage.untranslated.join(", ")}` : ""}\n`,
+  );
   emit({
     command: "update",
     ok: true,
     status,
     upstreamRef: fetched.ref,
+    frRef: french.ref,
     creatureCount: creatures.length,
     otherFilesChanged,
+    french: coverage,
     ...creatureDiff,
   });
 

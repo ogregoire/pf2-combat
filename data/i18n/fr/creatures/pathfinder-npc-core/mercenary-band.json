@@ -1,0 +1,32 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> La bande de mercenaires exécute une attaque coordonnée avec sa large gamme d'armes de corps-à-corps contre chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre} avec un jet de @Check[reflex|dc:25|basic|options:area-effect]. Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d8+2)[bludgeoning]|options:area-damage]{1d8+2 dégâts contondants}, @Damage[(1d8+2)[piercing]|options:area-damage]{1d8+2 dégâts perforants} ou @Damage[(1d8+2)[slashing]|options:area-damage]{1d8+2 dégâts tranchants}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(3d8+4)[bludgeoning]|options:area-damage]{3d8+4 dégâts contondants}, @Damage[(3d8+4)[piercing]|options:area-damage]{3d8+4 dégâts perforants} ou @Damage[(3d8+4)[slashing]|options:area-damage]{3d8+4 dégâts tranchants}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(4d8+6)[bludgeoning]|options:area-damage]{4d8+6 dégâts contondants}, @Damage[(4d8+6)[piercing]|options:area-damage]{4d8+6 dégâts perforants} ou @Damage[(4d8+6)[slashing]|options:area-damage]{4d8+6 dégâts tranchants}</p>",
+      "en": "Let 'em Have It!",
+      "name": "Qu'ils encaissent !"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action de la bande était Qu'ils encaissent et au moins une créature a raté son jet de sauvegarde</p>\n<hr />\n<p><strong>Effet</strong> La bande de mercenaires tente de [[/act steal]]{Voler} un objet à chaque ennemi ayant raté son jet, même si l'ennemi est en combat ou sur ses gardes.</p>",
+      "en": "Spoils of War",
+      "name": "Butin de guerre"
+    },
+    {
+      "description": "<p>La bande de mercenaires dégaine ou recharge ses arcs, arbalètes et frondes, puis lance une attaque à distance sous forme de salve. Cette salve est une @Template[type:burst|distance:10]{explosion de 3 mètres} dans un rayon de 36 mètres qui inflige @Damage[(2d8+4)[piercing]|options:area-damage]{2d8+4 dégâts perforants} ou @Damage[(2d8+4)[bludgeoning]|options:area-damage]{2d8+4 dégâts contondants} (@Check[reflex|dc:25|basic|options:area-effect]). Lorsque la bande de mercenaires est réduite à 2 sections ou moins, la zone est réduite à une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Ready... Fire!",
+      "name": "Prêts ... Feu !"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 120 PV (3 sections), 60 PV (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    }
+  ],
+  "attacks": [],
+  "name": "Bande de mercenaires",
+  "publicNotes": "<p>Certaines bandes de soldats aguerris jouissent d'une réputation légendaire, leurs rangs remplis de combattants célèbres. D'autres sont redoutées pour leurs actes cruels et leurs trahisons opportunistes.</p>\n<hr />\n<p>Qu'ils soient engagés pour faire la guerre, protéger une caravane ou infiltrer une forteresse impénétrable, les mercenaires ne manquent pas de travail à travers tout Golarion.</p>"
+}

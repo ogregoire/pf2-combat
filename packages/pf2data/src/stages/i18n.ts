@@ -1,5 +1,6 @@
 import type { CreatureI18n } from "@pf2/schema";
 import type { BabeleTable } from "./babele.js";
+import type { ScannedTrait } from "./reference.js";
 
 /**
  * Builds a creature's French overlay by aligning Babele's per-item
@@ -90,7 +91,7 @@ const NO_OWN_PACK = "";
  * entries (`Grab` -> "Agrippement") are translated by name only, with no
  * French body -- that gap must reach `report` as `null`, never be papered
  * over with the English text. */
-type ReferenceI18n = Record<string, { name: string; description: string | null }>;
+export type ReferenceI18n = Record<string, { name: string; description: string | null }>;
 
 /**
  * Condition name/slug pairs -> French name+description, resolved under the
@@ -129,5 +130,39 @@ export function buildGlossaryI18n(
     const found = table.lookup("glossary", NO_OWN_PACK, def.name);
     if (found) out[def.slug] = { name: found.name, description: found.description ?? null };
   }
+  return out;
+}
+
+/**
+ * Trait overlay: our slug -> French name/description, for the traits we
+ * actually ship. Unlike conditions and glossary entries, traits do not come
+ * from Babele at all -- they come from the module's own `lang/fr.json`, via
+ * the SAME `scanTraits` the English `buildTraits` uses, so the slugs on both
+ * sides are derived identically and the join by slug cannot drift.
+ *
+ * The French table carries more traits than we ship (535 descriptions to our
+ * 426), so `slugs` filters it down to ours. Two gaps are represented rather
+ * than filled:
+ *  - no French description at all -> the trait is OMITTED (3 today: `gnoll`,
+ *    `grippli`, `environment`, all remaster renames, so the app's English
+ *    fallback is the right answer);
+ *  - a French description but no `PF2E.Trait<Suffix>` display name -> `name`
+ *    is `null` (10 today). `buildTraits` substitutes a title-cased slug
+ *    there, which is English-derived text and must never be written into a
+ *    French file.
+ */
+export function buildTraitsI18n(
+  slugs: string[],
+  frenchTraits: ScannedTrait[],
+): Record<string, { name: string | null; description: string }> {
+  const bySlug = new Map(frenchTraits.map((t) => [t.slug, t]));
+  const out: Record<string, { name: string | null; description: string }> = {};
+
+  for (const slug of slugs) {
+    const found = bySlug.get(slug);
+    if (!found) continue;
+    out[slug] = { name: found.name, description: found.description };
+  }
+
   return out;
 }

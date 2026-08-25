@@ -62,18 +62,60 @@ afterAll(() => {
   for (const dir of tmpDirs) rmSync(dir, { recursive: true, force: true });
 });
 
-function recordingGit(): { calls: string[][]; run: RunGit } {
+function recordingGit(): { calls: string[][]; cwds: string[]; run: RunGit } {
   const calls: string[][] = [];
-  const run: RunGit = (args) => {
+  const cwds: string[] = [];
+  const run: RunGit = (args, cwd) => {
     calls.push(args);
+    cwds.push(cwd);
     if (args[0] === "rev-parse") return "abc123def456\n";
     return "";
   };
-  return { calls, run };
+  return { calls, cwds, run };
 }
 
 function silentIo(overrides: Partial<CliIo> = {}): CliIo {
   return { out: () => {}, err: () => {}, isTty: true, ...overrides };
+}
+
+/**
+ * A REAL French checkout on disk -- `loadBabele` reads the directory itself,
+ * so a hand-rolled table object would not exercise the loader at all. The
+ * file names and `entries` shape are the module's own; the ids are the Stag
+ * Lord's actual Foundry item ids, taken from the fixture.
+ */
+const STAG_LORD_ITEM_IDS = {
+  longsword: "gj9hDQvaXekxyv1Q",
+  bow: "qVOjbIdihxei6lTm",
+  huntPrey: "H5KqV1tEsBEfhfvU",
+};
+
+function seedFrenchCache(entries: Record<string, unknown> | null = null): string {
+  const frCacheDir = tmpDir("pf2data-fr-cache-");
+  const babeleDir = join(frCacheDir, "babele", "vf", "fr");
+  mkdirSync(babeleDir, { recursive: true });
+  writeFileSync(
+    join(babeleDir, "pf2e.kingmaker-bestiary.json"),
+    JSON.stringify({
+      entries: entries ?? {
+        "The Stag Lord": {
+          name: "Seigneur Cerf",
+          description: "<p>Notes en fran\u00e7ais.</p>",
+          items: {
+            [STAG_LORD_ITEM_IDS.longsword]: { name: "\u00c9p\u00e9e longue" },
+            [STAG_LORD_ITEM_IDS.bow]: { name: "Arc long composite" },
+            [STAG_LORD_ITEM_IDS.huntPrey]: {
+              name: "Chasser une proie",
+              description: "<p>Description FR.</p>",
+            },
+          },
+        },
+      },
+    }),
+  );
+  mkdirSync(join(frCacheDir, "lang"), { recursive: true });
+  writeFileSync(join(frCacheDir, "lang", "fr.json"), "{}");
+  return frCacheDir;
 }
 
 describe("runCli", () => {
@@ -81,6 +123,7 @@ describe("runCli", () => {
     const deps: CliDeps = {
       dataDir: tmpDir("pf2data-data-"),
       cacheDir: tmpDir("pf2data-cache-"),
+      frCacheDir: seedFrenchCache(),
       configPath: CONFIG_PATH,
     };
     const { calls, run } = recordingGit();
@@ -93,6 +136,7 @@ describe("runCli", () => {
     const deps: CliDeps = {
       dataDir: tmpDir("pf2data-data-"),
       cacheDir: tmpDir("pf2data-cache-"),
+      frCacheDir: seedFrenchCache(),
       configPath: CONFIG_PATH,
     };
 
@@ -146,7 +190,7 @@ describe("runCli", () => {
     writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
 
     const { run } = recordingGit();
-    const deps: CliDeps = { dataDir, cacheDir, configPath, runGit: run };
+    const deps: CliDeps = { dataDir, cacheDir, frCacheDir: seedFrenchCache(), configPath, runGit: run };
 
     const exit1 = runCli(["update", "--latest"], silentIo(), deps);
     expect(exit1).toBe(10);
@@ -193,7 +237,7 @@ describe("runCli", () => {
     writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
 
     const { run } = recordingGit();
-    const deps: CliDeps = { dataDir, cacheDir, configPath, runGit: run };
+    const deps: CliDeps = { dataDir, cacheDir, frCacheDir: seedFrenchCache(), configPath, runGit: run };
 
     const errLines: string[] = [];
     const exit = runCli(
@@ -234,7 +278,8 @@ describe("runCli", () => {
     writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
 
     const { run } = recordingGit();
-    return { deps: { dataDir, cacheDir, configPath, runGit: run }, dataDir, cacheDir };
+    const frCacheDir = seedFrenchCache();
+    return { deps: { dataDir, cacheDir, frCacheDir, configPath, runGit: run }, dataDir, cacheDir, frCacheDir };
   }
 
   it("C3: a change confined to a non-creature emitted file yields exit 10, not 0", () => {
@@ -279,7 +324,7 @@ describe("runCli", () => {
     writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
 
     const { run } = recordingGit();
-    const deps: CliDeps = { dataDir, cacheDir, configPath, runGit: run };
+    const deps: CliDeps = { dataDir, cacheDir, frCacheDir: seedFrenchCache(), configPath, runGit: run };
 
     const errLines: string[] = [];
     const exit = runCli(
@@ -372,5 +417,215 @@ describe("runCli", () => {
     // and the drifted field is corrected back to what the tool actually emits
     const fixed = JSON.parse(readFileSync(manifestPath, "utf8"));
     expect(fixed.toolVersion).not.toBe("0.0.1-drifted");
+  });
+
+  // --- Task 7: the French overlay is REACHABLE from `update` ------------
+  //
+  // Everything below exists because six pieces of this feature had zero call
+  // sites until this task. These assertions are the ones that fail if the
+  // wiring is ever removed, however green the unit tests stay.
+
+  it("update writes the per-creature French overlay, the index overlay and the reference overlays", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const overlay = JSON.parse(
+      readFileSync(
+        join(dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json"),
+        "utf8",
+      ),
+    );
+    expect(overlay.name).toBe("Seigneur Cerf");
+    expect(overlay.publicNotes).toBe("<p>Notes en français.</p>");
+
+    // Aligned by position, and each position carries the English name it was
+    // built from so `verifyI18n` can check the alignment later.
+    const bow = overlay.attacks.find((a: { en: string }) => a.en === "Composite Longbow");
+    expect(bow.name).toBe("Arc long composite");
+    const untranslatedAttack = overlay.attacks.find(
+      (a: { en: string }) => a.en !== "Composite Longbow" && a.en !== "Longsword",
+    );
+    expect(untranslatedAttack).toBeUndefined();
+    const huntPrey = overlay.actions.find((a: { en: string }) => a.en === "Hunt Prey");
+    expect(huntPrey.name).toBe("Chasser une proie");
+    // An action Babele has no entry for is null, never the English text.
+    const sneak = overlay.actions.find((a: { en: string }) => a.en === "Sneak Attack");
+    expect(sneak.name).toBeNull();
+    expect(sneak.description).toBeNull();
+
+    const index = JSON.parse(
+      readFileSync(join(dataDir, "i18n", "fr", "index", "kingmaker-bestiary.json"), "utf8"),
+    );
+    expect(index["kingmaker-bestiary/the-stag-lord"]).toBe("Seigneur Cerf");
+
+    for (const file of ["conditions.json", "glossary.json", "traits.json"]) {
+      expect(existsSync(join(dataDir, "i18n", "fr", file))).toBe(true);
+    }
+  });
+
+  it("update pins frRef and frRepo in the manifest", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    const manifest = JSON.parse(readFileSync(join(dataDir, "manifest.json"), "utf8"));
+    expect(manifest.frRef).toBe("abc123def456");
+    expect(manifest.frRepo).toBe("https://example.invalid/pf2e-fr");
+  });
+
+  it("fetches the French module into its OWN cache dir, never the English one", () => {
+    // Both stages drive `git sparse-checkout set`; sharing a directory would
+    // have each upstream overwrite the other's cone. Nothing enforces this
+    // but the call site, so the call site is what gets tested.
+    const { deps, cacheDir, frCacheDir } = seededDeps();
+    const { cwds, run } = recordingGit();
+    expect(runCli(["update", "--latest"], silentIo(), { ...deps, runGit: run })).toBe(10);
+    expect(cacheDir).not.toBe(frCacheDir);
+    expect(cwds).toContain(cacheDir);
+    expect(cwds).toContain(frCacheDir);
+  });
+
+  it("writes no overlay for an untranslated creature and names it in the report", () => {
+    const { deps, dataDir, cacheDir } = seededDeps();
+
+    // A second creature the Babele table has no entry for -- 30 real ones
+    // are in this state.
+    const fixture = JSON.parse(
+      readFileSync(
+        fileURLToPath(new URL("./fixtures/the-stag-lord.json", import.meta.url)),
+        "utf8",
+      ),
+    );
+    fixture.name = "Manticore";
+    fixture._id = "manticoremanticor";
+    writeFileSync(
+      join(cacheDir, "packs", "kingmaker-bestiary", "manticore.json"),
+      JSON.stringify(fixture),
+    );
+
+    const errLines: string[] = [];
+    const outLines: string[] = [];
+    expect(
+      runCli(
+        ["update", "--latest"],
+        { out: (x) => outLines.push(x), err: (x) => errLines.push(x), isTty: false },
+        deps,
+      ),
+    ).toBe(10);
+
+    expect(
+      existsSync(join(dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "manticore.json")),
+    ).toBe(false);
+    // ...and the index overlay omits it rather than echoing "Manticore".
+    const index = JSON.parse(
+      readFileSync(join(dataDir, "i18n", "fr", "index", "kingmaker-bestiary.json"), "utf8"),
+    );
+    expect(index).not.toHaveProperty("kingmaker-bestiary/manticore");
+
+    const french = JSON.parse(outLines.join("")).french;
+    expect(french).toEqual({
+      translated: 1,
+      total: 2,
+      untranslated: ["kingmaker-bestiary/manticore"],
+    });
+    expect(errLines.join("")).toContain("kingmaker-bestiary/manticore");
+  });
+
+  it("deletes an overlay file it no longer produces", () => {
+    // A creature that loses its Babele entry must lose its overlay file too,
+    // not keep serving a translation the source no longer has.
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const stale = join(dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "gone.json");
+    writeFileSync(stale, "{}\n");
+
+    expect(runCli(["update"], silentIo(), deps)).toBe(10);
+    expect(existsSync(stale)).toBe(false);
+  });
+
+  it("a French overlay drift alone yields exit 10, not 0", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    expect(runCli(["update"], silentIo(), deps)).toBe(0);
+
+    const overlayPath = join(
+      dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json",
+    );
+    writeFileSync(overlayPath, readFileSync(overlayPath, "utf8").replace("Seigneur Cerf", "drifted"));
+
+    expect(runCli(["update"], silentIo(), deps)).toBe(10);
+    expect(readFileSync(overlayPath, "utf8")).toContain("Seigneur Cerf");
+  });
+
+  it("an unpinned frRef is an upstream error that names frRef, not upstreamRef", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const manifestPath = join(dataDir, "manifest.json");
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+    manifest.frRef = "";
+    writeFileSync(manifestPath, JSON.stringify(manifest));
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["update"],
+      { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(30);
+    expect(errLines.join("")).toContain("frRef");
+    expect(errLines.join("")).not.toContain("upstreamRef");
+  });
+
+  it("verify fails when a committed overlay position no longer names the action it translates", () => {
+    // The overlay is keyed by array POSITION. If the creature file and the
+    // overlay drift apart, position 0 of the overlay starts translating
+    // something else -- a mistranslated Strike, with every schema still
+    // valid. This is the check that makes that loud.
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    expect(runCli(["verify"], silentIo(), deps)).toBe(0);
+
+    const overlayPath = join(
+      dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json",
+    );
+    const overlay = JSON.parse(readFileSync(overlayPath, "utf8"));
+    overlay.attacks[0].en = "Trident";
+    writeFileSync(overlayPath, JSON.stringify(overlay));
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["verify"],
+      { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.join("")).toContain("kingmaker-bestiary/the-stag-lord");
+    expect(errLines.join("")).toContain("Trident");
+  });
+
+  it("verify fails when a committed overlay has fewer positions than the creature", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const overlayPath = join(
+      dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json",
+    );
+    const overlay = JSON.parse(readFileSync(overlayPath, "utf8"));
+    overlay.actions.pop();
+    writeFileSync(overlayPath, JSON.stringify(overlay));
+
+    expect(runCli(["verify"], silentIo(), deps)).toBe(20);
+  });
+
+  it("verify still passes for a creature that legitimately has no overlay", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    rmSync(
+      join(dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json"),
+      { force: true },
+    );
+    expect(runCli(["verify"], silentIo(), deps)).toBe(0);
   });
 });

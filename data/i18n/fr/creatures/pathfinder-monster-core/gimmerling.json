@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature obtient un échec critique sur une attaque au corps-à-corps contre le gimmerling ou se déplace dans un espace au sein de son Aura semée d'embûches.</p>\n<hr />\n<p><strong>Effet</strong> La créature qui déclenche l'effet doit effectuer un jet de @Check[reflex|dc:32|options:damaging-effect,inflicts:off-guard,inflicts:prone].</p>\n<hr />\n<p><strong>Succès critique</strong> La cible n'est pas affectée.</p>\n<p><strong>Succès</strong> La cible est @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Prise au dépourvu} jusqu'au début de son prochain tour.</p>\n<p><strong>Échec</strong> La créature subit @Damage[2d10[bludgeoning]]{2d10 dégâts contondants} et elle est Prise au dépourvu jusqu'au début de son prochain tour.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec et la créature se retrouve @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre}.</p>",
+      "en": "Trip Up",
+      "name": "Croche-pied"
+    },
+    {
+      "description": "<p>Le gimmerling prend l'apparence de n'importe quel humanoïde. Sous sa forme humanoïde, il perd son Aura semée d'embûches et son équipement prend l'aspect de babioles et de jouets. Si la forme choisie ne possède ni griffes, ni crocs, il perd la Frappe correspondante. S'il perd sa Frappe de griffe, il obtient une Frappe de poing identique, sauf qu'elle inflige des dégâts contondants.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "en": "Change Shape",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action du gimmerling était une Frappe de griffe réussie.</p>\n<hr />\n<p><strong>Effet</strong> Le glimmerling tente de [[/act disarm options=sly-disarm]]{Désarmer} la créature qu'il a touché. Il obtient un bonus de statut de +4 sur son test d'Athlétisme. Cette tentative n'applique pas et n'est pas prise en compte dans le calcul de la pénalité d'attaques multiples du glimmerling.</p>",
+      "en": "Sly Disarm",
+      "name": "Désarmement sournois"
+    },
+    {
+      "description": "<p>Perception de la faim permet au gimmerling de sentir la présence de créatures qui ont besoin de se nourrir pour vivre.</p>",
+      "en": "Hungersense (Imprecise) 30 feet",
+      "name": "Perception de la faim 9 mètres (imprécis)"
+    },
+    {
+      "description": "<p>Le gimmerling inflige 2d6 dégâts de précision supplémentaires aux créatures @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Prises au dépourvu}.</p>",
+      "en": "Sneak Attack",
+      "name": "Attaque sournoise"
+    },
+    {
+      "description": "<p>4,50 mètres</p>\n<p>Des racines enchevêtrées, des petits trous aux bords déchiquetés, des cailloux acérés et d'autres obstacles apparaissent sur les surfaces au sein de l'aura, le transformant en terrain difficile.</p>",
+      "en": "Treacherous Aura",
+      "name": "Aura semée d'embûches"
+    },
+    {
+      "description": "<p>Le gimmerling ignore le terrain difficile et ne déclenche pas de pièges en se déplaçant.</p>",
+      "en": "Trickster's Step",
+      "name": "Démarche de filou"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Hand Crossbow",
+      "name": "Arbalète de poing"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Gimmerling",
+  "publicNotes": "<p>Les gimmerlings sont des petites fées métamorphes qui tendent des embuscades pour apaiser leur faim perpétuelle et leur avarice enfantine. Ces fées curieuses et cruelles sont obsédées par la fabrication de pièges bizarres et d'armes sadiques. Rien ne les amuse plus que de voir ces pièges se déclencher ou de tester ces armes. Lorsqu'elles résident dans Golarion, on les rencontre le plus souvent dans des zones urbaines, surtout dans les taudis ou dans d'autres parties de la ville où elles peuvent passer facilement inaperçues ou être facilement oubliées et où elles ont un grand choix de victimes.</p>\n<p>Un gimmerling typique prend l'aspect d'un enfant en danger en espérant inciter des créatures à se rapprocher suffisamment pour les dépouiller. Le gimmerling simule le danger en utilisant un piège, une créature artificielle ou un complice allié ou même un monstre contraint.</p>\n<p>Il arrive que les gimmerlings troquent leurs techniques de piégeur et de forgeur contre des choses qui satisfont leur curiosité, leur avarice ou leur faim. C'est pour cette raison qu'elles sont parfois adorées comme des dieux mineurs de la forge. Certains gimmerlings plus disciplinés deviennent des artisans honorés, des gardes d'élite ou des espions au service des demi-dieux appelés les Aînés qui vivent dans les tréfonds du Premier Monde.</p>"
+}

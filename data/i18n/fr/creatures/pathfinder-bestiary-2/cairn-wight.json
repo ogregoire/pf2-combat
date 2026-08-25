@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le nécrophage des tertres est réduit à 0 PV.</p>\n<hr />\n<p><strong>Effet</strong> Il porte une dernière Frappe avant d'être détruit. Son drain de vie ne lui permet pas de récupérer de Points de vie temporaires sur cette Frappe.</p>",
+      "en": "Final Spite",
+      "name": "Ultime méchanceté"
+    },
+    {
+      "description": "<p>Le nécrophage des tertres entonne une sourde et obsédante mélopée. Les créatures vivantes qui se trouvent dans une @Template[emanation|distance:50]{émanation de 15 mètres} doivent faire un jet de @Check[will|dc:21|options:area-effect,inflicts:frightened].</p>\n<p>Un nécrophage des tertres ne peut plus utiliser Mélopée funèbre pendant [[/gmr 1d4 #Recharger mélopée funèbre]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> La créature est @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 1}.</p>\n<p><strong>Échec</strong> La créature est @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 2}.</p>\n<p><strong>Échec critique</strong> La créature est @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 2} et subit une pénalité de statut de -2 à ses jets de sauvegarde contre le drain de vie.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.8ecPVgMeWDxc4jI4]{Effet : Mélopée funèbre}</p>",
+      "en": "Funereal Dirge",
+      "name": "Mélopée funèbre"
+    },
+    {
+      "description": "<p>Un humanoïde vivant qui succombe à une Frappe d'arme ou de griffes d'un nécrophage des tertres se relève sous forme de @UUID[Compendium.pf2e.pathfinder-bestiary-2.Actor.sMNqIHHxcVBXG08h]{Rejeton de nécrophage} au bout de [[/gmr 1d4 #transformation en rejeton de nécrophage des tertres]]{1d4 rounds}. Ce rejeton est aux ordres du nécrophage des tertres qui l'a tué. Il ne possède pas les pouvoirs Drain de vie ni Rejeton de nécrophage des tertres et a l'état @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 2} tant qu'il conserve son statut de rejeton. Si son créateur est détruit, le rejeton devient un véritable nécrophage des tertres autonome. Il récupère son libre arbitre, obtient les pouvoirs Drain de vie et Rejeton de nécrophage des tertres et n'est plus maladroit.</p>",
+      "en": "Cairn Wight Spawn",
+      "name": "Rejeton de nécrophage des tertres"
+    },
+    {
+      "description": "<p>Quand un nécrophage des tertres blesse une créature vivante avec une Frappe au corps-à-corps (à mains nues ou avec son arme liée), le nécrophage obtient 5 Points de vie temporaires et sa victime doit réussir un jet de @Check[fortitude|dc:18|options:inflicts:drained] ou devenir @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainée 1}. Les dégâts que le nécrophage des tertres inflige ensuite augmentent l'état Drainé de 1 sur un jet de sauvegarde raté, jusqu'à un maximum de 4.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.LRIYUFQ7FE9H4RWD]{Effet : Drain de vie}</p>",
+      "en": "Drain Life",
+      "name": "Drain de vie"
+    },
+    {
+      "description": null,
+      "en": "Void Healing",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Longsword",
+      "name": "Épée longue"
+    }
+  ],
+  "name": "Nécrophage des tertres",
+  "publicNotes": "<p>Gardiens jaloux des tombes, des tertres et des sépultures, les nécrophages des tertres sont généralement le fruit de rituels nécromantiques. Aux yeux des mortels qui ne supportent pas l'idée de se trouver séparés de leurs biens matériels, une existence de mort-vivant sous la forme d'un nécrophage des tertres peut être tentante. Ils sont presque aussi souvent créés par des nobles ou des marchands aussi riches qu'avares qui transforment des malheureux en nécrophages des tertres chargés de garder à jamais leurs précieux trésors</p>\n<p>Dans de très rares cas, cependant, la cupidité de certains mortels est assez forte pour qu'ils se transforment spontanément en nécrophages des tertres, sans nécessiter de sombre rituel ni d'intervention divine. Le nécrophage qui en résulte fait alors preuve d'une cruauté sans égale et garde probablement un trésor rare.</p>\n<p>Comme ce sont les gardiens de biens matériels, les nécrophages des tertres ont un lien surnaturel avec l'armement qu'ils portaient lors du rituel qui les a créés. Ils peuvent ainsi étendre leurs pouvoirs nécromantiques aux armes qu'ils manient et une entaille de l'épée d'un nécrophage des tertres permet au nécrophage d'absorber la vie de sa victime.</p>"
+}

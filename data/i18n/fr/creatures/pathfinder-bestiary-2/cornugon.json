@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Attack of Opportunity",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action du cornugon est une Frappe réussie avec sa chaîne cloutée</p>\n<hr />\n<p><strong>Effet</strong> Le diable rapproche de lui de 1,50 mètre la créature et l'@UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippe} avec sa chaîne cloutée ([[/act escape dc=42]]{S'Échapper}). La créature se libère automatiquement si le diable effectue une autre attaque avec sa chaîne cloutée ou s'il s'éloigne.</p>",
+      "en": "Chain of Malebolge",
+      "name": "Chaîne du Malebolge"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>3 mètres. Un @UUID[Compendium.pf2e.spells-srd.Item.mpGCMTldMVa0pWYs]{Cercle de protection} contre le bien constant est centré sur le cornugon.</p>",
+      "en": "Circle of Protection",
+      "name": "Cercle de protection"
+    },
+    {
+      "description": "<p>30 mètres. Les créatures mauvaises alliées situées dans l'aura qui ont un niveau inférieur à celui du diable obtiennent un bonus de circonstances de +1 à leurs jets d'attaque et de dégâts, à leur CA, à leurs jets de sauvegarde et à leurs tests de compétence.</p>\n<hr />\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.5NSWRxAsJuvwyl0E]{Effet : Aura du commandant}</p>",
+      "en": "Commander's Aura",
+      "name": "Aura du commandant"
+    },
+    {
+      "description": "<p>3 mètres. @Check[will|dc:34|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Greater Darkvision",
+      "name": null
+    },
+    {
+      "description": "<p>Une Frappe de queue du cornugon inflige @Damage[4d6[bleed]]{4d6 dégâts de saignement}.</p>\n<p>Le DD initial du test nu pour arrêter le saignement est de @Check[flat|dc:20]{20}. Il est réduit à @Check[flat|dc:15]{15} si la créature affectée ou un allié obtient un succès pour l'assister. Le DD pour @UUID[Compendium.pf2e.actionspf2e.Item.MHLuKy4nQO2Z4Am1]{Prodiguer les premiers soins} à une créature avec une blessure infernale est augmenté de 10 points.</p>\n<p>Un incantateur ou un objet utilisant une magie de guérison sur une créature affectée par une blessure infernale doit d'abord réussir un test de contre (DD 34). Si elle n'est pas contrée, la guérison ne produit aucun effet.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.inLBsuLRE5xmVHdn]{Effet : Blessure infernale}</p>",
+      "en": "Infernal Wound",
+      "name": "Blessure infernale"
+    },
+    {
+      "description": "<p>Si le cornugon obtient un succès critique avec sa Frappe de chaîne cloutée, la cible doit réussir un jet de @Check[fortitude|dc:34] ou être @UUID[Compendium.pf2e.conditionitems.Item.dfCMdR4wnpbYNTix]{Étourdie} pendant 1 round ([[/gmr 1d4 #Durée d'étourdissement]]{1d4 rounds} en cas d'échec critique)</p>",
+      "en": "Stunning Chain",
+      "name": "Chaîne étourdissante"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 feet",
+      "name": "Télépathie 30 mètres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Spiked Chain",
+      "name": "Chaîne cloutée"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Cornugon (Diable)",
+  "publicNotes": "<p>Les armées des Enfers sont constituées d'innombrables légions de diables différents ayant chacun un rôle précis à jouer. Mais ces armées ont besoin de commandants compétents et c'est le rôle qui est alloué aux cornugons. Leur seule présence pousse ceux qui sont placés sous leurs ordres à dépasser leurs limites, souvent par crainte des horribles tourments qu'un cornugon peut leur infliger s'ils échouent. Forgés dans les flammes du Malebolge à partir des plus grands combattants parmi les diables inférieurs, même le moins puissant des cornugons fait partie des guerriers les plus féroces du multivers. Les plus grands d'entre eux sont parfois choisis pour rejoindre les rangs des rares et redoutées créatures légendaires des Enfers, les malébranches.</p>\n<hr />\n<p>Maîtres de la corruption et architectes des conquêtes, les diables cherchent aussi bien à tenter les mortels pour qu'ils se joignent à leur quête blasphématoire, qu'à répandre la tyrannie sur tous les mondes. Les tentations auxquelles ils peuvent soumettre les mortels vont de grands pouvoirs accordés en signant un contrat infernal à des faveurs perverses octroyées après un serment adressé dans un murmure à une entité diabolique, en passant par toutes sortes d'échanges plus subtils. Ceux qui succombent à ces tentations se retrouvent condamnés à une après-vie de tourments éternels dans les gouffres des Enfers dont ils ne peuvent s'échapper qu'en étant promus en devenant des diables au sein des légions infernales. Chaque diable a un rôle précis à jouer dans l'entretien de la machine bureaucratique sans scrupule que sont les Enfers, des soldats et des érudits aux inquisiteurs, avocats, juges et exécuteurs. Les diables de rang inférieur comme les lémures et les diablotins s'occupent de tâches subalternes pour des diables plus puissants et spécialisés, comme les diables des contrats et les érinyes, tandis que les plus grands d'entre eux les diantrefosses, commandent des armées infernales.</p>"
+}

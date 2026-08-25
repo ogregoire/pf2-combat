@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature dans l'allonge de la queue du dragon utilise une action de déplacement ou quitte une case au cours d'une action de déplacement qu'elle entreprend.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon effectue une Frappe de queue sur la créature avec une pénalité de -2. Si la Frappe touche, le dragon interrompt l'action de la créature.</p>",
+      "en": "Twisting Tail",
+      "name": "Queue sinueuse"
+    },
+    {
+      "description": "<p>Le dragon effectue deux Frappes de griffes et une Frappe de corne dans l'ordre de son choix.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le dragon n'a pas de créature empalée sur sa corne.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon tente d'étriper un ennemi. Il Marche rapidement, puis effectue une Frappe de corne. Si il touche, la cible est empalée sur la corne du dragon. La créature est @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippée} tant qu'elle est sur la corne (et peut tenter de @UUID[Compendium.pf2e.actionspf2e.Item.SkZAQRkLLkmBQNB9]{S'Échapper} normalement). Le dragon n'a pas besoin d'utiliser d'action supplémentaire pour maintenir agrippée la créature empalée. Si le dragon se déplace, il emporte la créature agrippée avec lui.</p>",
+      "en": "Impaling Charge",
+      "name": "Charge empaleuse"
+    },
+    {
+      "description": "<p>Le dragon crache un nuage toxique qui inflige @Damage[9d6[poison]|options:area-damage]{9d6 dégâts de poison} dans un @Template[cone|distance:40]{cône de 12 mètres} (@Check[fortitude|dc:25|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger de Souffle empoisonné]]{1d4 rounds}.</p>",
+      "en": "Poison Breath",
+      "name": "Souffle empoisonné"
+    },
+    {
+      "description": "<p>Le dragon recharge son Souffle empoisonné à chaque fois qu'il obtient un coup critique avec une Frappe.</p>",
+      "en": "Draconic Momentum",
+      "name": "Impulsion draconique"
+    },
+    {
+      "description": "<p>Le dragon cornu ignore le terrain difficile provoqué par les plantes, tels que les fourrés, les lianes et les sous-bois. Même les plantes manipulées par magie n'entravent pas sa progression.</p>",
+      "en": "Forest Passage",
+      "name": "Passage forestier"
+    },
+    {
+      "description": "<p>27 mètres. @Check[will|dc:24|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "en": "Frightful Presence",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Horn",
+      "name": "Corne"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Dragon cornu (Jeune)",
+  "publicNotes": "<p>La magie qui circule à travers les dragons primordiaux peut conférer à un type de dragon des attributs plus animaux ou plus bestiaux. C'est par exemple le cas de l'imposante paire de cornes du dragon cornu. Si leur corpulence, leur coloration naturelle et leurs écailles striées sont toutes remarquables à leur manière, ce sont surtout leurs cornes qui sautent immédiatement aux yeux et qui sont le plus frappantes. Les dragons cornus utilisent ces cornes pour empaler leurs proies afin de faire étalage de manière brutale et expéditive de leur puissance. Pourtant, ces dragons sont généralement contemplatifs et font une fixation sur le savoir et l'autodiscipline, des traits de caractère que dément leur apparence bestiale, en conséquence de quoi les dragons cornus sont généralement plus ouverts à la discussion avec les étrangers.</p>\n<hr />\n<p>Les dragons se présentent sous une multitude de formes et nombre d'entre eux possèdent des capacités magiques ou des liens avec la magie. Certains dragons tirent une plus grande puissance de la magie que d'autres, ce qui leur permet de manifester des capacités ou de modifier leur silhouette en cas d'exposition prolongée à la magie. Ces dragons deviennent plus puissants en vieillissant et en renforçant leurs liens avec leurs origines magiques. Les érudits débattent de la classification de ces dragons, certains préférant le nom de dragons magiques et d'autres celui de dragons traditionnels en raison de leur lien avec des traditions magiques spécifiques. Quel que soit leur nom, ces dragons partagent un certain nombre de caractéristiques : leur capacité à puiser dans les énergies magiques, une puissance et une ruse accrues à mesure qu'ils vieillissent et une propension à amasser de vastes quantités de trésors et de richesses.</p>"
+}

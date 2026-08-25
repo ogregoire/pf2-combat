@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "description": "<p>L'élémentaire éteint tous les feux dans une @Template[emanation|distance:20]{émanation de 6 mètres}.</p>\n<p>Il éteint tous les feux non magiques automatiquement et tente de contrer les feux magiques (modificateur de contre [[/r 1d20+20 #Tremper]]{+20}).</p>",
+      "en": "Drench",
+      "name": "Tremper"
+    },
+    {
+      "description": "<p>Le tsunami élémentaire peut aussi tirer la créature.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Push]</p>",
+      "en": "Push or Pull 10 feet",
+      "name": "Pousser ou Tirer 3 m"
+    },
+    {
+      "description": "<p>Le tsunami élémentaire étend rapidement son espace pour occuper toute la zone de son vortex. Les créatures prises dans l'émanation du vortex subissent @Damage[(6d12+8)[bludgeoning]|options:area-damage][bludgeoning]]{6d12+8 dégâts contondants} (@Check[fortitude|dc:34|basic|options:area-effect,forced-movement]). Une créature qui rate ce jet est Poussée sur 6 mètres. Puis l'élémentaire se rétracte et n'occupe plus que son espace d'origine.</p>\n<p>Le tsunami élémentaire ne peut pas utiliser cette capacité pendant [[/gmr 1d4 #Recharger Déferlement]]{1d4 rounds}.</p>",
+      "en": "Surge",
+      "name": "Déferlement"
+    },
+    {
+      "description": "<p>Une créature qui subit des dégâts d'une Frappe ou d'un Déferlement de vague d'un tsunami élémentaire ancien est exposé à la maladie aveuglante.</p>\n<hr />\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:34]</p>\n<p><strong>Stade 1</strong> Porteur sans symptômes</p>\n<p><strong>Stade 2</strong> @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaibli 1} (1 jour)</p>\n<p><strong>Stade 3</strong> @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaibli 2} (1 jour)</p>\n<p><strong>Stade 4</strong> Affaibli 2 et @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Aveugle} permanent (1 jour)</p>\n<p><strong>Stade 5</strong> @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaibli 4} (1 jour)</p>\n<p><strong>Stade 6</strong> @UUID[Compendium.pf2e.conditionitems.Item.fBnFDH2MTzgFijKf]{Inconscient} (1 jour)</p>\n<p><strong>Stade 7</strong> Mort</p>",
+      "en": "Blinding Sickness",
+      "name": "Maladie aveuglante"
+    },
+    {
+      "description": "<p>15 mètres. L'eau dans la zone qui est dans la même étendue d'eau que le tsunami élémentaire est un terrain difficile pour les créatures qui Nagent et qui n'ont pas le trait eau.</p>",
+      "en": "Vortex",
+      "name": "Vortex"
+    },
+    {
+      "description": "<p>S'il n'est pas en contact avec de l'eau, le tsunami élémentaire est @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralenti 1} et ne peut utiliser de réactions.</p>",
+      "en": "Water-Bound",
+      "name": "Lié à l'eau"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Wave",
+      "name": "Vague"
+    }
+  ],
+  "name": "Tsunami élémentaire ancien",
+  "publicNotes": "<p>Les Tsunamis élémentaires sont énormes et destructeurs.</p>\n<hr />\n<p>Les élémentaires d'eau peuvent être très destructeurs mais, souvent, ce n'est pas intentionnel; comme l'eau peut être source de vie pour ceux qui en ont besoin dans l'Univers, les vagues peuvent éroder les côtes et la pluie peut inonder les villes. Les élémentaires d'eau sont tout aussi imprévisibles.</p>"
+}

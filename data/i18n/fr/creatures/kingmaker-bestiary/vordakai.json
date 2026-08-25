@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par jour.</p>\n<p><strong>Effet</strong> Vordakaï puise dans la puissance de <em>l'Oculus d'Abaddon</em> pour lancer n'importe quel sort arcanique jusqu'au rang 6, même si le sort qu'il lance n'est pas un de ses sorts préparés.</p>",
+      "en": "Drain Oculus",
+      "name": "Drainer l'Oculus"
+    },
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par jour</p>\n<p><strong>Déclencheur</strong> Vordakai est sur le point de lancer 1d20.</p>\n<p><strong>Effet</strong> Vordakai entraperçoit un éventail d'avenirs possibles. Il obtient un succès (mais pas un succès critique) automatique sans lancé de dé.</p>",
+      "en": "Flash of Insight",
+      "name": "Intuition fulgurante"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature lance un sort que Vordakaï a préparé.</p>\n<hr />\n<p><strong>Effet</strong> Vordakaï dépense un sort préparé pour contrer l'incantation du même sort lancé par une autre créature. Il perd son emplacement de sort comme si il avait lancé un sort. Il peut ensuite tenter de contrer le sort déclencheur.</p>",
+      "en": "Counterspell",
+      "name": "Contresort"
+    },
+    {
+      "description": "<p>Vordakaï draine les souvenirs d'une créature et les absorbe, ce qui lui permet d'apprendre quelques choses sur le monde à travers les pensées de sa victime. La liche effectue une Frappe de main contre la cible ; si elle touche, elle inflige @Damage[6d6[void]]{6d6 dégâts de vide}. La cible doit tenter un jet de @Check[will|dc:32], après quoi elle est immunisée à Consommation de souvenirs pendant 24 heures.</p>\n<hr />\n<p><strong>Succès critique</strong> La cible ne subit aucun effet néfaste supplémentaire.</p>\n<p><strong>Succès</strong> La cible est @UUID[Compendium.pf2e.conditionitems.Item.e1XGnhKNSQIm5IXg]{Stupéfiée 1} pendant 1 round.</p>\n<p><strong>Échec</strong> La cible est Stupéfiée 1 pendant une période illimitée. Vordakai obtient un bonus de statut de +1 à tous ses tests de compétence pendant 1 minute grâce aux souvenirs qu'il a absorbé.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la cible est @UUID[Compendium.pf2e.conditionitems.Item.e1XGnhKNSQIm5IXg]{Stupéfiée 2} pendant une durée illimitée. De plus, Vordakai peut apprendre télépathiquement une information secrète spécifique connue de la victime (à la discrétion du MJ).</p>",
+      "en": "Consume Memories",
+      "name": "Absorption de la mémoire"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Vitality",
+      "name": "Bonus de statut de +1 aux jets de sauvegarde contre les effets de vitalité"
+    },
+    {
+      "description": "<p>Parfois, une liche restée immobile et inconsciente pendant une longue période (comme Vordakaï, qui a été enfermé dans sa tombe il y a 10 000 ans) peut devenir atrophiée. Les effets exacts de l'atrophie varient d'une liche à l'autre mais causent toujours une réduction de leur puissance d'incantation et endommagent leur lien avec leur cage d'âme.</p>\n<p>Dans le cas de Vordakaï, il a oublié nombre de ses connaissances arcaniques et perdu une grande partie de sa capacité d'incantation. À l'apogée de son pouvoir, il était un magicien de niveau 20 mais, aujourd'hui, sa puissance est égale à celle d'un magicien de niveau 12. Pire encore, il ne peut plus utiliser de cage d'âme pour se reconstruire. S'il est détruit, il tombe en cendres et demeure mort à jamais. Avec le temps, Vordakaï pourrait retrouver ses pouvoirs et regagner sa capacité de reconstruction mais il est peu probable que les PJ lui laissent cette chance. En effet, il lui faudrait de nombreuses années pour réparer les ravages de siècles entiers d'enfermement.</p>",
+      "en": "Atrophied Lich",
+      "name": "Liche atrophiée"
+    },
+    {
+      "description": "<p>Le familier de Vordakai est Horagnamon</p>",
+      "en": "Familiar",
+      "name": "Familier"
+    },
+    {
+      "description": "18 mètres. @Check[will|dc:29|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": "<p>Une créature qui a subit des dégâts de la Frappe de main de la liche doit réussir un jet de @Check[fortitude|dc:32]</p>\n<p>Sur un échec, la créature est @UUID[Compendium.pf2e.conditionitems.Item.6uEgoh53GbXuHpTF]{Paralysée} pendant 1 round. En cas d'échec critique, la créature est Paralysée de façon permanente, tombe @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{À terre} et paraît morte. Un test de @Check[medicine|dc:25|name:Diagnostiquer la paralysie|traits:arcane,curse,necromancy|overrideTraits:true] révèle qu'en fait la victime est vivante.</p>",
+      "en": "Paralyzing Touch",
+      "name": "Contact paralysant"
+    },
+    {
+      "description": "<p>Si une réaction devrait perturber l'incantion d'un sort de Vordakai, il peut tenter un @Check[flat|dc:15]. En cas de succès, le sort n'est pas interrompu.</p>",
+      "en": "Steady Spellcasting",
+      "name": "Incantation fiable"
+    },
+    {
+      "description": null,
+      "en": "Void Healing",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Hand",
+      "name": "Main"
+    }
+  ],
+  "name": "Vordakai",
+  "publicNotes": "<p>À l'apogée de son pouvoir, il y a plus de 10 000 ans, le vrai Vordakaï faisait partie des plus puissants nécromanciens de cette terre. Lorsque ce tyran cyclope fut vaincu pendant le chaos qui suivit la Chute, l'un de ses apprentis s'empara de son nom ainsi que de son plus grand trésor, <em>l'oculus d'Abaddon</em>. Bien qu'il ait été le moins prometteur des apprentis du nécromancien, le nouveau Vordakaï n'en demeurait pas moins un puissant magicien. Toutefois, il fallait plus qu'un grand pouvoir pour prendre la place du véritable Vordakaï. Trahi par des fidèles de son ancien maître qui refusèrent de le servir, il fut enfermé dans sa propre tombe et, au fil des siècles, le corps de la liche cyclope s'atrophia.</p>\n<p>Bien que très affaibli, Vordakaï demeure un adversaire redoutable, capable d'anéantir à lui seul un groupe d'aventuriers mal préparés. N'hésitez pas à jouer Vordakaï comme une créature arrogante. Après tout, il est plus ancien que la plupart des créatures de Golarion et, s'il commet des erreurs en sous-estimant ses adversaires (comme en négligeant de lancer des sorts défensifs ou en provoquant des des Frappes réactives), non seulement cela donnera aux PJ une chance de survivre, mais cela montrera que son long exil l'a rendu à la fois présomptueux et imprudent. Gardez à l'esprit que Vordakaï est l'ennemi le plus puissant que les PJ auront rencontré à ce moment de <em>la campagne Kingmaker</em> et qu'en parvenant à le vaincre ils accompliront un exploit véritablement légendaire.</p>\n<p>Si Vordakaï a l'opportunité de se préparer au combat, il prendra 3 rounds pour lancer @UUID[Compendium.pf2e.spells-srd.Item.SwUiVavHKMWG7t5K]{Xénoglossie}, @UUID[Compendium.pf2e.spells-srd.Item.Fr58LDSrbndgld9n]{Résistance à l'énergie} (optant pour le type d'énergie qu'il sait être privilégiée par les PJ grâce à l'observation de son familier), et puis @UUID[Compendium.pf2e.spells-srd.Item.j8vIoIEWElvpwkcI]{Image miroir} avant le combat. Enfin, il active @UUID[Compendium.pf2e.spells-srd.Item.uqlxMQQeSGWEVjki]{Vision véritable} utilisant <em>l'Oculus d'Abaddon</em> avant d'entrer en combat (alternativement le premier round du combat s'il a été supris par les PJ).</p>\n<p>Dès que le combat commence, Vordakaï lance @UUID[Compendium.pf2e.spells-srd.Item.OsOhx3TGIZ7AhD0P]{Domination} sur le guérisseur le plus puissant du groupe. S'il réussit, il lui ordonne de le rejoindre et de le défendre en attaquant toute personne qui tenterait de s'en prendre à lui au corps-à-corps. Aux rounds suivants, Vordakaï utilise la magie à distance contre le groupe en lançant @UUID[Compendium.pf2e.spells-srd.Item.fd31tAHSSGXyOxW6]{Saignée du vampire}. S'il fait face à seulement un ou deux ennemis, il préfère attaquer avec Consommation de souvenirs suivi d'une Frappe de main, choisissant de garder quelques sorts pour les urgences.</p>\n<p>La chose qui réduira le plus son pouvoir est la perte de sa cage d'âme, l'objet magique qu'il a utilisé pour enfermer sa propre âme afin de pouvoir devenir une liche. Il ne peut pas en créer une autre tant qu'il est atrophié mais son arrogance lui joue des tours. Ce n'est qu'en tombant à moins de 20 PV qu'il prend conscience que les PJ ont de grandes chances de le vaincre. S'il survit assez longtemps pour agir pendant son tour après avoir compris cela, il lance @UUID[Compendium.pf2e.spells-srd.Item.VlNcjmYyu95vOUe8]{Translocation} au rang 5 pour s'échapper vers la zone C5. En cas de succès, il attendra quelques jours, avant de retourner à sa tombe, furieux de constater que les PJ ont relâché les prisonniers et ont volé tous ses biens. A ce moment, Vordakaï deviendra un monstre récurrent de votre campagne ! </p>"
+}

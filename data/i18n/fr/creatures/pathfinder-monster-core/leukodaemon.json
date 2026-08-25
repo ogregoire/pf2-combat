@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "description": "<p>Le leukodaémon fait évoluer une maladie jusqu'à un stade plus grave. Il choisit une cible située dans son aura de pestilence et affectée par une maladie. Cette créature doit tenter un jet de Vigueur contre la maladie comme si l'intervalle du stade actuel de cette maladie s'était écoulé.</p>",
+      "en": "Quicken Pestilence",
+      "name": "Pestilence accélérée"
+    },
+    {
+      "description": "<p>Le leukodaémon exhale une nuée de mouches noires agressives et bouffies dans un @Template[cone|distance:20]{cône de 6 mètres}. Les créatures dans le cône subissent @Damage[4d8[piercing]|options:area-damage]{4d8 dégâts perforants} (@Check[reflex|dc:28|basic|options:area-effect,inflicts:sickened]). Une créature qui obtient un échec sur son jet de sauvegarde est @UUID[Compendium.pf2e.conditionitems.Item.fesd1n5eVhpCSS18]{Nauséeuse 1} (ou @UUID[Compendium.pf2e.conditionitems.Item.fesd1n5eVhpCSS18]{Nauséeuse 2} si elle obtient un échec critique).</p>",
+      "en": "Plague Breath",
+      "name": "Souffle de maladie"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>Le leukodaémon peut communiquer télépathiquement avec la créature affligée à n'importe quelle distance sur le même plan.</p>\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:28]</p>\n<p><strong>Stade 1</strong> porteur sans symptômes (1 jour)</p>\n<p><strong>Stade 2</strong> @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainé 1} (1 jour)</p>\n<p><strong>Stade 3</strong> @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainé 2} (1 jour)</p>\n<p><strong>Stade 4</strong> Drainé 2 (1 jour)</p>\n<p><strong>Stade 5</strong> @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainé 3} (1 semaine)</p>\n<p><strong>Stade 6</strong> mort</p>",
+      "en": "Daemonic Pestilence",
+      "name": "Pestilence démoniaque"
+    },
+    {
+      "description": "<p>9 mètres. Les leukodaémons irradient l'infection. Toutes les créatures qui se trouvent dans un rayon de 9 mètres d'un leukodaémon subissent une pénalité de -2 à leurs jets de sauvegarde contre la maladie. Si une créature dans cette portée contracte une maladie ou si sa maladie s'aggrave, toutes les créatures adjacentes sont exposées à la même maladie avec le même DD.</p>\n<hr />\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.T2tfacwoOozQfsIz]{Effet : Aura infectieuse}</p>",
+      "en": "Infectious Aura",
+      "name": "Aura infectieuse"
+    },
+    {
+      "description": "<p>Un leukodaémon est capable de sentir si une créature est atteinte d'une maladie et connaît la maladie et à quel stade en est la victime.</p>",
+      "en": "Plaguesense (Imprecise) 60 feet",
+      "name": "Perception de la maladie 18 mètres (imprécis)"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 feet",
+      "name": "Télépathie 30 mètres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Composite Longbow",
+      "name": "Arc long composite"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Leukodaémon",
+  "publicNotes": "<p>Ces daémons avec un crâne en guise de tête et des ailes de vautour sont les hérauts de la pestilence et les serviteurs d'Apollyon, leur Cavalier de l'apocalypse protecteur. Manifestations des âmes maléfiques qui sont mortes à cause d'une maladie, les leukodaémons œuvrent sans relâche les uns avec les autres pour répandre la maladie parmi tous les mondes du multivers.</p>\n<hr />\n<p>Habitants du lugubre et terrible plan d'Abaddon, les daémons sont façonnés par et dévoués à la destruction de la vie sous toutes ses formes. Au service des Cavaliers de l'apocalypse, ils cherchent à tuer tous les êtres mortels de la manière la plus horrible et la plus douloureuse possible. Chaque type de daémon représente une manière de mourir différente et leurs capacités visent presque toujours à répandre cette forme de mort. Par l'utilisation de ces pouvoirs, ils cherchent à entraîner toute existence dans un gouffre de désespoir et de misère pour conduire toutes les âmes à l'anéantissement.</p>\n<p>Bien que les mortels qui invoquent des daémons dans l'Univers cherchent généralement à utiliser leurs pouvoirs destructeurs et corrupteurs pour servir leurs propres intérêts, les daémons, où qu'ils aillent, cherchent toujours un moyen de répandre la peur, le doute et le désespoir. Souvent, ils font passer leurs machinations pour des exactions d'autres fiélons, sachant que la confusion ne fait qu'accroître la peur des mortels et les empêche d'utiliser les armes les plus efficaces. C'est pourquoi les mortels érudits appellent parfois les démons « cavaliers », du nom de leurs chefs ou de « marchands d'âmes », du nom de leur principal secteur d'activité.</p>\n<p>Bien que nombre de fiélons cherchent à tenter les mortels pour qu'ils embrassent une vie de malveillance nihiliste afin d'augmenter leur nombre et leur puissance sur leurs plans d'origine, les daémons sont en plus motivés par une faim surnaturelle pour les âmes mortelles. Et pour les capturer, ils ont recours à différentes méthodes notamment les gemmes d'âme des cacodaémons. En Abaddon et dans d'autres lieux sinistres à travers le multivers, les âmes sont à la fois un mets délicat, une monnaie d'échange et une source de pouvoir magique. Les daémons comptent parmi les plus grands gloutons, marchands et consommateurs de cette « ressource » spirituelle.</p>"
+}

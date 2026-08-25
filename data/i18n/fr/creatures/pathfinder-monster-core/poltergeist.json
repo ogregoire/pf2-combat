@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature approche à une distance de 3 mètres du poltergeist.</p>\n<hr />\n<p><strong>Effet</strong> Le poltergeist effectue une Frappe d'objet télékinésique contre la créature ayant déclenché cette capacité.</p>",
+      "en": "Telekinetic Defense",
+      "name": "Défense télékinésique"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le poltergeist doit être @UUID[Compendium.pf2e.conditionitems.Item.zJxUflt9np0q4yML]{Invisible}.</p>\n<hr />\n<p><strong>Effet</strong> Le poltergeist devient visible, apparaissant sous la forme d'un humanoïde squelettique et fantomatique. Chaque créature dans les 9 mètres doit effectuer un jet de @Check[will|dc:21]. En cas d'échec, elle est @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 2}. En cas d'échec critique, elle est aussi @UUID[Compendium.pf2e.conditionitems.Item.sDPxOjQ9kx2RZE8D]{En fuite} tant qu'elle reste Effrayée. En cas de succès, elle est temporairement immunisée pendant 1 minute.</p>\n<p>Au début de son prochain tour, le poltergeist redevient invisible.</p>",
+      "en": "Frighten",
+      "name": "Effrayer"
+    },
+    {
+      "description": "<p>Le poltergeist projette par télékinésie de nombreux petits objets comme des dizaines de pièces d'argenterie ou des livres, soit en les répartissant entre plusieurs cibles, soit en focalisant son attaque contre une cible.</p>\n<ul>\n<li>Quand cet effet est réparti entre plusieurs cibles, le poltergeist effectue une Frappe d'objet télékinésique avec une pénalité de -2 contre chaque créature située dans une @Template[emanation|distance:30]{émanation de 9 mètres}. Cela compte comme une seule attaque dans le calcul de la pénalité d'attaques multiples du poltergeist et la pénalité n'augmente qu'une fois toutes les attaques effectuées.</li>\n<li>Quand cet effet ne vise qu'une seule cible, le poltergeist effectue une Frappe d'objet télékinésique contre elle et les dégâts passent à 3d12. L'attaque inflige @Damage[1d12[untyped]]{1d12 dégâts} en cas d'échec et aucun dégât en cas d'échec critique.</li>\n</ul>",
+      "en": "Telekinetic Storm",
+      "name": "Tempête télékinésique"
+    },
+    {
+      "description": "<p>Un poltergeist est naturellement @UUID[Compendium.pf2e.conditionitems.Item.zJxUflt9np0q4yML]{Invisible}. Il devient visible seulement quand il utilise Effrayer.</p>",
+      "en": "Natural Invisibility",
+      "name": "Invisibilité naturelle"
+    },
+    {
+      "description": "<p>Quand un poltergeist est détruit, il se reforme au bout de [[/gmr 2d4 #jours]]{2d4 jours}, complètement guéri, là où il a été détruit. Un poltergeist peut être définitivement détruit uniquement si quelqu'un trouve la raison expliquant son existence et rétablit le tort qui empêche son esprit de trouver le repos.</p>",
+      "en": "Rejuvenation",
+      "name": "Reconstruction"
+    },
+    {
+      "description": "<p>Un poltergeist est lié à un site et ne peut pas voyager à plus de 36 mètres au delà de l'endroit où il a été crée ou formé. Certains poltergeists sont plutôt liés à une chambre, un bâtiment ou à une zone spécifique.</p>",
+      "en": "Site Bound",
+      "name": "Lié à un site"
+    },
+    {
+      "description": null,
+      "en": "Void Healing",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Telekinetic Object",
+      "name": "Objet télékinésique"
+    }
+  ],
+  "name": "Poltergeist",
+  "publicNotes": "<p>Quand une créature meurt et, quelle que soit la raison pour laquelle son esprit ne veut pas ou ne peut pas quitter le lieu où elle est morte, elle peut se manifester sous la forme d'un poltergeist : un esprit invisible et turbulent qui est toujours capable de manipuler des objets physiques. Les poltergeists sont généralement le résultat d'un trauma émotionnel extrême provoqué par leur décès ou ayant entraîné leur mort.</p>"
+}

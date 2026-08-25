@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par minute.</p>\n<hr />\n<p><strong>Effet</strong> Le vrock émet un cri strident. Chaque créature qui n'est pas un démon située dans une @Template[burst|distance:30]{explosion de 9 mètres} doit tenter un jet de @Check[fortitude|dc:28]. En cas d'échec, la créature est @UUID[Compendium.pf2e.conditionitems.Item.dfCMdR4wnpbYNTix]{Étourdie 2} et en cas d'échec critique, elle est @UUID[Compendium.pf2e.conditionitems.Item.dfCMdR4wnpbYNTix]{Étourdie 3}.</p>",
+      "en": "Stunning Screech",
+      "name": "Cri étourdissant"
+    },
+    {
+      "description": "<p>Si le vrock est en vol et qu'une créature déclenche une Frappe réactive, il peut effectuer contre elle deux Frappes avec ses serres au lieu d'une seule.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ReactiveStrike]</p>",
+      "en": "Attack of Opportunity (Special)",
+      "name": "Frappe réactive (Spéciale)"
+    },
+    {
+      "description": "<p>Le corps du vrock projette un nuage de spores à partir de son corps, qui inflige@Damage[2d8[poison]|options:area-damage]{2d8 dégâts de poison} à toutes les créatures adjacentes. Chaque créature subissant des dégâts de cette manière doit réussir un jet de @Check[fortitude|dc:28|options:damaging-effect] ou subir @Damage[2d8[persistent,piercing]]{2d8 dégâts perforants persistants} alors que les spores pénètrent dans sa peau et se développent en prenant la forme d'épaisses vignes vertes. Les vignes cessent leur croissance au bout de 1 round et elles se désagrègent en [[/gmr 1d4 #Durée du nuage de spores]]{1d4 jours} si elles n'ont pas été retirées avant. Les vignes peuvent être détruites si la créature est affectée par un sort saint ou si on verse dessus de l'eau bénite (avec une action Interagir).</p>\n<p>Une fois que le vrock a utilisé Nuage de spores, il ne peut plus le faire pendant [[/gmr 1d6 #Recharge nuage de spores]]{1d6 rounds}</p>",
+      "en": "Spore Cloud",
+      "name": "Nuage de spores"
+    },
+    {
+      "description": "<p>Le vrock danse en vol et chante pour provoquer une explosion dévastatrice d'électricité. Si d'autres vrocks situés dans un rayon de 9 mètres veulent se joindre à lui, le vrock peut retarder sa danse pour les attendre ; dans ce cas, l'effet se produit une fois que le dernier vrock a utilisé Danse de la ruine ou qu'un des vrocks décide de terminer ce round de danse. Toute créature qui n'est pas un démon située dans une @Template[emanation|distance:20]{émanation de 6 mètres} de l'un des vrocks en train de danser subit @Damage[2d12[electricity]|options:area-damage]{2d12 dégâts d'électricité} (@Check[reflex|dc:28|basic|options:area-effect]). Pour chaque vrock supplémentaire qui se joint à la danse, les dégâts sont augmentés de 1d12 et le DD du jet de sauvegarde de 1 point (maximum de quatre vrocks infligeant 5d12 dégâts avec un DD de 31). Les vrocks peuvent continuer de danser en utilisant Danse de la ruine à chaque round jusqu'à un maximum de 3 rounds. La taille de l'émanation augmente de 6 mètres par round et les dégâts de 1d12 par vrock par round.</p>\n<hr /><table class=\"pf2e\"><thead><tr><th>Round</th><th>Taille de l'émanation</th></tr></thead><tbody><tr><td>1</td><td>@Template[emanation|distance:20]</td></tr><tr><td>2</td><td>@Template[emanation|distance:40]</td></tr><tr><td>3</td><td>@Template[emanation|distance:60]</td></tr></tbody></table>",
+      "en": "Dance of Ruin",
+      "name": "Danse de ruine"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>La colère du vrock est le cœur de son essence et lui imposer la paix, c'est lui arracher son âme. S'il obtient un échec sur un jet de sauvegarde contre @UUID[Compendium.pf2e.spells-srd.Item.b515AZlB0sridKSq]{Apaisement} ou un effet similaire qui le force à être pacifique, le vrock subit @Damage[4d6[mental]]{4d6 dégâts mentaux}.</p>",
+      "en": "Peace Vulnerability",
+      "name": "Vulnérabilité à la paix"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 feet",
+      "name": "Télépathie 30 mètres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Beak",
+      "name": "Bec"
+    },
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Talon",
+      "name": "Serre"
+    }
+  ],
+  "name": "Vrock (Démon)",
+  "publicNotes": "<p>Quand les portes des Failles extérieures s'ouvrent en grand, les premiers démons à les traverser sont souvent des vrocks, des rejetons de la colère à tête de vautour qui tournent dans les airs sur leurs ailes noires ou qui dansent dans l'exultation de leur puissance diabolique. Leur haine des mortels n'a d'égal que leur désir d'infliger des souffrances par leur horrible cri ou leur danse dévastatrice. Les vrocks se forment à partir des âmes de mortels haineux qui se voient offrir une nouvelle chance d'infliger leur rage au monde.</p>\n<p>Les vrocks voyagent souvent en petits groupes pour utiliser au mieux leur pourvoir de danse de la ruine mais ils sont rarement plus de quatre. Contre des petits groupes ou des individus, ils fondent en piqué sur leurs proies sans la moindre crainte en espérant pouvoir jouer avec elles avant de les tuer. Face à des ennemis redoutables, ils se contentent de voler au-dessus d'eux et d'utiliser leur pouvoir de danse de la ruine pour faire s'abattre sur eux une tempête d'éclairs.</p>\n<hr />\n<p>Quand l'âme d'un pécheur est jugée et envoyée dans les Failles extérieures, elle peut devenir un redoutable fiélon, un démon. Les démons sont des incarnations vivantes du péché, qu'il s'agisse de péchés classiques comme la colère ou la gourmandise, ou des perversités plus « spécialisées » comme l'obsession de la torture ou la trahison et la perfidie. Une fois formé, un démon est motivé par deux objectifs : acquérir de plus en plus de pouvoir et corrompre les âmes des mortels pour qu'elles soient souillées par le péché. De cette manière, les démons s'assurent une réserve inépuisable de nouveaux démons qui viennent grossir leurs rangs dans les Failles extérieures.</p>"
+}

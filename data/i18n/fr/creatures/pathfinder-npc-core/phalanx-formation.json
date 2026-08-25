@@ -1,0 +1,32 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> La formation en phalange pointe ses piques dans toutes les directions, frappant tous ceux assez malchanceux pour se trouver à proximité. Chaque ennemi dans une @Template[type:emanation|distance:10]{émanation de 3 mètres} doit effectuer un jet de @Check[reflex|dc:21|basic|options:area-effect]. Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d8+2)[piercing]|options:area-damage]{1d8+2 dégâts perforants}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d8+5)[piercing]|options:area-damage]{2d8+5 dégâts perforants}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d8+5)[piercing]|options:area-damage]{3d8+5 dégâts perforants}</p>",
+      "en": "Spears Out!",
+      "name": "Lances sorties !"
+    },
+    {
+      "description": "<p>La formation en phalange lève ses boucliers pour se protéger mutuellement. La formation obtient un bonus de circonstances de +2 à la CA et aux jets de Réflexes jusqu'au début de son prochain tour. Ce bonus passe à +3 contre les attaques à distance physiques.</p>",
+      "en": "Shields Up!",
+      "name": "Boucliers levés !"
+    },
+    {
+      "description": "<p>Les membres de la troupe lancent une volée de javelines. Chaque créature dans une @Template[burst|distance:10]{explosion de 3 mètres} dans les 9 mètres de la troupe subit @Damage[(2d6+5)[piercing]]{2d6+5 dégâts perforants} (@Check[reflex|dc:26|basic]).</p>\n<p>Lorsque la troupe est réduite à 2 sections, cette zone se réduit à une @Template[burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Hurl Javelins",
+      "name": "Projection de javelines"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 66 (3 sections), 33 (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    }
+  ],
+  "attacks": [],
+  "name": "Formation en phalange",
+  "publicNotes": "<p>Une formation en phalange appropriée nécessite l'utilisation simultanée de la lance et du bouclier afin d'attaquer les ennemis proches et lointains tout en se protégeant mutuellement. Un travail d'équipe remarquable n'est pas seulement bénéfique : il est essentiel à la survie de la troupe.</p>\n<hr />\n<p>Une armée sert à défendre et combattre au nom des nations et peut être entraînée et déployée de diverses manières.</p>"
+}

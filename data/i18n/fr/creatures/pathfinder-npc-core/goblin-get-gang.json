@@ -1,0 +1,37 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Le gangob utilise des tranchechiens, des coupechevals, de torches enflammées pour attaquer chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre}, (@Check[reflex|dc:20|basic|options:area-effect]). Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[1d6[slashing],1d6[fire]|options:area-damage]{1d6 dégâts tranchants et 1d6 dégâts de feu}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(1d6+6)[slashing],1d6[fire]|options:area-damage]{1d6+6 dégâts tranchants et 1d6 dégâts de feu}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(1d6+9)[slashing],1d6[fire]|options:area-damage]{1d6+9 dégâts tranchants et 1d6 dégâts de feu}</p>",
+      "en": "Goblins Slash and Goblins Scar!",
+      "name": "Goblin taillade et Goblin balafre !"
+    },
+    {
+      "description": "<p>Les membres de la troupe lancent une pluie de torches enflammées. Chaque créature dans une @Template[type:burst|distance:10]{explosion de 3 mètres} dans un rayon de 9 mètres autour de la troupe subit @Damage[2d8[fire]|options:area-damage]{2d8 dégâts de feu} (@Check[reflex|dc:20|basic|options:area-effect]). Quand la troupe est réduite à 2 sections ou moins, la zone est réduite à une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Goblins Burn and Goblins Char!",
+      "name": "Gobelin brûle et Gobelin carbonise !"
+    },
+    {
+      "description": "<p>Les gobelins ont du mal à maintenir une formation, surtout au cours d'un combat. Le gangob ne peut effectuer une action de déplacement que si il a utilisé au moins une action pour \"Gobelin taillade et gobelin balafre\" ce tour-ci ou s'il n'y a aucun ennemi conscient adjacent.</p>",
+      "en": "Goblins Bound and Goblins Swing!",
+      "name": "Gobelin ligote et Gobelin balance !"
+    },
+    {
+      "description": "<p>9 mètres. Le chœur discordant et les paroles perturbantes du gangob rend la concentration difficile. Toute créature effectuant une action de concentration dans la zone doit réussir un jet de @Check[will|dc:19]. En cas d'échec, la créature perd son action. En cas de succès critique, la créature est temporairement immunisée pendant 1 minute.</p>",
+      "en": "Goblins Chant and Goblins Sing!",
+      "name": "Gobelin scande et Gobelin chante !"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 60 PV (3 sections), 30 PV (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    }
+  ],
+  "attacks": [],
+  "name": "Gangob bigarré",
+  "publicNotes": "<p>Peu de choses sont plus terrifiantes qu'une meute de gobelins déterminés à piller ses voisins. Mélange grouillant de brutes, pyromanes et chantres de guerre armés de tranchechiens, de coupechevals, de torches enflammées et de dents acérées, le gangob bigarré prend plaisir à piller les communautés vulnérables. Leurs chants forme une terrifiante discordance mêlée aux cris de leurs victimes.</p>\n<hr />\n<p>On trouve des gobelins partout sur Golarion, tantôt menaçant les humanoïdes plus grands (qu'ils surnomment \"grandes jambes\"), tantôt rachetant leur passé violent en collaborant avec autrui.</p>"
+}

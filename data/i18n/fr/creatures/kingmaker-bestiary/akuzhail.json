@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Attack of Opportunity",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Akuzhaïl obtient un échec ou un échec critique à son jet de Volonté</p>\n<hr />\n<p><strong>Effet</strong> Akuzhaïl relance son jet de Volonté avec une pénalité de -4. S'il obtient un nouvel échec sur ce second jet de sauvegarde, il peut faire une troisième tentative avec une pénalité de -8. Il ne peut pas faire une troisième tentative s'il a obtenu un échec critique sur sa seconde tentative.</p>",
+      "en": "Of Three Minds",
+      "name": "Volonté tricéphale"
+    },
+    {
+      "description": "<p>Akuzhaïl secoue sa cascabelle, la \"sonnette au bout de sa queue\" de serpent pour effrayer ou distraire ses ennemis. Toute créature dans les 9 mètres de la chimère doit réussir un jet de @Check[will|dc:29] ou être @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 1} (@UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 2} en cas d'échec critique). Si la créature obtient un succès critique, elle est temporairement immunisée à la Terrifiante cascabelle d'Akuzhaïl pendant 24 heures.</p>",
+      "en": "Frightening Rattle",
+      "name": "Terrifiante cascabelle"
+    },
+    {
+      "description": "<p>Akuzhaïl projette du venin de sa gueule de serpent sur une @Template[line|distance:60]{ligne de 18 mètres} qui inflige @Damage[11d6[poison]|options:area-damage]{11d6 dégâts de poison} (@Check[fortitude|dc:29|basic|options:area-effect]). Akuzhaïl ne peut plus utiliser son Arme de souffle pendant [[/gmr 1d4 #Recharger]]{1d4 rounds}.</p>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Akuzhaïl effectue une Frappe avec son bec de vautour, ses crocs de serpents et ses mandibules de mille-pattes, chacune avec une pénalité de -2 et contre une créature différente. Ces Frappes comptent comme une seule attaque dans le calcul de la pénalité d'attaques multiples de la chimère et la pénalité n'augmente pas avant que les trois attaques aient été effectuées.</p>",
+      "en": "Three-Headed Strike",
+      "name": "Frappe à trois têtes"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:29]</p>\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[2d6[poison]]{2d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaiblie 1}</p>\n<p><strong>Stade 2</strong> @Damage[2d6[poison]]{2d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaiblie 2}</p>\n<p><strong>Stade 3</strong> @Damage[2d10[poison]]{2d10 dégâts de poison}, Affaiblie 2, et explosé à la Floraison de Lamashtu.</p>",
+      "en": "Bloom Venom",
+      "name": "Venin de la Fleur"
+    },
+    {
+      "description": "<p>Alors que certains PNJ sont affligés par la malédiction de la floraison de Lamashtu au cours des parties 1 et 2 de ce chapitre, les PJ peuvent également y être exposés au cours de la partie 3. Bien que la Floraison de Lamashtu soit en elle-même une malédiction, elle fonctionne mécaniquement plus comme une maladie, et en tant que telle, elle possède les deux traits d'affliction. Tant que la malédiction persiste, une créature ne peut pas guérir de la maladie, et la suppression de la malédiction ne supprime pas automatiquement l'élément maladie de l'affliction. Ces deux éléments doivent être traités individuellement avant qu'une victime qui souffre de la Floraison de Lamashtu soit hors de danger. Mais, détruire la Floraison de Lamashtu dans la zone <strong>C10</strong> annule automatiquement cette affliction.</p>\n<hr />\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:23]</p>\n<p><strong>Délai</strong> 1 semaine</p>\n<p><strong>Stade 1</strong> La créature n'est pas affectée (1 jour)</p>\n<p><strong>Stade 2</strong> @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaiblie 1} (1 jour)</p>\n<p><strong>Stade 3</strong> Affaiblie 1 et @Damage[2d6[poison]]{2d6 dégâts de poison} (8 heures)</p>\n<p><strong>Stade 4</strong> @UUID[Compendium.pf2e.conditionitems.Item.fBnFDH2MTzgFijKf]{Inconsciente} et @Damage[4d6[poison]]{2d6 dégâts de poison} (10 minutes)</p>\n<p><strong>Stage 5</strong> Mort\n<p><strong>Spécial</strong> une créature qui meurt sous l'effet de Floraison explose en végétation du Premier monde, libérant un monstre. Cette créature sera habituellement une bête de peu d'intelligence ou un dragon de niveau 7 à 9, selon les envies du MJ.</p>",
+      "en": "Lamashtu's Bloom",
+      "name": "Floraison de Lamashtu"
+    },
+    {
+      "description": "<p>Lorsqu'Akuzhaïl meurt, son corps explose en une profusion bouillonnante de végétation et de vie primale. Toutes créatures vivantes dans une @Template[emanation|distance:60]{émanation d'un rayon de 18 mètres} récupèrent @Damage[12d6[healing]]{12d6 Points de vie} de cette énergie. Une floraison de Lamashtu mature émerge de la carcasse, mais elle ne peut prendre aucune action pendant ce tour. Elle entame le combat le tour suivant, se plaçant à la valeur d'initiative à laquelle Akuzhaïl a péri, mais elle est @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 1}. À la fin du tour de la Fleur, elle tente un test @Check[flat|dc:11]. Si elle obtient un succès elle perd son état Ralentie 1 au début de son prochain tour.</p>",
+      "en": "Life Bloom",
+      "name": "Floraison revitalisante"
+    },
+    {
+      "description": "<p>Tout pouvoir ou effet qui pourrait trancher une tête de la chimère (comme un coup critique avec une <em>@UUID[Compendium.pf2e.equipment-srd.Item.6xaxxKfvXED6LfIY]{Arme vorpale}</em>) tranche une tête déterminée aléatoirement. Perdre une tête ne tue pas la chimère (tant qu'il lui en reste une) mais cela l'empêche d'effectuer une Frappe avec la tête détruite et d'utiliser le Souffle qui lui est associé.</p>",
+      "en": "Three Headed",
+      "name": "Tricéphale"
+    },
+    {
+      "description": "<p>Une chimère obtient deux réactions supplémentaires au cours de chaque round pendant lequel elle peut utiliser des Frappes réactives. Elle doit utiliser une tête différente pour chaque réaction qu'elle tente et elle ne peut effectuer plus d'une Frappe réactive à cause du même déclencheur. Si elle perd une de ses têtes, elle perd aussi une de ces réactions supplémentaires.</p>",
+      "en": "Triple Opportunity",
+      "name": "Triple opportunité"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Centipede Mandibles",
+      "name": "Mandibules de mille-pattes"
+    },
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Snake Fangs",
+      "name": "Crocs de serpent"
+    },
+    {
+      "en": "Vulture Beak",
+      "name": "Bec de vautour"
+    }
+  ],
+  "name": "Akuzhaïl",
+  "publicNotes": null
+}

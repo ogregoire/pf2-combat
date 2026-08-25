@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature dans un rayon de 30 mètres effectue une attaque à distance ou utilise une action qui possède le trait concentration, manipulation ou déplacement.</p>\n<hr />\n<p><strong>Effet</strong> La faucheuse se téléporte dans une case adjacente à la créature déclencheuse et effectue une Frappe au corps-à-corps contre elle. Si la Frappe touche, la faucheuse interrompt l'action déclencheuse.</p>",
+      "en": "Lurking Death",
+      "name": "Mort sournoise"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>6 mètres.</p>\n<p>Les créatures vivantes dans l'aura doivent lancer deux fois tous leurs d20 et utiliser le pire résultat.</p>\n<hr />\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.QoneHsjZKtGHWlam]{Effet : Aura d'infortune}</p>",
+      "en": "Aura of Misfortune",
+      "name": "Aura d'infortune"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Une créature qui subit un coup critique à cause d'une des attaques de la faucheuse ou qui obtient un échec critique contre un de ses sorts doit réussir un jet de @Check[fortitude|dc:47] ou mourir.</p>",
+      "en": "Death Strike",
+      "name": "Frappe mortelle"
+    },
+    {
+      "description": "<p>La faucheuse peut choisir ou non d'être considérée comme une morte-vivante pour les effets qui affectent différemment les morts-vivants. Même si elle choisit de ne pas être considérée comme morte-vivante, elle n'est jamais considérée comme une créature vivante.</p>",
+      "en": "Death's Grace",
+      "name": "Indulgence de la mort"
+    },
+    {
+      "description": "<p>Quand la faucheuse touche et inflige des dégâts avec sa faux, elle récupère @Damage[20[healing]]{20 Points de vie} et la cible doit réussir un jet de @Check[fortitude|dc:43] ou être @UUID[Compendium.pf2e.conditionitems.Item.3uh1r86TzbQvosxv]{Condamnée 1}. Si la cible est déjà Condamnée, l'intensité de cet état augmente de 1 (jusqu'à un maximum de @UUID[Compendium.pf2e.conditionitems.Item.3uh1r86TzbQvosxv]{Condamnée 3}).</p>",
+      "en": "Energy Drain",
+      "name": "Absorption d'énergie"
+    },
+    {
+      "description": "<p>Une créature tuée par la faucheuse ne peut être ramenée à la vie par aucun moyen sauf une intervention divine.</p>",
+      "en": "Final Death",
+      "name": "Mort définitive"
+    },
+    {
+      "description": "<p>Entre les mains d'une faucheuse, n'importe quelle faux obtient le trait agile, ne peut être désarmée et devient une <em>faux acérée de Frappe majeure +3</em> tant que la faucheuse la manie.</p>\n<p>Si la faucheuse Frappe une créature ayant une faiblesse contre n'importe quel type de dégâts, les dégâts de la faux sont considérés comme étant de ce type en plus d'être tranchants.</p>",
+      "en": "Infuse Weapon",
+      "name": "Imprégnation d'arme"
+    },
+    {
+      "description": "<p>La faucheuse sait automatiquement le nombre de Points de vie, les états, les afflictions et les émotions de toutes les créatures qu'elle voit.</p>",
+      "en": "Status Sight",
+      "name": "Vision du statut"
+    },
+    {
+      "description": "<p>La Faucheuse peut choisir ou non de subir des dégâts de vitalité.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.NegativeHealing]</p>",
+      "en": "Void Healing",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Keen Scythe",
+      "name": "Faux acérée"
+    }
+  ],
+  "name": "Faucheuse",
+  "publicNotes": "<p>La Faucheuse est l'éternelle représentation de la mort. Aussi silencieuse qu'un tombeau et aussi inévitable que le temps lui-même, cette entité légendaire traque et achève les créatures qui ont trompé la mort depuis bien trop longtemps. Parfois, elle arrive sans prévenir tandis qu'à d'autres moments elle vient terminer ce que d'autres créatures n'ont pu achever. La faucheuse ne sert ni dieu, ni fiélon, ni aéon. Elle est à la fois détestée et redoutée par les psychopompes et les célestes mais, très peu, voire aucun, n'osent se dresser contre elle. Tel un fléau éternel, elle tue ceux qui tentent de débarrasser le multivers de sa présence. Elle se tient seule et n'écoute que ses conseils et les supplications des mortels comme des immortels sont vaines une fois qu'elle est proche de sa proie. Ses jugements son silencieux et aucun mortel ne peut les comprendre mais, quelles que soient ses raisons d'agir, le résultat est inflexible et définitif.</p>\n<p>Bien que certaines légendes affirment que la faucheuse apparaît à tous ceux qui vont mourir, la vérité est un peu plus troublante. De telles apparitions sont les prérogatives des psychopompes, une race d'immortels chargée de protéger et de guider les âmes dans l'après-vie. La faucheuse n'a que faire de protéger et de guider les âmes. Elle est motivée par des objectifs sinistres ourdis dans le royaume crépusculaire d'Abaddon où règnent les Cavaliers de l'Apocalypse. En effet, la faucheuse et Charon, le Cavalier de la Mort, se ressemblent étrangement même s'il n'existe aucun document indiquant que ces deux entités travaillent ensemble. En fait, la faucheuse est une sorte de manifestation du plan d'Abaddon et, en cela, certains pensent qu'elle pourrait être l'incarnation du mystérieux Premier Cavalier. Quand elle se rend sur un monde, ce n'est pas comme un ange de miséricorde mais comme une impitoyable moissonneuse de vie. Ceux qu'elle exécute n'étaient pas tant destinés à mourir mais choisis, traqués et assassinés.</p>\n<p>Les légendes peut-être les plus effrayantes autour de la faucheuse concernent sa nature en tant qu'entité unique, car certains pensent qu'il existe plusieurs faucheuses dans le Grand Au-Delà. On murmure qu'il existe une cabale d'au moins neuf de ces créatures qui arpentent la réalité, éliminant les vivants comme de mystérieuses servantes de la véritable entropie. Selon les enseignements de certains cultes de la mort, l'objectif final de la faucheuse est de mettre un terme au cycle de la vie et de la mort et d'être la souveraine silencieuse d'un univers vide.</p>"
+}

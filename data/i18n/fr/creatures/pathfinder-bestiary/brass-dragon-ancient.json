@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Trois fois par jour.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon en appelle au vent du désert. Cela a le même effet que @UUID[Compendium.pf2e.spells-srd.Item.g8QqHpv2CWDwmIm1]{Bourrasque} (@Check[fortitude|dc:37]) mais dans un @Template[cone|distance:60]{cône de 18 mètres}. Une créature qui obtient un échec à son jet de sauvegarde est également @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Aveuglée} jusqu'à la fin de son prochain tour (ou pendant 1 minute en cas d'échec critique).</p>",
+      "en": "Desert Wind",
+      "name": "Vent du désert"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Le dragon est ciblé par une attaque.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon dresse son aile et obtient un bonus de circonstances de +2 à sa CA contre l'attaque déclencheuse. Si le dragon est en vol, il descend de 3 mètres après la fin de l'attaque.</p>",
+      "en": "Wing Deflection",
+      "name": "Délection de l'aile"
+    },
+    {
+      "description": "<p>Le dragon de bronze peut souffler de deux manières différentes.</p>\n<p>Le dragon ne peut utiliser son Souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>\n<ul>\n<li><strong>Flamme</strong> (arcanique, feu). Le dragon souffle une langue de feu qui inflige @Damage[16d6[fire]|options:area-damage]{16d6 dégâts de feu} sur une @Template[line|distance:100]{ligne de 30 mètres} (@Check[reflex|dc:39|basic]).</li>\n<li><strong>Gaz soporifique</strong> (arcanique, mise hors de combat, sommeil). Le dragon souffle un @Template[cone|distance:80]{cône de 24 mètres} de gaz soporifique. Chaque créature prise dans le cône doit réussir un jet de @Check[fortitude|dc:39|traits:arcane,incapacitation,sleep|options:area-effect]. En cas d'échec, la créature est @UUID[Compendium.pf2e.conditionitems.Item.fBnFDH2MTzgFijKf]{Inconsciente} pendant [[/gmr 1d6 #Durée gaz soporifique]]{1d6 rounds} ou pendant 1 minute en cas d'échec critique.</li>\n</ul>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Le dragon effectue deux Frappes de griffe et une Frappe de mâchoires dans n'importe quel ordre.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Le dragon recharge son Arme de souffle à chaque fois qu'il inflige un coup critique avec une Frappe.</p>",
+      "en": "Draconic Momentum",
+      "name": "Impulsion draconique"
+    },
+    {
+      "description": "<p>27 mètres. @Check[will|dc:35|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Tremorsense (Imprecise) 60 feet",
+      "name": "Perception des vibrations 18 mètres (imprécis)"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Wing",
+      "name": "Aile"
+    }
+  ],
+  "name": "Dragon d'airain (Vénérable, Métallique)",
+  "publicNotes": "<p>Les dragons d'airain sont des farceurs particulièrement fantaisistes qui aiment l'humour et le jeu. Ils apprécient notamment les conversations avec les humains et les autres humanoïdes civilisés, se délectant des coutumes naïves de ces petites races sans se montrer pour autant hautains ou méprisants. Bien qu'ils puissent paraître simplement curieux, les dragons d'airain engagent ce genre de conversations dans le but de se tenir au courant de la politique régionale afin qu'ils puissent anticiper les futurs conflits. Parallèlement, ils créent de vastes réseaux d'informations qui commencent avec leurs propres alliés avant de s'étendre à tous les niveaux de la société humanoïde, des réseaux qu'utilisent les dragons pour aider discrètement les communautés proches de leur tanière. Contrairement aux complots et manipulations des dragons bleus, les dragons d'airain se servent de leurs réseaux d'informateurs pour faire régner la justice et l'égalité.</p>\n<p>Insouciants, ils apprécient l'indépendance et pensent que toute créature mérite de vivre en paix tant qu'elle ne nuit pas aux autres. Ce sont des créatures émotives à la capacité d'attention réduite et parfois elles sont victimes de dépression au crépuscule de leur vie. Pour combattre ce mal être, les dragons d'airain s'entourent d'animaux familiers et de plantes dont ils peuvent s'occuper.</p>\n<p>Bien que leur curiosité concernant les affaires des mortels puisse paraître puérile, leurs prouesses en combat ne prêtent pas à rire. Un dragon d'airain dont le territoire ou les alliés sont menacés est un adversaire terrifiant, prompt à oublier son aspect innocent pour libérer toute sa fureur contre les malfaisants. La plupart des dragons d'airain vivent dans des climats désertiques et bien qu'ils s'assurent que leur tanière soit cachée, ils l'établissent souvent près des communautés humanoïdes.</p>\n<hr />\n<p>Parangons de vertu, de noblesse et de grâce, les dragons métalliques sont des entités bienveillantes vénérées comme des êtres mythiques semblables à des divinités aussi bien pour leur puissance que pour leur majesté. Rares sont ceux à avoir vu un dragon métallique mais les récits de leurs interventions dans la vie des mortels, et de leur mort, sont connus de tous. Nommés d'après la ressemblance de leurs écailles avec les métaux brillants utilisés par les humanoïdes pour le commerce, la guerre et l'industrie, ces êtres immenses ont des intérêts et des pouvoirs très divers et cela ne les gêne absolument pas d'être associés à des matériaux aussi ordinaires. Après tout, comparer un dragon d'or à une pièce d'or revient à comparer l'océan à un verre d'eau ; bien qu'ils puissent paraître semblables au premier abord, la puissance brute, l'ampleur et la grandeur de l'un surpasse celles de l'autre.</p>\n<p>En plus des dragons métalliques et chromatiques, il existe d'autres types de dragons qui parcourent le monde et le reste du multivers. Sur les terres légendaires de Tian Xia de l'autre côté de la planète, on trouve les dragons impériaux, des créatures serpentines qui protègent l'équilibre cosmique et défendent leurs terres ancestrales. Hors de l'Univers, les dragons primordiaux tels que le dominateur dragon de saumure et le solitaire dragon des nuages façonnent la nature et les événements des Plans élémentaires. Il est certain qu'il existe une multitude d'autres types de dragons y compris des créatures vivant sur de lointains plans d'existence.</p>"
+}

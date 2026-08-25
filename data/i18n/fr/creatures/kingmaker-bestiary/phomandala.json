@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par jour</p>\n<hr />\n<p><strong>Effect</strong> Si la prochaine action de Phomandale consiste à lancer un sort de rang inférieur ou égal à 7, elle réduit le nombre d'actions nécessaires à son incantation de 1 (1 action au minimum).</p>",
+      "en": "Quickened Casting",
+      "name": "Incantation accélérée"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature termine son tour adjacente à la méduse.</p>\n<hr />\n<p><strong>Effet</strong> La méduse fait une Frappe de crochets de serpents contre la créature.</p>",
+      "en": "Biting Snakes",
+      "name": "Serpents mordeurs"
+    },
+    {
+      "description": "<p>La méduse fixe son regard sur une créature située dans son champ de vision et dans un rayon de 9 mètres. Cette créature doit faire immédiatement un jet de @Check[fortitude|dc:38|options:inflicts:slowed,inflicts:petrified] contre le regard pétrifiant de la méduse. Si la créature était déjà @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie} par cette capacité avant de faire son jet, elle est @UUID[Compendium.pf2e.conditionitems.Item.dTwPJuKgBQCMxixg]{Pétrifiée} de manière permanente si elle le rate. Une fois qu'elle a fait son jet de sauvegarde, elle est temporairement immunisée jusqu'au début du prochain tour de la méduse.</p>",
+      "en": "Focus Gaze",
+      "name": "Focaliser le regard"
+    },
+    {
+      "description": null,
+      "en": "All-Around Vision",
+      "name": null
+    },
+    {
+      "description": "<p>Le lignage d'ensorceleur de Phomandale résulte de l'expérience de Nyrissa, qui l'a imprégnée de sang de jabberwocky. Il fonctionne comme le Lignage draconique, mais le type de dégât inflige une ligne de son, et Phomandale utilise la liste des sorts primordiaux et non arcaniques.</p>",
+      "en": "Jabberwock Bloodline",
+      "name": "Lignage de jabberwock"
+    },
+    {
+      "description": "<p>9 mètres. Toute créature qui termine son tour dans l'aura doit faire un jet de @Check[fortitude|dc:38|options:area-effect,inflicts:slowed]. Si elle obtient un échec, elle est @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 1} pendant 1 minute. La méduse peut activer ou désactiver l'aura en utilisant une unique action dotée du trait concentration.</p>",
+      "en": "Petrifying Gaze",
+      "name": "Regard pétrifiant"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:41]</p>\n<hr />\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[6d6[poison]]{6d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaibli 1} (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[9d6[poison]]{9d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaibli 2} (1 round)</p>",
+      "en": "Phomandala's Venom",
+      "name": "Venin de Phomandala"
+    },
+    {
+      "description": "<p>Même les lianes et les racines les plus épaisses semblent s'écarter lorsque Phomandale se déplace. Phomandale ignore les terrains difficiles causés par les plantes, tels que les fourrés, les lianes et les sous-bois. Même les plantes manipulées par la magie n'entravent pas sa progression.</p>",
+      "en": "Woodland Stride",
+      "name": "Déplacement facilité en forêt"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Cobra Fangs",
+      "name": "Crocs de cobra"
+    },
+    {
+      "en": "Snake Fangs",
+      "name": "Crocs de serpent"
+    }
+  ],
+  "name": "Phomandale",
+  "publicNotes": "<p><em>Quand Nyrissa a entrepris ses expériences avec le sang du Jabberwocky pour essayer de créer une version moins puissante de la créature, elle a commencé par imprégner d'autres êtres avec son essence. Tous ses sujets d'expérience sont morts sauf un, une méduse qui s'est alliée à la nymphe et s'est transformée en un monstre écailleux en parfaite santé. Elle s'appelle Phomandale et depuis, elle vit dans ces ruines. C'est la gardienne des étages supérieurs de la maison. Au fil des ans, le sang du Jabberwocky et la vie dans le Premier Monde l'ont dotée de pouvoirs magiques profanes et la méduse est en bonne voie pour devenir une puissante ensorceleuse.</em></p>\n<p>Les méduses sont des humanoïdes monstrueux qui ressemblent à des humains avec des serpents en guise de chevelure. Elles sont surtout connues pour leur regard pétrifiant capable de changer définitivement un mortel en pierre s'il le soutient trop longtemps. Les méduses sont des adversaires rusées et manipulatrices qui convoitent et collectionnent les secrets et usent de menaces et de duplicité pour exploiter les peurs des faibles. Une méduse peut chercher de puissants objets magiques, recourir à la divination pour découvrir des secrets et obtenir un pouvoir interdit ou s'infiltrer dans une société pour séduire des politiciens influents. Sa capacité à se frayer une place au sein de puissantes organisations en fait un chef naturel pour les organisations criminelles et les guildes de voleur, tandis que son intérêt pour les phénomènes magiques en pousse certaines à embrasser une carrière d'oracle et proposer leur aide aux aventuriers... moyennant paiement. Évidemment, si l'astuce et la supercherie ne suffisent pas, la méduse peut toujours changer ses rivaux en décorations de pierre d'un simple regard.</p>\n<p>D'une agilité et d'une résistance exceptionnelles, la méduse recule rarement devant un combat, même une fois acculée. Bien des aventuriers qui se pensaient prêts à résister au regard d'une Méduse ont tout de même succombé sous ses coups car c'est une archère de talent, capable de cribler ses ennemis de flèches empoisonnées de loin. Cependant, si la méduse n'a pas d'autre alternative, elle négociera pour avoir la vie sauve et les secrets qu'elle possède compenseront largement sa survie.</p>"
+}

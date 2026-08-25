@@ -66,4 +66,33 @@ describe("normalizeActions", () => {
     // Sorted by name, so the ids come back in the sorted order, not input order.
     expect(actions.map((a) => a.foundryId)).toEqual(["bbbbbbbbbbbbbbbb", "aaaaaaaaaaaaaaaa"]);
   });
+
+  it("reports an action item that fails validation instead of silently dropping it", () => {
+    // Same hazard as normalizeAttacks: a `type: "action"` item that fails
+    // validation (here, no `_id`) is upstream drift and must be loud. A
+    // silently dropped array element never reaches normalizePacks' failure
+    // machinery, which only collects THROWN errors.
+    expect(() =>
+      normalizeActions(
+        [
+          {
+            name: "Rend",
+            type: "action",
+            system: {
+              actionType: { value: "action" },
+              actions: { value: 1 },
+              description: { value: "<p>x</p>" },
+            },
+          },
+        ],
+        {},
+      ),
+    ).toThrow(/Rend/);
+  });
+
+  it("still skips items that are simply not actions", () => {
+    expect(() =>
+      normalizeActions([{ _id: "x", name: "Longsword", type: "melee" }], {}),
+    ).not.toThrow();
+  });
 });

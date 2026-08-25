@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Trois fois par jour</p>\n<hr />\n<p><strong>Effet</strong> La norne produit un fil doré lié au destin d'une créature à moins de 30 mètres d'elle puis le raccourcit d'un coup de ciseaux. La cible subit @Damage[100[void]]{100 dégâts de vide} (@Check[fortitude|dc:42|basic]). Si la cible est réduite à 0 PV à cause de ces dégâts, le fil est complètement coupé et la créature meurt immédiatement. Une créature tuée par cette capacité ne peut pas être ramenée à la vie sauf par un @UUID[Compendium.pf2e.spells-srd.Item.YfJTXyVGzLhM6V8U]{Miracle}, un @UUID[Compendium.pf2e.spells-srd.Item.6dDtGIUerazSHIOu]{Souhait}, une autre magie puissante similaire ou encore par intervention divine. Quel que soit le résultat de son jet de sauvegarde, la créature ciblée devient temporairement immunisée à ce pouvoir pendant 24 heures. Le norne ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Inciser un fil du destin]]{1d4 rounds}.</p>",
+      "en": "Snip Thread",
+      "name": "Inciser le fil du destin"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature à moins de 36 mètres tente un jet de sauvegarde</p>\n<hr />\n<p><strong>Effet</strong> La créature fait deux fois son jet de sauvegarde et la norne décide du résultat qui s'applique. Si elle choisit le pire, c'est un effet d'infortune et si elle choisit le meilleur, c'est un effet de fortune. En cas d'égalité, elle décide quel trait s'applique.</p>",
+      "en": "Shift Fate",
+      "name": "Changer le destin"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": "Bonus de statut de +1 aux jets de sauvegarde contre la magie"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Lorsqu'une créature est sujette à un effet de fortune d'une norne et un effet d'infortune d'une autre source qui n'est pas une norne (ou vice versa), l'effet de la norne contre automatiquement l'autre effet et agit normalement. En revanche, si les deux effets de fortune et d'infortune proviennent d'une norne, les deux s'annulent comme à l'ordinaire. Si le MJ le souhaite, les entités puissantes liées au destin ou à la chance, telles que Desna, Magdh ou Pharasma sont considérées comme des nornes au regard de cette capacité.</p>",
+      "en": "Fated",
+      "name": "Touché par le destin"
+    },
+    {
+      "description": null,
+      "en": "Greater Darkvision",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Lifesense 120 feet",
+      "name": "Perception de la vie 36 m"
+    },
+    {
+      "description": null,
+      "en": "Regeneration 20 (Deactivated by Cold Iron)",
+      "name": "Régénération 20 (désactivée par le fer froid)"
+    },
+    {
+      "description": "<p>Une norne obtient automatiquement un 20 lorsqu'elle fait un jet d'initiative.</p>",
+      "en": "Sense Fate",
+      "name": "Percevoir le destin"
+    },
+    {
+      "description": "<p>Lorsqu'une norne inflige des dégâts de vide avec une Frappe, elle regagne [[/r 10[healing]]{10 Points de vie}. La cible doit effectuer un jet de @Check[fortitude|dc:39]. Si elle obtient un échec, elle est @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainée 1} (@UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainée 2} en cas d'échec critique).</p>\n<p>D'autres dégâts de vide infligés par la norne augmentent la valeur de l'état Drainé de 1 sur un jet de sauvegarde raté (ou de 2 sur un échec critique) jusqu'à atteindre au maximum Drainé 4.</p>",
+      "en": "Sever Fate",
+      "name": "Rompre le destin"
+    },
+    {
+      "description": "<p>Cela fonctionne comme le @UUID[Compendium.pf2e.bestiary-ability-glossary-srd.Item.52CdldlWMiVTZk1F]{Cercle} si ce n'est que seules les nornes peuvent rejoindre un triumvirat et qu'il fonctionne uniquement tant que trois nornes en font partie. Un triumvirat confère les sorts suivants : @UUID[Compendium.pf2e.spells-srd.Item.AuIiqc7jjiy1GZ75]{Manifestation} (une fois par jour), @UUID[Compendium.pf2e.spells-srd.Item.wLIvH0AT1u7oa64N]{Cataclysme}, @UUID[Compendium.pf2e.spells-srd.Item.CeSh8QcVnqP5OlLj]{Déterminer la position}, @UUID[Compendium.pf2e.spells-srd.Item.qsNeG9KZpODSACMq]{Prémonition} et @UUID[Compendium.pf2e.spells-srd.Item.HpIJTVqgXorH9X0L]{Vivifier}.</p>",
+      "en": "Triumvirate",
+      "name": "Triumvirat"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Hand Of Fate",
+      "name": "Main du destin"
+    },
+    {
+      "en": "Norn Shears",
+      "name": "Ciseaux de norne"
+    }
+  ],
+  "name": "Norne",
+  "publicNotes": "<p>Anciennes au-delà de toute imagination, les nornes sont de puissantes fées féminines qui détiennent entre leurs mains la manifestation physique du destin et de la fatalité sous la forme d'un fil doré. Elles veillent sur toutes les vies et n'interviennent qu'à contrecoeur lorsqu'on fait appel à elles, ou bien de façon vengeresse lorsque des êtres inférieurs interfèrent avec les fils du destin. Elles forment des figures imposantes, mesurant plus de 4,20 mètres de haut et pèdent plus de 400 kg.</p>\n<p>La nature des relations entre les nornes et les Aînés du Premier Monde est complexe. Nombre d'entre elles servent Magdh la Trinitaire, l'Aînée triple que les nornes considèrent comme le premier triumvirat de nornes réunies en une seule entité, car Magdh possède trois corps : une Vierge, une Mère et une Matriarche. Magdh affirme surveiller les fils du destin à la recherche d'un cataclysme prophétisé. Elle considère que les nornes doivent, en plus de l'assister dans ses divinations, suivre ses ordres cryptiques pour sauver l'avenir du désastre. Cependant, les nornes sont des êtres puissants à part entière elles-mêmes capables de conférer des pouvoirs divins et nombre d'entre elles rechignent à servir l'énigmatique demi-déesse. Pour ces nornes, les autres Aînés sont plus étrangers encore et il est difficile de traiter avec eux, car elles considèrent que même des êtres aussi puissants ne devraient pas avoir le droit d'interférer avec le destin autant qu'ils l'entendent.</p>\n<p>Même si le plus faible des Aînés pourrait détruire une norne sans affiliation avec facilité, ils ont tendance à écouter et à obéir aux proclamations et aux jugements des nornes lorsqu'elles les expriment. Ces dernières, quant à elles, utilisent judicieusement leur neutralité apparente. Elles savent qu'il vaut mieux ne pas trop en demander aux Aînés, car ces demi-dieux capricieux se frustrent facilement et pourraient décider de ne plus souffrir leurs interférences. L'équilibre du pouvoir est donc fragile entre les nornes non affiliées et les Aînés, et ce depuis une éternité. Cependant, les nornes savent que ce n'est qu'une question de temps avant que les Aînés perdent patience et renient cette tradition pour agir comme bon leur semble, malgré tous les efforts des nornes pour les empêcher d'accomplir leurs actions les plus perturbatrices.</p>\n<h2>Les fidèles du destin</h2>\n<p>Dans l'Univers, certains mortels vénèrent les nornes comme des divinités tandis que d'autres, en particulier les sorciers et les bardes, les admirent en tant que patronnes ou comme muses. Ceux qui considèrent les nornes comme des divinités sont nommés les Fidèles du Destin. Les nornes ne tentent ni de décourager ni de conforter ce culte. Les prêtres qui vénèrent les nornes peuvent choisir une norne spécifique, un triumvirat de nornes ou toutes les nornes à la fois, mais ils obtiennent les mêmes avantages quel que soit leur choix. Le symbole religieux des Fidèles du Destin est une paire de ciseaux coupant un fil doré et leurs sujets de préoccupation sont le destin, la fatalité et le processus de vieillissement.</p>"
+}

@@ -1,0 +1,37 @@
+{
+  "actions": [
+    {
+      "description": "<p>L'escadron d'arrestation Fait un pas deux fois.</p>",
+      "en": "Coordinated Step",
+      "name": "Avance coordonnée"
+    },
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p> Les gardes de l'escadron d'arrestation attaquent avec des matraques et maîtrisent leurs adversaires. Chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre} doit tenter un jet de @Check[reflex|dc:23|basic|options:area-effect,inflicts:grabbed,inflicts:restrained]. Les dégâts et effets supplémentaires dépendent du nombre d'actions. Le DD pour @UUID[Compendium.pf2e.actionspf2e.Item.SkZAQRkLLkmBQNB9]{S'Échapper} à ces états est de 26 ([[/act escape dc=26]]).</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d6+3)[bludgeoning]|options:area-damage]{1d6+3 dégâts contondants} (plus @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippé} pendant 1 round en cas d'échec critique)</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(3d6+6)[bludgeoning]|options:area-damage]{3d6+6 dégâts contondants} (plus Agrippé pendant 1 round en cas d'échec ou @UUID[Compendium.pf2e.conditionitems.Item.VcDeM8A5oI6VqhbM]{Entravé} pendant 1 round en cas d'échec critique)</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(4d6+9)[bludgeoning]|options:area-damage]{4d6+9 dégâts contondants} (plus Agrippé pendant 1 round en cas d'échec ou Entravé pendant 1 round en cas d'échec critique)</p>",
+      "en": "Seize Them!",
+      "name": "Arrêtez-les !"
+    },
+    {
+      "description": "<p>L'escadron d'arrestation @UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherche} dans un @Template[type:burst|distance:40]{rayon de 12 mètres} ou un @Template[type:cone|distance:80]{cône de 24 mètres} et @UUID[Compendium.pf2e.actionspf2e.Item.sn2hIy1iIJX9Vpgj]{Signalent} jusqu'à quatre cibles.</p>",
+      "en": "Sweep the Area",
+      "name": "Balayer la zone"
+    },
+    {
+      "description": "<p>L'escadron d'arrestation tire une salve coordonnée de flèches à l'arc long contre toutes les cibles qui se trouvent dans une @Template[type:burst|distance:10]{explosion de 3 mètres} à une distance de 45 mètres, infligeant @Damage[3d8[piercing]|options:area-damage]{3d8 dégâts perforants} (@Check[reflex|dc:23|basic|options:area-effect]). Quand l'escadron d'arrestation est réduit à 2 sections ou moins, la zone d'explosion diminue à @Template[type:burst|distance:5]{1,50 mètre}.</p>",
+      "en": "Fire Longbows!",
+      "name": "Tirez à l'arc long !"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 90 PV (3 sections), 45 PV (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    }
+  ],
+  "attacks": [],
+  "name": "Escadron d'arrestation",
+  "publicNotes": "<p>Ces gardes ont été spécialement entraînés à exécuter des manœuvres complexes en groupe. Ils sont envoyés pour capturer des criminels accusés, réputés particulièrement dangereux (que ce soit du fait de leurs propres capacités ou de celles de leurs alliés).</p>\n<hr />\n<p>Les sociétés les plus importantes s'appuient sur ceux qui ont les capacités et l'autorité pour interpréter et faire respecter les lois. Certains exercent ces fonctions avec équité, tandis que d'autres se montrent sévères et cruels, imposant des châtiments draconiens à quiconque ne peut acheter leur clémence.</p>"
+}

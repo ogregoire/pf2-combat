@@ -185,4 +185,26 @@ describe("normalizeAttacks", () => {
     // Sorted by name, so the ids come back in the sorted order, not input order.
     expect(attacks.map((a) => a.foundryId)).toEqual(["bbbbbbbbbbbbbbbb", "aaaaaaaaaaaaaaaa"]);
   });
+
+  it("reports a melee item that fails validation instead of silently dropping it", () => {
+    // `_id` became required in Task 4, and the parse loop skips whatever
+    // fails. A `type: "melee"` item with no `_id` is upstream drift, not a
+    // different kind of item: dropping it would vanish a Strike with no
+    // error and no report line the next time the pin moves.
+    expect(() =>
+      normalizeAttacks([
+        {
+          name: "Jaws",
+          type: "melee",
+          system: { bonus: { value: 10 }, damageRolls: {} },
+        },
+      ]),
+    ).toThrow(/Jaws/);
+  });
+
+  it("still skips items that are simply not attacks", () => {
+    expect(() =>
+      normalizeAttacks([{ _id: "x", name: "Hide Armor", type: "armor" }]),
+    ).not.toThrow();
+  });
 });

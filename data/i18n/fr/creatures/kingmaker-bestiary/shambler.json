@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Conditions</strong> Le grand tertre est sous sa forme de monticule</p>\n<p><strong>Déclencheur</strong> Une créature inconsciente de la véritable nature du grad tertre approche dans les 3 mètres.</p>\n</div>\n<p><strong>Effet</strong> Le grand tertre fait une Frappe de liane contre la créature. Puis déterminez l'initiative.</p>",
+      "en": "Shamble",
+      "name": "Titubement"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature est @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippée} par le tertre.</p>\n<hr />\n<p><strong>Effet</strong> La créature subit @Damage[1d8[piercing]]{1d8 dégâts perforants} (@Check[reflex|dc:20|basic]) et est exposée au venin de la nuée de mille-pattes.</p>",
+      "en": "Symbiotic Swarm",
+      "name": "Nuée symbiotique"
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>Le grand tertre porte une Frappe de liane contre chaque créature qui se trouve dans son allonge. Sa pénalité d'attaques multiples augmente seulement après qu'il a porté toutes ses attaques.</p>",
+      "en": "Vine Lash",
+      "name": "Cinglement de liane"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:20]</p>\n<hr />\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[1d6[poison]]{1d6 dégâts de poison} et @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Pris au dépourvu} (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[1d8[poison]]{1d8 dégâts de poison}, @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 1} et Pris au dépourvu (1 round)</p>",
+      "en": "Centipede Swarm Venom",
+      "name": "Venin de nuée de mille-pattes"
+    },
+    {
+      "description": "<p>À chaque fois que le grand tertre devrait subir des dégâts d'électricité ou qu'il est ciblé par un effet d'électricité, il obtient 12 Points de vie temporaires et est @UUID[Compendium.pf2e.conditionitems.Item.nlCjDvLMf2EkV2dl]{Accéléré} jusqu'à la fin de son prochain tour. Il peut utiliser son action supplémentaire pour Marcher rapidement, Frapper ou Nager.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.ULyqs7fSvFG5mdK0]{Effet : Pic d'électricité}</p>",
+      "en": "Electric Surge",
+      "name": "Pic d'électricité"
+    },
+    {
+      "description": "<p>Quand il n'est pas en danger, un grand tertre peut passer 1 minute à prendre l'apparence d'un monticule de plantes sauvages. Quand il est sous cette forme, une créature doit activement @UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Chercher} et réussir un test de @Check[perception|dc:22|traits:action:seek] (@Check[perception|dc:28|traits:action:seek] dans les forêts et les marais) afin de discerner la véritable nature du grand tertre.</p>",
+      "en": "Mound",
+      "name": "Monticule"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Vine",
+      "name": "Liane"
+    }
+  ],
+  "name": "Tertre errant",
+  "publicNotes": "<p>Les grands tertres sont des plantes carnivores rusées qui ressemblent à des monticules de végétation humide en putréfaction. Même quand il se dresse sur ses pattes courtaudes, il est difficile d'identifier l'anatomie d'un grand tertre. Il s'agit essentiellement d'un amas de lierres parasites qui projette ses plus longues lianes, enroulées en boule, en direction de ses proies afin de leur infliger des coups puissants. Parfois surnommés les « Tertres errants », ces prédateurs sont des experts de l'embuscade qui apprécient particulièrement le goût de la chair.</p>\n<p>Ils sont notamment réputés pour leur capacité à se tapir en pleine vue. Un grand tertre peut subsister à partir de végétaux ou de terre, mais il ne le fera pas s'il y a des chances que de la viande passe à proximité de lui dans un futur proche, et il sera capable d'attendre plusieurs jours qu'un tel repas se présente. Les grands tertres sont généralement des créatures solitaires. Seuls quelques événements, comme de violents orages, sont à l'origine de rassemblements importants de grands tertres. En ces occasions, ces plantes se réunissent autour de Tertres de terre sacrés situés au fin fond de lointaines jungles ou de marais et dansent et gambadent avec enthousiasme, les lianes tendues vers le ciel dans l'espoir que tombe la foudre (ou peut-être pour l'invoquer). Ces plantes semblent en effet non seulement immunisées contre les plus puissantes frappes électriques, mais elles semblent également puiser une puissance surnaturelle de ces éclats d'énergie à l'état pur. Les grands tertres croient qu'être frappé par la foudre est un signe de faveur divine. Ainsi, ceux qui sont fréquemment foudroyés deviennent des sages respectés (et puissants) aux yeux de leurs pairs. Ces sages, peu nombreux et généralement isolés, sont susceptibles de posséder de nombreux pouvoirs. Certains d'entre eux peuvent lancer des sorts primordiaux, certains sont capables d'invoquer empathiquement l'aide d'autres grands tertres de leur région, et d'autres encore possèdent des pouvoirs électriques époustouflants.</p>\n<p>Il existe d'autres types de grands tertres, dont certains ne sont pas composés de matière végétale, mais de champignons. Ces créatures, appelées des « Tertres de spores », projettent des nuages de spores toxiques quand elles sont frappées au combat. Dans les déserts semi-arides, au milieu des buissons d'armoise et des formations rocheuses, se trouvent d'autres plantes proches des grands tertres appelées les tadépines. Ces créatures ressemblent à un croisement entre des virevoltants et des cactus et leurs attaques causent de profondes lacérations.</p>"
+}

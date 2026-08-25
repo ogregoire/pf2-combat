@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Les bandits effectuent une attaque coordonnée avec leurs haches contre chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre} (@Check[reflex|dc:22|basic|options:area-effect]). Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d6+3)[slashing]|options:area-damage]{1d6+3 dégâts tranchants}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d6+9)[slashing]|options:area-damage]{2d6+9 dégâts tranchants}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d6+9)[slashing]|options:area-damage]{3d6+9 dégâts tranchants}</p>",
+      "en": "Chop 'em Down!",
+      "name": "Abattez-les !"
+    },
+    {
+      "description": "<p>La troupe tente de [[/act demoralize]]{Démoraliser} jusqu'à 4 créatures.</p>",
+      "en": "Stand and Deliver!",
+      "name": "La bourse ou la vie !"
+    },
+    {
+      "description": "<p>Les bandits sortent ou rechargent leurs frondes, puis lancent une volée de billes. Il s'agit d'une @Template[type:burst|distance:10]{explosion de 3 mètres} dans un rayon de 15 mètres qui inflige @Damage[(2d6+4)[bludgeoning]|options:area-damage]{2d6+4 dégâts contondants} (@Check[reflex|dc:22|basic|options:area-effect]). Lorsque la troupe est réduite à 2 sections ou moins, la zone diminue pour devenir une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Launch Slings!",
+      "name": "À vos frondes !"
+    },
+    {
+      "description": "<p>Le gang de bandits ignore tout terrain difficile causé par les plantes, tels que les fourrés, les lianes et les sous-bois.</p>",
+      "en": "Forest Passage",
+      "name": "Passage forestier"
+    },
+    {
+      "description": "<p>La troupe peut passer 10 minutes à préparer le terrain avant le combat pour obtenir un bonus de circonstances de +2 à son jet d'initiative.</p>",
+      "en": "Lie in Wait",
+      "name": "En attente"
+    },
+    {
+      "description": "<p>Lorsque la troupe détermine son initiative en utilisant Duperie ou Discrétion, elle peut utiliser Abattez-les ! par une action gratuite.</p>",
+      "en": "Sudden Ambush",
+      "name": "Embuscade soudaine"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 80 (3 sections), 40 (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": "Défenses des troupes"
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": "Mouvement de troupe"
+    }
+  ],
+  "attacks": [],
+  "name": "Gang de bandits",
+  "publicNotes": "<p>Des bandes de criminels impitoyables forment des gangs pour réaliser des casses plus importants et intimider leurs victimes. Les gangs de bandits sont souvent accompagnés d'un @UUID[Compendium.pf2e.pathfinder-npc-core.Actor.AdZ4EklEmpHViycl]{Chef de Gang}.</p>\n<hr />\n<p>Dans les bas-fonds de la société, les hors-la-loi règnent en maîtres.</p>"
+}

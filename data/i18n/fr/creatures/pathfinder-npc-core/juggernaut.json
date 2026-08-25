@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le juggernaut est réduit à 0 Point de vie.</p>\n<hr />\n<p><strong>Effet</strong> Le juggernaut s'effondre et son armure émet un tic-tac régulier. Au début de ce qui aurait été le prochain tour du juggernaut, la source d'énergie de l'armure explose, la détruisant complètement et infligeant @Damage[10d6[@actor.flags.system.powerSource]|options:area-damage]{10d6 dégâts} dans une @Template[type:emanation|distance:30]{émanation de 9 mètres}(@Check[reflex|dc:33|basic|options:area-effect]). L'explosion inflige le type de dégâts correspondant à la source d'énergie de l'armure. Une créature adjacente peut annuler la séquence d'autodestruction en réussissant un test de Vol DD 33 pour [[/act disable-device dc=33]]{Désamorcer un dispositif}.</p>",
+      "en": "Self-Destruct",
+      "name": "Autodestruction"
+    },
+    {
+      "description": "<p>Le juggernaut acquiert une Vitesse de vol de 4,50 mètres jusqu'à la fin de son tour actuel. S'il n'est pas sur un sol stable lorsqu'il perd cette Vitesse de vol, il chute. Après la fin de l'effet, le juggernaut ne peut pas réutiliser ses Propulseurs pendant 1 round.</p>",
+      "en": "Jump Jets",
+      "name": "Propulseurs"
+    },
+    {
+      "description": "<p>Un juggernaut est équipé d'une puissante arme de tir semblable à un canon, qui nécessite deux mains pour être maniée et inflige @Damage[14d6[@actor.flags.system.powerSource]|options:area-damage]{14d6 dégâts} à toutes les créatures dans la zone, avec un jet de sauvegarde basique DD 31. Le type de dégâts, la zone et le jet de sauvegarde dépendent de la source d'énergie de l'armure, comme indiqué ci-dessous. Une fois activé, le Projecteur d'Énergie ne peut pas être réutilisé avant [[/gmr 1d4 #Recharge Projecteur d'énergie]]{1d4 rounds}.</p>\n<ul>\n  <li><strong>Électricité</strong> @Template[type:line|distance:60]{ligne de 18 mètres} d'électricité (@Check[reflex|basic|dc:31|options:area-effect|traits:electricity])</li>\n  <li><strong>Feu</strong> @Template[type:cone|distance:30]{cône de 9 mètres} de feu (@Check[reflex|basic|dc:31|options:area-effect|traits:fire])</li>\n  <li><strong>Froid</strong> @Template[type:cone|distance:30]{cône de 9 mètres} de froid (@Check[reflex|basic|dc:31|options:area-effect|traits:cold])</li>\n  <li><strong>Poison</strong> @Template[type:cone|distance:30]{cône de 9 mètres} de gaz toxique (@Check[fortitude|basic|dc:31|options:area-effect|traits:poison]{Vigueur DD 31})</li>\n</ul>",
+      "en": "Energy Projector",
+      "name": "Projecteur d'énergie"
+    },
+    {
+      "description": "<p>Moyenne ou inférieure, gantelet blindé, @Check[reflex|dc:33|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "en": "Trample",
+      "name": null
+    },
+    {
+      "description": "<p>Le juggernaut bénéficie d'une résistance 10 contre le type de dégâts de la source d'énergie de l'armure.</p>",
+      "en": "Galvanized Plating",
+      "name": "Plates galvanisées"
+    },
+    {
+      "description": "<p>L'armure d'un juggernaut intègre une arme de corps-à-corps, telle qu'une lame scie rotative à pointe de diamant, un foret pneumatique massif ou un lourd gantelet clouté. Les spécificités n'affectent pas le nombre de dégâts infligés par ses Frappes, mais déterminent s'il s'agit de dégâts contondants, perforants ou tranchants. Un juggernaut disposant d'outils et d'un atelier peut passer 2 heures pour changer l'arme intégrée de son armure.</p>",
+      "en": "Integrated Weapon",
+      "name": "Arme intégrée"
+    },
+    {
+      "description": "<p>L'armure de juggernaut nécessite une source d'énergie intégrée à l'armure, comme une chaudière à vapeur, une bobine stasienne ou un réservoir alchimique. Cela détermine un type de dégâts, électricité, feu, froid ou poison, pour certaines capacités.</p>",
+      "en": "Power Source",
+      "name": "Source d'énergie"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Integrated Weapon",
+      "name": "Arme intégrée"
+    },
+    {
+      "en": "Plated Fist",
+      "name": "Gantelet blindé"
+    }
+  ],
+  "name": "Juggernaut",
+  "publicNotes": "<p>L'épaisse armure mécanique en métal portée par un juggernaut est fabriquée sur mesure, d'une grande complexité et spécialement adaptée à son porteur. Les autres créatures ne peuvent pas utiliser cette armure à moins de posséder des compétences similaires et de la personnaliser en profondeur.</p>\n<hr />\n<p>Bien que relativement rares dans la majeure partie de Golarion, les esprits fréquemment excentriques mais indéniablement brillants qui créent des dispositifs élaborés de créations artificielles, de poudre à canon et de vapeur occupent souvent une place bien plus importante dans l'imaginaire public que ne le suggérerait leur nombre.</p>"
+}

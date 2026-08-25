@@ -1,0 +1,46 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Conditions</strong> La blême est adjacente au cadavre d'une créature morte depuis moins d'une heure.</p>\n<hr />\n<p><strong>Effet</strong> La blême dévore un morceau de chair du cadavre et récupère @Damage[3d6[healing]]{3d6 Points de vie}. Elle récupère des Points de vie une seule fois par cadavre.</p>",
+      "en": "Consume Flesh",
+      "name": "Dévorer la chair"
+    },
+    {
+      "description": "<p>La blême se déplace d'une distance égale ou inférieure à la moitié de sa Vitesse en bondissant. Ce déplacement ne déclenche pas de réaction.</p>",
+      "en": "Swift Leap",
+      "name": "Bond rapide"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:16]</p>\n<hr />\n<p><strong>Stade 1</strong> Porteur sans symptômes (1 jour)</p>\n<p><strong>Stade 2</strong> @Damage[3d8[void]]{3d8 dégâts de vide} et regagne la moitié des Points de vie de tous les soins (1 jour)</p>\n<p><strong>Stade 3</strong> Comme au stade 2 (1 jour)</p>\n<p><strong>Stade 4</strong> @Damage[3d8[void]]{3d8 dégâts de vide} et n'obtient aucun avantage en cas de soins (1 jour)</p>\n<p><strong>Stade 5</strong> Comme au stade 4 (1 jour)</p>\n<p><strong>Stade 6</strong> Mort et se relève sous forme d'une @UUID[Compendium.pf2e.pathfinder-bestiary.Actor.VC7rtYR4hLxwg7WZ]{Blême} au prochain minuit</p>",
+      "en": "Ghast Fever",
+      "name": "Fièvre des blêmes"
+    },
+    {
+      "description": "<p>Toute créature vivante autre qu'un elfe touchée par l'attaque d'une goule doit réussir un jet de @Check[fortitude|dc:16|options:inflicts:paralyzed] ou devenir @UUID[Compendium.pf2e.conditionitems.Item.6uEgoh53GbXuHpTF]{Paralysée}. Elle peut tenter un nouveau jet de sauvegarde à la fin de chacun de ses tours et le DD diminue cumulativement de 1 à chaque tentative.</p>",
+      "en": "Paralysis",
+      "name": "Paralysie"
+    },
+    {
+      "description": "<p>3 mètres. Une créature qui pénètre ou débute son tour dans l'aura doit réussir un jet de @Check[fortitude|dc:16|options:area-effect,inflicts:sickened,inflicts:slowed] ou devenir @UUID[Compendium.pf2e.conditionitems.Item.fesd1n5eVhpCSS18]{Nauséeuse 1} (plus @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 1} tant qu'elle est Nauséeuse en cas d'échec critique).</p>\n<p>Tant qu'elle reste dans l'aura, la créature subit une pénalité de circonstances de -2 aux jets de sauvegarde contre les maladies et aux tentatives pour se débarrasser de l'état Nauséeux. Une créature qui réussit son jet de sauvegarde est temporairement immunisée pendant 1 minute.</p>\n<hr />\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.wX9L6fbqVMLP05hn]{Effet : Puanteur}</p>",
+      "en": "Stench",
+      "name": "Puanteur"
+    },
+    {
+      "description": null,
+      "en": "Void Healing",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Blême",
+  "publicNotes": "<p>Les blêmes sauvages, puants et toujours affamés, sont les plus redoutables des goules. Ils se montrent implacables dans la poursuite de leurs proies.</p>\n<hr />\n<p>Peu de créatures sont plus omniprésentes dans les lieux sinistres tels que les cimetières isolés et les cryptes en ruine que les morts-vivants mangeurs de chair connus sous le nom de goules.</p>"
+}

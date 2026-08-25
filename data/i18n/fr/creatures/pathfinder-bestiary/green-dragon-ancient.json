@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature dans l'allonge de la queue du dragon utilise une action de déplacement ou quitte une case pendant une action de déplacement qu'elle entreprend.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon Frappe la cible avec sa queue avec une pénalité de -2. S'il touche, le dragon interrompt l'action de cette créature.</p>",
+      "en": "Twisting Tail",
+      "name": "Queue sinueuse"
+    },
+    {
+      "description": "<p>Le dragon souffle un nuage toxique qui inflige @Damage[18d6[poison]|options:area-damage]{18d6 dégâts de poison} dans un @Template[cone|distance:60]{cône de 18 mètres} (@Check[fortitude|dc:37|basic|options:area-effect]).</p>\n<p>L'arme de souffle crée aussi un miasme.</p>\n<p>Il ne peut plus utiliser son Souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>\n</div>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Le dragon porte deux Frappes de griffe et une Frappe de corne dans n'importe quel ordre.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>Le dragon peut [[/act hide]] dans un environnement naturel même s'il n'a pas d'abri.</p>",
+      "en": "Camouflage",
+      "name": "Camouflage"
+    },
+    {
+      "description": "<p>Le dragon recharge son Arme de souffle à chaque fois qu'il inflige un coup critique avec une Frappe.</p>",
+      "en": "Draconic Momentum",
+      "name": "Impulsion draconique"
+    },
+    {
+      "description": "<p>27 mètres. @Check[will|dc:37|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.FrightfulPresence]</p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": "<p>6 mètres. Après avoir utilisé son Souffle, un nuage de gaz empoisonné continue à émaner du corps du dragon pendant 1 round. Toute créature qui termine son tour dans le miasme subit @Damage[4d6[poison]|options:area-damage]{4d6 dégâts de poison} (@Check[fortitude|dc:37|basic|options:area-effect]).</p>\n<p>Toute créature dans le miasme est @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masquée} et considère les autres créatures comme Masquées. Le dragon voit normalement et les créatures ne sont pas Masquées pour lui.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.sHAbHKFNIDSSQDCg]{Effet : Miasma}</p>",
+      "en": "Miasma",
+      "name": "Miasme"
+    },
+    {
+      "description": "<p>Le dragon vert bénéficie toujours de @UUID[Compendium.pf2e.actionspf2e.Item.SB7cMECVtE06kByk]{Dissimuler des traces} dans un environnement naturel même en se déplaçant à pleine vitesse.</p>",
+      "en": "Trackless Step",
+      "name": "Absence de traces"
+    },
+    {
+      "description": "<p>Le dragon vert ignore le terrain difficile et le terrain très difficile lié à une végétation non magique.</p>",
+      "en": "Woodland Stride",
+      "name": "Déplacement facilité en forêt"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Horn",
+      "name": "Corne"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Dragon vert (Vénérable, Chromatique)",
+  "publicNotes": "<p>Les dragons verts sont les dragons chromatiques les plus contemplatifs et les plus accessibles. Le secret pour appréhender les dragons verts est de comprendre leur obsession pour le savoir et la discipline personnelle. Toute approche prudente qui tire parti de l'obsession d'un dragon vert peut aboutir sur une issue diplomatique, mais le moindre faux pas ou la moindre légèreté peut déclencher une attaque féroce. Comme la plupart des dragons chromatiques, les dragons verts ne souffrent pas les imbéciles, et le seuil de ce qu'ils considèrent comme de l'imbécillité est très bas.</p>\n<p>Bien que plus ouverts que leurs cousins chromatiques aux relations avec les autres créatures et les dragons, les dragons verts préfèrent une existence solitaire et tranquille. Ils ont tendance à s'installer dans les parties les plus inhospitalières d'une forêt, entourés de taillis inextricables, ou encore au cœur d'un ravin lugubre. Si le terrain s'y prête, certains dragons verts élisent domicile dans des grottes naturelles qu'ils agrandissent à leur convenance.</p>\n<p>L'orgueil des dragons verts les conduit à préserver leur habitat forestier. Ils estiment que si une forêt est verdoyante et luxuriante, c'est à eux qu'elle le doit, et à eux seuls. C'est pourquoi certains dragons verts suivent la voie du druidisme, même si la majorité d'entre eux préféreront étudier les arts arcaniques et les savoirs occultes. La plupart d'entre eux se consacrent à un domaine d'étude spécialisé et correspondent avec d'autres érudits en adoptant un nom de plume qui dissimule leur véritable nature. Quel que soit leur domaine de prédilection, les dragons verts sont soucieux de s'améliorer et leur soif de connaissances explique qu'ils soient plus disposés que leurs cousins à se montrer diplomates avec les autres créatures pour obtenir de nouvelles informations.</p>\n<p>Leur trésor est généralement bien entretenu, organisé et riche de livres de connaissances et de parchemins magiques ainsi que d'antiquités qu'ils collectionnent pour une raison qu'ils sont les seuls à connaître. Bon nombre de ces trésors viennent de toutes les régions du monde et de nombreux aventuriers ont survécu à une rencontre avec un dragon vert en flattant son ego et en l'amadouant avec des artefacts rares ou des connaissances perdues au sujet d'anciennes civilisations.</p>\n<hr />\n<p>Bien qu'il existe de nombreux types de dragons, des puissants dragons planaires aux étranges dragons ésotériques, peu sont aussi connus et redoutés que les dragons chromatiques. Différenciée par la teinte des écailles, chaque couleur de dragon a sa propre manière de déchaîner sa cruauté meurtrière que ce soit avec ses griffes, ses crocs ou son souffle. Et, contrairement à la plupart des autres créatures, plus ils vieillissent, plus ils sont puissants. Leur avidité pour les trésors, la nourriture, les bains de sang et le pouvoir est légendaire. Physiquement puissants, avec un ego tout aussi développé, ces dragons sont souvent moralement dépravés et se comportent comme des cerveaux criminels, des tyrans cruels ou des prédateurs voraces.</p>"
+}

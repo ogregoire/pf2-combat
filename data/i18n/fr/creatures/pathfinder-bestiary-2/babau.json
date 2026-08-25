@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature dans l'allonge du babau touche ce dernier avec une Frappe.</p>\n<hr />\n<p><strong>Effet</strong> Le babau excrète un mucus acide ressemblant à du sang et le projette sur l'assaillant et son arme. Ce dernier doit faire un jet de @Check[reflex|dc:24|traits:damaging-effect].</p>\n<hr />\n<p><strong>Succès critique</strong> L'assaillant n'est pas affecté.</p>\n<p><strong>Succès</strong> L'assaillant subit @Damage[1d6[acid]]{1d6 dégâts d'acide}.</p>\n<p><strong>Échec</strong> L'assaillant subit @Damage[2d6[acid]]{2d6 dégâts d'acide}.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais l'arme utilisée pour Frapper le babau est immédiatement @UUID[Compendium.pf2e.conditionitems.Item.6dNUvdb1dhToNDj3]{Brisée}, sauf si elle est faite d'un matériau immunisé contre l'acide.</p>",
+      "en": "Reactive Slime",
+      "name": "Mucus réactif"
+    },
+    {
+      "description": "<p>Le babau fait une attaque visant à infliger une blessure particulièrement horrible et sanglante. Il effectue une Frappe au corps-à-corps. Elle compte comme deux attaques pour le calcul du pénalité d'attaques multiples du démon. Si la Frappe touche, le babau inflige 2d6 dégâts du type de l'arme utilisée et la victime est @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 2}.</p>",
+      "en": "Grievous Strike",
+      "name": "Frappe douloureuse"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Les babaux se délectent du sang versé et se recroquevillent de douleur face à la guérison d'une plaie. Lorsqu'une créature soigne les dégâts que le babau a infligés à son tour précédent avec Frappe douloureuse, attaque sournoise ou un coup critique, le démon subit @Damage[4d6[mental]]{4d6 dégâts mentaux}. Le babau ne peut subir ces dégâts mentaux qu'une fois par round.</p>",
+      "en": "Mercy Vulnerability",
+      "name": "Vulnérabilité à la miséricorde"
+    },
+    {
+      "description": "<p>Le babau inflige 2d6 dégâts de précision supplémentaires aux créatures @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Prises au dépourvu}.</p>",
+      "en": "Sneak Attack",
+      "name": null
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Longspear",
+      "name": "Pique"
+    }
+  ],
+  "name": "Babau (Démon)",
+  "publicNotes": "<p>Le babau est un assassin, un meurtrier et un sadique. Ce ne sont pas des traits de caractère exceptionnels pour un démon, mais son penchant pour la discrétion et la surprise le distingue de ses confrères. Un babau se forme à partir de l'âme d'un tueur solitaire qui prenait plaisir à donner une dimension personnelle à ses meurtres et répétait un schéma particulièrement sanglant à chaque tuerie.</p>\n<hr />\n<p>Quand l'âme d'un pécheur est jugée et envoyée dans les Failles extérieures, elle peut devenir un redoutable fiélon, un démon. Les démons sont des incarnations vivantes des péchés, qu'il s'agisse des péchés classiques comme la colère ou la gourmandise, ou des perversités plus « spécialisées » comme l'obsession de la torture ou la trahison et la perfidie. Une fois formé, un démon est motivé par deux objectifs : acquérir de plus en plus de pouvoir et corrompre les âmes des mortels pour qu'elles soient souillées par les péchés. De cette manière, les démons s'assurent une réserve illimitée de nouveaux démons qui viennent grossir leurs rangs dans les Failles extérieures.</p>"
+}

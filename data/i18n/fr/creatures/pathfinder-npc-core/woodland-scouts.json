@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">3</span></p>\n<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Les éclaireurs effectuent une attaque au corps-à-corps coordonnée contre chaque ennemi dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre}, (@Check[reflex|dc:24|basic|options:area-effect]). Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[(1d8+3)[slashing]|options:area-damage]{1d8+3 dégâts tranchants}</p>\n<p><span class=\"action-glyph\">2</span> @Damage[(2d8+6)[slashing]|options:area-damage]{2d8+6 dégâts tranchants}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(3d8+9)[slashing]|options:area-damage]{3d8+9 dégâts tranchants}</p>",
+      "en": "Thicket of Blades",
+      "name": "Tournoyement de lames"
+    },
+    {
+      "description": "<p><strong>Prérequis</strong> Chaque case occupée par les éclaireurs sylvestres constitue un terrain forestier</p>\n<hr />\n<p><strong>Effet</strong> Les éclaireurs sylvestres se dispersent parmi les arbres. Ils se @UUID[Compendium.pf2e.actionspf2e.Item.ust1jJSCZQUhBZIz]{Mettent à l'abri} puis utilisent cet abri pour [[/act hide]]{Se cacher}, en tentant un test de Discrétion.</p>",
+      "en": "Among the Trees",
+      "name": "Dans les arbres"
+    },
+    {
+      "description": "<p>Les éclaireurs dégainent ou rechargent leurs arcs longs, puis envoient une volée de flèches. Ce barrage est une @Template[type:burst|distance:10]{explosion de 3 mètres} dans un rayon de 30 mètres qui inflige @Damage[3d8[piercing]|options:area-damage]{3d8 dégâts perforants} (@Check[reflex|dc:24|basic|options:area-effect]). Si les éclaireurs sont @UUID[Compendium.pf2e.conditionitems.Item.iU0fEDdBp3rXpTMC]{Cachés} ou non détectés, cela inflige 2d6 dégâts de précision supplémentaires. Lorsque la troupe est réduite à 2 sections ou moins, la zone est réduite à une @Template[type:burst|distance:5]{explosion de 1,50 mètre}.</p>",
+      "en": "Longbow Barrage",
+      "name": "Barrage d'arcs longs"
+    },
+    {
+      "description": "<p>Les éclaireurs sylvestres ignorent tout terrain difficile provoqué par les plantes et les champignons, tels que les fourrés, les lianes et les sous-bois.</p>",
+      "en": "Forest Passage",
+      "name": "Passage forestier"
+    },
+    {
+      "description": "<p>Si les éclaireurs deviennent @UUID[Compendium.pf2e.conditionitems.Item.iU0fEDdBp3rXpTMC]{Cachés} ou @UUID[Compendium.pf2e.conditionitems.Item.VRSef5y1LmL2Hkjf]{Non détectés}, ils le restent jusqu'à ce qu'ils entreprennent une action hostile.</p>",
+      "en": "Stealthy Formation",
+      "name": "Formation furtive"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 80 PV (3 sections), 40 (2 sections)</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.TroopDefenses]</p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    }
+  ],
+  "attacks": [],
+  "name": "Éclaireur sylvestre",
+  "publicNotes": "<p>Les elfes des forêts ou de la jungle tirent parti du terrain, opérant en unités qui semblent émerger des arbres eux-mêmes.</p>\n<hr />\n<p>La longue vie des elfes leur offre des siècles pour se plonger dans l'étude, l'art ou l'exploration.</p>"
+}

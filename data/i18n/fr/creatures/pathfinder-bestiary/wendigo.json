@@ -1,0 +1,61 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Trois fois par jour</p>\n<hr />\n<p><strong>Effet</strong> Le wendigo pousse un hurlement désespéré qui s'entend à plus de 1,5 km. Toute créature qui entend le hurlement doit réussir un jet de @Check[will|dc:38|options:area-effect,inflicts:frightened,inflicts:fleeing] ou être @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 1}. Toute créature qui subit un échec critique et se trouve dans un rayon de 36 mètres autour du wendigo est à la place @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 3} et se trouve également @UUID[Compendium.pf2e.conditionitems.Item.sDPxOjQ9kx2RZE8D]{En fuite} pendant [[/gmr 1d4 #rounds]]{1d4 rounds} (ou jusqu'à ce qu'elle ne soit plus Effrayée, selon ce qui se produit en premier).</p>\n<p>Une créature effrayée par le hurlement du wendigo se remet normalement de sa frayeur, mais ne peut pas réduire l'état Effrayé à moins de 1 tant qu'une heure ne s'est pas écoulée, à moins de recourir à la magie. Qu'elle réussisse ou rate son jet de sauvegarde, elle est immunisée contre le Hurlement de ce wendigo pendant 24 heures.</p>",
+      "en": "Howl",
+      "name": "Hurlement"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Le wendigo lance @UUID[Compendium.pf2e.spells-srd.Item.U0hL0LLaprcnAyzC]{Migration} alors qu'il a @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippé} un adversaire.</p>\n<hr />\n<p><strong>Effet</strong> Le wendigo tente de transformer la créature en souffle de vent et de l'emporter avec lui lors de cette action. Si la cible réussit un jet de @Check[will|dc:38], elle résiste à la transformation. Le wendigo se transforme tout de même et la libère automatiquement.</p>\n<p>Une créature obligée de Chevaucher le vent avec le wendigo s'expose à son tourment. La cible a droit à un nouveau jet de Volonté à chaque round pour redevenir normale, mais si elle y parvient, elle redevient tangible et chute.</p>",
+      "en": "Ride the Wind",
+      "name": "Chevaucher le vent"
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>Une cible qui rate son jet de sauvegarde contre le @UUID[Compendium.pf2e.spells-srd.Item.Uqj344bezBq3ESdq]{cauchemar} du wendigo s'expose à ses tourments.</p>",
+      "en": "Dream Haunting",
+      "name": "Hanter les rêves"
+    },
+    {
+      "description": "<p>Vision thermique est un sens précis qui voit les signatures thermiques.</p>",
+      "en": "Heatsight 60 feet",
+      "name": "Vision thermique 18 m"
+    },
+    {
+      "description": null,
+      "en": "Regeneration 30 (Deactivated by Cold Iron)",
+      "name": "Régénération 30 (Désactivée par Fer froid)"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 1 mile",
+      "name": "Télépathie 1,5 km"
+    },
+    {
+      "description": "<p>Une créature affectée par le Tourment du wendigo ne peut pas se remettre au-delà du stade 1 tant qu'elle n'a pas récupéré la totalité de ses Points de vie.</p>\n<p><strong>Jet de sauvegarde</strong> @Check[will|dc:38]</p>\n<p><strong>Stade 1</strong> @UUID[Compendium.pf2e.conditionitems.Item.e1XGnhKNSQIm5IXg]{Stupéfié 4} (1 jour)</p>\n<p><strong>Stade 2</strong> Comme le stade 1 (1 jour)</p>\n<p><strong>Stade 3</strong> La créature cherche un individu de sa propre ascendance pour le tuer et le dévorer. Il est ensuite affecté par @UUID[Compendium.pf2e.spells-srd.Item.U0hL0LLaprcnAyzC]{Migration} et file dans les cieux à une telle vitesse que ses pieds s'embrasent et qu'il n'en reste que des moignons. Alors que la créature est emportée dans sa <em>Migration</em>, un nouveau wendigo la remplace au bout de [[/gmr 2d6 #minutes]]{2d6 minutes}.</p>\n<p>Pour ramener la victime à la vie, il faut utiliser @UUID[Compendium.pf2e.spells-srd.Item.6dDtGIUerazSHIOu]{Souhait}, une magie similaire ou un rituel de @UUID[Compendium.pf2e.spells-srd.Item.kqhPt9344UkcGVYO]{Résurrection} au rang 9. Le nouveau wendigo ne disparaît pas, même si sa victime est ressuscitée.</p>",
+      "en": "Wendigo Torment",
+      "name": "Tourment du wendigo"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Wendigo",
+  "publicNotes": "<p>Le wendigo est l'incarnation des terreurs nées de la faim, la solitude et une exposition fatale au froid. Il hante les étendues glacées du monde.</p>"
+}

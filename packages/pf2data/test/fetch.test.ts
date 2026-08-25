@@ -55,11 +55,19 @@ describe("fetchUpstream", () => {
     expect(result.ref).toBe("abc123def456");
   });
 
-  it("errors when neither a pin nor --latest is available", () => {
+  it("errors when neither a pin nor --latest is available, naming the upstreamRef pin", () => {
     const { run } = recorder();
+    // With two independent pins, an error that does not say WHICH one is
+    // missing points a debugger at the wrong upstream.
     expect(() =>
       fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: false, run }),
     ).toThrow(/no pinned ref/i);
+    expect(() =>
+      fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/upstreamRef/);
+    expect(() =>
+      fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/foundryvtt\/pf2e/);
   });
 });
 
@@ -74,5 +82,20 @@ describe("fetchFrench", () => {
     // The other three naming variants are 138 MB we never read.
     expect(sparse.join(" ")).not.toContain("vf-vo");
     expect(sparse.join(" ")).not.toContain("vo-vf");
+    expect(sparse).not.toContain("babele/vo");
+    expect(sparse).not.toContain("babele/vo/fr");
+  });
+
+  it("errors when neither a pin nor --latest is available, naming the frRef pin", () => {
+    const { run } = recorder();
+    expect(() =>
+      fetchFrench({ config, cacheDir: "/tmp/c-fr", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/no pinned ref/i);
+    expect(() =>
+      fetchFrench({ config, cacheDir: "/tmp/c-fr", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/frRef/);
+    expect(() =>
+      fetchFrench({ config, cacheDir: "/tmp/c-fr", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/foundryvtt-pathfinder2-fr/);
   });
 });

@@ -43,9 +43,13 @@ export function fetchUpstream(options: FetchOptions): FetchResult {
   const { config, cacheDir, pinnedRef, useLatest } = options;
   const run = options.run ?? defaultRun;
 
+  // Two independent upstreams now share this flow, so the message names WHICH
+  // manifest field is missing and which repo it pins. The old message was
+  // identical in both stages and would point a debugger at the wrong upstream.
   if (pinnedRef === null && !useLatest) {
     throw new Error(
-      "No pinned ref in data/manifest.json. Run with --latest to create one.",
+      `No pinned ref: data/manifest.json has no "upstreamRef" for ${config.upstream.repo}. ` +
+        "Run with --latest to create one.",
     );
   }
 
@@ -115,7 +119,8 @@ export function fetchFrench(options: FetchOptions): FetchFrenchResult {
 
   if (pinnedRef === null && !useLatest) {
     throw new Error(
-      "No pinned ref in data/manifest.json. Run with --latest to create one.",
+      `No pinned ref: data/manifest.json has no "frRef" for ${config.french.repo}. ` +
+        "Run with --latest to create one.",
     );
   }
 

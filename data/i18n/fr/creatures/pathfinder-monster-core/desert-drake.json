@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le drake est ciblé par une attaque.</p>\n<hr />\n<p><strong>Effet</strong> Le drake dresse son aile et obtient un bonus de circonstances de +2 à sa CA contre l'attaque déclencheuse. Si le drake est en vol, il descend de 3 mètres après la fin de l'attaque.</p>",
+      "en": "Wing Deflection",
+      "name": "Déflection de l'aile"
+    },
+    {
+      "description": null,
+      "en": "Push",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Fréquence</strong> Trois fois par jour</p>\n<hr />\n<p><strong>Effet</strong> Le drake du désert Marche rapidement ou Vole deux fois de suite.</p>",
+      "en": "Speed Surge",
+      "name": "Vitesse augmentée"
+    },
+    {
+      "description": "<p>Le drake du désert effectue deux Frappes de crocs et une Frappe de queue dans l'ordre de son choix.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": "<p>Le drake du désert crache une boule de sable abrasif avec une portée de 18 mètres qui explose en un nuage de @Template[burst|distance:15]{4,50 mètres de rayon}. Les créatures dans la zone d'effet subissent @Damage[9d6[slashing]|options:area-damage]{9d6 dégâts tranchants} (@Check[reflex|dc:27|basic|options:area-effect]).</p>\n<p>Le drake du désert ne peut utiliser de nouveau ce pouvoir avant [[/gmr 1d6 #Recharge de l'arme de souffle]]{1d6 rounds}. Le nuage perdure pendant [[/gmr 1d4 #Durée du Souffle du désert]]{1d4 rounds} octroyant l'état @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masqué} à tous ceux qui se trouvent à l'intérieur et Masque pour eux tout ce qui est à l'extérieur.</p>",
+      "en": "Sandstorm Breath",
+      "name": "Souffle des sables"
+    },
+    {
+      "description": "<p>Les tempêtes de sable n'altèrent pas la vision d'un drake du désert. Il ignore l'état @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masqué} conféré par les tempêtes de sable. Il est également immunisé contre les états @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Ébloui} et @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Aveuglé} liés au sable ou à d'autres gravillons.</p>",
+      "en": "Sandstorm Sight",
+      "name": "Vision malgré les tempêtes de sable"
+    },
+    {
+      "description": "<p>Au premier round de combat, les créatures qui n'ont pas encore agi sont @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Prises au dépourvu} par le drake du désert.</p>",
+      "en": "Surprise Attacker",
+      "name": "Agresseur surprise"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fangs",
+      "name": "Crocs"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Drake du désert",
+  "publicNotes": "<p>Lointains cousins de créatures telles que les dragons adamantins dont ils ne sont que le pâle écho dépourvu de la puissance et de l'intelligence, les drakes du désert n'en sont pas moins de dangereux prédateurs qui chassent en embuscade, s'attaquant aux voyageurs isolés du désert et aux avant-postes isolés pour se nourrir et se ravitailler. La couleur de leurs écailles va du brun rouille au fauve clair en passant par l'ocre, imitant ainsi toutes les couleurs des dunes où ils vivent.</p>\n<p>Comme les drakes du froid, les drakes du désert revendiquent souvent un territoire immense, surveillant les étendues désertiques depuis leur perchoir dans les montagnes voisines ou leur refuge dans les ruines érodées. Toute créature visible au sol est susceptible d'être prise pour cible par les drakes, en particulier les caravanes d'humanoïdes. Les « saccages » qui suivent les routes commerciales apprennent rapidement à laisser un de leurs membres surveiller chaque oasis à la recherche de nouvelles proies. En période de disette, les drakes peuvent aller jusqu'à déterrer des proies enfouies dans le sol, comme les ankhravs, les scorpions géants ou des nids entiers de fourmis géantes.</p>\n<p>Les drakes du désert sont parmi les plus légers et les plus compacts des drakes, ce qui ne doit pas être pris pour de la fragilité. Leurs cornes recourbées vers l'arrière et leurs ailes fines comme des plumes sont conçues pour leur permettre de creuser aussi facilement que possible. En effet, le cou puissant du drake du désert lui permet de se faufiler dans le sable et le terrain meuble aussi facilement qu'il le ferait en marchant.</p>\n<hr />\n<p>Voraces, bestiaux et guidés uniquement par leur instinct, les drakes sont des monstres draconiques qui n'ont qu'une fraction de la puissance terrifiante des dragons primordiaux avec lesquels ils partagent les mêmes origines. Bien qu'ils soient plus faibles, plus lents et moins enclins à la raison que les dragons, les drakes n'en constituent pas moins une menace pour les créatures et les communautés environnantes. Leur propension à former des groupes de chasse en petites bandes organisées appelées à juste titre des « saccages » les rend encore plus dangereux. Un unique saccage de drakes des rivières peut rapidement ravager un village côtier et les saccages nomades de drakes du désert sont un fléau pour les caravanes marchandes.</p>\n<p>Les drakes partagent un certain nombre de caractéristiques physiques qui les définissent comme une même espèce malgré la grande variété de leurs habitats et de leur caractéristiques. Par exemple, les drakes ne possèdent pas d'avant-bras et ils ne peuvent donc combattre au corps-à-corps qu'avec leur puissante mâchoire et leur queue couverte d'écailles épaisses. Cependant, la plupart d'entre eux préfèrent éviter le combat rapproché au profit de leur souffle afin de semer le chaos à distance confortable tout en restant en vol. Enfin, tous les drakes disposent d'un modeste héritage des pouvoirs draconiques de leurs ancêtres dont ils peuvent user pour d'incroyables prouesses de vitesse.</p>\n<p>Différentes espèces de drakes rentrent rarement en conflit. À la fois à cause de leurs habitats différents mais également parce que les drakes sont enclins à négocier de simples accords entre les saccages. Cette courtoisie ne s'étend pas aux dragonnets, que les drakes prennent facilement pour proie. Les drakes apprivoisés solitaires sont également exclus de tels arrangements et sont considérés comme du gibier gratuit si celui qui les a apprivoisé n'est pas suffisamment fort pour les protéger.</p>\n<hr />\n<h3>Œufs de drake</h3>\n<p>Les peaux de drake n'ont pas plus de valeur que celles des créatures de taille comparable mais en revanche leurs œufs sont très prisés. S'ils sont employés comme composants de puissants sortilèges et consommés par diverses cultures, leur utilisation la plus courante reste l'éclosion et l'élevage de drakes qui serviront de montures et de gardiens.</p>\n<p>Un drake typique pond une couvée de 2d4 œufs tous les 5 ans. Les œufs éclosent en 3 à 6 semaines, période pendant laquelle ils doivent être maintenus dans des conditions adaptées à leur environnement naturel, ce qui constitue peut-être l'aspect le plus difficile de l'élevage de drakes. S'il est généralement facile pour les éleveurs d'incuber des œufs de drake du désert ou de la jungle (qui ont besoin de températures légèrement chaudes pour éclore) ou de drake des rivières (qui doivent être immergés dans de l'eau courante), les œufs de drake des flammes et du froid nécessitent des températures extrêmes pour éclore, ce qui peut être difficile à reproduire sans danger.</p>\n<p>Un œuf de drake est un objet de Solidité 3 avec 5 PV sans seuil de rupture. La coloration des œufs de drakes ne varie que légèrement d'une espèce à l'autre. Une créature doit réussir un test de @Check[nature|dc:20] ou un test de Connaissance pertinent DD 20, pour identifier l'espèce de drake d'un œuf spécifique.</p>\n<p>Une fois qu'un drake a éclos, il se lie à la première créature qu'il aperçoit. Une créature ainsi liée peut utiliser des tests de Nature pour Dresser et Diriger ce drake. Le prix d'un œuf de drake sur le marché varie en fonction du type de drake et de considérations juridiques. Les drakes étant des créatures dangereuses et intelligentes, de nombreuses sociétés n'approuvent pas le commerce des œufs de drakes et criminalisent ceux qui s'y livrent.</p>\n<p>Il faut deux ans à un drake pour atteindre sa taille définitive. Un drake bien entraîné peut devenir une redoutable monture ou un gardien féroce, mais nombreux sont les dresseurs imprudents qui se sont fait dévorer par leur protégé entre-temps.</p>"
+}
