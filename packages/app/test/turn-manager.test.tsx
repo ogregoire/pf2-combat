@@ -592,6 +592,30 @@ describe("Delay", () => {
     expect(entryOf(entryIdOf("Alpha")).delayed).toBe(false);
   });
 
+  // Delaying *is* a turn advance, so the store refuses it while anyone is
+  // unrolled, exactly as nextTurn does. A live button over a refusal is the
+  // silent no-op this app keeps shipping: the button has to say no for the
+  // same reason and in the same way Return already does.
+  it("disables the Delay button while a combatant has no initiative, since the store would refuse", () => {
+    add("Alpha", 20);
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Beta", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      null,
+    );
+    render(<TurnManager />);
+
+    expect(screen.getByRole("button", { name: /^delay$/i }).hasAttribute("disabled")).toBe(true);
+  });
+
+  it("enables the Delay button once everyone has rolled", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    render(<TurnManager />);
+
+    expect(screen.getByRole("button", { name: /^delay$/i }).hasAttribute("disabled")).toBe(false);
+  });
+
   // The two tests below cover Delay's interaction with Entry.trueInitiative —
   // the *other* mechanism in this store that rewrites an initiative at a
   // round wrap ("act this round instead", see AddCombatants). Delay and that

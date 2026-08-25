@@ -84,6 +84,7 @@ function DelayControls(): React.ReactElement | null {
   const combatants = useEncounter((s) => s.encounter.combatants);
   const delay = useEncounter((s) => s.delay);
   const returnFromDelay = useEncounter((s) => s.returnFromDelay);
+  const unrolled = useEncounter((s) => unrolledCount(s.encounter));
 
   const activeEntry = entries[activeEntryIndex];
   const delayedEntries = entries.filter((e) => e.delayed);
@@ -102,8 +103,23 @@ function DelayControls(): React.ReactElement | null {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", flexShrink: 0 }}>
+      {/* Delaying hands the turn straight on, so the store refuses it while
+         anyone is unrolled, exactly as nextTurn does. Disabled here for the
+         same reason and in the same way Return is below — a live button
+         over a refusal is a silent no-op, and UnrolledNotice is already on
+         screen to say why. */}
       {activeEntry && !activeEntry.delayed && (
-        <button type="button" onClick={() => delay(activeEntry.id)} style={smallButton}>
+        <button
+          type="button"
+          onClick={() => delay(activeEntry.id)}
+          disabled={unrolled > 0}
+          title={unrolled > 0 ? "Delaying advances the turn, which needs everyone's initiative first" : undefined}
+          style={{
+            ...smallButton,
+            color: unrolled > 0 ? "var(--text-faint)" : "var(--text)",
+            cursor: unrolled > 0 ? "default" : "pointer",
+          }}
+        >
           Delay
         </button>
       )}
