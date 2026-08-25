@@ -514,22 +514,100 @@ describe("French markup resolution", () => {
     );
   });
 
-  it("resolves @Localize against the French table, never the English one", () => {
-    // The same key exists in both lang files. Resolving against English would
-    // drop English prose into otherwise-French text -- worse than leaving the
-    // marker, because it looks correct.
+  it("resolves @Localize against the table it is GIVEN, so the caller's choice decides", () => {
+    // The same key exists in both lang files, with different prose. The
+    // builder must honour whichever table it is handed -- if it ignored the
+    // argument (a hardcoded table, or no resolution at all) both calls below
+    // would come back identical, and the cli tests further down are what pin
+    // that the FRENCH one is the table actually passed.
     const enLang = {
       "PF2E.NPC.Abilities.Glossary.Grab": "<p>The target is grabbed.</p>",
     };
-    const out = buildCreatureI18n({
-      creatureName: "Manticore",
-      ownPack: "pathfinder-bestiary",
-      actions: [{ name: "Grab", foundryId: "id-grab" }],
-      attacks: [],
-      table,
-      lang: frLang,
-    })!;
-    expect(out.actions[0]!.description).not.toContain("grabbed");
-    expect(enLang["PF2E.NPC.Abilities.Glossary.Grab"]).toContain("grabbed"); // the trap really is set
+    const build = (lang: Record<string, string>) =>
+      buildCreatureI18n({
+        creatureName: "Manticore",
+        ownPack: "pathfinder-bestiary",
+        actions: [{ name: "Grab", foundryId: "id-grab" }],
+        attacks: [],
+        table,
+        lang,
+      })!.actions[0]!.description;
+
+    expect(build(frLang)).toBe("<p>Agrippement: la cible est agrippée.</p>");
+    expect(build(enLang)).toBe("<p>The target is grabbed.</p>");
+    expect(build(frLang)).not.toBe(build(enLang));
+    // ...and an empty table leaves the marker, so neither result can be an
+    // artefact of the builder ignoring `lang` entirely.
+    expect(build({})).toContain("@Localize[");
   });
 });
+
+describe("stray @ in front of an enricher", () => {
+  // `[[/act balance]]{label}` is an ordinary Foundry enricher -- 416 of them
+  // in the ENGLISH dataset, 247 in the French, and both pipelines leave them
+  // for the app to render. One French entry (pathfinder-npc-core/harbormaster)
+  // carries a stray `@` in front of one, which renders as a literal `@` and
+  // has no meaning in any Foundry syntax. English has zero `@[`.
+  const table = makeBabeleTable({
+    "pf2e.pathfinder-npc-core.json": {
+      entries: {
+        Harbormaster: {
+          name: "Capitaine du port",
+          items: {
+            "id-balance": {
+              name: "Équilibre assuré",
+              description: "<p>un test pour @[[/act balance]]{Garder l'équilibre}, il devient</p>",
+            },
+          },
+        },
+      },
+    },
+  });
+
+  const out = buildCreatureI18n({
+    creatureName: "Harbormaster",
+    ownPack: "pathfinder-npc-core",
+    actions: [{ name: "Steady Balance", foundryId: "id-balance" }],
+    attacks: [],
+    table,
+    lang: {},
+  })!;
+
+  it("drops the stray @ and keeps the enricher intact", () => {
+    expect(out.actions[0]!.description).toBe(
+      "<p>un test pour [[/act balance]]{Garder l'équilibre}, il devient</p>",
+    );
+  });
+
+  it("does NOT strip @ from a single-bracket marker -- that would hide it from the guard", () => {
+    // The repair is deliberately narrow (`@` immediately before `[[`). A
+    // broader `@(?=\[)` would turn an unknown `@[...]` marker into ordinary
+    // bracket text, which `verifyI18nMarkup` can no longer report: silently
+    // erasing the evidence instead of surfacing it.
+    expect(resolveFrenchProbe("<p>@[quelque chose]{Label}</p>")).toContain("@[");
+  });
+
+  it("leaves an enricher that never had a stray @ untouched", () => {
+    expect(resolveFrenchProbe("<p>[[/gmr 1d4 #Recharger]]{1d4 rounds}</p>")).toBe(
+      "<p>[[/gmr 1d4 #Recharger]]{1d4 rounds}</p>",
+    );
+  });
+});
+
+/** Exercises the same resolution the builders apply, through the only public
+ * door there is -- a one-action creature overlay. */
+function resolveFrenchProbe(html: string): string {
+  const table = makeBabeleTable({
+    "pf2e.pathfinder-bestiary.json": {
+      entries: { X: { name: "X", items: { i: { description: html } } } },
+    },
+  });
+  return buildCreatureI18n({
+    creatureName: "X",
+    ownPack: "pathfinder-bestiary",
+    actions: [{ name: "A", foundryId: "i" }],
+    attacks: [],
+    table,
+    lang: {},
+  })!.actions[0]!.description!;
+}

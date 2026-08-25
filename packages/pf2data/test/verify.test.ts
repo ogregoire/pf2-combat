@@ -323,15 +323,35 @@ describe("unresolved Foundry markup in French output", () => {
     ).toEqual([]);
   });
 
-  it("catches a marker family nobody thought of, not just @UUID and @Localize", () => {
-    // `@Compendium[...]` is the pre-V9 spelling of a @UUID reference. It got
-    // through the first fix because the check named two families by hand; an
-    // allow-list of what the ENGLISH dataset carries cannot miss the next one.
+  it("catches a marker family nobody has ever seen, not just the ones we know", () => {
+    // Deliberately INVENTED. `@Compendium` would not pin this property: by the
+    // time the allow-list existed, @Compendium was already a known family, so
+    // a hand-written deny-list naming it would pass too. The property under
+    // test is that ANY family the English dataset does not carry is rejected,
+    // and only an unknown name can express that.
     const problems = verifyI18nMarkup("i18n/fr/creatures/p/c.json", {
-      description: "@Compendium[pf2e.spells-srd.dN8QBNuTiaBHCKUe]{Métamorphose maudite}",
+      description: "<p>@Frobnicate[pf2e.spells-srd.abc]{Machin}</p>",
     });
     expect(problems).toHaveLength(1);
-    expect(problems[0]).toMatch(/@Compendium/);
+    expect(problems[0]).toMatch(/@Frobnicate/);
+  });
+
+  it("catches a bare @[ , which has no family name at all", () => {
+    // One real occurrence: pathfinder-npc-core/harbormaster carries
+    // `@[[/act balance]]{Garder l'équilibre}` -- a stray `@` in front of an
+    // otherwise ordinary enricher. `/@([A-Za-z]+)\[/` needs at least one
+    // letter, so it sailed past both checks.
+    const problems = verifyI18nMarkup("i18n/fr/creatures/p/c.json", {
+      description: "<p>un test pour @[[/act balance]]{Garder l'équilibre}</p>",
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/@\[/);
+  });
+
+  it("leaves an ordinary [[/act ...]] enricher alone -- English carries 416 of them", () => {
+    expect(
+      verifyI18nMarkup("x", { d: "<p>pour [[/act balance]]{Garder l'équilibre}</p>" }),
+    ).toEqual([]);
   });
 });
 

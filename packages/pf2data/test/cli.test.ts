@@ -751,4 +751,239 @@ describe("runCli", () => {
     ).toBe(20);
     expect(errLines.join("")).toContain("glossary.json");
   });
+
+  // --- Task 7 fix round 2 -------------------------------------------------
+  //
+  // Each of the three builders takes a lang table, and each is a separate call
+  // site that can be handed the WRONG one with every unit test still green.
+  // Resolving French text against the English table succeeds, so the markup
+  // guard cannot see it either: the only symptom is English prose inside
+  // otherwise-French output. One test per call site.
+
+  /**
+   * A full pipeline fixture: creatures, conditions and glossary packs
+   * upstream, matching Babele files in the French checkout, and ONE
+   * `@Localize` key that exists in both lang tables with different prose.
+   * Whichever table a call site passes is therefore visible in the output.
+   */
+  function bilingualDeps(): { deps: CliDeps; dataDir: string } {
+    const dataDir = tmpDir("pf2data-data-");
+    const cacheDir = tmpDir("pf2data-cache-");
+    const configDir = tmpDir("pf2data-config-");
+
+    const configPath = join(configDir, "pf2data.config.json");
+    writeFileSync(
+      configPath,
+      JSON.stringify({
+        upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        french: { repo: "https://example.invalid/pf2e-fr", branch: "master" },
+        packs: [
+          { name: "kingmaker-bestiary", kind: "creatures" },
+          { name: "conditions", kind: "conditions" },
+          { name: "bestiary-ability-glossary-srd", kind: "glossary" },
+        ],
+      }),
+    );
+
+    const packDir = join(cacheDir, "packs", "kingmaker-bestiary");
+    mkdirSync(packDir, { recursive: true });
+    writeFileSync(
+      join(packDir, "the-stag-lord.json"),
+      readFileSync(
+        fileURLToPath(new URL("./fixtures/the-stag-lord.json", import.meta.url)),
+        "utf8",
+      ),
+    );
+
+    const conditionsDir = join(cacheDir, "packs", "conditions");
+    mkdirSync(conditionsDir, { recursive: true });
+    writeFileSync(
+      join(conditionsDir, "frightened.json"),
+      JSON.stringify({
+        name: "Frightened",
+        type: "condition",
+        system: { description: { value: "<p>en</p>" }, value: { isValued: true } },
+      }),
+    );
+
+    const glossaryDir = join(cacheDir, "packs", "bestiary-ability-glossary-srd");
+    mkdirSync(glossaryDir, { recursive: true });
+    writeFileSync(
+      join(glossaryDir, "grab.json"),
+      JSON.stringify({
+        name: "Grab",
+        type: "action",
+        system: {
+          actionType: { value: "action" },
+          actions: { value: 1 },
+          description: { value: "<p>en</p>" },
+        },
+      }),
+    );
+
+    mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
+    writeFileSync(
+      join(cacheDir, "static", "lang", "en.json"),
+      JSON.stringify({ PF2E: { Shared: { Key: "<p>ENGLISH PROSE</p>" } } }),
+    );
+
+    const frCacheDir = tmpDir("pf2data-fr-cache-");
+    const babeleDir = join(frCacheDir, "babele", "vf", "fr");
+    mkdirSync(babeleDir, { recursive: true });
+    const localized = "@Localize[PF2E.Shared.Key]";
+    writeFileSync(
+      join(babeleDir, "pf2e.kingmaker-bestiary.json"),
+      JSON.stringify({
+        entries: {
+          "The Stag Lord": {
+            name: "Seigneur Cerf",
+            items: { [STAG_LORD_ITEM_IDS.huntPrey]: { name: "Chasser une proie", description: localized } },
+          },
+        },
+      }),
+    );
+    writeFileSync(
+      join(babeleDir, "pf2e.conditionitems.json"),
+      JSON.stringify({ entries: { Frightened: { name: "Effrayé", description: localized } } }),
+    );
+    writeFileSync(
+      join(babeleDir, "pf2e.bestiary-ability-glossary-srd.json"),
+      JSON.stringify({ entries: { Grab: { name: "Agrippement", description: localized } } }),
+    );
+    mkdirSync(join(frCacheDir, "lang"), { recursive: true });
+    writeFileSync(
+      join(frCacheDir, "lang", "fr.json"),
+      JSON.stringify({ PF2E: { Shared: { Key: "<p>PROSE FRANÇAISE</p>" } } }),
+    );
+
+    const { run } = recordingGit();
+    return { deps: { dataDir, cacheDir, frCacheDir, configPath, runGit: run }, dataDir };
+  }
+
+  const readFr = (dataDir: string, ...parts: string[]): string =>
+    readFileSync(join(dataDir, "i18n", "fr", ...parts), "utf8");
+
+  it("buildCreatureI18n is handed the FRENCH lang table, not the English one", () => {
+    const { deps, dataDir } = bilingualDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    const overlay = readFr(dataDir, "creatures", "kingmaker-bestiary", "the-stag-lord.json");
+    expect(overlay).toContain("PROSE FRANÇAISE");
+    expect(overlay).not.toContain("ENGLISH PROSE");
+  });
+
+  it("buildConditionsI18n is handed the FRENCH lang table, not the English one", () => {
+    const { deps, dataDir } = bilingualDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    const conditions = readFr(dataDir, "conditions.json");
+    // The fixture really does exercise the join, not an empty overlay.
+    expect(conditions).toContain("Effrayé");
+    expect(conditions).toContain("PROSE FRANÇAISE");
+    expect(conditions).not.toContain("ENGLISH PROSE");
+  });
+
+  it("buildGlossaryI18n is handed the FRENCH lang table, not the English one", () => {
+    const { deps, dataDir } = bilingualDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    const glossary = readFr(dataDir, "glossary.json");
+    expect(glossary).toContain("Agrippement");
+    expect(glossary).toContain("PROSE FRANÇAISE");
+    expect(glossary).not.toContain("ENGLISH PROSE");
+  });
+
+  it("update REFUSES to write when a creature overlay keeps an unresolvable marker", () => {
+    // The markup guard runs before any write. Without that call site a marker
+    // confined to creature overlays ships silently, exit 10, "updated".
+    const dataDir = tmpDir("pf2data-data-");
+    const cacheDir = tmpDir("pf2data-cache-");
+    const configDir = tmpDir("pf2data-config-");
+
+    const configPath = join(configDir, "pf2data.config.json");
+    writeFileSync(
+      configPath,
+      JSON.stringify({
+        upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        french: { repo: "https://example.invalid/pf2e-fr", branch: "master" },
+        packs: [{ name: "kingmaker-bestiary", kind: "creatures" }],
+      }),
+    );
+    const packDir = join(cacheDir, "packs", "kingmaker-bestiary");
+    mkdirSync(packDir, { recursive: true });
+    writeFileSync(
+      join(packDir, "the-stag-lord.json"),
+      readFileSync(
+        fileURLToPath(new URL("./fixtures/the-stag-lord.json", import.meta.url)),
+        "utf8",
+      ),
+    );
+    mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+
+    // `PF2E.Nowhere.At.All` is in neither lang table, so the marker survives
+    // both passes -- exactly what a future upstream key rename looks like.
+    const frCacheDir = seedFrenchCache({
+      "The Stag Lord": {
+        name: "Seigneur Cerf",
+        items: {
+          [STAG_LORD_ITEM_IDS.huntPrey]: {
+            name: "Chasser une proie",
+            description: "@Localize[PF2E.Nowhere.At.All]",
+          },
+        },
+      },
+    });
+
+    const { run } = recordingGit();
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["update", "--latest"],
+      { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+      { dataDir, cacheDir, frCacheDir, configPath, runGit: run },
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.join("")).toContain("@Localize");
+    expect(errLines.join("")).toContain("kingmaker-bestiary/the-stag-lord");
+    // ...and nothing at all was written.
+    expect(existsSync(join(dataDir, "manifest.json"))).toBe(false);
+    expect(existsSync(join(dataDir, "i18n"))).toBe(false);
+    expect(existsSync(join(dataDir, "creatures"))).toBe(false);
+  });
+
+  it("update REFUSES to write when the INDEX overlay keeps a marker", () => {
+    // 1420 Babele name strings, unguarded until now.
+    const { deps, dataDir } = seededDeps();
+    const frDeps = {
+      ...deps,
+      frCacheDir: seedFrenchCache({
+        "The Stag Lord": { name: "Seigneur @Frobnicate[x]{Cerf}" },
+      }),
+    };
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["update", "--latest"],
+      { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+      frDeps,
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.join("")).toContain("index/kingmaker-bestiary.json");
+    expect(existsSync(join(dataDir, "i18n"))).toBe(false);
+  });
+
+  it("verify fails when a committed INDEX overlay carries a marker", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    writeFileSync(
+      join(dataDir, "i18n", "fr", "index", "kingmaker-bestiary.json"),
+      JSON.stringify({ "kingmaker-bestiary/the-stag-lord": "Seigneur @Frobnicate[x]{Cerf}" }),
+    );
+
+    const errLines: string[] = [];
+    expect(
+      runCli(["verify"], { out: () => {}, err: (x) => errLines.push(x), isTty: true }, deps),
+    ).toBe(20);
+    expect(errLines.join("")).toContain("index/kingmaker-bestiary.json");
+  });
 });

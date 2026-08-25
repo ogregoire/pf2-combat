@@ -17,6 +17,7 @@ import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
 import { verifyDataset, verifyI18n, verifyI18nMarkup } from "./stages/verify.js";
 import { diffDataset, frenchCoverage, statusOf, type ChangeStatus } from "./report.js";
+import { compareStrings } from "./util.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
 import { buildConditions, buildGlossary, buildTraits, scanTraits } from "./stages/reference.js";
 import { loadBabele } from "./stages/babele.js";
@@ -255,8 +256,15 @@ function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
     problems.push(...verifyI18n(creature, overlay.data));
   }
 
-  for (const file of ["conditions.json", "glossary.json", "traits.json"]) {
-    const path = join(dataDir, I18N_ROOT, "fr", file);
+  const indexDir = join(dataDir, I18N_ROOT, "fr", "index");
+  const referenceFiles = existsSync(indexDir)
+    ? readdirSync(indexDir)
+        .filter((name) => name.endsWith(".json"))
+        .sort(compareStrings)
+        .map((name) => `index/${name}`)
+    : [];
+  for (const file of [...referenceFiles, "conditions.json", "glossary.json", "traits.json"]) {
+    const path = join(dataDir, I18N_ROOT, "fr", ...file.split("/"));
     if (!existsSync(path)) continue;
     problems.push(
       ...verifyI18nMarkup(`${I18N_ROOT}/fr/${file}`, JSON.parse(readFileSync(path, "utf8"))),
@@ -504,9 +512,14 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     if (overlay === undefined) continue;
     i18nProblems.push(...verifyI18n(creature, overlay));
   }
-  // `verifyI18n` carries the markup check for creature overlays; the three
-  // reference overlays have no creature to align against, so they are checked
-  // for markers directly.
+  // `verifyI18n` carries the markup check for creature overlays; every other
+  // emitted French file has no creature to align against, so it is checked for
+  // markers directly. The index overlay is 1420 Babele NAME strings and is
+  // clean today -- guarded anyway, because "clean today" is exactly what was
+  // true of the creature descriptions before anyone looked.
+  for (const [pack, entries] of Object.entries(indexI18n)) {
+    i18nProblems.push(...verifyI18nMarkup(`i18n/fr/index/${pack}.json`, entries));
+  }
   i18nProblems.push(
     ...verifyI18nMarkup("i18n/fr/conditions.json", conditionsI18n),
     ...verifyI18nMarkup("i18n/fr/glossary.json", glossaryI18n),
@@ -659,7 +672,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   );
   // The untranslated LIST, not just the count: a coverage drop that only
   // showed up as a smaller number would never say which creature lost its
-  // translation. 30 today, 19 of them the `Petitioner (Plane)` series.
+  // translation. 30 today, 20 of them the `Petitioner (Plane)` series.
   io.err(
     `french: ${coverage.translated}/${coverage.total} creatures translated at ${french.ref}` +
       `${coverage.untranslated.length > 0 ? `, ${coverage.untranslated.length} untranslated: ${coverage.untranslated.join(", ")}` : ""}\n`,

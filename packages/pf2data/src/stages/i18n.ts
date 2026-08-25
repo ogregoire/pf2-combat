@@ -5,6 +5,18 @@ import type { BabeleTable } from "./babele.js";
 import type { ScannedTrait } from "./reference.js";
 
 /**
+ * `[[/act balance]]{label}` and friends are ordinary Foundry enrichers -- 416
+ * in the English dataset, 247 in the French, and both pipelines leave them for
+ * the app to render. One French entry (pathfinder-npc-core/harbormaster)
+ * writes a stray `@` in front of one, which is not valid in any Foundry syntax
+ * and renders as a literal `@` to the GM. English has zero `@[`, so this
+ * repair is French-only by construction, and it is deliberately narrow: a
+ * broader `@(?=\[)` would turn an unknown `@[…]` marker into ordinary bracket
+ * text and hide it from `verifyI18nMarkup` instead of surfacing it.
+ */
+const STRAY_ENRICHER_AT = /@(?=\[\[)/g;
+
+/**
  * Babele stores RAW Foundry text, so every French description arrives with
  * the same two markup families the English pipeline strips:
  * `@Localize[KEY]` glossary includes and `@UUID[...]{label}` cross-references.
@@ -20,11 +32,12 @@ import type { ScannedTrait } from "./reference.js";
  * leaving the marker in place, because it looks correct.
  *
  * `@Check`, `@Damage` and `@Template` are deliberately left alone: the
- * English dataset carries them too, and the app renders them.
+ * English dataset carries them too, and the app renders them. So are
+ * `[[/act …]]` enrichers -- see `STRAY_ENRICHER_AT` above.
  */
 function resolveFrench(html: string | null | undefined, lang: LangTable): string | null {
   if (html === null || html === undefined) return null;
-  return resolveLinks(resolveLocalize(html, lang));
+  return resolveLinks(resolveLocalize(html, lang)).replace(STRAY_ENRICHER_AT, "");
 }
 
 /**

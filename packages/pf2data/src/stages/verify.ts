@@ -47,20 +47,11 @@ export interface I18nSubject {
   attacks: { name: string }[];
 }
 
-/**
- * The guard the whole index-keying scheme depends on.
- *
- * A creature's French overlay is aligned to `Creature.actions`/`.attacks` by
- * ARRAY POSITION, because 156 creatures carry two Strikes of the same English
- * name and a name key would collapse them. Position-keying is only safe while
- * the two arrays agree, so every overlay entry carries the English `name` it
- * was built from and this check compares them back, position for position.
- *
- * An upstream reorder, an added item or a dropped one must surface as a loud
- * failure -- the alternative is a Strike quietly showing another Strike's
- * translation, which no schema check would ever catch.
- */
-const MARKER_PATTERN = /@([A-Za-z]+)\[/g;
+// `[A-Za-z]*`, not `+`: a bare `@[` has no family name at all and would
+// otherwise escape both checks. One real occurrence -- harbormaster's
+// `@[[/act balance]]{Garder l'équilibre}`, a stray `@` in front of an
+// ordinary enricher. English has zero `@[`.
+const MARKER_PATTERN = /@([A-Za-z]*)\[/g;
 
 /** Four of the module's references have lost their `@`-prefix entirely, so
  * they carry no marker family for the check above to see -- they just render
@@ -94,7 +85,11 @@ export function verifyI18nMarkup(label: string, value: unknown): string[] {
   }
   const problems = [...unresolved]
     .sort(compareStrings)
-    .map((family) => `i18n: ${label} contains an unresolved @${family} reference`);
+    .map((family) =>
+      family === ""
+        ? `i18n: ${label} contains an unresolved @[ marker`
+        : `i18n: ${label} contains an unresolved @${family} reference`,
+    );
 
   if (BARE_REFERENCE_PATTERN.test(json)) {
     problems.push(`i18n: ${label} contains an unresolved compendium reference`);
@@ -103,6 +98,19 @@ export function verifyI18nMarkup(label: string, value: unknown): string[] {
   return problems;
 }
 
+/**
+ * The guard the whole index-keying scheme depends on.
+ *
+ * A creature's French overlay is aligned to `Creature.actions`/`.attacks` by
+ * ARRAY POSITION, because 156 creatures carry two Strikes of the same English
+ * name and a name key would collapse them. Position-keying is only safe while
+ * the two arrays agree, so every overlay entry carries the English `name` it
+ * was built from and this check compares them back, position for position.
+ *
+ * An upstream reorder, an added item or a dropped one must surface as a loud
+ * failure -- the alternative is a Strike quietly showing another Strike's
+ * translation, which no schema check would ever catch.
+ */
 export function verifyI18n(creature: I18nSubject, overlay: CreatureI18n): string[] {
   const problems: string[] = verifyI18nMarkup(creature.id, overlay);
 
