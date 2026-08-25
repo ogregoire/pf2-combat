@@ -408,6 +408,13 @@ Four outputs:
 
 - [ ] **Step 1: Write the failing tests**
 
+All four resolve through `BabeleTable.lookup(kind, ownPack, englishName)` —
+never a flat `table.get(name)`. Each builder passes its own kind
+(`"creature"`, `"condition"`, `"glossary"`), and `buildIndexI18n` derives
+`ownPack` from the index entry's `id`, whose prefix before `/` IS the pack
+(`kingmaker-bestiary/the-stag-lord` -> `kingmaker-bestiary`). Task 5 shipped a
+flat `.get` for exactly this reason and needed a fix round; do not repeat it.
+
 ```ts
 it("emits an id -> french name map for the search index", () => {
   expect(buildIndexI18n(indexEntries, table)).toEqual({
@@ -415,8 +422,27 @@ it("emits an id -> french name map for the search index", () => {
   });
 });
 
+it("takes each creature's own pack's translation", () => {
+  // Shambler: "Tertre errant" in Kingmaker, "Grand tertre" in Bestiary 1.
+  // A flat lookup returns whichever pack loaded first.
+  expect(buildIndexI18n([
+    { id: "kingmaker-bestiary/shambler", name: "Shambler" },
+    { id: "pathfinder-bestiary/shambler", name: "Shambler" },
+  ], table)).toEqual({
+    "kingmaker-bestiary/shambler": "Tertre errant",
+    "pathfinder-bestiary/shambler": "Grand tertre",
+  });
+});
+
 it("omits an untranslated creature rather than echoing its English name", () => {
-  expect(buildIndexI18n([{ id: "x/manticore", name: "Manticore" }], new Map())).toEqual({});
+  // 30 real creatures have no French entry at all.
+  expect(buildIndexI18n([{ id: "x/manticore", name: "Manticore" }], emptyTable())).toEqual({});
+});
+
+it("looks conditions and glossary entries up under their own kind", () => {
+  // `Guard` is "Garde" the creature and "Se défendre" the action; kinds must
+  // never be pooled. 109 English names collide across kinds, 24 of them ours.
+  expect(buildConditionsI18n(["Frightened"], table)).toEqual({ Frightened: "Effrayé" });
 });
 
 it("reuses buildTraits against the French lang table, so slugs stay identical", () => {
