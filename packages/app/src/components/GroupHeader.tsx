@@ -17,7 +17,7 @@ export function GroupHeader({
   active = false,
 }: {
   name: string;
-  initiative: number;
+  initiative: number | null;
   memberCount: number;
   active?: boolean;
 }): React.ReactElement {
@@ -46,7 +46,7 @@ export function GroupHeader({
           color: active ? ACTIVE_INITIATIVE_COLOR : "oklch(0.74 0.04 200)",
         }}
       >
-        {initiative}
+        {initiative === null ? "—" : initiative}
       </div>
       <span
         style={{

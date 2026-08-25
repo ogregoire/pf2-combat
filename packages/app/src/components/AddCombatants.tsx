@@ -155,9 +155,12 @@ export function AddCombatants({
     // "act this round instead": the combatant's turn-order slot is lowered
     // just enough to still be reached this round, but the GM's typed
     // initiative is never overwritten — it's parked as trueInitiative and
-    // restored (see store.nextTurn) the moment the round wraps.
-    const actingEarly = actThisRound && activeEntry !== undefined && typedInitiative > activeEntry.initiative;
-    const slotInitiative = actingEarly ? Math.min(typedInitiative, activeEntry!.initiative) : typedInitiative;
+    // restored (see store.nextTurn) the moment the round wraps. An active
+    // entry with no initiative rolled yet is treated as a 0 for this
+    // comparison — there's no real value to measure against.
+    const activeInitiative = activeEntry?.initiative ?? 0;
+    const actingEarly = actThisRound && activeEntry !== undefined && typedInitiative > activeInitiative;
+    const slotInitiative = actingEarly ? Math.min(typedInitiative, activeInitiative) : typedInitiative;
     const trueInitiative = actingEarly ? typedInitiative : undefined;
 
     if (qty === 1) addCombatant(seed, slotInitiative, trueInitiative);
@@ -170,7 +173,7 @@ export function AddCombatants({
     running &&
     activeEntry !== undefined &&
     typedInitiative !== null &&
-    typedInitiative > activeEntry.initiative &&
+    typedInitiative > (activeEntry.initiative ?? 0) &&
     !actThisRound;
 
   const qtyForLabel = Math.max(1, Math.trunc(Number(quantity)) || 1);

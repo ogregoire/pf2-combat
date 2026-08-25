@@ -109,19 +109,26 @@ function keyOf(e: Entry): number {
 
 /** Entries stay sorted by `orderKey` descending; Array#sort is stable, and
  * new entries are always appended before sorting, so ties preserve
- * insertion order. */
+ * insertion order. An entry with no initiative rolled yet is placed above
+ * every rolled entry regardless of `orderKey` — it hasn't earned a spot in
+ * the numeric order, so it waits at the top rather than defaulting into the
+ * middle of the pack at `orderKey` 0. */
 function sortEntries(entries: Entry[]): void {
-  entries.sort((a, b) => keyOf(b) - keyOf(a));
+  entries.sort((a, b) => {
+    if (a.initiative === null && b.initiative !== null) return -1;
+    if (a.initiative !== null && b.initiative === null) return 1;
+    return keyOf(b) - keyOf(a);
+  });
 }
 
 interface EncounterStore {
   encounter: Encounter;
   players: Player[];
-  addCombatant(seed: CombatantSeed, initiative: number, trueInitiative?: number): string;
+  addCombatant(seed: CombatantSeed, initiative: number | null, trueInitiative?: number): string;
   addMany(
     seed: CombatantSeed,
     quantity: number,
-    initiative: number,
+    initiative: number | null,
     trueInitiative?: number,
   ): string[];
   removeCombatant(id: string): void;
@@ -137,7 +144,7 @@ interface EncounterStore {
   setTarget(id: string | null): void;
   nextTurn(): void;
   acknowledgePrompt(promptId: string): void;
-  group(ids: string[], name: string, initiative: number): void;
+  group(ids: string[], name: string, initiative: number | null): void;
   setPlayers(players: Player[]): void;
   /** Removes every `kind: "creature"` combatant; the fight keeps running
    * (round, turn order, PCs untouched). */
@@ -171,7 +178,7 @@ export const useEncounter = create<EncounterStore>()(
         enc.entries.push({
           id: nextEntryId(),
           initiative,
-          orderKey: initiative,
+          orderKey: initiative ?? 0,
           combatantIds: [id],
           groupName: null,
           trueInitiative: trueInitiative ?? null,
@@ -197,7 +204,7 @@ export const useEncounter = create<EncounterStore>()(
           enc.entries.push({
             id: nextEntryId(),
             initiative,
-            orderKey: initiative,
+            orderKey: initiative ?? 0,
             combatantIds: [id],
             groupName: null,
             trueInitiative: trueInitiative ?? null,
@@ -435,7 +442,7 @@ export const useEncounter = create<EncounterStore>()(
         remaining.push({
           id: groupEntryId,
           initiative,
-          orderKey: initiative,
+          orderKey: initiative ?? 0,
           combatantIds: [...ids],
           groupName: name,
           trueInitiative: null,

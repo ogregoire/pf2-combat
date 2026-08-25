@@ -124,3 +124,17 @@ describe("CombatantRow saves", () => {
     expect(line.textContent).toBe("F+6, R+7, W+4");
   });
 });
+
+describe("CombatantRow initiative display", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("renders an em dash, not a zero, for a combatant with no initiative yet", () => {
+    // level: 1, not the seed's default 0 — a level-0 creature's own level
+    // badge renders the bare text "0" next to its name, which would give
+    // queryByText("0") a false hit unrelated to the initiative cell below.
+    useEncounter.getState().addCombatant(seed({ level: 1 }), null);
+    render(<CombatantList />);
+    expect(screen.getByText("—")).toBeDefined();
+    expect(screen.queryByText("0")).toBeNull();
+  });
+});

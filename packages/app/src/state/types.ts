@@ -37,7 +37,10 @@ export interface Combatant {
 
 export interface Entry {
   id: string;
-  initiative: number;
+  /** `null` before the GM has typed a roll — sorts above every rolled
+   * entry (see `sortEntries`) and renders as an em dash rather than a 0,
+   * which would read as a real (terrible) roll instead of "not rolled". */
+  initiative: number | null;
   combatantIds: string[];
   groupName: string | null;
   /**

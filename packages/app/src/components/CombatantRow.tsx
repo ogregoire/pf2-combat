@@ -231,7 +231,7 @@ function StandaloneRow({
   onToggleSelect,
 }: {
   combatant: Combatant;
-  initiative?: number;
+  initiative?: number | null;
   active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
@@ -278,7 +278,7 @@ function StandaloneRow({
             color: active ? ACTIVE_INITIATIVE_COLOR : "var(--text-dim)",
           }}
         >
-          {initiative}
+          {initiative === null ? "—" : initiative}
         </div>
       )}
 
@@ -442,7 +442,7 @@ export function CombatantRow({
   onToggleSelect,
 }: {
   id: string;
-  initiative?: number;
+  initiative?: number | null;
   grouped?: boolean;
   active?: boolean;
   /** Multi-select for the group builder (CombatantList) — defaults are a
