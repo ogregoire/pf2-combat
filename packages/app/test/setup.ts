@@ -14,4 +14,11 @@ import { afterEach } from "vitest";
 if (typeof document !== "undefined") {
   const { cleanup } = await import("@testing-library/react");
   afterEach(cleanup);
+
+  // jsdom itself provides no IndexedDB implementation, and persist.ts
+  // (loadEncounter/loadPlayers/loadSettings and friends) is real I/O
+  // against it — this polyfills `indexedDB` so those tests exercise the
+  // real idb code path instead of every persistence test being reduced to
+  // the pure `migrate()` helper.
+  await import("fake-indexeddb/auto");
 }

@@ -80,7 +80,25 @@ function TopBar(): React.ReactElement {
         <span style={{ color: "var(--text-faint)" }}>&mdash;</span>
         <span>party level {partyLevel}</span>
       </div>
+
+      <LanguageToggle />
     </div>
+  );
+}
+
+/** Switches `lang` between English and French. Labeled with the language a
+ * click switches TO, not the language currently shown — Tasks 12-14 are
+ * what actually render French text; this toggle only sets the remembered
+ * preference (see Task 9). */
+function LanguageToggle(): React.ReactElement {
+  const lang = useEncounter((s) => s.lang);
+  const setLang = useEncounter((s) => s.setLang);
+  const isFrench = lang === "fr";
+
+  return (
+    <button type="button" onClick={() => setLang(isFrench ? "en" : "fr")} style={headerButtonStyle}>
+      {isFrench ? "English" : "Français"}
+    </button>
   );
 }
 

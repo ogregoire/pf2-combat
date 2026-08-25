@@ -5,6 +5,8 @@ import type { ConditionSlug } from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
 import type { Combatant, Encounter, Entry, Player } from "./types.js";
 
+export type Lang = "en" | "fr";
+
 /** Fields a caller supplies to create a combatant; the rest is derived. */
 export interface CombatantSeed {
   kind: "pc" | "creature";
@@ -111,6 +113,8 @@ function sortEntries(entries: Entry[]): void {
 interface EncounterStore {
   encounter: Encounter;
   players: Player[];
+  lang: Lang;
+  setLang(lang: Lang): void;
   addCombatant(seed: CombatantSeed, initiative: number, trueInitiative?: number): string;
   addMany(
     seed: CombatantSeed,
@@ -151,6 +155,12 @@ export const useEncounter = create<EncounterStore>()(
   immer((set, get) => ({
     encounter: emptyEncounter(),
     players: [],
+    lang: "en",
+
+    setLang: (lang) =>
+      set((state) => {
+        state.lang = lang;
+      }),
 
     addCombatant: (seed, initiative, trueInitiative) => {
       const id = nextCombatantId();
@@ -474,6 +484,7 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         state.encounter = emptyEncounter();
         state.players = [];
+        state.lang = "en";
       });
     },
   })),
