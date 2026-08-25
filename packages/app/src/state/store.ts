@@ -297,6 +297,29 @@ function advanceTurn(enc: Encounter): void {
  * every rolled entry regardless of `orderKey` — it hasn't earned a spot in
  * the numeric order, so it waits at the top rather than defaulting into the
  * middle of the pack at `orderKey` 0. */
+/**
+ * The nearest entry from `start`, stepping by `step`, that has a rolled
+ * initiative — or undefined if there is none that way.
+ *
+ * Only a rolled entry carries a meaningful `orderKey`: `sortEntries` pins an
+ * unrolled one above every rolled entry on `initiative === null` alone,
+ * whatever its key says, and that key is normally 0 (`orderKey: initiative
+ * ?? 0` at creation). So an unrolled entry is not a point in the numeric
+ * order at all, and `moveEntry` must not measure a drop against one — 0 is
+ * the worst number it could pick up, dragging the computed key to the
+ * bottom of the order. Skipping them is also what makes "before this row"
+ * mean what it looks like on screen: the unrolled block is not part of the
+ * numeric order, so the position above it is simply the top of the rolled
+ * order.
+ */
+function nearestRolled(entries: Entry[], start: number, step: -1 | 1): Entry | undefined {
+  for (let i = start; i >= 0 && i < entries.length; i += step) {
+    const entry = entries[i];
+    if (entry !== undefined && entry.initiative !== null) return entry;
+  }
+  return undefined;
+}
+
 function sortEntries(entries: Entry[]): void {
   entries.sort((a, b) => {
     if (a.initiative === null && b.initiative !== null) return -1;
@@ -717,8 +740,13 @@ export const useEncounter = create<EncounterStore>()(
         // array at the drop position *before* the stable re-sort below is
         // what actually settles a tie in the GM's favour — the array
         // position, not the number, decides who acts first among equals.
-        const above = insertAt > 0 ? enc.entries[insertAt - 1] : undefined;
-        const below = insertAt < enc.entries.length ? enc.entries[insertAt] : undefined;
+        // Nearest *rolled* neighbours, not simply adjacent ones — see
+        // nearestRolled for why an unrolled entry is no place to measure
+        // from. An unrolled entry always sits at the top of the list, so it
+        // is the neighbour of whatever the GM drops into the first slot:
+        // this is the common path, not an edge case.
+        const above = nearestRolled(enc.entries, insertAt - 1, -1);
+        const below = nearestRolled(enc.entries, insertAt, 1);
         moved!.orderKey =
           above !== undefined && below !== undefined
             ? (keyOf(above) + keyOf(below)) / 2

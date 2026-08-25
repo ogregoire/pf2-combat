@@ -829,6 +829,57 @@ describe("CombatantList", () => {
       expect(useEncounter.getState().encounter.entries.map((e) => e.id)).toEqual(before);
     });
 
+    /*
+     * An unrolled entry's orderKey is meaningless: sortEntries pins it above
+     * every rolled entry on `initiative === null` alone, whatever the key
+     * says, and it is usually 0 (from `orderKey: initiative ?? 0` at
+     * creation). Using one as a neighbour therefore measures the drop
+     * against a number that means nothing, and 0 is the worst possible
+     * one — it drags the computed key to the bottom of the order.
+     *
+     * Both tests below are the same bug seen from two sides, and neither is
+     * an edge case: an unrolled entry sits at the *top* of the list, so it
+     * is the neighbour of whatever the GM drops in the first slot.
+     */
+    it("treats a drop onto an unrolled row as the top of the rolled order, not the bottom", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Unrolled" }), null);
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Beta" }), 15);
+      s.addCombatant(seed({ name: "Gamma" }), 10);
+      const entries = useEncounter.getState().encounter.entries;
+      const nameOf = (e: { combatantIds: string[] }): string =>
+        useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
+      const unrolled = entries.find((e) => nameOf(e) === "Unrolled")!;
+      const gamma = entries.find((e) => nameOf(e) === "Gamma")!;
+
+      useEncounter.getState().moveEntry(gamma.id, unrolled.id);
+
+      expect(useEncounter.getState().encounter.entries.map(nameOf)).toEqual([
+        "Unrolled", "Gamma", "Alpha", "Beta",
+      ]);
+      // Still a placement, never a re-roll.
+      expect(useEncounter.getState().encounter.entries.map((e) => e.initiative)).toEqual([null, 10, 20, 15]);
+    });
+
+    it("does not measure a drop against an unrolled entry sitting above the target row", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Unrolled" }), null);
+      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Beta" }), 15);
+      const entries = useEncounter.getState().encounter.entries;
+      const nameOf = (e: { combatantIds: string[] }): string =>
+        useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
+      const alpha = entries.find((e) => nameOf(e) === "Alpha")!;
+      const beta = entries.find((e) => nameOf(e) === "Beta")!;
+
+      // "Put Beta above Alpha" — Alpha is the first rolled row, so its only
+      // neighbour above is the unrolled entry.
+      useEncounter.getState().moveEntry(beta.id, alpha.id);
+
+      expect(useEncounter.getState().encounter.entries.map(nameOf)).toEqual(["Unrolled", "Beta", "Alpha"]);
+    });
+
     it("does nothing when the dragged entry id no longer exists", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Alpha" }), 20);
