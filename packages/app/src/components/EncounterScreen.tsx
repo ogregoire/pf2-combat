@@ -5,13 +5,13 @@ import { loadCreature } from "../data/creatures.js";
 import { useCatalog } from "../hooks/useCatalog.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import { encounterXp, partyLevelFor } from "../rules/xp.js";
-import { useEncounter } from "../state/store.js";
+import { unrolledCount, useEncounter } from "../state/store.js";
 import { ActiveCombatant } from "./ActiveCombatant.js";
 import { AddCombatants } from "./AddCombatants.js";
 import { CombatantList } from "./CombatantList.js";
 import { NextButton } from "./NextButton.js";
 import { PartyManager } from "./PartyManager.js";
-import { TurnManager, remainingActionsFor } from "./TurnManager.js";
+import { TurnManager, UnrolledNotice, remainingActionsFor } from "./TurnManager.js";
 import { activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
 
 /** Main.dc.html's top bar: encounter name, the XP award per character (the
@@ -273,6 +273,10 @@ export function EncounterScreen({
   const activeCombatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const unacknowledgedCount = activeCombatant ? unacknowledgedCountFor(activeCombatant, acknowledgedPrompts) : 0;
   const actionsRemaining = activeCombatant ? remainingActionsFor(activeCombatant) : undefined;
+  // Only gates whether the pinned bar reserves space for UnrolledNotice
+  // below — the message text itself lives in exactly one place
+  // (TurnManager.UnrolledNotice), not duplicated here.
+  const unrolled = useEncounter((s) => unrolledCount(s.encounter));
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100dvh", background: "var(--bg)", color: "var(--text)" }}>
@@ -325,6 +329,16 @@ export function EncounterScreen({
               zIndex: 40,
             }}
           >
+            {/* Pinned bar is reachable from every tab, so this is the one
+               place the guard's reason is guaranteed visible no matter
+               which pane the GM is looking at. Guarded on `unrolled` (only
+               a count check, not a copy of the message) so the bar doesn't
+               reserve this space when there's nothing to say. */}
+            {unrolled > 0 && (
+              <div style={{ textAlign: "center", marginBottom: "6px" }}>
+                <UnrolledNotice />
+              </div>
+            )}
             <NextButton unacknowledgedCount={unacknowledgedCount} actionsRemaining={actionsRemaining} />
           </div>
         </>

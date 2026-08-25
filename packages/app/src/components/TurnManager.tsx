@@ -38,6 +38,22 @@ function EncounterControls(): React.ReactElement {
   );
 }
 
+/** `nextTurn` refuses to advance while anyone is unrolled (store.ts) — this
+ * is the only place that says why, so the GM isn't left wondering why the
+ * button did nothing. Its own component (not inlined in TurnManager) so
+ * EncounterScreen's narrow layout can put the same message next to its
+ * pinned NextButton, which is reachable from every tab — the guard has to
+ * be explained everywhere a Next control is, not just on the Turn tab. */
+export function UnrolledNotice(): React.ReactElement | null {
+  const unrolled = useEncounter((s) => unrolledCount(s.encounter));
+  if (unrolled === 0) return null;
+  return (
+    <span style={{ fontSize: "11.5px", color: "var(--danger)", textAlign: "center" }}>
+      {unrolled} combatant{unrolled === 1 ? " has" : "s have"} no initiative
+    </span>
+  );
+}
+
 /** Same pool computation ActionPips/ActionList already make from a
  * combatant's conditions — duplicated locally (as those two already
  * duplicate it from each other) rather than adding a new shared module for
@@ -66,7 +82,6 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
   const combatants = useEncounter((s) => s.encounter.combatants);
   const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
   const resetStrikes = useEncounter((s) => s.resetStrikes);
-  const unrolled = useEncounter((s) => unrolledCount(s.encounter));
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const unacknowledgedCount = combatant ? unacknowledgedCountFor(combatant, acknowledgedPrompts) : 0;
@@ -119,20 +134,18 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
 
       <TurnPrompts />
 
+      {/* showNextButton also gates UnrolledNotice: on the narrow layout
+         (showNextButton=false) the pinned bar's own Next button already
+         carries this message (see EncounterScreen) — showing it here too
+         would just repeat it while that Next button sits off-screen below. */}
       {showNextButton && (
-        <NextButton
-          unacknowledgedCount={unacknowledgedCount}
-          actionsRemaining={combatant ? remainingActionsFor(combatant) : undefined}
-        />
-      )}
-
-      {/* nextTurn refuses to advance while anyone is unrolled (store.ts) —
-         this is the only place that says why, so the GM isn't left
-         wondering why the button did nothing. */}
-      {unrolled > 0 && (
-        <span style={{ fontSize: "11.5px", color: "var(--danger)", textAlign: "center" }}>
-          {unrolled} combatant{unrolled === 1 ? " has" : "s have"} no initiative
-        </span>
+        <>
+          <NextButton
+            unacknowledgedCount={unacknowledgedCount}
+            actionsRemaining={combatant ? remainingActionsFor(combatant) : undefined}
+          />
+          <UnrolledNotice />
+        </>
       )}
 
       <ReactionWatch />
