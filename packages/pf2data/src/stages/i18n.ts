@@ -1,6 +1,31 @@
 import type { CreatureI18n } from "@pf2/schema";
+import { resolveLinks } from "../normalize/links.js";
+import { resolveLocalize, type LangTable } from "../normalize/localize.js";
 import type { BabeleTable } from "./babele.js";
 import type { ScannedTrait } from "./reference.js";
+
+/**
+ * Babele stores RAW Foundry text, so every French description arrives with
+ * the same two markup families the English pipeline strips:
+ * `@Localize[KEY]` glossary includes and `@UUID[...]{label}` cross-references.
+ * Left alone they render literally to the GM
+ * (`@UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}`).
+ *
+ * Same two passes, in the same order, as `normalizeCreature`: localize first,
+ * because the text a glossary key expands to itself contains `@UUID`
+ * references that must survive to be resolved by the second pass.
+ *
+ * `lang` is the FRENCH table (`lang/fr.json`). Resolving against the English
+ * one would drop English prose into otherwise-French text -- worse than
+ * leaving the marker in place, because it looks correct.
+ *
+ * `@Check`, `@Damage` and `@Template` are deliberately left alone: the
+ * English dataset carries them too, and the app renders them.
+ */
+function resolveFrench(html: string | null | undefined, lang: LangTable): string | null {
+  if (html === null || html === undefined) return null;
+  return resolveLinks(resolveLocalize(html, lang));
+}
 
 /**
  * Builds a creature's French overlay by aligning Babele's per-item
@@ -27,6 +52,8 @@ export function buildCreatureI18n(args: {
   actions: { name: string; foundryId: string }[];
   attacks: { name: string; foundryId: string }[];
   table: BabeleTable;
+  /** The FRENCH lang table, for `@Localize` resolution. See `resolveFrench`. */
+  lang: LangTable;
 }): CreatureI18n | null {
   const entry = args.table.lookup("creature", args.ownPack, args.creatureName);
   if (!entry) return null;
@@ -35,11 +62,11 @@ export function buildCreatureI18n(args: {
 
   return {
     name: entry.name,
-    publicNotes: entry.description ?? null,
+    publicNotes: resolveFrench(entry.description, args.lang),
     actions: args.actions.map((action) => ({
       en: action.name,
       name: items[action.foundryId]?.name ?? null,
-      description: items[action.foundryId]?.description ?? null,
+      description: resolveFrench(items[action.foundryId]?.description, args.lang),
     })),
     attacks: args.attacks.map((attack) => ({
       en: attack.name,
@@ -105,11 +132,14 @@ export type ReferenceI18n = Record<string, { name: string; description: string |
 export function buildConditionsI18n(
   defs: { slug: string; name: string }[],
   table: BabeleTable,
+  lang: LangTable,
 ): ReferenceI18n {
   const out: ReferenceI18n = {};
   for (const def of defs) {
     const found = table.lookup("condition", NO_OWN_PACK, def.name);
-    if (found) out[def.slug] = { name: found.name, description: found.description ?? null };
+    if (found) {
+      out[def.slug] = { name: found.name, description: resolveFrench(found.description, lang) };
+    }
   }
   return out;
 }
@@ -124,11 +154,14 @@ export function buildConditionsI18n(
 export function buildGlossaryI18n(
   defs: { slug: string; name: string }[],
   table: BabeleTable,
+  lang: LangTable,
 ): ReferenceI18n {
   const out: ReferenceI18n = {};
   for (const def of defs) {
     const found = table.lookup("glossary", NO_OWN_PACK, def.name);
-    if (found) out[def.slug] = { name: found.name, description: found.description ?? null };
+    if (found) {
+      out[def.slug] = { name: found.name, description: resolveFrench(found.description, lang) };
+    }
   }
   return out;
 }

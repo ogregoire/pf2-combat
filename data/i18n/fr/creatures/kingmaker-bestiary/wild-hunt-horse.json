@@ -1,27 +1,27 @@
 {
   "actions": [
     {
-      "description": "<p>@Check[reflex|dc:36]</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Buck]</p>",
+      "description": "<p>@Check[reflex|dc:36]</p>\n<p><hr />\n<p>La plupart des monstres qui servent de montures peuvent tenter de désarçonner les cavaliers indésirables ou embêtants, mais la plupart des montures n'utiliseront pas cette réaction contre une créature de confiance à moins que les montures ne soient effrayées ou maltraitées.</p>\n<p><strong>Déclencheur</strong> Une créature Monte ou utiliser l'action Diriger un animal en chevauchant le monstre.</p>\n<hr />\n<p><strong>Effet</strong> La créature déclencheuse doit réussir un jet de Réflexes contre le DD indiqué ou tomber de la créature et se retrouver À terre. Si le jet de sauvegarde est un échec critique, la créature déclencheuse subit aussi @Damage[1d6[bludgeoning]]{1d6 dégâts contondants} en plus des dégâts normaux de la chute.</p></p>",
       "en": "Buck",
       "name": null
     },
     {
-      "description": "<p>Le cheval de la Chasse sauvage émet un hennissement tonitruant dans un @Template[cone|distance:15]{cône de 4,50 mètres}. Les créatures dans la zone subissent @Damage[16d6[sonic]|options:area-damage]{16d6 dégâts de son} (@Check[fortitude|dc:36|basic|options:area-effect], et deviennent @UUID[Compendium.pf2e.conditionitems.Item.9PR9y0bi4JPKnHPR]{Sourdes} pendant 1 minute en cas d'échec critique). Le cheval de la chasse sauvage ne peut plus utiliser Hennissement assourdissant pendant [[/gmr 1d4 #Recharger Hennissement assourdissant]]{1d4 rounds}.</p>",
+      "description": "<p>Le cheval de la Chasse sauvage émet un hennissement tonitruant dans un @Template[cone|distance:15]{cône de 4,50 mètres}. Les créatures dans la zone subissent @Damage[16d6[sonic]|options:area-damage]{16d6 dégâts de son} (@Check[fortitude|dc:36|basic|options:area-effect], et deviennent Sourdes pendant 1 minute en cas d'échec critique). Le cheval de la chasse sauvage ne peut plus utiliser Hennissement assourdissant pendant [[/gmr 1d4 #Recharger Hennissement assourdissant]]{1d4 rounds}.</p>",
       "en": "Deafening Cry",
       "name": "Hennissement assourdissant"
     },
     {
-      "description": "<p>Le cheval de la Chasse sauvage fixe son regard sur une créature située dans son champ de vision et dans un rayon de 9 mètres. La cible doit immédiatement faire un jet de sauvegarde contre le Regard sauvage. Si cette créature est déjà Ralentie par le Regard sauvage avant de tenter le jet de sauvegarde, un échec à son jet de sauvegarde la rendra @UUID[Compendium.pf2e.conditionitems.Item.6uEgoh53GbXuHpTF]{Paralysée} pendant 1 round. Une fois qu'elle a fait son jet de sauvegarde, elle est temporairement immunisée à Focaliser le regard jusqu'au début du prochain tour du cheval de la Chasse sauvage.</p>",
+      "description": "<p>Le cheval de la Chasse sauvage fixe son regard sur une créature située dans son champ de vision et dans un rayon de 9 mètres. La cible doit immédiatement faire un jet de sauvegarde contre le Regard sauvage. Si cette créature est déjà Ralentie par le Regard sauvage avant de tenter le jet de sauvegarde, un échec à son jet de sauvegarde la rendra Paralysée pendant 1 round. Une fois qu'elle a fait son jet de sauvegarde, elle est temporairement immunisée à Focaliser le regard jusqu'au début du prochain tour du cheval de la Chasse sauvage.</p>",
       "en": "Focus Gaze",
       "name": "Focaliser le regard"
     },
     {
-      "description": "<p>18 mètres. Le cheval de la Chasse Sauvage martèle le sol de ses sabots et caracole sur place, créant un bruit si fort qu'il donne l'impression que des centaines de chevaux arrivent de toutes les directions. Chaque créature dans @Template[emanation|distance:60]{l'émanation de 18 mètres} doit tenter un jet de @Check[will|dc:33].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée et est temporairement immunisée à Tonnerre de sabots pendant 1 heure.</p>\n<p><strong>Succès</strong> La créature est distraite par le bruit. Jusqu'au début de son prochain tour, si la créature veut utiliser une réaction, elle doit d'abord réussir un @Check[flat|dc:5]. Sur un échec la réaction est interrompue et n'a aucun effet.</p>\n<p><strong>Échec</strong> La créature est déroutée par le bruit, et subit les même effets que succès, sauf qu'elle est également @UUID[Compendium.pf2e.conditionitems.Item.yblD8fOR1J8rDwEQ]{Confuse} pendant 1 round.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la Confusion persiste pendant 1 minute ou jusqu'à ce que la créature recouvre ses esprit par un autre moyen.</p>",
+      "description": "<p>18 mètres. Le cheval de la Chasse Sauvage martèle le sol de ses sabots et caracole sur place, créant un bruit si fort qu'il donne l'impression que des centaines de chevaux arrivent de toutes les directions. Chaque créature dans @Template[emanation|distance:60]{l'émanation de 18 mètres} doit tenter un jet de @Check[will|dc:33].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée et est temporairement immunisée à Tonnerre de sabots pendant 1 heure.</p>\n<p><strong>Succès</strong> La créature est distraite par le bruit. Jusqu'au début de son prochain tour, si la créature veut utiliser une réaction, elle doit d'abord réussir un @Check[flat|dc:5]. Sur un échec la réaction est interrompue et n'a aucun effet.</p>\n<p><strong>Échec</strong> La créature est déroutée par le bruit, et subit les même effets que succès, sauf qu'elle est également Confuse pendant 1 round.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la Confusion persiste pendant 1 minute ou jusqu'à ce que la créature recouvre ses esprit par un autre moyen.</p>",
       "en": "Bewildering Hoofbeats",
       "name": "Tonnerre de sabots"
     },
     {
-      "description": "<p>Moyenne ou inférieure, Sabot, @Check[reflex|dc:36|basic]</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Trample]</p>",
+      "description": "<p>Moyenne ou inférieure, Sabot, @Check[reflex|dc:36|basic]</p>\n<hr />\n<p><p>Le monstre Marche rapidement sur une distance maximale égale au double de sa Vitesse et peut traverser les espaces de créatures de la taille indiquée. Il Piétine alors chaque créature dans l'espace de laquelle il pénètre. Le monstre ne peut tenter de Piétiner une créature qu'une seule fois par utilisation de l'action Piétinement. Le monstre inflige les dégâts de la Frappe indiquée. Les créatures piétinées peuvent alors faire un jet de Réflexes basique avec le DD indiqué (aucun dégât sur un succès critique, la moitié des dégâts sur un succès, le double des dégâts sur un échec critique).</p></p>",
       "en": "Trample",
       "name": null
     },
@@ -31,7 +31,7 @@
       "name": null
     },
     {
-      "description": "<p>Le limier de la Chasse sauvage ignore l'état @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Masqué} accordé par les feuilles et autres végétations.</p>",
+      "description": "<p>Le limier de la Chasse sauvage ignore l'état Masqué accordé par les feuilles et autres végétations.</p>",
       "en": "Greensight",
       "name": "Vision malgré la végétation"
     },
@@ -51,12 +51,12 @@
       "name": "Synérgie du cavalier"
     },
     {
-      "description": "<p>9 mètres. Ceux qui croisent le regard d'un cheval de la Chasse sauvage ressentent le redoutable pouvoir de la Chasse sauvage et ont du mal à agir face à une menace légendaire. Lorsqu'une créature termine son tour dans l'aura, elle doit réussir un jet de @Check[will|dc:33] ou devenir @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 1} (@UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 2} en cas d'échec critique). Le cheval de la chasse sauvage peut désactiver ou activer son aura utilisant une action unique qui possède le trait concentration.</p>",
+      "description": "<p>9 mètres. Ceux qui croisent le regard d'un cheval de la Chasse sauvage ressentent le redoutable pouvoir de la Chasse sauvage et ont du mal à agir face à une menace légendaire. Lorsqu'une créature termine son tour dans l'aura, elle doit réussir un jet de @Check[will|dc:33] ou devenir Ralentie 1 (Ralentie 2 en cas d'échec critique). Le cheval de la chasse sauvage peut désactiver ou activer son aura utilisant une action unique qui possède le trait concentration.</p>",
       "en": "Wild Gaze",
       "name": "Regard sauvage"
     },
     {
-      "description": "<p>@UUID[Compendium.pf2e.bestiary-ability-glossary-srd.Item.v61oEQaDdcRpaZ9X]de @Template[emanation|distance:500]{Aura de 1,5 kilomètres}</p>\n<p>150 mètres. Un cheval de la chasse sauvage confère à tous les autres membres de la Chasse sauvage présents dans l'aura (qui ne sont pas des chevaux de la Chasse sauvage), un bonus de statut de +3 mètres à la Vitesse.</p>",
+      "description": "<p>v61oEQaDdcRpaZ9Xde @Template[emanation|distance:500]{Aura de 1,5 kilomètres}</p>\n<p>150 mètres. Un cheval de la chasse sauvage confère à tous les autres membres de la Chasse sauvage présents dans l'aura (qui ne sont pas des chevaux de la Chasse sauvage), un bonus de statut de +3 mètres à la Vitesse.</p>",
       "en": "Wild Hunt Link",
       "name": "Lien avec la Chasse sauvage"
     }

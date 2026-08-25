@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import type { Manifest } from "@pf2/schema";
 import { normalizeCreature } from "../src/normalize/creature.js";
 import { buildIndexes } from "../src/stages/index.js";
-import { verifyDataset, verifyI18n } from "../src/stages/verify.js";
+import { verifyDataset, verifyI18n, verifyI18nMarkup } from "../src/stages/verify.js";
 
 const stagLord = normalizeCreature(
   JSON.parse(
@@ -262,5 +262,91 @@ describe("verifyI18n", () => {
     );
     expect(problems).toHaveLength(1);
     expect(problems[0]).toMatch(/kingmaker-bestiary\/the-stag-lord/);
+  });
+});
+
+describe("unresolved Foundry markup in French output", () => {
+  // Babele ships RAW text. The English side has zero @UUID and zero @Localize
+  // because normalizeCreature resolves both; the French side must match, or
+  // the GM reads the marker literally.
+  it("verifyI18n reports an unresolved @UUID in an overlay", () => {
+    const problems = verifyI18n(
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [] },
+      {
+        name: "X",
+        publicNotes: null,
+        actions: [{
+          en: "Rend",
+          name: "Déchiqueter",
+          description: "<p>Voir @UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}.</p>",
+        }],
+        attacks: [],
+      },
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/@UUID/);
+    expect(problems[0]).toMatch(/p\/c/);
+  });
+
+  it("verifyI18n reports an unresolved @Localize in an overlay", () => {
+    const problems = verifyI18n(
+      { id: "p/c", actions: [], attacks: [] },
+      {
+        name: "X",
+        publicNotes: "@Localize[PF2E.NPC.Abilities.Glossary.Grab]",
+        actions: [],
+        attacks: [],
+      },
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/@Localize/);
+  });
+
+  it("verifyI18nMarkup covers the reference overlays too", () => {
+    expect(
+      verifyI18nMarkup("i18n/fr/glossary.json", {
+        grab: { name: "Agrippement", description: "<p>@UUID[Compendium.pf2e.x.Item.y]{z}</p>" },
+      }),
+    ).toHaveLength(1);
+    expect(
+      verifyI18nMarkup("i18n/fr/conditions.json", {
+        frightened: { name: "Effrayé", description: "<p>propre</p>" },
+      }),
+    ).toEqual([]);
+  });
+
+  it("leaves @Check, @Damage and @Template alone -- the English dataset carries them too", () => {
+    expect(
+      verifyI18nMarkup("i18n/fr/glossary.json", {
+        x: { name: "X", description: "@Check[reflex|dc:20] @Damage[2d6] @Template[burst]" },
+      }),
+    ).toEqual([]);
+  });
+
+  it("catches a marker family nobody thought of, not just @UUID and @Localize", () => {
+    // `@Compendium[...]` is the pre-V9 spelling of a @UUID reference. It got
+    // through the first fix because the check named two families by hand; an
+    // allow-list of what the ENGLISH dataset carries cannot miss the next one.
+    const problems = verifyI18nMarkup("i18n/fr/creatures/p/c.json", {
+      description: "@Compendium[pf2e.spells-srd.dN8QBNuTiaBHCKUe]{Métamorphose maudite}",
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/@Compendium/);
+  });
+});
+
+describe("verifyI18nMarkup catches a reference with no @-prefix", () => {
+  it("flags bracket text that is a compendium reference minus its @", () => {
+    const problems = verifyI18nMarkup("i18n/fr/glossary.json", {
+      x: { description: "elle est [pf2e.conditionitems.4D2KBtexWXa6oUMR]{Drainée 1}" },
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/compendium reference/i);
+  });
+
+  it("does not flag @Check, @Damage or @Template brackets", () => {
+    expect(
+      verifyI18nMarkup("x", { d: "@Check[reflex|dc:20] @Damage[2d6] @Template[emanation|distance:500]" }),
+    ).toEqual([]);
   });
 });

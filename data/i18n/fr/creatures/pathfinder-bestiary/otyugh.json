@@ -1,7 +1,7 @@
 {
   "actions": [
     {
-      "description": "<p>@Damage[(1d6+6)[bludgeoning]]{1d6+6 dégâts contondants}, @Check[fortitude|dc:22|basic]</p>\n<p>@Localize[PF2E.NPC.Abilities.Glossary.Constrict]</p>",
+      "description": "<p>@Damage[(1d6+6)[bludgeoning]]{1d6+6 dégâts contondants}, @Check[fortitude|dc:22|basic]</p>\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
       "en": "Constrict",
       "name": null
     },
@@ -11,17 +11,17 @@
       "name": null
     },
     {
-      "description": "<p>L'otyugh tente de déplacer toutes les créatures qu'il a @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippé} dans d'autres cases dans l'allonge de ses tentacules. Il effectue un seul test d'@Check[athletics|defense:fortitude] et compare le résultat au DD de Vigueur de chaque créature. En cas d'échec, la créature reste en place et en cas d'échec critique, elle n'est plus Agrippée.</p>",
+      "description": "<p>L'otyugh tente de déplacer toutes les créatures qu'il a Agrippé dans d'autres cases dans l'allonge de ses tentacules. Il effectue un seul test d'@Check[athletics|defense:fortitude] et compare le résultat au DD de Vigueur de chaque créature. En cas d'échec, la créature reste en place et en cas d'échec critique, elle n'est plus Agrippée.</p>",
       "en": "Reposition",
       "name": "Repositionnement"
     },
     {
-      "description": "<p>Les états @UUID[Compendium.pf2e.conditionitems.Item.fesd1n5eVhpCSS18]{Nauséeux} et @UUID[Compendium.pf2e.conditionitems.Item.fBnFDH2MTzgFijKf]{Inconscient} de la fièvre de la fange ne s'améliorent pas naturellement tant que la maladie n'est pas guérie.</p>\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:20]</p>\n<hr />\n<p><strong>Stade 1</strong> Porteur sans symptômes ([[/gmr 1d4 #heures]]{1d4 heures})</p>\n<p><strong>Stade 2</strong> @UUID[Compendium.pf2e.conditionitems.Item.fesd1n5eVhpCSS18]{Nauséeux 1} (1 jour)</p>\n<p><strong>Stade 3</strong> Nauséeux 1 et @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralenti 1} (1 jour)</p>\n<p><strong>Stade 4</strong> @UUID[Compendium.pf2e.conditionitems.Item.fBnFDH2MTzgFijKf]{Inconscient} (1 jour)</p>\n<p><strong>Stade 5</strong> Mort</p>",
+      "description": "<p>Les états Nauséeux et Inconscient de la fièvre de la fange ne s'améliorent pas naturellement tant que la maladie n'est pas guérie.</p>\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:20]</p>\n<hr />\n<p><strong>Stade 1</strong> Porteur sans symptômes ([[/gmr 1d4 #heures]]{1d4 heures})</p>\n<p><strong>Stade 2</strong> Nauséeux 1 (1 jour)</p>\n<p><strong>Stade 3</strong> Nauséeux 1 et Ralenti 1 (1 jour)</p>\n<p><strong>Stade 4</strong> Inconscient (1 jour)</p>\n<p><strong>Stade 5</strong> Mort</p>",
       "en": "Filth Fever",
       "name": "Fièvre de la fange"
     },
     {
-      "description": "<p>12 mètres. Une créature qui pénètre dans l'aura doit réussir un jet de @Check[fortitude|dc:20|options:area-effect,inflicts:sickened,inflicts:slowed] ou être @UUID[Compendium.pf2e.conditionitems.Item.fesd1n5eVhpCSS18]{Nauséeuse 1} (plus @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 1} pour la même durée en cas d'échec critique). En cas de succès, la créature est temporairement immunisée contre les effets Nauséeux et Ralenti de cette puanteur pendant 1 heure. Quel que soit le résultat du jet de sauvegarde, tant qu'elle reste dans l'aura la créature subit une pénalité de circonstances de -2 aux jets de sauvegarde contre les maladies. La puanteur d'un otyugh est due aux déchets et aux immondices dans lesquels il se vautre, aussi, si on nettoie la créature avec application (avec @UUID[Compendium.pf2e.spells-srd.Item.WzLKjSw6hsBhuklC]{Création d'eau} et en la décrassant suffisamment, par exemple) cela désactive son aura. En se bouchant correctement les narines on peut aussi éviter d'être exposé à cette puanteur.</p>\n<p>@UUID[Compendium.pf2e.bestiary-effects.Item.wX9L6fbqVMLP05hn]{Effet : Puanteur}</p>",
+      "description": "<p>12 mètres. Une créature qui pénètre dans l'aura doit réussir un jet de @Check[fortitude|dc:20|options:area-effect,inflicts:sickened,inflicts:slowed] ou être Nauséeuse 1 (plus Ralentie 1 pour la même durée en cas d'échec critique). En cas de succès, la créature est temporairement immunisée contre les effets Nauséeux et Ralenti de cette puanteur pendant 1 heure. Quel que soit le résultat du jet de sauvegarde, tant qu'elle reste dans l'aura la créature subit une pénalité de circonstances de -2 aux jets de sauvegarde contre les maladies. La puanteur d'un otyugh est due aux déchets et aux immondices dans lesquels il se vautre, aussi, si on nettoie la créature avec application (avec Création d'eau et en la décrassant suffisamment, par exemple) cela désactive son aura. En se bouchant correctement les narines on peut aussi éviter d'être exposé à cette puanteur.</p>\n<p>Effet : Puanteur</p>",
       "en": "Stench",
       "name": "Puanteur"
     }

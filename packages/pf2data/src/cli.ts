@@ -15,7 +15,7 @@ import { writeJson, stableStringify } from "./io/write.js";
 import { fetchFrench, fetchUpstream, type RunGit } from "./stages/fetch.js";
 import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
-import { verifyDataset, verifyI18n } from "./stages/verify.js";
+import { verifyDataset, verifyI18n, verifyI18nMarkup } from "./stages/verify.js";
 import { diffDataset, frenchCoverage, statusOf, type ChangeStatus } from "./report.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
 import { buildConditions, buildGlossary, buildTraits, scanTraits } from "./stages/reference.js";
@@ -255,6 +255,14 @@ function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
     problems.push(...verifyI18n(creature, overlay.data));
   }
 
+  for (const file of ["conditions.json", "glossary.json", "traits.json"]) {
+    const path = join(dataDir, I18N_ROOT, "fr", file);
+    if (!existsSync(path)) continue;
+    problems.push(
+      ...verifyI18nMarkup(`${I18N_ROOT}/fr/${file}`, JSON.parse(readFileSync(path, "utf8"))),
+    );
+  }
+
   return problems;
 }
 
@@ -467,6 +475,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
         actions: items.actions,
         attacks: items.attacks,
         table: babele,
+        lang: frLang,
       });
       if (overlay !== null) creatureI18n.set(creature.id, overlay);
     }
@@ -475,8 +484,8 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     for (const [pack, entries] of Object.entries(build.indexes)) {
       indexI18n[pack] = buildIndexI18n(entries, babele);
     }
-    conditionsI18n = buildConditionsI18n(conditions, babele);
-    glossaryI18n = buildGlossaryI18n(glossary, babele);
+    conditionsI18n = buildConditionsI18n(conditions, babele, frLang);
+    glossaryI18n = buildGlossaryI18n(glossary, babele, frLang);
     traitsI18n = buildTraitsI18n(traits.map((t) => t.slug), scanTraits(frLang));
   } catch (error) {
     // `lookup` throws when two same-kind Babele files disagree about a name.
@@ -495,6 +504,14 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     if (overlay === undefined) continue;
     i18nProblems.push(...verifyI18n(creature, overlay));
   }
+  // `verifyI18n` carries the markup check for creature overlays; the three
+  // reference overlays have no creature to align against, so they are checked
+  // for markers directly.
+  i18nProblems.push(
+    ...verifyI18nMarkup("i18n/fr/conditions.json", conditionsI18n),
+    ...verifyI18nMarkup("i18n/fr/glossary.json", glossaryI18n),
+    ...verifyI18nMarkup("i18n/fr/traits.json", traitsI18n),
+  );
   if (i18nProblems.length > 0) {
     for (const problem of i18nProblems) io.err(`${problem}\n`);
     emit({ command: command.name, ok: false, failures: i18nProblems });

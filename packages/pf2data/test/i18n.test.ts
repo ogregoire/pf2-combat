@@ -62,6 +62,7 @@ describe("buildCreatureI18n", () => {
           { name: "Dagger", foundryId: "id-thrown" },
         ],
         table,
+        lang: {},
       })!;
     });
 
@@ -85,6 +86,7 @@ describe("buildCreatureI18n", () => {
         actions: [],
         attacks: [],
         table,
+        lang: {},
       }),
     ).toBeNull();
   });
@@ -111,6 +113,7 @@ describe("buildCreatureI18n", () => {
         actions: [],
         attacks: [],
         table,
+        lang: {},
       })!.name,
     ).toBe("Tertre errant");
 
@@ -121,6 +124,7 @@ describe("buildCreatureI18n", () => {
         actions: [],
         attacks: [],
         table,
+        lang: {},
       })!.name,
     ).toBe("Grand tertre");
   });
@@ -146,6 +150,7 @@ describe("buildCreatureI18n", () => {
         actions: [{ name: "Grab", foundryId: "missing-id" }],
         attacks: [],
         table,
+        lang: {},
       })!;
     });
 
@@ -181,6 +186,7 @@ describe("buildCreatureI18n", () => {
         actions: [{ name: "Dread", foundryId: "action-id" }],
         attacks: [],
         table,
+        lang: {},
       })!;
 
       expect(out.name).toBe("Ankou FR");
@@ -202,6 +208,7 @@ describe("buildCreatureI18n", () => {
         actions: [],
         attacks: [],
         table,
+        lang: {},
       })!;
 
       expect(out.publicNotes).toBeNull();
@@ -278,7 +285,7 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
     });
 
     expect(
-      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table),
+      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table, {}),
     ).toEqual({
       frightened: { name: "Effrayé", description: "<p>Vous êtes paralysé…</p>" },
     });
@@ -292,7 +299,7 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
       },
     });
 
-    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table)).toEqual({
+    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table, {})).toEqual({
       grab: { name: "Agrippement", description: null },
     });
   });
@@ -305,7 +312,7 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
     });
 
     expect(
-      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table),
+      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table, {}),
     ).toEqual({ frightened: { name: "Effrayé", description: null } });
   });
 
@@ -323,11 +330,11 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
       },
     });
 
-    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table)).toEqual({
+    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table, {})).toEqual({
       grab: { name: "Saisie", description: null },
     });
     expect(
-      buildConditionsI18n([{ slug: "grab", name: "Grab" }], table),
+      buildConditionsI18n([{ slug: "grab", name: "Grab" }], table, {}),
     ).toEqual({ grab: { name: "Condition FR (wrong kind)", description: null } });
   });
 
@@ -341,7 +348,7 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
       },
     });
 
-    expect(buildGlossaryI18n([{ slug: "rend", name: "Rend" }], table)).toEqual({
+    expect(buildGlossaryI18n([{ slug: "rend", name: "Rend" }], table, {})).toEqual({
       rend: { name: "Déchirure", description: null },
     });
   });
@@ -349,9 +356,9 @@ describe("buildConditionsI18n and buildGlossaryI18n", () => {
   it("omits an untranslated entry rather than echoing its English name", () => {
     const table = makeBabeleTable({});
     expect(
-      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table),
+      buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table, {}),
     ).toEqual({});
-    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table)).toEqual(
+    expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table, {})).toEqual(
       {},
     );
   });
@@ -411,5 +418,118 @@ describe("buildTraitsI18n", () => {
     expect(Object.keys(buildTraitsI18n(["agile"], scanTraits(frLang)))).toEqual([
       "agile",
     ]);
+  });
+});
+
+/**
+ * Babele ships RAW Foundry text: `@UUID[...]{label}` cross-references and
+ * `@Localize[KEY]` glossary includes. The English pipeline strips both
+ * (`resolveLocalize` then `resolveLinks`), which is why `data/creatures/**`
+ * contains zero of either. The French side must match, or the GM reads
+ * `@UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}`
+ * literally -- which is what the first generated overlay did, in 76% of
+ * translated creatures.
+ */
+describe("French markup resolution", () => {
+  // A real shape: the glossary include resolves to French text that ITSELF
+  // carries a @UUID reference, so the order matters -- localize first, links
+  // second, exactly as normalizeCreature does it.
+  const frLang = {
+    "PF2E.NPC.Abilities.Glossary.Grab": "<p>Agrippement: la cible est @UUID[Compendium.pf2e.conditionitems.Item.Grabbed]{agrippée}.</p>",
+  };
+
+  const table = makeBabeleTable({
+    "pf2e.pathfinder-bestiary.json": {
+      entries: {
+        Manticore: {
+          name: "Manticore",
+          description: "<p>Voir @UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}.</p>",
+          items: {
+            "id-grab": {
+              name: "Agrippement",
+              description: "@Localize[PF2E.NPC.Abilities.Glossary.Grab]",
+            },
+          },
+        },
+      },
+    },
+    "pf2e.conditionitems.json": {
+      entries: {
+        Frightened: {
+          name: "Effrayé",
+          description: "<p>Voir @UUID[Compendium.pf2e.conditionitems.Item.Off-Guard]{pris au dépourvu}.</p>",
+        },
+      },
+    },
+    "pf2e.bestiary-ability-glossary-srd.json": {
+      entries: {
+        Grab: {
+          name: "Agrippement",
+          description: "@Localize[PF2E.NPC.Abilities.Glossary.Grab]",
+        },
+      },
+    },
+  });
+
+  const noMarkers = (value: unknown): void => {
+    const json = JSON.stringify(value);
+    expect(json).not.toContain("@UUID[");
+    expect(json).not.toContain("@Localize[");
+  };
+
+  it("resolves publicNotes and action descriptions, keeping the FRENCH label", () => {
+    const out = buildCreatureI18n({
+      creatureName: "Manticore",
+      ownPack: "pathfinder-bestiary",
+      actions: [{ name: "Grab", foundryId: "id-grab" }],
+      attacks: [],
+      table,
+      lang: frLang,
+    })!;
+
+    noMarkers(out);
+    expect(out.publicNotes).toBe("<p>Voir Cherchez.</p>");
+    // @Localize expanded from the FRENCH lang table, and the @UUID inside
+    // that expansion resolved afterwards.
+    expect(out.actions[0]!.description).toBe(
+      "<p>Agrippement: la cible est agrippée.</p>",
+    );
+  });
+
+  it("resolves condition and glossary descriptions", () => {
+    const conditions = buildConditionsI18n(
+      [{ slug: "frightened", name: "Frightened" }],
+      table,
+      frLang,
+    );
+    noMarkers(conditions);
+    expect(conditions["frightened"]!.description).toBe(
+      "<p>Voir pris au dépourvu.</p>",
+    );
+
+    const glossary = buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table, frLang);
+    noMarkers(glossary);
+    expect(glossary["grab"]!.description).toBe(
+      "<p>Agrippement: la cible est agrippée.</p>",
+    );
+  });
+
+  it("resolves @Localize against the French table, never the English one", () => {
+    // The same key exists in both lang files. Resolving against English would
+    // drop English prose into otherwise-French text -- worse than leaving the
+    // marker, because it looks correct.
+    const enLang = {
+      "PF2E.NPC.Abilities.Glossary.Grab": "<p>The target is grabbed.</p>",
+    };
+    const out = buildCreatureI18n({
+      creatureName: "Manticore",
+      ownPack: "pathfinder-bestiary",
+      actions: [{ name: "Grab", foundryId: "id-grab" }],
+      attacks: [],
+      table,
+      lang: frLang,
+    })!;
+    expect(out.actions[0]!.description).not.toContain("grabbed");
+    expect(enLang["PF2E.NPC.Abilities.Glossary.Grab"]).toContain("grabbed"); // the trap really is set
   });
 });

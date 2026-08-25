@@ -1,12 +1,12 @@
 {
   "actions": [
     {
-      "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Un vidileth peut prendre l'apparence d'un humanoïde de Grande, Moyenne ou Petite taille ou bien reprendre sa véritable forme. Tant qu'il a une forme humanoïde, la Vitesse du vidileth est de 9 mètres et il perd sa Vitesse de nage et son pouvoir de Lumière engourdissante. Si la forme humanoïde choisie n'a pas le trait aquatique, le vidileth perd également son propre trait aquatique. Sous sa forme humanoïde, le vidileth peut utiliser des armes ou effectuer une Frappe qui fonctionne comme son attaque de tentacule mais avec l'allonge de sa forme actuelle. Si la forme choisie est dotée de crocs ou de griffes, il peut également effectuer des Frappes de ce type.</p>\n<hr />\n<p>@Localize[PF2E.NPC.Abilities.Glossary.ChangeShape]</p>",
+      "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Un vidileth peut prendre l'apparence d'un humanoïde de Grande, Moyenne ou Petite taille ou bien reprendre sa véritable forme. Tant qu'il a une forme humanoïde, la Vitesse du vidileth est de 9 mètres et il perd sa Vitesse de nage et son pouvoir de Lumière engourdissante. Si la forme humanoïde choisie n'a pas le trait aquatique, le vidileth perd également son propre trait aquatique. Sous sa forme humanoïde, le vidileth peut utiliser des armes ou effectuer une Frappe qui fonctionne comme son attaque de tentacule mais avec l'allonge de sa forme actuelle. Si la forme choisie est dotée de crocs ou de griffes, il peut également effectuer des Frappes de ce type.</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
       "en": "Change Shape",
       "name": null
     },
     {
-      "description": "<p><strong>Conditions</strong> La dernière action du vidileth était une Frappe de griffe réussie.</p>\n<hr />\n<p><strong>Effet</strong> Le vidileth modifie la chair de la cible de manière brouillon. La cible doit effectuer un jet de @Check[fortitude|dc:34]. En cas d'échec, elle devient soit @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroite 2}, soit @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{EAffaiblie 2}, ou subit une pénalité de statut de -3 mètres à ses Vitesses, selon le libre choix du vidileth.",
+      "description": "<p><strong>Conditions</strong> La dernière action du vidileth était une Frappe de griffe réussie.</p>\n<hr />\n<p><strong>Effet</strong> Le vidileth modifie la chair de la cible de manière brouillon. La cible doit effectuer un jet de @Check[fortitude|dc:34]. En cas d'échec, elle devient soit Maladroite 2, soit EAffaiblie 2, ou subit une pénalité de statut de -3 mètres à ses Vitesses, selon le libre choix du vidileth.",
       "en": "Shape Flesh",
       "name": "Modeler la chair"
     },
@@ -31,17 +31,17 @@
       "name": "Absorption de mémoires"
     },
     {
-      "description": "<p>Quand un vidileth réussit à lancer le sort @UUID[Compendium.pf2e.spells-srd.Item.OsOhx3TGIZ7AhD0P]{Domination} sur une créature, le sort @UUID[Compendium.pf2e.spells-srd.Item.qwlh6aDgi86U3Q7H]{Suggestion} se déclenche à la fin de la durée du sort <em>Domination</em>. Généralement, cette <em>Suggestion</em> pousse la cible à revenir auprès du vidileth pour que ce dernier puisse de nouveau lancer <em>Domination</em>. Cependant, s'il le souhaite, le vidileth peut définir d'autres ordres pour cette <em>Suggestion</em>.</p>",
+      "description": "<p>Quand un vidileth réussit à lancer le sort Domination sur une créature, le sort Suggestion se déclenche à la fin de la durée du sort <em>Domination</em>. Généralement, cette <em>Suggestion</em> pousse la cible à revenir auprès du vidileth pour que ce dernier puisse de nouveau lancer <em>Domination</em>. Cependant, s'il le souhaite, le vidileth peut définir d'autres ordres pour cette <em>Suggestion</em>.</p>",
       "en": "Delayed Suggestion",
       "name": "Suggestion retardée"
     },
     {
-      "description": "<p>Le vidileth émet une faible lumière. Les créatures dans cette lumière doivent effectuer un jet de @Check[will|dc:34|options:area-effect,inflicts:stupefied]  chaque round. En cas d'échec, elles sont @UUID[Compendium.pf2e.conditionitems.Item.e1XGnhKNSQIm5IXg]{Stupéfiées 1} (ou la Lumière engourdissante augmente la valeur de leur état Stupéfié de 1 jusqu'à un maximum de 4)</p>",
+      "description": "<p>Le vidileth émet une faible lumière. Les créatures dans cette lumière doivent effectuer un jet de @Check[will|dc:34|options:area-effect,inflicts:stupefied]  chaque round. En cas d'échec, elles sont Stupéfiées 1 (ou la Lumière engourdissante augmente la valeur de leur état Stupéfié de 1 jusqu'à un maximum de 4)</p>",
       "en": "Numbing Lights",
       "name": "Lumière engourdissante"
     },
     {
-      "description": "<p>Une créature touchée par les tentacules du vidileth, doit effectuer un jet de @Check[will|dc:34]. Si elle le rate, elle est @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 1} et @UUID[Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3]{Ralentie 2} en cas d'échec critique. À la fin de chaque tour de la victime, la valeur de la valeur de l'état Ralenti est réduite de 1.</p>",
+      "description": "<p>Une créature touchée par les tentacules du vidileth, doit effectuer un jet de @Check[will|dc:34]. Si elle le rate, elle est Ralentie 1 et Ralentie 2 en cas d'échec critique. À la fin de chaque tour de la victime, la valeur de la valeur de l'état Ralenti est réduite de 1.</p>",
       "en": "Thoughtlance",
       "name": "Lance mentale"
     }

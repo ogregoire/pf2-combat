@@ -14,6 +14,7 @@ import {
   type Trait,
 } from "@pf2/schema";
 import { buildIndexes } from "./index.js";
+import { compareStrings } from "../util.js";
 
 const ALIGNMENT_TRAITS = new Set([
   "lawful",
@@ -59,8 +60,51 @@ export interface I18nSubject {
  * failure -- the alternative is a Strike quietly showing another Strike's
  * translation, which no schema check would ever catch.
  */
+const MARKER_PATTERN = /@([A-Za-z]+)\[/g;
+
+/** Four of the module's references have lost their `@`-prefix entirely, so
+ * they carry no marker family for the check above to see -- they just render
+ * as literal `[Compendium.pf2e…]{Label}`. The lookbehind keeps a normal
+ * `@UUID[Compendium.pf2e…]` from being reported twice, once per check. Not
+ * global: only used with `.test`. */
+const BARE_REFERENCE_PATTERN = /(?<![A-Za-z\]])\[(?:Compendium\.\s*)?pf2e[.-]/;
+
+/** The only marker families allowed to survive into emitted text, because the
+ * ENGLISH dataset carries them too (2082 `@Check`, 1590 `@Damage`, 681
+ * `@Template`) and the app renders them. Everything else must have been
+ * resolved away. */
+const RENDERED_MARKERS = new Set(["Check", "Damage", "Template"]);
+
+/**
+ * Babele ships raw Foundry text, so a marker only disappears if the builder
+ * ran `resolveLocalize` + `resolveLinks`; this is what proves it did.
+ *
+ * Deliberately an ALLOW-LIST rather than a list of families to reject. The
+ * first version named `@UUID` and `@Localize` by hand and sailed straight past
+ * 16 `@Compendium[...]` markers -- the pre-V9 spelling of the same reference.
+ * Anything the English dataset does not carry is unresolved by definition.
+ */
+export function verifyI18nMarkup(label: string, value: unknown): string[] {
+  const json = JSON.stringify(value);
+
+  const unresolved = new Set<string>();
+  for (const match of json.matchAll(MARKER_PATTERN)) {
+    const family = match[1]!;
+    if (!RENDERED_MARKERS.has(family)) unresolved.add(family);
+  }
+  const problems = [...unresolved]
+    .sort(compareStrings)
+    .map((family) => `i18n: ${label} contains an unresolved @${family} reference`);
+
+  if (BARE_REFERENCE_PATTERN.test(json)) {
+    problems.push(`i18n: ${label} contains an unresolved compendium reference`);
+  }
+
+  return problems;
+}
+
 export function verifyI18n(creature: I18nSubject, overlay: CreatureI18n): string[] {
-  const problems: string[] = [];
+  const problems: string[] = verifyI18nMarkup(creature.id, overlay);
 
   const check = (
     field: "actions" | "attacks",

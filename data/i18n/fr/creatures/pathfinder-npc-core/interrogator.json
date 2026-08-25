@@ -1,17 +1,17 @@
 {
   "actions": [
     {
-      "description": "<p><strong>Conditions</strong> Une créature est @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippée} ou @UUID[Compendium.pf2e.conditionitems.Item.VcDeM8A5oI6VqhbM]{Entravée} par l'interrogateur</p>\n<hr />\n<p><strong>Effet</strong> Une créature agrippée ou entravée par l'interrogateur subit @Damage[2d6[bludgeoning]]{2d6 dégâts contondants} (@Check[fortitude|dc:23|basic]). Si la créature subit un échec à son jet de sauvegarde, elle subit également un état au choix de l'interrogateur : @UUID[Compendium.pf2e.conditionitems.Item.MIRkyAjyBeXivMa7]{Affaibli 2} pendant 1 minute, @UUID[Compendium.pf2e.conditionitems.Item.i3OJZU2nk64Df3xm]{Maladroit 2} pendant 1 minute ou @UUID[Compendium.pf2e.conditionitems.Item.4D2KBtexWXa6oUMR]{Drainé 1}.</p>",
+      "description": "<p><strong>Conditions</strong> Une créature est Agrippée ou Entravée par l'interrogateur</p>\n<hr />\n<p><strong>Effet</strong> Une créature agrippée ou entravée par l'interrogateur subit @Damage[2d6[bludgeoning]]{2d6 dégâts contondants} (@Check[fortitude|dc:23|basic]). Si la créature subit un échec à son jet de sauvegarde, elle subit également un état au choix de l'interrogateur : Affaibli 2 pendant 1 minute, Maladroit 2 pendant 1 minute ou Drainé 1.</p>",
       "en": "Hobble",
       "name": "Entraver"
     },
     {
-      "description": "<p>L'interrogateur effectue une Frappe avec une arme au corps-à-corps tranchante. S'il touche et inflige des dégâts, la cible subit 1d4 dégâts de saignement supplémentaires et devient @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 1} (ou 2d4 dégâts de saignement et @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayée 2} sur un coup critique).</p>\n<p>Tous les autres ennemis de l'interrogateur dans une @Template[type:emanation|distance:30]{émanation de 9 mètres} autour de la cible qui sont témoins de l'effusion de sang doivent réussir un jet de @Check[will|dc:19|options:area-effect,inflicts:frightened|traits:emotion,fear,mental,visual] ou devenir Effrayés 1. L'effet est un effet d'émotion, mental, de terreur et visuel.</p>",
+      "description": "<p>L'interrogateur effectue une Frappe avec une arme au corps-à-corps tranchante. S'il touche et inflige des dégâts, la cible subit 1d4 dégâts de saignement supplémentaires et devient Effrayée 1 (ou 2d4 dégâts de saignement et Effrayée 2 sur un coup critique).</p>\n<p>Tous les autres ennemis de l'interrogateur dans une @Template[type:emanation|distance:30]{émanation de 9 mètres} autour de la cible qui sont témoins de l'effusion de sang doivent réussir un jet de @Check[will|dc:19|options:area-effect,inflicts:frightened|traits:emotion,fear,mental,visual] ou devenir Effrayés 1. L'effet est un effet d'émotion, mental, de terreur et visuel.</p>",
       "en": "Blood and Fear",
       "name": "Sang et terreur"
     },
     {
-      "description": "<p>Les attaques de l'interrogateur infligent 1d8 dégâts mentaux supplémentaires aux créatures @UUID[Compendium.pf2e.conditionitems.Item.TBSHQspnbcqxsmjL]{Effrayées}.</p>",
+      "description": "<p>Les attaques de l'interrogateur infligent 1d8 dégâts mentaux supplémentaires aux créatures Effrayées.</p>",
       "en": "Torment",
       "name": "Tourment"
     }

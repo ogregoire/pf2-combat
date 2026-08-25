@@ -1,5 +1,5 @@
 import { describe, expect, it, afterAll } from "vitest";
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readdirSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -90,7 +90,10 @@ const STAG_LORD_ITEM_IDS = {
   huntPrey: "H5KqV1tEsBEfhfvU",
 };
 
-function seedFrenchCache(entries: Record<string, unknown> | null = null): string {
+function seedFrenchCache(
+  entries: Record<string, unknown> | null = null,
+  frLang: Record<string, unknown> = {},
+): string {
   const frCacheDir = tmpDir("pf2data-fr-cache-");
   const babeleDir = join(frCacheDir, "babele", "vf", "fr");
   mkdirSync(babeleDir, { recursive: true });
@@ -114,7 +117,7 @@ function seedFrenchCache(entries: Record<string, unknown> | null = null): string
     }),
   );
   mkdirSync(join(frCacheDir, "lang"), { recursive: true });
-  writeFileSync(join(frCacheDir, "lang", "fr.json"), "{}");
+  writeFileSync(join(frCacheDir, "lang", "fr.json"), JSON.stringify(frLang));
   return frCacheDir;
 }
 
@@ -627,5 +630,125 @@ describe("runCli", () => {
       { force: true },
     );
     expect(runCli(["verify"], silentIo(), deps)).toBe(0);
+  });
+
+  // --- Task 7 fix round 1: Babele text is RAW Foundry markup -------------
+
+  it("resolves @Localize and @UUID out of the generated French text, using the FRENCH lang table", () => {
+    const dataDir = tmpDir("pf2data-data-");
+    const cacheDir = tmpDir("pf2data-cache-");
+    const configDir = tmpDir("pf2data-config-");
+
+    const configPath = join(configDir, "pf2data.config.json");
+    writeFileSync(
+      configPath,
+      JSON.stringify({
+        upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        french: { repo: "https://example.invalid/pf2e-fr", branch: "master" },
+        packs: [{ name: "kingmaker-bestiary", kind: "creatures" }],
+      }),
+    );
+
+    const packDir = join(cacheDir, "packs", "kingmaker-bestiary");
+    mkdirSync(packDir, { recursive: true });
+    writeFileSync(
+      join(packDir, "the-stag-lord.json"),
+      readFileSync(
+        fileURLToPath(new URL("./fixtures/the-stag-lord.json", import.meta.url)),
+        "utf8",
+      ),
+    );
+
+    // The SAME glossary key in both lang files. Resolving against the English
+    // one would put English prose inside French text -- worse than leaving the
+    // marker, because it looks correct.
+    mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
+    writeFileSync(
+      join(cacheDir, "static", "lang", "en.json"),
+      JSON.stringify({ PF2E: { Glossary: { Trap: "<p>ENGLISH glossary text.</p>" } } }),
+    );
+
+    const frCacheDir = seedFrenchCache(
+      {
+        "The Stag Lord": {
+          name: "Seigneur Cerf",
+          description: "<p>Voir @UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}.</p>",
+          items: {
+            [STAG_LORD_ITEM_IDS.huntPrey]: {
+              name: "Chasser une proie",
+              description: "@Localize[PF2E.Glossary.Trap]",
+            },
+          },
+        },
+      },
+      { PF2E: { Glossary: { Trap: "<p>Texte FRANÇAIS du glossaire.</p>" } } },
+    );
+
+    const { run } = recordingGit();
+    const deps: CliDeps = { dataDir, cacheDir, frCacheDir, configPath, runGit: run };
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const overlay = readFileSync(
+      join(dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json"),
+      "utf8",
+    );
+    expect(overlay).not.toContain("@UUID[");
+    expect(overlay).not.toContain("@Localize[");
+    // The @UUID collapses to its FRENCH label, not to a bare id.
+    expect(overlay).toContain("Voir Cherchez.");
+    expect(overlay).toContain("Texte FRANÇAIS du glossaire.");
+    expect(overlay).not.toContain("ENGLISH glossary text");
+  });
+
+  it("no generated French file carries an @UUID or @Localize marker", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const root = join(dataDir, "i18n");
+    const walk = (dir: string): string[] =>
+      readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+        e.isDirectory() ? walk(join(dir, e.name)) : [join(dir, e.name)],
+      );
+    const files = walk(root);
+    expect(files.length).toBeGreaterThan(0);
+    for (const file of files) {
+      const text = readFileSync(file, "utf8");
+      expect(text).not.toContain("@UUID[");
+      expect(text).not.toContain("@Localize[");
+    }
+  });
+
+  it("verify fails when a committed overlay still carries an unresolved marker", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const overlayPath = join(
+      dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json",
+    );
+    const overlay = JSON.parse(readFileSync(overlayPath, "utf8"));
+    overlay.publicNotes = "<p>@UUID[Compendium.pf2e.actionspf2e.Item.X]{Cherchez}</p>";
+    writeFileSync(overlayPath, JSON.stringify(overlay));
+
+    const errLines: string[] = [];
+    expect(
+      runCli(["verify"], { out: () => {}, err: (x) => errLines.push(x), isTty: true }, deps),
+    ).toBe(20);
+    expect(errLines.join("")).toContain("@UUID");
+  });
+
+  it("verify fails when a committed reference overlay carries an unresolved marker", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    writeFileSync(
+      join(dataDir, "i18n", "fr", "glossary.json"),
+      JSON.stringify({ grab: { name: "Agrippement", description: "@Localize[PF2E.X]" } }),
+    );
+
+    const errLines: string[] = [];
+    expect(
+      runCli(["verify"], { out: () => {}, err: (x) => errLines.push(x), isTty: true }, deps),
+    ).toBe(20);
+    expect(errLines.join("")).toContain("glossary.json");
   });
 });
