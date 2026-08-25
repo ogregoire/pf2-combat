@@ -1,5 +1,5 @@
 import type { CreatureI18n } from "@pf2/schema";
-import type { BabeleEntry } from "./babele.js";
+import type { BabeleTable } from "./babele.js";
 
 /**
  * Builds a creature's French overlay by aligning Babele's per-item
@@ -9,19 +9,25 @@ import type { BabeleEntry } from "./babele.js";
  * English name (a melee and a thrown Dagger, Hatchet or Spear); a name key
  * would silently collapse them onto one translation.
  *
- * `table` maps a creature's English name to its Babele entry — already
- * resolved to the right pack/kind by the caller (`BabeleTable.lookup`).
+ * The creature entry itself is resolved via `BabeleTable.lookup`, NEVER a
+ * flat name lookup: `Shambler` is "Tertre errant" in the Kingmaker bestiary
+ * but "Grand tertre" in Bestiary 1, and `Guard` names both a creature and an
+ * action. `lookup`'s own-pack-first, kind-scoped resolution is exactly what
+ * keeps those apart; bypassing it here would reintroduce both collisions.
+ *
  * Absent creature, or absent item translation, both yield `null` rather
  * than the English text: a missing translation must stay visible to
  * `report`, not be hidden by a silent fallback.
  */
 export function buildCreatureI18n(args: {
   creatureName: string;
+  /** The pack this creature ships in — `lookup` prefers its translation. */
+  ownPack: string;
   actions: { name: string; foundryId: string }[];
   attacks: { name: string; foundryId: string }[];
-  table: Map<string, BabeleEntry>;
+  table: BabeleTable;
 }): CreatureI18n | null {
-  const entry = args.table.get(args.creatureName);
+  const entry = args.table.lookup("creature", args.ownPack, args.creatureName);
   if (!entry) return null;
 
   const items = entry.items ?? {};

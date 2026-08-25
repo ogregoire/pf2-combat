@@ -1,6 +1,27 @@
 import { describe, expect, it, beforeAll } from "vitest";
+import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { buildCreatureI18n } from "../src/stages/i18n.js";
-import type { BabeleEntry } from "../src/stages/babele.js";
+import { loadBabele, type BabeleTable } from "../src/stages/babele.js";
+
+/**
+ * Fixtures build a REAL `BabeleTable` via `loadBabele` against temp files,
+ * rather than hand-rolling an object that merely mimics the shape. The
+ * whole point of this suite is that `buildCreatureI18n` goes through
+ * `table.lookup(kind, ownPack, name)` — own-pack-first, kind-scoped — not a
+ * flat name lookup, so the fixtures need the real pack/kind machinery to
+ * catch a regression to `.get`.
+ */
+function makeBabeleTable(files: Record<string, unknown>): BabeleTable {
+  const dir = mkdtempSync(join(tmpdir(), "i18n-fixture-"));
+  for (const [name, content] of Object.entries(files)) {
+    writeFileSync(join(dir, name), JSON.stringify(content));
+  }
+  const table = loadBabele(dir);
+  rmSync(dir, { recursive: true, force: true });
+  return table;
+}
 
 describe("buildCreatureI18n", () => {
   describe("alignment by array position", () => {
@@ -11,21 +32,23 @@ describe("buildCreatureI18n", () => {
     let out: NonNullable<ReturnType<typeof buildCreatureI18n>>;
 
     beforeAll(() => {
-      const table = new Map<string, BabeleEntry>([
-        [
-          "Thorn River Bandit",
-          {
-            name: "Bandit de la rivière aux Épines",
-            items: {
-              "id-melee": { name: "Dague" },
-              "id-thrown": { name: "Dague de jet" },
+      const table = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: {
+            "Thorn River Bandit": {
+              name: "Bandit de la rivière aux Épines",
+              items: {
+                "id-melee": { name: "Dague" },
+                "id-thrown": { name: "Dague de jet" },
+              },
             },
           },
-        ],
-      ]);
+        },
+      });
 
       out = buildCreatureI18n({
         creatureName: "Thorn River Bandit",
+        ownPack: "pathfinder-bestiary",
         actions: [],
         attacks: [
           { name: "Dagger", foundryId: "id-melee" },
@@ -46,32 +69,73 @@ describe("buildCreatureI18n", () => {
   });
 
   it("returns null for a creature with no French entry", () => {
+    // 30 real creatures look like this.
+    const table = makeBabeleTable({});
     expect(
       buildCreatureI18n({
         creatureName: "Manticore",
+        ownPack: "pathfinder-bestiary",
         actions: [],
         attacks: [],
-        table: new Map(),
+        table,
       }),
     ).toBeNull();
+  });
+
+  it("resolves through the table's own-pack-first lookup, not a flat name map", () => {
+    // Shambler is "Tertre errant" in Kingmaker and "Grand tertre" in
+    // Bestiary 1. A flat `table.get(name)` cannot tell these apart and
+    // silently returns whichever pack happened to load first — which is
+    // the bug Task 3's own-pack-first, kind-scoped `lookup` exists to
+    // prevent.
+    const table = makeBabeleTable({
+      "pf2e.kingmaker-bestiary.json": {
+        entries: { Shambler: { name: "Tertre errant" } },
+      },
+      "pf2e.pathfinder-bestiary.json": {
+        entries: { Shambler: { name: "Grand tertre" } },
+      },
+    });
+
+    expect(
+      buildCreatureI18n({
+        creatureName: "Shambler",
+        ownPack: "kingmaker-bestiary",
+        actions: [],
+        attacks: [],
+        table,
+      })!.name,
+    ).toBe("Tertre errant");
+
+    expect(
+      buildCreatureI18n({
+        creatureName: "Shambler",
+        ownPack: "pathfinder-bestiary",
+        actions: [],
+        attacks: [],
+        table,
+      })!.name,
+    ).toBe("Grand tertre");
   });
 
   describe("missing item translations", () => {
     let out: NonNullable<ReturnType<typeof buildCreatureI18n>>;
 
     beforeAll(() => {
-      const table = new Map<string, BabeleEntry>([
-        [
-          "Skeleton Guard",
-          {
-            name: "Garde squelette",
-            items: {}, // no translation for this action's item id
+      const table = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: {
+            "Skeleton Guard": {
+              name: "Garde squelette",
+              items: {}, // no translation for this action's item id
+            },
           },
-        ],
-      ]);
+        },
+      });
 
       out = buildCreatureI18n({
         creatureName: "Skeleton Guard",
+        ownPack: "pathfinder-bestiary",
         actions: [{ name: "Grab", foundryId: "missing-id" }],
         attacks: [],
         table,
@@ -90,21 +154,23 @@ describe("buildCreatureI18n", () => {
 
   describe("field mapping", () => {
     it("maps the entry's own name and description fields to name/publicNotes", () => {
-      const table = new Map<string, BabeleEntry>([
-        [
-          "Ankou",
-          {
-            name: "Ankou FR",
-            description: "Notes publiques FR",
-            items: {
-              "action-id": { name: "Effroi FR", description: "Description FR" },
+      const table = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: {
+            Ankou: {
+              name: "Ankou FR",
+              description: "Notes publiques FR",
+              items: {
+                "action-id": { name: "Effroi FR", description: "Description FR" },
+              },
             },
           },
-        ],
-      ]);
+        },
+      });
 
       const out = buildCreatureI18n({
         creatureName: "Ankou",
+        ownPack: "pathfinder-bestiary",
         actions: [{ name: "Dread", foundryId: "action-id" }],
         attacks: [],
         table,
@@ -117,12 +183,15 @@ describe("buildCreatureI18n", () => {
     });
 
     it("uses null for publicNotes when the entry has no description field", () => {
-      const table = new Map<string, BabeleEntry>([
-        ["Ankou", { name: "Ankou FR" }],
-      ]);
+      const table = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: { Ankou: { name: "Ankou FR" } },
+        },
+      });
 
       const out = buildCreatureI18n({
         creatureName: "Ankou",
+        ownPack: "pathfinder-bestiary",
         actions: [],
         attacks: [],
         table,
