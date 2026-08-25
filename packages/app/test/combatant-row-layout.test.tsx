@@ -44,7 +44,7 @@ describe("CombatantRow HP bar layout", () => {
     expect(bar.style.width).toBe("");
   });
 
-  it("grouped member row: HP bar keeps its fixed width per Main.dc.html (width: 46px)", () => {
+  it("grouped member row: HP bar grows like ungrouped rows", () => {
     const a = useEncounter.getState().addCombatant(seed({ name: "Akiros", hp: { current: 16, max: 16 } }), 20);
     const b = useEncounter.getState().addCombatant(seed({ name: "Dovan", hp: { current: 18, max: 30 } }), 10);
     useEncounter.getState().group([a, b], "Gate Watch", 15);
@@ -52,8 +52,9 @@ describe("CombatantRow HP bar layout", () => {
 
     const hpText = screen.getByText("18/30");
     const bar = hpText.previousElementSibling as HTMLElement;
-    expect(bar.style.width).toBe("46px");
-    expect(bar.style.flexShrink).toBe("0");
+    // Grouped members now have flexible width like standalone rows
+    expect(bar.style.flexGrow).toBe("1");
+    expect(bar.style.flexShrink).toBe("1");
   });
 
   it("holds together with the widest realistic values (The Stag Lord: HP 110/110, AC 23, saves 15/16/9) in the 340px combatant list", () => {

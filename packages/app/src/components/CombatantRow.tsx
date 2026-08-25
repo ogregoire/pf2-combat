@@ -415,17 +415,25 @@ function GroupMemberRow({
       {combatant.defeated ? (
         <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>DEFEATED</span>
       ) : (
-        <>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            flexGrow: 1,
+            minWidth: 0,
+          }}
+        >
           {combatant.hp !== null && (
             <>
-              <HpBar current={combatant.hp.current} max={combatant.hp.max} width="46px" height={4} />
+              <HpBar current={combatant.hp.current} max={combatant.hp.max} />
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
                   fontSize: "11px",
                   color: "var(--text-dim)",
-                  width: "42px",
-                  textAlign: "right",
+                  flexShrink: 0,
+                  whiteSpace: "nowrap",
                 }}
               >
                 {combatant.hp.current}/{combatant.hp.max}
@@ -437,13 +445,13 @@ function GroupMemberRow({
               fontFamily: "var(--font-mono)",
               fontSize: "11px",
               color: "var(--text-faint)",
-              width: "34px",
-              textAlign: "right",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
             }}
           >
             {combatant.ac !== null ? `AC ${combatant.ac}` : "—"}
           </span>
-        </>
+        </div>
       )}
     </div>
   );
