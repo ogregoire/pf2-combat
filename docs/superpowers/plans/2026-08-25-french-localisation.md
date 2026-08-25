@@ -471,6 +471,22 @@ it("passes for an aligned overlay", () => {
 
 `verifyI18n` compares, per position, the overlay's `en` against the creature's action/attack name, and compares array lengths. This is the guard that the index-keying scheme depends on — an upstream reorder must be a loud failure, never a silently mistranslated Strike.
 
+**Also make a missing `_id` loud.** Task 4 made `_id` required on
+`ActionItemSchema`/`AttackItemSchema`, and those are consumed by `safeParse`
+inside a loop that `continue`s on failure — so an upstream item lacking `_id`
+is silently dropped, and a dropped array element never reaches
+`normalizePacks`'s `.failures` machinery (only a throwing `normalizeCreature`
+does). Today no upstream item lacks one — proven by regenerating all 1450
+creatures with `modified: []` — but when the pin moves this would vanish a
+Strike from some creature with no error and no report line.
+
+Inside `normalizeActions` and `normalizeAttacks`, distinguish the two cases:
+an item of the WRONG TYPE is expected and skipped, an item of the RIGHT TYPE
+that fails validation is unexpected and must surface through the existing
+loud-failure path. Add a test that a right-type item with no `_id` is reported
+rather than silently dropped, and mutate it to confirm the test fails without
+the change.
+
 Report gains a French block: creatures translated / total, and the untranslated **count plus the list** (30 today, 19 of them the `Petitioner (Plane)` series). A silent coverage drop is exactly the kind of regression this report exists to catch.
 
 - [ ] **Step 4: Regenerate and verify idempotency**
