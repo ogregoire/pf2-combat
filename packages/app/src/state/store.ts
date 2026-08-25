@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import type { Action, Attack } from "@pf2/schema";
-import type { ConditionSlug } from "../rules/conditions.js";
+import { applyEndOfTurn, type ConditionSlug } from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
 import type { Combatant, Encounter, Entry, Player } from "./types.js";
 
@@ -119,6 +119,18 @@ function keyOf(e: Entry): number {
  * refuses rather than skipping them. */
 export function unrolledCount(enc: Encounter): number {
   return enc.entries.filter((e) => e.initiative === null).length;
+}
+
+/** The IWR-filtering, floor-at-0, mark-defeated computation `applyDamage`
+ * does — pulled out so `nextTurn` can apply persistent damage through the
+ * exact same path instead of re-implementing it, per the brief. Takes the
+ * combatant directly (rather than an id + store lookup) so it works equally
+ * from inside `applyDamage`'s own `set` and from inside `nextTurn`'s. */
+function dealDamage(c: Combatant, amount: number, damageType?: string): void {
+  if (c.hp === null) return;
+  const applied = applyIwr(amount, damageType ?? "none", c.iwr);
+  c.hp.current = Math.max(0, c.hp.current - applied);
+  if (c.hp.current === 0) c.defeated = true;
 }
 
 /** Entries stay sorted by `orderKey` descending; Array#sort is stable, and
@@ -316,10 +328,8 @@ export const useEncounter = create<EncounterStore>()(
     applyDamage: (id, amount, damageType) =>
       set((state) => {
         const c = state.encounter.combatants[id];
-        if (!c || c.hp === null) return;
-        const applied = applyIwr(amount, damageType ?? "none", c.iwr);
-        c.hp.current = Math.max(0, c.hp.current - applied);
-        if (c.hp.current === 0) c.defeated = true;
+        if (!c) return;
+        dealDamage(c, amount, damageType);
       }),
 
     applyHealing: (id, amount) =>
@@ -384,6 +394,26 @@ export const useEncounter = create<EncounterStore>()(
         const enc = state.encounter;
         if (enc.entries.length === 0) return;
         if (unrolledCount(enc) > 0) return;
+
+        // Fire end-of-turn condition hooks for the entry whose turn is
+        // ENDING — the one still active, before the index below moves off
+        // it — not the entry about to become active. This is the first
+        // caller of applyEndOfTurn; Task 8 (Delay) is the second, calling it
+        // immediately instead of waiting for nextTurn.
+        const endingEntry = enc.entries[enc.activeEntryIndex];
+        if (endingEntry) {
+          for (const cid of endingEntry.combatantIds) {
+            const c = enc.combatants[cid];
+            if (!c) continue;
+            const { conditions, persistentDamage } = applyEndOfTurn(c.conditions);
+            c.conditions = conditions;
+            // Persistent damage carries no damage type (see
+            // AppliedCondition.formula's own comment), so it goes through
+            // dealDamage exactly as an untyped ("none") hit would — IWR is
+            // deliberately not applied, same as applyDamage's own default.
+            if (persistentDamage > 0) dealDamage(c, persistentDamage);
+          }
+        }
 
         let nextIndex = enc.activeEntryIndex + 1;
         if (nextIndex >= enc.entries.length) {

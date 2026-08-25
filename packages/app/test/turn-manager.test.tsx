@@ -154,6 +154,46 @@ describe("TurnManager", () => {
     expect(useEncounter.getState().encounter.activeEntryIndex).toBe(1);
   });
 
+  // These two prove the wiring, not just the function: applyEndOfTurn
+  // (conditions.ts) existed and was fully tested in isolation before this,
+  // but nothing called it — nextTurn advanced the round without ever
+  // touching a condition. What matters here is that pressing Next for real
+  // (through the same store action the GM's button uses) is what makes
+  // frightened tick down and persistent damage land on HP, not that the
+  // pure function returns the right object.
+  it("fires end-of-turn hooks through Next: frightened decrements and persistent damage lands on HP via the same path applyDamage uses", async () => {
+    const user = userEvent.setup();
+    const id = add("a", 20); // active entry — its turn is the one ending
+    add("b", 10);
+    useEncounter.getState().addCondition(id, "frightened", 2);
+    useEncounter.getState().addCondition(id, "persistent-damage", 0, "1d6");
+    render(<TurnManager />);
+
+    const hpBefore = useEncounter.getState().encounter.combatants[id]!.hp!.current;
+    await user.click(screen.getByRole("button", { name: /next combatant/i }));
+
+    const combatant = useEncounter.getState().encounter.combatants[id]!;
+    expect(combatant.conditions.find((c) => c.slug === "frightened")!.value).toBe(1);
+    // Bounded, not just "> 0" — a real 1d6 roll through the actual store
+    // wiring (Math.random, not injected) can only land in [1, 6], and
+    // applyDamage's own floor-at-0 means it can't go negative either way.
+    const lost = hpBefore - combatant.hp!.current;
+    expect(lost).toBeGreaterThanOrEqual(1);
+    expect(lost).toBeLessThanOrEqual(6);
+  });
+
+  it("removes frightened via Next once it would tick to zero", async () => {
+    const user = userEvent.setup();
+    const id = add("a", 20);
+    add("b", 10);
+    useEncounter.getState().addCondition(id, "frightened", 1);
+    render(<TurnManager />);
+
+    await user.click(screen.getByRole("button", { name: /next combatant/i }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
+  });
+
   it("scrolls the reaction list independently", () => {
     add("a", 20);
     render(<TurnManager />);

@@ -1,4 +1,5 @@
 import { compareStrings } from "./compare.js";
+import { rollFormula, type Rng } from "./dice.js";
 import type { Modifier } from "./modifiers.js";
 
 export type Selector =
@@ -200,4 +201,66 @@ export function conditionModifiers(
     mods.push(effect.mod);
   }
   return mods.sort((a, b) => compareStrings(a.source, b.source));
+}
+
+/**
+ * Fires every condition's `endOfTurn` hook once, for the combatant whose
+ * turn just ended. `startOfTurn`/`endOfTurn` have been declared on
+ * ConditionDef since before this function existed, but nothing ever read
+ * them — frightened never ticked down on its own, and persistent damage
+ * never rolled. This is the first reader; the caller (nextTurn in
+ * store.ts) is the first of what Task 8 says will be two call sites (Delay
+ * is the second, firing this immediately instead of waiting for nextTurn).
+ *
+ * "decrement" lowers the value by 1 and drops the condition once it would
+ * reach 0 — matches the existing GM-facing "Frightened decreases" prompt
+ * text in prompts.ts. "persistent-damage" rolls `c.formula` and adds it to
+ * the running total; the condition itself is NOT removed here, since ending
+ * persistent damage takes its own DC 15 flat check (see prompts.ts) that
+ * this hook doesn't model. Every other condition passes through unchanged.
+ *
+ * `rng` is injectable (defaults to Math.random via rollFormula) so callers —
+ * and tests — can get a deterministic persistentDamage instead of only
+ * knowing it was ">= 0".
+ */
+export function applyEndOfTurn(
+  applied: AppliedCondition[],
+  rng?: Rng,
+): { conditions: AppliedCondition[]; persistentDamage: number } {
+  const conditions: AppliedCondition[] = [];
+  let persistentDamage = 0;
+
+  for (const c of applied) {
+    const hook = CONDITIONS[c.slug].endOfTurn;
+
+    if (hook === "decrement") {
+      const next = c.value - 1;
+      if (next > 0) conditions.push({ ...c, value: next });
+      continue; // next <= 0: condition ends, dropped from the result
+    }
+
+    if (hook === "persistent-damage") {
+      const rolled = rollFormula(c.formula, rng);
+      if (rolled === null) {
+        // A formula that's missing or doesn't parse as NdM(+/-K) can't just
+        // deal 0 damage silently — that would look identical to "rolled a
+        // 0", which persistent damage dice can never actually produce. It
+        // also can't throw and crash the turn over what's fundamentally bad
+        // input data (a condition added without a formula, or a typo). So:
+        // trace it loudly (console.warn — there's no GM-facing error
+        // channel this deep in the rules layer) and contribute nothing.
+        console.warn(
+          `applyEndOfTurn: persistent-damage condition has an unrollable formula: ${JSON.stringify(c.formula)}`,
+        );
+      } else {
+        persistentDamage += rolled;
+      }
+      conditions.push(c);
+      continue;
+    }
+
+    conditions.push(c);
+  }
+
+  return { conditions, persistentDamage };
 }

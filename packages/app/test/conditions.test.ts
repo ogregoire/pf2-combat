@@ -1,6 +1,12 @@
-import { describe, expect, it } from "vitest";
-import { CONDITIONS, conditionModifiers, type AppliedCondition } from "../src/rules/conditions.js";
+import { describe, expect, it, vi } from "vitest";
+import { applyEndOfTurn, CONDITIONS, conditionModifiers, type AppliedCondition } from "../src/rules/conditions.js";
 import { resolveModifiers } from "../src/rules/modifiers.js";
+
+/** Replays a fixed sequence of [0, 1) values, one per die — see dice.test.ts. */
+function fakeRng(values: number[]): () => number {
+  let i = 0;
+  return () => values[i++ % values.length]!;
+}
 
 describe("condition catalogue", () => {
   it("covers the curated set", () => {
@@ -148,5 +154,71 @@ describe("conditionModifiers", () => {
       "will",
     );
     expect(mods.map((m) => m.source)).toEqual(["fatigued", "frightened 1"]);
+  });
+});
+
+describe("applyEndOfTurn", () => {
+  // Verbatim from the task brief — an interface-level smoke test. It only
+  // asserts persistentDamage > 0 (default Math.random), which is why the
+  // tests below it re-check the same "decrement" and "persistent-damage"
+  // hooks with an injected rng for an exact, non-flaky result.
+  it("decrements frightened at end of turn and reports persistent damage once", () => {
+    const result = applyEndOfTurn([
+      { slug: "frightened", value: 2 },
+      { slug: "persistent-damage", value: 0, formula: "1d6" },
+    ]);
+    expect(result.conditions.find((c) => c.slug === "frightened")!.value).toBe(1);
+    expect(result.persistentDamage).toBeGreaterThan(0);
+  });
+
+  it("removes frightened entirely when it ticks past 0", () => {
+    const result = applyEndOfTurn([{ slug: "frightened", value: 1 }]);
+    expect(result.conditions.find((c) => c.slug === "frightened")).toBeUndefined();
+  });
+
+  it("rolls persistent damage deterministically off an injected rng", () => {
+    const result = applyEndOfTurn(
+      [{ slug: "persistent-damage", value: 0, formula: "2d6" }],
+      fakeRng([0, 0.999999]), // 1 + 6
+    );
+    expect(result.persistentDamage).toBe(7);
+  });
+
+  it("keeps the persistent-damage condition itself after rolling — ending it needs its own DC 15 flat check (see prompts.ts), which this hook does not resolve", () => {
+    const result = applyEndOfTurn(
+      [{ slug: "persistent-damage", value: 0, formula: "1d6" }],
+      () => 0,
+    );
+    expect(result.conditions).toEqual([{ slug: "persistent-damage", value: 0, formula: "1d6" }]);
+  });
+
+  it("sums persistent damage across every persistent-damage condition in one call", () => {
+    const result = applyEndOfTurn(
+      [
+        { slug: "persistent-damage", value: 0, formula: "1d4" },
+        { slug: "persistent-damage", value: 0, formula: "1d4" },
+      ],
+      () => 0, // each rolls its minimum, 1
+    );
+    expect(result.persistentDamage).toBe(2);
+  });
+
+  it("leaves a condition with no endOfTurn hook untouched", () => {
+    const result = applyEndOfTurn([{ slug: "sickened", value: 1 }]);
+    expect(result.conditions).toEqual([{ slug: "sickened", value: 1 }]);
+    expect(result.persistentDamage).toBe(0);
+  });
+
+  it("traces (via console.warn) a missing or unparseable persistent-damage formula instead of throwing or silently dealing 0 with no record", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+
+    const missing = applyEndOfTurn([{ slug: "persistent-damage", value: 0 }]);
+    expect(missing.persistentDamage).toBe(0);
+
+    const bad = applyEndOfTurn([{ slug: "persistent-damage", value: 0, formula: "not-dice" }]);
+    expect(bad.persistentDamage).toBe(0);
+
+    expect(warn).toHaveBeenCalledTimes(2);
+    warn.mockRestore();
   });
 });
