@@ -402,22 +402,86 @@ describe("CombatantList", () => {
     render(<CombatantList />);
 
     await user.hover(screen.getByText("Stag Lord Bandit"));
-    const initiative = screen.getByLabelText("Initiative");
-    await user.clear(initiative);
-    await user.type(initiative, "25");
-    await user.tab();
+    await user.type(screen.getByLabelText("Initiative die result"), "25");
+    await user.click(screen.getByRole("button", { name: /set initiative/i }));
 
     expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(25);
   });
 
-  it("shows an empty initiative field, not the literal text \"null\", for an unrolled combatant", async () => {
+  it("adds the combatant's modifier to the die result and commits the total", async () => {
     const user = userEvent.setup();
-    useEncounter.getState().addCombatant(seed(), null);
+    const id = useEncounter.getState().addCombatant({ ...seed(), initiativeModifier: 7 }, null);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    await user.type(screen.getByLabelText("Initiative die result"), "12");
+    expect(screen.getByText("12 + 7 = 19")).toBeDefined();
+
+    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
+    expect(entry!.initiative).toBe(19);
+    expect(entry!.orderKey).toBe(19);
+  });
+
+  // Regression test for a parked finding: the old control did
+  // `Number(initiativeDraft)`, and `Number("") === 0` is finite, so blurring
+  // an untouched field silently committed a rolled 0. The die-result field
+  // must refuse to commit anything when it's left blank.
+  it("does not commit an initiative when the die-result field is left blank", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), null);
     render(<CombatantList />);
 
     await user.hover(screen.getByText("Stag Lord Bandit"));
-    const initiative = screen.getByLabelText("Initiative") as HTMLInputElement;
-    expect(initiative.value).toBe("");
+    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+
+    const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
+    expect(entry!.initiative).toBeNull();
+  });
+
+  it("collects a PC's initiative modifier once and saves it to the roster", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
+    ]);
+    const id = useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, hp: { current: 40, max: 40 }, playerId: "player1" },
+      null,
+    );
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Valeria"));
+
+    await user.type(screen.getByLabelText("Initiative modifier for Valeria"), "3");
+    await user.type(screen.getByLabelText("Initiative die result"), "14");
+    expect(screen.getByText("14 + 3 = 17")).toBeDefined();
+
+    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+
+    const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
+    expect(entry!.initiative).toBe(17);
+    expect(useEncounter.getState().players.find((p) => p.id === "player1")!.initiativeModifier).toBe(3);
+  });
+
+  it("degrades gracefully for a PC combatant with no playerId yet", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, hp: { current: 40, max: 40 } },
+      null,
+    );
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Valeria"));
+
+    // No playerId to resolve, so this behaves like a combatant whose
+    // modifier is simply unknown — the die result commits unmodified,
+    // and there is no roster entry to write back to.
+    await user.type(screen.getByLabelText("Initiative die result"), "14");
+    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+
+    const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
+    expect(entry!.initiative).toBe(14);
+    expect(useEncounter.getState().players).toEqual([]);
   });
 
   it("disables Damage and Heal when the combatant has no HP on record", async () => {

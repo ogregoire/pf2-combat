@@ -81,6 +81,19 @@ function describeIwrAdjustment(raw: number, type: string, iwr: Iwr | null): stri
 }
 
 /**
+ * Parses a draft text input as a finite number, or `null` for blank or
+ * non-numeric text. Used for the initiative die result and the one-time PC
+ * modifier prompt so an untouched or cleared field reads as "nothing typed"
+ * rather than `Number("")`'s `0` — see commitInitiative's own comment on
+ * why that distinction is load-bearing here.
+ */
+function parseDraft(value: string): number | null {
+  if (value.trim() === "") return null;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+}
+
+/**
  * The row popover. On desktop it's the hover popover: rendered by
  * CombatantRow while the pointer is inside the row-plus-popover wrapper —
  * see CombatantRow for the mouseenter/mouseleave handling that keeps it open
@@ -116,16 +129,26 @@ export function RowPopover({
 }): React.ReactElement | null {
   const combatant = useEncounter((s) => s.encounter.combatants[combatantId]);
   const entry = useEncounter((s) => s.encounter.entries.find((e) => e.combatantIds.includes(combatantId)));
+  const players = useEncounter((s) => s.players);
   const applyDamage = useEncounter((s) => s.applyDamage);
   const applyHealing = useEncounter((s) => s.applyHealing);
   const removeCombatant = useEncounter((s) => s.removeCombatant);
   const setInitiative = useEncounter((s) => s.setInitiative);
+  const setPlayers = useEncounter((s) => s.setPlayers);
   const addCondition = useEncounter((s) => s.addCondition);
   const removeCondition = useEncounter((s) => s.removeCondition);
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
-  const [initiativeDraft, setInitiativeDraft] = useState<string | null>(null);
+  // The die result just rolled, not an editable view of the entry's current
+  // initiative (see the removed initiativeDraft) — there is nothing to seed
+  // it from, so it simply starts and stays blank between rolls.
+  const [dieResult, setDieResult] = useState("");
+  // A kind: "pc" combatant's modifier lives on the roster (Player.
+  // initiativeModifier), not the combatant, so it survives between fights.
+  // The first time it's needed and still unknown, this collects it inline;
+  // committing writes it back via setPlayers (see commitInitiative).
+  const [pcModifierDraft, setPcModifierDraft] = useState("");
   const [conditionSlug, setConditionSlug] = useState<ConditionSlug>("off-guard");
   const [conditionValue, setConditionValue] = useState("1");
   const [conditionFormula, setConditionFormula] = useState("");
@@ -174,12 +197,48 @@ export function RowPopover({
     setDamageType("none");
   };
 
+  // Resolves the roster player behind a `kind: "pc"` combatant. A PC added
+  // before Task 6 wires up `playerId` (or one the GM built by hand) has
+  // none to resolve — null here, same as any other case with no known
+  // modifier, per the brief's "degrade gracefully rather than crashing".
+  const player = combatant.kind === "pc" && combatant.playerId !== undefined
+    ? players.find((p) => p.id === combatant.playerId) ?? null
+    : null;
+
+  // The combatant's own modifier (creature Perception, or a PC's already
+  // carried forward from a prior fight) if there is one; otherwise the
+  // roster's saved value for this PC. Null means genuinely unknown.
+  const knownModifier = combatant.initiativeModifier ?? player?.initiativeModifier ?? null;
+  // Only a PC gets the one-time prompt below — a creature with no
+  // Perception on record has nowhere to look one up, so it just rolls with
+  // no modifier instead of asking.
+  const needsModifierPrompt = combatant.kind === "pc" && knownModifier === null;
+  const typedPcModifier = needsModifierPrompt ? parseDraft(pcModifierDraft) : null;
+  const effectiveModifier = knownModifier ?? typedPcModifier;
+
+  const dieValue = parseDraft(dieResult);
+  const initiativeReadout =
+    dieValue === null
+      ? null
+      : effectiveModifier === null
+        ? String(dieValue)
+        : `${dieValue} + ${effectiveModifier} = ${dieValue + effectiveModifier}`;
+
   const commitInitiative = (): void => {
-    if (entry && initiativeDraft !== null) {
-      const value = Number(initiativeDraft);
-      if (Number.isFinite(value)) setInitiative(entry.id, value);
+    if (!entry || dieValue === null) return; // blank/non-numeric die result: nothing to commit — see the field's own comment.
+    setInitiative(entry.id, effectiveModifier === null ? dieValue : dieValue + effectiveModifier);
+
+    // First time this PC's modifier is known: save it to the roster so the
+    // next fight already has it (PartyManager reads it straight off
+    // Player.initiativeModifier). No resolved player just means there is
+    // nowhere to save it — it'll be asked again next time, which is the
+    // graceful-degradation the brief calls for rather than a crash.
+    if (needsModifierPrompt && player !== null && typedPcModifier !== null) {
+      setPlayers(players.map((p) => (p.id === player.id ? { ...p, initiativeModifier: typedPcModifier } : p)));
     }
-    setInitiativeDraft(null);
+
+    setDieResult("");
+    setPcModifierDraft("");
   };
 
   const conditionDef = CONDITIONS[conditionSlug];
@@ -289,32 +348,6 @@ export function RowPopover({
           </span>
         )}
         <div style={{ flexGrow: 1 }} />
-        {entry && (
-          <input
-            aria-label="Initiative"
-            // Unrolled (entry.initiative === null) shows as an empty box,
-            // not the literal text "null" — same "not rolled" contract as
-            // the em dash in CombatantRow/GroupHeader, just editable here.
-            value={initiativeDraft ?? (entry.initiative === null ? "" : String(entry.initiative))}
-            onFocus={() => setInitiativeDraft(entry.initiative === null ? "" : String(entry.initiative))}
-            onChange={(e) => setInitiativeDraft(e.target.value)}
-            onBlur={commitInitiative}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") (e.target as HTMLInputElement).blur();
-            }}
-            style={{
-              width: "38px",
-              fontFamily: "var(--font-mono)",
-              fontSize: "12px",
-              textAlign: "center",
-              padding: "3px 4px",
-              borderRadius: "3px",
-              border: "1px solid var(--border-strong)",
-              background: "var(--bg)",
-              color: "var(--text)",
-            }}
-          />
-        )}
         <button
           type="button"
           aria-label={`Remove ${combatant.name}`}
@@ -333,6 +366,86 @@ export function RowPopover({
           Remove
         </button>
       </div>
+
+      {entry && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+          <div
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--text-faint)",
+            }}
+          >
+            Initiative
+          </div>
+          {needsModifierPrompt && (
+            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+              <span style={{ flexGrow: 1, fontSize: "11.5px", color: "var(--text-dim)" }}>
+                Initiative modifier for {combatant.name}
+              </span>
+              <input
+                aria-label={`Initiative modifier for ${combatant.name}`}
+                value={pcModifierDraft}
+                onChange={(e) => setPcModifierDraft(e.target.value)}
+                style={{
+                  width: "42px",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "13px",
+                  textAlign: "center",
+                  padding: "6px 4px",
+                  borderRadius: "3px",
+                  border: "1px solid var(--border-strong)",
+                  background: "var(--bg)",
+                  color: "var(--text)",
+                }}
+              />
+            </div>
+          )}
+          <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+            <input
+              aria-label="Initiative die result"
+              value={dieResult}
+              onChange={(e) => setDieResult(e.target.value)}
+              style={{
+                width: "44px",
+                fontFamily: "var(--font-mono)",
+                fontSize: "13px",
+                fontWeight: 600,
+                textAlign: "center",
+                padding: "6px 4px",
+                borderRadius: "3px",
+                border: "1px solid var(--border-strong)",
+                background: "var(--bg)",
+                color: "var(--text)",
+              }}
+            />
+            {initiativeReadout !== null && (
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--text-dim)" }}>
+                {initiativeReadout}
+              </span>
+            )}
+            <div style={{ flexGrow: 1 }} />
+            <button
+              type="button"
+              onClick={commitInitiative}
+              style={{
+                fontFamily: "inherit",
+                fontSize: "12px",
+                fontWeight: 600,
+                padding: "6px 10px",
+                borderRadius: "3px",
+                border: "1px solid var(--border-strong)",
+                background: "var(--panel-raised)",
+                color: "var(--text)",
+                cursor: "pointer",
+              }}
+            >
+              Set initiative
+            </button>
+          </div>
+        </div>
+      )}
 
       {lastChange && (
         <div style={{ display: "flex", alignItems: "baseline", gap: "6px", flexWrap: "wrap" }}>
