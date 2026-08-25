@@ -677,6 +677,32 @@ describe("Delay", () => {
     expect(entryOf(late).trueInitiative).toBeNull();
   });
 
+  // The record of what a return replaced exists for one purpose: the row
+  // shows it struck through beside the new number. A typed initiative
+  // overwrites that new number by hand, so the record now describes
+  // something that is no longer on the row at all — leave it and the GM sees
+  // a struck-through initiative with nothing to do with what they just
+  // typed. moveEntry has its own test for exactly this leak; setInitiative
+  // had none, and deleting the line left every test green.
+  it("clears the struck-through pre-delay initiative once the GM types a new one over the returned value", () => {
+    add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // Beta is up
+    useEncounter.getState().returnFromDelay(alpha); // returns at Beta's 15; 20 kept as the record
+    expect(entryOf(alpha).initiativeBeforeDelay).toBe(20);
+
+    useEncounter.getState().setInitiative(alpha, 4);
+
+    expect(entryOf(alpha).initiativeBeforeDelay).toBeNull();
+
+    // And nothing struck through is left on the row to explain.
+    render(<CombatantList />);
+    expect(screen.queryByText("20")).toBeNull();
+  });
+
   it("treats a GM typing a new initiative for a delayed combatant as a manual return", () => {
     add("Alpha", 20);
     add("Beta", 15);

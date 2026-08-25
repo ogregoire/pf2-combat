@@ -418,6 +418,34 @@ describe("encounter store", () => {
     expect(enc.entries[0]!.combatantIds).toEqual([newcomerId]);
   });
 
+  // The other half of the rule above: a pending restore is *pending*, and an
+  // explicit GM edit retires it. moveEntry and returnFromDelay already have
+  // their own tests for this same rule; setInitiative — where the rule was
+  // written first — had none, and deleting the line left every test green.
+  it("retires a pending 'act this round instead' restore when the GM types a new initiative", () => {
+    addCreature("Active", 15);
+    const newcomerId = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Newcomer", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 10, max: 10 } },
+      15, // acting this round just behind Active…
+      22, // …on a real typed 22, parked until the round wraps.
+    );
+    const entryId = useEncounter.getState().encounter.entries.find((e) => e.combatantIds[0] === newcomerId)!.id;
+
+    // The GM thinks better of it and types 8 instead, mid-round.
+    useEncounter.getState().setInitiative(entryId, 8);
+    expect(useEncounter.getState().encounter.entries.find((e) => e.id === entryId)!.trueInitiative).toBeNull();
+
+    useEncounter.getState().nextTurn();
+    useEncounter.getState().nextTurn(); // round wraps — the old 22 must not come back
+
+    const enc = useEncounter.getState().encounter;
+    expect(enc.round).toBe(2);
+    expect(enc.entries.find((e) => e.id === entryId)!.initiative).toBe(8);
+    // 8 sorts below Active's 15 — a restored 22 would have led the round.
+    expect(enc.entries.map((e) => e.initiative)).toEqual([15, 8]);
+  });
+
   it("restores id counters from a persisted encounter, so a post-reload add cannot collide", async () => {
     const { restoreCombatantSequences } = await import("../src/state/store.js");
     addCreature("a", 20);
