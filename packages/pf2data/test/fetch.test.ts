@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fetchUpstream } from "../src/stages/fetch.js";
+import { fetchUpstream, fetchFrench, type RunGit } from "../src/stages/fetch.js";
 import type { Pf2DataConfig } from "../src/config.js";
 
 const config: Pf2DataConfig = {
@@ -60,5 +60,19 @@ describe("fetchUpstream", () => {
     expect(() =>
       fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: false, run }),
     ).toThrow(/no pinned ref/i);
+  });
+});
+
+describe("fetchFrench", () => {
+  it("sparse-checks out only the vf variant and the lang dir", () => {
+    const calls: string[][] = [];
+    const run: RunGit = (args) => { calls.push(args); return "abc123\n"; };
+    fetchFrench({ config, cacheDir: ".cache-fr", pinnedRef: "abc123", useLatest: false, run });
+    const sparse = calls.find((c) => c[0] === "sparse-checkout")!;
+    expect(sparse).toContain("babele/vf/fr");
+    expect(sparse).toContain("lang");
+    // The other three naming variants are 138 MB we never read.
+    expect(sparse.join(" ")).not.toContain("vf-vo");
+    expect(sparse.join(" ")).not.toContain("vo-vf");
   });
 });

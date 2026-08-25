@@ -19,6 +19,12 @@ export interface FetchResult {
   langPath: string;
 }
 
+export interface FetchFrenchResult {
+  ref: string;
+  babeleDir: string;
+  langPath: string;
+}
+
 /** Glossary ability text lives here, not in the packs. See Task 18. */
 export const LANG_PATH = "static/lang/en.json";
 
@@ -85,5 +91,65 @@ export function fetchUpstream(options: FetchOptions): FetchResult {
     ref,
     packsDir: join(cacheDir, "packs"),
     langPath: join(cacheDir, LANG_PATH),
+  };
+}
+
+/**
+ * The Babele translation module ships four naming variants of the same
+ * content (`vf`, `vo`, `vf-vo`, `vo-vf`); we only ever read `vf`. The other
+ * three are 138 MB we never touch, so they're excluded from sparse-checkout.
+ */
+export const FR_BABELE_DIR = "babele/vf/fr";
+
+/**
+ * Sparse-checkout runs in cone mode, which accepts DIRECTORY patterns only:
+ * a bare file path here would fail the same way `static/lang/en.json` did
+ * for the English fetch above.
+ */
+export const FR_LANG_DIR = "lang";
+export const FR_LANG_PATH = "lang/fr.json";
+
+export function fetchFrench(options: FetchOptions): FetchFrenchResult {
+  const { config, cacheDir, pinnedRef, useLatest } = options;
+  const run = options.run ?? defaultRun;
+
+  if (pinnedRef === null && !useLatest) {
+    throw new Error(
+      "No pinned ref in data/manifest.json. Run with --latest to create one.",
+    );
+  }
+
+  // Same no-rollback, retry-safe contract as fetchUpstream. This uses its
+  // own cacheDir, distinct from the English checkout's, so the two never
+  // fight over sparse-checkout state.
+  if (!existsSync(join(cacheDir, ".git"))) {
+    run(
+      [
+        "clone",
+        "--filter=blob:none",
+        "--sparse",
+        "--branch",
+        config.french.branch,
+        config.french.repo,
+        cacheDir,
+      ],
+      ".",
+    );
+  } else {
+    run(["fetch", "origin", config.french.branch], cacheDir);
+  }
+
+  run(["sparse-checkout", "set", FR_BABELE_DIR, FR_LANG_DIR], cacheDir);
+
+  const ref = useLatest
+    ? run(["rev-parse", `origin/${config.french.branch}`], cacheDir).trim()
+    : pinnedRef!;
+
+  run(["checkout", ref], cacheDir);
+
+  return {
+    ref,
+    babeleDir: join(cacheDir, FR_BABELE_DIR),
+    langPath: join(cacheDir, FR_LANG_PATH),
   };
 }
