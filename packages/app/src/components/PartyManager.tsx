@@ -153,6 +153,12 @@ export function PartyManager(): React.ReactElement {
             style={{
               display: "flex",
               alignItems: "flex-end",
+              // Eight fields plus Present and Remove no longer fit one line
+              // in the drawer this panel lives in — without wrapping, the
+              // only flexible item (Name) is squeezed to a couple of pixels
+              // and the row becomes unusable. Wrapping puts the overflow on
+              // a second line inside the same card instead.
+              flexWrap: "wrap",
               gap: "12px",
               padding: "12px 14px",
               borderRadius: "4px",
@@ -163,10 +169,11 @@ export function PartyManager(): React.ReactElement {
             {/* flexGrow with no minWidth keeps a flex item's default min-width:
                auto, which is its content's own intrinsic width — so it never
                actually shrinks, and pushes the row wider than the drawer.
-               minWidth: 0 lets Name give way to the fixed-width fields
-               instead of shoving Remove off the right edge (same fix
-               CombatantRow.tsx uses for its own growing field). */}
-            <label style={{ ...fieldStyle, flexGrow: 1, minWidth: 0 }}>
+               A floor rather than 0: Name is the one field that has to hold
+               a word, and letting it shrink without limit is what turned it
+               into a sliver when the eighth field arrived. Below this width
+               the row wraps instead (see flexWrap above). */}
+            <label style={{ ...fieldStyle, flexGrow: 1, minWidth: "140px" }}>
               Name
               <input
                 aria-label="Name"

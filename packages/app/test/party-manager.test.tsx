@@ -130,6 +130,20 @@ describe("PartyManager initiative modifier", () => {
     expect(modifierOf()).toBeNull();
   });
 
+  // jsdom does no layout, so this pins the two declarations rather than the
+  // outcome — but the outcome is what they exist for: the eighth field took
+  // the row past the width of the drawer it lives in, and with Name free to
+  // shrink to 0 it collapsed to a few pixels with its label overlapping
+  // LEVEL's. Caught in a browser; jsdom saw nothing wrong.
+  it("wraps the player row rather than shrinking the name field to nothing", () => {
+    useEncounter.getState().setPlayers([player(5)]);
+    render(<PartyManager />);
+
+    const nameLabel = screen.getByLabelText("Name").closest("label")!;
+    expect(nameLabel.style.minWidth).toBe("140px");
+    expect((nameLabel.parentElement as HTMLElement).style.flexWrap).toBe("wrap");
+  });
+
   // Task 6 deliberately moved adding a player to the encounter into Quick
   // add. This field is the modifier and nothing else.
   it("does not bring back the per-player Initiative field or Add-to-encounter button", () => {
