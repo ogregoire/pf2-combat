@@ -116,12 +116,23 @@ function SelectCheckbox({
  * as the browser's default drag image; simpler to make the row itself the
  * handle and use this only to invite the gesture). `cursor: grab` lives
  * here rather than on the row so the rest of the row keeps its
- * click-to-target pointer cursor. */
-function DragGrip(): React.ReactElement {
+ * click-to-target pointer cursor.
+ *
+ * `enabled: false` hides the glyph but keeps its box, so a row that can't
+ * be dragged (an unrolled one — see `canDrag`) doesn't pull its initiative
+ * and name a column's width to the left of every other row in the list. */
+function DragGrip({ enabled }: { enabled: boolean }): React.ReactElement {
   return (
     <span
       aria-hidden="true"
-      style={{ flexShrink: 0, cursor: "grab", color: "var(--text-faint)", fontSize: "13px", lineHeight: 1 }}
+      style={{
+        flexShrink: 0,
+        cursor: enabled ? "grab" : "default",
+        color: "var(--text-faint)",
+        fontSize: "13px",
+        lineHeight: 1,
+        visibility: enabled ? "visible" : "hidden",
+      }}
     >
       ⠿
     </span>
@@ -277,33 +288,48 @@ function StandaloneRow({
   // HTML5 drag), and only meaningful once the caller (CombatantList) has
   // handed down both the entry to carry and somewhere to deliver a drop —
   // grouped members never get these, so they're simply not draggable.
-  const draggableProps =
-    entryId !== undefined && onDropEntry !== undefined
-      ? {
-          draggable: true,
-          onDragStart: (e: React.DragEvent<HTMLDivElement>) => {
-            e.dataTransfer.setData("text/plain", entryId);
-            e.dataTransfer.effectAllowed = "move";
-          },
-          // A drop only fires if dragover calls preventDefault — the
-          // browser's default for dragover is "reject this as a drop
-          // target".
-          onDragOver: (e: React.DragEvent<HTMLDivElement>) => {
-            e.preventDefault();
-            e.dataTransfer.dropEffect = "move";
-          },
-          onDrop: (e: React.DragEvent<HTMLDivElement>) => {
-            e.preventDefault();
-            const draggedId = e.dataTransfer.getData("text/plain");
-            if (draggedId && draggedId !== entryId) onDropEntry(draggedId);
-          },
-        }
-      : {};
+  const inTheOrder = entryId !== undefined && onDropEntry !== undefined;
+  // An unrolled row is pinned above every rolled one by sortEntries on
+  // `initiative === null` alone, whatever orderKey says (see the store).
+  // moveEntry would write the dropped position faithfully and the sort
+  // would then ignore it, so the row snaps back with nothing said. Better
+  // not to offer the gesture at all until the GM rolls. `undefined` — a
+  // caller that tracks no initiative at all — is not the same as null and
+  // stays draggable.
+  const canDrag = inTheOrder && initiative !== null;
+  const dragSourceProps = canDrag
+    ? {
+        draggable: true,
+        onDragStart: (e: React.DragEvent<HTMLDivElement>) => {
+          e.dataTransfer.setData("text/plain", entryId!);
+          e.dataTransfer.effectAllowed = "move";
+        },
+      }
+    : {};
+  // Still a drop *target* while unrolled: what can't be honoured is moving
+  // this row, not landing another one next to it.
+  const dropTargetProps = inTheOrder
+    ? {
+        // A drop only fires if dragover calls preventDefault — the
+        // browser's default for dragover is "reject this as a drop
+        // target".
+        onDragOver: (e: React.DragEvent<HTMLDivElement>) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = "move";
+        },
+        onDrop: (e: React.DragEvent<HTMLDivElement>) => {
+          e.preventDefault();
+          const draggedId = e.dataTransfer.getData("text/plain");
+          if (draggedId && draggedId !== entryId) onDropEntry!(draggedId);
+        },
+      }
+    : {};
 
   return (
     <div
       {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap)}
-      {...draggableProps}
+      {...dragSourceProps}
+      {...dropTargetProps}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -320,7 +346,7 @@ function StandaloneRow({
       }}
     >
       <SelectCheckbox name={combatant.name} checked={selected} onToggle={onToggleSelect} />
-      {entryId !== undefined && <DragGrip />}
+      {inTheOrder && <DragGrip enabled={canDrag} />}
 
       {initiative !== undefined && (
         <div

@@ -197,11 +197,19 @@ export function CombatantList({
         return (
           <div
             key={entry.id}
-            draggable
-            onDragStart={(e) => {
-              e.dataTransfer.setData("text/plain", entry.id);
-              e.dataTransfer.effectAllowed = "move";
-            }}
+            // Same rule as a standalone row (see CombatantRow's `canDrag`):
+            // an unrolled entry is pinned to the top by the sort whatever
+            // its orderKey says, so a drag of it would silently snap back.
+            // It stays a drop target either way.
+            {...(entry.initiative === null
+              ? {}
+              : {
+                  draggable: true,
+                  onDragStart: (e: React.DragEvent) => {
+                    e.dataTransfer.setData("text/plain", entry.id);
+                    e.dataTransfer.effectAllowed = "move";
+                  },
+                })}
             {...dropTargetProps(entry.id, moveEntry)}
           >
             <GroupHeader

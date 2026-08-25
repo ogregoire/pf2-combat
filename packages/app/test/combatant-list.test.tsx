@@ -618,6 +618,38 @@ describe("CombatantList", () => {
     expect(row.style.boxShadow.split(",")).toHaveLength(2);
   });
 
+  // An unrolled entry is pinned above every rolled one by sortEntries, on
+  // `initiative === null` alone — moveEntry writes its orderKey faithfully
+  // and the sort then ignores it, so the row snaps straight back with no
+  // explanation. Offering a gesture the app will not honour is worse than
+  // not offering it, so the affordance goes away until the GM rolls.
+  describe("dragging an unrolled row", () => {
+    it("does not make an unrolled row draggable, since the sort would snap it back", () => {
+      useEncounter.getState().addCombatant(seed({ name: "Rolled" }), 20);
+      useEncounter.getState().addCombatant(seed({ name: "Unrolled" }), null);
+      const { container } = render(<CombatantList />);
+
+      expect(screen.getByRole("button", { name: "Target Unrolled" }).getAttribute("draggable")).not.toBe("true");
+      expect(screen.getByRole("button", { name: "Target Rolled" }).getAttribute("draggable")).toBe("true");
+      expect(container.querySelectorAll('[draggable="true"]')).toHaveLength(1);
+
+      // The grip that invites the gesture goes with it — but its box stays,
+      // or the unrolled row's initiative and name would sit a column to the
+      // left of every other row.
+      const grips = screen.getAllByText("⠿");
+      expect(grips.map((g) => g.style.visibility)).toEqual(["hidden", "visible"]); // unrolled sorts first
+    });
+
+    it("does not make an unrolled group header draggable either", () => {
+      const a = useEncounter.getState().addCombatant(seed({ name: "Akiros" }), 20);
+      const b = useEncounter.getState().addCombatant(seed({ name: "Dovan" }), 10);
+      useEncounter.getState().group([a, b], "Gate Watch", null);
+      const { container } = render(<CombatantList />);
+
+      expect(container.querySelectorAll('[draggable="true"]')).toHaveLength(0);
+    });
+  });
+
   describe("moveEntry (drag to reorder)", () => {
     it("moves an entry between two neighbours without touching any initiative", () => {
       const s = useEncounter.getState();
