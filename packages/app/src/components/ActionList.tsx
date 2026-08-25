@@ -73,11 +73,8 @@ export function ActionList({
 
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "8px" }}>
-        <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-          Actions
-        </div>
-        <div style={{ fontSize: "11px", color: "var(--text-faint)" }}>3 actions first · limited use first · unaffordable dimmed</div>
+      <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)", marginBottom: "8px" }}>
+        Actions
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
