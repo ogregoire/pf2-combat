@@ -99,26 +99,6 @@ describe("PartyManager", () => {
     });
   });
 
-  it("puts a present player into the encounter with a typed initiative, carrying AC and saves", async () => {
-    const user = userEvent.setup();
-    useEncounter.getState().setPlayers([
-      { id: "p1", name: "Valeria", level: 4, ac: 21, hp: 44,
-        saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
-    ]);
-    render(<PartyManager />);
-
-    await user.type(screen.getByLabelText(/initiative for valeria/i), "18");
-    await user.click(screen.getByRole("button", { name: /add to encounter/i }));
-
-    const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
-    expect(combatant.kind).toBe("pc");
-    expect(combatant.name).toBe("Valeria");
-    expect(combatant.ac).toBe(21);
-    expect(combatant.saves).toEqual({ fortitude: 10, reflex: 12, will: 9 });
-    expect(combatant.hp).toEqual({ current: 44, max: 44 });
-    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(18);
-  });
-
   it("captures HP through the party roster's own field", async () => {
     const user = userEvent.setup();
     render(<PartyManager />);
@@ -129,27 +109,20 @@ describe("PartyManager", () => {
     expect(useEncounter.getState().players[0]!.hp).toBe(37);
   });
 
-  it("seeds the PC's HP from the party roster instead of leaving it null", async () => {
-    const user = userEvent.setup();
+  // Adding a present player to the encounter moved to QuickAdd (see
+  // quick-add.test.tsx) — the drawer's own "Add to encounter" button and
+  // Initiative field are gone for both a present and an absent player, not
+  // just withheld for the absent case as before.
+  it("never offers an Add to encounter button or Initiative field, present or absent", () => {
     useEncounter.getState().setPlayers([
-      { id: "p1", name: "Kesten", level: 5, ac: 22, hp: 60,
-        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true, initiativeModifier: null },
-    ]);
-    render(<PartyManager />);
-    await user.type(screen.getByLabelText(/initiative for kesten/i), "10");
-    await user.click(screen.getByRole("button", { name: /add to encounter/i }));
-
-    const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
-    expect(combatant.hp).toEqual({ current: 60, max: 60 });
-  });
-
-  it("does not offer to add an absent player to the encounter", () => {
-    useEncounter.getState().setPlayers([
-      { id: "p1", name: "Absent Al", level: 4, ac: 21,
+      { id: "p1", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
+      { id: "p2", name: "Absent Al", level: 4, ac: 21,
         saves: { fortitude: 10, reflex: 12, will: 9 }, present: false, initiativeModifier: null },
     ]);
     render(<PartyManager />);
     expect(screen.queryByRole("button", { name: /add to encounter/i })).toBeNull();
+    expect(screen.queryByLabelText(/initiative for/i)).toBeNull();
   });
 
   it("toggles presence", async () => {
