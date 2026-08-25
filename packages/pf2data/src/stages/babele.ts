@@ -65,8 +65,8 @@ export function loadBabele(babeleDir: string): BabeleTable {
   const packOrder: string[] = [];
 
   for (const file of files) {
-    const raw = JSON.parse(readFileSync(join(babeleDir, file), "utf8"));
-    const entries = raw.entries;
+    const raw: unknown = JSON.parse(readFileSync(join(babeleDir, file), "utf8"));
+    const entries = (raw as { entries?: unknown }).entries;
     if (entries === null || typeof entries !== "object" || Array.isArray(entries)) {
       continue;
     }
