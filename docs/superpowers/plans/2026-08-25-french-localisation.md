@@ -488,6 +488,19 @@ it("reuses buildTraits against the French lang table, so slugs stay identical", 
 - Modify: `packages/pf2data/src/cli.ts`
 - Test: `packages/pf2data/test/verify.test.ts`, `packages/pf2data/test/cli.test.ts`
 
+**Ruling on the two pins, decided before dispatch.** There are now two
+independent upstreams. `--latest` moves BOTH pins — one flag, because the GM
+running this is the only operator and separate flags would be ceremony without
+a user. But the two "No pinned ref" errors must name WHICH pin is missing:
+`fetchUpstream` and `fetchFrench` currently throw the identical string, which
+would point a debugger at the wrong upstream. Give each its own message naming
+its manifest field (`upstreamRef` / `frRef`) and its repo. Add a test per
+message asserting the field name appears.
+
+While in `fetch.test.ts`, add the missing negative assertion for bare `vo` to
+the sparse-checkout test — it currently checks `vf-vo` and `vo-vf` only, an
+authoring gap in the original brief.
+
 This is the task where the French overlay becomes reachable. **Nothing before it changes what `update` produces.** Per the spec's own instruction, name every call site explicitly: `cli.ts` calls the orchestrator, the orchestrator calls `fetchFrench` → `loadBabele` → `buildCreatureI18n` per creature → the four reference builders → `writeJson` for each → `verifyI18n` → `report`.
 
 - [ ] **Step 1: Write the failing tests**
