@@ -196,4 +196,23 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   // StatBlockHeader.tsx
   CREATURE_FALLBACK_BADGE: "EN",
   CREATURE_FALLBACK_TITLE: "Pas de traduction française pour cette créature — le nom anglais est affiché.",
+
+  // rules/prompts.ts (start/end-of-turn notifications, TurnPrompts.tsx) —
+  // "DD" (Degré de Difficulté) and "test/jet à l'aveugle" follow the
+  // remaster's own vocabulary (checked against data/i18n/fr/traits.json and
+  // conditions.json's "dying" description, which itself says "test de
+  // récupération").
+  PROMPT_RECOVERY_TITLE: "Test de récupération",
+  PROMPT_RECOVERY_COMPUTATION: "Jet à l'aveugle 1d20 contre DD {dc}",
+  PROMPT_RECOVERY_DERIVATION: "DD 10 + {name} {value} = {dc}",
+  PROMPT_NAME_VALUE: "{name} {value}",
+  PROMPT_ACTION_LOSS_TITLE: "Perd {value} action{plural} ce tour-ci",
+  PROMPT_ACTION_POOL_AUTO_APPLIED: "Réserve d'actions {before} → {after}",
+  PROMPT_CONDITION_DECREASES_TITLE: "{name} diminue",
+  PROMPT_NAME_DECREASE: "{name} {from} → {to}",
+  PROMPT_PERSISTENT_DAMAGE_TITLE: "Dégâts persistants",
+  PROMPT_PERSISTENT_DAMAGE_COMPUTATION: "Lancez {formula}, puis DD 15 à l'aveugle pour y mettre fin",
+  PROMPT_PERSISTENT_DAMAGE_FORMULA_FALLBACK: "les dégâts persistants",
+  PROMPT_PERSISTENT_DAMAGE_ENDS: "l'état se termine",
+  PROMPT_PERSISTENT_DAMAGE_CONTINUES: "il persiste",
 };

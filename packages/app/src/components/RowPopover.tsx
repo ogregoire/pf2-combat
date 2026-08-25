@@ -1,12 +1,26 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { useEncounter } from "../state/store.js";
+import { useEncounter, type Lang } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
+import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
+import type { TraitInfo } from "../rules/traitInfo.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { compareStrings } from "../rules/compare.js";
 
 const CONDITION_OPTIONS = Object.values(CONDITIONS).sort((a, b) => compareStrings(a.name, b.name));
+
+/** The condition's display name for `lang` — French (from the glossary map
+ * `useTraitGlossary` already merges conditions.json's overlay into) when
+ * French is on and there's a translation, English (`CONDITIONS`, the rules
+ * layer's own name) otherwise. Gated on `lang` rather than just falling
+ * through to whatever the glossary map holds, so English rendering can
+ * never drift from `CONDITIONS[slug].name` even if conditions.json's own
+ * English wording differs in some byte. */
+function conditionDisplayName(slug: ConditionSlug, glossary: Map<string, TraitInfo>, lang: Lang): string {
+  if (lang !== "fr") return CONDITIONS[slug].name;
+  return glossary.get(slug)?.name ?? CONDITIONS[slug].name;
+}
 
 /** Last damage/heal applied to this combatant, shown beside the HP line
  * until the next apply or the popover closes (component-local state, so
@@ -77,6 +91,8 @@ export function RowPopover({
   onClose?: () => void;
 }): React.ReactElement | null {
   const t = useT();
+  const lang = useEncounter((s) => s.lang);
+  const glossary = useTraitGlossary();
   const combatant = useEncounter((s) => s.encounter.combatants[combatantId]);
   const entry = useEncounter((s) => s.encounter.entries.find((e) => e.combatantIds.includes(combatantId)));
   const applyDamage = useEncounter((s) => s.applyDamage);
@@ -489,7 +505,7 @@ export function RowPopover({
           >
             {CONDITION_OPTIONS.map((c) => (
               <option key={c.slug} value={c.slug}>
-                {c.name}
+                {conditionDisplayName(c.slug, glossary, lang)}
               </option>
             ))}
           </select>
@@ -552,7 +568,7 @@ export function RowPopover({
               <button
                 key={c.slug}
                 type="button"
-                aria-label={format(t("REMOVE_NAME_ARIA"), { name: CONDITIONS[c.slug].name })}
+                aria-label={format(t("REMOVE_NAME_ARIA"), { name: conditionDisplayName(c.slug, glossary, lang) })}
                 onClick={() => removeCondition(combatantId, c.slug)}
                 style={{
                   fontFamily: "inherit",
@@ -569,7 +585,9 @@ export function RowPopover({
                   cursor: "pointer",
                 }}
               >
-                {CONDITIONS[c.slug].valued ? `${CONDITIONS[c.slug].name.toUpperCase()} ${c.value}` : CONDITIONS[c.slug].name.toUpperCase()}
+                {CONDITIONS[c.slug].valued
+                  ? `${conditionDisplayName(c.slug, glossary, lang).toUpperCase()} ${c.value}`
+                  : conditionDisplayName(c.slug, glossary, lang).toUpperCase()}
                 <span aria-hidden="true">×</span>
               </button>
             ))}

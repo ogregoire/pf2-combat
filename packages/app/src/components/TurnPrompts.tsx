@@ -39,6 +39,7 @@ export function unacknowledgedCountFor(combatant: Combatant, acknowledgedPrompts
  * re-decides which conditions fire when. */
 export function TurnPrompts(): React.ReactElement | null {
   const t = useT();
+  const lang = useEncounter((s) => s.lang);
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const combatants = useEncounter((s) => s.encounter.combatants);
@@ -88,11 +89,11 @@ export function TurnPrompts(): React.ReactElement | null {
   };
 
   const startPrompts = unacknowledged(
-    promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "start" }),
+    promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "start" }, lang),
     acknowledgedPrompts,
   );
   const endPrompts = unacknowledged(
-    promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "end" }),
+    promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "end" }, lang),
     acknowledgedPrompts,
   );
 

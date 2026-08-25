@@ -194,6 +194,21 @@ export const STRINGS_EN = {
   // StatBlockHeader.tsx
   CREATURE_FALLBACK_BADGE: "EN",
   CREATURE_FALLBACK_TITLE: "No French translation for this creature — showing the English name.",
+
+  // rules/prompts.ts (start/end-of-turn notifications, TurnPrompts.tsx)
+  PROMPT_RECOVERY_TITLE: "Recovery check",
+  PROMPT_RECOVERY_COMPUTATION: "1d20 flat check vs DC {dc}",
+  PROMPT_RECOVERY_DERIVATION: "DC 10 + {name} {value} = {dc}",
+  PROMPT_NAME_VALUE: "{name} {value}",
+  PROMPT_ACTION_LOSS_TITLE: "Lose {value} action{plural} this turn",
+  PROMPT_ACTION_POOL_AUTO_APPLIED: "Action pool {before} → {after}",
+  PROMPT_CONDITION_DECREASES_TITLE: "{name} decreases",
+  PROMPT_NAME_DECREASE: "{name} {from} → {to}",
+  PROMPT_PERSISTENT_DAMAGE_TITLE: "Persistent damage",
+  PROMPT_PERSISTENT_DAMAGE_COMPUTATION: "Roll {formula}, then DC 15 flat check to end it",
+  PROMPT_PERSISTENT_DAMAGE_FORMULA_FALLBACK: "the persistent damage",
+  PROMPT_PERSISTENT_DAMAGE_ENDS: "the condition ends",
+  PROMPT_PERSISTENT_DAMAGE_CONTINUES: "it persists",
 } as const;
 
 export type StringKey = keyof typeof STRINGS_EN;

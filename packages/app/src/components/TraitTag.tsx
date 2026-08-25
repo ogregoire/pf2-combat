@@ -1,3 +1,4 @@
+import { useEncounter } from "../state/store.js";
 import { splitTraitValue, stripHtml, type TraitInfo } from "../rules/traitInfo.js";
 
 /**
@@ -10,10 +11,18 @@ import { splitTraitValue, stripHtml, type TraitInfo } from "../rules/traitInfo.j
  * slug (`deadly-d10` -> `deadly`) so a valued trait still resolves — the
  * value itself stays in the visible label, untouched. A trait with no entry
  * gets no `title` at all, never an empty tooltip.
+ *
+ * The label itself only ever switches to the glossary's `name` when French
+ * is on AND that entry has one — every other case (English, or French with
+ * no French name for this slug) keeps the original slug-derived label
+ * unchanged, so English rendering is untouched byte-for-byte.
  */
 export function TraitTag({ trait, glossary }: { trait: string; glossary: Map<string, TraitInfo> }): React.ReactElement {
-  const { base } = splitTraitValue(trait);
+  const lang = useEncounter((s) => s.lang);
+  const { base, value } = splitTraitValue(trait);
   const info = glossary.get(base);
+  const label =
+    lang === "fr" && info?.name ? `${info.name}${value ? ` ${value}` : ""}` : trait.replace(/-/g, " ");
 
   return (
     <span
@@ -28,7 +37,7 @@ export function TraitTag({ trait, glossary }: { trait: string; glossary: Map<str
         whiteSpace: "nowrap",
       }}
     >
-      {trait.replace(/-/g, " ").toUpperCase()}
+      {label.toUpperCase()}
     </span>
   );
 }

@@ -1,8 +1,9 @@
 import { useEncounter } from "../state/store.js";
 import { STRINGS_EN, type StringKey } from "./en.js";
+import { format } from "./format.js";
 import { STRINGS_FR } from "./fr.js";
 
-export { STRINGS_EN, STRINGS_FR };
+export { STRINGS_EN, STRINGS_FR, format };
 export type { StringKey };
 
 /**
@@ -22,17 +23,12 @@ export const ALLOWLIST = new Set<StringKey>([
   "REMASTER_BADGE",
   "GROUP_INITIATIVE_PLACEHOLDER",
   "ROUND_LABEL",
-  // A bare abbreviation, per the same rule as above.
+  // Bare abbreviations and language-neutral `{token}` templates, per the
+  // same rule as above.
   "CREATURE_FALLBACK_BADGE",
+  "PROMPT_NAME_VALUE",
+  "PROMPT_NAME_DECREASE",
 ]);
-
-/** Substitutes `{token}` placeholders in a catalogue string with `vars`.
- * Named rather than positional so a French translation can reorder words
- * around the substitution freely. An unmatched token is left as-is rather
- * than silently dropped, so a typo'd token name fails loudly in the UI. */
-export function format(template: string, vars: Record<string, string | number>): string {
-  return template.replace(/\{(\w+)\}/g, (whole, key: string) => (key in vars ? String(vars[key]) : whole));
-}
 
 /** Looks up chrome copy from the catalogue matching the store's current
  * `lang` — English by default, per the store. Component-local templating

@@ -1,5 +1,4 @@
 import { useT } from "../i18n/index.js";
-import { CONDITIONS } from "../rules/conditions.js";
 import type { Prompt } from "../rules/prompts.js";
 
 /** One acknowledgeable prompt — TurnAssistant.dc.html's card anatomy: a
@@ -31,7 +30,7 @@ export function PromptCard({ prompt, onAcknowledge }: { prompt: Prompt; onAcknow
             color: "var(--bg)",
           }}
         >
-          {CONDITIONS[prompt.slug].name.toUpperCase()}
+          {prompt.label.toUpperCase()}
         </span>
         <span style={{ fontSize: "12.5px", fontWeight: 600 }}>{prompt.title}</span>
       </div>
