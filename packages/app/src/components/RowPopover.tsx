@@ -292,8 +292,11 @@ export function RowPopover({
         {entry && (
           <input
             aria-label="Initiative"
-            value={initiativeDraft ?? String(entry.initiative)}
-            onFocus={() => setInitiativeDraft(String(entry.initiative))}
+            // Unrolled (entry.initiative === null) shows as an empty box,
+            // not the literal text "null" — same "not rolled" contract as
+            // the em dash in CombatantRow/GroupHeader, just editable here.
+            value={initiativeDraft ?? (entry.initiative === null ? "" : String(entry.initiative))}
+            onFocus={() => setInitiativeDraft(entry.initiative === null ? "" : String(entry.initiative))}
             onChange={(e) => setInitiativeDraft(e.target.value)}
             onBlur={commitInitiative}
             onKeyDown={(e) => {

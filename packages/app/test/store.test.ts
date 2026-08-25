@@ -3,7 +3,7 @@ import { useEncounter } from "../src/state/store.js";
 
 const reset = () => useEncounter.getState().reset();
 
-const addCreature = (name: string, initiative: number, hp = 20): string => {
+const addCreature = (name: string, initiative: number | null, hp = 20): string => {
   const id = useEncounter.getState().addCombatant({
     kind: "creature", name, level: 1, ac: 15,
     saves: { fortitude: 5, reflex: 5, will: 5 },
@@ -28,6 +28,15 @@ describe("encounter store", () => {
     expect(
       useEncounter.getState().encounter.entries.map((e) => e.initiative),
     ).toEqual([20, 5]);
+  });
+
+  it("sorts an unrolled entry (initiative null) above every rolled entry, regardless of value", () => {
+    addCreature("twenty", 20);
+    addCreature("unrolled", null);
+    addCreature("ten", 10);
+    const names = useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names).toEqual(["unrolled", "twenty", "ten"]);
   });
 
   it("sorts by orderKey, so an entry can be placed between two equal initiatives", () => {

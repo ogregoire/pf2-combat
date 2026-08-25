@@ -410,6 +410,16 @@ describe("CombatantList", () => {
     expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(25);
   });
 
+  it("shows an empty initiative field, not the literal text \"null\", for an unrolled combatant", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(seed(), null);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    const initiative = screen.getByLabelText("Initiative") as HTMLInputElement;
+    expect(initiative.value).toBe("");
+  });
+
   it("disables Damage and Heal when the combatant has no HP on record", async () => {
     const user = userEvent.setup();
     useEncounter.getState().addCombatant(
