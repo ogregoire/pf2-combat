@@ -208,9 +208,11 @@ export function conditionModifiers(
  * turn just ended. `startOfTurn`/`endOfTurn` have been declared on
  * ConditionDef since before this function existed, but nothing ever read
  * them — frightened never ticked down on its own, and persistent damage
- * never rolled. This is the first reader; the caller (nextTurn in
- * store.ts) is the first of what Task 8 says will be two call sites (Delay
- * is the second, firing this immediately instead of waiting for nextTurn).
+ * never rolled. This is their only reader. It is reached from two places in
+ * store.ts, both through `settleEndOfTurn`: `nextTurn`, when a turn ends,
+ * and `delay`, which fires it immediately (RAW: on Delay those effects
+ * "occur immediately when you use the Delay action"). That shared gate is
+ * what keeps a delayed turn from resolving them twice.
  *
  * "decrement" lowers the value by 1 and drops the condition once it would
  * reach 0 — matches the existing GM-facing "Frightened decreases" prompt

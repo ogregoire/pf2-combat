@@ -197,10 +197,11 @@ export function RowPopover({
     setDamageType("none");
   };
 
-  // Resolves the roster player behind a `kind: "pc"` combatant. A PC added
-  // before Task 6 wires up `playerId` (or one the GM built by hand) has
-  // none to resolve — null here, same as any other case with no known
-  // modifier, per the brief's "degrade gracefully rather than crashing".
+  // Resolves the roster player behind a `kind: "pc"` combatant. Not every
+  // one has a `playerId`: an encounter saved before the field existed, or a
+  // PC the GM built by hand rather than adding from the roster, carries
+  // none — null here, same as any other case with no known modifier, per
+  // the brief's "degrade gracefully rather than crashing".
   const player = combatant.kind === "pc" && combatant.playerId !== undefined
     ? players.find((p) => p.id === combatant.playerId) ?? null
     : null;
