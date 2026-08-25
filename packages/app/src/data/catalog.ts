@@ -1,4 +1,4 @@
-import type { BookCatalogEntry, IndexEntry } from "@pf2/schema";
+import type { BookCatalogEntry, Condition, GlossaryEntry, IndexEntry } from "@pf2/schema";
 import { compareStrings } from "../rules/compare.js";
 
 export type FetchFn = (url: string) => Promise<Response>;
@@ -19,6 +19,18 @@ export function loadBooks(fetchFn: FetchFn = defaultFetch): Promise<BookCatalogE
 
 export function loadIndex(pack: string, fetchFn: FetchFn = defaultFetch): Promise<IndexEntry[]> {
   return getJson<IndexEntry[]>(`index/${pack}.json`, fetchFn);
+}
+
+/** The monster-ability glossary (Grab, Attack of Opportunity, ...) — one of
+ * the two sources `useTraitGlossary` looks trait/keyword hover text up in. */
+export function loadGlossary(fetchFn: FetchFn = defaultFetch): Promise<GlossaryEntry[]> {
+  return getJson<GlossaryEntry[]>("glossary.json", fetchFn);
+}
+
+/** Condition definitions (Blinded, Clumsy, ...) — the other source
+ * `useTraitGlossary` looks trait/keyword hover text up in. */
+export function loadConditionDefs(fetchFn: FetchFn = defaultFetch): Promise<Condition[]> {
+  return getJson<Condition[]>("conditions.json", fetchFn);
 }
 
 /**
