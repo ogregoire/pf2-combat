@@ -124,25 +124,38 @@ export function ActionCard({
   const isExpanded = selected;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-      <button
-        type="button"
-        aria-pressed={selected}
-        onClick={onSelect}
-        style={{
-          fontFamily: "inherit",
-          textAlign: "left",
-          width: "100%",
-          padding: "11px 14px",
-          borderRadius: "4px",
-          background: disabled ? "var(--panel)" : "var(--panel-raised)",
-          border: disabled ? "1px dashed var(--border)" : "1px solid var(--border-strong)",
-          opacity: disabled ? 0.45 : 1,
-          cursor: disabled ? "default" : "pointer",
-          color: "var(--text)",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: isExpanded ? "6px" : 0 }}>
+    <div
+      role="button"
+      tabIndex={0}
+      aria-pressed={selected}
+      onClick={onSelect}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect?.();
+        }
+      }}
+      style={{
+        // A row, not a column: the content stacks on the left and the Use
+        // button sits to its right, `alignItems: center` centring that button
+        // against the *whole* card rather than against the header line — an
+        // expanded card's Use button used to ride up next to the name.
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        textAlign: "left",
+        width: "100%",
+        padding: "11px 14px",
+        borderRadius: "4px",
+        background: disabled ? "var(--panel)" : "var(--panel-raised)",
+        border: disabled ? "1px dashed var(--border)" : "1px solid var(--border-strong)",
+        opacity: disabled ? 0.45 : 1,
+        cursor: disabled ? "default" : "pointer",
+        color: "var(--text)",
+      }}
+    >
+      <div style={{ flexGrow: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <FoldArrow expanded={isExpanded} />
           <CostPips cost={action.cost} />
           <span style={{ fontWeight: 600 }}>{action.name}</span>
@@ -160,32 +173,6 @@ export function ActionCard({
               {action.frequency.max}/{action.frequency.per.toUpperCase()}
             </span>
           )}
-          {selected && onUse && cost > 0 && (
-            <button
-              type="button"
-              disabled={disabled}
-              onClick={(e) => {
-                e.stopPropagation();
-                onUse();
-              }}
-              style={{
-                fontFamily: "inherit",
-                marginLeft: "auto",
-                fontSize: "11px",
-                fontWeight: 600,
-                padding: "5px 10px",
-                borderRadius: "3px",
-                border: "1px solid var(--border-strong)",
-                background: disabled ? "var(--panel)" : "var(--accent-bg)",
-                color: disabled ? "var(--text-faint)" : "var(--accent-text)",
-                opacity: disabled ? 0.55 : 1,
-                cursor: disabled ? "default" : "pointer",
-                flexShrink: 0,
-              }}
-            >
-              Use {cost} {cost === 1 ? "action" : "actions"}
-            </button>
-          )}
         </div>
         {isExpanded && (
           <>
@@ -196,7 +183,34 @@ export function ActionCard({
             />
           </>
         )}
-      </button>
+      </div>
+      {selected && onUse && (
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={(e) => {
+            e.stopPropagation();
+            onUse();
+          }}
+          style={{
+            fontFamily: "inherit",
+            alignSelf: "center",
+            fontSize: "11px",
+            fontWeight: 600,
+            padding: "5px 10px",
+            borderRadius: "3px",
+            border: "1px solid var(--border-strong)",
+            background: disabled ? "var(--panel)" : "var(--accent-bg)",
+            color: disabled ? "var(--text-faint)" : "var(--accent-text)",
+            opacity: disabled ? 0.55 : 1,
+            cursor: disabled ? "default" : "pointer",
+            flexShrink: 0,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {cost > 0 ? `Use ${cost} ${cost === 1 ? "action" : "actions"}` : "Use reaction"}
+        </button>
+      )}
     </div>
   );
 }

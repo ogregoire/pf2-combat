@@ -330,3 +330,68 @@ describe("ActionList — unaffordable actions fold to their header line", () => 
     expect(card.textContent).not.toMatch(/NEEDS|LEFT/i);
   });
 });
+
+// A reaction draws on the one reaction a creature has per round, not on the
+// three-action pool — so it used to render with no Use button at all and the
+// only way to mark it used was ReactionWatch's "Spent" over in the turn
+// panel. RAW (Player Core, Reactions in Encounters): one reaction, regained
+// at the start of your turn, which `advanceTurn` already does (covered in
+// store.test.ts).
+describe("ActionList — reactions spend the creature's one reaction", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  const withReaction = () =>
+    useEncounter.getState().addCombatant(
+      {
+        kind: "creature", name: "Forest Troll", level: 5, ac: 20,
+        saves: { fortitude: 17, reflex: 11, will: 7 }, hp: { current: 125, max: 125 },
+        attacks: [],
+        actions: [
+          { name: "Attack of Opportunity", cost: "reaction", traits: [], frequency: null,
+            trigger: "A creature within reach uses a manipulate action.", requirements: null,
+            description: "<p>Make a melee Strike.</p>", category: "offensive" },
+          { name: "Bellow", cost: "free", traits: [], frequency: null, trigger: null,
+            requirements: null, description: "<p>Roars.</p>", category: "offensive" },
+        ],
+      },
+      19,
+    );
+
+  it("reveals a Use reaction button and spends the reaction, not the action pool", async () => {
+    const user = userEvent.setup();
+    withReaction();
+    const { id } = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    render(<ActiveCombatant />);
+
+    await user.click(screen.getByRole("button", { name: /Attack of Opportunity/ }));
+    const use = screen.getByRole("button", { name: "Use reaction" });
+
+    await user.click(use);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.reactionSpent).toBe(true);
+    expect(c.actionsSpent).toBe(0);
+  });
+
+  it("disables the Use button once the reaction is spent", () => {
+    withReaction();
+    const { id } = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    useEncounter.getState().setReactionSpent(id, true);
+    render(<ActiveCombatant />);
+
+    // Spent reads the same way an unaffordable action does: dimmed, dashed.
+    const card = screen.getByRole("button", { name: /Attack of Opportunity/ });
+    expect(card.style.opacity).toBe("0.45");
+    expect(card.style.border).toBe("1px dashed var(--border)");
+  });
+
+  // A free action has no pool and no per-round cap, so there is nothing to
+  // spend and nothing to disable — it must not grow a Use button.
+  it("gives a free action no Use button", async () => {
+    const user = userEvent.setup();
+    withReaction();
+    render(<ActiveCombatant />);
+
+    await user.click(screen.getByRole("button", { name: /Bellow/ }));
+    expect(screen.queryByRole("button", { name: /^Use / })).toBeNull();
+  });
+});

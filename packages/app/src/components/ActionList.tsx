@@ -44,6 +44,7 @@ export function ActionList({
   fetchFn?: FetchFn;
 }): React.ReactElement | null {
   const spendActions = useEncounter((s) => s.spendActions);
+  const setReactionSpent = useEncounter((s) => s.setReactionSpent);
   const glossary = useTraitGlossary(fetchFn);
   // Which ability the GM has pressed. Selection reveals its Use button;
   // pressing the card itself never spends (see ActionCard).
@@ -58,13 +59,41 @@ export function ActionList({
   const remaining = Math.max(0, pool.total - combatant.actionsSpent);
   const activeRung = Math.min(combatant.strikesMade, 2);
 
+  /**
+   * What pressing an ability's Use button costs, and whether it can be paid.
+   *
+   * A reaction draws on the single reaction a creature has per round, not on
+   * the three-action pool, so it needs its own affordability check and its own
+   * spend — without one, a reaction rendered a card with no Use button at all
+   * and `setReactionSpent` was only reachable from ReactionWatch's "Spent".
+   * RAW (Player Core, Reactions in Encounters): you gain your reaction when
+   * your first turn begins, and you lose an unused reaction at the start of
+   * your next turn but immediately regain one — i.e. one per round, refreshed
+   * at the start of the turn, which is exactly what `advanceTurn` already
+   * does. Whether a creature may react *before* its first turn is explicitly
+   * the GM's call, so nothing here blocks that.
+   *
+   * A free action has no pool and no per-round cap, so there is nothing to
+   * spend and it gets no Use button (`onUse: undefined`).
+   */
+  function spendSpec(action: Action): { disabled: boolean; onUse: (() => void) | undefined } {
+    if (action.cost === "reaction") {
+      return {
+        disabled: combatant.reactionSpent,
+        onUse: () => setReactionSpent(combatant.id, true),
+      };
+    }
+    const cost = costValue(action.cost);
+    if (cost === 0) return { disabled: false, onUse: undefined };
+    return { disabled: cost > remaining, onUse: () => spendActions(combatant.id, cost) };
+  }
+
   const items = buildActionList(combatant.actions, combatant.attacks);
   const activatable = items.filter((i) => i.kind === "strike" || i.action.cost !== "passive");
   const passives = items.filter((i) => i.kind === "action" && i.action.cost === "passive");
 
   function renderChild(child: Action, parentName?: string): React.ReactElement {
-    const cost = costValue(child.cost);
-    const disabled = cost > remaining;
+    const { disabled, onUse } = spendSpec(child);
     return (
       <ChildActionRow
         key={child.name}
@@ -72,7 +101,7 @@ export function ActionList({
         disabled={disabled}
         selected={selected === child.name}
         onSelect={() => setSelected((prev) => (prev === child.name ? null : child.name))}
-        onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
+        onUse={onUse}
         glossary={glossary}
         parentName={parentName}
       />
@@ -112,8 +141,7 @@ export function ActionList({
             );
           }
 
-          const cost = costValue(item.action.cost);
-          const disabled = cost > remaining;
+          const { disabled, onUse } = spendSpec(item.action);
           return (
             <div key={item.action.name} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
               <ActionCard
@@ -123,7 +151,7 @@ export function ActionList({
                 onSelect={() =>
                   setSelected((prev) => (prev === item.action.name ? null : item.action.name))
                 }
-                onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
+                onUse={onUse}
                 glossary={glossary}
               />
               {item.children.map((child) => renderChild(child, item.action.name))}
