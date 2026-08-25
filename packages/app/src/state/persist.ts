@@ -42,11 +42,28 @@ function getDb(): Promise<IDBPDatabase<TrackerDB>> {
   return dbPromise;
 }
 
+/** A payload saved before `initiativeModifier` existed on `Player`/
+ * `Combatant` has neither field at all — not `null` — because it was never
+ * written. `in` (not `??`) is what tells "predates this field" apart from a
+ * value some future save deliberately set to `null`, even though both
+ * currently resolve to the same default. */
+function withInitiativeModifierDefault<T extends object>(entity: T): T {
+  return "initiativeModifier" in entity ? entity : { ...entity, initiativeModifier: null };
+}
+
 /**
  * Stamps a payload with the current schema version, upgrading a payload
  * that predates `schemaVersion` (version 0). Refuses a payload newer than
  * what this build understands, rather than silently truncating it —
  * opening an old save with a new client is fine; the reverse isn't.
+ *
+ * Also defaults a couple of fields that were added to `Player` and
+ * `Combatant` without a `SCHEMA_VERSION` bump (see those types'
+ * `initiativeModifier` doc comments) — a real shape change would earn its
+ * own version and its own migration step here, but this is just a reader
+ * filling in a field older data never had, so the version stays put.
+ * Doing it once here, rather than at every call site that reads the field,
+ * is what lets those call sites trust the `number | null` type as written.
  */
 export function migrate(raw: unknown): Record<string, unknown> {
   const payload: Record<string, unknown> =
@@ -58,6 +75,25 @@ export function migrate(raw: unknown): Record<string, unknown> {
     );
   }
   payload.schemaVersion = SCHEMA_VERSION;
+
+  if (Array.isArray(payload.players)) {
+    payload.players = (payload.players as object[]).map(withInitiativeModifierDefault);
+  }
+
+  const encounter = payload.encounter;
+  if (encounter !== null && typeof encounter === "object" && "combatants" in encounter) {
+    const combatants = (encounter as { combatants: unknown }).combatants;
+    if (combatants !== null && typeof combatants === "object") {
+      const defaulted = Object.fromEntries(
+        Object.entries(combatants as Record<string, object>).map(([id, c]) => [
+          id,
+          withInitiativeModifierDefault(c),
+        ]),
+      );
+      payload.encounter = { ...(encounter as object), combatants: defaulted };
+    }
+  }
+
   return payload;
 }
 
