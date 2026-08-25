@@ -16,26 +16,20 @@ const inputStyle: React.CSSProperties = {
   color: "var(--text)",
 };
 
-/**
- * Minimal group builder: check two or more rows, name it, give it a shared
- * initiative, Create. `group()` (the store action) has existed and been
- * tested since early in the branch, but nothing in the UI ever called it —
- * the GM had no way to make the encounter's heterogeneous groups (one
- * goblin chief with three goblins, sharing a turn) that the app is built to
- * support. `GroupHeader` and the grouped-row anatomy already render; this
- * is the missing input side.
- */
 function GroupBuilder({
   selectedIds,
+  selectedInitiatives,
   onCancel,
   onCreate,
 }: {
   selectedIds: string[];
+  selectedInitiatives: number[];
   onCancel: () => void;
   onCreate: (name: string, initiative: number) => void;
 }): React.ReactElement {
+  const allSame = selectedInitiatives.length > 0 && selectedInitiatives.every((v) => v === selectedInitiatives[0]);
   const [name, setName] = useState("");
-  const [initiative, setInitiative] = useState("");
+  const [initiative, setInitiative] = useState(allSame ? String(selectedInitiatives[0]) : "");
 
   return (
     <div
@@ -49,9 +43,6 @@ function GroupBuilder({
         background: "var(--panel-raised)",
       }}
     >
-      <span style={{ fontSize: "11.5px", color: "var(--text-dim)", flexShrink: 0 }}>
-        {selectedIds.length} selected
-      </span>
       <input
         aria-label="Group name"
         placeholder="Group name"
@@ -124,6 +115,8 @@ export function CombatantList({
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   const toggleSelect = (id: string): void => {
+    const alreadyGrouped = entries.some((e) => e.groupName !== null && e.combatantIds.includes(id));
+    if (alreadyGrouped) return;
     setSelectedIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
   };
 
@@ -132,12 +125,23 @@ export function CombatantList({
     setSelectedIds([]);
   };
 
+  const chainIcon = (
+    <svg width="12" height="12" viewBox="0 0 12 12" style={{ flexShrink: 0 }}>
+      <path d="M3 4a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm-4.5 1.5h3"
+            fill="none" stroke="oklch(0.34 0.04 200)" strokeWidth="1" strokeLinecap="round"/>
+    </svg>
+  );
+
+  const selectedInitiatives = selectedIds
+    .map((id) => entries.find((e) => e.combatantIds.includes(id))?.initiative ?? null)
+    .filter((i) => i !== null) as number[];
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "3px", padding: "0 8px 12px" }}>
       <QuickAdd entries={quickAddEntries} loadCreatureFn={loadCreatureFn} />
 
       {selectedIds.length >= 2 && (
-        <GroupBuilder selectedIds={selectedIds} onCancel={() => setSelectedIds([])} onCreate={handleCreateGroup} />
+        <GroupBuilder selectedIds={selectedIds} selectedInitiatives={selectedInitiatives} onCancel={() => setSelectedIds([])} onCreate={handleCreateGroup} />
       )}
 
       {entries.map((entry, index) => {
@@ -163,6 +167,7 @@ export function CombatantList({
         return (
           <div key={entry.id}>
             <GroupHeader
+              entryId={entry.id}
               name={entry.groupName}
               initiative={entry.initiative}
               delayed={entry.delayed}
@@ -174,7 +179,7 @@ export function CombatantList({
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "2px",
+                gap: "3px",
                 paddingLeft: "16px",
                 borderLeft: `3px solid ${isActive ? "oklch(0.70 0.15 55)" : "oklch(0.34 0.04 200)"}`,
               }}
@@ -185,8 +190,8 @@ export function CombatantList({
                   id={id}
                   grouped
                   active={isActive}
-                  selected={selectedIds.includes(id)}
-                  onToggleSelect={() => toggleSelect(id)}
+                  selected={false}
+                  onToggleSelect={() => {}}
                 />
               ))}
             </div>

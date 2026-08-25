@@ -279,6 +279,8 @@ interface EncounterStore {
   returnFromDelay(entryId: string): void;
   acknowledgePrompt(promptId: string): void;
   group(ids: string[], name: string, initiative: number | null): void;
+  ungroup(entryId: string): void;
+  renameGroup(entryId: string, name: string): void;
   setPlayers(players: Player[]): void;
   /** Removes every `kind: "creature"` combatant; the fight keeps running
    * (round, turn order, PCs untouched). */
@@ -660,6 +662,49 @@ export const useEncounter = create<EncounterStore>()(
         const targetId = activeFullyAbsorbed ? groupEntryId : activeEntryId;
         const newIndex = targetId === null ? -1 : enc.entries.findIndex((e) => e.id === targetId);
         enc.activeEntryIndex = newIndex >= 0 ? newIndex : 0;
+      }),
+
+    ungroup: (entryId) =>
+      set((state) => {
+        const enc = state.encounter;
+        const groupEntry = enc.entries.find((e) => e.id === entryId);
+        if (!groupEntry || groupEntry.groupName === null) return;
+
+        const activeEntry = enc.entries[enc.activeEntryIndex];
+        const activeFullyDissolves = activeEntry?.id === entryId;
+        const activeEntryId = activeEntry?.id ?? null;
+
+        const newEntries: Entry[] = [];
+        for (const entry of enc.entries) {
+          if (entry.id === entryId) {
+            for (const cid of entry.combatantIds) {
+              newEntries.push({
+                id: nextEntryId(),
+                initiative: entry.initiative,
+                combatantIds: [cid],
+                groupName: null,
+                trueInitiative: entry.trueInitiative,
+              });
+            }
+          } else {
+            newEntries.push(entry);
+          }
+        }
+        sortEntries(newEntries);
+        enc.entries = newEntries;
+
+        const targetId = activeFullyDissolves ? null : activeEntryId;
+        const newIndex = targetId === null ? -1 : enc.entries.findIndex((e) => e.id === targetId);
+        enc.activeEntryIndex = newIndex >= 0 ? newIndex : 0;
+      }),
+
+    renameGroup: (entryId, name) =>
+      set((state) => {
+        const enc = state.encounter;
+        const entry = enc.entries.find((e) => e.id === entryId);
+        if (entry && entry.groupName !== null) {
+          entry.groupName = name;
+        }
       }),
 
     setPlayers: (players) =>

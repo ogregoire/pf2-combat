@@ -62,7 +62,7 @@ export function ActionList({
   const activatable = items.filter((i) => i.kind === "strike" || i.action.cost !== "passive");
   const passives = items.filter((i) => i.kind === "action" && i.action.cost === "passive");
 
-  function renderChild(child: Action): React.ReactElement {
+  function renderChild(child: Action, parentName?: string): React.ReactElement {
     const cost = costValue(child.cost);
     const disabled = cost > remaining;
     return (
@@ -74,6 +74,7 @@ export function ActionList({
         onSelect={() => setSelected((prev) => (prev === child.name ? null : child.name))}
         onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
         glossary={glossary}
+        parentName={parentName}
       />
     );
   }
@@ -106,7 +107,7 @@ export function ActionList({
                   onSelect={() => onSelectAttack(item.index)}
                   glossary={glossary}
                 />
-                {item.children.map(renderChild)}
+                {item.children.map((child) => renderChild(child, item.attack.name))}
               </div>
             );
           }
@@ -125,7 +126,7 @@ export function ActionList({
                 onUse={cost > 0 ? () => spendActions(combatant.id, cost) : undefined}
                 glossary={glossary}
               />
-              {item.children.map(renderChild)}
+              {item.children.map((child) => renderChild(child, item.action.name))}
             </div>
           );
         })}
