@@ -262,9 +262,22 @@ below for how the gap closed.
   `Record<keyof typeof STRINGS_EN, string>`, so a key added to `en.ts`
   without a French counterpart is a compile error, not a runtime gap a JSON
   file could only catch with an extra build step. `i18n-strings-complete.test.ts`
-  (Task 15) checks the same property at runtime, plus the property no static
-  type can check: that a component actually calls into the catalogue rather
-  than hardcoding a literal that happens to read correctly in English.
+  (Task 15) checks the same property at runtime, plus — within the shape a
+  regex scan can see — the property no static type can check: that a
+  component's JSX text and `aria-label`/`title`/`placeholder` attributes are
+  routed through `t()`/`format()` rather than hardcoded, even when the
+  hardcoded literal happens to read correctly (it was copy-pasted from an
+  existing catalogue value, in either language — the check does not accept
+  that as an excuse, since it stops changing when `lang` toggles either
+  way). The final whole-branch review found this claim overstated in one
+  respect and closed it: the original check only verified catalogue
+  *membership*, so a literal that happened to equal real catalogue copy
+  passed silently, undetected. Two gaps remain, deliberately not closed
+  without an AST parser, because a regex reaching for them starts matching
+  legitimate quoted strings everywhere (style values, object keys, `t()`'s
+  own key argument) — false positives worse than the gap: a JSX text node
+  split across more than three lines, and any literal written inside a
+  `{...}` JSX expression (`{cond ? "Some Text" : "Other"}`).
 
 ### Licensing position (constrains future work on this data)
 

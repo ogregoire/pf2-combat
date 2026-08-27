@@ -18,17 +18,33 @@ import { STRINGS_EN, STRINGS_FR } from "../src/i18n/index.js";
  *
  * This test enumerates every component under packages/app/src/components
  * (not a hardcoded list) and flags any user-visible literal — JSX text,
- * `aria-label`, `title`, `placeholder` — that isn't a value already present
- * in the catalogue (either language: a literal that happens to match French
- * copy pasted in directly is just as much a bug as one matching English).
- * It also checks, independently of the TypeScript `keyof typeof STRINGS_EN`
- * constraint on `fr.ts`, that every English key has a French counterpart at
- * runtime — belt-and-suspenders with the compile-time check, and with
- * i18n-catalogue.test.ts's "fr covers every en key" assertion, so this file
- * stays a self-contained guardrail against the whole class of defect.
+ * `aria-label`, `title`, `placeholder` — that renders as plain text/a plain
+ * attribute value instead of going through `t()`/`format()`. This is
+ * deliberately NOT "unless the literal happens to also be a value already
+ * present in the catalogue": a hardcoded string that reads correctly by
+ * coincidence (it was copy-pasted from a catalogue value, in either
+ * language) is exactly as broken as one that reads wrong, since neither
+ * changes when `lang` toggles. It also checks, independently of the
+ * TypeScript `keyof typeof STRINGS_EN` constraint on `fr.ts`, that every
+ * English key has a French counterpart at runtime — belt-and-suspenders
+ * with the compile-time check, and with i18n-catalogue.test.ts's "fr covers
+ * every en key" assertion, so this file stays a self-contained guardrail
+ * against the whole class of defect.
  *
  * Detection is a plain regex, not an AST parse — see the false-positive
- * notes below and in the project report for what that trades away.
+ * notes below and in the project report for what that trades away. Two
+ * known gaps remain even after closing the catalogue-membership loophole
+ * above: a JSX text node split across more than the three lines
+ * `findLiterals` specifically looks for, and any literal written inside a
+ * `{...}` JSX expression (`{cond ? "Some Text" : "Other"}`) — the character
+ * class that keeps this regex from swallowing TypeScript syntax also makes
+ * it blind to a plain string literal sitting behind a brace. Closing that
+ * second gap needs a real parser: JS/TSX source is full of legitimate
+ * quoted strings inside `{...}` (style values, object keys, `t()`'s own key
+ * argument) that a regex can't tell apart from hardcoded copy without one,
+ * and a guardrail that cries wolf on those is worse than the gap it closes.
+ * See `docs/superpowers/specs/2026-08-25-french-localisation-design.md`'s
+ * own note on this test's actual guarantee.
  */
 
 const SRC_ROOT = resolve(process.cwd(), "packages/app/src");
@@ -78,6 +94,14 @@ function isStructurallyNotCopy(candidate: string): boolean {
   return false;
 }
 
+/** True for a line ending in a JSX tag's closing `>` — excluding `=>`, whose
+ * `>` would otherwise be misread as a tag close (see the single-line regex
+ * below, which excludes it the same way). */
+function endsInJsxCloseAngle(line: string): boolean {
+  const trimmed = line.trimEnd();
+  return trimmed.endsWith(">") && !trimmed.endsWith("=>");
+}
+
 type Finding = { file: string; line: number; kind: string; text: string };
 
 function findLiterals(files: string[]): Finding[] {
@@ -97,14 +121,37 @@ function findLiterals(files: string[]): Finding[] {
       // remaining`) at roughly the same rate as it matched anything real —
       // exactly the false-positive shape this project already declined a
       // guardrail over once. Every literal this codebase currently renders
-      // is written on one line, so this costs no real coverage today; a
-      // multi-line JSX text node added later would need a smarter check.
+      // is written on one line, so this costs no real coverage today.
       const textRe = /(?<!=)>([^<>{}\n]+)</g;
       let m: RegExpExecArray | null;
       while ((m = textRe.exec(line))) {
         const text = m[1].trim();
         if (!text || isStructurallyNotCopy(text)) continue;
         findings.push({ file, line: idx + 1, kind: "JSX text", text });
+      }
+
+      // The one multi-line JSX text shape this codebase's own formatting
+      // convention actually produces: an opening tag alone on its line
+      // (ending in `>`), the text alone on the next, a closing tag alone on
+      // the one after (starting with `<`) — exactly what `{t("KEY")}`
+      // becomes when a KEY's `t()` call is replaced with its own bare
+      // English value, since the surrounding tags don't move. Deliberately
+      // NOT the general multi-line join the comment above rejects: this
+      // only fires when the candidate line itself contains none of
+      // `< > { }`, so it can't swallow a generic or an arrow body the way
+      // scanning across arbitrary line spans did.
+      const trimmedLine = line.trim();
+      if (
+        trimmedLine.length > 0 &&
+        !/[<>{}]/.test(trimmedLine) &&
+        idx > 0 &&
+        idx < lines.length - 1 &&
+        endsInJsxCloseAngle(lines[idx - 1]!) &&
+        lines[idx + 1]!.trimStart().startsWith("<")
+      ) {
+        if (!isStructurallyNotCopy(trimmedLine)) {
+          findings.push({ file, line: idx + 1, kind: "JSX text (own line)", text: trimmedLine });
+        }
       }
 
       // aria-label / title / placeholder, only in literal-quoted form
@@ -125,11 +172,8 @@ function findLiterals(files: string[]): Finding[] {
 }
 
 const componentFiles = walk(COMPONENTS_DIR);
-const catalogueValues = new Set(
-  [...Object.values(STRINGS_EN), ...Object.values(STRINGS_FR)].map((v) => v.trim()),
-);
 
-describe("every component literal is in the i18n catalogue", () => {
+describe("every component literal is routed through the i18n catalogue", () => {
   it("scanned a plausible number of component files", () => {
     // If this ever fails, the component tree was restructured and the walk
     // above found nothing — not because the app legitimately shrank to
@@ -137,19 +181,25 @@ describe("every component literal is in the i18n catalogue", () => {
     expect(componentFiles.length).toBeGreaterThan(10);
   });
 
-  it("has no user-visible literal outside the catalogue, or a documented allowlist reason", () => {
+  it("has no user-visible literal outside a t()/format() call, or a documented allowlist reason", () => {
+    // Deliberately NOT "unless it happens to also be a value already in the
+    // catalogue" — a literal that reads correctly in English (or French)
+    // because it was copy-pasted from a catalogue value is exactly as much
+    // a regression as one that doesn't match anything: either way the
+    // component stopped calling t() and started hardcoding a string, so
+    // toggling `lang` can no longer change what it renders. Every finding
+    // below is therefore unmatched unless it's allowlisted.
     const findings = findLiterals(componentFiles);
-    const unmatched = findings.filter(
-      (f) => !catalogueValues.has(f.text) && !(f.text in ALLOWLIST),
-    );
+    const unmatched = findings.filter((f) => !(f.text in ALLOWLIST));
 
     if (unmatched.length > 0) {
       const lines = unmatched.map(
         (f) => `  ${f.file.replace(SRC_ROOT + "/", "")}:${f.line} (${f.kind}) ${JSON.stringify(f.text)}`,
       );
       throw new Error(
-        `${unmatched.length} literal(s) under packages/app/src/components are not present in ` +
-          "either language's i18n catalogue (src/i18n/en.ts, src/i18n/fr.ts):\n" +
+        `${unmatched.length} literal(s) under packages/app/src/components render as plain text ` +
+          "or a plain attribute value instead of going through useT()/format() — even one that " +
+          "happens to match existing catalogue copy stops changing when `lang` toggles:\n" +
           lines.join("\n") +
           "\n\nThis is the exact shape of a defect that has already shipped once: a hardcoded " +
           'string ("of" in ActionPips.tsx) survived the whole French-localisation conversion ' +
