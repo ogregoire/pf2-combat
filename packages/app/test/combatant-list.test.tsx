@@ -604,6 +604,47 @@ describe("CombatantList", () => {
     expect(screen.queryByRole("button", { name: "Decrease Dying" })).toBeNull();
   });
 
+  it("leaves a corpse's dying tag inert under both of its adjacent controls", async () => {
+    // Fix round 4: the x button and the "−" beside it sit on the same tag and
+    // must answer the same way on a combatant the app is calling dead. The
+    // freeze added for the x button (fix round 3, item 7) is what briefly
+    // made them disagree — "−" still walked dying down to 3 under a DEFEATED
+    // row, describing a death that the numbers on the same row deny.
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    useEncounter.getState().addCondition(id, "dying", 4); // reaches the cap -> dead
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    await user.click(screen.getByRole("button", { name: "Decrease Dying" }));
+    await user.click(screen.getByRole("button", { name: "Remove Dying" }));
+
+    const after = useEncounter.getState().encounter.combatants[id]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+    expect(after.conditions.some((c) => c.slug === "wounded")).toBe(false);
+  });
+
+  it("clears a zero-valued condition left by an older save on the first step down", async () => {
+    // Fix round 4: `if (value <= 0) return;` guarded the stepper against
+    // sending a negative, and nothing in the app can reach it any more — the
+    // picker starts valued conditions at 1 and this stepper now ends them at
+    // 1. Persisted state can still hold a "frightened 0", though: it is
+    // exactly what the pre-fix picker wrote, SCHEMA_VERSION stays 1 and no
+    // migration rewrites it. So the guard is kept and pinned, folded into
+    // the same removal path rather than left as a no-op that would strand
+    // the GM with a chip only the x button could clear.
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    useEncounter.getState().addCondition(id, "frightened", 0); // an old save's leftover
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    await user.click(screen.getByRole("button", { name: "Decrease Frightened" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
+  });
+
   it("applies dying at gain time plus the wounded bonus when clicked directly, not just when raised by damage", async () => {
     // data/conditions.json, wounded: "If you gain the dying condition while
     // wounded, increase your dying condition value by your wounded value."

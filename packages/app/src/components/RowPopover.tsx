@@ -421,7 +421,6 @@ export function RowPopover({
     addCondition(combatantId, slug, slug === "dying" ? 1 : value + 1);
   };
   const decrementCondition = (slug: ConditionSlug, value: number): void => {
-    if (value <= 0) return; // floor at 0 — never send a call that would go negative
     // The step that would reach 0 *ends* the condition rather than storing a
     // 0. A "frightened 0" is not a state the rules have: applyEndOfTurn's
     // own "decrement" hook drops a condition the moment it decrements to 0
@@ -434,7 +433,16 @@ export function RowPopover({
     // condition, you gain the Wounded 1 condition..." — which only
     // removeCondition applies. Routing every slug through the same call
     // keeps the stepper and the tag's own x button on one path.
-    if (value === 1) {
+    //
+    // `<= 1`, not `=== 1`, is what keeps this from ever sending a negative.
+    // Nothing in the app can hand it a 0 any more — the picker starts valued
+    // conditions at 1 and this function ends them at 1 — but a save written
+    // before that fix can still hold a "frightened 0", and SCHEMA_VERSION
+    // stays 1 with no migration to rewrite it. Ending that leftover is the
+    // right answer for it too: a bare `return` would leave the GM with a
+    // chip only the x button could clear, which is the very complaint this
+    // fix started from.
+    if (value <= 1) {
       removeCondition(combatantId, slug);
       return;
     }

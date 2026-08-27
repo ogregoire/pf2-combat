@@ -192,6 +192,14 @@ function settleDoomedDeath(c: Combatant): void {
  * and `dealDamage`'s 0-HP handling below, so both apply the exact same
  * doomed-interaction, death-at-cap and unconscious rules instead of
  * maintaining that logic twice.
+ *
+ * A dead combatant's dying value may not fall back below the cap it died
+ * at — see the guard below, which is `removeCondition`'s freeze for the
+ * tag's own "x" button, applied to the "−" sitting next to it. It lives
+ * here, in the store, rather than in the stepper: the two controls are one
+ * policy and splitting it across two layers is how they came to disagree in
+ * the first place, and no caller — UI, damage, or a future one — should be
+ * able to write a DEFEATED row whose dying denies the death.
  */
 function applyDyingGain(c: Combatant, amount: number): void {
   const updated = dyingOnGain(c.conditions, amount);
@@ -202,10 +210,22 @@ function applyDyingGain(c: Combatant, amount: number): void {
   // in place of the dying value this combatant actually gained. The death
   // marked below is what a max of 0 really means.
   if (max > 0) dyingEntry.value = Math.min(dyingEntry.value, max);
+  // Refused, not applied-and-then-un-killed: clearing `defeated` here
+  // instead would turn "−" into a resurrection button while the "x" beside
+  // it freezes — the same disagreement, mirrored — and it would undo what
+  // task 3 settled, that death at the cap is permanent. The one way back is
+  // still lowering doomed (see settleDoomedDeath). The check is narrow on
+  // purpose: only an edit that would put a corpse *below* its cap is
+  // refused, so a doomed-killed combatant (max 0, which no value can fall
+  // below) still records the dying it gains.
+  if (c.defeated && dyingEntry.value < max) return;
   c.conditions = updated;
   // data/conditions.json, dying: "if it ever reaches dying 4, you die."
   // Reuses the existing `defeated` flag the row already renders rather than
-  // inventing a parallel notion of dead.
+  // inventing a parallel notion of dead. Only ever sets, never clears — and
+  // past the guard above that is not the asymmetry it looks like: the one
+  // way to arrive here already defeated is with the value at or above the
+  // cap, so `c.defeated = value >= max` would be the identical statement.
   if (dyingEntry.value >= max) c.defeated = true;
   // "While you have this condition, you are Unconscious"
   // (data/conditions.json, dying) — true however the dying arrived, so it

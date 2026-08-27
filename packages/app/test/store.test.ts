@@ -818,4 +818,34 @@ describe("encounter store", () => {
     expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
     expect(after.conditions.some((c) => c.slug === "wounded")).toBe(false);
   });
+
+  // Fix round 4: the x button's freeze (item 7 above) left its own sibling
+  // disagreeing with it. The stepper's "−" routes through addCondition's
+  // dying branch, which set `defeated` on reaching the cap but never
+  // reconsidered it on the way back down — so one click on a dying-4 corpse
+  // produced `defeated: true, dying 3`: a DEFEATED row whose dying sits
+  // below the very cap it died at, the exact incoherence item 7 closed.
+  it("refuses a dying step that would leave a dead combatant below the cap it died at", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 4); // reaches the cap -> dead
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().addCondition(pc, "dying", -1); // what the stepper's "−" sends
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+  });
+
+  // The narrow scope of that refusal, pinned: only an edit that would put a
+  // corpse *below* its cap is refused. A doomed-killed combatant (max 0,
+  // where every dying value is at or above the cap) still records the dying
+  // it gains — the round-1 behaviour above, reached through the guard.
+  it("still records dying on a doomed-killed combatant, whose cap no value can fall below", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "doomed", 4); // max 0 -> dead on its own
+    useEncounter.getState().addCondition(pc, "dying", 1);
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
+  });
 });
