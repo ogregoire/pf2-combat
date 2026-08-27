@@ -1,7 +1,13 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import type { Action, Attack } from "@pf2/schema";
-import { applyEndOfTurn, type ConditionSlug } from "../rules/conditions.js";
+import {
+  applyEndOfTurn,
+  dyingMax,
+  dyingOnGain,
+  woundedOnRecover,
+  type ConditionSlug,
+} from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
 import type { Combatant, Encounter, Entry, Player } from "./types.js";
 
@@ -545,6 +551,23 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         const c = state.encounter.combatants[id];
         if (!c) return;
+        if (slug === "dying") {
+          // Dying is additive, not a set-to-absolute like every other
+          // valued condition here — `value` is the amount just gained (1
+          // on dropping to 0 HP, 2 on a critical hit while dying), which is
+          // what dyingOnGain expects; see its own doc comment for the
+          // wounded interaction it applies.
+          const updated = dyingOnGain(c.conditions, value);
+          const max = dyingMax(c.conditions);
+          const dyingEntry = updated.find((cond) => cond.slug === "dying")!;
+          dyingEntry.value = Math.min(dyingEntry.value, max);
+          c.conditions = updated;
+          // data/conditions.json, dying: "if it ever reaches dying 4, you
+          // die." Reuses the existing `defeated` flag the row already
+          // renders rather than inventing a parallel notion of dead.
+          if (dyingEntry.value >= max) c.defeated = true;
+          return;
+        }
         const existing = c.conditions.find((cond) => cond.slug === slug);
         if (existing) {
           existing.value = value;
@@ -558,6 +581,14 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         const c = state.encounter.combatants[id];
         if (!c) return;
+        if (slug === "dying") {
+          // data/conditions.json, dying: "Any time you lose the dying
+          // condition, you gain the Wounded 1 condition, or increase your
+          // wounded condition value by 1 ..." — a bare filter would drop
+          // that fallout.
+          c.conditions = woundedOnRecover(c.conditions);
+          return;
+        }
         c.conditions = c.conditions.filter((cond) => cond.slug !== slug);
       }),
 

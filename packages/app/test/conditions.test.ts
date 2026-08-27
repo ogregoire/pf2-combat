@@ -6,7 +6,10 @@ import {
   applyEndOfTurn,
   CONDITIONS,
   conditionModifiers,
+  dyingMax,
+  dyingOnGain,
   PICKABLE_CONDITIONS,
+  woundedOnRecover,
   type AppliedCondition,
   type ConditionSlug,
   type Selector,
@@ -377,5 +380,62 @@ describe("applyEndOfTurn", () => {
 
     expect(warn).toHaveBeenCalledTimes(2);
     warn.mockRestore();
+  });
+});
+
+describe("the dying/wounded/doomed death spiral", () => {
+  // data/conditions.json, dying: "Dying always includes a value, and if it
+  // ever reaches dying 4, you die." data/conditions.json, doomed: "The Dying
+  // value at which you die is reduced by your doomed value."
+  it("caps dying at 4 minus doomed", () => {
+    expect(dyingMax([])).toBe(4);
+    expect(dyingMax([{ slug: "doomed", value: 1 }])).toBe(3);
+  });
+
+  it("never reports a max below 0, however high doomed goes", () => {
+    expect(dyingMax([{ slug: "doomed", value: 9 }])).toBe(0);
+  });
+
+  // data/conditions.json, wounded: "If you gain the dying condition while
+  // wounded, increase your dying condition value by your wounded value."
+  it("adds the wounded value when dying is gained", () => {
+    const after = dyingOnGain([{ slug: "wounded", value: 2 }], 1);
+    expect(after.find((c) => c.slug === "dying")!.value).toBe(3);
+  });
+
+  it("gains dying at just the given amount when there is no wounded condition", () => {
+    const after = dyingOnGain([], 1);
+    expect(after.find((c) => c.slug === "dying")!.value).toBe(1);
+  });
+
+  // The wounded bonus is stated for *gaining* the condition. Taking further
+  // damage while already dying is a separate mechanic in dying's own entry
+  // ("Your dying condition increases by 1 if you take damage while dying,
+  // or by 2 ...") that says nothing about wounded, so a second call here —
+  // representing that later damage, not a fresh gain — must not add the
+  // wounded bonus again.
+  it("does not add the wounded bonus a second time when already dying", () => {
+    const after = dyingOnGain(
+      [{ slug: "dying", value: 1 }, { slug: "wounded", value: 2 }],
+      1,
+    );
+    expect(after.find((c) => c.slug === "dying")!.value).toBe(2);
+  });
+
+  // data/conditions.json, dying: "Any time you lose the dying condition, you
+  // gain the Wounded 1 condition, or increase your wounded condition value
+  // by 1 if you already have that condition."
+  it("raises wounded by one when dying is removed", () => {
+    const after = woundedOnRecover([
+      { slug: "dying", value: 2 },
+      { slug: "wounded", value: 1 },
+    ]);
+    expect(after.find((c) => c.slug === "dying")).toBeUndefined();
+    expect(after.find((c) => c.slug === "wounded")!.value).toBe(2);
+  });
+
+  it("starts wounded at 1 when dying is removed and there was no wounded condition yet", () => {
+    const after = woundedOnRecover([{ slug: "dying", value: 1 }]);
+    expect(after.find((c) => c.slug === "wounded")!.value).toBe(1);
   });
 });

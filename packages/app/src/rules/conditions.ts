@@ -351,6 +351,68 @@ function expandImplied(applied: AppliedCondition[]): AppliedCondition[] {
   return expanded;
 }
 
+/**
+ * The dying value at which a combatant dies, per data/conditions.json,
+ * doomed: "The Dying value at which you die is reduced by your doomed
+ * value. If your maximum dying value is reduced to 0, you instantly die."
+ * Floored at 0 — a negative max has no meaning, and 0 is already the
+ * instant-death case the doomed text describes.
+ */
+export function dyingMax(conditions: AppliedCondition[]): number {
+  const doomed = conditions.find((c) => c.slug === "doomed");
+  return Math.max(0, 4 - (doomed?.value ?? 0));
+}
+
+/**
+ * Applies `amount` to a combatant's dying value, per data/conditions.json,
+ * dying: "Dying always includes a value... Your dying condition increases
+ * by 1 if you take damage while dying, or by 2 if you take damage from an
+ * enemy's critical hit or a critical failure on your save."
+ *
+ * The wounded interaction — data/conditions.json, wounded: "If you gain the
+ * dying condition while wounded, increase your dying condition value by
+ * your wounded value" — is scoped to *gaining* dying, i.e. going from not
+ * dying to dying. It deliberately does not fire here on top of an existing
+ * dying value: the paragraph above already covers further increases while
+ * already dying (taking more damage), and says nothing about wounded there.
+ * Conflating the two would double-apply the wounded bonus on every hit
+ * after the first, not just the one that starts the dying condition.
+ *
+ * Not clamped to dyingMax here — that reduction, and the death it can
+ * trigger, is the caller's job (see store.ts's addCondition), since this
+ * function has no way to also flip Combatant.defeated.
+ */
+export function dyingOnGain(
+  conditions: AppliedCondition[],
+  amount: number,
+): AppliedCondition[] {
+  const existingDying = conditions.find((c) => c.slug === "dying");
+  const wounded = conditions.find((c) => c.slug === "wounded");
+  const woundedBonus = existingDying === undefined ? (wounded?.value ?? 0) : 0;
+  const newValue = (existingDying?.value ?? 0) + amount + woundedBonus;
+
+  const withoutDying = conditions.filter((c) => c.slug !== "dying");
+  return [...withoutDying, { slug: "dying", value: newValue }];
+}
+
+/**
+ * Removes dying and applies its wounded fallout, per data/conditions.json,
+ * dying: "Any time you lose the dying condition, you gain the Wounded 1
+ * condition, or increase your wounded condition value by 1 if you already
+ * have that condition." Fires on every loss of dying, not just recovery via
+ * a successful check — the dataset text draws no such distinction.
+ */
+export function woundedOnRecover(conditions: AppliedCondition[]): AppliedCondition[] {
+  const withoutDying = conditions.filter((c) => c.slug !== "dying");
+  const existingWounded = withoutDying.find((c) => c.slug === "wounded");
+  if (existingWounded) {
+    return withoutDying.map((c) =>
+      c.slug === "wounded" ? { ...c, value: c.value + 1 } : c,
+    );
+  }
+  return [...withoutDying, { slug: "wounded", value: 1 }];
+}
+
 export function conditionModifiers(
   applied: AppliedCondition[],
   selector: Selector,

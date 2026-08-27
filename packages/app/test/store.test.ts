@@ -475,4 +475,48 @@ describe("encounter store", () => {
     useEncounter.getState().nextTurn();
     expect(useEncounter.getState().encounter.combatants[a]!.actionsSpent).toBe(0);
   });
+
+  // These prove the dying/wounded/doomed rules fire through the store's
+  // addCondition/removeCondition, not just in the rules module they're
+  // built from — see rules/conditions.ts's dyingOnGain/dyingMax/
+  // woundedOnRecover for the dataset text each is drawn from.
+  it("applies the wounded bump through the store, not just in the rules module", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "wounded", 2);
+    useEncounter.getState().addCondition(id, "dying", 1);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")!.value).toBe(3);
+  });
+
+  it("caps dying at 4 through the store and marks the combatant defeated on reaching it", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "dying", 4);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")!.value).toBe(4);
+    expect(c.defeated).toBe(true);
+  });
+
+  it("clamps dying below 4 through the store when doomed reduces the cap", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "doomed", 1);
+    useEncounter.getState().addCondition(id, "dying", 4);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")!.value).toBe(3);
+    expect(c.defeated).toBe(true);
+  });
+
+  it("does not mark the combatant defeated while dying stays under the cap", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "dying", 2);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(false);
+  });
+
+  it("routes removing dying through the store into a wounded bump, not a bare removal", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "dying", 2);
+    useEncounter.getState().removeCondition(id, "dying");
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")).toBeUndefined();
+    expect(c.conditions.find((x) => x.slug === "wounded")!.value).toBe(1);
+  });
 });
