@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { resolveCollisions, searchCreatures } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
-import { loadCreatureI18n, loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
+import { loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
 import { format, useT } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
 import type { Iwr } from "../rules/damage.js";
@@ -34,12 +34,16 @@ function toReactions(creature: Creature): { name: string; trigger: string }[] {
     .map((a) => ({ name: a.name, trigger: a.trigger ?? "" }));
 }
 
-/** Builds the seed for a combatant added from the catalog. `entry` (AC, HP,
- * level, name) is always available; `creature` is only present once
- * `loadCreature` has resolved, so a null creature still yields a valid seed
- * with the four denormalised fields left empty, same as any other seed.
- * `i18n` is the French overlay fetched alongside `creature` — `null` when
- * there is none, or when it was never fetched (see `Combatant.i18n`). */
+/** Builds the seed for a combatant added from the catalog. `entry` must be
+ * the RAW, unlocalized catalog entry — never the French-named copy the
+ * search results render — so `name` is always stored in English; the
+ * French name is resolved at render time (see `useCombatantI18n`, driven
+ * off `creatureId`), never baked into the stored combatant. `creature` is
+ * only present once `loadCreature` has resolved, so a null creature still
+ * yields a valid seed with the four denormalised fields left empty, same
+ * as any other seed. `i18n` is left `null` by every production caller —
+ * the render layer resolves it from `creatureId` — but stays a parameter
+ * so tests (and `CombatantSeed.i18n`) can still seed it directly. */
 export function seedFromEntry(entry: IndexEntry, creature: Creature | null, i18n: CreatureI18n | null = null): CombatantSeed {
   return {
     kind: "creature",
@@ -102,12 +106,10 @@ const addButtonStyle: React.CSSProperties = {
 export function AddCombatants({
   entries,
   loadCreatureFn = loadCreature,
-  loadCreatureI18nFn = loadCreatureI18n,
   loadIndexI18nFn = loadIndexI18n,
 }: {
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
-  loadCreatureI18nFn?: (id: string) => Promise<CreatureI18n | null>;
   loadIndexI18nFn?: (pack: string) => Promise<IndexI18n>;
 }): React.ReactElement {
   const t = useT();
@@ -117,7 +119,6 @@ export function AddCombatants({
   const [initiative, setInitiative] = useState("");
   const [actThisRound, setActThisRound] = useState(false);
   const [loadedCreature, setLoadedCreature] = useState<Creature | null>(null);
-  const [loadedI18n, setLoadedI18n] = useState<CreatureI18n | null>(null);
   const [creatureLoading, setCreatureLoading] = useState(false);
   const [indexI18n, setIndexI18n] = useState<IndexI18n>({});
 
@@ -162,25 +163,16 @@ export function AddCombatants({
     setInitiative("");
     setActThisRound(false);
     setLoadedCreature(null);
-    setLoadedI18n(null);
     setCreatureLoading(true);
     loadCreatureFn(entry.id)
       .then((creature) => setLoadedCreature(creature))
       .catch(() => setLoadedCreature(null))
       .finally(() => setCreatureLoading(false));
-    // Fetched alongside the creature record, only when French is on — the
-    // overlay is otherwise never used, so there's no point fetching it.
-    if (lang === "fr") {
-      loadCreatureI18nFn(entry.id)
-        .then((i18n) => setLoadedI18n(i18n))
-        .catch(() => setLoadedI18n(null));
-    }
   };
 
   const clearSelection = (): void => {
     setSelectedId(null);
     setLoadedCreature(null);
-    setLoadedI18n(null);
     setCreatureLoading(false);
     setQuantity("1");
     setInitiative("");
@@ -189,9 +181,14 @@ export function AddCombatants({
 
   const handleAdd = (): void => {
     if (!selected) return;
+    // The RAW (unlocalized) entry, not `selected` — `selected` carries the
+    // French name when `lang` is "fr", and the stored combatant must always
+    // carry the English one (see seedFromEntry).
+    const rawSelected = resolved.find((e) => e.id === selectedId);
+    if (!rawSelected) return;
     const qty = Math.max(1, Math.trunc(Number(quantity)) || 1);
     const typedInitiative = Number(initiative) || 0;
-    const seed = seedFromEntry(selected, loadedCreature, loadedI18n);
+    const seed = seedFromEntry(rawSelected, loadedCreature);
 
     // "act this round instead": the combatant's turn-order slot is lowered
     // just enough to still be reached this round, but the GM's typed

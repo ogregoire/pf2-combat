@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
+import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
@@ -104,10 +105,13 @@ export function RowPopover({
   // not just on whether the creature has relevant IWR.
   const [intent, setIntent] = useState<"damage" | "heal">("damage");
   const [lastChange, setLastChange] = useState<LastChange | null>(null);
+  // Called unconditionally (Rules of Hooks) — result only used once
+  // `combatant` is confirmed non-null below.
+  const i18n = useCombatantI18n(combatant ?? { i18n: null, creatureId: undefined });
 
   if (!combatant) return null;
 
-  const displayName = resolveCreatureName(combatant.name, combatant.i18n, lang);
+  const displayName = resolveCreatureName(combatant.name, i18n, lang);
   const relevant = relevantDamageTypes(combatant.iwr);
   const showSelector = intent === "damage" && relevant.length > 0;
 

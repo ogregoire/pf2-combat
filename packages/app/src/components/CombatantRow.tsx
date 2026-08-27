@@ -5,6 +5,7 @@ import { format, useT, type StringKey } from "../i18n/index.js";
 import { CONDITIONS } from "../rules/conditions.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { RowPopover } from "./RowPopover.js";
+import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import type { Combatant } from "../state/types.js";
@@ -263,7 +264,8 @@ function StandaloneRow({
 }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
-  const displayName = resolveCreatureName(combatant.name, combatant.i18n, lang);
+  const i18n = useCombatantI18n(combatant);
+  const displayName = resolveCreatureName(combatant.name, i18n, lang);
   const borderColor = active
     ? ACTIVE_BORDER
     : combatant.kind === "pc"
@@ -386,7 +388,8 @@ function GroupMemberRow({
 }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
-  const displayName = resolveCreatureName(combatant.name, combatant.i18n, lang);
+  const i18n = useCombatantI18n(combatant);
+  const displayName = resolveCreatureName(combatant.name, i18n, lang);
   return (
     <div
       {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}

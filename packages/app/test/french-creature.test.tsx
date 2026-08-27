@@ -1,9 +1,11 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import type { CreatureI18n } from "@pf2/schema";
+import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
+import { AddCombatants } from "../src/components/AddCombatants.js";
 import { CombatantList } from "../src/components/CombatantList.js";
+import { ReactionWatch } from "../src/components/ReactionWatch.js";
 import { useEncounter } from "../src/state/store.js";
 import type { CombatantSeed } from "../src/state/store.js";
 
@@ -73,6 +75,10 @@ const forestTrollSeed: CombatantSeed = {
   ac: 20,
   saves: { fortitude: 17, reflex: 11, will: 7 },
   hp: { current: 125, max: 125 },
+  // Denormalised from actions[0] below, same as AddCombatants's toReactions
+  // — real creatures only carry one array, but Combatant.reactions is what
+  // ReactionWatch actually reads.
+  reactions: [{ name: "Furious Flailing", trigger: "The forest troll takes electricity or fire damage" }],
   attacks: [
     {
       name: "Claw", kind: "melee", bonus: 14, traits: ["agile", "reach-10", "unarmed"],
@@ -122,8 +128,72 @@ const forestTrollI18n: CreatureI18n = {
   ],
 };
 
+// Catalog-side fixtures for the two tests that go through the real add
+// path (AddCombatants), not a hand-seeded store — same forest troll, id
+// matching forestTrollSeed/forestTrollI18n above.
+const forestTrollEntry: IndexEntry = {
+  id: "pathfinder-monster-core/forest-troll",
+  slug: "forest-troll",
+  name: "Forest Troll",
+  level: 5,
+  rarity: "common",
+  size: "large",
+  traits: ["giant"],
+  ac: 20,
+  hp: 125,
+  remaster: true,
+  book: "Monster Core",
+} as IndexEntry;
+
+const forestTrollCreature: Creature = {
+  id: "pathfinder-monster-core/forest-troll",
+  foundryId: "Actor.forest-troll",
+  name: "Forest Troll",
+  level: 5,
+  rarity: "common",
+  size: "large",
+  traits: ["giant"],
+  source: { pack: "pathfinder-monster-core", book: "Monster Core", license: "ORC", remaster: true },
+  ac: 20,
+  acDetails: null,
+  hp: 125,
+  hpDetails: null,
+  saves: {
+    fortitude: { value: 17, detail: null },
+    reflex: { value: 11, detail: null },
+    will: { value: 7, detail: null },
+  },
+  immunities: [],
+  weaknesses: [],
+  resistances: [],
+  perception: 12,
+  senses: [],
+  languages: [],
+  skills: {},
+  abilityMods: {},
+  speeds: [{ type: "land", value: 25 }],
+  attacks: forestTrollSeed.attacks!,
+  actions: forestTrollSeed.actions!,
+  spellcasting: [],
+  gear: [],
+  publicNotes: "",
+};
+
+/** Stubs the global `fetch` `useCombatantI18n` falls back to when no
+ * `fetchFn` is injected — the per-creature overlay is now resolved at
+ * render, from `creatureId`, never fetched by AddCombatants itself. */
+function stubForestTrollOverlayFetch(): void {
+  vi.stubGlobal("fetch", (url: string) => {
+    if (url.includes("i18n/fr/creatures/pathfinder-monster-core/forest-troll.json")) {
+      return Promise.resolve(new Response(JSON.stringify(forestTrollI18n)));
+    }
+    return Promise.resolve(new Response(null, { status: 404 }));
+  });
+}
+
 describe("creatures render in French", () => {
   beforeEach(() => useEncounter.getState().reset());
+  afterEach(() => vi.unstubAllGlobals());
 
   it("shows the French name only — never the English alongside it", () => {
     useEncounter.getState().setLang("fr");
@@ -180,12 +250,41 @@ describe("creatures render in French", () => {
     expect(heading.querySelector("[title]")).toBeNull();
   });
 
-  it("switching back to English restores the English names", async () => {
+  // Finding 1 (final review): this used to hand-seed the store with an
+  // ENGLISH name plus an overlay — a state the production add path could
+  // never produce, since `AddCombatants` stored whatever name the
+  // (possibly localised) search result carried. Goes through the real
+  // `<AddCombatants>` flow instead, so it fails the way the bug actually
+  // failed: added while French is on, the list shows the French name, but
+  // what gets stored — and what English mode falls back to — must be the
+  // English one.
+  it("stores a creature added while French is on under its English name — toggling to English shows a clean English stat block, not a mixed one", async () => {
+    stubForestTrollOverlayFetch();
     useEncounter.getState().setLang("fr");
-    useEncounter.getState().addCombatant({ ...forestTrollSeed, i18n: forestTrollI18n }, 19);
+    const user = userEvent.setup();
+    const { unmount } = render(
+      <AddCombatants
+        entries={[forestTrollEntry]}
+        loadCreatureFn={async () => forestTrollCreature}
+        loadIndexI18nFn={async (pack) =>
+          pack === "pathfinder-monster-core" ? { "pathfinder-monster-core/forest-troll": "Troll des forêts" } : {}
+        }
+      />,
+    );
+
+    // The search result renders French — the GM picks it by its French name.
+    await user.click(await screen.findByRole("button", { name: /ajouter troll des forêts/i }));
+    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
+    await user.click(await screen.findByRole("button", { name: /ajouter 1 troll des forêts/i }));
+
+    // What's actually stored is the ENGLISH name — the bug this guards was
+    // storing the French one shown in the list above.
+    const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    expect(combatant.name).toBe("Forest Troll");
+    unmount();
 
     render(<ActiveCombatant />);
-    expect(screen.getByText("Troll des forêts")).toBeTruthy();
+    await waitFor(() => expect(screen.getByText("Troll des forêts")).toBeTruthy());
 
     useEncounter.getState().setLang("en");
 
@@ -193,6 +292,56 @@ describe("creatures render in French", () => {
     expect(screen.queryByText("Troll des forêts")).toBeNull();
     expect(screen.getByRole("button", { name: /^Claw/ })).toBeTruthy();
     expect(screen.queryByRole("button", { name: /Griffe/ })).toBeNull();
+  });
+
+  // Finding 2 (final review): AddCombatants/QuickAdd used to fetch the
+  // overlay only when `lang` was already "fr" at add time, so a combatant
+  // added in English never became French on a later toggle. The overlay is
+  // now resolved at render, from `creatureId` (see useCombatantI18n), so
+  // add-time `lang` shouldn't matter at all.
+  it("a combatant added while English is on becomes French after toggling to French", async () => {
+    stubForestTrollOverlayFetch();
+    const user = userEvent.setup();
+    const { unmount } = render(
+      <AddCombatants entries={[forestTrollEntry]} loadCreatureFn={async () => forestTrollCreature} />,
+    );
+
+    await user.click(screen.getByRole("button", { name: /add forest troll/i }));
+    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
+    await user.click(screen.getByRole("button", { name: /^add 1 forest troll$/i }));
+
+    const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    expect(combatant.name).toBe("Forest Troll");
+    // Never fetched at add time — nothing to fetch it FOR yet, in English.
+    expect(combatant.i18n).toBeNull();
+    unmount();
+
+    useEncounter.getState().setLang("fr");
+    render(<ActiveCombatant />);
+
+    await waitFor(() => expect(screen.getByText("Troll des forêts")).toBeTruthy());
+    expect(screen.queryByText("Forest Troll")).toBeNull();
+    expect(screen.getByRole("button", { name: /^Griffe/ })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /^Claw/ })).toBeNull();
+    expect(screen.getByText("Poursuivre la proie")).toBeTruthy();
+  });
+
+  // Finding 3 (final review): ReactionWatch rendered combatant and reaction
+  // names in English regardless of `lang` — the one component Tasks 12/14's
+  // sweep missed.
+  it("translates the combatant and reaction names in ReactionWatch; the trigger has no French counterpart and stays English", () => {
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant({ ...forestTrollSeed, i18n: forestTrollI18n }, 19);
+
+    render(<ReactionWatch />);
+
+    expect(screen.getByText("Troll des forêts")).toBeTruthy();
+    expect(screen.getByText("Lutte furieuse")).toBeTruthy();
+    expect(screen.queryByText("Furious Flailing")).toBeNull();
+    // CreatureI18n carries no French trigger text at all — a data gap, not
+    // a wiring one — so it stays English even though everything around it
+    // is French.
+    expect(screen.getByText(/The forest troll takes electricity or fire damage/)).toBeTruthy();
   });
 
   it("also shows the French name in the turn-order list, not just the active panel", () => {

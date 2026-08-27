@@ -1,4 +1,5 @@
 import { resolveCreatureName } from "../data/i18nOverlay.js";
+import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useT, type StringKey } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
@@ -24,7 +25,8 @@ function levelLabel(combatant: Combatant, t: (key: StringKey) => string): string
 export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
-  const name = resolveCreatureName(combatant.name, combatant.i18n, lang);
+  const i18n = useCombatantI18n(combatant);
+  const name = resolveCreatureName(combatant.name, i18n, lang);
   return (
     <div style={{ padding: "18px 24px 14px", borderBottom: "1px solid var(--border)", flexShrink: 0 }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>

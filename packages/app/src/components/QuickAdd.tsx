@@ -1,8 +1,8 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
+import type { Creature, IndexEntry } from "@pf2/schema";
 import { resolveCollisions } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
-import { loadCreatureI18n, loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
+import { loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { parseAddCommand } from "../rules/parseAddCommand.js";
 import { rankMatches } from "../rules/rankMatches.js";
@@ -90,12 +90,10 @@ function addedMessage(
 export function QuickAdd({
   entries,
   loadCreatureFn = loadCreature,
-  loadCreatureI18nFn = loadCreatureI18n,
   loadIndexI18nFn = loadIndexI18n,
 }: {
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
-  loadCreatureI18nFn?: (id: string) => Promise<CreatureI18n | null>;
   loadIndexI18nFn?: (pack: string) => Promise<IndexI18n>;
 }): React.ReactElement {
   const t = useT();
@@ -148,11 +146,12 @@ export function QuickAdd({
 
   const commit = (entry: IndexEntry, quantity: number, requestedQuantity: number, initiative: number | null): void => {
     const slotInitiative = initiative ?? 0;
-    // The overlay is fetched alongside the creature record, only when
-    // French is on — see AddCombatants.select for the same rule.
-    const i18nPromise = lang === "fr" ? loadCreatureI18nFn(entry.id).catch(() => null) : Promise.resolve(null);
-    void Promise.all([loadCreatureFn(entry.id).catch(() => null), i18nPromise]).then(([creature, i18n]) => {
-      const seed = seedFromEntry(entry, creature, i18n);
+    // `entry` is the localized (French-named, when `lang` is "fr") dropdown
+    // entry — the seed must carry the RAW one instead, so the stored name
+    // is always English (see seedFromEntry).
+    const raw = resolved.find((e) => e.id === entry.id) ?? entry;
+    void loadCreatureFn(raw.id).catch(() => null).then((creature) => {
+      const seed = seedFromEntry(raw, creature);
       if (quantity === 1) addCombatant(seed, slotInitiative);
       else addMany(seed, quantity, slotInitiative);
 

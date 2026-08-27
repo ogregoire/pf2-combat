@@ -4,6 +4,7 @@ import { useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
 import { useEncounter } from "../state/store.js";
+import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import type { FetchFn } from "../data/catalog.js";
 import type { Combatant } from "../state/types.js";
@@ -46,6 +47,7 @@ export function ActionList({
   const spendActions = useEncounter((s) => s.spendActions);
   const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary(fetchFn);
+  const i18n = useCombatantI18n(combatant);
   const t = useT();
 
   if (combatant.actions.length === 0 && combatant.attacks.length === 0) return null;
@@ -63,8 +65,8 @@ export function ActionList({
   // description text, and the overlay keeps that signal intact in French
   // (Rend's translated description still opens by naming the translated
   // Claw attack).
-  const actions = resolveActions(combatant.actions, combatant.i18n, lang);
-  const attacks = resolveAttacks(combatant.attacks, combatant.i18n, lang);
+  const actions = resolveActions(combatant.actions, i18n, lang);
+  const attacks = resolveAttacks(combatant.attacks, i18n, lang);
   const items = buildActionList(actions, attacks);
   const activatable = items.filter((i) => i.kind === "strike" || i.action.cost !== "passive");
   const passives = items.filter((i) => i.kind === "action" && i.action.cost === "passive");
