@@ -166,12 +166,21 @@ function applyDyingGain(c: Combatant, amount: number): void {
  * lives, rather than duplicating it at each call site — a PC dropped to 0 by
  * persistent damage must start dying exactly as one dropped to 0 by a
  * direct hit does.
+ *
+ * Gated on `applied > 0`, not just on landing at 0 HP: a PC already at 0 who
+ * is fully immune/resisted to a hit takes `applied === 0` and stays at 0 HP
+ * (Math.max is a no-op), which would otherwise still run the PC branch and
+ * increment dying — but data/conditions.json's dying entry only raises the
+ * value "if you take damage while dying," and no damage landed here. The
+ * same guard protects the creature branch too: a no-op re-affirmation of
+ * `defeated` on a hit that dealt nothing is harmless either way, but there's
+ * no reason to run the branch at all when nothing changed.
  */
 function dealDamage(c: Combatant, amount: number, damageType?: string): void {
   if (c.hp === null) return;
   const applied = applyIwr(amount, damageType ?? "none", c.iwr);
   c.hp.current = Math.max(0, c.hp.current - applied);
-  if (c.hp.current !== 0) return;
+  if (applied === 0 || c.hp.current !== 0) return;
   if (c.kind === "pc") {
     applyDyingGain(c, 1);
     c.conditions = onDroppedToZero(c.conditions);
@@ -584,18 +593,35 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         const c = state.encounter.combatants[id];
         if (!c || c.hp === null) return;
+        const before = c.hp.current;
         c.hp.current = Math.min(c.hp.max, c.hp.current + amount);
-        // Doomed zeroing the dying cap is instant, permanent death — "If
-        // your maximum dying value is reduced to 0, you instantly die"
-        // (data/conditions.json, doomed) — and nothing about restoring Hit
-        // Points changes doomed. Only doomed itself dropping (a full
-        // night's rest, per doomed's own text — not modelled here) would
-        // undo it, so healing must not clear `defeated` while that cap is
-        // still 0. Every other defeated combatant (an ordinary creature at
-        // 0 HP, or a PC whose dying reached its — positive — cap) still
-        // clears normally on any heal, matching prior behaviour.
-        if (dyingMax(c.conditions) > 0) c.defeated = false;
-        if (c.hp.current > 0) c.conditions = onHealedAboveZero(c.conditions);
+        // A heal that doesn't actually raise HP — already at max, or a
+        // literal 0 — must change nothing else: applyHealing(id, 0) is not
+        // a way to un-defeat a combatant who received no healing at all.
+        if (c.hp.current <= before) return;
+        // Two ways to be defeated survive mere HP restoration and must not
+        // be cleared by it:
+        //  - doomed zeroing the dying cap ("If your maximum dying value is
+        //    reduced to 0, you instantly die" — data/conditions.json,
+        //    doomed) is modelled here as permanent while doomed's value
+        //    stays there (`dyingMax(c.conditions) > 0` below). That is a
+        //    deliberate modelling choice, not a reading of doomed's own
+        //    text — which actually says the opposite, "When you die, you're
+        //    no longer doomed" — but this app has no mechanism (a full
+        //    night's rest) that would ever lower doomed back down, so
+        //    without this guard a full-HP doomed kill is undone by the very
+        //    next heal for no in-fiction reason.
+        //  - dying itself reaching its cap ("if it ever reaches dying 4,
+        //    you die" — same file, dying) is real, permanent death — not
+        //    just doomed's special case — whatever that cap's value is.
+        //    Modelled as the current dying value still sitting below the
+        //    cap; a value AT the cap means this combatant already died.
+        // Every other defeated combatant (an ordinary creature at 0 HP)
+        // still clears normally on any heal, matching prior behaviour.
+        const max = dyingMax(c.conditions);
+        const dyingValue = c.conditions.find((cond) => cond.slug === "dying")?.value ?? 0;
+        if (max > 0 && dyingValue < max) c.defeated = false;
+        c.conditions = onHealedAboveZero(c.conditions);
       }),
 
     addCondition: (id, slug, value, formula) =>

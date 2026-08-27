@@ -607,15 +607,60 @@ describe("encounter store", () => {
 
   // Requirement (b): doomed's own instant-death rule ("If your maximum
   // dying value is reduced to 0, you instantly die" — data/conditions.json)
-  // is permanent while doomed stays at that value; nothing about restoring
-  // Hit Points changes doomed. Healing must not resurrect this combatant.
+  // is modelled here as permanent while doomed stays at that value — a
+  // deliberate modelling choice, not doomed's own text, which actually says
+  // "When you die, you're no longer doomed"; see the correction in
+  // task-3-report.md. Nothing in this app ever lowers doomed back down, so
+  // without the guard a full HP restoration undoes the kill for no
+  // in-fiction reason. Damaged first (not to 0) so the heal actually raises
+  // HP — otherwise the "HP didn't rise" short-circuit below would pass this
+  // test for the wrong reason, without ever reaching the guard it exists to
+  // check.
   it("does not resurrect a combatant killed by doomed alone when healed", () => {
-    const id = addCreature("x", 20);
+    const id = addCreature("x", 20, 20);
+    useEncounter.getState().applyDamage(id, 5); // 20 -> 15, not 0: ordinary damage, not a kill
     useEncounter.getState().addCondition(id, "doomed", 4);
     expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
 
-    useEncounter.getState().applyHealing(id, 5);
+    useEncounter.getState().applyHealing(id, 5); // 15 -> 20: HP does rise
     expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+  });
+
+  // Fix round 1, Critical 2: dying reaching its own cap ("if it ever
+  // reaches dying 4, you die" — data/conditions.json, dying) is real,
+  // permanent death independent of doomed — the previous `dyingMax > 0`
+  // guard alone caught only the doomed-zeroed-cap case and let this one
+  // through (doomed 1 lowers the cap to 3; dying reaching that lowered cap
+  // still means dead).
+  it("does not resurrect a PC whose dying reached a doomed-reduced cap", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().applyDamage(pc, 2); // 20 -> 18, not 0
+    useEncounter.getState().addCondition(pc, "doomed", 1); // cap now 3
+    useEncounter.getState().addCondition(pc, "dying", 3); // reaches the cap -> dead
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(pc, 5); // 18 -> 20: HP does rise
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+  });
+
+  // Fix round 1, Critical 1: `dealDamage` used to fire the 0-HP branch on
+  // "hp.current === 0" alone, with no check that any damage actually landed
+  // this call. A PC already at 0 HP who is fully immune to a hit takes
+  // `applied === 0` — dying must not increase, since data/conditions.json's
+  // dying entry raises the value only "if you take damage while dying," and
+  // no damage landed here.
+  it("does not increment dying when a hit at 0 HP is fully negated by immunity", () => {
+    const pc = useEncounter.getState().addCombatant({
+      kind: "pc", name: "p", level: 1, ac: 15,
+      saves: { fortitude: 5, reflex: 5, will: 5 },
+      hp: { current: 20, max: 20 },
+      iwr: { immunities: ["fire"], weaknesses: [], resistances: [] },
+    }, 20);
+    useEncounter.getState().applyDamage(pc, 999); // ordinary hit: 0 HP, dying 1
+    useEncounter.getState().applyDamage(pc, 50, "fire"); // fully immune: applied 0
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.hp!.current).toBe(0);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
   });
 
   // The ordinary case healing must still cover: a ordinary creature felled
@@ -627,5 +672,19 @@ describe("encounter store", () => {
 
     useEncounter.getState().applyHealing(id, 5);
     expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(false);
+  });
+
+  // Fix round 1, Minor: applyHealing must not un-defeat a combatant on a
+  // heal that landed no actual HP (a literal 0, or a heal on an
+  // already-full combatant) — nothing about the encounter changed, so
+  // nothing about `defeated` should either.
+  it("does not clear defeated on a heal that raises no HP", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().applyDamage(id, 99);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(id, 0);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(0);
   });
 });
