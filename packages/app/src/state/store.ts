@@ -241,10 +241,23 @@ function advanceTurn(enc: Encounter): void {
   // does), and this entry simply takes an ordinary turn here and now. The
   // lost actions are lost by never having been made available, which is why
   // actionsSpent is reset below exactly as for any other incoming turn.
-  // Nothing to unwind for the early resolution Delay made: reaching this
-  // slot again always means the order wrapped, so the round has moved on and
-  // the stamp Delay left no longer matches. The fresh turn starting here
-  // resolves at its own end, by the same comparison every other turn uses.
+  // Nothing to unwind for the early resolution Delay made: the stamp records
+  // which round it was for, which settles this on its own either way.
+  //
+  // Usually the order wrapped to get back here, so the round has moved on,
+  // the stamp no longer matches, and the fresh turn starting here resolves
+  // at its own end like any other. Not always, though — and the tempting
+  // proof that it must (a delayed entry never moves on its own, and every
+  // placement of one clears `delayed`) is wrong, because it only accounts
+  // for the delayed entry moving. Moving the *active* entry above a delayed
+  // one carries the pointer above it too, and the next advance then walks
+  // down onto this slot inside the same round.
+  //
+  // In that case the stamp still matches and the lapsed turn resolves
+  // nothing, which is right: this entry's effects already happened this
+  // round, when it Delayed, and one resolution per round is the invariant.
+  // Pinned by a test. The oddity there is the extra turn the placement hands
+  // out, which is setInitiative's long-standing behaviour, not this branch's.
   if (active.delayed) active.delayed = false;
 
   for (const cid of active.combatantIds) {

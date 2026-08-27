@@ -774,6 +774,86 @@ describe("Delay", () => {
     expect(frightenedOn(id)).toBe(2);
   });
 
+  /*
+   * The one case where a Delay lapses *without* the round wrapping, and so
+   * the only case where a lapsed turn is suppressed rather than resolved.
+   *
+   * A delayed entry never moves on its own, and every GM placement of it
+   * clears `delayed` — which is why it is tempting to conclude the pointer
+   * can only reach its slot by wrapping. It isn't so: moving the *active*
+   * entry above the delayed one carries the pointer above it too, and the
+   * next advance then walks straight down onto the delayed slot inside the
+   * same round.
+   *
+   * The lapsed turn resolves nothing, because this entry's effects were
+   * already resolved this round when it Delayed, and one resolution per
+   * round is the whole invariant. Pinned rather than changed: the state that
+   * gets here — a placement that hands out a second turn inside one round —
+   * is pre-existing behaviour of setInitiative, not something this mechanism
+   * introduced, and suppressing is the invariant holding rather than
+   * failing. Recorded so the next reader sees it is known, not accidental.
+   */
+  it("suppresses a lapse that happens inside the round, when moving the active entry carries the pointer past a delayed one", () => {
+    add("Alpha", 20);
+    const id = add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().addCondition(id, "frightened", 5);
+    useEncounter.getState().addCondition(id, "persistent-damage", 0, "1d6");
+    const hpAfterDelay = (): number => useEncounter.getState().encounter.combatants[id]!.hp!.current;
+
+    useEncounter.getState().nextTurn(); // Alpha's round-1 turn ends; Beta is up
+    useEncounter.getState().delay(entryIdOf("Beta")); // round 1 resolved here: 5 -> 4. Gamma is up.
+    expect(frightenedOn(id)).toBe(4);
+    const hp = hpAfterDelay();
+
+    // Gamma is acting. Typing an initiative above Beta's takes the pointer
+    // with it — Gamma is still the active entry, now at the top.
+    useEncounter.getState().setInitiative(entryIdOf("Gamma"), 25);
+    expect(order()).toEqual(["Gamma", "Alpha", "Beta"]);
+    expect(activeName()).toBe("Gamma");
+    expect(useEncounter.getState().encounter.round).toBe(1);
+
+    useEncounter.getState().nextTurn(); // Gamma ends -> Alpha (a second turn for Alpha this round)
+    useEncounter.getState().nextTurn(); // Alpha ends -> Beta's slot: the Delay lapses, still round 1
+
+    expect(useEncounter.getState().encounter.round).toBe(1);
+    expect(entryOf(entryIdOf("Beta")).delayed).toBe(false);
+    expect(activeName()).toBe("Beta");
+
+    useEncounter.getState().nextTurn(); // Beta's lapsed-into turn ends, inside the same round
+
+    // Suppressed: round 1 was already resolved for Beta, at Delay.
+    expect(frightenedOn(id)).toBe(4);
+    expect(hpAfterDelay()).toBe(hp); // and no second roll of persistent damage
+  });
+
+  // A delayer that returns after the round has wrapped takes its turn in a
+  // later round than the one Delay resolved, so that turn's end resolves on
+  // its own account. The boolean this replaced suppressed it — a cross-wrap
+  // return was a free round of persistent damage, which is exactly what
+  // RAW's "occur immediately when you use the Delay action" exists to deny.
+  it("resolves the end of a delayed turn returned to after the round wrapped", () => {
+    add("Alpha", 20);
+    const id = add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().addCondition(id, "frightened", 5);
+
+    useEncounter.getState().nextTurn(); // Alpha's round-1 turn ends; Beta is up
+    useEncounter.getState().delay(entryIdOf("Beta")); // round 1 resolved: 5 -> 4
+    expect(frightenedOn(id)).toBe(4);
+
+    useEncounter.getState().nextTurn(); // Gamma ends, round wraps; Alpha leads round 2
+    expect(useEncounter.getState().encounter.round).toBe(2);
+    expect(entryOf(entryIdOf("Beta")).delayed).toBe(true); // returned, not lapsed
+
+    useEncounter.getState().returnFromDelay(entryIdOf("Beta")); // behind Alpha, in round 2
+    useEncounter.getState().nextTurn(); // Alpha's round-2 turn ends; Beta takes its delayed turn
+    expect(activeName()).toBe("Beta");
+    useEncounter.getState().nextTurn(); // that turn ends — a round on from the one Delay resolved
+
+    expect(frightenedOn(id)).toBe(3);
+  });
+
   it("refuses to Delay while a combatant has no initiative, since Delaying advances the turn", () => {
     add("Alpha", 20);
     useEncounter.getState().addCombatant(
