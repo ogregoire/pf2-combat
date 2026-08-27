@@ -851,6 +851,11 @@ export const useEncounter = create<EncounterStore>()(
                 orderKey: entry.orderKey,
                 delayed: entry.delayed,
                 initiativeBeforeDelay: entry.initiativeBeforeDelay,
+                // Each member inherits the group's delay state wholesale,
+                // this stamp included: if the group's turn was already
+                // resolved early by Delay this round, ungrouping must not
+                // hand every member a second resolution.
+                endOfTurnResolvedRound: entry.endOfTurnResolvedRound,
               });
             }
           } else {
