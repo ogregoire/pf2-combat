@@ -128,8 +128,10 @@ describe("EncounterScreen", () => {
 
   it("applies a condition through the row popover and shows the resulting prompt in TurnManager", async () => {
     // The whole point of C1: nothing before this wired addCondition to any
-    // UI, so this drives the real path (hover -> pick a condition -> Add)
-    // and checks the effect reaches all the way to a rendered prompt.
+    // UI, so this drives the real path (hover -> click the condition's tag)
+    // and checks the effect reaches all the way to a rendered prompt. A
+    // click applies a valued condition at 1, which is exactly what's needed
+    // here — no separate value entry.
     const user = userEvent.setup();
     useEncounter.getState().addCombatant(
       { kind: "creature", name: "Alpha", level: 1, ac: 15,
@@ -140,11 +142,7 @@ describe("EncounterScreen", () => {
 
     const list = within(screen.getByTestId("combatant-list"));
     await user.hover(list.getByText("Alpha"));
-    await user.selectOptions(screen.getByLabelText("Condition"), "slowed");
-    const value = screen.getByLabelText("Condition value");
-    await user.clear(value);
-    await user.type(value, "1");
-    await user.click(screen.getByRole("button", { name: "Add" }));
+    await user.click(screen.getByRole("button", { name: "Slowed" }));
 
     expect(
       within(screen.getByTestId("turn-manager")).getByText(/Lose 1 action/),

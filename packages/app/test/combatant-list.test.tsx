@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Creature } from "@pf2/schema";
 import { CombatantList } from "../src/components/CombatantList.js";
@@ -339,23 +339,39 @@ describe("CombatantList", () => {
     expect(screen.getByText(/30 cold, resistance 10/)).toBeDefined();
   });
 
-  it("adds a condition through the row popover's picker", async () => {
+  it("applies a condition in one click and steps its value without dropping below zero", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(seed(), 19);
     render(<CombatantList />);
-
     await user.hover(screen.getByText("Stag Lord Bandit"));
-    await user.selectOptions(screen.getByLabelText("Condition"), "frightened");
-    const value = screen.getByLabelText("Condition value");
-    await user.clear(value);
-    await user.type(value, "2");
-    await user.click(screen.getByRole("button", { name: "Add" }));
 
-    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([
-      { slug: "frightened", value: 2, formula: undefined },
-    ]);
-    // Shows once on the row itself and once as the popover's removable chip.
-    expect(screen.getAllByText("FRIGHTENED 2")).toHaveLength(2);
+    // One click, no dropdown, no Add button.
+    await user.click(screen.getByRole("button", { name: "Frightened" }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions
+      .find((c) => c.slug === "frightened")!.value).toBe(1);
+
+    await user.click(screen.getByRole("button", { name: "Increase Frightened" }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions
+      .find((c) => c.slug === "frightened")!.value).toBe(2);
+
+    await user.click(screen.getByRole("button", { name: "Decrease Frightened" }));
+    await user.click(screen.getByRole("button", { name: "Decrease Frightened" }));
+    await user.click(screen.getByRole("button", { name: "Decrease Frightened" }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions
+      .find((c) => c.slug === "frightened")!.value).toBe(0);
+  });
+
+  it("keeps applied conditions in a row above the pickable ones", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    useEncounter.getState().addCondition(id, "prone", 0);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    const applied = screen.getByRole("group", { name: "applied conditions" });
+    expect(within(applied).getByRole("button", { name: /Remove Prone/ })).toBeDefined();
+    expect(within(screen.getByRole("group", { name: "add condition" }))
+      .queryByRole("button", { name: "Prone" })).toBeNull();
   });
 
   it("removes a condition from the popover's chip", async () => {
@@ -370,19 +386,44 @@ describe("CombatantList", () => {
     expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
   });
 
-  it("carries a formula for persistent damage", async () => {
+  it("carries a formula for persistent damage, entered once the condition is applied", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(seed(), 19);
     render(<CombatantList />);
 
     await user.hover(screen.getByText("Stag Lord Bandit"));
-    await user.selectOptions(screen.getByLabelText("Condition"), "persistent-damage");
+    // No formula field before the condition is applied — nothing to type into yet.
+    expect(screen.queryByLabelText("Persistent damage formula")).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: "Persistent Damage" }));
     await user.type(screen.getByLabelText("Persistent damage formula"), "2d6");
-    await user.click(screen.getByRole("button", { name: "Add" }));
 
     expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([
       { slug: "persistent-damage", value: 0, formula: "2d6" },
     ]);
+  });
+
+  it("raises dying by exactly one per stepper click, matching the damage path's increment semantics", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    // Seed as though a hit already dropped this combatant to 0 HP once.
+    useEncounter.getState().addCondition(id, "dying", 1);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    await user.click(screen.getByRole("button", { name: "Increase Dying" }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions
+      .find((c) => c.slug === "dying")!.value).toBe(2);
+
+    await user.click(screen.getByRole("button", { name: "Decrease Dying" }));
+    await user.click(screen.getByRole("button", { name: "Decrease Dying" }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions
+      .find((c) => c.slug === "dying")!.value).toBe(0);
+
+    // Floors at 0 rather than going negative.
+    await user.click(screen.getByRole("button", { name: "Decrease Dying" }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions
+      .find((c) => c.slug === "dying")!.value).toBe(0);
   });
 
   it("removes a combatant from the row popover", async () => {

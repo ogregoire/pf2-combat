@@ -2,11 +2,8 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useEncounter } from "../state/store.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
-import { CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
-import { compareStrings } from "../rules/compare.js";
+import { CONDITIONS, PICKABLE_CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
-
-const CONDITION_OPTIONS = Object.values(CONDITIONS).sort((a, b) => compareStrings(a.name, b.name));
 
 /**
  * One chip in the damage-type row. Each carries its own type's colour and
@@ -48,6 +45,73 @@ function DamageTypeButton({
       <DamageTypeIcon type={type} />
       {children}
     </button>
+  );
+}
+
+/** A plain, one-click "apply this condition" tag in the pickable row. No
+ * value, no dropdown — clicking it is the whole interaction (see
+ * applyCondition below for what value it applies at). */
+function PickableConditionButton({ name, onClick }: { name: string; onClick: () => void }): React.ReactElement {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        fontFamily: "inherit",
+        fontSize: "11.5px",
+        padding: "7px 9px", // comfortable tap target — see the panel's own note on narrow screens
+        borderRadius: "3px",
+        cursor: "pointer",
+        background: "var(--bg)",
+        border: "1px solid var(--border-strong)",
+        color: "var(--text)",
+      }}
+    >
+      {name}
+    </button>
+  );
+}
+
+/** The small +/- steppers on an applied valued condition's tag, and the
+ * number between them. Kept tall enough to hit on a narrow screen — same
+ * concern as PickableConditionButton's tap target, just narrower since
+ * these live inside an already-crowded tag. */
+function Stepper({
+  name,
+  value,
+  onIncrease,
+  onDecrease,
+}: {
+  name: string;
+  value: number;
+  onIncrease: () => void;
+  onDecrease: () => void;
+}): React.ReactElement {
+  const buttonStyle: React.CSSProperties = {
+    fontFamily: "inherit",
+    fontSize: "12px",
+    fontWeight: 600,
+    lineHeight: 1,
+    padding: "8px 10px", // measured in a real browser at 23x24px before this bump — well under the
+    // ~37px tap target the panel's own Damage/Heal buttons use; jsdom can't catch an undersized
+    // hit target, so this was only visible once actually rendered (see task-4-report.md).
+    borderRadius: "3px",
+    cursor: "pointer",
+    background: "var(--panel-raised)",
+    border: "1px solid var(--border-strong)",
+    color: "var(--text)",
+  };
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+      <button type="button" aria-label={`Decrease ${name}`} onClick={onDecrease} style={buttonStyle}>
+        −
+      </button>
+      {/* The "small spaces around the number" the brief asks for. */}
+      <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", padding: "0 2px" }}>{value}</span>
+      <button type="button" aria-label={`Increase ${name}`} onClick={onIncrease} style={buttonStyle}>
+        +
+      </button>
+    </span>
   );
 }
 
@@ -149,9 +213,6 @@ export function RowPopover({
   // The first time it's needed and still unknown, this collects it inline;
   // committing writes it back via setPlayers (see commitInitiative).
   const [pcModifierDraft, setPcModifierDraft] = useState("");
-  const [conditionSlug, setConditionSlug] = useState<ConditionSlug>("off-guard");
-  const [conditionValue, setConditionValue] = useState("1");
-  const [conditionFormula, setConditionFormula] = useState("");
   // Which action the panel is currently set up for. Starts on "damage" (the
   // common case) so hovering alone still shows the selector for a creature
   // with relevant IWR. Healing has no damage type — DamagePopover.dc.html:
@@ -256,13 +317,36 @@ export function RowPopover({
     setPcModifierDraft("");
   };
 
-  const conditionDef = CONDITIONS[conditionSlug];
-  const handleAddCondition = (): void => {
-    const value = conditionDef.valued ? Number(conditionValue) || 0 : 0;
-    const formula = conditionSlug === "persistent-damage" && conditionFormula.trim() !== ""
-      ? conditionFormula.trim()
-      : undefined;
-    addCondition(combatantId, conditionSlug, value, formula);
+  // One click in the pickable row applies a condition at its starting
+  // value — 1 for anything valued (the smallest value that's actually
+  // "applied"; 0 would be indistinguishable from not having it), 0 for
+  // everything else. Existing formula, if any, is left alone — nothing
+  // pickable is already applied (the pickable row excludes applied slugs;
+  // see PICKABLE_CONDITIONS.filter below), so there's never one to keep.
+  const applyCondition = (slug: ConditionSlug): void => {
+    addCondition(combatantId, slug, CONDITIONS[slug].valued ? 1 : 0);
+  };
+
+  // The store's addCondition treats "dying" specially: its `value` argument
+  // is the amount to *add* (see store.ts's own comment — that's what the
+  // damage path needs, since each hit raises dying by 1, or 2 on a crit),
+  // while every other valued condition's `value` is the new absolute
+  // number. Rather than teach the store a second calling convention for the
+  // UI, these two functions are the single place that reconciles it: they
+  // compute whatever addCondition's existing contract needs for each slug,
+  // so a +/- click always means "one more" / "one less" to the GM regardless
+  // of which convention is under the hood. See task-4-report.md for why this
+  // was chosen over changing the damage path's semantics.
+  const incrementCondition = (slug: ConditionSlug, value: number): void => {
+    addCondition(combatantId, slug, slug === "dying" ? 1 : value + 1);
+  };
+  const decrementCondition = (slug: ConditionSlug, value: number): void => {
+    if (value <= 0) return; // floor at 0 — never send a call that would go negative
+    addCondition(combatantId, slug, slug === "dying" ? -1 : value - 1);
+  };
+
+  const updatePersistentDamageFormula = (formula: string): void => {
+    addCondition(combatantId, "persistent-damage", 0, formula);
   };
 
   // Desktop keeps the placement beside the row (it's the only thing hover
@@ -611,114 +695,90 @@ export function RowPopover({
         </button>
       </div>
 
-      <div style={{ borderTop: "1px solid var(--border)", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "6px" }}>
+      <div style={{ borderTop: "1px solid var(--border)", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
+        {combatant.conditions.length > 0 && (
+          // Above the picker, per the brief — applied conditions are what
+          // the GM is scanning for mid-fight, so they don't scroll past
+          // them to find what's already on this combatant.
+          <div role="group" aria-label="applied conditions" style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+            {combatant.conditions.map((c) => {
+              const def = CONDITIONS[c.slug];
+              return (
+                <div
+                  key={c.slug}
+                  style={{
+                    fontFamily: "inherit",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    fontSize: "10.5px",
+                    letterSpacing: "0.04em",
+                    padding: "6px 7px 6px 10px",
+                    borderRadius: "3px",
+                    border: "1px solid var(--border)",
+                    background: "var(--cond-bg)",
+                    color: "var(--cond)",
+                  }}
+                >
+                  {def.name.toUpperCase()}
+                  {def.valued && (
+                    <Stepper
+                      name={def.name}
+                      value={c.value}
+                      onIncrease={() => incrementCondition(c.slug, c.value)}
+                      onDecrease={() => decrementCondition(c.slug, c.value)}
+                    />
+                  )}
+                  {c.slug === "persistent-damage" && (
+                    <input
+                      aria-label="Persistent damage formula"
+                      placeholder="e.g. 2d6"
+                      value={c.formula ?? ""}
+                      onChange={(e) => updatePersistentDamageFormula(e.target.value)}
+                      style={{
+                        width: "58px",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "11.5px",
+                        padding: "4px 5px",
+                        borderRadius: "3px",
+                        border: "1px solid var(--border-strong)",
+                        background: "var(--bg)",
+                        color: "var(--text)",
+                      }}
+                    />
+                  )}
+                  <button
+                    type="button"
+                    aria-label={`Remove ${def.name}`}
+                    onClick={() => removeCondition(combatantId, c.slug)}
+                    style={{
+                      fontFamily: "inherit",
+                      padding: "7px 9px", // bumped for a comfortable tap target on narrow screens
+                      borderRadius: "3px",
+                      border: "1px solid var(--border)",
+                      background: "var(--panel-raised)",
+                      color: "var(--cond)",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
         <div style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
           Add condition
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <select
-            aria-label="Condition"
-            value={conditionSlug}
-            onChange={(e) => setConditionSlug(e.target.value as ConditionSlug)}
-            style={{
-              flexGrow: 1,
-              fontFamily: "inherit",
-              fontSize: "12.5px",
-              padding: "6px 7px",
-              borderRadius: "3px",
-              border: "1px solid var(--border-strong)",
-              background: "var(--bg)",
-              color: "var(--text)",
-            }}
-          >
-            {CONDITION_OPTIONS.map((c) => (
-              <option key={c.slug} value={c.slug}>
-                {c.name}
-              </option>
+        <div role="group" aria-label="add condition" style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+          {PICKABLE_CONDITIONS
+            .filter((def) => !combatant.conditions.some((c) => c.slug === def.slug))
+            .map((def) => (
+              <PickableConditionButton key={def.slug} name={def.name} onClick={() => applyCondition(def.slug)} />
             ))}
-          </select>
-          {conditionDef.valued && (
-            <input
-              aria-label="Condition value"
-              value={conditionValue}
-              onChange={(e) => setConditionValue(e.target.value)}
-              style={{
-                width: "42px",
-                fontFamily: "var(--font-mono)",
-                fontSize: "13px",
-                textAlign: "center",
-                padding: "6px 4px",
-                borderRadius: "3px",
-                border: "1px solid var(--border-strong)",
-                background: "var(--bg)",
-                color: "var(--text)",
-              }}
-            />
-          )}
-          <button
-            type="button"
-            onClick={handleAddCondition}
-            style={{
-              fontFamily: "inherit",
-              fontSize: "12px",
-              fontWeight: 600,
-              padding: "6px 10px",
-              borderRadius: "3px",
-              border: "1px solid var(--border-strong)",
-              background: "var(--panel-raised)",
-              color: "var(--text)",
-              cursor: "pointer",
-            }}
-          >
-            Add
-          </button>
         </div>
-        {conditionSlug === "persistent-damage" && (
-          <input
-            aria-label="Persistent damage formula"
-            placeholder="e.g. 2d6"
-            value={conditionFormula}
-            onChange={(e) => setConditionFormula(e.target.value)}
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "12.5px",
-              padding: "6px 7px",
-              borderRadius: "3px",
-              border: "1px solid var(--border-strong)",
-              background: "var(--bg)",
-              color: "var(--text)",
-            }}
-          />
-        )}
-        {combatant.conditions.length > 0 && (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "5px", marginTop: "2px" }}>
-            {combatant.conditions.map((c) => (
-              <button
-                key={c.slug}
-                type="button"
-                aria-label={`Remove ${CONDITIONS[c.slug].name}`}
-                onClick={() => removeCondition(combatantId, c.slug)}
-                style={{
-                  fontFamily: "inherit",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "5px",
-                  fontSize: "10.5px",
-                  letterSpacing: "0.04em",
-                  padding: "7px 8px 7px 10px", // bumped for a comfortable tap target on narrow screens
-                  borderRadius: "3px",
-                  border: "1px solid var(--border)",
-                  background: "var(--cond-bg)",
-                  color: "var(--cond)",
-                  cursor: "pointer",
-                }}
-              >
-                {CONDITIONS[c.slug].valued ? `${CONDITIONS[c.slug].name.toUpperCase()} ${c.value}` : CONDITIONS[c.slug].name.toUpperCase()}
-                <span aria-hidden="true">×</span>
-              </button>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
