@@ -63,8 +63,10 @@ const BARE_REFERENCE_PATTERN = /(?<![A-Za-z\]])\[(?:Compendium\.\s*)?pf2e[.-]/;
 /** The only marker families allowed to survive into emitted text, because the
  * ENGLISH dataset carries them too (2082 `@Check`, 1590 `@Damage`, 681
  * `@Template`) and the app renders them. Everything else must have been
- * resolved away. */
-const RENDERED_MARKERS = new Set(["Check", "Damage", "Template"]);
+ * resolved away. Exported so a test can assert this agrees with the app's
+ * own copy, `RENDERED_MARKER_FAMILIES` in
+ * packages/app/src/rules/renderMarkers.ts. */
+export const RENDERED_MARKERS = new Set(["Check", "Damage", "Template"]);
 
 /**
  * Babele ships raw Foundry text, so a marker only disappears if the builder

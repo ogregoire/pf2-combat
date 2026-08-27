@@ -326,6 +326,28 @@ describe("creatures render in French", () => {
     expect(screen.getByText("Poursuivre la proie")).toBeTruthy();
   });
 
+  // Finding 11 (final review): SCHEMA_VERSION wasn't bumped when Combatant
+  // gained a required `i18n` field, though `persist.ts`'s migrate() never
+  // reconciles field-level shape — a payload saved before the field existed
+  // restores with `i18n` simply ABSENT (undefined), not explicitly `null`.
+  // useCombatantI18n checks with `== null` specifically so this case
+  // resolves an overlay exactly like a freshly-added English combatant
+  // does, rather than treating "field predates the schema" as "field is
+  // explicitly empty" and silently never fetching.
+  it("resolves French for a combatant restored from a payload predating the i18n field entirely", async () => {
+    stubForestTrollOverlayFetch();
+    useEncounter.getState().setLang("fr");
+    const id = useEncounter.getState().addCombatant({ ...forestTrollSeed }, 19);
+    useEncounter.setState((state) => {
+      delete (state.encounter.combatants[id] as Record<string, unknown>).i18n;
+    });
+    expect("i18n" in useEncounter.getState().encounter.combatants[id]!).toBe(false);
+
+    render(<ActiveCombatant />);
+
+    await waitFor(() => expect(screen.getByText("Troll des forêts")).toBeTruthy());
+  });
+
   // Finding 3 (final review): ReactionWatch rendered combatant and reaction
   // names in English regardless of `lang` — the one component Tasks 12/14's
   // sweep missed.

@@ -14,7 +14,17 @@
  * marker shape diagnosable (it just shows up raw) instead of invisible.
  */
 
-const MARKER_START = /@(Check|Damage|Template)\[/g;
+/** The marker families this renderer knows how to turn into plain text —
+ * the single source for the regex below, and exported so a test can assert
+ * it agrees with pf2data's `verifyI18nMarkup` allow-list
+ * (packages/pf2data/src/stages/verify.ts). The two lists are hand-maintained
+ * copies in different packages with nothing else tying them together; the
+ * dangerous drift direction is this one narrowing while verify's stays
+ * wide, since that ships raw `@Family[...]` markup to the GM's screen with
+ * nothing anywhere to catch it. */
+export const RENDERED_MARKER_FAMILIES = ["Check", "Damage", "Template"] as const;
+
+const MARKER_START = new RegExp(`@(${RENDERED_MARKER_FAMILIES.join("|")})\\[`, "g");
 
 /** Index of the bracket matching `open` (open must point at an opening
  * bracket character), or -1 if the string ends before it closes. */

@@ -26,12 +26,16 @@ function cachedFetch(
  * when it is already populated (a caller seeding the store directly, e.g.
  * tests) — but a combatant added through AddCombatants/QuickAdd while
  * `lang` was "en", or one persisted from before overlays existed, carries
- * `i18n: null` forever, with nothing else to re-fetch it. This hook closes
- * that gap: whenever `lang` is "fr" and `combatant.i18n` is still null, it
- * fetches by `creatureId` — cached, so toggling `lang` back and forth, or
+ * no overlay, with nothing else to re-fetch it. This hook closes that gap:
+ * whenever `lang` is "fr" and `combatant.i18n` is still absent, it fetches
+ * by `creatureId` — cached, so toggling `lang` back and forth, or
  * rendering many combatants of the same creature, never refetches — and
  * the result stands in for `combatant.i18n` until the store itself carries
- * one.
+ * one. Checked with `== null`, not `=== null`: a combatant restored from a
+ * payload saved before `Combatant.i18n` existed carries `undefined`, not
+ * `null`, for the field TypeScript claims is always present (persist.ts
+ * doesn't validate a loaded payload's shape) — `== null` treats that the
+ * same as a combatant that legitimately has no overlay yet.
  */
 export function useCombatantI18n(
   combatant: { i18n: CreatureI18n | null; creatureId?: string },
@@ -40,7 +44,7 @@ export function useCombatantI18n(
   const lang = useEncounter((s) => s.lang);
   const [fetched, setFetched] = useState<CreatureI18n | null>(null);
   const creatureId = combatant.creatureId;
-  const needsFetch = combatant.i18n === null && lang === "fr" && creatureId !== undefined;
+  const needsFetch = combatant.i18n == null && lang === "fr" && creatureId !== undefined;
 
   useEffect(() => {
     if (!needsFetch || creatureId === undefined) return;
