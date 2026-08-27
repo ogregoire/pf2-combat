@@ -635,6 +635,63 @@ describe("runCli", () => {
     expect(runCli(["verify"], silentIo(), deps)).toBe(0);
   });
 
+  // Re-review of the fix above: the expected set it built (`referenceFiles`)
+  // was `readdirSync(indexDir)` -- enumerating what's PRESENT, so a file
+  // absent from the very directory being enumerated could never be reported
+  // missing. Proven live against the real 1450-creature dataset too (one
+  // pack's index.json removed while the other four stay -- only that one is
+  // reported, the other four still verify clean), but this fixture only
+  // configures one creature pack, so here "one pack's index is missing" and
+  // "every pack's index is missing" are the same file. The expected set is
+  // now `manifest.packs` filtered by `config.packs`' creature kind --
+  // independent of what's actually present on disk -- so a single missing
+  // pack index is caught without needing the whole directory gone too.
+  it("verify fails when a pack's own French index file is missing, directory otherwise intact", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    rmSync(join(dataDir, "i18n", "fr", "index", "kingmaker-bestiary.json"), { force: true });
+    // The directory itself is untouched -- only the one file inside it is
+    // gone -- which is exactly what a `readdirSync`-based scan can't see.
+    expect(existsSync(join(dataDir, "i18n", "fr", "index"))).toBe(true);
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["verify"],
+      { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.join("")).toContain("i18n/fr/index/kingmaker-bestiary.json");
+  });
+
+  // The other half of the same structural bug: a per-creature overlay is
+  // legitimately allowed to be missing (see the test above), but that
+  // exception must not swallow the case where EVERY creature in a pack is
+  // missing its overlay because the whole `i18n/fr/creatures/<pack>/`
+  // subdirectory is gone -- proven live against the real dataset too
+  // (`rm -rf data/i18n/fr/creatures/` reports all five pack subdirectories
+  // missing, restore leaves `git status --porcelain` empty and
+  // `verify` `ok: true` again).
+  it("verify fails when a pack's whole i18n/fr/creatures/<pack>/ subdirectory is missing, not just one file in it", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    rmSync(join(dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary"), {
+      recursive: true,
+      force: true,
+    });
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["verify"],
+      { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.join("")).toContain("i18n/fr/creatures/kingmaker-bestiary/");
+  });
+
   // Unlike a per-creature overlay, `index/`, `conditions.json`,
   // `glossary.json` and `traits.json` have no legitimate absent state in a
   // checked-in dataset -- a wholesale loss of the French index (or of one

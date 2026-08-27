@@ -6,18 +6,18 @@ import {
   CreatureI18nSchema,
   CreatureSchema,
   ManifestSchema,
+  type Creature,
   type CreatureI18n,
   type IndexEntry,
   type Manifest,
 } from "@pf2/schema";
-import { loadConfig } from "./config.js";
+import { loadConfig, type Pf2DataConfig } from "./config.js";
 import { writeJson, stableStringify } from "./io/write.js";
 import { fetchFrench, fetchUpstream, type RunGit } from "./stages/fetch.js";
 import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
 import { verifyDataset, verifyI18n, verifyI18nMarkup } from "./stages/verify.js";
 import { diffDataset, frenchCoverage, statusOf, type ChangeStatus } from "./report.js";
-import { compareStrings } from "./util.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
 import { buildConditions, buildGlossary, buildTraits, scanTraits } from "./stages/reference.js";
 import { loadBabele } from "./stages/babele.js";
@@ -231,22 +231,66 @@ function readOnDiskI18n(dataDir: string): Map<string, string> {
 
 /** Checks every committed French overlay against the committed creature it
  * indexes. See `verifyI18n`: the overlay is keyed by array POSITION, so the
- * two files agreeing position-for-position is the whole safety property. A
- * missing PER-CREATURE overlay is not a failure: no creature currently
- * lacks one (Task 17 closed the last 30 gaps via the archive), but a future
- * upstream addition with no Babele or archive coverage at all would
- * legitimately have none. That reasoning does not extend to `index/`,
- * `conditions.json`, `glossary.json` or `traits.json` below — none of those
- * are per-creature, and none has a legitimate absent state in a checked-in
- * dataset, so a missing one is reported as a failure rather than skipped. */
-function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
+ * two files agreeing position-for-position is the whole safety property.
+ *
+ * Every "expected" set below is derived from a source INDEPENDENT of the
+ * French tree being checked -- `config.packs` and `manifest.packs` for
+ * which packs should exist, and the already-parsed English `creatures` for
+ * which creature ids and which pack subdirectories should exist. Never from
+ * `readdirSync` on the French directory itself: enumerating what's PRESENT
+ * there can only ever confirm what's present, and can never notice an
+ * entire pack's worth of French files -- or the whole directory -- having
+ * been deleted (a re-review of the first fix caught this: `readdirSync`
+ * silently returns fewer, or zero, entries and nothing downstream knew to
+ * expect more).
+ *
+ * A missing PER-CREATURE overlay is still not itself a failure: no creature
+ * currently lacks one (Task 17 closed the last 30 gaps via the archive),
+ * but a future upstream addition with no Babele or archive coverage at all
+ * would legitimately have none. What IS a failure is a whole pack's
+ * `i18n/fr/creatures/<pack>/` subdirectory being absent -- that can't be
+ * "this one creature has no French name yet", only "the French files for
+ * this pack are gone". A single missing file leaves the subdirectory itself
+ * in place; only removing the subdirectory (or everything under it) removes
+ * the directory entry, which is exactly the distinction this needs.
+ *
+ * `index/`, `conditions.json`, `glossary.json` and `traits.json` have no
+ * such per-item exception at all -- none of those are per-creature, and
+ * none has a legitimate absent state in a checked-in dataset, so a missing
+ * one is always a failure. */
+function verifyOnDiskI18n(
+  creatures: unknown[],
+  dataDir: string,
+  manifest: Manifest,
+  config: Pf2DataConfig,
+): string[] {
   const problems: string[] = [];
 
+  const creaturePacks = new Set(
+    config.packs.filter((p) => p.kind === "creatures").map((p) => p.name),
+  );
+  const expectedPacks = manifest.packs.filter((pack) => creaturePacks.has(pack));
+
+  const parsedCreatures: Creature[] = [];
   for (const raw of creatures) {
     const parsed = CreatureSchema.safeParse(raw);
-    if (!parsed.success) continue; // already reported by verifyDataset
-    const creature = parsed.data;
+    if (parsed.success) parsedCreatures.push(parsed.data);
+  }
+  // Which packs actually have at least one committed English creature --
+  // read off `parsedCreatures`, not the French tree -- so a pack with
+  // nothing to translate is never flagged for lacking a subdirectory it
+  // never needed.
+  const packsWithCreatures = new Set(parsedCreatures.map((c) => c.id.split("/")[0]!));
 
+  for (const pack of expectedPacks) {
+    if (!packsWithCreatures.has(pack)) continue;
+    const packDir = join(dataDir, I18N_ROOT, "fr", "creatures", pack);
+    if (!existsSync(packDir)) {
+      problems.push(`i18n: ${I18N_ROOT}/fr/creatures/${pack}/ is missing`);
+    }
+  }
+
+  for (const creature of parsedCreatures) {
     const path = join(dataDir, I18N_ROOT, "fr", "creatures", `${creature.id}.json`);
     if (!existsSync(path)) continue;
 
@@ -263,18 +307,19 @@ function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
     problems.push(...verifyI18n(creature, overlay.data));
   }
 
-  const indexDir = join(dataDir, I18N_ROOT, "fr", "index");
-  if (!existsSync(indexDir)) {
-    problems.push(`i18n: ${I18N_ROOT}/fr/index/ is missing`);
+  for (const pack of expectedPacks) {
+    const path = join(dataDir, I18N_ROOT, "fr", "index", `${pack}.json`);
+    if (!existsSync(path)) {
+      problems.push(`i18n: ${I18N_ROOT}/fr/index/${pack}.json is missing`);
+      continue;
+    }
+    problems.push(
+      ...verifyI18nMarkup(`${I18N_ROOT}/fr/index/${pack}.json`, JSON.parse(readFileSync(path, "utf8"))),
+    );
   }
-  const referenceFiles = existsSync(indexDir)
-    ? readdirSync(indexDir)
-        .filter((name) => name.endsWith(".json"))
-        .sort(compareStrings)
-        .map((name) => `index/${name}`)
-    : [];
-  for (const file of [...referenceFiles, "conditions.json", "glossary.json", "traits.json"]) {
-    const path = join(dataDir, I18N_ROOT, "fr", ...file.split("/"));
+
+  for (const file of ["conditions.json", "glossary.json", "traits.json"]) {
+    const path = join(dataDir, I18N_ROOT, "fr", file);
     if (!existsSync(path)) {
       problems.push(`i18n: ${I18N_ROOT}/fr/${file} is missing`);
       continue;
@@ -378,7 +423,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     // separate files that can drift apart between runs, and a position that
     // no longer names the action it translates would otherwise ship as a
     // quietly mistranslated Strike.
-    const failures = [...result.failures, ...verifyOnDiskI18n(onDisk.creatures, dataDir)];
+    const failures = [...result.failures, ...verifyOnDiskI18n(onDisk.creatures, dataDir, manifest, config)];
     for (const failure of failures) io.err(`${failure}\n`);
     const ok = failures.length === 0;
     if (ok) io.err("dataset verified\n");
