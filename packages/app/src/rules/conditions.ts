@@ -312,24 +312,40 @@ export interface AppliedCondition {
 }
 
 /**
- * `implies` is declared on prone/grabbed/restrained but was never consumed —
- * their own condition text states off-guard (and, for grabbed/restrained,
- * immobilized) without a value ever applying it. This expands the applied
- * set with those implied conditions (synthetic, value 0 — every implied
- * condition in the curated set is unvalued) before modifiers are computed,
- * so the effect actually lands wherever conditions are read. Idempotent: a
- * condition already present (explicit or already implied) is never added
- * twice, so off-guard's -2 circumstance penalty doesn't stack with itself
- * when e.g. both prone and grabbed apply.
+ * `implies` is declared on prone/grabbed/restrained/dying/... but was never
+ * consumed — their own condition text states off-guard (and, for
+ * grabbed/restrained, immobilized) without a value ever applying it. This
+ * expands the applied set with those implied conditions (synthetic, value
+ * 0 — every implied condition in the curated set is unvalued) before
+ * modifiers are computed, so the effect actually lands wherever conditions
+ * are read.
+ *
+ * Transitive: this walks a growing worklist, not just the originally
+ * applied conditions, so a chain like dying -> unconscious -> blinded/
+ * off-guard resolves fully rather than stopping after one hop. (An earlier
+ * version iterated only `applied` and silently dropped the second hop —
+ * dying reported unconscious's synthetic entry but never unconscious's own
+ * implied blinded/off-guard, so a dying combatant's AC came out 2 points
+ * too generous. Caught by the reviewer, not by a test at the time.)
+ *
+ * Idempotent through the whole chain: a condition already present (explicit
+ * or already implied, at any depth) is never added or queued twice, so
+ * off-guard's -2 circumstance penalty doesn't stack with itself when e.g.
+ * both prone and grabbed apply, or when a chain and an explicit condition
+ * both reach the same implied slug.
  */
 function expandImplied(applied: AppliedCondition[]): AppliedCondition[] {
   const present = new Set(applied.map((c) => c.slug));
   const expanded = [...applied];
-  for (const c of applied) {
+  const queue = [...applied];
+  while (queue.length > 0) {
+    const c = queue.shift()!;
     for (const implied of CONDITIONS[c.slug].implies ?? []) {
       if (present.has(implied)) continue;
       present.add(implied);
-      expanded.push({ slug: implied, value: 0 });
+      const syntheticEntry = { slug: implied, value: 0 };
+      expanded.push(syntheticEntry);
+      queue.push(syntheticEntry);
     }
   }
   return expanded;

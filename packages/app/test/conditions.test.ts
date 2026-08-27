@@ -8,8 +8,10 @@ import {
   conditionModifiers,
   PICKABLE_CONDITIONS,
   type AppliedCondition,
+  type ConditionSlug,
+  type Selector,
 } from "../src/rules/conditions.js";
-import { resolveModifiers } from "../src/rules/modifiers.js";
+import { resolveModifiers, type Modifier } from "../src/rules/modifiers.js";
 
 /** Replays a fixed sequence of [0, 1) values, one per die — see dice.test.ts. */
 function fakeRng(values: number[]): () => number {
@@ -63,6 +65,108 @@ describe("condition catalogue", () => {
   it("gives unconscious a real effect rather than listing it inert", () => {
     expect(CONDITIONS.unconscious.affects(0)).not.toBeNull();
     expect(CONDITIONS.dying.implies).toContain("unconscious");
+  });
+});
+
+/**
+ * Pins the exact magnitude/type/selectors of every numeric `affects` added
+ * for the widened condition set, straight against the wording in
+ * data/conditions.json (see task-1-report.md's table). Without this,
+ * `unconscious` could be re-encoded as e.g. -40 across every selector and
+ * the suite would stay green — the two tests in "condition catalogue"
+ * above only check that *some* effect exists, not that it's the right one.
+ * Add a row here whenever a new condition gets a real number so a future
+ * omission is a missing row, not silence.
+ */
+describe("condition catalogue — numeric encodings pinned against the dataset", () => {
+  const numericEncodings: {
+    slug: ConditionSlug;
+    selector: Selector;
+    expectedMods: Modifier[];
+  }[] = [
+    // unconscious: "-4 status penalty to AC, Perception, and Reflex saves".
+    // On "ac" specifically, unconscious's implied off-guard (-2
+    // circumstance) also lands — unconscious is applied standalone here
+    // (value 0, no explicit off-guard), so this is expandImplied's doing,
+    // not double-counting; see the "implies exactly" table below for that
+    // link and the transitive-chain test for why it matters.
+    {
+      slug: "unconscious", selector: "ac",
+      expectedMods: [
+        { value: -2, type: "circumstance", source: "off-guard" },
+        { value: -4, type: "status", source: "unconscious" },
+      ],
+    },
+    {
+      slug: "unconscious", selector: "perception",
+      expectedMods: [{ value: -4, type: "status", source: "unconscious" }],
+    },
+    {
+      slug: "unconscious", selector: "reflex",
+      expectedMods: [{ value: -4, type: "status", source: "unconscious" }],
+    },
+    // encumbered: "you're Clumsy 1" — reproduces clumsy's own selectors/magnitude at 1
+    {
+      slug: "encumbered", selector: "ac",
+      expectedMods: [{ value: -1, type: "status", source: "encumbered (clumsy 1)" }],
+    },
+    {
+      slug: "encumbered", selector: "reflex",
+      expectedMods: [{ value: -1, type: "status", source: "encumbered (clumsy 1)" }],
+    },
+    {
+      slug: "encumbered", selector: "ranged-attack",
+      expectedMods: [{ value: -1, type: "status", source: "encumbered (clumsy 1)" }],
+    },
+    // fascinated: "-2 status penalty to Perception and skill checks"
+    {
+      slug: "fascinated", selector: "perception",
+      expectedMods: [{ value: -2, type: "status", source: "fascinated" }],
+    },
+    {
+      slug: "fascinated", selector: "skill",
+      expectedMods: [{ value: -2, type: "status", source: "fascinated" }],
+    },
+  ];
+
+  it.each(numericEncodings)(
+    "$slug on $selector matches data/conditions.json exactly",
+    ({ slug, selector, expectedMods }) => {
+      expect(conditionModifiers([{ slug, value: 0 }], selector)).toEqual(expectedMods);
+    },
+  );
+
+  // Selectors each of the above must NOT touch, from the same dataset
+  // paragraph — guards against an over-broad selector list, the mirror
+  // image of the magnitude check above.
+  const unaffectedSelectors: { slug: ConditionSlug; selector: Selector }[] = [
+    { slug: "unconscious", selector: "will" },
+    { slug: "unconscious", selector: "fortitude" },
+    { slug: "encumbered", selector: "melee-attack" },
+    { slug: "encumbered", selector: "will" },
+    { slug: "fascinated", selector: "ac" },
+    { slug: "fascinated", selector: "will" },
+  ];
+
+  it.each(unaffectedSelectors)("$slug leaves $selector untouched", ({ slug, selector }) => {
+    expect(conditionModifiers([{ slug, value: 0 }], selector)).toEqual([]);
+  });
+
+  // Every `implies` link added for the widened set, pinned against the
+  // dataset sentence that states it (see the per-condition comments in
+  // conditions.ts). Catches a dropped or extra implied slug the same way
+  // the table above catches a wrong magnitude.
+  const impliesLinks: { slug: ConditionSlug; implied: ConditionSlug[] }[] = [
+    { slug: "unconscious", implied: ["blinded", "off-guard"] },
+    { slug: "paralyzed", implied: ["off-guard"] },
+    { slug: "confused", implied: ["off-guard"] },
+    { slug: "invisible", implied: ["undetected"] },
+    { slug: "unnoticed", implied: ["undetected"] },
+    { slug: "dying", implied: ["unconscious"] },
+  ];
+
+  it.each(impliesLinks)("$slug implies exactly $implied", ({ slug, implied }) => {
+    expect(CONDITIONS[slug].implies).toEqual(implied);
   });
 });
 
@@ -170,6 +274,32 @@ describe("conditionModifiers", () => {
     );
     expect(mods).toHaveLength(1);
     expect(mods[0]).toEqual({ value: -2, type: "circumstance", source: "off-guard" });
+  });
+
+  it("expands a two-level implies chain transitively: dying -> unconscious -> blinded/off-guard", () => {
+    // Regression for a real bug: expandImplied used to walk only the
+    // originally-applied conditions, so dying's implied `unconscious` was
+    // added to the set but unconscious's own implied blinded/off-guard
+    // never were. A dying combatant's AC came out 2 points too generous
+    // (missing off-guard's -2) versus applying `unconscious` directly for
+    // the same table state.
+    const dyingAc = conditionModifiers([{ slug: "dying", value: 1 }], "ac");
+    expect(dyingAc).toEqual([
+      { value: -2, type: "circumstance", source: "off-guard" },
+      { value: -4, type: "status", source: "unconscious" },
+    ]);
+    expect(dyingAc).toEqual(conditionModifiers([{ slug: "unconscious", value: 0 }], "ac"));
+  });
+
+  it("keeps a multi-hop chain idempotent against an explicit condition at any depth", () => {
+    // off-guard is two hops down from dying (dying -> unconscious ->
+    // off-guard). Applying it explicitly alongside dying must still not
+    // double its -2 circumstance penalty.
+    const mods = conditionModifiers(
+      [{ slug: "dying", value: 1 }, { slug: "off-guard", value: 0 }],
+      "ac",
+    );
+    expect(mods.filter((m) => m.source === "off-guard")).toHaveLength(1);
   });
 
   it("returns modifiers sorted deterministically", () => {
