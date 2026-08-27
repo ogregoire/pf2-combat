@@ -49,12 +49,27 @@ function DamageTypeButton({
 }
 
 /** A plain, one-click "apply this condition" tag in the pickable row. No
- * value, no dropdown — clicking it is the whole interaction (see
- * applyCondition below for what value it applies at). */
-function PickableConditionButton({ name, onClick }: { name: string; onClick: () => void }): React.ReactElement {
+ * dropdown — clicking it is the whole interaction (see applyCondition below
+ * for what value it applies at). Per the GM's own spec ("Those that require
+ * a number show `condition X`"), a valued condition shows a literal "X"
+ * placeholder before it's applied, so the GM can tell at a glance which tags
+ * take a number — that placeholder is what becomes the "− 1 +" stepper once
+ * clicked. `aria-label` pins the accessible name to the bare condition name
+ * regardless of that suffix, so existing exact-name queries (both tests and
+ * any future ones) keep working. */
+function PickableConditionButton({
+  name,
+  valued,
+  onClick,
+}: {
+  name: string;
+  valued: boolean;
+  onClick: () => void;
+}): React.ReactElement {
   return (
     <button
       type="button"
+      aria-label={name}
       onClick={onClick}
       style={{
         fontFamily: "inherit",
@@ -68,6 +83,12 @@ function PickableConditionButton({ name, onClick }: { name: string; onClick: () 
       }}
     >
       {name}
+      {valued && (
+        <>
+          {" "}
+          <span style={{ fontFamily: "var(--font-mono)", opacity: 0.55 }}>X</span>
+        </>
+      )}
     </button>
   );
 }
@@ -342,6 +363,18 @@ export function RowPopover({
   };
   const decrementCondition = (slug: ConditionSlug, value: number): void => {
     if (value <= 0) return; // floor at 0 — never send a call that would go negative
+    // Stepping dying from 1 down to 0 is *losing* the condition, not just
+    // lowering its value — data/conditions.json, dying: "Any time you lose
+    // the dying condition, you gain the Wounded 1 condition...". Routing
+    // through removeCondition here keeps this in sync with the tag's own
+    // "x" button, which already goes through the same path (see store.ts's
+    // removeCondition). Sending addCondition(id, "dying", -1) instead would
+    // write a literal "dying 0" — dyingOnGain's own doc comment warns
+    // against exactly that nonsense state — and skip the Wounded fallout.
+    if (slug === "dying" && value === 1) {
+      removeCondition(combatantId, "dying");
+      return;
+    }
     addCondition(combatantId, slug, slug === "dying" ? -1 : value - 1);
   };
 
@@ -696,10 +729,15 @@ export function RowPopover({
       </div>
 
       <div style={{ borderTop: "1px solid var(--border)", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
+          Add condition
+        </div>
+
         {combatant.conditions.length > 0 && (
-          // Above the picker, per the brief — applied conditions are what
-          // the GM is scanning for mid-fight, so they don't scroll past
-          // them to find what's already on this combatant.
+          // Under the section title but above the pickable tags — the title
+          // is the section heading and leads, with what's already applied
+          // to this combatant surfaced first inside the section so the GM
+          // doesn't scroll past it to see what's already on.
           <div role="group" aria-label="applied conditions" style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
             {combatant.conditions.map((c) => {
               const def = CONDITIONS[c.slug];
@@ -769,14 +807,16 @@ export function RowPopover({
           </div>
         )}
 
-        <div style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-          Add condition
-        </div>
         <div role="group" aria-label="add condition" style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
           {PICKABLE_CONDITIONS
             .filter((def) => !combatant.conditions.some((c) => c.slug === def.slug))
             .map((def) => (
-              <PickableConditionButton key={def.slug} name={def.name} onClick={() => applyCondition(def.slug)} />
+              <PickableConditionButton
+                key={def.slug}
+                name={def.name}
+                valued={def.valued}
+                onClick={() => applyCondition(def.slug)}
+              />
             ))}
         </div>
       </div>

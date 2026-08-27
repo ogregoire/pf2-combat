@@ -361,6 +361,21 @@ describe("CombatantList", () => {
       .find((c) => c.slug === "frightened")!.value).toBe(0);
   });
 
+  it("shows a placeholder X on pickable tags that take a number, and none on those that don't", async () => {
+    // The GM's own spec: "Those that require a number show `condition X`" —
+    // otherwise a valued and an unvalued tag are indistinguishable until
+    // after the first click.
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    // The accessible name stays the bare condition name either way — only
+    // the rendered text carries the placeholder.
+    expect(screen.getByRole("button", { name: "Frightened" }).textContent).toBe("Frightened X");
+    expect(screen.getByRole("button", { name: "Prone" }).textContent).toBe("Prone");
+  });
+
   it("keeps applied conditions in a row above the pickable ones", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(seed(), 19);
@@ -416,14 +431,44 @@ describe("CombatantList", () => {
       .find((c) => c.slug === "dying")!.value).toBe(2);
 
     await user.click(screen.getByRole("button", { name: "Decrease Dying" }));
-    await user.click(screen.getByRole("button", { name: "Decrease Dying" }));
     expect(useEncounter.getState().encounter.combatants[id]!.conditions
-      .find((c) => c.slug === "dying")!.value).toBe(0);
+      .find((c) => c.slug === "dying")!.value).toBe(1);
+  });
 
-    // Floors at 0 rather than going negative.
+  it("routes dying's stepper down to zero through removeCondition, agreeing with the x button's Wounded fallout", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    useEncounter.getState().addCondition(id, "dying", 1);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    // The decrement that would reach 0 instead fully removes dying — same as
+    // clicking the tag's own x — so it carries the Wounded 1 fallout instead
+    // of leaving a nonsense "dying 0" behind.
     await user.click(screen.getByRole("button", { name: "Decrease Dying" }));
+
+    const conditions = useEncounter.getState().encounter.combatants[id]!.conditions;
+    expect(conditions.find((c) => c.slug === "dying")).toBeUndefined();
+    expect(conditions.find((c) => c.slug === "wounded")!.value).toBe(1);
+    // And the applied tag itself is gone — nothing left to decrease.
+    expect(screen.queryByRole("button", { name: "Decrease Dying" })).toBeNull();
+  });
+
+  it("applies dying at gain time plus the wounded bonus when clicked directly, not just when raised by damage", async () => {
+    // data/conditions.json, wounded: "If you gain the dying condition while
+    // wounded, increase your dying condition value by your wounded value."
+    // RAW-correct but easy to miss from the UI side: one click on "Dying"
+    // for a Wounded 2 combatant should land on dying 3, not dying 1.
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    useEncounter.getState().addCondition(id, "wounded", 2);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    await user.click(screen.getByRole("button", { name: "Dying" }));
+
     expect(useEncounter.getState().encounter.combatants[id]!.conditions
-      .find((c) => c.slug === "dying")!.value).toBe(0);
+      .find((c) => c.slug === "dying")!.value).toBe(3);
   });
 
   it("removes a combatant from the row popover", async () => {

@@ -380,6 +380,7 @@ interface EncounterStore {
   setInitiative(entryId: string, initiative: number): void;
   applyDamage(id: string, amount: number, damageType?: string): void;
   applyHealing(id: string, amount: number): void;
+  // `value` is the new absolute value for every slug except "dying", where it's the amount to add (see this method's own comment below).
   addCondition(id: string, slug: ConditionSlug, value: number, formula?: string): void;
   removeCondition(id: string, slug: ConditionSlug): void;
   recordStrike(id: string): void;
