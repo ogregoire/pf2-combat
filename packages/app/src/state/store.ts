@@ -5,6 +5,8 @@ import {
   applyEndOfTurn,
   dyingMax,
   dyingOnGain,
+  onDroppedToZero,
+  onHealedAboveZero,
   woundedOnRecover,
   type ConditionSlug,
 } from "../rules/conditions.js";
@@ -127,16 +129,55 @@ export function unrolledCount(enc: Encounter): number {
   return enc.entries.filter((e) => e.initiative === null).length;
 }
 
+/**
+ * Adds `amount` to a combatant's dying value via `dyingOnGain`, clamps it to
+ * the current `dyingMax` (unless doomed has zeroed that max — see the
+ * comment inline, matching the reasoning in `dyingOnGain`'s own doc comment
+ * about not writing a nonsense "dying 0"), and marks the combatant defeated
+ * once the value reaches the cap. Shared by `addCondition`'s "dying" branch
+ * (a GM manually bumping dying) and `dealDamage`'s 0-HP handling below, so
+ * both apply the exact same doomed-interaction and death-at-cap rules
+ * instead of maintaining that logic twice.
+ */
+function applyDyingGain(c: Combatant, amount: number): void {
+  const updated = dyingOnGain(c.conditions, amount);
+  const max = dyingMax(c.conditions);
+  const dyingEntry = updated.find((cond) => cond.slug === "dying")!;
+  if (max > 0) dyingEntry.value = Math.min(dyingEntry.value, max);
+  c.conditions = updated;
+  // data/conditions.json, dying: "if it ever reaches dying 4, you die."
+  // Reuses the existing `defeated` flag the row already renders rather than
+  // inventing a parallel notion of dead.
+  if (dyingEntry.value >= max) c.defeated = true;
+}
+
 /** The IWR-filtering, floor-at-0, mark-defeated computation `applyDamage`
  * does — pulled out so `nextTurn` can apply persistent damage through the
  * exact same path instead of re-implementing it, per the brief. Takes the
  * combatant directly (rather than an id + store lookup) so it works equally
- * from inside `applyDamage`'s own `set` and from inside `nextTurn`'s. */
+ * from inside `applyDamage`'s own `set` and from inside `nextTurn`'s.
+ *
+ * Reaching 0 HP is not the same event for a PC as for anything else — see
+ * onDroppedToZero's doc comment for the "dying" dataset text a PC follows.
+ * An ordinary creature has no such trauma rules (Player Core reserves Dying
+ * for characters); it simply dies. Being the one choke point every damage
+ * path (direct applyDamage, and end-of-turn persistent damage via
+ * endTurnEffects) runs through is exactly why this is where that split
+ * lives, rather than duplicating it at each call site — a PC dropped to 0 by
+ * persistent damage must start dying exactly as one dropped to 0 by a
+ * direct hit does.
+ */
 function dealDamage(c: Combatant, amount: number, damageType?: string): void {
   if (c.hp === null) return;
   const applied = applyIwr(amount, damageType ?? "none", c.iwr);
   c.hp.current = Math.max(0, c.hp.current - applied);
-  if (c.hp.current === 0) c.defeated = true;
+  if (c.hp.current !== 0) return;
+  if (c.kind === "pc") {
+    applyDyingGain(c, 1);
+    c.conditions = onDroppedToZero(c.conditions);
+  } else {
+    c.defeated = true;
+  }
 }
 
 /**
@@ -544,7 +585,17 @@ export const useEncounter = create<EncounterStore>()(
         const c = state.encounter.combatants[id];
         if (!c || c.hp === null) return;
         c.hp.current = Math.min(c.hp.max, c.hp.current + amount);
-        c.defeated = false;
+        // Doomed zeroing the dying cap is instant, permanent death — "If
+        // your maximum dying value is reduced to 0, you instantly die"
+        // (data/conditions.json, doomed) — and nothing about restoring Hit
+        // Points changes doomed. Only doomed itself dropping (a full
+        // night's rest, per doomed's own text — not modelled here) would
+        // undo it, so healing must not clear `defeated` while that cap is
+        // still 0. Every other defeated combatant (an ordinary creature at
+        // 0 HP, or a PC whose dying reached its — positive — cap) still
+        // clears normally on any heal, matching prior behaviour.
+        if (dyingMax(c.conditions) > 0) c.defeated = false;
+        if (c.hp.current > 0) c.conditions = onHealedAboveZero(c.conditions);
       }),
 
     addCondition: (id, slug, value, formula) =>
@@ -555,23 +606,9 @@ export const useEncounter = create<EncounterStore>()(
           // Dying is additive, not a set-to-absolute like every other
           // valued condition here — `value` is the amount just gained (1
           // on dropping to 0 HP, 2 on a critical hit while dying), which is
-          // what dyingOnGain expects; see its own doc comment for the
-          // wounded interaction it applies.
-          const updated = dyingOnGain(c.conditions, value);
-          const max = dyingMax(c.conditions);
-          const dyingEntry = updated.find((cond) => cond.slug === "dying")!;
-          // Only clamp down to a positive max. When max is 0 (doomed
-          // reduced it there), clamping would write a literal "dying 0"
-          // into state — indistinguishable from not being dying at all —
-          // for a combatant who is in fact dead. Leaving the raw
-          // accumulated value keeps state (and any export) showing an
-          // actual number instead of a value that reads as "not dying".
-          if (max > 0) dyingEntry.value = Math.min(dyingEntry.value, max);
-          c.conditions = updated;
-          // data/conditions.json, dying: "if it ever reaches dying 4, you
-          // die." Reuses the existing `defeated` flag the row already
-          // renders rather than inventing a parallel notion of dead.
-          if (dyingEntry.value >= max) c.defeated = true;
+          // what dyingOnGain (via applyDyingGain) expects; see its own doc
+          // comment for the wounded interaction it applies.
+          applyDyingGain(c, value);
           return;
         }
         const existing = c.conditions.find((cond) => cond.slug === slug);

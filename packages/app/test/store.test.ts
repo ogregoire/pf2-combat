@@ -561,4 +561,71 @@ describe("encounter store", () => {
     const c = useEncounter.getState().encounter.combatants[id]!;
     expect(c.conditions.find((x) => x.slug === "wounded")).toBeUndefined();
   });
+
+  // Task 3: dropping to 0 HP. Per data/conditions.json's "dying" entry —
+  // "While you have this condition, you are Unconscious" — a PC starts
+  // dying (which drags unconscious along) rather than being outright
+  // defeated; an ordinary creature has no dying trauma rules (Player Core)
+  // and simply dies.
+  it("starts a PC dying at 0 HP but marks a creature defeated", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().applyDamage(pc, 999);
+    const pcAfter = useEncounter.getState().encounter.combatants[pc]!;
+    expect(pcAfter.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
+    expect(pcAfter.conditions.some((c) => c.slug === "unconscious")).toBe(true);
+    expect(pcAfter.defeated).toBe(false);
+
+    const monster = addCreature("m", 19);
+    useEncounter.getState().applyDamage(monster, 999);
+    const monsterAfter = useEncounter.getState().encounter.combatants[monster]!;
+    expect(monsterAfter.defeated).toBe(true);
+    expect(monsterAfter.conditions.some((c) => c.slug === "dying")).toBe(false);
+  });
+
+  // Requirement (a) of the task-3 brief: end-of-turn persistent damage flows
+  // through the same `dealDamage` choke point as a direct applyDamage call
+  // (see the store's dealDamage/endTurnEffects comments), so it must trigger
+  // dying too. "1d4+996" always rolls >= 997, guaranteeing the kill without
+  // needing to inject a deterministic rng.
+  it("starts a PC dying from persistent damage at end of turn, not just from a direct applyDamage call", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "persistent-damage", 0, "1d4+996");
+    useEncounter.getState().nextTurn();
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.hp!.current).toBe(0);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
+  });
+
+  it("clears dying when a PC is healed above 0", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().applyDamage(pc, 999);
+    useEncounter.getState().applyHealing(pc, 5);
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.conditions.some((c) => c.slug === "dying")).toBe(false);
+    expect(after.conditions.find((c) => c.slug === "wounded")!.value).toBe(1);
+  });
+
+  // Requirement (b): doomed's own instant-death rule ("If your maximum
+  // dying value is reduced to 0, you instantly die" — data/conditions.json)
+  // is permanent while doomed stays at that value; nothing about restoring
+  // Hit Points changes doomed. Healing must not resurrect this combatant.
+  it("does not resurrect a combatant killed by doomed alone when healed", () => {
+    const id = addCreature("x", 20);
+    useEncounter.getState().addCondition(id, "doomed", 4);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(id, 5);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+  });
+
+  // The ordinary case healing must still cover: a ordinary creature felled
+  // by damage (no doomed involved) comes back once healed above 0.
+  it("clears defeated when healing an ordinarily-defeated creature back above 0", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().applyDamage(id, 99);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(id, 5);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(false);
+  });
 });

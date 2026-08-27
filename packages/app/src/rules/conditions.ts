@@ -420,6 +420,45 @@ export function woundedOnRecover(conditions: AppliedCondition[]): AppliedConditi
   return [...withoutDying, { slug: "wounded", value: 1 }];
 }
 
+/**
+ * The Unconscious half of a PC dropping to 0 Hit Points, per
+ * data/conditions.json's "dying" entry: "While you have this condition, you
+ * are Unconscious." Added directly here, rather than left to
+ * `expandImplied`, because that expansion only runs inside
+ * `conditionModifiers` at selector-modifier computation time — a reader of
+ * the stored `conditions` array itself (a combatant row, a save file) would
+ * never see it there otherwise. Idempotent: does nothing if already present
+ * (repeated damage at 0 HP, e.g. a second hit the same round).
+ *
+ * The dying value itself, its doomed-reduced cap, and the resulting
+ * `defeated` flag are not this function's job: they're `dyingOnGain`'s and
+ * the caller's (store.ts's `applyDyingGain`, shared with `addCondition`'s
+ * "dying" branch) — this only ever runs after that gain has already been
+ * applied to the conditions it's handed.
+ */
+export function onDroppedToZero(conditions: AppliedCondition[]): AppliedCondition[] {
+  if (conditions.some((c) => c.slug === "unconscious")) return conditions;
+  return [...conditions, { slug: "unconscious", value: 0 }];
+}
+
+/**
+ * Conditions a PC loses on being healed back above 0 Hit Points, per
+ * data/conditions.json's "unconscious" entry: "If you are restored to 1 Hit
+ * Point or more, you lose the dying and unconscious conditions." Reuses
+ * `woundedOnRecover` for the dying-loss/wounded-gain half (see its own doc
+ * comment), then drops Unconscious too.
+ *
+ * Guarded on dying actually being present, same as `woundedOnRecover`: this
+ * models only "healed while dying", the case the task-3 brief scopes it to.
+ * A combatant unconscious for an unrelated reason (asleep, knocked out by an
+ * effect, never dying) is untouched — nothing here assumes every Unconscious
+ * combatant is dying.
+ */
+export function onHealedAboveZero(conditions: AppliedCondition[]): AppliedCondition[] {
+  if (!conditions.some((c) => c.slug === "dying")) return conditions;
+  return woundedOnRecover(conditions).filter((c) => c.slug !== "unconscious");
+}
+
 export function conditionModifiers(
   applied: AppliedCondition[],
   selector: Selector,
