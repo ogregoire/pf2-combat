@@ -6,6 +6,7 @@ import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { AddCombatants } from "../src/components/AddCombatants.js";
 import { CombatantList } from "../src/components/CombatantList.js";
 import { ReactionWatch } from "../src/components/ReactionWatch.js";
+import { __resetCombatantI18nCacheForTests } from "../src/hooks/useCombatantI18n.js";
 import { useEncounter } from "../src/state/store.js";
 import type { CombatantSeed } from "../src/state/store.js";
 
@@ -192,7 +193,14 @@ function stubForestTrollOverlayFetch(): void {
 }
 
 describe("creatures render in French", () => {
-  beforeEach(() => useEncounter.getState().reset());
+  beforeEach(() => {
+    useEncounter.getState().reset();
+    // useCombatantI18n's cache is module-level, not store-level -- an
+    // earlier test's resolved fetch for a creature id would otherwise still
+    // answer a later test's call for that same id, making that later
+    // test's own fetch stub (or lack of one) decorative.
+    __resetCombatantI18nCacheForTests();
+  });
   afterEach(() => vi.unstubAllGlobals());
 
   it("shows the French name only — never the English alongside it", () => {

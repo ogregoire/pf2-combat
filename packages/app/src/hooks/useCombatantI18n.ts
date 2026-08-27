@@ -6,6 +6,12 @@ import { useEncounter } from "../state/store.js";
 // Shared across every call site, keyed by creature id — so combatants of
 // the same creature (e.g. `addMany`), and the same combatant re-rendering
 // after a `lang` toggle, share one fetch instead of firing one per row.
+// Only a SUCCESSFUL resolution is cached, including a legitimate "no
+// overlay for this creature" (`loadCreatureI18n` itself resolves that to
+// `null`, not a rejection) — a genuinely failed fetch (a thrown error, a
+// transient network problem) is evicted immediately so the next attempt,
+// for this creature or any other caller of it, gets to retry rather than
+// being stuck with a cached `null` for the rest of the session.
 const cache = new Map<string, Promise<CreatureI18n | null>>();
 
 function cachedFetch(
@@ -14,10 +20,21 @@ function cachedFetch(
 ): Promise<CreatureI18n | null> {
   let promise = cache.get(creatureId);
   if (!promise) {
-    promise = fetchFn(creatureId).catch(() => null);
+    promise = fetchFn(creatureId).catch((error: unknown) => {
+      cache.delete(creatureId);
+      throw error;
+    });
     cache.set(creatureId, promise);
   }
   return promise;
+}
+
+/** Test-only: clears the module-level cache above, so one test's resolved
+ * fetch for a creature id can't make a later test's stub for that same id
+ * decorative (the cache would just return the earlier promise without ever
+ * calling the later test's `fetchFn`). */
+export function __resetCombatantI18nCacheForTests(): void {
+  cache.clear();
 }
 
 /**
@@ -49,9 +66,15 @@ export function useCombatantI18n(
   useEffect(() => {
     if (!needsFetch || creatureId === undefined) return;
     let cancelled = false;
-    cachedFetch(creatureId, fetchFn).then((i18n) => {
-      if (!cancelled) setFetched(i18n);
-    });
+    cachedFetch(creatureId, fetchFn)
+      .then((i18n) => {
+        if (!cancelled) setFetched(i18n);
+      })
+      .catch(() => {
+        // Not cached (see cachedFetch) — this render just falls back to
+        // English, same as a creature with no overlay at all, and a future
+        // render (or another combatant of the same creature) gets to retry.
+      });
     return () => {
       cancelled = true;
     };
