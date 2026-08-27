@@ -1,6 +1,6 @@
 # French Localisation — Design
 
-**Status:** proposed
+**Status:** Approved — see "French localisation as delivered" below
 **Depends on:** `2026-08-24-pf2-data-pipeline-design.md`, `2026-08-24-pf2-tracker-design.md`
 
 ## Goal
@@ -223,10 +223,82 @@ exclusion is an explicit, commented allowlist entry.
   distinguishably.
 - The catalogue guardrail above.
 
+## French localisation as delivered
+
+Merged across Tasks 1–17. 642 tests (638 at Task 14 plus the Task 15
+guardrail's 4), `tsc -b` clean, `packages/app/src/rules/**` untouched by any
+of it.
+
+Built and working end to end: the whole tracker — creature stat blocks,
+actions, attacks, conditions, the ability glossary, trait hover text, and
+every piece of interface chrome — renders in French behind a persisted
+EN/FR toggle, with French-name search (diacritic-folding, book+level shown
+for the four names that collide after `resolveCollisions`), and **1450/1450
+creatures translated** — every creature this dataset ships, not the 1420/1450
+this document measured `pf2-fr`'s live Babele table at. See "What departed"
+below for how the gap closed.
+
+### What departed from this document, and why
+
+- **The 30 untranslated creatures are not untranslated.** This document's
+  "Out of scope" said they would fall back to English and say so. Task 17
+  instead resolved all 30 from `pf2-fr`'s own retired `archive/` directory —
+  still fan-module content, joined by Foundry item id, consulted only on a
+  live-Babele miss. Coverage is 1450/1450, not the measured 1420/1450, and
+  the "30 untranslated creatures" bullet under Out of scope is stale as a
+  result (kept below, struck through, rather than deleted, since the
+  reasoning that led here — see Licensing — is worth keeping visible).
+- **The English-fallback marker was ordered removed.** "### Resolution"
+  above says the creature panel "marks a fallback name" when showing
+  English inside an otherwise-French UI. Implementing it exposed a design
+  error: the overlay cannot distinguish "untranslated" from "translated
+  identically to the English" (a real case — proper nouns, loanwords), so
+  the marker fired exactly where the French was already correct. It never
+  shipped. Task 17 makes the question moot regardless: at 1450/1450 there
+  are no fallbacks left to mark.
+- **Chrome copy is TypeScript, not `data/i18n/fr/ui.json`.** The pipeline
+  section above describes a hand-authored JSON data file. It shipped
+  instead as `packages/app/src/i18n/en.ts` / `fr.ts` — `fr.ts` typed as
+  `Record<keyof typeof STRINGS_EN, string>`, so a key added to `en.ts`
+  without a French counterpart is a compile error, not a runtime gap a JSON
+  file could only catch with an extra build step. `i18n-strings-complete.test.ts`
+  (Task 15) checks the same property at runtime, plus the property no static
+  type can check: that a component actually calls into the catalogue rather
+  than hardcoding a literal that happens to read correctly in English.
+
+### Licensing position (constrains future work on this data)
+
+The French overlay derives from the openly-licensed `pf2-fr` fan module,
+independent of Black Book Editions — the commercial publisher of the French
+PRINTED books. During Task 17, names for the last 30 creatures were briefly
+sourced by transcribing them from those books and committed (`a668d3f`),
+then backed out before that commit left the machine, once recognised as
+redistributing BBE's translation into a public, auto-deploying repo. The
+same 30 were re-sourced from `pf2-fr`'s own archive instead — see
+`data/SCHEMA.md`'s Licensing section for the full account. **No BBE-sourced
+text may be committed to this repo**, including via the archive: the archive
+is retired *module* content, not book transcription, and stays that way by
+construction (`fromArchive` reads only `archive/<pack>/<foundryId>.htm`,
+never anything book-sourced).
+
+### Deferred
+
+- `AddCombatants.tsx`'s `pluralize()` still appends an English `-s` to a
+  creature's display name for its "Add N <name>(s)" button label, which is
+  wrong for French names (and, separately, was already wrong for English
+  irregular plurals before this work). Judged out of scope for the Task 15
+  guardrail — it is a grammatical suffix applied to translated *data*, not a
+  hardcoded literal absent from the catalogue, so the guardrail's static
+  scan cannot see it and was not extended to try. Not fixed here; a future
+  task should either drop the pluralised suffix for French or route it
+  through a language-aware rule.
+- Languages other than French, as this document already scoped out.
+
 ## Out of scope
 
 - Languages other than French. `lang` is a two-value union; widening it is a
   later decision, and nothing here should pretend to be a general i18n
   framework it has not been tested as.
-- The 30 untranslated creatures. We do not machine-translate or hand-fill
-  them; they fall back to English and say so.
+- ~~The 30 untranslated creatures. We do not machine-translate or hand-fill
+  them; they fall back to English and say so.~~ Superseded — see "As
+  delivered" above. Task 17 translated all 30 from the fan module's archive.
