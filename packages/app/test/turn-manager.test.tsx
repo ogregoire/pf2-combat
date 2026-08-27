@@ -676,6 +676,104 @@ describe("Delay", () => {
     expect(frightenedOn(id)).toBe(2);
   });
 
+  /*
+   * Two placements of the same delayed entry in one round. A boolean cannot
+   * answer these: clearing it on the first placement throws away the fact
+   * the second one needs, and nothing can put it back. A round stamp answers
+   * both from the same comparison, because it records *when* Delay resolved
+   * the turn rather than merely that something did.
+   */
+  it("does not resolve a delayed turn twice when the GM corrects a placement from above to below", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // 3 -> 2, resolved for round 1. Beta is up.
+    useEncounter.getState().setInitiative(alpha, 25); // above Beta: this round has passed Alpha by
+    useEncounter.getState().setInitiative(alpha, 12); // ...corrected to below: Alpha acts again this round after all
+
+    expect(order()).toEqual(["Beta", "Alpha"]);
+
+    useEncounter.getState().nextTurn(); // Beta ends; Alpha takes the delayed turn
+    expect(activeName()).toBe("Alpha");
+    useEncounter.getState().nextTurn(); // that turn ends — still round 1, still already resolved
+
+    expect(frightenedOn(id)).toBe(2);
+  });
+
+  it("does not resolve a delayed turn twice when the correction goes the other way, below to above", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // 3 -> 2, resolved for round 1
+    useEncounter.getState().setInitiative(alpha, 12); // below Beta
+    useEncounter.getState().setInitiative(alpha, 25); // ...corrected to above: Alpha forfeits this round
+
+    expect(order()).toEqual(["Alpha", "Beta"]);
+
+    useEncounter.getState().nextTurn(); // Beta ends, round wraps; Alpha leads round 2
+    expect(useEncounter.getState().encounter.round).toBe(2);
+    useEncounter.getState().nextTurn(); // Alpha's round-2 turn ends — a different round, resolved afresh
+
+    expect(frightenedOn(id)).toBe(1);
+  });
+
+  it("does not resolve a dragged delayed turn twice when the drop is corrected from above to below", () => {
+    const id = add("Alpha", 20);
+    add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().addCondition(id, "frightened", 3);
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // 3 -> 2, resolved for round 1. Beta is up.
+    useEncounter.getState().moveEntry(alpha, entryIdOf("Beta")); // dropped above Beta
+    useEncounter.getState().moveEntry(alpha, null); // ...then to the very end, below the pointer again
+
+    expect(order()).toEqual(["Beta", "Gamma", "Alpha"]);
+
+    useEncounter.getState().nextTurn(); // Beta ends
+    useEncounter.getState().nextTurn(); // Gamma ends; Alpha takes the delayed turn
+    expect(activeName()).toBe("Alpha");
+    useEncounter.getState().nextTurn(); // that turn ends
+
+    expect(frightenedOn(id)).toBe(2);
+  });
+
+  // One resolution per round, held across three of them, with the delayed
+  // turn lapsing in the middle. This is the property the whole mechanism
+  // exists to preserve, stated end to end rather than one transition at a
+  // time — a delayer must not fall behind the rest of the table, nor get
+  // ahead of it.
+  it("resolves a mid-order delayer's end-of-turn effects exactly once per round across a delay that lapses", () => {
+    add("Alpha", 20);
+    const id = add("Beta", 15);
+    add("Gamma", 10);
+    useEncounter.getState().addCondition(id, "frightened", 5);
+
+    useEncounter.getState().nextTurn(); // Alpha's round-1 turn ends; Beta is up
+    useEncounter.getState().delay(entryIdOf("Beta")); // round 1 resolved here: 5 -> 4
+    expect(frightenedOn(id)).toBe(4);
+
+    useEncounter.getState().nextTurn(); // Gamma ends, round wraps to 2
+    expect(useEncounter.getState().encounter.round).toBe(2);
+    useEncounter.getState().nextTurn(); // Alpha's round-2 turn ends; Beta's own slot — the Delay lapses
+    expect(entryOf(entryIdOf("Beta")).delayed).toBe(false);
+    expect(frightenedOn(id)).toBe(4); // nothing resolved yet in round 2
+
+    useEncounter.getState().nextTurn(); // Beta's fresh round-2 turn ends: 4 -> 3
+    expect(frightenedOn(id)).toBe(3);
+
+    useEncounter.getState().nextTurn(); // Gamma ends, round wraps to 3
+    useEncounter.getState().nextTurn(); // Alpha's round-3 turn ends
+    useEncounter.getState().nextTurn(); // Beta's round-3 turn ends: 3 -> 2
+
+    expect(useEncounter.getState().encounter.round).toBe(3);
+    expect(frightenedOn(id)).toBe(2);
+  });
+
   it("refuses to Delay while a combatant has no initiative, since Delaying advances the turn", () => {
     add("Alpha", 20);
     useEncounter.getState().addCombatant(

@@ -52,18 +52,19 @@ function withInitiativeModifierDefault<T extends object>(entity: T): T {
 }
 
 /** Same idea for the three fields Delay added to `Entry` (see their doc
- * comments in types.ts). `delayed` and `endOfTurnResolved` missing would
- * merely be falsy, but a missing `initiativeBeforeDelay` is `undefined`,
- * and the row's "did a return rewrite this initiative?" test is `!== null`
- * — so without this an encounter saved before Delay existed would render a
- * struck-through "undefined" on every row. The two booleans are defaulted
- * anyway, so that no reader has to know which of these fields happens to
- * survive being `undefined` and which doesn't. */
+ * comments in types.ts). A missing `delayed` would merely be falsy, but a
+ * missing `initiativeBeforeDelay` is `undefined`, and the row's "did a
+ * return rewrite this initiative?" test is `!== null` — so without this an
+ * encounter saved before Delay existed would render a struck-through
+ * "undefined" on every row. `endOfTurnResolvedRound` is compared against a
+ * round number, so `undefined` would behave correctly by accident; it is
+ * defaulted anyway, so that no reader has to know which of these fields
+ * happens to survive being `undefined` and which doesn't. */
 function withDelayDefaults<T extends object>(entry: T): T {
   return {
     ...("delayed" in entry ? {} : { delayed: false }),
     ...("initiativeBeforeDelay" in entry ? {} : { initiativeBeforeDelay: null }),
-    ...("endOfTurnResolved" in entry ? {} : { endOfTurnResolved: false }),
+    ...("endOfTurnResolvedRound" in entry ? {} : { endOfTurnResolvedRound: null }),
     ...entry,
   };
 }
@@ -93,7 +94,7 @@ function withOrderKeyDefault<T extends object>(entry: T): T {
  * Also defaults a handful of fields that were added to `Player`,
  * `Combatant` and `Entry` without a `SCHEMA_VERSION` bump (see those types'
  * `initiativeModifier`, `orderKey` and `delayed`/`initiativeBeforeDelay`/
- * `endOfTurnResolved` doc comments) — a real shape change would earn its
+ * `endOfTurnResolvedRound` doc comments) — a real shape change would earn its
  * own version and its own migration step here, but this is just a reader
  * filling in a field older data never had, so the version stays put.
  * Doing it once here, rather than at every call site that reads the field,

@@ -52,11 +52,19 @@ describe("migrate", () => {
     };
     const out = migrate(payload) as {
       encounter: {
-        entries: { initiative: number; delayed: unknown; initiativeBeforeDelay: unknown; endOfTurnResolved: unknown }[];
+        entries: {
+          initiative: number;
+          delayed: unknown;
+          initiativeBeforeDelay: unknown;
+          endOfTurnResolvedRound: unknown;
+        }[];
       };
     };
     expect(out.encounter.entries[0]!.delayed).toBe(false);
-    expect(out.encounter.entries[0]!.endOfTurnResolved).toBe(false);
+    // Never resolved, not "resolved in round 0" — the stamp is compared
+    // against a live round number, and round 0 does not exist.
+    expect(out.encounter.entries[0]!.endOfTurnResolvedRound).toBeNull();
+    expect(out.encounter.entries[0]!.endOfTurnResolvedRound).not.toBeUndefined();
     expect(out.encounter.entries[0]!.initiativeBeforeDelay).toBeNull();
     expect(out.encounter.entries[0]!.initiativeBeforeDelay).not.toBeUndefined();
     expect(out.encounter.entries[0]!.initiative).toBe(17); // nothing else touched
@@ -67,15 +75,21 @@ describe("migrate", () => {
       schemaVersion: SCHEMA_VERSION,
       encounter: {
         round: 1,
-        entries: [{ id: "e1", initiative: 12, combatantIds: ["c1"], delayed: true, initiativeBeforeDelay: 20 }],
+        entries: [{
+          id: "e1", initiative: 12, combatantIds: ["c1"], delayed: true,
+          initiativeBeforeDelay: 20, endOfTurnResolvedRound: 3,
+        }],
         combatants: {},
       },
     };
     const out = migrate(payload) as {
-      encounter: { entries: { delayed: unknown; initiativeBeforeDelay: unknown }[] };
+      encounter: { entries: { delayed: unknown; initiativeBeforeDelay: unknown; endOfTurnResolvedRound: unknown }[] };
     };
     expect(out.encounter.entries[0]!.delayed).toBe(true);
     expect(out.encounter.entries[0]!.initiativeBeforeDelay).toBe(20);
+    // A saved mid-fight Delay keeps the round it was resolved in, or
+    // reloading would let that combatant resolve the same turn twice.
+    expect(out.encounter.entries[0]!.endOfTurnResolvedRound).toBe(3);
   });
 
   // `orderKey` is the sort key the whole turn order is built on, and it

@@ -93,20 +93,28 @@ export interface Entry {
    */
   initiativeBeforeDelay: number | null;
   /**
-   * True once this entry's end-of-turn effects have already been resolved
-   * for the turn it is currently in the middle of. Only Delay ever sets it:
-   * RAW, delaying makes those effects "occur immediately when you use the
-   * Delay action" — so they have happened, ahead of time, for a turn that
-   * has not finished yet. The turn the delayer takes when it *returns* is
-   * that same delayed turn arriving late, and this flag is what stops its
-   * end resolving them a second time in the one round.
+   * The round in which this entry's end-of-turn effects were last resolved,
+   * or null if they never have been. A combatant gets one such resolution
+   * per round, so this answers the only question anyone asks: has this
+   * entry's turn already been resolved *in the round we are in now*?
    *
-   * Cleared the moment the turn it describes is over: at the end of that
-   * turn (`nextTurn`), and also when a Delay lapses unused (`advanceTurn`),
-   * because the turn taken back at the entry's own slot then is a fresh one
-   * a whole round later, whose end must resolve normally.
+   * It exists because Delay resolves a turn early — RAW, those effects
+   * "occur immediately when you use the Delay action" — and the turn the
+   * delayer takes when it returns is that same turn arriving late. Without
+   * a record, its end resolves them a second time in one round.
+   *
+   * Deliberately a round number rather than a boolean, which was the shape
+   * this carried through three separate bugs. A boolean has to be cleared
+   * to stay correct — when the turn ends, when a Delay lapses, when a GM
+   * placement moves the entry past the turn pointer — and every clear
+   * discards the fact that the next question needs. A GM who types a
+   * position above the active entry and then corrects it to below cannot
+   * have the suppression restored, because nothing remembers there was
+   * anything to restore. A round stamp is never cleared at all: whether the
+   * entry moves, moves back, lapses, or returns, the comparison against
+   * `Encounter.round` still gives the right answer.
    */
-  endOfTurnResolved: boolean;
+  endOfTurnResolvedRound: number | null;
 }
 
 export interface Encounter {
