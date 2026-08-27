@@ -621,7 +621,15 @@ export const useEncounter = create<EncounterStore>()(
         const max = dyingMax(c.conditions);
         const dyingValue = c.conditions.find((cond) => cond.slug === "dying")?.value ?? 0;
         if (max > 0 && dyingValue < max) c.defeated = false;
-        c.conditions = onHealedAboveZero(c.conditions);
+        // A combatant who stayed `defeated` through the check above is
+        // still dead (doomed's cap still 0, or dying still sitting at its
+        // own cap) — the HP number is still allowed to move (the GM may be
+        // correcting a mistake, or preparing for a resurrection effect this
+        // app doesn't model), but touching conditions on a corpse produces
+        // a row that describes nothing real: DEFEATED, no dying, freshly
+        // Wounded 1, no longer Unconscious. Only a combatant who actually
+        // came back loses dying/unconscious and gains wounded.
+        if (!c.defeated) c.conditions = onHealedAboveZero(c.conditions);
       }),
 
     addCondition: (id, slug, value, formula) =>

@@ -687,4 +687,27 @@ describe("encounter store", () => {
     expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
     expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(0);
   });
+
+  // Fix round 2: closes the residual flagged in the task-3 report. A
+  // combatant who stays defeated (dying still at its own cap) must not have
+  // its conditions touched by a heal — the previous code still ran
+  // onHealedAboveZero unconditionally once HP rose, so a still-dead PC lost
+  // dying, lost unconscious, and gained wounded 1: a row reading DEFEATED,
+  // Wounded 1, with no dying, describing nothing that happens in the rules.
+  // HP is still allowed to rise (the GM may be correcting a mistake, or
+  // setting up a resurrection effect this app doesn't model) — only the
+  // conditions stay frozen on a corpse.
+  it("leaves conditions untouched when healing a PC who stays defeated at dying's own cap", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().applyDamage(pc, 2); // 20 -> 18, not 0
+    useEncounter.getState().addCondition(pc, "dying", 4); // reaches the cap -> dead
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(pc, 5); // 18 -> 20: HP does rise
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+    expect(after.conditions.some((c) => c.slug === "wounded")).toBe(false);
+    expect(after.hp!.current).toBe(20);
+  });
 });
