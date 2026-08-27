@@ -519,4 +519,46 @@ describe("encounter store", () => {
     expect(c.conditions.find((x) => x.slug === "dying")).toBeUndefined();
     expect(c.conditions.find((x) => x.slug === "wounded")!.value).toBe(1);
   });
+
+  // Fix round 1, item 1: doomed's own text ("If your maximum dying value is
+  // reduced to 0, you instantly die") kills on its own, with no dying gain
+  // needed — previously only the dying branch of addCondition ever set
+  // defeated, so a doomed-4 combatant sat alive and unmarked.
+  it("marks a combatant defeated on applying doomed 4 alone, with no dying condition present", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "doomed", 4);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")).toBeUndefined();
+    expect(c.defeated).toBe(true);
+  });
+
+  it("does not mark a combatant defeated on a doomed value that still leaves a positive dying max", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "doomed", 3);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(false);
+  });
+
+  // Fix round 1, item 3: clamping dying down to a max of 0 previously wrote
+  // a literal "dying 0" into state — indistinguishable from not being dying
+  // at all — for a combatant who is, per the rule above, already dead. Kept
+  // as the raw (uncapped) accumulated value instead, so state still records
+  // an actual dying number for a dead combatant.
+  it("keeps the raw dying value, uncapped, rather than clamping to a nonsense 0 when doomed has zeroed the max", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "doomed", 4);
+    useEncounter.getState().addCondition(id, "dying", 1);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")!.value).toBe(1);
+    expect(c.defeated).toBe(true);
+  });
+
+  // Fix round 1, item 2: guards the store's own call site the same way —
+  // removing "dying" from a combatant who was never dying must not
+  // fabricate a Wounded 1.
+  it("does not fabricate wounded when removing dying from a combatant who was never dying", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().removeCondition(id, "dying");
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "wounded")).toBeUndefined();
+  });
 });

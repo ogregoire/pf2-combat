@@ -560,7 +560,13 @@ export const useEncounter = create<EncounterStore>()(
           const updated = dyingOnGain(c.conditions, value);
           const max = dyingMax(c.conditions);
           const dyingEntry = updated.find((cond) => cond.slug === "dying")!;
-          dyingEntry.value = Math.min(dyingEntry.value, max);
+          // Only clamp down to a positive max. When max is 0 (doomed
+          // reduced it there), clamping would write a literal "dying 0"
+          // into state — indistinguishable from not being dying at all —
+          // for a combatant who is in fact dead. Leaving the raw
+          // accumulated value keeps state (and any export) showing an
+          // actual number instead of a value that reads as "not dying".
+          if (max > 0) dyingEntry.value = Math.min(dyingEntry.value, max);
           c.conditions = updated;
           // data/conditions.json, dying: "if it ever reaches dying 4, you
           // die." Reuses the existing `defeated` flag the row already
@@ -574,6 +580,13 @@ export const useEncounter = create<EncounterStore>()(
           existing.formula = formula;
         } else {
           c.conditions.push({ slug, value, formula });
+        }
+        // data/conditions.json, doomed: "If your maximum dying value is
+        // reduced to 0, you instantly die." Doomed alone is fatal — this
+        // needs no dying condition to be present at all, unlike the dying
+        // branch above, so it's checked here rather than folded into it.
+        if (slug === "doomed" && dyingMax(c.conditions) <= 0) {
+          c.defeated = true;
         }
       }),
 

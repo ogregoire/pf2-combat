@@ -401,8 +401,15 @@ export function dyingOnGain(
  * condition, or increase your wounded condition value by 1 if you already
  * have that condition." Fires on every loss of dying, not just recovery via
  * a successful check — the dataset text draws no such distinction.
+ *
+ * Guarded on dying actually being present: the rule only triggers on
+ * losing the condition, and this is now a public rules-module function
+ * other code can call directly, not just the one store.ts call site that
+ * already knows dying was there — so it can't assume its caller only ever
+ * invokes it on a combatant who was actually dying.
  */
 export function woundedOnRecover(conditions: AppliedCondition[]): AppliedCondition[] {
+  if (!conditions.some((c) => c.slug === "dying")) return conditions;
   const withoutDying = conditions.filter((c) => c.slug !== "dying");
   const existingWounded = withoutDying.find((c) => c.slug === "wounded");
   if (existingWounded) {

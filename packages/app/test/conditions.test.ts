@@ -438,4 +438,15 @@ describe("the dying/wounded/doomed death spiral", () => {
     const after = woundedOnRecover([{ slug: "dying", value: 1 }]);
     expect(after.find((c) => c.slug === "wounded")!.value).toBe(1);
   });
+
+  // Fix round 1: woundedOnRecover previously assumed its caller always
+  // means "dying was just lost" and would fabricate a Wounded 1 out of
+  // nothing for a combatant who was never dying to begin with. The rule
+  // text ("Any time you lose the dying condition, you gain...") only
+  // triggers on an actual loss, so a conditions list with no dying entry
+  // must come back unchanged.
+  it("leaves conditions untouched when there is no dying condition to lose", () => {
+    const input = [{ slug: "wounded" as const, value: 1 }];
+    expect(woundedOnRecover(input)).toEqual(input);
+  });
 });
