@@ -126,6 +126,109 @@ describe("CombatantList", () => {
     }
   });
 
+  // Regression guard: the desktop shell used to position purely from the
+  // row (`top: anchor.top - 8`), with no regard for the panel's actual
+  // height or how much room was left below it. A top-row combatant on a
+  // short window pushed the panel's bottom — including real, clickable
+  // condition tags — well past the viewport with no way to reach it. These
+  // three pin clampShellTop's contract at each of its cases: room available
+  // (top unchanged), no room (shifted up, bottom pinned to the margin), and
+  // a panel taller than the viewport even at both margins (pinned to the
+  // top margin, never pushed above it — the panel's own internal scroll,
+  // not this clamp, is what covers the rest).
+  describe("clamps the desktop popover's top to keep it on screen", () => {
+    // vi.spyOn(Element.prototype, ...) stubs every element's rect the same
+    // way, including the panel's own — so `rect.height` below doubles as
+    // the mocked measurement clampShellTop clamps against.
+    function withStubbedViewportAndRect(
+      innerHeight: number,
+      rect: { top: number; right: number; bottom: number; left: number; width: number; height: number; x: number; y: number },
+      run: () => Promise<void>,
+    ): Promise<void> {
+      const originalInnerHeight = window.innerHeight;
+      Object.defineProperty(window, "innerHeight", { value: innerHeight, configurable: true });
+      const spy = vi
+        .spyOn(Element.prototype, "getBoundingClientRect")
+        .mockReturnValue({ ...rect, toJSON: () => rect } as DOMRect);
+      return run().finally(() => {
+        spy.mockRestore();
+        Object.defineProperty(window, "innerHeight", { value: originalInnerHeight, configurable: true });
+      });
+    }
+
+    it("keeps top flush with the row when there's room below it", async () => {
+      const user = userEvent.setup();
+      await withStubbedViewportAndRect(
+        900,
+        { top: 180, right: 331, bottom: 233, left: 8, width: 323, height: 53, x: 8, y: 180 },
+        async () => {
+          useEncounter.getState().addCombatant(seed(), 19);
+          render(<CombatantList />);
+          await user.hover(screen.getByText("Stag Lord Bandit"));
+
+          const shell = screen.getByLabelText("amount").closest<HTMLElement>('[style*="position: fixed"]');
+          expect(shell).not.toBeNull();
+          expect(shell!.style.top).toBe("172px"); // rect.top - 8, unclamped
+        },
+      );
+    });
+
+    it("shifts top up so the bottom stays inside a short viewport", async () => {
+      const user = userEvent.setup();
+      await withStubbedViewportAndRect(
+        600,
+        { top: 500, right: 331, bottom: 700, left: 8, width: 323, height: 200, x: 8, y: 500 },
+        async () => {
+          useEncounter.getState().addCombatant(seed(), 19);
+          render(<CombatantList />);
+          await user.hover(screen.getByText("Stag Lord Bandit"));
+
+          const shell = screen.getByLabelText("amount").closest<HTMLElement>('[style*="position: fixed"]');
+          expect(shell).not.toBeNull();
+          // Bottom lands exactly at the viewport minus the 12px margin:
+          // 388 + 200 = 588 = 600 - 12.
+          expect(shell!.style.top).toBe("388px");
+        },
+      );
+    });
+
+    it("pins to the top margin, never above it, when the panel is taller than the viewport", async () => {
+      const user = userEvent.setup();
+      await withStubbedViewportAndRect(
+        577,
+        { top: 550, right: 331, bottom: 1150, left: 8, width: 323, height: 600, x: 8, y: 550 },
+        async () => {
+          useEncounter.getState().addCombatant(seed(), 19);
+          render(<CombatantList />);
+          await user.hover(screen.getByText("Stag Lord Bandit"));
+
+          const shell = screen.getByLabelText("amount").closest<HTMLElement>('[style*="position: fixed"]');
+          expect(shell).not.toBeNull();
+          expect(shell!.style.top).toBe("12px");
+        },
+      );
+    });
+
+    it("floors top at the margin for a row anchored right at the top of the screen, even with room to spare", async () => {
+      const user = userEvent.setup();
+      await withStubbedViewportAndRect(
+        900,
+        { top: 15, right: 331, bottom: 68, left: 8, width: 323, height: 53, x: 8, y: 15 },
+        async () => {
+          useEncounter.getState().addCombatant(seed(), 19);
+          render(<CombatantList />);
+          await user.hover(screen.getByText("Stag Lord Bandit"));
+
+          const shell = screen.getByLabelText("amount").closest<HTMLElement>('[style*="position: fixed"]');
+          expect(shell).not.toBeNull();
+          // rect.top - 8 = 7, below the 12px margin, so it floors to 12
+          // even though there's ample room below (viewport 900, panel 53).
+          expect(shell!.style.top).toBe("12px");
+        },
+      );
+    });
+  });
+
   // A creature with no damage-type IWR gets no selector and no explanation
   // either: the GM asked for the "damage type is irrelevant here" line to go,
   // since an absent selector already says it and the line was pure noise on

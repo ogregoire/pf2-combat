@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useEncounter } from "../state/store.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
@@ -179,6 +179,30 @@ function parseDraft(value: string): number | null {
 }
 
 /**
+ * Clamps the desktop shell's fixed `top` so the panel's bottom edge never
+ * slips past the viewport, and its top edge never slips above `margin`
+ * either. `margin` defaults to 12 to match the panel's own `maxHeight:
+ * calc(100vh - 24px)` — a fully-clamped panel (touching both the top and
+ * bottom margin) exactly fills that budget, so this and the CSS cap agree.
+ *
+ * `desiredTop` (flush with the anchor row, minus its usual 8px overlap) is
+ * kept whenever there's room below it for the whole panel. When there
+ * isn't, this shifts the top up just enough to fit. If the panel is taller
+ * than the viewport even at both margins, it pins to the top margin instead
+ * of going negative — the panel's own `overflowY: auto` (see panelStyle)
+ * is what covers the rest, not this function.
+ *
+ * `panelHeight` of 0 (nothing measured yet — the very first render, or a
+ * non-DOM environment) makes this a no-op: with no known height there's
+ * nothing to clamp against, so `desiredTop` passes through unless it's
+ * already above the margin.
+ */
+function clampShellTop(desiredTop: number, panelHeight: number, viewportHeight: number, margin = 12): number {
+  const maxTop = Math.max(margin, viewportHeight - margin - panelHeight);
+  return Math.min(Math.max(desiredTop, margin), maxTop);
+}
+
+/**
  * The row popover. On desktop it's the hover popover: rendered by
  * CombatantRow while the pointer is inside the row-plus-popover wrapper —
  * see CombatantRow for the mouseenter/mouseleave handling that keeps it open
@@ -241,6 +265,41 @@ export function RowPopover({
   // not just on whether the creature has relevant IWR.
   const [intent, setIntent] = useState<"damage" | "heal">("damage");
   const [lastChange, setLastChange] = useState<LastChange | null>(null);
+
+  // Desktop shell positioning: see clampShellTop's own doc comment for what
+  // these feed. `panelRef` is on the visible panel div below (shared by
+  // both the desktop and narrow layouts — harmless to measure in narrow
+  // mode too, since nothing there reads panelHeight).
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const [panelHeight, setPanelHeight] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(() =>
+    typeof window === "undefined" ? 0 : window.innerHeight,
+  );
+
+  // A pure vertical resize can shrink the viewport without moving the
+  // anchor row at all — CombatantRow's own scroll/resize listeners (see
+  // its effect) only remeasure `anchor`, which doesn't always change on
+  // resize — so this needs its own listener to catch that case for the
+  // clamp below.
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const onResize = (): void => setViewportHeight(window.innerHeight);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // Measures the panel's actual rendered height after every render — its
+  // content changes independently of anything else tracked here (applied
+  // condition count, the persistent-damage formula field appearing, etc.)
+  // — so clampShellTop below always clamps against a real number instead
+  // of a guess. Only triggers a re-render when the measured height
+  // actually changed, which settles immediately: height doesn't depend on
+  // the `top` computed from it, so there's nothing left to change on the
+  // next pass.
+  useLayoutEffect(() => {
+    const h = panelRef.current?.getBoundingClientRect().height ?? 0;
+    if (h !== panelHeight) setPanelHeight(h);
+  });
 
   if (!combatant) return null;
 
@@ -420,6 +479,7 @@ export function RowPopover({
 
   const panel = (
     <div
+      ref={panelRef}
       // The row beneath this popover is click-to-target on desktop. The
       // popover isn't a DOM descendant of the row (CombatantRow renders it
       // as a sibling), so a click here wouldn't reach the row's handler
@@ -835,11 +895,21 @@ export function RowPopover({
   // the panel itself at `right + 10px` instead left those pixels belonging
   // to neither element: the pointer crossing them fired CombatantRow's
   // mouseleave and the popover closed before it could be reached.
+  //
+  // top is clamped (see clampShellTop) rather than always `anchor.top - 8`:
+  // that raw value places the shell purely from the row's position, with no
+  // regard for how tall the panel actually is or how much room is left
+  // below it — a top-row combatant on a short window used to push the
+  // panel's bottom edge well past the viewport with no way to reach the
+  // rows of condition tags that fell off the bottom. The panel's own
+  // internal scroll (see panelStyle's overflowY: auto) already handles
+  // "more content than fits"; this clamp is what keeps the panel itself on
+  // screen so that scroll is reachable at all.
   const shell = (
     <div
       style={{
         position: "fixed",
-        top: `${(anchor?.top ?? 0) - 8}px`,
+        top: `${clampShellTop((anchor?.top ?? 0) - 8, panelHeight, viewportHeight)}px`,
         left: `${anchor?.right ?? 0}px`,
         paddingLeft: "10px",
         zIndex: 60,
