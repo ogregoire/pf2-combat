@@ -17,7 +17,11 @@ export type ConditionSlug =
   | "stupefied" | "drained" | "slowed" | "stunned" | "quickened"
   | "prone" | "grabbed" | "restrained" | "immobilized" | "blinded"
   | "dazzled" | "deafened" | "fatigued" | "doomed" | "dying"
-  | "wounded" | "persistent-damage";
+  | "wounded" | "persistent-damage"
+  | "unconscious" | "paralyzed" | "petrified" | "fleeing" | "confused"
+  | "invisible" | "concealed" | "hidden" | "undetected" | "encumbered"
+  | "fascinated" | "broken" | "controlled" | "cursebound" | "observed"
+  | "unnoticed";
 
 export interface ConditionDef {
   slug: ConditionSlug;
@@ -146,6 +150,8 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   dying: def({
     slug: "dying", name: "Dying", valued: true, affects: () => null,
     startOfTurn: "recovery-check",
+    // "While you have this condition, you are Unconscious" (data/conditions.json).
+    implies: ["unconscious"],
   }),
   wounded: def({ slug: "wounded", name: "Wounded", valued: true, affects: () => null }),
   "persistent-damage": def({
@@ -156,7 +162,147 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
     slug: "persistent-damage", name: "Persistent Damage", valued: false,
     affects: () => null, endOfTurn: "persistent-damage",
   }),
+  unconscious: def({
+    slug: "unconscious", name: "Unconscious", valued: false,
+    // "-4 status penalty to AC, Perception, and Reflex saves" (data/conditions.json)
+    // — not all-checks; only those three. "You can't act" and "fall Prone
+    // and drop items you're holding" (on gain, and unless positioned
+    // otherwise) are narrative/one-time, not ongoing selector modifiers, so
+    // they aren't encoded here.
+    affects: () => ({
+      selectors: ["ac", "perception", "reflex"],
+      mod: status(4, "unconscious"),
+    }),
+    // "you have the Blinded and Off-Guard conditions" is stated outright —
+    // unlike Prone, which the text describes only as a one-time event on
+    // gaining the condition ("you fall Prone"), not as a condition you
+    // continuously have. So only Blinded and Off-Guard are implied here.
+    implies: ["blinded", "off-guard"],
+  }),
+  paralyzed: def({
+    slug: "paralyzed", name: "Paralyzed", valued: false, affects: () => null,
+    // "You have the Off-Guard condition and can't act except to Recall
+    // Knowledge..." — the inability to act (and to Seek) is a narrative
+    // restriction this app doesn't model; Off-Guard is the only stated
+    // ongoing condition.
+    implies: ["off-guard"],
+  }),
+  petrified: def({
+    // "You can't act, nor can you sense anything. You become an object with
+    // ... AC 9, Hardness 8..." — these replace your stats outright rather
+    // than modify them, which the additive Modifier system here can't
+    // express (it adds deltas to an existing score, not overrides it).
+    // Nothing in the text grants Off-Guard or any other condition.
+    slug: "petrified", name: "Petrified", valued: false, affects: () => null,
+  }),
+  fleeing: def({
+    // "You must spend each of your actions trying to escape ... You can't
+    // Delay or Ready" — entirely a restriction on which actions you can
+    // take, not a modifier on any selector.
+    slug: "fleeing", name: "Fleeing", valued: false, affects: () => null,
+  }),
+  confused: def({
+    slug: "confused", name: "Confused", valued: false, affects: () => null,
+    // "You are Off-Guard, you don't treat anyone as your ally..., and you
+    // can't Delay, Ready, or use reactions." Off-Guard is the only stated
+    // ongoing condition; the rest (forced Strikes, random targeting, the
+    // recover-on-damage flat check) is narrative/GM-adjudicated.
+    implies: ["off-guard"],
+  }),
+  invisible: def({
+    // "You're Undetected to everyone" is a direct statement of what you
+    // are, not a numeric effect, so it's modelled as an implication like
+    // prone/off-guard. The rest of the entry (becoming Hidden to a
+    // successful Seeker, needing to Sneak, etc.) is state-transition detail
+    // this app's flat condition list doesn't track.
+    slug: "invisible", name: "Invisible", valued: false, affects: () => null,
+    implies: ["undetected"],
+  }),
+  concealed: def({
+    // "A creature that you're concealed from must succeed at a DC 5 flat
+    // check when targeting you ... If the check fails, you aren't
+    // affected." That flat check is rolled by the *attacker* targeting this
+    // creature — it's not a modifier on any of this creature's own
+    // selectors, so there's nothing to return here.
+    slug: "concealed", name: "Concealed", valued: false, affects: () => null,
+  }),
+  hidden: def({
+    // "A creature you're hidden from is Off-Guard to you, and it must
+    // succeed at a DC 11 flat check when targeting you..." — both the
+    // Off-Guard and the flat check land on the *attacker*, not on this
+    // creature. This app's conditions describe effects on the creature that
+    // holds them, so there's no self-modifier to encode.
+    slug: "hidden", name: "Hidden", valued: false, affects: () => null,
+  }),
+  undetected: def({
+    // "That creature is Off-Guard to you" and the DC 11 secret flat check
+    // both describe the *attacker's* disadvantage, not a modifier on this
+    // creature's own selectors — same shape as Hidden, above.
+    slug: "undetected", name: "Undetected", valued: false, affects: () => null,
+  }),
+  encumbered: def({
+    // "You're Clumsy 1" is a real, stated value — but `implies` (see
+    // expandImplied below) only ever attaches an implied condition at value
+    // 0, which would silently understate this to Clumsy 0 instead of
+    // Clumsy 1. So the Clumsy 1 penalty is reproduced directly here, using
+    // the same selectors as the `clumsy` entry above (Dex-based: AC,
+    // Reflex, ranged attacks) at magnitude 1. The "10-foot penalty to all
+    // your Speeds" from the same sentence isn't modelled — this app has no
+    // notion of Speed.
+    slug: "encumbered", name: "Encumbered", valued: false,
+    affects: () => ({
+      selectors: ["ac", "reflex", "ranged-attack"],
+      mod: status(1, "encumbered (clumsy 1)"),
+    }),
+  }),
+  fascinated: def({
+    // "You take a -2 status penalty to Perception and skill checks" is a
+    // real selector modifier. The concentrate-action restriction and the
+    // "ends if a creature uses hostile actions" trigger are narrative/GM
+    // calls this app doesn't automate — nothing here auto-removes a
+    // condition (persistent damage's DC 15 flat check isn't automated
+    // either; see applyEndOfTurn's doc comment).
+    slug: "fascinated", name: "Fascinated", valued: false,
+    affects: () => ({ selectors: ["perception", "skill"], mod: status(2, "fascinated") }),
+  }),
+  broken: def({
+    // "Broken is a condition that affects only objects," not creatures —
+    // and even for an object, the AC penalty depends on the armor's
+    // category (-1/-2/-3 light/medium/heavy), which this app doesn't track
+    // per item. Nothing generic to encode.
+    slug: "broken", name: "Broken", valued: false, affects: () => null,
+  }),
+  controlled: def({
+    // "The controller dictates how you act and can make you use any of
+    // your actions" — entirely narrative (an outside party choosing your
+    // actions), no selector it modifies.
+    slug: "controlled", name: "Controlled", valued: false, affects: () => null,
+  }),
+  cursebound: def({
+    // "Your specific oracular curse imposes unique negative effects
+    // depending on your cursebound value" — the dataset entry is explicit
+    // that the effect is per-curse and not specified generically here, so
+    // there is no universal number to encode.
+    slug: "cursebound", name: "Cursebound", valued: true, affects: () => null,
+  }),
+  observed: def({
+    // The default, unremarkable visibility state ("anything in plain view
+    // is observed by you") — no penalty, bonus, or implication of its own.
+    slug: "observed", name: "Observed", valued: false, affects: () => null,
+  }),
+  unnoticed: def({
+    // "When you're unnoticed, you're also Undetected" is a direct stated
+    // implication, same treatment as Invisible above.
+    slug: "unnoticed", name: "Unnoticed", valued: false, affects: () => null,
+    implies: ["undetected"],
+  }),
 };
+
+/** Everything the GM can apply from the popover: the whole dataset minus
+ * the attitude ladder, which describes an NPC's disposition and changes no
+ * number in a fight. */
+export const PICKABLE_CONDITIONS: ConditionDef[] = Object.values(CONDITIONS)
+  .sort((a, b) => compareStrings(a.name, b.name));
 
 export interface AppliedCondition {
   slug: ConditionSlug;

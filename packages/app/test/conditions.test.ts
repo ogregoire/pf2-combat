@@ -1,5 +1,14 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, it, vi } from "vitest";
-import { applyEndOfTurn, CONDITIONS, conditionModifiers, type AppliedCondition } from "../src/rules/conditions.js";
+import type { Condition } from "@pf2/schema";
+import {
+  applyEndOfTurn,
+  CONDITIONS,
+  conditionModifiers,
+  PICKABLE_CONDITIONS,
+  type AppliedCondition,
+} from "../src/rules/conditions.js";
 import { resolveModifiers } from "../src/rules/modifiers.js";
 
 /** Replays a fixed sequence of [0, 1) values, one per die — see dice.test.ts. */
@@ -36,6 +45,24 @@ describe("condition catalogue", () => {
       formula: "2d6",
     };
     expect(applied.formula).toBe("2d6");
+  });
+
+  it("offers every dataset condition except the five attitudes", async () => {
+    const dataset: Condition[] = JSON.parse(
+      readFileSync(resolve(__dirname, "../../../data/conditions.json"), "utf8"),
+    );
+    const attitudes = ["friendly", "helpful", "indifferent", "unfriendly", "hostile"];
+    const expected = dataset
+      .map((c) => c.name.toLowerCase().replace(/ /g, "-"))
+      .filter((slug) => !attitudes.includes(slug));
+
+    const offered = PICKABLE_CONDITIONS.map((c) => c.slug).sort();
+    expect(offered).toEqual([...expected].sort());
+  });
+
+  it("gives unconscious a real effect rather than listing it inert", () => {
+    expect(CONDITIONS.unconscious.affects(0)).not.toBeNull();
+    expect(CONDITIONS.dying.implies).toContain("unconscious");
   });
 });
 
