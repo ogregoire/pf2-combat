@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeAll } from "vitest";
-import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
@@ -10,6 +10,7 @@ import {
   buildTraitsI18n,
 } from "../src/stages/i18n.js";
 import { loadBabele, type BabeleTable } from "../src/stages/babele.js";
+import { loadArchive } from "../src/stages/archive.js";
 import { buildTraits, scanTraits } from "../src/stages/reference.js";
 
 /**
@@ -26,6 +27,25 @@ function makeBabeleTable(files: Record<string, unknown>): BabeleTable {
     writeFileSync(join(dir, name), JSON.stringify(content));
   }
   const table = loadBabele(dir);
+  rmSync(dir, { recursive: true, force: true });
+  return table;
+}
+
+/** Same rationale as `makeBabeleTable`: a REAL archive table via `loadArchive`
+ * against temp `archive/<pack>/<foundryId>.htm` files, not a hand-rolled
+ * `Map` that merely mimics the shape -- Task 17. */
+function makeArchiveTable(files: Record<string, Record<string, string>>) {
+  const dir = mkdtempSync(join(tmpdir(), "i18n-archive-fixture-"));
+  const archiveDir = join(dir, "archive");
+  mkdirSync(archiveDir, { recursive: true });
+  for (const [pack, records] of Object.entries(files)) {
+    const packDir = join(archiveDir, pack);
+    mkdirSync(packDir, { recursive: true });
+    for (const [foundryId, content] of Object.entries(records)) {
+      writeFileSync(join(packDir, `${foundryId}.htm`), content);
+    }
+  }
+  const table = loadArchive(archiveDir);
   rmSync(dir, { recursive: true, force: true });
   return table;
 }
@@ -55,6 +75,7 @@ describe("buildCreatureI18n", () => {
 
       out = buildCreatureI18n({
         creatureName: "Thorn River Bandit",
+        creatureFoundryId: "thorn-river-bandit-id",
         ownPack: "pathfinder-bestiary",
         actions: [],
         attacks: [
@@ -82,6 +103,7 @@ describe("buildCreatureI18n", () => {
     expect(
       buildCreatureI18n({
         creatureName: "Manticore",
+        creatureFoundryId: "manticore-id",
         ownPack: "pathfinder-bestiary",
         actions: [],
         attacks: [],
@@ -109,6 +131,7 @@ describe("buildCreatureI18n", () => {
     expect(
       buildCreatureI18n({
         creatureName: "Shambler",
+        creatureFoundryId: "shambler-kingmaker-id",
         ownPack: "kingmaker-bestiary",
         actions: [],
         attacks: [],
@@ -120,6 +143,7 @@ describe("buildCreatureI18n", () => {
     expect(
       buildCreatureI18n({
         creatureName: "Shambler",
+        creatureFoundryId: "shambler-pathfinder-id",
         ownPack: "pathfinder-bestiary",
         actions: [],
         attacks: [],
@@ -146,6 +170,7 @@ describe("buildCreatureI18n", () => {
 
       out = buildCreatureI18n({
         creatureName: "Skeleton Guard",
+        creatureFoundryId: "skeleton-guard-id",
         ownPack: "pathfinder-bestiary",
         actions: [{ name: "Grab", foundryId: "missing-id" }],
         attacks: [],
@@ -182,6 +207,7 @@ describe("buildCreatureI18n", () => {
 
       const out = buildCreatureI18n({
         creatureName: "Ankou",
+        creatureFoundryId: "ankou-id",
         ownPack: "pathfinder-bestiary",
         actions: [{ name: "Dread", foundryId: "action-id" }],
         attacks: [],
@@ -204,6 +230,7 @@ describe("buildCreatureI18n", () => {
 
       const out = buildCreatureI18n({
         creatureName: "Ankou",
+        creatureFoundryId: "ankou-id-2",
         ownPack: "pathfinder-bestiary",
         actions: [],
         attacks: [],
@@ -226,7 +253,13 @@ describe("buildIndexI18n", () => {
 
     expect(
       buildIndexI18n(
-        [{ id: "kingmaker-bestiary/the-stag-lord", name: "The Stag Lord" }],
+        [
+          {
+            id: "kingmaker-bestiary/the-stag-lord",
+            name: "The Stag Lord",
+            foundryId: "stag-lord-id",
+          },
+        ],
         table,
       ),
     ).toEqual({ "kingmaker-bestiary/the-stag-lord": "Seigneur Cerf" });
@@ -248,8 +281,16 @@ describe("buildIndexI18n", () => {
     expect(
       buildIndexI18n(
         [
-          { id: "kingmaker-bestiary/shambler", name: "Shambler" },
-          { id: "pathfinder-bestiary/shambler", name: "Shambler" },
+          {
+            id: "kingmaker-bestiary/shambler",
+            name: "Shambler",
+            foundryId: "shambler-kingmaker-id",
+          },
+          {
+            id: "pathfinder-bestiary/shambler",
+            name: "Shambler",
+            foundryId: "shambler-pathfinder-id",
+          },
         ],
         table,
       ),
@@ -259,12 +300,168 @@ describe("buildIndexI18n", () => {
     });
   });
 
-  it("omits an untranslated creature rather than echoing its English name", () => {
-    // 30 real creatures have no French entry at all.
+  it("omits a creature neither Babele nor the archive covers, rather than echoing its English name", () => {
     const table = makeBabeleTable({});
     expect(
-      buildIndexI18n([{ id: "x/manticore", name: "Manticore" }], table),
+      buildIndexI18n(
+        [{ id: "x/manticore", name: "Manticore", foundryId: "manticore-id" }],
+        table,
+      ),
     ).toEqual({});
+  });
+});
+
+/**
+ * Task 17: 30 real creatures had no Babele entry at all. The fan module
+ * carries all 30 in its own retired `archive/` directory, joinable by
+ * `Creature.foundryId` -- consulted ONLY on a Babele miss, never ahead of
+ * it, because the archive is old data and Babele is the live, maintained
+ * one.
+ */
+describe("archive fallback", () => {
+  it("never overrides a live Babele translation", () => {
+    // Shambler IS in the archive fixture below too, under the same foundry
+    // id, but with different (wrong) text -- if the archive ever won this
+    // race the assertion below would catch it immediately.
+    const babele = makeBabeleTable({
+      "pf2e.kingmaker-bestiary.json": {
+        entries: { Shambler: { name: "Tertre errant" } },
+      },
+    });
+    const archive = makeArchiveTable({
+      "kingmaker-bestiary": {
+        "shambler-foundry-id": "Name: Shambler\nNom: WRONG (archive must not win)\n",
+      },
+    });
+
+    const out = buildCreatureI18n({
+      creatureName: "Shambler",
+      creatureFoundryId: "shambler-foundry-id",
+      ownPack: "kingmaker-bestiary",
+      actions: [],
+      attacks: [],
+      table: babele,
+      lang: {},
+      archive,
+    })!;
+
+    expect(out.name).toBe("Tertre errant");
+  });
+
+  it("fills a creature Babele does not cover", () => {
+    const babele = makeBabeleTable({});
+    const archive = makeArchiveTable({
+      "pathfinder-bestiary": {
+        "manticore-foundry-id":
+          "Name: Manticore\nNom: Manticore\nÉtat: officielle\n\n" +
+          "-- Desc (en) --\n<p>A manticore stalks its prey.</p>\n" +
+          "-- Desc (fr) --\n<p>La manticore traque sa proie.</p>\n-- End desc ---\n\n" +
+          "ID: id-tail\nName: Tail Spikes\nNom: Piquants de queue\n" +
+          "-- Desc (en) --\n<p>@UUID[Compendium.pf2e.actionspf2e.Item.abc]{Strike}.</p>\n" +
+          "-- Desc (fr) --\n<p>@UUID[Compendium.pf2e.actionspf2e.Item.abc]{Frappe}.</p>\n-- End desc ---\n",
+      },
+    });
+
+    const out = buildCreatureI18n({
+      creatureName: "Manticore",
+      creatureFoundryId: "manticore-foundry-id",
+      ownPack: "pathfinder-bestiary",
+      actions: [{ name: "Tail Spikes", foundryId: "id-tail" }],
+      attacks: [],
+      table: babele,
+      lang: {},
+      archive,
+    })!;
+
+    expect(out.name).toBe("Manticore");
+    expect(out.publicNotes).toBe("<p>La manticore traque sa proie.</p>");
+    // Archive text carries the same @UUID markers Babele text does, and must
+    // go through the SAME `resolveFrench` pass -- the French label survives,
+    // the marker does not.
+    expect(out.actions[0]!.description).toBe("<p>Frappe.</p>");
+    // The item's translated NAME, not just its description -- aligned by
+    // foundry id, same as a Babele-sourced item.
+    expect(out.actions[0]!.name).toBe("Piquants de queue");
+    expect(JSON.stringify(out)).not.toContain("@UUID[");
+  });
+
+  it("returns null when neither Babele nor the archive covers the creature", () => {
+    const babele = makeBabeleTable({});
+    const archive = makeArchiveTable({});
+    expect(
+      buildCreatureI18n({
+        creatureName: "Nobody",
+        creatureFoundryId: "nobody-id",
+        ownPack: "pathfinder-bestiary",
+        actions: [],
+        attacks: [],
+        table: babele,
+        lang: {},
+        archive,
+      }),
+    ).toBeNull();
+  });
+
+  it("treats an archive record with an empty Nom: (no French name) as no translation", () => {
+    // 634 of 1350 legacy records carry no body at all; a bare empty `Nom:`
+    // on the creature's OWN line is the same "no translation" case, and must
+    // never fall back to the English name.
+    const babele = makeBabeleTable({});
+    const archive = makeArchiveTable({
+      "pathfinder-bestiary": { "blank-id": "Name: Blank\nNom: \n" },
+    });
+    expect(
+      buildCreatureI18n({
+        creatureName: "Blank",
+        creatureFoundryId: "blank-id",
+        ownPack: "pathfinder-bestiary",
+        actions: [],
+        attacks: [],
+        table: babele,
+        lang: {},
+        archive,
+      }),
+    ).toBeNull();
+  });
+
+  describe("buildIndexI18n", () => {
+    it("never overrides a live Babele translation", () => {
+      const babele = makeBabeleTable({
+        "pf2e.kingmaker-bestiary.json": {
+          entries: { Shambler: { name: "Tertre errant" } },
+        },
+      });
+      const archive = makeArchiveTable({
+        "kingmaker-bestiary": {
+          "shambler-foundry-id": "Name: Shambler\nNom: WRONG (archive must not win)\n",
+        },
+      });
+
+      expect(
+        buildIndexI18n(
+          [{ id: "kingmaker-bestiary/shambler", name: "Shambler", foundryId: "shambler-foundry-id" }],
+          babele,
+          archive,
+        ),
+      ).toEqual({ "kingmaker-bestiary/shambler": "Tertre errant" });
+    });
+
+    it("fills the search index for a creature Babele does not cover", () => {
+      const babele = makeBabeleTable({});
+      const archive = makeArchiveTable({
+        "pathfinder-bestiary": {
+          "manticore-foundry-id": "Name: Manticore\nNom: Manticore\n",
+        },
+      });
+
+      expect(
+        buildIndexI18n(
+          [{ id: "pathfinder-bestiary/manticore", name: "Manticore", foundryId: "manticore-foundry-id" }],
+          babele,
+          archive,
+        ),
+      ).toEqual({ "pathfinder-bestiary/manticore": "Manticore" });
+    });
   });
 });
 
@@ -480,6 +677,7 @@ describe("French markup resolution", () => {
   it("resolves publicNotes and action descriptions, keeping the FRENCH label", () => {
     const out = buildCreatureI18n({
       creatureName: "Manticore",
+      creatureFoundryId: "manticore-markup-id",
       ownPack: "pathfinder-bestiary",
       actions: [{ name: "Grab", foundryId: "id-grab" }],
       attacks: [],
@@ -526,6 +724,7 @@ describe("French markup resolution", () => {
     const build = (lang: Record<string, string>) =>
       buildCreatureI18n({
         creatureName: "Manticore",
+        creatureFoundryId: "manticore-localize-id",
         ownPack: "pathfinder-bestiary",
         actions: [{ name: "Grab", foundryId: "id-grab" }],
         attacks: [],
@@ -566,6 +765,7 @@ describe("stray @ in front of an enricher", () => {
 
   const out = buildCreatureI18n({
     creatureName: "Harbormaster",
+    creatureFoundryId: "harbormaster-id",
     ownPack: "pathfinder-npc-core",
     actions: [{ name: "Steady Balance", foundryId: "id-balance" }],
     attacks: [],
@@ -604,6 +804,7 @@ function resolveFrenchProbe(html: string): string {
   });
   return buildCreatureI18n({
     creatureName: "X",
+    creatureFoundryId: "x-id",
     ownPack: "pathfinder-bestiary",
     actions: [{ name: "A", foundryId: "i" }],
     attacks: [],

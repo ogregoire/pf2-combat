@@ -118,6 +118,9 @@ function seedFrenchCache(
   );
   mkdirSync(join(frCacheDir, "lang"), { recursive: true });
   writeFileSync(join(frCacheDir, "lang", "fr.json"), JSON.stringify(frLang));
+  // `loadArchive` reads this directory unconditionally -- Task 17. Empty is
+  // fine (no pack subdirectories to walk); it just has to exist.
+  mkdirSync(join(frCacheDir, "archive"), { recursive: true });
   return frCacheDir;
 }
 
@@ -855,6 +858,8 @@ describe("runCli", () => {
       join(frCacheDir, "lang", "fr.json"),
       JSON.stringify({ PF2E: { Shared: { Key: "<p>PROSE FRANÇAISE</p>" } } }),
     );
+    // `loadArchive` reads this directory unconditionally -- Task 17.
+    mkdirSync(join(frCacheDir, "archive"), { recursive: true });
 
     const { run } = recordingGit();
     return { deps: { dataDir, cacheDir, frCacheDir, configPath, runGit: run }, dataDir };
@@ -985,5 +990,70 @@ describe("runCli", () => {
       runCli(["verify"], { out: () => {}, err: (x) => errLines.push(x), isTty: true }, deps),
     ).toBe(20);
     expect(errLines.join("")).toContain("index/kingmaker-bestiary.json");
+  });
+
+  // --- Task 17: retired-module archive fallback ---------------------------
+
+  it("fills BOTH the creature overlay and the index overlay from the archive when Babele has no entry", () => {
+    const { deps, dataDir } = seededDeps();
+
+    // Babele has nothing at all for this run (`seedFrenchCache({})`), so
+    // every field below can only have come from the archive fallback.
+    const frDeps = { ...deps, frCacheDir: seedFrenchCache({}) };
+    const archivePackDir = join(frDeps.frCacheDir, "archive", "kingmaker-bestiary");
+    mkdirSync(archivePackDir, { recursive: true });
+    // "defXhBIK4TtoZXGK" is the-stag-lord.json fixture's own `_id`, the
+    // join key `buildCreatureI18n` uses via `creature.foundryId`.
+    writeFileSync(
+      join(archivePackDir, "defXhBIK4TtoZXGK.htm"),
+      "Name: The Stag Lord\n" +
+        "Nom: Seigneur Cerf (archive)\n" +
+        "État: officielle\n\n" +
+        "-- Desc (en) --\n<p>EN notes.</p>\n" +
+        "-- Desc (fr) --\n<p>Notes FR (archive).</p>\n-- End desc ---\n",
+    );
+
+    expect(runCli(["update", "--latest"], silentIo(), frDeps)).toBe(10);
+
+    const overlay = JSON.parse(
+      readFileSync(
+        join(dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json"),
+        "utf8",
+      ),
+    );
+    expect(overlay.name).toBe("Seigneur Cerf (archive)");
+    expect(overlay.publicNotes).toBe("<p>Notes FR (archive).</p>");
+
+    const index = JSON.parse(
+      readFileSync(join(dataDir, "i18n", "fr", "index", "kingmaker-bestiary.json"), "utf8"),
+    );
+    expect(index["kingmaker-bestiary/the-stag-lord"]).toBe("Seigneur Cerf (archive)");
+  });
+
+  it("never lets the archive shadow a live Babele translation, end to end", () => {
+    const { deps, dataDir } = seededDeps();
+
+    const frDeps = {
+      ...deps,
+      frCacheDir: seedFrenchCache({
+        "The Stag Lord": { name: "Seigneur Cerf (Babele)" },
+      }),
+    };
+    const archivePackDir = join(frDeps.frCacheDir, "archive", "kingmaker-bestiary");
+    mkdirSync(archivePackDir, { recursive: true });
+    writeFileSync(
+      join(archivePackDir, "defXhBIK4TtoZXGK.htm"),
+      "Name: The Stag Lord\nNom: WRONG (archive must not win)\n",
+    );
+
+    expect(runCli(["update", "--latest"], silentIo(), frDeps)).toBe(10);
+
+    const overlay = JSON.parse(
+      readFileSync(
+        join(dataDir, "i18n", "fr", "creatures", "kingmaker-bestiary", "the-stag-lord.json"),
+        "utf8",
+      ),
+    );
+    expect(overlay.name).toBe("Seigneur Cerf (Babele)");
   });
 });

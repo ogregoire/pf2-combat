@@ -72,13 +72,17 @@ describe("fetchUpstream", () => {
 });
 
 describe("fetchFrench", () => {
-  it("sparse-checks out only the vf variant and the lang dir", () => {
+  it("sparse-checks out the vf variant, the lang dir, and the archive", () => {
     const calls: string[][] = [];
     const run: RunGit = (args) => { calls.push(args); return "abc123\n"; };
-    fetchFrench({ config, cacheDir: ".cache-fr", pinnedRef: "abc123", useLatest: false, run });
+    const result = fetchFrench({ config, cacheDir: ".cache-fr", pinnedRef: "abc123", useLatest: false, run });
     const sparse = calls.find((c) => c[0] === "sparse-checkout")!;
     expect(sparse).toContain("babele/vf/fr");
     expect(sparse).toContain("lang");
+    // Task 17: the archive holds retired translations for creatures the
+    // active Babele build no longer covers.
+    expect(sparse).toContain("archive");
+    expect(result.archiveDir).toBe(".cache-fr/archive");
     // The other three naming variants are 138 MB we never read.
     expect(sparse.join(" ")).not.toContain("vf-vo");
     expect(sparse.join(" ")).not.toContain("vo-vf");

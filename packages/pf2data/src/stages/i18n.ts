@@ -1,8 +1,42 @@
 import type { CreatureI18n } from "@pf2/schema";
 import { resolveLinks } from "../normalize/links.js";
 import { resolveLocalize, type LangTable } from "../normalize/localize.js";
-import type { BabeleTable } from "./babele.js";
+import type { ArchiveRecord } from "./archive.js";
+import type { BabeleEntry, BabeleTable } from "./babele.js";
 import type { ScannedTrait } from "./reference.js";
+
+/**
+ * Retired-module fallback, keyed by `Creature.foundryId` -- Task 17. Foundry
+ * ids are unique across the whole module, so this is a flat table, unlike
+ * `BabeleTable.byPack`.
+ */
+export type ArchiveTable = ReadonlyMap<string, ArchiveRecord>;
+
+/**
+ * Adapts one archive record into the same shape `BabeleTable.lookup` returns,
+ * so both sources feed the same downstream code (item alignment by foundry
+ * id, then `resolveFrench`). `null` when the record itself has no French
+ * name -- 634 of 1350 legacy records have no body, and 2 child items have an
+ * empty `Nom:`; either way that is "no translation", never the English name
+ * standing in for one.
+ */
+function fromArchive(
+  archive: ArchiveTable | undefined,
+  foundryId: string,
+): BabeleEntry | null {
+  const record = archive?.get(foundryId);
+  if (record === undefined || record.fr === null) return null;
+
+  const items: Record<string, { name?: string; description?: string }> = {};
+  for (const [id, item] of Object.entries(record.items)) {
+    items[id] = {
+      name: item.fr ?? undefined,
+      description: item.description ?? undefined,
+    };
+  }
+
+  return { name: record.fr, description: record.description ?? undefined, items };
+}
 
 /**
  * `[[/act balance]]{label}` and friends are ordinary Foundry enrichers -- 416
@@ -57,9 +91,18 @@ function resolveFrench(html: string | null | undefined, lang: LangTable): string
  * Absent creature, or absent item translation, both yield `null` rather
  * than the English text: a missing translation must stay visible to
  * `report`, not be hidden by a silent fallback.
+ *
+ * `archive` is consulted ONLY when the Babele lookup above returns nothing —
+ * Task 17. Babele always wins: it is the live, actively maintained
+ * translation, and the archive is retired data that exists purely to fill
+ * the gap Babele leaves. A creature Babele already covers must never have
+ * its translation shadowed by an older archived one.
  */
 export function buildCreatureI18n(args: {
   creatureName: string;
+  /** Joins to the archive fallback — see `fromArchive`. Unused when
+   * Babele already covers the creature. */
+  creatureFoundryId: string;
   /** The pack this creature ships in — `lookup` prefers its translation. */
   ownPack: string;
   actions: { name: string; foundryId: string }[];
@@ -67,8 +110,13 @@ export function buildCreatureI18n(args: {
   table: BabeleTable;
   /** The FRENCH lang table, for `@Localize` resolution. See `resolveFrench`. */
   lang: LangTable;
+  /** Retired-module fallback, consulted only on a Babele miss. Optional so
+   * every existing caller/fixture that has no archive keeps working. */
+  archive?: ArchiveTable;
 }): CreatureI18n | null {
-  const entry = args.table.lookup("creature", args.ownPack, args.creatureName);
+  const entry =
+    args.table.lookup("creature", args.ownPack, args.creatureName) ??
+    fromArchive(args.archive, args.creatureFoundryId);
   if (!entry) return null;
 
   const items = entry.items ?? {};
@@ -98,18 +146,21 @@ export function buildCreatureI18n(args: {
  * id's pack is everything before the first `/` (`kingmaker-bestiary/the-
  * stag-lord` -> `kingmaker-bestiary`).
  *
- * A creature the table has no entry for is OMITTED, never given its English
- * name as a stand-in -- a missing translation must stay visible to
- * `report`, not be hidden by a silent fallback.
+ * A creature neither source covers is OMITTED, never given its English name
+ * as a stand-in -- a missing translation must stay visible to `report`, not
+ * be hidden by a silent fallback. `archive` is a Babele-miss-only fallback,
+ * same as `buildCreatureI18n` -- see `fromArchive`.
  */
 export function buildIndexI18n(
-  entries: { id: string; name: string }[],
+  entries: { id: string; name: string; foundryId: string }[],
   table: BabeleTable,
+  archive?: ArchiveTable,
 ): Record<string, string> {
   const out: Record<string, string> = {};
   for (const entry of entries) {
     const ownPack = entry.id.slice(0, entry.id.indexOf("/"));
-    const found = table.lookup("creature", ownPack, entry.name);
+    const found =
+      table.lookup("creature", ownPack, entry.name) ?? fromArchive(archive, entry.foundryId);
     if (found) out[entry.id] = found.name;
   }
   return out;

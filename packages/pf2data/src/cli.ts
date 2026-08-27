@@ -21,6 +21,7 @@ import { compareStrings } from "./util.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
 import { buildConditions, buildGlossary, buildTraits, scanTraits } from "./stages/reference.js";
 import { loadBabele } from "./stages/babele.js";
+import { loadArchive } from "./stages/archive.js";
 import {
   buildConditionsI18n,
   buildCreatureI18n,
@@ -231,7 +232,9 @@ function readOnDiskI18n(dataDir: string): Map<string, string> {
 /** Checks every committed French overlay against the committed creature it
  * indexes. See `verifyI18n`: the overlay is keyed by array POSITION, so the
  * two files agreeing position-for-position is the whole safety property. A
- * missing overlay is not a failure -- 30 creatures legitimately have none. */
+ * missing overlay is not a failure: no creature currently lacks one (Task 17
+ * closed the last 30 gaps via the archive), but a future upstream addition
+ * with no Babele or archive coverage at all would legitimately have none. */
 function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
   const problems: string[] = [];
 
@@ -455,10 +458,15 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     return EXIT.upstreamError;
   }
 
-  let babele, frLang;
+  let babele, frLang, archive;
   try {
     babele = loadBabele(french.babeleDir);
     frLang = loadGlossaryLang(french.langPath);
+    // Retired-module fallback -- Task 17. Loaded eagerly alongside the live
+    // Babele table (not lazily on first miss) so a broken archive checkout
+    // surfaces as the same upstream error, at the same point in the run, as
+    // a broken Babele one.
+    archive = loadArchive(french.archiveDir);
   } catch (error) {
     io.err(`upstream error: ${(error as Error).message}\n`);
     emit({ command: command.name, error: (error as Error).message });
@@ -479,18 +487,34 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
       if (items === undefined) continue;
       const overlay = buildCreatureI18n({
         creatureName: creature.name,
+        creatureFoundryId: creature.foundryId,
         ownPack: creature.id.slice(0, creature.id.indexOf("/")),
         actions: items.actions,
         attacks: items.attacks,
         table: babele,
         lang: frLang,
+        archive,
       });
       if (overlay !== null) creatureI18n.set(creature.id, overlay);
     }
 
+    // `IndexEntry` (the committed `index/<pack>.json` shape) carries no
+    // `foundryId` -- it is public, app-consumed data, and widening it for
+    // this pipeline-internal join would churn every committed index file for
+    // no user-visible reason. The creatures already in hand carry it, so the
+    // join happens here instead, entirely in memory.
+    const foundryIdById = new Map(creatures.map((c) => [c.id, c.foundryId]));
     indexI18n = {};
     for (const [pack, entries] of Object.entries(build.indexes)) {
-      indexI18n[pack] = buildIndexI18n(entries, babele);
+      indexI18n[pack] = buildIndexI18n(
+        entries.map((entry) => ({
+          id: entry.id,
+          name: entry.name,
+          foundryId: foundryIdById.get(entry.id)!,
+        })),
+        babele,
+        archive,
+      );
     }
     conditionsI18n = buildConditionsI18n(conditions, babele, frLang);
     glossaryI18n = buildGlossaryI18n(glossary, babele, frLang);
@@ -672,7 +696,8 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   );
   // The untranslated LIST, not just the count: a coverage drop that only
   // showed up as a smaller number would never say which creature lost its
-  // translation. 30 today, 20 of them the `Petitioner (Plane)` series.
+  // translation. 0 today (Task 17 closed the last 30 gaps via the archive),
+  // but the list is what would name a regression the moment one reappears.
   io.err(
     `french: ${coverage.translated}/${coverage.total} creatures translated at ${french.ref}` +
       `${coverage.untranslated.length > 0 ? `, ${coverage.untranslated.length} untranslated: ${coverage.untranslated.join(", ")}` : ""}\n`,

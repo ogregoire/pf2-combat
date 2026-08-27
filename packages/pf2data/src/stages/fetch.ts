@@ -23,6 +23,7 @@ export interface FetchFrenchResult {
   ref: string;
   babeleDir: string;
   langPath: string;
+  archiveDir: string;
 }
 
 /** Glossary ability text lives here, not in the packs. See Task 18. */
@@ -113,6 +114,15 @@ export const FR_BABELE_DIR = "babele/vf/fr";
 export const FR_LANG_DIR = "lang";
 export const FR_LANG_PATH = "lang/fr.json";
 
+/**
+ * Retired translations for creatures Babele's active build no longer covers
+ * -- Task 17. Still module content under the same open licence, just not
+ * wired into the `vf` output. A single directory pattern, same cone-mode
+ * reasoning as `FR_LANG_DIR`; the whole tree is ~20 MB of text, small next to
+ * the 138 MB already excluded above.
+ */
+export const FR_ARCHIVE_DIR = "archive";
+
 export function fetchFrench(options: FetchOptions): FetchFrenchResult {
   const { config, cacheDir, pinnedRef, useLatest } = options;
   const run = options.run ?? defaultRun;
@@ -144,7 +154,10 @@ export function fetchFrench(options: FetchOptions): FetchFrenchResult {
     run(["fetch", "origin", config.french.branch], cacheDir);
   }
 
-  run(["sparse-checkout", "set", FR_BABELE_DIR, FR_LANG_DIR], cacheDir);
+  run(
+    ["sparse-checkout", "set", FR_BABELE_DIR, FR_LANG_DIR, FR_ARCHIVE_DIR],
+    cacheDir,
+  );
 
   const ref = useLatest
     ? run(["rev-parse", `origin/${config.french.branch}`], cacheDir).trim()
@@ -156,5 +169,6 @@ export function fetchFrench(options: FetchOptions): FetchFrenchResult {
     ref,
     babeleDir: join(cacheDir, FR_BABELE_DIR),
     langPath: join(cacheDir, FR_LANG_PATH),
+    archiveDir: join(cacheDir, FR_ARCHIVE_DIR),
   };
 }
