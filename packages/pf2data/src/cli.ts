@@ -232,9 +232,13 @@ function readOnDiskI18n(dataDir: string): Map<string, string> {
 /** Checks every committed French overlay against the committed creature it
  * indexes. See `verifyI18n`: the overlay is keyed by array POSITION, so the
  * two files agreeing position-for-position is the whole safety property. A
- * missing overlay is not a failure: no creature currently lacks one (Task 17
- * closed the last 30 gaps via the archive), but a future upstream addition
- * with no Babele or archive coverage at all would legitimately have none. */
+ * missing PER-CREATURE overlay is not a failure: no creature currently
+ * lacks one (Task 17 closed the last 30 gaps via the archive), but a future
+ * upstream addition with no Babele or archive coverage at all would
+ * legitimately have none. That reasoning does not extend to `index/`,
+ * `conditions.json`, `glossary.json` or `traits.json` below — none of those
+ * are per-creature, and none has a legitimate absent state in a checked-in
+ * dataset, so a missing one is reported as a failure rather than skipped. */
 function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
   const problems: string[] = [];
 
@@ -260,6 +264,9 @@ function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
   }
 
   const indexDir = join(dataDir, I18N_ROOT, "fr", "index");
+  if (!existsSync(indexDir)) {
+    problems.push(`i18n: ${I18N_ROOT}/fr/index/ is missing`);
+  }
   const referenceFiles = existsSync(indexDir)
     ? readdirSync(indexDir)
         .filter((name) => name.endsWith(".json"))
@@ -268,7 +275,10 @@ function verifyOnDiskI18n(creatures: unknown[], dataDir: string): string[] {
     : [];
   for (const file of [...referenceFiles, "conditions.json", "glossary.json", "traits.json"]) {
     const path = join(dataDir, I18N_ROOT, "fr", ...file.split("/"));
-    if (!existsSync(path)) continue;
+    if (!existsSync(path)) {
+      problems.push(`i18n: ${I18N_ROOT}/fr/${file} is missing`);
+      continue;
+    }
     problems.push(
       ...verifyI18nMarkup(`${I18N_ROOT}/fr/${file}`, JSON.parse(readFileSync(path, "utf8"))),
     );

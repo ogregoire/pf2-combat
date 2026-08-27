@@ -635,6 +635,46 @@ describe("runCli", () => {
     expect(runCli(["verify"], silentIo(), deps)).toBe(0);
   });
 
+  // Unlike a per-creature overlay, `index/`, `conditions.json`,
+  // `glossary.json` and `traits.json` have no legitimate absent state in a
+  // checked-in dataset -- a wholesale loss of the French index (or of one
+  // of the three reference files) must fail loud, not fall back to English
+  // everywhere silently.
+  it("verify fails when the whole i18n/fr/index/ directory is missing", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    rmSync(join(dataDir, "i18n", "fr", "index"), { recursive: true, force: true });
+
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["verify"],
+      { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+      deps,
+    );
+
+    expect(exit).toBe(20);
+    expect(errLines.join("")).toContain("i18n/fr/index/");
+  });
+
+  it.each(["conditions.json", "glossary.json", "traits.json"])(
+    "verify fails when %s is missing",
+    (file) => {
+      const { deps, dataDir } = seededDeps();
+      expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+      rmSync(join(dataDir, "i18n", "fr", file), { force: true });
+
+      const errLines: string[] = [];
+      const exit = runCli(
+        ["verify"],
+        { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+        deps,
+      );
+
+      expect(exit).toBe(20);
+      expect(errLines.join("")).toContain(`i18n/fr/${file}`);
+    },
+  );
+
   // --- Task 7 fix round 1: Babele text is RAW Foundry markup -------------
 
   it("resolves @Localize and @UUID out of the generated French text, using the FRENCH lang table", () => {
