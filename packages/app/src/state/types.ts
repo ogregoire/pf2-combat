@@ -27,11 +27,18 @@ export interface Combatant {
   attacks: Attack[];
   actions: Action[];
   /**
-   * The French overlay for this creature, fetched alongside the creature
-   * record when it was added (see AddCombatants/QuickAdd) and only when
-   * `lang` was "fr" at that moment. `null` for every PC, and for a
-   * creature added while `lang` was "en" or with no overlay file at all —
-   * both simply render in English then.
+   * The French overlay for this creature, IF a caller already seeded one
+   * directly into the store — used by tests, never by production code:
+   * AddCombatants/QuickAdd no longer fetch an overlay at add time at all
+   * (that used to depend on `lang` being "fr" at the moment of adding,
+   * which meant a combatant added in English could never become French
+   * later). `null` for every PC, and for essentially every creature added
+   * through the real UI. Render-time consumers don't read this field
+   * directly — they call `useCombatantI18n`
+   * (packages/app/src/hooks/useCombatantI18n.ts), which uses this field
+   * when it's already populated and otherwise resolves the overlay from
+   * `creatureId` on demand (cached, component-local — never written back
+   * here) whenever `lang` is "fr".
    */
   i18n: CreatureI18n | null;
   conditions: AppliedCondition[];

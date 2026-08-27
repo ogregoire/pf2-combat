@@ -25,9 +25,9 @@ export interface CombatantSeed {
   attacks?: Attack[];
   /** Populated from the creature record when added from the dataset. */
   actions?: Action[];
-  /** The French overlay, fetched alongside the creature record only when
-   * `lang` was "fr" at add time; `null` (or omitted) otherwise. See
-   * `Combatant.i18n`. */
+  /** A French overlay to seed directly — production callers (AddCombatants,
+   * QuickAdd) never set this; overlays are resolved at render time instead.
+   * See `Combatant.i18n`. */
   i18n?: CreatureI18n | null;
 }
 

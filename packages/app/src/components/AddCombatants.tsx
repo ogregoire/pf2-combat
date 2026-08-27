@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
+import type { Creature, IndexEntry } from "@pf2/schema";
 import { resolveCollisions, searchCreatures } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
 import { loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
@@ -41,10 +41,12 @@ function toReactions(creature: Creature): { name: string; trigger: string }[] {
  * off `creatureId`), never baked into the stored combatant. `creature` is
  * only present once `loadCreature` has resolved, so a null creature still
  * yields a valid seed with the four denormalised fields left empty, same
- * as any other seed. `i18n` is left `null` by every production caller —
- * the render layer resolves it from `creatureId` — but stays a parameter
- * so tests (and `CombatantSeed.i18n`) can still seed it directly. */
-export function seedFromEntry(entry: IndexEntry, creature: Creature | null, i18n: CreatureI18n | null = null): CombatantSeed {
+ * as any other seed. No `i18n` parameter: no production caller has one to
+ * pass (the render layer resolves it from `creatureId` instead), and a
+ * test that wants to seed one directly can still set `CombatantSeed.i18n`
+ * on the result — see e.g. french-creature.test.tsx, which does exactly
+ * that without going through this function at all. */
+export function seedFromEntry(entry: IndexEntry, creature: Creature | null): CombatantSeed {
   return {
     kind: "creature",
     name: entry.name,
@@ -64,7 +66,6 @@ export function seedFromEntry(entry: IndexEntry, creature: Creature | null, i18n
     reactions: creature !== null ? toReactions(creature) : [],
     attacks: creature !== null ? creature.attacks : [],
     actions: creature !== null ? creature.actions : [],
-    i18n,
   };
 }
 
