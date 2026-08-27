@@ -35,20 +35,67 @@ describe("EncounterScreen", () => {
     expect(pane.style.minHeight).toBe("0");
   });
 
-  it("shows the XP award, which does not change with party size", () => {
+  const twoLevelFourPlayers = () =>
     useEncounter.getState().setPlayers([
       { id: "p1", name: "A", level: 4, ac: 20, saves: { fortitude: 9, reflex: 9, will: 9 }, present: true, initiativeModifier: null },
       { id: "p2", name: "B", level: 4, ac: 20, saves: { fortitude: 9, reflex: 9, will: 9 }, present: true, initiativeModifier: null },
     ]);
+
+  const addStagLord = () =>
     useEncounter.getState().addCombatant(
       { kind: "creature", name: "The Stag Lord", level: 6, ac: 23,
         saves: { fortitude: 15, reflex: 16, will: 9 },
         hp: { current: 110, max: 110 } },
       19,
     );
+
+  // The old single "XP each" badge conflated what the fight is worth with what
+  // the party has actually earned, so a half-finished encounter read as though
+  // it had already paid out in full.
+  it("shows the encounter total separately from the XP earned so far", () => {
+    twoLevelFourPlayers();
+    addStagLord();
     render(<EncounterScreen />);
-    expect(screen.getByText(/80/)).toBeDefined();
-    expect(screen.getByText(/XP each/i)).toBeDefined();
+
+    // Level 6 against party level 4 is +2 => 80 XP on the table...
+    expect(screen.getByTestId("xp-total").textContent).toMatch(/80/);
+    // ...and nothing earned while it is still standing.
+    expect(screen.getByTestId("xp-earned").textContent).toMatch(/^0XP/);
+  });
+
+  it("moves XP into the earned award as creatures are defeated, and never divides it by party size", () => {
+    twoLevelFourPlayers();
+    const stagLord = addStagLord();
+    const bandit = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Bandit", level: 2, ac: 15,
+        saves: { fortitude: 6, reflex: 7, will: 4 }, hp: { current: 16, max: 16 } },
+      12,
+    );
+    // Stag Lord (+2) 80 + Bandit (-2) 20 = 100 on the table.
+    const view = render(<EncounterScreen />);
+    expect(screen.getByTestId("xp-total").textContent).toMatch(/100/);
+    expect(screen.getByTestId("xp-earned").textContent).toMatch(/^0XP/);
+
+    // Drop the bandit: its 20 XP moves into the award, the total is unchanged
+    // (a defeated creature is still part of what the encounter was worth), and
+    // the award is the full 20 rather than a per-player share of it.
+    useEncounter.getState().applyDamage(bandit, 999);
+    view.rerender(<EncounterScreen />);
+    expect(screen.getByTestId("xp-total").textContent).toMatch(/100/);
+    expect(screen.getByTestId("xp-earned").textContent).toMatch(/20/);
+
+    // Finish the fight and the two figures meet.
+    useEncounter.getState().applyDamage(stagLord, 999);
+    view.rerender(<EncounterScreen />);
+    expect(screen.getByTestId("xp-earned").textContent).toMatch(/100/);
+  });
+
+  it("labels the two XP figures so they can't be mistaken for one another", () => {
+    twoLevelFourPlayers();
+    addStagLord();
+    render(<EncounterScreen />);
+    expect(screen.getByTestId("xp-total").textContent).toMatch(/on the table/i);
+    expect(screen.getByTestId("xp-earned").textContent).toMatch(/earned each/i);
   });
 
   it("runs a whole turn end to end", async () => {

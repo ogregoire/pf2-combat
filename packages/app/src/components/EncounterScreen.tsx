@@ -14,22 +14,88 @@ import { PartyManager } from "./PartyManager.js";
 import { TurnManager, UnrolledNotice, remainingActionsFor } from "./TurnManager.js";
 import { activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
 
-/** Main.dc.html's top bar: encounter name, the XP award per character (the
- * plain sum of creature XP — GM Core says this never changes with party
- * size, so it is computed once against the derived party level and never
- * divided or adjusted), and the present/party-level readout. Difficulty
- * badges are out of scope for phase 1 and are deliberately not built here. */
+/** Main.dc.html's top bar: encounter name, two XP readouts, and the
+ * present/party-level readout. Difficulty badges are out of scope for phase 1
+ * and are deliberately not built here.
+ *
+ * The two XP figures answer different questions and were previously conflated
+ * into one ambiguous "XP each" badge:
+ *
+ * - **On the table** — the sum of every creature in the encounter, defeated or
+ *   not. This is what the fight is worth in total, i.e. the figure the GM
+ *   weighs against an encounter budget when judging difficulty.
+ * - **Earned** — the same sum restricted to creatures actually defeated. XP is
+ *   awarded for adversaries the party *overcomes* (GM Core, Experience
+ *   Points), so a creature that flees or is left standing pays nothing. This
+ *   is what each character banks when the fight ends, and it climbs as
+ *   creatures fall until it meets the total.
+ *
+ * Both are per-character amounts, and neither is divided by party size: GM
+ * Core is explicit that "each character gains XP equal to the total XP of the
+ * creatures and hazards in the encounter", and that adjusting an encounter's
+ * *budget* for a party larger or smaller than four changes the difficulty, not
+ * the payout. Party level still matters, since each creature's XP is priced
+ * against it. */
+/** One XP readout. `tone` is what keeps the pair from reading as the same
+ * number twice: the running award takes the green treatment (it is the figure
+ * that moves during a fight), while the encounter total stays a muted
+ * reference figure beside it. */
+function XpBadge({
+  value,
+  label,
+  title,
+  testId,
+  tone,
+}: {
+  value: number;
+  label: string;
+  title: string;
+  testId: string;
+  tone: "muted" | "award";
+}): React.ReactElement {
+  const award = tone === "award";
+  return (
+    <div
+      data-testid={testId}
+      title={title}
+      style={{
+        display: "flex",
+        alignItems: "baseline",
+        gap: "5px",
+        padding: "3px 11px 4px",
+        borderRadius: "3px",
+        background: award ? "var(--ok-bg)" : "var(--panel-raised)",
+        border: `1px solid ${award ? "var(--border-strong)" : "var(--border)"}`,
+      }}
+    >
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "17px",
+          fontWeight: 600,
+          color: award ? "var(--ok)" : "var(--text-dim)",
+        }}
+      >
+        {value}
+      </span>
+      <span style={{ fontSize: "10.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{label}</span>
+    </div>
+  );
+}
+
 function TopBar(): React.ReactElement {
   const name = useEncounter((s) => s.encounter.name);
   const combatants = useEncounter((s) => s.encounter.combatants);
   const players = useEncounter((s) => s.players);
 
-  const creatureLevels = Object.values(combatants)
-    .filter((c) => c.kind === "creature")
-    .map((c) => c.level);
+  const creatures = Object.values(combatants).filter((c) => c.kind === "creature");
   const presentPlayers = players.filter((p) => p.present);
   const partyLevel = partyLevelFor(presentPlayers.map((p) => p.level)).level;
-  const xp = encounterXp(creatureLevels, partyLevel);
+  const totalXp = encounterXp(creatures.map((c) => c.level), partyLevel);
+  const earnedXp = encounterXp(
+    creatures.filter((c) => c.defeated).map((c) => c.level),
+    partyLevel,
+  );
 
   return (
     <div
@@ -48,22 +114,21 @@ function TopBar(): React.ReactElement {
         {name}
       </div>
 
-      <div
-        title="Each character gains the encounter's full XP — party size does not change the award"
-        style={{
-          display: "flex",
-          alignItems: "baseline",
-          gap: "5px",
-          padding: "3px 11px 4px",
-          borderRadius: "3px",
-          background: "var(--ok-bg)",
-          border: "1px solid var(--border-strong)",
-        }}
-      >
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, color: "var(--ok)" }}>
-          {xp}
-        </span>
-        <span style={{ fontSize: "10.5px", letterSpacing: "0.06em", color: "var(--text-dim)" }}>XP each</span>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <XpBadge
+          value={totalXp}
+          label="XP on the table"
+          testId="xp-total"
+          title="Every creature in this encounter, defeated or not — what the whole fight is worth. Weigh this against your encounter budget."
+          tone="muted"
+        />
+        <XpBadge
+          value={earnedXp}
+          label="XP earned each"
+          testId="xp-earned"
+          title="Creatures actually defeated. This is what each character gains when the fight ends — party size does not divide it."
+          tone="award"
+        />
       </div>
 
       <div style={{ flexGrow: 1 }} />
