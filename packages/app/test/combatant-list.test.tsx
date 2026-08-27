@@ -50,6 +50,29 @@ describe("CombatantList", () => {
     expect(screen.getByText("FRIGHTENED 2")).toBeDefined();
   });
 
+  // Fix round 3, item 2: `dyingMax` was computed in the store and never
+  // rendered anywhere — the exact "rule computed but never shown" defect
+  // this app has shipped six times. Without the cap on the chip, a PC one
+  // point from death looks identical to one three points away, and the row
+  // flips to DEFEATED with no warning.
+  it("renders the dying chip with the value it dies at", () => {
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    useEncounter.getState().addCondition(id, "dying", 1);
+    render(<CombatantList />);
+    expect(screen.getByText("DYING 1/4")).toBeDefined();
+  });
+
+  it("lowers the dying chip's cap by the doomed value, showing how close death is", () => {
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    useEncounter.getState().addCondition(id, "doomed", 1);
+    useEncounter.getState().addCondition(id, "dying", 2);
+    render(<CombatantList />);
+    expect(screen.getByText("DYING 2/3")).toBeDefined();
+    // The doomed chip itself keeps its plain value — only dying has a
+    // threshold to show.
+    expect(screen.getByText("DOOMED 1")).toBeDefined();
+  });
+
   it("opens the popover on hover and applies damage", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(seed(), 19);
@@ -442,7 +465,7 @@ describe("CombatantList", () => {
     expect(screen.getByText(/30 cold, resistance 10/)).toBeDefined();
   });
 
-  it("applies a condition in one click and steps its value without dropping below zero", async () => {
+  it("applies a condition in one click, steps its value, and ends it at zero", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(seed(), 19);
     render(<CombatantList />);
@@ -457,11 +480,35 @@ describe("CombatantList", () => {
     expect(useEncounter.getState().encounter.combatants[id]!.conditions
       .find((c) => c.slug === "frightened")!.value).toBe(2);
 
+    // Fix round 3, item 4: the step that would reach 0 ends the condition
+    // instead of parking a FRIGHTENED 0 chip the GM then has to click x on
+    // as well — applyEndOfTurn's own "decrement" hook already drops a
+    // condition that decrements to 0 (rules/conditions.ts), and the picker
+    // now agrees with it rather than storing a value the rules never have.
     await user.click(screen.getByRole("button", { name: "Decrease Frightened" }));
     await user.click(screen.getByRole("button", { name: "Decrease Frightened" }));
-    await user.click(screen.getByRole("button", { name: "Decrease Frightened" }));
-    expect(useEncounter.getState().encounter.combatants[id]!.conditions
-      .find((c) => c.slug === "frightened")!.value).toBe(0);
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions).toEqual([]);
+    expect(screen.queryByRole("button", { name: "Decrease Frightened" })).toBeNull();
+    // ...and, no longer applied, it is back in the pickable row.
+    expect(within(screen.getByRole("group", { name: "add condition" }))
+      .getByRole("button", { name: "Frightened" })).toBeDefined();
+  });
+
+  it("applies an unvalued condition at value 0, not at a valued one's starting 1", async () => {
+    // Fix round 3, item 6: making applyCondition send 1 for everything
+    // passed all 645 tests. Persistent Damage was the only unvalued tag any
+    // test ever clicked, and typing its formula immediately rewrites the
+    // value to 0 — masking the difference. Prone has no such rewrite: a
+    // "prone 1" is a number the chip, the rules and the dataset
+    // (isValued: false) all have no meaning for.
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    await user.click(screen.getByRole("button", { name: "Prone" }));
+    expect(useEncounter.getState().encounter.combatants[id]!.conditions)
+      .toEqual([{ slug: "prone", value: 0 }]);
   });
 
   it("shows a placeholder X on pickable tags that take a number, and none on those that don't", async () => {

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useEncounter } from "../state/store.js";
-import { CONDITIONS } from "../rules/conditions.js";
+import { CONDITIONS, dyingMax } from "../rules/conditions.js";
 import { RowPopover } from "./RowPopover.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import type { Combatant } from "../state/types.js";
@@ -147,9 +147,26 @@ function hpColor(current: number, max: number): string {
   return "var(--accent)";
 }
 
-function conditionLabel(slug: Combatant["conditions"][number]["slug"], value: number): string {
-  const def = CONDITIONS[slug];
-  return def.valued ? `${def.name.toUpperCase()} ${value}` : def.name.toUpperCase();
+/**
+ * Dying is the one condition whose value is measured against a threshold:
+ * reaching `dyingMax` (4, less the doomed value) is death, so the chip shows
+ * "DYING 2/3" rather than a bare "DYING 2". Without the cap, a PC one point
+ * from dead looks exactly like one three points away, and the row flips
+ * silently to DEFEATED — the cap was computed in the store and rendered
+ * nowhere, which is why it needs the whole condition list here and not just
+ * this condition's own value: the number comes from doomed.
+ *
+ * Every other valued condition keeps its plain value; none of them has a
+ * ceiling that means anything.
+ */
+function conditionLabel(
+  c: Combatant["conditions"][number],
+  conditions: Combatant["conditions"],
+): string {
+  const def = CONDITIONS[c.slug];
+  if (!def.valued) return def.name.toUpperCase();
+  if (c.slug === "dying") return `DYING ${c.value}/${dyingMax(conditions)}`;
+  return `${def.name.toUpperCase()} ${c.value}`;
 }
 
 function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactElement | null {
@@ -168,7 +185,7 @@ function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactEle
             color: "var(--cond)",
           }}
         >
-          {conditionLabel(c.slug, c.value)}
+          {conditionLabel(c, combatant.conditions)}
         </span>
       ))}
     </div>

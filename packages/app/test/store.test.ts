@@ -603,6 +603,12 @@ describe("encounter store", () => {
     const after = useEncounter.getState().encounter.combatants[pc]!;
     expect(after.conditions.some((c) => c.slug === "dying")).toBe(false);
     expect(after.conditions.find((c) => c.slug === "wounded")!.value).toBe(1);
+    // Fix round 3, item 6: the unconscious half of the same sentence
+    // ("you lose the dying and unconscious conditions" —
+    // data/conditions.json, unconscious). Deleting onHealedAboveZero's
+    // `.filter(c => c.slug !== "unconscious")` used to pass all 645 tests:
+    // every heal-path assertion looked only at dying and wounded.
+    expect(after.conditions.some((c) => c.slug === "unconscious")).toBe(false);
   });
 
   // Requirement (b): doomed's own instant-death rule ("If your maximum
@@ -709,5 +715,107 @@ describe("encounter store", () => {
     expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
     expect(after.conditions.some((c) => c.slug === "wounded")).toBe(false);
     expect(after.hp!.current).toBe(20);
+  });
+
+  // Fix round 3, item 1: a doomed-driven death used to be irreversible.
+  // Nothing ever cleared `defeated` once doomed had zeroed the dying max, so
+  // stepping doomed back down — or removing the tag entirely — left a
+  // full-HP combatant reading DEFEATED with no dying, no doomed, and (since
+  // the row hides its chips once defeated) nothing on the row to explain it.
+  // Lowering doomed raises the max back above 0; with no dying value at or
+  // above that max, nothing is holding this combatant dead any more.
+  it("lifts a doomed-driven death when doomed is stepped back down", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "doomed", 4);
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().addCondition(pc, "doomed", 1);
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(false);
+    expect(after.hp!.current).toBe(20);
+  });
+
+  it("lifts a doomed-driven death when the doomed tag is removed outright", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "doomed", 4);
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().removeCondition(pc, "doomed");
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(false);
+  });
+
+  // The other half of the same rule, and the reason `defeated` is re-settled
+  // rather than merely cleared: doomed lowering the cap onto a dying value
+  // the combatant is already at kills, per data/conditions.json's doomed
+  // ("The Dying value at which you die is reduced by your doomed value") —
+  // and lowering doomed only part-way does not undo that while dying is
+  // still sitting at the new, still-reduced cap.
+  it("keeps a PC dead when doomed is only lowered and dying still sits at the reduced cap", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 2);
+    useEncounter.getState().addCondition(pc, "doomed", 3); // cap 1, dying 2 is past it
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().addCondition(pc, "doomed", 2); // cap 2, dying 2 still at it
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+  });
+
+  // The must-stay-dead case: this PC died at dying's own unreduced cap, not
+  // because of doomed, so no amount of taking doomed away brings them back.
+  it("keeps a PC dead through a doomed removal when dying already reached the unreduced cap", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 4); // dying 4: real death
+    useEncounter.getState().addCondition(pc, "doomed", 2);
+    useEncounter.getState().removeCondition(pc, "doomed");
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+  });
+
+  // The second must-stay-dead case, and the reason the shared predicate
+  // knows about HP at all: an ordinary creature at 0 HP is dead because the
+  // damage killed it, not because of any dying cap it has no rules for. A
+  // doomed tag applied and then taken off must not be a resurrection spell.
+  it("does not resurrect an ordinary creature killed at 0 HP when doomed is removed", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().applyDamage(id, 99);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+
+    useEncounter.getState().addCondition(id, "doomed", 2);
+    useEncounter.getState().removeCondition(id, "doomed");
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+  });
+
+  // Fix round 3, item 3: the GM clicking the Dying tag went through
+  // applyDyingGain alone, while damage went through applyDyingGain *and*
+  // onDroppedToZero — so a hand-applied dying produced a row with no
+  // UNCONSCIOUS chip, even though data/conditions.json's dying entry says
+  // "While you have this condition, you are Unconscious" regardless of how
+  // the condition arrived.
+  it("carries unconscious into a GM-applied dying, exactly as the damage path does", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 1);
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
+    expect(after.conditions.some((c) => c.slug === "unconscious")).toBe(true);
+  });
+
+  // Fix round 3, item 7: removing the dying tag by hand had no `defeated`
+  // guard, so it re-opened on the condition path exactly the incoherent row
+  // applyHealing already closed on the healing path — DEFEATED, wounded 1,
+  // no dying. A GM clicking x on a corpse's tag is tidying the display, not
+  // declaring a resurrection (the only way back from death at the cap is
+  // undoing what caused it — lowering doomed), so the conditions stay frozen
+  // just as they do on a heal.
+  it("freezes a dead PC's conditions when the GM removes the dying tag by hand", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 4);
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().removeCondition(pc, "dying");
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+    expect(after.conditions.some((c) => c.slug === "wounded")).toBe(false);
   });
 });

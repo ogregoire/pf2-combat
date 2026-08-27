@@ -422,16 +422,20 @@ export function RowPopover({
   };
   const decrementCondition = (slug: ConditionSlug, value: number): void => {
     if (value <= 0) return; // floor at 0 — never send a call that would go negative
-    // Stepping dying from 1 down to 0 is *losing* the condition, not just
-    // lowering its value — data/conditions.json, dying: "Any time you lose
-    // the dying condition, you gain the Wounded 1 condition...". Routing
-    // through removeCondition here keeps this in sync with the tag's own
-    // "x" button, which already goes through the same path (see store.ts's
-    // removeCondition). Sending addCondition(id, "dying", -1) instead would
-    // write a literal "dying 0" — dyingOnGain's own doc comment warns
-    // against exactly that nonsense state — and skip the Wounded fallout.
-    if (slug === "dying" && value === 1) {
-      removeCondition(combatantId, "dying");
+    // The step that would reach 0 *ends* the condition rather than storing a
+    // 0. A "frightened 0" is not a state the rules have: applyEndOfTurn's
+    // own "decrement" hook drops a condition the moment it decrements to 0
+    // (rules/conditions.ts), and leaving one behind here parked a dead chip
+    // on the row that the pickable list then filtered out, so the GM had to
+    // click its x as well to be rid of it.
+    //
+    // For dying this is not just tidiness: losing the condition carries
+    // fallout — data/conditions.json, dying: "Any time you lose the dying
+    // condition, you gain the Wounded 1 condition..." — which only
+    // removeCondition applies. Routing every slug through the same call
+    // keeps the stepper and the tag's own x button on one path.
+    if (value === 1) {
+      removeCondition(combatantId, slug);
       return;
     }
     addCondition(combatantId, slug, slug === "dying" ? -1 : value - 1);

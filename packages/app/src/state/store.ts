@@ -130,25 +130,90 @@ export function unrolledCount(enc: Encounter): number {
 }
 
 /**
+ * Whether a combatant's *current* state still describes a dead one. Two
+ * kinds of caller ask it, each after changing something that could have
+ * undone a death: `applyHealing` (HP came back), and
+ * `addCondition`/`removeCondition` on doomed (the dying cap came back up).
+ * They share one predicate so the two paths cannot drift — the healing side
+ * took two review rounds to get right, and the doomed side would otherwise
+ * be a second, differently-wrong copy of it.
+ *
+ * Two things keep a combatant dead:
+ *  - doomed having zeroed the dying cap ("If your maximum dying value is
+ *    reduced to 0, you instantly die" — data/conditions.json, doomed), and
+ *  - dying sitting at or above that cap, whatever its current value ("if it
+ *    ever reaches dying 4, you die" — same file, dying). A value AT the cap
+ *    means this combatant already died there.
+ * Both are read off the conditions as they stand *now*, which is exactly
+ * what makes a doomed reduction able to lift the first one: lower doomed and
+ * the cap is no longer 0, so nothing in this state is holding them dead.
+ *
+ * The HP clause is the one thing conditions alone can't answer. An ordinary
+ * creature at 0 HP is dead because the damage killed it (see `dealDamage`) —
+ * it has no dying rules at all, so no change to doomed or dying can revive
+ * it; only healing can, and healing reaches this function with HP already
+ * back above 0, so the clause never fires there. A PC at 0 HP is *dying*,
+ * not defeated, which is why the clause is restricted to creatures.
+ */
+function deathStillStands(c: Combatant): boolean {
+  if (c.kind !== "pc" && c.hp !== null && c.hp.current <= 0) return true;
+  const max = dyingMax(c.conditions);
+  const dyingValue = c.conditions.find((cond) => cond.slug === "dying")?.value ?? 0;
+  return max <= 0 || dyingValue >= max;
+}
+
+/**
+ * Re-settles `defeated` after doomed changed, in both directions.
+ *
+ * Upwards: doomed lowers the dying cap, and a cap that lands at 0 — or at or
+ * below a dying value the combatant already has — kills, per
+ * data/conditions.json's doomed ("The Dying value at which you die is
+ * reduced by your doomed value. If your maximum dying value is reduced to 0,
+ * you instantly die").
+ *
+ * Downwards: the same sentence read backwards. A doomed-driven death is only
+ * ever held up by doomed's own value, so lowering or removing doomed lifts
+ * it — otherwise doomed 4 was an irreversible, unexplained kill with no undo
+ * anywhere in the app (the row even hides its condition chips once defeated,
+ * so there was nothing left on screen to explain the DEFEATED). Deaths that
+ * do not depend on doomed — dying at its own cap, a creature at 0 HP — are
+ * exactly what `deathStillStands` still reports as standing.
+ */
+function settleDoomedDeath(c: Combatant): void {
+  c.defeated = deathStillStands(c);
+}
+
+/**
  * Adds `amount` to a combatant's dying value via `dyingOnGain`, clamps it to
- * the current `dyingMax` (unless doomed has zeroed that max — see the
- * comment inline, matching the reasoning in `dyingOnGain`'s own doc comment
- * about not writing a nonsense "dying 0"), and marks the combatant defeated
- * once the value reaches the cap. Shared by `addCondition`'s "dying" branch
- * (a GM manually bumping dying) and `dealDamage`'s 0-HP handling below, so
- * both apply the exact same doomed-interaction and death-at-cap rules
- * instead of maintaining that logic twice.
+ * the current `dyingMax` (unless doomed has zeroed that max, in which case
+ * the clamp is skipped — see the inline comment below), marks the combatant
+ * defeated once the value reaches the cap, and attaches Unconscious.
+ * Shared by `addCondition`'s "dying" branch (a GM manually bumping dying)
+ * and `dealDamage`'s 0-HP handling below, so both apply the exact same
+ * doomed-interaction, death-at-cap and unconscious rules instead of
+ * maintaining that logic twice.
  */
 function applyDyingGain(c: Combatant, amount: number): void {
   const updated = dyingOnGain(c.conditions, amount);
   const max = dyingMax(c.conditions);
   const dyingEntry = updated.find((cond) => cond.slug === "dying")!;
+  // A max of 0 (doomed 4+) is not a value to clamp to: writing "dying 0"
+  // would store a number indistinguishable from not being dying at all,
+  // in place of the dying value this combatant actually gained. The death
+  // marked below is what a max of 0 really means.
   if (max > 0) dyingEntry.value = Math.min(dyingEntry.value, max);
   c.conditions = updated;
   // data/conditions.json, dying: "if it ever reaches dying 4, you die."
   // Reuses the existing `defeated` flag the row already renders rather than
   // inventing a parallel notion of dead.
   if (dyingEntry.value >= max) c.defeated = true;
+  // "While you have this condition, you are Unconscious"
+  // (data/conditions.json, dying) — true however the dying arrived, so it
+  // lives here rather than at the damage call site, which is where it used
+  // to sit while the GM clicking the Dying tag produced a row with no
+  // UNCONSCIOUS on it. See onDroppedToZero's own comment for why the stored
+  // array, not just expandImplied, has to carry it.
+  c.conditions = onDroppedToZero(c.conditions);
 }
 
 /** The IWR-filtering, floor-at-0, mark-defeated computation `applyDamage`
@@ -182,8 +247,9 @@ function dealDamage(c: Combatant, amount: number, damageType?: string): void {
   c.hp.current = Math.max(0, c.hp.current - applied);
   if (applied === 0 || c.hp.current !== 0) return;
   if (c.kind === "pc") {
+    // Dying, and the Unconscious that always comes with it, both land inside
+    // applyDyingGain — shared with the GM's own Dying tag.
     applyDyingGain(c, 1);
-    c.conditions = onDroppedToZero(c.conditions);
   } else {
     c.defeated = true;
   }
@@ -601,27 +667,18 @@ export const useEncounter = create<EncounterStore>()(
         // a way to un-defeat a combatant who received no healing at all.
         if (c.hp.current <= before) return;
         // Two ways to be defeated survive mere HP restoration and must not
-        // be cleared by it:
-        //  - doomed zeroing the dying cap ("If your maximum dying value is
-        //    reduced to 0, you instantly die" — data/conditions.json,
-        //    doomed) is modelled here as permanent while doomed's value
-        //    stays there (`dyingMax(c.conditions) > 0` below). That is a
-        //    deliberate modelling choice, not a reading of doomed's own
-        //    text — which actually says the opposite, "When you die, you're
-        //    no longer doomed" — but this app has no mechanism (a full
-        //    night's rest) that would ever lower doomed back down, so
-        //    without this guard a full-HP doomed kill is undone by the very
-        //    next heal for no in-fiction reason.
-        //  - dying itself reaching its cap ("if it ever reaches dying 4,
-        //    you die" — same file, dying) is real, permanent death — not
-        //    just doomed's special case — whatever that cap's value is.
-        //    Modelled as the current dying value still sitting below the
-        //    cap; a value AT the cap means this combatant already died.
-        // Every other defeated combatant (an ordinary creature at 0 HP)
-        // still clears normally on any heal, matching prior behaviour.
-        const max = dyingMax(c.conditions);
-        const dyingValue = c.conditions.find((cond) => cond.slug === "dying")?.value ?? 0;
-        if (max > 0 && dyingValue < max) c.defeated = false;
+        // be cleared by it — doomed having zeroed the dying cap, and dying
+        // having reached that cap. Both live in `deathStillStands`, which
+        // the doomed-lowering paths in addCondition/removeCondition ask too,
+        // so "is this combatant still dead?" has exactly one answer in this
+        // file. Note what the guard does NOT say: a doomed kill is permanent
+        // only while doomed's value stays where it is. That is a deliberate
+        // modelling choice rather than a reading of doomed's own text (which
+        // says the opposite — "When you die, you're no longer doomed") —
+        // healing is simply not the thing that undoes it; lowering doomed
+        // is. Every other defeated combatant (an ordinary creature at 0 HP,
+        // now healed above it) still clears normally on any heal.
+        if (!deathStillStands(c)) c.defeated = false;
         // A combatant who stayed `defeated` through the check above is
         // still dead (doomed's cap still 0, or dying still sitting at its
         // own cap) — the HP number is still allowed to move (the GM may be
@@ -653,13 +710,13 @@ export const useEncounter = create<EncounterStore>()(
         } else {
           c.conditions.push({ slug, value, formula });
         }
-        // data/conditions.json, doomed: "If your maximum dying value is
-        // reduced to 0, you instantly die." Doomed alone is fatal — this
-        // needs no dying condition to be present at all, unlike the dying
-        // branch above, so it's checked here rather than folded into it.
-        if (slug === "doomed" && dyingMax(c.conditions) <= 0) {
-          c.defeated = true;
-        }
+        // Doomed alone is fatal — it needs no dying condition present at
+        // all, unlike the dying branch above, so it's settled here rather
+        // than folded into it. `settleDoomedDeath` runs in both directions
+        // (see its doc comment): the same click path that raises doomed to
+        // the fatal value is the one that steps it back down, and the death
+        // has to lift when it does.
+        if (slug === "doomed") settleDoomedDeath(c);
       }),
 
     removeCondition: (id, slug) =>
@@ -667,6 +724,15 @@ export const useEncounter = create<EncounterStore>()(
         const c = state.encounter.combatants[id];
         if (!c) return;
         if (slug === "dying") {
+          // Removing the tag from a combatant who is already dead is the
+          // same incoherence `applyHealing` refuses on the healing path: it
+          // would leave a DEFEATED row carrying a freshly fabricated
+          // Wounded 1 and no dying, describing nothing the rules can
+          // produce. Read as an override it is no better — nothing about
+          // dropping the tag says "alive", and the app has exactly one way
+          // back from death at the cap: undoing what caused it, by lowering
+          // doomed. So a corpse's conditions stay frozen here too.
+          if (c.defeated) return;
           // data/conditions.json, dying: "Any time you lose the dying
           // condition, you gain the Wounded 1 condition, or increase your
           // wounded condition value by 1 ..." — a bare filter would drop
@@ -675,6 +741,12 @@ export const useEncounter = create<EncounterStore>()(
           return;
         }
         c.conditions = c.conditions.filter((cond) => cond.slug !== slug);
+        // Taking doomed off raises the dying cap back up, which can lift a
+        // death doomed itself caused — the same settle addCondition does,
+        // for the x button rather than the stepper. Deliberately not frozen
+        // behind the `defeated` guard above: this is the one edit that is
+        // *supposed* to be reachable on a combatant the app is calling dead.
+        if (slug === "doomed") settleDoomedDeath(c);
       }),
 
     recordStrike: (id) =>

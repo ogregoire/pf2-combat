@@ -7,6 +7,7 @@ import {
   CONDITIONS,
   conditionModifiers,
   dyingMax,
+  onHealedAboveZero,
   dyingOnGain,
   PICKABLE_CONDITIONS,
   woundedOnRecover,
@@ -448,5 +449,24 @@ describe("the dying/wounded/doomed death spiral", () => {
   it("leaves conditions untouched when there is no dying condition to lose", () => {
     const input = [{ slug: "wounded" as const, value: 1 }];
     expect(woundedOnRecover(input)).toEqual(input);
+  });
+
+  // Fix round 3, item 6. data/conditions.json, unconscious: "If you are
+  // restored to 1 Hit Point or more, you lose the dying and unconscious
+  // conditions." Unconscious is the half nothing asserted — deleting
+  // onHealedAboveZero's `.filter(c => c.slug !== "unconscious")` left all
+  // 645 tests green, because every existing check of the heal path looked
+  // only at dying and wounded.
+  it("drops unconscious as well as dying when a dying combatant is healed above 0", () => {
+    const after = onHealedAboveZero([
+      { slug: "dying", value: 1 },
+      { slug: "unconscious", value: 0 },
+      { slug: "frightened", value: 2 },
+    ]);
+    expect(after.some((c) => c.slug === "unconscious")).toBe(false);
+    expect(after.some((c) => c.slug === "dying")).toBe(false);
+    expect(after.find((c) => c.slug === "wounded")!.value).toBe(1);
+    // Unrelated conditions survive: this models waking up, not a cleanse.
+    expect(after.find((c) => c.slug === "frightened")!.value).toBe(2);
   });
 });
