@@ -22,6 +22,8 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   LABEL_REFLEX: "Réflexes",
   LABEL_WILL: "Volonté",
   LABEL_INITIATIVE: "Initiative",
+  LABEL_INITIATIVE_MODIFIER: "Mod. init.",
+  INITIATIVE_MODIFIER_ARIA: "Modificateur d'initiative",
   LABEL_LEVEL: "Niveau",
   LABEL_NAME: "Nom",
   LABEL_PRESENT: "Présent",
@@ -37,7 +39,6 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   LABEL_CONFIRM: "Confirmer",
   LABEL_DAMAGE: "Dégâts",
   LABEL_HEAL: "Soins",
-  LABEL_CONDITION: "État",
   ACTIONS_HEADING: "Actions",
   ACTIONS_UNIT: "actions",
   ROUND_LABEL: "ROUND",
@@ -49,6 +50,10 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   COST_FREE: "GRATUITE",
   COST_REACTION: "RÉACTION",
   COST_PASSIVE: "PASSIF",
+  USE_ACTIONS_BUTTON: "Utiliser {cost} {unit}",
+  USE_ACTION_UNIT_SINGULAR: "action",
+  USE_ACTION_UNIT_PLURAL: "actions",
+  USE_REACTION_BUTTON: "Utiliser la réaction",
 
   // ActionPips.tsx
   ACTIONS_REMAINING_HEADING: "ACTIONS RESTANTES",
@@ -86,7 +91,8 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   SELECT_FOR_GROUPING_ARIA: "Sélectionner {name} pour le groupement",
 
   // GroupHeader.tsx
-  COMBATANTS_COUNT: "{n} combattants",
+  UNGROUP_BUTTON: "Dégrouper",
+  DELAYED_LABEL: "retardé",
 
   // NextButton.tsx
   NEXT_COMBATANT_BUTTON: "Combattant suivant",
@@ -99,8 +105,6 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   CLEAR_PLAYERS_CONFIRM: "Effacer {n} {word} ? Les retire aussi de l'ordre d'initiative s'ils y sont.",
   PLAYER_SINGULAR: "joueur",
   PLAYER_PLURAL: "joueurs",
-  INITIATIVE_FOR_NAME_ARIA: "Initiative de {name}",
-  ADD_TO_ENCOUNTER_BUTTON: "Ajouter au combat",
 
   // PromptCard.tsx
   GOT_IT_BUTTON: "Compris",
@@ -112,8 +116,10 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   ADDED_MESSAGE: "{quantity} × {name} ajouté(s){suffix}{capped}",
   ADDED_AT_INITIATIVE: " à l'initiative {initiative}",
   ADDED_CAPPED: " (limité depuis {requested})",
-  MATCHING_CREATURES_ARIA: "Créatures correspondantes",
+  MATCHING_CREATURES_ARIA: "Joueurs et créatures correspondants",
   MORE_HIDDEN: "+{n} de plus — continuez à taper pour affiner",
+  PLAYER_BADGE: "JOUEUR",
+  ADDED_PLAYER_MESSAGE: "{name} ajouté(e)",
 
   // ReactionWatch.tsx
   REACTIONS_READY_HEADING: "RÉACTIONS PRÊTES",
@@ -139,9 +145,11 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   ORDINAL_5: "cinquième",
   STRIKE_THIS_TURN_SUFFIX: "{ordinal} Frappe de ce tour",
   SUPPRESSED_PENALTY_SUFFIX: "— pénalité pire déjà comptée",
+  SUPPRESSED_TITLE_SUFFIX: " (supprimée)",
   TOTAL_ATTACK_MODIFIER: "modificateur d'attaque total",
   ROLL_LABEL: "JET",
   VS_AC_TEMPLATE: "contre CA {ac}",
+  BASE_AC_TOOLTIP: "CA de base",
   NO_DAMAGE: "aucun dégât",
   RECORD_STRIKE_BUTTON: "Enregistrer la frappe",
 
@@ -149,16 +157,22 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   IWR_IMMUNE_SUFFIX: "immunisé",
   IWR_WEAKNESS: "faiblesse {value}",
   IWR_RESISTANCE: "résistance {value}",
-  NO_IWR_MSG: "Aucune immunité, faiblesse ou résistance — le type de dégâts n'a pas d'importance ici.",
   DAMAGE_TYPE_HEADING: "Type de dégâts — {n} pertinent(s)",
   DAMAGE_TYPE_GROUP_ARIA: "type de dégâts",
   DAMAGE_TYPE_NONE: "Aucun",
   NO_HP_MSG: "Aucun PV enregistré — Dégâts et Soins désactivés.",
   AMOUNT_ARIA: "montant",
   ADD_CONDITION_HEADING: "Ajouter un état",
-  CONDITION_VALUE_ARIA: "Valeur de l'état",
   PERSISTENT_DAMAGE_FORMULA_ARIA: "Formule des dégâts persistants",
   PERSISTENT_DAMAGE_PLACEHOLDER: "ex. 2d6",
+  APPLIED_CONDITIONS_ARIA: "états appliqués",
+  ADD_CONDITION_GROUP_ARIA: "ajouter un état",
+  CURRENT_INITIATIVE_TITLE: "Initiative actuelle",
+  CURRENT_INITIATIVE_ARIA: "Initiative actuelle {value}",
+  UNROLLED_LABEL: "non lancée",
+  INITIATIVE_MODIFIER_FOR_NAME_ARIA: "Modificateur d'initiative de {name}",
+  INITIATIVE_DIE_RESULT_ARIA: "Résultat du dé d'initiative",
+  SET_INITIATIVE_BUTTON: "Définir l'initiative",
 
   // TurnManager.tsx
   CLEAR_ENEMIES_LABEL: "Effacer les ennemis",
@@ -172,6 +186,12 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   STRIKES_THIS_TURN_LABEL: "FRAPPES CE TOUR-CI",
   RESET_STRIKES_ARIA: "Réinitialiser les frappes de ce tour",
   RESET_BUTTON: "réinitialiser",
+  DELAY_BUTTON: "Retarder",
+  DELAY_DISABLED_TITLE: "Retarder fait avancer le tour, ce qui nécessite d'abord l'initiative de tout le monde",
+  RETURN_FROM_DELAY_TITLE: "Revient dans l'ordre juste après {entry}, en prenant définitivement cette initiative",
+  CURRENT_TURN_FALLBACK: "le tour en cours",
+  RETURN_BUTTON: "Revenir : {entry}",
+  DEFAULT_COMBATANT_LABEL: "Combattant",
 
   // TurnPrompts.tsx
   RESOLVE_NOW_LABEL: "À RÉSOUDRE MAINTENANT",
@@ -181,8 +201,10 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   ITEM_WORD_PLURAL: "ÉLÉMENTS",
 
   // EncounterScreen.tsx
-  XP_TOOLTIP: "Chaque personnage gagne tout l'XP du combat — la taille du groupe ne change pas le gain",
-  XP_EACH_LABEL: "XP chacun",
+  XP_TOTAL_LABEL: "XP en jeu",
+  XP_TOTAL_TOOLTIP: "Chaque créature de la rencontre, vaincue ou non — ce que vaut le combat dans son ensemble. À comparer avec votre budget de rencontre.",
+  XP_EARNED_LABEL: "XP gagné chacun",
+  XP_EARNED_TOOLTIP: "Créatures effectivement vaincues. C'est ce que gagne chaque personnage à la fin du combat — la taille du groupe ne le divise pas.",
   PRESENT_COUNT: "{present} sur {total} présent(s)",
   PARTY_LEVEL_LABEL: "niveau du groupe {level}",
   LOADING_BOOKS_MSG: "chargement des ouvrages…",

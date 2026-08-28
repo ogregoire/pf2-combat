@@ -23,6 +23,10 @@ export const ALLOWLIST = new Set<StringKey>([
   "REMASTER_BADGE",
   "GROUP_INITIATIVE_PLACEHOLDER",
   "ROUND_LABEL",
+  // "action"/"actions" is spelled the same in both languages, same rule as
+  // ACTIONS_UNIT above — ActionCard's Use-button unit words.
+  "USE_ACTION_UNIT_SINGULAR",
+  "USE_ACTION_UNIT_PLURAL",
   // Language-neutral `{token}` templates, per the same rule as above.
   "PROMPT_NAME_VALUE",
   "PROMPT_NAME_DECREASE",

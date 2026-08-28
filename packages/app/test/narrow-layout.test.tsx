@@ -92,6 +92,24 @@ describe("EncounterScreen narrow layout", () => {
     expect(useEncounter.getState().encounter.activeEntryIndex).toBe(1);
   });
 
+  it("shows the unrolled-count message next to the pinned Next button, no matter which tab is active", async () => {
+    const user = userEvent.setup();
+    stubMatchMedia(true);
+    add("Alpha", 20);
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Beta", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 },
+        hp: { current: 20, max: 20 } },
+      null,
+    );
+    render(<EncounterScreen />);
+
+    for (const tabName of [/list/i, /active/i, /turn/i]) {
+      await user.click(screen.getByRole("tab", { name: tabName }));
+      expect(screen.getByText(/1 combatant has no initiative/i)).toBeDefined();
+    }
+  });
+
   it("badges the Turn tab with the unacknowledged prompt count", async () => {
     const user = userEvent.setup();
     stubMatchMedia(true);

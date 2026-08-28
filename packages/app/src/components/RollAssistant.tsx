@@ -9,6 +9,10 @@ function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `−${Math.abs(n)}`;
 }
 
+function modifierBreakdown(applied: Array<{ value: number; source: string }>): string {
+  return applied.map((m) => `${formatSigned(m.value)}: ${m.source}`).join("\n");
+}
+
 const DEGREE_LABEL_KEY: Record<Degree, StringKey> = {
   "critical-success": "DEGREE_CRITICAL_SUCCESS",
   success: "DEGREE_SUCCESS",
@@ -146,20 +150,20 @@ export function RollAssistant({
 
               <div style={{ marginTop: "12px", display: "flex", flexDirection: "column", gap: "3px", fontFamily: "var(--font-mono)", fontSize: "12.5px" }}>
                 {resolution.ledger.applied.map((m) => (
-                  <div key={m.source} style={{ display: "flex", gap: "10px", padding: "4px 0" }}>
+                  <div key={m.source} style={{ display: "flex", gap: "10px", padding: "4px 0" }} title={`${m.source}: ${formatSigned(m.value)}`}>
                     <span style={{ width: "46px", textAlign: "right", fontWeight: 600 }}>{formatSigned(m.value)}</span>
                     <span style={{ color: "var(--text-dim)" }}>{m.source}</span>
                   </div>
                 ))}
                 {resolution.ledger.suppressed.map((m) => (
-                  <div key={m.source} style={{ display: "flex", gap: "10px", padding: "4px 0" }}>
+                  <div key={m.source} style={{ display: "flex", gap: "10px", padding: "4px 0" }} title={`${m.source}: ${formatSigned(m.value)}${t("SUPPRESSED_TITLE_SUFFIX")}`}>
                     <span style={{ width: "46px", textAlign: "right", color: "var(--text-faint)" }}>{formatSigned(m.value)}</span>
                     <span style={{ color: "var(--text-faint)" }}>
                       {m.source} {t("SUPPRESSED_PENALTY_SUFFIX")}
                     </span>
                   </div>
                 ))}
-                <div style={{ display: "flex", gap: "10px", padding: "7px 0 0", marginTop: "3px", borderTop: "1px solid var(--border)", color: "var(--accent-text)", fontSize: "15px" }}>
+                <div style={{ display: "flex", gap: "10px", padding: "7px 0 0", marginTop: "3px", borderTop: "1px solid var(--border)", color: "var(--accent-text)", fontSize: "15px" }} title={modifierBreakdown(resolution.ledger.applied)}>
                   <span style={{ width: "46px", textAlign: "right", fontWeight: 600 }}>{formatSigned(resolution.modifier)}</span>
                   <span style={{ fontSize: "12.5px", alignSelf: "center", color: "var(--text-dim)" }}>{t("TOTAL_ATTACK_MODIFIER")}</span>
                 </div>
@@ -169,7 +173,12 @@ export function RollAssistant({
                 <div style={{ display: "flex", alignItems: "baseline", gap: "10px" }}>
                   <span style={{ fontSize: "11px", letterSpacing: "0.08em", color: "var(--text-faint)" }}>{t("ROLL_LABEL")}</span>
                   <span style={{ fontFamily: "var(--font-mono)", fontSize: "26px", fontWeight: 600, color: "var(--accent-text)" }}>{rollLine}</span>
-                  <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>{format(t("VS_AC_TEMPLATE"), { ac: resolution.effectiveAc })}</span>
+                  <span
+                    style={{ fontSize: "12px", color: "var(--text-faint)" }}
+                    title={resolution.acLedger.applied.length > 0 ? modifierBreakdown(resolution.acLedger.applied) : t("BASE_AC_TOOLTIP")}
+                  >
+                    {format(t("VS_AC_TEMPLATE"), { ac: resolution.effectiveAc })}
+                  </span>
                 </div>
 
                 <div

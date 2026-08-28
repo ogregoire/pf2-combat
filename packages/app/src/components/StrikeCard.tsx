@@ -3,13 +3,43 @@ import { mapLadder } from "../rules/map.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { CostPips } from "./ActionCard.js";
 import { TraitTag } from "./TraitTag.js";
+import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
 
 function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `${n}`;
 }
 
-function damageText(attack: Attack): string {
-  return attack.damage.map((d) => `${d.formula} ${d.type}`).join(" + ");
+/**
+ * A strike's damage line, one entry per damage component. The formula stays
+ * neutral mono — it's a number to read — while the type takes its own colour
+ * and glyph from the same table the damage popover's selector uses, so a
+ * strike's fire component and the creature's fire resistance read alike.
+ */
+function DamageLine({ attack }: { attack: Attack }): React.ReactElement {
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
+      {attack.damage.map((d, i) => (
+        <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: "5px" }}>
+          {i > 0 && <span style={{ color: "var(--text-faint)" }}>+</span>}
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>
+            {d.formula}
+          </span>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "4px",
+              fontSize: "12px",
+              color: damageTypeStyle(d.type).color,
+            }}
+          >
+            <DamageTypeIcon type={d.type} size={11} />
+            {d.type}
+          </span>
+        </span>
+      ))}
+    </span>
+  );
 }
 
 /** One Strike, now just another 1-action row in the merged action list —
@@ -44,10 +74,13 @@ export function StrikeCard({
         fontFamily: "inherit",
         textAlign: "left",
         width: "100%",
-        padding: "10px 14px",
+        // Same frame as ActionCard's enabled state — a Strike is an action,
+        // and a thinner border here made the list read as two kinds of row.
+        // Selection is carried by the background alone.
+        padding: "11px 14px",
         borderRadius: "4px",
         background: selected ? "var(--panel-high)" : "var(--panel-raised)",
-        border: `1px solid ${selected ? "var(--border-strong)" : "var(--border)"}`,
+        border: "1px solid var(--border-strong)",
         cursor: "pointer",
         color: "var(--text)",
       }}
@@ -74,9 +107,7 @@ export function StrikeCard({
             </span>
           ))}
         </div>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>
-          {damageText(attack)}
-        </span>
+        <DamageLine attack={attack} />
       </div>
       {attack.traits.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginTop: "6px" }}>

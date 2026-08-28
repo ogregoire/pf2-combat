@@ -66,6 +66,12 @@ export function seedFromEntry(entry: IndexEntry, creature: Creature | null): Com
     reactions: creature !== null ? toReactions(creature) : [],
     attacks: creature !== null ? creature.attacks : [],
     actions: creature !== null ? creature.actions : [],
+    // A creature's Perception is its initiative modifier — PF2e always
+    // rolls initiative with Perception unless the GM calls for a different
+    // skill, which this app doesn't model. Null (not the four fields'
+    // "empty" state) when no creature record has loaded yet, since there's
+    // no reasonable default for a number the GM will roll against.
+    initiativeModifier: creature?.perception ?? null,
   };
 }
 
@@ -180,6 +186,11 @@ export function AddCombatants({
     setActThisRound(false);
   };
 
+  // A blank field means "not rolled yet", same as QuickAdd — not a 0. Also
+  // drives the "will act next round" hint below, so there is only one
+  // reading of what the GM typed.
+  const typedInitiative = initiative.trim() === "" ? null : Number(initiative) || 0;
+
   const handleAdd = (): void => {
     if (!selected) return;
     // The RAW (unlocalized) entry, not `selected` — `selected` carries the
@@ -188,28 +199,36 @@ export function AddCombatants({
     const rawSelected = resolved.find((e) => e.id === selectedId);
     if (!rawSelected) return;
     const qty = Math.max(1, Math.trunc(Number(quantity)) || 1);
-    const typedInitiative = Number(initiative) || 0;
     const seed = seedFromEntry(rawSelected, loadedCreature);
 
     // "act this round instead": the combatant's turn-order slot is lowered
     // just enough to still be reached this round, but the GM's typed
     // initiative is never overwritten — it's parked as trueInitiative and
-    // restored (see store.nextTurn) the moment the round wraps.
-    const actingEarly = actThisRound && activeEntry !== undefined && typedInitiative > activeEntry.initiative;
-    const slotInitiative = actingEarly ? Math.min(typedInitiative, activeEntry!.initiative) : typedInitiative;
-    const trueInitiative = actingEarly ? typedInitiative : undefined;
+    // restored (see store.nextTurn) the moment the round wraps. An active
+    // entry with no initiative rolled yet is treated as a 0 for this
+    // comparison — there's no real value to measure against. An unrolled
+    // newcomer (typedInitiative null) can't be "acting early" either — there
+    // is no numeric value to compare or to restore later — so it always
+    // falls through to the plain (null) slot, which already sorts above
+    // everything.
+    const activeInitiative = activeEntry?.initiative ?? 0;
+    let slotInitiative = typedInitiative;
+    let trueInitiative: number | undefined;
+    if (typedInitiative !== null && actThisRound && activeEntry !== undefined && typedInitiative > activeInitiative) {
+      slotInitiative = Math.min(typedInitiative, activeInitiative);
+      trueInitiative = typedInitiative;
+    }
 
     if (qty === 1) addCombatant(seed, slotInitiative, trueInitiative);
     else addMany(seed, qty, slotInitiative, trueInitiative);
     clearSelection();
   };
 
-  const typedInitiative = initiative.trim() === "" ? null : Number(initiative) || 0;
   const willActNextRound =
     running &&
     activeEntry !== undefined &&
     typedInitiative !== null &&
-    typedInitiative > activeEntry.initiative &&
+    typedInitiative > (activeEntry.initiative ?? 0) &&
     !actThisRound;
 
   const qtyForLabel = Math.max(1, Math.trunc(Number(quantity)) || 1);

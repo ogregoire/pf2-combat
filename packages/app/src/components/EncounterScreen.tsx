@@ -3,35 +3,101 @@ import type { Creature } from "@pf2/schema";
 import type { FetchFn } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
 import { useCatalog } from "../hooks/useCatalog.js";
-import { format, useT } from "../i18n/index.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
+import { format, useT } from "../i18n/index.js";
 import { encounterXp, partyLevelFor } from "../rules/xp.js";
-import { useEncounter } from "../state/store.js";
+import { unrolledCount, useEncounter } from "../state/store.js";
 import { ActiveCombatant } from "./ActiveCombatant.js";
 import { AddCombatants } from "./AddCombatants.js";
 import { CombatantList } from "./CombatantList.js";
 import { NextButton } from "./NextButton.js";
 import { PartyManager } from "./PartyManager.js";
-import { TurnManager, remainingActionsFor } from "./TurnManager.js";
+import { TurnManager, UnrolledNotice, remainingActionsFor } from "./TurnManager.js";
 import { activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
 
-/** Main.dc.html's top bar: encounter name, the XP award per character (the
- * plain sum of creature XP — GM Core says this never changes with party
- * size, so it is computed once against the derived party level and never
- * divided or adjusted), and the present/party-level readout. Difficulty
- * badges are out of scope for phase 1 and are deliberately not built here. */
+/** Main.dc.html's top bar: encounter name, two XP readouts, and the
+ * present/party-level readout. Difficulty badges are out of scope for phase 1
+ * and are deliberately not built here.
+ *
+ * The two XP figures answer different questions and were previously conflated
+ * into one ambiguous "XP each" badge:
+ *
+ * - **On the table** — the sum of every creature in the encounter, defeated or
+ *   not. This is what the fight is worth in total, i.e. the figure the GM
+ *   weighs against an encounter budget when judging difficulty.
+ * - **Earned** — the same sum restricted to creatures actually defeated. XP is
+ *   awarded for adversaries the party *overcomes* (GM Core, Experience
+ *   Points), so a creature that flees or is left standing pays nothing. This
+ *   is what each character banks when the fight ends, and it climbs as
+ *   creatures fall until it meets the total.
+ *
+ * Both are per-character amounts, and neither is divided by party size: GM
+ * Core is explicit that "each character gains XP equal to the total XP of the
+ * creatures and hazards in the encounter", and that adjusting an encounter's
+ * *budget* for a party larger or smaller than four changes the difficulty, not
+ * the payout. Party level still matters, since each creature's XP is priced
+ * against it. */
+/** One XP readout. `tone` is what keeps the pair from reading as the same
+ * number twice: the running award takes the green treatment (it is the figure
+ * that moves during a fight), while the encounter total stays a muted
+ * reference figure beside it. */
+function XpBadge({
+  value,
+  label,
+  title,
+  testId,
+  tone,
+}: {
+  value: number;
+  label: string;
+  title: string;
+  testId: string;
+  tone: "muted" | "award";
+}): React.ReactElement {
+  const award = tone === "award";
+  return (
+    <div
+      data-testid={testId}
+      title={title}
+      style={{
+        display: "flex",
+        alignItems: "baseline",
+        gap: "5px",
+        padding: "3px 11px 4px",
+        borderRadius: "3px",
+        background: award ? "var(--ok-bg)" : "var(--panel-raised)",
+        border: `1px solid ${award ? "var(--border-strong)" : "var(--border)"}`,
+      }}
+    >
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "17px",
+          fontWeight: 600,
+          color: award ? "var(--ok)" : "var(--text-dim)",
+        }}
+      >
+        {value}
+      </span>
+      <span style={{ fontSize: "10.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{label}</span>
+    </div>
+  );
+}
+
 function TopBar(): React.ReactElement {
   const t = useT();
   const name = useEncounter((s) => s.encounter.name);
   const combatants = useEncounter((s) => s.encounter.combatants);
   const players = useEncounter((s) => s.players);
 
-  const creatureLevels = Object.values(combatants)
-    .filter((c) => c.kind === "creature")
-    .map((c) => c.level);
+  const creatures = Object.values(combatants).filter((c) => c.kind === "creature");
   const presentPlayers = players.filter((p) => p.present);
   const partyLevel = partyLevelFor(presentPlayers.map((p) => p.level)).level;
-  const xp = encounterXp(creatureLevels, partyLevel);
+  const totalXp = encounterXp(creatures.map((c) => c.level), partyLevel);
+  const earnedXp = encounterXp(
+    creatures.filter((c) => c.defeated).map((c) => c.level),
+    partyLevel,
+  );
 
   return (
     <div
@@ -50,22 +116,21 @@ function TopBar(): React.ReactElement {
         {name}
       </div>
 
-      <div
-        title={t("XP_TOOLTIP")}
-        style={{
-          display: "flex",
-          alignItems: "baseline",
-          gap: "5px",
-          padding: "3px 11px 4px",
-          borderRadius: "3px",
-          background: "var(--ok-bg)",
-          border: "1px solid var(--border-strong)",
-        }}
-      >
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, color: "var(--ok)" }}>
-          {xp}
-        </span>
-        <span style={{ fontSize: "10.5px", letterSpacing: "0.06em", color: "var(--text-dim)" }}>{t("XP_EACH_LABEL")}</span>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <XpBadge
+          value={totalXp}
+          label={t("XP_TOTAL_LABEL")}
+          testId="xp-total"
+          title={t("XP_TOTAL_TOOLTIP")}
+          tone="muted"
+        />
+        <XpBadge
+          value={earnedXp}
+          label={t("XP_EARNED_LABEL")}
+          testId="xp-earned"
+          title={t("XP_EARNED_TOOLTIP")}
+          tone="award"
+        />
       </div>
 
       <div style={{ flexGrow: 1 }} />
@@ -295,6 +360,10 @@ export function EncounterScreen({
   const activeCombatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const unacknowledgedCount = activeCombatant ? unacknowledgedCountFor(activeCombatant, acknowledgedPrompts) : 0;
   const actionsRemaining = activeCombatant ? remainingActionsFor(activeCombatant) : undefined;
+  // Only gates whether the pinned bar reserves space for UnrolledNotice
+  // below — the message text itself lives in exactly one place
+  // (TurnManager.UnrolledNotice), not duplicated here.
+  const unrolled = useEncounter((s) => unrolledCount(s.encounter));
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100dvh", background: "var(--bg)", color: "var(--text)" }}>
@@ -347,6 +416,16 @@ export function EncounterScreen({
               zIndex: 40,
             }}
           >
+            {/* Pinned bar is reachable from every tab, so this is the one
+               place the guard's reason is guaranteed visible no matter
+               which pane the GM is looking at. Guarded on `unrolled` (only
+               a count check, not a copy of the message) so the bar doesn't
+               reserve this space when there's nothing to say. */}
+            {unrolled > 0 && (
+              <div style={{ textAlign: "center", marginBottom: "6px" }}>
+                <UnrolledNotice />
+              </div>
+            )}
             <NextButton unacknowledgedCount={unacknowledgedCount} actionsRemaining={actionsRemaining} />
           </div>
         </>

@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { useEncounter } from "../state/store.js";
 import { format, useT } from "../i18n/index.js";
+import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
 import { ConfirmButton } from "./ConfirmButton.js";
 
@@ -34,6 +33,7 @@ function emptyPlayer(): Player {
     ac: 0,
     saves: { fortitude: 0, reflex: 0, will: 0 },
     present: true,
+    initiativeModifier: null,
   };
 }
 
@@ -59,6 +59,20 @@ function toOptionalNumber(raw: string): number | undefined {
 
 function hpDisplay(hp: number | undefined): string {
   return hp === undefined ? "" : String(hp);
+}
+
+/** The initiative modifier makes the same distinction HP does, for a
+ * sharper reason: `null` means "nobody has told the app this player's
+ * modifier yet", which is what the row popover's one-time prompt is gated
+ * on, while 0 is a real +0 that would silence that prompt for good. So a
+ * blank field maps back to null, never to 0 — and a stored 0 still shows as
+ * "0" rather than being blanked the way numDisplay blanks a level of 0. */
+function modifierDisplay(mod: number | null): string {
+  return mod === null ? "" : String(mod);
+}
+
+function toNullableNumber(raw: string): number | null {
+  return raw.trim() === "" ? null : Number(raw) || 0;
 }
 
 const fieldStyle: React.CSSProperties = {
@@ -89,31 +103,7 @@ export function PartyManager(): React.ReactElement {
   const t = useT();
   const players = useEncounter((s) => s.players);
   const setPlayers = useEncounter((s) => s.setPlayers);
-  const addCombatant = useEncounter((s) => s.addCombatant);
   const clearPlayers = useEncounter((s) => s.clearPlayers);
-
-  // Draft initiative per player, entered here and consumed by "Add to
-  // encounter" below — this is the only place a kind:"pc" combatant is ever
-  // constructed, carrying the player's AC and saves onto it so the roll
-  // assistant can compute against them (the entire reason those are
-  // collected here in the first place).
-  const [initiatives, setInitiatives] = useState<Record<string, string>>({});
-
-  const addToEncounter = (p: Player): void => {
-    const initiative = Number(initiatives[p.id]) || 0;
-    addCombatant(
-      {
-        kind: "pc",
-        name: p.name,
-        hp: p.hp !== undefined ? { current: p.hp, max: p.hp } : null,
-        ac: p.ac,
-        saves: p.saves,
-        level: p.level,
-      },
-      initiative,
-    );
-    setInitiatives((prev) => ({ ...prev, [p.id]: "" }));
-  };
 
   const update = (id: string, patch: Partial<Player>): void => {
     setPlayers(players.map((p) => (p.id === id ? { ...p, ...patch } : p)));
@@ -170,6 +160,12 @@ export function PartyManager(): React.ReactElement {
             style={{
               display: "flex",
               alignItems: "flex-end",
+              // Eight fields plus Present and Remove no longer fit one line
+              // in the drawer this panel lives in — without wrapping, the
+              // only flexible item (Name) is squeezed to a couple of pixels
+              // and the row becomes unusable. Wrapping puts the overflow on
+              // a second line inside the same card instead.
+              flexWrap: "wrap",
               gap: "12px",
               padding: "12px 14px",
               borderRadius: "4px",
@@ -177,7 +173,14 @@ export function PartyManager(): React.ReactElement {
               background: "var(--panel)",
             }}
           >
-            <label style={{ ...fieldStyle, flexGrow: 1 }}>
+            {/* flexGrow with no minWidth keeps a flex item's default min-width:
+               auto, which is its content's own intrinsic width — so it never
+               actually shrinks, and pushes the row wider than the drawer.
+               A floor rather than 0: Name is the one field that has to hold
+               a word, and letting it shrink without limit is what turned it
+               into a sliver when the eighth field arrived. Below this width
+               the row wraps instead (see flexWrap above). */}
+            <label style={{ ...fieldStyle, flexGrow: 1, minWidth: "140px" }}>
               {t("LABEL_NAME")}
               <input
                 aria-label={t("LABEL_NAME")}
@@ -213,6 +216,23 @@ export function PartyManager(): React.ReactElement {
                 aria-label={t("LABEL_HP")}
                 value={hpDisplay(p.hp)}
                 onChange={(e) => update(p.id, { hp: toOptionalNumber(e.target.value) })}
+                style={inputStyle}
+              />
+            </label>
+
+            {/* The roster is the only place this can be corrected. The row
+               popover asks for it once, the first time this PC rolls, and
+               its prompt is gated on the value still being unknown — so
+               without a field here a mistyped +50 was permanent short of
+               deleting the player. It sits with the other permanent numbers
+               rather than in the encounter, because that is what it is: the
+               modifier survives between fights, the roll doesn't. */}
+            <label style={{ ...fieldStyle, width: "64px" }}>
+              {t("LABEL_INITIATIVE_MODIFIER")}
+              <input
+                aria-label={t("INITIATIVE_MODIFIER_ARIA")}
+                value={modifierDisplay(p.initiativeModifier)}
+                onChange={(e) => update(p.id, { initiativeModifier: toNullableNumber(e.target.value) })}
                 style={inputStyle}
               />
             </label>
@@ -256,39 +276,6 @@ export function PartyManager(): React.ReactElement {
               />
               {t("LABEL_PRESENT")}
             </label>
-
-            {p.present && (
-              <>
-                <label style={{ ...fieldStyle, width: "56px" }}>
-                  {t("LABEL_INITIATIVE")}
-                  <input
-                    aria-label={format(t("INITIATIVE_FOR_NAME_ARIA"), {
-                      name: p.name.trim() === "" ? t("PLAYER_SINGULAR") : p.name,
-                    })}
-                    value={initiatives[p.id] ?? ""}
-                    onChange={(e) => setInitiatives((prev) => ({ ...prev, [p.id]: e.target.value }))}
-                    style={inputStyle}
-                  />
-                </label>
-                <button
-                  type="button"
-                  onClick={() => addToEncounter(p)}
-                  style={{
-                    fontFamily: "inherit",
-                    fontSize: "12px",
-                    padding: "7px 10px",
-                    borderRadius: "3px",
-                    border: "1px solid var(--border-strong)",
-                    background: "var(--accent-bg)",
-                    color: "var(--accent-text)",
-                    cursor: "pointer",
-                    marginBottom: "1px",
-                  }}
-                >
-                  {t("ADD_TO_ENCOUNTER_BUTTON")}
-                </button>
-              </>
-            )}
 
             <button
               type="button"

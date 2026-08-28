@@ -1,8 +1,18 @@
+import { useState } from "react";
 import type { Action } from "@pf2/schema";
-import { useT } from "../i18n/index.js";
+import { format, useT } from "../i18n/index.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { TraitTag } from "./TraitTag.js";
+
+function ReactionIcon(): React.ReactElement {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" style={{ flexShrink: 0 }}>
+      <circle cx="6" cy="6" r="4.5" fill="none" stroke="var(--text-faint)" strokeWidth="1.2"/>
+      <path d="M6 2v8M2 6h8" stroke="var(--text-faint)" strokeWidth="1.2" strokeLinecap="round"/>
+    </svg>
+  );
+}
 
 export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement {
   const t = useT();
@@ -11,7 +21,7 @@ export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement
     return (
       <div style={{ display: "flex", gap: "3px" }}>
         {Array.from({ length: count }, (_, i) => (
-          <svg key={i} width="11" height="11" viewBox="0 0 12 12">
+          <svg key={i} data-testid="cost-pip" width="11" height="11" viewBox="0 0 12 12">
             <path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="var(--accent-text)" />
           </svg>
         ))}
@@ -19,9 +29,12 @@ export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement
     );
   }
   return (
-    <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>
-      {cost === "free" ? t("COST_FREE") : t("COST_REACTION")}
-    </span>
+    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+      <ReactionIcon />
+      <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>
+        {cost === "free" ? t("COST_FREE") : t("COST_REACTION")}
+      </span>
+    </div>
   );
 }
 
@@ -47,50 +60,93 @@ function ChildArrow(): React.ReactElement {
   );
 }
 
-/** One action row from Main.dc.html's action list — cost pips, name, trait
- * chips and description. `disabled` renders it dimmed and folded to its
- * header line, but the row stays in the DOM: unaffordable is an indicator,
- * never a blocker (the GM might still spend a hero point, or the pool
- * tracking might be wrong). A
- * `cost: "passive"` action never has a pool to afford, so it renders as
- * Main.dc.html's separate passive-card anatomy instead of a pressable
- * button — there's nothing to "press" on a passive. */
+function FoldArrow({ expanded }: { expanded: boolean }): React.ReactElement {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" style={{ flexShrink: 0, transform: expanded ? "rotate(0deg)" : "rotate(-90deg)" }}>
+      <path d="M2 5l5 5 5-5" fill="none" stroke="var(--text-faint)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function PassiveCard({ action, glossary }: { action: Action; glossary: Map<string, TraitInfo> }): React.ReactElement {
+  const t = useT();
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <button
+      type="button"
+      aria-expanded={expanded}
+      onClick={() => setExpanded((prev) => !prev)}
+      style={{
+        fontFamily: "inherit",
+        textAlign: "left",
+        width: "100%",
+        padding: "9px 12px",
+        borderRadius: "4px",
+        background: "var(--panel)",
+        border: "1px solid var(--border)",
+        cursor: "pointer",
+        color: "var(--text)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <FoldArrow expanded={expanded} />
+        <span style={{ fontWeight: 500, fontSize: "13px" }}>{action.name}</span>
+        <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--text-faint)" }}>{t("COST_PASSIVE")}</span>
+      </div>
+      {expanded && (
+        <>
+          <TraitRow traits={action.traits} glossary={glossary} />
+          <div
+            style={{ marginTop: "4px", fontSize: "12px", color: "var(--text-dim)" }}
+            dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
+          />
+        </>
+      )}
+    </button>
+  );
+}
+
 export function ActionCard({
   action,
   disabled,
+  selected = false,
+  onSelect,
   onUse,
   glossary,
 }: {
   action: Action;
   disabled: boolean;
-  /** Omitted for passives, which have no pool to spend from. */
+  selected?: boolean;
+  onSelect?: () => void;
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
   const t = useT();
-  if (action.cost === "passive") {
-    return (
-      <div style={{ flexGrow: 1, padding: "9px 12px", borderRadius: "4px", background: "var(--panel)", border: "1px solid var(--border)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--text-faint)" }}>{t("COST_PASSIVE")}</span>
-          <span style={{ fontWeight: 500, fontSize: "13px" }}>{action.name}</span>
-        </div>
-        <TraitRow traits={action.traits} glossary={glossary} />
-        <div
-          style={{ marginTop: "4px", fontSize: "12px", color: "var(--text-dim)" }}
-          dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
-        />
-      </div>
-    );
-  }
+  if (action.cost === "passive") return <PassiveCard action={action} glossary={glossary} />;
+
+  const cost = action.cost === "1" || action.cost === "2" || action.cost === "3" ? Number(action.cost) : 0;
+  const isExpanded = selected;
 
   return (
-    <button
-      type="button"
-      disabled={disabled}
-      onClick={onUse}
+    <div
+      role="button"
+      tabIndex={0}
+      aria-pressed={selected}
+      onClick={onSelect}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect?.();
+        }
+      }}
       style={{
-        fontFamily: "inherit",
+        // A row, not a column: the content stacks on the left and the Use
+        // button sits to its right, `alignItems: center` centring that button
+        // against the *whole* card rather than against the header line — an
+        // expanded card's Use button used to ride up next to the name.
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
         textAlign: "left",
         width: "100%",
         padding: "11px 14px",
@@ -102,60 +158,102 @@ export function ActionCard({
         color: "var(--text)",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <CostPips cost={action.cost} />
-        <span style={{ fontWeight: 600 }}>{action.name}</span>
-        {action.frequency && (
-          <span
-            style={{
-              fontSize: "10px",
-              letterSpacing: "0.05em",
-              padding: "2px 6px",
-              borderRadius: "2px",
-              background: "var(--border)",
-              color: "var(--text-dim)",
-            }}
-          >
-            {action.frequency.max}/{action.frequency.per.toUpperCase()}
-          </span>
+      <div style={{ flexGrow: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <FoldArrow expanded={isExpanded} />
+          <CostPips cost={action.cost} />
+          <span style={{ fontWeight: 600 }}>{action.name}</span>
+          {action.frequency && (
+            <span
+              style={{
+                fontSize: "10px",
+                letterSpacing: "0.05em",
+                padding: "2px 6px",
+                borderRadius: "2px",
+                background: "var(--border)",
+                color: "var(--text-dim)",
+              }}
+            >
+              {action.frequency.max}/{action.frequency.per.toUpperCase()}
+            </span>
+          )}
+        </div>
+        {isExpanded && (
+          <>
+            <TraitRow traits={action.traits} glossary={glossary} />
+            <div
+              style={{ marginTop: "6px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" }}
+              dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
+            />
+          </>
         )}
       </div>
-      {!disabled && (
-        <>
-          <TraitRow traits={action.traits} glossary={glossary} />
-          <div
-            style={{ marginTop: "6px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" }}
-            dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
-          />
-        </>
+      {selected && onUse && (
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={(e) => {
+            e.stopPropagation();
+            onUse();
+          }}
+          style={{
+            fontFamily: "inherit",
+            alignSelf: "center",
+            fontSize: "11px",
+            fontWeight: 600,
+            padding: "5px 10px",
+            borderRadius: "3px",
+            border: "1px solid var(--border-strong)",
+            background: disabled ? "var(--panel)" : "var(--accent-bg)",
+            color: disabled ? "var(--text-faint)" : "var(--accent-text)",
+            opacity: disabled ? 0.55 : 1,
+            cursor: disabled ? "default" : "pointer",
+            flexShrink: 0,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {cost > 0
+            ? format(t("USE_ACTIONS_BUTTON"), { cost, unit: cost === 1 ? t("USE_ACTION_UNIT_SINGULAR") : t("USE_ACTION_UNIT_PLURAL") })
+            : t("USE_REACTION_BUTTON")}
+        </button>
       )}
-    </button>
+    </div>
   );
 }
 
-/** A child action (e.g. Rend) nested directly beneath the Strike it belongs
- * to, per `buildActionList`'s narrow detection rule — the down-then-right
- * glyph and indent are the only difference from a top-level action; it's
- * still the same `ActionCard`, so its cost pip, trait tags, Requirements
- * and Effect all render inline and unexpanded (not knowing what Rend did
- * was the original complaint this exists to fix), and it's still spendable
- * from the action pool like any other action. */
 export function ChildActionRow({
   action,
   disabled,
+  selected = false,
+  onSelect,
   onUse,
   glossary,
+  parentName,
 }: {
   action: Action;
   disabled: boolean;
+  selected?: boolean;
+  onSelect?: () => void;
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
+  parentName?: string;
 }): React.ReactElement {
+  const actionWithParent: Action = parentName
+    ? { ...action, name: `${action.name} (${parentName})` }
+    : action;
+
   return (
     <div style={{ display: "flex", gap: "6px" }}>
       <ChildArrow />
       <div style={{ flexGrow: 1, minWidth: 0 }}>
-        <ActionCard action={action} disabled={disabled} onUse={onUse} glossary={glossary} />
+        <ActionCard
+          action={actionWithParent}
+          disabled={disabled}
+          selected={selected}
+          onSelect={onSelect}
+          onUse={onUse}
+          glossary={glossary}
+        />
       </div>
     </div>
   );

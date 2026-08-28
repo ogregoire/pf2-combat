@@ -54,11 +54,63 @@ function getDb(): Promise<IDBPDatabase<TrackerDB>> {
   return dbPromise;
 }
 
+/** A payload saved before `initiativeModifier` existed on `Player`/
+ * `Combatant` has neither field at all — not `null` — because it was never
+ * written. `in` (not `??`) is what tells "predates this field" apart from a
+ * value some future save deliberately set to `null`, even though both
+ * currently resolve to the same default. */
+function withInitiativeModifierDefault<T extends object>(entity: T): T {
+  return "initiativeModifier" in entity ? entity : { ...entity, initiativeModifier: null };
+}
+
+/** Same idea for the three fields Delay added to `Entry` (see their doc
+ * comments in types.ts). A missing `delayed` would merely be falsy, but a
+ * missing `initiativeBeforeDelay` is `undefined`, and the row's "did a
+ * return rewrite this initiative?" test is `!== null` — so without this an
+ * encounter saved before Delay existed would render a struck-through
+ * "undefined" on every row. `endOfTurnResolvedRound` is compared against a
+ * round number, so `undefined` would behave correctly by accident; it is
+ * defaulted anyway, so that no reader has to know which of these fields
+ * happens to survive being `undefined` and which doesn't. */
+function withDelayDefaults<T extends object>(entry: T): T {
+  return {
+    ...("delayed" in entry ? {} : { delayed: false }),
+    ...("initiativeBeforeDelay" in entry ? {} : { initiativeBeforeDelay: null }),
+    ...("endOfTurnResolvedRound" in entry ? {} : { endOfTurnResolvedRound: null }),
+    ...entry,
+  };
+}
+
+/**
+ * `Entry.orderKey` is the key the entire turn order sorts on, and it landed
+ * on `Entry` without a SCHEMA_VERSION bump too — so an encounter saved
+ * before it existed arrives with none, while the type promises a `number`.
+ * The sorter keeps its own `?? 0` fallback as defence in depth, but that
+ * fallback alone would tie *every* entry in an old save at 0 and scramble a
+ * returning GM's fight; the entry's own initiative is what it was actually
+ * ordered by, and is exactly what the store seeds a new entry's key from
+ * (`orderKey: initiative ?? 0`). Unrolled entries land on 0 the same way,
+ * and are sorted above everything on `initiative === null` regardless. */
+function withOrderKeyDefault<T extends object>(entry: T): T {
+  if ("orderKey" in entry) return entry;
+  const { initiative } = entry as { initiative?: number | null };
+  return { ...entry, orderKey: initiative ?? 0 };
+}
+
 /**
  * Stamps a payload with the current schema version, upgrading a payload
  * that predates `schemaVersion` (version 0). Refuses a payload newer than
  * what this build understands, rather than silently truncating it —
  * opening an old save with a new client is fine; the reverse isn't.
+ *
+ * Also defaults a handful of fields that were added to `Player`,
+ * `Combatant` and `Entry` without a `SCHEMA_VERSION` bump (see those types'
+ * `initiativeModifier`, `orderKey` and `delayed`/`initiativeBeforeDelay`/
+ * `endOfTurnResolvedRound` doc comments) — a real shape change would earn its
+ * own version and its own migration step here, but this is just a reader
+ * filling in a field older data never had, so the version stays put.
+ * Doing it once here, rather than at every call site that reads the field,
+ * is what lets those call sites trust the `number | null` type as written.
  */
 export function migrate(raw: unknown): Record<string, unknown> {
   const payload: Record<string, unknown> =
@@ -70,6 +122,33 @@ export function migrate(raw: unknown): Record<string, unknown> {
     );
   }
   payload.schemaVersion = SCHEMA_VERSION;
+
+  if (Array.isArray(payload.players)) {
+    payload.players = (payload.players as object[]).map(withInitiativeModifierDefault);
+  }
+
+  const encounter = payload.encounter;
+  if (encounter !== null && typeof encounter === "object") {
+    let patched = encounter as Record<string, unknown>;
+    const combatants = patched.combatants;
+    if (combatants !== null && typeof combatants === "object") {
+      const defaulted = Object.fromEntries(
+        Object.entries(combatants as Record<string, object>).map(([id, c]) => [
+          id,
+          withInitiativeModifierDefault(c),
+        ]),
+      );
+      patched = { ...patched, combatants: defaulted };
+    }
+    if (Array.isArray(patched.entries)) {
+      patched = {
+        ...patched,
+        entries: (patched.entries as object[]).map((e) => withOrderKeyDefault(withDelayDefaults(e))),
+      };
+    }
+    payload.encounter = patched;
+  }
+
   return payload;
 }
 

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Condition, GlossaryEntry, Trait } from "@pf2/schema";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
@@ -40,9 +40,16 @@ const frTraits: TraitsI18n = {
 // French overlay is keyed off the English list (same layering as
 // glossary.json/traits.json in useTraitGlossary) — a French-only entry with
 // no matching English `Condition` would never be reached.
-const conditions: Condition[] = [{ slug: "frightened", name: "Frightened", isValued: true, description: "<p>Frightened things.</p>" }];
+// "sickened" is included too, but never applied to the test combatant — it
+// stays in the one-click picker's pool, so it's what verifies the picker
+// itself (not just an applied chip) resolves a name in French.
+const conditions: Condition[] = [
+  { slug: "frightened", name: "Frightened", isValued: true, description: "<p>Frightened things.</p>" },
+  { slug: "sickened", name: "Sickened", isValued: true, description: "<p>Sickened things.</p>" },
+];
 const frConditions: ReferenceI18n = {
   frightened: { name: "Effrayé", description: null },
+  sickened: { name: "Nauséeux", description: null },
 };
 
 function fakeFetch(over: { traits?: Trait[]; frTraits?: TraitsI18n } = {}): FetchFn {
@@ -85,12 +92,18 @@ describe("conditions, traits and the glossary render in French", () => {
     render(<CombatantList />);
     await user.hover(screen.getByText("Ours effrayé"));
 
-    // Both the row's own chip (CombatantRow) and the popover's — the same
-    // applied condition can't show two languages at once.
-    expect(screen.getAllByText("EFFRAYÉ 2")).toHaveLength(2);
+    // The row's own chip (CombatantRow) — name and value in one string.
+    expect(screen.getByText("EFFRAYÉ 2")).toBeTruthy();
     expect(screen.queryByText("FRIGHTENED 2")).toBeNull();
-    // The picker's <option> for the same condition.
-    expect(screen.getByRole("option", { name: "Effrayé" })).toBeTruthy();
+    // The popover's applied-condition tag — name and stepper value are two
+    // separate nodes there (see RowPopover's Stepper), but the same
+    // applied condition can't show two languages at once.
+    const appliedGroup = screen.getByRole("group", { name: "états appliqués" });
+    expect(within(appliedGroup).getByText("EFFRAYÉ")).toBeTruthy();
+    expect(within(appliedGroup).getByText("2")).toBeTruthy();
+    expect(within(appliedGroup).queryByText(/FRIGHTENED/)).toBeNull();
+    // The one-click picker's button for a condition not yet applied.
+    expect(screen.getByRole("button", { name: "Nauséeux" })).toBeTruthy();
   });
 
   it("shows French trait hover text", async () => {

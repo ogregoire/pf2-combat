@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -5,6 +7,16 @@ import { AddCombatants, seedFromEntry } from "../src/components/AddCombatants.js
 import { PartyManager } from "../src/components/PartyManager.js";
 import { useEncounter } from "../src/state/store.js";
 import type { Creature, IndexEntry } from "@pf2/schema";
+
+// Loads a real creature record from the dataset (same idiom as
+// action-layout.test.ts and combatant-list.test.tsx) so the perception ->
+// initiativeModifier plumbing is exercised against the actual record shape
+// rather than a hand-picked fixture. Vitest runs from the repo root (see the
+// root vitest.config.ts's `include`).
+const dataDir = resolve(process.cwd(), "data/creatures");
+function loadRealCreature(id: string): Creature {
+  return JSON.parse(readFileSync(resolve(dataDir, `${id}.json`), "utf-8")) as Creature;
+}
 
 const entries: IndexEntry[] = [
   { id: "pathfinder-monster-core/goblin-warrior", slug: "goblin-warrior",
@@ -56,6 +68,14 @@ describe("AddCombatants", () => {
     await user.click(screen.getByRole("button", { name: /add 6/i }));
     expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(6);
   });
+
+  it("leaves the entry unrolled when the GM adds without typing an initiative", async () => {
+    const user = userEvent.setup();
+    render(<AddCombatants entries={entries} />);
+    await user.click(screen.getByRole("button", { name: /add Goblin Warrior/i }));
+    await user.click(screen.getByRole("button", { name: /add 1 goblin warrior/i }));
+    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBeNull();
+  });
 });
 
 describe("PartyManager", () => {
@@ -79,26 +99,6 @@ describe("PartyManager", () => {
     });
   });
 
-  it("puts a present player into the encounter with a typed initiative, carrying AC and saves", async () => {
-    const user = userEvent.setup();
-    useEncounter.getState().setPlayers([
-      { id: "p1", name: "Valeria", level: 4, ac: 21, hp: 44,
-        saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
-    ]);
-    render(<PartyManager />);
-
-    await user.type(screen.getByLabelText(/initiative for valeria/i), "18");
-    await user.click(screen.getByRole("button", { name: /add to encounter/i }));
-
-    const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
-    expect(combatant.kind).toBe("pc");
-    expect(combatant.name).toBe("Valeria");
-    expect(combatant.ac).toBe(21);
-    expect(combatant.saves).toEqual({ fortitude: 10, reflex: 12, will: 9 });
-    expect(combatant.hp).toEqual({ current: 44, max: 44 });
-    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(18);
-  });
-
   it("captures HP through the party roster's own field", async () => {
     const user = userEvent.setup();
     render(<PartyManager />);
@@ -109,34 +109,27 @@ describe("PartyManager", () => {
     expect(useEncounter.getState().players[0]!.hp).toBe(37);
   });
 
-  it("seeds the PC's HP from the party roster instead of leaving it null", async () => {
-    const user = userEvent.setup();
+  // Adding a present player to the encounter moved to QuickAdd (see
+  // quick-add.test.tsx) — the drawer's own "Add to encounter" button and
+  // Initiative field are gone for both a present and an absent player, not
+  // just withheld for the absent case as before.
+  it("never offers an Add to encounter button or Initiative field, present or absent", () => {
     useEncounter.getState().setPlayers([
-      { id: "p1", name: "Kesten", level: 5, ac: 22, hp: 60,
-        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true },
-    ]);
-    render(<PartyManager />);
-    await user.type(screen.getByLabelText(/initiative for kesten/i), "10");
-    await user.click(screen.getByRole("button", { name: /add to encounter/i }));
-
-    const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
-    expect(combatant.hp).toEqual({ current: 60, max: 60 });
-  });
-
-  it("does not offer to add an absent player to the encounter", () => {
-    useEncounter.getState().setPlayers([
-      { id: "p1", name: "Absent Al", level: 4, ac: 21,
-        saves: { fortitude: 10, reflex: 12, will: 9 }, present: false },
+      { id: "p1", name: "Valeria", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
+      { id: "p2", name: "Absent Al", level: 4, ac: 21,
+        saves: { fortitude: 10, reflex: 12, will: 9 }, present: false, initiativeModifier: null },
     ]);
     render(<PartyManager />);
     expect(screen.queryByRole("button", { name: /add to encounter/i })).toBeNull();
+    expect(screen.queryByLabelText(/initiative for/i)).toBeNull();
   });
 
   it("toggles presence", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
       { id: "p1", name: "Kesten", level: 5, ac: 22,
-        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true },
+        saves: { fortitude: 12, reflex: 9, will: 10 }, present: true, initiativeModifier: null },
     ]);
     render(<PartyManager />);
     await user.click(screen.getByRole("checkbox", { name: /present/i }));
@@ -230,6 +223,17 @@ describe("seedFromEntry", () => {
     expect(seed.reactions).toEqual([]);
     expect(seed.attacks).toEqual([]);
     expect(seed.actions).toEqual([]);
+  });
+
+  it("carries the creature's perception onto the combatant as its initiative modifier", () => {
+    const creature = loadRealCreature("pathfinder-monster-core/forest-troll");
+    const entry: IndexEntry = {
+      id: creature.id, slug: "forest-troll", name: creature.name, level: creature.level,
+      rarity: creature.rarity, size: creature.size, traits: creature.traits,
+      ac: creature.ac, hp: creature.hp, remaster: creature.source.remaster, book: creature.source.book,
+    };
+    const seed = seedFromEntry(entry, creature);
+    expect(seed.initiativeModifier).toBe(creature.perception);
   });
 });
 

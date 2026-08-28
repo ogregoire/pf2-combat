@@ -44,7 +44,7 @@ describe("CombatantRow HP bar layout", () => {
     expect(bar.style.width).toBe("");
   });
 
-  it("grouped member row: HP bar keeps its fixed width per Main.dc.html (width: 46px)", () => {
+  it("grouped member row: HP bar grows like ungrouped rows", () => {
     const a = useEncounter.getState().addCombatant(seed({ name: "Akiros", hp: { current: 16, max: 16 } }), 20);
     const b = useEncounter.getState().addCombatant(seed({ name: "Dovan", hp: { current: 18, max: 30 } }), 10);
     useEncounter.getState().group([a, b], "Gate Watch", 15);
@@ -52,8 +52,9 @@ describe("CombatantRow HP bar layout", () => {
 
     const hpText = screen.getByText("18/30");
     const bar = hpText.previousElementSibling as HTMLElement;
-    expect(bar.style.width).toBe("46px");
-    expect(bar.style.flexShrink).toBe("0");
+    // Grouped members now have flexible width like standalone rows
+    expect(bar.style.flexGrow).toBe("1");
+    expect(bar.style.flexShrink).toBe("1");
   });
 
   it("holds together with the widest realistic values (The Stag Lord: HP 110/110, AC 23, saves 15/16/9) in the 340px combatant list", () => {
@@ -122,5 +123,19 @@ describe("CombatantRow saves", () => {
 
     const line = screen.getByTitle("Fortitude").parentElement as HTMLElement;
     expect(line.textContent).toBe("F+6, R+7, W+4");
+  });
+});
+
+describe("CombatantRow initiative display", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("renders an em dash, not a zero, for a combatant with no initiative yet", () => {
+    // level: 1, not the seed's default 0 — a level-0 creature's own level
+    // badge renders the bare text "0" next to its name, which would give
+    // queryByText("0") a false hit unrelated to the initiative cell below.
+    useEncounter.getState().addCombatant(seed({ level: 1 }), null);
+    render(<CombatantList />);
+    expect(screen.getByText("—")).toBeDefined();
+    expect(screen.queryByText("0")).toBeNull();
   });
 });

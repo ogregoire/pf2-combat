@@ -3,7 +3,7 @@ import { useEncounter } from "../src/state/store.js";
 
 const reset = () => useEncounter.getState().reset();
 
-const addCreature = (name: string, initiative: number, hp = 20): string => {
+const addCreature = (name: string, initiative: number | null, hp = 20): string => {
   const id = useEncounter.getState().addCombatant({
     kind: "creature", name, level: 1, ac: 15,
     saves: { fortitude: 5, reflex: 5, will: 5 },
@@ -28,6 +28,53 @@ describe("encounter store", () => {
     expect(
       useEncounter.getState().encounter.entries.map((e) => e.initiative),
     ).toEqual([20, 5]);
+  });
+
+  it("sorts an unrolled entry (initiative null) above every rolled entry, regardless of value", () => {
+    addCreature("twenty", 20);
+    addCreature("unrolled", null);
+    addCreature("ten", 10);
+    const names = useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names).toEqual(["unrolled", "twenty", "ten"]);
+  });
+
+  it("sorts by orderKey, so an entry can be placed between two equal initiatives", () => {
+    addCreature("Alpha", 20);
+    addCreature("Beta", 20);
+    const [alpha, beta] = useEncounter.getState().encounter.entries;
+    expect(alpha!.orderKey).toBe(20);
+    expect(beta!.orderKey).toBe(20);
+
+    // Placed between them without touching either initiative.
+    useEncounter.setState((st) => {
+      st.encounter.entries[1]!.orderKey = 19.5;
+    });
+    addCreature("Gamma", 20);
+    const names = useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names).toEqual(["Alpha", "Gamma", "Beta"]);
+  });
+
+  // Defence in depth behind persist.ts's migrate(), which is what actually
+  // fills a missing orderKey in (see its own tests). This pins the sorter's
+  // fallback itself: state that reaches it with no orderKey at all — an old
+  // save read by some path that skipped the migration, or a hand-built
+  // entry — still sorts by initiative rather than tying every entry at 0
+  // and scrambling the order.
+  it("falls back to initiative when an entry has no orderKey, rather than tying every entry at 0", () => {
+    addCreature("Alpha", 20);
+    addCreature("Beta", 15);
+    addCreature("Gamma", 10);
+    useEncounter.setState((st) => {
+      for (const e of st.encounter.entries) delete (e as { orderKey?: number }).orderKey;
+    });
+
+    addCreature("Delta", 12); // any add re-sorts, which is what exercises keyOf
+
+    const names = useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names).toEqual(["Alpha", "Beta", "Delta", "Gamma"]);
   });
 
   it("adds N copies with numbered labels", () => {
@@ -295,7 +342,7 @@ describe("encounter store", () => {
 
   it("empties the player roster and removes any PC already in the encounter", () => {
     useEncounter.getState().setPlayers([
-      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
     ]);
     const pc = addPc("Valeria", 20);
     const enemy = addCreature("Goblin", 10);
@@ -310,7 +357,7 @@ describe("encounter store", () => {
 
   it("resets the encounter to round 1 with no combatants, target or prompts, but keeps the players", () => {
     useEncounter.getState().setPlayers([
-      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true },
+      { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
     ]);
     const a = addCreature("a", 20);
     useEncounter.getState().setTarget(a);
@@ -371,6 +418,34 @@ describe("encounter store", () => {
     expect(enc.entries[0]!.combatantIds).toEqual([newcomerId]);
   });
 
+  // The other half of the rule above: a pending restore is *pending*, and an
+  // explicit GM edit retires it. moveEntry and returnFromDelay already have
+  // their own tests for this same rule; setInitiative — where the rule was
+  // written first — had none, and deleting the line left every test green.
+  it("retires a pending 'act this round instead' restore when the GM types a new initiative", () => {
+    addCreature("Active", 15);
+    const newcomerId = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Newcomer", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 10, max: 10 } },
+      15, // acting this round just behind Active…
+      22, // …on a real typed 22, parked until the round wraps.
+    );
+    const entryId = useEncounter.getState().encounter.entries.find((e) => e.combatantIds[0] === newcomerId)!.id;
+
+    // The GM thinks better of it and types 8 instead, mid-round.
+    useEncounter.getState().setInitiative(entryId, 8);
+    expect(useEncounter.getState().encounter.entries.find((e) => e.id === entryId)!.trueInitiative).toBeNull();
+
+    useEncounter.getState().nextTurn();
+    useEncounter.getState().nextTurn(); // round wraps — the old 22 must not come back
+
+    const enc = useEncounter.getState().encounter;
+    expect(enc.round).toBe(2);
+    expect(enc.entries.find((e) => e.id === entryId)!.initiative).toBe(8);
+    // 8 sorts below Active's 15 — a restored 22 would have led the round.
+    expect(enc.entries.map((e) => e.initiative)).toEqual([15, 8]);
+  });
+
   it("restores id counters from a persisted encounter, so a post-reload add cannot collide", async () => {
     const { restoreCombatantSequences } = await import("../src/state/store.js");
     addCreature("a", 20);
@@ -399,5 +474,378 @@ describe("encounter store", () => {
     useEncounter.getState().nextTurn();
     useEncounter.getState().nextTurn();
     expect(useEncounter.getState().encounter.combatants[a]!.actionsSpent).toBe(0);
+  });
+
+  // These prove the dying/wounded/doomed rules fire through the store's
+  // addCondition/removeCondition, not just in the rules module they're
+  // built from — see rules/conditions.ts's dyingOnGain/dyingMax/
+  // woundedOnRecover for the dataset text each is drawn from.
+  it("applies the wounded bump through the store, not just in the rules module", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "wounded", 2);
+    useEncounter.getState().addCondition(id, "dying", 1);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")!.value).toBe(3);
+  });
+
+  it("caps dying at 4 through the store and marks the combatant defeated on reaching it", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "dying", 4);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")!.value).toBe(4);
+    expect(c.defeated).toBe(true);
+  });
+
+  it("clamps dying below 4 through the store when doomed reduces the cap", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "doomed", 1);
+    useEncounter.getState().addCondition(id, "dying", 4);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")!.value).toBe(3);
+    expect(c.defeated).toBe(true);
+  });
+
+  it("does not mark the combatant defeated while dying stays under the cap", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "dying", 2);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(false);
+  });
+
+  it("routes removing dying through the store into a wounded bump, not a bare removal", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "dying", 2);
+    useEncounter.getState().removeCondition(id, "dying");
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")).toBeUndefined();
+    expect(c.conditions.find((x) => x.slug === "wounded")!.value).toBe(1);
+  });
+
+  // Fix round 1, item 1: doomed's own text ("If your maximum dying value is
+  // reduced to 0, you instantly die") kills on its own, with no dying gain
+  // needed — previously only the dying branch of addCondition ever set
+  // defeated, so a doomed-4 combatant sat alive and unmarked.
+  it("marks a combatant defeated on applying doomed 4 alone, with no dying condition present", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "doomed", 4);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")).toBeUndefined();
+    expect(c.defeated).toBe(true);
+  });
+
+  it("does not mark a combatant defeated on a doomed value that still leaves a positive dying max", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "doomed", 3);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(false);
+  });
+
+  // Fix round 1, item 3: clamping dying down to a max of 0 previously wrote
+  // a literal "dying 0" into state — indistinguishable from not being dying
+  // at all — for a combatant who is, per the rule above, already dead. Kept
+  // as the raw (uncapped) accumulated value instead, so state still records
+  // an actual dying number for a dead combatant.
+  it("keeps the raw dying value, uncapped, rather than clamping to a nonsense 0 when doomed has zeroed the max", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().addCondition(id, "doomed", 4);
+    useEncounter.getState().addCondition(id, "dying", 1);
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "dying")!.value).toBe(1);
+    expect(c.defeated).toBe(true);
+  });
+
+  // Fix round 1, item 2: guards the store's own call site the same way —
+  // removing "dying" from a combatant who was never dying must not
+  // fabricate a Wounded 1.
+  it("does not fabricate wounded when removing dying from a combatant who was never dying", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().removeCondition(id, "dying");
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.conditions.find((x) => x.slug === "wounded")).toBeUndefined();
+  });
+
+  // Task 3: dropping to 0 HP. Per data/conditions.json's "dying" entry —
+  // "While you have this condition, you are Unconscious" — a PC starts
+  // dying (which drags unconscious along) rather than being outright
+  // defeated; an ordinary creature has no dying trauma rules (Player Core)
+  // and simply dies.
+  it("starts a PC dying at 0 HP but marks a creature defeated", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().applyDamage(pc, 999);
+    const pcAfter = useEncounter.getState().encounter.combatants[pc]!;
+    expect(pcAfter.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
+    expect(pcAfter.conditions.some((c) => c.slug === "unconscious")).toBe(true);
+    expect(pcAfter.defeated).toBe(false);
+
+    const monster = addCreature("m", 19);
+    useEncounter.getState().applyDamage(monster, 999);
+    const monsterAfter = useEncounter.getState().encounter.combatants[monster]!;
+    expect(monsterAfter.defeated).toBe(true);
+    expect(monsterAfter.conditions.some((c) => c.slug === "dying")).toBe(false);
+  });
+
+  // Requirement (a) of the task-3 brief: end-of-turn persistent damage flows
+  // through the same `dealDamage` choke point as a direct applyDamage call
+  // (see the store's dealDamage/endTurnEffects comments), so it must trigger
+  // dying too. "1d4+996" always rolls >= 997, guaranteeing the kill without
+  // needing to inject a deterministic rng.
+  it("starts a PC dying from persistent damage at end of turn, not just from a direct applyDamage call", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "persistent-damage", 0, "1d4+996");
+    useEncounter.getState().nextTurn();
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.hp!.current).toBe(0);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
+  });
+
+  it("clears dying when a PC is healed above 0", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().applyDamage(pc, 999);
+    useEncounter.getState().applyHealing(pc, 5);
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.conditions.some((c) => c.slug === "dying")).toBe(false);
+    expect(after.conditions.find((c) => c.slug === "wounded")!.value).toBe(1);
+    // Fix round 3, item 6: the unconscious half of the same sentence
+    // ("you lose the dying and unconscious conditions" —
+    // data/conditions.json, unconscious). Deleting onHealedAboveZero's
+    // `.filter(c => c.slug !== "unconscious")` used to pass all 645 tests:
+    // every heal-path assertion looked only at dying and wounded.
+    expect(after.conditions.some((c) => c.slug === "unconscious")).toBe(false);
+  });
+
+  // Requirement (b): doomed's own instant-death rule ("If your maximum
+  // dying value is reduced to 0, you instantly die" — data/conditions.json)
+  // is modelled here as permanent while doomed stays at that value — a
+  // deliberate modelling choice, not doomed's own text, which actually says
+  // "When you die, you're no longer doomed"; see the correction in
+  // task-3-report.md. Nothing in this app ever lowers doomed back down, so
+  // without the guard a full HP restoration undoes the kill for no
+  // in-fiction reason. Damaged first (not to 0) so the heal actually raises
+  // HP — otherwise the "HP didn't rise" short-circuit below would pass this
+  // test for the wrong reason, without ever reaching the guard it exists to
+  // check.
+  it("does not resurrect a combatant killed by doomed alone when healed", () => {
+    const id = addCreature("x", 20, 20);
+    useEncounter.getState().applyDamage(id, 5); // 20 -> 15, not 0: ordinary damage, not a kill
+    useEncounter.getState().addCondition(id, "doomed", 4);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(id, 5); // 15 -> 20: HP does rise
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+  });
+
+  // Fix round 1, Critical 2: dying reaching its own cap ("if it ever
+  // reaches dying 4, you die" — data/conditions.json, dying) is real,
+  // permanent death independent of doomed — the previous `dyingMax > 0`
+  // guard alone caught only the doomed-zeroed-cap case and let this one
+  // through (doomed 1 lowers the cap to 3; dying reaching that lowered cap
+  // still means dead).
+  it("does not resurrect a PC whose dying reached a doomed-reduced cap", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().applyDamage(pc, 2); // 20 -> 18, not 0
+    useEncounter.getState().addCondition(pc, "doomed", 1); // cap now 3
+    useEncounter.getState().addCondition(pc, "dying", 3); // reaches the cap -> dead
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(pc, 5); // 18 -> 20: HP does rise
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+  });
+
+  // Fix round 1, Critical 1: `dealDamage` used to fire the 0-HP branch on
+  // "hp.current === 0" alone, with no check that any damage actually landed
+  // this call. A PC already at 0 HP who is fully immune to a hit takes
+  // `applied === 0` — dying must not increase, since data/conditions.json's
+  // dying entry raises the value only "if you take damage while dying," and
+  // no damage landed here.
+  it("does not increment dying when a hit at 0 HP is fully negated by immunity", () => {
+    const pc = useEncounter.getState().addCombatant({
+      kind: "pc", name: "p", level: 1, ac: 15,
+      saves: { fortitude: 5, reflex: 5, will: 5 },
+      hp: { current: 20, max: 20 },
+      iwr: { immunities: ["fire"], weaknesses: [], resistances: [] },
+    }, 20);
+    useEncounter.getState().applyDamage(pc, 999); // ordinary hit: 0 HP, dying 1
+    useEncounter.getState().applyDamage(pc, 50, "fire"); // fully immune: applied 0
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.hp!.current).toBe(0);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
+  });
+
+  // The ordinary case healing must still cover: a ordinary creature felled
+  // by damage (no doomed involved) comes back once healed above 0.
+  it("clears defeated when healing an ordinarily-defeated creature back above 0", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().applyDamage(id, 99);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(id, 5);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(false);
+  });
+
+  // Fix round 1, Minor: applyHealing must not un-defeat a combatant on a
+  // heal that landed no actual HP (a literal 0, or a heal on an
+  // already-full combatant) — nothing about the encounter changed, so
+  // nothing about `defeated` should either.
+  it("does not clear defeated on a heal that raises no HP", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().applyDamage(id, 99);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(id, 0);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(0);
+  });
+
+  // Fix round 2: closes the residual flagged in the task-3 report. A
+  // combatant who stays defeated (dying still at its own cap) must not have
+  // its conditions touched by a heal — the previous code still ran
+  // onHealedAboveZero unconditionally once HP rose, so a still-dead PC lost
+  // dying, lost unconscious, and gained wounded 1: a row reading DEFEATED,
+  // Wounded 1, with no dying, describing nothing that happens in the rules.
+  // HP is still allowed to rise (the GM may be correcting a mistake, or
+  // setting up a resurrection effect this app doesn't model) — only the
+  // conditions stay frozen on a corpse.
+  it("leaves conditions untouched when healing a PC who stays defeated at dying's own cap", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().applyDamage(pc, 2); // 20 -> 18, not 0
+    useEncounter.getState().addCondition(pc, "dying", 4); // reaches the cap -> dead
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().applyHealing(pc, 5); // 18 -> 20: HP does rise
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+    expect(after.conditions.some((c) => c.slug === "wounded")).toBe(false);
+    expect(after.hp!.current).toBe(20);
+  });
+
+  // Fix round 3, item 1: a doomed-driven death used to be irreversible.
+  // Nothing ever cleared `defeated` once doomed had zeroed the dying max, so
+  // stepping doomed back down — or removing the tag entirely — left a
+  // full-HP combatant reading DEFEATED with no dying, no doomed, and (since
+  // the row hides its chips once defeated) nothing on the row to explain it.
+  // Lowering doomed raises the max back above 0; with no dying value at or
+  // above that max, nothing is holding this combatant dead any more.
+  it("lifts a doomed-driven death when doomed is stepped back down", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "doomed", 4);
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().addCondition(pc, "doomed", 1);
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(false);
+    expect(after.hp!.current).toBe(20);
+  });
+
+  it("lifts a doomed-driven death when the doomed tag is removed outright", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "doomed", 4);
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().removeCondition(pc, "doomed");
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(false);
+  });
+
+  // The other half of the same rule, and the reason `defeated` is re-settled
+  // rather than merely cleared: doomed lowering the cap onto a dying value
+  // the combatant is already at kills, per data/conditions.json's doomed
+  // ("The Dying value at which you die is reduced by your doomed value") —
+  // and lowering doomed only part-way does not undo that while dying is
+  // still sitting at the new, still-reduced cap.
+  it("keeps a PC dead when doomed is only lowered and dying still sits at the reduced cap", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 2);
+    useEncounter.getState().addCondition(pc, "doomed", 3); // cap 1, dying 2 is past it
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().addCondition(pc, "doomed", 2); // cap 2, dying 2 still at it
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+  });
+
+  // The must-stay-dead case: this PC died at dying's own unreduced cap, not
+  // because of doomed, so no amount of taking doomed away brings them back.
+  it("keeps a PC dead through a doomed removal when dying already reached the unreduced cap", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 4); // dying 4: real death
+    useEncounter.getState().addCondition(pc, "doomed", 2);
+    useEncounter.getState().removeCondition(pc, "doomed");
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+  });
+
+  // The second must-stay-dead case, and the reason the shared predicate
+  // knows about HP at all: an ordinary creature at 0 HP is dead because the
+  // damage killed it, not because of any dying cap it has no rules for. A
+  // doomed tag applied and then taken off must not be a resurrection spell.
+  it("does not resurrect an ordinary creature killed at 0 HP when doomed is removed", () => {
+    const id = addCreature("x", 10);
+    useEncounter.getState().applyDamage(id, 99);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+
+    useEncounter.getState().addCondition(id, "doomed", 2);
+    useEncounter.getState().removeCondition(id, "doomed");
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+  });
+
+  // Fix round 3, item 3: the GM clicking the Dying tag went through
+  // applyDyingGain alone, while damage went through applyDyingGain *and*
+  // onDroppedToZero — so a hand-applied dying produced a row with no
+  // UNCONSCIOUS chip, even though data/conditions.json's dying entry says
+  // "While you have this condition, you are Unconscious" regardless of how
+  // the condition arrived.
+  it("carries unconscious into a GM-applied dying, exactly as the damage path does", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 1);
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
+    expect(after.conditions.some((c) => c.slug === "unconscious")).toBe(true);
+  });
+
+  // Fix round 3, item 7: removing the dying tag by hand had no `defeated`
+  // guard, so it re-opened on the condition path exactly the incoherent row
+  // applyHealing already closed on the healing path — DEFEATED, wounded 1,
+  // no dying. A GM clicking x on a corpse's tag is tidying the display, not
+  // declaring a resurrection (the only way back from death at the cap is
+  // undoing what caused it — lowering doomed), so the conditions stay frozen
+  // just as they do on a heal.
+  it("freezes a dead PC's conditions when the GM removes the dying tag by hand", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 4);
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().removeCondition(pc, "dying");
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+    expect(after.conditions.some((c) => c.slug === "wounded")).toBe(false);
+  });
+
+  // Fix round 4: the x button's freeze (item 7 above) left its own sibling
+  // disagreeing with it. The stepper's "−" routes through addCondition's
+  // dying branch, which set `defeated` on reaching the cap but never
+  // reconsidered it on the way back down — so one click on a dying-4 corpse
+  // produced `defeated: true, dying 3`: a DEFEATED row whose dying sits
+  // below the very cap it died at, the exact incoherence item 7 closed.
+  it("refuses a dying step that would leave a dead combatant below the cap it died at", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "dying", 4); // reaches the cap -> dead
+    expect(useEncounter.getState().encounter.combatants[pc]!.defeated).toBe(true);
+
+    useEncounter.getState().addCondition(pc, "dying", -1); // what the stepper's "−" sends
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(4);
+  });
+
+  // The narrow scope of that refusal, pinned: only an edit that would put a
+  // corpse *below* its cap is refused. A doomed-killed combatant (max 0,
+  // where every dying value is at or above the cap) still records the dying
+  // it gains — the round-1 behaviour above, reached through the guard.
+  it("still records dying on a doomed-killed combatant, whose cap no value can fall below", () => {
+    const pc = addPc("p", 20);
+    useEncounter.getState().addCondition(pc, "doomed", 4); // max 0 -> dead on its own
+    useEncounter.getState().addCondition(pc, "dying", 1);
+    const after = useEncounter.getState().encounter.combatants[pc]!;
+    expect(after.defeated).toBe(true);
+    expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
   });
 });

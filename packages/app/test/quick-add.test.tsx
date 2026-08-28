@@ -196,6 +196,20 @@ describe("QuickAdd", () => {
     });
   });
 
+  it("leaves the entry unrolled when no initiative is typed", async () => {
+    const user = userEvent.setup();
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    const input = screen.getByRole("combobox", { name: /quick add/i });
+    await user.type(input, "goblin warrior");
+    await screen.findByRole("listbox");
+    await user.keyboard("{Enter}");
+
+    await waitFor(() => {
+      expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(1);
+    });
+    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBeNull();
+  });
+
   it("exposes the input as a combobox, so aria-expanded/aria-controls/aria-activedescendant are meaningful to assistive tech", () => {
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
     const input = screen.getByRole("combobox", { name: /quick add/i });
@@ -236,5 +250,76 @@ describe("QuickAdd", () => {
 
     await waitFor(() => expect(screen.getByText(/added 6 × Goblin Warrior at 13/i)).toBeDefined());
     expect(screen.queryByText(/capped/i)).toBeNull();
+  });
+
+  it("lists present players before any typing, and drops them once they are in the order", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "p1", name: "Valeros", level: 1, ac: 18, saves: { fortitude: 8, reflex: 5, will: 4 },
+        present: true, initiativeModifier: 6 },
+    ]);
+    render(<QuickAdd entries={[]} loadCreatureFn={async () => { throw new Error("no creature lookup in this test"); }} />);
+
+    await user.click(screen.getByLabelText("Quick add creatures"));
+    await user.click(await screen.findByRole("option", { name: /Valeros/ }));
+
+    const combatants = Object.values(useEncounter.getState().encounter.combatants);
+    expect(combatants[0]!.playerId).toBe("p1");
+    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBeNull();
+
+    await user.click(screen.getByLabelText("Quick add creatures"));
+    expect(screen.queryByRole("option", { name: /Valeros/ })).toBeNull();
+  });
+
+  it("ranks a matching present player ahead of every creature match", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "p1", name: "Goblin Slayer", level: 1, ac: 18, saves: { fortitude: 8, reflex: 5, will: 4 },
+        present: true, initiativeModifier: null },
+    ]);
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    const input = screen.getByRole("combobox", { name: /quick add/i });
+    await user.type(input, "gob");
+    const listbox = await screen.findByRole("listbox");
+    const options = within(listbox).getAllByRole("option");
+    expect(options[0]!.textContent).toContain("Goblin Slayer");
+  });
+
+  it("does not offer a player who has no present flag, or one already in the order", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "p1", name: "Absent Al", level: 1, ac: 18, saves: { fortitude: 8, reflex: 5, will: 4 },
+        present: false, initiativeModifier: null },
+      { id: "p2", name: "Seelah", level: 1, ac: 18, saves: { fortitude: 8, reflex: 5, will: 4 },
+        present: true, initiativeModifier: null },
+    ]);
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Seelah", ac: 18, saves: { fortitude: 8, reflex: 5, will: 4 }, hp: null, level: 1, playerId: "p2" },
+      5,
+    );
+    render(<QuickAdd entries={[]} loadCreatureFn={async () => { throw new Error("no creature lookup in this test"); }} />);
+
+    await user.click(screen.getByLabelText("Quick add creatures"));
+    expect(screen.queryByRole("listbox")).toBeNull();
+  });
+
+  it("carries a present player's ac, saves, level and hp onto the new combatant", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "p1", name: "Kyra", level: 3, ac: 19, hp: 32,
+        saves: { fortitude: 9, reflex: 6, will: 7 }, present: true, initiativeModifier: 4 },
+    ]);
+    render(<QuickAdd entries={[]} loadCreatureFn={async () => { throw new Error("no creature lookup in this test"); }} />);
+
+    await user.click(screen.getByLabelText("Quick add creatures"));
+    await user.click(await screen.findByRole("option", { name: /Kyra/ }));
+
+    const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
+    expect(combatant.kind).toBe("pc");
+    expect(combatant.ac).toBe(19);
+    expect(combatant.saves).toEqual({ fortitude: 9, reflex: 6, will: 7 });
+    expect(combatant.level).toBe(3);
+    expect(combatant.hp).toEqual({ current: 32, max: 32 });
+    expect(combatant.initiativeModifier).toBe(4);
   });
 });

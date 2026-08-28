@@ -86,15 +86,25 @@ function ReadyCombatantCard({
  * nothing under its name — `setReactionSpent` previously had no call site,
  * so this list also never shrank when a reaction was actually used.
  *
+ * A combatant whose entry is Delayed is excluded outright: RAW (Player Core
+ * p. 416) "You can't use reactions until you return to the initiative
+ * order", so listing them under REACTIONS READY would be telling the GM the
+ * opposite of the rule at exactly the moment they're deciding whether an
+ * interrupt is available.
+ *
  * The list scrolls independently of the round/pips/Next controls above it:
  * this container is the flex child that grows and gets `overflow-y: auto`,
  * while everything else in the panel has `flexShrink: 0` and stays put. */
 export function ReactionWatch(): React.ReactElement {
   const t = useT();
   const combatants = useEncounter((s) => s.encounter.combatants);
+  const entries = useEncounter((s) => s.encounter.entries);
   const setReactionSpent = useEncounter((s) => s.setReactionSpent);
+  // Delay is a property of the *entry*, so a group that Delays takes every
+  // one of its members' reactions with it.
+  const delayedIds = new Set(entries.filter((e) => e.delayed).flatMap((e) => e.combatantIds));
   const ready = Object.values(combatants)
-    .filter((c) => !c.defeated && !c.reactionSpent && c.reactions.length > 0)
+    .filter((c) => !c.defeated && !c.reactionSpent && !delayedIds.has(c.id) && c.reactions.length > 0)
     .sort((a, b) => compareStrings(a.name, b.name));
 
   return (

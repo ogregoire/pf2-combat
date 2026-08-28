@@ -20,6 +20,8 @@ export const STRINGS_EN = {
   LABEL_REFLEX: "Reflex",
   LABEL_WILL: "Will",
   LABEL_INITIATIVE: "Initiative",
+  LABEL_INITIATIVE_MODIFIER: "Init mod",
+  INITIATIVE_MODIFIER_ARIA: "Initiative modifier",
   LABEL_LEVEL: "Level",
   LABEL_NAME: "Name",
   LABEL_PRESENT: "Present",
@@ -35,7 +37,6 @@ export const STRINGS_EN = {
   LABEL_CONFIRM: "Confirm",
   LABEL_DAMAGE: "Damage",
   LABEL_HEAL: "Heal",
-  LABEL_CONDITION: "Condition",
   ACTIONS_HEADING: "Actions",
   ACTIONS_UNIT: "actions",
   ROUND_LABEL: "ROUND",
@@ -47,6 +48,10 @@ export const STRINGS_EN = {
   COST_FREE: "FREE",
   COST_REACTION: "REACTION",
   COST_PASSIVE: "PASSIVE",
+  USE_ACTIONS_BUTTON: "Use {cost} {unit}",
+  USE_ACTION_UNIT_SINGULAR: "action",
+  USE_ACTION_UNIT_PLURAL: "actions",
+  USE_REACTION_BUTTON: "Use reaction",
 
   // ActionPips.tsx
   ACTIONS_REMAINING_HEADING: "ACTIONS REMAINING",
@@ -84,7 +89,8 @@ export const STRINGS_EN = {
   SELECT_FOR_GROUPING_ARIA: "Select {name} for grouping",
 
   // GroupHeader.tsx
-  COMBATANTS_COUNT: "{n} combatants",
+  UNGROUP_BUTTON: "Ungroup",
+  DELAYED_LABEL: "delayed",
 
   // NextButton.tsx
   NEXT_COMBATANT_BUTTON: "Next combatant",
@@ -97,8 +103,6 @@ export const STRINGS_EN = {
   CLEAR_PLAYERS_CONFIRM: "Clear {n} {word}? Also removes any of them already in the initiative order.",
   PLAYER_SINGULAR: "player",
   PLAYER_PLURAL: "players",
-  INITIATIVE_FOR_NAME_ARIA: "Initiative for {name}",
-  ADD_TO_ENCOUNTER_BUTTON: "Add to encounter",
 
   // PromptCard.tsx
   GOT_IT_BUTTON: "Got it",
@@ -110,8 +114,10 @@ export const STRINGS_EN = {
   ADDED_MESSAGE: "added {quantity} × {name}{suffix}{capped}",
   ADDED_AT_INITIATIVE: " at {initiative}",
   ADDED_CAPPED: " (capped from {requested})",
-  MATCHING_CREATURES_ARIA: "Matching creatures",
+  MATCHING_CREATURES_ARIA: "Matching players and creatures",
   MORE_HIDDEN: "+{n} more — keep typing to narrow it down",
+  PLAYER_BADGE: "PLAYER",
+  ADDED_PLAYER_MESSAGE: "added {name}",
 
   // ReactionWatch.tsx
   REACTIONS_READY_HEADING: "REACTIONS READY",
@@ -137,9 +143,11 @@ export const STRINGS_EN = {
   ORDINAL_5: "fifth",
   STRIKE_THIS_TURN_SUFFIX: "{ordinal} Strike this turn",
   SUPPRESSED_PENALTY_SUFFIX: "— worse penalty already counted",
+  SUPPRESSED_TITLE_SUFFIX: " (suppressed)",
   TOTAL_ATTACK_MODIFIER: "total attack modifier",
   ROLL_LABEL: "ROLL",
   VS_AC_TEMPLATE: "vs AC {ac}",
+  BASE_AC_TOOLTIP: "base AC",
   NO_DAMAGE: "no damage",
   RECORD_STRIKE_BUTTON: "Record strike",
 
@@ -147,16 +155,22 @@ export const STRINGS_EN = {
   IWR_IMMUNE_SUFFIX: "immune",
   IWR_WEAKNESS: "weakness {value}",
   IWR_RESISTANCE: "resistance {value}",
-  NO_IWR_MSG: "No immunities, weaknesses or resistances — damage type is irrelevant here.",
   DAMAGE_TYPE_HEADING: "Damage type — {n} relevant",
   DAMAGE_TYPE_GROUP_ARIA: "damage type",
   DAMAGE_TYPE_NONE: "None",
   NO_HP_MSG: "No HP on record — Damage and Heal are disabled.",
   AMOUNT_ARIA: "amount",
   ADD_CONDITION_HEADING: "Add condition",
-  CONDITION_VALUE_ARIA: "Condition value",
   PERSISTENT_DAMAGE_FORMULA_ARIA: "Persistent damage formula",
   PERSISTENT_DAMAGE_PLACEHOLDER: "e.g. 2d6",
+  APPLIED_CONDITIONS_ARIA: "applied conditions",
+  ADD_CONDITION_GROUP_ARIA: "add condition",
+  CURRENT_INITIATIVE_TITLE: "Current initiative",
+  CURRENT_INITIATIVE_ARIA: "Current initiative {value}",
+  UNROLLED_LABEL: "unrolled",
+  INITIATIVE_MODIFIER_FOR_NAME_ARIA: "Initiative modifier for {name}",
+  INITIATIVE_DIE_RESULT_ARIA: "Initiative die result",
+  SET_INITIATIVE_BUTTON: "Set initiative",
 
   // TurnManager.tsx
   CLEAR_ENEMIES_LABEL: "Clear enemies",
@@ -170,6 +184,12 @@ export const STRINGS_EN = {
   STRIKES_THIS_TURN_LABEL: "STRIKES THIS TURN",
   RESET_STRIKES_ARIA: "Reset strikes this turn",
   RESET_BUTTON: "reset",
+  DELAY_BUTTON: "Delay",
+  DELAY_DISABLED_TITLE: "Delaying advances the turn, which needs everyone's initiative first",
+  RETURN_FROM_DELAY_TITLE: "Returns to the order just after {entry}, permanently taking that initiative",
+  CURRENT_TURN_FALLBACK: "the current turn",
+  RETURN_BUTTON: "Return {entry}",
+  DEFAULT_COMBATANT_LABEL: "Combatant",
 
   // TurnPrompts.tsx
   RESOLVE_NOW_LABEL: "RESOLVE NOW",
@@ -179,8 +199,10 @@ export const STRINGS_EN = {
   ITEM_WORD_PLURAL: "ITEMS",
 
   // EncounterScreen.tsx
-  XP_TOOLTIP: "Each character gains the encounter's full XP — party size does not change the award",
-  XP_EACH_LABEL: "XP each",
+  XP_TOTAL_LABEL: "XP on the table",
+  XP_TOTAL_TOOLTIP: "Every creature in this encounter, defeated or not — what the whole fight is worth. Weigh this against your encounter budget.",
+  XP_EARNED_LABEL: "XP earned each",
+  XP_EARNED_TOOLTIP: "Creatures actually defeated. This is what each character gains when the fight ends — party size does not divide it.",
   PRESENT_COUNT: "{present} of {total} present",
   PARTY_LEVEL_LABEL: "party level {level}",
   LOADING_BOOKS_MSG: "loading books…",

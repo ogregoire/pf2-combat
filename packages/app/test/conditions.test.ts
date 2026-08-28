@@ -1,6 +1,27 @@
-import { describe, expect, it } from "vitest";
-import { CONDITIONS, conditionModifiers, type AppliedCondition } from "../src/rules/conditions.js";
-import { resolveModifiers } from "../src/rules/modifiers.js";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { describe, expect, it, vi } from "vitest";
+import type { Condition } from "@pf2/schema";
+import {
+  applyEndOfTurn,
+  CONDITIONS,
+  conditionModifiers,
+  dyingMax,
+  onHealedAboveZero,
+  dyingOnGain,
+  PICKABLE_CONDITIONS,
+  woundedOnRecover,
+  type AppliedCondition,
+  type ConditionSlug,
+  type Selector,
+} from "../src/rules/conditions.js";
+import { resolveModifiers, type Modifier } from "../src/rules/modifiers.js";
+
+/** Replays a fixed sequence of [0, 1) values, one per die — see dice.test.ts. */
+function fakeRng(values: number[]): () => number {
+  let i = 0;
+  return () => values[i++ % values.length]!;
+}
 
 describe("condition catalogue", () => {
   it("covers the curated set", () => {
@@ -30,6 +51,126 @@ describe("condition catalogue", () => {
       formula: "2d6",
     };
     expect(applied.formula).toBe("2d6");
+  });
+
+  it("offers every dataset condition except the five attitudes", async () => {
+    const dataset: Condition[] = JSON.parse(
+      readFileSync(resolve(__dirname, "../../../data/conditions.json"), "utf8"),
+    );
+    const attitudes = ["friendly", "helpful", "indifferent", "unfriendly", "hostile"];
+    const expected = dataset
+      .map((c) => c.name.toLowerCase().replace(/ /g, "-"))
+      .filter((slug) => !attitudes.includes(slug));
+
+    const offered = PICKABLE_CONDITIONS.map((c) => c.slug).sort();
+    expect(offered).toEqual([...expected].sort());
+  });
+
+  it("gives unconscious a real effect rather than listing it inert", () => {
+    expect(CONDITIONS.unconscious.affects(0)).not.toBeNull();
+    expect(CONDITIONS.dying.implies).toContain("unconscious");
+  });
+});
+
+/**
+ * Pins the exact magnitude/type/selectors of every numeric `affects` added
+ * for the widened condition set, straight against the wording in
+ * data/conditions.json (see task-1-report.md's table). Without this,
+ * `unconscious` could be re-encoded as e.g. -40 across every selector and
+ * the suite would stay green — the two tests in "condition catalogue"
+ * above only check that *some* effect exists, not that it's the right one.
+ * Add a row here whenever a new condition gets a real number so a future
+ * omission is a missing row, not silence.
+ */
+describe("condition catalogue — numeric encodings pinned against the dataset", () => {
+  const numericEncodings: {
+    slug: ConditionSlug;
+    selector: Selector;
+    expectedMods: Modifier[];
+  }[] = [
+    // unconscious: "-4 status penalty to AC, Perception, and Reflex saves".
+    // On "ac" specifically, unconscious's implied off-guard (-2
+    // circumstance) also lands — unconscious is applied standalone here
+    // (value 0, no explicit off-guard), so this is expandImplied's doing,
+    // not double-counting; see the "implies exactly" table below for that
+    // link and the transitive-chain test for why it matters.
+    {
+      slug: "unconscious", selector: "ac",
+      expectedMods: [
+        { value: -2, type: "circumstance", source: "off-guard" },
+        { value: -4, type: "status", source: "unconscious" },
+      ],
+    },
+    {
+      slug: "unconscious", selector: "perception",
+      expectedMods: [{ value: -4, type: "status", source: "unconscious" }],
+    },
+    {
+      slug: "unconscious", selector: "reflex",
+      expectedMods: [{ value: -4, type: "status", source: "unconscious" }],
+    },
+    // encumbered: "you're Clumsy 1" — reproduces clumsy's own selectors/magnitude at 1
+    {
+      slug: "encumbered", selector: "ac",
+      expectedMods: [{ value: -1, type: "status", source: "encumbered (clumsy 1)" }],
+    },
+    {
+      slug: "encumbered", selector: "reflex",
+      expectedMods: [{ value: -1, type: "status", source: "encumbered (clumsy 1)" }],
+    },
+    {
+      slug: "encumbered", selector: "ranged-attack",
+      expectedMods: [{ value: -1, type: "status", source: "encumbered (clumsy 1)" }],
+    },
+    // fascinated: "-2 status penalty to Perception and skill checks"
+    {
+      slug: "fascinated", selector: "perception",
+      expectedMods: [{ value: -2, type: "status", source: "fascinated" }],
+    },
+    {
+      slug: "fascinated", selector: "skill",
+      expectedMods: [{ value: -2, type: "status", source: "fascinated" }],
+    },
+  ];
+
+  it.each(numericEncodings)(
+    "$slug on $selector matches data/conditions.json exactly",
+    ({ slug, selector, expectedMods }) => {
+      expect(conditionModifiers([{ slug, value: 0 }], selector)).toEqual(expectedMods);
+    },
+  );
+
+  // Selectors each of the above must NOT touch, from the same dataset
+  // paragraph — guards against an over-broad selector list, the mirror
+  // image of the magnitude check above.
+  const unaffectedSelectors: { slug: ConditionSlug; selector: Selector }[] = [
+    { slug: "unconscious", selector: "will" },
+    { slug: "unconscious", selector: "fortitude" },
+    { slug: "encumbered", selector: "melee-attack" },
+    { slug: "encumbered", selector: "will" },
+    { slug: "fascinated", selector: "ac" },
+    { slug: "fascinated", selector: "will" },
+  ];
+
+  it.each(unaffectedSelectors)("$slug leaves $selector untouched", ({ slug, selector }) => {
+    expect(conditionModifiers([{ slug, value: 0 }], selector)).toEqual([]);
+  });
+
+  // Every `implies` link added for the widened set, pinned against the
+  // dataset sentence that states it (see the per-condition comments in
+  // conditions.ts). Catches a dropped or extra implied slug the same way
+  // the table above catches a wrong magnitude.
+  const impliesLinks: { slug: ConditionSlug; implied: ConditionSlug[] }[] = [
+    { slug: "unconscious", implied: ["blinded", "off-guard"] },
+    { slug: "paralyzed", implied: ["off-guard"] },
+    { slug: "confused", implied: ["off-guard"] },
+    { slug: "invisible", implied: ["undetected"] },
+    { slug: "unnoticed", implied: ["undetected"] },
+    { slug: "dying", implied: ["unconscious"] },
+  ];
+
+  it.each(impliesLinks)("$slug implies exactly $implied", ({ slug, implied }) => {
+    expect(CONDITIONS[slug].implies).toEqual(implied);
   });
 });
 
@@ -139,6 +280,32 @@ describe("conditionModifiers", () => {
     expect(mods[0]).toEqual({ value: -2, type: "circumstance", source: "off-guard" });
   });
 
+  it("expands a two-level implies chain transitively: dying -> unconscious -> blinded/off-guard", () => {
+    // Regression for a real bug: expandImplied used to walk only the
+    // originally-applied conditions, so dying's implied `unconscious` was
+    // added to the set but unconscious's own implied blinded/off-guard
+    // never were. A dying combatant's AC came out 2 points too generous
+    // (missing off-guard's -2) versus applying `unconscious` directly for
+    // the same table state.
+    const dyingAc = conditionModifiers([{ slug: "dying", value: 1 }], "ac");
+    expect(dyingAc).toEqual([
+      { value: -2, type: "circumstance", source: "off-guard" },
+      { value: -4, type: "status", source: "unconscious" },
+    ]);
+    expect(dyingAc).toEqual(conditionModifiers([{ slug: "unconscious", value: 0 }], "ac"));
+  });
+
+  it("keeps a multi-hop chain idempotent against an explicit condition at any depth", () => {
+    // off-guard is two hops down from dying (dying -> unconscious ->
+    // off-guard). Applying it explicitly alongside dying must still not
+    // double its -2 circumstance penalty.
+    const mods = conditionModifiers(
+      [{ slug: "dying", value: 1 }, { slug: "off-guard", value: 0 }],
+      "ac",
+    );
+    expect(mods.filter((m) => m.source === "off-guard")).toHaveLength(1);
+  });
+
   it("returns modifiers sorted deterministically", () => {
     const mods = conditionModifiers(
       [
@@ -148,5 +315,158 @@ describe("conditionModifiers", () => {
       "will",
     );
     expect(mods.map((m) => m.source)).toEqual(["fatigued", "frightened 1"]);
+  });
+});
+
+describe("applyEndOfTurn", () => {
+  // Verbatim from the task brief — an interface-level smoke test. It only
+  // asserts persistentDamage > 0 (default Math.random), which is why the
+  // tests below it re-check the same "decrement" and "persistent-damage"
+  // hooks with an injected rng for an exact, non-flaky result.
+  it("decrements frightened at end of turn and reports persistent damage once", () => {
+    const result = applyEndOfTurn([
+      { slug: "frightened", value: 2 },
+      { slug: "persistent-damage", value: 0, formula: "1d6" },
+    ]);
+    expect(result.conditions.find((c) => c.slug === "frightened")!.value).toBe(1);
+    expect(result.persistentDamage).toBeGreaterThan(0);
+  });
+
+  it("removes frightened entirely when it ticks past 0", () => {
+    const result = applyEndOfTurn([{ slug: "frightened", value: 1 }]);
+    expect(result.conditions.find((c) => c.slug === "frightened")).toBeUndefined();
+  });
+
+  it("rolls persistent damage deterministically off an injected rng", () => {
+    const result = applyEndOfTurn(
+      [{ slug: "persistent-damage", value: 0, formula: "2d6" }],
+      fakeRng([0, 0.999999]), // 1 + 6
+    );
+    expect(result.persistentDamage).toBe(7);
+  });
+
+  it("keeps the persistent-damage condition itself after rolling — ending it needs its own DC 15 flat check (see prompts.ts), which this hook does not resolve", () => {
+    const result = applyEndOfTurn(
+      [{ slug: "persistent-damage", value: 0, formula: "1d6" }],
+      () => 0,
+    );
+    expect(result.conditions).toEqual([{ slug: "persistent-damage", value: 0, formula: "1d6" }]);
+  });
+
+  it("sums persistent damage across every persistent-damage condition in one call", () => {
+    const result = applyEndOfTurn(
+      [
+        { slug: "persistent-damage", value: 0, formula: "1d4" },
+        { slug: "persistent-damage", value: 0, formula: "1d4" },
+      ],
+      () => 0, // each rolls its minimum, 1
+    );
+    expect(result.persistentDamage).toBe(2);
+  });
+
+  it("leaves a condition with no endOfTurn hook untouched", () => {
+    const result = applyEndOfTurn([{ slug: "sickened", value: 1 }]);
+    expect(result.conditions).toEqual([{ slug: "sickened", value: 1 }]);
+    expect(result.persistentDamage).toBe(0);
+  });
+
+  it("traces (via console.warn) a missing or unparseable persistent-damage formula instead of throwing or silently dealing 0 with no record", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+
+    const missing = applyEndOfTurn([{ slug: "persistent-damage", value: 0 }]);
+    expect(missing.persistentDamage).toBe(0);
+
+    const bad = applyEndOfTurn([{ slug: "persistent-damage", value: 0, formula: "not-dice" }]);
+    expect(bad.persistentDamage).toBe(0);
+
+    expect(warn).toHaveBeenCalledTimes(2);
+    warn.mockRestore();
+  });
+});
+
+describe("the dying/wounded/doomed death spiral", () => {
+  // data/conditions.json, dying: "Dying always includes a value, and if it
+  // ever reaches dying 4, you die." data/conditions.json, doomed: "The Dying
+  // value at which you die is reduced by your doomed value."
+  it("caps dying at 4 minus doomed", () => {
+    expect(dyingMax([])).toBe(4);
+    expect(dyingMax([{ slug: "doomed", value: 1 }])).toBe(3);
+  });
+
+  it("never reports a max below 0, however high doomed goes", () => {
+    expect(dyingMax([{ slug: "doomed", value: 9 }])).toBe(0);
+  });
+
+  // data/conditions.json, wounded: "If you gain the dying condition while
+  // wounded, increase your dying condition value by your wounded value."
+  it("adds the wounded value when dying is gained", () => {
+    const after = dyingOnGain([{ slug: "wounded", value: 2 }], 1);
+    expect(after.find((c) => c.slug === "dying")!.value).toBe(3);
+  });
+
+  it("gains dying at just the given amount when there is no wounded condition", () => {
+    const after = dyingOnGain([], 1);
+    expect(after.find((c) => c.slug === "dying")!.value).toBe(1);
+  });
+
+  // The wounded bonus is stated for *gaining* the condition. Taking further
+  // damage while already dying is a separate mechanic in dying's own entry
+  // ("Your dying condition increases by 1 if you take damage while dying,
+  // or by 2 ...") that says nothing about wounded, so a second call here —
+  // representing that later damage, not a fresh gain — must not add the
+  // wounded bonus again.
+  it("does not add the wounded bonus a second time when already dying", () => {
+    const after = dyingOnGain(
+      [{ slug: "dying", value: 1 }, { slug: "wounded", value: 2 }],
+      1,
+    );
+    expect(after.find((c) => c.slug === "dying")!.value).toBe(2);
+  });
+
+  // data/conditions.json, dying: "Any time you lose the dying condition, you
+  // gain the Wounded 1 condition, or increase your wounded condition value
+  // by 1 if you already have that condition."
+  it("raises wounded by one when dying is removed", () => {
+    const after = woundedOnRecover([
+      { slug: "dying", value: 2 },
+      { slug: "wounded", value: 1 },
+    ]);
+    expect(after.find((c) => c.slug === "dying")).toBeUndefined();
+    expect(after.find((c) => c.slug === "wounded")!.value).toBe(2);
+  });
+
+  it("starts wounded at 1 when dying is removed and there was no wounded condition yet", () => {
+    const after = woundedOnRecover([{ slug: "dying", value: 1 }]);
+    expect(after.find((c) => c.slug === "wounded")!.value).toBe(1);
+  });
+
+  // Fix round 1: woundedOnRecover previously assumed its caller always
+  // means "dying was just lost" and would fabricate a Wounded 1 out of
+  // nothing for a combatant who was never dying to begin with. The rule
+  // text ("Any time you lose the dying condition, you gain...") only
+  // triggers on an actual loss, so a conditions list with no dying entry
+  // must come back unchanged.
+  it("leaves conditions untouched when there is no dying condition to lose", () => {
+    const input = [{ slug: "wounded" as const, value: 1 }];
+    expect(woundedOnRecover(input)).toEqual(input);
+  });
+
+  // Fix round 3, item 6. data/conditions.json, unconscious: "If you are
+  // restored to 1 Hit Point or more, you lose the dying and unconscious
+  // conditions." Unconscious is the half nothing asserted — deleting
+  // onHealedAboveZero's `.filter(c => c.slug !== "unconscious")` left all
+  // 645 tests green, because every existing check of the heal path looked
+  // only at dying and wounded.
+  it("drops unconscious as well as dying when a dying combatant is healed above 0", () => {
+    const after = onHealedAboveZero([
+      { slug: "dying", value: 1 },
+      { slug: "unconscious", value: 0 },
+      { slug: "frightened", value: 2 },
+    ]);
+    expect(after.some((c) => c.slug === "unconscious")).toBe(false);
+    expect(after.some((c) => c.slug === "dying")).toBe(false);
+    expect(after.find((c) => c.slug === "wounded")!.value).toBe(1);
+    // Unrelated conditions survive: this models waking up, not a cleanse.
+    expect(after.find((c) => c.slug === "frightened")!.value).toBe(2);
   });
 });

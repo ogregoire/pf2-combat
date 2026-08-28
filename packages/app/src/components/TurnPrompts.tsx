@@ -1,7 +1,6 @@
 import { useEncounter } from "../state/store.js";
 import { format, useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
-import { CONDITIONS } from "../rules/conditions.js";
 import { promptsFor, type Prompt } from "../rules/prompts.js";
 import type { Combatant, Entry } from "../state/types.js";
 import { PromptCard } from "./PromptCard.js";
@@ -45,7 +44,6 @@ export function TurnPrompts(): React.ReactElement | null {
   const combatants = useEncounter((s) => s.encounter.combatants);
   const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
   const acknowledgePrompt = useEncounter((s) => s.acknowledgePrompt);
-  const addCondition = useEncounter((s) => s.addCondition);
   const removeCondition = useEncounter((s) => s.removeCondition);
   const spendActions = useEncounter((s) => s.spendActions);
 
@@ -53,21 +51,20 @@ export function TurnPrompts(): React.ReactElement | null {
   if (!combatant) return null;
 
   /**
-   * Acknowledging is the GM's only record that a timed effect actually
-   * happened, so it's also the only place that effect gets applied — before
-   * this, nextTurn advanced the round but nothing ever decremented
-   * frightened (the same "Lose 1 action" prompt reappeared forever) and a
-   * stunned value, once its action loss had been read off the pips, was
-   * never cleared.
+   * Acknowledging is just the GM's record that they've seen a prompt — it
+   * drives `acknowledgedPrompts` (see below) and nothing else for an "end"
+   * prompt like frightened's decrement, which is a rule that fires on its
+   * own (nextTurn calls applyEndOfTurn — see store.ts) whether or not the
+   * GM ever clicks the card. That used not to be true: this function used
+   * to be the *only* place frightened's decrement happened, because nothing
+   * else ever fired it. Now that nextTurn does, mutating the condition here
+   * too would decrement it twice for one turn ending. Stunned's start-of-
+   * turn action loss has no such automatic path yet, so it still applies
+   * itself here — see the branch below.
    */
   const handleAcknowledge = (prompt: Prompt): void => {
     const applied = combatant.conditions.find((c) => c.slug === prompt.slug);
     if (applied) {
-      if (prompt.timing === "end" && CONDITIONS[prompt.slug].endOfTurn === "decrement") {
-        const next = applied.value - 1;
-        if (next <= 0) removeCondition(combatant.id, prompt.slug);
-        else addCondition(combatant.id, prompt.slug, next);
-      }
       // Removing stunned here alone used to hand the actions it just took
       // back — ActionPips/ActionList/NextButton all recompute actionPool
       // from `conditions` every render, so the moment stunned was gone the

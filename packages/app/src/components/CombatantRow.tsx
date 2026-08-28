@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
-import { CONDITIONS } from "../rules/conditions.js";
+import { CONDITIONS, dyingMax } from "../rules/conditions.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { RowPopover } from "./RowPopover.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
@@ -117,6 +117,35 @@ function SelectCheckbox({
   );
 }
 
+/** Purely a visual affordance — "this row can be dragged" — since the whole
+ * row is what's actually made `draggable` below (a real handle-only drag,
+ * where only this glyph could start the gesture, would drag just the glyph
+ * as the browser's default drag image; simpler to make the row itself the
+ * handle and use this only to invite the gesture). `cursor: grab` lives
+ * here rather than on the row so the rest of the row keeps its
+ * click-to-target pointer cursor.
+ *
+ * `enabled: false` hides the glyph but keeps its box, so a row that can't
+ * be dragged (an unrolled one — see `canDrag`) doesn't pull its initiative
+ * and name a column's width to the left of every other row in the list. */
+function DragGrip({ enabled }: { enabled: boolean }): React.ReactElement {
+  return (
+    <span
+      aria-hidden="true"
+      style={{
+        flexShrink: 0,
+        cursor: enabled ? "grab" : "default",
+        color: "var(--text-faint)",
+        fontSize: "13px",
+        lineHeight: 1,
+        visibility: enabled ? "visible" : "hidden",
+      }}
+    >
+      ⠿
+    </span>
+  );
+}
+
 function hpColor(current: number, max: number): string {
   if (max <= 0) return "var(--text-faint)";
   const ratio = current / max;
@@ -125,15 +154,29 @@ function hpColor(current: number, max: number): string {
   return "var(--accent)";
 }
 
+/**
+ * Dying is the one condition whose value is measured against a threshold:
+ * reaching `dyingMax` (4, less the doomed value) is death, so the chip shows
+ * "DYING 2/3" rather than a bare "DYING 2". Without the cap, a PC one point
+ * from dead looks exactly like one three points away, and the row flips
+ * silently to DEFEATED — the cap was computed in the store and rendered
+ * nowhere, which is why it needs the whole condition list here and not just
+ * this condition's own value: the number comes from doomed.
+ *
+ * Every other valued condition keeps its plain value; none of them has a
+ * ceiling that means anything.
+ */
 function conditionLabel(
-  slug: Combatant["conditions"][number]["slug"],
-  value: number,
+  c: Combatant["conditions"][number],
+  conditions: Combatant["conditions"],
   glossary: Map<string, TraitInfo>,
   lang: "en" | "fr",
 ): string {
-  const def = CONDITIONS[slug];
-  const name = conditionDisplayName(slug, glossary, lang);
-  return def.valued ? `${name.toUpperCase()} ${value}` : name.toUpperCase();
+  const def = CONDITIONS[c.slug];
+  const name = conditionDisplayName(c.slug, glossary, lang).toUpperCase();
+  if (!def.valued) return name;
+  if (c.slug === "dying") return `${name} ${c.value}/${dyingMax(conditions)}`;
+  return `${name} ${c.value}`;
 }
 
 /** Same French condition name RowPopover's own picker/chip resolve
@@ -158,7 +201,7 @@ function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactEle
             color: "var(--cond)",
           }}
         >
-          {conditionLabel(c.slug, c.value, glossary, lang)}
+          {conditionLabel(c, combatant.conditions, glossary, lang)}
         </span>
       ))}
     </div>
@@ -242,6 +285,8 @@ function Saves({ saves }: { saves: Combatant["saves"] }): React.ReactElement {
 function StandaloneRow({
   combatant,
   initiative,
+  delayed,
+  initiativeBeforeDelay,
   active,
   targeted,
   onToggleTarget,
@@ -250,9 +295,13 @@ function StandaloneRow({
   onTap,
   selected,
   onToggleSelect,
+  entryId,
+  onDropEntry,
 }: {
   combatant: Combatant;
-  initiative?: number;
+  initiative?: number | null;
+  delayed: boolean;
+  initiativeBeforeDelay: number | null;
   active: boolean;
   targeted: boolean;
   onToggleTarget: () => void;
@@ -261,6 +310,8 @@ function StandaloneRow({
   onTap: () => void;
   selected: boolean;
   onToggleSelect: () => void;
+  entryId?: string;
+  onDropEntry?: (draggedEntryId: string) => void;
 }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
@@ -272,9 +323,52 @@ function StandaloneRow({
       ? "oklch(0.55 0.10 240)"
       : "oklch(0.38 0.015 60)";
 
+  // Dragging is desktop-only in practice (jsdom/touch don't drive native
+  // HTML5 drag), and only meaningful once the caller (CombatantList) has
+  // handed down both the entry to carry and somewhere to deliver a drop —
+  // grouped members never get these, so they're simply not draggable.
+  const inTheOrder = entryId !== undefined && onDropEntry !== undefined;
+  // An unrolled row is pinned above every rolled one by sortEntries on
+  // `initiative === null` alone, whatever orderKey says (see the store).
+  // moveEntry would write the dropped position faithfully and the sort
+  // would then ignore it, so the row snaps back with nothing said. Better
+  // not to offer the gesture at all until the GM rolls. `undefined` — a
+  // caller that tracks no initiative at all — is not the same as null and
+  // stays draggable.
+  const canDrag = inTheOrder && initiative !== null;
+  const dragSourceProps = canDrag
+    ? {
+        draggable: true,
+        onDragStart: (e: React.DragEvent<HTMLDivElement>) => {
+          e.dataTransfer.setData("text/plain", entryId!);
+          e.dataTransfer.effectAllowed = "move";
+        },
+      }
+    : {};
+  // Still a drop *target* while unrolled: what can't be honoured is moving
+  // this row, not landing another one next to it.
+  const dropTargetProps = inTheOrder
+    ? {
+        // A drop only fires if dragover calls preventDefault — the
+        // browser's default for dragover is "reject this as a drop
+        // target".
+        onDragOver: (e: React.DragEvent<HTMLDivElement>) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = "move";
+        },
+        onDrop: (e: React.DragEvent<HTMLDivElement>) => {
+          e.preventDefault();
+          const draggedId = e.dataTransfer.getData("text/plain");
+          if (draggedId && draggedId !== entryId) onDropEntry!(draggedId);
+        },
+      }
+    : {};
+
   return (
     <div
       {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}
+      {...dragSourceProps}
+      {...dropTargetProps}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -291,6 +385,7 @@ function StandaloneRow({
       }}
     >
       <SelectCheckbox name={displayName} checked={selected} onToggle={onToggleSelect} />
+      {inTheOrder && <DragGrip enabled={canDrag} />}
 
       {initiative !== undefined && (
         <div
@@ -301,10 +396,28 @@ function StandaloneRow({
             width: "24px",
             textAlign: "right",
             color: active ? ACTIVE_INITIATIVE_COLOR : "var(--text-dim)",
+            // A Delayed combatant holds no position in the order at all
+            // (Player Core p. 416), so the number it is parked on is struck
+            // out rather than shown as a live slot. The "delayed" tag beside
+            // it is what keeps this from reading as the defeated styling,
+            // which strikes the name through in the same way.
+            textDecoration: delayed ? "line-through" : "none",
           }}
         >
-          {initiative}
+          {initiative === null ? "—" : initiative}
         </div>
+      )}
+
+      {delayed && (
+        <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--info)" }}>{t("DELAYED_LABEL")}</span>
+      )}
+
+      {/* Returning permanently rewrites the initiative, so the old value
+         survives only as this record of where the combatant used to act. */}
+      {!delayed && initiativeBeforeDelay !== null && (
+        <span style={{ fontSize: "11px", color: "var(--text-faint)", textDecoration: "line-through" }}>
+          {initiativeBeforeDelay}
+        </span>
       )}
 
       <div style={{ flexGrow: 1, minWidth: 0 }}>
@@ -422,17 +535,25 @@ function GroupMemberRow({
       {combatant.defeated ? (
         <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{t("DEFEATED_BADGE")}</span>
       ) : (
-        <>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            flexGrow: 1,
+            minWidth: 0,
+          }}
+        >
           {combatant.hp !== null && (
             <>
-              <HpBar current={combatant.hp.current} max={combatant.hp.max} width="46px" height={4} />
+              <HpBar current={combatant.hp.current} max={combatant.hp.max} />
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
                   fontSize: "11px",
                   color: "var(--text-dim)",
-                  width: "42px",
-                  textAlign: "right",
+                  flexShrink: 0,
+                  whiteSpace: "nowrap",
                 }}
               >
                 {combatant.hp.current}/{combatant.hp.max}
@@ -444,13 +565,13 @@ function GroupMemberRow({
               fontFamily: "var(--font-mono)",
               fontSize: "11px",
               color: "var(--text-faint)",
-              width: "34px",
-              textAlign: "right",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
             }}
           >
             {combatant.ac !== null ? `${t("LABEL_AC")} ${combatant.ac}` : "—"}
           </span>
-        </>
+        </div>
       )}
     </div>
   );
@@ -465,13 +586,22 @@ function GroupMemberRow({
 export function CombatantRow({
   id,
   initiative,
+  delayed = false,
+  initiativeBeforeDelay = null,
   grouped = false,
   active = false,
   selected = false,
   onToggleSelect,
+  entryId,
+  onDropEntry,
 }: {
   id: string;
-  initiative?: number;
+  initiative?: number | null;
+  /** Both describe the row's *entry*, not the combatant, and default to the
+   * un-delayed state so the group-member anatomy and any caller that doesn't
+   * track entries can keep passing nothing. */
+  delayed?: boolean;
+  initiativeBeforeDelay?: number | null;
   grouped?: boolean;
   active?: boolean;
   /** Multi-select for the group builder (CombatantList) — defaults are a
@@ -479,6 +609,14 @@ export function CombatantRow({
    * care about grouping don't have to pass anything. */
   selected?: boolean;
   onToggleSelect?: () => void;
+  /** The entry this row can be dragged as, and where to deliver another
+   * entry dropped on it — both omitted (as for a grouped member, which has
+   * no entry of its own) means the row isn't draggable at all. Only
+   * `StandaloneRow` wires these; `moveEntry` itself is called by
+   * `onDropEntry`'s owner (CombatantList), which is the one that already
+   * knows every entry's id. */
+  entryId?: string;
+  onDropEntry?: (draggedEntryId: string) => void;
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
   const [tapOpen, setTapOpen] = useState(false);
@@ -575,6 +713,8 @@ export function CombatantRow({
         <StandaloneRow
           combatant={combatant}
           initiative={initiative}
+          delayed={delayed}
+          initiativeBeforeDelay={initiativeBeforeDelay}
           active={active}
           targeted={targeted}
           onToggleTarget={toggleTarget}
@@ -583,6 +723,8 @@ export function CombatantRow({
           onTap={onTap}
           selected={selected}
           onToggleSelect={onToggleSelect ?? (() => {})}
+          entryId={entryId}
+          onDropEntry={onDropEntry}
         />
       )}
 

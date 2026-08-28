@@ -214,7 +214,8 @@ describe("creatures render in French", () => {
     expect(screen.queryByText(/Seigneur Cerf \(/)).toBeNull();
   });
 
-  it("translates action and Strike names and descriptions", () => {
+  it("translates action and Strike names and descriptions", async () => {
+    const user = userEvent.setup();
     useEncounter.getState().setLang("fr");
     useEncounter.getState().addCombatant({ ...forestTrollSeed, i18n: forestTrollI18n }, 19);
 
@@ -228,9 +229,13 @@ describe("creatures render in French", () => {
     // Strike button itself.
     expect(screen.getByRole("button", { name: /^Griffe/ })).toBeTruthy();
     expect(screen.queryByRole("button", { name: /^Claw/ })).toBeNull();
-    // The action's own translated name/description also reached the DOM,
-    // not just the Strike's.
-    expect(screen.getByText("Poursuivre la proie")).toBeTruthy();
+    // The action's own translated name reached the DOM, not just the
+    // Strike's — and its description too, once selected (action cards fold
+    // their body away until clicked, same as the English suite's own
+    // "folds a passive's rules text away until its header is clicked").
+    const chasePrey = screen.getByRole("button", { name: /Poursuivre la proie/ });
+    expect(chasePrey).toBeTruthy();
+    await user.click(chasePrey);
     expect(screen.getByText(/Se précipite puis effectue deux Frappes/)).toBeTruthy();
   });
 

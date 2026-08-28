@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { Creature, IndexEntry } from "@pf2/schema";
 import { loadCreature } from "../data/creatures.js";
-import { format, useT } from "../i18n/index.js";
+import { useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import { CombatantRow } from "./CombatantRow.js";
 import { GroupHeader } from "./GroupHeader.js";
@@ -17,27 +17,21 @@ const inputStyle: React.CSSProperties = {
   color: "var(--text)",
 };
 
-/**
- * Minimal group builder: check two or more rows, name it, give it a shared
- * initiative, Create. `group()` (the store action) has existed and been
- * tested since early in the branch, but nothing in the UI ever called it —
- * the GM had no way to make the encounter's heterogeneous groups (one
- * goblin chief with three goblins, sharing a turn) that the app is built to
- * support. `GroupHeader` and the grouped-row anatomy already render; this
- * is the missing input side.
- */
 function GroupBuilder({
   selectedIds,
+  selectedInitiatives,
   onCancel,
   onCreate,
 }: {
   selectedIds: string[];
+  selectedInitiatives: number[];
   onCancel: () => void;
   onCreate: (name: string, initiative: number) => void;
 }): React.ReactElement {
   const t = useT();
+  const allSame = selectedInitiatives.length > 0 && selectedInitiatives.every((v) => v === selectedInitiatives[0]);
   const [name, setName] = useState("");
-  const [initiative, setInitiative] = useState("");
+  const [initiative, setInitiative] = useState(allSame ? String(selectedInitiatives[0]) : "");
 
   return (
     <div
@@ -51,9 +45,6 @@ function GroupBuilder({
         background: "var(--panel-raised)",
       }}
     >
-      <span style={{ fontSize: "11.5px", color: "var(--text-dim)", flexShrink: 0 }}>
-        {format(t("GROUP_SELECTED_COUNT"), { n: selectedIds.length })}
-      </span>
       <input
         aria-label={t("GROUP_NAME_LABEL")}
         placeholder={t("GROUP_NAME_LABEL")}
@@ -107,6 +98,33 @@ function GroupBuilder({
   );
 }
 
+/** `onDragOver`/`onDrop` for anywhere a dragged entry can land: shared by
+ * the group wrapper (a group is a drop target the same way a standalone
+ * row is) and the end-of-list zone below (where `beforeEntryId` is null, so
+ * a drag can reach the very last position — no row exists there to drop
+ * on). Standalone rows get the equivalent pair from CombatantRow's own
+ * `onDropEntry`, not this — they're also a drag *source*, which this isn't
+ * asked to be. */
+function dropTargetProps(
+  beforeEntryId: string | null,
+  moveEntry: (entryId: string, beforeEntryId: string | null) => void,
+): {
+  onDragOver: (e: React.DragEvent) => void;
+  onDrop: (e: React.DragEvent) => void;
+} {
+  return {
+    onDragOver: (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+    },
+    onDrop: (e) => {
+      e.preventDefault();
+      const draggedId = e.dataTransfer.getData("text/plain");
+      if (draggedId && draggedId !== beforeEntryId) moveEntry(draggedId, beforeEntryId);
+    },
+  };
+}
+
 /** The left-pane combatant list — reads the encounter store directly.
  * Entries are already kept sorted by initiative descending by the store.
  * `quickAddEntries`/`loadCreatureFn` feed `<QuickAdd>`, always visible above
@@ -122,10 +140,13 @@ export function CombatantList({
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const group = useEncounter((s) => s.group);
+  const moveEntry = useEncounter((s) => s.moveEntry);
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   const toggleSelect = (id: string): void => {
+    const alreadyGrouped = entries.some((e) => e.groupName !== null && e.combatantIds.includes(id));
+    if (alreadyGrouped) return;
     setSelectedIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
   };
 
@@ -134,12 +155,23 @@ export function CombatantList({
     setSelectedIds([]);
   };
 
+  const chainIcon = (
+    <svg width="12" height="12" viewBox="0 0 12 12" style={{ flexShrink: 0 }}>
+      <path d="M3 4a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm-4.5 1.5h3"
+            fill="none" stroke="oklch(0.34 0.04 200)" strokeWidth="1" strokeLinecap="round"/>
+    </svg>
+  );
+
+  const selectedInitiatives = selectedIds
+    .map((id) => entries.find((e) => e.combatantIds.includes(id))?.initiative ?? null)
+    .filter((i) => i !== null) as number[];
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "3px", padding: "0 8px 12px" }}>
       <QuickAdd entries={quickAddEntries} loadCreatureFn={loadCreatureFn} />
 
       {selectedIds.length >= 2 && (
-        <GroupBuilder selectedIds={selectedIds} onCancel={() => setSelectedIds([])} onCreate={handleCreateGroup} />
+        <GroupBuilder selectedIds={selectedIds} selectedInitiatives={selectedInitiatives} onCancel={() => setSelectedIds([])} onCreate={handleCreateGroup} />
       )}
 
       {entries.map((entry, index) => {
@@ -153,18 +185,41 @@ export function CombatantList({
               key={entry.id}
               id={id}
               initiative={entry.initiative}
+              delayed={entry.delayed}
+              initiativeBeforeDelay={entry.initiativeBeforeDelay}
               active={isActive}
               selected={selectedIds.includes(id)}
               onToggleSelect={() => toggleSelect(id)}
+              entryId={entry.id}
+              onDropEntry={(draggedId) => moveEntry(draggedId, entry.id)}
             />
           );
         }
 
         return (
-          <div key={entry.id}>
+          <div
+            key={entry.id}
+            // Same rule as a standalone row (see CombatantRow's `canDrag`):
+            // an unrolled entry is pinned to the top by the sort whatever
+            // its orderKey says, so a drag of it would silently snap back.
+            // It stays a drop target either way.
+            {...(entry.initiative === null
+              ? {}
+              : {
+                  draggable: true,
+                  onDragStart: (e: React.DragEvent) => {
+                    e.dataTransfer.setData("text/plain", entry.id);
+                    e.dataTransfer.effectAllowed = "move";
+                  },
+                })}
+            {...dropTargetProps(entry.id, moveEntry)}
+          >
             <GroupHeader
+              entryId={entry.id}
               name={entry.groupName}
               initiative={entry.initiative}
+              delayed={entry.delayed}
+              initiativeBeforeDelay={entry.initiativeBeforeDelay}
               memberCount={entry.combatantIds.length}
               active={isActive}
             />
@@ -172,7 +227,7 @@ export function CombatantList({
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "2px",
+                gap: "3px",
                 paddingLeft: "16px",
                 borderLeft: `3px solid ${isActive ? "oklch(0.70 0.15 55)" : "oklch(0.34 0.04 200)"}`,
               }}
@@ -183,14 +238,23 @@ export function CombatantList({
                   id={id}
                   grouped
                   active={isActive}
-                  selected={selectedIds.includes(id)}
-                  onToggleSelect={() => toggleSelect(id)}
+                  selected={false}
+                  onToggleSelect={() => {}}
                 />
               ))}
             </div>
           </div>
         );
       })}
+
+      {/* Dropping on a row always means "insert before this row" — which
+         leaves no way to drag a combatant to last place, since there's no
+         row below the last one to drop on. This closes that gap: a thin,
+         unstyled strip below the list that's droppable but not otherwise
+         visible, so the GM can still drag something to the very end. */}
+      {entries.length > 0 && (
+        <div aria-hidden="true" style={{ minHeight: "14px" }} {...dropTargetProps(null, moveEntry)} />
+      )}
     </div>
   );
 }
