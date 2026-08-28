@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le dragon est touché ou critiquement touché par une attaque portée par une créature qu'il peut voir.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon rétracte la partie du corps ciblée ou se contorsionne pour éviter l'attaque, obtenant un bonus de circonstances de +2 à la CA contre l'attaque déclencheuse.</p>",
+      "en": "Retract Body",
+      "name": "Rétraction du corps"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le dragon porte le déguisement qu'il a convoqué.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon jaillit du déguisement, le détruisant. Cette révélation explosive inflige @Damage[18d6[bludgeoning]|options:area-damage]{18d6 dégâts contondants} aux créatures situées dans une @Template[emanation|distance:5]{émanation de 1,50 mètre} (@Check[reflex|dc:39|basic|options:area-effect]). Une créature qui obtient un échec sur son jet de sauvegarde est Éblouie pendant 1 round alors qu'elle est recouverte de lambeaux du déguisement</p>",
+      "en": "Detonate Disguise",
+      "name": "Faire exploser le déguisement"
+    },
+    {
+      "description": "<p>Le dragon effectue deux Frappes de griffes et une Frappe de queue dans n'importe quel ordre.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": "<p>Le dragon libère un nuage de fumée nocive qui inflige @Damage[16d6[poison]|options:area-damage]{16d6 dégâts de poison} dans un @Template[cone|distance:60]{cône de 18 mètres} (@Check[fortitude|dc:39|basic|options:area-effect]). La fumée persiste pendant 1 minute. Elle a les effets de Brume, sauf qu'elle remplit la zone du cône.</p>\n<p>Le dragon ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Souffle de fumée]]{1d4 rounds}.</p>",
+      "en": "Smoke Breath",
+      "name": "Souffle de fumée"
+    },
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par heure</p>\n<hr />\n<p><strong>Effet</strong> À l'aide de magie et d'une somme d'efforts épuisants, le dragon remodèle rapidement son corps pour lui donner la forme d'une silhouette humanoïde générique. Cela a les effets de Forme humanoïde sauf que cela ne dure qu'une minute et que le dragon ne bénéficie pas du bonus de statut de +4 à la Duperie car la transformation utilise le corps du dragon pour imiter grossièrement une forme humanoïde. Le dragon peut Révoquer l'effet.</p>\n<p>À la fin de l'effet, le dragon laisse derrière lui des lambeaux de chair magiquement convoqués, qui sont susceptibles de trahir sa présence.</p>",
+      "en": "Rushed Transformation",
+      "name": "Transformation précipitée"
+    },
+    {
+      "description": null,
+      "en": "+2 Status to All Saves vs. Occult",
+      "name": "Bonus de statut de +2 aux jets de sauvegarde contre l'occulte"
+    },
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par jour</p>\n<hr />\n<p><strong>Effet</strong> Le dragon convoque une réplique en chair parfaite d'un humanoïde de sa taille ou plus petite qu'il a déjà vu et s'y compresse, tout en générant des vêtements appropriés pour l'humanoïde. Ce processus prend 1 minute, pendant laquelle le dragon est Pris au dépourvu. Si le dragon s'arrête ou est interrompu au cours de ce processus, la tenue est détruite. Une fois le processus terminé, le dragon peut rester indéfiniment sous ce déguisement.</p>\n<p>La transformation a les effets de Changement de forme, sauf que le déguisement n'est pas de nature activement magique et ne se déclare pas comme magique à la <em>Détection de la magie</em> et aux effets similaires. Le dragon perd sa capacité de Rétraction du corps lorsqu'il est transformé.</p>\n<p>Si le dragon subit un coup critique alors qu'il porte son déguisement, sa tenue est détruite et explose immédiatement. Cela a les effets de Détonation du déguisement, sauf que les créatures utilisent le résultat avec un degré de succès supérieur au résultat obtenu sur leur jet de Réflexes.</p>",
+      "en": "Conjure Disguise",
+      "name": "Convoquer un déguisement"
+    },
+    {
+      "description": "<p>Le dragon recharge son Souffle de fumée à chaque fois qu'il obtient un coup critique avec une Frappe.</p>",
+      "en": "Draconic Momentum",
+      "name": "Impulsion draconique"
+    },
+    {
+      "description": "<p>Les Frappes du dragon infligent 3d6 dégâts de précision supplémentaires aux cibles Prises au dépourvu.</p>",
+      "en": "Sneak Attack",
+      "name": "Attaque sournoise"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 feet",
+      "name": "Télépathie 30 mètres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Mental Blast",
+      "name": "Déflagration mentale"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Dragon comploteur (Vénérable)",
+  "publicNotes": "<p>Les dragons comploteurs se cachent dans l'ombre et dans les hautes sphères de la société. Ces dragons sont des intrigants, toujours prêts à manipuler et à contrôler les autres, que ce soit pour leur profit personnel ou simplement pour le plaisir de voir leurs manigances aboutir. Les dragons comploteurs se considèrent comme supérieurs aux autres et adoptent généralement un ton et des mots infantilisants. Néanmoins, comme la plupart des dragons comploteurs se présentent aux autres sous un travestissement, ils font toujours de leur mieux pour maintenir leur déguisement.</p>\n<hr />\n<p>Les dragons se présentent sous une multitude de formes et nombre d'entre eux possèdent des capacités magiques ou des liens avec la magie. Certains dragons tirent une plus grande puissance de la magie que d'autres, ce qui leur permet de manifester des capacités ou de modifier leur silhouette en cas d'exposition prolongée à la magie. Ces dragons deviennent plus puissants en vieillissant et en renforçant leurs liens avec leurs origines magiques. Les érudits débattent de la classification de ces dragons, certains préférant le nom de dragons magiques et d'autres celui de dragons traditionnels en raison de leur lien avec des traditions magiques spécifiques. Quel que soit leur nom, ces dragons partagent un certain nombre de caractéristiques : leur capacité à puiser dans les énergies magiques, une puissance et une ruse accrues à mesure qu'ils vieillissent et une propension à amasser de vastes quantités de trésors et de richesses.</p>"
+}

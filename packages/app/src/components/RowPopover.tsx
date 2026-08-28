@@ -1,6 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useEncounter } from "../state/store.js";
+import { format, useT, type StringKey } from "../i18n/index.js";
+import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
+import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
+import { conditionDisplayName } from "../rules/traitInfo.js";
+import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, PICKABLE_CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
@@ -154,14 +159,19 @@ interface LastChange {
  * resistance lookup (kept local rather than exported from damage.ts since
  * it's presentation, not rules logic).
  */
-function describeIwrAdjustment(raw: number, type: string, iwr: Iwr | null): string {
+function describeIwrAdjustment(
+  t: (key: StringKey) => string,
+  raw: number,
+  type: string,
+  iwr: Iwr | null,
+): string {
   if (iwr === null || type === "none") return `${raw} ${type}`;
-  if (iwr.immunities.includes(type)) return `${raw} ${type}, immune`;
+  if (iwr.immunities.includes(type)) return `${raw} ${type}, ${t("IWR_IMMUNE_SUFFIX")}`;
   const weakness = iwr.weaknesses.find((w) => w.type === type && !(w.exceptions ?? []).includes(type));
   const resistance = iwr.resistances.find((r) => r.type === type && !(r.exceptions ?? []).includes(type));
   const parts: string[] = [];
-  if (weakness) parts.push(`weakness ${weakness.value}`);
-  if (resistance) parts.push(`resistance ${resistance.value}`);
+  if (weakness) parts.push(format(t("IWR_WEAKNESS"), { value: weakness.value }));
+  if (resistance) parts.push(format(t("IWR_RESISTANCE"), { value: resistance.value }));
   return parts.length > 0 ? `${raw} ${type}, ${parts.join(" / ")}` : `${raw} ${type}`;
 }
 
@@ -236,6 +246,9 @@ export function RowPopover({
   onToggleTarget?: () => void;
   onClose?: () => void;
 }): React.ReactElement | null {
+  const t = useT();
+  const lang = useEncounter((s) => s.lang);
+  const glossary = useTraitGlossary();
   const combatant = useEncounter((s) => s.encounter.combatants[combatantId]);
   const entry = useEncounter((s) => s.encounter.entries.find((e) => e.combatantIds.includes(combatantId)));
   const players = useEncounter((s) => s.players);
@@ -265,6 +278,9 @@ export function RowPopover({
   // not just on whether the creature has relevant IWR.
   const [intent, setIntent] = useState<"damage" | "heal">("damage");
   const [lastChange, setLastChange] = useState<LastChange | null>(null);
+  // Called unconditionally (Rules of Hooks) — result only used once
+  // `combatant` is confirmed non-null below.
+  const i18n = useCombatantI18n(combatant ?? { i18n: null, creatureId: undefined });
 
   // Desktop shell positioning: see clampShellTop's own doc comment for what
   // these feed. `panelRef` is on the visible panel div below (shared by
@@ -303,6 +319,7 @@ export function RowPopover({
 
   if (!combatant) return null;
 
+  const displayName = resolveCreatureName(combatant.name, i18n, lang);
   const relevant = relevantDamageTypes(combatant.iwr);
   const showSelector = intent === "damage" && relevant.length > 0;
 
@@ -320,7 +337,7 @@ export function RowPopover({
         delta: -applied,
         before,
         after,
-        reason: applied !== value ? describeIwrAdjustment(value, damageType, combatant.iwr) : undefined,
+        reason: applied !== value ? describeIwrAdjustment(t, value, damageType, combatant.iwr) : undefined,
       });
     }
     setDamageType("none");
@@ -520,12 +537,12 @@ export function RowPopover({
               cursor: "pointer",
             }}
           >
-            {targeted ? "Targeted" : "Target"}
+            {targeted ? t("LABEL_TARGETED") : t("LABEL_TARGET")}
           </button>
           <div style={{ flexGrow: 1 }} />
           <button
             type="button"
-            aria-label="Close"
+            aria-label={t("LABEL_CLOSE")}
             onClick={onClose}
             style={{
               fontFamily: "inherit",
@@ -539,13 +556,13 @@ export function RowPopover({
               cursor: "pointer",
             }}
           >
-            Close
+            {t("LABEL_CLOSE")}
           </button>
         </div>
       )}
 
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "13px", fontWeight: 600 }}>{combatant.name}</span>
+        <span style={{ fontSize: "13px", fontWeight: 600 }}>{displayName}</span>
         {combatant.hp !== null && (
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-dim)" }}>
             {combatant.hp.current}/{combatant.hp.max}
@@ -557,8 +574,8 @@ export function RowPopover({
           // shows, which is confusing when the GM is looking at the panel,
           // not the row behind it. Em dash for unrolled, matching the row.
           <span
-            title="Current initiative"
-            aria-label={`Current initiative ${entry.initiative === null ? "unrolled" : entry.initiative}`}
+            title={t("CURRENT_INITIATIVE_TITLE")}
+            aria-label={format(t("CURRENT_INITIATIVE_ARIA"), { value: entry.initiative === null ? t("UNROLLED_LABEL") : entry.initiative })}
             style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-dim)" }}
           >
             {entry.initiative === null ? "—" : entry.initiative}
@@ -567,7 +584,7 @@ export function RowPopover({
         <div style={{ flexGrow: 1 }} />
         <button
           type="button"
-          aria-label={`Remove ${combatant.name}`}
+          aria-label={format(t("REMOVE_NAME_ARIA"), { name: displayName })}
           onClick={() => removeCombatant(combatantId)}
           style={{
             fontFamily: "inherit",
@@ -580,7 +597,7 @@ export function RowPopover({
             cursor: "pointer",
           }}
         >
-          Remove
+          {t("LABEL_REMOVE")}
         </button>
       </div>
 
@@ -594,15 +611,15 @@ export function RowPopover({
               color: "var(--text-faint)",
             }}
           >
-            Initiative
+            {t("LABEL_INITIATIVE")}
           </div>
           {needsModifierPrompt && (
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
               <span style={{ flexGrow: 1, fontSize: "11.5px", color: "var(--text-dim)" }}>
-                Initiative modifier for {combatant.name}
+                {format(t("INITIATIVE_MODIFIER_FOR_NAME_ARIA"), { name: combatant.name })}
               </span>
               <input
-                aria-label={`Initiative modifier for ${combatant.name}`}
+                aria-label={format(t("INITIATIVE_MODIFIER_FOR_NAME_ARIA"), { name: combatant.name })}
                 value={pcModifierDraft}
                 onChange={(e) => setPcModifierDraft(e.target.value)}
                 style={{
@@ -621,7 +638,7 @@ export function RowPopover({
           )}
           <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
             <input
-              aria-label="Initiative die result"
+              aria-label={t("INITIATIVE_DIE_RESULT_ARIA")}
               value={dieResult}
               onChange={(e) => setDieResult(e.target.value)}
               style={{
@@ -658,7 +675,7 @@ export function RowPopover({
                 cursor: "pointer",
               }}
             >
-              Set initiative
+              {t("SET_INITIATIVE_BUTTON")}
             </button>
           </div>
         </div>
@@ -695,15 +712,15 @@ export function RowPopover({
               marginBottom: "6px",
             }}
           >
-            Damage type — {relevant.length} relevant
+            {format(t("DAMAGE_TYPE_HEADING"), { n: relevant.length })}
           </div>
-          <div role="group" aria-label="damage type" style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+          <div role="group" aria-label={t("DAMAGE_TYPE_GROUP_ARIA")} style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
             <DamageTypeButton
               type="none"
               selected={damageType === "none"}
               onSelect={() => setDamageType("none")}
             >
-              None
+              {t("DAMAGE_TYPE_NONE")}
             </DamageTypeButton>
             {relevant.map((r) => (
               <DamageTypeButton
@@ -733,14 +750,14 @@ export function RowPopover({
           }}
         >
           <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
-            No HP on record — Damage and Heal are disabled.
+            {t("NO_HP_MSG")}
           </span>
         </div>
       )}
 
       <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
         <input
-          aria-label="amount"
+          aria-label={t("AMOUNT_ARIA")}
           value={amount}
           disabled={combatant.hp === null}
           onChange={(e) => setAmount(e.target.value)}
@@ -776,7 +793,7 @@ export function RowPopover({
             opacity: combatant.hp === null ? 0.45 : 1,
           }}
         >
-          Damage
+          {t("LABEL_DAMAGE")}
         </button>
         <button
           type="button"
@@ -796,23 +813,23 @@ export function RowPopover({
             opacity: combatant.hp === null ? 0.45 : 1,
           }}
         >
-          Heal
+          {t("LABEL_HEAL")}
         </button>
       </div>
 
       <div style={{ borderTop: "1px solid var(--border)", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
         <div style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-          Add condition
+          {t("ADD_CONDITION_HEADING")}
         </div>
-
         {combatant.conditions.length > 0 && (
           // Under the section title but above the pickable tags — the title
           // is the section heading and leads, with what's already applied
           // to this combatant surfaced first inside the section so the GM
           // doesn't scroll past it to see what's already on.
-          <div role="group" aria-label="applied conditions" style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+          <div role="group" aria-label={t("APPLIED_CONDITIONS_ARIA")} style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
             {combatant.conditions.map((c) => {
               const def = CONDITIONS[c.slug];
+              const name = conditionDisplayName(c.slug, glossary, lang);
               return (
                 <div
                   key={c.slug}
@@ -830,10 +847,10 @@ export function RowPopover({
                     color: "var(--cond)",
                   }}
                 >
-                  {def.name.toUpperCase()}
+                  {name.toUpperCase()}
                   {def.valued && (
                     <Stepper
-                      name={def.name}
+                      name={name}
                       value={c.value}
                       onIncrease={() => incrementCondition(c.slug, c.value)}
                       onDecrease={() => decrementCondition(c.slug, c.value)}
@@ -841,8 +858,8 @@ export function RowPopover({
                   )}
                   {c.slug === "persistent-damage" && (
                     <input
-                      aria-label="Persistent damage formula"
-                      placeholder="e.g. 2d6"
+                      aria-label={t("PERSISTENT_DAMAGE_FORMULA_ARIA")}
+                      placeholder={t("PERSISTENT_DAMAGE_PLACEHOLDER")}
                       value={c.formula ?? ""}
                       onChange={(e) => updatePersistentDamageFormula(e.target.value)}
                       style={{
@@ -859,7 +876,7 @@ export function RowPopover({
                   )}
                   <button
                     type="button"
-                    aria-label={`Remove ${def.name}`}
+                    aria-label={format(t("REMOVE_NAME_ARIA"), { name })}
                     onClick={() => removeCondition(combatantId, c.slug)}
                     style={{
                       fontFamily: "inherit",
@@ -879,13 +896,13 @@ export function RowPopover({
           </div>
         )}
 
-        <div role="group" aria-label="add condition" style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+        <div role="group" aria-label={t("ADD_CONDITION_GROUP_ARIA")} style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
           {PICKABLE_CONDITIONS
             .filter((def) => !combatant.conditions.some((c) => c.slug === def.slug))
             .map((def) => (
               <PickableConditionButton
                 key={def.slug}
-                name={def.name}
+                name={conditionDisplayName(def.slug, glossary, lang)}
                 valued={def.valued}
                 onClick={() => applyCondition(def.slug)}
               />

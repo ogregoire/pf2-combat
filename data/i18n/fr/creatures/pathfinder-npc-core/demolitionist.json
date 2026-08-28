@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "description": "<p><span class=\"action-glyph\">1</span> à <span class=\"action-glyph\">2</span></p>\n<hr />\n<p>Le démolisseur pose une mine sur une case adjacente. Si une créature pénètre sur une case minée, celle-ci explose, infligeant @Damage[3d8[fire]]{3d8 dégâts de feu} (@Check[type:reflex|dc:21|basic]). En utilisant 2 actions pour Poser une Mine, le démolisseur peut camoufler la mine, lui donnant un DD de Discrétion de 21. Les créatures qui n'ont pas vu poser la mine doivent la rechercher activement (en utilisant l'activité Fouiller en exploration ou l'action Chercher en combat).</p>",
+      "en": "Plant Mine",
+      "name": "Poser une mine"
+    },
+    {
+      "description": "<p>Le démolisseur lance rapidement un bâton de dynamite jusqu'à 6 mètres, qui explose dans une @Template[type:burst|distance:5]{explosion de 1,50 mètre}. Les créatures dans la zone subissent @Damage[4d4[fire]|options:area-damage]{4d4 dégâts de feu} (@Check[type:reflex|dc:21|basic|options:area-effect]).</p>",
+      "en": "Toss Dynamite",
+      "name": "Lancer de dynamite"
+    },
+    {
+      "description": "<p>Le démolisseur place une charge murale puissante sur une surface plane comme une porte ou un mur. Une fois que la charge est posée, elle explose 1 minute après, infligeant @Damage[60[fire]]{60 dégâts de feu} à la surface et ignorant jusqu'à 15 points de Solidité. L'explosion inflige également @Damage[5d6[fire]|options:area-damage]{5d6 dégâts de feu} aux créatures dans une @Template[burst|distance:30]{explosion de 9 mètres} (@Check[type:reflex|dc:25|basic|options:area-effect]).</p>",
+      "en": "Wall Charge",
+      "name": "Charge murale"
+    },
+    {
+      "description": "<p>Lorsque le démolisseur est réduit à 0 Point de vie alors qu'il lui reste des explosifs dans son sac, ces derniers détonent, déclenchant une explosion de feu affectant toutes les créatures dans une @Template[type:emanation|distance:30]{émanation de 9 mètres}. Chaque créature dans la zone subit @Damage[3d6[fire]|options:area-damage]{3d6 dégâts de feu} (@Check[type:reflex|dc:19|options:area-effect,damaging-effect]).</p>",
+      "en": "Explosive Demise",
+      "name": "Trépas explosif"
+    },
+    {
+      "description": "<p>Le démolisseur peut reconstituer son stock d'explosifs après 4 heures de temps d'intermède.</p>",
+      "en": "Replenish Explosives",
+      "name": "Reapprovisionnement d'explosifs"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fist",
+      "name": "Poing"
+    },
+    {
+      "en": "Light Mace",
+      "name": "Masse d'arme légère"
+    }
+  ],
+  "name": "Démolisseur",
+  "publicNotes": "<p>Alors que la plupart des ingénieurs tirent une immense fierté à construire des ouvrages destinés à traverser les siècles, le démolisseur, lui, s'épanouit dans l'art de réduire ces prétentions en poussière de la façon la plus spectaculaire qui soit. Chaque conception possède une faille et cette faille implique généralement des quantités copieuses d'explosifs. Pragmatiques et méthodiques, les démolisseurs prennent un soin maniaque à détruire ce qui se dresse devant eux avec une efficacité redoutable.</p>\n<hr />\n<p>Bien que relativement rares dans la majeure partie de Golarion, les esprits fréquemment excentriques mais indéniablement brillants qui créent des dispositifs élaborés de créations artificielles, de poudre à canon et de vapeur occupent souvent une place bien plus importante dans l'imaginaire public que ne le suggérerait leur nombre.</p>"
+}

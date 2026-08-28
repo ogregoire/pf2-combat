@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "description": "<p>Le golem de fer Marche rapidement jusqu'à sa Vitesse maximale en repoussant toute créature dans l'espace de laquelle il pénètre et en leur infligeant des dégâts si elles tentent de l'arrêter. Une créature peut tenter de lui bloquer le chemin en réussissant un jet de @Check[fortitude|dc:37|traits:damaging-effect].</p>\n<p>En cas de succès critique, la créature qui résiste ne subit aucun dégât ; sinon, elle subit des dégâts comme si elle avait été frappée par le poing du golem.</p>",
+      "en": "Inexorable March",
+      "name": "Marche inexorable"
+    },
+    {
+      "description": "<p>Le golem de fer exhale un gaz empoisonné dans une @Template[burst|distance:10]{explosion de 3 mètres} centrée sur l'un des angles d'une des cases qu'il occupe.</p>\n<p>Le gaz persiste pendant 1 round. Toute créature dans la zone d'effet (ou qui y pénètre) est exposée au poison du golem de fer.</p>\n<p>Le golem ne peut utiliser son Souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Un golem est immunisé contre les sorts et les pouvoirs magiques autres que les siens mais chaque type de golem est affecté d'une manière spéciale par quelques formes de magie. Ces exceptions sont expliquées ci-après. S'il est indiqué plusieurs types de sorts (comme « froid » et « eau »), ils affectent tous le golem.</p>\n<ul>\n<li><strong>Blessé par l'acide</strong> Toute magie de ce type qui cible le golem lui inflige [[/r 6d10]]{6d10 dégâts} (ces dégâts n'ont aucun type) au lieu de l'effet habituel. Si le golem débute son tour dans une zone de magie de ce type ou s'il est affecté par un effet persistant d'acide, il subit [[/r 2d8]]{2d8 dégâts}.</li>\n<li><strong>Ralenti par l'électricité</strong> Toute magie de ce type qui le cible lui confère l'état Ralenti 1 pendant [[/r 2d6 #rounds]]{2d6 rounds} au lieu de l'effet normal. Si le golem débute son tour dans une zone de magie de type électricité, il est Ralenti 1 pendant ce round..</li>\n<li><strong>Soigné par le feu</strong> Toute magie de ce type qui cible le golem lui fait perdre son état Ralenti et lui permet de récupérer un nombre de PV égal à la moitié des dégâts qu'aurait dû infliger le sort. Si le golem débute son tour dans une zone de magie de type feu, il obtient @Damage[2d8[healing]]{2d8 Points de vie}.</li>\n</ul>",
+      "en": "Golem Antimagic",
+      "name": "Antimagie du golem"
+    },
+    {
+      "description": "<p>Toute valeur de Drainé de ce poison est réduit de 1 à chaque heure.</p>\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:33]</p>\n<hr />\n<p><strong>Durée maximale</strong> 4 rounds</p>\n<p><strong>Stade 1</strong> @Damage[2d6[poison]]{2d6 dégâts de poison} et Drainé 1 (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[4d6[poison]]{4d6 dégâts de poison} et Drainé 2 (1 round)</p>\n<p><strong>Stade 3</strong> @Damage[8d6[poison]]{8d6 dégâts de poison} et Drainé 3 (1 round)</p>",
+      "en": "Iron Golem Poison",
+      "name": "Poison du golem de fer"
+    },
+    {
+      "description": "<p>Lancer Affliction purifiée sur le golem désactive son arme de souffle pendant 1 minute.</p>",
+      "en": "Vulnerable to Neutralize Poison",
+      "name": "Vulnérable à Affliction purifiée"
+    },
+    {
+      "description": "<p>Les effets magiques de rouille, comme ceux produits par les antennes d'un oxydeur, affectent normalement le golem de fer.</p>",
+      "en": "Vulnerable to Rust",
+      "name": "Vulnérabilité à la rouille"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fist",
+      "name": "Poing"
+    }
+  ],
+  "name": "Golem de fer",
+  "publicNotes": "<p>Traditionnellement fabriqués pour avoir l'apparence d'une armure gigantesque ou d'un puissant animal, les golems de fer exigent un talent confirmé et un véritable sens artistique. Leurs jointures articulées et leur robuste corps blindé nécessitent un très grand soin et une précision mathématique pour être fabriqués. Une lubrification et un nettoyage réguliers permettent d'éviter qu'ils rouillent au fil des siècles. Si on en prend soin, un golem de fer peut demeurer en bon état pendant des milliers d'années en étant transmis de génération en génération et tant qu'il n'est pas détruit par des aventuriers. En plus de leur force incroyable, ils sont dotés d'un puissant souffle toxique qui suffit bien souvent à neutraliser tout un groupe d'adversaires.</p>\n<hr />\n<p>Fabriqué avec un matériau de base puis magiquement animé en un puissant gardien, le légendaire golem est une créature artificielle vivante qui obéit aveuglément aux ordres de son créateur, continuant à accomplir sa volonté pendant des années et même des siècles après sa mort. Il existe deux méthodes pour animer un golem. La méthode traditionnelle consiste à récolter et à implanter une âme ou une essence élémentaire dans la statue qui vient d'être fabriquée. C'est une procédure considérée comme vile et blasphématoire pour ceux qui accordent de l'importance à la sacralité de l'âme. Les fabricants de golems maléfiques ou sans moralité ont tendance à préférer cette méthode. L'autre technique, plus recommandable, consiste à siphonner de la pure énergie de vitalité dans la statue pour reproduire artificiellement la création d'une âme. Cela ne confère pas au golem une véritable âme et c'est souvent une méthode de création plus longue et plus coûteuse. Quelle que soit la méthode utilisée, le golem fonctionne de la même manière.</p>\n<p>La force unique qui l'anime le rend sensible à certaines formes de magie mais, à part ces quelques faiblesses, il est invulnérable à la magie et il est difficile de l'endommager avec des armes. En jeu, ces êtres fonctionnent mieux comme des adversaires à vaincre plutôt que comme des alliés qui accompagnent les joueurs en aventure. Le processus pour créer un golem est long, très coûteux et difficile et seuls les incantateurs ou les artisans les plus compétents peuvent espérer accomplir un tel exploit. Bien que certains textes magiques, les « traités de création des golems », soient censés aider les artisans, la fabrication d'un golem devrait demeurer en grande partie du domaine du maître de jeu. Les golems ont des composants qui peuvent être récupérés comme trophées ou composants magiques ; leur valeur dépend du golem concerné. Vous trouverez en encadré quelques exemples de composants qui peuvent être récoltés.</p>"
+}

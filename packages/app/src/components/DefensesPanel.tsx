@@ -1,3 +1,4 @@
+import { useT } from "../i18n/index.js";
 import type { Combatant } from "../state/types.js";
 
 function Box({ label, value }: { label: string; value: React.ReactNode }): React.ReactElement {
@@ -11,6 +12,7 @@ function Box({ label, value }: { label: string; value: React.ReactNode }): React
 
 /** Main.dc.html's defences strip: AC, HP, and the three saves. */
 export function DefensesPanel({ combatant }: { combatant: Combatant }): React.ReactElement {
+  const t = useT();
   return (
     <div
       style={{
@@ -22,9 +24,9 @@ export function DefensesPanel({ combatant }: { combatant: Combatant }): React.Re
         flexShrink: 0,
       }}
     >
-      <Box label="AC" value={combatant.ac ?? "—"} />
+      <Box label={t("LABEL_AC")} value={combatant.ac ?? "—"} />
       <Box
-        label="HIT POINTS"
+        label={t("LABEL_HIT_POINTS")}
         value={
           combatant.hp !== null ? (
             <>
@@ -36,9 +38,9 @@ export function DefensesPanel({ combatant }: { combatant: Combatant }): React.Re
           )
         }
       />
-      <Box label="FORTITUDE" value={combatant.saves !== null ? combatant.saves.fortitude : "—"} />
-      <Box label="REFLEX" value={combatant.saves !== null ? combatant.saves.reflex : "—"} />
-      <Box label="WILL" value={combatant.saves !== null ? combatant.saves.will : "—"} />
+      <Box label={t("LABEL_FORTITUDE").toUpperCase()} value={combatant.saves !== null ? combatant.saves.fortitude : "—"} />
+      <Box label={t("LABEL_REFLEX").toUpperCase()} value={combatant.saves !== null ? combatant.saves.reflex : "—"} />
+      <Box label={t("LABEL_WILL").toUpperCase()} value={combatant.saves !== null ? combatant.saves.will : "—"} />
     </div>
   );
 }

@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Trois fois par jour</p>\n<hr />\n<p><strong>Effet</strong> Le zomok se téléporte avec les effets d'un sort de Translocation au rang 5, mais son point de départ et d'arrivée doivent se trouver tous deux dans une zone boisée. Le zomok regagne @Damage[10d10[healing]]{10d10 Points de vie} lors de cette téléportation. Les créatures gobées par le zomok ne se déplacent pas avec lui.</p>\n<p>Le zomok ne peut plus utiliser cette capacité pendant [[/gmr 1d6+1 #Recharge Passage par les forêts]]{1d6+1 rounds} avant de pouvoir réutiliser Passage par les forêts.</p>",
+      "en": "Forest Step",
+      "name": "Passage par les forêts"
+    },
+    {
+      "description": null,
+      "en": "Improved Grab",
+      "name": null
+    },
+    {
+      "description": "<p>Très grande, @Damage[(3d12+9)[bludgeoning]]{3d12+9 dégâts contondants}, Rupture 35</p>\n<hr />\n<p><p>Le monstre tente d'avaler une créature de la taille indiquée qu'il a Saisie ou Entravée dans ses mâchoires ou sa bouche. Si une créature avalée est de la taille maximale indiquée, le monstre ne peut utiliser Gober de nouveau. Si la créature est plus petite que ce maximum, le monstre peut habituellement gober plus de créatures. Le MJ détermine ce maximum. Le monstre tente un test d'@Check[athletics|defense:reflex] opposée au DD de Réflexes de la créature. Si elle réussit, elle avale la créature. La bouche du monstre ou ses mâchoires n'agrippent plus une créature qu'elle a gobée, de sorte que le monstre est libre de l'utiliser pour Frapper ou Agripper de nouveau. Le monstre ne peut attaquer les créatures qu'il a gobée.</p>\n<p>Une créature gobée est Agrippée, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature gobée subit le montant de dégâts indiqué lorsqu'elle est gobée pour la première fois et, à la fin de chacun de ses tours, tant qu'elle reste gobée. Si la victime S'Échappe de l'état Agrippé de cette capacité, elle sort à travers la bouche du monstre. Cela libère toute autre créature Agrippée dans la bouche du monstre ou dans ses mâchoires. Une créature gobée peut attaquer le monstre qui l'a gobée, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui gobe est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à sa valeur de Rupture indiquée du fait d'une unique attaque ou d'un sort, la créature gobée se libère. Une créature qui se libère, soit en S'Échappant, soit en se libérant elle-même peut immédiatement respirer et sortir de l'espace du monstre qui la gobe.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Si le monstre meurt, une créature gobée peut être libérée par les créatures adjacentes au cadavre si elles passent un total d'actions combinées à tnracher dans le monstre avec une arme ou une attaque à mains nues qui infligent des dégâts perforants ou tranchants.</p></p>",
+      "en": "Swallow Whole",
+      "name": null
+    },
+    {
+      "description": "<p>Le zomok projette de la terre et des graviers sur un @Template[cone|distance:60]{cône de 18 mètres}, infligeant @Damage[17d6[bludgeoning]|options:area-damage]{17d6 dégâts contondants} (@Check[reflex|dc:34|basic|options:area-effect]). Les créatures qui se trouvent À terre subissent une pénalité de circonstances de -2 à ce jet de sauvegarde. Les créatures en contact avec le sol qui échouent à leur jet de sauvegarde subissent une pénalité de circonstances de -3 mètres à leurs Vitesses (Entravées ([[/act escape dc=34]]) sur un échec critique).</p>\n<p>Le zomok ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Souffle ensevelissant]]{1d4 rounds}.</p>\n<p>Les corps des créatures tuées par le Souffle ensevelissant se décomposent instantanément et sont détruits. Elles ne peuvent être ramenées à la vie que par un sort adapté de rang supérieur ou égal à 7, ou par un rituel de résurrection. L'équipement de ces créatures n'est pas endommagé, mais il est enterré sous 1,50 mètre de terre.</p>",
+      "en": "Entombing Breath",
+      "name": "Souffle ensevelissant"
+    },
+    {
+      "description": "<p>Très grande ou inférieure, queue, @Check[reflex|dc:32|basic]</p>\n<hr />\n<p><p>Le monstre Marche rapidement sur une distance maximale égale au double de sa Vitesse et peut traverser les espaces de créatures de la taille indiquée. Il Piétine alors chaque créature dans l'espace de laquelle il pénètre. Le monstre ne peut tenter de Piétiner une créature qu'une seule fois par utilisation de l'action Piétinement. Le monstre inflige les dégâts de la Frappe indiquée. Les créatures piétinées peuvent alors faire un jet de Réflexes basique avec le DD indiqué (aucun dégât sur un succès critique, la moitié des dégâts sur un succès, le double des dégâts sur un échec critique).</p></p>",
+      "en": "Trample",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Tremorsense 60 feet",
+      "name": "Perception des vibrations 18 m"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Zomok",
+  "publicNotes": "<p>Les zomoks sont de grands dragons végétaux qui parcourent les forêts et défendent leur territoire des forces destructrices, tout en s'efforçant de soigner les régions boisées ravagées par un cataclysme ou des intrus. L'apparence des zomoks change en fonction des saisons. Ils adoptent progressivement une teinte d'un vert vif au printemps et en été, puis revêtent le jaune et l'ocre à l'automne, pour enfin se parer de brun en hiver. Si les zomoks engloutissent souvent leurs adversaires, ils n'ont pas réellement besoin de se nourrir. Le cadavre broyé de ces créatures reparaît ainsi généralement dès que le zomok utilise son pouvoir Passage par les forêts. Les zomoks peuvent faire de 10 à 12 mètres de long pour un poids de 30 tonnes.</p>"
+}

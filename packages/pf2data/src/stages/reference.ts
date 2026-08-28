@@ -126,23 +126,45 @@ function titleCaseFromSlug(slug: string): string {
  * handful of suffixes (12 of 426) have no such key, so those fall back to a
  * title-cased slug rather than being dropped.
  */
-export function buildTraits(lang: LangTable): Trait[] {
-  const traits: Trait[] = [];
+export interface ScannedTrait {
+  slug: string;
+  /** `null` when the lang table carries no `PF2E.Trait<Suffix>` display-name
+   * key for this trait. The English build substitutes a title-cased slug; the
+   * French overlay must NOT, because a title-cased slug is English-derived
+   * text and would hide the gap from `report`. */
+  name: string | null;
+  description: string;
+}
+
+/**
+ * The single scan behind both trait outputs -- the English `buildTraits`
+ * below and the French overlay in `stages/i18n.ts`. Kept as one function so
+ * the slug derivation can never drift between the two languages: the overlay
+ * is joined to the English traits BY SLUG, so a second, subtly different
+ * derivation would silently drop translations.
+ */
+export function scanTraits(lang: LangTable): ScannedTrait[] {
+  const traits: ScannedTrait[] = [];
 
   for (const [key, description] of Object.entries(lang)) {
     if (!key.startsWith(TRAIT_DESCRIPTION_PREFIX)) continue;
     const suffix = key.slice(TRAIT_DESCRIPTION_PREFIX.length);
     if (suffix === "") continue;
 
-    const slug = slugFromTraitDescriptionKey(suffix);
-    const name = lang[`${TRAIT_NAME_PREFIX}${suffix}`] ?? titleCaseFromSlug(slug);
-
     traits.push({
-      slug,
-      name,
+      slug: slugFromTraitDescriptionKey(suffix),
+      name: lang[`${TRAIT_NAME_PREFIX}${suffix}`] ?? null,
       description: resolveLinks(resolveLocalize(description, lang)),
     });
   }
 
   return traits.sort((a, b) => compareStrings(a.slug, b.slug));
+}
+
+export function buildTraits(lang: LangTable): Trait[] {
+  return scanTraits(lang).map((t) => ({
+    slug: t.slug,
+    name: t.name ?? titleCaseFromSlug(t.slug),
+    description: t.description,
+  }));
 }

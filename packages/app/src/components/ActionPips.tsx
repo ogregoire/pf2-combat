@@ -1,3 +1,4 @@
+import { format, useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import type { Combatant } from "../state/types.js";
 
@@ -21,6 +22,7 @@ function poolInputFor(combatant: Combatant): { slowed: number; stunned: number; 
  * base 3 and the pool total, so a reduced pool still shows the lost pips as
  * empty rather than shrinking the row. */
 export function ActionPips({ combatant }: { combatant: Combatant }): React.ReactElement {
+  const t = useT();
   const pool = actionPool(poolInputFor(combatant));
   const remaining = Math.max(0, pool.total - combatant.actionsSpent);
   const pipCount = Math.max(BASE_ACTIONS, pool.total);
@@ -29,7 +31,7 @@ export function ActionPips({ combatant }: { combatant: Combatant }): React.React
   return (
     <div>
       <div style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)", marginBottom: "8px" }}>
-        ACTIONS REMAINING
+        {t("ACTIONS_REMAINING_HEADING")}
       </div>
       <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
         {pips.map((filled, i) => (
@@ -47,7 +49,9 @@ export function ActionPips({ combatant }: { combatant: Combatant }): React.React
         ))}
       </div>
       <div style={{ textAlign: "center", marginTop: "8px", fontSize: "11px", color: "var(--text-dim)" }}>
-        {pool.reasons.length > 0 ? `${remaining} of ${pipCount} — ${pool.reasons.join(", ")}` : `${remaining} actions`}
+        {pool.reasons.length > 0
+          ? format(t("ACTIONS_REMAINING_OF_TOTAL"), { remaining, total: pipCount, reasons: pool.reasons.join(", ") })
+          : `${remaining} ${t("ACTIONS_UNIT")}`}
       </div>
     </div>
   );

@@ -39,12 +39,38 @@ const NON_GEAR_TYPES = new Set([
   "lore",
 ]);
 
+/** A creature's Foundry item ids, aligned to `Creature.actions`/`.attacks`
+ * by array position. `CreatureSchema.parse` strips `foundryId` off both
+ * arrays -- deliberately, since only the French overlay needs them -- so they
+ * are returned beside the creature instead, out of the SAME normalisation
+ * pass. A second pass could in principle sort differently; `verifyI18n`
+ * guards the alignment, but not producing the risk is better than catching
+ * it. */
+export interface CreatureItemIds {
+  actions: { name: string; foundryId: string }[];
+  attacks: { name: string; foundryId: string }[];
+}
+
+export interface NormalizedCreature {
+  creature: Creature;
+  items: CreatureItemIds;
+}
+
 export function normalizeCreature(
   raw: unknown,
   pack: string,
   slug: string,
   lang: LangTable,
 ): Creature {
+  return normalizeCreatureWithItems(raw, pack, slug, lang).creature;
+}
+
+export function normalizeCreatureWithItems(
+  raw: unknown,
+  pack: string,
+  slug: string,
+  lang: LangTable,
+): NormalizedCreature {
   const actor = ActorSchema.parse(raw);
   const traits = normalizeTraits(actor.system.traits, `${pack}/${slug} (${actor.name})`);
   // Deliberately the RAW system, not `actor.system`: ActorSchema's `system`
@@ -70,7 +96,9 @@ export function normalizeCreature(
     requirements: a.requirements === null ? null : resolveLinks(a.requirements),
   }));
 
-  return CreatureSchema.parse({
+  const attacks = normalizeAttacks(actor.items);
+
+  const creature = CreatureSchema.parse({
     id: `${pack}/${slug}`,
     foundryId: actor._id,
     name: actor.name,
@@ -80,10 +108,18 @@ export function normalizeCreature(
     traits: traits.traits,
     source: parseSource(actor.system.details.publication, pack),
     ...defenses,
-    attacks: normalizeAttacks(actor.items),
+    attacks,
     actions,
     spellcasting: normalizeSpellcasting(actor.items),
     gear,
     publicNotes: resolveLinks(resolveLocalize(actor.system.details.publicNotes, lang)),
   } satisfies Creature);
+
+  return {
+    creature,
+    items: {
+      actions: actions.map((a) => ({ name: a.name, foundryId: a.foundryId })),
+      attacks: attacks.map((a) => ({ name: a.name, foundryId: a.foundryId })),
+    },
+  };
 }

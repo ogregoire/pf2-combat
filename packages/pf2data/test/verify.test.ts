@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import type { Manifest } from "@pf2/schema";
 import { normalizeCreature } from "../src/normalize/creature.js";
 import { buildIndexes } from "../src/stages/index.js";
-import { verifyDataset } from "../src/stages/verify.js";
+import { verifyDataset, verifyI18n, verifyI18nMarkup } from "../src/stages/verify.js";
 
 const stagLord = normalizeCreature(
   JSON.parse(
@@ -22,6 +22,8 @@ const manifest = (overrides: Partial<Manifest> = {}): Manifest => ({
   toolVersion: "0.0.0",
   upstreamRepo: "https://github.com/foundryvtt/pf2e",
   upstreamRef: "abc123",
+  frRepo: "https://gitlab.com/pathfinder-fr/foundryvtt-pathfinder2-fr",
+  frRef: "def456",
   generatedAt: "2026-08-24T00:00:00.000Z",
   packs: ["kingmaker-bestiary"],
   creatureCount: 1,
@@ -217,5 +219,154 @@ describe("verifyDataset", () => {
     input.traits = [{ slug: "agile", name: "Agile", description: "<p>...</p>" }];
     const result = verifyDataset(input);
     expect(result.ok).toBe(true);
+  });
+});
+
+describe("verifyI18n", () => {
+  // The overlay is keyed by ARRAY POSITION, so it is only ever safe while the
+  // overlay and the creature agree position-for-position. An upstream reorder
+  // or a dropped item must be a loud failure here, never a silently
+  // mistranslated Strike.
+  it("fails when an overlay position's English name disagrees with the creature", () => {
+    const problems = verifyI18n(
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [] },
+      { name: "X", publicNotes: null, actions: [{ en: "Grab", name: "Agripper", description: null }], attacks: [] },
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/Rend/);
+    expect(problems[0]).toMatch(/Grab/);
+  });
+
+  it("fails when the overlay has a different number of positions than the creature", () => {
+    // Creature has 2 actions, overlay has 1 -- an upstream reorder or a dropped
+    // item. Index-keying is only safe while the lengths agree.
+    expect(verifyI18n(
+      { id: "p/c", actions: [{ name: "Rend" }, { name: "Grab" }], attacks: [] },
+      { name: "X", publicNotes: null, actions: [{ en: "Rend", name: null, description: null }], attacks: [] },
+    )).toHaveLength(1);
+  });
+
+  it("passes for an aligned overlay", () => {
+    expect(verifyI18n(
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [{ name: "Claw" }] },
+      { name: "X", publicNotes: null,
+        actions: [{ en: "Rend", name: "Déchiqueter", description: null }],
+        attacks: [{ en: "Claw", name: "Griffe" }] },
+    )).toEqual([]);
+  });
+
+  it("fails when an attack position's English name disagrees, naming the creature", () => {
+    const problems = verifyI18n(
+      { id: "kingmaker-bestiary/the-stag-lord", actions: [], attacks: [{ name: "Longsword" }] },
+      { name: "Seigneur Cerf", publicNotes: null, actions: [], attacks: [{ en: "Composite Longbow", name: "Arc long composite" }] },
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/kingmaker-bestiary\/the-stag-lord/);
+  });
+});
+
+describe("unresolved Foundry markup in French output", () => {
+  // Babele ships RAW text. The English side has zero @UUID and zero @Localize
+  // because normalizeCreature resolves both; the French side must match, or
+  // the GM reads the marker literally.
+  it("verifyI18n reports an unresolved @UUID in an overlay", () => {
+    const problems = verifyI18n(
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [] },
+      {
+        name: "X",
+        publicNotes: null,
+        actions: [{
+          en: "Rend",
+          name: "Déchiqueter",
+          description: "<p>Voir @UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}.</p>",
+        }],
+        attacks: [],
+      },
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/@UUID/);
+    expect(problems[0]).toMatch(/p\/c/);
+  });
+
+  it("verifyI18n reports an unresolved @Localize in an overlay", () => {
+    const problems = verifyI18n(
+      { id: "p/c", actions: [], attacks: [] },
+      {
+        name: "X",
+        publicNotes: "@Localize[PF2E.NPC.Abilities.Glossary.Grab]",
+        actions: [],
+        attacks: [],
+      },
+    );
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/@Localize/);
+  });
+
+  it("verifyI18nMarkup covers the reference overlays too", () => {
+    expect(
+      verifyI18nMarkup("i18n/fr/glossary.json", {
+        grab: { name: "Agrippement", description: "<p>@UUID[Compendium.pf2e.x.Item.y]{z}</p>" },
+      }),
+    ).toHaveLength(1);
+    expect(
+      verifyI18nMarkup("i18n/fr/conditions.json", {
+        frightened: { name: "Effrayé", description: "<p>propre</p>" },
+      }),
+    ).toEqual([]);
+  });
+
+  it("leaves @Check, @Damage and @Template alone -- the English dataset carries them too", () => {
+    expect(
+      verifyI18nMarkup("i18n/fr/glossary.json", {
+        x: { name: "X", description: "@Check[reflex|dc:20] @Damage[2d6] @Template[burst]" },
+      }),
+    ).toEqual([]);
+  });
+
+  it("catches a marker family nobody has ever seen, not just the ones we know", () => {
+    // Deliberately INVENTED. `@Compendium` would not pin this property: by the
+    // time the allow-list existed, @Compendium was already a known family, so
+    // a hand-written deny-list naming it would pass too. The property under
+    // test is that ANY family the English dataset does not carry is rejected,
+    // and only an unknown name can express that.
+    const problems = verifyI18nMarkup("i18n/fr/creatures/p/c.json", {
+      description: "<p>@Frobnicate[pf2e.spells-srd.abc]{Machin}</p>",
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/@Frobnicate/);
+  });
+
+  it("catches a bare @[ , which has no family name at all", () => {
+    // One real occurrence: pathfinder-npc-core/harbormaster carries
+    // `@[[/act balance]]{Garder l'équilibre}` -- a stray `@` in front of an
+    // otherwise ordinary enricher. `/@([A-Za-z]+)\[/` needs at least one
+    // letter, so it sailed past both checks.
+    const problems = verifyI18nMarkup("i18n/fr/creatures/p/c.json", {
+      description: "<p>un test pour @[[/act balance]]{Garder l'équilibre}</p>",
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/@\[/);
+  });
+
+  it("leaves an ordinary [[/act ...]] enricher alone -- English carries 416 of them", () => {
+    expect(
+      verifyI18nMarkup("x", { d: "<p>pour [[/act balance]]{Garder l'équilibre}</p>" }),
+    ).toEqual([]);
+  });
+});
+
+describe("verifyI18nMarkup catches a reference with no @-prefix", () => {
+  it("flags bracket text that is a compendium reference minus its @", () => {
+    const problems = verifyI18nMarkup("i18n/fr/glossary.json", {
+      x: { description: "elle est [pf2e.conditionitems.4D2KBtexWXa6oUMR]{Drainée 1}" },
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(/compendium reference/i);
+  });
+
+  it("does not flag @Check, @Damage or @Template brackets", () => {
+    expect(
+      verifyI18nMarkup("x", { d: "@Check[reflex|dc:20] @Damage[2d6] @Template[emanation|distance:500]" }),
+    ).toEqual([]);
   });
 });

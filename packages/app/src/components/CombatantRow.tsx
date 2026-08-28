@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { useEncounter } from "../state/store.js";
+import { format, useT, type StringKey } from "../i18n/index.js";
 import { CONDITIONS, dyingMax } from "../rules/conditions.js";
+import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { RowPopover } from "./RowPopover.js";
+import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
+import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import type { Combatant } from "../state/types.js";
 
@@ -40,12 +45,13 @@ function combinedRing(active: boolean, targeted: boolean): string {
  * why this becomes a disclosure control (aria-expanded) rather than a
  * pressed toggle (aria-pressed) when narrow. */
 function targetRowProps(
-  combatant: Combatant,
+  displayName: string,
   targeted: boolean,
   onToggleTarget: () => void,
   narrow: boolean,
   open: boolean,
   onTap: () => void,
+  t: (key: StringKey) => string,
 ): {
   role: "button";
   tabIndex: number;
@@ -60,7 +66,7 @@ function targetRowProps(
       role: "button",
       tabIndex: 0,
       "aria-expanded": open,
-      "aria-label": `Show actions for ${combatant.name}`,
+      "aria-label": format(t("SHOW_ACTIONS_ARIA"), { name: displayName }),
       onClick: onTap,
       onKeyDown: (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -74,7 +80,7 @@ function targetRowProps(
     role: "button",
     tabIndex: 0,
     "aria-pressed": targeted,
-    "aria-label": `Target ${combatant.name}`,
+    "aria-label": format(t("TARGET_NAME_ARIA"), { name: displayName }),
     onClick: onToggleTarget,
     onKeyDown: (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -98,10 +104,11 @@ function SelectCheckbox({
   checked: boolean;
   onToggle: () => void;
 }): React.ReactElement {
+  const t = useT();
   return (
     <input
       type="checkbox"
-      aria-label={`Select ${name} for grouping`}
+      aria-label={format(t("SELECT_FOR_GROUPING_ARIA"), { name })}
       checked={checked}
       onChange={onToggle}
       onClick={(e) => e.stopPropagation()}
@@ -162,14 +169,23 @@ function hpColor(current: number, max: number): string {
 function conditionLabel(
   c: Combatant["conditions"][number],
   conditions: Combatant["conditions"],
+  glossary: Map<string, TraitInfo>,
+  lang: "en" | "fr",
 ): string {
   const def = CONDITIONS[c.slug];
-  if (!def.valued) return def.name.toUpperCase();
-  if (c.slug === "dying") return `DYING ${c.value}/${dyingMax(conditions)}`;
-  return `${def.name.toUpperCase()} ${c.value}`;
+  const name = conditionDisplayName(c.slug, glossary, lang).toUpperCase();
+  if (!def.valued) return name;
+  if (c.slug === "dying") return `${name} ${c.value}/${dyingMax(conditions)}`;
+  return `${name} ${c.value}`;
 }
 
+/** Same French condition name RowPopover's own picker/chip resolve
+ * (`conditionDisplayName`, shared via rules/traitInfo.js) — otherwise a
+ * combatant could show "FRIGHTENED 2" here and "EFFRAYÉ 2" the moment its
+ * popover opens, two languages for the one applied condition at once. */
 function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactElement | null {
+  const lang = useEncounter((s) => s.lang);
+  const glossary = useTraitGlossary();
   if (combatant.conditions.length === 0) return null;
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginTop: "5px" }}>
@@ -185,7 +201,7 @@ function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactEle
             color: "var(--cond)",
           }}
         >
-          {conditionLabel(c, combatant.conditions)}
+          {conditionLabel(c, combatant.conditions, glossary, lang)}
         </span>
       ))}
     </div>
@@ -218,11 +234,11 @@ function HpBar({
   );
 }
 
-function levelLabel(combatant: Combatant): string {
-  return combatant.kind === "pc" ? `PC ${combatant.level}` : `${combatant.level}`;
+function levelLabel(combatant: Combatant, t: (key: StringKey) => string): string {
+  return combatant.kind === "pc" ? `${t("PC_PREFIX")} ${combatant.level}` : `${combatant.level}`;
 }
 
-const SAVE_NAMES = { F: "Fortitude", R: "Reflex", W: "Will" } as const;
+const SAVE_NAME_KEYS = { F: "LABEL_FORTITUDE", R: "LABEL_REFLEX", W: "LABEL_WILL" } as const;
 
 /** Programmatic, not a concatenated literal "+", so a zero or negative save
  * (none exist in the dataset today, but nothing here should assume that
@@ -237,9 +253,11 @@ function formatSigned(n: number): string {
  * instead of hover. The letter is bold, the value regular weight, with a
  * tight gap between them (not a full word space) so the pair reads as one
  * unit rather than two words. */
-function SaveUnit({ letter, value }: { letter: keyof typeof SAVE_NAMES; value: number }): React.ReactElement {
+function SaveUnit({ letter, value }: { letter: keyof typeof SAVE_NAME_KEYS; value: number }): React.ReactElement {
+  const t = useT();
+  const saveName = t(SAVE_NAME_KEYS[letter]);
   return (
-    <span title={SAVE_NAMES[letter]} aria-label={`${SAVE_NAMES[letter]} ${formatSigned(value)}`} style={{ whiteSpace: "nowrap" }}>
+    <span title={saveName} aria-label={`${saveName} ${formatSigned(value)}`} style={{ whiteSpace: "nowrap" }}>
       <span style={{ fontWeight: 700 }}>{letter}</span>
       <span style={{ marginLeft: "2px" }}>{formatSigned(value)}</span>
     </span>
@@ -295,6 +313,10 @@ function StandaloneRow({
   entryId?: string;
   onDropEntry?: (draggedEntryId: string) => void;
 }): React.ReactElement {
+  const t = useT();
+  const lang = useEncounter((s) => s.lang);
+  const i18n = useCombatantI18n(combatant);
+  const displayName = resolveCreatureName(combatant.name, i18n, lang);
   const borderColor = active
     ? ACTIVE_BORDER
     : combatant.kind === "pc"
@@ -344,7 +366,7 @@ function StandaloneRow({
 
   return (
     <div
-      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap)}
+      {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}
       {...dragSourceProps}
       {...dropTargetProps}
       data-active={active}
@@ -362,7 +384,7 @@ function StandaloneRow({
         cursor: "pointer",
       }}
     >
-      <SelectCheckbox name={combatant.name} checked={selected} onToggle={onToggleSelect} />
+      <SelectCheckbox name={displayName} checked={selected} onToggle={onToggleSelect} />
       {inTheOrder && <DragGrip enabled={canDrag} />}
 
       {initiative !== undefined && (
@@ -387,7 +409,7 @@ function StandaloneRow({
       )}
 
       {delayed && (
-        <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--info)" }}>delayed</span>
+        <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--info)" }}>{t("DELAYED_LABEL")}</span>
       )}
 
       {/* Returning permanently rewrites the initiative, so the old value
@@ -401,9 +423,9 @@ function StandaloneRow({
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
           <span style={{ fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
-            {combatant.name}
+            {displayName}
           </span>
-          <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant)}</span>
+          <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
         </div>
 
         {!combatant.defeated && combatant.hp !== null && (
@@ -427,7 +449,7 @@ function StandaloneRow({
       </div>
 
       {combatant.defeated ? (
-        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>DEFEATED</span>
+        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{t("DEFEATED_BADGE")}</span>
       ) : (
         <div
           style={{
@@ -439,7 +461,7 @@ function StandaloneRow({
             fontSize: "11px",
           }}
         >
-          <span style={{ color: "var(--text)" }}>{combatant.ac !== null ? `AC ${combatant.ac}` : "—"}</span>
+          <span style={{ color: "var(--text)" }}>{combatant.ac !== null ? `${t("LABEL_AC")} ${combatant.ac}` : "—"}</span>
           <span style={{ color: "var(--text-faint)", letterSpacing: "-0.01em" }}>
             <Saves saves={combatant.saves} />
           </span>
@@ -477,9 +499,13 @@ function GroupMemberRow({
   selected: boolean;
   onToggleSelect: () => void;
 }): React.ReactElement {
+  const t = useT();
+  const lang = useEncounter((s) => s.lang);
+  const i18n = useCombatantI18n(combatant);
+  const displayName = resolveCreatureName(combatant.name, i18n, lang);
   return (
     <div
-      {...targetRowProps(combatant, targeted, onToggleTarget, narrow, open, onTap)}
+      {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -494,20 +520,20 @@ function GroupMemberRow({
         cursor: "pointer",
       }}
     >
-      <SelectCheckbox name={combatant.name} checked={selected} onToggle={onToggleSelect} />
+      <SelectCheckbox name={displayName} checked={selected} onToggle={onToggleSelect} />
 
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "5px" }}>
           <span style={{ fontSize: "13px", fontWeight: 500, textDecoration: combatant.defeated ? "line-through" : "none" }}>
-            {combatant.name}
+            {displayName}
           </span>
-          <span style={{ fontSize: "10.5px", color: "var(--text-faint)" }}>{levelLabel(combatant)}</span>
+          <span style={{ fontSize: "10.5px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
         </div>
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
       </div>
 
       {combatant.defeated ? (
-        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>DEFEATED</span>
+        <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{t("DEFEATED_BADGE")}</span>
       ) : (
         <div
           style={{
@@ -543,7 +569,7 @@ function GroupMemberRow({
               whiteSpace: "nowrap",
             }}
           >
-            {combatant.ac !== null ? `AC ${combatant.ac}` : "—"}
+            {combatant.ac !== null ? `${t("LABEL_AC")} ${combatant.ac}` : "—"}
           </span>
         </div>
       )}

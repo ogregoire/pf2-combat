@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le sard est sur le point d'infliger des dégâts à une créature qui possède une résistance à l'électricité </p>\n<hr />\n<p><strong>Effet</strong> Un instant avant que la cible ne subisse les dégâts électriques de l'événement déclencheur, les étincelles électriques du sard tournent au rouge. La cible doit réussir un jet de @Check[will|dc:41] ou perdre toute résistance à l'électricité jusqu'à ce que la malédiction soit levée.",
+      "en": "Lightning-Struck Curse",
+      "name": "Malédiction de foudre"
+    },
+    {
+      "description": "<p>Le sard effectue jusqu'à 4 Frappes d'échardes, chacune contre une cible différente. La pénalité d'attaques multiples du sard n'augmente pas tant que toutes les attaques n'ont pas été effectuées.</p>",
+      "en": "Thorn Volley",
+      "name": "Volée d'échardes"
+    },
+    {
+      "description": "<p>Très grande ou inférieure, racine, @Check[reflex|dc:39|basic]</p>\n<hr />\n<p><p>Le monstre Marche rapidement sur une distance maximale égale au double de sa Vitesse et peut traverser les espaces de créatures de la taille indiquée. Il Piétine alors chaque créature dans l'espace de laquelle il pénètre. Le monstre ne peut tenter de Piétiner une créature qu'une seule fois par utilisation de l'action Piétinement. Le monstre inflige les dégâts de la Frappe indiquée. Les créatures piétinées peuvent alors faire un jet de Réflexes basique avec le DD indiqué (aucun dégât sur un succès critique, la moitié des dégâts sur un succès, le double des dégâts sur un échec critique).</p></p>",
+      "en": "Trample",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>Le sard considère toujours le plan sur lequel il se trouve comme son foyer.</p>",
+      "en": "Planar Acclimation",
+      "name": "Acclimation planaire"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:41]</p>\n<p><strong>Durée maximale</strong> 10 rounds</p>\n<p><strong>Stade 1</strong> @Damage[2d6[electricity]]{2d6 dégâts d'électricité}, @Damage[2d6[poison]]{2d6 dégâts de poison} et Maladroit 2 (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[3d6[electricity]]{3d6 dégâts d'électricité}, @Damage[3d6[poison]]{3d6 dégâts de poison}, Maladroit 2 et Ralenti 1 (1 round)</p>\n<p><strong>Stade 3</strong> @Damage[4d6[electricity]]{4d6 dégâts d'électricité}, @Damage[4d6[poison]]{4d6 dégâts de poison}, Maladroit 2 et Ralenti 2 (1 round)</p>",
+      "en": "Sard Venom",
+      "name": "Venin de sard"
+    },
+    {
+      "description": "<p>Lorsque le sard meurt, son corps explose dans une @Template[emanation|distance:30]{émanation de 9 mètres}. Toutes les créatures dans la zone subissent @Damage[10d6[electricity],10d6[piercing]|options:area-damage]{10d6 dégâts d'électricité et 10d6 dégâts perforants} (@Check[reflex|dc:43|basic|options:area-effect]). Toute créature qui subit des dégâts perforants est également exposée au Poison sard</p>",
+      "en": "Splintering Death",
+      "name": "Mort par échardes"
+    },
+    {
+      "description": null,
+      "en": "Tremorsense 120 feet",
+      "name": "Perception des vibrations 36 m"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Branch",
+      "name": "Branche"
+    },
+    {
+      "en": "Root",
+      "name": "Racine"
+    },
+    {
+      "en": "Thorn",
+      "name": "Échardes"
+    },
+    {
+      "en": "Trunk",
+      "name": "Trompe"
+    }
+  ],
+  "name": "Sard",
+  "publicNotes": "<p>Un arbre immense et noueux réveillé par un Aîné féerique du Premier Monde grâce à un pouvoir primordial brut. Il rampe à l'aide d'énormes racines arachnéennes et agite ses branches tandis que des éclairs flamboyants parcourent son écorce noircie, manifestation du violent conflit entre les anciennes forêts et les tempêtes célestes.</p>"
+}

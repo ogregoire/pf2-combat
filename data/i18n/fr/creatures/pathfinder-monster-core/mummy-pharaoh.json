@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "description": "<p>En plus du déclencheur normal, la momie pharaon peut utiliser sa Frappe réactive quand une créature à portée utilise une action ayant le trait concentration. Elle peut interrompre des actions de concentration qui déclenchent cette capacité et interrompt des actions En cas de succès, pas uniquement en cas de coup critique.</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
+      "en": "Reactive Strike (Special)",
+      "name": "Frappe réactive (Spécial)"
+    },
+    {
+      "description": "<p>Le sable tourbillonne autour de la momie pharaon dans une @Template[emanation|distance:5]{émanation de 1,50 mètre} jusqu'au début de son prochain tour. Les créature dans la zone sont Masquées aux créatures en dehors de la zone et toute créature qui termine son tour dans l'aura de sable subit @Damage[4d6[slashing]|options:area-damage]{4d6 dégâts tranchants} (@Check[fortitude|dc:28|basic|options:area-effect])</p>",
+      "en": "Veil of Sand",
+      "name": "Voile de sable"
+    },
+    {
+      "description": "<p>La momie pharaon exhale un @Template[cone|distance:60]{cône de 18 mètres} de sable surchauffé qui inflige  @Damage[5d6[fire],5d6[slashing]|options:area-damage]{5d6 dégâts de feu et 5d6 dégâts tranchants} (@Check[reflex|dc:28|basic|options:area-effect]).</p>\n<p>La momie pharaon ne peut pas réutiliser cette capacité pendant [[/gmr 1d4 #Recharger Fureur de sable]]{1d4 rounds}.</p>",
+      "en": "Sandstorm Wrath",
+      "name": "Fureur de sable"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Vitality",
+      "name": "Bonus de statut de +1 aux jets de sauvegarde contre la vitalité"
+    },
+    {
+      "description": "<p>Quand une momie pharaon est détruite, des énergies nécromantiques reconstruisent son corps dans sa tombe en [[/gmr 1d10 #Jours de reconstruction]]{1d10 jours}. Si le corps est détruit pendant ce temps, le processus recommence de zéro. Une momie pharaon qui se reforme est détruite pour de bon si sa tombe est consacrée.</p>",
+      "en": "Rejuvenation",
+      "name": "Reconstruction"
+    },
+    {
+      "description": "<p>Lorsqu'une créature inflige des dégâts physiques au pharaon ou  déclenche une des faiblesses du pharaon, elle doit tenter un jet de @Check[will|dc:28]. En cas d'échec, la créature est Condamnée 1. </p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est ensuite immunisée contre les Bandelettes sacrées de la momie pendant 24 heures.</p>",
+      "en": "Sacred Wrappings",
+      "name": "Bandelettes sacrées"
+    },
+    {
+      "description": "<p>30 mètres.</p>\n<p>Les créatures commandées ou alliées dans l'aura qui ont un niveau inférieur à celui de la momie pharaon obtiennent un bonus de circonstances de +1 à leurs jets d'attaque et de dégâts, à leur CA, à leurs jets de sauvegarde et à leurs tests de compétence.</p>\n<p>Effet : Domination des morts-vivants</p>",
+      "en": "Undead Mastery",
+      "name": "Domination des morts-vivants"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fist",
+      "name": "Poing"
+    },
+    {
+      "en": "Longspear",
+      "name": "Pique"
+    }
+  ],
+  "name": "Momie pharaon",
+  "publicNotes": "<p>Tandis que les momies gardiennes sont des morts-vivants fabriqués à partir des corps de suppliciés, généralement des victimes non consentantes qui ne conservent que des fragments épars de leur mémoire, une momie pharaon est le résultat de la volonté d'un tyran sadique et cruel d'embrasser la non-mort. La transition entre la vie et la non-mort n'en est pas moins épouvantable et douloureuse, mais puisque c'est la volonté d'échapper à la mort d'une puissante personnalité qui accepte entièrement les répercutions blasphématoires de son choix, la momie pharaon conserve sa personnalité et ses souvenirs.</p>\n<hr />\n<p>Bien que la momification des morts soit pratiquée dans de nombreuses cultures, les momies mortes-vivantes sont créées grâce à d'immondes rituels, généralement pour engendrer des gardiens éternellement vigilants. Exceptionnellement, un corps momifié sans ces rites spéciaux peut ressusciter provoqué par une immense haine des vivants.</p>"
+}

@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le blob carnivore subit des dégâts de n'importe quelle source</p>\n<hr />\n<p><strong>Effet</strong> Le blob effectue une Frappe de pseudopode contre une cible adjacente. Si une créature adjacente a infligé les dégâts déclencheurs, cette créature est la cible de cette Frappe de riposte.</p>",
+      "en": "Reactive Strikes",
+      "name": "Frappe de riposte"
+    },
+    {
+      "description": "<p>@Damage[2d12[bludgeoning],2d6[acid]]{2d12 dégâts contondants plus 2d6 dégâts d'acide}, @Check[fortitude|dc:33|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
+      "en": "Constrict",
+      "name": "Constriction"
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>@Check[reflex|dc:33|options:damaging-effect,inflicts:grabbed,inflicts:slowed], @Damage[4d10[acid]]{4d10 dégâts d'acide}, [[/act escape dc=33]], Rupture 20</p>\n<hr />\n<p>----\n<p>Le monstre Marche rapidement jusqu'au double de sa Vitesse et peut se déplacer à travers les espaces occupés par toutes les créatures sur son passage. Toute créature de la taille du monstre ou plus petite et dont le monstre se déplace à travers l'espace doit tenter un jet de Réflexes avec le DD indiqué pour éviter de se faire engloutir. Une créature incapable d'agir obtient un échec critique sur son jet de sauvegarde. Si une créature réussit son jet, elle peut choisir entre être poussée de côté (en dehors du passage du monstre) ou repoussée en face du monstre à la fin du déplacement du monstre. Le monstre ne peut tenter d'Engloutir la même créature qu'une seule fois lors d'une même utilisation d'Engloutir. Le monstre peut contenir autant de créatures qu'il est possible de faire rentrer dans son espace.</p>\n<p>Une créature qui obtient un échec est attirée dans le corps du monstre. Elle est Saisie, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature subit les dégâts indiqués lorsqu'elle est engloutie la première fois, puis à la fin de chacun de ses tours, tant qu'elle reste engloutie. Une créature engloutie peut se libérer en S'Échappant contre le DD indiqué pour S'Échapper. Une créature engloutie peut attaquer le monstre qui l'engloutit, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui engloutit est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à la valeur de Rupture indiquée d'une unique attaque ou d'un sort, la créature engloutie parvient à se libérer.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Une créature qui parvient à se libérer par l'une de ces méthodes peut immédiatement respirer et sortir de l'espace du monstre qui l'a engloutie.</p>\n<p>Si le monstre meurt, toutes les créatures qu'il avait englouties sont automatiquement relâchées lorsque la forme du monstre perd sa cohésion.</p></p>",
+      "en": "Engulf",
+      "name": null
+    },
+    {
+      "description": "<p>L'acide d'un blob carnivore n'affecte que la chair, pas les os, la pierre, le bois ni d'autres matériaux mais n'en est pas moins dévastateur. Lorsqu'une créature subit des dégâts de cet acide, elle doit réussir un jet de @Check[fortitude|dc:33|options:inflicts:drained]. En cas d'échec, elle est Drainée 1 (Drainée 2 en cas d'un échec critique). Pour chaque échec suivant, la valeur de l'état Drainé augmente de 1 (ou de 2 sur un échec critique) jusqu'à atteindre un maximum de Drainé 4.</p>",
+      "en": "Carnivorous Blob Acid",
+      "name": "Acide de blob carnivore"
+    },
+    {
+      "description": "<p>Un blob carnivore peut percevoir les créatures proches grâce aux vibrations et déplacements de l'air ou de l'eau.</p>",
+      "en": "Motion Sense",
+      "name": "Perception du mouvement"
+    },
+    {
+      "description": "<p>Lorsqu'un blob carnivore possédant au moins 10 Points de vie est touchée par une attaque qui devrait infliger des dégâts perforants ou tranchants, il se divise en formant deux vases identiques, chacune avec la moitié des Points de vie de l'original. Une vase reste dans le même espace et l'autre apparaît dans un espace inoccupé adjacent. S'il n'y a aucun espace adjacent inoccupé, elle pousse automatiquement les créatures et les objets afin d'occuper cet espace (le MJ décide si une créature ou un objet est trop grand ou trop lourd pour être poussé).</p>",
+      "en": "Split",
+      "name": "Scission"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Pseudopod",
+      "name": "Pseudopode"
+    }
+  ],
+  "name": "Blob carnivore",
+  "publicNotes": "<p>Les blobs carnivores sont une engeance vorace issue de mondes brisés et lointains, bien au-delà des étoiles nés inertes dans des recoins de la galaxie, jusqu'à ce qu'elles tombent comme des météorites sur des mondes insouciants. Ces êtres énormes peuvent rester plongés dans un sommeil profond pendant des années, cachés dans des grottes désolées ou des étendues stériles. Lorsqu'un blob carnivore perçoit des créatures vivantes à proximité, il se met brutalement en mouvement, chassant et dévorant toutes les créatures qu'il peut attraper jusqu'à ce qu'il soit détruit ou dans l'impossibilité de localiser de la nourriture pendant 24 heures, auquel cas il retourne à son hibernation. Maintenir un blob carnivore dans un endroit dépourvu de nourriture est souvent la manière la plus sûre de le vaincre. Sa capacité à se diviser en blobs plus petits, susceptibles de rester cachés après un combat, rend difficile d'éliminer totalement ces prédateurs dénués d'intelligence.</p>"
+}

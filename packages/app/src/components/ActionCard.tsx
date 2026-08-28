@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Action } from "@pf2/schema";
+import { format, useT } from "../i18n/index.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { TraitTag } from "./TraitTag.js";
@@ -14,6 +15,7 @@ function ReactionIcon(): React.ReactElement {
 }
 
 export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement {
+  const t = useT();
   const count = cost === "1" || cost === "2" || cost === "3" ? Number(cost) : 0;
   if (count > 0) {
     return (
@@ -30,7 +32,7 @@ export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement
     <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
       <ReactionIcon />
       <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>
-        {cost === "free" ? "FREE" : "REACTION"}
+        {cost === "free" ? t("COST_FREE") : t("COST_REACTION")}
       </span>
     </div>
   );
@@ -67,6 +69,7 @@ function FoldArrow({ expanded }: { expanded: boolean }): React.ReactElement {
 }
 
 function PassiveCard({ action, glossary }: { action: Action; glossary: Map<string, TraitInfo> }): React.ReactElement {
+  const t = useT();
   const [expanded, setExpanded] = useState(false);
   return (
     <button
@@ -88,7 +91,7 @@ function PassiveCard({ action, glossary }: { action: Action; glossary: Map<strin
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <FoldArrow expanded={expanded} />
         <span style={{ fontWeight: 500, fontSize: "13px" }}>{action.name}</span>
-        <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--text-faint)" }}>PASSIVE</span>
+        <span style={{ fontSize: "10px", letterSpacing: "0.07em", color: "var(--text-faint)" }}>{t("COST_PASSIVE")}</span>
       </div>
       {expanded && (
         <>
@@ -118,6 +121,7 @@ export function ActionCard({
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
+  const t = useT();
   if (action.cost === "passive") return <PassiveCard action={action} glossary={glossary} />;
 
   const cost = action.cost === "1" || action.cost === "2" || action.cost === "3" ? Number(action.cost) : 0;
@@ -208,7 +212,9 @@ export function ActionCard({
             whiteSpace: "nowrap",
           }}
         >
-          {cost > 0 ? `Use ${cost} ${cost === 1 ? "action" : "actions"}` : "Use reaction"}
+          {cost > 0
+            ? format(t("USE_ACTIONS_BUTTON"), { cost, unit: cost === 1 ? t("USE_ACTION_UNIT_SINGULAR") : t("USE_ACTION_UNIT_PLURAL") })
+            : t("USE_REACTION_BUTTON")}
         </button>
       )}
     </div>

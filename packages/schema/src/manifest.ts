@@ -5,6 +5,8 @@ export const ManifestSchema = z.object({
   toolVersion: z.string(),
   upstreamRepo: z.string(),
   upstreamRef: z.string(),
+  frRepo: z.string(),
+  frRef: z.string(),
   generatedAt: z.string(),
   packs: z.array(z.string()),
   creatureCount: z.number().int().nonnegative(),

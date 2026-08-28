@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature adjacente inflige des dégâts tranchants au babélien.</p>\n<hr />\n<p><strong>Effet</strong> La plaie du babélien se mue en gueule. Elle fait une Frappe de mâchoires contre la créature ayant déclenché ce pouvoir.</p>",
+      "en": "Reactive Gnaw",
+      "name": "Rongeur compulsif"
+    },
+    {
+      "description": "<p>@Check[reflex|dc:22|options:damaging-effect,inflicts:grabbed,inflicts:slowed], @Damage[3d8[piercing]]{3d8 dégâts perforants}, [[/act escape dc=22]], Rupture 8</p>\n<hr />\n<p>----\n<p>Le monstre Marche rapidement jusqu'au double de sa Vitesse et peut se déplacer à travers les espaces occupés par toutes les créatures sur son passage. Toute créature de la taille du monstre ou plus petite et dont le monstre se déplace à travers l'espace doit tenter un jet de Réflexes avec le DD indiqué pour éviter de se faire engloutir. Une créature incapable d'agir obtient un échec critique sur son jet de sauvegarde. Si une créature réussit son jet, elle peut choisir entre être poussée de côté (en dehors du passage du monstre) ou repoussée en face du monstre à la fin du déplacement du monstre. Le monstre ne peut tenter d'Engloutir la même créature qu'une seule fois lors d'une même utilisation d'Engloutir. Le monstre peut contenir autant de créatures qu'il est possible de faire rentrer dans son espace.</p>\n<p>Une créature qui obtient un échec est attirée dans le corps du monstre. Elle est Saisie, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature subit les dégâts indiqués lorsqu'elle est engloutie la première fois, puis à la fin de chacun de ses tours, tant qu'elle reste engloutie. Une créature engloutie peut se libérer en S'Échappant contre le DD indiqué pour S'Échapper. Une créature engloutie peut attaquer le monstre qui l'engloutit, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui engloutit est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à la valeur de Rupture indiquée d'une unique attaque ou d'un sort, la créature engloutie parvient à se libérer.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Une créature qui parvient à se libérer par l'une de ces méthodes peut immédiatement respirer et sortir de l'espace du monstre qui l'a engloutie.</p>\n<p>Si le monstre meurt, toutes les créatures qu'il avait englouties sont automatiquement relâchées lorsque la forme du monstre perd sa cohésion.</p></p>",
+      "en": "Engulf",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>Le babélien peut ramollir la pierre et la terre sous sa masse corporelle et la transformer en boue, qui conserve cet état pendant 1 minute après son passage. Un babélien peut traverser ses zones sans problèmes mais les autres créatures les considèrent comme du terrain difficile.</p>",
+      "en": "Ground Manipulation",
+      "name": "Manipulation du sol"
+    },
+    {
+      "description": null,
+      "en": "All-Around Vision",
+      "name": null
+    },
+    {
+      "description": "<p>Une créature qui subit les dégâts des postillons du babélien doit réussir un jet de @Check[fortitude|dc:22|options:inflicts:dazzled,inflicts:blinded]. En cas d'échec, elle est Éblouie pendant 1 round (ou Aveugle pendant 1 round en cas d'échec critique)</p>",
+      "en": "Burn Eyes",
+      "name": "Brûlure aux yeux"
+    },
+    {
+      "description": "<p>18 mètres. Chaque créature qui débute son tour à 18 mètres ou moins d'un babélien doit faire un jet de @Check[will|dc:19]. En cas d'échec, elle est Confuse pendant 1 round. Elle est temporairement immunisée pendant 1 minute en cas de succès.</p>",
+      "en": "Gibbering",
+      "name": "Charabia"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Spittle",
+      "name": "Postillons"
+    }
+  ],
+  "name": "Babélien",
+  "publicNotes": "<p>Masses informes de bouches brailleuses et de chair molle et dégoulinante, les babéliens sont parmi les créatures les plus étranges que l'on peut trouver à la surface ou en dessous. Toujours affamées, ces aberrations sont sans arrêt en quête de leurs prochains repas. Elles n'arrêtent jamais de manger mais ne sont jamais rassasiées. Dotés d'une intelligence minimale, les babéliens peuvent comprendre et même parler l'aklo mais ils s'expriment rarement de manière intelligible. À la place, leurs innombrables bouches bredouillent et bafouillent en produisant un flot de sons qui perturbent les modes de pensée des créatures à proximité.</p>\n<p>D'où viennent les babéliens ? Comment sont-ils arrivés et pourquoi ? Ces questions n'ont toujours pas trouvé de réponses. Ils ont quelques points communs avec les shoggoths beaucoup plus puissants, ce qui a donné naissance à des théories selon lesquelles ces deux créatures auraient la même origine. Des érudits moins indulgents ont émis l'hypothèse que le babélien serait plutôt le résultat d'une tentative mise en œuvre par un mortel pour créer une chose apparentée au Shoggoth, sans connaître les raisons de cette expérience. Mais il y en a d'autres qui pensent que les babéliens ont été envoyés par les dieux pour punir une transgression certainement terrible mais tombée dans l'oubli. Les babéliens eux-mêmes n'ont pas grand-chose à dire à ce sujet — du moins, pas de manière intelligible. Des érudits ont passé d'innombrables heures à tenter inutilement de trouver une logique aux sons produits par les babéliens. Ces études ont mis leurs chercheurs en danger et ont abouti à des résultats contradictoires et confus, au mieux.</p>\n<p>Quelle que soit leur origine, on trouve des babéliens partout sur Golarion. On en a rapporté la présence dans des donjons sous d'antiques cités et ruines, ainsi qu'en Ombreterre, dans de nombreuses régions des profondes strates de la Sékamine et de l'Orv. Ils sont moins courants dans la région plus élevée de Nar-Voth, peut-être à cause de la prédominance des communautés qui ne tolèrent aucunement leur présence.</p>"
+}

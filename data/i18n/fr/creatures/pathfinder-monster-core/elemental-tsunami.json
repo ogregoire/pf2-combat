@@ -1,0 +1,37 @@
+{
+  "actions": [
+    {
+      "description": "<p>L'élémentaire éteint tous les feux dans une @Template[emanation|distance:20]{émanation de 6 mètres}.</p>\n<p>Il étouffe automatiquement tous les feux non magiques et tente de contrer les feux magiques (modificateur de contre [[/r 1d20+20 #Tremper]]{+20}).</p>",
+      "en": "Drench",
+      "name": "Tremper"
+    },
+    {
+      "description": "<p>Sur une Frappe réussie, le tsunami élémentaire peut choisir de Pousser ou d'Attirer la créature.</p>\n<hr />\n<p><strong>Pousser</strong><span class=\"action-glyph\">1</span></p>\n<p><p><strong>Conditions</strong> La dernière action du monstre était une Frappe réussie possédant le trait Pousser dans l'entrée de ses dégâts.</p><hr /><p><strong>Effet</strong> Le monstre tente de [[/act shove]]{Pousser} la créature. Cette tentative n'applique pas la pénalité d'attaques multiples du monstre et n'est pas prise en compte dans son calcul. Si Pousser indique une distance, la distance sur laquelle la créature est poussée en cas de succès passe à cette distance.</p></p>\n<hr />\n<p><strong>Attirer <span class=\"action-glyph\">1</span></strong></p>\n<p><p><strong>Conditions</strong> La dernière action du monstre a été un succès avec une Frappe qui indique Attirer dans l'entrée de ses dégâts</p><hr /><p><strong>Effet</strong> Le monstre tente de Repositionner la créature, la rapprochant du monstre. Cette tentative n'applique pas la pénalité d'attaques multiples du monstre et n'est pas comptabilisée pour calculer cette dernière. Si Attirer indique une distance, la distance à laquelle la créature est attirée en cas de succès passe à cette distance.</p></p>",
+      "en": "Push or Pull 10 feet",
+      "name": "Bousculade ou Attraction 3 mètres"
+    },
+    {
+      "description": "<p>Le tsunami élémentaire s'étend temporairement pour remplir la zone de son vortex. Les créatures prises dans l'émanation du vortex subissent @Damage[(5d12+6)[bludgeoning]|options:area-damage]{5d12+6 dégâts contondants} (@Check[fortitude|dc:31|basic|options:area-effect,forced-movement]). Une créature qui rate ce jet est Poussée sur 6 mètres.</p>\n<p>Puis l'élémentaire se rétracte et n'occupe plus que son espace ordinaire et ne peut plus utiliser Déferlement pendant [[/gmr 1d4 #Recharger Déferlement]]{1d4 rounds}.</p>",
+      "en": "Surge",
+      "name": "Déferlement"
+    },
+    {
+      "description": "<p>15 mètres.</p>\n<p>L'eau située dans la zone qui est dans la même étendue d'eau que le tsunami élémentaire est un terrain difficile pour les créatures qui Nagent et qui ne possèdent pas le trait eau.</p>",
+      "en": "Vortex",
+      "name": "Vortex"
+    },
+    {
+      "description": "<p>S'il n'est pas en contact avec de l'eau, le tsunami élémentaire est Ralenti 1 et ne peut utiliser de réaction.</p>",
+      "en": "Waterbound",
+      "name": "Lié à l'eau"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Wave",
+      "name": "Vague"
+    }
+  ],
+  "name": "Tsunami élémentaire (Élémentaire, eau)",
+  "publicNotes": "<p>Les tsunamis élémentaires sont énormes et destructeurs, sans aucun des aspects bienveillants ou nourriciers de l'eau.</p>\n<hr />\n<p>Les élémentaires d'eau peuvent être particulièrement destructeurs, mais souvent pas de manière intentionnelle. Comme l'eau peut apporter la vie aux mortels dans le besoin, ses vagues peuvent percuter les rives et l'eau peut inonder les villes. Les élémentaires d'eau sont tout aussi imprévisibles.</p>"
+}

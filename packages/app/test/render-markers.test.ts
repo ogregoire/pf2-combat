@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { renderMarkers } from "../src/rules/renderMarkers.js";
+import { renderMarkers, RENDERED_MARKER_FAMILIES } from "../src/rules/renderMarkers.js";
+import { RENDERED_MARKERS } from "../../pf2data/src/stages/verify.js";
 
 describe("renderMarkers", () => {
   describe("@Check", () => {
@@ -131,5 +132,17 @@ describe("renderMarkers", () => {
       const html = "prefix @Check[flat|dc:15 no close";
       expect(renderMarkers(html)).toBe(html);
     });
+  });
+
+  // The two allow-lists (this renderer's own, and pf2data's
+  // verifyI18nMarkup) are hand-maintained copies in different packages with
+  // nothing else tying them together. Upstream carrying a new family this
+  // renderer doesn't know fails safe (verify rejects it, loudly) — but this
+  // renderer narrowing while verify stays wide fails open and silent: raw
+  // `@Family[...]` markup would ship straight to the GM's screen with
+  // nothing anywhere to catch it. This is the one check that closes that
+  // gap.
+  it("renders exactly the marker families verify's allow-list permits — neither wider nor narrower", () => {
+    expect(new Set(RENDERED_MARKER_FAMILIES)).toEqual(RENDERED_MARKERS);
   });
 });

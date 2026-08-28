@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>Grande, [[/r {(2d10+8)[bludgeoning],3d6[fire]}]]{2d10+8 dégâts contondants plus 3d6 dégâts de feu}, Rupture 12</p>\n<hr />\n<p><p>Le monstre tente d'avaler une créature de la taille indiquée qu'il a Saisie ou Entravée dans ses mâchoires ou sa bouche. Si une créature avalée est de la taille maximale indiquée, le monstre ne peut utiliser Gober de nouveau. Si la créature est plus petite que ce maximum, le monstre peut habituellement gober plus de créatures. Le MJ détermine ce maximum. Le monstre tente un test d'@Check[athletics|defense:reflex] opposée au DD de Réflexes de la créature. Si elle réussit, elle avale la créature. La bouche du monstre ou ses mâchoires n'agrippent plus une créature qu'elle a gobée, de sorte que le monstre est libre de l'utiliser pour Frapper ou Agripper de nouveau. Le monstre ne peut attaquer les créatures qu'il a gobée.</p>\n<p>Une créature gobée est Agrippée, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature gobée subit le montant de dégâts indiqué lorsqu'elle est gobée pour la première fois et, à la fin de chacun de ses tours, tant qu'elle reste gobée. Si la victime S'Échappe de l'état Agrippé de cette capacité, elle sort à travers la bouche du monstre. Cela libère toute autre créature Agrippée dans la bouche du monstre ou dans ses mâchoires. Une créature gobée peut attaquer le monstre qui l'a gobée, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui gobe est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à sa valeur de Rupture indiquée du fait d'une unique attaque ou d'un sort, la créature gobée se libère. Une créature qui se libère, soit en S'Échappant, soit en se libérant elle-même peut immédiatement respirer et sortir de l'espace du monstre qui la gobe.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Si le monstre meurt, une créature gobée peut être libérée par les créatures adjacentes au cadavre si elles passent un total d'actions combinées à tnracher dans le monstre avec une arme ou une attaque à mains nues qui infligent des dégâts perforants ou tranchants.</p></p>",
+      "en": "Swallow Whole",
+      "name": null
+    },
+    {
+      "description": "<p>Rézatha crache une langue de feu qui inflige @Damage[18d6[fire]|options:area-damage]{18d6 dégâts de feu} dans un @Template[cone|distance:30]{cône de 9 mètres} (@Check[reflex|dc:38|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Rézatha Frappe une fois avec ses mâchoires et une fois avec sa queue en prenant à chaque fois une créature différente pour cible. Ces attaques sont toutes comptabilisées dans la pénalité d'attaques multiples du rémorhaz, mais cette pénalité n'augmente pas avant que toutes les attaques aient été effectuées.</p>",
+      "en": "Thrash",
+      "name": "Rosser"
+    },
+    {
+      "description": "<p>1,50 mètre. Une créature qui débute son tour dans l'aura subit @Damage[4d6[fire]]{4d6 dégâts de feu}. Chaque fois que le rémorhaz subit des dégâts infligés par un ennemi, les dégâts de l'aura passent à @Damage[6d6[fire]]{6d6} jusqu'au début de son prochain tour. Toute créature qui frappe Rézatha avec une Frappe à mains nues subit @Damage[6d6[fire]]{6d6 dégâts de feu} et toute arme qui frappe un Rézatha subit @Damage[6d6[fire]]{6d6 dégâts de feu}.</p>",
+      "en": "Heat",
+      "name": "Chaleur"
+    },
+    {
+      "description": "<p>Un rémorhaz est susceptible de laisser un tunnel derrière lui quand il creuse à travers la neige ou la glace et c'est généralement ce qu'il fait.</p>",
+      "en": "Ice Tunneler",
+      "name": "Foreur de glace"
+    },
+    {
+      "description": null,
+      "en": "Tremorsense (Imprecise) 60 feet",
+      "name": "Perception des vibration 18 mètres (imprécis)"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Rézatha",
+  "publicNotes": "<p>Un rémorhaz est un énorme prédateur arctique qui ressemble à un croisement entre un insecte doté de multiples pattes et un dragon. Le monstre est couvert de plaques chitineuses et possède plus d'une vingtaine de pattes segmentées ainsi que des mandibules. Son crâne est flanqué d'excroissances rappelant des ailes. La caractéristique la plus étrange de cette créature reste cependant la chaleur qui s'en dégage et dont l'intensité, quand elle s'agite, est telle que les plaques chitineuses qui couvrent son dos sont brûlantes.</p>\n<p>Les rémorhazes sont carnivores. Leur diète est composée d'animaux arctiques comme des élans, mais un rémorhaz affamé se contentera de dévorer tout ce qu'il peut attraper et tuer. Ces créatures se placent généralement en embuscade sous des couches de glace ou de neige et attendent qu'une proie passe afin de la surprendre par une frappe soudaine. Leurs victimes meurent généralement avant d'avoir le temps de comprendre ce qui leur arrive. Ceux qui survivent à l'assaut initial du monstre doivent faire face à ses terribles mandibules, mais également à son hideux corps brûlant. La chaleur qui se dégage de ce dernier peut faire fondre des armes, carboniser des armures et brûler la chair, autant de tactiques que les rémorhazes utilisent pour mettre leurs adversaires hors de combat avant de les achever. Le feu interne d'un rémorhaz lui permet de se creuser un chemin à travers la neige et la glace sans aucune difficulté. Partout où il passe, il laisse derrière lui un tunnel caractéristique aux parois lissées par l'eau qui a fondu et gelé de nouveau.</p>\n<p>La plupart des gens sous-estiment l'intelligence des rémorhazes et pensent qu'il s'agit de simples animaux. Cependant, ces créatures sont capables d'apprendre des langues. Les géants du givre, notamment, exploitent cette caractéristique pour former des alliances avec les rémorhazes. Les géants s'engagent à leur fournir nourriture, protection et abri en échange de quoi les vers montent la garde et aident les géants à construire des forteresses et à forger des armes de métal. Les géants les utilisent également comme animaux de combat, notamment en les chargeant de saper les positions ennemies.</p>"
+}

@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Improved Grab",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Reactive Strike",
+      "name": null
+    },
+    {
+      "description": "<p>L'oni des îles peut prendre l'apparence de n'importe quelle créature humanoïde de taille Moyenne ou Grande. Cela ne modifie ni sa Vitesse, ni les bonus à l'attaque et aux dégâts de ses Frappes mais cela peut modifier le type de dégâts que ses Frappes infligent (généralement contondants).</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
+      "en": "Change Shape",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action de l'oni des îles était une Frappe réussie de pique contre une cible de taille Moyenne ou inférieure.</p>\n<hr />\n<p><strong>Effet</strong> L'oni des îles perfore la cible et invoque la foudre pour qu'elle frappe la pique. La cible subit @Damage[6d6[electricity]]{6d6 dégâts d'électricité} (@Check[fortitude|dc:37|basic]). En cas d'échec, la créature est également empalée par la lance. Elle est considérée comme Agrippée et si l'oni se déplace, elle se déplace avec lui.</p>\n<p>L'oni n'a pas besoin de dépenser d'action supplémentaire pour maintenir la créature Agrippée. La créature restera Agrippée tant qu'elle est empalée. Elle peut néanmoins tenter de S'Échapper comme à l'ordinaire. L'oni ne peut empaler de la sorte qu'une créature à la fois.</p>",
+      "en": "Electrifying Pierce",
+      "name": "Perforation électrifiante"
+    },
+    {
+      "description": "<p>Moyenne, @Damage[(3d8+10)[bludgeoning]]{3d8+10 dégâts contondants}, Rupture 30</p>\n<hr />\n<p><p>Le monstre tente d'avaler une créature de la taille indiquée qu'il a Saisie ou Entravée dans ses mâchoires ou sa bouche. Si une créature avalée est de la taille maximale indiquée, le monstre ne peut utiliser Gober de nouveau. Si la créature est plus petite que ce maximum, le monstre peut habituellement gober plus de créatures. Le MJ détermine ce maximum. Le monstre tente un test d'@Check[athletics|defense:reflex] opposée au DD de Réflexes de la créature. Si elle réussit, elle avale la créature. La bouche du monstre ou ses mâchoires n'agrippent plus une créature qu'elle a gobée, de sorte que le monstre est libre de l'utiliser pour Frapper ou Agripper de nouveau. Le monstre ne peut attaquer les créatures qu'il a gobée.</p>\n<p>Une créature gobée est Agrippée, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature gobée subit le montant de dégâts indiqué lorsqu'elle est gobée pour la première fois et, à la fin de chacun de ses tours, tant qu'elle reste gobée. Si la victime S'Échappe de l'état Agrippé de cette capacité, elle sort à travers la bouche du monstre. Cela libère toute autre créature Agrippée dans la bouche du monstre ou dans ses mâchoires. Une créature gobée peut attaquer le monstre qui l'a gobée, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui gobe est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à sa valeur de Rupture indiquée du fait d'une unique attaque ou d'un sort, la créature gobée se libère. Une créature qui se libère, soit en S'Échappant, soit en se libérant elle-même peut immédiatement respirer et sortir de l'espace du monstre qui la gobe.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Si le monstre meurt, une créature gobée peut être libérée par les créatures adjacentes au cadavre si elles passent un total d'actions combinées à tnracher dans le monstre avec une arme ou une attaque à mains nues qui infligent des dégâts perforants ou tranchants.</p></p>",
+      "en": "Swallow Whole",
+      "name": null
+    },
+    {
+      "description": "<p>L'oni des îles tire un éclair dans les airs qui se pare immédiatement de gros nuages noirs. La pluie tombe dans une @Template[emanation|distance:60]{émanation de 18 mètres}, centrée sur l'oni, pendant 1 minute, provoquant un déluge d'eau.</p>\n<p>Les créatures dans l'aura subissent une faiblesse 10 contre les dégâts d'électricité. La zone entière devient un terrain très difficile pour les créatures qui volent et un terrain difficile pour les créatures au sol ou qui Grimpent, à moins de posséder également une Vitesse de nage.</p>\n<p>Effet : Déluge conducteur</p>",
+      "en": "Conductive Downpour",
+      "name": "Déluge conducteur"
+    },
+    {
+      "description": "<p>Un oni des îles fait un cercle avec sa lance, libérant des vagues d'eau de mer. Toutes les créatures dans une @Template[emanation|distance:20]{émanation de 6 mètres} doivent effectuer un jet de @Check[reflex|dc:37]. En cas d'échec, elles tombent À terre.</p>",
+      "en": "Tripping Tide",
+      "name": "Marée trébuchante"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Water",
+      "name": "Bonus de statut de +1 aux jets de sauvegarde contre l'eau"
+    },
+    {
+      "description": "<p>Les onis sont curieusement paniqués à la vue des haricots, tout particulièrement lors des changements de saisons. Si une créature Interagit pour lancer une poignée d'haricots sur l'oni, ce dernier devient Effrayé 2. Tant qu'il est Effrayé de la sorte, sa faiblesse contre les dégâts spirituels augmente de 5. Puis l'oni est immunisé à la Panique des haricots pendant 24 heures.</p>",
+      "en": "Bean Panic",
+      "name": "Panique des haricots"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Greater Darkvision",
+      "name": null
+    },
+    {
+      "description": "<p>Un oni des îles peut revendiquer une île de 1,5 kilomètres carré au maximum. Le processus lui prendra 1 semaine, durant laquelle il doit vaincre tout ce qui pourrait lui résister. S'il y parvient, l'oni peut librement contrôler le climat sur son île ainsi que dans un rayon de 1,5 kilomètre depuis les rives de son île, avec l'effet d'un rituel réussi de Contrôle du climat</p>\n<p>Ce climat altéré entoure l'île d'un brouillard épais, de mirages marins ou de tout autre phénomène qui fait passer le DD des tests pour localiser ou naviguer dans les eaux qui mènent à l'île (comme par exemple Connaissance de la navigation maritime ou Survie) à 40 bien que l'oni puisse permettre aux alliés de passer sans encombres. Si l'oni meurt ou quitte l'île, le climat revient immédiatement à la normale.</p>",
+      "en": "Lost Oni Island",
+      "name": "Île perdue Oni"
+    },
+    {
+      "description": "<p>L'oni des îles ignore l'état Masqué provoqué par la brume et le brouillard.</p>",
+      "en": "Mist Vision",
+      "name": "Vision malgré la brume"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Jaws",
+      "name": "Poing"
+    },
+    {
+      "en": "Longspear",
+      "name": "Pique"
+    },
+    {
+      "en": "Thunderbolt",
+      "name": "Projectile d'électricité"
+    }
+  ],
+  "name": "Oni des îles",
+  "publicNotes": "<p>Les onis des îles sont assez puissants pour revendiquer des petites îles côtières, créant très souvent des armées improvisées d'onis inférieurs qui vont piller les eaux et les terres aux alentours. L'oni des îles amasse trésors et richesses et s'habille dans des vêtement luxurieux, décorant son visage monstrueux de toutes sortes de bijoux.</p>\n<p>Les onis des îles pillent habituellement les bateaux coulés pour y trouver des armes, des armures et des trésors. Ceci peut éventuellement les amener à rencontrer des marins morts-vivants, que l'oni pourrait enrôler à son service.</p>\n<hr />\n<p>Les onis sont des grandes créatures brutales originaires du Tian Xia, aux apparences d'humanoïdes avec une peau aux couleurs vives, des défenses et des cornes. Bien qu'ils soient souvent pris pour des fiélons, en réalité le premier oni était à l'origine un kami, un esprit tutélaire de la nature. Ces kamis ont été victimes de traumatismes terribles, perdant leurs protégés dans des circonstances dramatiques ou à cause de l'insensibilité d'autrui, ce qui a provoqué leur transformation en ces créatures violentes. Bien que certains estiment qu'il serait possible d'apaiser spirituellement un oni par la conduite d'un rituel approprié pour le retransformer en kami, beaucoup de ces prétendants sauveurs ont été anéantis par la force brute, les dents déchireuses de chair et le pouvoir de déchaîner de violentes tempêtes de cet oni. </p>\n<p>Les onis ont la capacité de prendre la forme d'autres humanoïdes. Ils sont rarement créatifs en adoptant un déguisement, choisissant souvent d'adopter la même apparence spécifique qui ressemble vaguement à leur forme oni et s'y tiennent. Cette simplicité dans le choix de déguisements prennent souvent les autres par surprise, car les gens partent du principe que les onis sont limités à ne choisir qu'une seule forme alternative, ce qui n'est vraiment pas le cas.</p>"
+}

@@ -1,0 +1,45 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature termine son tour adjacente à la méduse.</p>\n<hr />\n<p><strong>Effet</strong> La méduse effectue une Frappe de crochets de serpents contre la créature.</p>",
+      "en": "Biting Snakes",
+      "name": "Serpents mordeurs"
+    },
+    {
+      "description": "<p>La méduse fixe son regard sur une créature qu'elle peut voir dans un rayon de 9 mètres. La cible doit faire immédiatement un jet de @Check[fortitude|dc:25|options:inflicts:slowed,inflicts:petrified] contre le regard pétrifiant de la méduse. </p>\n<p>Si la créature était déjà Ralentie par Regard pétrifiant avant de faire son jet, elle est Pétrifiée de manière permanente en cas d'échec. Une fois qu'elle a fait son jet de sauvegarde, la créature est temporairement immunisée jusqu'au début du prochain tour de la méduse.</p>",
+      "en": "Focus Gaze",
+      "name": "Focaliser le regard"
+    },
+    {
+      "description": null,
+      "en": "All-Around Vision",
+      "name": null
+    },
+    {
+      "description": "<p>9 mètres.</p>\n<p>Toute créature qui termine son tour dans l'aura doit faire un jet de @Check[fortitude|dc:25|options:area-effect,inflicts:slowed]. Si elle obtient un échec, elle est Ralentie 1 pendant 1 minute.</p>\n<p>La méduse peut activer ou désactiver cette aura en utilisant une action unique dotée du trait concentration.</p>",
+      "en": "Petrifying Gaze",
+      "name": "Regard pétrifiant"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:25] </p>\n<hr />\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[1d6[poison]]{1d6 dégâts de poison} et Affaibli 1 (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[2d6[poison]]{2d6 dégâts de poison} et Affaibli 2 (1 round)</p>",
+      "en": "Serpent Venom",
+      "name": "Venin de serpent"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Composite Shortbow",
+      "name": "Arc court composite"
+    },
+    {
+      "en": "Shortsword",
+      "name": "Épée courte"
+    },
+    {
+      "en": "Snake Fangs",
+      "name": "Crochets de serpent"
+    }
+  ],
+  "name": "Méduse",
+  "publicNotes": "<p>Les méduses sont des humanoïdes monstrueux ressemblant à des humains avec des serpents à la place des cheveux. Elles sont surtout connues pour leur regard pétrifiant qui peut transformer définitivement les mortels en pierre, s'ils s'y attardent. Ce sont des adversaires sournoises et manipulatrices qui collectionnent et convoitent les secrets et qui utilisent la menace et la ruse pour exploiter les peurs des créatures plus faibles. Une méduse peut rechercher de puissants objets magiques, utiliser la magie divinatoire pour découvrir des connaissances secrètes et débloquer des pouvoirs interdits ou infiltrer une société pour tromper des politiciens influents. Leur capacité à se frayer un chemin au sein d'organisations puissantes les hissent au rang de chef de groupes criminels et de guildes de voleurs tout naturellement. Leur intérêt pour les phénomènes magiques conduit également certaines d'entre elles à poursuivre des carrières d'oracles, qui proposent d'aider les aventuriers à trouver ce qu'ils cherchent, moyennant un certain prix. Bien sûr, si l'esprit et la tromperie s'avèrent insuffisants, une méduse peut toujours transformer ses rivaux en décorations de pierre ornementales avec à peine davantage qu'un regard. De nombreuses méduses construisent des repaires élaborés, souvent décorés des statues de leurs ennemis transformées en trophées macabres qu'elles exposent en pleine vue.</p>\n<p>D'une agilité et d'une résistance exceptionnelles, la méduse recule rarement lors d'un conflit, même si elle est acculée. Bien des aventuriers qui se pensaient prêts à résister aux effets du regard d'une méduse ont tout de même succombé car ces créatures sont souvent des archères mortelles, capables de cribler, à bonne distance, ses ennemis de flèches empoisonnées. Cependant, si la méduse n'a plus d'autre alternative, elle négociera pour avoir la vie sauve et les secrets détenus par cette puissante méchante vaut la peine d'épargner sa vie.</p>"
+}

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import type { Action, Attack } from "@pf2/schema";
+import type { Action, Attack, CreatureI18n } from "@pf2/schema";
 import {
   applyEndOfTurn,
   dyingMax,
@@ -12,6 +12,8 @@ import {
 } from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
 import type { Combatant, Encounter, Entry, Player } from "./types.js";
+
+export type Lang = "en" | "fr";
 
 /** Fields a caller supplies to create a combatant; the rest is derived. */
 export interface CombatantSeed {
@@ -36,6 +38,10 @@ export interface CombatantSeed {
   initiativeModifier?: number | null;
   /** Set for a `kind: "pc"` seed: which roster player this combatant is. */
   playerId?: string;
+  /** A French overlay to seed directly — production callers (AddCombatants,
+   * QuickAdd) never set this; overlays are resolved at render time instead.
+   * See `Combatant.i18n`. */
+  i18n?: CreatureI18n | null;
 }
 
 let combatantSeq = 0;
@@ -106,6 +112,7 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
     reactions: seed.reactions ?? [],
     attacks: seed.attacks ?? [],
     actions: seed.actions ?? [],
+    i18n: seed.i18n ?? null,
     conditions: [],
     strikesMade: 0,
     actionsSpent: 0,
@@ -455,6 +462,8 @@ function sortEntries(entries: Entry[]): void {
 interface EncounterStore {
   encounter: Encounter;
   players: Player[];
+  lang: Lang;
+  setLang(lang: Lang): void;
   addCombatant(seed: CombatantSeed, initiative: number | null, trueInitiative?: number): string;
   addMany(
     seed: CombatantSeed,
@@ -514,6 +523,12 @@ export const useEncounter = create<EncounterStore>()(
   immer((set, get) => ({
     encounter: emptyEncounter(),
     players: [],
+    lang: "en",
+
+    setLang: (lang) =>
+      set((state) => {
+        state.lang = lang;
+      }),
 
     addCombatant: (seed, initiative, trueInitiative) => {
       const id = nextCombatantId();
@@ -1127,6 +1142,7 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         state.encounter = emptyEncounter();
         state.players = [];
+        state.lang = "en";
       });
     },
   })),

@@ -1,4 +1,5 @@
 import type { Attack } from "@pf2/schema";
+import { format, useT, type StringKey } from "../i18n/index.js";
 import { degreeTotalRanges, type Degree } from "../rules/degrees.js";
 import { resolveStrike } from "../rules/strike.js";
 import { useEncounter } from "../state/store.js";
@@ -12,11 +13,11 @@ function modifierBreakdown(applied: Array<{ value: number; source: string }>): s
   return applied.map((m) => `${formatSigned(m.value)}: ${m.source}`).join("\n");
 }
 
-const DEGREE_LABEL: Record<Degree, string> = {
-  "critical-success": "critical hit",
-  success: "hit",
-  failure: "miss",
-  "critical-failure": "critical miss",
+const DEGREE_LABEL_KEY: Record<Degree, StringKey> = {
+  "critical-success": "DEGREE_CRITICAL_SUCCESS",
+  success: "DEGREE_SUCCESS",
+  failure: "DEGREE_FAILURE",
+  "critical-failure": "DEGREE_CRITICAL_FAILURE",
 };
 
 /** A single endpoint of a total range, coloured when it's the exact total a
@@ -53,10 +54,10 @@ function RangeCell({
   );
 }
 
-const ORDINAL = ["first", "second", "third", "fourth", "fifth"];
+const ORDINAL_KEYS: StringKey[] = ["ORDINAL_1", "ORDINAL_2", "ORDINAL_3", "ORDINAL_4", "ORDINAL_5"];
 
-function ordinal(strikesMade: number): string {
-  return ORDINAL[Math.min(strikesMade, ORDINAL.length - 1)]!;
+function ordinal(t: (key: StringKey) => string, strikesMade: number): string {
+  return t(ORDINAL_KEYS[Math.min(strikesMade, ORDINAL_KEYS.length - 1)]!);
 }
 
 /** TurnAssistant.dc.html's right column: target, modifier ledger, roll line
@@ -74,6 +75,7 @@ export function RollAssistant({
 }): React.ReactElement {
   const recordStrike = useEncounter((s) => s.recordStrike);
   const spendActions = useEncounter((s) => s.spendActions);
+  const t = useT();
 
   if (!target) {
     return (
@@ -87,7 +89,7 @@ export function RollAssistant({
           color: "var(--text-dim)",
         }}
       >
-        Select a target to compute rolls against.
+        {t("SELECT_TARGET_MSG")}
       </div>
     );
   }
@@ -105,22 +107,22 @@ export function RollAssistant({
           border: "1px solid var(--border)",
         }}
       >
-        <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>TARGET</span>
+        <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>{t("TARGET_LABEL_CAPS")}</span>
         <span style={{ fontSize: "14px", fontWeight: 600 }}>{target.name}</span>
         <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--accent-text)" }}>
-          {target.ac !== null ? `AC ${target.ac}` : "AC unknown"}
+          {target.ac !== null ? `${t("LABEL_AC")} ${target.ac}` : t("AC_UNKNOWN")}
         </span>
         <div style={{ flexGrow: 1 }} />
-        <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>click any combatant to retarget</span>
+        <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>{t("RETARGET_HINT")}</span>
       </div>
 
       {!attack ? (
         <div style={{ padding: "14px 16px", borderRadius: "5px", background: "var(--panel-high)", border: "1px solid var(--border)", fontSize: "13px", color: "var(--text-dim)" }}>
-          Select a Strike above to see the roll.
+          {t("SELECT_STRIKE_MSG")}
         </div>
       ) : target.ac === null ? (
         <div style={{ padding: "14px 16px", borderRadius: "5px", background: "var(--panel-high)", border: "1px solid var(--border)", fontSize: "13px", color: "var(--text-dim)" }}>
-          {target.name}&rsquo;s AC is unknown, so no roll can be computed against them.
+          {format(t("TARGET_AC_UNKNOWN_MSG"), { name: target.name })}
         </div>
       ) : (
         (() => {
@@ -141,7 +143,9 @@ export function RollAssistant({
             <div style={{ padding: "14px 16px", borderRadius: "5px", background: "var(--panel-high)", border: "1px solid var(--border-strong)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <span style={{ fontSize: "16px", fontWeight: 600 }}>{attack.name}</span>
-                <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{ordinal(combatant.strikesMade)} Strike this turn</span>
+                <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>
+                  {format(t("STRIKE_THIS_TURN_SUFFIX"), { ordinal: ordinal(t, combatant.strikesMade) })}
+                </span>
               </div>
 
               <div style={{ marginTop: "12px", display: "flex", flexDirection: "column", gap: "3px", fontFamily: "var(--font-mono)", fontSize: "12.5px" }}>
@@ -152,22 +156,29 @@ export function RollAssistant({
                   </div>
                 ))}
                 {resolution.ledger.suppressed.map((m) => (
-                  <div key={m.source} style={{ display: "flex", gap: "10px", padding: "4px 0" }} title={`${m.source}: ${formatSigned(m.value)} (suppressed)`}>
+                  <div key={m.source} style={{ display: "flex", gap: "10px", padding: "4px 0" }} title={`${m.source}: ${formatSigned(m.value)}${t("SUPPRESSED_TITLE_SUFFIX")}`}>
                     <span style={{ width: "46px", textAlign: "right", color: "var(--text-faint)" }}>{formatSigned(m.value)}</span>
-                    <span style={{ color: "var(--text-faint)" }}>{m.source} — worse penalty already counted</span>
+                    <span style={{ color: "var(--text-faint)" }}>
+                      {m.source} {t("SUPPRESSED_PENALTY_SUFFIX")}
+                    </span>
                   </div>
                 ))}
                 <div style={{ display: "flex", gap: "10px", padding: "7px 0 0", marginTop: "3px", borderTop: "1px solid var(--border)", color: "var(--accent-text)", fontSize: "15px" }} title={modifierBreakdown(resolution.ledger.applied)}>
                   <span style={{ width: "46px", textAlign: "right", fontWeight: 600 }}>{formatSigned(resolution.modifier)}</span>
-                  <span style={{ fontSize: "12.5px", alignSelf: "center", color: "var(--text-dim)" }}>total attack modifier</span>
+                  <span style={{ fontSize: "12.5px", alignSelf: "center", color: "var(--text-dim)" }}>{t("TOTAL_ATTACK_MODIFIER")}</span>
                 </div>
               </div>
 
               <div style={{ marginTop: "14px", padding: "13px 15px", borderRadius: "4px", background: "var(--bg)", border: "1px solid var(--border-strong)" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "10px" }}>
-                  <span style={{ fontSize: "11px", letterSpacing: "0.08em", color: "var(--text-faint)" }}>ROLL</span>
+                  <span style={{ fontSize: "11px", letterSpacing: "0.08em", color: "var(--text-faint)" }}>{t("ROLL_LABEL")}</span>
                   <span style={{ fontFamily: "var(--font-mono)", fontSize: "26px", fontWeight: 600, color: "var(--accent-text)" }}>{rollLine}</span>
-                  <span style={{ fontSize: "12px", color: "var(--text-faint)" }} title={resolution.acLedger.applied.length > 0 ? modifierBreakdown(resolution.acLedger.applied) : "base AC"}>vs AC {resolution.effectiveAc}</span>
+                  <span
+                    style={{ fontSize: "12px", color: "var(--text-faint)" }}
+                    title={resolution.acLedger.applied.length > 0 ? modifierBreakdown(resolution.acLedger.applied) : t("BASE_AC_TOOLTIP")}
+                  >
+                    {format(t("VS_AC_TEMPLATE"), { ac: resolution.effectiveAc })}
+                  </span>
                 </div>
 
                 <div
@@ -194,13 +205,13 @@ export function RollAssistant({
                           style={{ display: "contents" }}
                         >
                           <span style={{ background: "var(--panel-raised)", fontSize: "13px", fontWeight: 600, padding: "8px 0 8px 11px" }}>
-                            {DEGREE_LABEL[o.degree]}
+                            {t(DEGREE_LABEL_KEY[o.degree])}
                           </span>
                           <span style={{ background: "var(--panel-raised)", fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, padding: "8px 0" }}>
                             <RangeCell low={r.low} high={r.high} natOne={natOne} natTwenty={natTwenty} />
                           </span>
                           <span style={{ background: "var(--panel-raised)", fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)", padding: "8px 11px 8px 0" }}>
-                            {o.damage ?? "no damage"}
+                            {o.damage ?? t("NO_DAMAGE")}
                           </span>
                         </div>
                       );
@@ -228,7 +239,7 @@ export function RollAssistant({
                     cursor: "pointer",
                   }}
                 >
-                  Record strike
+                  {t("RECORD_STRIKE_BUTTON")}
                 </button>
               </div>
             </div>

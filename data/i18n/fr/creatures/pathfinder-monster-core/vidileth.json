@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Un vidileth peut prendre l'apparence d'un humanoïde de Grande, Moyenne ou Petite taille ou bien reprendre sa véritable forme. Tant qu'il a une forme humanoïde, la Vitesse du vidileth est de 9 mètres et il perd sa Vitesse de nage et son pouvoir de Lumière engourdissante. Si la forme humanoïde choisie n'a pas le trait aquatique, le vidileth perd également son propre trait aquatique. Sous sa forme humanoïde, le vidileth peut utiliser des armes ou effectuer une Frappe qui fonctionne comme son attaque de tentacule mais avec l'allonge de sa forme actuelle. Si la forme choisie est dotée de crocs ou de griffes, il peut également effectuer des Frappes de ce type.</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
+      "en": "Change Shape",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action du vidileth était une Frappe de griffe réussie.</p>\n<hr />\n<p><strong>Effet</strong> Le vidileth modifie la chair de la cible de manière brouillon. La cible doit effectuer un jet de @Check[fortitude|dc:34]. En cas d'échec, elle devient soit Maladroite 2, soit EAffaiblie 2, ou subit une pénalité de statut de -3 mètres à ses Vitesses, selon le libre choix du vidileth.",
+      "en": "Shape Flesh",
+      "name": "Modeler la chair"
+    },
+    {
+      "description": "<p>Le vidileth effectue Frappe de tentacules contre chaque créature dans son allonge. N'effectuez qu'un seul jet d'attaque et ne déterminez qu'une seule fois les dégâts pour toutes les cibles.</p>",
+      "en": "Tentacle Flurry",
+      "name": "Déluge de tentacules"
+    },
+    {
+      "description": null,
+      "en": "+2 Status to All Saves vs. Magic",
+      "name": "Bonus de statut de +2 aux jets de sauvegarde contre la magie"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Quand le vidileth effectue une Frappe de crocs contre une créature, la cible doit réussir un jet de @Check[will|dc:34] ou subir @Damage[3d6[mental]]{3d6 dégâts mentaux}. Le vidileth gagne des Points de vie temporaires égaux aux dégâts occasionnés et apprend certains des souvenirs de la victime (à l'appréciation du MJ).</p>",
+      "en": "Consume Memories",
+      "name": "Absorption de mémoires"
+    },
+    {
+      "description": "<p>Quand un vidileth réussit à lancer le sort Domination sur une créature, le sort Suggestion se déclenche à la fin de la durée du sort <em>Domination</em>. Généralement, cette <em>Suggestion</em> pousse la cible à revenir auprès du vidileth pour que ce dernier puisse de nouveau lancer <em>Domination</em>. Cependant, s'il le souhaite, le vidileth peut définir d'autres ordres pour cette <em>Suggestion</em>.</p>",
+      "en": "Delayed Suggestion",
+      "name": "Suggestion retardée"
+    },
+    {
+      "description": "<p>Le vidileth émet une faible lumière. Les créatures dans cette lumière doivent effectuer un jet de @Check[will|dc:34|options:area-effect,inflicts:stupefied]  chaque round. En cas d'échec, elles sont Stupéfiées 1 (ou la Lumière engourdissante augmente la valeur de leur état Stupéfié de 1 jusqu'à un maximum de 4)</p>",
+      "en": "Numbing Lights",
+      "name": "Lumière engourdissante"
+    },
+    {
+      "description": "<p>Une créature touchée par les tentacules du vidileth, doit effectuer un jet de @Check[will|dc:34]. Si elle le rate, elle est Ralentie 1 et Ralentie 2 en cas d'échec critique. À la fin de chaque tour de la victime, la valeur de la valeur de l'état Ralenti est réduite de 1.</p>",
+      "en": "Thoughtlance",
+      "name": "Lance mentale"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Fangs",
+      "name": "Crocs"
+    },
+    {
+      "en": "Tentacle",
+      "name": "Tentacule"
+    }
+  ],
+  "name": "Vidileth (Alghollthu)",
+  "publicNotes": "<p>Les puissants vidileths sont les maîtres voilés insidieux des alghollthus. Ces manipulateurs de l'esprit et du corps dirigent leur espèce au grand jour, en utilisant leur capacité à changer de forme pour marcher au milieu des humains et des autres espèces sapientes et les tromper. De nombreux maîtres voilés sont encore plus puissants que le spécimen moyen présenté ici et peuvent utiliser une grande variété de sorts et de rituels occultes ou arcaniques. Si les maîtres voilés font preuve de prouesses au combat et de compétences magiques impressionnantes, le plus grand danger qu'ils représentent pour les autres est leur étrange capacité à s'infiltrer dans des sociétés très différentes de la leur. Les aventuriers les plus paranoïaques et les spécialistes de la conspiration craignent que toutes les grandes villes soient infestées par des cabales secrètes de vidileths, tandis que d'autres ne voient là que des balivernes et des propos alarmistes. La vérité se situe probablement quelque part entre les deux, mais il suffit de quelques maîtres voilés qui tirent les ficelles en coulisse pour semer le chaos à l'échelle d'une nation !</p>\n<hr />\n<p>Autrefois, en des temps immémoriaux, des monstres aquatiques connus sous le nom d'alghollthus utilisèrent leurs pouvoirs occultes pour conquérir et gouverner de vastes régions du monde. Les alghollthus façonnaient leurs esclaves et les autres créatures au moyen de la manipulation mentale et de la magie de transformation physique. Les dirigeants de la race des alghollthus, s'appelant eux-mêmes les maîtres voilés, ont façonné des sociétés entières en prenant la forme de ceux qu'ils contrôlaient.</p>\n<p>Au fil du temps, les alghollthus ont commencé à se lasser de leurs sociétés naissantes et de l'ingérence des dieux. Ils ont alors eu recours à un incroyable pouvoir magique pour provoquer un cataclysme espérant détruire les sociétés rebelles qu'ils avaient manipulées. Mais ils avaient négligé la volonté de survivre de ceux qu'ils sont traité comme leurs pions. Avec le temps, le monde a récupéré mais, cette fois, libéré de l'influence des alghollthus.</p>\n<p>Aujourd'hui, les alghollthus demeurent principalement dans leurs profonds royaumes aquatiques où ils règnent encore sans partage. Ils n'ont cependant pas renoncé entièrement à toutes leurs machinations et la réémergence de races de serviteurs comme les ugothols suggère que les alghollthus ont de nouveau tourné leurs yeux haineux sur la surface.</p>"
+}

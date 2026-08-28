@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "description": "<p>Mâchoires uniquement</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
+      "en": "Attack of Opportunity (Jaws Only)",
+      "name": "Frappe réactive (Mâchoire uniquement)"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature prise dans le vortex du dragon utilise une action Nager.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon génère un courant qui force la créature ayant déclenché ce pouvoir à tenter un test d'Athlétisme pour [[/act swim dc=40]]{Nager}. Si la créature échoue, elle est attirée de 9 mètres vers le dragon et l'action déclencheuse est perdue. Si elle réussit, elle peut Nager normalement (en utilisant le résultat de ce test si elle n'a pas une Vitesse de Nage).</p>",
+      "en": "Vortex Pull",
+      "name": "Attraction du vortex"
+    },
+    {
+      "description": "<p>Le dragon de bronze vénérable souffle de deux manières différentes.</p>\n<p>Le dragon ne peut utiliser Arme de souffle de nouveau pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>\n<ul>\n<li><strong>Foudre</strong> (arcanique, électricité) Le dragon souffle un éclair qui inflige @Damage[12d12[electricity]|options:area-damage]{12d12 dégâts d'électricité} sur une @Template[line|distance:100]{ligne de 30 mètres} (@Check[reflex|dc:40|basic|traits:arcane,electricity|options:area-effect]).</li>\n<li><strong>Gaz répulsif</strong> (arcanique, mise hors de combat, mental) Le dragon souffle un gaz répulsif sur une @Template[line|distance:100]{ligne de 30 mètres}. Chaque créature dans la zone d'effet doit réussir un jet de@Check[will|dc:40|traits:arcane,incapacitation,mental|options:area-effect]. En cas d'échec, la créature Fuit le dragon pendant 1 round (ou 2 rounds en cas d'échec critique).</li>\n</ul>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>4,50 mètres. @Damage[2d12[electricity]|options:area-damage]{2d12 dégâts d'électricité}.</p>\n<p>Le dragon de bronze peut activer ou désactiver cette aura avec une action unique qui possède le trait concentration et il peut choisir de ne pas affecter des alliés présents dans l'aura.</p>",
+      "en": "Electricity Aura",
+      "name": "Aura d'électricité"
+    },
+    {
+      "description": "<p>27 mètres. @Check[will|dc:38|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": "<p>12 mètres. L'eau dans la zone qui est dans la même étendue d'eau que le dragon de bronze est un terrain difficile pour les créatures qui nagent et qui ne possèdent pas le trait eau.</p>",
+      "en": "Vortex",
+      "name": "Vortex"
+    },
+    {
+      "description": "<p>Pendant un maximum de 120 minutes par jour, le dragon ainsi que les navires et créatures alliés dans un rayon de 15 mètres, peuvent se déplacer au double de leur Vitesse normale dans l'eau.</p>",
+      "en": "Water Mastery",
+      "name": "Maîtrise de l'eau"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Dragon de bronze (Vénérable, Incantateur)",
+  "publicNotes": "<p>Les dragons de bronze comptent parmi les plus répandus des dragons métalliques et sont les plus enclins à s'allier à des mortels pour une noble quête. Cependant, ce sont des créatures tournées naturellement vers l'érudition et elles préféreraient rester dans leur tanière pour étudier des connaissances ésotériques plutôt que de partir à l'aventure. Ces dragons stoïques et réservés sont également des gardiens qui préservent des trésors de connaissances anciennes de la destruction et de la perversion. Ils ont des principes et sont protecteurs mais tandis que leurs cousins d'argent sont prompts à partir en croisade pour la justice, les dragons de bronze préfèrent trouver un lieu important digne de leur protection et le protéger contre toute attaque ou intrusion indésirable.</p>\n<p>La maîtrise des dragons de bronze sur l'eau et leur affinité avec l'électricité signifient qu'ils sont une véritable aubaine pour les marins pris dans une tempête. Les ennemis d'un Dragon de bronze découvrent rapidement que ni un ciel nuageux ni une mer turbulente ne peuvent les protéger de sa colère. Ces dragons établissent leur tanière le long des côtes, souvent dans des cavernes partiellement submergées. Bien que tous les dragons possèdent un vaste trésor, celui d'un dragon de bronze ressemble plutôt à une grande bibliothèque avec des étagères à l'abri au-dessus de la ligne d'eau, bien naturellement. En plus de leurs collections de connaissances ésotériques, les dragons de bronze amassent des trésors en rapport avec la mer comme de magnifiques sculptures en os de baleine, des perles sans défaut et des équipements incrustés de nacre et de coquilles d'ormeaux.</p>\n<hr />\n<p>Parangons de vertu, de noblesse et de grâce, les dragons métalliques sont des entités bienveillantes vénérées comme des êtres mythiques semblables à des divinités aussi bien pour leur puissance que pour leur majesté. Rares sont ceux à avoir vu un dragon métallique mais les récits de leurs interventions dans la vie des mortels, et de leur mort, sont connus de tous. Nommés d'après la ressemblance de leurs écailles avec les métaux brillants utilisés par les humanoïdes pour le commerce, la guerre et l'industrie, ces êtres immenses ont des intérêts et des pouvoirs très divers et cela ne les gêne absolument pas d'être associés à des matériaux aussi ordinaires. Après tout, comparer un dragon d'or à une pièce d'or revient à comparer l'océan à un verre d'eau ; bien qu'ils puissent paraître semblables au premier abord, la puissance brute, l'ampleur et la grandeur de l'un surpasse celles de l'autre.</p>\n<p>En plus des dragons métalliques et chromatiques, il existe d'autres types de dragons qui parcourent le monde et le reste du multivers. Sur les terres légendaires de Tian Xia de l'autre côté de la planète, on trouve les dragons impériaux, des créatures serpentines qui protègent l'équilibre cosmique et défendent leurs terres ancestrales. Hors de l'Univers, les dragons primordiaux tels que le dominateur dragon de saumure et le solitaire dragon des nuages façonnent la nature et les événements des Plans élémentaires. Il est certain qu'il existe une multitude d'autres types de dragons y compris des créatures vivant sur de lointains plans d'existence.</p>"
+}

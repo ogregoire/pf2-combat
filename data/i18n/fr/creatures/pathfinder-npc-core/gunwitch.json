@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Le pistorcier invoque une balle maléfice dans son arme à feu. Elle peut être utilisée comme une balle normale ou pour les capacités Tir Ensorcelé et Tempête de Balles. La balle disparaît si elle n'est pas tirée avant la fin du tour.</p>",
+      "en": "Hex Bullet",
+      "name": "Balle maléfice"
+    },
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par jour</p>\n<p><strong>Conditions</strong> Le familier arme à feu du pistorcier se trouve dans un rayon de 1,5 kilomètre</p>\n<hr />\n<p><strong>Effet</strong> Le pistorcier invoque son arme à feu dans sa ou ses mains.</p>",
+      "en": "Recall Firearm",
+      "name": "Rappel d'arme à feu"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Un attaquant que le pistorcier peut observer le cible avec une attaque</p>\n<hr />\n<p><strong>Effet</strong> Le pistorcier obtient un bonus de circonstances de +2 à sa CA contre l'attaque déclencheuse et, après l'attaque, le pistorcier Bondit.</p>",
+      "en": "Acrobatic Dodge",
+      "name": "Esquive acrobatique"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le pistorcier manie son familier arme à feu et a chargé une balle maléfice (voir Balle maléfice).</p>\n<hr />\n<p><strong>Effet</strong> Le pistorcier Lance un sort nécessitant 1 ou 2 actions dans sa balle, puis effectue une Frappe avec son familier arme à feu, en tirant la balle magique. Cela compte comme deux attaques en ce qui concerne le calcul de la pénalité d'attaques multiples du pistorcier. S'il touche, la cible est également affectée par le sort, bien qu'elle bénéficie des jets de sauvegarde ou des défenses normales permises par le sort.</p>\n<p>Si le sort comprend plusieurs cibles, il n'affecte que la créature touchée. S'il s'agit d'une zone, la cible doit s'y trouver. Une explosion est centrée sur un coin de la case de la cible si elle est de taille Moyenne ou inférieure ou sur le coin le plus proche du centre pour les créatures de taille supérieure. Un cône ou une ligne émane d'une case adjacente à la cible choisie par le pistorcier.</p>",
+      "en": "Betwitched Shot",
+      "name": "Tir ensorcelé"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le pistorcier manie son familier arme à feu et y a chargé une balle maléfice (voir Balle maléfice)</p>\n<hr />\n<p><strong>Effet</strong> Le pistorcier déchaîne un déluge de projectiles. Chaque créature dans une @Template[type:emanation|distance:60]{émanation de 18 mètres} subit @Damage[8d6[piercing]|options:area-damage]{8d6 dégâts perforants} (@Check[reflex|dc:25|basic|options:area-effect]).</p>",
+      "en": "Bullet Storm",
+      "name": "Pluie de balles"
+    },
+    {
+      "description": "<p>L'arme à feu du pistorcier agit comme si elle était son familier mais reste un objet dénué d'intelligence qui ne dispose pas d'action. Les pouvoirs de maître qu'elle accorde sont incluses dans le bloc de statistiques.</p>",
+      "en": "Firearm Familiar",
+      "name": "Familier Arme à feu"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fist",
+      "name": "Poing"
+    },
+    {
+      "en": "Musket Staff",
+      "name": "Bâton mousquet"
+    },
+    {
+      "en": "Musket Staff",
+      "name": "Bâton mousquet"
+    }
+  ],
+  "name": "Pistorcier",
+  "publicNotes": "<p>En tant que détenteurs de pouvoir occulte et d'armes à feu, les pistorciers tirent fierté de manier à la fois des armes non conventionnelles et une magie obscure. Pour changer son patron (Tisseur de fils), remplacez Coup de pouce du Destin par Coup assuré.</p>\n<hr />\n<p>Ces loups solitaires dégagent une aura de mystère, de bravade et de suffisance.</p>"
+}

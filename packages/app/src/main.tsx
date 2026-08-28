@@ -4,7 +4,14 @@ import "./styles/tokens.css";
 import { App } from "./App.js";
 import { restorePlayerSequence } from "./components/PartyManager.js";
 import { restoreCombatantSequences, useEncounter } from "./state/store.js";
-import { loadEncounter, loadPlayers, saveEncounter, savePlayers } from "./state/persist.js";
+import {
+  loadEncounter,
+  loadPlayers,
+  loadSettings,
+  saveEncounter,
+  savePlayers,
+  saveSettings,
+} from "./state/persist.js";
 
 const SAVE_DEBOUNCE_MS = 400;
 
@@ -20,13 +27,26 @@ function scheduleSave(): void {
     const state = useEncounter.getState();
     void saveEncounter(state.encounter);
     void savePlayers(state.players);
+    void saveSettings({ lang: state.lang });
   }, SAVE_DEBOUNCE_MS);
 }
 
-Promise.all([loadEncounter(), loadPlayers()]).then(([encounter, players]) => {
+/**
+ * Loads persisted state and pushes it into the store — the app's one
+ * hydration call site. Extracted (rather than left as main.tsx's own
+ * top-level side effect) so a test can drive it directly instead of only
+ * ever exercising the individual loaders.
+ */
+export async function hydrate(): Promise<void> {
+  const [encounter, players, settings] = await Promise.all([
+    loadEncounter(),
+    loadPlayers(),
+    loadSettings(),
+  ]);
   useEncounter.setState((state) => {
     if (encounter !== null) state.encounter = encounter;
     if (players.length > 0) state.players = players;
+    state.lang = settings.lang;
   });
   // The store's own id counters (and PartyManager's) are module-level state
   // that always starts at 0 — without this, the very next add after a
@@ -35,10 +55,18 @@ Promise.all([loadEncounter(), loadPlayers()]).then(([encounter, players]) => {
   if (encounter !== null) restoreCombatantSequences(encounter);
   if (players.length > 0) restorePlayerSequence(players);
   useEncounter.subscribe(scheduleSave);
-});
+}
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+void hydrate();
+
+// Guarded rather than a bare non-null assertion: this module is imported by
+// lang.test.tsx to reach `hydrate` directly, and a test's jsdom document has
+// no #root element (see index.html, which always has one in the real app).
+const rootEl = document.getElementById("root");
+if (rootEl !== null) {
+  createRoot(rootEl).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+}

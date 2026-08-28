@@ -37,7 +37,7 @@
 - `i18n.ts` — *create*: overlay schemas
 
 **`packages/app/src/`**
-- `i18n/en.ts`, `i18n/fr.ts`, `i18n/index.ts` — *create*: the chrome catalogue and `t()`
+- `i18n/en.ts`, `i18n/fr.ts`, `i18n/index.ts` — *create*: the chrome catalogue and `useT()`
 - `data/catalog.ts` — *modify*: overlay loaders
 - `data/i18nOverlay.ts` — *create*: the resolution rule, one place
 - `rules/fold.ts` — *create*: diacritic folding (pure)
@@ -176,8 +176,21 @@ export interface BabeleEntry {
   blurb?: string;
   items?: Record<string, { name?: string; description?: string }>;
 }
-/** English creature/condition/glossary name -> its French entry. */
-export type BabeleTable = Map<string, BabeleEntry>;
+
+/** Which kind of thing a Babele file translates. One English string can name
+ * more than one kind — `Guard` is "Garde" the creature and "Se défendre" the
+ * action — so lookups never cross a kind boundary. */
+export type BabeleKind = "creature" | "condition" | "glossary" | "other";
+
+export interface BabeleTable {
+  /** pack name (the `pf2e.<pack>.json` stem) -> that pack's entries. */
+  byPack: Map<string, Map<string, BabeleEntry>>;
+  kindOf(pack: string): BabeleKind;
+  /** Own pack first, then every other pack of the same kind in
+   * `compareStrings` filename order. Throws if the fallback sources disagree. */
+  lookup(kind: BabeleKind, ownPack: string, englishName: string): BabeleEntry | null;
+}
+
 export function loadBabele(babeleDir: string): BabeleTable;
 ```
 
@@ -186,31 +199,53 @@ export function loadBabele(babeleDir: string): BabeleTable;
 Use fixture files written into a temp dir, not the real checkout.
 
 ```ts
-it("merges every pack file into one name-keyed table", () => {
-  // two files, one entry each
-  const table = loadBabele(dir);
-  expect(table.get("The Stag Lord")!.name).toBe("Seigneur Cerf");
-  expect(table.get("Manticore")!.name).toBe("Manticore FR");
+it("resolves a creature against its own pack first", () => {
+  // Shambler is "Tertre errant" in Kingmaker and "Grand tertre" in Bestiary 1.
+  // This is a Kingmaker campaign; the creature's own book wins.
+  expect(t.lookup("creature", "kingmaker-bestiary", "Shambler")!.name).toBe("Tertre errant");
+  expect(t.lookup("creature", "pathfinder-bestiary", "Shambler")!.name).toBe("Grand tertre");
 });
 
-it("keeps the first file's entry when two agree, deterministically by filename", () => {
-  // same English name in two files, same French name
-  expect(table.get("Barghest")!.name).toBe("Barghest");
+it("falls back to another pack of the SAME kind when the own pack has no entry", () => {
+  // 151 real creatures resolve only this way.
+  expect(t.lookup("creature", "pathfinder-bestiary", "Manticore")!.name).toBe("Manticore FR");
 });
 
-it("throws when two files disagree about a French name", () => {
-  // same English name, DIFFERENT French names
-  expect(() => loadBabele(dir)).toThrow(/disagree/i);
+it("never crosses a kind boundary", () => {
+  // `Guard` is a creature AND an action, translated differently. Pooling all
+  // files produced 109 collisions, 24 on names we consume. This is that guard.
+  expect(t.lookup("creature", "pathfinder-npc-core", "Guard")!.name).toBe("Garde");
+});
+
+it("returns null for a name with no entry of that kind", () => {
+  expect(t.lookup("creature", "pathfinder-bestiary", "Ankou")).toBeNull();
+});
+
+it("throws when two same-kind fallback sources disagree", () => {
+  expect(() => t.lookup("creature", "some-pack", "Contested")).toThrow(/disagree/i);
 });
 ```
 
-The third test is the important one. Cross-pack fallback is safe **because** it was measured to be unambiguous (zero disagreements across all 1450 creatures); this test is what keeps that true when the pin moves. It must name both files and both French values in the message so a future disagreement is diagnosable, not just fatal.
+The last test is the important one. Cross-pack fallback is safe **because** it
+was measured unambiguous — of the 151 creatures that fall back, zero have
+disagreeing sources. This test is what keeps that true when the pin moves. Its
+message must name both files and both French values, or a future failure is
+fatal but undiagnosable.
+
+Classify a file's kind from its `pf2e.<stem>.json` name: `creature` when the
+stem contains `bestiary` (but not `glossary`) or is one of
+`pathfinder-monster-core`, `pathfinder-monster-core-2`, `pathfinder-npc-core`;
+`condition` for `conditionitems`; `glossary` for the two `*ability-glossary*`
+files; `other` otherwise. Measured against the real module: 40 creature files,
+1 condition, 2 glossary, 32 other.
 
 - [ ] **Step 2: Run them and watch all three fail**
 
 - [ ] **Step 3: Implement**
 
-Read every `pf2e.*.json` in `babeleDir` in `compareStrings` filename order. Each file's `entries` is an object keyed by English name; skip any file whose `entries` is not an object. First writer wins; a second writer with a *different* `name` throws.
+Read every `pf2e.*.json` in `babeleDir` in `compareStrings` filename order — never raw `readdirSync` order, which is not guaranteed and would make the output non-deterministic. Each file's `entries` is an object keyed by English name; skip any file whose `entries` is not an object.
+
+Keep the packs SEPARATE rather than merging them into one flat map: `lookup` needs to know which pack an entry came from to prefer the caller's own pack. Only when the own pack has no entry does it consider the others, and only those of the same kind.
 
 - [ ] **Step 4: Tests pass**
 - [ ] **Step 5: Commit** — `feat(pf2data): load the Babele translation tables`
@@ -286,6 +321,8 @@ export const CreatureI18nSchema = z.object({
 });
 export function buildCreatureI18n(args: {
   creatureName: string;
+  /** The pack this creature ships in — `lookup` prefers its translation. */
+  ownPack: string;
   actions: { name: string; foundryId: string }[];
   attacks: { name: string; foundryId: string }[];
   table: BabeleTable;
@@ -319,7 +356,20 @@ it("records the English name at each position, so verify can catch drift", () =>
 });
 
 it("returns null for a creature with no French entry", () => {
-  expect(buildCreatureI18n({ creatureName: "Manticore", actions: [], attacks: [], table: new Map() })).toBeNull();
+  // 30 real creatures look like this.
+  expect(buildCreatureI18n({ creatureName: "Manticore", ownPack: "pathfinder-bestiary",
+    actions: [], attacks: [], table: emptyTable() })).toBeNull();
+});
+
+it("resolves through the table's own-pack-first lookup, not a flat name map", () => {
+  // Shambler is "Tertre errant" in Kingmaker and "Grand tertre" in Bestiary 1.
+  // A flat `table.get(name)` cannot tell these apart and silently returns
+  // whichever pack happened to load first — which is the bug Task 3 exists to
+  // prevent. Same story for `Guard`, a creature AND an action.
+  expect(buildCreatureI18n({ creatureName: "Shambler", ownPack: "kingmaker-bestiary",
+    actions: [], attacks: [], table })!.name).toBe("Tertre errant");
+  expect(buildCreatureI18n({ creatureName: "Shambler", ownPack: "pathfinder-bestiary",
+    actions: [], attacks: [], table })!.name).toBe("Grand tertre");
 });
 
 it("uses null, never the English text, for an item the table does not cover", () => {
@@ -331,7 +381,7 @@ it("uses null, never the English text, for an item the table does not cover", ()
 
 - [ ] **Step 3: Implement**
 
-Look the creature up by English name. For each action/attack position, look its `foundryId` up in the entry's `items`. `description` comes from `items[id].description`, `publicNotes` from the entry's `description` field (Babele's mapping calls it `description` → `system.details.publicNotes`). Absent → `null`.
+Resolve the entry with `args.table.lookup("creature", args.ownPack, args.creatureName)` — NEVER a flat `table.get(name)`. Task 3's whole purpose is that resolution order; calling `.get` throws it away and reintroduces the cross-book and cross-kind collisions it was built to prevent. For each action/attack position, look its `foundryId` up in the entry's `items`. `description` comes from `items[id].description`, `publicNotes` from the entry's `description` field (Babele's mapping calls it `description` → `system.details.publicNotes`). Absent → `null`.
 
 - [ ] **Step 4: Tests pass**
 - [ ] **Step 5: Commit** — `feat(pf2data): build the per-creature French overlay`
@@ -345,7 +395,9 @@ Look the creature up by English name. For each action/attack position, look its 
 - Test: `packages/pf2data/test/i18n.test.ts`
 
 **Interfaces:**
-- Produces: `buildIndexI18n`, `buildConditionsI18n`, `buildGlossaryI18n`, and a French `buildTraits` call.
+- Produces: `buildIndexI18n(entries, table): Record<string, string>` (creature id -> French name); `buildConditionsI18n(defs, table)` and `buildGlossaryI18n(defs, table)`, both `Record<slug, { name: string; description: string | null }>`; and a French `buildTraits` call.
+
+`buildIndexI18n` is name-only on purpose — a creature's description lives in its own per-creature overlay from Task 5. Conditions and glossary are NOT: `useTraitGlossary` builds a `slug -> { name, description }` map and renders the description as hover text, so those two must carry bodies and must be keyed by OUR slug, which is what the app looks up by.
 
 Four outputs:
 
@@ -358,6 +410,13 @@ Four outputs:
 
 - [ ] **Step 1: Write the failing tests**
 
+All four resolve through `BabeleTable.lookup(kind, ownPack, englishName)` —
+never a flat `table.get(name)`. Each builder passes its own kind
+(`"creature"`, `"condition"`, `"glossary"`), and `buildIndexI18n` derives
+`ownPack` from the index entry's `id`, whose prefix before `/` IS the pack
+(`kingmaker-bestiary/the-stag-lord` -> `kingmaker-bestiary`). Task 5 shipped a
+flat `.get` for exactly this reason and needed a fix round; do not repeat it.
+
 ```ts
 it("emits an id -> french name map for the search index", () => {
   expect(buildIndexI18n(indexEntries, table)).toEqual({
@@ -365,8 +424,41 @@ it("emits an id -> french name map for the search index", () => {
   });
 });
 
+it("takes each creature's own pack's translation", () => {
+  // Shambler: "Tertre errant" in Kingmaker, "Grand tertre" in Bestiary 1.
+  // A flat lookup returns whichever pack loaded first.
+  expect(buildIndexI18n([
+    { id: "kingmaker-bestiary/shambler", name: "Shambler" },
+    { id: "pathfinder-bestiary/shambler", name: "Shambler" },
+  ], table)).toEqual({
+    "kingmaker-bestiary/shambler": "Tertre errant",
+    "pathfinder-bestiary/shambler": "Grand tertre",
+  });
+});
+
 it("omits an untranslated creature rather than echoing its English name", () => {
-  expect(buildIndexI18n([{ id: "x/manticore", name: "Manticore" }], new Map())).toEqual({});
+  // 30 real creatures have no French entry at all.
+  expect(buildIndexI18n([{ id: "x/manticore", name: "Manticore" }], emptyTable())).toEqual({});
+});
+
+it("carries the DESCRIPTION as well as the name, keyed by our slug", () => {
+  // `useTraitGlossary` builds a slug -> {name, description} map and renders
+  // the description as hover text. A name-only overlay leaves every condition
+  // and glossary tooltip in English, which is precisely what this work is for.
+  // Measured: 42/43 conditions and 459/503 glossary entries have a French body.
+  expect(buildConditionsI18n([{ slug: "frightened", name: "Frightened" }], table))
+    .toEqual({ frightened: { name: "Effrayé", description: "<p>Vous êtes paralysé…</p>" } });
+});
+
+it("uses null for an entry translated by name only", () => {
+  // `Grab` really is name-only in the module — "Agrippement", no body.
+  expect(buildGlossaryI18n([{ slug: "grab", name: "Grab" }], table))
+    .toEqual({ grab: { name: "Agrippement", description: null } });
+});
+
+it("looks conditions and glossary entries up under their own kind", () => {
+  // `Guard` is "Garde" the creature and "Se défendre" the action; kinds must
+  // never be pooled. 109 English names collide across kinds, 24 of them ours.
 });
 
 it("reuses buildTraits against the French lang table, so slugs stay identical", () => {
@@ -395,6 +487,39 @@ it("reuses buildTraits against the French lang table, so slugs stay identical", 
 - Modify: `packages/pf2data/src/report.ts`
 - Modify: `packages/pf2data/src/cli.ts`
 - Test: `packages/pf2data/test/verify.test.ts`, `packages/pf2data/test/cli.test.ts`
+
+**French text must be marker-resolved exactly like the English.** The English
+pipeline runs `resolveLocalize(html, lang)` then `resolveLinks(html)` over every
+description, which is why `data/creatures/**`, `data/conditions.json` and
+`data/glossary.json` contain ZERO `@UUID[...]` and ZERO `@Localize[...]`
+markers. Raw Babele text has not been through either.
+
+Measured on the first generated overlay: 3786 `@UUID` markers across 1082 of
+1420 creature overlays (76%), 466 `@Localize`, plus 60 `@UUID` in the French
+conditions and 367 `@UUID` + 15 `@Localize` in the French glossary. Shipping
+that renders literal
+`@UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}` to the GM
+in three quarters of translated creatures.
+
+Every French string that can carry markup — creature `publicNotes`, action and
+Strike descriptions, condition and glossary descriptions — goes through
+`resolveLocalize` against the FRENCH lang table (so `@Localize` resolves to
+French glossary text, not English) and then `resolveLinks`. Assert zero markers
+of either kind across all generated French output, in a test and as a
+post-generation check.
+
+**Ruling on the two pins, decided before dispatch.** There are now two
+independent upstreams. `--latest` moves BOTH pins — one flag, because the GM
+running this is the only operator and separate flags would be ceremony without
+a user. But the two "No pinned ref" errors must name WHICH pin is missing:
+`fetchUpstream` and `fetchFrench` currently throw the identical string, which
+would point a debugger at the wrong upstream. Give each its own message naming
+its manifest field (`upstreamRef` / `frRef`) and its repo. Add a test per
+message asserting the field name appears.
+
+While in `fetch.test.ts`, add the missing negative assertion for bare `vo` to
+the sparse-checkout test — it currently checks `vf-vo` and `vo-vf` only, an
+authoring gap in the original brief.
 
 This is the task where the French overlay becomes reachable. **Nothing before it changes what `update` produces.** Per the spec's own instruction, name every call site explicitly: `cli.ts` calls the orchestrator, the orchestrator calls `fetchFrench` → `loadBabele` → `buildCreatureI18n` per creature → the four reference builders → `writeJson` for each → `verifyI18n` → `report`.
 
@@ -436,7 +561,23 @@ it("passes for an aligned overlay", () => {
 
 `verifyI18n` compares, per position, the overlay's `en` against the creature's action/attack name, and compares array lengths. This is the guard that the index-keying scheme depends on — an upstream reorder must be a loud failure, never a silently mistranslated Strike.
 
-Report gains a French block: creatures translated / total, and the untranslated **count plus the list** (30 today, 19 of them the `Petitioner (Plane)` series). A silent coverage drop is exactly the kind of regression this report exists to catch.
+**Also make a missing `_id` loud.** Task 4 made `_id` required on
+`ActionItemSchema`/`AttackItemSchema`, and those are consumed by `safeParse`
+inside a loop that `continue`s on failure — so an upstream item lacking `_id`
+is silently dropped, and a dropped array element never reaches
+`normalizePacks`'s `.failures` machinery (only a throwing `normalizeCreature`
+does). Today no upstream item lacks one — proven by regenerating all 1450
+creatures with `modified: []` — but when the pin moves this would vanish a
+Strike from some creature with no error and no report line.
+
+Inside `normalizeActions` and `normalizeAttacks`, distinguish the two cases:
+an item of the WRONG TYPE is expected and skipped, an item of the RIGHT TYPE
+that fails validation is unexpected and must surface through the existing
+loud-failure path. Add a test that a right-type item with no `_id` is reported
+rather than silently dropped, and mutate it to confirm the test fails without
+the change.
+
+Report gains a French block: creatures translated / total, and the untranslated **count plus the list** (30 today, 20 of them the `Petitioner (Plane)` series). A silent coverage drop is exactly the kind of regression this report exists to catch.
 
 - [ ] **Step 4: Regenerate and verify idempotency**
 
@@ -470,6 +611,27 @@ Commit the generated `data/i18n/**` in this commit. Expect roughly 6 MB across ~
 
 **Interfaces:**
 - Produces: `loadCreatureI18n(id, fetchFn)`, `loadIndexI18n(pack, fetchFn)`, `loadConditionsI18n`, `loadGlossaryI18n`, `loadTraitsI18n`; and the single resolution helper:
+
+**The three overlay shapes differ, deliberately — do not "harmonise" them.** Each is
+honest to what the source actually provides:
+
+| File | Shape |
+|---|---|
+| `i18n/fr/index/<pack>.json` | `Record<creatureId, string>` — French name only |
+| `i18n/fr/conditions.json`, `glossary.json` | `Record<slug, { name: string; description: string \| null }>` |
+| `i18n/fr/traits.json` | `Record<slug, { name: string \| null; description: string }>` |
+
+Traits are the mirror image of conditions/glossary: an entry that EXISTS always
+has a French description (they are keyed off `PF2E.TraitDescription*`), but 10
+of them have `name: null`, and 3 of our 426 slugs (`environment`, `gnoll`,
+`grippli` — remaster renames) are absent from the file entirely, leaving 423
+keys. A condition or glossary entry is the other way round: always a name,
+sometimes no body (`grab` is `{name:"Agrippement", description:null}`).
+
+Type them exactly as above; a nullable field in the wrong place will pass tests
+and render "null" or an English word at the table. Note the two distinct kinds
+of miss for traits — an absent KEY and a present key with a null NAME — because
+they need the same English fallback but are reached by different code paths.
 
 ```ts
 /** French if present, English otherwise. The ONLY place this rule lives. */
@@ -510,8 +672,17 @@ The 404 case matters: 30 creatures have no overlay file at all, and a throw ther
 **Files:**
 - Modify: `packages/app/src/state/store.ts`
 - Modify: `packages/app/src/state/persist.ts`
+- Modify: `packages/app/src/main.tsx` — **the hydration call site**
 - Modify: `packages/app/src/components/EncounterScreen.tsx` (the header)
 - Test: `packages/app/test/lang.test.tsx`
+
+**Hydration is not a store action.** `main.tsx:26` does
+`Promise.all([loadEncounter(), loadPlayers()]).then(...)` and pushes the
+result into the store; there is no `hydrate()` to call. `loadSettings()` joins
+that `Promise.all` and its result is applied the same way. Adding
+`loadSettings` without touching `main.tsx` leaves the "remembered" half of
+this feature dead while every store-level test passes — the exact failure
+this project has hit six times.
 
 **Interfaces:**
 - Produces: `Lang = "en" | "fr"`; store field `lang`; action `setLang(lang: Lang): void`; `saveSettings`/`loadSettings` in `persist.ts`.
@@ -527,17 +698,24 @@ it("setLang switches and persists", async () => {
   await waitFor(async () => expect(await loadSettings()).toEqual({ lang: "fr" }));
 });
 
-it("restores the saved language on load", async () => {
+it("round-trips the language through the persistence layer", async () => {
   await saveSettings({ lang: "fr" });
-  await useEncounter.getState().hydrate();   // whatever the existing load action is called
-  expect(useEncounter.getState().lang).toBe("fr");
+  expect(await loadSettings()).toEqual({ lang: "fr" });
 });
 
 it("reads a payload saved before lang existed as English", async () => {
   // An existing saved fight must still open.
   await putRawSettings({ schemaVersion: 1 });
-  await useEncounter.getState().hydrate();
-  expect(useEncounter.getState().lang).toBe("en");
+  expect((await loadSettings()).lang).toBe("en");
+});
+
+it("main.tsx applies the loaded language to the store", async () => {
+  // Guards the wiring, not the loader. Extract main.tsx's hydration body
+  // into an exported `hydrate()` function it calls on startup, so this can
+  // drive it; leaving the logic inline and untestable is not acceptable here.
+  await saveSettings({ lang: "fr" });
+  await hydrate();
+  expect(useEncounter.getState().lang).toBe("fr");
 });
 
 it("renders a toggle that switches the language", async () => {
@@ -808,6 +986,82 @@ If the check cannot avoid flagging legitimate non-copy (units, symbols, mono-spa
 - [ ] **Step 3: Add an "as delivered" section to the spec**, in the shape the tracker spec uses: what shipped, what departed from the design and why, what is deferred.
 - [ ] **Step 4: Record the licence and attribution** for the French module — fan translation, openly licensed, independent of Black Book Editions — wherever the project credits its data sources.
 - [ ] **Step 5: Commit** — `docs: document the French overlay`
+
+---
+
+## Task 17: Read the module's `archive/` as a second source
+
+**Where this came from.** Thirty creatures had no Babele translation, and the
+first instinct was to transcribe their names from the French printed books.
+Those books are Black Book Editions' — a commercial publisher — and this repo is
+public, so that was dropped. It turned out to be unnecessary: the fan module
+carries all thirty in its own `archive/` directory, retired from the active
+Babele build but still openly licensed module content. **Nothing here comes from
+BBE.**
+
+`archive/<pack>/<foundryId>.htm` is a full translation record, joinable to our
+`foundryId` directly:
+
+```
+Name: Petitioner (Plane of Air)
+Nom: Pétitionnaire (Plan de l'air)
+État: officielle
+
+-- Desc (en) --   <english html>
+-- Desc (fr) --   <french html>
+```
+
+with `ID:` lines for child items (7103 `Name:`/`Nom:` pairs, 6104 `ID:`), plus
+field-level pairs (`SavesEN`/`SavesFR`, `LanguagesEN`/`FR`, `HPDetailsEN`/`FR`,
+`PerceptionEN`/`FR`). 1350 legacy-bestiary records, 716 carrying a French body.
+
+**Babele wins; the archive only fills gaps.** It is retired data — a creature
+present in both must take the live translation. The archive is consulted ONLY
+when `lookup` returns null.
+
+**No fallback marker.** Tasks 12/14 were told to mark English fallbacks. Drop
+that: the data cannot distinguish "untranslated" from "identical in French", and
+`Manticore`, `Ankou` and `Belker` genuinely are the French names. After this
+task coverage is 1450/1450 and the question is moot.
+
+**Files:**
+- Modify: `packages/pf2data/src/stages/fetch.ts` — sparse-checkout `archive`
+- Create: `packages/pf2data/src/stages/archive.ts` — the parser
+- Modify: `packages/pf2data/src/stages/i18n.ts`, `cli.ts`, `report.ts`
+- Test: `packages/pf2data/test/archive.test.ts`
+
+- [ ] **Step 1: Write the failing tests**
+
+```ts
+it("parses a record's English and French names", () => {
+  expect(loadArchive(dir).get("6FltuGxvUoNH9b17"))
+    .toMatchObject({ en: "Petitioner (Plane of Air)", fr: "Pétitionnaire (Plan de l'air)" });
+});
+
+it("pairs each Desc (en) block with the Desc (fr) that follows it", () => {
+  // Records repeat the pair per item; a naive "all fr blocks" scan mis-aligns them.
+  expect(rec.description).toMatch(/^<p>Lorsqu'un mortel meurt/);
+});
+
+it("yields no French body when a record has none", () => {
+  // 634 of 1350 legacy records have no Desc (fr) at all.
+  expect(loadArchive(dir).get("nobody")!.description).toBeNull();
+});
+
+it("never overrides a live Babele translation", () => {
+  // Shambler is live; the archive must not shadow it.
+  expect(resolve("Shambler", "kingmaker-bestiary")!.name).toBe("Tertre errant");
+});
+
+it("fills a creature Babele does not cover", () => {
+  expect(resolve("Manticore", "pathfinder-bestiary")!.name).toBe("Manticore");
+});
+```
+
+- [ ] **Step 2: Run them and watch them fail**
+- [ ] **Step 3: Implement.** Read files in `compareStrings` filename order. Join by `foundryId`. Consult only when Babele returns null.
+- [ ] **Step 4: Regenerate.** Expect **1450/1450** index coverage and 1450 creature overlays. Re-run all three idempotency checks (plain, repeat, `LC_ALL=da_DK.UTF-8`). Marker counts must stay zero — archive HTML carries the same `@UUID`/`@Localize` families and must go through `resolveFrench` exactly as Babele text does.
+- [ ] **Step 5: Commit** — `feat(pf2data): fill translation gaps from the module archive`
 
 ---
 

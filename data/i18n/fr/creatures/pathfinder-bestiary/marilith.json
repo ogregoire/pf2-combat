@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "description": "<p>Une marilith gagne 5 réactions supplémentaires par round qu'elle ne peut utiliser que pour effectuer des Frappes réactives. Le démon ne peut en utiliser plus d'une pour la même action de déclenchement même si une créature quitte plusieurs cases dans l'allonge de la marilith ; de plus, la marilith doit utiliser une arme différente pour chaque Frappe réactive.</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
+      "en": "Attack of Opportunity (Special)",
+      "name": "Frappe réactive (Spéciale)"
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>@Damage[(2d12+13)[bludgeoning]]{2d12+13 dégâts contondants}, @Check[fortitude|dc:39|basic|options:inflicts:unconscious]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué. Si une créature obtient un échec à son jet de sauvegarde, elle perd connaissance. Si elle réussit, elle est temporairement immunisée contre l'état inconscient causé par la Constriction supérieure pendant 1 minute.</p></p>",
+      "en": "Greater Constrict",
+      "name": null
+    },
+    {
+      "description": "<p>La marilith effectue jusqu'à six Frappes d'épée longue, chaque attaque sur une cible différente. Ces attaques comptent dans le calcul de la pénalité d'attaques multiples de la marilith mais cette pénalité n'augmente qu'une fois toutes les attaques effectuées.</p>",
+      "en": "Bladestorm",
+      "name": "Tempête de lames"
+    },
+    {
+      "description": "<p>La marilith effectue deux Frappes, avec deux armes différentes, et utilise ses autres armes pour se protéger. Le démon gagne pendant 1 round un bonus de circonstances à sa CA égal au nombre d'armes qui ne sont pas utilisées pour les attaques. Si la marilith utilise ultérieurement une de ces armes pour attaquer (y compris pour une Frappe réactive), le bonus à sa CA est réduit de 1 point par arme utilisée.</p>\n<hr />\n<p>Effet : Assaut défensif</p>",
+      "en": "Defensive Assault",
+      "name": "Assaut défensif"
+    },
+    {
+      "description": "<p>La marilith attaque une seule cible avec toutes les armes qu'elle manie dans leurs bras, submergeant la cible avec ses multiples attaques et l'empêchant presque d'esquiver. Le démon effectue une Frappe d'épée longue. Si l'attaque réussie, la marilith inflige les dégâts de son épée longue à la cible plus 1d8 dégâts tranchants supplémentaires pour chaque épée longue tenue après la première (généralement 5d8 dégâts tranchants). Même si l'attaque échoue, la marilith inflige les dégâts d'une épée longue à sa cible mais elle la rate toujours complètement en cas d'échec critique. Cela est pris en compte dans le calcul de la pénalité d'attaques multiples de la marilith avec un nombre d'attaques égal au nombre d'épées longues utilisées par le démon.</p>",
+      "en": "Focused Assault",
+      "name": "Assaut focalisé"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>30 mètres. Les créatures commandées ou alliées dans l'aura qui ont un niveau inférieur à celui de la marilith obtiennent un bonus de circonstances de +1 à leurs jets d'attaque et de dégâts, à leur CA, à leurs jets de sauvegarde et à leurs tests de compétence.</p>\n<hr />\n<p>Effet : Aura du commandant</p>",
+      "en": "Commander's Aura",
+      "name": "Aura du commandant"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>C'est l'orgueil des mariliths qui leur donne leur puissance aussi les échecs les blessent. Si la marilith utilise un sort offensif ou effectue une Frappe au cours de son tour mais qu'elle n'inflige aucun dégât, elle subit @Damage[(3d6+10)[mental]]{3d6+10 dégâts mentaux} à la fin de son tour et son aura du commandant se désactive jusqu'à la fin de son prochain tour.</p>",
+      "en": "Failure Vulnerability",
+      "name": "Vulnérabilité à l'échec"
+    },
+    {
+      "description": "<p>Entre les mains d'une marilith, toute arme devient une arme de <em>Frappe supérieure +2</em> constituée de fer froid et d'argent.</p>",
+      "en": "Infuse Weapons",
+      "name": "Imprégnation d'armes"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 feet",
+      "name": "Télépathie 30 mètres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Cold Iron Silver Longsword",
+      "name": "Épée longue en argent et en fer froid"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Marilith (Démon)",
+  "publicNotes": "<p>Les mariliths sont les généraux des Failles extérieures, formés à partir des âmes des mortels orgueilleux maléfiques, souvent des seigneurs de guerre et des despotes. Elles ont l'apparence de grandes humaines musclées au niveau du buste et elles son dotées de six bras et d'une longue queue de serpent. En raison de la prééminence de Lamashtu par rapport aux autres divinités démoniaques, la plupart des démons de l'orgueil rencontrés par les mortels ont une apparence féminine mais ils peuvent être de n'importe quel sexe.</p>\n<p>Les mariliths comptent parmi les plus grandes tacticiennes des Failles extérieures et elles ont un don presque surnaturel pour comprendre les soubresauts du chaos et la nature imprévisible de la vie démoniaque. Leur capacité à commander des armées tient autant à leur prestance qu'à leur aptitude à lire dans les résultats potentiels de toute action envisageable et à une compréhension suffisante des flux de l'entropie pour leur permettre de prédire les résultats probables.</p>\n<hr />\n<p>Quand l'âme d'un pécheur est jugée et envoyée dans les Failles extérieures, elle peut devenir un redoutable fiélon, un démon. Les démons sont des incarnations vivantes du péché, qu'il s'agisse de péchés classiques comme la colère ou la gourmandise, ou des perversités plus « spécialisées » comme l'obsession de la torture ou la trahison et la perfidie. Une fois formé, un démon est motivé par deux objectifs : acquérir de plus en plus de pouvoir et corrompre les âmes des mortels pour qu'elles soient souillées par le péché. De cette manière, les démons s'assurent une réserve inépuisable de nouveaux démons qui viennent grossir leurs rangs dans les Failles extérieures.</p>"
+}

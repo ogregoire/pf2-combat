@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Conditions</strong> Le bourbeux est déshydraté</p>\n<p><strong>Déclencheur</strong> Le bourbeux inflige des dégâts de Constriction à une créature vivante qui possède du sang </p>\n<hr />\n<p><strong>Effet</strong> Le bourbeux serre encore plus fort, infligeant @Damage[1d6[bleed]]{1d6 dégâts de saignement} à la cible. Le bourbeux absorbe ce sang, soignant toutes les pénalités dont il était victime à cause de sa déshydratation.</p>",
+      "en": "Gory Hydration",
+      "name": "Hydratation sanglante"
+    },
+    {
+      "description": "<p>@Damage[(1d8+2)[bludgeoning]]{1d8+2 dégâts contondants}, @Check[fortitude|dc:18|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
+      "en": "Constrict",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p>Jusqu'à sa prochaine action, le bourbeux ressemble à une flaque de boue ordinaire. Il obtient un résultat automatique de 20 pour les tests de Duperie pour se faire passer pour une flaque de boue, et si une créature marche dans la flaque de boue, il peut en réaction effectuer une Frappe du poing contre elle.</p>",
+      "en": "Mud Puddle",
+      "name": "Flaque de boue"
+    },
+    {
+      "description": "<p>Le bourbeux crache de la boue pressurisée sur une @Template[line|distance:20]{ligne de 6 mètres} qui inflige @Damage[2d10[bludgeoning]|options:area-damage]{2d10 dégâts contondants} (@Check[reflex|dc:18|basic|options:area-effect]). En cas d'échec critique, la cible subit également une pénalité de statut de -3 mètres à ses Vitesses pendant 1 round.</p>\n<p>Le bourbeux ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Crachat de boue]]{1d4 rounds}.</p>",
+      "en": "Spew Mud",
+      "name": "Crachat de boue"
+    },
+    {
+      "description": "<p>3 mètres. Le sol de la zone est un terrain difficile pour toute créature n'étant pas un bourbeux.</p>",
+      "en": "Muddy Field",
+      "name": "Champ boueux"
+    },
+    {
+      "description": "<p>Si un bourbeux subit des dégâts de Dessécher ou d'un effet similaire, qu'un effet unique lui inflige 10 dégâts de feu ou plus, ou qu'il passe plus de 24 heures en dehors d'une source d'hydratation suffisante (comme un étang, une rivière, un puits ou une zone où il a plu récemment), il devient déshydraté</p>\n<p>Lorsqu'il est déshydraté, il ne peut pas Cracher de boue, il est Nauséeux 2 et Ralenti 1 jusqu'à ce qu'il soit complètement immergé dans l'eau, qu'il passe 1 minute sous la pluie ou qu'il se réhydrate d'une autre façon (grâce à l'Hydratation sanglante, par exemple).</p>",
+      "en": "Susceptible to Desiccation",
+      "name": "Sensible à la dessiccation"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fist",
+      "name": "Poing"
+    }
+  ],
+  "name": "Bourbeux",
+  "publicNotes": "<p>Au repos, un bourbeux ressemble à une grande flaque de boue sombre et épaisse, surmontée en son centre d'une parcelle de terreau légèrement plus sèche. Mais quand une créature vivante approche, le bourbeux se redresse soudain et se change en un tas de chair boueuse de forme plus ou moins humanoïde, étant souvent une vague imitation de la créature en approche si cette dernière est elle-même humanoïde.</p>\n<p>Les bourbeux ne sont pas très intelligents et bien qu'ils ne possèdent pas de société ni de culture propres, ils sont attirés par les ruines ou les villages abandonnés. Ils se nourrissent peu, mais sans une source constante d'humidité, un bourbeux s'assèche et souffre de douleurs sourdes et lancinantes jusqu'à ce qu'il soit de nouveau saturé d'eau. Souvent, ils se contentent du sang de créatures vivantes : pour les intrus, un bourbeux sec est une plus grande menace qu'un bourbeux confortablement vautré au bord d'une rivière.</p>"
+}

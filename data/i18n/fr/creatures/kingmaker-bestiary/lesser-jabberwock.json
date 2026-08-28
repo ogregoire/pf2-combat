@@ -1,0 +1,83 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Improved Grab",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Improved Knockdown",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature dans l'allonge du jabberwocky utilise une action de manipulation ou de déplacement, quitte une case pendant une action de déplacement, fait une attaque à distance ou utilise une action de concentration</p>\n<hr />\n<p><strong>Effet</strong> Le jabberwocky fait une Frappe de griffe contre la créature déclencheur. Si sa Frappe touche, le jabberwocky interrompt l'action concernée.</p>",
+      "en": "Claws That Catch",
+      "name": "Griffes qui happent"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Le jabberwocky Vole ou fait une Frappe d'aile</p>\n<hr />\n<p><strong>Effet</strong> Les ailes du jabberwocky sifflent et créent des vents violents dans une @Template[emanation|distance:30]{émanation de 9 mètres}. Ces vents partent du jabberwocky et durent jusqu'au début de son prochain tour. Pendant cette durée, toute créature qui vole au sein de l'émanation, par quelque moyen que ce soit, doit réussir un test d'Acrobaties pour [[/act maneuver-in-flight dc=41]]{Manoeuvrer en Vol}, les créatures volant vers le jabberwocky se déplaçant sur un terrain très difficile. Les créatures au sol et dans l'émanation doivent réussir un test d'@Check[athletics|dc:41|name:approcher le Jabberwocky] pour approcher le jabberwocky.</p>",
+      "en": "Whiffling",
+      "name": "Sifflement"
+    },
+    {
+      "description": "<p>Le jabberwocky crée une explosion de bruits et d'inepties sous forme de cris dans toutes les langues qu'il connaît (mais aussi qu'il ne connaît pas), ce qui mène à l'un des deux effets suivants</p>\n<p>Le jabberwocky ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Jaboter]]{1d4 rounds}.</p>\n<ul>\n<li><strong>Confusion</strong> @Template[emanation|distance:60]{émanation de 18 mètres}. Chaque créature dans l'émanation doit réussir un jet de @Check[will|dc:44|options:area-effect] ou être Confuse pendant [[/gmr 1d4 #Durée de la confusion]]{1d4 rounds}.</li>\n<li><strong>Rayon sonore</strong> Le jabberwocky concentre son jabotage sur une ligne d'énergie sonore en une @Template[line|distance:60]{ligne de 18 mètres} qui inflige @Damage[22d6[sonic]|options:area-damage]{22d6 dégâts de son} aux créatures dans la zone (@Check[reflex|dc:44|basic|options:area-effect]).</li>\n</ul>",
+      "en": "Burble",
+      "name": "Jaboter"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>30 mètres. @Check[will|dc:41|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": "<p>Si le jabberwocky fait une attaque de mâchoires et obtient un 19 naturel sur le d20, l'attaque est un coup critique. Cela n'a aucun effet si le 19 est un échec.</p>",
+      "en": "Jaws That Bite",
+      "name": "Gueule qui mord"
+    },
+    {
+      "description": "<p>Le jabberwocky considère toujours le plan dans lequel il se trouve comme son foyer.</p>",
+      "en": "Planar Acclimation",
+      "name": "Acclimatation planaire"
+    },
+    {
+      "description": null,
+      "en": "Regeneration 25 (Deactivated by Vorpal Weapons)",
+      "name": "Régénération 25 (désactivée par une arme vorpale)"
+    },
+    {
+      "description": "<p>Un jabberwocky blessé par une arme vorpale devient Effrayé 2 (ou Effrayé 4 sur un coup critique).</p>",
+      "en": "Vorpal Fear",
+      "name": "Terreur vorpale"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Eyes Of Flame",
+      "name": "Yeux de flammes"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    },
+    {
+      "en": "Wing",
+      "name": "Aile"
+    }
+  ],
+  "name": "Jabberwocky inférieur",
+  "publicNotes": "<p>Malgré son nom, le jabberwocky inférieur est un adversaire redoutable. Cette immonde bête reptilienne mesure près de 9 mètres de haut. Elle possède un long cou écailleux, un corps qui rappelle vaguement celui d'un dragon et une longue queue effilée. Elle a des pattes grêles, mais d'une force incroyable, qui se terminent par des griffes acérées. D'immenses ailes draconiques battent sur son dos et sa tête ovoïde n'est qu'un cauchemar fait d'yeux globuleux, de crocs acérés, de longues antennes et de minces moustaches.</p>\n<hr />\n<p>Peu de bêtes ont inspiré autant de légendes, de poèmes, de chansons et de mythes dans autant de cultures différentes que cette étrange créature draconique. Le jabberwocky est originaire du royaume féerique du Premier Monde et fait partie d'un groupe de créatures puissantes de ce plan appelées les Tane.</p>\n<p>Comme tous les Tane, les jabberwockys sont des créatures vivantes qui vieillissent, se nourrissent, boivent et dorment mais ne se reproduisent pas normalement. Ils sont créés directement par les Aînés divins qui règnent sur le Premier Monde et font la joie (ou la frustration) de ces entités capricieuses et mystérieuses. Considérés comme les plus puissants des Tane, les jabberwockys sont généralement créés dans un seul but : semer la destruction et le chaos dans l'Univers. Un Aîné envoie parfois un jabberwocky pour détruire un pays, un continent voire un monde entier pour se venger d'un outrage émis par un seul mortel. Parfois, aucune insulte ni aucun préjudice n'est nécessaire car certains Aînés haïssent l'existence même de l'Univers et créent régulièrement des jabberwockys pour exprimer le courroux du Premier Monde envers sa version plus jeune et moins chaotique.</p>\n<p>Lorsqu'un jabberwocky arrive dans l'Univers, sa priorité est de trouver une tanière. Il préfère vivre dans des lieux forestiers à une journée de vol de la civilisation : plus un terrain boisé est dangereux pour ceux qui voudraient venir le chasser, mieux c'est !</p>\n<p>Le lien entre les jabberwockys et les armes vorpales est sujet à nombre de débats et de spéculations parmi les érudits et les divers poèmes, chansons et légendes sur cette créature ne font rien pour clarifier ce point. Certains pensent que les armes vorpales ont été créées spécifiquement pour combattre les jabberwockys tandis que d'autres poussent cette théorie plus loin. Ils prennent pour preuves d'anciens mythes qui racontent qu'il y aurait eu autrefois un seul et unique jabberwocky. Celui-ci aurait était si puissant que rien ne pouvait le blesser d'une quelconque façon, rien si ce n'est la première épée vorpale créée dans ce but. Le combat contre cette bête aurait été si épique qu'il aurait créé d'étranges échos dans toute la réalité. Ces échos prirent la forme d'armes vorpales qui peuvent maintenant se trouver sur de nombreux mondes. Ceux qui croient en ces mythes affirment que les jabberwockys pouvant être rencontrés de nos jours ne sont que de pâles copies de ce proto-jabberwocky et spéculent que seuls les efforts combinés de plusieurs Aînés pourraient recréer une telle créature.</p>\n<hr />\n<p><strong>Les différents jabberwockys :</strong> Les Aînés ont parfois modifié certains aspects des jabberwockys qu'ils ont créés. Voici quelques exemples parmi les versions les plus célèbres et légendaires des jabberwockys.</p>\n<p>Jabberwocky frumieux. Le jabberwocky frumieux a deux têtes. Il est de niveau 24 et gagne une action supplémentaire à chacun de ses tours qu'il peut utiliser uniquement pour faire une Frappe de mâchoires.</p>\n<p>Jabberwocky flivoreux. Généralement originaire des régions hivernales du Premier Monde, le jabberwocky flivoreux a des écailles luisantes mêlant le bleu et le blanc. Il résiste au froid et non au feu et dans ses yeux brûlent des flammes bleues qui infligent des dégâts de froid à la place de dégâts de feu.</p>\n<p>Jabberwocky slictueux. Semant le chaos sous les vagues, ce jabberwocky sinueux et visqueux est amphibie. Sa Vitesse de nage est de 24 mètres et remplace sa Vitesse normale de vol et il n'a pas de Frappe d'aile. L'aura sifflante du jabberwocky slictueux est activée lorsqu'il nage, fait une Frappe de queue ou jabote.</p>"
+}

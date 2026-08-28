@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature ou un objet dans l'allonge du sarglagon est ciblé par une attaque</p>\n<hr />\n<p><strong>Effet</strong> Le sarglagon s'interpose, conférant à la créature ou à l'objet un Abri standard contre l'attaque (bonus de circonstances de +2 à la CA) ou un Abri important (bonus de circonstances de +4 à la CA) si le sarglagon lui offrait déjà un abri partiel.</p>",
+      "en": "Stygian Guardian",
+      "name": "Gardien stygien"
+    },
+    {
+      "description": "<p>Le sarglagon invoque des eaux obscures qui emplissent les poumons d'une créature située dans un rayon de 9 mètres et qui ne peut pas respirer dans l'eau. La cible doit tenter un jet de @Check[fortitude|dc:26].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> La cible tousse pour recracher l'eau et elle est Nauséeuse 1.</p>\n<p><strong>Échec</strong> La cible retient sa respiration. La seule et unique action qu'elle peut effectuer est d'effectuer un jet de Vigueur contre la Noyade pour expulser l'eau.</p>\n<p><strong>Échec critique</strong> La créature sombre dans l'Inconscience et commence à suffoquer. Si la cible réussit son jet de Vigueur alors qu'elle suffoque, elle recrache l'eau et peut de nouveau respirer.</p>",
+      "en": "Drown",
+      "name": "Noyade"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Greater Darkvision",
+      "name": null
+    },
+    {
+      "description": "<p>3 mètres.</p>\n<p>Une créature qui pénètre dans l'aura pesante doit tenter un jet de @Check[will|dc:23]. Puis, elle y est temporairement immunisée pendant 10 minutes.</p>\n<hr />\n<p><strong>Succès</strong> La créature n'est pas affectée.</p>\n<p><strong>Échec</strong> La créature est Surchargée tant qu'elle demeure dans l'aura. Si la créature est déjà Surchargée, elle est Immobilisée tant qu'elle reste dans l'aura.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais l'effet persiste pendant 3 rounds après avoir quitté l'aura.</p>",
+      "en": "Heavy Aura",
+      "name": "Aura pesante"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:26|options:damaging-effect,inflicts:clumsy]</p>\n<hr />\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[2d6[poison]]{2d6 dégâts de poison} et Maladroit 1 (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[3d6[poison]]{3d6 dégâts de poison} et Maladroit 2 (1 round)</p>",
+      "en": "Sarglagon Venom",
+      "name": "Venin de sarglagon"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 feet",
+      "name": "Télépathie 30 mètres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fangs",
+      "name": "Crocs"
+    },
+    {
+      "en": "Tentacle Arm",
+      "name": "Bras tentaculaire"
+    }
+  ],
+  "name": "Sarglagon (Diable)",
+  "publicNotes": "<p>Les sarglagons vivent dans les innombrables cours d'eau, lacs et océans des Enfers. Ce sont les gardiens de l'Académie des mensonges, les archives des secrets, située en Stygie, la cinquième strate des Enfers. Les sarglagons sont capables de respirer aussi bien dans l'eau qu'à l'air libre et peuvent se déplacer dans un milieu liquide, aérien ou sur terre avec une très grande célérité. Peu de fiélons empruntent les étendues d'eau du multivers, mais quand une rivière traverse les plans, il est fort probable que les sarglagons s'y soient engagés pour ourdir leurs machinations infernales. La seule étendue liquide qu'ils évitent est le fleuve Styx puisque les fiélons ne sont pas protégés contre les propriétés de ces eaux qui font perdre la mémoire. Les incantateurs mortels parviennent parfois à asservir des sarglagons pour qu'ils protègent leurs trésors et leurs secrets les plus précieux, notamment dans des zones aquatiques. Plus étrange encore, il arrive parfois que les sarglagons jouent un rôle de protecteurs particulièrement troublants auprès de mortels qui n'ont pas la moindre idée de la raison pour laquelle ils ont attiré leur attention non souhaitée. La vigilance constante et non désirée de ces diables et souvent perturbante et étouffante pour leurs protégés.</p>\n<hr />\n<p>Maîtres de la corruption et architectes des conquêtes, les diables cherchent aussi bien à tenter les mortels pour qu'ils se joignent à leur quête blasphématoire, qu'à répandre la tyrannie sur tous les mondes. Les tentations auxquelles ils peuvent soumettre les mortels vont de grands pouvoirs accordés en signant un contrat infernal à des faveurs perverses octroyées après un serment adressé dans un murmure à une entité diabolique, en passant par toutes sortes d'échanges plus subtils. Ceux qui succombent à ces tentations se retrouvent condamnés à une après-vie de tourments éternels dans les gouffres des Enfers dont ils ne peuvent s'échapper qu'en étant promus en devenant des diables au sein des légions infernales.</p>\n<p>Chaque diable a un rôle précis à jouer dans l'entretien de la machine bureaucratique sans scrupule que sont les Enfers, des soldats et des érudits aux inquisiteurs, avocats, juges et exécuteurs. Les diables de rang inférieur comme les orts s'occupent de tâches subalternes pour des diables plus puissants et spécialisés, comme les diables des contrats (les phistophilus) et l'infanterie, tandis que les plus grands d'entre eux les nessaris, commandent des armées infernales.</p>\n<p>Asmodéus se trouve au sommet de la structure qu'il a créée, mais les strates inférieures sont marquées par une lutte constante pour obtenir une position plus élevée. La plupart des plans diaboliques servent en fin de compte à améliorer la place du comploteur dans la hiérarchie.</p>"
+}

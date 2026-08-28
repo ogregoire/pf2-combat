@@ -2,6 +2,8 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Creature, IndexEntry } from "@pf2/schema";
 import { resolveCollisions } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
+import { loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
+import { format, useT, type StringKey } from "../i18n/index.js";
 import { parseAddCommand } from "../rules/parseAddCommand.js";
 import { rankMatches } from "../rules/rankMatches.js";
 import { useEncounter } from "../state/store.js";
@@ -70,10 +72,16 @@ function optionStyle(active: boolean): React.CSSProperties {
  * reduced — is visible immediately rather than assumed. `requestedQuantity`
  * is what the GM actually typed; it only differs from `quantity` when
  * `parseAddCommand` clamped it down to `MAX_ADD_QUANTITY`. */
-function addedMessage(quantity: number, requestedQuantity: number, name: string, initiative: number | null): string {
-  const suffix = initiative !== null ? ` at ${initiative}` : "";
-  const capped = requestedQuantity > quantity ? ` (capped from ${requestedQuantity})` : "";
-  return `added ${quantity} × ${name}${suffix}${capped}`;
+function addedMessage(
+  t: (key: StringKey) => string,
+  quantity: number,
+  requestedQuantity: number,
+  name: string,
+  initiative: number | null,
+): string {
+  const suffix = initiative !== null ? format(t("ADDED_AT_INITIATIVE"), { initiative }) : "";
+  const capped = requestedQuantity > quantity ? format(t("ADDED_CAPPED"), { requested: requestedQuantity }) : "";
+  return format(t("ADDED_MESSAGE"), { quantity, name, suffix, capped });
 }
 
 /**
@@ -90,26 +98,50 @@ function addedMessage(quantity: number, requestedQuantity: number, name: string,
 export function QuickAdd({
   entries,
   loadCreatureFn = loadCreature,
+  loadIndexI18nFn = loadIndexI18n,
 }: {
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
+  loadIndexI18nFn?: (pack: string) => Promise<IndexI18n>;
 }): React.ReactElement {
+  const t = useT();
   const [query, setQuery] = useState("");
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [dismissed, setDismissed] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [indexI18n, setIndexI18n] = useState<IndexI18n>({});
   const [focused, setFocused] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const listboxId = useId();
   const addCombatant = useEncounter((s) => s.addCombatant);
   const addMany = useEncounter((s) => s.addMany);
+  const lang = useEncounter((s) => s.lang);
   const players = useEncounter((s) => s.players);
   const combatants = useEncounter((s) => s.encounter.combatants);
 
+  // The catalog's own index files are English-only; the French names come
+  // from a per-pack overlay (see i18nOverlay.js) fetched and merged here,
+  // only when French is on — same rule as the per-creature overlay fetched
+  // in `commit` below.
+  useEffect(() => {
+    if (lang !== "fr") {
+      setIndexI18n({});
+      return;
+    }
+    let cancelled = false;
+    loadMergedIndexI18n(entries, loadIndexI18nFn).then((merged) => {
+      if (!cancelled) setIndexI18n(merged);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, entries, loadIndexI18nFn]);
+
   const resolved = useMemo(() => resolveCollisions(entries), [entries]);
+  const localized = useMemo(() => localizeEntries(resolved, indexI18n, lang), [resolved, indexI18n, lang]);
   const parsed = useMemo(() => parseAddCommand(query), [query]);
-  const matches = useMemo(() => rankMatches(resolved, parsed.nameQuery), [resolved, parsed.nameQuery]);
+  const matches = useMemo(() => rankMatches(localized, parsed.nameQuery), [localized, parsed.nameQuery]);
   const shown = matches.slice(0, DROPDOWN_CAP);
   const hiddenCount = matches.length - shown.length;
 
@@ -157,14 +189,18 @@ export function QuickAdd({
   const optionId = (index: number): string => `${listboxId}-option-${index}`;
 
   const commit = (entry: IndexEntry, quantity: number, requestedQuantity: number, initiative: number | null): void => {
-    void loadCreatureFn(entry.id)
+    // `entry` is the localized (French-named, when `lang` is "fr") dropdown
+    // entry — the seed must carry the RAW one instead, so the stored name
+    // is always English (see seedFromEntry).
+    const raw = resolved.find((e) => e.id === entry.id) ?? entry;
+    void loadCreatureFn(raw.id)
       .catch(() => null)
       .then((creature) => {
-        const seed = seedFromEntry(entry, creature);
+        const seed = seedFromEntry(raw, creature);
         if (quantity === 1) addCombatant(seed, initiative);
         else addMany(seed, quantity, initiative);
 
-        setMessage(addedMessage(quantity, requestedQuantity, entry.name, initiative));
+        setMessage(addedMessage(t, quantity, requestedQuantity, entry.name, initiative));
         setQuery("");
         setDismissed(false);
         setHighlightedIndex(0);
@@ -191,7 +227,7 @@ export function QuickAdd({
       null,
     );
 
-    setMessage(`added ${p.name}`);
+    setMessage(format(t("ADDED_PLAYER_MESSAGE"), { name: p.name }));
     setQuery("");
     setDismissed(false);
     setHighlightedIndex(0);
@@ -250,12 +286,12 @@ export function QuickAdd({
         htmlFor="quick-add-input"
         style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}
       >
-        Quick add
+        {t("QUICK_ADD_LABEL")}
       </label>
       <input
         id="quick-add-input"
         ref={inputRef}
-        aria-label="Quick add creatures"
+        aria-label={t("QUICK_ADD_ARIA")}
         role="combobox"
         aria-expanded={showDropdown}
         aria-controls={listboxId}
@@ -270,7 +306,7 @@ export function QuickAdd({
         onKeyDown={handleKeyDown}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        placeholder="6 goblin warrior 13"
+        placeholder={t("QUICK_ADD_PLACEHOLDER")}
         style={inputStyle}
       />
 
@@ -282,7 +318,7 @@ export function QuickAdd({
 
       {showDropdown && (
         <div style={dropdownStyle}>
-          <ul id={listboxId} role="listbox" aria-label="Matching players and creatures" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          <ul id={listboxId} role="listbox" aria-label={t("MATCHING_CREATURES_ARIA")} style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {options.map((option, index) => (
               <li
                 key={option.kind === "player" ? `player-${option.player.id}` : option.entry.id}
@@ -310,7 +346,7 @@ export function QuickAdd({
                         color: "var(--info)",
                       }}
                     >
-                      PLAYER
+                      {t("PLAYER_BADGE")}
                     </span>
                   </>
                 ) : (
@@ -332,7 +368,7 @@ export function QuickAdd({
                           color: "var(--ok)",
                         }}
                       >
-                        REMASTER
+                        {t("REMASTER_BADGE")}
                       </span>
                     )}
                   </>
@@ -342,7 +378,7 @@ export function QuickAdd({
           </ul>
           {hiddenCount > 0 && (
             <div style={{ padding: "6px 10px", fontSize: "11px", color: "var(--text-faint)" }}>
-              +{hiddenCount} more — keep typing to narrow it down
+              {format(t("MORE_HIDDEN"), { n: hiddenCount })}
             </div>
           )}
         </div>

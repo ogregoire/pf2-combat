@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { CreatureSchema } from "@pf2/schema";
-import { normalizeCreature } from "../src/normalize/creature.js";
+import { normalizeCreature, normalizeCreatureWithItems } from "../src/normalize/creature.js";
 
 const load = (name: string) =>
   JSON.parse(
@@ -105,5 +105,42 @@ describe("normalizeCreature", () => {
     expect(() =>
       normalizeCreature(bad, "kingmaker-bestiary", "the-stag-lord", {}),
     ).toThrow(/kingmaker-bestiary\/the-stag-lord.*unknown-size-code|unknown-size-code.*kingmaker-bestiary\/the-stag-lord/is);
+  });
+});
+
+describe("normalizeCreatureWithItems", () => {
+  // `CreatureSchema.parse` strips `foundryId` off every action and attack, so
+  // the emitted creature carries no item ids at all. The French overlay is
+  // keyed by Foundry item id and aligned to those same sorted arrays by
+  // POSITION, so the ids have to escape normalisation alongside the creature
+  // -- from the SAME pass, not a second one that could sort differently.
+  const { creature, items } = normalizeCreatureWithItems(
+    load("the-stag-lord"),
+    "kingmaker-bestiary",
+    "the-stag-lord",
+    {},
+  );
+
+  it("returns the same creature normalizeCreature does", () => {
+    expect(creature).toEqual(
+      normalizeCreature(load("the-stag-lord"), "kingmaker-bestiary", "the-stag-lord", {}),
+    );
+  });
+
+  it("aligns item ids to the creature's own sorted arrays, position for position", () => {
+    expect(items.actions.map((a) => a.name)).toEqual(
+      creature.actions.map((a) => a.name),
+    );
+    expect(items.attacks.map((a) => a.name)).toEqual(
+      creature.attacks.map((a) => a.name),
+    );
+    expect(items.attacks.every((a) => a.foundryId.length > 0)).toBe(true);
+  });
+
+  it("finds each id back in the source actor", () => {
+    const raw = load("the-stag-lord");
+    const ids = new Set(raw.items.map((i: { _id: string }) => i._id));
+    for (const attack of items.attacks) expect(ids.has(attack.foundryId)).toBe(true);
+    for (const action of items.actions) expect(ids.has(action.foundryId)).toBe(true);
   });
 });

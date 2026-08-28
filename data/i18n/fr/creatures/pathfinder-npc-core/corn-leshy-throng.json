@@ -1,0 +1,37 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> La horde de léchis maïs frappe avec des épis durcis, attaquant chaque ennemi dans sa case et dans une @Template[type:emanation|distance:5]{émanation de 1,50 mètre}, (@Check[reflex|dc:18|basic|options:area-effect]). Les dégâts dépendent du nombre d'actions dépensées.</p>\n<p><span class=\"action-glyph\">1</span> @Damage[1d6[bludgeoning]|options:area-damage]{1d6 dégâts contondants}</p>\n<p><span class=\"action-glyph\">2</span> <p><span class=\"action-glyph\">3</span> @Damage[(2d6+4)[bludgeoning]|options:area-damage] damage</p>\n{2d6+4 dégâts contondants}</p>\n<p><span class=\"action-glyph\">3</span> @Damage[(2d6+8)[bludgeoning]|options:area-damage]{2d6+8 dégâts contondants}</p>",
+      "en": "Boxing Ears",
+      "name": "Épis boxeurs"
+    },
+    {
+      "description": "<p>Les membres de la horde projettent un bombardement de grains de maïs. Chaque créature dans un @Template[type:cone|distance:30]{cône de 9 mètres} subit @Damage[2d6[bludgeoning]|options:area-damage]@Damage[2d6[bludgeoning]]{2d6 dégâts contondants} (@Check[reflex|dc:18|basic|options:area-effect]). Lorsque la horde est réduite à 2 sections ou moins, la zone diminue pour devenir un @Template[type:cone|distance:15]{cône de 4,50 mètres}.</p>",
+      "en": "Kernel Barrage",
+      "name": "Salve de grains"
+    },
+    {
+      "description": "<p>Une horde de léchis maïs s'organise en rangées de plants pour encercler ses ennemis, s'élevant pour bloquer leur vision. Elle peut se déplacer dans les cases occupées par d'autres créatures, et celles-ci peuvent pénétrer dans ses cases.</p>\n<p>Quand une créature de taille Moyenne ou inférieure tente de pénétrer dans une case occupée par la horde de léchis maïs, elle doit effectuer un test de @Check[survival|dc:20]. En cas d'échec, elle perd son sens de l'orientation - toutes les cases de la horde deviennent un terrain très difficile pour elle jusqu'à la fin de ce tour. La créature ne doit effectuer ce test que la première fois par round où elle tente d'entrer dans une case de la horde.</p>",
+      "en": "Encircling Maze",
+      "name": "Labyrinthe d'encerclement"
+    },
+    {
+      "description": "<p><strong>Seuils de cohésion</strong> 36 PV (3 sections), 18 PV (2 sections)</p>\n<hr />\n<p><p>Les troupes sont composées de nombreux individus, représentées par quatre \"sections\" sur une grille de combat. Chaque section mesure 3 mètres de chaque côté et est aussi haute que les membres individuels de la troupe. Les sections doivent rester contiguës. Chacune doit partager au moins 1,50 mètre de l'un de ses côtés avec une autre section. Être adjacentes en diagonale n'est pas suffisant ! Vous pouvez mesurer la prise en tenaille, l'abri et autre en utilisant le centre de n'importe quelle section.</p>\n<p>Une troupe possède deux seuils de cohésion de Points de vie dans l'entrée de ses PV et perd des sections lorsqu'elle franchit chaque seuil. Typiquement, le seuil de cohésion supérieur est fixé à 2/3 du maximum des Points de vie de la troupe et le seuil inférieur est à 1/3 de son maximum. Une fois que la troupe passe en dessous du seuil le plus élevé, elle perd une section, laissant trois sections (12 cases) et en plaçant le premier seuil de Points de vie à son nouveau maximum. Cela se répète à chaque fois que la troupe passe en dessous du seuil inférieur, laissant deux sections (8 cases). À 0 Point de vie, la troupe se disperse entièrement, le peu de membres restants se rendant, fuyant ou en étant facilement dispersés, en fonction de la décision du MJ. Typiquement, la créature qui a conduit la troupe à perdre une section décide celle qu'elle veut retirer et le MJ prend la décision lorsqu'aucune créature spécifique n'en était responsable. Pour restaurer des sections perdues et le maximum de Points de vie, une troupe a besoin de passer du temps d'intermède pour utiliser le traitement à long terme pour compenser les pertes ou recruter de nouveaux membres pour remplacer ceux qui sont tombés.</p>\n<p>Les troupes sont typiquement immunisées à des effets qui ne blessent pas qui ne ciblent qu'une unique créature, tel qu'un sort de Charme ou l'action Démoraliser. Une capacité qui peut cibler au moins 5 créatures peut cibler une section entière, passant à deux sections si il peut cibler au moins 10 créatures et à la troupe entière si elle peut cibler au moins 20 créatures. Une capacité qui affecte toutes les créatures dans une certaine portée affecte toutes les sections dans cette portée (faites tous les tests ou les jets de sauvegarde séparément pour chaque section). Par exemple, un sort de <em>Charme</em> au rang 8 (avec 10 cibles) peut affecter deux sections et une capacité qui Démoralise toutes les créatures dans les 9 mètres autour de vous pourrait affecter toutes les sections qui se trouvent totalement dans cette portée. Une capacité qui n'inflige pas de dégâts et qui devrait empêcher une section d'agir, qui provoque sa fuite ou qui la rend incapable de fonctionner comme un élément de la troupe pendant un round ou davantage retire entièrement la section. La troupe perd un nombre de PV requis pour l'amener jusqu'au prochain seuil. Si une capacité inflige à la fois des dégâts et un effet qui n'inflige pas de dégâts, appliquez les dégâts puis le reste de l'effet.</p></p>",
+      "en": "Troop Defenses",
+      "name": null
+    },
+    {
+      "description": "<p>Chaque fois qu'une troupe se déplace, vous déplacez l'une de ses sections et les autres sections suivent derrière. À la fin du déplacement, vous pouvez regrouper les autres sections pour qu'elles soient adjacentes à celle que vous avez déplacée comme bon vous semble, à condition qu'aucune d'elle ne se déplace plus loin que la section déplacée. Si vous choisissez de ne pas déplacer la troupe, vous pouvez repositionner à la place toutes les sections tant que l'une reste en position.</p>",
+      "en": "Troop Movement",
+      "name": null
+    },
+    {
+      "description": "<p>Lorsque la horde de léchis maïs meurt, une explosion d'énergie primordiale jaillit de son corps, redonnant @Damage[3d8[healing,vitality]|shortLabel]{3d8 Points de vie} à chaque créature végétale dans une @Template[type:emanation|distance:30]{émanation de 9 mètres}. La zone se remplit immédiatement de plants de maïs, devenant un terrain difficile. Si l'environnement n'est pas viable pour ces plantes, elles se fanent après 24 heures.</p>",
+      "en": "Verdant Burst",
+      "name": "Explosion verdoyante"
+    }
+  ],
+  "attacks": [],
+  "name": "Horde de léchis maïs",
+  "publicNotes": "<p>Une forêt dense ou une ferme florissante peuvent parfois connaître une explosion de magie primordiale donnant naissance à une multitude de léchis. Bien qu'ils soient encore jeunes, ces esprits peuvent s'unir à leurs compagnons de culture pour se protéger ou atteindre un objectif commun. Habitués à pousser en rangs, de nombreux léchis maïs peuvent former une légion imposante.</p>\n<hr />\n<p>Les esprits de la nature habitent des corps faits de plantes ou de champignons, éclos de la magie primordiale pour devenir les petites personnes appelées des léchis. Ils existent sous une incroyable diversité de formes et de tailles, bien plus que la plupart des peuples de Golarion. Cette variété signifie qu'un léchi pourrait trouver sa place dans presque tous les types d'univers et d'histoires.</p>"
+}

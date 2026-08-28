@@ -1,4 +1,4 @@
-import type { Action, Attack } from "@pf2/schema";
+import type { Action, Attack, CreatureI18n } from "@pf2/schema";
 import type { AppliedCondition } from "../rules/conditions.js";
 import type { Iwr } from "../rules/damage.js";
 
@@ -30,6 +30,21 @@ export interface Combatant {
   reactions: { name: string; trigger: string }[];
   attacks: Attack[];
   actions: Action[];
+  /**
+   * The French overlay for this creature, IF a caller already seeded one
+   * directly into the store — used by tests, never by production code:
+   * AddCombatants/QuickAdd no longer fetch an overlay at add time at all
+   * (that used to depend on `lang` being "fr" at the moment of adding,
+   * which meant a combatant added in English could never become French
+   * later). `null` for every PC, and for essentially every creature added
+   * through the real UI. Render-time consumers don't read this field
+   * directly — they call `useCombatantI18n`
+   * (packages/app/src/hooks/useCombatantI18n.ts), which uses this field
+   * when it's already populated and otherwise resolves the overlay from
+   * `creatureId` on demand (cached, component-local — never written back
+   * here) whenever `lang` is "fr".
+   */
+  i18n: CreatureI18n | null;
   conditions: AppliedCondition[];
   strikesMade: number;
   /** Actions spent so far this turn, out of the pool `actionPool()` computes

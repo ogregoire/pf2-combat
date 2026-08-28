@@ -1,4 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
+import type { Lang } from "./store.js";
 import type { Encounter, Player } from "./types.js";
 
 /**
@@ -19,16 +20,26 @@ interface PersistedParty {
   players: Player[];
 }
 
+interface PersistedSettings {
+  schemaVersion: number;
+  lang: Lang;
+}
+
 interface TrackerDB extends DBSchema {
   encounters: { key: string; value: PersistedEncounter };
   parties: { key: string; value: PersistedParty };
+  settings: { key: string; value: PersistedSettings };
 }
 
 const DB_NAME = "pf2-combat-tracker";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 /** Both stores hold a single row each — there's only ever one encounter and
  * one party in flight, so a fixed key stands in for "the" saved state. */
 const KEY = "current";
+
+/** A payload saved before `lang` existed carries no such field — an
+ * existing saved fight must still open, in English. */
+const DEFAULT_LANG: Lang = "en";
 
 let dbPromise: Promise<IDBPDatabase<TrackerDB>> | null = null;
 
@@ -37,6 +48,7 @@ function getDb(): Promise<IDBPDatabase<TrackerDB>> {
     upgrade(db) {
       if (!db.objectStoreNames.contains("encounters")) db.createObjectStore("encounters");
       if (!db.objectStoreNames.contains("parties")) db.createObjectStore("parties");
+      if (!db.objectStoreNames.contains("settings")) db.createObjectStore("settings");
     },
   });
   return dbPromise;
@@ -164,4 +176,27 @@ export async function loadPlayers(): Promise<Player[]> {
   if (raw === undefined) return [];
   const migrated = migrate(raw) as unknown as PersistedParty;
   return migrated.players;
+}
+
+export async function saveSettings(settings: { lang: Lang }): Promise<void> {
+  const db = await getDb();
+  await db.put("settings", { schemaVersion: SCHEMA_VERSION, lang: settings.lang }, KEY);
+}
+
+export async function loadSettings(): Promise<{ lang: Lang }> {
+  const db = await getDb();
+  const raw = await db.get("settings", KEY);
+  if (raw === undefined) return { lang: DEFAULT_LANG };
+  const migrated = migrate(raw) as unknown as PersistedSettings;
+  return { lang: migrated.lang ?? DEFAULT_LANG };
+}
+
+/**
+ * Test-only: writes a payload to the settings store exactly as given,
+ * bypassing `saveSettings`'s schema stamping — used to simulate a payload
+ * saved by a build that predates a given field (e.g. `lang`).
+ */
+export async function putRawSettings(raw: unknown): Promise<void> {
+  const db = await getDb();
+  await db.put("settings", raw as PersistedSettings, KEY);
 }

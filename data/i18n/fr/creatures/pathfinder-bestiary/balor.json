@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<p><strong>Déclencheur</strong> Le balor touche une créature, un objet ou un effet de sort avec une Frappe avec une arme.</p>\n<p><strong>Effet</strong> Le balor lance le sort inné Dissipation de la magie sur la cible de la Frappe déclencheuse.</p>",
+      "en": "Dispelling Strike",
+      "name": "Frappe dissipante"
+    },
+    {
+      "description": null,
+      "en": "Improved Grab",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Le balor tue une créature vivante qui est au moins de niveau 15.</p>\n<hr />\n<p><strong>Effet</strong> Le balor absorbe la force vitale de la créature et regagne @Damage[(10d8+80)[healing]]{10d8+80 Points de vie}.</p>",
+      "en": "Lifedrinker",
+      "name": "Buveur de vie"
+    },
+    {
+      "description": "<p>En plus de son déclencheur normal, le balor peut utiliser Frappe réactive quand une créature à portée utilise une action de concentration. Il peut interrompre les actions de concentration qui déclenchent cette capacité et interrompt les actions sur tout succès à une Frappe, pas seulement en cas de succès critique.</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
+      "en": "Attack of Opportunity (Special)",
+      "name": "Frappe réactive (Spéciale)"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>6 mètres. Un adversaire qui débute son tour dans l'aura subit @Damage[(3d6+10)[fire]]{3d6+10 dégâts de feu} ou @Damage[(6d6+20)[fire]]{6d6+20 dégâts de feu} si le balor l'a Agrippé ou l'a Entravé. Une créature qui frappe un balor avec une Frappe à mains nues subit @Damage[(3d6+10)[fire]]{3d6+10 dégâts de feu} et les armes qui touchent un balor subissent @Damage[(3d6+10)[fire]]{3d6+10 dégâts de feu}.</p>",
+      "en": "Aura of Flame",
+      "name": "Aura de flammes"
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Quand un balor meurt, son corps explose en une aura de flammes intenses sur une @Template[emanation|distance:100]{émanation de 30 mètres}. Toutes les créatures et tous les objets à portée subissent @Damage[16d10[fire]|options:area-damage]{16d10 dégâts de feu} (@Check[reflex|dc:45|basic|options:area-effect]). Comme les flammes sont imprégnées d'énergie des Failles extérieures, les créatures de la zone appliquent seulement la moitié de leur résistance habituelle au feu. Les créatures immunisées contre le feu appliquent un niveau de succès d'un cran supérieur à celui qu'elles ont obtenu au lieu de bénéficier de l'avantage normal de leur immunité. Les corps des créatures réduites à 0 PV par l'agonie fatale d'un balor sont totalement incinérés et ne sont plus que de fines cendres.</p>",
+      "en": "Death Throes",
+      "name": "Agonie fatale"
+    },
+    {
+      "description": "<p>Un balor peut lancer son sort inné de Translocation au rang 5 avec une action unique.</p>",
+      "en": "Dimensional Dervish",
+      "name": "Derviche dimensionnel"
+    },
+    {
+      "description": "<p>Entre les mains d'un balor, toute arme devient une <em>arme de Frappe majeure Vorpale +3</em> constituée de fer froid et d'argent. Une arme qui ne peut bénéficier de la rune vorpale ne gagne pas cet effet. Le démon peut invoquer un fouet de feu avec une action Interagir. Ce fouet gagne les mêmes avantages que les autres armes utilisées par le balor.</p>",
+      "en": "Infuse Weapons",
+      "name": "Imprégnation d'armes"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 feet",
+      "name": "Télépathie 30 mètres"
+    },
+    {
+      "description": "<p>Quand un balor Agrippe une créature avec une Frappe de fouet, il peut la déplacer dans n'importe quelle case située dans l'allonge du fouet. Le balor peut se déplacer sans mettre fin à l'agrippement tant que la créature reste dans l'allonge du fouet et il peut déplacer la victime dans n'importe quelle autre case dans la portée du fouet avec une action Interagir.</p>",
+      "en": "Whip Reposition",
+      "name": "Repositionnement du fouet"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Cold Iron Silver Flame Whip",
+      "name": "Fouet de feu en fer froid et en argent"
+    },
+    {
+      "en": "Vorpal Cold Iron Silver Longsword",
+      "name": "Épée longue vorpale en fer froid et en argent"
+    }
+  ],
+  "name": "Balor (Démon)",
+  "publicNotes": "<p>Quand les gens se racontent des histoires effrayantes de démons, la plupart du temps c'est le balor qu'ils imaginent : un être imposant de feu et de chair, un cauchemar cornu armé d'un fouet et d'une épée enflammée et qui vole dans la nuit en quête de sa prochaine victime. Dans les Failles extérieures, ils servent les seigneurs démons en tant que généraux ou capitaines et ils commandent généralement de vastes légions démoniaques. D'une taille de 4,2 mètres, seules les âmes des mortels les plus cruels, ceux qui ont voué toute leur existence aux péchés, peuvent contribuer à la formation d'un balor. Le plus souvent, ce démon se constitue à partir d'une masse de dizaines d'âmes de mortels qui partageaient les mêmes idéologies avilissantes au cours de leur vie.</p>\n<p>Les rares balors qui se forment à partir d'une seule âme sont ceux qui ont le plus de probabilités de transcender la puissance déjà considérable dont ils disposent et de devenir des seigneurs démons. Ces seigneurs balors sont tous des créatures uniques de niveau 21 à 25 qui règnent sur leurs propres domaines des Failles extérieures. Avec le temps, un seigneur balor peut se transformer en une créature unique avec des pouvoirs très différents et peut même devenir un véritable seigneur démon.</p>\n<hr />\n<p>Quand l'âme d'un pécheur est jugée et envoyée dans les Failles extérieures, elle peut devenir un redoutable fiélon, un démon. Les démons sont des incarnations vivantes du péché, qu'il s'agisse de péchés classiques comme la colère ou la gourmandise, ou des perversités plus « spécialisées » comme l'obsession de la torture ou la trahison et la perfidie. Une fois formé, un démon est motivé par deux objectifs : acquérir de plus en plus de pouvoir et corrompre les âmes des mortels pour qu'elles soient souillées par le péché. De cette manière, les démons s'assurent une réserve inépuisable de nouveaux démons qui viennent grossir leurs rangs dans les Failles extérieures.</p>"
+}

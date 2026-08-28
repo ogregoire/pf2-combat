@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Grab",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le spinosaure a Agrippé ou Entravé une créature dans ses mâchoires</p>\n<hr />\n<p><strong>Effet</strong> Le spinosaure lève ses pattes avant et lacère la créature saisie, infligeant @Damage[4d8[slashing]]{4d8 dégâts tranchants} (@Check[reflex|dc:30|basic]). Une créature qui échoue à ce jet de sauvegarde subit également @Damage[1d6[bleed]]{1d6 dégâts de saignement}.</p>",
+      "en": "Rip and Tear",
+      "name": "Déchirer et arracher"
+    },
+    {
+      "description": "<p>Moyenne, @Damage[2d12[bludgeoning]]{2d12 dégâts contondants}, Rupture 19</p>\n<hr />\n<p><p>Le monstre tente d'avaler une créature de la taille indiquée qu'il a Saisie ou Entravée dans ses mâchoires ou sa bouche. Si une créature avalée est de la taille maximale indiquée, le monstre ne peut utiliser Gober de nouveau. Si la créature est plus petite que ce maximum, le monstre peut habituellement gober plus de créatures. Le MJ détermine ce maximum. Le monstre tente un test d'@Check[athletics|defense:reflex] opposée au DD de Réflexes de la créature. Si elle réussit, elle avale la créature. La bouche du monstre ou ses mâchoires n'agrippent plus une créature qu'elle a gobée, de sorte que le monstre est libre de l'utiliser pour Frapper ou Agripper de nouveau. Le monstre ne peut attaquer les créatures qu'il a gobée.</p>\n<p>Une créature gobée est Agrippée, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature gobée subit le montant de dégâts indiqué lorsqu'elle est gobée pour la première fois et, à la fin de chacun de ses tours, tant qu'elle reste gobée. Si la victime S'Échappe de l'état Agrippé de cette capacité, elle sort à travers la bouche du monstre. Cela libère toute autre créature Agrippée dans la bouche du monstre ou dans ses mâchoires. Une créature gobée peut attaquer le monstre qui l'a gobée, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui gobe est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à sa valeur de Rupture indiquée du fait d'une unique attaque ou d'un sort, la créature gobée se libère. Une créature qui se libère, soit en S'Échappant, soit en se libérant elle-même peut immédiatement respirer et sortir de l'espace du monstre qui la gobe.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Si le monstre meurt, une créature gobée peut être libérée par les créatures adjacentes au cadavre si elles passent un total d'actions combinées à tnracher dans le monstre avec une arme ou une attaque à mains nues qui infligent des dégâts perforants ou tranchants.</p></p>",
+      "en": "Swallow Whole",
+      "name": "Gober"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le spinosaure nage à la surface de l'eau</p>\n<hr />\n<p><strong>Effet</strong> En se penchant sur le côté, le spinosaure utilise sa voile osseuse pour frapper la surface de l'eau et génère ainsi une puissante vague qui inflige @Damage[6d6[bludgeoning]|options:area-damage]{6d6 dégâts contondants} dans un  @Template[cone|distance:30]{cône de 9 mètres}. Chaque créature dans l'eau présente dans la zone affectée doit faire un jet de @Check[reflex|dc:30|options:area-effect,damaging-effect,inflicts:slowed,inflicts:stunned].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> La créature subit la moitié des dégâts.</p>\n<p><strong>Échec</strong> La créature subit pleins dégâts et elle est Ralentie 1 jusqu'à la fin de son prochain tour.</p>\n<p><strong>Échec critique</strong> La créature subit le double de dégâts et est Étourdie 3.</p>",
+      "en": "Staggering Sail",
+      "name": "Aileron déstabilisant"
+    },
+    {
+      "description": "<p>Un spinosaure peut retenir sa respiration pendant 2 heures.</p>",
+      "en": "Deep Breath",
+      "name": "Inspiration profonde"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Bite",
+      "name": "Morsure"
+    },
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    }
+  ],
+  "name": "Spinosaure",
+  "publicNotes": "<p>Le spinosaure est bien plus que l'un des plus grands dinosaures carnivores : c'est aussi l'un des plus singuliers d'apparence, avec sa grande voile en forme d'aileron courant le long de sa colonne vertébrale. Souvent très colorée, cette voile lui permet d'attirer des partenaires, l'aide à nager et lui donne l'air encore plus imposant qu'il ne l'est en réalité. Un spinosaure nageant peut aussi utiliser sa voile pour désorienter ses proies, en frappant l'eau avec afin de produire une vague puissante et écrasante. Un spinosaure peut mesurer jusqu'à 18 mètres de long et peser 11 tonnes.</p>\n<p>Le spinosaure est tout aussi à l'aise dans l'eau que sur la terre ferme, et son long museau garni de dents est bien adapté pour capturer des proies aquatiques. Les tentatives des géants pour capturer des spinosaures afin d'en faire des gardiens tournent généralement mal, car ces dinosaures obstinés se laissent difficilement domestiquer. Leur caractère bourru et leur apparence saisissante les rendent mieux adaptés aux jeux sanglants, et ils sont des prises très prisées dans les arènes spécialisées dans les combats opposant des gladiateurs à des animaux ou des bêtes affamées. Ces spectacles sont de véritables festins de gore pour les yeux et attirent des spectateurs venus de centaines de kilomètres à la ronde. Bien sûr, un dinosaure enragé contraint de combattre pour divertir la foule ne fera pas la différence entre les repas potentiels sur le champ de bataille et les spectateurs assis dans les gradins voisins, si bien que les sièges les plus proches de l'arène peuvent eux aussi faire partie du spectacle.</p>\n<p>L'apparence et la puissance du spinosaure n'intéressent pas seulement les géants et les organisateurs de combats sanglants. Les lanceurs de sorts qui modifient et transforment des animaux en gardiens magiques s'intéressent depuis longtemps au potentiel du spinosaure. En raison de la réputation violente de cette créature, ces lanceurs de sorts courent de grands dangers lorsqu'ils en charment une pour l'emmener avec eux. Pourtant, pour ceux que les capacités hypothétiques de la créature intriguent, un tel risque en vaut la peine. Plus que tout autre dinosaure, les spinosaures ont fait l'objet de procédures de déformation de la chair, de croisements avec des monstres et d'autres techniques magiques entre les mains de lanceurs de sorts reclus, qui cherchent à accroître leur viabilité en tant que gardiens efficaces.</p>"
+}

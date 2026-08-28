@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Attack of Opportunity",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La dernière action du chevalier du sépulcre était une Frappe réussie avec une arme qui possède le trait Pousser.</p>\n<hr />\n<p><strong>Effet</strong> La cible touchée par l'arme est repoussée de 3 mètres et doit réussir un jet de @Check[will|dc:33] ou être incapable d'approcher le chevalier à moins de 1,50 mètre pendant 1 round. Si la dernière action de Frappe était un coup critique, la cible rate automatiquement son jet de sauvegarde.</p>",
+      "en": "Repulsing Blow",
+      "name": "Coup répulsif"
+    },
+    {
+      "description": "<p>Le chevalier sépulcre projette un cône d'énergie de @Template[cone|distance:30]{9 mètres}. Les créatures prises dans la zone d'effet subissent @Damage[8d12[cold]|options:area-damage]{8d12 dégâts de froid} (@Check[reflex|dc:34|basic|options:area-effect]).</p>\n<p>Il peut utiliser cette capacité une fois tous les [[/gmr 1d4 #Recharge Déflagration dévastatrice]]{1d4 rounds}.</p>",
+      "en": "Devastating Blast",
+      "name": "Déflagration dévastatrice"
+    },
+    {
+      "description": "<p>Cette malédiction affecte quiconque porte l'armure du chevalier sépulcre pendant au moins une heure.</p>\n<p><strong>Jet de sauvegarde</strong> jet de @Check[will|dc:34] </p>\n<hr />\n<p><strong>Délai</strong> 1 heure </p>\n<p><strong>Stade 1</strong> Condamné 1 et ne peut retirer l'armure (1 jour)</p>\n<p><strong>Stade 2</strong> Condamné 2, pénalité de statut de 3 mètres aux Vitesses et ne peut retirer l'armure (1 jour)</p>\n<p><strong>Stade 3</strong> meurt et se transforme en chevalier sépulcre de l'armure.</p>\n<p>Effet : Malédiction du chevalier sépulcre</p>",
+      "en": "Graveknight's Curse",
+      "name": "Malédiction du chevalier sépulcre"
+    },
+    {
+      "description": "<p>Quand un chevalier sépulcre est détruit, son armure reconstitue son corps dans un délai de [[/gmr 1d10 #jours]]{1d10 jours} — ou plus rapidement si son armure est portée par un hôte vivant. Si le corps est détruit avant cela, le processus recommence.</p>\n<p>Un chevalier sépulcre ne peut être détruit de manière permanente quand anéantissant son armure (comme avec un sort Désintégration), en le transportant dans le plan de la Forge de création ou en le jetant au coeur d'un volcan.</p>",
+      "en": "Rejuvenation",
+      "name": "Reconstruction"
+    },
+    {
+      "description": "<p>9 mètres. Quand une créature dans l'aura utilise un sort ou une capacité ayant le trait vitalité, le chevalier sépulcre tente automatiquement de le contrer avec un modificateur de [[/r 1d20+23 #Contrer]]{+23}.</p>",
+      "en": "Sacrilegious Aura",
+      "name": "Aura sacrilège"
+    },
+    {
+      "description": null,
+      "en": "Void Healing",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Weapon Master",
+      "name": "Maître d'armes"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Dagger",
+      "name": "Dague"
+    },
+    {
+      "en": "Dagger",
+      "name": "Dague"
+    },
+    {
+      "en": "Warhammer",
+      "name": "Marteau de guerre"
+    }
+  ],
+  "name": "Chevalier sépulcre kellide",
+  "publicNotes": "<p>Les chevaliers sépulcre sont des morts-vivants ayant reçu le don de la non-vie grâce à une armure maudite.</p>"
+}

@@ -1,0 +1,73 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Le mukradi devrait être Confus, Étourdi, Paralysé ou Ralenti.</p>\n<hr />\n<p><strong>Effet</strong> Le mukradi confine l'effet débilitant à une certaine portion de son système nerveux. Il ignore l'effet, mais l'une de ses gueules (à lui de choisir) est mise en sommeil pendant la durée de l'effet. Il ne peut plus utiliser cette gueule pour une Frappe ou son Souffle d'énergie pendant tout ce temps. Cette capacité ne peut plus être utilisée si toutes les têtes du mukradi sont mises en sommeil.</p>",
+      "en": "Partitioned Anatomy",
+      "name": "Anatomie partitionnée"
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature réussit un coup critique contre le mukradi.</p>\n<hr />\n<p><strong>Effet</strong> Le Souffle d'énergie du mukradi est rechargé. Il peut utiliser Souffle d'énergie immédiatement au cours de cette réaction. Ensuite, il ne peut plus utiliser cette réaction tant qu'il n'a pas rechargé naturellement son Souffle d'énergie.</p>",
+      "en": "Spitting Rage",
+      "name": "Crachat enragé"
+    },
+    {
+      "description": null,
+      "en": "Knockdown",
+      "name": null
+    },
+    {
+      "description": "<p>Le mukradi souffle une bouffée d'énergie par l'une de ses trois gueules. Chaque créature dans la zone doit effectuer un jet de @Check[reflex|dc:36|basic|options:area-effect].</p>\n<p>Le mukradi ne peut plus utiliser son Souffle d'énergie pendant [[/gmr 1d4 #Recharger du souffle d'énergie]]{1d4 rounds}.</p>\n<ul>\n<li><strong>Gueule acide</strong> (acide) @Template[line|distance:60|width:10]{ligne de 18 mètres de long sur 3 mètres de large} d'acide infligeant @Damage[16d6[acid]|options:area-damage]{16d6 dégâts d'acide}.</li>\n<li><strong>Gueule électrique</strong> (électricité) @Template[line|distance:120]{ligne de 36 mètres} d'électricité infligeant @Damage[16d6[electricity]|options:area-damage]{16d6 dégâts d'électricité}.</li>\n<li><strong>Gueule enflammée</strong> (feu) @Template[cone|distance:60]{cône de 18 mètres} de feu infligeant @Damage[16d6[fire]|options:area-damage]{16d6 dégâts de feu}.</li>\n</ul>",
+      "en": "Breathe Energy",
+      "name": "Souffle d'énergie"
+    },
+    {
+      "description": "<p>Le mukradi effectue deux Frappes avec des gueules différentes contre une même cible. Si les deux touchent, la cible subit @Damage[(2d12+13)[slashing]]{2d12+13 dégâts tranchants} supplémentaires, avec un jet de @Check[fortitude|dc:36|basic]. En cas d'échec critique, la créature est mise en pièces et meurt.</p>\n<p>La pénalité d'attaques multiples du mukradi augmente seulement après avoir porté toutes les attaques.</p>",
+      "en": "Pull Apart",
+      "name": "Mettre en pièces"
+    },
+    {
+      "description": "<p>Le mukradi effectue une Frappe contre chaque créature dans son allonge. Il peut Frapper une fois avec chacune de ses gueules, une fois avec son coup de queue fouetté et n'importe quel nombre de fois avec ses pattes. Chaque attaque s'accompagne d'une pénalité de circonstances de -2 et augmente sa pénalité d'attaques multiples, mais cette dernière augmente seulement une fois toutes les attaques effectuées.</p>",
+      "en": "Thrash",
+      "name": "Rosser"
+    },
+    {
+      "description": "<p>Très grande ou inférieure, patte, @Check[reflex|dc:36|basic]</p>\n<hr />\n<p><p>Le monstre Marche rapidement sur une distance maximale égale au double de sa Vitesse et peut traverser les espaces de créatures de la taille indiquée. Il Piétine alors chaque créature dans l'espace de laquelle il pénètre. Le monstre ne peut tenter de Piétiner une créature qu'une seule fois par utilisation de l'action Piétinement. Le monstre inflige les dégâts de la Frappe indiquée. Les créatures piétinées peuvent alors faire un jet de Réflexes basique avec le DD indiqué (aucun dégât sur un succès critique, la moitié des dégâts sur un succès, le double des dégâts sur un échec critique).</p></p>",
+      "en": "Trample",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "All-Around Vision",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Tremorsense (Imprecise) 60 feet",
+      "name": "Perception des vibrations 18 mètres (imprécis)"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Acid Maw",
+      "name": "Gueule d'acide"
+    },
+    {
+      "en": "Flame Maw",
+      "name": "Gueule enflammée"
+    },
+    {
+      "en": "Leg",
+      "name": "Patte"
+    },
+    {
+      "en": "Shock Maw",
+      "name": "Gueule électrique"
+    },
+    {
+      "en": "Tail Lash",
+      "name": "Coup de queue fouetté"
+    }
+  ],
+  "name": "Mukradi",
+  "publicNotes": "<p>Le mukradi est un prédateur tricéphale effrayant aux allures de mille-pattes qui possède un arsenal de moyens pour tuer, brûler et démembrer. On dit qu'il existe une variante de mukradi en Ombreterre et qu'elle possède des écailles noires et crache un mucus noir acide par toutes ses gueules qui s'anime avant d'être réabsorbé par la bête.</p>"
+}

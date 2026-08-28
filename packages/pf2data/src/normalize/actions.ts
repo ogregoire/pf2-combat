@@ -2,8 +2,10 @@ import { z } from "zod";
 import { extractRequirements, extractTrigger } from "./html.js";
 import { resolveLocalize, type LangTable } from "./localize.js";
 import { compareStrings } from "../util.js";
+import { describeItem, itemHasType } from "./item.js";
 
 const ActionItemSchema = z.object({
+  _id: z.string(),
   name: z.string(),
   type: z.literal("action"),
   system: z.object({
@@ -24,6 +26,7 @@ const ActionItemSchema = z.object({
 export type ActionCost = "1" | "2" | "3" | "reaction" | "free" | "passive";
 
 export interface NormalizedAction {
+  foundryId: string;
   name: string;
   cost: ActionCost;
   category: string | null;
@@ -59,13 +62,30 @@ export function normalizeActions(
 
   for (const item of items) {
     const parsed = ActionItemSchema.safeParse(item);
-    if (!parsed.success) continue;
-    const { name, system } = parsed.data;
+    if (!parsed.success) {
+      // Two very different situations share this branch. An item of another
+      // TYPE (a Strike, a spell, a piece of gear) is expected here and is
+      // skipped. An item that IS `type: "action"` but fails validation is
+      // upstream drift, and skipping it would delete an ability from the
+      // creature with no error and no report line -- a dropped array element
+      // never reaches normalizePacks' `.failures`, which only collects
+      // THROWN errors. So that case is made loud.
+      if (itemHasType(item, "action")) {
+        throw new Error(
+          `action item ${describeItem(item)} failed validation: ${
+            parsed.error.issues[0]?.message ?? "invalid"
+          } (at ${parsed.error.issues[0]?.path.join(".") ?? "?"})`,
+        );
+      }
+      continue;
+    }
+    const { _id, name, system } = parsed.data;
     // Localize first, links later (in normalizeCreature): localized glossary
     // text itself contains @UUID references that must survive to be resolved.
     const html = resolveLocalize(system.description.value, lang);
 
     actions.push({
+      foundryId: _id,
       name,
       cost: costOf(system),
       category: system.category ?? null,

@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "description": null,
+      "en": "Improved Grab",
+      "name": null
+    },
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature dans l'allonge de la queue du shemhazian quitte une case en utilisant une action de déplacement.</p>\n<hr />\n<p><strong>Effet</strong> Le shemhazian effectue tente un [[/act trip]]{Croc-en-jambe} contre la créature déclencheuse. En cas de succès, la créature subit aussi des dégâts comme si le shemhazian l'avait touchée avec une Frappe de queue et si cette créature volait, elle chute de 9 mètres.</p>",
+      "en": "Tail Whip",
+      "name": "Coup de queue"
+    },
+    {
+      "description": "<p>Le shemhazian concentre son regard sur une créature qui n'est pas un démon qu'il peut voir dans un rayon de 9 mètres. Si cette créature n'est pas déjà Ralentie par le Regard paralysant du shemhazian, elle doit tenter un jet de sauvegarde contre le Regard paralysant du shemhazian. Si cette créature est Ralentie, elle doit réussir un jet de @Check[fortitude|dc:35|options:inflicts:paralyzed] ou être Paralysée pendant 1 round.</p>\n<p>Un shemhazian ne peut pas utiliser cette capacité contre la même créature plus d'une fois par round.</p>",
+      "en": "Focused Gaze",
+      "name": "Regard focalisé"
+    },
+    {
+      "description": "<p>Griffe</p>\n<hr />\n<p><p>Une entrée d'Éventration indique une Frappe que possède le monstre.</p>\n<p><strong>Conditions</strong> Au cours d'un même round, le monstre touche un même ennemi avec deux Frappes consécutives du type indiqué.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre inflige une nouvelle fois et automatiquement à sa cible la quantité de dégâts de cette Frappe.</p></p>",
+      "en": "Rend",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": null,
+      "en": "Constant Spells",
+      "name": null
+    },
+    {
+      "description": "<p>Si la Frappe de mâchoires du shemhazian inflige des dégâts à une créature, la cible devient Affaiblie 3. La cible peut tenter un jet de @Check[fortitude|dc:37|options:inflicts:enfeebled] pour réduire cet état à Affaibli 1 (ou pour ne pas être affectée en cas de succès critique).</p>",
+      "en": "Enfeebling Bite",
+      "name": "Morsure affaiblissante"
+    },
+    {
+      "description": "<p>9 mètres.</p>\n<p>Une créature qui n'est pas un démon qui termine son tour dans l'aura doit tenter un jet de @Check[fortitude|dc:35|options:area-effect,inflicts:slowed,inflicts:paralyzed]. En cas d'échec, elle est Ralentie 1 pendant 1 round, et en cas d'échec critique, elle est Paralysée pendant 1 round.</p>",
+      "en": "Paralyzing Gaze",
+      "name": "Regard paralysant"
+    },
+    {
+      "description": "<p>La mutilation d'un shemhazian fait partie de lui et il ne supporte pas de la voir réduite. Chaque round, la première fois qu'une créature guérit des dégâts que le shemhazian a infligés lors de son dernier tour, le démon subit @Damage[3d6[mental]]{3d6 dégâts mentaux}.</p>",
+      "en": "Succor Vulnerability",
+      "name": "Vulnérabilité aux soins"
+    },
+    {
+      "description": null,
+      "en": "Telepathy 100 feet",
+      "name": "Télépathie 30 mètres"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Pincer",
+      "name": "Pince"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Shemhazian (Démon de la mutilation)",
+  "publicNotes": "<p>Les shemhazians naissent des âmes des tortionnaires et de ceux qui se délectent de la mutilation des corps physiques de leurs victimes. Du haut de ses plus de 10 mètres, le shemhazian est pourvu d'un large éventail de griffes, de pinces et de crocs qui lui permettent de continuer à infliger de tels tourments à ceux qu'il rencontre.</p>\n<p>Les shemhazians adorent tourmenter les mortels, bien sûr, mais plus que la plupart des fiélons, ils se délectent de partager la souffrance avec leurs semblables. Les autres démons craignent et détestent les shemhazians pour cette raison et seuls les plus puissants d'entre eux sont prêts à travailler avec un shemhazian pour atteindre un objectif commun. Mais même dans ce cas le shemhazian est toujours à l'affût de la moindre occasion d'infliger souffrance et douleur aussi bien à ses alliés qu'à ses ennemis.</p>\n<hr />\n<p>Lorsqu'une âme mortelle pécheresse est jugée et envoyée dans les Failles extérieures, elle peut devenir un fiélon mortel : un démon. Les démons sont les incarnations du péché, qu'il s'agisse de péchés classiques tels que la colère ou la gourmandise ou de dépravations plus « spécifiques » comme l'obsession de la torture ou la trahison et la traîtrise. Une fois créé, un démon poursuit deux buts en même temps : amasser du pouvoir pour lui-même et corrompre les âmes des mortels afin de les souiller par le péché. De la sorte, les démons s'assurent une réserve inépuisable de nouveaux démons pour renforcer leurs rangs toujours plus nombreux dans les Failles extérieures.</p>\n<p>Les démons sont des créatures égoïstes et la plupart d'entre eux croient fermement que les mortels font tout au plus semblant d'être plus vertueux que les fiélons. Ils n'adorent rien de plus que de pousser les mortels à la damnation à la fois pour satisfaire leur ego mais aussi pour gonfler leurs rangs. Comme pour beaucoup d'autres fiélons, l'une des principales récompenses de cette manipulation est d'assouvir leur soif d'âmes. Pour eux, ces âmes servent avant tout à engendrer de nouveaux démons, qui peuvent servir de soldats, d'esclaves, de pions ou même de monnaie d'échange pour leurs maîtres les plus puissants.</p>"
+}

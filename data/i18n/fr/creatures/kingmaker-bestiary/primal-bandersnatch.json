@@ -1,0 +1,79 @@
+{
+  "actions": [
+    {
+      "description": "<p>Queue uniquement.</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
+      "en": "Attack of Opportunity (Tail Only)",
+      "name": "Frappe réactive (Queue uniquement)"
+    },
+    {
+      "description": "<p>Le bandersnatch fixe une créature située dans son champ de vision et dans un rayon de 9 mètres. La cible doit immédiatement tenter un jet de Volonté contre son Regard déconcertant. Après avoir effectué le jet de sauvegarde, la créature est immunisée au Regard déconcertant jusqu'au début du prochain tour du bandersnatch.</p>",
+      "en": "Focus Gaze",
+      "name": "Focaliser le regard"
+    },
+    {
+      "description": "<p>Le bandersnatch Marche rapidement, ignorant le terrain difficile, puis fait deux Frappes de griffes à la fin de son déplacement.</p>",
+      "en": "Frumious Charge",
+      "name": "Charge frumeuse"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>9 mètres</p>\n<p>Lorsqu'une créature termine son tour dans l'aura, elle doit effectuer un jet de @Check[will|dc:38|options:area-effect,inflicts:confused]. En cas d'échec, elle est Confuse pendant 1 round.</p>",
+      "en": "Confusing Gaze",
+      "name": "Regard déconcertant"
+    },
+    {
+      "description": null,
+      "en": "Fast Healing 15",
+      "name": "Guérison accélérée 15"
+    },
+    {
+      "description": "<p>Au début de son tour, le bandersnatch obtient une réaction supplémentaire qui peut être utilisée uniquement pour tenter une Frappe réactive.</p>",
+      "en": "Lash Out",
+      "name": "Fulgurance"
+    },
+    {
+      "description": "<p>Les piquants du bandersnatch provoquent des blessures particulièremennt douloureuses. Une créature blessée doit réussir un jet de @Check[fortitude|dc:41|options:inflicts:drained]. En cas d'échec, elle est Drainée 1 (Drainée 2 en cas d'échec critique) pour résister à cette souffrance. Les Frappes subséquentes du bandersnatch augmentent l'état Drainé de 1 pour chaque jet de sauvegarde raté, jusqu'à un maximum de Drainé 4.</p>",
+      "en": "Pain",
+      "name": "Souffrance"
+    },
+    {
+      "description": "<p>Le bandersnatch primordial considère toujours le plan sur lequel il se trouve comme son foyer.</p>",
+      "en": "Planar Acclimation",
+      "name": "Acclimatation planaire"
+    },
+    {
+      "description": "<p>Le bandersnatch récupère à une vitesse terrifiante. À la fin de son tour, il réduit la valeur d'un des états débilitants dont il souffre (à l'exception de mourant) de 1. S'il est Aveuglé, Ébloui, Sourd, Fatigué, En fuite, ou Petrifié, il peut à la place réussir un @Check[flat|dc:16] pour récupérer d'un état de son choix. Il ne peut pas utiliser Récupération rapide sur des états qui n'ont pas de valeur.</p>",
+      "en": "Quick Recovery",
+      "name": "Récupération rapide"
+    },
+    {
+      "description": "<p>Le bandersnatch peut Pister en avançant à sa pleine vitesse.</p>",
+      "en": "Relentless Tracker",
+      "name": "Pisteur acharné"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claws",
+      "name": "Griffes"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Quill",
+      "name": "Piquant"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Bandersnatch primordial",
+  "publicNotes": "<p>Les bandersnatchs sont des chasseurs invétérés, et seuls les prédateurs les plus mortels ou les proies intelligentes les plus rusées leur offrent du plaisir. Le bandersnatch ressemble à un grand chat fauve, à six pattes et sans oreilles, mais avec des piquants méchamment barbelés sur toute la longueur de son corps et jusqu'à l'extrémité de sa longue queue flexible. Il mesure 12 mètres de long, plus 3 mètres de queue, et pèse plus de 5 tonnes. Les bandersnatchs primordiaux sont parmi les plus puissants de leur espèce, en raison de leurs liens avec le Premier Monde.</p>"
+}

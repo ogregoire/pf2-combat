@@ -4,6 +4,7 @@ import type { FetchFn } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
 import { useCatalog } from "../hooks/useCatalog.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
+import { format, useT } from "../i18n/index.js";
 import { encounterXp, partyLevelFor } from "../rules/xp.js";
 import { unrolledCount, useEncounter } from "../state/store.js";
 import { ActiveCombatant } from "./ActiveCombatant.js";
@@ -84,6 +85,7 @@ function XpBadge({
 }
 
 function TopBar(): React.ReactElement {
+  const t = useT();
   const name = useEncounter((s) => s.encounter.name);
   const combatants = useEncounter((s) => s.encounter.combatants);
   const players = useEncounter((s) => s.players);
@@ -117,16 +119,16 @@ function TopBar(): React.ReactElement {
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <XpBadge
           value={totalXp}
-          label="XP on the table"
+          label={t("XP_TOTAL_LABEL")}
           testId="xp-total"
-          title="Every creature in this encounter, defeated or not — what the whole fight is worth. Weigh this against your encounter budget."
+          title={t("XP_TOTAL_TOOLTIP")}
           tone="muted"
         />
         <XpBadge
           value={earnedXp}
-          label="XP earned each"
+          label={t("XP_EARNED_LABEL")}
           testId="xp-earned"
-          title="Creatures actually defeated. This is what each character gains when the fight ends — party size does not divide it."
+          title={t("XP_EARNED_TOOLTIP")}
           tone="award"
         />
       </div>
@@ -139,13 +141,29 @@ function TopBar(): React.ReactElement {
           <circle cx="9" cy="7" r="4" />
           <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
         </svg>
-        <span>
-          {presentPlayers.length} of {players.length} present
-        </span>
+        <span>{format(t("PRESENT_COUNT"), { present: presentPlayers.length, total: players.length })}</span>
         <span style={{ color: "var(--text-faint)" }}>&mdash;</span>
-        <span>party level {partyLevel}</span>
+        <span>{format(t("PARTY_LEVEL_LABEL"), { level: partyLevel })}</span>
       </div>
+
+      <LanguageToggle />
     </div>
+  );
+}
+
+/** Switches `lang` between English and French. Labeled with the language a
+ * click switches TO, not the language currently shown — Tasks 12-14 are
+ * what actually render French text; this toggle only sets the remembered
+ * preference (see Task 9). */
+function LanguageToggle(): React.ReactElement {
+  const lang = useEncounter((s) => s.lang);
+  const setLang = useEncounter((s) => s.setLang);
+  const isFrench = lang === "fr";
+
+  return (
+    <button type="button" onClick={() => setLang(isFrench ? "en" : "fr")} style={headerButtonStyle}>
+      {isFrench ? "English" : "Français"}
+    </button>
   );
 }
 
@@ -173,6 +191,7 @@ function Drawer({
   onClose: () => void;
   children: React.ReactNode;
 }): React.ReactElement {
+  const t = useT();
   return (
     <div style={{ position: "fixed", inset: 0, background: "oklch(0.08 0.01 60 / 0.6)", display: "flex", justifyContent: "flex-end", zIndex: 50 }}>
       <div
@@ -190,8 +209,8 @@ function Drawer({
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontFamily: "var(--font-display)", fontSize: "18px", fontWeight: 600 }}>{title}</span>
-          <button type="button" aria-label={`Close ${title}`} onClick={onClose} style={headerButtonStyle}>
-            Close
+          <button type="button" aria-label={format(t("CLOSE_NAME_ARIA"), { name: title })} onClick={onClose} style={headerButtonStyle}>
+            {t("LABEL_CLOSE")}
           </button>
         </div>
         {children}
@@ -207,17 +226,18 @@ type DrawerKind = "add" | "party" | null;
  * List tab render the exact same header rather than two copies drifting
  * apart. */
 function CombatantListHeader({ onAdd, onParty }: { onAdd: () => void; onParty: () => void }): React.ReactElement {
+  const t = useT();
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px 10px" }}>
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-        Initiative
+        {t("LABEL_INITIATIVE")}
       </div>
       <div style={{ display: "flex", gap: "6px" }}>
         <button type="button" onClick={onAdd} style={headerButtonStyle}>
-          + Add
+          {t("ADD_SHORT_BUTTON")}
         </button>
         <button type="button" onClick={onParty} style={headerButtonStyle}>
-          Party
+          {t("PARTY_TITLE")}
         </button>
       </div>
     </div>
@@ -225,10 +245,10 @@ function CombatantListHeader({ onAdd, onParty }: { onAdd: () => void; onParty: (
 }
 
 type TabKind = "list" | "active" | "turn";
-const TABS: { key: TabKind; label: string }[] = [
-  { key: "list", label: "List" },
-  { key: "active", label: "Active" },
-  { key: "turn", label: "Turn" },
+const TABS: { key: TabKind; labelKey: "TABS_LIST" | "TABS_ACTIVE" | "TABS_TURN" }[] = [
+  { key: "list", labelKey: "TABS_LIST" },
+  { key: "active", labelKey: "TABS_ACTIVE" },
+  { key: "turn", labelKey: "TABS_TURN" },
 ];
 
 /** The narrow layout's List | Active | Turn switcher, replacing the
@@ -245,10 +265,11 @@ function TabBar({
   onChange: (tab: TabKind) => void;
   turnBadgeCount: number;
 }): React.ReactElement {
+  const t = useT();
   return (
     <div
       role="tablist"
-      aria-label="Encounter panes"
+      aria-label={t("TABS_ARIA_LABEL")}
       style={{ display: "flex", borderBottom: "1px solid var(--border)", background: "var(--panel)", flexShrink: 0 }}
     >
       {TABS.map((tab) => {
@@ -278,10 +299,10 @@ function TabBar({
               cursor: "pointer",
             }}
           >
-            {tab.label}
+            {t(tab.labelKey)}
             {tab.key === "turn" && turnBadgeCount > 0 && (
               <span
-                aria-label={`${turnBadgeCount} unacknowledged`}
+                aria-label={format(t("UNACKNOWLEDGED_COUNT"), { n: turnBadgeCount })}
                 style={{
                   fontFamily: "var(--font-mono)",
                   fontSize: "10.5px",
@@ -326,6 +347,7 @@ export function EncounterScreen({
   fetchFn?: FetchFn;
   loadCreatureFn?: (id: string) => Promise<Creature>;
 } = {}): React.ReactElement {
+  const t = useT();
   const catalog = useCatalog(fetchFn);
   const [drawer, setDrawer] = useState<DrawerKind>(null);
   const narrow = useMediaQuery(NARROW_LAYOUT_QUERY);
@@ -455,17 +477,19 @@ export function EncounterScreen({
       )}
 
       {drawer === "add" && (
-        <Drawer title="Add combatants" onClose={() => setDrawer(null)}>
-          {catalog.status === "loading" && <p style={{ color: "var(--text-faint)", fontSize: "13px" }}>loading books&hellip;</p>}
+        <Drawer title={t("ADD_COMBATANTS_TITLE")} onClose={() => setDrawer(null)}>
+          {catalog.status === "loading" && <p style={{ color: "var(--text-faint)", fontSize: "13px" }}>{t("LOADING_BOOKS_MSG")}</p>}
           {catalog.status === "error" && (
-            <p style={{ color: "var(--danger)", fontSize: "13px" }}>Could not load the creature catalog: {catalog.message}</p>
+            <p style={{ color: "var(--danger)", fontSize: "13px" }}>
+              {format(t("CATALOG_ERROR_PREFIX"), { message: catalog.message })}
+            </p>
           )}
           {catalog.status === "ready" && <AddCombatants entries={catalog.entries} loadCreatureFn={loadCreatureFn} />}
         </Drawer>
       )}
 
       {drawer === "party" && (
-        <Drawer title="Party" onClose={() => setDrawer(null)}>
+        <Drawer title={t("PARTY_TITLE")} onClose={() => setDrawer(null)}>
           <PartyManager />
         </Drawer>
       )}

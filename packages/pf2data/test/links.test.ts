@@ -104,3 +104,94 @@ describe("document types other than Item", () => {
     ]);
   });
 });
+
+/**
+ * The French Babele module carries older and typo'd spellings of the same
+ * marker. The English upstream has none of these (checked across all consumed
+ * packs), so widening the pattern is a no-op there and the only alternative
+ * would be a second, French-only copy of it.
+ */
+describe("resolveLinks tolerates the module's legacy and typo'd UUID spellings", () => {
+  it("resolves the pre-V11 three-segment form, which omits the document type", () => {
+    // `Compendium.pf2e.conditionitems.<id>` -- no `.Item.` segment. Six real
+    // occurrences in the French module, all carrying a French label.
+    expect(
+      resolveLinks("<p>est @UUID[Compendium.pf2e.conditionitems.xYTAsEpcJE1Ccni3]{Ralentie 1}.</p>"),
+    ).toBe("<p>est Ralentie 1.</p>");
+  });
+
+  it("falls back to the identifier for an unlabelled three-segment form", () => {
+    expect(resolveLinks("@UUID[Compendium.pf2e.actionspf2e.Balance]")).toBe("Balance");
+  });
+
+  it("tolerates a stray space after Compendium.", () => {
+    // One real occurrence: pathfinder-monster-core / Xulgath Skulker.
+    expect(
+      resolveLinks("@UUID[Compendium. pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Prise au dépourvu}"),
+    ).toBe("Prise au dépourvu");
+  });
+
+  it("still reads the four-segment form the same way", () => {
+    expect(resolveLinks("@UUID[Compendium.pf2e.spells-srd.Item.Prestidigitation]")).toBe(
+      "Prestidigitation",
+    );
+    expect(collectLinks("@UUID[Compendium.pf2e.spells-srd.Item.Prestidigitation]")).toEqual([
+      { pack: "spells", docType: "Item", id: "Prestidigitation", label: "Prestidigitation" },
+    ]);
+  });
+
+  it("defaults the document type to Item for the three-segment form", () => {
+    expect(collectLinks("@UUID[Compendium.pf2e.conditionitems.xYTAsEpcJE1Ccni3]{Ralentie 1}")).toEqual([
+      { pack: "conditions", docType: "Item", id: "xYTAsEpcJE1Ccni3", label: "Ralentie 1" },
+    ]);
+  });
+});
+
+describe("resolveLinks handles the pre-V9 @Compendium syntax", () => {
+  // 16 real occurrences in the French module, all in the `Coven` ability, and
+  // ZERO anywhere in the English upstream -- so this too costs English nothing.
+  it("resolves a labelled @Compendium reference to its label", () => {
+    expect(
+      resolveLinks("<p>@Compendium[pf2e.spells-srd.dN8QBNuTiaBHCKUe]{Métamorphose maudite}</p>"),
+    ).toBe("<p>Métamorphose maudite</p>");
+  });
+
+  it("collects it with the same shape as a @UUID reference", () => {
+    expect(
+      collectLinks("@Compendium[pf2e.spells-srd.dN8QBNuTiaBHCKUe]{Métamorphose maudite}"),
+    ).toEqual([
+      { pack: "spells", docType: "Item", id: "dN8QBNuTiaBHCKUe", label: "Métamorphose maudite" },
+    ]);
+  });
+});
+
+describe("resolveLinks handles a reference whose @-prefix is missing", () => {
+  // Four real occurrences in the French module, zero in the English upstream:
+  // the translator dropped the `@UUID` / `@Compendium` prefix and left the
+  // bracket text, which renders as literal `[Compendium.pf2e…]{Label}`.
+  it("resolves [Compendium.pf2e.<pack>.<Doc>.<id>]{label}", () => {
+    expect(
+      resolveLinks("elle devient [Compendium.pf2e.conditionitems.Item.fesd1n5eVhpCSS18]{Nauséeuse 4}."),
+    ).toBe("elle devient Nauséeuse 4.");
+  });
+
+  it("resolves [Compendium.pf2e.<pack>.<id>]{label}", () => {
+    expect(
+      resolveLinks("attitude [Compendium.pf2e.conditionitems.fuG8dgthlDWfWjIA]{Indifférente} envers"),
+    ).toBe("attitude Indifférente envers");
+  });
+
+  it("resolves [pf2e.<pack>.<id>]{label}", () => {
+    expect(resolveLinks("elle est [pf2e.conditionitems.4D2KBtexWXa6oUMR]{Drainée 1} en plus")).toBe(
+      "elle est Drainée 1 en plus",
+    );
+  });
+
+  it("does not eat the bracket of some other marker family", () => {
+    // `@Template[emanation|distance:500]` must survive untouched -- the
+    // English dataset carries 681 of them.
+    expect(resolveLinks("@Template[emanation|distance:500]{Aura}")).toBe(
+      "@Template[emanation|distance:500]{Aura}",
+    );
+  });
+});

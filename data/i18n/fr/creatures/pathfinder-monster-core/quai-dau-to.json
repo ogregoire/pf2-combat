@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature dans les 9 mètres Lance un sort avec le trait lumière ou utilise une capacité qui possède le trait lumière.</p>\n<hr />\n<p><strong>Effet</strong> Le quai dau to ajuste la position de ses écailles pour réfléchir une lumière éblouissante. Toutes les créatures dans une @Template[emanation|distance:30]{émanation de 9 mètres} doivent effectuer un jet de @Check[fortitude|dc:33]. En cas d'échec, elles sont Aveuglées pendant 1 round.</p>",
+      "en": "Reflective Scales",
+      "name": "Écailles réfléchisantes"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> Le quai dau to se trouve à moins de 3 mètres d'une étendue d'eau d'au moins 3 mètres de profondeur et sa poche à eau est vide.</p>\n<hr />\n<p><strong>Effet</strong> Le quai dau to aspire l'eau par sa trompe pour remplir sa poche d'eau, abaissant ainsi le niveau du plan d'eau de 3 mètres. Toutes les créatures dans l'eau qui se trouvent dans une @Template[emanation|distance:30]{émanation de 9 mètres} sont Prises au dépourvu jusqu'au début du prochain tour du quai dau to</p>",
+      "en": "Drain Water",
+      "name": "Drain d'eau"
+    },
+    {
+      "description": "<p>Le quai dau to gonfle son corps. Il devient Gigantesque et obtient une vitesse de Vol de 9 mètres jusqu'à la fin de son prochain tour, puis il Vole. Il se dégonfle s'il tombe Inconscient ou si il Révoque cet effet.</p>",
+      "en": "Inflate",
+      "name": "Enfler"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La poche à eau du quai dau to est remplie d'eau</p>\n<hr />\n<p><strong>Effet</strong> Le quai dau to vide sa poche à eau pour souffler une brume dans une @Template[emanation|distance:10]{émanation de 3 mètres}. Toutes les créatures qui sont dans la brume deviennent Masquées et toutes les créatures en dehors de la brume deviennent Masquées des créatures dans la brume. La brume se dissipe après 1 round.</p>",
+      "en": "Mist Breath",
+      "name": "Souffle de brume"
+    },
+    {
+      "description": "<p><strong>Conditions</strong> La poche à eau du quai dau to est remplie</p>\n<hr />\n<p><strong>Effet</strong> Le quai dau vide sa poche d'eau pour faire jaillir de l'eau de sa trompe, infligeant @Damage[9d10[bludgeoning]|options:area-damage]{9d10 dégâts contondants} à toute créature sur une @Template[line|distance:90]{ligne de 27 mètres} (@Check[reflex|dc:33|basic|options:area-effect,forced-movement]). Une créature qui obtient un échec est repoussée de 3 mètres (ou 6 mètres en cas d'échec critique).</p>",
+      "en": "Spout Water",
+      "name": "Débiter de l'eau"
+    },
+    {
+      "description": "<p>Cette aura fonctionne comme Présence terrifiante avec un jet de@Check[will|dc:32|options:area-effect,inflicts:frightened], mais une créature n'effectue pas son jet de sauvegarde tant qu'elle ne voit pas le quai dau to.</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
+      "en": "Frightful Sight",
+      "name": "Vision d'effroi"
+    },
+    {
+      "description": "<p>Le quai dau to ignore l'état Masqué provoqué par la brume et le brouillard.</p>",
+      "en": "Mist Vision",
+      "name": "Vision malgré la brume"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Foot",
+      "name": "Pied"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    }
+  ],
+  "name": "Quai Dau To",
+  "publicNotes": "<p>Cette créature à grosse tête est recouverte d'écailles scintillantes. Ses yeux ressemblent à de gros pots de cuivre et sa bouche est pleine de dents acérées. Malgré son apparence de poisson, le quai dau to passe le plus clair de son temps sur terre à chasser au bord des rivières ou des lacs. Il se sert de sa trompe pour drainer l'eau environnante avant de l'utiliser avec une habileté mortelle. Un quai dau to peut expulser l'eau avec une force suffisante pour faire tomber un chevalier de son cheval ou assez doucement pour pouvoir s'entourer d'un voile de brume.</p>\n<p>Le quai dau to est extrêmement sensible aux sons. S'il entend trop de bruit à proximité de son terrain de chasse, il attaque violemment. Malgré sa taille imposante, son déplacement silencieux lui permet de s'approcher furtivement de proies distraites. Les érudits ont découvert, après de nombreuses études, que les quai dau tos ne possèdent pas d'oreilles au sens traditionnel du terme. Ils possèdent un organe dans la partie supérieure de leur crâne qui se gonfle pour contenir l'eau qu'ils utilisent dans leurs attaques. Cet organe est extrêmement sensible aux vibrations de l'air et est utilisé comme une pseudo-oreille.</p>"
+}

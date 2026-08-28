@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { fetchUpstream } from "../src/stages/fetch.js";
+import { fetchUpstream, fetchFrench, type RunGit } from "../src/stages/fetch.js";
 import type { Pf2DataConfig } from "../src/config.js";
 
 const config: Pf2DataConfig = {
   upstream: { repo: "https://github.com/foundryvtt/pf2e", branch: "master" },
+  french: { repo: "https://gitlab.com/pathfinder-fr/foundryvtt-pathfinder2-fr", branch: "master" },
   packs: [
     { name: "conditions", kind: "conditions" },
     { name: "kingmaker-bestiary", kind: "creatures" },
@@ -54,10 +55,51 @@ describe("fetchUpstream", () => {
     expect(result.ref).toBe("abc123def456");
   });
 
-  it("errors when neither a pin nor --latest is available", () => {
+  it("errors when neither a pin nor --latest is available, naming the upstreamRef pin", () => {
     const { run } = recorder();
+    // With two independent pins, an error that does not say WHICH one is
+    // missing points a debugger at the wrong upstream.
     expect(() =>
       fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: false, run }),
     ).toThrow(/no pinned ref/i);
+    expect(() =>
+      fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/upstreamRef/);
+    expect(() =>
+      fetchUpstream({ config, cacheDir: "/tmp/c", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/foundryvtt\/pf2e/);
+  });
+});
+
+describe("fetchFrench", () => {
+  it("sparse-checks out the vf variant, the lang dir, and the archive", () => {
+    const calls: string[][] = [];
+    const run: RunGit = (args) => { calls.push(args); return "abc123\n"; };
+    const result = fetchFrench({ config, cacheDir: ".cache-fr", pinnedRef: "abc123", useLatest: false, run });
+    const sparse = calls.find((c) => c[0] === "sparse-checkout")!;
+    expect(sparse).toContain("babele/vf/fr");
+    expect(sparse).toContain("lang");
+    // Task 17: the archive holds retired translations for creatures the
+    // active Babele build no longer covers.
+    expect(sparse).toContain("archive");
+    expect(result.archiveDir).toBe(".cache-fr/archive");
+    // The other three naming variants are 138 MB we never read.
+    expect(sparse.join(" ")).not.toContain("vf-vo");
+    expect(sparse.join(" ")).not.toContain("vo-vf");
+    expect(sparse).not.toContain("babele/vo");
+    expect(sparse).not.toContain("babele/vo/fr");
+  });
+
+  it("errors when neither a pin nor --latest is available, naming the frRef pin", () => {
+    const { run } = recorder();
+    expect(() =>
+      fetchFrench({ config, cacheDir: "/tmp/c-fr", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/no pinned ref/i);
+    expect(() =>
+      fetchFrench({ config, cacheDir: "/tmp/c-fr", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/frRef/);
+    expect(() =>
+      fetchFrench({ config, cacheDir: "/tmp/c-fr", pinnedRef: null, useLatest: false, run }),
+    ).toThrow(/foundryvtt-pathfinder2-fr/);
   });
 });

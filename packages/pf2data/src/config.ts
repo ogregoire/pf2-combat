@@ -11,6 +11,10 @@ export const Pf2DataConfigSchema = z.object({
     repo: z.string().url(),
     branch: z.string().min(1),
   }),
+  french: z.object({
+    repo: z.string().url(),
+    branch: z.string().min(1),
+  }),
   packs: z.array(PackConfigSchema).min(1),
 });
 

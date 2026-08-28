@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Creature, IndexEntry } from "@pf2/schema";
 import { resolveCollisions, searchCreatures } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
+import { loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } from "../data/i18nOverlay.js";
+import { format, useT } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
 import type { Iwr } from "../rules/damage.js";
 import { useEncounter } from "../state/store.js";
@@ -32,10 +34,18 @@ function toReactions(creature: Creature): { name: string; trigger: string }[] {
     .map((a) => ({ name: a.name, trigger: a.trigger ?? "" }));
 }
 
-/** Builds the seed for a combatant added from the catalog. `entry` (AC, HP,
- * level, name) is always available; `creature` is only present once
- * `loadCreature` has resolved, so a null creature still yields a valid seed
- * with the four denormalised fields left empty, same as any other seed. */
+/** Builds the seed for a combatant added from the catalog. `entry` must be
+ * the RAW, unlocalized catalog entry — never the French-named copy the
+ * search results render — so `name` is always stored in English; the
+ * French name is resolved at render time (see `useCombatantI18n`, driven
+ * off `creatureId`), never baked into the stored combatant. `creature` is
+ * only present once `loadCreature` has resolved, so a null creature still
+ * yields a valid seed with the four denormalised fields left empty, same
+ * as any other seed. No `i18n` parameter: no production caller has one to
+ * pass (the render layer resolves it from `creatureId` instead), and a
+ * test that wants to seed one directly can still set `CombatantSeed.i18n`
+ * on the result — see e.g. french-creature.test.tsx, which does exactly
+ * that without going through this function at all. */
 export function seedFromEntry(entry: IndexEntry, creature: Creature | null): CombatantSeed {
   return {
     kind: "creature",
@@ -103,10 +113,13 @@ const addButtonStyle: React.CSSProperties = {
 export function AddCombatants({
   entries,
   loadCreatureFn = loadCreature,
+  loadIndexI18nFn = loadIndexI18n,
 }: {
   entries: IndexEntry[];
   loadCreatureFn?: (id: string) => Promise<Creature>;
+  loadIndexI18nFn?: (pack: string) => Promise<IndexI18n>;
 }): React.ReactElement {
+  const t = useT();
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [quantity, setQuantity] = useState("1");
@@ -114,18 +127,39 @@ export function AddCombatants({
   const [actThisRound, setActThisRound] = useState(false);
   const [loadedCreature, setLoadedCreature] = useState<Creature | null>(null);
   const [creatureLoading, setCreatureLoading] = useState(false);
+  const [indexI18n, setIndexI18n] = useState<IndexI18n>({});
 
   const round = useEncounter((s) => s.encounter.round);
   const encounterEntries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const addCombatant = useEncounter((s) => s.addCombatant);
   const addMany = useEncounter((s) => s.addMany);
+  const lang = useEncounter((s) => s.lang);
+
+  // The catalog's own index files are English-only; the French names come
+  // from a per-pack overlay (see i18nOverlay.js) fetched and merged here,
+  // only when French is on — same rule as the per-creature overlay fetched
+  // in `select` below.
+  useEffect(() => {
+    if (lang !== "fr") {
+      setIndexI18n({});
+      return;
+    }
+    let cancelled = false;
+    loadMergedIndexI18n(entries, loadIndexI18nFn).then((merged) => {
+      if (!cancelled) setIndexI18n(merged);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, entries, loadIndexI18nFn]);
 
   const resolved = resolveCollisions(entries);
-  const results = searchCreatures(resolved, query);
+  const localized = localizeEntries(resolved, indexI18n, lang);
+  const results = searchCreatures(localized, query);
   const shownResults = results.slice(0, RESULT_CAP);
   const hiddenCount = results.length - shownResults.length;
-  const selected = resolved.find((e) => e.id === selectedId) ?? null;
+  const selected = localized.find((e) => e.id === selectedId) ?? null;
 
   const running = encounterEntries.length > 0;
   const activeEntry = running ? encounterEntries[activeEntryIndex] : undefined;
@@ -159,8 +193,13 @@ export function AddCombatants({
 
   const handleAdd = (): void => {
     if (!selected) return;
+    // The RAW (unlocalized) entry, not `selected` — `selected` carries the
+    // French name when `lang` is "fr", and the stored combatant must always
+    // carry the English one (see seedFromEntry).
+    const rawSelected = resolved.find((e) => e.id === selectedId);
+    if (!rawSelected) return;
     const qty = Math.max(1, Math.trunc(Number(quantity)) || 1);
-    const seed = seedFromEntry(selected, loadedCreature);
+    const seed = seedFromEntry(rawSelected, loadedCreature);
 
     // "act this round instead": the combatant's turn-order slot is lowered
     // just enough to still be reached this round, but the GM's typed
@@ -198,18 +237,20 @@ export function AddCombatants({
     <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>
         <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "22px", fontWeight: 600 }}>
-          Add combatants
+          {t("ADD_COMBATANTS_TITLE")}
         </h2>
         {running && (
-          <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>encounter is running &mdash; round {round}</span>
+          <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>
+            {format(t("ENCOUNTER_RUNNING_ROUND"), { round })}
+          </span>
         )}
       </div>
 
       <input
-        aria-label="Search creatures"
+        aria-label={t("SEARCH_CREATURES_ARIA")}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search creatures…"
+        placeholder={t("SEARCH_CREATURES_PLACEHOLDER")}
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: "14px",
@@ -222,8 +263,8 @@ export function AddCombatants({
       />
 
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-        {results.length} match{results.length === 1 ? "" : "es"}
-        {hiddenCount > 0 && ` — showing ${shownResults.length}, refine your search to see the rest`}
+        {results.length} {results.length === 1 ? t("MATCH_SINGULAR") : t("MATCH_PLURAL")}
+        {hiddenCount > 0 && format(t("MATCH_HIDDEN_SUFFIX"), { shown: shownResults.length })}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -253,21 +294,23 @@ export function AddCombatants({
                           color: "var(--ok)",
                         }}
                       >
-                        REMASTER
+                        {t("REMASTER_BADGE")}
                       </span>
                     </>
                   ) : (
-                    <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>{entry.book} &middot; legacy</span>
+                    <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
+                      {entry.book} &middot; {t("LEGACY_LABEL")}
+                    </span>
                   )}
                 </div>
               </div>
 
               <div style={{ display: "flex", gap: "20px", fontFamily: "var(--font-mono)", fontSize: "13px" }}>
                 <span>
-                  AC <span style={{ fontWeight: 600 }}>{entry.ac}</span>
+                  {t("LABEL_AC")} <span style={{ fontWeight: 600 }}>{entry.ac}</span>
                 </span>
                 <span>
-                  HP <span style={{ fontWeight: 600 }}>{entry.hp}</span>
+                  {t("LABEL_HP")} <span style={{ fontWeight: 600 }}>{entry.hp}</span>
                 </span>
               </div>
 
@@ -295,14 +338,14 @@ export function AddCombatants({
                 <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
                   <button
                     type="button"
-                    aria-label={`Fewer ${entry.name}`}
+                    aria-label={format(t("FEWER_NAME_ARIA"), { name: entry.name })}
                     onClick={() => setQuantity(String(Math.max(1, qtyForLabel - 1)))}
                     style={{ ...addButtonStyle, borderRadius: "4px 0 0 4px", width: "34px", height: "34px" }}
                   >
                     &minus;
                   </button>
                   <input
-                    aria-label="Quantity"
+                    aria-label={t("QUANTITY_ARIA")}
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                     style={{
@@ -321,7 +364,7 @@ export function AddCombatants({
                   />
                   <button
                     type="button"
-                    aria-label={`More ${entry.name}`}
+                    aria-label={format(t("MORE_NAME_ARIA"), { name: entry.name })}
                     onClick={() => setQuantity(String(qtyForLabel + 1))}
                     style={{ ...addButtonStyle, borderRadius: "0 4px 4px 0", width: "34px", height: "34px" }}
                   >
@@ -329,8 +372,13 @@ export function AddCombatants({
                   </button>
                 </div>
               ) : (
-                <button type="button" aria-label={`Add ${entry.name}`} onClick={() => select(entry)} style={addButtonStyle}>
-                  Add
+                <button
+                  type="button"
+                  aria-label={format(t("ADD_NAME_ARIA"), { name: entry.name })}
+                  onClick={() => select(entry)}
+                  style={addButtonStyle}
+                >
+                  {t("LABEL_ADD")}
                 </button>
               )}
             </div>
@@ -353,10 +401,10 @@ export function AddCombatants({
         >
           <div style={{ display: "flex", alignItems: "center", gap: "9px" }}>
             <span style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
-              Initiative
+              {t("LABEL_INITIATIVE")}
             </span>
             <input
-              aria-label="Initiative"
+              aria-label={t("LABEL_INITIATIVE")}
               value={initiative}
               onChange={(e) => setInitiative(e.target.value)}
               style={{
@@ -376,7 +424,7 @@ export function AddCombatants({
 
           {creatureLoading && (
             <span data-testid="creature-loading" style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>
-              loading creature record&hellip;
+              {t("CREATURE_LOADING")}
             </span>
           )}
 
@@ -393,7 +441,7 @@ export function AddCombatants({
               }}
             >
               <span style={{ fontSize: "12.5px", color: "var(--info)" }}>
-                Slot {typedInitiative} has passed &mdash; acts <strong>next round</strong>
+                {format(t("SLOT_PASSED_PREFIX"), { slot: typedInitiative })} <strong>{t("NEXT_ROUND_BOLD")}</strong>
               </span>
               <button
                 type="button"
@@ -409,7 +457,7 @@ export function AddCombatants({
                   cursor: "pointer",
                 }}
               >
-                act this round instead
+                {t("ACT_THIS_ROUND_BUTTON")}
               </button>
             </div>
           )}
@@ -431,7 +479,7 @@ export function AddCombatants({
               cursor: "pointer",
             }}
           >
-            Add {qtyForLabel} {pluralize(selected.name, qtyForLabel)}
+            {t("LABEL_ADD")} {qtyForLabel} {pluralize(selected.name, qtyForLabel)}
           </button>
         </div>
       )}

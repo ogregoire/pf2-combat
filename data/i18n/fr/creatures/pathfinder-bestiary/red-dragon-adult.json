@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "description": "<p>Mâchoire uniquement</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
+      "en": "Attack of Opportunity (Jaws Only)",
+      "name": "Frappe réactive (Mâchoire uniquement)"
+    },
+    {
+      "description": "<p>Le dragon rouge adulte souffle une langue de feu qui inflige @Damage[15d6[fire]|options:area-damage]{15d6 dégâts de feu} dans un @Template[cone|distance:50]{cône de 15 mètres} (@Check[reflex|dc:36|basic|options:area-effect]).</p>\n<p>Le dragon ne peut plus utiliser son Arme de souffle avant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
+      "en": "Breath Weapon",
+      "name": "Arme de souffle"
+    },
+    {
+      "description": "<p>Le dragon effectue deux Frappes de griffes et une Frappe d'aile dans l'ordre de son choix.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": null,
+      "en": "+1 Status to All Saves vs. Magic",
+      "name": null
+    },
+    {
+      "description": "<p>Le dragon recharge son Arme de souffle à chaque fois qu'il inflige un coup critique avec une Frappe.</p>",
+      "en": "Draconic Momentum",
+      "name": "Impulsion draconique"
+    },
+    {
+      "description": "<p>1,50 mètre mètres. @Damage[3d6[fire]|options:area-damage]{3d6 dégâts de feu} (@Check[reflex|dc:30|basic|options:area-effect])</p>",
+      "en": "Dragon Heat",
+      "name": "Chaleur du dragon"
+    },
+    {
+      "description": "<p>27 mètres. @Check[will|dc:33|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
+      "en": "Frightful Presence",
+      "name": null
+    },
+    {
+      "description": "<p>La fumée ne gêne pas la vision du dragon. Il ignore l'état Masqué provoqué par la fumée.</p>",
+      "en": "Smoke Vision",
+      "name": "Vision malgré la fumée"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    },
+    {
+      "en": "Tail",
+      "name": "Queue"
+    },
+    {
+      "en": "Wing",
+      "name": "Aile"
+    }
+  ],
+  "name": "Dragon rouge (Adulte, Chromatique)",
+  "publicNotes": "<p>Le plus grand et le plus puissant des dragons chromatiques, le dragon rouge est une menace pour toutes les civilisations et sa puissance n'a d'égale que son arrogance. Ces dragons se considèrent comme les régents et les suzerains de tous les dragons. Avec leur couronne de crêtes pourpres et leur domination du feu, il n'y a aucune vantardise dans cette assomption à leurs yeux, mais juste un fait.</p>\n<p>Les dragons rouges ne daignent pas s'adresser aux créatures inférieures ; ils se contentent de dominer et de brûler, asservissant les créatures les plus faibles pour qu'elles les servent et qu'elles surveillent leur tanière quand ils sont absents. Ils aiment dominer ces créatures et ils exigent d'elles qu'elles leur versent un tribut. Celles qui les déçoivent ou provoquent leur colère sont dévorées ou réduites en cendre. Ils ordonnent à leurs sbires asservis de constamment agrandir leur tanière en creusant de nouveaux tunnels et en inventant des pièges vicieux afin d'assurer la sécurité de leurs maîtres.</p>\n<p>Poussés par leur arrogance, les dragons rouges sont parmi les dragons chromatiques ceux qui ont le plus de probabilités d'attaquer des communautés. Ils veulent que le monde entier les perçoive tels qu'ils se considèrent, comme des puissants tyrans, et ils prennent plaisir à menacer les autres créatures. Ils n'hésitent pas à tuer, manipuler et tyranniser pour atteindre leurs objectifs, ou juste impressionner les autres par une démonstration publique de brutalité et de domination.</p>\n<p>La magnificence de leurs trésors est aussi légendaire que leur brutalité. Leurs tanières sont souvent situées dans des endroits dangereux, avec une nette préférence pour les volcans qu'ils jugent dissuasifs et dont la chaleur constante leur apporte un grand réconfort. Quel que soit le lieu où ils s'établissent, les dragons rouges dorment sur un lit de pièces et d'autres trésors qu'ils protègent jalousement. Parfois, leur chaleur interne fait fondre ces métaux précieux qui finissent par fusionner entre eux.</p>\n<hr />\n<p>Bien qu'il existe de nombreux types de dragons, des puissants dragons planaires aux étranges dragons ésotériques, peu sont aussi connus et redoutés que les dragons chromatiques. Différenciée par la teinte des écailles, chaque couleur de dragon a sa propre manière de déchaîner sa cruauté meurtrière que ce soit avec ses griffes, ses crocs ou son souffle. Et, contrairement à la plupart des autres créatures, plus ils vieillissent, plus ils sont puissants. Leur avidité pour les trésors, la nourriture, les bains de sang et le pouvoir est légendaire. Physiquement puissants, avec un ego tout aussi développé, ces dragons sont souvent moralement dépravés et se comportent comme des cerveaux criminels, des tyrans cruels ou des prédateurs voraces.</p>"
+}

@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Déclencheur</strong> Une créature adjacente à la tortue-dragon la cible avec une attaque au corps-à-corps.</p>\n<hr />\n<p><strong>Effet</strong> La tortue-dragon oriente sa carapace vers la créature déclencheuse et obtient un bonus de circonstances de +2 à sa CA contre cette attaque.</p>",
+      "en": "Shell Block",
+      "name": "Blocage de carapace"
+    },
+    {
+      "description": "<p>La tortue-dragon tente de faire chavirer un bateau adjacent de sa taille ou inférieur. La tortue-dragon doit réussir un test d'@Check[athletics|dc:30] (réduisez le DD de 5 pour chaque palier de taille inférieure à celle de la tortue-dragon) ou le DD de Connaissance de la navigation maritime du marin s'il est plus élevé.</p>",
+      "en": "Capsize",
+      "name": "Chavirer"
+    },
+    {
+      "description": "<p>La tortue-dragon convoque une violente tempête qui fait rage autour d'elle. La zone dans une @Template[emanation|distance:30]{émanation de 9 mètres} devient terrain difficile pour toute autre créature qui vole ou qui nage. La tortue-dragon peut arrêter la tempête en accomplissant de nouveau cette action.</p>",
+      "en": "Conjure Storm",
+      "name": "Appel à la tempête"
+    },
+    {
+      "description": "<p>La tortue-dragon porte deux Frappes de griffe et une Frappe de mâchoires dans n'importe quel ordre.</p>",
+      "en": "Draconic Frenzy",
+      "name": "Frénésie draconique"
+    },
+    {
+      "description": "<p>La tortue-dragon libère une force de destruction massive en créant une vague déferlante qui inflige @Damage[7d6[bludgeoning]|options:area-damage]{7d6 dégâts contondants} aux créatures dans un @Template[cone|distance:60]{cône de 18 mètres} (@Check[reflex|dc:27|basic|options:area-effect,inflicts:prone]). Les dégâts de cette vague augmentent de 10 pour les créatures qui se trouvent à plus de 9 mètres. Une créature qui obtient un échec à son jet de sauvegarde se retrouve À terre.</p>\n<p>La tortue-dragon ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Tsunami]]{1d4 rounds}.</p>",
+      "en": "Tsunami",
+      "name": "Tsunami"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Claw",
+      "name": "Griffe"
+    },
+    {
+      "en": "Jaws",
+      "name": "Mâchoires"
+    }
+  ],
+  "name": "Tortue-dragon",
+  "publicNotes": "<p>Ces immenses dragons aquatiques sont dotés d'une carapace rocailleuse semblable à celle des tortues et des nageoires suffisamment puissantes pour faire chavirer des navires robustes. Ces redoutables créatures apprécient d'être considérées par les marins comme aussi dangereuses que les tempêtes ou les désastres naturels. Malgré leur réputation, de nombreuses tortues-dragons prennent plaisir à observer secrètement la croissance et l'évolution des villes maritimes à travers les âges. Elles sont même connues pour protéger ces villes contre les pirates, les armées d'invasion ou même d'autres créatures marines dangereuses. Selon la rumeur, ces tortues ont même engagé des aventuriers pour faire face à des menaces plus intérieures. Ces villes remettront souvent un tribut à la grande tortue si elles constatent son intervention. Si la tortue-dragon amasse les trésors des navires qu'elle coule, elle considère que la récompense librement offerte par la cité qu'elle protège plus précieuse.</p>\n<p>Si de nombreuses tortues-dragons sont déjà suffisamment grandes pour susciter l'admiration, certaines d'entre elles peuvent grossir considérablement. Ces tortues-dragons massives et anciennes sont somnolentes et ressemblent, de loin, à des îlots rocheux. leurs prodigieux amas peuvent être à l'origine d'anciens récits de mer. Des légendes existent également à propos de tortues-dragons vraiment immenses qui passent des siècles à dériver à la surface de l'océan, loin des voies de navigation et des eaux cartographiées, leurs carapaces servant d'îles et pouvant abriter des écosystèmes entiers. Selon certains, elles abritent même de petites colonies, dont les habitants ne connaissent rien de la terre ferme, à l'exception de l'eau qui les entoure.</p>"
+}

@@ -1,3 +1,4 @@
+import { format, useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
 import { ConfirmButton } from "./ConfirmButton.js";
@@ -99,6 +100,7 @@ const inputStyle: React.CSSProperties = {
  * against a PC, so those four numbers are captured here once per player.
  * Styled from tokens.css to match the rest of the app. */
 export function PartyManager(): React.ReactElement {
+  const t = useT();
   const players = useEncounter((s) => s.players);
   const setPlayers = useEncounter((s) => s.setPlayers);
   const clearPlayers = useEncounter((s) => s.clearPlayers);
@@ -114,7 +116,9 @@ export function PartyManager(): React.ReactElement {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "20px", fontWeight: 600 }}>Party</h2>
+        <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "20px", fontWeight: 600 }}>
+          {t("PARTY_TITLE")}
+        </h2>
         <button
           type="button"
           onClick={() => setPlayers([...players, emptyPlayer()])}
@@ -129,7 +133,7 @@ export function PartyManager(): React.ReactElement {
             cursor: "pointer",
           }}
         >
-          Add player
+          {t("ADD_PLAYER_BUTTON")}
         </button>
 
         <div style={{ flexGrow: 1 }} />
@@ -139,8 +143,11 @@ export function PartyManager(): React.ReactElement {
            playing — also removes any `kind: "pc"` combatant already in the
            encounter (see clearPlayers in the store). */}
         <ConfirmButton
-          label="Clear players"
-          confirmMessage={`Clear ${players.length} ${players.length === 1 ? "player" : "players"}? Also removes any of them already in the initiative order.`}
+          label={t("CLEAR_PLAYERS_LABEL")}
+          confirmMessage={format(t("CLEAR_PLAYERS_CONFIRM"), {
+            n: players.length,
+            word: players.length === 1 ? t("PLAYER_SINGULAR") : t("PLAYER_PLURAL"),
+          })}
           onConfirm={clearPlayers}
           disabled={players.length === 0}
         />
@@ -174,9 +181,9 @@ export function PartyManager(): React.ReactElement {
                into a sliver when the eighth field arrived. Below this width
                the row wraps instead (see flexWrap above). */}
             <label style={{ ...fieldStyle, flexGrow: 1, minWidth: "140px" }}>
-              Name
+              {t("LABEL_NAME")}
               <input
-                aria-label="Name"
+                aria-label={t("LABEL_NAME")}
                 value={p.name}
                 onChange={(e) => update(p.id, { name: e.target.value })}
                 style={{ ...inputStyle, fontFamily: "var(--font-ui)" }}
@@ -184,9 +191,9 @@ export function PartyManager(): React.ReactElement {
             </label>
 
             <label style={{ ...fieldStyle, width: "56px" }}>
-              Level
+              {t("LABEL_LEVEL")}
               <input
-                aria-label="Level"
+                aria-label={t("LABEL_LEVEL")}
                 value={numDisplay(p.level)}
                 onChange={(e) => update(p.id, { level: toNumber(e.target.value) })}
                 style={inputStyle}
@@ -194,9 +201,9 @@ export function PartyManager(): React.ReactElement {
             </label>
 
             <label style={{ ...fieldStyle, width: "56px" }}>
-              AC
+              {t("LABEL_AC")}
               <input
-                aria-label="AC"
+                aria-label={t("LABEL_AC")}
                 value={numDisplay(p.ac)}
                 onChange={(e) => update(p.id, { ac: toNumber(e.target.value) })}
                 style={inputStyle}
@@ -204,9 +211,9 @@ export function PartyManager(): React.ReactElement {
             </label>
 
             <label style={{ ...fieldStyle, width: "56px" }}>
-              HP
+              {t("LABEL_HP")}
               <input
-                aria-label="HP"
+                aria-label={t("LABEL_HP")}
                 value={hpDisplay(p.hp)}
                 onChange={(e) => update(p.id, { hp: toOptionalNumber(e.target.value) })}
                 style={inputStyle}
@@ -221,9 +228,9 @@ export function PartyManager(): React.ReactElement {
                rather than in the encounter, because that is what it is: the
                modifier survives between fights, the roll doesn't. */}
             <label style={{ ...fieldStyle, width: "64px" }}>
-              Init mod
+              {t("LABEL_INITIATIVE_MODIFIER")}
               <input
-                aria-label="Initiative modifier"
+                aria-label={t("INITIATIVE_MODIFIER_ARIA")}
                 value={modifierDisplay(p.initiativeModifier)}
                 onChange={(e) => update(p.id, { initiativeModifier: toNullableNumber(e.target.value) })}
                 style={inputStyle}
@@ -231,9 +238,9 @@ export function PartyManager(): React.ReactElement {
             </label>
 
             <label style={{ ...fieldStyle, width: "64px" }}>
-              Fortitude
+              {t("LABEL_FORTITUDE")}
               <input
-                aria-label="Fortitude"
+                aria-label={t("LABEL_FORTITUDE")}
                 value={numDisplay(p.saves.fortitude)}
                 onChange={(e) => updateSave(p.id, "fortitude", toNumber(e.target.value))}
                 style={inputStyle}
@@ -241,9 +248,9 @@ export function PartyManager(): React.ReactElement {
             </label>
 
             <label style={{ ...fieldStyle, width: "64px" }}>
-              Reflex
+              {t("LABEL_REFLEX")}
               <input
-                aria-label="Reflex"
+                aria-label={t("LABEL_REFLEX")}
                 value={numDisplay(p.saves.reflex)}
                 onChange={(e) => updateSave(p.id, "reflex", toNumber(e.target.value))}
                 style={inputStyle}
@@ -251,9 +258,9 @@ export function PartyManager(): React.ReactElement {
             </label>
 
             <label style={{ ...fieldStyle, width: "64px" }}>
-              Will
+              {t("LABEL_WILL")}
               <input
-                aria-label="Will"
+                aria-label={t("LABEL_WILL")}
                 value={numDisplay(p.saves.will)}
                 onChange={(e) => updateSave(p.id, "will", toNumber(e.target.value))}
                 style={inputStyle}
@@ -263,16 +270,16 @@ export function PartyManager(): React.ReactElement {
             <label style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "var(--text-dim)", paddingBottom: "7px" }}>
               <input
                 type="checkbox"
-                aria-label="Present"
+                aria-label={t("LABEL_PRESENT")}
                 checked={p.present}
                 onChange={() => update(p.id, { present: !p.present })}
               />
-              Present
+              {t("LABEL_PRESENT")}
             </label>
 
             <button
               type="button"
-              aria-label={`Remove ${p.name.trim() === "" ? "player" : p.name}`}
+              aria-label={format(t("REMOVE_NAME_ARIA"), { name: p.name.trim() === "" ? t("PLAYER_SINGULAR") : p.name })}
               onClick={() => setPlayers(players.filter((other) => other.id !== p.id))}
               style={{
                 fontFamily: "inherit",
@@ -286,7 +293,7 @@ export function PartyManager(): React.ReactElement {
                 marginBottom: "1px",
               }}
             >
-              Remove
+              {t("LABEL_REMOVE")}
             </button>
           </div>
         ))}

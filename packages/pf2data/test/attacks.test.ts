@@ -38,6 +38,7 @@ describe("normalizeAttacks", () => {
     // range-120 trait marks it as a ranged attack.
     const attacks = normalizeAttacks([
       {
+        _id: "icicleicicleicic",
         name: "Icicle",
         type: "melee",
         system: {
@@ -58,6 +59,7 @@ describe("normalizeAttacks", () => {
     // must now come out ranged instead of the old melee default.
     const attacks = normalizeAttacks([
       {
+        _id: "spearmelee0000000",
         name: "Spear",
         type: "melee",
         system: {
@@ -68,6 +70,7 @@ describe("normalizeAttacks", () => {
         },
       },
       {
+        _id: "spearranged000000",
         name: "Spear",
         type: "melee",
         system: {
@@ -90,6 +93,7 @@ describe("normalizeAttacks", () => {
     // explicit tag must win over trait-based inference.
     const attacks = normalizeAttacks([
       {
+        _id: "daggerdaggerdagg1",
         name: "Dagger",
         type: "melee",
         system: {
@@ -106,6 +110,7 @@ describe("normalizeAttacks", () => {
   it("still defaults to melee when neither weaponType nor a range-* trait is present", () => {
     const attacks = normalizeAttacks([
       {
+        _id: "jawsjawsjawsjaws1",
         name: "Jaws",
         type: "melee",
         system: { bonus: { value: 10 }, damageRolls: {}, traits: { value: ["reach-10"] } },
@@ -117,6 +122,7 @@ describe("normalizeAttacks", () => {
   it("captures the attack-effects list, sorted", () => {
     const attacks = normalizeAttacks([
       {
+        _id: "jawsjawsjawsjaws2",
         name: "Jaws",
         type: "melee",
         system: {
@@ -131,7 +137,12 @@ describe("normalizeAttacks", () => {
 
   it("defaults effects to an empty array when attackEffects is absent", () => {
     const attacks = normalizeAttacks([
-      { name: "Fist", type: "melee", system: { bonus: { value: 5 }, damageRolls: {} } },
+      {
+        _id: "fistfistfistfist1",
+        name: "Fist",
+        type: "melee",
+        system: { bonus: { value: 5 }, damageRolls: {} },
+      },
     ]);
     expect(attacks[0]!.effects).toEqual([]);
   });
@@ -139,6 +150,7 @@ describe("normalizeAttacks", () => {
   it("captures a persistent damage category", () => {
     const attacks = normalizeAttacks([
       {
+        _id: "fangsfangsfangs01",
         name: "Fangs",
         type: "melee",
         system: {
@@ -153,5 +165,46 @@ describe("normalizeAttacks", () => {
     const damage = attacks[0]!.damage;
     expect(damage.find((d) => d.type === "poison")!.category).toBe("persistent");
     expect(damage.find((d) => d.type === "piercing")!.category).toBeNull();
+  });
+
+  it("carries the source item's _id, so a translation can be aligned to the sorted array", () => {
+    const attacks = normalizeAttacks([
+      {
+        _id: "aaaaaaaaaaaaaaaa",
+        name: "Zeta",
+        type: "melee",
+        system: { bonus: { value: 10 }, damageRolls: {} },
+      },
+      {
+        _id: "bbbbbbbbbbbbbbbb",
+        name: "Alpha",
+        type: "melee",
+        system: { bonus: { value: 10 }, damageRolls: {} },
+      },
+    ]);
+    // Sorted by name, so the ids come back in the sorted order, not input order.
+    expect(attacks.map((a) => a.foundryId)).toEqual(["bbbbbbbbbbbbbbbb", "aaaaaaaaaaaaaaaa"]);
+  });
+
+  it("reports a melee item that fails validation instead of silently dropping it", () => {
+    // `_id` became required in Task 4, and the parse loop skips whatever
+    // fails. A `type: "melee"` item with no `_id` is upstream drift, not a
+    // different kind of item: dropping it would vanish a Strike with no
+    // error and no report line the next time the pin moves.
+    expect(() =>
+      normalizeAttacks([
+        {
+          name: "Jaws",
+          type: "melee",
+          system: { bonus: { value: 10 }, damageRolls: {} },
+        },
+      ]),
+    ).toThrow(/Jaws/);
+  });
+
+  it("still skips items that are simply not attacks", () => {
+    expect(() =>
+      normalizeAttacks([{ _id: "x", name: "Hide Armor", type: "armor" }]),
+    ).not.toThrow();
   });
 });

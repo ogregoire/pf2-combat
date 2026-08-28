@@ -1,4 +1,4 @@
-import { CONDITIONS } from "../rules/conditions.js";
+import { useT } from "../i18n/index.js";
 import type { Prompt } from "../rules/prompts.js";
 
 /** One acknowledgeable prompt — TurnAssistant.dc.html's card anatomy: a
@@ -8,6 +8,7 @@ import type { Prompt } from "../rules/prompts.js";
  * including prompts the app already applied (autoApplied), because the
  * click is the GM's record that they saw the number change. */
 export function PromptCard({ prompt, onAcknowledge }: { prompt: Prompt; onAcknowledge: () => void }): React.ReactElement {
+  const t = useT();
   return (
     <div
       style={{
@@ -29,7 +30,7 @@ export function PromptCard({ prompt, onAcknowledge }: { prompt: Prompt; onAcknow
             color: "var(--bg)",
           }}
         >
-          {CONDITIONS[prompt.slug].name.toUpperCase()}
+          {prompt.label.toUpperCase()}
         </span>
         <span style={{ fontSize: "12.5px", fontWeight: 600 }}>{prompt.title}</span>
       </div>
@@ -76,7 +77,7 @@ export function PromptCard({ prompt, onAcknowledge }: { prompt: Prompt; onAcknow
             cursor: "pointer",
           }}
         >
-          Got it
+          {t("GOT_IT_BUTTON")}
         </button>
       </div>
     </div>

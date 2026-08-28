@@ -1,7 +1,9 @@
 import { z } from "zod";
 import { compareStrings } from "../util.js";
+import { describeItem, itemHasType } from "./item.js";
 
 const AttackItemSchema = z.object({
+  _id: z.string(),
   name: z.string(),
   type: z.literal("melee"),
   system: z.object({
@@ -22,6 +24,7 @@ const AttackItemSchema = z.object({
 });
 
 export interface NormalizedAttack {
+  foundryId: string;
   name: string;
   kind: "melee" | "ranged";
   bonus: number;
@@ -35,8 +38,20 @@ export function normalizeAttacks(items: unknown[]): NormalizedAttack[] {
 
   for (const item of items) {
     const parsed = AttackItemSchema.safeParse(item);
-    if (!parsed.success) continue;
-    const { name, system } = parsed.data;
+    if (!parsed.success) {
+      // See normalizeActions: a wrong-TYPE item is expected and skipped, a
+      // `type: "melee"` item that fails validation is upstream drift and must
+      // be loud rather than vanish a Strike silently.
+      if (itemHasType(item, "melee")) {
+        throw new Error(
+          `melee item ${describeItem(item)} failed validation: ${
+            parsed.error.issues[0]?.message ?? "invalid"
+          } (at ${parsed.error.issues[0]?.path.join(".") ?? "?"})`,
+        );
+      }
+      continue;
+    }
+    const { _id, name, system } = parsed.data;
     const traits = [...(system.traits?.value ?? [])].sort(compareStrings);
 
     // Foundry omits `weaponType` for some ranged weapons (thrown items,
@@ -53,6 +68,7 @@ export function normalizeAttacks(items: unknown[]): NormalizedAttack[] {
         : "melee");
 
     attacks.push({
+      foundryId: _id,
       name,
       kind,
       bonus: system.bonus.value,

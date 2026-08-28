@@ -1,8 +1,11 @@
 import { useState } from "react";
 import type { Action } from "@pf2/schema";
+import { resolveActions, resolveAttacks } from "../data/i18nOverlay.js";
+import { useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
 import { useEncounter } from "../state/store.js";
+import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import type { FetchFn } from "../data/catalog.js";
 import type { Combatant } from "../state/types.js";
@@ -45,7 +48,10 @@ export function ActionList({
 }): React.ReactElement | null {
   const spendActions = useEncounter((s) => s.spendActions);
   const setReactionSpent = useEncounter((s) => s.setReactionSpent);
+  const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary(fetchFn);
+  const i18n = useCombatantI18n(combatant);
+  const t = useT();
   // Which ability the GM has pressed. Selection reveals its Use button;
   // pressing the card itself never spends (see ActionCard).
   const [selected, setSelected] = useState<string | null>(null);
@@ -58,6 +64,15 @@ export function ActionList({
   // no matter what the GM pressed.
   const remaining = Math.max(0, pool.total - combatant.actionsSpent);
   const activeRung = Math.min(combatant.strikesMade, 2);
+
+  // Resolved to French (by array position against the creature's overlay,
+  // never by name) before the pure, language-agnostic layout code below
+  // ever sees them — buildActionList's own Rend-detection reads the
+  // description text, and the overlay keeps that signal intact in French
+  // (Rend's translated description still opens by naming the translated
+  // Claw attack).
+  const actions = resolveActions(combatant.actions, i18n, lang);
+  const attacks = resolveAttacks(combatant.attacks, i18n, lang);
 
   /**
    * What pressing an ability's Use button costs, and whether it can be paid.
@@ -88,7 +103,7 @@ export function ActionList({
     return { disabled: cost > remaining, onUse: () => spendActions(combatant.id, cost) };
   }
 
-  const items = buildActionList(combatant.actions, combatant.attacks);
+  const items = buildActionList(actions, attacks);
   const activatable = items.filter((i) => i.kind === "strike" || i.action.cost !== "passive");
   const passives = items.filter((i) => i.kind === "action" && i.action.cost === "passive");
 
@@ -111,7 +126,7 @@ export function ActionList({
   return (
     <div>
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)", marginBottom: "8px" }}>
-        Actions
+        {t("ACTIONS_HEADING")}
       </div>
 
       {passives.length > 0 && (

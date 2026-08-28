@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 
 const ACTIVE_BORDER = "oklch(0.70 0.15 55)";
@@ -36,6 +37,7 @@ export function GroupHeader({
   memberCount: number;
   active?: boolean;
 }): React.ReactElement {
+  const t = useT();
   const [renaming, setRenaming] = useState(false);
   const [newName, setNewName] = useState(name);
   const [editingInit, setEditingInit] = useState(false);
@@ -123,7 +125,7 @@ export function GroupHeader({
         </button>
       )}
       {delayed && (
-        <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--info)" }}>delayed</span>
+        <span style={{ fontSize: "10px", letterSpacing: "0.06em", color: "var(--info)" }}>{t("DELAYED_LABEL")}</span>
       )}
       {!delayed && initiativeBeforeDelay !== null && (
         <span style={{ fontSize: "11px", color: "var(--text-faint)", textDecoration: "line-through" }}>
@@ -190,7 +192,7 @@ export function GroupHeader({
           marginRight: "4px",
         }}
       >
-        Ungroup
+        {t("UNGROUP_BUTTON")}
       </button>
     </div>
   );

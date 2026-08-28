@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "description": "<p><strong>Conditions</strong> L'initiative n'a pas encore été déterminée.</p>\n<p><strong>Déclencheur</strong> Une créature touche la toile de l'araignée chasseresse alors que celle-ci se trouve dessus.</p>\n<hr />\n<p><strong>Effet</strong> L'araignée chasseresse repère automatiquement la créature et Marche rapidement, Escalade ou Descend sur un fil de toile avant de faire son jet d'initiative.</p>",
+      "en": "Spring Upon Prey",
+      "name": "Bondir sur sa proie"
+    },
+    {
+      "description": "<p>L'araignée chasseresse descend à la verticale sur une distance maximale de 12 mètres, suspendue à un fil de toile. Elle peut rester accrochée au fil ou s'en détacher. La distance descendue avec cette action ne compte pas dans le calcul des dégâts de chute.</p>\n<p>Une créature qui réussit à Frapper le fil de toile (CA 20, Solidité 3, 5 PV) le coupe, provoquant la chute de l'araignée.</p>",
+      "en": "Descend on a Web",
+      "name": "Descendre sur un fil de toile"
+    },
+    {
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:16]</p>\n<hr />\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[1d4[poison]]{1d4 dégâts de poison} et Pris au dépourvu (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[1d6[poison]]{1d6 dégâts de poison}, Maladroit 1 et Pris au dépourvu (1 round)</p>\n<p><strong>Stade 3</strong> @Damage[1d6[poison]]{1d6 dégâts de poison}, Maladroit 2 et Pris au dépourvu (1 round)</p>",
+      "en": "Hunting Spider Venom",
+      "name": "Venin d'araignée chasseresse"
+    },
+    {
+      "description": "<p>L'araignée chasseresse possède Perception des vibrations en tant que sens imprécis qui lui permet de détecter les vibrations engendrées par des créatures en contact avec sa toile.</p>\n<hr />\n<p><p>Ce sens permet à un monstre de ressentir les vibrations causées par un déplacement à travers une surface solide. Il s'agit généralement d'un sens imprécis avec une portée limitée (indiquée dans la description de la capacité). La perception des vibrations ne fonctionne que si le monstre se trouve sur la même surface que le sujet à l'origine des vibrations, et seulement si celui-ci se déplace sur (ou creuse à travers) cette surface.</p></p>",
+      "en": "Web Sense",
+      "name": "Perception sur les toiles"
+    },
+    {
+      "description": "<p>Une créature touchée par l'attaque de toile de l'araignée chasseresse est Immobilisée et collée à la surface la plus proche jusqu'à ce qu'elle [[/act escape dc=17]]{S'échappe}.</p>",
+      "en": "Web Trap",
+      "name": "Piège de toile"
+    }
+  ],
+  "attacks": [
+    {
+      "en": "Fangs",
+      "name": "Crocs"
+    },
+    {
+      "en": "Web",
+      "name": "Toile"
+    }
+  ],
+  "name": "Araignée chasseresse",
+  "publicNotes": "<p>Les araignées chasseresses sont les plus courantes des araignées géantes mais pas les plus grosses.</p>\n<hr />\n<p>Peu de nuisibles du quotidien inspirent autant de crainte que les fameuses araignées.</p>"
+}
