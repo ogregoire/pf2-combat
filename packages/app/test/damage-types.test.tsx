@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Attack } from "@pf2/schema";
-import { DAMAGE_TYPES } from "../src/rules/damage.js";
+import { DAMAGE_TYPE_NAME_KEY, DAMAGE_TYPES, damageTypeName } from "../src/rules/damage.js";
 import { DAMAGE_TYPE_STYLE, DamageTypeIcon } from "../src/components/damageTypes.js";
 import { CombatantList } from "../src/components/CombatantList.js";
 import { StrikeCard } from "../src/components/StrikeCard.js";
@@ -41,6 +41,17 @@ describe("damage type visuals", () => {
       (t) => render(<DamageTypeIcon type={t} />).container.querySelector("svg") === null,
     );
     expect(noIcon).toEqual([]);
+  });
+
+  // Guardrail for the GM's own report: a strike's damage line, the popover's
+  // damage-type selector and the roll assistant all rendered a raw dataset
+  // slug ("slashing") straight into French text, because damageTypeName had
+  // no catalogue entry for a type someone forgot to add. This is the same
+  // shape as the colour/icon guardrail above, so a future type addition
+  // can't silently reopen this defect either.
+  it("gives every damage type a French name", () => {
+    const missing = [...DAMAGE_TYPES].filter((t) => DAMAGE_TYPE_NAME_KEY[t] === undefined);
+    expect(missing).toEqual([]);
   });
 
   // "none" is the selector's own opt-out, not a PF2 damage type, so it is
@@ -124,5 +135,56 @@ describe("damage type visuals", () => {
     );
     expect(screen.getByText("ectoplasm")).toBeDefined();
     expect(screen.getByText("1d6")).toBeDefined();
+  });
+
+  // The GM's own report: "en sélectionnant une frappe, je vois 4d8+10
+  // slashing" — a strike's own damage line rendered the raw dataset type
+  // (d.type) rather than its French name.
+  it("names a strike's damage type in French — the GM's own report", () => {
+    useEncounter.getState().setLang("fr");
+    render(
+      <StrikeCard
+        attack={strike(["slashing"])}
+        selected={false}
+        activeRung={0}
+        onSelect={() => {}}
+        glossary={new Map()}
+      />,
+    );
+    expect(screen.getByText("tranchant")).toBeDefined();
+    expect(screen.queryByText("slashing")).toBeNull();
+  });
+
+  // Same defect, the popover's own damage-type selector: the button's
+  // visible label (not its `type` prop, which stays the raw slug — it's a
+  // colour/icon lookup key, not display text) and the last-change reason
+  // line both used to interpolate the raw type. The IWR words either side of
+  // it ("résistance {value}") already came from the catalogue — see
+  // RowPopover.tsx's describeIwrAdjustment — so only the type itself was the
+  // gap.
+  it("names the popover's damage-type button and the applied-damage reason in French", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setLang("fr");
+    const id = useEncounter.getState().addCombatant(
+      seed({
+        name: "Skeletal Tiger Lord",
+        hp: { current: 30, max: 30 },
+        iwr: { immunities: [], weaknesses: [], resistances: [{ type: "cold", value: 10 }] },
+      }),
+      19,
+    );
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Skeletal Tiger Lord"));
+    const coldButton = screen.getByRole("button", { name: "froid 10" });
+    expect(screen.queryByRole("button", { name: /^cold/ })).toBeNull();
+    await user.click(coldButton);
+    const amount = screen.getByLabelText("montant");
+    await user.clear(amount);
+    await user.type(amount, "30");
+    await user.click(screen.getByRole("button", { name: "Dégâts" }));
+
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(10);
+    expect(screen.getByText(/30 froid, résistance 10/)).toBeDefined();
   });
 });

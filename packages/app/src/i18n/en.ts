@@ -158,6 +158,39 @@ export const STRINGS_EN = {
   DAMAGE_TYPE_HEADING: "Damage type — {n} relevant",
   DAMAGE_TYPE_GROUP_ARIA: "damage type",
   DAMAGE_TYPE_NONE: "None",
+
+  // rules/damage.ts's damageTypeName — every member of DAMAGE_TYPES, read by
+  // the popover's selector, a strike's damage line and the roll assistant's
+  // outcome text (see StrikeCard.tsx, RowPopover.tsx, rules/strike.ts). Kept
+  // as plain lower-case English here, English being the identity case for
+  // these — every value below is exactly its own DAMAGE_TYPES slug.
+  DAMAGE_TYPE_NAME_BLUDGEONING: "bludgeoning",
+  DAMAGE_TYPE_NAME_PIERCING: "piercing",
+  DAMAGE_TYPE_NAME_SLASHING: "slashing",
+  DAMAGE_TYPE_NAME_ACID: "acid",
+  DAMAGE_TYPE_NAME_COLD: "cold",
+  DAMAGE_TYPE_NAME_ELECTRICITY: "electricity",
+  DAMAGE_TYPE_NAME_FIRE: "fire",
+  DAMAGE_TYPE_NAME_FORCE: "force",
+  DAMAGE_TYPE_NAME_SONIC: "sonic",
+  DAMAGE_TYPE_NAME_VITALITY: "vitality",
+  DAMAGE_TYPE_NAME_VOID: "void",
+  DAMAGE_TYPE_NAME_MENTAL: "mental",
+  DAMAGE_TYPE_NAME_POISON: "poison",
+  DAMAGE_TYPE_NAME_BLEED: "bleed",
+  DAMAGE_TYPE_NAME_PRECISION: "precision",
+  DAMAGE_TYPE_NAME_SPIRIT: "spirit",
+  DAMAGE_TYPE_NAME_PHYSICAL: "physical",
+  DAMAGE_TYPE_NAME_HOLY: "holy",
+  DAMAGE_TYPE_NAME_UNHOLY: "unholy",
+  DAMAGE_TYPE_NAME_ALL_DAMAGE: "all-damage",
+  DAMAGE_TYPE_NAME_AREA_DAMAGE: "area-damage",
+  DAMAGE_TYPE_NAME_SPLASH_DAMAGE: "splash-damage",
+  // rules/strike.ts's damageText — the category word tacked onto a damage
+  // component's type ("2d6 persistent fire", "3 splash acid").
+  DAMAGE_CATEGORY_PERSISTENT: "persistent",
+  DAMAGE_CATEGORY_SPLASH: "splash",
+
   NO_HP_MSG: "No HP on record — Damage and Heal are disabled.",
   AMOUNT_ARIA: "amount",
   ADD_CONDITION_HEADING: "Add condition",

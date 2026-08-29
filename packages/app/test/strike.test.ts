@@ -173,6 +173,53 @@ describe("resolveStrike", () => {
     );
   });
 
+  // The GM's own report: "en sélectionnant une frappe, je vois 4d8+10
+  // slashing" — resolveStrike's damage text baked the raw dataset type
+  // (and, for persistent/splash, the category word too) straight into
+  // English regardless of `lang`. `lang` defaults to "en" (see StrikeInput's
+  // own doc comment), so every test above this one stays a same-language
+  // regression check; these are the ones that actually exercise French.
+  it("localises the damage type name when lang is fr", () => {
+    const r = resolveStrike({ ...base, lang: "fr" });
+    expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe("1d8+5 tranchant");
+    expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe("2d8+10 tranchant");
+  });
+
+  it("localises the persistent-damage category label and the type it labels, in fr", () => {
+    const r = resolveStrike({
+      ...base,
+      lang: "fr",
+      damage: [
+        { formula: "1d8+5", type: "slashing" },
+        { formula: "2d6", type: "fire", category: "persistent" },
+      ],
+    });
+    expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe(
+      "1d8+5 tranchant + 2d6 persistant feu",
+    );
+  });
+
+  it("localises the splash-damage category label and the type it labels, in fr", () => {
+    const r = resolveStrike({
+      ...base,
+      lang: "fr",
+      damage: [{ formula: "3", type: "acid", category: "splash" }],
+    });
+    expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe("3 éclaboussure acide");
+  });
+
+  it("localises the precision-damage suffix in fr", () => {
+    const r = resolveStrike({
+      ...base,
+      lang: "fr",
+      precision: { formula: "2d6", when: "off-guard" },
+      targetConditions: [{ slug: "off-guard", value: 0 }],
+    });
+    expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe(
+      "1d8+5 tranchant + 2d6 précision",
+    );
+  });
+
   it("returns four outcomes in ladder order with no damage on misses", () => {
     const r = resolveStrike(base);
     expect(r.outcomes.map((o) => o.degree)).toEqual([

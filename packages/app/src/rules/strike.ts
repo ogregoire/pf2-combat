@@ -1,7 +1,10 @@
 import { conditionModifiers, type AppliedCondition, type ConditionSlug } from "./conditions.js";
+import { damageTypeName } from "./damage.js";
 import { dieBands, type Degree } from "./degrees.js";
 import { mapPenalty } from "./map.js";
 import { resolveModifiers, type Modifier, type ModifierResult } from "./modifiers.js";
+import { STRINGS_EN } from "../i18n/en.js";
+import { STRINGS_FR } from "../i18n/fr.js";
 
 interface ParsedDice {
   count: number;
@@ -102,6 +105,12 @@ export interface StrikeInput {
   /** The Strike's own traits — read here only for deadly-dX/fatal-dX. */
   traits?: string[];
   precision?: { formula: string; when: ConditionSlug };
+  /** Display language for `StrikeOutcome.damage`'s composed text (type name,
+   * category label). Optional and defaulting to "en" so the many callers in
+   * strike.test.ts that don't care about localisation — this is a rules
+   * test, not an i18n one — don't all need updating for a French-only
+   * concern. */
+  lang?: "en" | "fr";
 }
 
 export interface StrikeOutcome {
@@ -119,12 +128,28 @@ export interface StrikeResolution {
   outcomes: StrikeOutcome[];
 }
 
+/**
+ * The category label for a damage component ("persistent", "splash") in
+ * `lang`. Only those two values are known categories the app itself ever
+ * produces (see StrikeDamageEntry's own doc comment) — anything else in the
+ * dataset's free-form `category` string passes through unchanged, the same
+ * "unrecognised input renders plainly" stance damageTypeName takes for an
+ * unknown damage type.
+ */
+function categoryLabel(category: string, lang: "en" | "fr"): string {
+  const s = lang === "fr" ? STRINGS_FR : STRINGS_EN;
+  if (category === "persistent") return s.DAMAGE_CATEGORY_PERSISTENT;
+  if (category === "splash") return s.DAMAGE_CATEGORY_SPLASH;
+  return category;
+}
+
 const damageText = (
   input: StrikeInput,
   crit: boolean,
   precisionActive: boolean,
 ): string => {
   const traits = input.traits ?? [];
+  const lang = input.lang ?? "en";
   const parts = input.damage.map((d, i) => {
     // Splash damage is never multiplied, even on a crit (core rule) — every
     // other category doubles normally.
@@ -134,14 +159,14 @@ const damageText = (
         ? critBaseDamage(d.formula, traits)
         : doubleFormula(d.formula)
       : d.formula;
-    const label = d.category ? `${d.category} ` : "";
-    return `${formula} ${label}${d.type}`;
+    const label = d.category ? `${categoryLabel(d.category, lang)} ` : "";
+    return `${formula} ${label}${damageTypeName(d.type, lang)}`;
   });
   if (precisionActive && input.precision !== undefined) {
     const f = crit
       ? doubleFormula(input.precision.formula)
       : input.precision.formula;
-    parts.push(`${f} precision`);
+    parts.push(`${f} ${damageTypeName("precision", lang)}`);
   }
   return parts.join(" + ");
 };

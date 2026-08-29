@@ -61,6 +61,39 @@ describe("chrome copy in French", () => {
     expect(screen.getByRole("button", { name: "Enregistrer la frappe" })).toBeDefined();
   });
 
+  // The reported defect, verbatim: "Sur la VF, en sélectionnant une frappe,
+  // je vois 4d8+10 slashing" — the roll assistant's outcome ladder composed
+  // its damage text (rules/strike.ts's damageText) from the raw dataset type
+  // regardless of `lang`. StrikeCard's own damage line had the identical
+  // bug and is covered separately in damage-types.test.tsx; this is the
+  // roll-assistant surface the GM's report actually named.
+  it("names a Strike's damage type in French on the outcome ladder — the GM's own report", () => {
+    const attackerId = useEncounter.getState().addCombatant(
+      {
+        kind: "creature", name: "Tigre-lion squelette", level: 5, ac: 19,
+        saves: { fortitude: 8, reflex: 9, will: 5 },
+        hp: { current: 40, max: 40 },
+        attacks: [
+          { name: "Griffe", kind: "melee", bonus: 12, traits: [],
+            damage: [{ formula: "4d8+10", type: "slashing", category: null }], effects: [] },
+        ],
+      },
+      10,
+    );
+    const targetId = useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, hp: null },
+      15,
+    );
+    const combatant = useEncounter.getState().encounter.combatants[attackerId]!;
+    const target = useEncounter.getState().encounter.combatants[targetId]!;
+    const attack = combatant.attacks[0]!;
+
+    render(<RollAssistant combatant={combatant} target={target} attack={attack} />);
+
+    expect(screen.getByText(/4d8\+10 tranchant/)).toBeDefined();
+    expect(screen.queryByText(/slashing/)).toBeNull();
+  });
+
   it("renders ActionPips's reasons line in French — no hardcoded English 'of' survives", () => {
     const id = useEncounter.getState().addCombatant(
       { kind: "creature", name: "Ours", level: 1, ac: 15, saves: { fortitude: 5, reflex: 6, will: 2 }, hp: { current: 10, max: 10 } },

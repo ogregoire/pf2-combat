@@ -1,4 +1,6 @@
 import { compareStrings } from "./compare.js";
+import { STRINGS_EN, type StringKey } from "../i18n/en.js";
+import { STRINGS_FR } from "../i18n/fr.js";
 
 /**
  * PF2 damage types — the subset of IWR entries a damage roll can actually
@@ -13,6 +15,56 @@ export const DAMAGE_TYPES = new Set([
   "mental", "poison", "bleed", "precision", "spirit",
   "physical", "holy", "unholy", "all-damage", "area-damage", "splash-damage",
 ]);
+
+/**
+ * Every DAMAGE_TYPES member's i18n catalogue key. DAMAGE_TYPES is a fixed,
+ * compile-time enum (unlike conditions, which come from data/conditions.json
+ * and are looked up in a runtime-loaded overlay — see rules/traitInfo.ts's
+ * conditionDisplayName) — so its names live in the static en.ts/fr.ts
+ * catalogue instead, the same choice rules/prompts.ts already made for its
+ * own bilingual text (conditionName/FR_CONDITION_NAMES there). Exported so
+ * damage-types.test.tsx's coverage guardrail (mirroring its existing "every
+ * damage type has a colour and an icon" check) can assert every type has an
+ * entry here, not just the ones this file's author remembered to add.
+ */
+export const DAMAGE_TYPE_NAME_KEY: Record<string, StringKey> = {
+  bludgeoning: "DAMAGE_TYPE_NAME_BLUDGEONING",
+  piercing: "DAMAGE_TYPE_NAME_PIERCING",
+  slashing: "DAMAGE_TYPE_NAME_SLASHING",
+  acid: "DAMAGE_TYPE_NAME_ACID",
+  cold: "DAMAGE_TYPE_NAME_COLD",
+  electricity: "DAMAGE_TYPE_NAME_ELECTRICITY",
+  fire: "DAMAGE_TYPE_NAME_FIRE",
+  force: "DAMAGE_TYPE_NAME_FORCE",
+  sonic: "DAMAGE_TYPE_NAME_SONIC",
+  vitality: "DAMAGE_TYPE_NAME_VITALITY",
+  void: "DAMAGE_TYPE_NAME_VOID",
+  mental: "DAMAGE_TYPE_NAME_MENTAL",
+  poison: "DAMAGE_TYPE_NAME_POISON",
+  bleed: "DAMAGE_TYPE_NAME_BLEED",
+  precision: "DAMAGE_TYPE_NAME_PRECISION",
+  physical: "DAMAGE_TYPE_NAME_PHYSICAL",
+  spirit: "DAMAGE_TYPE_NAME_SPIRIT",
+  holy: "DAMAGE_TYPE_NAME_HOLY",
+  unholy: "DAMAGE_TYPE_NAME_UNHOLY",
+  "all-damage": "DAMAGE_TYPE_NAME_ALL_DAMAGE",
+  "area-damage": "DAMAGE_TYPE_NAME_AREA_DAMAGE",
+  "splash-damage": "DAMAGE_TYPE_NAME_SPLASH_DAMAGE",
+};
+
+/**
+ * A damage type's display name for `lang`. The dataset carries damage types
+ * as free strings (see relevantDamageTypes' own comment on that), so a type
+ * outside DAMAGE_TYPE_NAME_KEY — an upstream one this table doesn't know
+ * about yet — passes through unchanged rather than rendering blank; the
+ * same fallback stance damageTypeStyle/DamageTypeIcon already take for an
+ * unrecognised type.
+ */
+export function damageTypeName(type: string, lang: "en" | "fr"): string {
+  const key = DAMAGE_TYPE_NAME_KEY[type];
+  if (key === undefined) return type;
+  return (lang === "fr" ? STRINGS_FR : STRINGS_EN)[key];
+}
 
 export interface Iwr {
   // Immunity exceptions ("immune to X except Y") exist in the dataset but

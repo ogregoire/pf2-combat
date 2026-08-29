@@ -30,6 +30,12 @@ export const ALLOWLIST = new Set<StringKey>([
   // Language-neutral `{token}` templates, per the same rule as above.
   "PROMPT_NAME_VALUE",
   "PROMPT_NAME_DECREASE",
+  // Damage type names spelled the same in both languages, per
+  // data/i18n/fr/traits.json's own French trait names ("Force", "Mental",
+  // "Poison") — not missed translations.
+  "DAMAGE_TYPE_NAME_FORCE",
+  "DAMAGE_TYPE_NAME_MENTAL",
+  "DAMAGE_TYPE_NAME_POISON",
 ]);
 
 /** Looks up chrome copy from the catalogue matching the store's current

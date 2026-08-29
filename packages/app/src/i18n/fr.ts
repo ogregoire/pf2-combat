@@ -160,6 +160,56 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   DAMAGE_TYPE_HEADING: "Type de dégâts — {n} pertinent(s)",
   DAMAGE_TYPE_GROUP_ARIA: "type de dégâts",
   DAMAGE_TYPE_NONE: "Aucun",
+
+  // Sourced from data/, not invented — see damage-type-i18n-report.md for
+  // each term's exact origin. bludgeoning/piercing/slashing/bleed/precision/
+  // physical come from creature description prose ("dégâts contondants",
+  // "... perforants", "... tranchants", "... de saignement", "... de
+  // précision", "... physiques" — data/i18n/fr/creatures); acid/cold/
+  // electricity/fire/force/sonic/vitality/void/mental/poison/spirit/holy/
+  // unholy from data/i18n/fr/traits.json's own French trait names (the
+  // element/energy traits share their word with the damage type). force/
+  // mental/poison are spelled identically in both languages — see this
+  // file's own ALLOWLIST entries in i18n/index.ts. all-damage/area-damage/
+  // splash-damage have no single-word attestation (they're this app's own
+  // pseudo-types for a blanket IWR entry, not a PF2 damage type with its own
+  // glossary/trait page) — "tous les dégâts" / "dégâts de zone" / "dégâts
+  // d'éclaboussure" are lifted from creature prose that names the same
+  // blanket categories in context ("résistance ... contre tous les dégâts",
+  // "tout dégât de zone", "dégâts d'éclaboussure de feu").
+  DAMAGE_TYPE_NAME_BLUDGEONING: "contondant",
+  DAMAGE_TYPE_NAME_PIERCING: "perforant",
+  DAMAGE_TYPE_NAME_SLASHING: "tranchant",
+  DAMAGE_TYPE_NAME_ACID: "acide",
+  DAMAGE_TYPE_NAME_COLD: "froid",
+  DAMAGE_TYPE_NAME_ELECTRICITY: "électricité",
+  DAMAGE_TYPE_NAME_FIRE: "feu",
+  DAMAGE_TYPE_NAME_FORCE: "force",
+  DAMAGE_TYPE_NAME_SONIC: "son",
+  DAMAGE_TYPE_NAME_VITALITY: "vitalité",
+  DAMAGE_TYPE_NAME_VOID: "vide",
+  DAMAGE_TYPE_NAME_MENTAL: "mental",
+  DAMAGE_TYPE_NAME_POISON: "poison",
+  DAMAGE_TYPE_NAME_BLEED: "saignement",
+  DAMAGE_TYPE_NAME_PRECISION: "précision",
+  DAMAGE_TYPE_NAME_SPIRIT: "spirituel",
+  DAMAGE_TYPE_NAME_PHYSICAL: "physique",
+  DAMAGE_TYPE_NAME_HOLY: "saint",
+  DAMAGE_TYPE_NAME_UNHOLY: "impie",
+  DAMAGE_TYPE_NAME_ALL_DAMAGE: "tous les dégâts",
+  DAMAGE_TYPE_NAME_AREA_DAMAGE: "dégâts de zone",
+  DAMAGE_TYPE_NAME_SPLASH_DAMAGE: "dégâts d'éclaboussure",
+  // Not full PF2 prose ("X dégâts de [type] persistants") — that would need
+  // a preposition and elision (de/d') this compact badge format has never
+  // carried in either language (English drops "damage" the same way: "2d6
+  // persistent fire", not "2d6 persistent fire damage"). Word ORDER also
+  // stays the same as English (category before type) rather than the
+  // grammatically-native "feu persistant" — a deliberate, documented
+  // trade-off; see the report for the reasoning and the follow-up this
+  // leaves on the table.
+  DAMAGE_CATEGORY_PERSISTENT: "persistant",
+  DAMAGE_CATEGORY_SPLASH: "éclaboussure",
+
   NO_HP_MSG: "Aucun PV enregistré — Dégâts et Soins désactivés.",
   AMOUNT_ARIA: "montant",
   ADD_CONDITION_HEADING: "Ajouter un état",

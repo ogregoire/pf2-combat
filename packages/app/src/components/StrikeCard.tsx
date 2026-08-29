@@ -1,6 +1,8 @@
 import type { Attack } from "@pf2/schema";
+import { damageTypeName } from "../rules/damage.js";
 import { mapLadder } from "../rules/map.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
+import { useEncounter } from "../state/store.js";
 import { CostPips } from "./ActionCard.js";
 import { TraitTag } from "./TraitTag.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
@@ -25,6 +27,7 @@ const SELECTED_RING = "0 0 0 1px oklch(0.44 0.08 55)";
  * strike's fire component and the creature's fire resistance read alike.
  */
 function DamageLine({ attack }: { attack: Attack }): React.ReactElement {
+  const lang = useEncounter((s) => s.lang);
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
       {attack.damage.map((d, i) => (
@@ -43,7 +46,7 @@ function DamageLine({ attack }: { attack: Attack }): React.ReactElement {
             }}
           >
             <DamageTypeIcon type={d.type} size={11} />
-            {d.type}
+            {damageTypeName(d.type, lang)}
           </span>
         </span>
       ))}

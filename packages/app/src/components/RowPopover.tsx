@@ -7,7 +7,7 @@ import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
-import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
+import { applyIwr, damageTypeName, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, PICKABLE_CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
 import { totalInitiative } from "../rules/initiative.js";
@@ -157,24 +157,29 @@ interface LastChange {
 
 /**
  * Describes why the applied amount differs from what the GM typed, e.g.
- * "30 cold, resistance 10". Mirrors applyIwr's own immunity/weakness/
+ * "30 froid, résistance 10". Mirrors applyIwr's own immunity/weakness/
  * resistance lookup (kept local rather than exported from damage.ts since
- * it's presentation, not rules logic).
+ * it's presentation, not rules logic). `type` is translated via
+ * damageTypeName — this used to interpolate the raw dataset slug straight
+ * into the reason text, so a French GM read "30 cold, résistance 10": the
+ * IWR words came from the catalogue already, but the type name didn't.
  */
 function describeIwrAdjustment(
   t: (key: StringKey) => string,
   raw: number,
   type: string,
   iwr: Iwr | null,
+  lang: "en" | "fr",
 ): string {
-  if (iwr === null || type === "none") return `${raw} ${type}`;
-  if (iwr.immunities.includes(type)) return `${raw} ${type}, ${t("IWR_IMMUNE_SUFFIX")}`;
+  const name = damageTypeName(type, lang);
+  if (iwr === null || type === "none") return `${raw} ${name}`;
+  if (iwr.immunities.includes(type)) return `${raw} ${name}, ${t("IWR_IMMUNE_SUFFIX")}`;
   const weakness = iwr.weaknesses.find((w) => w.type === type && !(w.exceptions ?? []).includes(type));
   const resistance = iwr.resistances.find((r) => r.type === type && !(r.exceptions ?? []).includes(type));
   const parts: string[] = [];
   if (weakness) parts.push(format(t("IWR_WEAKNESS"), { value: weakness.value }));
   if (resistance) parts.push(format(t("IWR_RESISTANCE"), { value: resistance.value }));
-  return parts.length > 0 ? `${raw} ${type}, ${parts.join(" / ")}` : `${raw} ${type}`;
+  return parts.length > 0 ? `${raw} ${name}, ${parts.join(" / ")}` : `${raw} ${name}`;
 }
 
 /**
@@ -338,7 +343,7 @@ export function RowPopover({
         delta: -applied,
         before,
         after,
-        reason: applied !== value ? describeIwrAdjustment(t, value, damageType, combatant.iwr) : undefined,
+        reason: applied !== value ? describeIwrAdjustment(t, value, damageType, combatant.iwr, lang) : undefined,
       });
     }
     setDamageType("none");
@@ -710,7 +715,7 @@ export function RowPopover({
                 selected={damageType === r.type}
                 onSelect={() => setDamageType(r.type)}
               >
-                {r.type}{" "}
+                {damageTypeName(r.type, lang)}{" "}
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", opacity: 0.85 }}>{r.label}</span>
               </DamageTypeButton>
             ))}
