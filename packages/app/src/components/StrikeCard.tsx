@@ -9,6 +9,15 @@ function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `${n}`;
 }
 
+// The selected Strike's frame. Same values as CombatantRow's ACTIVE_* (kept
+// as literals there too, for the same reason: a handful of colour strings
+// shared by two small components isn't worth a module). Amber reads as "the
+// one in play" throughout the app; yellow means "targeted" and must stay
+// distinct from it.
+const SELECTED_BG = "oklch(0.27 0.030 55)";
+const SELECTED_BORDER = "oklch(0.70 0.15 55)";
+const SELECTED_RING = "0 0 0 1px oklch(0.44 0.08 55)";
+
 /**
  * A strike's damage line, one entry per damage component. The formula stays
  * neutral mono — it's a number to read — while the type takes its own colour
@@ -76,11 +85,20 @@ export function StrikeCard({
         width: "100%",
         // Same frame as ActionCard's enabled state — a Strike is an action,
         // and a thinner border here made the list read as two kinds of row.
-        // Selection is carried by the background alone.
+        //
+        // Selection used to be carried by the background alone: --panel-raised
+        // to --panel-high is a 0.025 lightness step at near-zero chroma, which
+        // is hard to spot at a lit table and on a tablet. It now borrows the
+        // same amber "this is the one in play" language the active combatant
+        // uses in CombatantRow (ACTIVE_BG / ACTIVE_BORDER / ACTIVE_RING) —
+        // warm fill, accent border and a ring, so the selected Strike reads at
+        // a glance. Deliberately NOT the yellow of "targeted", which means a
+        // different thing; see CombatantRow's note on keeping the two apart.
         padding: "11px 14px",
         borderRadius: "4px",
-        background: selected ? "var(--panel-high)" : "var(--panel-raised)",
-        border: "1px solid var(--border-strong)",
+        background: selected ? SELECTED_BG : "var(--panel-raised)",
+        border: `1px solid ${selected ? SELECTED_BORDER : "var(--border-strong)"}`,
+        boxShadow: selected ? SELECTED_RING : "none",
         cursor: "pointer",
         color: "var(--text)",
       }}
