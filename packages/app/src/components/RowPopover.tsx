@@ -189,19 +189,6 @@ function parseDraft(value: string): number | null {
 }
 
 /**
- * Formats a known modifier as a GM-facing reminder beside the initiative
- * field — "+11" or "−2" — never applied to anything (the field commits
- * exactly what's typed; see commitInitiative). Builds its own sign rather
- * than gluing a literal "+" onto the number, so a negative modifier reads
- * as "−2", not "+ -2". Uses the minus sign (U+2212), matching this file's
- * own convention elsewhere (see Stepper's decrease glyph), not a
- * hyphen-minus.
- */
-function formatModifierReminder(modifier: number): string {
-  return modifier >= 0 ? `+${modifier}` : `−${Math.abs(modifier)}`;
-}
-
-/**
  * Clamps the desktop shell's fixed `top` so the panel's bottom edge never
  * slips past the viewport, and its top edge never slips above `margin`
  * either. `margin` defaults to 12 to match the panel's own `maxHeight:
@@ -274,11 +261,14 @@ export function RowPopover({
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
-  // The value the GM just typed — the party's already-totalled initiative,
-  // not a die result to add a modifier to (see commitInitiative) — and not
-  // an editable view of the entry's current initiative either (see the
-  // removed initiativeDraft): there is nothing to seed it from, so it
-  // simply starts and stays blank between rolls.
+  // What the field means depends on `combatant.kind` (see commitInitiative):
+  // for a creature it's a d20 result the app totals with the creature's
+  // modifier, since the GM rolls a monster's initiative themselves; for a PC
+  // it's the party's already-reported final total, taken as-is, since a
+  // player reports their own number rather than a die the GM rolled. Either
+  // way this is not an editable view of the entry's current initiative (see
+  // the removed initiativeDraft comment history): there is nothing to seed
+  // it from, so it simply starts and stays blank between rolls.
   const [initiativeDraft, setInitiativeDraft] = useState("");
   // Which action the panel is currently set up for. Starts on "damage" (the
   // common case) so hovering alone still shows the selector for a creature
@@ -377,31 +367,51 @@ export function RowPopover({
   // initiativeModifier); the combatant's own field is a snapshot QuickAdd
   // copies in at add time. So when a roster player resolves, the roster's
   // value is the value — read through to it rather than preferring the
-  // copy, which is what makes a correction in PartyManager reach a PC
-  // already in the order. That is when a GM corrects it: they notice the
-  // modifier is wrong because a roll came out wrong, mid-fight, and the
-  // roster edit would otherwise fix only the next encounter.
+  // copy, which is what would let a correction in PartyManager miss a PC
+  // already in the order.
   //
-  // Including a null: clearing the field in PartyManager means "unknown",
-  // and it has to mean that here too, or the reminder below would show a
-  // stale number instead of nothing.
+  // This read-through is preserved even though it currently has no visible
+  // effect: `player` only resolves for `kind: "pc"` (see its own comment
+  // below), and a PC's field no longer shows or uses a modifier at all (see
+  // commitInitiative) — a player reports their own final total, not a die
+  // result to total. So today this only ever runs for the one branch that
+  // ignores its result. It stays wired up rather than removed so a future
+  // reader who re-adds a PC-facing use of the modifier finds this correct
+  // and not quietly broken.
   //
-  // The copy still answers for everything with no roster player behind it —
-  // a creature's Perception, and a PC whose roster entry has gone (removed
-  // on its own, leaving the combatant in the order) or predates `playerId`.
-  // Null means genuinely unknown, and the reminder is simply omitted.
+  // The copy still answers for a creature's Perception (the one case this
+  // is actually load-bearing for today), and for a PC whose roster entry
+  // has gone (removed on its own, leaving the combatant in the order) or
+  // predates `playerId`. Null means genuinely unknown.
   const knownModifier = player !== null ? player.initiativeModifier : combatant.initiativeModifier;
 
   const initiativeValue = parseDraft(initiativeDraft);
 
+  // Only a creature's field sums with a modifier — the GM rolls a monster's
+  // initiative themselves, so the field is a d20 result (see
+  // commitInitiative for the PC side of this split). Shown live as it's
+  // typed, reusing the exact readout this had before the total-for-everyone
+  // rework this file went through and back (08eac93/ea80e80): the bare
+  // typed number when no modifier is on record, confirming nothing was
+  // silently added, or the full sum when one is.
+  const initiativeReadout =
+    combatant.kind !== "creature" || initiativeValue === null
+      ? null
+      : knownModifier === null
+        ? String(initiativeValue)
+        : `${initiativeValue} + ${knownModifier} = ${initiativeValue + knownModifier}`;
+
   const commitInitiative = (): void => {
     if (!entry || initiativeValue === null) return; // blank/non-numeric value: nothing to commit — see the field's own comment.
-    // Committed exactly as typed — no arithmetic. Players report their
-    // final, already-totalled initiative (a GM's own rejection of the old
-    // "die result + modifier" model: "The player can say 27, which is
-    // outside of a D20."), and a creature's known modifier is a reminder
-    // only (see formatModifierReminder) for a GM rolling it themselves.
-    setInitiative(entry.id, initiativeValue);
+    // A creature's field is a d20 result the GM just rolled, so the app
+    // totals it with the creature's modifier — or commits it unchanged if
+    // there is none on record, never inventing a +0. A PC's field is
+    // already the party's final, reported total, so it commits exactly as
+    // typed: a GM's own rejection of totalling a PC's number, with a
+    // concrete case — "The player can say 27, which is outside of a D20."
+    const toCommit =
+      combatant.kind === "creature" && knownModifier !== null ? initiativeValue + knownModifier : initiativeValue;
+    setInitiative(entry.id, toCommit);
     setInitiativeDraft("");
   };
 
@@ -606,7 +616,11 @@ export function RowPopover({
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
             <input
-              aria-label={t("INITIATIVE_VALUE_ARIA")}
+              // A creature's field is a die result to be totalled; a PC's is
+              // already the final number a player reports. Distinct accessible
+              // names so the GM (or a screen reader) knows which is which —
+              // see commitInitiative for why the two kinds differ.
+              aria-label={combatant.kind === "creature" ? t("INITIATIVE_DIE_RESULT_ARIA") : t("INITIATIVE_VALUE_ARIA")}
               value={initiativeDraft}
               onChange={(e) => setInitiativeDraft(e.target.value)}
               style={{
@@ -622,12 +636,9 @@ export function RowPopover({
                 color: "var(--text)",
               }}
             />
-            {knownModifier !== null && (
-              // The reminder, not an addend — never folded into what
-              // commitInitiative sends. See formatModifierReminder for the
-              // sign handling that keeps a negative from reading as "+ -2".
+            {initiativeReadout !== null && (
               <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--text-dim)" }}>
-                {formatModifierReminder(knownModifier)}
+                {initiativeReadout}
               </span>
             )}
             <div style={{ flexGrow: 1 }} />

@@ -169,6 +169,7 @@ export const STRINGS_EN = {
   CURRENT_INITIATIVE_ARIA: "Current initiative {value}",
   UNROLLED_LABEL: "unrolled",
   INITIATIVE_VALUE_ARIA: "Initiative value",
+  INITIATIVE_DIE_RESULT_ARIA: "Initiative die result",
   SET_INITIATIVE_BUTTON: "Set initiative",
 
   // TurnManager.tsx
