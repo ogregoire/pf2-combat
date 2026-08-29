@@ -6,6 +6,7 @@ import { loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } f
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { parseAddCommand } from "../rules/parseAddCommand.js";
 import { rankMatches } from "../rules/rankMatches.js";
+import { totalInitiative } from "../rules/initiative.js";
 import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
 import { seedFromEntry } from "./AddCombatants.js";
@@ -197,10 +198,17 @@ export function QuickAdd({
       .catch(() => null)
       .then((creature) => {
         const seed = seedFromEntry(raw, creature);
-        if (quantity === 1) addCombatant(seed, initiative);
-        else addMany(seed, quantity, initiative);
+        // `initiative` is the GM's own d20 result ("6 goblins 13" means a
+        // rolled 13, not a final initiative of 13) — the GM rolls a
+        // monster's initiative, so it's totalled with the creature's own
+        // modifier before it's stored. Null (nothing typed) passes through
+        // unchanged. Same rule as the row popover's commitInitiative — see
+        // rules/initiative.ts's totalInitiative, its one home.
+        const committed = initiative === null ? null : totalInitiative(seed.kind, initiative, seed.initiativeModifier ?? null);
+        if (quantity === 1) addCombatant(seed, committed);
+        else addMany(seed, quantity, committed);
 
-        setMessage(addedMessage(t, quantity, requestedQuantity, entry.name, initiative));
+        setMessage(addedMessage(t, quantity, requestedQuantity, entry.name, committed));
         setQuery("");
         setDismissed(false);
         setHighlightedIndex(0);

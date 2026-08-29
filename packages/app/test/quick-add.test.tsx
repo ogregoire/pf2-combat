@@ -96,7 +96,12 @@ describe("QuickAdd", () => {
     expect(listbox.textContent).toContain("REMASTER");
   });
 
-  it("types a full command and adds six goblins at initiative 13 with populated attacks", async () => {
+  // The GM's own example: "6 goblins 13" means six goblins with a rolled
+  // initiative result of 13 — the GM rolls a monster's initiative, so the
+  // app still adds the creature's modifier (goblinWarriorCreature's
+  // Perception is 5) before storing it. Same rule as the row popover's
+  // commitInitiative (see rules/initiative.ts's totalInitiative).
+  it("types a full command and adds six goblins at 13 plus their Perception, with populated attacks", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
     const input = screen.getByRole("combobox", { name: /quick add/i });
@@ -109,6 +114,26 @@ describe("QuickAdd", () => {
     });
     const combatants = Object.values(useEncounter.getState().encounter.combatants);
     expect(combatants.every((c) => c.attacks.length === 1 && c.attacks[0]!.name === "Shortsword")).toBe(true);
+    // 13 (the typed die result) + 5 (Goblin Warrior's Perception) = 18.
+    expect(useEncounter.getState().encounter.entries.every((e) => e.initiative === 18)).toBe(true);
+  });
+
+  // A creature with no modifier on record (here: the creature record failed
+  // to load, same as the row popover's "no modifier" case) commits the
+  // typed value unchanged rather than inventing a +0.
+  it("commits the typed initiative unchanged when the creature has no modifier on record", async () => {
+    const user = userEvent.setup();
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    const input = screen.getByRole("combobox", { name: /quick add/i });
+    // Goblin Commando has no fixture in loadCreatureFn, so its creature
+    // record fails to load and initiativeModifier stays null.
+    await user.type(input, "6 goblin commando 13");
+    await user.keyboard("{Enter}");
+
+    await waitFor(() => {
+      const combatants = Object.values(useEncounter.getState().encounter.combatants);
+      expect(combatants).toHaveLength(6);
+    });
     expect(useEncounter.getState().encounter.entries.every((e) => e.initiative === 13)).toBe(true);
   });
 
@@ -135,14 +160,16 @@ describe("QuickAdd", () => {
     expect(document.activeElement).toBe(input);
   });
 
-  it("shows what was added", async () => {
+  // The confirmation echoes the stored (totalled) initiative, not the raw
+  // die result typed — it's the number the GM will actually see on the row.
+  it("shows what was added, with the totalled initiative", async () => {
     const user = userEvent.setup();
     render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
     const input = screen.getByRole("combobox", { name: /quick add/i });
     await user.type(input, "6 goblin warrior 13");
     await user.keyboard("{Enter}");
 
-    await waitFor(() => expect(screen.getByText(/added 6 × Goblin Warrior at 13/i)).toBeDefined());
+    await waitFor(() => expect(screen.getByText(/added 6 × Goblin Warrior at 18/i)).toBeDefined());
   });
 
   it("moves the highlight with arrow keys and adds the highlighted entry on Enter", async () => {
@@ -226,7 +253,7 @@ describe("QuickAdd", () => {
     await waitFor(() => {
       expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(30);
     });
-    expect(useEncounter.getState().encounter.entries.every((e) => e.initiative === 13)).toBe(true);
+    expect(useEncounter.getState().encounter.entries.every((e) => e.initiative === 18)).toBe(true);
   });
 
   it("says a quantity was capped instead of clamping silently", async () => {
@@ -237,7 +264,7 @@ describe("QuickAdd", () => {
     await user.keyboard("{Enter}");
 
     await waitFor(() =>
-      expect(screen.getByText(/added 30 × Goblin Warrior at 13 \(capped from 500\)/i)).toBeDefined(),
+      expect(screen.getByText(/added 30 × Goblin Warrior at 18 \(capped from 500\)/i)).toBeDefined(),
     );
   });
 
@@ -248,7 +275,7 @@ describe("QuickAdd", () => {
     await user.type(input, "6 goblin warrior 13");
     await user.keyboard("{Enter}");
 
-    await waitFor(() => expect(screen.getByText(/added 6 × Goblin Warrior at 13/i)).toBeDefined());
+    await waitFor(() => expect(screen.getByText(/added 6 × Goblin Warrior at 18/i)).toBeDefined());
     expect(screen.queryByText(/capped/i)).toBeNull();
   });
 

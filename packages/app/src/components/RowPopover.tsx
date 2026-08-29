@@ -9,6 +9,7 @@ import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, PICKABLE_CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
+import { totalInitiative } from "../rules/initiative.js";
 
 /**
  * One chip in the damage-type row. Each carries its own type's colour and
@@ -403,14 +404,11 @@ export function RowPopover({
 
   const commitInitiative = (): void => {
     if (!entry || initiativeValue === null) return; // blank/non-numeric value: nothing to commit — see the field's own comment.
-    // A creature's field is a d20 result the GM just rolled, so the app
-    // totals it with the creature's modifier — or commits it unchanged if
-    // there is none on record, never inventing a +0. A PC's field is
-    // already the party's final, reported total, so it commits exactly as
-    // typed: a GM's own rejection of totalling a PC's number, with a
-    // concrete case — "The player can say 27, which is outside of a D20."
-    const toCommit =
-      combatant.kind === "creature" && knownModifier !== null ? initiativeValue + knownModifier : initiativeValue;
+    // See rules/initiative.ts's totalInitiative for the kind split (creature
+    // d20-result-plus-modifier vs. PC reported-total-as-typed) — this is the
+    // rule's original call site; Quick add and the + Add drawer reuse the
+    // same function rather than re-deriving it.
+    const toCommit = totalInitiative(combatant.kind, initiativeValue, knownModifier);
     setInitiative(entry.id, toCommit);
     setInitiativeDraft("");
   };

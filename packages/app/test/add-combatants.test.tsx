@@ -27,6 +27,46 @@ const entries: IndexEntry[] = [
     remaster: false, book: "Pathfinder Bestiary" },
 ] as IndexEntry[];
 
+// Perception 5 — used by the "totalling the typed die result" tests below,
+// which need a known, non-null modifier to add.
+const goblinWarriorCreature: Creature = {
+  id: "pathfinder-monster-core/goblin-warrior",
+  foundryId: "Actor.goblin-warrior",
+  name: "Goblin Warrior",
+  level: -1,
+  rarity: "common",
+  size: "small",
+  traits: ["goblin"],
+  source: { pack: "pathfinder-monster-core", book: "Monster Core", license: "ORC", remaster: true },
+  ac: 16,
+  acDetails: null,
+  hp: 6,
+  hpDetails: null,
+  saves: {
+    fortitude: { value: 4, detail: null },
+    reflex: { value: 6, detail: null },
+    will: { value: 2, detail: null },
+  },
+  immunities: [],
+  weaknesses: [],
+  resistances: [],
+  perception: 5,
+  senses: [],
+  languages: [],
+  skills: {},
+  abilityMods: {},
+  speeds: [{ type: "land", value: 25 }],
+  attacks: [
+    { name: "Shortsword", kind: "melee", bonus: 6,
+      damage: [{ formula: "1d6+1", type: "piercing", category: null }],
+      traits: ["agile", "finesse"], effects: [] },
+  ],
+  actions: [],
+  spellcasting: [],
+  gear: [],
+  publicNotes: "",
+};
+
 describe("AddCombatants", () => {
   beforeEach(() => useEncounter.getState().reset());
 
@@ -57,16 +97,44 @@ describe("AddCombatants", () => {
     expect(screen.getByText(/showing 50, refine your search/i)).toBeDefined();
   });
 
-  it("adds several at once", async () => {
+  // "6 goblins 13" means the GM rolled a 13 — the field is a d20 result, not
+  // the final initiative, since the GM is the one rolling a monster's
+  // initiative. goblinWarriorCreature's Perception (5) is what gets added.
+  // Same rule as the row popover's commitInitiative, reused via
+  // rules/initiative.ts's totalInitiative rather than re-derived here.
+  it("adds several at once, totalling the typed die result with the creature's modifier", async () => {
     const user = userEvent.setup();
-    render(<AddCombatants entries={entries} />);
+    const loadCreatureFn = async (id: string): Promise<Creature> => {
+      expect(id).toBe("pathfinder-monster-core/goblin-warrior");
+      return goblinWarriorCreature;
+    };
+    render(<AddCombatants entries={entries} loadCreatureFn={loadCreatureFn} />);
     await user.click(screen.getByRole("button", { name: /add Goblin Warrior/i }));
+    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
     const stepper = screen.getByLabelText(/quantity/i);
     await user.clear(stepper);
     await user.type(stepper, "6");
     await user.type(screen.getByLabelText(/initiative/i), "13");
     await user.click(screen.getByRole("button", { name: /add 6/i }));
     expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(6);
+    // 13 (the typed die result) + 5 (Goblin Warrior's Perception) = 18.
+    expect(useEncounter.getState().encounter.entries.every((e) => e.initiative === 18)).toBe(true);
+  });
+
+  // No creature record loaded (here: the fetch fails, same "no modifier"
+  // case as the row popover) means nothing to add — the typed value commits
+  // unchanged rather than inventing a +0.
+  it("commits the typed initiative unchanged when the creature has no modifier on record", async () => {
+    const user = userEvent.setup();
+    const loadCreatureFn = async (): Promise<Creature> => {
+      throw new Error("no fixture");
+    };
+    render(<AddCombatants entries={entries} loadCreatureFn={loadCreatureFn} />);
+    await user.click(screen.getByRole("button", { name: /add Goblin Warrior/i }));
+    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
+    await user.type(screen.getByLabelText(/initiative/i), "13");
+    await user.click(screen.getByRole("button", { name: /add 1 goblin warrior/i }));
+    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(13);
   });
 
   it("leaves the entry unrolled when the GM adds without typing an initiative", async () => {
@@ -75,6 +143,56 @@ describe("AddCombatants", () => {
     await user.click(screen.getByRole("button", { name: /add Goblin Warrior/i }));
     await user.click(screen.getByRole("button", { name: /add 1 goblin warrior/i }));
     expect(useEncounter.getState().encounter.entries[0]!.initiative).toBeNull();
+  });
+
+  // The "act this round instead" hint and what gets parked as trueInitiative
+  // must both be driven off the TOTAL (die result + modifier), not the raw
+  // typed roll — otherwise a mid-round add can slot into the wrong place.
+  // Here the raw roll (15) alone sits below the active entry's 20, but the
+  // total (15 + 8 modifier = 23) sits above it, so the hint must still fire.
+  it("compares the totalled initiative, not the raw die result, against the active entry for the act-this-round hint", async () => {
+    const user = userEvent.setup();
+    const loadCreatureFn = async (): Promise<Creature> => ({ ...goblinWarriorCreature, perception: 8 });
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, hp: null },
+      20,
+    );
+    render(<AddCombatants entries={entries} loadCreatureFn={loadCreatureFn} />);
+    await user.click(screen.getByRole("button", { name: /add Goblin Warrior/i }));
+    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
+    await user.type(screen.getByLabelText(/initiative/i), "15");
+
+    expect(await screen.findByText(/slot 23 has passed/i)).toBeDefined();
+    await user.click(screen.getByRole("button", { name: /act this round/i }));
+    await user.click(screen.getByRole("button", { name: /add 1 goblin warrior/i }));
+
+    const newEntry = useEncounter
+      .getState()
+      .encounter.entries.find((e) =>
+        e.combatantIds.some((id) => useEncounter.getState().encounter.combatants[id]!.kind === "creature"),
+      );
+    // Parked as the total (23), not the raw roll (15); slotted at or below
+    // the active entry's 20 so it still lands after the active turn.
+    expect(newEntry!.trueInitiative).toBe(23);
+    expect(newEntry!.initiative).toBeLessThanOrEqual(20);
+  });
+
+  // Same total (23) but nothing pushes it above the active entry (30), so
+  // the hint must not fire — confirms the comparison uses the total rather
+  // than always tripping once any modifier is added.
+  it("does not show the act-this-round hint when the totalled initiative still falls at or below the active entry's", async () => {
+    const user = userEvent.setup();
+    const loadCreatureFn = async (): Promise<Creature> => ({ ...goblinWarriorCreature, perception: 8 });
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, hp: null },
+      30,
+    );
+    render(<AddCombatants entries={entries} loadCreatureFn={loadCreatureFn} />);
+    await user.click(screen.getByRole("button", { name: /add Goblin Warrior/i }));
+    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
+    await user.type(screen.getByLabelText(/initiative/i), "15");
+
+    expect(screen.queryByText(/has passed/i)).toBeNull();
   });
 });
 

@@ -6,6 +6,7 @@ import { loadIndexI18n, loadMergedIndexI18n, localizeEntries, type IndexI18n } f
 import { format, useT } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
 import type { Iwr } from "../rules/damage.js";
+import { totalInitiative } from "../rules/initiative.js";
 import { useEncounter } from "../state/store.js";
 import type { CombatantSeed } from "../state/store.js";
 
@@ -186,10 +187,19 @@ export function AddCombatants({
     setActThisRound(false);
   };
 
-  // A blank field means "not rolled yet", same as QuickAdd — not a 0. Also
-  // drives the "will act next round" hint below, so there is only one
-  // reading of what the GM typed.
+  // A blank field means "not rolled yet", same as QuickAdd — not a 0.
   const typedInitiative = initiative.trim() === "" ? null : Number(initiative) || 0;
+
+  // This drawer only ever adds a creature (a PC comes in through Quick add
+  // instead), so the typed field is always a d20 result the GM just
+  // rolled — the app totals it with the selected creature's own modifier
+  // before it's stored or compared against the active entry below. Same
+  // rule as the row popover's commitInitiative — see rules/initiative.ts's
+  // totalInitiative, its one home. Computed here (off `loadedCreature`
+  // directly, not the seed built inside handleAdd) so `willActNextRound`
+  // below can read it too, not just the add itself.
+  const committedInitiative =
+    typedInitiative === null ? null : totalInitiative("creature", typedInitiative, loadedCreature?.perception ?? null);
 
   const handleAdd = (): void => {
     if (!selected) return;
@@ -202,21 +212,30 @@ export function AddCombatants({
     const seed = seedFromEntry(rawSelected, loadedCreature);
 
     // "act this round instead": the combatant's turn-order slot is lowered
-    // just enough to still be reached this round, but the GM's typed
+    // just enough to still be reached this round, but the GM's totalled
     // initiative is never overwritten — it's parked as trueInitiative and
-    // restored (see store.nextTurn) the moment the round wraps. An active
-    // entry with no initiative rolled yet is treated as a 0 for this
-    // comparison — there's no real value to measure against. An unrolled
-    // newcomer (typedInitiative null) can't be "acting early" either — there
-    // is no numeric value to compare or to restore later — so it always
-    // falls through to the plain (null) slot, which already sorts above
-    // everything.
+    // restored (see store.nextTurn) the moment the round wraps. Every
+    // comparison here uses committedInitiative (die result + modifier), not
+    // the raw typed roll — a roll that sits below the active entry's
+    // initiative can still total above it once the modifier is added, and a
+    // mid-round add has to slot by the number that actually decides turn
+    // order. An active entry with no initiative rolled yet is treated as a 0
+    // for this comparison — there's no real value to measure against. An
+    // unrolled newcomer (committedInitiative null) can't be "acting early"
+    // either — there is no numeric value to compare or to restore later —
+    // so it always falls through to the plain (null) slot, which already
+    // sorts above everything.
     const activeInitiative = activeEntry?.initiative ?? 0;
-    let slotInitiative = typedInitiative;
+    let slotInitiative = committedInitiative;
     let trueInitiative: number | undefined;
-    if (typedInitiative !== null && actThisRound && activeEntry !== undefined && typedInitiative > activeInitiative) {
-      slotInitiative = Math.min(typedInitiative, activeInitiative);
-      trueInitiative = typedInitiative;
+    if (
+      committedInitiative !== null &&
+      actThisRound &&
+      activeEntry !== undefined &&
+      committedInitiative > activeInitiative
+    ) {
+      slotInitiative = Math.min(committedInitiative, activeInitiative);
+      trueInitiative = committedInitiative;
     }
 
     if (qty === 1) addCombatant(seed, slotInitiative, trueInitiative);
@@ -227,8 +246,8 @@ export function AddCombatants({
   const willActNextRound =
     running &&
     activeEntry !== undefined &&
-    typedInitiative !== null &&
-    typedInitiative > (activeEntry.initiative ?? 0) &&
+    committedInitiative !== null &&
+    committedInitiative > (activeEntry.initiative ?? 0) &&
     !actThisRound;
 
   const qtyForLabel = Math.max(1, Math.trunc(Number(quantity)) || 1);
@@ -441,7 +460,7 @@ export function AddCombatants({
               }}
             >
               <span style={{ fontSize: "12.5px", color: "var(--info)" }}>
-                {format(t("SLOT_PASSED_PREFIX"), { slot: typedInitiative })} <strong>{t("NEXT_ROUND_BOLD")}</strong>
+                {format(t("SLOT_PASSED_PREFIX"), { slot: committedInitiative })} <strong>{t("NEXT_ROUND_BOLD")}</strong>
               </span>
               <button
                 type="button"
