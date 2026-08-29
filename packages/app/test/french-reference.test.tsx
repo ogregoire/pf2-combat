@@ -48,6 +48,12 @@ const frTraits: TraitsI18n = {
 // letter ("Ébloui") alongside plain ones spanning the alphabet — a plain
 // code-unit compare sorts "Ébloui" after every unaccented word (dead last,
 // after "Blessé"), while French collation places it with the other Es.
+// prone/grabbed/blinded are added on top of that for the GM's own example:
+// "À terre" (prone) carries a space, which `Intl.Collator`'s default
+// weighting treats as a real, sortable character and sorts to the very
+// front of the list ("À terre" collates before even "Agrippé", not merely
+// out of place next to it) — French sorting convention says to ignore
+// spaces, which puts "À terre" between "Agrippé" and "Aveuglé".
 const conditions: Condition[] = [
   { slug: "frightened", name: "Frightened", isValued: true, description: "<p>Frightened things.</p>" },
   { slug: "sickened", name: "Sickened", isValued: true, description: "<p>Sickened things.</p>" },
@@ -55,6 +61,9 @@ const conditions: Condition[] = [
   { slug: "clumsy", name: "Clumsy", isValued: true, description: "<p>Clumsy things.</p>" },
   { slug: "off-guard", name: "Off-Guard", isValued: false, description: "<p>Off-guard things.</p>" },
   { slug: "wounded", name: "Wounded", isValued: true, description: "<p>Wounded things.</p>" },
+  { slug: "prone", name: "Prone", isValued: false, description: "<p>Prone things.</p>" },
+  { slug: "grabbed", name: "Grabbed", isValued: false, description: "<p>Grabbed things.</p>" },
+  { slug: "blinded", name: "Blinded", isValued: false, description: "<p>Blinded things.</p>" },
 ];
 const frConditions: ReferenceI18n = {
   frightened: { name: "Effrayé", description: null },
@@ -63,6 +72,9 @@ const frConditions: ReferenceI18n = {
   clumsy: { name: "Maladroit", description: null },
   "off-guard": { name: "Pris au dépourvu", description: null },
   wounded: { name: "Blessé", description: null },
+  prone: { name: "À terre", description: null },
+  grabbed: { name: "Agrippé", description: null },
+  blinded: { name: "Aveuglé", description: null },
 };
 
 function fakeFetch(over: { traits?: Trait[]; frTraits?: TraitsI18n } = {}): FetchFn {
@@ -140,7 +152,9 @@ describe("conditions, traits and the glossary render in French", () => {
     await user.hover(screen.getByText("Ours effrayé"));
 
     const picker = screen.getByRole("group", { name: "ajouter un état" });
-    const translated = new Set(["Blessé", "Ébloui", "Effrayé", "Maladroit", "Nauséeux", "Pris au dépourvu"]);
+    const translated = new Set([
+      "Agrippé", "À terre", "Aveuglé", "Blessé", "Ébloui", "Effrayé", "Maladroit", "Nauséeux", "Pris au dépourvu",
+    ]);
     // aria-label, not textContent — PickableConditionButton appends a bare
     // "X" placeholder to a valued condition's visible text (see its own doc
     // comment), which the accessible name deliberately excludes.
@@ -149,11 +163,18 @@ describe("conditions, traits and the glossary render in French", () => {
       .map((b) => b.getAttribute("aria-label"))
       .filter((text): text is string => translated.has(text ?? ""));
 
-    // Correct French alphabetical order (B, É~E, E, M, N, P). The old
-    // English-name sort would instead yield Maladroit(Clumsy), Ébloui
-    // (Dazzled), Effrayé (Frightened), Pris au dépourvu (Off-Guard),
-    // Nauséeux (Sickened), Blessé (Wounded).
-    expect(order).toEqual(["Blessé", "Ébloui", "Effrayé", "Maladroit", "Nauséeux", "Pris au dépourvu"]);
+    // Correct French alphabetical order (A, À~A, A, B, É~E, E, M, N, P) —
+    // this is the GM's own example: "À terre" (prone) sits between
+    // "Agrippé" (grabbed) and "Aveuglé" (blinded), not at the very front of
+    // the list where a literal, unstripped space would put it. The old
+    // English-name sort would instead yield Agrippé(Grabbed), Aveuglé
+    // (Blinded), Maladroit(Clumsy), Ébloui(Dazzled), Effrayé(Frightened),
+    // Pris au dépourvu(Off-Guard), Nauséeux(Sickened), À terre(Prone),
+    // Blessé(Wounded); a space-sensitive French collator without the fix
+    // would instead put "À terre" first, ahead of "Agrippé".
+    expect(order).toEqual([
+      "Agrippé", "À terre", "Aveuglé", "Blessé", "Ébloui", "Effrayé", "Maladroit", "Nauséeux", "Pris au dépourvu",
+    ]);
   });
 
   it("keeps the picker alphabetical in English too", async () => {
