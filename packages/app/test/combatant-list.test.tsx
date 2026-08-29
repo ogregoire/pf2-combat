@@ -1291,5 +1291,57 @@ describe("CombatantList", () => {
       s.addCombatant(seed({ name: "Wolf" }), 5);
       expect(names()).toEqual(["Valeros", "Goblin", "Goblin", "Wolf"]);
     });
+
+    // Open question from the fix above: what happens when a *second*,
+    // independent drag lands on the exact same `below + 1` degenerate
+    // value the first one did? Both PCs end up genuinely tied with each
+    // other — not with either goblin — which is not itself a new problem:
+    // two tied PCs is the ordinary "you decide between yourselves" case
+    // (see sortEntries' own comment), settled by array/drag position same
+    // as any other same-kind tie, so the two dragged PCs simply keep the
+    // order they were dragged in rather than the goblins' kind disturbing
+    // either of them.
+    it("lets two separate drags into the same tied pair re-tie with each other, without disturbing either", () => {
+      const s = useEncounter.getState();
+      const [goblin1Id, goblin2Id] = s.addMany(seed({ name: "Goblin" }), 2, 20);
+      const valerosId = s.addCombatant(
+        seed({ kind: "pc", name: "Valeros", level: 4, ac: 21, saves: { fortitude: 9, reflex: 9, will: 6 } }),
+        20,
+      );
+      const ezrenId = s.addCombatant(
+        seed({ kind: "pc", name: "Ezren", level: 4, ac: 15, saves: { fortitude: 5, reflex: 5, will: 9 } }),
+        20,
+      );
+      const nameOf = (e: { combatantIds: string[] }): string =>
+        useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
+      const names = () => useEncounter.getState().encounter.entries.map(nameOf);
+      const entryFor = (combatantId: string) =>
+        useEncounter.getState().encounter.entries.find((e) => e.combatantIds[0] === combatantId)!;
+      // Both goblins ahead of both tied PCs; Valeros ahead of Ezren
+      // (insertion-stable, per the two-tied-PCs test above).
+      expect(names()).toEqual(["Goblin", "Goblin", "Valeros", "Ezren"]);
+
+      // Drag Valeros to sit between the two goblins — lands on below + 1
+      // (see the test above), leading both goblins.
+      useEncounter.getState().moveEntry(entryFor(valerosId).id, entryFor(goblin2Id).id);
+      expect(names()).toEqual(["Valeros", "Goblin", "Goblin", "Ezren"]);
+
+      // Now drag Ezren to the exact same spot — also lands on below + 1,
+      // which is the same numeric value Valeros already claimed: the two
+      // PCs are now tied with each other, not with either goblin.
+      useEncounter.getState().moveEntry(entryFor(ezrenId).id, entryFor(goblin2Id).id);
+
+      // Both PCs still lead both goblins, and the second drag doesn't
+      // disturb the first — Valeros (dragged first) keeps its place ahead
+      // of Ezren (dragged second), same stable rule as any other tied PC
+      // pair, and neither goblin gets pulled out of its own tied pair by
+      // the PCs' tie.
+      expect(names()).toEqual(["Valeros", "Ezren", "Goblin", "Goblin"]);
+      expect(entryFor(valerosId).orderKey).toBe(entryFor(ezrenId).orderKey);
+
+      // A later re-sort must not let anything reshuffle this.
+      s.addCombatant(seed({ name: "Wolf" }), 5);
+      expect(names()).toEqual(["Valeros", "Ezren", "Goblin", "Goblin", "Wolf"]);
+    });
   });
 });

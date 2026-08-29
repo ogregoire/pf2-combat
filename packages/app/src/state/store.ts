@@ -454,10 +454,28 @@ function isPcEntry(entry: Entry, combatants: Record<string, Combatant>): boolean
  * keep stable order, which is what makes them draggable via the GM's own
  * drag handle instead of the app picking for them.
  *
- * A delayed entry is exempted from the creature/PC half of this comparison
- * (see the guard below) — it isn't contesting turn order right now, and
- * `advanceTurn`'s expiry rule depends on a delayed entry's array position
- * never shifting for reasons unrelated to its own delay/return.
+ * The comparator below is a strict total order — key first, kind second —
+ * with no special case for anything else, `delayed` included. An earlier
+ * version skipped the kind check whenever either side was delayed, to
+ * protect a delayed entry's array position; that broke transitivity: with
+ * three same-keyed entries A (PC), D (delayed, any kind), C (creature), the
+ * exemption made the comparator say A ties D and D ties C while still
+ * saying A does not tie C — a contradiction `Array#sort` never promises to
+ * handle correctly, and at the sizes V8 uses a different algorithm for,
+ * isn't guaranteed to.
+ *
+ * `delayed` needs no exemption to keep `advanceTurn`'s expiry rule safe,
+ * because that rule was never actually promised a *frozen* array index —
+ * only that a delayed entry's own `initiative`/`orderKey` are never
+ * rewritten by anything except its own delay/return (true here; this
+ * function only ever reads them). Its array *position* already moves for
+ * mundane reasons no version of this code has ever prevented — a new
+ * combatant joining mid-fight at a higher initiative shifts it exactly the
+ * same way whether or not the tie-break exists. A same-keyed newcomer now
+ * resolving by kind, same as it would for two non-delayed entries, is that
+ * same category of shift, not a new one: expiry only needs advanceTurn's
+ * pointer to eventually reach the slot the entry currently occupies, and
+ * it always does, however that slot got recomputed.
  */
 /**
  * The nearest entry from `start`, stepping by `step`, that has a rolled
@@ -488,14 +506,14 @@ function sortEntries(entries: Entry[], combatants: Record<string, Combatant>): v
     if (a.initiative !== null && b.initiative === null) return 1;
     const diff = keyOf(b) - keyOf(a);
     if (diff !== 0) return diff;
-    // Exact tie. A delayed entry sits this out — see this function's own
-    // comment — leaving Array#sort's stability to keep its position exactly
-    // where it already was.
-    if (a.delayed || b.delayed) return 0;
+    // Exact tie: settle it by kind (creature before PC), same for every
+    // entry regardless of `delayed` — see this function's own comment for
+    // why a delayed exemption here would be a correctness bug, not a
+    // convenience. Same-kind (PC/PC or creature/creature) falls through to
+    // 0, i.e. stable, decided by array position — unrelated to this rule.
     const aPc = isPcEntry(a, combatants);
     const bPc = isPcEntry(b, combatants);
-    if (aPc !== bPc) return aPc ? 1 : -1; // the creature (non-PC) side sorts first
-    return 0; // both PC or both creature: stable, unrelated to this rule
+    return aPc === bPc ? 0 : aPc ? 1 : -1;
   });
 }
 
@@ -885,7 +903,12 @@ export const useEncounter = create<EncounterStore>()(
         // Nothing about the entry's position changes here. It keeps its
         // initiative and orderKey (and so its place in the list) until it
         // either returns — which rewrites both — or the order comes back
-        // round to this slot and the delayed turn is simply lost.
+        // round to this slot and the delayed turn is simply lost. A later
+        // mutation can still move it in the array (a new combatant joining
+        // ahead of it, or now, a same-keyed newcomer resolving by kind
+        // exactly as sortEntries would for two non-delayed entries) — see
+        // that function's own comment for why that was never actually a
+        // promise this flag needed to keep.
         entry.delayed = true;
         advanceTurn(enc);
       }),
@@ -918,32 +941,8 @@ export const useEncounter = create<EncounterStore>()(
         // Halfway between the two neighbours, or a whole step below the
         // active entry when it is last in the order and there is no lower
         // neighbour to split the difference with.
-        const belowEntry = belowIndex >= 0 ? enc.entries[belowIndex] : undefined;
-        const belowKey = belowEntry !== undefined ? keyOf(belowEntry) : activeKey - 2;
-        // The midpoint only actually separates `entry` from both active and
-        // the entry below when they're distinct — sortEntries' tie-break
-        // (AoN, "Roll Initiative": "If your result is tied with an enemy's
-        // result, the enemy goes first") settles anything still tied by
-        // kind rather than by the placement just made below. That only
-        // matters when it could actually move something: if active and the
-        // entry immediately below it are tied AND that neighbour is a
-        // creature while the *returning* entry is a PC, "the enemy goes
-        // first" would otherwise let that creature leapfrog the PC just
-        // placed behind active — sortEntries already guarantees no creature
-        // is left stranded further down a tied run than a PC (it runs after
-        // every mutation), so checking the one neighbour is enough. Every
-        // other combination (same kind both sides, or a returning creature,
-        // which no tied PC can ever outrank) is exactly the "tied ones are
-        // the norm here" case the splice below already handles correctly on
-        // its own — a full step below `active` there would only push the
-        // entry further from active than the drop-in-behind-the-active-
-        // creature placement calls for, with nothing to guard against.
-        const risksLeapfrog =
-          belowEntry !== undefined &&
-          activeKey === belowKey &&
-          isPcEntry(entry, enc.combatants) &&
-          !isPcEntry(belowEntry, enc.combatants);
-        const newKey = risksLeapfrog ? activeKey - 1 : (activeKey + belowKey) / 2;
+        const belowKey = belowIndex >= 0 ? keyOf(enc.entries[belowIndex]!) : activeKey - 2;
+        const newKey = (activeKey + belowKey) / 2;
 
         entry.initiativeBeforeDelay = entry.initiative;
         entry.initiative = active.initiative;
@@ -961,12 +960,12 @@ export const useEncounter = create<EncounterStore>()(
         // Splicing the entry into place *and* setting orderKey looks
         // redundant, and for distinct initiatives it is — but tied ones are
         // the norm here (addMany gives every member of a batch the same
-        // roll), and then the midpoint above equals both neighbours' key
-        // (except in the active-ties-below case just handled, which never
-        // reaches an equal key at all). sortEntries is stable, so with a
-        // tie between same-kind entries it is this array position, not the
-        // number, that decides who acts first; a tie against a different
-        // kind is instead settled by the tie-break above this splice.
+        // roll), and then the midpoint above equals both neighbours' key.
+        // sortEntries' tie-break is a full total order (see its own
+        // comment), so a tie against a different kind is settled by kind
+        // rather than by position; a tie between same-kind entries is
+        // still settled by this array position, exactly as an untied
+        // placement is.
         const from = enc.entries.findIndex((e) => e.id === entryId);
         const [moved] = enc.entries.splice(from, 1);
         const behindActive = enc.entries.findIndex((e) => e.id === active.id) + 1;

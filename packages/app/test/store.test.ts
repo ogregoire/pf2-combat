@@ -156,13 +156,17 @@ describe("encounter store", () => {
     expect(names()).toEqual(["Amiri", "Goblin"]);
   });
 
-  // A delayed entry's expiry (advanceTurn) reads "the order arrived back at
-  // this slot" as "a full round elapsed" — which only holds if the entry
-  // never moves while delayed (see advanceTurn's own comment). The
-  // creature/PC tie-break must not be the thing that moves it: an unrelated
-  // add that happens to tie with a delayed entry's key must not let a
-  // differently-kinded newcomer leapfrog it.
-  it("does not let the tie-break move a delayed entry when an unrelated add ties with its key", () => {
+  // The tie-break applies to a delayed entry exactly as it would to any
+  // other — "the enemy goes first" doesn't pause because one side is
+  // parked. A creature added later, tying with a delayed PC's own old
+  // roll, correctly outranks it, the same as it would if neither had ever
+  // been delayed. advanceTurn's expiry rule (see its own comment) only
+  // needs the pointer to eventually reach whatever slot the entry
+  // currently occupies — not for that slot to stay fixed against every
+  // later mutation, which nothing in this codebase has ever promised
+  // (a plain higher-initiative newcomer already reshuffles a delayed
+  // entry's array position today, tie or no tie).
+  it("applies the tie-break to a delayed entry exactly as it would to any other, when an unrelated add ties with its key", () => {
     addCreature("Beta", 20);
     const alpha = addPc("Alpha", 15);
     const alphaEntryId = useEncounter.getState().encounter.entries
@@ -175,9 +179,63 @@ describe("encounter store", () => {
 
     const names = () => useEncounter.getState().encounter.entries
       .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
-    // Alpha (delayed, added first) keeps its place ahead of the newcomer
-    // Goblin, even though Goblin is a creature tied at the same key.
-    expect(names()).toEqual(["Beta", "Alpha", "Goblin"]);
+    // Goblin (creature) outranks the delayed Alpha (PC) on the tie, same
+    // as it would against a non-delayed PC.
+    expect(names()).toEqual(["Beta", "Goblin", "Alpha"]);
+
+    // The delayed flag itself is untouched by any of this — still exactly
+    // where delay() left it, still waiting on its own slot to expire.
+    const alphaEntry = useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!;
+    expect(alphaEntry.delayed).toBe(true);
+    expect(alphaEntry.initiative).toBe(15);
+  });
+
+  // A comparator that special-cases `delayed` (returning 0 whenever either
+  // side is delayed, on top of the normal exact-key check) is not merely
+  // "more cautious" — it's formally broken input to Array#sort. With four
+  // entries tied at the same key — Beta (creature), Alpha (PC), Pdelay
+  // (PC, delayed), Cr (creature) — such a comparator says Alpha ties
+  // Pdelay (Pdelay's delayed exemption) and Pdelay ties Cr (same
+  // exemption), which by transitivity would have to mean Alpha ties Cr —
+  // except the *same* comparator, asked that pair directly, says Cr
+  // outranks Alpha by kind. That contradiction is exactly what "ties D and
+  // D ties C, but does not tie C" means, and it's undefined behaviour for
+  // any sort algorithm, not just a wrong answer — and it's not merely
+  // theoretical: with Cr arriving *after* Pdelay is already delayed (so
+  // the pre-sort array reads [Beta, Alpha, Pdelay, Cr], Cr freshly pushed
+  // to the end), V8's actual Array#sort resolves this exact input to
+  // [Beta, Alpha, Pdelay, Cr] — Alpha stays ahead of Cr, a real ordering
+  // violation, not just a hypothetical one. This test pins the actual
+  // requirement instead: with Pdelay genuinely delayed and genuinely tied
+  // (by number) with the rest of the block, Alpha must still sort strictly
+  // behind Cr — Pdelay's presence must not be able to shield that pair
+  // from the rule, however the sort algorithm happens to walk the array.
+  it("does not let a delayed entry shield a same-keyed PC from a same-keyed creature (comparator transitivity)", () => {
+    addCreature("Beta", 12);
+    addPc("Alpha", 12);
+    const pdelay = addPc("Pdelay", 12);
+    const pdelayEntryId = useEncounter.getState().encounter.entries
+      .find((e) => e.combatantIds[0] === pdelay)!.id;
+
+    useEncounter.getState().nextTurn(); // Beta acts; Alpha is up
+    useEncounter.getState().nextTurn(); // Alpha acts; Pdelay is up
+    useEncounter.getState().delay(pdelayEntryId); // Pdelay delays, still tied with Beta/Alpha
+
+    // Cr arrives *after* Pdelay is already delayed — freshly pushed to the
+    // end of the array, right where a non-transitive comparator's stable
+    // fallback would strand it behind the tied PCs instead of resolving
+    // it by kind.
+    addCreature("Cr", 12);
+
+    const names = () => useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names()).toEqual(["Beta", "Cr", "Alpha", "Pdelay"]);
+    // The concrete claim: Alpha (PC) sorts strictly behind Cr (creature),
+    // Pdelay's tied, delayed presence notwithstanding.
+    expect(names().indexOf("Alpha")).toBeGreaterThan(names().indexOf("Cr"));
+    expect(
+      useEncounter.getState().encounter.entries.find((e) => e.id === pdelayEntryId)!.delayed,
+    ).toBe(true);
   });
 
   it("adds N copies with numbered labels", () => {
