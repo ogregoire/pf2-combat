@@ -539,6 +539,27 @@ describe("CombatantList", () => {
       .queryByRole("button", { name: "Prone" })).toBeNull();
   });
 
+  it("orders applied condition chips alphabetically, not in the order they were applied", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    // Applied out of alphabetical order (Prone, then Blinded, then Clumsy) —
+    // the chips used to render in this same insertion order.
+    useEncounter.getState().addCondition(id, "prone", 0);
+    useEncounter.getState().addCondition(id, "blinded", 0);
+    useEncounter.getState().addCondition(id, "clumsy", 1);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    const applied = screen.getByRole("group", { name: "applied conditions" });
+    const order = within(applied)
+      .getAllByRole("button")
+      .map((b) => b.getAttribute("aria-label") ?? "")
+      .filter((label) => label.startsWith("Remove "))
+      .map((label) => label.slice("Remove ".length));
+
+    expect(order).toEqual(["Blinded", "Clumsy", "Prone"]);
+  });
+
   it("removes a condition from the popover's chip", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(seed(), 19);

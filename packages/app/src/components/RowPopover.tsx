@@ -808,9 +808,15 @@ export function RowPopover({
           // to this combatant surfaced first inside the section so the GM
           // doesn't scroll past it to see what's already on.
           <div role="group" aria-label={t("APPLIED_CONDITIONS_ARIA")} style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
-            {combatant.conditions.map((c) => {
-              const def = CONDITIONS[c.slug];
-              const name = conditionDisplayName(c.slug, glossary, lang);
+            {combatant.conditions
+              // Alphabetical in the language it's shown in, same as the
+              // pickable row just below (see that row's own comment for why
+              // `compareLocalized` and not `compareStrings`) — reusing the
+              // exact mechanism rather than a second sort, since it's the
+              // same requirement on the same screen.
+              .map((c) => ({ c, def: CONDITIONS[c.slug], name: conditionDisplayName(c.slug, glossary, lang) }))
+              .sort((a, b) => compareLocalized(a.name, b.name, lang))
+              .map(({ c, def, name }) => {
               return (
                 <div
                   key={c.slug}

@@ -103,7 +103,7 @@ export function ActionList({
     return { disabled: cost > remaining, onUse: () => spendActions(combatant.id, cost) };
   }
 
-  const items = buildActionList(actions, attacks);
+  const items = buildActionList(actions, attacks, lang);
   const activatable = items.filter((i) => i.kind === "strike" || i.action.cost !== "passive");
   const passives = items.filter((i) => i.kind === "action" && i.action.cost === "passive");
 

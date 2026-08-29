@@ -1,10 +1,11 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Condition, GlossaryEntry } from "@pf2/schema";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { useEncounter } from "../src/state/store.js";
 import type { FetchFn } from "../src/data/catalog.js";
+import * as actionLayout from "../src/rules/actionLayout.js";
 
 describe("ActionList — Strikes merged into the action list", () => {
   beforeEach(() => useEncounter.getState().reset());
@@ -152,6 +153,37 @@ describe("ActionList — Strikes merged into the action list", () => {
     expect(strike.style.border).toBe(action.style.border);
     expect(strike.style.padding).toBe(action.style.padding);
     expect(strike.style.borderRadius).toBe(action.style.borderRadius);
+  });
+
+  // buildActionList's own tests (action-layout.test.ts) cover the
+  // locale-aware tie-break in isolation. This pins that ActionList actually
+  // passes the store's `lang` through to it as an argument (rather than,
+  // say, defaulting to "en" regardless of the GM's chosen language) — the
+  // same wiring bug that shipped for the condition picker before it was
+  // caught. A rendered-order assertion wouldn't reliably catch a dropped
+  // `lang` argument here: French and English collation happen to agree on
+  // "Épée" vs "Zèle" (both file É with E, ahead of Z), so asserting on
+  // buildActionList's call arguments directly is what actually fails if the
+  // wiring is missing.
+  it("passes the store's active language through to buildActionList", () => {
+    const spy = vi.spyOn(actionLayout, "buildActionList");
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant(
+      {
+        kind: "creature", name: "Ogre", level: 3, ac: 18,
+        saves: { fortitude: 10, reflex: 6, will: 5 }, hp: { current: 30, max: 30 },
+        attacks: [],
+        actions: [
+          { name: "Zèle", cost: "1", traits: [], frequency: null, trigger: null,
+            requirements: null, description: "<p>Does a thing.</p>", category: "offensive" },
+        ],
+      },
+      20,
+    );
+    render(<ActiveCombatant />);
+
+    expect(spy).toHaveBeenCalledWith(expect.anything(), expect.anything(), "fr");
+    spy.mockRestore();
   });
 
   it("orders a Strike alongside actions by cost, and gives it the same cost pip as any other 1-action ability", () => {

@@ -118,4 +118,65 @@ describe("buildActionList", () => {
     const claw = items.find((i) => i.kind === "strike");
     expect(claw!.children).toEqual([]);
   });
+
+  it("breaks a same-cost tie by locale-aware name in French, not raw codepoint order", () => {
+    // Raw codepoint order (the old `compareStrings` tie-break) puts "Épée"
+    // after "Zèle" — uppercase É (U+00C9) sorts above every unaccented
+    // letter. A French reader expects "Épée" filed with the other Es, ahead
+    // of "Zèle".
+    expect("Épée" > "Zèle").toBe(true);
+    const items = buildActionList(
+      [action({ name: "Zèle", cost: "1" }), action({ name: "Épée", cost: "1" })],
+      [],
+      "fr",
+    );
+    expect(items.map((i) => (i.kind === "action" ? i.action.name : ""))).toEqual(["Épée", "Zèle"]);
+  });
+
+  it("keeps cost precedence ahead of the locale tie-break: a 2-action Zzz still outranks a 1-action Aaa", () => {
+    const items = buildActionList(
+      [action({ name: "Aaa", cost: "1" }), action({ name: "Zzz", cost: "2" })],
+      [],
+      "fr",
+    );
+    expect(items.map((i) => (i.kind === "action" ? i.action.name : ""))).toEqual(["Zzz", "Aaa"]);
+  });
+
+  it("runs a Strike's name through the same locale-aware tie-break as an action's", () => {
+    // Same scenario as the "Épée"/"Zèle" case above, but with the accented
+    // name on a Strike instead of an action — both kinds of item read their
+    // name through the same `itemName`/`compareItems` path, so one comparator
+    // fix must cover both.
+    const items = buildActionList(
+      [action({ name: "Zèle", cost: "1" })],
+      [attack({ name: "Épée" })],
+      "fr",
+    );
+    expect(items.map((i) => (i.kind === "action" ? i.action.name : i.attack.name))).toEqual(["Épée", "Zèle"]);
+  });
+
+  it("keeps the English tie-break order for the same names — no lang argument needed", () => {
+    // Derived, not assumed: Intl.Collator("en").compare("Épée", "Zèle") is
+    // -1 (verified separately), so passing no `lang` (defaulting to "en")
+    // must yield the same "Épée" first order as the French case, just
+    // through the English collator rather than raw codepoints.
+    const items = buildActionList(
+      [action({ name: "Zèle", cost: "1" }), action({ name: "Épée", cost: "1" })],
+      [],
+    );
+    expect(items.map((i) => (i.kind === "action" ? i.action.name : ""))).toEqual(["Épée", "Zèle"]);
+  });
+
+  it("keeps the existing English, all-ASCII tie-break order unchanged with no lang argument", () => {
+    // Same fixture as "keeps limited-use... then sorts by name" above,
+    // called without a `lang` argument, to pin that the default doesn't
+    // regress the ASCII case that test already covers.
+    const items = buildActionList(
+      [action({ name: "Zebra Strike", cost: "2" }), action({ name: "Aardvark Strike", cost: "2" })],
+      [],
+    );
+    expect(items.map((i) => (i.kind === "action" ? i.action.name : ""))).toEqual([
+      "Aardvark Strike", "Zebra Strike",
+    ]);
+  });
 });

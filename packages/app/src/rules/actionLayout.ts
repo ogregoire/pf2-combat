@@ -1,5 +1,5 @@
 import type { Action, Attack } from "@pf2/schema";
-import { compareStrings } from "./compare.js";
+import { compareLocalized } from "./compare.js";
 
 export type ActionListItem =
   | { kind: "action"; action: Action; children: Action[] }
@@ -29,16 +29,23 @@ function itemName(item: ActionListItem): string {
   return item.kind === "strike" ? item.attack.name : item.action.name;
 }
 
-/** Limited-use (a `frequency`) first, then by cost descending, then name —
- * the once-per-day ability shouldn't be buried under a pile of at-will
- * ones. `compareStrings`, never `localeCompare`. */
-function compareItems(a: ActionListItem, b: ActionListItem): number {
+/** Limited-use (a `frequency`) first, then by cost descending, then name.
+ * The name compare is deliberately the *last* tie-break, reached only once
+ * limited-use and cost are equal — it never overrides the precedence above
+ * it, so a 2-action ability still outranks a 1-action one regardless of
+ * name. `compareLocalized`, not `compareStrings`: this list is rendered,
+ * never persisted, so `compareStrings`'s cross-machine determinism concern
+ * doesn't apply here, and a raw compare would file an accented French name
+ * (e.g. "Épée") after every unaccented one instead of with its own letter —
+ * the same bug the condition picker had (see RowPopover). Applies equally
+ * to a Strike's name (via `itemName`), not just an action's. */
+function compareItems(a: ActionListItem, b: ActionListItem, lang: string): number {
   const aLimited = itemLimited(a) ? 0 : 1;
   const bLimited = itemLimited(b) ? 0 : 1;
   if (aLimited !== bLimited) return aLimited - bLimited;
   const costDiff = COST_RANK[itemCost(a)] - COST_RANK[itemCost(b)];
   if (costDiff !== 0) return costDiff;
-  return compareStrings(itemName(a), itemName(b));
+  return compareLocalized(itemName(a), itemName(b), lang);
 }
 
 /** The first plain-text run of an HTML description, e.g. `<p>Claw</p><hr />
@@ -55,8 +62,15 @@ function firstTextNode(html: string): string {
  * names one of the creature's own attacks (Rend on a troll opens with
  * "Claw") is pulled out as that Strike's child instead of appearing at the
  * top level — narrowly, on that exact signal, not a broader heuristic.
+ *
+ * `lang` defaults to "en" so every existing call site (and every ordering
+ * test written before this parameter existed) keeps compiling and behaving
+ * the same for plain-ASCII names — it only changes anything once a name has
+ * an accented initial. `rules/` modules don't import from `state/`, so this
+ * takes the language as a plain parameter rather than reading it off the
+ * store itself; the caller (ActionList.tsx) is the one that knows it.
  */
-export function buildActionList(actions: Action[], attacks: Attack[]): ActionListItem[] {
+export function buildActionList(actions: Action[], attacks: Attack[], lang: string = "en"): ActionListItem[] {
   const attackNames = new Set(attacks.map((a) => a.name));
   const childrenByParent = new Map<string, Action[]>();
   const topLevel: Action[] = [];
@@ -71,7 +85,9 @@ export function buildActionList(actions: Action[], attacks: Attack[]): ActionLis
       topLevel.push(action);
     }
   }
-  for (const list of childrenByParent.values()) list.sort((a, b) => compareStrings(a.name, b.name));
+  // Same locale-aware tie-break as the top-level list (see compareItems) —
+  // these names render too, so they get the same fix.
+  for (const list of childrenByParent.values()) list.sort((a, b) => compareLocalized(a.name, b.name, lang));
 
   const items: ActionListItem[] = [
     ...topLevel.map((action): ActionListItem => ({ kind: "action", action, children: [] })),
@@ -84,5 +100,5 @@ export function buildActionList(actions: Action[], attacks: Attack[]): ActionLis
       }),
     ),
   ];
-  return items.sort(compareItems);
+  return items.sort((a, b) => compareItems(a, b, lang));
 }

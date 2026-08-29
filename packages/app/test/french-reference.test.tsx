@@ -177,6 +177,43 @@ describe("conditions, traits and the glossary render in French", () => {
     ]);
   });
 
+  it("orders the applied condition chips alphabetically in French, not the order they were applied", async () => {
+    // Same bug shape as the picker above, on the other list in this same
+    // panel: the applied-condition chips rendered in insertion order, not
+    // sorted at all. Applied deliberately out of alphabetical order —
+    // wounded (Blessé), then dazzled (Ébloui), then prone (À terre), then
+    // grabbed (Agrippé) — so insertion order and alphabetical order
+    // disagree everywhere, and the accented initial ("Ébloui") is the same
+    // signal the picker's own fix needed.
+    vi.stubGlobal("fetch", fakeFetch());
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Ours effrayé", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 6, will: 2 }, hp: { current: 10, max: 10 } },
+      10,
+    );
+    useEncounter.getState().addCondition(id, "wounded", 1);
+    useEncounter.getState().addCondition(id, "dazzled", 0);
+    useEncounter.getState().addCondition(id, "prone", 0);
+    useEncounter.getState().addCondition(id, "grabbed", 0);
+
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Ours effrayé"));
+
+    const appliedGroup = screen.getByRole("group", { name: "états appliqués" });
+    // The remove button's aria-label is "Retirer {name}" — pulling the name
+    // back out of it is more robust than reading the chip's own text node,
+    // which also carries the stepper's value for a valued condition like
+    // "wounded".
+    const order = within(appliedGroup)
+      .getAllByRole("button")
+      .map((b) => b.getAttribute("aria-label") ?? "")
+      .filter((label) => label.startsWith("Retirer "))
+      .map((label) => label.slice("Retirer ".length));
+
+    expect(order).toEqual(["Agrippé", "À terre", "Blessé", "Ébloui"]);
+  });
+
   it("keeps the picker alphabetical in English too", async () => {
     // Same picker, lang left at "en" (the default) — the fix must not
     // regress the language that happened to already look right under a
