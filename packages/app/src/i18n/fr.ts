@@ -170,8 +170,7 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   CURRENT_INITIATIVE_TITLE: "Initiative actuelle",
   CURRENT_INITIATIVE_ARIA: "Initiative actuelle {value}",
   UNROLLED_LABEL: "non lancée",
-  INITIATIVE_MODIFIER_FOR_NAME_ARIA: "Modificateur d'initiative de {name}",
-  INITIATIVE_DIE_RESULT_ARIA: "Résultat du dé d'initiative",
+  INITIATIVE_VALUE_ARIA: "Valeur d'initiative",
   SET_INITIATIVE_BUTTON: "Définir l'initiative",
 
   // TurnManager.tsx

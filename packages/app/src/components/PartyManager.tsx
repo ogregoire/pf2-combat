@@ -63,10 +63,11 @@ function hpDisplay(hp: number | undefined): string {
 
 /** The initiative modifier makes the same distinction HP does, for a
  * sharper reason: `null` means "nobody has told the app this player's
- * modifier yet", which is what the row popover's one-time prompt is gated
- * on, while 0 is a real +0 that would silence that prompt for good. So a
- * blank field maps back to null, never to 0 — and a stored 0 still shows as
- * "0" rather than being blanked the way numDisplay blanks a level of 0. */
+ * modifier yet", which is also what tells the row popover to show no
+ * reminder beside the initiative field, while 0 is a real +0 that would
+ * show as one. So a blank field maps back to null, never to 0 — and a
+ * stored 0 still shows as "0" rather than being blanked the way numDisplay
+ * blanks a level of 0. */
 function modifierDisplay(mod: number | null): string {
   return mod === null ? "" : String(mod);
 }
@@ -220,13 +221,13 @@ export function PartyManager(): React.ReactElement {
               />
             </label>
 
-            {/* The roster is the only place this can be corrected. The row
-               popover asks for it once, the first time this PC rolls, and
-               its prompt is gated on the value still being unknown — so
-               without a field here a mistyped +50 was permanent short of
-               deleting the player. It sits with the other permanent numbers
-               rather than in the encounter, because that is what it is: the
-               modifier survives between fights, the roll doesn't. */}
+            {/* The roster is the only place this can be set or corrected —
+               the row popover only shows it as a reminder beside the
+               initiative field, never writes it back, so without a field
+               here a mistyped +50 was permanent short of deleting the
+               player. It sits with the other permanent numbers rather than
+               in the encounter, because that is what it is: the modifier
+               survives between fights, the roll doesn't. */}
             <label style={{ ...fieldStyle, width: "64px" }}>
               {t("LABEL_INITIATIVE_MODIFIER")}
               <input

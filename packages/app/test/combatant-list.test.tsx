@@ -679,7 +679,7 @@ describe("CombatantList", () => {
     render(<CombatantList />);
 
     await user.hover(screen.getByText("Stag Lord Bandit"));
-    await user.type(screen.getByLabelText("Initiative die result"), "25");
+    await user.type(screen.getByLabelText("Initiative value"), "25");
     await user.click(screen.getByRole("button", { name: /set initiative/i }));
 
     expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(25);
@@ -703,26 +703,49 @@ describe("CombatantList", () => {
     expect(screen.getByTitle("Current initiative").textContent).toBe("—");
   });
 
-  it("adds the combatant's modifier to the die result and commits the total", async () => {
+  // The GM's own rejection of the old "die result + modifier" model: "The
+  // player can say 27, which is outside of a D20." Players report their
+  // final, already-totalled initiative — the field commits exactly what's
+  // typed, and the combatant's known modifier is shown only as a reminder
+  // beside it, never added to anything.
+  it("commits the typed initiative value unmodified and shows the known modifier as a reminder", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant({ ...seed(), initiativeModifier: 7 }, null);
     render(<CombatantList />);
     await user.hover(screen.getByText("Stag Lord Bandit"));
 
-    await user.type(screen.getByLabelText("Initiative die result"), "12");
-    expect(screen.getByText("12 + 7 = 19")).toBeDefined();
+    const initiativeInput = screen.getByLabelText("Initiative value");
+    await user.type(initiativeInput, "27");
+    // Scoped to the field's own row: the seeded combatant's Reflex save is
+    // also "+7" elsewhere in the panel, and an unscoped query would match
+    // both.
+    expect(within(initiativeInput.parentElement!).getByText("+7")).toBeDefined();
 
     await user.click(screen.getByRole("button", { name: /set initiative/i }));
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
-    expect(entry!.initiative).toBe(19);
-    expect(entry!.orderKey).toBe(19);
+    expect(entry!.initiative).toBe(27);
+    expect(entry!.orderKey).toBe(27);
+  });
+
+  // A negative modifier reads as "−2", not "+ -2" — the reminder formats its
+  // own sign rather than gluing a literal "+" onto whatever the number
+  // already carries.
+  it("renders a negative known modifier with a minus sign, not a plus glued to a negative number", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant({ ...seed(), initiativeModifier: -2 }, null);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    expect(screen.getByText("−2")).toBeDefined();
+    expect(screen.queryByText("+ -2")).toBeNull();
+    expect(screen.queryByText("+-2")).toBeNull();
   });
 
   // Regression test for a parked finding: the old control did
   // `Number(initiativeDraft)`, and `Number("") === 0` is finite, so blurring
-  // an untouched field silently committed a rolled 0. The die-result field
-  // must refuse to commit anything when it's left blank.
-  it("does not commit an initiative when the die-result field is left blank", async () => {
+  // an untouched field silently committed a rolled 0. The field must refuse
+  // to commit anything when it's left blank.
+  it("does not commit an initiative when the value field is left blank", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(seed(), null);
     render(<CombatantList />);
@@ -734,7 +757,11 @@ describe("CombatantList", () => {
     expect(entry!.initiative).toBeNull();
   });
 
-  it("collects a PC's initiative modifier once and saves it to the roster", async () => {
+  // The one-time PC modifier prompt is gone — it existed only to feed the
+  // arithmetic this field no longer does. An unknown modifier now just means
+  // no reminder is shown; the GM still types the party's reported total and
+  // commits it unmodified, with no prompt in the way.
+  it("shows no reminder and does not prompt when a PC's modifier is unknown", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
       { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
@@ -747,15 +774,16 @@ describe("CombatantList", () => {
     render(<CombatantList />);
     await user.hover(screen.getByText("Valeria"));
 
-    await user.type(screen.getByLabelText("Initiative modifier for Valeria"), "3");
-    await user.type(screen.getByLabelText("Initiative die result"), "14");
-    expect(screen.getByText("14 + 3 = 17")).toBeDefined();
+    expect(screen.queryByLabelText(/initiative modifier for/i)).toBeNull();
 
+    await user.type(screen.getByLabelText("Initiative value"), "14");
     await user.click(screen.getByRole("button", { name: /set initiative/i }));
 
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
-    expect(entry!.initiative).toBe(17);
-    expect(useEncounter.getState().players.find((p) => p.id === "player1")!.initiativeModifier).toBe(3);
+    expect(entry!.initiative).toBe(14);
+    // Nothing typed into a prompt that no longer exists, so the roster is
+    // untouched — this reminder-only field never writes back to it.
+    expect(useEncounter.getState().players.find((p) => p.id === "player1")!.initiativeModifier).toBeNull();
   });
 
   /*
@@ -765,9 +793,10 @@ describe("CombatantList", () => {
    * a GM corrects it, because they notice the modifier is wrong when a roll
    * comes out wrong, mid-fight. The roster is the declared home of a PC's
    * modifier (see Player.initiativeModifier), so the popover reads through
-   * to it whenever a roster player resolves.
+   * to it whenever a roster player resolves — the reminder shown here must
+   * reflect that correction, even though it's never added to anything.
    */
-  it("uses a corrected roster modifier for a PC already in the order, not the copy taken at add time", async () => {
+  it("shows a corrected roster modifier for a PC already in the order, not the copy taken at add time", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
       { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: 50 },
@@ -786,18 +815,19 @@ describe("CombatantList", () => {
 
     render(<CombatantList />);
     await user.hover(screen.getByText("Valeria"));
-    await user.type(screen.getByLabelText("Initiative die result"), "10");
-    expect(screen.getByText("10 + 5 = 15")).toBeDefined();
+    expect(screen.getByText("+5")).toBeDefined();
+    expect(screen.queryByText("+50")).toBeNull();
 
+    await user.type(screen.getByLabelText("Initiative value"), "22");
     await user.click(screen.getByRole("button", { name: /set initiative/i }));
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
-    expect(entry!.initiative).toBe(15);
+    expect(entry!.initiative).toBe(22);
   });
 
   // Clearing the field in PartyManager means "unknown" (not +0), and reading
-  // through means that reaches the fight too: the popover asks again rather
-  // than quietly using the stale copy the combatant still carries.
-  it("asks again for a PC whose roster modifier has been cleared back to unknown", async () => {
+  // through means that reaches the fight too: the reminder disappears rather
+  // than quietly falling back to the stale copy the combatant still carries.
+  it("shows no reminder for a PC whose roster modifier has been cleared back to unknown", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([
       { id: "player1", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null },
@@ -811,12 +841,12 @@ describe("CombatantList", () => {
     render(<CombatantList />);
     await user.hover(screen.getByText("Valeria"));
 
-    await user.type(screen.getByLabelText("Initiative modifier for Valeria"), "3");
-    await user.type(screen.getByLabelText("Initiative die result"), "10");
-    expect(screen.getByText("10 + 3 = 13")).toBeDefined();
-
-    await user.click(screen.getByRole("button", { name: /set initiative/i }));
-    expect(useEncounter.getState().players[0]!.initiativeModifier).toBe(3);
+    // Scoped to the field's own row — Valeria's saves render as "+10" etc.
+    // elsewhere in the panel, so an unscoped search for any "+..." text
+    // would false-positive on those.
+    const initiativeRow = screen.getByLabelText("Initiative value").parentElement!;
+    expect(within(initiativeRow).queryByText("+50")).toBeNull();
+    expect(within(initiativeRow).queryByText(/^[+−]/)).toBeNull();
   });
 
   // The copy is not dead weight: it is what answers when there is no roster
@@ -833,8 +863,7 @@ describe("CombatantList", () => {
     render(<CombatantList />);
     await user.hover(screen.getByText("Valeria"));
 
-    await user.type(screen.getByLabelText("Initiative die result"), "10");
-    expect(screen.getByText("10 + 7 = 17")).toBeDefined();
+    expect(screen.getByText("+7")).toBeDefined();
   });
 
   it("degrades gracefully for a PC combatant with no playerId yet", async () => {
@@ -848,9 +877,9 @@ describe("CombatantList", () => {
     await user.hover(screen.getByText("Valeria"));
 
     // No playerId to resolve, so this behaves like a combatant whose
-    // modifier is simply unknown — the die result commits unmodified,
-    // and there is no roster entry to write back to.
-    await user.type(screen.getByLabelText("Initiative die result"), "14");
+    // modifier is simply unknown — no reminder shown, the value field
+    // commits unmodified, and there is no roster entry to write back to.
+    await user.type(screen.getByLabelText("Initiative value"), "14");
     await user.click(screen.getByRole("button", { name: /set initiative/i }));
 
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));

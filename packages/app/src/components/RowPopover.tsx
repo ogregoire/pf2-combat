@@ -177,15 +177,28 @@ function describeIwrAdjustment(
 
 /**
  * Parses a draft text input as a finite number, or `null` for blank or
- * non-numeric text. Used for the initiative die result and the one-time PC
- * modifier prompt so an untouched or cleared field reads as "nothing typed"
- * rather than `Number("")`'s `0` — see commitInitiative's own comment on
- * why that distinction is load-bearing here.
+ * non-numeric text. Used for the initiative value field so an untouched or
+ * cleared field reads as "nothing typed" rather than `Number("")`'s `0` —
+ * see commitInitiative's own comment on why that distinction is
+ * load-bearing here.
  */
 function parseDraft(value: string): number | null {
   if (value.trim() === "") return null;
   const n = Number(value);
   return Number.isFinite(n) ? n : null;
+}
+
+/**
+ * Formats a known modifier as a GM-facing reminder beside the initiative
+ * field — "+11" or "−2" — never applied to anything (the field commits
+ * exactly what's typed; see commitInitiative). Builds its own sign rather
+ * than gluing a literal "+" onto the number, so a negative modifier reads
+ * as "−2", not "+ -2". Uses the minus sign (U+2212), matching this file's
+ * own convention elsewhere (see Stepper's decrease glyph), not a
+ * hyphen-minus.
+ */
+function formatModifierReminder(modifier: number): string {
+  return modifier >= 0 ? `+${modifier}` : `−${Math.abs(modifier)}`;
 }
 
 /**
@@ -256,21 +269,17 @@ export function RowPopover({
   const applyHealing = useEncounter((s) => s.applyHealing);
   const removeCombatant = useEncounter((s) => s.removeCombatant);
   const setInitiative = useEncounter((s) => s.setInitiative);
-  const setPlayers = useEncounter((s) => s.setPlayers);
   const addCondition = useEncounter((s) => s.addCondition);
   const removeCondition = useEncounter((s) => s.removeCondition);
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
-  // The die result just rolled, not an editable view of the entry's current
-  // initiative (see the removed initiativeDraft) — there is nothing to seed
-  // it from, so it simply starts and stays blank between rolls.
-  const [dieResult, setDieResult] = useState("");
-  // A kind: "pc" combatant's modifier lives on the roster (Player.
-  // initiativeModifier), not the combatant, so it survives between fights.
-  // The first time it's needed and still unknown, this collects it inline;
-  // committing writes it back via setPlayers (see commitInitiative).
-  const [pcModifierDraft, setPcModifierDraft] = useState("");
+  // The value the GM just typed — the party's already-totalled initiative,
+  // not a die result to add a modifier to (see commitInitiative) — and not
+  // an editable view of the entry's current initiative either (see the
+  // removed initiativeDraft): there is nothing to seed it from, so it
+  // simply starts and stays blank between rolls.
+  const [initiativeDraft, setInitiativeDraft] = useState("");
   // Which action the panel is currently set up for. Starts on "damage" (the
   // common case) so hovering alone still shows the selector for a creature
   // with relevant IWR. Healing has no damage type — DamagePopover.dc.html:
@@ -374,44 +383,26 @@ export function RowPopover({
   // roster edit would otherwise fix only the next encounter.
   //
   // Including a null: clearing the field in PartyManager means "unknown",
-  // and it has to mean that here too, or the prompt below could never be
-  // reopened for a PC whose stale copy is precisely what's wrong.
+  // and it has to mean that here too, or the reminder below would show a
+  // stale number instead of nothing.
   //
   // The copy still answers for everything with no roster player behind it —
   // a creature's Perception, and a PC whose roster entry has gone (removed
   // on its own, leaving the combatant in the order) or predates `playerId`.
-  // Null means genuinely unknown.
+  // Null means genuinely unknown, and the reminder is simply omitted.
   const knownModifier = player !== null ? player.initiativeModifier : combatant.initiativeModifier;
-  // Only a PC gets the one-time prompt below — a creature with no
-  // Perception on record has nowhere to look one up, so it just rolls with
-  // no modifier instead of asking.
-  const needsModifierPrompt = combatant.kind === "pc" && knownModifier === null;
-  const typedPcModifier = needsModifierPrompt ? parseDraft(pcModifierDraft) : null;
-  const effectiveModifier = knownModifier ?? typedPcModifier;
 
-  const dieValue = parseDraft(dieResult);
-  const initiativeReadout =
-    dieValue === null
-      ? null
-      : effectiveModifier === null
-        ? String(dieValue)
-        : `${dieValue} + ${effectiveModifier} = ${dieValue + effectiveModifier}`;
+  const initiativeValue = parseDraft(initiativeDraft);
 
   const commitInitiative = (): void => {
-    if (!entry || dieValue === null) return; // blank/non-numeric die result: nothing to commit — see the field's own comment.
-    setInitiative(entry.id, effectiveModifier === null ? dieValue : dieValue + effectiveModifier);
-
-    // First time this PC's modifier is known: save it to the roster so the
-    // next fight already has it (PartyManager reads it straight off
-    // Player.initiativeModifier). No resolved player just means there is
-    // nowhere to save it — it'll be asked again next time, which is the
-    // graceful-degradation the brief calls for rather than a crash.
-    if (needsModifierPrompt && player !== null && typedPcModifier !== null) {
-      setPlayers(players.map((p) => (p.id === player.id ? { ...p, initiativeModifier: typedPcModifier } : p)));
-    }
-
-    setDieResult("");
-    setPcModifierDraft("");
+    if (!entry || initiativeValue === null) return; // blank/non-numeric value: nothing to commit — see the field's own comment.
+    // Committed exactly as typed — no arithmetic. Players report their
+    // final, already-totalled initiative (a GM's own rejection of the old
+    // "die result + modifier" model: "The player can say 27, which is
+    // outside of a D20."), and a creature's known modifier is a reminder
+    // only (see formatModifierReminder) for a GM rolling it themselves.
+    setInitiative(entry.id, initiativeValue);
+    setInitiativeDraft("");
   };
 
   // One click in the pickable row applies a condition at its starting
@@ -613,34 +604,11 @@ export function RowPopover({
           >
             {t("LABEL_INITIATIVE")}
           </div>
-          {needsModifierPrompt && (
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <span style={{ flexGrow: 1, fontSize: "11.5px", color: "var(--text-dim)" }}>
-                {format(t("INITIATIVE_MODIFIER_FOR_NAME_ARIA"), { name: combatant.name })}
-              </span>
-              <input
-                aria-label={format(t("INITIATIVE_MODIFIER_FOR_NAME_ARIA"), { name: combatant.name })}
-                value={pcModifierDraft}
-                onChange={(e) => setPcModifierDraft(e.target.value)}
-                style={{
-                  width: "42px",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "13px",
-                  textAlign: "center",
-                  padding: "6px 4px",
-                  borderRadius: "3px",
-                  border: "1px solid var(--border-strong)",
-                  background: "var(--bg)",
-                  color: "var(--text)",
-                }}
-              />
-            </div>
-          )}
           <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
             <input
-              aria-label={t("INITIATIVE_DIE_RESULT_ARIA")}
-              value={dieResult}
-              onChange={(e) => setDieResult(e.target.value)}
+              aria-label={t("INITIATIVE_VALUE_ARIA")}
+              value={initiativeDraft}
+              onChange={(e) => setInitiativeDraft(e.target.value)}
               style={{
                 width: "44px",
                 fontFamily: "var(--font-mono)",
@@ -654,9 +622,12 @@ export function RowPopover({
                 color: "var(--text)",
               }}
             />
-            {initiativeReadout !== null && (
+            {knownModifier !== null && (
+              // The reminder, not an addend — never folded into what
+              // commitInitiative sends. See formatModifierReminder for the
+              // sign handling that keeps a negative from reading as "+ -2".
               <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--text-dim)" }}>
-                {initiativeReadout}
+                {formatModifierReminder(knownModifier)}
               </span>
             )}
             <div style={{ flexGrow: 1 }} />

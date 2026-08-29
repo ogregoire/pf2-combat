@@ -60,9 +60,10 @@ describe("PartyManager clear players", () => {
 });
 
 /**
- * `Player.initiativeModifier` is otherwise write-once: the row popover asks
- * for it the first time a PC rolls and never again, since its prompt is
- * gated on the value still being unknown. A GM who fat-fingered +50 had no
+ * The roster is `Player.initiativeModifier`'s only writable home: the row
+ * popover only ever shows it as a reminder beside the initiative field, and
+ * never writes it back (that field commits exactly what's typed, unmodified
+ * — see RowPopover.tsx's commitInitiative). A GM who fat-fingered +50 had no
  * way back short of deleting the player and rebuilding them. The roster is
  * where a player's permanent numbers live, so the correction belongs here,
  * beside AC and the saves — the modifier only, not the per-fight initiative
@@ -118,8 +119,8 @@ describe("PartyManager initiative modifier", () => {
 
   // Unlike the other numeric fields, blank here means "unknown", not 0 —
   // same distinction HP already makes. A 0 would be a real +0 modifier and
-  // would silence the row popover's one-time prompt forever, which is
-  // precisely the trap this field exists to get the GM out of.
+  // would show as one in the row popover's reminder, which is exactly the
+  // false signal this null/0 distinction exists to avoid.
   it("treats a cleared field as unknown again, not as +0", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([player(5)]);
