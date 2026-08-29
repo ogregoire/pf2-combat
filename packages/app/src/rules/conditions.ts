@@ -300,9 +300,14 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
 
 /** Everything the GM can apply from the popover: the whole dataset minus
  * the attitude ladder, which describes an NPC's disposition and changes no
- * number in a fight. */
-export const PICKABLE_CONDITIONS: ConditionDef[] = Object.values(CONDITIONS)
-  .sort((a, b) => compareStrings(a.name, b.name));
+ * number in a fight. In `CONDITIONS`' own declaration order — NOT sorted
+ * here, deliberately. This used to be sorted once, at module load, by
+ * `.name` (the English name), which is why the picker read alphabetically
+ * in English regardless of the active language — sorted French text is a
+ * render-time concern (it needs the language *and* the translated name,
+ * neither of which this module has), so it belongs to whichever UI renders
+ * this list, not to the constant itself. See RowPopover.tsx's picker row. */
+export const PICKABLE_CONDITIONS: ConditionDef[] = Object.values(CONDITIONS);
 
 export interface AppliedCondition {
   slug: ConditionSlug;

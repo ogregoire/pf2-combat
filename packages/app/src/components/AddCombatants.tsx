@@ -483,8 +483,20 @@ export function AddCombatants({
 
           <div style={{ flexGrow: 1 }} />
 
+          {/* Disabled while `creatureLoading`: clicking Add before the
+             record resolves has always meant losing that creature's saves,
+             IWR and attacks (seedFromEntry falls back to empty ones — see
+             above), but a typed initiative is now also a d20 result the app
+             totals against `loadedCreature`'s own Perception, so an early
+             click would additionally commit that roll un-added-to, with no
+             way for the GM to tell it apart from a creature that genuinely
+             has no Perception on record. Same disabled-button idiom as
+             RowPopover's Damage/Heal buttons (there: `combatant.hp ===
+             null`) rather than a guard inside handleAdd — the button is the
+             only way to reach it, so disabling it is sufficient. */}
           <button
             type="button"
+            disabled={creatureLoading}
             onClick={handleAdd}
             style={{
               fontFamily: "inherit",
@@ -495,7 +507,8 @@ export function AddCombatants({
               border: "1px solid var(--border-strong)",
               background: "var(--accent-bg)",
               color: "var(--accent-text)",
-              cursor: "pointer",
+              cursor: creatureLoading ? "default" : "pointer",
+              opacity: creatureLoading ? 0.5 : 1,
             }}
           >
             {t("LABEL_ADD")} {qtyForLabel} {pluralize(selected.name, qtyForLabel)}

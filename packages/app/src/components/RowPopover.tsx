@@ -5,6 +5,7 @@ import { format, useT, type StringKey } from "../i18n/index.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
+import { compareLocalized } from "../rules/compare.js";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { applyIwr, relevantDamageTypes, type Iwr } from "../rules/damage.js";
 import { CONDITIONS, PICKABLE_CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
@@ -879,10 +880,25 @@ export function RowPopover({
         <div role="group" aria-label={t("ADD_CONDITION_GROUP_ARIA")} style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
           {PICKABLE_CONDITIONS
             .filter((def) => !combatant.conditions.some((c) => c.slug === def.slug))
-            .map((def) => (
+            // Alphabetical in the language it's shown in (the GM's own
+            // spec) — sorted here, at render, rather than on
+            // PICKABLE_CONDITIONS itself, because this is the one place
+            // that has both the active language and each condition's
+            // translated name (conditionDisplayName — the same lookup the
+            // applied-condition tags above render with) at once; a
+            // module-level constant has neither. `compareLocalized`, not
+            // `compareStrings`: this list is never persisted, only
+            // rendered, so there's nothing for `compareStrings`'s
+            // cross-machine determinism concern to protect here, and a
+            // plain compare would put an accented French initial (e.g.
+            // "Ébloui") after every unaccented word instead of with its
+            // own letter.
+            .map((def) => ({ def, name: conditionDisplayName(def.slug, glossary, lang) }))
+            .sort((a, b) => compareLocalized(a.name, b.name, lang))
+            .map(({ def, name }) => (
               <PickableConditionButton
                 key={def.slug}
-                name={conditionDisplayName(def.slug, glossary, lang)}
+                name={name}
                 valued={def.valued}
                 onClick={() => applyCondition(def.slug)}
               />

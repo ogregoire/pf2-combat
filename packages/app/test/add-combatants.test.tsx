@@ -137,6 +137,37 @@ describe("AddCombatants", () => {
     expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(13);
   });
 
+  // As of the initiative-totalling change (a typed number is now a d20
+  // result the app adds the creature's Perception to before storing it),
+  // an early click doesn't just lose saves/IWR/attacks the way it always
+  // did — it also silently commits the raw typed roll unmodified, with no
+  // way for the GM to tell that apart from a creature that genuinely has
+  // no Perception on record. Kept unresolved on purpose (never settled)
+  // so this pins the disabled state itself, not a race against how fast
+  // the promise happens to resolve.
+  it("disables Add while the creature record is still loading, and re-enables it once resolved", async () => {
+    const user = userEvent.setup();
+    let resolveCreature!: (c: Creature) => void;
+    const loadCreatureFn = () =>
+      new Promise<Creature>((resolve) => {
+        resolveCreature = resolve;
+      });
+    render(<AddCombatants entries={entries} loadCreatureFn={loadCreatureFn} />);
+    await user.click(screen.getByRole("button", { name: /add Goblin Warrior/i }));
+
+    expect(screen.getByTestId("creature-loading")).toBeDefined();
+    const addButton = screen.getByRole("button", { name: /add 1 goblin warrior/i }) as HTMLButtonElement;
+    expect(addButton.disabled).toBe(true);
+
+    // A disabled button swallows the click — nothing gets added.
+    await user.click(addButton);
+    expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(0);
+
+    resolveCreature(goblinWarriorCreature);
+    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
+    expect(addButton.disabled).toBe(false);
+  });
+
   it("leaves the entry unrolled when the GM adds without typing an initiative", async () => {
     const user = userEvent.setup();
     render(<AddCombatants entries={entries} />);

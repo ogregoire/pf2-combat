@@ -43,13 +43,26 @@ const frTraits: TraitsI18n = {
 // "sickened" is included too, but never applied to the test combatant — it
 // stays in the one-click picker's pool, so it's what verifies the picker
 // itself (not just an applied chip) resolves a name in French.
+// dazzled/clumsy/off-guard/wounded are added on top, purely to give the
+// picker-ordering test below a French name starting with an accented
+// letter ("Ébloui") alongside plain ones spanning the alphabet — a plain
+// code-unit compare sorts "Ébloui" after every unaccented word (dead last,
+// after "Blessé"), while French collation places it with the other Es.
 const conditions: Condition[] = [
   { slug: "frightened", name: "Frightened", isValued: true, description: "<p>Frightened things.</p>" },
   { slug: "sickened", name: "Sickened", isValued: true, description: "<p>Sickened things.</p>" },
+  { slug: "dazzled", name: "Dazzled", isValued: false, description: "<p>Dazzled things.</p>" },
+  { slug: "clumsy", name: "Clumsy", isValued: true, description: "<p>Clumsy things.</p>" },
+  { slug: "off-guard", name: "Off-Guard", isValued: false, description: "<p>Off-guard things.</p>" },
+  { slug: "wounded", name: "Wounded", isValued: true, description: "<p>Wounded things.</p>" },
 ];
 const frConditions: ReferenceI18n = {
   frightened: { name: "Effrayé", description: null },
   sickened: { name: "Nauséeux", description: null },
+  dazzled: { name: "Ébloui", description: null },
+  clumsy: { name: "Maladroit", description: null },
+  "off-guard": { name: "Pris au dépourvu", description: null },
+  wounded: { name: "Blessé", description: null },
 };
 
 function fakeFetch(over: { traits?: Trait[]; frTraits?: TraitsI18n } = {}): FetchFn {
@@ -104,6 +117,66 @@ describe("conditions, traits and the glossary render in French", () => {
     expect(within(appliedGroup).queryByText(/FRIGHTENED/)).toBeNull();
     // The one-click picker's button for a condition not yet applied.
     expect(screen.getByRole("button", { name: "Nauséeux" })).toBeTruthy();
+  });
+
+  it("orders the picker alphabetically in French, not by the English name it was sorted on", async () => {
+    // The GM's own complaint: the picker used to be sorted once, at module
+    // load, by the English `ConditionDef.name` — so in French it read in
+    // English alphabetical order, which isn't alphabetical to a French
+    // reader at all. This pins the fix at the one thing that would have let
+    // it through: an English-only ordering test would still pass with the
+    // English-name sort fully intact, since "Clumsy" < "Dazzled" < ... <
+    // "Wounded" happens to already be in the right shape once translated —
+    // it's the accented initial that exposes the bug either way.
+    vi.stubGlobal("fetch", fakeFetch());
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Ours effrayé", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 6, will: 2 }, hp: { current: 10, max: 10 } },
+      10,
+    );
+
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Ours effrayé"));
+
+    const picker = screen.getByRole("group", { name: "ajouter un état" });
+    const translated = new Set(["Blessé", "Ébloui", "Effrayé", "Maladroit", "Nauséeux", "Pris au dépourvu"]);
+    // aria-label, not textContent — PickableConditionButton appends a bare
+    // "X" placeholder to a valued condition's visible text (see its own doc
+    // comment), which the accessible name deliberately excludes.
+    const order = within(picker)
+      .getAllByRole("button")
+      .map((b) => b.getAttribute("aria-label"))
+      .filter((text): text is string => translated.has(text ?? ""));
+
+    // Correct French alphabetical order (B, É~E, E, M, N, P). The old
+    // English-name sort would instead yield Maladroit(Clumsy), Ébloui
+    // (Dazzled), Effrayé (Frightened), Pris au dépourvu (Off-Guard),
+    // Nauséeux (Sickened), Blessé (Wounded).
+    expect(order).toEqual(["Blessé", "Ébloui", "Effrayé", "Maladroit", "Nauséeux", "Pris au dépourvu"]);
+  });
+
+  it("keeps the picker alphabetical in English too", async () => {
+    // Same picker, lang left at "en" (the default) — the fix must not
+    // regress the language that happened to already look right under a
+    // plain compare.
+    useEncounter.getState().reset();
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Scared Bear", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 6, will: 2 }, hp: { current: 10, max: 10 } },
+      10,
+    );
+
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Scared Bear"));
+
+    const picker = screen.getByRole("group", { name: "add condition" });
+    const names = within(picker)
+      .getAllByRole("button")
+      .map((b) => b.getAttribute("aria-label") ?? "");
+    const collated = [...names].sort((a, b) => new Intl.Collator("en").compare(a, b));
+    expect(names).toEqual(collated);
   });
 
   it("shows French trait hover text", async () => {
