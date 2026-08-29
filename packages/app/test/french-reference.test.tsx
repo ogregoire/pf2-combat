@@ -214,6 +214,42 @@ describe("conditions, traits and the glossary render in French", () => {
     expect(order).toEqual(["Agrippé", "À terre", "Blessé", "Ébloui"]);
   });
 
+  it("orders the always-visible row badges (ConditionChips) alphabetically in French too", async () => {
+    // Fix round 1 review: the popover's applied-condition group (test above)
+    // was fixed, but ConditionChips — the badges under the combatant's name
+    // that render without opening any popover, on the row the GM actually
+    // scans across the whole initiative list — is a second, independent
+    // rendering of the same `combatant.conditions` and was still a bare
+    // insertion-order `.map`. Same fixture, same scramble, no hover needed
+    // this time since these badges are always visible.
+    vi.stubGlobal("fetch", fakeFetch());
+    const id = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Ours effrayé", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 6, will: 2 }, hp: { current: 10, max: 10 } },
+      10,
+    );
+    useEncounter.getState().addCondition(id, "wounded", 1);
+    useEncounter.getState().addCondition(id, "dazzled", 0);
+    useEncounter.getState().addCondition(id, "prone", 0);
+    useEncounter.getState().addCondition(id, "grabbed", 0);
+
+    render(<CombatantList />);
+    // Waits out the async glossary fetch (see fakeFetch) — the badge starts
+    // as the English fallback for one render, then re-renders in French
+    // once i18n/fr/conditions.json resolves.
+    await screen.findByText("BLESSÉ 1");
+
+    // ConditionChips renders as the last child of the name/HP/conditions
+    // column — see CombatantRow.tsx's StandaloneRow: name+level line, then
+    // (conditionally) the HP bar line, then (conditionally) ConditionChips.
+    const nameEl = screen.getByText("Ours effrayé");
+    const infoColumn = nameEl.parentElement!.parentElement!;
+    const chipsContainer = infoColumn.lastElementChild as HTMLElement;
+    const order = [...chipsContainer.children].map((el) => el.textContent ?? "");
+
+    expect(order).toEqual(["AGRIPPÉ", "À TERRE", "BLESSÉ 1", "ÉBLOUI"]);
+  });
+
   it("keeps the picker alphabetical in English too", async () => {
     // Same picker, lang left at "en" (the default) — the fix must not
     // regress the language that happened to already look right under a

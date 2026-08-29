@@ -26,6 +26,7 @@ describe("buildActionList", () => {
         action({ name: "Three-Action", cost: "3" }),
       ],
       [],
+      "en",
     );
     expect(items.map((i) => (i.kind === "action" ? i.action.name : i.attack.name))).toEqual([
       "Three-Action", "Two-Action", "One-Action", "Free One", "Reaction One", "Passive One",
@@ -40,6 +41,7 @@ describe("buildActionList", () => {
         action({ name: "Once Per Day", cost: "2", frequency: { max: 1, per: "day" } }),
       ],
       [],
+      "en",
     );
     expect(items.map((i) => (i.kind === "action" ? i.action.name : ""))).toEqual([
       "Once Per Day", "Aardvark Strike", "Zebra Strike",
@@ -50,6 +52,7 @@ describe("buildActionList", () => {
     const items = buildActionList(
       [action({ name: "Bite", cost: "1" })],
       [attack({ name: "Aardvark Claw" })],
+      "en",
     );
     expect(items.map((i) => (i.kind === "action" ? i.action.name : i.attack.name))).toEqual([
       "Aardvark Claw", "Bite",
@@ -61,6 +64,7 @@ describe("buildActionList", () => {
     const items = buildActionList(
       [action({ name: "Once Per Day", cost: "1", frequency: { max: 1, per: "day" } })],
       [attack({ name: "Claw" })],
+      "en",
     );
     expect(items[0]).toMatchObject({ kind: "action", action: { name: "Once Per Day" } });
     expect(items[1]).toMatchObject({ kind: "strike", attack: { name: "Claw" } });
@@ -77,6 +81,7 @@ describe("buildActionList", () => {
         action({ name: "Chase Prey", cost: "2" }),
       ],
       [attack({ name: "Claw" }), attack({ name: "Jaws" })],
+      "en",
     );
 
     // Rend never appears as its own top-level item.
@@ -94,7 +99,7 @@ describe("buildActionList", () => {
     const path = resolve(process.cwd(), "data/creatures/pathfinder-monster-core/forest-troll.json");
     const creature = JSON.parse(readFileSync(path, "utf8")) as Creature;
 
-    const items = buildActionList(creature.actions, creature.attacks);
+    const items = buildActionList(creature.actions, creature.attacks, "en");
 
     expect(items.some((i) => i.kind === "action" && i.action.name === "Rend")).toBe(false);
     const claw = items.find((i) => i.kind === "strike" && i.attack.name === "Claw");
@@ -113,6 +118,7 @@ describe("buildActionList", () => {
     const items = buildActionList(
       [action({ name: "Pounce", cost: "1", description: "<p>The wolf makes a Claw Strike.</p>" })],
       [attack({ name: "Claw" })],
+      "en",
     );
     expect(items.some((i) => i.kind === "action" && i.action.name === "Pounce")).toBe(true);
     const claw = items.find((i) => i.kind === "strike");
@@ -155,28 +161,17 @@ describe("buildActionList", () => {
     expect(items.map((i) => (i.kind === "action" ? i.action.name : i.attack.name))).toEqual(["Épée", "Zèle"]);
   });
 
-  it("keeps the English tie-break order for the same names — no lang argument needed", () => {
+  it("keeps the English tie-break order for the same names under an explicit 'en'", () => {
     // Derived, not assumed: Intl.Collator("en").compare("Épée", "Zèle") is
-    // -1 (verified separately), so passing no `lang` (defaulting to "en")
-    // must yield the same "Épée" first order as the French case, just
-    // through the English collator rather than raw codepoints.
+    // -1 (verified separately), so passing "en" explicitly must yield the
+    // same "Épée" first order as the French case above, just through the
+    // English collator rather than raw codepoints — English isn't merely
+    // "no sort applied" here, it independently gets the same answer.
     const items = buildActionList(
       [action({ name: "Zèle", cost: "1" }), action({ name: "Épée", cost: "1" })],
       [],
+      "en",
     );
     expect(items.map((i) => (i.kind === "action" ? i.action.name : ""))).toEqual(["Épée", "Zèle"]);
-  });
-
-  it("keeps the existing English, all-ASCII tie-break order unchanged with no lang argument", () => {
-    // Same fixture as "keeps limited-use... then sorts by name" above,
-    // called without a `lang` argument, to pin that the default doesn't
-    // regress the ASCII case that test already covers.
-    const items = buildActionList(
-      [action({ name: "Zebra Strike", cost: "2" }), action({ name: "Aardvark Strike", cost: "2" })],
-      [],
-    );
-    expect(items.map((i) => (i.kind === "action" ? i.action.name : ""))).toEqual([
-      "Aardvark Strike", "Zebra Strike",
-    ]);
   });
 });

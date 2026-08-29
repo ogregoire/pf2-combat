@@ -63,14 +63,16 @@ function firstTextNode(html: string): string {
  * "Claw") is pulled out as that Strike's child instead of appearing at the
  * top level — narrowly, on that exact signal, not a broader heuristic.
  *
- * `lang` defaults to "en" so every existing call site (and every ordering
- * test written before this parameter existed) keeps compiling and behaving
- * the same for plain-ASCII names — it only changes anything once a name has
- * an accented initial. `rules/` modules don't import from `state/`, so this
- * takes the language as a plain parameter rather than reading it off the
- * store itself; the caller (ActionList.tsx) is the one that knows it.
+ * `lang` is required, not defaulted, on purpose: a default of "en" would let
+ * a future second caller compile clean while silently falling back to
+ * English collation for a name it never actually renders in English — the
+ * exact bug shape the popover's condition picker shipped with once already.
+ * `rules/` modules don't import from `state/`, so this takes the language
+ * as a plain parameter rather than reading it off the store itself — the
+ * caller (ActionList.tsx) is the one that knows it, and every test call
+ * site below passes it explicitly too.
  */
-export function buildActionList(actions: Action[], attacks: Attack[], lang: string = "en"): ActionListItem[] {
+export function buildActionList(actions: Action[], attacks: Attack[], lang: string): ActionListItem[] {
   const attackNames = new Set(attacks.map((a) => a.name));
   const childrenByParent = new Map<string, Action[]>();
   const topLevel: Action[] = [];

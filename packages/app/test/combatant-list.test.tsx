@@ -915,6 +915,33 @@ describe("CombatantList", () => {
     expect(screen.getByText("Dovan")).toBeDefined();
   });
 
+  it("orders a grouped member's condition badges alphabetically too, not just a standalone row's", () => {
+    // ConditionChips is shared between StandaloneRow and GroupMemberRow
+    // (CombatantRow.tsx), so fixing it once fixes both call sites — but
+    // that sharing is exactly what a future refactor could quietly break,
+    // so this pins the grouped render site (:532) independently of the
+    // standalone one covered elsewhere. Applied out of alphabetical order —
+    // Prone, then Blinded, then Clumsy.
+    const a = useEncounter.getState().addCombatant(seed({ name: "Akiros" }), 20);
+    const b = useEncounter.getState().addCombatant(seed({ name: "Dovan" }), 10);
+    useEncounter.getState().addCondition(a, "prone", 0);
+    useEncounter.getState().addCondition(a, "blinded", 0);
+    useEncounter.getState().addCondition(a, "clumsy", 1);
+    useEncounter.getState().group([a, b], "Gate Watch", 15);
+    render(<CombatantList />);
+
+    // ConditionChips is the last child of Akiros's own name/conditions
+    // column (GroupMemberRow has no HP-bar line, unlike StandaloneRow, so
+    // it's the direct second child, but `lastElementChild` covers both
+    // shapes without caring which).
+    const nameEl = screen.getByText("Akiros");
+    const infoColumn = nameEl.parentElement!.parentElement!;
+    const chipsContainer = infoColumn.lastElementChild as HTMLElement;
+    const order = [...chipsContainer.children].map((el) => el.textContent ?? "");
+
+    expect(order).toEqual(["BLINDED", "CLUMSY 1", "PRONE"]);
+  });
+
   it("puts the group's left border only on the wrapper, not each member row", () => {
     // A decoy combatant above the group in initiative keeps the group from
     // being the active entry, so its border-left stays the plain group

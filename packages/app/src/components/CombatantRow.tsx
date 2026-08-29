@@ -4,6 +4,7 @@ import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { CONDITIONS, dyingMax } from "../rules/conditions.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
+import { compareLocalized } from "../rules/compare.js";
 import { RowPopover } from "./RowPopover.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
@@ -187,9 +188,18 @@ function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactEle
   const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary();
   if (combatant.conditions.length === 0) return null;
+  // Alphabetical in the displayed language, same rule and same
+  // `compareLocalized` mechanism as RowPopover's own applied-condition
+  // group — this is the row's own always-visible rendering of the identical
+  // `combatant.conditions` data (the GM reads this one across the whole
+  // list without opening any popover), so it gets the same fix rather than
+  // staying in insertion order.
+  const sorted = [...combatant.conditions].sort((a, b) =>
+    compareLocalized(conditionDisplayName(a.slug, glossary, lang), conditionDisplayName(b.slug, glossary, lang), lang),
+  );
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginTop: "5px" }}>
-      {combatant.conditions.map((c) => (
+      {sorted.map((c) => (
         <span
           key={c.slug}
           style={{
