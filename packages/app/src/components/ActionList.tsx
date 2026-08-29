@@ -66,12 +66,14 @@ export function ActionList({
   const activeRung = Math.min(combatant.strikesMade, 2);
 
   // Resolved to French (by array position against the creature's overlay,
-  // never by name) before the pure, language-agnostic layout code below
-  // ever sees them — buildActionList's own Rend-detection reads the
-  // description text, and the overlay keeps that signal intact in French
-  // (Rend's translated description still opens by naming the translated
-  // Claw attack).
-  const actions = resolveActions(combatant.actions, i18n, lang);
+  // never by name — with `glossary` as a second, name-only fallback for a
+  // generic ability the creature record itself left untranslated, e.g. a
+  // troll's Rend -> Éventration) before the pure, language-agnostic layout
+  // code below ever sees them — buildActionList's own Rend-detection reads
+  // the description text, not the name, and the overlay keeps that signal
+  // intact in French (Rend's translated description still opens by naming
+  // the translated Claw attack) regardless of which fallback its name took.
+  const actions = resolveActions(combatant.actions, i18n, lang, glossary);
   const attacks = resolveAttacks(combatant.attacks, i18n, lang);
 
   /**

@@ -399,7 +399,7 @@ export function EncounterScreen({
                 {/* showNextButton=false: the pinned bar below is this
                    layout's single NextButton — TurnManager's own one is
                    desktop-only, so the Turn tab doesn't show two. */}
-                <TurnManager showNextButton={false} />
+                <TurnManager showNextButton={false} fetchFn={fetchFn} />
               </div>
             )}
           </div>
@@ -471,7 +471,7 @@ export function EncounterScreen({
               minHeight: 0,
             }}
           >
-            <TurnManager />
+            <TurnManager fetchFn={fetchFn} />
           </div>
         </div>
       )}

@@ -1,5 +1,6 @@
 import type { Action, Attack, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { BASE, getJson, type FetchFn } from "./catalog.js";
+import { actionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 
 const defaultFetch: FetchFn = (url) => fetch(url);
 
@@ -96,13 +97,33 @@ export function resolveCreatureName(name: string, i18n: CreatureI18n | null, lan
  * guarantee) — never by name, since two Strikes can share one. A no-op
  * outside French or without an overlay, so callers can pass the result
  * straight to the pure layout code in `rules/actionLayout.js` unconditionally.
+ *
+ * `glossary` (optional, defaulting to an empty map so every existing caller
+ * that hasn't been updated to pass it keeps its old English-only fallback
+ * behaviour unchanged) feeds `actionDisplayName`'s extra fallback step: many
+ * creature records leave a generic ability's own `name` null even though
+ * the monster-ability glossary carries a French name for it — see
+ * `actionDisplayName`'s own comment for the measurement and the reasoning.
+ * Only the `name` gets this extra step; `description` keeps the plain
+ * `pick(fr, en)` it always had, since the glossary's description text is
+ * generic and would overwrite a creature-specific one (Rend's own
+ * description, e.g., names that particular monster's Strike).
  */
-export function resolveActions(actions: Action[], i18n: CreatureI18n | null, lang: "en" | "fr"): Action[] {
+export function resolveActions(
+  actions: Action[],
+  i18n: CreatureI18n | null,
+  lang: "en" | "fr",
+  glossary: Map<string, TraitInfo> = new Map(),
+): Action[] {
   if (lang !== "fr" || !i18n) return actions;
   return actions.map((action, index) => {
     const fr = i18n.actions[index];
     if (!fr) return action;
-    return { ...action, name: pick(fr.name, action.name), description: pick(fr.description, action.description) };
+    return {
+      ...action,
+      name: actionDisplayName(fr.name, action.name, glossary, lang),
+      description: pick(fr.description, action.description),
+    };
   });
 }
 

@@ -1,8 +1,11 @@
 import { resolveActions, resolveCreatureName } from "../data/i18nOverlay.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
+import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
+import type { TraitInfo } from "../rules/traitInfo.js";
+import type { FetchFn } from "../data/catalog.js";
 import type { Combatant } from "../state/types.js";
 
 /** One combatant's card in the reaction watch: name and reaction name(s)
@@ -18,15 +21,17 @@ function ReadyCombatantCard({
   combatant,
   onSpend,
   t,
+  glossary,
 }: {
   combatant: Combatant;
   onSpend: () => void;
   t: (key: StringKey) => string;
+  glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
   const lang = useEncounter((s) => s.lang);
   const i18n = useCombatantI18n(combatant);
   const displayName = resolveCreatureName(combatant.name, i18n, lang);
-  const reactionNames = resolveActions(combatant.actions, i18n, lang)
+  const reactionNames = resolveActions(combatant.actions, i18n, lang, glossary)
     .filter((a) => a.cost === "reaction")
     .map((a) => a.name);
 
@@ -95,11 +100,17 @@ function ReadyCombatantCard({
  * The list scrolls independently of the round/pips/Next controls above it:
  * this container is the flex child that grows and gets `overflow-y: auto`,
  * while everything else in the panel has `flexShrink: 0` and stays put. */
-export function ReactionWatch(): React.ReactElement {
+export function ReactionWatch({ fetchFn }: { fetchFn?: FetchFn } = {}): React.ReactElement {
   const t = useT();
   const combatants = useEncounter((s) => s.encounter.combatants);
   const entries = useEncounter((s) => s.encounter.entries);
   const setReactionSpent = useEncounter((s) => s.setReactionSpent);
+  // Loaded once here, not per card, and passed down — same glossary map
+  // ActionList resolves reaction (and every other action) name against, so
+  // a reaction spelled out untranslated in its own creature record (e.g.
+  // Attack of Opportunity) reads the same French name here as it does in
+  // the action list itself, instead of being the one surface still English.
+  const glossary = useTraitGlossary(fetchFn);
   // Delay is a property of the *entry*, so a group that Delays takes every
   // one of its members' reactions with it.
   const delayedIds = new Set(entries.filter((e) => e.delayed).flatMap((e) => e.combatantIds));
@@ -139,7 +150,13 @@ export function ReactionWatch(): React.ReactElement {
         }}
       >
         {ready.map((c) => (
-          <ReadyCombatantCard key={c.id} combatant={c} onSpend={() => setReactionSpent(c.id, true)} t={t} />
+          <ReadyCombatantCard
+            key={c.id}
+            combatant={c}
+            onSpend={() => setReactionSpent(c.id, true)}
+            t={t}
+            glossary={glossary}
+          />
         ))}
       </div>
     </div>

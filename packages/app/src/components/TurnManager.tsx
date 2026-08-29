@@ -2,6 +2,7 @@ import { format, useT, type StringKey } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import { unrolledCount, useEncounter } from "../state/store.js";
 import type { Combatant, Entry } from "../state/types.js";
+import type { FetchFn } from "../data/catalog.js";
 import { ActionPips } from "./ActionPips.js";
 import { ConfirmButton } from "./ConfirmButton.js";
 import { NextButton } from "./NextButton.js";
@@ -180,7 +181,10 @@ export function remainingActionsFor(combatant: Combatant): number {
  * unchanged); EncounterScreen's narrow layout passes false because it pins
  * its own single NextButton to the bottom of the screen instead — without
  * this, the Turn tab would show two Next buttons at once. */
-export function TurnManager({ showNextButton = true }: { showNextButton?: boolean } = {}): React.ReactElement {
+export function TurnManager({
+  showNextButton = true,
+  fetchFn,
+}: { showNextButton?: boolean; fetchFn?: FetchFn } = {}): React.ReactElement {
   const t = useT();
   const round = useEncounter((s) => s.encounter.round);
   const entries = useEncounter((s) => s.encounter.entries);
@@ -256,7 +260,7 @@ export function TurnManager({ showNextButton = true }: { showNextButton?: boolea
 
       <DelayControls />
 
-      <ReactionWatch />
+      <ReactionWatch fetchFn={fetchFn} />
 
       <EncounterControls />
     </div>

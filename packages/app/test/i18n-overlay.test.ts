@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { CreatureI18n } from "@pf2/schema";
+import type { Action, CreatureI18n } from "@pf2/schema";
 import {
   loadConditionsI18n,
   loadCreatureI18n,
@@ -7,7 +7,9 @@ import {
   loadIndexI18n,
   loadTraitsI18n,
   pick,
+  resolveActions,
 } from "../src/data/i18nOverlay.js";
+import type { TraitInfo } from "../src/rules/traitInfo.js";
 
 const fakeFetch = (body: unknown) =>
   async (): Promise<Response> => new Response(JSON.stringify(body), { status: 200 });
@@ -70,6 +72,54 @@ describe("loadGlossaryI18n", () => {
       fakeFetch({ grab: { name: "Empoignade", description: "<p>...</p>" } }),
     );
     expect(glossary.grab).toEqual({ name: "Empoignade", description: "<p>...</p>" });
+  });
+});
+
+describe("resolveActions — glossary fallback for a null creature-record name", () => {
+  const rend: Action = {
+    name: "Rend", cost: "1", category: null, traits: [], trigger: null,
+    requirements: null, frequency: null, description: "<p>Claw</p>",
+  };
+  const glossary = new Map<string, TraitInfo>([["rend", { name: "Éventration", description: "" }]]);
+
+  it("uses the creature record's own French name when present, ignoring the glossary", () => {
+    const i18n: CreatureI18n = {
+      name: "Troll", publicNotes: null,
+      actions: [{ en: "Rend", name: "Déchirure du troll", description: null }],
+      attacks: [],
+    };
+    const [resolved] = resolveActions([rend], i18n, "fr", glossary);
+    expect(resolved!.name).toBe("Déchirure du troll");
+  });
+
+  it("falls back to the glossary's French name — the GM's reported Rend case — when the creature record's name is null", () => {
+    const i18n: CreatureI18n = {
+      name: "Troll", publicNotes: null,
+      actions: [{ en: "Rend", name: null, description: "<p>Griffe</p>" }],
+      attacks: [],
+    };
+    const [resolved] = resolveActions([rend], i18n, "fr", glossary);
+    expect(resolved!.name).toBe("Éventration");
+  });
+
+  it("falls back to the English name when the creature record's name is null and the glossary has no entry either", () => {
+    const i18n: CreatureI18n = {
+      name: "Troll", publicNotes: null,
+      actions: [{ en: "Rend", name: null, description: null }],
+      attacks: [],
+    };
+    const [resolved] = resolveActions([rend], i18n, "fr", new Map());
+    expect(resolved!.name).toBe("Rend");
+  });
+
+  it("is unaffected by a missing glossary argument — defaults to English-only fallback, same as before this change", () => {
+    const i18n: CreatureI18n = {
+      name: "Troll", publicNotes: null,
+      actions: [{ en: "Rend", name: null, description: null }],
+      attacks: [],
+    };
+    const [resolved] = resolveActions([rend], i18n, "fr");
+    expect(resolved!.name).toBe("Rend");
   });
 });
 

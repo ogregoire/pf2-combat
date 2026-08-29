@@ -9,6 +9,7 @@ import { ReactionWatch } from "../src/components/ReactionWatch.js";
 import { __resetCombatantI18nCacheForTests } from "../src/hooks/useCombatantI18n.js";
 import { useEncounter } from "../src/state/store.js";
 import type { CombatantSeed } from "../src/state/store.js";
+import type { FetchFn } from "../src/data/catalog.js";
 
 /**
  * Tasks 1-11 built and wired a complete French data overlay, but nothing in
@@ -192,6 +193,33 @@ function stubForestTrollOverlayFetch(): void {
   });
 }
 
+/**
+ * Stubs the trait/glossary/condition fetches `useTraitGlossary` makes
+ * (traits.json and conditions.json are irrelevant here, so they resolve
+ * empty). glossary.json carries just the two real entries these tests need
+ * — "rend" and "attack-of-opportunity" — trimmed from the real
+ * data/glossary.json and data/i18n/fr/glossary.json, not invented text.
+ */
+function stubGlossaryFetch(): FetchFn {
+  const glossaryEn = [
+    { slug: "rend", name: "Rend", cost: "1", traits: [], description: "" },
+    { slug: "attack-of-opportunity", name: "Attack of Opportunity", cost: "reaction", traits: [], description: "" },
+  ];
+  const glossaryFr = {
+    rend: { name: "Éventration", description: null },
+    "attack-of-opportunity": { name: "Frappe réactive", description: null },
+  };
+  return (url: string) => {
+    if (url.endsWith("i18n/fr/traits.json")) return Promise.resolve(new Response(JSON.stringify({})));
+    if (url.endsWith("i18n/fr/conditions.json")) return Promise.resolve(new Response(JSON.stringify({})));
+    if (url.endsWith("i18n/fr/glossary.json")) return Promise.resolve(new Response(JSON.stringify(glossaryFr)));
+    if (url.endsWith("data/traits.json")) return Promise.resolve(new Response(JSON.stringify([])));
+    if (url.endsWith("data/conditions.json")) return Promise.resolve(new Response(JSON.stringify([])));
+    if (url.endsWith("data/glossary.json")) return Promise.resolve(new Response(JSON.stringify(glossaryEn)));
+    return Promise.resolve(new Response(null, { status: 404 }));
+  };
+}
+
 describe("creatures render in French", () => {
   beforeEach(() => {
     useEncounter.getState().reset();
@@ -237,6 +265,59 @@ describe("creatures render in French", () => {
     expect(chasePrey).toBeTruthy();
     await user.click(chasePrey);
     expect(screen.getByText(/Se précipite puis effectue deux Frappes/)).toBeTruthy();
+  });
+
+  // The GM's reported defect, verbatim: "Rend, in French, still renders as
+  // Rend". forestTrollI18n's own Rend entry has `name: null` (real data:
+  // data/i18n/fr/creatures/pathfinder-monster-core/forest-troll.json) even
+  // though its description is fully translated — a French speaker reading a
+  // French stat block still saw one action name in English. The glossary
+  // carries the shared French name for this and hundreds of other generic
+  // abilities creature records commonly leave untranslated.
+  it("falls back to the glossary's French name when the creature record's own name is null", async () => {
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant({ ...forestTrollSeed, i18n: forestTrollI18n }, 19);
+
+    render(<ActiveCombatant fetchFn={stubGlossaryFetch()} />);
+
+    // Still nested under the Strike (Griffe), same as the English suite's
+    // Rend-nesting test — buildActionList's own detection reads the
+    // (already-translated) description text, never the name, so the
+    // glossary fallback applied here can't affect it either way.
+    await waitFor(() => expect(screen.getByRole("button", { name: /^Éventration/ })).toBeTruthy());
+    expect(screen.queryByRole("button", { name: /^Rend/ })).toBeNull();
+  });
+
+  // Same fallback, exercised through ReactionWatch rather than ActionList —
+  // the task's brief specifically calls out that every surface an action
+  // name renders through must go via this chain, not just the child-action
+  // row where the GM noticed it.
+  it("falls back to the glossary's French name in ReactionWatch's reaction line too", () => {
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant(
+      {
+        ...forestTrollSeed,
+        reactions: [{ name: "Attack of Opportunity", trigger: null }],
+        actions: [
+          {
+            name: "Attack of Opportunity", cost: "reaction", traits: [], frequency: null, trigger: null,
+            requirements: null, description: "<p>Make a melee Strike.</p>", category: "offensive",
+          },
+        ],
+        i18n: {
+          ...forestTrollI18n,
+          actions: [{ en: "Attack of Opportunity", name: null, description: null }],
+        },
+      },
+      19,
+    );
+
+    render(<ReactionWatch fetchFn={stubGlossaryFetch()} />);
+
+    return waitFor(() => {
+      expect(screen.getByText("Frappe réactive")).toBeTruthy();
+      expect(screen.queryByText("Attack of Opportunity")).toBeNull();
+    });
   });
 
   // No fallback marker: the overlay can't tell "nobody translated this"
