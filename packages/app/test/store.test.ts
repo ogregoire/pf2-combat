@@ -77,6 +77,109 @@ describe("encounter store", () => {
     expect(names).toEqual(["Alpha", "Beta", "Delta", "Gamma"]);
   });
 
+  // AoN, "Roll Initiative", step 1: "If your result is tied with an enemy's
+  // result, the enemy goes first." Insertion order used to settle every tie
+  // arbitrarily; a creature must now win a tie against a PC regardless of
+  // which was added first.
+  it("sorts a tied creature above a tied PC, per the enemy-goes-first rule", () => {
+    addPc("Valeros", 20);
+    addCreature("Goblin", 20);
+    const names = () => useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names()).toEqual(["Goblin", "Valeros"]);
+  });
+
+  // AoN, same step: "If your result is tied with another PC's, you can
+  // decide between yourselves who goes first when you reach that place in
+  // the initiative order" — the app leaves that decision to the GM's drag
+  // handle rather than picking for them, so two tied PCs must not be
+  // reordered by the tie-break itself (insertion order stands until the GM
+  // drags one), and a drag that does decide it must survive later re-sorts.
+  it("leaves two tied PCs in insertion order, and keeps a GM's drag swap after a later re-sort", () => {
+    addPc("Amiri", 20);
+    addPc("Ezren", 20);
+    const names = () => useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names()).toEqual(["Amiri", "Ezren"]);
+
+    const [amiriEntry, ezrenEntry] = useEncounter.getState().encounter.entries;
+    useEncounter.getState().moveEntry(ezrenEntry!.id, amiriEntry!.id);
+    expect(names()).toEqual(["Ezren", "Amiri"]);
+
+    // An unrelated add re-sorts the whole list; the GM's swap must stick.
+    addCreature("Wolf", 5);
+    expect(names()).toEqual(["Ezren", "Amiri", "Wolf"]);
+  });
+
+  // An Entry can hold several combatants (group()); Combatant.kind lives on
+  // each member, not the entry. This app treats an entry as a "PC entry"
+  // for the tie-break only when *every* member is a PC — a group with even
+  // one creature in it still carries an enemy's action, so it sorts as a
+  // creature would, per the same "the enemy goes first" text. The all-PC
+  // case pins the more common shape (a party grouped together); the
+  // creature/PC mix below pins the deliberate choice for a group that
+  // isn't purely PCs.
+  it("treats an all-PC group as a PC entry, sorting below a tied solo creature", () => {
+    const amiri = addPc("Amiri", 20);
+    const ezren = addPc("Ezren", 20);
+    useEncounter.getState().group([amiri, ezren], "Party", 20);
+    addCreature("Goblin", 20);
+    const names = () => useEncounter.getState().encounter.entries
+      .map((e) => e.groupName ?? useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names()).toEqual(["Goblin", "Party"]);
+  });
+
+  // Ezren is added *before* the mixed group forms, so insertion order alone
+  // would put Ezren first — only classifying the mixed group as a
+  // creature entry puts it ahead instead.
+  it("treats a group with any creature member as a creature entry, sorting above a tied solo PC", () => {
+    addPc("Ezren", 20);
+    const amiri = addPc("Amiri", 20);
+    const goblin = addCreature("Goblin", 20);
+    useEncounter.getState().group([amiri, goblin], "Mixed", 20);
+    const names = () => useEncounter.getState().encounter.entries
+      .map((e) => e.groupName ?? useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names()).toEqual(["Mixed", "Ezren"]);
+  });
+
+  // Guards against a tie-break that fires on more than exact equality — the
+  // rule text is specifically about a *tie*, and kind must play no part
+  // once the numeric keys differ.
+  // The PC has the *higher* initiative here — if kind ever outweighed the
+  // number, a naive tie-break would still sort the creature first despite
+  // its lower roll.
+  it("does not let kind affect ordering once the keys differ", () => {
+    addPc("Amiri", 20);
+    addCreature("Goblin", 10);
+    const names = () => useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names()).toEqual(["Amiri", "Goblin"]);
+  });
+
+  // A delayed entry's expiry (advanceTurn) reads "the order arrived back at
+  // this slot" as "a full round elapsed" — which only holds if the entry
+  // never moves while delayed (see advanceTurn's own comment). The
+  // creature/PC tie-break must not be the thing that moves it: an unrelated
+  // add that happens to tie with a delayed entry's key must not let a
+  // differently-kinded newcomer leapfrog it.
+  it("does not let the tie-break move a delayed entry when an unrelated add ties with its key", () => {
+    addCreature("Beta", 20);
+    const alpha = addPc("Alpha", 15);
+    const alphaEntryId = useEncounter.getState().encounter.entries
+      .find((e) => e.combatantIds[0] === alpha)!.id;
+
+    useEncounter.getState().nextTurn(); // Beta acts; Alpha is up
+    useEncounter.getState().delay(alphaEntryId); // Alpha delays; wraps to round 2, Beta leads again
+
+    addCreature("Goblin", 15); // ties with the delayed Alpha's own key
+
+    const names = () => useEncounter.getState().encounter.entries
+      .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    // Alpha (delayed, added first) keeps its place ahead of the newcomer
+    // Goblin, even though Goblin is a creature tied at the same key.
+    expect(names()).toEqual(["Beta", "Alpha", "Goblin"]);
+  });
+
   it("adds N copies with numbered labels", () => {
     useEncounter.getState().addMany(
       { kind: "creature", name: "Goblin Warrior", level: 1, ac: 16,

@@ -1249,5 +1249,47 @@ describe("CombatantList", () => {
       // Still never rewritten by the drag itself.
       expect(moved.initiative).toBe(15);
     });
+
+    // sortEntries now sorts a tied creature above a tied PC (AoN, "Roll
+    // Initiative": "If your result is tied with an enemy's result, the
+    // enemy goes first"). moveEntry's midpoint placement usually escapes an
+    // exact tie by landing strictly between two distinct neighbours, but
+    // dropping between two entries that are *already* tied with each other
+    // computes that same key back — (20 + 20) / 2 === 20 — which would
+    // otherwise leave the dragged PC tied with the creature it was dropped
+    // in front of, free for the tie-break to reassert itself and snap the
+    // PC back below it. moveEntry must guarantee separation in that case so
+    // the drag — "the GM's rules-free override for the turn order" per its
+    // own doc comment — actually sticks.
+    it("keeps a PC above a tied creature after a drag, even when the drop lands between two entries already tied with each other", () => {
+      const s = useEncounter.getState();
+      s.addMany(seed({ name: "Goblin" }), 2, 20); // both goblins land tied at 20
+      s.addCombatant(
+        seed({ kind: "pc", name: "Valeros", level: 4, ac: 21, saves: { fortitude: 9, reflex: 9, will: 6 } }),
+        20,
+      );
+      const nameOf = (e: { combatantIds: string[] }): string =>
+        useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
+      const names = () => useEncounter.getState().encounter.entries.map(nameOf);
+      // The tie-break already puts both goblins ahead of Valeros.
+      expect(names()).toEqual(["Goblin", "Goblin", "Valeros"]);
+
+      const secondGoblin = useEncounter.getState().encounter.entries[1]!;
+      const valerosEntry = useEncounter.getState().encounter.entries.find((e) => nameOf(e) === "Valeros")!;
+      // Drag Valeros to sit between the two goblins — above and below are
+      // both tied at 20, the exact collision described above. There is no
+      // real number strictly between two equal ones, so moveEntry honours
+      // the one relationship the drop target actually names — ahead of
+      // the second goblin, i.e. `beforeEntryId` — which here also means
+      // ahead of the first (they share its key too): Valeros ends up
+      // leading both, not merely wedged between them.
+      useEncounter.getState().moveEntry(valerosEntry.id, secondGoblin.id);
+      expect(names()).toEqual(["Valeros", "Goblin", "Goblin"]);
+
+      // A later re-sort (triggered by an unrelated add) must not let the
+      // tie-break undo the placement.
+      s.addCombatant(seed({ name: "Wolf" }), 5);
+      expect(names()).toEqual(["Valeros", "Goblin", "Goblin", "Wolf"]);
+    });
   });
 });

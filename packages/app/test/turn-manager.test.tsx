@@ -416,6 +416,72 @@ describe("Delay", () => {
     expect(activeName()).toBe("Beta");
   });
 
+  // Regression: sortEntries now sorts a tied creature above a tied PC (AoN,
+  // "Roll Initiative": "If your result is tied with an enemy's result, the
+  // enemy goes first"). returnFromDelay's midpoint placement (same
+  // mechanism as the test just above) normally escapes an exact tie by
+  // landing strictly between active and the entry below it, but when those
+  // two are *already* tied — Beta and Delta here — the midpoint computes
+  // that same shared key back. Left alone, that would put the returning
+  // Alpha in a three-way tie with Beta, Delta AND Gamma (an unrelated PC
+  // already sitting in that tied block), and the outcome would hinge on
+  // exactly where the splice below happens to drop it relative to Gamma —
+  // an accident of array position, not a placement anyone asked for.
+  // Landing on a key distinct from the whole tied block instead settles it
+  // by a number, predictably, the same way any other placement in this
+  // function does.
+  it("settles a returning PC by a distinct key, not splice position, when active ties with the whole block below it", () => {
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Alpha", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      20,
+    );
+    add("Beta", 12);
+    add("Delta", 12); // ties with Beta, the entry that will be active
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Gamma", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      12, // also ties with Beta/Delta, and sorts after both of them already
+    );
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // Beta is up
+    useEncounter.getState().returnFromDelay(alpha);
+
+    expect(activeName()).toBe("Beta");
+    expect(order()).toEqual(["Beta", "Delta", "Gamma", "Alpha"]);
+    expect(entryOf(alpha).initiative).toBe(12);
+  });
+
+  // The distinct-key workaround above only matters when a creature could
+  // actually leapfrog the returning PC. Here the entry immediately below
+  // active is a PC too (Gamma), same as the returning Alpha — no creature
+  // is tied at this key besides Beta itself, so there's nothing for "the
+  // enemy goes first" to reorder, and the plain midpoint (relying on
+  // splice position, same as every other same-kind tie in this function)
+  // already lands Alpha exactly where it belongs: directly behind Beta.
+  it("uses the plain midpoint, landing directly behind active, when the entry below is a PC too", () => {
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Alpha", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      20,
+    );
+    add("Beta", 12);
+    useEncounter.getState().addCombatant(
+      { kind: "pc", name: "Gamma", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      12, // ties with Beta, the entry that will be active
+    );
+    const alpha = entryIdOf("Alpha");
+
+    useEncounter.getState().delay(alpha); // Beta is up
+    useEncounter.getState().returnFromDelay(alpha);
+
+    expect(activeName()).toBe("Beta");
+    expect(order()).toEqual(["Beta", "Alpha", "Gamma"]);
+    expect(entryOf(alpha).initiative).toBe(12);
+  });
+
   it("loses the turn and restores the original slot when a delayed round wraps", () => {
     add("Alpha", 20);
     add("Beta", 15);

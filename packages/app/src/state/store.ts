@@ -370,7 +370,7 @@ function advanceTurn(enc: Encounter): void {
           e.trueInitiative = null;
         }
       }
-      sortEntries(enc.entries);
+      sortEntries(enc.entries, enc.combatants);
     }
   }
   enc.activeEntryIndex = nextIndex;
@@ -422,12 +422,43 @@ function advanceTurn(enc: Encounter): void {
   );
 }
 
+/**
+ * Whether `entry` counts as a "PC entry" for the tie-break below. `Entry`
+ * can group several combatants (`group()`), and `kind` lives on each
+ * `Combatant`, not the entry — so this has to pick a rule for a mixed
+ * group. It counts as PC only when *every* member is a PC; a group with
+ * even one creature in it still carries an enemy's action, so it sorts as
+ * a creature would. Groups are built from creatures in practice (a mixed
+ * group is a hypothetical), but the choice matters for that case too: it
+ * means "the enemy goes first" wins over "you decide between yourselves"
+ * whenever the two could conflict, rather than leaving it to whichever
+ * combatant happens to be first in `combatantIds`.
+ */
+function isPcEntry(entry: Entry, combatants: Record<string, Combatant>): boolean {
+  return entry.combatantIds.length > 0 && entry.combatantIds.every((cid) => combatants[cid]?.kind === "pc");
+}
+
 /** Entries stay sorted by `orderKey` descending; Array#sort is stable, and
- * new entries are always appended before sorting, so ties preserve
+ * new entries are always appended before sorting, so an untied tie preserves
  * insertion order. An entry with no initiative rolled yet is placed above
  * every rolled entry regardless of `orderKey` — it hasn't earned a spot in
  * the numeric order, so it waits at the top rather than defaulting into the
- * middle of the pack at `orderKey` 0. */
+ * middle of the pack at `orderKey` 0.
+ *
+ * On an *exact* tie of `orderKey`, AoN's "Roll Initiative" step 1 settles
+ * it: "If your result is tied with an enemy's result, the enemy goes
+ * first." — a creature entry sorts above a tied PC entry, regardless of
+ * insertion order. "If your result is tied with another PC's, you can
+ * decide between yourselves who goes first" is deliberately left alone: two
+ * tied PC entries (or two tied creature entries — the rule is silent there)
+ * keep stable order, which is what makes them draggable via the GM's own
+ * drag handle instead of the app picking for them.
+ *
+ * A delayed entry is exempted from the creature/PC half of this comparison
+ * (see the guard below) — it isn't contesting turn order right now, and
+ * `advanceTurn`'s expiry rule depends on a delayed entry's array position
+ * never shifting for reasons unrelated to its own delay/return.
+ */
 /**
  * The nearest entry from `start`, stepping by `step`, that has a rolled
  * initiative — or undefined if there is none that way.
@@ -451,11 +482,20 @@ function nearestRolled(entries: Entry[], start: number, step: -1 | 1): Entry | u
   return undefined;
 }
 
-function sortEntries(entries: Entry[]): void {
+function sortEntries(entries: Entry[], combatants: Record<string, Combatant>): void {
   entries.sort((a, b) => {
     if (a.initiative === null && b.initiative !== null) return -1;
     if (a.initiative !== null && b.initiative === null) return 1;
-    return keyOf(b) - keyOf(a);
+    const diff = keyOf(b) - keyOf(a);
+    if (diff !== 0) return diff;
+    // Exact tie. A delayed entry sits this out — see this function's own
+    // comment — leaving Array#sort's stability to keep its position exactly
+    // where it already was.
+    if (a.delayed || b.delayed) return 0;
+    const aPc = isPcEntry(a, combatants);
+    const bPc = isPcEntry(b, combatants);
+    if (aPc !== bPc) return aPc ? 1 : -1; // the creature (non-PC) side sorts first
+    return 0; // both PC or both creature: stable, unrelated to this rule
   });
 }
 
@@ -551,7 +591,7 @@ export const useEncounter = create<EncounterStore>()(
           initiativeBeforeDelay: null,
           endOfTurnResolvedRound: null,
         });
-        sortEntries(enc.entries);
+        sortEntries(enc.entries, enc.combatants);
         if (activeEntryId !== null) {
           const newIndex = enc.entries.findIndex((e) => e.id === activeEntryId);
           enc.activeEntryIndex = newIndex >= 0 ? newIndex : 0;
@@ -581,7 +621,7 @@ export const useEncounter = create<EncounterStore>()(
             endOfTurnResolvedRound: null,
           });
         }
-        sortEntries(enc.entries);
+        sortEntries(enc.entries, enc.combatants);
         if (activeEntryId !== null) {
           const newIndex = enc.entries.findIndex((e) => e.id === activeEntryId);
           enc.activeEntryIndex = newIndex >= 0 ? newIndex : 0;
@@ -677,7 +717,7 @@ export const useEncounter = create<EncounterStore>()(
         // would expire the Delay after a single turn or never at all,
         // depending on which side of the active entry it landed.
         entry.delayed = false;
-        sortEntries(enc.entries);
+        sortEntries(enc.entries, enc.combatants);
         if (activeEntryId !== null) {
           const idx = enc.entries.findIndex((e) => e.id === activeEntryId);
           enc.activeEntryIndex = idx >= 0 ? idx : 0;
@@ -878,8 +918,32 @@ export const useEncounter = create<EncounterStore>()(
         // Halfway between the two neighbours, or a whole step below the
         // active entry when it is last in the order and there is no lower
         // neighbour to split the difference with.
-        const belowKey = belowIndex >= 0 ? keyOf(enc.entries[belowIndex]!) : activeKey - 2;
-        const newKey = (activeKey + belowKey) / 2;
+        const belowEntry = belowIndex >= 0 ? enc.entries[belowIndex] : undefined;
+        const belowKey = belowEntry !== undefined ? keyOf(belowEntry) : activeKey - 2;
+        // The midpoint only actually separates `entry` from both active and
+        // the entry below when they're distinct — sortEntries' tie-break
+        // (AoN, "Roll Initiative": "If your result is tied with an enemy's
+        // result, the enemy goes first") settles anything still tied by
+        // kind rather than by the placement just made below. That only
+        // matters when it could actually move something: if active and the
+        // entry immediately below it are tied AND that neighbour is a
+        // creature while the *returning* entry is a PC, "the enemy goes
+        // first" would otherwise let that creature leapfrog the PC just
+        // placed behind active — sortEntries already guarantees no creature
+        // is left stranded further down a tied run than a PC (it runs after
+        // every mutation), so checking the one neighbour is enough. Every
+        // other combination (same kind both sides, or a returning creature,
+        // which no tied PC can ever outrank) is exactly the "tied ones are
+        // the norm here" case the splice below already handles correctly on
+        // its own — a full step below `active` there would only push the
+        // entry further from active than the drop-in-behind-the-active-
+        // creature placement calls for, with nothing to guard against.
+        const risksLeapfrog =
+          belowEntry !== undefined &&
+          activeKey === belowKey &&
+          isPcEntry(entry, enc.combatants) &&
+          !isPcEntry(belowEntry, enc.combatants);
+        const newKey = risksLeapfrog ? activeKey - 1 : (activeKey + belowKey) / 2;
 
         entry.initiativeBeforeDelay = entry.initiative;
         entry.initiative = active.initiative;
@@ -897,9 +961,12 @@ export const useEncounter = create<EncounterStore>()(
         // Splicing the entry into place *and* setting orderKey looks
         // redundant, and for distinct initiatives it is — but tied ones are
         // the norm here (addMany gives every member of a batch the same
-        // roll), and then the midpoint above equals both neighbours' key.
-        // sortEntries is stable, so with a tie it is this array position,
-        // not the number, that decides who acts first.
+        // roll), and then the midpoint above equals both neighbours' key
+        // (except in the active-ties-below case just handled, which never
+        // reaches an equal key at all). sortEntries is stable, so with a
+        // tie between same-kind entries it is this array position, not the
+        // number, that decides who acts first; a tie against a different
+        // kind is instead settled by the tie-break above this splice.
         const from = enc.entries.findIndex((e) => e.id === entryId);
         const [moved] = enc.entries.splice(from, 1);
         const behindActive = enc.entries.findIndex((e) => e.id === active.id) + 1;
@@ -908,7 +975,7 @@ export const useEncounter = create<EncounterStore>()(
         // Same identity-not-position rule as addCombatant/group: the GM is
         // mid-turn with the active creature, and a re-sort must not hand the
         // turn to whoever now sits at the old index.
-        sortEntries(enc.entries);
+        sortEntries(enc.entries, enc.combatants);
         const idx = enc.entries.findIndex((e) => e.id === active.id);
         enc.activeEntryIndex = idx >= 0 ? idx : 0;
       }),
@@ -943,13 +1010,31 @@ export const useEncounter = create<EncounterStore>()(
         // this is the common path, not an edge case.
         const above = nearestRolled(enc.entries, insertAt - 1, -1);
         const below = nearestRolled(enc.entries, insertAt, 1);
+        // The midpoint above only actually separates `moved` from both
+        // neighbours when they're distinct — sortEntries' own tie-break
+        // (AoN, "Roll Initiative": "If your result is tied with an enemy's
+        // result, the enemy goes first") settles anything still on
+        // `keyOf(a) === keyOf(b)` by kind, ignoring array position
+        // entirely. When `above` and `below` are themselves already tied,
+        // (keyOf(above) + keyOf(below)) / 2 computes that same shared key
+        // back, so `moved` would land tied with both — free for that
+        // tie-break to reassert itself and pull a dragged PC back below a
+        // tied creature it was just dropped in front of. There is no real
+        // number that sits strictly between two equal ones, so this can't
+        // preserve "between both neighbours" faithfully; it instead
+        // guarantees the one relationship the drop target actually names —
+        // moved sorts ahead of `below`, i.e. `beforeEntryId` — by treating
+        // the tied pair as if only `below` were there. The cost, only in
+        // this exact case, is that `moved` also leapfrogs whatever `above`
+        // shares that key with.
+        const bothTied = above !== undefined && below !== undefined && keyOf(above) === keyOf(below);
         moved!.orderKey =
-          above !== undefined && below !== undefined
+          above !== undefined && below !== undefined && !bothTied
             ? (keyOf(above) + keyOf(below)) / 2
-            : above !== undefined
-              ? keyOf(above) - 1
-              : below !== undefined
-                ? keyOf(below) + 1
+            : below !== undefined
+              ? keyOf(below) + 1
+              : above !== undefined
+                ? keyOf(above) - 1
                 : moved!.orderKey;
 
         // An explicit GM placement is authoritative and retires every
@@ -992,7 +1077,7 @@ export const useEncounter = create<EncounterStore>()(
         }
 
         enc.entries.splice(insertAt, 0, moved!);
-        sortEntries(enc.entries);
+        sortEntries(enc.entries, enc.combatants);
 
         // Same identity-not-position rule as addCombatant/group/
         // returnFromDelay: a reorder must never hand the turn to whoever
@@ -1043,7 +1128,7 @@ export const useEncounter = create<EncounterStore>()(
           initiativeBeforeDelay: null,
           endOfTurnResolvedRound: null,
         });
-        sortEntries(remaining);
+        sortEntries(remaining, enc.combatants);
         enc.entries = remaining;
 
         const targetId = activeFullyAbsorbed ? groupEntryId : activeEntryId;
@@ -1085,7 +1170,7 @@ export const useEncounter = create<EncounterStore>()(
             newEntries.push(entry);
           }
         }
-        sortEntries(newEntries);
+        sortEntries(newEntries, enc.combatants);
         enc.entries = newEntries;
 
         const targetId = activeFullyDissolves ? null : activeEntryId;
