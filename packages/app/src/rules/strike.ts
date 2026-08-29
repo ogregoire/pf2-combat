@@ -159,8 +159,20 @@ const damageText = (
         ? critBaseDamage(d.formula, traits)
         : doubleFormula(d.formula)
       : d.formula;
-    const label = d.category ? `${categoryLabel(d.category, lang)} ` : "";
-    return `${formula} ${label}${damageTypeName(d.type, lang)}`;
+    if (!d.category) return `${formula} ${damageTypeName(d.type, lang)}`;
+    const category = categoryLabel(d.category, lang);
+    const type = damageTypeName(d.type, lang);
+    // French adjectives follow their noun: "persistant" (persistent) is an
+    // adjective modifying the damage type, so French reorders to
+    // type-then-category — "2d6 feu persistant", not "2d6 persistant feu"
+    // (attested word order: data/i18n/fr/creatures' "dégâts de feu
+    // persistants"). "éclaboussure" (splash) isn't an adjective, it's a
+    // noun in its own right ("a splash of acid"), so English's
+    // category-then-type order already reads fine in French too —
+    // "éclaboussure acide" — and stays untouched; only "persistent"
+    // reorders, not every category.
+    if (lang === "fr" && d.category === "persistent") return `${formula} ${type} ${category}`;
+    return `${formula} ${category} ${type}`;
   });
   if (precisionActive && input.precision !== undefined) {
     const f = crit

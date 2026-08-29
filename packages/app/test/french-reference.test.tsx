@@ -131,6 +131,32 @@ describe("conditions, traits and the glossary render in French", () => {
     expect(screen.getByRole("button", { name: "Nauséeux" })).toBeTruthy();
   });
 
+  // Fix round 2/5: the +/- steppers on a valued applied condition's tag
+  // (RowPopover.tsx's Stepper) built their aria-label as a hardcoded English
+  // template — `Decrease ${name}` / `Increase ${name}` — around an already-
+  // French `name`. i18n-strings-complete.test.ts's own scanner is
+  // documented to skip `aria-label={...}` expressions (as opposed to a
+  // literal `aria-label="..."`) on the assumption every such expression
+  // "already reads from data or from t()"; this one didn't — the English
+  // words wrapping `name` were neither.
+  it("names the applied condition's +/- stepper buttons in French, not just the chip", async () => {
+    vi.stubGlobal("fetch", fakeFetch());
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Ours effrayé", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 6, will: 2 }, hp: { current: 10, max: 10 } },
+      10,
+    );
+    useEncounter.getState().addCondition(id, "frightened", 2);
+
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Ours effrayé"));
+
+    expect(screen.getByRole("button", { name: "Diminuer Effrayé" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Augmenter Effrayé" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /Decrease|Increase/ })).toBeNull();
+  });
+
   it("orders the picker alphabetically in French, not by the English name it was sorted on", async () => {
     // The GM's own complaint: the picker used to be sorted once, at module
     // load, by the English `ConditionDef.name` — so in French it read in

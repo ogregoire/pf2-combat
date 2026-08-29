@@ -185,7 +185,12 @@ describe("resolveStrike", () => {
     expect(r.outcomes.find((o) => o.degree === "critical-success")!.damage).toBe("2d8+10 tranchant");
   });
 
-  it("localises the persistent-damage category label and the type it labels, in fr", () => {
+  // "persistant" is a genuine French adjective, and French adjectives
+  // follow their noun — "2d6 persistant feu" (category-then-type, the
+  // English word order) reads as broken French, "2d6 feu persistant"
+  // (type-then-category) is correct. Only persistent reorders; see the
+  // splash-damage test below, which keeps English's order deliberately.
+  it("reorders the persistent-damage category label after its type in fr, unlike en", () => {
     const r = resolveStrike({
       ...base,
       lang: "fr",
@@ -195,7 +200,7 @@ describe("resolveStrike", () => {
       ],
     });
     expect(r.outcomes.find((o) => o.degree === "success")!.damage).toBe(
-      "1d8+5 tranchant + 2d6 persistant feu",
+      "1d8+5 tranchant + 2d6 feu persistant",
     );
   });
 

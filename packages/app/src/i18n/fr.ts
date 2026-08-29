@@ -154,6 +154,8 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   RECORD_STRIKE_BUTTON: "Enregistrer la frappe",
 
   // RowPopover.tsx
+  STEPPER_DECREASE_ARIA: "Diminuer {name}",
+  STEPPER_INCREASE_ARIA: "Augmenter {name}",
   IWR_IMMUNE_SUFFIX: "immunisé",
   IWR_WEAKNESS: "faiblesse {value}",
   IWR_RESISTANCE: "résistance {value}",
@@ -202,11 +204,13 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   // Not full PF2 prose ("X dégâts de [type] persistants") — that would need
   // a preposition and elision (de/d') this compact badge format has never
   // carried in either language (English drops "damage" the same way: "2d6
-  // persistent fire", not "2d6 persistent fire damage"). Word ORDER also
-  // stays the same as English (category before type) rather than the
-  // grammatically-native "feu persistant" — a deliberate, documented
-  // trade-off; see the report for the reasoning and the follow-up this
-  // leaves on the table.
+  // persistent fire", not "2d6 persistent fire damage"). Word order (this
+  // word before or after the type it labels) is decided per-category in
+  // rules/strike.ts's damageText, not here — "persistant" is a genuine
+  // French adjective and reorders after its noun ("feu persistant"), while
+  // "éclaboussure" is a noun and keeps English's category-before-type
+  // order ("éclaboussure acide" already reads correctly). See the report
+  // for the reasoning.
   DAMAGE_CATEGORY_PERSISTENT: "persistant",
   DAMAGE_CATEGORY_SPLASH: "éclaboussure",
 

@@ -115,6 +115,7 @@ function Stepper({
   onIncrease: () => void;
   onDecrease: () => void;
 }): React.ReactElement {
+  const t = useT();
   const buttonStyle: React.CSSProperties = {
     fontFamily: "inherit",
     fontSize: "12px",
@@ -131,12 +132,12 @@ function Stepper({
   };
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
-      <button type="button" aria-label={`Decrease ${name}`} onClick={onDecrease} style={buttonStyle}>
+      <button type="button" aria-label={format(t("STEPPER_DECREASE_ARIA"), { name })} onClick={onDecrease} style={buttonStyle}>
         −
       </button>
       {/* The "small spaces around the number" the brief asks for. */}
       <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", padding: "0 2px" }}>{value}</span>
-      <button type="button" aria-label={`Increase ${name}`} onClick={onIncrease} style={buttonStyle}>
+      <button type="button" aria-label={format(t("STEPPER_INCREASE_ARIA"), { name })} onClick={onIncrease} style={buttonStyle}>
         +
       </button>
     </span>

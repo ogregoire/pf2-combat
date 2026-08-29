@@ -152,6 +152,13 @@ export const STRINGS_EN = {
   RECORD_STRIKE_BUTTON: "Record strike",
 
   // RowPopover.tsx
+  // Stepper's +/- aria-labels, {name} being the condition's own already-
+  // localised display name (conditionDisplayName) — wrapping it in a
+  // hardcoded English "Decrease"/"Increase" was the same defect the damage
+  // types fix addressed, just a screen-reader-only surface instead of a
+  // visible one.
+  STEPPER_DECREASE_ARIA: "Decrease {name}",
+  STEPPER_INCREASE_ARIA: "Increase {name}",
   IWR_IMMUNE_SUFFIX: "immune",
   IWR_WEAKNESS: "weakness {value}",
   IWR_RESISTANCE: "resistance {value}",
