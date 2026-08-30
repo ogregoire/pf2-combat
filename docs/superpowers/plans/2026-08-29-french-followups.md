@@ -27,7 +27,7 @@
 |---|---|
 | Action entries total | 6880 |
 | `name: null` | 1964 (28.5%) |
-| `description: null` | **2045 (29.7%)**, across **1008 of 1450 creatures** |
+| `description: null` | **2045 (29.7%)**, across **887 of 1450 creatures** (1008 have a null name OR description) |
 | English actions carrying a trigger | 723 |
 | French descriptions carrying `<strong>Déclencheur</strong>` | **537** |
 | Null descriptions on creatures the `archive/` covers | **666 (33%)** |
