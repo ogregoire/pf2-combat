@@ -24,13 +24,15 @@ describe("pluralize", () => {
   it("turns -al into -aux", () => expect(pluralize("Cheval", 2, "fr")).toBe("Chevaux"));
   it("adds x after -eau and -eu", () => {
     expect(pluralize("Corbeau", 2, "fr")).toBe("Corbeaux");
-    // "Dracolisque bleu" — a real creature name — pins the plain -eu
-    // branch: the -eau test above doesn't exercise it on its own, so a
-    // mutant that dropped just the -eu check passed undetected until this
-    // was added. (Not "Géant du feu": that name has a preposition, "du",
-    // so the target word for pluralisation is "Géant", not "feu" — see
-    // the prepositional-compound tests below.)
-    expect(pluralize("Dracolisque bleu", 2, "fr")).toBe("Dracolisque bleux");
+    // "Dracolisque bleu" — a real creature name. It previously asserted
+    // "bleux", which is not French: "bleu" is one of the short list of -eu
+    // words taking -s (bleu, pneu, émeu). Corrected rather than preserved.
+    // Note the noun stays singular: full adjective agreement ("Dracolisques
+    // bleus") needs number to propagate across the whole name, which this
+    // rule set deliberately does not attempt — see the module doc.
+    expect(pluralize("Dracolisque bleu", 2, "fr")).toBe("Dracolisque bleus");
+    // "Feu" exercises the -eu → -x branch that "bleu" no longer does.
+    expect(pluralize("Élémentaire feu", 2, "fr")).toBe("Élémentaire feux");
   });
   it("leaves a parenthesised qualifier alone", () => {
     expect(pluralize("Jann (Génie)", 2, "fr")).toBe("Janns (Génie)");
@@ -63,5 +65,18 @@ describe("pluralize", () => {
     // this would wrongly pluralise "méduses" instead of "Nuée".
     it("splits at the first preposition when the name has more than one", () =>
       expect(pluralize("Nuée de méduses de feu", 2, "fr")).toBe("Nuées de méduses de feu"));
+  });
+
+  it("pluralises an accented -éau stem, which an endsWith(\"eau\") test misses", () => {
+    // "fléau" ends in é-a-u, so the original -eau rule produced "fléaus".
+    expect(pluralize("Fléau des arbres", 2, "fr")).toBe("Fléaux des arbres");
+    expect(pluralize("Solifuge fléau des dunes", 2, "fr")).toBe("Solifuge fléaux des dunes");
+  });
+
+  it("keeps the -eu words that take -s rather than -x", () => {
+    // French's exception list is short; "bleu" is the one that occurs here.
+    // The head noun is left singular on purpose — adjective agreement is
+    // out of scope, so this asserts the rule's real output, not ideal French.
+    expect(pluralize("Diable bleu", 2, "fr")).toBe("Diable bleus");
   });
 });

@@ -1,10 +1,16 @@
 export type PluralLang = "en" | "fr";
 
+/** Words in -eu that take -s, not -x. French's list is short (bleu, pneu,
+ * émeu); only `bleu` occurs across the 1450 French creature names, via
+ * adjective-final names like "Diable bleu". */
+const EU_TAKES_S = new Set(["bleu", "pneu", "émeu"]);
+
 /**
  * French pluralisation applied to the LAST word of `word` (the caller has
  * already isolated the word this rule set treats), by exactly four rules:
  * a name already ending in -s, -x or -z is unchanged; -al becomes -aux;
- * -eau or -eu gains an -x; anything else gains a plain -s. This is
+ * -au (which covers -eau and the accented -éau) or -eu gains an -x, bar a
+ * short exception list; anything else gains a plain -s. This is
  * deliberately not full French morphology (no -ail exception list, no
  * adjective agreement) — see plural.ts's module doc.
  */
@@ -12,7 +18,17 @@ function pluralizeFrenchWord(word: string): string {
   const lower = word.toLowerCase();
   if (lower.endsWith("s") || lower.endsWith("x") || lower.endsWith("z")) return word;
   if (lower.endsWith("al")) return `${word.slice(0, -2)}aux`;
-  if (lower.endsWith("eau") || lower.endsWith("eu")) return `${word}x`;
+  // `-au` rather than `-eau`, so an accented stem is covered too: "fléau"
+  // ends in é-a-u, so an `endsWith("eau")` test missed it and produced
+  // "fléaus" instead of "fléaux". Every head word ending in -au across the
+  // 1450 French names takes -x (Babau, Blaireau, Bourreau, Corbeau, Fléau,
+  // anneau); the -aus exceptions French does have (landau, sarrau) appear in
+  // none of them.
+  if (lower.endsWith("au")) return `${word}x`;
+  // -eu takes -x apart from a short, closed list of exceptions; "bleu" is
+  // the one that occurs here ("Diable bleu" → "Diables bleus", never
+  // "bleux").
+  if (lower.endsWith("eu") && !EU_TAKES_S.has(lower)) return `${word}x`;
   return `${word}s`;
 }
 
