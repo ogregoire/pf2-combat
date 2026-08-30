@@ -552,6 +552,137 @@ describe("archive fallback", () => {
     ).toBeNull();
   });
 
+  // Task 2 (French follow-ups): unlike the whole-creature fallback above,
+  // these creatures ARE covered by Babele -- the gap is a specific item the
+  // live translation missed, and the archive fills only THAT item.
+  describe("item-level archive fallback", () => {
+    it("fills a null item description without touching a populated one", () => {
+      // Babele wins wherever it has something; the archive is retired data.
+      const babele = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: {
+            Ogre: {
+              name: "Ogre",
+              items: {
+                "id-babele": { description: "<p>Babele's French</p>" },
+                // no entry at all for id-archive -- Babele never covered it
+              },
+            },
+          },
+        },
+      });
+      const archive = makeArchiveTable({
+        "pathfinder-bestiary": {
+          "ogre-id":
+            "Name: Ogre\nNom: Ogre\nÉtat: officielle\n\n" +
+            "ID: id-babele\nName: Babele Action\nNom: Babele Action FR\n" +
+            "-- Desc (en) --\n<p>Archive's English (must lose)</p>\n" +
+            "-- Desc (fr) --\n<p>Archive's French (must lose)</p>\n-- End desc ---\n\n" +
+            "ID: id-archive\nName: Archive Action\nNom: Archive Action FR\n" +
+            "-- Desc (en) --\n<p>Archive's English</p>\n" +
+            "-- Desc (fr) --\n<p>Archive's French</p>\n-- End desc ---\n\n" +
+            "ID: id-neither\nName: Neither Action\nNom: Neither Action FR\n",
+        },
+      });
+
+      const out = buildCreatureI18n({
+        creatureName: "Ogre",
+        creatureFoundryId: "ogre-id",
+        ownPack: "pathfinder-bestiary",
+        actions: [
+          { name: "Babele Action", foundryId: "id-babele" },
+          { name: "Archive Action", foundryId: "id-archive" },
+          { name: "Neither Action", foundryId: "id-neither" },
+        ],
+        attacks: [],
+        table: babele,
+        lang: {},
+        archive,
+      })!;
+
+      expect(out.actions[0]!.description).toBe("<p>Babele's French</p>");
+      expect(out.actions[1]!.description).toBe("<p>Archive's French</p>");
+      // leaves a description null when neither source has it
+      expect(out.actions[2]!.description).toBeNull();
+    });
+
+    it("aligns archive items by foundryId, never by position or name", () => {
+      // Same reason the Babele join is id-keyed: 156 creatures carry two
+      // same-named Strikes (a melee and a thrown Dagger/Hatchet/Spear).
+      // Babele covers neither Dagger item here, so both fall back to the
+      // archive -- each must pick up ITS OWN archive text, not the other's
+      // or whichever comes first.
+      const babele = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: { Bandit: { name: "Bandit", items: {} } },
+        },
+      });
+      // The archive record lists the THROWN item first -- the reverse of the
+      // `actions` array order below -- so that a positional (rather than
+      // foundry-id) join would pick up the wrong text for both.
+      const archive = makeArchiveTable({
+        "pathfinder-bestiary": {
+          "bandit-id":
+            "Name: Bandit\nNom: Bandit\nÉtat: officielle\n\n" +
+            "ID: id-thrown\nName: Dagger\nNom: Dague de jet\n" +
+            "-- Desc (en) --\n<p>Thrown EN</p>\n-- Desc (fr) --\n<p>Thrown FR</p>\n-- End desc ---\n\n" +
+            "ID: id-melee\nName: Dagger\nNom: Dague\n" +
+            "-- Desc (en) --\n<p>Melee EN</p>\n-- Desc (fr) --\n<p>Melee FR</p>\n-- End desc ---\n",
+        },
+      });
+
+      const out = buildCreatureI18n({
+        creatureName: "Bandit",
+        creatureFoundryId: "bandit-id",
+        ownPack: "pathfinder-bestiary",
+        actions: [
+          { name: "Dagger", foundryId: "id-melee" },
+          { name: "Dagger", foundryId: "id-thrown" },
+        ],
+        attacks: [],
+        table: babele,
+        lang: {},
+        archive,
+      })!;
+
+      expect(out.actions[0]!.name).toBe("Dague");
+      expect(out.actions[0]!.description).toBe("<p>Melee FR</p>");
+      expect(out.actions[1]!.name).toBe("Dague de jet");
+      expect(out.actions[1]!.description).toBe("<p>Thrown FR</p>");
+    });
+
+    it("resolves archive-sourced item HTML through the same French pipeline as Babele text", () => {
+      const babele = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: { Ankou: { name: "Ankou FR", items: {} } },
+        },
+      });
+      const archive = makeArchiveTable({
+        "pathfinder-bestiary": {
+          "ankou-id":
+            "Name: Ankou\nNom: Ankou FR\nÉtat: officielle\n\n" +
+            "ID: id-dread\nName: Dread\nNom: Effroi\n" +
+            "-- Desc (en) --\n<p>@UUID[Compendium.pf2e.actionspf2e.Item.abc]{Strike}.</p>\n" +
+            "-- Desc (fr) --\n<p>@UUID[Compendium.pf2e.actionspf2e.Item.abc]{Frappe}.</p>\n-- End desc ---\n",
+        },
+      });
+
+      const out = buildCreatureI18n({
+        creatureName: "Ankou",
+        creatureFoundryId: "ankou-id",
+        ownPack: "pathfinder-bestiary",
+        actions: [{ name: "Dread", foundryId: "id-dread" }],
+        attacks: [],
+        table: babele,
+        lang: {},
+        archive,
+      })!;
+
+      expect(out.actions[0]!.description).toBe("<p>Frappe.</p>");
+      expect(JSON.stringify(out)).not.toContain("@UUID[");
+    });
+  });
+
   describe("buildIndexI18n", () => {
     it("never overrides a live Babele translation", () => {
       const babele = makeBabeleTable({

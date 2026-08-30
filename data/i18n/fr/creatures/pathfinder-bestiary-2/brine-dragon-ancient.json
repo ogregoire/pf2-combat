@@ -1,37 +1,37 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Une créature à une distance maximale de 9 mètres observée par le dragon de saumure utilise une action pour se concentrer </p>\n<hr />\n<p><strong>Effet</strong> Le dragon crache un globe d'eau salée caustique sur cette créature. La créature subit @Damage[7d6[acid]]{7d6 dégâts d'acide} (@Check[reflex|dc:36|basic]). En cas d'échec, l'action de concentration est interrompue.</p>",
       "en": "Brine Spit",
-      "name": null,
+      "name": "Crachat de saumure",
       "requirements": null,
-      "trigger": null
+      "trigger": "Une créature à une distance maximale de 9 mètres observée par le dragon de saumure utilise une action pour se concentrer"
     },
     {
-      "description": null,
+      "description": "<p>Le dragon tente de faire chavirer un bateau adjacent de sa taille ou plus petit. Il doit réussir un test d'Athlétisme contre le plus élevé entre un DD de 35 (réduit de 5 par catégorie de taille du navire inférieure à celle du dragon) ou le DD de Connaissance du pilotage du pilote.</p>",
       "en": "Capsize",
-      "name": null,
+      "name": "Chavirer",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon souffle une aspersion d'eau salée acide qui inflige @Damage[18d6[acid]|options:area-damage]{9d6 dégâts d'acide} sur @Template[line|distance:120]{ligne de 36 mètres} (@Check[reflex|dc:38|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
       "en": "Breath Weapon",
-      "name": null,
+      "name": "Arme de souffle",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon effectue une Frappe de mâchoires. S'il touche, la cible subit @Damage[6d6[persistent,acid]]{6d6 dégâts d'acide persistants} et elle est Nauséeuse 3 à cause de la douleur provoquée par le sel et la saumure sur sa blessure.</p>",
       "en": "Desiccating Bite",
-      "name": null,
+      "name": "Morsure déshydratante",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon effectue deux Frappes de griffes et une Frappe d'aile dans l'ordre de son choix.</p>",
       "en": "Draconic Frenzy",
-      "name": null,
+      "name": "Frénésie draconique",
       "requirements": null,
       "trigger": null
     },
@@ -43,23 +43,23 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon recharge son Arme de souffle à chaque fois qu'il inflige un coup critique avec une Frappe.</p>",
       "en": "Draconic Momentum",
-      "name": null,
+      "name": "Impulsion draconique",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>27 mètres. (@Check[will|dc:36])</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le corps du dragon de saumure est incrusté de cristaux de sel acides. Quand une cible subit des dégâts à cause d'une Frappe au corps-à-corps du dragon, elle doit réussir un jet de @Check[fortitude|dc:38] ou être Étourdie 1 (Étourdie 3 en cas d'échec critique). Ensuite, la cible est temporairement immunisée pendant 1 minute.</p>",
       "en": "Painful Strikes",
-      "name": null,
+      "name": "Frappes douloureuses",
       "requirements": null,
       "trigger": null
     }
@@ -67,19 +67,19 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     },
     {
       "en": "Wing",
-      "name": null
+      "name": "Aile"
     }
   ],
   "name": "Dragon de saumure (Vénérable)",

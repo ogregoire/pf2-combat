@@ -1,17 +1,17 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> L'asticot subit des dégâts</p>\n<hr />\n<p><strong>Effet</strong> L'asticot géant régurgite son immonde repas. Toutes les créatures dans une @Template[emanation|distance:5]{émanation de 1,50 mètre} doivent réussir un jet de @Check[fortitude|dc:16] ou être Nauséeux 1 (ou Nauséeux 2 en cas d'échec critique).</p>\n<hr />\n<p>L'asticot géant ne peut plus utiliser Régurgitation tant qu'il n'a pas passé une heure à dévorer un cadavre.</p>",
       "en": "Regurgitation",
-      "name": null,
+      "name": "Regurgitation",
       "requirements": null,
-      "trigger": null
+      "trigger": "L'asticot subit des dégâts"
     },
     {
-      "description": null,
+      "description": "<p><strong>Conditions</strong> L'asticot géant a Agrippé une créature</p>\n<hr />\n<p><strong>Effet</strong> L'asticot géant inflige @Damage[(1d8+2)[slashing]]{1d8+2 dégâts tranchants} à la créature agrippée en lui rongeant la chair (@Check[reflex|dc:19|basic]).</p>",
       "en": "Gnaw Flesh",
-      "name": null,
-      "requirements": null,
+      "name": "Ronger la chair",
+      "requirements": "L'asticot géant a Agrippé une créature",
       "trigger": null
     },
     {
@@ -24,7 +24,7 @@
     {
       "description": null,
       "en": "Tremorsense 30 feet",
-      "name": null,
+      "name": "Perception des vibrations 9 m",
       "requirements": null,
       "trigger": null
     }
@@ -32,7 +32,7 @@
   "attacks": [
     {
       "en": "Mandibles",
-      "name": null
+      "name": "Mandibules"
     }
   ],
   "name": "Asticot géant",

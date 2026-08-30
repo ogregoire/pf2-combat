@@ -61,3 +61,21 @@ export function frenchCoverage(
     untranslated,
   };
 }
+
+export interface FieldCoverage {
+  translated: number;
+  total: number;
+}
+
+/**
+ * Task 2: item-level coverage for one field (action name or description)
+ * across every creature's overlay. Unlike `frenchCoverage`, no id list --
+ * there are thousands of individual action entries (2045 null descriptions
+ * alone before Task 2), far too many to usefully name on every run. The
+ * creature-level list above is what points at a specific regression; this
+ * is what shows the archive fallback's effect on the count.
+ */
+export function fieldCoverage(values: (string | null)[]): FieldCoverage {
+  const translated = values.filter((value) => value !== null).length;
+  return { translated, total: values.length };
+}

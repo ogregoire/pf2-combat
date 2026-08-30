@@ -98,6 +98,25 @@ function resolveFrenchField(
 }
 
 /**
+ * One item's translated name/description, after preferring Babele's own
+ * field over the archive's -- independently per field, so an item Babele
+ * translated by name only (no body) still picks up the archive's
+ * description without losing Babele's name. Task 2: 666 of the 2045 null
+ * action descriptions sit on creatures Babele DOES cover, just not that one
+ * item; this is what fills those in, without ever shadowing something
+ * Babele already has.
+ */
+function mergedItem(
+  babeleItem: { name?: string; description?: string } | undefined,
+  archiveItem: { fr: string | null; description: string | null } | undefined,
+): { name?: string; description?: string } {
+  return {
+    name: babeleItem?.name ?? archiveItem?.fr ?? undefined,
+    description: babeleItem?.description ?? archiveItem?.description ?? undefined,
+  };
+}
+
+/**
  * Builds a creature's French overlay by aligning Babele's per-item
  * translations (keyed by Foundry item id) to the SAME sorted
  * actions/attacks arrays the English creature already uses — by array
@@ -115,11 +134,17 @@ function resolveFrenchField(
  * than the English text: a missing translation must stay visible to
  * `report`, not be hidden by a silent fallback.
  *
- * `archive` is consulted ONLY when the Babele lookup above returns nothing —
- * Task 17. Babele always wins: it is the live, actively maintained
+ * `archive` is consulted at TWO levels, both keyed by foundry id, never by
+ * position or name (same reason the Babele join above is id-keyed):
+ *  - whole-creature: only when the Babele lookup returns nothing at all —
+ *    Task 17.
+ *  - per-item (Task 2): even when Babele DOES cover the creature, each
+ *    individual action/attack item still falls back to the archive's OWN
+ *    entry for that same foundry id when Babele's item field is missing.
+ * Babele always wins at both levels: it is the live, actively maintained
  * translation, and the archive is retired data that exists purely to fill
- * the gap Babele leaves. A creature Babele already covers must never have
- * its translation shadowed by an older archived one.
+ * the gaps Babele leaves. A field Babele already has is never shadowed by
+ * an older archived one.
  */
 export function buildCreatureI18n(args: {
   creatureName: string;
@@ -143,25 +168,29 @@ export function buildCreatureI18n(args: {
   if (!entry) return null;
 
   const items = entry.items ?? {};
+  // Consulted regardless of where `entry` itself came from: when it came
+  // from `fromArchive` above, `archiveItems` and `items` are already the
+  // same data, so `mergedItem` below is a no-op there and only does real
+  // work in the Task 2 case -- Babele covers the creature but not this item.
+  const archiveItems = args.archive?.get(args.creatureFoundryId)?.items ?? {};
 
   return {
     name: entry.name,
     publicNotes: resolveFrench(entry.description, args.lang),
-    actions: args.actions.map((action) => ({
-      en: action.name,
-      name: items[action.foundryId]?.name ?? null,
-      description: resolveFrench(items[action.foundryId]?.description, args.lang),
-      trigger: resolveFrenchField(items[action.foundryId]?.description, args.lang, extractTriggerFr),
-      requirements: resolveFrenchField(
-        items[action.foundryId]?.description,
-        args.lang,
-        extractRequirementsFr,
-      ),
-    })),
-    attacks: args.attacks.map((attack) => ({
-      en: attack.name,
-      name: items[attack.foundryId]?.name ?? null,
-    })),
+    actions: args.actions.map((action) => {
+      const merged = mergedItem(items[action.foundryId], archiveItems[action.foundryId]);
+      return {
+        en: action.name,
+        name: merged.name ?? null,
+        description: resolveFrench(merged.description, args.lang),
+        trigger: resolveFrenchField(merged.description, args.lang, extractTriggerFr),
+        requirements: resolveFrenchField(merged.description, args.lang, extractRequirementsFr),
+      };
+    }),
+    attacks: args.attacks.map((attack) => {
+      const merged = mergedItem(items[attack.foundryId], archiveItems[attack.foundryId]);
+      return { en: attack.name, name: merged.name ?? null };
+    }),
   };
 }
 

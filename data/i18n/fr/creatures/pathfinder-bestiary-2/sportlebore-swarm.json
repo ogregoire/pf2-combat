@@ -1,30 +1,30 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Une créature dans la zone de la nuée d'imitapéros parle, utilise un composant verbal ou ouvre la bouche.</p>\n<hr />\n<p><strong>Effet</strong> Une partie de la nuée tente de se précipiter dans la gorge de la créature ayant déclenché l'effet. Elle doit alors faire un jet de @Check[fortitude|dc:25|traits:damaging-effect].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> La créature se retrouve avec une bouchée d'imitapéros. Elle parvient à les recracher et éviter d'autres dégâts, mais elle ne peut plus parler pendant 1 round et, si elle était en train d'accomplir une action d'incantation verbale, le sort échoue et l'action est perdue.</p>\n<p><strong>Échec</strong> La créature subit @Damage[4d6[piercing]]{4d6 dégâts perforants} à cause des morsures des imitapéros, ne peut plus parler pendant 1 round et perd son sort comme indiqué dans Succès.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la créature est aussi exposée à l'Infestation d'imitapéros.</p>",
       "en": "Pour Down Throat",
-      "name": null,
+      "name": "Avaler de force",
       "requirements": null,
-      "trigger": null
+      "trigger": "Une créature dans la zone de la nuée d'imitapéros parle, utilise un composant verbal ou ouvre la bouche."
     },
     {
-      "description": null,
+      "description": "<p>Chaque créature dans l'espace de la nuée subit @Damage[4d6[piercing]]{4d6 dégâts perforants} (@Check[reflex|dc:25|basic]).</p>",
       "en": "Swarming Bites",
-      "name": null,
+      "name": "Nuée de morsures",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:22] </p>\n<p><strong>Stade 1</strong> Porteur sans symptômes (1 jour)</p>\n<p><strong>Stade 2</strong> Affaibli 1 (1 heure)</p>\n<p><strong>Stade 3</strong> Affaibli 2 (1 heure)</p>\n<p><strong>Stade 4</strong> @Damage[4d6[bludgeoning]]{4d6 dégâts contondants} (@Check[fortitude|dc:25|basic]) lorsque l'hôte vomit douloureusement une nuée d'imitapéros et revient au stade 1.</p>",
       "en": "Sportlebore Infestation",
-      "name": null,
+      "name": "Infestation d'imitapéros",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p><p>Ce monstre n'est pas doté d'un esprit individuel (généralement car il est composé d'une nuée de petites créatures) et il est ainsi immunisé contre les effets mentaux qui ciblent seulement un nombre donné de créatures. Il est cependant toujours affecté par les effets mentaux qui prennent pour cible toutes les créatures qui se trouvent dans une zone.</p></p>",
       "en": "Swarm Mind",
-      "name": null,
+      "name": "Esprit de la nuée",
       "requirements": null,
       "trigger": null
     }

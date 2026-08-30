@@ -1,30 +1,30 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Le dragon est ciblé par une attaque.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon dresse son aile et obtient un bonus de circonstances de +2 à sa CA contre l'attaque déclencheuse. Si le dragon est en vol, il descend de 3 mètres après la fin de l'attaque.</p>",
       "en": "Wing Deflection",
-      "name": null,
+      "name": "Déflection de l'aile",
       "requirements": null,
-      "trigger": null
+      "trigger": "Le dragon est ciblé par une attaque."
     },
     {
-      "description": null,
+      "description": "<p>Si la prochaine action du dragon consiste à utiliser son Arme de souffle, le magma adhère à ceux qui ont été touchés. Chaque créature qui obtient un échec sur son jet de sauvegarde contre le Souffle subit @Damage[5d6[persistent,fire]]{4d6 dégâts de feu persistants} et tant que ces derniers dureront elle subira également une pénalité de statut de -3 mètres à ses Vitesses.</p>",
       "en": "Volcanic Purge",
-      "name": null,
+      "name": "Purge volcanique",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon souffle une langue de magma qui inflige @Damage[10d6[fire],5d12[bludgeoning]|options:area-damage]{10d6 dégâts de feu et 5d12 dégâts contondants} dans un @Template[cone|distance:60]{cône de 18 mètres} (@Check[reflex|dc:40|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
       "en": "Breath Weapon",
-      "name": null,
+      "name": "Arme de souffle",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Une fois par jour, le dragon peut cracher de la roche en fusion sur une cible jusqu'à 36 mètres. Cela inflige @Damage[12d6[fire],5d12[bludgeoning]]{12d6 dégâts de feu et 5d12 dégâts contondants} avec un jet de @Check[reflex|dc:42|basic]. Si la créature rate son jet de sauvegarde, elle est recouverte de magma qui refroidit aussitôt et possède une Solidité de 10, 40 PV et un SR 20. La créature emprisonnée ne peut pas respirer et est Entravée ([[/act escape dc=42]]).</p>",
       "en": "Magma Tomb",
-      "name": null,
+      "name": "Cercueil de magma",
       "requirements": null,
       "trigger": null
     },
@@ -43,16 +43,16 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>27 mètres. @Check[will|dc:37]</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>La Vitesse de nage d'un dragon de magma fonctionne seulement lorsqu'il nage dans du magma ou de la lave en fusion.</p>",
       "en": "Magma Swim",
-      "name": null,
+      "name": "Nage dans le magma",
       "requirements": null,
       "trigger": null
     }
@@ -60,19 +60,19 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Horns",
-      "name": null
+      "name": "Cornes"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     }
   ],
   "name": "Dragon magmatique (Vénérable, Incantateur)",

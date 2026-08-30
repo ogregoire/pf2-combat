@@ -8,16 +8,16 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p><strong>Conditions</strong> L'urdefhan a infligé une Frappe de mâchoires à une créature durant sa dernière action</p>\n<hr />\n<p><strong>Effet</strong> Il maintient le contact et la chair de la victime devient translucide autour de la blessure. Il choisit l'une des deux options suivantes, chacune d'entre elle requérant un jet de @Check[fortitude|dc:20]. Si la Frappe de mâchoires a été un succès critique, la créature subit les deux effets et le résultat du jet de sauvegarde est le même pour les deux.</p>\n<ul>\n<li><strong>Absorber le sang</strong> L'urdefhan boit une partie du sang de la créature. En cas d'échec, cette dernière est Drainée 1 et l'urdefhan regagne @Damage[5[healing]]{5 Points de vie} (en cas d'échec critique, elle est Drainée 2 et le monstre regagne @Damage[10[healing]]{10 Points de vie}).</li>\n<li><strong>Absorber la vitalité</strong> L'urdefhan absorbe une partie de l'essence de vie de la créature. En cas d'échec, cette dernière devient Affaiblie 1 durant 1 heure (ou Affaiblie 2 durant 1 heure en cas d'échec critique)</li>\n</ul>",
       "en": "Wicked Bite",
-      "name": null,
-      "requirements": null,
+      "name": "Méchante morsure",
+      "requirements": "L'urdefhan a infligé une Frappe de mâchoires à une créature durant sa dernière action",
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>L'urdefhan inflige une Frappe d'épée rokha et une Frappe de mâchoires à une même créature. Sa pénalité d'attaques multiples augmente seulement après avoir effectué les deux attaques.</p>",
       "en": "Ravenous Attack",
-      "name": null,
+      "name": "Attaque vorace",
       "requirements": null,
       "trigger": null
     },
@@ -29,9 +29,9 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Quand un urderfhan meurt, sa chair invisible pourrit rapidement et devient un gaz à l'odeur atroce qui s'étend sur une @Template[emanation|distance:5]{émanation de 1,50 mètre} autour du cadavre.</p>\n<p>Ce gaz inflige @Damage[3d6[void]|options:area-damage]{3d6 dégâts de vide} à toutes les créatures présentes dans la zone, car leur chair rancit et se met à pourrir elle aussi (@Check[fortitude|dc:17|basic|options:area-effect]).</p>",
       "en": "Necrotic Decay",
-      "name": null,
+      "name": "Décomposition nécrotique",
       "requirements": null,
       "trigger": null
     },
@@ -46,15 +46,15 @@
   "attacks": [
     {
       "en": "Composite Longbow",
-      "name": null
+      "name": "Arc long composite"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Rhoka Sword",
-      "name": null
+      "name": "Épée rhoka"
     }
   ],
   "name": "Combattant urdefhan",

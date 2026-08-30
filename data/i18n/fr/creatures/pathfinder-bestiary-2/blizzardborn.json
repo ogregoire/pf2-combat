@@ -1,23 +1,23 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Un ennemi le frappe avec une attaque qui inflige des dégâts physiques.</p>\n<hr />\n<p><strong>Effet</strong> Une partie du corps du rejeton du blizzard se brise en une explosion qui projette dans une @Template[emanation|distance:5]{émanation de 1,50 mètre} des éclats de glace tranchants infligeant @Damage[2d6[piercing]|options:area-damage]{2d6 dégâts perforants} à toutes les créatures situées dans la zone d'effet (@Check[reflex|dc:24|basic|options:area-effect,inflicts:blinded]). Quiconque rate ce jet est également Aveuglé pendant 1 round (ou 3 rounds en cas d'échec critique)</p>",
       "en": "Shattering Ice",
-      "name": null,
+      "name": "Projection de glace",
       "requirements": null,
-      "trigger": null
+      "trigger": "Un ennemi le frappe avec une attaque qui inflige des dégâts physiques."
     },
     {
-      "description": null,
+      "description": "<p>Le rejeton du blizzard peut Creuser la glace et la neige avec une Vitesse de 6 mètres. Quand il le fait, il se déplace à sa pleine Vitesse de creusement sans laisser de tunnel ni de traces de son passage.</p>",
       "en": "Ice Burrow",
-      "name": null,
+      "name": "Creusement dans la glace",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le rejeton du blizzard ignore l'état Masqué à cause de la neige.</p>",
       "en": "Snow Vision",
-      "name": null,
+      "name": "Vision malgré la neige",
       "requirements": null,
       "trigger": null
     }
@@ -25,7 +25,7 @@
   "attacks": [
     {
       "en": "Ice Claw",
-      "name": null
+      "name": "Griffe de glace"
     }
   ],
   "name": "Rejeton du blizzard",

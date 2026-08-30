@@ -1,23 +1,23 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p>12 mètres</p>\n<hr />\n<p><p><strong>Conditions</strong> Le monstre est caché dans l'eau et une créature qui ne l'a pas détecté se trouve dans la zone d'effet indiquée.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre se déplace, dans l'eau et sur terre, de sa Vitesse de nage + 3 m en direction de la créature déclencheuse. Le monstre Frappe la créature une fois qu'elle se trouve à portée. La créature est Prise au dépourvu par la Frappe.</p></p>",
       "en": "Aquatic Ambush",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>L'hippopotame béhémoth tente de faire chavirer une embarcation adjacente de sa taille ou plus petite. Il doit réussir un test d'Athlétisme avec un DD de 30 (réduit de 5 par catégorie de taille du navire inférieure à celle de l'hippo) ou égal au DD de Connaissance de la navigation maritime du pilote, selon le plus élevé.</p>",
       "en": "Capsize",
-      "name": null,
+      "name": "Chavirer",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>L'hippo béhémoth effectue une Frappe de mâchoires ciblant deux créatures adjacentes l'une à l'autre. Ne lancez qu'une seule fois l'attaque et les dégâts et appliquez-les à chaque créature touchée. Une Double morsure compte comme deux attaques pour la pénalité d'attaques multiples.</p>",
       "en": "Double Chomp",
-      "name": null,
+      "name": "Double morsure",
       "requirements": null,
       "trigger": null
     },
@@ -29,23 +29,23 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Moyenne, @Damage[(2d12+10)[bludgeoning]]{2d12+10 dégâts contondants}, Rupture 26</p>\n<hr />\n<p><p>Le monstre tente d'avaler une créature de la taille indiquée qu'il a Saisie ou Entravée dans ses mâchoires ou sa bouche. Si une créature avalée est de la taille maximale indiquée, le monstre ne peut utiliser Gober de nouveau. Si la créature est plus petite que ce maximum, le monstre peut habituellement gober plus de créatures. Le MJ détermine ce maximum. Le monstre tente un test d'@Check[athletics|defense:reflex] opposée au DD de Réflexes de la créature. Si elle réussit, elle avale la créature. La bouche du monstre ou ses mâchoires n'agrippent plus une créature qu'elle a gobée, de sorte que le monstre est libre de l'utiliser pour Frapper ou Agripper de nouveau. Le monstre ne peut attaquer les créatures qu'il a gobée.</p>\n<p>Une créature gobée est Agrippée, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature gobée subit le montant de dégâts indiqué lorsqu'elle est gobée pour la première fois et, à la fin de chacun de ses tours, tant qu'elle reste gobée. Si la victime S'Échappe de l'état Agrippé de cette capacité, elle sort à travers la bouche du monstre. Cela libère toute autre créature Agrippée dans la bouche du monstre ou dans ses mâchoires. Une créature gobée peut attaquer le monstre qui l'a gobée, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui gobe est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à sa valeur de Rupture indiquée du fait d'une unique attaque ou d'un sort, la créature gobée se libère. Une créature qui se libère, soit en S'Échappant, soit en se libérant elle-même peut immédiatement respirer et sortir de l'espace du monstre qui la gobe.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Si le monstre meurt, une créature gobée peut être libérée par les créatures adjacentes au cadavre si elles passent un total d'actions combinées à tnracher dans le monstre avec une arme ou une attaque à mains nues qui infligent des dégâts perforants ou tranchants.</p></p>",
       "en": "Swallow Whole",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Grande ou inférieure, pied, @Check[reflex|dc:29|basic]</p>\n<hr />\n<p><p>Le monstre Marche rapidement sur une distance maximale égale au double de sa Vitesse et peut traverser les espaces de créatures de la taille indiquée. Il Piétine alors chaque créature dans l'espace de laquelle il pénètre. Le monstre ne peut tenter de Piétiner une créature qu'une seule fois par utilisation de l'action Piétinement. Le monstre inflige les dégâts de la Frappe indiquée. Les créatures piétinées peuvent alors faire un jet de Réflexes basique avec le DD indiqué (aucun dégât sur un succès critique, la moitié des dégâts sur un succès, le double des dégâts sur un échec critique).</p></p>",
       "en": "Trample",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>L'hippopotame béhé- moth peut retenir sa respiration pendant 1 heure.</p>",
       "en": "Deep Breath",
-      "name": null,
+      "name": "Inspiration profonde",
       "requirements": null,
       "trigger": null
     }
@@ -53,11 +53,11 @@
   "attacks": [
     {
       "en": "Foot",
-      "name": null
+      "name": "Pied"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     }
   ],
   "name": "Hippopotame béhémoth",

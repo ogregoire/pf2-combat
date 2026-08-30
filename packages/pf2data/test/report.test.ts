@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { diffDataset, frenchCoverage, statusOf } from "../src/report.js";
+import { diffDataset, fieldCoverage, frenchCoverage, statusOf } from "../src/report.js";
 
 const map = (entries: [string, string][]) => new Map(entries);
 
@@ -56,5 +56,26 @@ describe("frenchCoverage", () => {
       total: 1,
       untranslated: [],
     });
+  });
+});
+
+describe("fieldCoverage", () => {
+  // Task 2: item-level counts (action names/descriptions) run into the
+  // thousands, unlike the handful of untranslated creatures `frenchCoverage`
+  // names individually -- so this reports counts only, no id list, and is
+  // reused for BOTH the name and the description field.
+  it("counts null vs non-null values", () => {
+    expect(fieldCoverage(["<p>fr</p>", null, "<p>fr2</p>", null, null])).toEqual({
+      translated: 2,
+      total: 5,
+    });
+  });
+
+  it("reports full coverage when nothing is null", () => {
+    expect(fieldCoverage(["a", "b"])).toEqual({ translated: 2, total: 2 });
+  });
+
+  it("reports zero coverage for an empty list", () => {
+    expect(fieldCoverage([])).toEqual({ translated: 0, total: 0 });
   });
 });

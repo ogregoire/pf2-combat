@@ -1,23 +1,23 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Conditions</strong> Le totenmaske réussit deux Frappes de griffes sur le même ennemi durant le tour et est toujours adjacent à celui-ci</p>\n<hr />\n<p><strong>Effet</strong> Le totenmaske draine la chair de la créature. Cette dernière devient Nauséeuse 2 et Drainée 1 sauf si elle réussit un jet de @Check[fortitude|dc:25] (en cas d'échec critique, elle devient Nauséeuse 2 et Drainée 2).",
       "en": "Drink Flesh",
-      "name": null,
-      "requirements": null,
+      "name": "Consommation de la chair",
+      "requirements": "Le totenmaske réussit deux Frappes de griffes sur le même ennemi durant le tour et est toujours adjacent à celui-ci",
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le totenmaske prend l'apparence d'une créature humanoïde de taille Moyenne ou inférieure. Il prend la forme qu'il arborait de son vivant ou celle de la dernière créature qu'il a réussi à toucher avec Consommation de chair.</p>\n<p>Cela ne modifie pas sa Vitesse ni le bonus à l'attaque et aux dégâts de ses Frappes, mais cela peut modifier le type de dégâts infligés avec une Frappe (ils deviennent le plus souvent contondants).</p>",
       "en": "Living Form",
-      "name": null,
+      "name": "Forme vivante",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Après avoir été en contact avec une créature Paralysée, Inconsciente ou consentante durant 1 minute, le totenmaske peut remodeler le visage de sa cible et recouvrir de chair certaines parties vitales.</p>\n<p>Cette dernière peut tenter un jet de @Check[fortitude|dc:25] pour résister ; un succès critique lui confère une immunité temporaire à Modeler la chair durant 24 heures.</p>\n<p>À chaque utilisation de Modeler la chair, le totenmaske choisit une partie du visage : les oreilles (la cible devient Sourde), les yeux (la cible devient Aveugle), la bouche (la cible ne peut plus parler ni manger) ou le nez (la cible ne peut plus sentir). Une créature dont le nez et la bouche ont été recouverts ne peut plus respirer et commence à s'asphyxier.</p>\n<p>Les changements sont permanents à moins que la créature soit délivrée de la malédiction ou que la chair fixée subisse une opération chirurgicale grâce à un test de @Check[medicine|dc:25] d'une durée de [[/gmr 1d4 #rounds]]{1d4 rounds} causant @Damage[1d6[slashing]]{1d6 dégâts tranchants} par round.</p>",
       "en": "Shape Flesh",
-      "name": null,
+      "name": "Modeler la chair",
       "requirements": null,
       "trigger": null
     },
@@ -32,11 +32,11 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     }
   ],
   "name": "Totenmaske",

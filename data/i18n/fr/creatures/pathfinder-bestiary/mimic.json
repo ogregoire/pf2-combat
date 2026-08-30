@@ -1,23 +1,23 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Une créature touche ou interagit physiquement avec la mimique alors qu'elle est transformée grâce à Imitation d'objet.</p>\n<hr />\n<p><strong>Effet</strong> La créature qui a déclenché ce pouvoir est automatiquement collée par l'adhésif de la mimique (sans jet de sauvegarde). La mimique fait ensuite une Frappe de pseudopode contre toute créature adjacente à elle.</p>\n<p>La mimique ne peut plus utiliser Démonstration pratique tant qu'elle ne s'est pas échappée et n'a pas revêtu un nouveau déguisement.</p>",
       "en": "Object Lesson",
-      "name": null,
+      "name": "Démonstration pratique",
       "requirements": null,
-      "trigger": null
+      "trigger": "Une créature touche ou interagit physiquement avec la mimique alors qu'elle est transformée grâce à Imitation d'objet."
     },
     {
-      "description": null,
+      "description": "<p>La mimique prend la forme d'un objet de taille Moyenne. Cela ne change pas sa texture ni sa taille globale, mais cela modifie sa coloration et son apparence visuelle. Elle obtient automatiquement 28 aux tests de Duperie et aux DD pour se faire passer pour l'objet qu'elle imite.</p>",
       "en": "Mimic Object",
-      "name": null,
+      "name": "Imitation d'objet",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>La mimique est enduite d'un mucus adhésif. Toute créature qui touche la mimique, que touche la mimique ou qui entre en contact avec elle d'une manière ou d'une autre doit réussir un jet de @Check[reflex|dc:23] ou être Agrippée ([[/act escape dc=23]]). Une arme qui touche la mimique est collée sur elle. Il faut réussir un test d'@Check[athletics|dc:23] (par une action unique) pour la décoller.</p>\n<p>Il n'y a pas de limite au nombre d'objets ou de créatures collés en même temps sur une mimique. La mimique peut libérer une créature ou un objet collé par une action unique. L'adhésif se dissout au bout d'une minute après la mort de la mimique et libère tout ce qui était collé sur elle.</p>",
       "en": "Adhesive",
-      "name": null,
+      "name": "Adhésif",
       "requirements": null,
       "trigger": null
     }
@@ -25,7 +25,7 @@
   "attacks": [
     {
       "en": "Pseudopod",
-      "name": null
+      "name": "Pseudopode"
     }
   ],
   "name": "Mimique",

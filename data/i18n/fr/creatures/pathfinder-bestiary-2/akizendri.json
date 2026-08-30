@@ -1,14 +1,14 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p>L'akizendri peut prendre l'apparence de n'importe quel humanoïde de taille Petite ou inférieure. Cela ne modifie pas sa Vitesse ni le bonus à l'attaque et aux dégâts de ses Frappes, mais cela peut modifier le type de dégâts infligés avec ses Frappes.</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
       "en": "Change Shape",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>@Damage[(1d8+3)[bludgeoning]]{1d8+3 dégâts contondants}, @Check[fortitude|dc:20|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
       "en": "Constrict",
       "name": null,
       "requirements": null,
@@ -29,44 +29,44 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Un akizendri peut anticiper la très probable présence d'une créature grâce à une perception surnaturelle des probabilités chaotiques et de la chance. Cela lui octroie la capacité de percevoir les créatures à 9 mètres. Une créature sous l'effet de Voile de confidentialité ou qui est protégée contre les divinations et les prédictions ne peut être remarquée par Perception de l'entropie.</p>",
       "en": "Entropy Sense (Imprecise) 30 feet",
-      "name": null,
+      "name": "Perception de l'entropie 9 mètres (imprécis)",
       "requirements": null,
       "trigger": null
     },
     {
       "description": null,
       "en": "Fast Healing 1",
-      "name": null,
+      "name": "Guérison accélérée 1",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Une créature touchée par la Frappe de morsure de l'akizendri doit faire un jet de @Check[will|dc:20].</p>\n<p><strong>Succès</strong> La créature n'est pas affectée.</p>\n<p><strong>Échec</strong> La créature est Stupéfiée 1 pendant [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la créature est aussi Confuse pendant 1 round.</p>",
       "en": "Garbled Thoughts",
-      "name": null,
+      "name": "Pensées confuses",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Les organes vitaux d'un akizendri changent constamment de forme et de position. Immédiatement après avoir subi des dégâts d'acide, d'électricité ou de son, il obtient une résistance 6 contre ce type de dégâts. Cet effet dure 1 heure ou jusqu'à la prochaine fois que le protéen subit des dégâts d'un autre type (auquel cas sa résistance change pour se conformer à ce nouveau type de dégâts).</p>\n<p>L'akizendri est immunisé contre les effets de métamorphose à moins d'être une cible consentante. S'il est Aveugle ou Sourd, le protéen récupère automatiquement à la fin de son prochain tour alors que de nouveaux organes sensoriels poussent pour remplacer ceux qui ont été compromis.</p>\n<hr />\n<p>Effet : Anatomie protéenne</p>",
       "en": "Protean Anatomy 6",
-      "name": null,
+      "name": "Anatomie protéenne 6",
       "requirements": null,
       "trigger": null
     },
     {
       "description": null,
       "en": "Telepathy (Touch)",
-      "name": null,
+      "name": "Télépathie (Contact)",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Lorsque l'akizendri lance Page secrète, il peut s'immerger physiquement dans le texte et changer le message de ce dernier. Il peut sortir du livre à n'importe quel moment en Révoquant <em>Page secrète</em> et apparaître sur un espace adjacent au texte. S'il fait ceci pour commencer un combat, il fait un test de Duperie pour déterminer son initiative. Tant qu'il reste dans le texte, l'akizendri n'a pas de corps. Il peut communiquer télépathiquement avec une créature tant que cette dernière touche le livre ou le parchemin qui contient la page secrète. Il peut percevoir les créatures proches en utilisant Perception de l'entropie uniquement et ne peut utiliser aucune action d'attaque, de manipulation ou de déplacement ni parler à voix haute. Si l'objet dans lequel il est immergé est détruit, l'akizendri apparaît sur une case adjacente et est Étourdi 1.</p>",
       "en": "Text Immersion",
-      "name": null,
+      "name": "Immersion textuelle",
       "requirements": null,
       "trigger": null
     }
@@ -74,11 +74,11 @@
   "attacks": [
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     }
   ],
   "name": "Akizendri (Protéen)",

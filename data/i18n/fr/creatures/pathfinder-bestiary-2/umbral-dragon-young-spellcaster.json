@@ -1,30 +1,30 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p>Mâchoires uniquement</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
       "en": "Attack of Opportunity (Jaws Only)",
-      "name": null,
+      "name": "Frappe réactive (Mâchoires uniquement)",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon crache une explosion de ténèbres qui inflige @Damage[12d6[void]|options:area-damage]{12d6 dégâts de vide} dans un @Template[cone|distance:30]{cône de 9 mètres} (@Check[reflex|dc:30|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>\n<p>Les créatures mortes-vivantes subissent @Damage[14d6[force]]{14d6 dégâts de force} au lieu de dégâts de vide.</p>",
       "en": "Breath Weapon",
-      "name": null,
+      "name": "Arme de souffle",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>27 mètres. (@Check[will|dc:26])</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>La Frappe d'un dragon ombral affecte les créatures incorporelles avec les effets d'une rune de propriété Spectrale et ses Mâchoires infligent @Damage[4d6[force]]{4d6 dégâts de force} supplémentaires à un mort-vivant.</p>",
       "en": "Ghost Bane",
-      "name": null,
+      "name": "Fléau spectral",
       "requirements": null,
       "trigger": null
     },
@@ -39,19 +39,19 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     },
     {
       "en": "Wing",
-      "name": null
+      "name": "Aile"
     }
   ],
   "name": "Dragon ombral (Jeune, Incantateur)",

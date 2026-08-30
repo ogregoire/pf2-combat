@@ -1,16 +1,16 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p>Des matériaux nocifs et des déchets dans le tas d'ordures explosent d'une des trois manières suivantes. L'immondice embrasée choisit l'effet mais elle ne peut pas faire le même choix deux fois de suite.</p>\n<ul>\n<li><strong>Rayonnement ardent</strong> (évocation, feu, primordiale) L'immondice embrasée projette un trait de feu sur @Template[line|distance:30]{une ligne de 9 mètres} qui inflige @Damage[3d6[fire]|options:area-damage]{3d6 dégâts de feu} (@Check[reflex|dc:21|basic|options:area-effect|traits:evocation,fire,primal|overrideTraits:true]).</li>\n<li><strong>Projection d'éclats</strong> (évocation, primordiale) L'immondice embrasée projette des déchets tranchants dans une @Template[emanation|distance:5]{émanation de 1,50 mètre} qui infligent @Damage[2d12[piercing]|options:area-damage]{2d12 dégâts perforants} (@Check[reflex|dc:21|basic|options:area-effect|traits:evocation,primal|overrideTraits:true]).</li>\n<li><strong>Fumée toxique</strong> (évocation, poison, primordiale) L'immondice embrasée produit un @Template[cone|distance:15]{cône de 4,50 mètres} de fumée toxique qui inflige @Damage[2d6[poison]|options:area-damage]{2d6 dégâts de poison} (@Check[fortitude|dc:21|basic|options:area-effect|traits:evocation,poison,primal|overrideTraits:true]). Une créature qui obtient un échec à son jet de sauvegarde est Nauséeuse 1 (ou Nauséeuse 2 sur un échec critique).</li>\n</ul>",
       "en": "Noxious Burst",
-      "name": null,
+      "name": "Explosion nocive",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>L'immondice embrasée ignore l'état Masqué à cause de la fumée.</p>",
       "en": "Smoke Vision",
-      "name": null,
+      "name": "Vision malgré la fumée",
       "requirements": null,
       "trigger": null
     }
@@ -18,11 +18,11 @@
   "attacks": [
     {
       "en": "Burning Lash",
-      "name": null
+      "name": "Fouet incandescent"
     },
     {
       "en": "Ember Ball",
-      "name": null
+      "name": "Boule de braise"
     }
   ],
   "name": "Immondice embrasée",

@@ -1,23 +1,23 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Le dragon est la cible d'une attaque à distance.</p>\n<p><strong>Conditions</strong> Le dragon est conscient de l'attaque et a une aile libre.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon plie une aile pour générer un nuage de brume. Le dragon est considéré comme Caché pour résoudre l'attaque qui a déclenché cette réaction ; aussi l'attaquant doit réussir un @Check[flat|dc:11] pour le prendre pour cible. Le dragon bénéficie également d'un bonus de circonstances de +4 à la CA contre l'attaque déclencheuse.</p>",
       "en": "Deflecting Cloud",
-      "name": null,
-      "requirements": null,
-      "trigger": null
+      "name": "Nuage déflecteur",
+      "requirements": "Le dragon est conscient de l'attaque et a une aile libre.",
+      "trigger": "Le dragon est la cible d'une attaque à distance."
     },
     {
-      "description": null,
+      "description": "<p>Le corps du dragon devient vaporeux et brumeux. Il gagne les effets de Forme vaporeuse mais sa Vitesse en vol demeure inchangée. Il peut de nouveau utiliser cette action pour reprendre sa forme normale</p>",
       "en": "Cloud Form",
-      "name": null,
+      "name": "Forme de nuage",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon souffle un nuage de tonnerre qui inflige @Damage[20d6[electricity]|options:area-damage]{20d6 dégâts d'électricité} dans un @Template[cone|distance:60]{cône de 18 mètres} (@Check[reflex|dc:41|basic|options:area-effect]). Le nuage reste dans la zone pendant [[/gmr 1d4 #rounds]]{1d4 rounds} avec les effets de Brume. Une créature qui termine son tour dans le nuage subit @Damage[10d6[electricity]]{10d6 dégâts d'électricité} (@Check[reflex|dc:41|basic]).</p>\n<p>Le dragon ne peut plus utiliser son arme de Souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
       "en": "Breath Weapon",
-      "name": null,
+      "name": "Arme de souffle",
       "requirements": null,
       "trigger": null
     },
@@ -29,30 +29,30 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon des nuages peut fouler les nuages et la brume comme s'il était sur de la terre ferme.</p>",
       "en": "Cloud Walk",
-      "name": null,
+      "name": "Marche sur les nuages",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>27 mètres. (@Check[will|dc:40])</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>La créature ignore l'état Masqué provoqué par la brume et le brouillard.</p>",
       "en": "Mist Vision",
-      "name": null,
+      "name": "Vision malgré la brume",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>La Frappe de mâchoires d'un dragon des nuages vénérable produit un coup de tonnerre assourdissant quand il blesse un adversaire. Une créature qui subit des dégâts à cause de la Frappe de mâchoires du dragon doit réussir un jet de @Check[fortitude|dc:41] ou être Sourde pendant 1 minute (ou de manière permanente en cas d'échec critique).</p>",
       "en": "Thundering Bite",
-      "name": null,
+      "name": "Morsure assourdissante",
       "requirements": null,
       "trigger": null
     }
@@ -60,19 +60,19 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Horn",
-      "name": null
+      "name": "Corne"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     }
   ],
   "name": "Dragon des nuages (Vénérable, Incantateur)",

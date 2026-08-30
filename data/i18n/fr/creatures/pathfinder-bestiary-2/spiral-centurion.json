@@ -1,37 +1,37 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Conditions</strong> Le centurion spirale n'a pas encore agi à ce tour</p>\n<hr />\n<p><strong>Effet</strong> Le centurion spirale Marche rapidement jusqu'à sa Vitesse maximale. Il obtient ensuite un bonus de circonstances de +2 à ses jets d'attaque et de dégâts jusqu'à la fin de son tour.</p>",
       "en": "Rev Up",
-      "name": null,
-      "requirements": null,
+      "name": "Plein gaz",
+      "requirements": "Le centurion spirale n'a pas encore agi à ce tour",
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le centurion spirale lance l'une de ses lames avec un angle calculé pour qu'elle revienne. Elle inflige @Damage[6d6[slashing]|options:area-damage]{6d6 dégâts tranchants} à chaque créature située sur une @Template[line|distance:40]{ligne de 12 mètres} (@Check[reflex|dc:30|basic|options:area-effect]).</p>\n<p>Au début du prochain tour du centurion spirale, la lame revient vers lui en suivant la même trajectoire, infligeant 6d6 dégâts tranchants (Réflexes basique DD 30) à chaque créature présente sur cette même ligne.</p>",
       "en": "Hurl Blade",
-      "name": null,
+      "name": "Lancer de lame",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Moyennne ou plus petite, Lame, @Check[reflex|dc:30|basic]</p>\n<hr />\n<p><p>Le monstre Marche rapidement sur une distance maximale égale au double de sa Vitesse et peut traverser les espaces de créatures de la taille indiquée. Il Piétine alors chaque créature dans l'espace de laquelle il pénètre. Le monstre ne peut tenter de Piétiner une créature qu'une seule fois par utilisation de l'action Piétinement. Le monstre inflige les dégâts de la Frappe indiquée. Les créatures piétinées peuvent alors faire un jet de Réflexes basique avec le DD indiqué (aucun dégât sur un succès critique, la moitié des dégâts sur un succès, le double des dégâts sur un échec critique).</p></p>",
       "en": "Trample",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le centurion spirale tourne sur place à toute allure, ses lames déployées pour trancher les créatures alentour. Il fait jusqu'à cinq Frappes de lame au corps-à-corps. Il ne peut pas viser une même créature avec plus d'une Frappe de lame lors d'une utilisation de ce pouvoir. Ces attaques sont prises en compte dans le calcul la pénalité d'attaques multiples du centurion mais cette pénalité n'augmente qu'une fois toutes les attaques effectuées.</p>",
       "en": "Whirling Death",
-      "name": null,
+      "name": "Mort tourbillonnante",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>À cause de sa structure semblable à celle d'une toupie, le centurion spirale est plus sensible aux effets destinés à le mettre à terre. Le DD de toute tentative pour jeter le centurion À terre est réduit de 5. Si le centurion fait un test ou un jet de sauvegarde pour résister à une mise à terre, il subit une pénalité de statut de -5. Un centurion spirale à terre ne peut pas utiliser d'action, sauf pour essayer de Se relever, mais pour cela il doit réussir un test d'@Check[acrobatics|dc:30].</p>",
       "en": "Top-Heavy",
-      "name": null,
+      "name": "Lourdeur supérieure",
       "requirements": null,
       "trigger": null
     }
@@ -39,7 +39,7 @@
   "attacks": [
     {
       "en": "Blade",
-      "name": null
+      "name": "Lame"
     }
   ],
   "name": "Centurion spirale",

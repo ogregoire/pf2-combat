@@ -17,7 +17,7 @@ import { fetchFrench, fetchUpstream, type RunGit } from "./stages/fetch.js";
 import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
 import { verifyDataset, verifyI18n, verifyI18nMarkup } from "./stages/verify.js";
-import { diffDataset, frenchCoverage, statusOf, type ChangeStatus } from "./report.js";
+import { diffDataset, fieldCoverage, frenchCoverage, statusOf, type ChangeStatus } from "./report.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
 import { buildConditions, buildGlossary, buildTraits, scanTraits } from "./stages/reference.js";
 import { loadBabele } from "./stages/babele.js";
@@ -615,6 +615,14 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     new Set(creatureI18n.keys()),
   );
 
+  // Task 2: item-level coverage, now that the archive fills null action
+  // fields even on creatures Babele already covers -- a much finer-grained
+  // signal than `coverage` above, which only tracks whether a creature has
+  // an overlay AT ALL.
+  const allActions = [...creatureI18n.values()].flatMap((overlay) => overlay.actions);
+  const actionNameCoverage = fieldCoverage(allActions.map((a) => a.name));
+  const actionDescriptionCoverage = fieldCoverage(allActions.map((a) => a.description));
+
   const schemaDoc = renderSchemaDoc();
 
   const nextManifest: Manifest = {
@@ -757,6 +765,13 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     `french: ${coverage.translated}/${coverage.total} creatures translated at ${french.ref}` +
       `${coverage.untranslated.length > 0 ? `, ${coverage.untranslated.length} untranslated: ${coverage.untranslated.join(", ")}` : ""}\n`,
   );
+  // Task 2: no id list here (thousands of individual actions) -- just the
+  // counts, to track the archive fallback's effect on the two gaps `Why`
+  // called out: null action names and null action descriptions.
+  io.err(
+    `french actions: ${actionNameCoverage.translated}/${actionNameCoverage.total} names, ` +
+      `${actionDescriptionCoverage.translated}/${actionDescriptionCoverage.total} descriptions translated\n`,
+  );
   emit({
     command: "update",
     ok: true,
@@ -766,6 +781,8 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     creatureCount: creatures.length,
     otherFilesChanged,
     french: coverage,
+    frenchActionNames: actionNameCoverage,
+    frenchActionDescriptions: actionDescriptionCoverage,
     ...creatureDiff,
   });
 

@@ -1,37 +1,37 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Le dragon de cristal blesse une créature de chair avec sa Frappe de mâchoires</p>\n<p><strong>Fréquence</strong> Une fois par jour</p>\n<hr />\n<p><strong>Effet</strong> Le dragon insère des cristaux de transformation dans la chair de la créature. La créature doit faire un jet de @Check[fortitude|dc:37].</p>\n<hr />\n<p><strong>Succès critique</strong> La cible n'est pas affectée</p>\n<p><strong>Succès</strong> La créature est Ralentie 1 pendant 1 round tandis que par endroit sa chair devient cristalline.</p>\n<p><strong>Échec</strong> La créature est Ralentie 1 et doit faire un jet de Vigueur à la fin de chacun de ses tours. Ce jet de sauvegarde continu possède le trait Mise hors de combat. En cas d'échec, l'état Ralenti augmente de 1 (ou de 2 en cas d'échec critique). Un succès réduit l'état Ralenti de 1. Une créature incapable d'agir à cause de l'état Ralenti provoqué par cette capacité est Pétrifiée de manière permanente et se transforme en statue de cristal. L'effet se termine quand la créature est Pétrifiée ou débarrassée de l'état Ralenti.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la cible est initialement Ralentie 2.</p>",
       "en": "Crystallize Flesh",
-      "name": null,
+      "name": "Cristallisation de la chair",
       "requirements": null,
-      "trigger": null
+      "trigger": "Le dragon de cristal blesse une créature de chair avec sa Frappe de mâchoires"
     },
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Le dragon de cristal est ciblé par le jet d'une attaque de sort à distance</p>\n<hr />\n<p><strong>Effet</strong> Le dragon utilise une aile pour tenter de renvoyer le sort et obtient un bonus de circonstances de +4 à la CA contre l'attaque déclencheuse. Si l'attaque rate, le sort est renvoyé à son lanceur qui doit effectuer un second jet d'attaque de sort à distance contre sa propre CA pour déterminer si le sort le touche.</p>",
       "en": "Reflect Spell",
-      "name": null,
+      "name": "Sort renvoyé",
       "requirements": null,
-      "trigger": null
+      "trigger": "Le dragon de cristal est ciblé par le jet d'une attaque de sort à distance"
     },
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Une créature dans l'allonge de la queue du dragon utilise une action de déplacement ou quitte une case pendant une action de déplacement qu'elle entreprend.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon Frappe la cible avec sa queue avec une pénalité de -2. S'il touche, le dragon interrompt l'action de cette créature.</p>",
       "en": "Twisting Tail",
-      "name": null,
+      "name": "Queue sinueuse",
       "requirements": null,
-      "trigger": null
+      "trigger": "Une créature dans l'allonge de la queue du dragon utilise une action de déplacement ou quitte une case pendant une action de déplacement qu'elle entreprend."
     },
     {
-      "description": null,
+      "description": "<p>Le dragon crache un déluge de cristaux perforants qui inflige @Damage[17d6[piercing]|options:area-damage]{17d6 dégâts perforants} dans un @Template[cone|distance:50]{cône de 15 mètres} (@Check[reflex|dc:38|basic|options:area-effect] ).</p>\n<p>Il ne peut plus utiliser son souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
       "en": "Breath Weapon",
-      "name": null,
+      "name": "Arme de souffle",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon porte deux Frappes de griffe et une Frappe de queue dans n'importe quel ordre.</p>",
       "en": "Draconic Frenzy",
-      "name": null,
+      "name": "Frénésie draconique",
       "requirements": null,
       "trigger": null
     },
@@ -43,37 +43,37 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon recharge son arme de Souffle à chaque fois qu'il inflige un coup critique avec une Frappe.</p>",
       "en": "Draconic Momentum",
-      "name": null,
+      "name": "Impulsion draconique",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon gagne 2 réactions au début de son tour à chaque round.</p>",
       "en": "Extra Reaction",
-      "name": null,
+      "name": "Surcroît de réaction",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>27 mètres. (@Check[will|dc:37])</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Aura de 9 mètres</p>\n<p>Un vortex tourbillonnant de couleurs et de lumières réfléchissantes scintille autour du dragon de cristal. Les créatures dans l'émanation de cette aura sont Éblouies. Chaque créature qui termine son tour dans l'émanation doit réussir un jet de @Check[will|dc:34] ou être Étourdie 1 (ou Étourdie 3 en cas d'échec critique). Une créature qui réussit le jet de sauvegarde est temporairement immunisée contre cet effet pendant 1 minutes. Le dragon de cristal peut activer ou désactiver cette aura avec une action unique qui possède le trait concentration et il peut choisir de ne pas affecter des alliés présents dans l'aura.</p>",
       "en": "Scintillating Aura",
-      "name": null,
+      "name": "Aura scintillante",
       "requirements": null,
       "trigger": null
     },
     {
       "description": null,
       "en": "Tremorsense (Imprecise) 60 feet",
-      "name": null,
+      "name": "Perception des vibrations 18 mètres (imprécis)",
       "requirements": null,
       "trigger": null
     }
@@ -81,15 +81,15 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     }
   ],
   "name": "Dragon de cristal (Vénérable)",

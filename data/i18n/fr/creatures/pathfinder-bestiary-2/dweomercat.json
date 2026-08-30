@@ -1,11 +1,11 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Le chat occulte est ciblé par un sort ou se trouve dans la zone d'effet d'un sort au moment où il est lancé </p>\n<hr />\n<p><strong>Effet</strong> Le chat occulte gagne un effet dépendant de l'école à laquelle appartient le sort qui vient d'être lancé. Cet effet se produit avant que le chat occulte ne soit affecté par le sort déclencheur. Il dure 1 minute, jusqu'à ce que le chat utilise à nouveau ce pouvoir ou jusqu'à ce qu'il le révoque.</p>\n<ul>\n<li><strong>Abjuration</strong> Le chat occulte obtient un bonus de statut de +1 à sa CA.</li>\n<li><strong>Divination</strong> Le chat occulte obtient un bonus de statut de +1 à tous ses tests de compétence.</li>\n<li><strong>Enchantement</strong> Le chat occulte obtient un bonus de statut de +1 à tous ses jets de sauvegarde.</li>\n<li><strong>Évocation</strong> Un choc en retour magique inflige @Damage[4d6[force]]{4d6 dégâts de force} au lanceur de sort ayant déclenché cet effet (@Check[reflex|dc:22|basic]).</li>\n<li><strong>Illusion</strong> Le chat occulte devient Invisible. En plus des conditions normales, cet effet cesse si le chat effectue une action hostile.</li>\n<li><strong>Invocation</strong> Un banc de brouillard apparaît dans une @Template[burst|distance:5]{explosion de 1,50 mètre} centrée sur un angle de l'espace occupé par le chat. Tout ce qui se trouve dans le brouillard est Masqué.</li>\n<li><strong>Nécromancie</strong> Le chat occulte obtient 10 Points de vie temporaires.</li>\n<li><strong>Transmutation</strong> Le chat occulte obtient un bonus de statut de +1 à tous ses jets d'attaque.</li>\n</ul>",
       "en": "Alter Dweomer",
-      "name": null,
+      "name": "Altération occulte",
       "requirements": null,
-      "trigger": null
+      "trigger": "Le chat occulte est ciblé par un sort ou se trouve dans la zone d'effet d'un sort au moment où il est lancé"
     },
     {
       "description": null,
@@ -15,16 +15,16 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le chat occulte Marche rapidement et effectue une Frappe à la fin de son déplacement. S'il a commencé son action Caché, il le reste jusqu'à ce qu'il ait effectué cette Frappe.</p>",
       "en": "Pounce",
-      "name": null,
+      "name": "Bond",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p><strong>Prérequis</strong> Le chat occulte dispose d'au moins un sort de Translocation.</p>\n<hr />\n<p><strong>Effet</strong> Le chat lance <em>Translocation</em>, puis peut effectuer une Frappe au corps-à-corps contre une créature qui est dans son allonge après sa téléportation. Si, après sa téléportation, le chat occulte est adjacent à une créature soumise à un effet de sort continu ou qui a lancé un sort depuis le dernier tour du chat, le sort <em>Translocation</em> n'est pas dépensé.",
       "en": "Dweomer Leap",
-      "name": null,
+      "name": "Bond occulte",
       "requirements": null,
       "trigger": null
     },
@@ -46,11 +46,11 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     }
   ],
   "name": "Chat occulte",

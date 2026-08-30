@@ -1,23 +1,23 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Une créature que le dragon de saumure observe à une distance maximale de 9 mètres utilise une action de concentration </p>\n<hr />\n<p><strong>Effet</strong> Le dragon crache un globe d'eau salée caustique sur cette créature. La créature subit @Damage[5d6[acid]]{5d6 dégâts d'acide} (@Check[reflex|dc:30|basic]). En cas d'échec, l'action de concentration est interrompue.</p>",
       "en": "Brine Spit",
-      "name": null,
+      "name": "Crachat de saumure",
       "requirements": null,
-      "trigger": null
+      "trigger": "Une créature que le dragon de saumure observe à une distance maximale de 9 mètres utilise une action de concentration"
     },
     {
-      "description": null,
+      "description": "<p>Le dragon souffle une aspersion d'eau salée acide qui inflige @Damage[13d6[acid]|options:area-damage]{13d6 dégâts d'acide} sur @Template[line|distance:100]{une ligne de 30 mètres} (@Check[reflex|dc:32|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
       "en": "Breath Weapon",
-      "name": null,
+      "name": "Arme de souffle",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dragon effectue une Frappe de mâchoires. S'il touche, la cible subit @Damage[4d6[persistent,acid]]{4d6 dégâts d'acide persistants} et elle est Nauséeuse 2 à cause de la douleur provoquée par le sel et la saumure sur sa blessure.</p>",
       "en": "Desiccating Bite",
-      "name": null,
+      "name": "Morsure déshydratante",
       "requirements": null,
       "trigger": null
     },
@@ -29,7 +29,7 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>27 mètres. (@Check[will|dc:30])</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
       "name": null,
       "requirements": null,
@@ -39,19 +39,19 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     },
     {
       "en": "Wing",
-      "name": null
+      "name": "Aile"
     }
   ],
   "name": "Dragon de saumure (Adulte, Lanceur de sorts)",

@@ -1,9 +1,9 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Fréquence</strong> Une fois par heure</p>\n<hr />\n<p><strong>Effet</strong> Le sacristain ouvre la bouche pour libérer les hurlements plaintifs et l'obscurité démente du Nébulmonde. Cela crée une émanation de ténèbres et de hurlements de @Template[emanation|distance:30]{9 mètres} autour du sacristain. Les créatures dotées de Vision dans le noir ne peuvent pas voir dans ces ténèbres. Le sacristain peut Maintenir le Hurlement de l'ombre jusqu'à 1 minute. Les créatures autres que des velstracs qui sont dans la zone lorsque ce pouvoir est utilisé, tout comme celles qui y entrent ou qui y débutent leur tour, doivent faire un jet de @Check[will|dc:28|options:area-effect,damaging-effect,inflicts:confused,inflicts:deafened].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée et est immunisée pendant 24 heures.</p>\n<p><strong>Succès</strong> La créature devient Sourde pendant 1 round.</p>\n<p><strong>Échec</strong> La créature devient Confuse et Sourde pendant 1 round.</p>\n<p><strong>Échec critique</strong> La créature subit @Damage[20[mental]|options:area-damage]{20 dégâts mentaux}, devient Confuse et Sourde pendant 1 round.</p>",
       "en": "Shadow Scream",
-      "name": null,
+      "name": "Hurlement de l'ombre",
       "requirements": null,
       "trigger": null
     },
@@ -15,9 +15,9 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le sacristain fixe du regard une créature dans son champ de vision à moins de 9 mètres. La créature doit immédiatement tenter un jet de Volonté contre Asservissement vertigineux. De plus, si la créature était déjà Étourdie, en cas d'échec au jet de sauvegarde, sa révulsion envers la présence du sacristain la rend Stupéfiée 2 pendant 1 minute. Après avoir tenté ce jet de sauvegarde, la créature est alors temporairement immunisée, jusqu'au début du prochain tour du sacristain</p>",
       "en": "Focus Gaze",
-      "name": null,
+      "name": "Focaliser le regard",
       "requirements": null,
       "trigger": null
     },
@@ -36,23 +36,23 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Un velstrac sait automatiquement si une créature qu'il voit possède les états Condamné, Mourant ou Blessé, ainsi que les valeurs de ces états.</p>",
       "en": "Painsight",
-      "name": null,
+      "name": "Vision de la douleur",
       "requirements": null,
       "trigger": null
     },
     {
       "description": null,
       "en": "Regeneration 10 (Deactivated by Holy or Silver)",
-      "name": null,
+      "name": "Régénération 10 (Désactivée par Saint ou Argent)",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>9 mètres. Lorsqu'une créature termine son tour dans l'aura, elle a une vision du sacristain se prosternant dans un asservissement pitoyable. La créature doit réussir un jet de @Check[will|dc:27] ou devenir Étourdie 1.</p>",
       "en": "Staggering Servitude",
-      "name": null,
+      "name": "Servitude ébranlante",
       "requirements": null,
       "trigger": null
     }
@@ -60,7 +60,7 @@
   "attacks": [
     {
       "en": "Barbed Chain",
-      "name": null
+      "name": "Chaîne barbelée"
     }
   ],
   "name": "Sacristain",

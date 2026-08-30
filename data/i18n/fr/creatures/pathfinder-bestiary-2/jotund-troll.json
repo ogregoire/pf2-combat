@@ -15,21 +15,21 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Le troll jotund a Agrippé une créature.</p>\n<p><strong>Effet</strong> Le troll jotund utilise Gober</p>",
       "en": "Fast Swallow",
-      "name": null,
+      "name": "Gober rapidement",
       "requirements": null,
-      "trigger": null
+      "trigger": "Le troll jotund a Agrippé une créature."
     },
     {
-      "description": null,
+      "description": "<p>Griffe</p>\n<hr />\n<p><p>Une entrée d'Éventration indique une Frappe que possède le monstre.</p>\n<p><strong>Conditions</strong> Au cours d'un même round, le monstre touche un même ennemi avec deux Frappes consécutives du type indiqué.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre inflige une nouvelle fois et automatiquement à sa cible la quantité de dégâts de cette Frappe.</p></p>",
       "en": "Rend",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Moyenne, @Damage[(3d12+8)[bludgeoning]]{3d12+8 dégâts contondants}, Rupture 36</p>\n<hr />\n<p><p>Le monstre tente d'avaler une créature de la taille indiquée qu'il a Saisie ou Entravée dans ses mâchoires ou sa bouche. Si une créature avalée est de la taille maximale indiquée, le monstre ne peut utiliser Gober de nouveau. Si la créature est plus petite que ce maximum, le monstre peut habituellement gober plus de créatures. Le MJ détermine ce maximum. Le monstre tente un test d'@Check[athletics|defense:reflex] opposée au DD de Réflexes de la créature. Si elle réussit, elle avale la créature. La bouche du monstre ou ses mâchoires n'agrippent plus une créature qu'elle a gobée, de sorte que le monstre est libre de l'utiliser pour Frapper ou Agripper de nouveau. Le monstre ne peut attaquer les créatures qu'il a gobée.</p>\n<p>Une créature gobée est Agrippée, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature gobée subit le montant de dégâts indiqué lorsqu'elle est gobée pour la première fois et, à la fin de chacun de ses tours, tant qu'elle reste gobée. Si la victime S'Échappe de l'état Agrippé de cette capacité, elle sort à travers la bouche du monstre. Cela libère toute autre créature Agrippée dans la bouche du monstre ou dans ses mâchoires. Une créature gobée peut attaquer le monstre qui l'a gobée, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui gobe est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à sa valeur de Rupture indiquée du fait d'une unique attaque ou d'un sort, la créature gobée se libère. Une créature qui se libère, soit en S'Échappant, soit en se libérant elle-même peut immédiatement respirer et sortir de l'espace du monstre qui la gobe.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Si le monstre meurt, une créature gobée peut être libérée par les créatures adjacentes au cadavre si elles passent un total d'actions combinées à tnracher dans le monstre avec une arme ou une attaque à mains nues qui infligent des dégâts perforants ou tranchants.</p></p>",
       "en": "Swallow Whole",
       "name": null,
       "requirements": null,
@@ -43,16 +43,16 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Les têtes du troll jotund poussent un rugissement cacophonique au pouvoir mystique, qui déforme l'esprit de son auditeur. Chaque créature qui n'est pas un troll dans un rayon de 30 mètres doit effectuer un jet de @Check[will|dc:34].</p>\n<p>Le troll jotund ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Rugissement cacophonique]]{1d4 rounds}.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée et est temporairement immunisée contre le Rugissement cacophonique pendant 24 heures.</p>\n<p><strong>Succès</strong> La créature est Stupéfiée 1 pendant 1 round.</p>\n<p><strong>Échec</strong> La créature est Confuse pendant 1 round.</p>\n<p><strong>Échec critique</strong> La créature est Confuse pendant [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
       "en": "Cacophonous Roar",
-      "name": null,
+      "name": "Rugissement cacophonique",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le troll jotund effectue un nombre de Frappes de mâchoire au maximum égal à son nombre de têtes, chacune contre une cible différente. Ces attaques comptent dans le calcul de la pénalité d'attaques multiples du troll, mais cette pénalité n'augmente qu'une fois toutes les attaques effectuées</p>",
       "en": "Ravenous Jaws",
-      "name": null,
+      "name": "Mâchoires voraces",
       "requirements": null,
       "trigger": null
     },
@@ -64,23 +64,23 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>D'ordinaire, un troll jotund possède neuf têtes, et sa régénération peut faire repousser l'une d'entre elles si elle a été coupée par un effet tel que celui d'une arme Vorpale. Après avoir récupéré des Points de vie grâce à sa régénération, le troll jotund tente un test @Check[flat|dc:8]. En cas de succès, une tête coupée est entièrement restaurée ; en cas de succès critique, deux de ses têtes le sont. S'il perd sa dernière tête, le troll jotund meurt immédiatement.</p>",
       "en": "Head Regrowth",
-      "name": null,
+      "name": "Repousse de tête",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Un troll jotund obtient une réaction supplémentaire par round pour chacune de ses têtes en plus de la première, mais uniquement pour des Frappes réactives avec leurs mâchoires ou pour Gober rapidement. La même action ne peut pas déclencher plusieurs réactions du troll, même si une créature quitte plusieurs cases à portée ; de plus, le troll jotund doit utiliser une tête différente pour chaque Frappe réactive. À chaque fois qu'une de ses têtes est tranchée, le troll jotund perd une de ses réactions supplémentaires par round.</p>",
       "en": "Multiple Opportunities",
-      "name": null,
+      "name": "Opportunités multiples",
       "requirements": null,
       "trigger": null
     },
     {
       "description": null,
       "en": "Regeneration 40 (Deactivated by Acid or Fire)",
-      "name": null,
+      "name": "Régénération 40 (désactivée Acide ou Feu)",
       "requirements": null,
       "trigger": null
     }
@@ -88,15 +88,15 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Rock",
-      "name": null
+      "name": "Rocher"
     }
   ],
   "name": "Troll jotun",

@@ -1,14 +1,14 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p>L'imentesh peut prendre l'apparence de n'importe quel humanoïde de taille Grande ou inférieure. Cela ne modifie pas sa Vitesse ni le bonus à l'attaque et aux dégâts de ses Frappes, mais cela peut modifier le type de dégâts infligés avec ses Frappes.</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
       "en": "Change Shape",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>@Damage[(1d10+11)[bludgeoning]]{1d10+11 dégâts contondants}, @Check[fortitude|dc:29|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
       "en": "Constrict",
       "name": null,
       "requirements": null,
@@ -22,9 +22,9 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Un imentesh inflige des vagues de distorsion à une créature à moins de 30 mètres (@Check[fortitude|dc:29] pour résister)</p>",
       "en": "Inflict Warpwave",
-      "name": null,
+      "name": "Infliger des vagues de distorsion",
       "requirements": null,
       "trigger": null
     },
@@ -43,44 +43,44 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Un imentesh peut anticiper la très probable présence d'une créature grâce à une perception surnaturelle des probabilités chaotiques et de la chance. Cela lui octroie la capacité de percevoir les créatures à 18 mètres. Une créature sous l'effet de Voile de confidentialité ou qui est protégée contre les divinations et les prédictions ne peut être remarquée par Perception de l'entropie.</p>",
       "en": "Entropy Sense",
-      "name": null,
+      "name": "Perception de l'entropie 18 mètres (imprécis)",
       "requirements": null,
       "trigger": null
     },
     {
       "description": null,
       "en": "Fast Healing 5",
-      "name": null,
+      "name": "Guérison accélérée 5",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Les organes vitaux d'un protéen changent constamment de forme et de position. Immédiatement après avoir subi des dégâts d'acide, d'électricité ou de son, il obtient une résistance 15 contre ce type de dégâts. Cet effet dure 1 heure ou jusqu'à la prochaine fois que le protéen subit des dégâts d'un autre type (auquel cas sa résistance change pour se conformer à ce nouveau type de dégâts).</p>\n<p>Le protéen est immunisé contre les effets de métamorphose à moins d'être une cible consentante. S'il est Aveugle ou Sourd, le protéen récupère automatiquement à la fin de son prochain tour alors que de nouveaux organes sensoriels poussent pour remplacer ceux qui ont été compromis.</p>\n<hr />\n<p>Effet : Anatomie protéenne</p>",
       "en": "Protean Anatomy 15",
-      "name": null,
+      "name": "Anatomie protéenne 15",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Un imentesh inflige 2d6 dégâts de précision supplémentaires aux créatures Prises au dépourvu.</p>",
       "en": "Sneak Attack",
       "name": null,
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Une créature touchée par la Frappe de mâchoires d'un imentesh doit réussir un jet de @Check[fortitude|dc:29] ou être soumise à une Vague de distorsion.</p>",
       "en": "Warpwave Strike",
-      "name": null,
+      "name": "Frappe de vague de distorsion",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>De nombreux protéens peuvent utiliser les forces du chaos pour déformer la réalité dans les esprits de leurs ennemis, créant des ondulations mentales appelées vagues de distorsion</p>\n<p>Quand une créature rate son jet de sauvegarde et qu'elle est affectée par une vague de distorsion, [[/r 1d8]]{1d8} et consultez la table suivante pour déterminer les effets précis de la vague sur cette créature</p>\n<p>Sauf mention contraire, l'effet d'une vague de distorsion ne dure que [[/gmr 1d4 #rounds]]{1d4 rounds} et un nouvel effet d'une vague annule tout précédent effet affectant déjà une créature.</p>\n<hr />\n<table class=\"pf2e\">\n<thead>\n<tr>\n<th>d8</th>\n<th>Effet de la vague de distorsion</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1</td>\n<td>Maladroit 2 (Maladroit 3 sur un échec critique)</td>\n</tr>\n<tr>\n<td>2</td>\n<td>Confus et gain de [[/r 4d6 #Points de vie temporaires]]{4d6 Points de vie temporaires}</td>\n</tr>\n<tr>\n<td>3</td>\n<td>Ébloui (permanent en cas d'échec critique)</td>\n</tr>\n<tr>\n<td>4</td>\n<td>Affaibli 2 (Affaibli 3 sur un échec critique)</td>\n</tr>\n<tr>\n<td>5</td>\n<td>Immobilisé par des filaments d'énergie.</td>\n</tr>\n<tr>\n<td>6</td>\n<td>Accéléré (Marcher rapidement, Frapper ou Faire un pas uniquement)</td>\n</tr>\n<tr>\n<td>7</td>\n<td>Ralenti 1</td>\n</tr>\n<tr>\n<td>8</td>\n<td>Stupéfié 2 (Stupéfié 3 sur un échec critique)</td>\n</tr>\n</tbody>\n</table>",
       "en": "Warpwaves",
-      "name": null,
+      "name": "Vagues de distorsion",
       "requirements": null,
       "trigger": null
     }
@@ -88,15 +88,15 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     }
   ],
   "name": "Imentesh",

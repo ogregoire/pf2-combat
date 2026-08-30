@@ -1,44 +1,44 @@
 {
   "actions": [
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Une créature vivante dans un rayon de 9 mètres meurt.</p>\n<hr />\n<p><strong>Effet</strong> Le dévoreur arrache l'âme du corps de la créature d'un coup de croc et l'engloutit. La créature mourante doit réussir un jet @Check[fortitude|dc:44] contre le même DD que l'arme de souffle du dévoreur draconique.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> Le dévoreur arrache un bout de l'âme de la créature. Si la victime est ramenée à la vie, elle est Drainée 1 en plus des autres effets secondaires éventuellement liés à sa résurrection. Le dévoreur ajoute un montant de PV égal à la moitié du niveau de la créature à son Armure d'âmes.</p>\n<p><strong>Échec</strong> Comme en cas de succès, mais l'âme de la créature est déchiquetée. La créature est Drainée 3 et le dévoreur ajoute un montant de PV égal au niveau de la créature à son Armure d'âmes.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais le dévoreur consume la totalité de l'âme. Tant que le dévoreur draconique existe, il est impossible de ramener la victime à la vie, à moins d'utiliser un effet de rang 10 comme Miracle ou Souhait. Le dévoreur ajoute un montant de PV égal au double du niveau de la créature à son Armure d'âmes.</p>",
       "en": "Consume Soul",
-      "name": null,
+      "name": "Dévorer les âmes",
       "requirements": null,
-      "trigger": null
+      "trigger": "Une créature vivante dans un rayon de 9 mètres meurt."
     },
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Le dévoreur draconique reçoit des dégâts en excès qui se reportent sur son Armure d'âmes, mais cette dernière a encore au moins 51 PV</p>\n<hr />\n<p><strong>Effet</strong> Le dévoreur puise dans son Armure d'âmes pour dématérialiser son corps et le changer en énergie spirituelle afin de s'enfuir. L'Armure d'âmes reçoit alors 50 dégâts et le corps du dévoreur disparaît. Il réapparaît [[/r 1d4 #hours]]{1d4 heures} plus tard en un point aléatoire dans un rayon de 1,5 km autour du lieu de la Dématérialisation.</p>",
       "en": "Discorporate",
-      "name": null,
+      "name": "Dématérialisation",
       "requirements": null,
-      "trigger": null
+      "trigger": "Le dévoreur draconique reçoit des dégâts en excès qui se reportent sur son Armure d'âmes, mais cette dernière a encore au moins 51 PV"
     },
     {
-      "description": null,
+      "description": "<p>Mâchoires uniquement.</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
       "en": "Attack of Opportunity (Jaws Only)",
-      "name": null,
+      "name": "Frappe réactive (Mâchoires uniquement)",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p><strong>Déclencheur</strong> Une créature dans un rayon de 30 mètres lance un sort de feu ou un sort de feu produit ses effets depuis une source située dans un rayon de 30 mètres</p>\n<hr />\n<p><strong>Effet</strong> Le dévoreur prend toutes les décisions en ce qui concerne la détermination des cibles, la destination ou les autres effets du sort, comme si c'était lui qui le lançait.</p>",
       "en": "Redirect Fire",
-      "name": null,
+      "name": "Réorientation du feu",
       "requirements": null,
-      "trigger": null
+      "trigger": "Une créature dans un rayon de 30 mètres lance un sort de feu ou un sort de feu produit ses effets depuis une source située dans un rayon de 30 mètres"
     },
     {
-      "description": null,
+      "description": "<p>Le dévoreur draconique tente de prendre le contrôle d'un feu magique ou d'un sort de feu dans un rayon de 30 mètres. S'il réussit un test de contre (rang 10, modificateur de contre +34), l'incantateur d'origine perd le contrôle du sort ou du feu magique au profit du dévoreur et on considère que ce dernier maintient ce sort avec cette action (si cela est applicable). Le dévoreur peut choisir de mettre un terme au sort au lieu d'en prendre le contrôle.</p>",
       "en": "Manipulate Flames",
-      "name": null,
+      "name": "Manipulation des flammes",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dévoreur draconique souffle une langue de feu qui inflige @Damage[20d6[fire],4d6[persistent,void]|options:area-damage]{20d6 dégâts de feu et 4d6 dégâts de vide persistants} (@Check[reflex|dc:44|basic|options:area-effect]). Une créature qui obtient un échec à son jet de sauvegarde est également Drainée 1 (ou Drainée 2 en cas d'échec critique). Si le souffle draine une créature, l'armure d'âmes du dévoreur gagne @Damage[5[healing]]{5 Points de vie}.</p>\n<p>Le dévoreur ne peut plus utiliser son souffle avant [[/gmr 1d4 #Recharger Souffle dévorant]]{1d4 rounds}.</p>",
       "en": "Ravenous Breath Weapon",
-      "name": null,
+      "name": "Souffle dévorant",
       "requirements": null,
       "trigger": null
     },
@@ -50,44 +50,44 @@
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>27 mètres. @Check[will|dc:42]</p>\n<p>Les créatures se recroquevillent de terreur face à la présence terrifiante du dévoreur draconique. Tant qu'une créature est au moins Effrayée 2 à cause de la Présence terrifiante du dévoreur, elle est aussi Immobilisée par la peur.</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Cowering Fear",
-      "name": null,
+      "name": "Recroquevillé de terreur",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>3 mètres. @Damage[4d6[fire]]{4d6 dégâts de feu} (@Check[reflex|dc:41|basic])</p>",
       "en": "Dragon Heat",
-      "name": null,
+      "name": "Chaleur du dragon",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>La fumée ne gêne pas la vision du vénérable dévoreur draconique rouge ; il ignore l'état Masqué provoqué par la fumée.</p>",
       "en": "Smoke Vision",
-      "name": null,
+      "name": "Vision malgré la fumée",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>200 PV</p>\n<p>Un champ d'énergie nécromantique intangible protège le dévoreur draconique contre l'annihilation. Une armure d'âmes a un maximum de PV de 150, 200 si le dévoreur est d'au moins de niveau 21. Lorsque le dévoreur devrait tomber à moins de 1 PV, tous les dégâts en plus de ceux le mettant à 1 PV sont déviés sur l'armure d'âmes. Si ces dégâts réduisent l'armure à moins de 0 PV, le dévoreur est détruit. Pour rendre des PV à l'armure d'âmes, il faut impérativement utiliser des pouvoirs de dévoreur bien particulier, comme Dévorer les âmes, Souffle dévorant ou Critiques vicieux. Un dévoreur draconique qui passe plus d'une semaine sans parvenir à utiliser Dévorer les âmes pour se nourrir d'une créature à l'agonie, meurt de faim et son armure d'âmes perd @Damage[1d4[healing]]{1d4 Points de vie} chaque jour jusqu'à ce qu'il ait mangé. Si l'armure perd tous ses Points de vie alors que le dévoreur a encore plus de 1 PV, celui-ci devient un Vestige de dévoreur</p>",
       "en": "Soul Ward",
-      "name": null,
+      "name": "Armure d'âmes",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dévoreur draconique perçoit l'essence spirituelle des créatures vivantes et mortes-vivantes dans le rayon indiqué. Les créatures dont le corps matériel ne fait qu'un avec l'âme, comme les célestes et les fiélons, brillent plus fort à l'égard de ce pouvoir.</p>",
       "en": "Soulsense",
-      "name": null,
+      "name": "Perception de l'âme",
       "requirements": null,
       "trigger": null
     },
     {
-      "description": null,
+      "description": "<p>Le dévoreur draconique réussit un coup critique lors d'un jet d'attaque sur un résultat de 19 ou 20, tant que cette attaque est un succès. De plus, lorsque le dévoreur réussit un coup critique avec l'une de ses Frappes, sa cible doit réussir un jet de @Check[fortitude|dc:42], sinon elle est Drainée 1. Si elle est déjà Drainée, l'intensité de cet état augmente de 1, sans dépasser un maximum de Drainée 4. À chaque fois que le dévoreur draconique applique ainsi l'état Drainé à une créature, son Armure d'âmes gagne 5 PV.</p>",
       "en": "Vicious Criticals",
-      "name": null,
+      "name": "Critiques vicieux",
       "requirements": null,
       "trigger": null
     }
@@ -95,19 +95,19 @@
   "attacks": [
     {
       "en": "Claw",
-      "name": null
+      "name": "Griffe"
     },
     {
       "en": "Jaws",
-      "name": null
+      "name": "Mâchoires"
     },
     {
       "en": "Tail",
-      "name": null
+      "name": "Queue"
     },
     {
       "en": "Wing",
-      "name": null
+      "name": "Aile"
     }
   ],
   "name": "Dévoreur draconique",
