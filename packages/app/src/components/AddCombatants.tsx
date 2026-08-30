@@ -7,6 +7,7 @@ import { format, useT } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
 import type { Iwr } from "../rules/damage.js";
 import { totalInitiative } from "../rules/initiative.js";
+import { pluralize } from "../rules/plural.js";
 import { useEncounter } from "../state/store.js";
 import type { CombatantSeed } from "../state/store.js";
 
@@ -81,10 +82,6 @@ export function seedFromEntry(entry: IndexEntry, creature: Creature | null): Com
 // screenful before narrowing the search. Capped, with a count of what's
 // hidden so it's clear the rest exists rather than having vanished.
 const RESULT_CAP = 50;
-
-function pluralize(name: string, quantity: number): string {
-  return quantity === 1 ? name : `${name}s`;
-}
 
 const rowStyle = (selected: boolean): React.CSSProperties => ({
   display: "flex",
@@ -511,7 +508,7 @@ export function AddCombatants({
               opacity: creatureLoading ? 0.5 : 1,
             }}
           >
-            {t("LABEL_ADD")} {qtyForLabel} {pluralize(selected.name, qtyForLabel)}
+            {t("LABEL_ADD")} {qtyForLabel} {pluralize(selected.name, qtyForLabel, lang)}
           </button>
         </div>
       )}

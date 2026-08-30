@@ -416,4 +416,22 @@ describe("AddCombatants creature enrichment", () => {
     expect(combatant.attacks).toEqual(trollCreature.attacks);
     expect(combatant.actions).toEqual(trollCreature.actions);
   });
+
+  // Guardrail for the defect this app has shipped six times: a plain
+  // function wired to nothing. `pluralize` (rules/plural.ts) needs `lang`
+  // at its one call site (the Add button's label) — a unit test on the
+  // rule alone would pass even if the call site never passed it through.
+  // "Cheval" is an injected French name, not real catalog data, chosen
+  // specifically to exercise the -al -> -aux rule: if the call site were
+  // still using the old unconditional English "+s", this would render
+  // "Chevals" and the test would fail.
+  it("pluralises the selected name by French rules on the Add button when lang is French", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setLang("fr");
+    const loadIndexI18nFn = async () => ({ "pathfinder-bestiary/troll": "Cheval" });
+    render(<AddCombatants entries={entries} loadIndexI18nFn={loadIndexI18nFn} />);
+    await user.click(await screen.findByRole("button", { name: /ajouter cheval/i }));
+    await user.click(screen.getByRole("button", { name: /plus de cheval/i }));
+    expect(screen.getByRole("button", { name: /^ajouter 2 chevaux$/i })).toBeDefined();
+  });
 });
