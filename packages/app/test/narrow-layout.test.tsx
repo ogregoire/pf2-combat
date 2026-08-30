@@ -177,4 +177,47 @@ describe("EncounterScreen narrow layout", () => {
     await user.click(screen.getByRole("button", { name: "Close" }));
     expect(screen.queryByLabelText("amount")).toBeNull();
   });
+
+  // The roll assistant is a fixed 380px `flex-shrink: 0` column. Beside it the
+  // action list's `min-width: 0` let it collapse to nothing rather than
+  // overflow, so on a phone the action list simply vanished with nothing
+  // looking broken. Measured in Chrome at a 500px viewport before the fix:
+  // 409px assistant, 43px of usable action-list content; after: 472px, full
+  // width, stacked. jsdom cannot measure that, so this pins the structure the
+  // fix depends on — no fixed-width sibling, and a column direction.
+  it("stacks the action list above the roll assistant instead of beside it", async () => {
+    const user = userEvent.setup();
+    stubMatchMedia(true);
+    add("Alpha", 20, {
+      attacks: [{ name: "Claw", kind: "melee", bonus: 9, traits: [],
+        damage: [{ formula: "1d6+2", type: "slashing", category: null }], effects: [] }],
+    });
+    render(<EncounterScreen />);
+    // The narrow layout is tabbed; the active pane mounts only on its tab.
+    await user.click(screen.getByRole("tab", { name: /active/i }));
+
+    const pane = screen.getByTestId("active-combatant");
+    // No descendant may carry the desktop assistant's fixed width — that
+    // column is what squeezed the action list to 43px of content.
+    const fixed = [...pane.querySelectorAll<HTMLElement>("div[style]")].filter(
+      (d) => d.style.width === "380px",
+    );
+    expect(fixed).toHaveLength(0);
+
+    // ActiveCombatant's own root stacks its two children instead of placing
+    // them side by side.
+    const root = pane.querySelector<HTMLElement>("div[style]");
+    expect(root?.style.flexDirection).toBe("column");
+  });
+
+  it("above the breakpoint the assistant keeps its fixed side column", () => {
+    stubMatchMedia(false);
+    add("Alpha", 20);
+    render(<EncounterScreen />);
+    const pane = screen.getByTestId("active-combatant");
+    const fixed = [...pane.querySelectorAll<HTMLElement>("div[style]")].filter((d) =>
+      d.style.width === "380px",
+    );
+    expect(fixed).toHaveLength(1);
+  });
 });

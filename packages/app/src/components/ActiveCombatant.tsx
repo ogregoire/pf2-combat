@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import { resolveAttacks, resolveCreatureName } from "../data/i18nOverlay.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useEncounter } from "../state/store.js";
@@ -22,6 +23,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
   const combatants = useEncounter((s) => s.encounter.combatants);
   const targetId = useEncounter((s) => s.encounter.targetId);
   const lang = useEncounter((s) => s.lang);
+  const narrow = useMediaQuery(NARROW_LAYOUT_QUERY);
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const [selectedAttackIndex, setSelectedAttackIndex] = useState<number | null>(null);
@@ -46,12 +48,50 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
   const attacks = resolveAttacks(combatant.attacks, combatantI18n, lang);
   const attack = selectedAttackIndex !== null ? attacks[selectedAttackIndex] : undefined;
 
+  // The roll assistant is a fixed 380px column that does not shrink, so on a
+  // phone it took the whole viewport and squeezed the action list to nothing
+  // — measured in Chrome at a 500px viewport: 409px assistant, 91px main
+  // column, 43px of usable action-list content. `minWidth: 0` on the main
+  // column let it collapse silently rather than overflow, so nothing looked
+  // broken; the action list was simply gone.
+  //
+  // Below the breakpoint the two stack instead: action list first (the GM
+  // picks a Strike), assistant beneath it, one scrolling column.
   return (
-    <div style={{ display: "flex", flexGrow: 1, minWidth: 0, minHeight: 0 }}>
-      <div style={{ flexGrow: 1, minWidth: 0, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: narrow ? "column" : "row",
+        flexGrow: 1,
+        minWidth: 0,
+        minHeight: 0,
+        ...(narrow ? { overflowY: "auto" } : {}),
+      }}
+    >
+      <div
+        style={{
+          flexGrow: 1,
+          minWidth: 0,
+          display: "flex",
+          flexDirection: "column",
+          ...(narrow ? { flexShrink: 0 } : { overflow: "hidden" }),
+        }}
+      >
         <StatBlockHeader combatant={combatant} />
         <DefensesPanel combatant={combatant} />
-        <div style={{ flexGrow: 1, minHeight: 0, overflowY: "auto", padding: "16px 24px", display: "flex", flexDirection: "column", gap: "18px" }}>
+        <div
+          style={{
+            flexGrow: 1,
+            minHeight: 0,
+            // The outer column scrolls as a whole on narrow; a nested
+            // scroller here would trap the action list in a short box.
+            ...(narrow ? {} : { overflowY: "auto" }),
+            padding: narrow ? "16px 14px" : "16px 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "18px",
+          }}
+        >
           <ActionList
             combatant={combatant}
             selectedAttackIndex={selectedAttackIndex}
@@ -61,7 +101,23 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
         </div>
       </div>
 
-      <div style={{ width: "380px", flexShrink: 0, borderLeft: "1px solid var(--border)", padding: "16px 14px", overflowY: "auto" }}>
+      <div
+        style={
+          narrow
+            ? {
+                flexShrink: 0,
+                borderTop: "1px solid var(--border)",
+                padding: "16px 14px",
+              }
+            : {
+                width: "380px",
+                flexShrink: 0,
+                borderLeft: "1px solid var(--border)",
+                padding: "16px 14px",
+                overflowY: "auto",
+              }
+        }
+      >
         <RollAssistant combatant={combatant} target={target} attack={attack} />
       </div>
     </div>
