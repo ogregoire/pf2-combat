@@ -17,25 +17,66 @@ function pluralizeFrenchWord(word: string): string {
 }
 
 /**
+ * Genitive/locative prepositions that introduce a `X <preposition> Y`
+ * compound whose head noun is `X`, not `Y` — "Garde du corps" pluralises
+ * "Garde", never "corps". "de la"/"de l'"/"à la"/"à l'" need no separate
+ * entry: they're matched by the bare "de"/"à" here, which lands on the
+ * same split point regardless of what follows.
+ */
+const PREPOSITIONS = new Set(["de", "du", "des", "à", "au", "aux", "en"]);
+
+/**
+ * Index into `words` of the first preposition that has at least one word
+ * before it (so there's a head noun to pluralise) — matched as a whole
+ * word, case-insensitive. -1 if there's no such preposition.
+ */
+function firstPrepositionIndex(words: string[]): number {
+  for (let i = 1; i < words.length; i++) {
+    if (PREPOSITIONS.has(words[i]!.toLowerCase())) return i;
+  }
+  return -1;
+}
+
+/**
  * French pluralisation is genuinely irregular; this only ever renders a
  * button label (AddCombatants's Add button), not prose, so predictable
- * beats clever. The head noun is not reliably first in French ("Troll des
- * glaces" pluralises the troll, "Chauves-souris crépitante" the adjective),
- * so the rule set below is applied to the LAST word of the name, and a
- * parenthesised qualifier ("Jann (Génie)") is carved off first and left
- * untouched.
+ * beats clever. A parenthesised qualifier ("Jann (Génie)") is carved off
+ * first and left untouched.
+ *
+ * The head noun is not reliably the LAST word either: in a
+ * "X <preposition> Y" compound the head is X, the word right before the
+ * preposition ("Garde du corps" -> "Gardes du corps", "Policier à cheval"
+ * -> "Policiers à cheval", "Blasphémateur de Zon-Kuthon" -> plural
+ * "Blasphémateurs", the deity's name never touched). Absent such a
+ * preposition, the rule set is applied to the LAST word instead, which is
+ * correct for plain names and adjective-final ones ("Chauves-souris
+ * crépitante" -> "crépitantes", the adjective, since "Chauves-souris" is
+ * already the (invariant) head noun).
  */
 function pluralizeFrenchName(name: string): string {
   const parenIndex = name.indexOf("(");
   const core = parenIndex === -1 ? name : name.slice(0, parenIndex);
   const suffix = parenIndex === -1 ? "" : name.slice(parenIndex);
 
-  const wordMatch = core.match(/(\S+)(\s*)$/);
-  if (wordMatch === null) return name;
-  const [, word, trailingSpace] = wordMatch as [string, string, string];
-  const beforeWord = core.slice(0, core.length - word.length - trailingSpace.length);
+  // Alternating word/whitespace tokens that reconstruct `core` exactly via
+  // `.join("")` — unlike a plain `.split(/\s+/)`, this never produces an
+  // empty token, so a trailing space before a parenthetical (e.g. "Jann "
+  // before "(Génie)") round-trips untouched.
+  const tokens = core.match(/\S+|\s+/g);
+  if (tokens === null) return name;
+  const wordTokenIndices = tokens.reduce<number[]>((acc, token, i) => {
+    if (!/^\s/.test(token)) acc.push(i);
+    return acc;
+  }, []);
+  if (wordTokenIndices.length === 0) return name;
+  const words = wordTokenIndices.map((i) => tokens[i]!);
 
-  return `${beforeWord}${pluralizeFrenchWord(word)}${trailingSpace}${suffix}`;
+  const prepIndex = firstPrepositionIndex(words);
+  const targetWordIndex = prepIndex === -1 ? words.length - 1 : prepIndex - 1;
+  const targetTokenIndex = wordTokenIndices[targetWordIndex]!;
+
+  tokens[targetTokenIndex] = pluralizeFrenchWord(tokens[targetTokenIndex]!);
+  return tokens.join("") + suffix;
 }
 
 /**
