@@ -3,22 +3,30 @@
     {
       "description": "<p><strong>Déclencheur</strong> La création de chair devrait être affectée par un effet avec le trait électricité et une créature est dans son allonge.</p>\n<hr />\n<p><strong>Effet</strong> La création de chair se déchaîne et tente d'agripper une créature proche. Elle effectue un test d'Athlétisme pour Saisir une créature dans son allonge. La créature subit également @Damage[3d6[electricity]]{3d6 dégâts d'électricité} en cas de succès ou @Damage[6d6[electricity]]{6d6 dégâts d'électricité} en cas de succès critique.</p>",
       "en": "Electric Reflexes",
-      "name": "Réflexes électriques"
+      "name": "Réflexes électriques",
+      "requirements": null,
+      "trigger": "La création de chair devrait être affectée par un effet avec le trait électricité et une créature est dans son allonge."
     },
     {
       "description": "<p><strong>Conditions</strong> La créature de chair est berserk.</p>\n<hr />\n<p><strong>Effet</strong> La créature de chair Frappe avec son poing avec une pénalité de circonstances de -1. Si elle touche, elle inflige 1d6 dégâts supplémentaires et met sa cible À terre.</p>",
       "en": "Berserk Slam",
-      "name": "Coup du berserk"
+      "name": "Coup du berserk",
+      "requirements": "La créature de chair est berserk.",
+      "trigger": null
     },
     {
       "description": "<p>Une création de chair sévèrement endommagée peut devenir folle furieuse. S'il lui reste 40 Points de vie ou moins au début de son tour, la création de chair doit réussir un @Check[flat|dc:5] ou devenir berserk. Une création de chair dans cet état attaque sauvagement la créature vivante ou l'objet le plus proche s'il n'y a aucune créature à proximité.</p>",
       "en": "Berserk",
-      "name": "Berseker"
+      "name": "Berseker",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Chaque fois qu'une création de chair est affectée par un effet qui possède le trait électricité, elle perd son état Ralenti et obtient des Points de vie d'un montant égal à la moitié des dégâts que l'effet aurait infligé. Si la création de chair débute son tour dans une zone qui inflige des dégâts électriques, elle obtient @Damage[2d4[healing]]{2d4 Points de vie}.</p>",
       "en": "Electric Healing",
-      "name": "Guérison électrique"
+      "name": "Guérison électrique",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

@@ -3,27 +3,37 @@
     {
       "description": "<p><strong>Conditions</strong> Le diable des mers n'est pas Fatigué ou déjà en état de frénésie.</p>\n<p><strong>Déclencheur</strong> Le diable des mers inflige des dégâts de saignement à une créature vivante.</p>\n<hr />\n<p><strong>Effet<p><strong> Le diable des mers est pris de frénésie pendant 1 minute. Tant qu'il est frénétique, le diable des mers obtient un bonus de statut de +1 à ses jets d'attaque avec ses griffes et ses mâchoires, un bonus de statut de +4 à ses jets de dégâts avec ses griffes et ses mâchoires, 15 Points de vie temporaires et une pénalité de statut de -2 à sa CA. Le diable des mers ne peut pas volontairement mettre fin à sa frénésie. Une fois qu'il a quitté l'état frénétique, le diable des mers est Fatigué.</p>",
       "en": "Blood Frenzy",
-      "name": "Frénésie du sang"
+      "name": "Frénésie du sang",
+      "requirements": "Le diable des mers n'est pas Fatigué ou déjà en état de frénésie.",
+      "trigger": "Le diable des mers inflige des dégâts de saignement à une créature vivante."
     },
     {
       "description": "<p><strong>Conditions</strong> Le baron diable des mers est en état de Frénésie du sang.</p>\n<hr />\n<p><strong>Effet</strong> Le baron diable des mers déclenche un tourbillon d'attaques contre ses ennemis, effectuant une seule Frappe au corps-à-corps avec ses griffes ou sa mâchoire contre chaque ennemi dans sa portée.</p>",
       "en": "Hateful Tide",
-      "name": "Marée de haine"
+      "name": "Marée de haine",
+      "requirements": "Le baron diable des mers est en état de Frénésie du sang.",
+      "trigger": null
     },
     {
       "description": "<p>Quand le diable des mers inflige des dégâts perforants ou tranchants, il inflige également @Damage[1d4[bleed]]{1d4 dégâts de saignement} à sa cible si celle-ci était Prise au dépourvu ou si son attaque est un coup critique.</p>",
       "en": "Bloodletting",
-      "name": "Hémorragie"
+      "name": "Hémorragie",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le diable des mers peut communiquer par télépathie avec les requins qui se trouvent à portée. Il peut seulement communiquer des concepts simples comme « viens », « garde » ou « attaque ».</p>",
       "en": "Shark Commune 150 feet",
-      "name": "Communication avec les requins 45 m"
+      "name": "Communication avec les requins 45 m",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Wavesense 30 feet",
-      "name": "Perception des ondes 9 m"
+      "name": "Perception des ondes 9 m",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

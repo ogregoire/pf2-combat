@@ -3,22 +3,30 @@
     {
       "description": "<p><strong>Conditions</strong> Le déro porte le matériel de soin cytillesh et dispose d'une main libre</p>\n<hr />\n<p><strong>Effet</strong> Le déro peut exciser la chair endommagée et suturer les chairs grossièrement, se guérissant ou guérissant un allié dans son allonge de @Damage[2d8[healing]]{2d8 Points de vie}. Pendant 1 heure, la cible subit une faiblesse 2 contre les dégâts tranchants et est immunisée à la Médecine déro.</p>\n<p>Effet : Médecine déro</p>",
       "en": "Dero Medicine",
-      "name": "Médecine déro"
+      "name": "Médecine déro",
+      "requirements": "Le déro porte le matériel de soin cytillesh et dispose d'une main libre",
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le déro doit avoir ses deux mains libres ou manier une chaîne cloutée.</p>\n<hr />\n<p><strong>Effet</strong> Le déro tente un test d'@Check[athletics|traits:action:grapple,action:strangle] pour Saisir avec un bonus de circonstances de +2. S'il réussit, la cible subit @Damage[(1d6+6)[bludgeoning]]{1d6+6 dégâts contondants} et ne peut plus parler (ni Lancer de sorts) tant qu'elle est Agrippée ou Entravée.</p>",
       "en": "Strangle",
-      "name": "Étranglement"
+      "name": "Étranglement",
+      "requirements": "Le déro doit avoir ses deux mains libres ou manier une chaîne cloutée.",
+      "trigger": null
     },
     {
       "description": "<p>Une créature non déro qui débute son tour en étant Agrippée ou Entravée par un étrangleur déro, est exposée à la lueur bleuâtre maladive qui émane du matériel cytillesh déro. Elle doit effectuer un jet de @Check[fortitude|dc:19]. En cas d'échec, elle est Nauséeuse 1. Ceci n'a pas d'effet si l'étrangleur ne porte pas son matériel déro.</p>",
       "en": "Ill Glow",
-      "name": "Éclat maladif"
+      "name": "Éclat maladif",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Un étrangleur déro subit @Damage[8[untyped]]{8 dégâts} par heure d'exposition à la lumière du soleil.</p>",
       "en": "Vulnerable to Sunlight",
-      "name": "Vulnérabilité à la lumière du soleil"
+      "name": "Vulnérabilité à la lumière du soleil",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

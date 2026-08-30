@@ -3,57 +3,79 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois par jour par quartz</p>\n<hr />\n<p><strong>Effet</strong> Dix quartz corrompus incrustés au crâne de la demi-liche peuvent piéger les âmes des vivants. Le quartz activé lance Appropriation de l'âme. Ce sort d'<em>Appropriation de l'âme</em> peut cibler et affecter une créature mourante au lieu d'un cadavre. La créature mourante peut tenter un jet de @Check[fortitude|dc:38] ; si elle réussit, elle ne meurt pas et son âme n'est pas piégée mais elle est Drainée 2 (ou elle n'est pas affectée en cas de succès critique). Quand l'âme d'une créature se retrouve piégée, son corps tombe rapidement en poussière.</p>\n<p>Les pierres précieuses agissent comme les saphirs noirs d'<em>Appropriation de l'âme</em> sauf qu'elles peuvent contenir des créatures de niveau 17 au maximum et ont une valeur de 200 po chacune. La demi-liche peut Engloutir une âme qu'elle a piégée.</p>",
       "en": "Trap Soul",
-      "name": "Piéger l'âme"
+      "name": "Piéger l'âme",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Déclencheur</strong> Le tour de la demi-liche commence.</p>\n<hr />\n<p><strong>Effet</strong> La demi-liche lance Osciller, Renvoi de sort, Vision véritable ou Vol sur elle-même. Elle choisit habituellement <em>Renvoi de sort</em> à moins que ce sort ne soit déjà actif.</p>",
       "en": "Countermeasures",
-      "name": "Contremesures"
+      "name": "Contremesures",
+      "requirements": null,
+      "trigger": "Le tour de la demi-liche commence."
     },
     {
       "description": "<p>Une demi-liche a un sort de Contingence au rang 8 actif en permanence associé à un de ses sorts innés arcaniques de niveau 5 ou inférieur, généralement Translocation.</p>\n<p><strong>Déclencheur</strong> Alors que la demi-liche est plongée dans sa torpeur, une créature dérange ses restes, touche ses trésors ou lance un sort qui l'affecterait.</p>\n<hr />\n<p><strong>Effet</strong> La demi-liche met un terme à sa torpeur lance l'initiative et obtient l'effet du sort associé à <em>Contingence</em>. La contingence est réinitialisée après 24 heures.</p>",
       "en": "Contingency",
-      "name": "Contingence"
+      "name": "Contingence",
+      "requirements": null,
+      "trigger": "Alors que la demi-liche est plongée dans sa torpeur, une créature dérange ses restes, touche ses trésors ou lance un sort qui l'affecterait."
     },
     {
       "description": "<p><strong>Conditions</strong> Une âme est emprisonnée dans l'un des quartz corrompus de la demi-liche depuis 24 heures</p>\n<hr />\n<p><strong>Effet</strong> La demi-liche consume cette âme. L'âme est totalement anéantie et la demi-liche récupère un nombre de Points de vie égal au double du niveau de la créature.</p>",
       "en": "Devour Soul",
-      "name": "Engloutissement d'âmes"
+      "name": "Engloutissement d'âmes",
+      "requirements": "Une âme est emprisonnée dans l'un des quartz corrompus de la demi-liche depuis 24 heures",
+      "trigger": null
     },
     {
       "description": null,
       "en": "+1 Status to All Saves vs. Vitality",
-      "name": "Bonus de statut de +1 aux jets de sauvegarde contre les effets de vitalité"
+      "name": "Bonus de statut de +1 aux jets de sauvegarde contre les effets de vitalité",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Constant Spells",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une demi-liche a des gemmes à la place des yeux qui brillent quand elle est active. Chaque gemme contient un sort de rang 8 qui cible une créature (généralement un des yeux a Dilemme et l'autre Rayon polaire). La demi-liche peut Activer un œil. Cela utilise le nombre d'actions d'incantation requis par le sort et possède le trait concentration. Quand une demi-liche lance un sort avec une gemme oculaire, cette dernière cesse de briller pendant [[/gmr 1d4 #Recharger des yeux oculaires]]{1d4 rounds}, durée pendant laquelle le sort de cet œil ne peut plus être utilisé. Parfois, une des deux <em>Gemmes oculaires de la demi-liche ou même les deux, peuvent être récupérées en tant qu'objet magique une fois la créature détruite.</p>",
       "en": "Demilich Eye Gems",
-      "name": "Gemmes oculaires de la demi-liche"
+      "name": "Gemmes oculaires de la demi-liche",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une demi-liche peut remplacer tous les composants matériels et somatiques pour incanter des sorts par des composants verbaux et elle peut remplacer tous les composants Interagir pour activer des objets magiques par des composants imaginer.</p>",
       "en": "Mental Magic",
-      "name": "Magie mentale"
+      "name": "Magie mentale",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une demi-liche a depuis longtemps absorbé les sorts d'un bâton dans des nodules, des sortes de gemmes, incrustés dans son crâne, les plus gros nodules représentant les sorts des plus hauts rangs. Elle peut lancer n'importe lequel de ces sorts comme si elle Activait le bâton et elle regagne 1 charge toutes les 4 heures de torpeur jusqu'à un maximum de 8 charges. Une demi-liche typique dispose des sorts d'un <em>Bâton de la mort supérieur mais elle peut avoir à la place les sorts d'un autre bâton de rang inférieur ou égal à 8.</p>",
       "en": "Staff Gems",
-      "name": "Gemmes du bâton"
+      "name": "Gemmes du bâton",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>6 mètres. Le tourbillon télékinésique s'active dès que la demi-liche sort de sa torpeur. Tous les débris dans la zone sont charriés par une tempête tourbillonnante. Cela obscurcit la vision. Toutes les créatures dans la zone sont Masquées et, à l'exception de la demi-liche, considèrent toutes les autres créatures comme Masquées. Toute créature autre que la demi-liche qui pénètre ou débute son tour dans l'aura, subit @Damage[2d12[bludgeoning]]{2d12 dégâts contondants}.</p>",
       "en": "Telekinetic Whirlwind",
-      "name": "Tourbillon télékinésique"
+      "name": "Tourbillon télékinésique",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Généralement, une demi-liche est inerte quand on la rencontre et n'utilise aucune action jusqu'à sa ce que sa réaction Contingence ait été déclenchée.</p>",
       "en": "Torpor",
-      "name": "Torpeur"
+      "name": "Torpeur",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

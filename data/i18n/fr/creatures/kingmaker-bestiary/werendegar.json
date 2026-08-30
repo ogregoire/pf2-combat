@@ -3,37 +3,51 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature obtient un échec critique en faisant une attaque au corps-à-corps contre Wérendegar ou se déplace dans une case au sein de son aura d'épines.</p>\n<hr />\n<p><strong>Effet</strong> La créature qui déclenche l'effet doit effectuer un jet de @Check[reflex|dc:44|traits:damaging-effect].</p>\n<hr />\n<p><strong>Succès critique</strong> La cible n'est pas affectée.</p>\n<p><strong>Succès</strong> La cible est Prise au dépourvu jusqu'au début de son prochain tour.</p>\n<p><strong>Échec</strong> La créature subit @Damage[3d10[bludgeoning]]{3d10 dégâts contondants} de son et elle est Prise au dépourvu jusqu'au début de son prochain tour.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec et la créature est jetée À terre.</p>",
       "en": "Trip Up",
-      "name": "Croche-pied"
+      "name": "Croche-pied",
+      "requirements": null,
+      "trigger": "Une créature obtient un échec critique en faisant une attaque au corps-à-corps contre Wérendegar ou se déplace dans une case au sein de son aura d'épines."
     },
     {
       "description": "<p>Le gimmerling revêt une forme humanoïde ou reprend sa forme naturelle. Sous forme humanoïde, il perd son aura semée d'embûches et son équipement prend l'aspect de babioles et de jouets. S'il prend la forme d'un humanoïde sans griffes ni crocs, il perd la Frappe correspondante. S'il perd sa Frappe de griffe, il obtient une Frappe de poing identique, sauf qu'elle inflige des dégâts contondants.</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
       "en": "Change Shape",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> La dernière action de Wérendegar était une Frappe réussie qui comporte Désarmer dans l'entrée des dégâts.</p>\n<hr />\n<p><strong>Effet</strong> La cible lâche une arme qu'elle porte ou tient. L'arme se retrouve au sol dans la case que la cible occupe.</p>",
       "en": "Disarm",
-      "name": "Désarmement"
+      "name": "Désarmement",
+      "requirements": "La dernière action de Wérendegar était une Frappe réussie qui comporte Désarmer dans l'entrée des dégâts.",
+      "trigger": null
     },
     {
       "description": "<p>Perception de la faim permet au gimmerling de sentir la présence de créatures qui ont besoin de se nourrir pour vivre.</p>",
       "en": "Hungersense (Imprecise) 30 feet",
-      "name": "Perception de la faim 9 mètres (imprécis)"
+      "name": "Perception de la faim 9 mètres (imprécis)",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Wérendegar inflige 4d6 dégâts de précision supplémentaires à toute créature Prises au dépourvu.</p>",
       "en": "Sneak Attack",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>4,50 mètres. Des racines enchevêtrées et des lianes épineuses qui se tordent au sein de l'aura crée un surface de terrain difficile et dangereux infligeant @Damage[4d6[piercing]]{4d6 dégâts perforants} à toute créature non-volante qui se trouve dans la zone d'effet de l'aura.</p>",
       "en": "Thorny Aura",
-      "name": "Aura d'épines"
+      "name": "Aura d'épines",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Wérendegar ignore le terrain difficile et ne déclenche pas de pièges en se déplaçant.</p>",
       "en": "Trickster's Step",
-      "name": "Démarche de filou"
+      "name": "Démarche de filou",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

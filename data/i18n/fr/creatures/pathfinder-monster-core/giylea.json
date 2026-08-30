@@ -3,32 +3,44 @@
     {
       "description": "<p><strong>Déclencheur</strong> Un ennemi inflige des dégâts à un allié de l'archon et tous deux sont dans les 4,50 mètres de l'archon</p>\n<hr />\n<p><strong>Effet</strong> L'allié obtient une résistance 20 contre les dégâts déclencheurs et l'archon peut effectuer une Frappe contre cet ennemi.</p>",
       "en": "Archon's Protection",
-      "name": "Protection de l'archon"
+      "name": "Protection de l'archon",
+      "requirements": null,
+      "trigger": "Un ennemi inflige des dégâts à un allié de l'archon et tous deux sont dans les 4,50 mètres de l'archon"
     },
     {
       "description": "<p>Le giyléa fixe son regard sur une créature qu'il peut voir dans un rayon de 9 mètres. La cible doit immédiatement effectuer un jet de @Check[will|dc:37|traits:aura,divine,mental,visual] contre les Yeux omniscients. Si la créature est sous n'importe quel effet magique qui la déguise ou qui a altéré sa forme, le giyléa tente de contrer cet effet magique (contre [[/r 1d20+29 #Contrer]]{+29}, rang 8). Après avoir tenté son jet de sauvegarde, la créature est ensuite temporairement immunisée jusqu'au début du prochain tour du giyléa.</p>",
       "en": "Focus Gaze",
-      "name": "Focaliser le regard"
+      "name": "Focaliser le regard",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le giyléa tourne sur lui-même à grande vitesse, émettant une pluie de feu divin. Toutes les créatures dans une @Template[emanation|distance:60]{émanation de 18 mètres} subissent @Damage[(12d6)[fire],(5d6)[spirit]|options:area-damage]{12d6 dégâts de feu et 5d6 dégâts spirituels} (@Check[reflex|dc:37|basic|options:area-effect]). Le giyléa ne peut plus utiliser Rayons de feu pendant [[/gmr 1d4 #Recharger Rayons de feu]]{1d4 rounds}</p>",
       "en": "Fiery Spokes",
-      "name": "Rayons de feu"
+      "name": "Rayons de feu",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "+1 Status to All Saves vs. Magic",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "All-Around Vision",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>9 mètres.</p>\n<p>Lorsqu'une créature finit son tour dans l'aura du giyléa, elle doit tenter un jet de @Check[will|dc:34]. Si la créature obtient un échec, tout test de Duperie qu'elle tente jusqu'à la fin de son prochain tour aura son résultat réduit d'un degré de succès. Si une créature est actuellement déguisée ou sous une forme autre de sa véritable forme lorsqu'elle obtient un échec sur son jet de sauvegarde, elle est également Stupéfiée 1 jusqu'à la fin de son prochain tour.</p>",
       "en": "All-Knowing Eyes",
-      "name": "Yeux omniscients"
+      "name": "Yeux omniscients",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

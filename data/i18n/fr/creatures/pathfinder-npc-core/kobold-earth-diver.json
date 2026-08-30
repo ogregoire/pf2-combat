@@ -3,12 +3,16 @@
     {
       "description": "<p>Le fouisseur kobold frappe le sol de sa pioche, provoquant une explosion de débris en une @Template[type:emanation|distance:5]{émanation de 1,50 mètre}. Toutes les créatures et objets non tenus dans la zone subissent @Damage[3d6[bludgeoning]|options:area-damage]{3d6 dégâts contondants} (@Check[reflex|dc:20|basic|options:area-effect]). Une créature Immobilisée par une doline subit @Damage[1d6[bludgeoning]]{1d6 dégâts contondants} supplémentaires.</p>",
       "en": "Pick Smash",
-      "name": "Coup de pioche"
+      "name": "Coup de pioche",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le fouisseur est enterré sous une créature de taille Moyenne ou inférieure en surface.</p>\n<hr />\n<p><strong>Effet</strong> Le fouisseur crée un petit effondrement sous la créature qui doit tenter un jet de @Check[reflex|dc:20]. Quel que soit le résultat, l'espace de la cible devient un terrain difficile.</p>\n<p><strong>Échec</strong> La créature tombe dans la doline et est Immobilisée jusqu'à ce qu'elle [[/act escape dc=18]]{S'Échappe}.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec et la créature subit @Damage[2d8[bludgeoning]]{2d8 dégâts contondants}.</p>",
       "en": "Sinkhole",
-      "name": "Doline"
+      "name": "Doline",
+      "requirements": "Le fouisseur est enterré sous une créature de taille Moyenne ou inférieure en surface.",
+      "trigger": null
     }
   ],
   "attacks": [

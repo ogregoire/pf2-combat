@@ -3,22 +3,30 @@
     {
       "description": null,
       "en": "Improved Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Irahkatu agrippe une créature de taille Moyenne ou inférieure avec sa queue griffue.</p>\n<hr />\n<p><strong>Effet</strong> Irahkatu effectue un test d'@Check[athletics|defense:fortitude] contre le DD de Vigueur de la créature.</p>\n<hr />\n<p><strong>Succès critique</strong> Si la créature est à 3 mètres d'Irahkatu, elle est traînée jusqu'à la case adjacente à l'ahuizotl. Ce dernier effectue une Frappe de mâchoires contre la créature</p>\n<p><strong>Succès</strong> Si la créature est à 3 mètres d'Irahkatu, elle est traînée jusqu'à la case adjacente à l'ahuizotl.</p>\n<p><strong>Échec</strong> La créature n'est pas traînée.</p>\n<p><strong>Échec critique</strong> La créature n'est pas traînée et n'est plus Agrippée par l'ahuizotl.</p>",
       "en": "Tail Drag",
-      "name": "Poigne de la queue griffue"
+      "name": "Poigne de la queue griffue",
+      "requirements": "Irahkatu agrippe une créature de taille Moyenne ou inférieure avec sa queue griffue.",
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Irahkatu a Agrippé une créature de taille Moyenne ou inférieure avec sa queue griffue ou a déjà infligé des dégâts avec sa Frappe de griffes ou avec sa Frappe de queue griffue pendant son tour</p>\n<p><strong>Effet</strong> Irahkatu tente un effectue d'@Check[athletics|defense:fortitude] contre le DD de Vigueur de la créature.</p>\n<hr />\n<p><strong>Succès critique</strong> Irahkatu déchire les yeux de la cible. La cible subit @Damage[14d6[slashing]]{14d6 dégâts tranchants} et est Aveuglée pendant 24 heures. L'état Aveuglé peut être annulé plus tôt si la créature est totalement guérie de tous ses dégâts.</p>\n<p><strong>Succès</strong> Irahkatu broie quelques doigts. La cible subit @Damage[7d6[slashing]]{7d6 dégâts tranchants} et est Maladroit 1 pendant 24 heures.</p>\n<p><strong>Échec</strong> Irahkatu griffe la créature, infligeant @Damage[3d6[slashing]]{3d6 dégâts tranchants}.</p>\n<p><strong>Échec critique</strong> La créature n'est pas affectée.</p>",
       "en": "Disfigure",
-      "name": "Défigurer"
+      "name": "Défigurer",
+      "requirements": "Irahkatu a Agrippé une créature de taille Moyenne ou inférieure avec sa queue griffue ou a déjà infligé des dégâts avec sa Frappe de griffes ou avec sa Frappe de queue griffue pendant son tour",
+      "trigger": null
     },
     {
       "description": "<p>Irahkatu peut imiter les sons émis par un individu en détresse en faisant un test de Duperie pour Mentir. L'ahuizotl a un bonus de circonstances +4 pour ce test</p>",
       "en": "Voice Imitation",
-      "name": "Imitation de la voix"
+      "name": "Imitation de la voix",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

@@ -3,27 +3,37 @@
     {
       "description": "<p><strong>Déclencheur</strong> Le dragon obtient un succès ou un succès critique à son jet de sauvegarde contre un sort</p>\n<hr />\n<p><strong>Effet</strong> Le dragon essaie de capturer une portion de la magie du sort pour s'en nourrir. Il tente de contrer le sort (Rang 5, modificateur [[/r 1d20+20 #Contrer]]{+20}). S'il obtient une réussite, le dragon n'est pas affecté par les effets du sorts et récupère un emplacement de sort spontané qu'il a utilisé. Les autres cibles sont affectées par le sort comme à l'ordinaire.</p>",
       "en": "Capture Spell",
-      "name": "Capture de sort"
+      "name": "Capture de sort",
+      "requirements": null,
+      "trigger": "Le dragon obtient un succès ou un succès critique à son jet de sauvegarde contre un sort"
     },
     {
       "description": "<p>Le dragon vaporise un nuage d'énergies perturbatrices qui infligent @Damage[9d6[force]|options:area-damage]{9d6 dégâts de force} en un @Template[cone|distance:30]{cône de 9 mètres} (@Check[reflex|dc:30|basic|options:area-effect]). Les créatures qui obtiennent un échec à leur jet de sauvegarde sont également Stupéfiées 1 (Stupéfiées 2 en cas d'échec critique) pendant 1 minute.</p>\n<p>Le dragon ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Souffle perturbateur]]{1d4 rounds}</p>",
       "en": "Disruptive Breath",
-      "name": "Souffle perturbateur"
+      "name": "Souffle perturbateur",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le corps du dragon est couvert de richesses (ceci est habituellement le cas lors d'une première rencontre avec le dragon)</p>\n<hr />\n<p><strong>Effet</strong> Le dragon secoue de manière agressive son corps, envoyant les pièces d'or et autres trésors dans les airs tout autour de lui, infligeant @Damage[6d10[bludgeoning]|options:area-damage]{6d10 dégâts contondants} à toutes les créatures dans une @Template[emanation|distance:30]{émanation de 9 mètres} (@Check[reflex|dc:29|basic|options:area-effect]). Le corps du dragon n'est plus recouvert de richesses.</p>",
       "en": "Share the Wealth",
-      "name": "Partage des richesses"
+      "name": "Partage des richesses",
+      "requirements": "Le corps du dragon est couvert de richesses (ceci est habituellement le cas lors d'une première rencontre avec le dragon)",
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le corps du dragon n'est pas couvert de richesses et le dragon est à côté de son trésor</p>\n<hr />\n<p><strong>Effet</strong> Le dragon Marche rapidement ou Creuse à travers son trésor, en utilisant sa Vitesse au sol. Il se drape de pièces, d'objets magiques et autres trésors qui se collent à son corps. Ce contact avec des objets magiques le revitalise provoquant la récupération d'un emplacement de sort spontané qu'il a déjà utilisé</p>\n<p>Le dragon peut se déplacer vers d'autres créatures lorsqu'il utilise ce déplacement. Les créatures qui se trouvent sur le chemin du dragon ou au-dessus alors que le dragon est en train de Creuser, doivent effectuer un jet de @Check[reflex|dc:27] ou être repoussées de 3 mètres (en cas d'échec critique elles sont repoussées de 6 mètres et jetées À terre).</p>",
       "en": "Treasure Dive",
-      "name": "Plongeon dans le trésor"
+      "name": "Plongeon dans le trésor",
+      "requirements": "Le corps du dragon n'est pas couvert de richesses et le dragon est à côté de son trésor",
+      "trigger": null
     },
     {
       "description": null,
       "en": "+2 Status to All Saves vs. Arcane",
-      "name": "Bonus de statut de +2 aux jets de sauvegarde contre l'arcanique"
+      "name": "Bonus de statut de +2 aux jets de sauvegarde contre l'arcanique",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

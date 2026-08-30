@@ -3,27 +3,37 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature entre dans un espace occupé par une vase grise</p>\n<p><strong>Conditions</strong> L'initiative n'a pas encore été lancée</p>\n<hr />\n<p><strong>Effet</strong> La vase grise remarque automatiquement la créature et fait une Frappe de pseudopode contre une créature adjacente avant de lancer l'initiative.</p>",
       "en": "Puddled Ambush",
-      "name": "Flaque embusquée"
+      "name": "Flaque embusquée",
+      "requirements": "L'initiative n'a pas encore été lancée",
+      "trigger": "Une créature entre dans un espace occupé par une vase grise"
     },
     {
       "description": "<p>@Damage[1d6[bludgeoning],1d6[acid]]{1d6 dégâts contondants plus 1d6 dégâts d'acide}, @Check[fortitude|dc:21|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
       "en": "Constrict",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>L'acide de la vase grise n'affecte que les métaux et les matériaux organiques, pas la pierre.</p>",
       "en": "Gray Ooze Acid",
-      "name": "Acide de la vase grise"
+      "name": "Acide de la vase grise",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une vase grise peut sentir le déplacement à travers les vibrations et le mouvement de l'air ou de l'eau.</p>",
       "en": "Motion Sense",
-      "name": "Perception du mouvement"
+      "name": "Perception du mouvement",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

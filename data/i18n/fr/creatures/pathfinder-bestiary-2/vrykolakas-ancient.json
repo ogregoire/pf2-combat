@@ -3,67 +3,93 @@
     {
       "description": "<p>Un maître vrykolakas peut se transformer de façon à adopter l'apparence qu'il avait étant vivant, avec les effets d'une Forme humanoïde, mais sans limite de durée. Il perd ses Frappes de crocs et de griffes mais obtient un bonus de circonstances de +2 à ses tests de Duperie pour Se faire passer pour son ancienne identité tant qu'il est sous cette apparence</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
       "en": "Change Shape",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>DD 33</p>\n<p>Le vrykolakas peut lancer Domination à volonté comme un sort inné divin qui n'affecte que les animaux.</p>\n<p>Une créature qui réussit est immunisée à la <em>Domination</em> animale de ce vrykolakas pendant 24 heures. Détruire le vrykolakas permet de mettre fin à l'effet, mais pas le fait de le réduire à 0 PV.</p>\n<p>Un animal dominé subit une pénalité de circonstances de -4 aux jets de sauvegarde contre la Corruption sauvage du vrykolakas.</p>",
       "en": "Dominate Animal",
-      "name": "Domination animale"
+      "name": "Domination animale",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> La dernière action du vrykolakas était une Frappe de crocs réussie</p>\n<hr />\n<p><strong>Effet</strong> Le vrykolakas enfonce ses crocs dans cette créature pour boire son sang. Cela nécessite un test d'@Check[athletics|defense:fortitude] contre le DD de Vigueur de la créature. En cas de succès, la créature est Drainée 2 et le vrykolakas récupère @Damage[25[healing]]{25 Points de vie}, les Points de vie excédentaires s'ajoutant sous forme de Points de vie temporaires</p>\n<p>Boire le sang d'une créature déjà Drainée ne permet pas au vrykolakas de récupérer des Points de vie, mais la valeur de l'état Drainé de la victime augmente de 1. Un vrykolakas peut également boire du sang qui a été extrait dans un récipient pour se nourrir, mais il ne gagne aucun PV ce faisant.</p>\n<p>L'état Drainé de la créature ciblée diminue de 1 par semaine.</p>\n<p>Une transfusion sanguine, qui nécessite un test de @Check[medicine|dc:20] et suffisamment de sang ou un donneur de sang, réduit l'état Drainé de 1 après 10 minutes.</p>",
       "en": "Drink Blood",
-      "name": "Boire le sang"
+      "name": "Boire le sang",
+      "requirements": "La dernière action du vrykolakas était une Frappe de crocs réussie",
+      "trigger": null
     },
     {
       "description": "<p>Griffe</p>\n<hr />\n<p><p>Une entrée d'Éventration indique une Frappe que possède le monstre.</p>\n<p><strong>Conditions</strong> Au cours d'un même round, le monstre touche un même ennemi avec deux Frappes consécutives du type indiqué.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre inflige une nouvelle fois et automatiquement à sa cible la quantité de dégâts de cette Frappe.</p></p>",
       "en": "Rend",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> La dernière action de l'ancien vrykolakas était de boire du sang</p>\n<hr />\n<p><strong>Effet</strong> L'ancien vrykolakas effectue deux Frappes de griffe. Les deux attaques comptent pour sa pénalité d'attaques multiples, mais cette pénalité n'augmente qu'après les deux attaques. S'il touche avec ses deux griffes, la cible subit @Damage[1d6[bleed]]{1d6 dégâts de saignement}.",
       "en": "Sanguine Mauling",
-      "name": "Mutilation sanguine"
+      "name": "Mutilation sanguine",
+      "requirements": "La dernière action de l'ancien vrykolakas était de boire du sang",
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> L'ancien vrykolakas est adjacent à une créature Inconsciente</p>\n<hr />\n<p><strong>Effet</strong> L'ancien vrykolakas vole le souffle de la créature. La créature inconsciente commence à suffoquer, ne peut pas être réveillée pendant 1 round et doit tenter un jet de @Check[fortitude|dc:33]. Si une créature est ciblée par cette capacité plusieurs rounds de suite, le DD de sauvegarde diminue de 2 chaque round après le premier</p>\n<hr />\n<p><strong>Succès critique</strong> La cible se réveille immédiatement et est temporairement immunisée au Vol de souffle pendant 24 heures.</p>\n<p><strong>Succès</strong> La cible n'est pas affectée.</p>\n<p><strong>Échec</strong> La cible subit @Damage[1d10[untyped]]{1d10 dégâts}.</p>\n<p><strong>Échec critique</strong> La cible tombe à 0PV et devient Mourante 1</p>",
       "en": "Steal Breath",
-      "name": "Vol de souffle"
+      "name": "Vol de souffle",
+      "requirements": "L'ancien vrykolakas est adjacent à une créature Inconsciente",
+      "trigger": null
     },
     {
       "description": "<p>La présence d'un vrykolakas attire des créatures de la nuit venues recevoir ses ordres. Il s'agit souvent de Nuées de rats, de Wargs, de Loup-garous et autres créatures similaires.</p>\n<p>Le vrykolakas peut leur donner des ordres par télépathie dans un rayon de 30 mètres, mais elles ne peuvent pas communiquer en retour.</p>",
       "en": "Children of the Night",
-      "name": "Enfants de la nuit"
+      "name": "Enfants de la nuit",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Si une créature meurt après avoir été réduite à 0 Point de vie par Boire le sang, le vrykolakas peut la changer en un vrykolakas s'il lui donne un peu de son propre sang et qu'elle reste enterrée pendant 3 nuits.</p>\n<p>De tels rejetons de vrykolakas sont généralement amicaux au vrykolakas qui les a créés mais elles ne sont pas sous son contrôle et partent généralement vagabonder pour leur compte dans les [[/r 1d6 #jours]]{6 jours} qui suivent.</p>",
       "en": "Create Spawn",
-      "name": "Création de rejeton"
+      "name": "Création de rejeton",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Déclencheur</strong> Le vrykolakas est réduit à 0 Point de vie, et un animal se trouve à moins de 30 mètres.</p>\n<hr />\n<p><strong>Effet</strong> À l'inverse de la plupart des morts-vivants, un vrykolakas n'est pas détruit lorsqu'il atteint 0 PV. À la place, il tente d'envoyer son esprit dans un animal situé à moins de 30 mètres, qui doit alors faire un jet de @Check[will|dc:33]. En cas d'échec, l'animal est possédé. Cela a le même effet que le sort Possession, mais dure un nombre de jours équivalent au niveau du vrykolakas. Cette possession ne peut pas être contrée par la magie (même si <em>Affliction purifiée</em> fonctionne normalement contre elle)</p>\n<p>Si l'animal réussit son jet de sauvegarde, le vrykolakas peut tenter de posséder un autre animal situé à 30 mètres ou moins. Si à n'importe quel moment un animal obtient un succès critique à son jet de sauvegarde ou il n'y a aucun animal à 30 mètres ou moins, le vrykolakas ne parvient à posséder aucun corps et est détruit.</p>\n<p>Un vrykolakas qui possède un animal cherche alors son lieu de sépulture (voir Lié à un site funéraire) pour s'y enterrer immédiatement. Pendant que le vrykolakas est dans cet état de récupération, son hôte animal est Paralysé et le décapiter permet de détruire le vrykolakas et de tuer son hôte. <em>Affliction purifiée</em> permet de détruire le vrykolakas et de rendre son état normal à l'animal</p>\n<p>Après [[/gmr 1d4 #jours]]{1d4 jours}, si le vrykolakas n'a pas été détruit, l'animal meurt et le vrykolakas se relève dans un nouveau corps identique au précédent, formé à partir des restes de l'animal.</p>",
       "en": "Feral Possession",
-      "name": "Corruption sauvage"
+      "name": "Corruption sauvage",
+      "requirements": null,
+      "trigger": "Le vrykolakas est réduit à 0 Point de vie, et un animal se trouve à moins de 30 mètres."
     },
     {
       "description": "<p>1,50 mètre. @Check[fortitude|dc:33|options:area-effect]</p>\n<hr />\n<p>Les créatures qui débutent leur tour dans cette zone alors que le vrykolakas est sous sa vraie forme sont exposées à la peste bubonique.</p>\n<hr />\n<p><strong>Peste bubonique</strong></p>\n<p>Cette maladie très répandue peut balayer des communautés entières, laissant peu de personnes indemnes. Le premier signe de la maladie est un gonflement des glandes. Dans certains cas, la maladie peut se propager dans les poumons (peste pneumonique) ou dans le sang (peste septicémique), ce qui est encore plus fatal.</p>\n<p>Si vous avez la Peste bubonique, vous ne pouvez pas enlever l'état Fatigué aussi longtemps que vous êtes affecté par la maladie.</p>\n<p><strong>Délai</strong> 1 jour</p>\n<p><strong>Stade 1</strong> Fatigué (1 jour)</p>\n<p><strong>Stade 2</strong> Affaibli 2 et Fatigué (1 jour)</p>\n<p><strong>Stade 3</strong> Affaibli 3, Fatigué, et subit @Damage[1d6[bleed]]{1d6 dégâts de saignement} toutes les [[/gmr 1d20 #minutes]]{1d20 minutes} (1 jour)</p>",
       "en": "Pestilential Aura",
-      "name": "Aura pestilentielle"
+      "name": "Aura pestilentielle",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le vrykolakas se déplace à pleine Vitesse quand il Piste.</p>",
       "en": "Swift Tracker",
-      "name": "Pistage accéléré"
+      "name": "Pistage accéléré",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Void Healing",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Les vrykolakas possèdent les vulnérabilités suivantes.</p>\n<ul>\n<li><strong>Lié à un site funéraire</strong> Un vrykolakas est lié au lieu de sa mort ou de son inhumation. Il doit revenir dans ce lieu une fois par semaine et s'enterrer pendant 24 heures, au cours desquelles il est Paralysé et peut être décapité. S'il n'a pas la possibilité de retourner sur ce site, il est réduit à 0 PV et tente une Corruption sauvage ; si son animal hôte ne peut pas revenir sur le site funéraire avant que l'effet de possession prenne fin, le vrykolakas est détruit et l'animal hôte revient à la normale</li>\n<li><strong>Vulnérable à la décapitation.</strong> Un vrykolakas qui est décapité ne peut pas utiliser sa Possession férale, et un corps décapité ne peut pas revenir sous la forme d'un vrykolakas.</li>\n</ul>",
       "en": "Vrykolakas Vulnerabilities",
-      "name": "Vulnérabilités des vrykolakas"
+      "name": "Vulnérabilités des vrykolakas",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

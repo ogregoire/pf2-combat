@@ -3,32 +3,44 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature entreprend une action de déplacement dans la zone <strong>A7</strong></p>\n<p><strong>Conditions</strong> La liane-serpent démesurée est dans la zone <strong>A7</strong></p>\n<hr />\n<p><strong>Effet</strong> La liane-serpent manipule ses racines pour que le feuillage autour de la créature ayant déclenché la réaction semble soudain prendre vie. Cette créature doit tenter un jet de @Check[reflex|dc:35].</p>\n<hr />\n<p><strong>Succès critique</strong> La cible n'est pas affectée.</p>\n<p><strong>Succès</strong> La cible traite la première case de son mouvement comme terrain difficile.</p>\n<p><strong>Échec</strong> La cible est Immobilisée par les plantes ([[/act escape dc=35]]).</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la cible est également renversée À terre.</p>",
       "en": "Grasping Roots",
-      "name": "Racines agrippantes"
+      "name": "Racines agrippantes",
+      "requirements": "La liane-serpent démesurée est dans la zone A7",
+      "trigger": "Une créature entreprend une action de déplacement dans la zone A7"
     },
     {
       "description": "<p>La liane-serpent libère une @Template[emanation|distance:60]{émanation de 18 mètres} de pollen invisible qui reste en suspension dans l'air pendant 5 rounds à moins d'être dispersée par un vent modéré ou supérieur. Chaque créature qui pénètre dans l'aura ou qui y débute son tour doit effectuer un jet de @Check[will|dc:33]. En cas d'échec, la créature est captivée.</p>\n<p>La liante-vipère ne peut plus utiliser cette capacité pendant [[/gmr 1d4 #Recharger Pollen fascinant]]{1d4 rounds}</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée et est temporairement immunisée au Pollen fascinant pendant 24 heures.</p>\n<p><strong>Succès</strong> La créature est Nauséeuse 1.</p>\n<p><strong>Échec</strong> La créature est Fascinée et elle doit utiliser chacune de ses actions pour se rapprocher de la liane-serpent aussi rapidement que possible tout en évitant tout danger évident. Si une créature Fascinée est adjacente à la liane-serpent, elle reste immobile et n'agit pas. Elle cesse d'être Fascinée si elle n'est plus dans l'aura de pollen à la fin de son tour.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, et la créature est Stupéfiée 2 pendant 24 heures.</p>",
       "en": "Captivating Pollen",
-      "name": "Pollen fascinant"
+      "name": "Pollen fascinant",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>@Damage[(3d8+8)[bludgeoning]]{3d8+8 dégâts contondants}, @Check[fortitude|dc:35|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
       "en": "Constrict",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Lorsqu'elle est exposée à un effet de froid, la liane-serpent est écrasée par la léthargie et devient Ralentie 1 pendant [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
       "en": "Cold Vulnerability",
-      "name": "Vulnérabilité au froid"
+      "name": "Vulnérabilité au froid",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Tremorsense (Precise in Area A7, Otherwise Imprecise) 60 feet",
-      "name": "Perception des vibrations 18 mètres (Précis dans la zone A7, imprécis sinon)"
+      "name": "Perception des vibrations 18 mètres (Précis dans la zone A7, imprécis sinon)",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

@@ -3,22 +3,30 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature dans les 9 mètres de la momie mange ou boit (y compris un objet alchimique ou une potion)</p>\n<hr />\n<p><strong>Effet</strong> La nourriture ou la boisson brûle comme les substances caustiques administrées à la momie avant sa mort. Si la créature rate un jet de @Check[fortitude|dc:24], elle devient Nauséeuse 2 après avoir terminé de consommer et ne peut pas réduire l'état Nauséeux tant qu'elle se trouve dans les 9 mètres de la momie.</p>",
       "en": "Blighted Consumption",
-      "name": "Consommation dégradée"
+      "name": "Consommation dégradée",
+      "requirements": null,
+      "trigger": "Une créature dans les 9 mètres de la momie mange ou boit (y compris un objet alchimique ou une potion)"
     },
     {
       "description": "<p><strong>Conditions</strong> La dernière action de la momie était une Frappe de poing réussie.</p>\n<hr />\n<p><strong>Effet</strong> La momie partage la douleur de ses derniers moments avec la cible de la Frappe. La cible subit @Damage[3d8[void]]{3d8 dégâts de vide} (@Check[will|dc:24|basic]). Si la créature obtient un échec critique à son jet de sauvegarde, elle est incapable de parler pendant 1 round, y compris pour Lancer un sort.</p>",
       "en": "Choking Pain",
-      "name": "Douleur suffocante"
+      "name": "Douleur suffocante",
+      "requirements": "La dernière action de la momie était une Frappe de poing réussie.",
+      "trigger": null
     },
     {
       "description": "<p>La faiblesse du gardien aux objets alchimiques ne s'applique pas uniquement  aux dégâts des objets alchimiques, mais le gardien subit également 5 dégâts lorsqu'il est éclaboussé par des objets alchimiques qui ne produisent pas de dégâts ou blessé par des poisons alchimiques, même s'il est immunisé contre leurs autres effets. </p>",
       "en": "Alchemical Weakness",
-      "name": "Faiblesse alchimique"
+      "name": "Faiblesse alchimique",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Void Healing",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

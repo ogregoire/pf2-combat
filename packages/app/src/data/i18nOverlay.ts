@@ -104,10 +104,11 @@ export function resolveCreatureName(name: string, i18n: CreatureI18n | null, lan
  * creature records leave a generic ability's own `name` null even though
  * the monster-ability glossary carries a French name for it — see
  * `actionDisplayName`'s own comment for the measurement and the reasoning.
- * Only the `name` gets this extra step; `description` keeps the plain
- * `pick(fr, en)` it always had, since the glossary's description text is
- * generic and would overwrite a creature-specific one (Rend's own
- * description, e.g., names that particular monster's Strike).
+ * Only the `name` gets this extra step; `description`, `trigger` and
+ * `requirements` keep the plain `pick(fr, en)` they always had, since the
+ * glossary's description text is generic and would overwrite a
+ * creature-specific one (Rend's own description, e.g., names that
+ * particular monster's Strike).
  */
 export function resolveActions(
   actions: Action[],
@@ -123,6 +124,8 @@ export function resolveActions(
       ...action,
       name: actionDisplayName(fr.name, action.name, glossary, lang),
       description: pick(fr.description, action.description),
+      trigger: pick(fr.trigger, action.trigger),
+      requirements: pick(fr.requirements, action.requirements),
     };
   });
 }

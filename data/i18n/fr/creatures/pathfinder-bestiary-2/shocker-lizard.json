@@ -3,22 +3,30 @@
     {
       "description": "<p><strong>Déclencheur</strong> Un lézard choc à moins de 6 mètres effectue une Frappe de foudre ou utilise Décharge</p>\n<hr />\n<p><strong>Effet</strong> Le lézard choc confère une partie de son pouvoir électrique au lézard proche en question. Cela permet à la Frappe de foudre de cet autre lézard de perdre son trait non-létal ou d'augmenter le DD de sa Décharge à 20.</p>",
       "en": "Amplify Voltage",
-      "name": "Amplification de voltage"
+      "name": "Amplification de voltage",
+      "requirements": null,
+      "trigger": "Un lézard choc à moins de 6 mètres effectue une Frappe de foudre ou utilise Décharge"
     },
     {
       "description": "<p>Le lézard choc libère une déflagration électrique à partir de son corps. Les créatures situées dans une @Template[emanation|distance:10]{émanation de 3 mètres} subissent @Damage[3d6[electricity]]{3d6 dégâts d'électricité} (@Check[reflex|dc:18|basic]).</p>\n<p>Le lézard choc ne peut plus utiliser Décharge pendant [[/gmr 1d4 #rounds]]{1d4 rounds}.</p>",
       "en": "Discharge",
-      "name": "Décharge"
+      "name": "Décharge",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le lézard choc s'accroupit et crépite d'électricité, avant de la relâcher dans une @Template[emanation|distance:10]{émanation de 3 mètres} qui inflige @Damage[3d8[electricity]|options:area-damage]{3d8 dégâts d'électricité} (@Check[reflex|dc:18|basic|options:area-effect]).</p>\n<p>Le lézard choc ne peut plus utiliser Explosion choc pendant 1 minute.</p>\n<p>Jusqu'à quatre lézards chocs peuvent combiner leurs Explosions chocs. Dans ce cas, les lézards peuvent Retarder le moment où ils libèrent leur électricité jusqu'à ce qu'un autre lézard choc situé à moins de 9 mètres termine son Explosion choc. Les Explosions chocs ainsi combinées créent une émanation dont la zone est le total des zones de tous les lézards chocs participants. Pour chaque lézard choc qui rejoint l'explosion, les dégâts augmentent de 3d8 et le DD de sauvegarde augmente de 1 (avec un maximum de quatre lézards qui infligent 12d8 dégâts avec un DD de sauvegarde de 21).</p>",
       "en": "Shocking Burst",
-      "name": "Explosion choc"
+      "name": "Explosion choc",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Un lézard choc peut ressentir les plus petites charges électriques dans les créatures vivantes, qu'il peut utiliser en tant que sens précis avec une portée de 6 mètres. Cette distance passe à 30 mètres contre toute créature qui a utilisé un effet électrique au cours de la dernière minute écoulée.</p>",
       "en": "Greater Electrolocation",
-      "name": "Électrolocalisation supérieure"
+      "name": "Électrolocalisation supérieure",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

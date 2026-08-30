@@ -3,27 +3,37 @@
     {
       "description": "<p><strong>Conditions</strong> La goule est adjacente au cadavre d'une créature morte depuis moins d'une heure.</p>\n<hr />\n<p><strong>Effet</strong> La goule dévore un morceau de chair du cadavre et récupère @Damage[1d6[healing]]{1d6 Points de vie}.</p>\n<p>Elle récupère des Points de vie une seule fois par cadavre.</p>",
       "en": "Consume Flesh",
-      "name": "Dévorer la chair"
+      "name": "Dévorer la chair",
+      "requirements": "La goule est adjacente au cadavre d'une créature morte depuis moins d'une heure.",
+      "trigger": null
     },
     {
       "description": null,
       "en": "Swift Leap",
-      "name": "Bond rapide"
+      "name": "Bond rapide",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:15]</p>\n<p><strong>Stade 1</strong> Porteur sans symptômes (1 jour)</p>\n<p><strong>Stade 2</strong> @Damage[2d6[void]]{2d6 dégâts de vide} et le porteur récupère seulement la moitié des Points de vie conférés par les soins (1 jour)</p>\n<p><strong>Stade 3</strong> Comme au stade 2 (1 jour)</p>\n<p><strong>Stade 4</strong> @Damage[2d6[void]]{2d6 dégâts de vide} et les soins ne fonctionnent plus sur le porteur (1 jour) </p>\n<p><strong>Stade 5</strong> Comme au stade 4 (1 jour)</p>\n<p><strong>Stade 6</strong> La créature meurt et se relève sous forme de Goule aux prochains coups de minuit.</p>",
       "en": "Ghoul Fever",
-      "name": "Fièvre des goules"
+      "name": "Fièvre des goules",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Toute créature vivante autre qu'un elfe touchée par l'attaque d'une goule doit réussir un jet de @Check[fortitude|dc:15|options:inflicts:paralyzed] ou devenir Paralysée. Elle peut tenter un nouveau jet de sauvegarde à la fin de chacun de ses tours et le DD diminue cumulativement de 1 à chaque tentative.</p>",
       "en": "Paralysis",
-      "name": "Paralysie"
+      "name": "Paralysie",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Void Healing",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

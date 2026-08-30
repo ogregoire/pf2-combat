@@ -3,47 +3,65 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature dans un rayon de 30 mètres est sur le point d'effectuer un test de récupération</p>\n<hr />\n<p><strong>Effet</strong> L'akhana décide de faire du résultat un succès ou un échec (mais ni un succès ni un échec critique). Cet effet bénéficie du trait fortune si l'akhana choisit le succès ou du trait infortune s'il choisit l'échec.</p>",
       "en": "Balance Life",
-      "name": "Équilibre de la vie"
+      "name": "Équilibre de la vie",
+      "requirements": null,
+      "trigger": "Une créature dans un rayon de 30 mètres est sur le point d'effectuer un test de récupération"
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> L'akhana a Agrippé ou Entravé une créature vivante avec sa queue.</p>\n<hr />\n<p><strong>Effet</strong> La créature subit 4d10 dégâts de vide avec un jet de @Check[fortitude|dc:32|basic]. En cas d'échec à son jet de sauvegarde, elle est également Condamnée 1. Si la créature meurt alors qu'elle est Condamnée et retenue par la queue de l'akhana, son âme est piégée au sein de l'akhana (comme Appropriation de l'âme) mais ses restes sont préservés comme avec Reposer en paix. L'âme retourne vers son corps avec 1 Point de vie si l'akhana Révoque l'effet, s'il est tué ou si un rituel de Souhait ou une magie de puissance comparable la libère.</p>",
       "en": "Reclaim Life",
-      "name": "Réclamer la vie"
+      "name": "Réclamer la vie",
+      "requirements": "L'akhana a Agrippé ou Entravé une créature vivante avec sa queue.",
+      "trigger": null
     },
     {
       "description": "<p>L'akhana Vole et effectue jusqu'à quatre Frappes de poing contre des cibles différentes à tout moment au cours de ce déplacement. Les attaques sont comptabilisés normalement pour calculer sa pénalité d'attaques multiples, mais la pénalité n'augmente qu'une fois que Poings volants s'achève.</p>",
       "en": "Flying Fists",
-      "name": "Poings volants"
+      "name": "Poings volants",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une @Template[burst|distance:5]{explosion de 1,50 mètre} dans les 30 mètres se remplit d'une vie simple adaptée à l'environnement. Les animaux nouvellement apparus mordent ceux qui se trouvent dans la zone infligeant @Damage[7d6[piercing]|options:area-damage]{7d6 dégâts perforants} (@Check[reflex|dc:32|basic|options:area-effect]). L'akhana peut également faire en sorte que des champignons ou des plantes étouffent la zone, même s'ils devaient flotter dans le ciel, créant un terrain difficile. La vie ainsi créée vit et meurt normalement après sa création.</p>",
       "en": "Sprout Life",
-      "name": "Germination de vie"
+      "name": "Germination de vie",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "+1 Status to All Saves vs. Magic",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "At-Will Spells",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>30 mètres</p>\n<hr />\n<p>Un akhana peut communiquer mentalement avec toutes les créatures présentes dans son aura grâce à des projections psychiques dépourvues de paroles. Ils n'ont pas besoin de partager une langue, bien que le sens du message de l'aéon puisse être vague et soit souvent mystérieux pour les non-aéons. Un aéon peut utiliser cette capacité pour communiquer de manière parfaite avec n'importe quel autre aéon sur le même plan que lui.</p>",
       "en": "Envisioning",
-      "name": "Conceptualisation"
+      "name": "Conceptualisation",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Lifesense 120 feet",
-      "name": "Perception de la vie 36 m"
+      "name": "Perception de la vie 36 m",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

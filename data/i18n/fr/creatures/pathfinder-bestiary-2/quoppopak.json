@@ -3,32 +3,44 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Le quoppopak effectue deux Frappes de tentacule contre la même créature. Ces Frappes infligent des dégâts perforants au lieu de contondants et le quoppopak ne peut pas Agripper une créature. Sa pénalité d'attaques multiples augmente seulement après qu'il a effectué les deux attaques.</p>",
       "en": "Tentacle Stab",
-      "name": "Tentacule poignardeur"
+      "name": "Tentacule poignardeur",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Tentacule uniquement.</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
       "en": "Attack of Opportunity (Tentacle Only)",
-      "name": "Frappe réactive (Tentacule uniquement)"
+      "name": "Frappe réactive (Tentacule uniquement)",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Push",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le tube ventral du quoppopak est immergé</p>\n<p><strong>Effet</strong> Le quoppopak utilise Tentacule poignardeur contre une cible à portée. Si l'une des deux Frappes touche, la cible doit faire un jet de @Check[reflex|dc:30|traits:damaging-effect]. En cas d'échec, le quoppopak injecte de l'eau dans la créature à travers son tentacule, infligeant @Damage[(2d6+5)[bludgeoning]]{2d6+5 dégâts contondants} et rendant la créature Nauséeuse 1 car ses organes internes se remplissent d'eau (en cas d'échec critique, les dégâts sont doublés et la créature est Nauséeuse 2).</p>",
       "en": "Flooding Thrust",
-      "name": "Injection d'eau"
+      "name": "Injection d'eau",
+      "requirements": "Le tube ventral du quoppopak est immergé",
+      "trigger": null
     },
     {
       "description": "<p>Le quoppopak peut se tenir à la surface de l'eau et d'autres liquides et marcher dessus sans passer au travers. Il peut évoluer sous l'eau s'il le souhaite, mais dans ce cas il doit Nager normalement.</p>",
       "en": "Water Glide",
-      "name": "Glisser sur l'eau"
+      "name": "Glisser sur l'eau",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

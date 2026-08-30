@@ -3,32 +3,44 @@
     {
       "description": "<p>@Damage[(2d6+7)[bludgeoning]]{2d6+7 dégâts contondants}, @Check[fortitude|dc:27|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
       "en": "Constrict",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Grande, @Damage[(2d12+7)[bludgeoning]]{2d12+7 dégâts contondants}, Rupture 21</p>\n<hr />\n<p><p>Le monstre tente d'avaler une créature de la taille indiquée qu'il a Saisie ou Entravée dans ses mâchoires ou sa bouche. Si une créature avalée est de la taille maximale indiquée, le monstre ne peut utiliser Gober de nouveau. Si la créature est plus petite que ce maximum, le monstre peut habituellement gober plus de créatures. Le MJ détermine ce maximum. Le monstre tente un test d'@Check[athletics|defense:reflex] opposée au DD de Réflexes de la créature. Si elle réussit, elle avale la créature. La bouche du monstre ou ses mâchoires n'agrippent plus une créature qu'elle a gobée, de sorte que le monstre est libre de l'utiliser pour Frapper ou Agripper de nouveau. Le monstre ne peut attaquer les créatures qu'il a gobée.</p>\n<p>Une créature gobée est Agrippée, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature gobée subit le montant de dégâts indiqué lorsqu'elle est gobée pour la première fois et, à la fin de chacun de ses tours, tant qu'elle reste gobée. Si la victime S'Échappe de l'état Agrippé de cette capacité, elle sort à travers la bouche du monstre. Cela libère toute autre créature Agrippée dans la bouche du monstre ou dans ses mâchoires. Une créature gobée peut attaquer le monstre qui l'a gobée, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui gobe est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à sa valeur de Rupture indiquée du fait d'une unique attaque ou d'un sort, la créature gobée se libère. Une créature qui se libère, soit en S'Échappant, soit en se libérant elle-même peut immédiatement respirer et sortir de l'espace du monstre qui la gobe.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Si le monstre meurt, une créature gobée peut être libérée par les créatures adjacentes au cadavre si elles passent un total d'actions combinées à tnracher dans le monstre avec une arme ou une attaque à mains nues qui infligent des dégâts perforants ou tranchants.</p></p>",
       "en": "Swallow Whole",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le béhir a Entravé ou Agrippé une créature dans ses mâchoires</p>\n<hr />\n<p><strong>Effet</strong> Le béhir transfère la créature vers ses anneaux, libérant sa mâchoire. La créature reste agrippée et subit @Damage[(1d6+6)[slashing]]{1d6+6 dégâts tranchants}. Les anneaux du béhir peuvent emprisonner autant de créatures qu'il peut en tenir dans son espace.</p>",
       "en": "Wrap in Coils",
-      "name": "Enrouler les anneaux"
+      "name": "Enrouler les anneaux",
+      "requirements": "Le béhir a Entravé ou Agrippé une créature dans ses mâchoires",
+      "trigger": null
     },
     {
       "description": "<p>Le béhir souffle un éclair qui inflige @Damage[9d6[electricity]|options:area-damage]{9d6 dégâts d'électricité} sur une @Template[line|distance:60]{ligne de 18 mètres} (@Check[reflex|dc:27|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser son souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
       "en": "Breath Weapon",
-      "name": "Arme de souffle"
+      "name": "Arme de souffle",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le béhir Marche rapidement jusqu'à sa Vitesse et peut marcher dans les airs comme sur un sol solide, s'élevant ou descendant selon un angle de 45 degrés. Il peut effectuer jusqu'à 4 Frappes de griffe à n'importe quel moment de son mouvement, chacune contre une créature différente à portée, et chaque Frappe inflige @Damage[1d6[electricity]]{1d6 dégâts d'électricité} supplémentaires. Ces attaques comptent pour la pénalité d'attaques multiples du béhir mais cette pénalité n'augmente qu'une fois toutes les attaques effectuées. Si le béhir se déplace à la moitié de sa Vitesse ou moins lors d'une Tempête de griffes, ce mouvement ne déclenche pas de réaction. Le béhir ne peut pas utiliser Tempête de griffes si une créature est enroulée dans ses anneaux. À la fin de la Tempête de griffes, il plane vers le sol jusqu'à 18 mètres et atterrit doucement sans subir de dégâts de chute. S'il descend de plus de 18 mètres, il subit des dégâts de chute normaux correspondant à la distance restante.</p>",
       "en": "Claw Storm",
-      "name": "Tempête de griffes"
+      "name": "Tempête de griffes",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

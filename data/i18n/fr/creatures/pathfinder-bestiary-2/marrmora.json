@@ -3,17 +3,23 @@
     {
       "description": "<p><strong>Déclencheur</strong> Le marrmora est la cible d'un sort ou d'un effet de feu ou se trouve dans la zone d'un effet de feu</p>\n<hr />\n<p><strong>Effet</strong> Le marrmora est soigné par les dégâts de feu et récupère des Points de vie à hauteur de la moitié des dégâts que l'effet de feu aurait dû lui infliger.</p>",
       "en": "Absorb Flame",
-      "name": "Absorption de feu"
+      "name": "Absorption de feu",
+      "requirements": null,
+      "trigger": "Le marrmora est la cible d'un sort ou d'un effet de feu ou se trouve dans la zone d'un effet de feu"
     },
     {
       "description": "<p><strong>Conditions</strong> Le marrmora n'est pas sous l'effet de Bouclier de feu</p>\n<hr />\n<p><strong>Effet</strong> Le marrmora effectue une Frappe de griffes. S'il touche une créature, il peut immédiatement jeter l'un de ses sorts innés de <em>Bouclier de feu</em> en une action gratuite.</p>",
       "en": "Igniting Assault",
-      "name": "Assaut brûlant"
+      "name": "Assaut brûlant",
+      "requirements": "Le marrmora n'est pas sous l'effet de Bouclier de feu",
+      "trigger": null
     },
     {
       "description": "<p>9 mètres. Toute créature qui pénètre ou débute son tour dans l'émanation de l'aura doit tenter un jet de @Check[will|dc:33]. Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> La créature perd toute résistance au feu pendant 1 round.</p>\n<p><strong>Échec</strong> La créature perd toute résistance au feu pendant 1 heure.</p>\n<p><strong>Échec critique</strong> La créature perd toute résistance au feu pendant une heure et acquiert une faiblesse contre le feu 15 pendant la même durée.</p>",
       "en": "Fascination of Flame",
-      "name": "Fascination de la flamme"
+      "name": "Fascination de la flamme",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

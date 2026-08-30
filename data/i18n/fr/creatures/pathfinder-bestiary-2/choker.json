@@ -3,22 +3,30 @@
     {
       "description": "<p><strong>Déclencheur</strong> L'étrangleur est la cible d'une attaque ennemie</p>\n<hr />\n<p><strong>Effet</strong> L'étrangleur tente de déplacer une créature qu'il a Agrippée ou Entravée sur le trajet de l'attaque. Il effectue un test d'Athlétisme, en prenant en compte son bonus pour Saisir. S'il réussit contre le DD de Vigueur de la créature agrippée ou entravée, l'étrangleur redirige vers elle l'attaque, puis l'attaquant compare le résultat de son jet d'attaque avec la CA de la nouvelle cible. L'étrangleur doit déplacer la créature vers un espace qui lui est adjacent. Elle doit également être placée dans l'allonge de l'attaquant en cas d'attaque au corps-à-corps, ou dans un espace entre l'attaquant et l'étrangleur en cas d'attaque à distance. L'étrangleur ne peut pas utiliser ce pouvoir pour forcer l'attaquant à se cibler lui-même, même si ce dernier est agrippé ou entravé.</p>",
       "en": "Yank",
-      "name": "Permutation"
+      "name": "Permutation",
+      "requirements": null,
+      "trigger": "L'étrangleur est la cible d'une attaque ennemie"
     },
     {
       "description": "<p>@Damage[(1d6+3)[bludgeoning]]{1d6+3 dégâts contondants}, @Check[fortitude|dc:19|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
       "en": "Constrict",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Si un étrangleur débute son tour en étant Non détecté ou Caché aux yeux d'une créature, celle-ci se trouve Prise au dépourvu face aux attaques de l'étrangleur jusqu'à la fin du tour de ce dernier.</p>",
       "en": "Hidden Movement",
-      "name": "Déplacement caché"
+      "name": "Déplacement caché",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Lorsqu'une créature est touchée par une Frappe du bras de l'étrangleur, elle est automatiquement Agrippée et ce dernier commence à l'étrangler. Tant qu'elle est étranglée, la créature asphyxie et ne peut pas parler. Cela l'empêche d'incanter des sorts qui incluent un composant verbal ou les activations d'un objet ayant le trait concentration.</p>",
       "en": "Strangling Fingers",
-      "name": "Poigne asphyxiante"
+      "name": "Poigne asphyxiante",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

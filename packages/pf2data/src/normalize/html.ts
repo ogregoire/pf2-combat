@@ -54,3 +54,17 @@ export function extractTrigger(html: string): string | null {
 export function extractRequirements(html: string): string | null {
   return extractLabelled(html, "Requirements");
 }
+
+export function extractTriggerFr(html: string): string | null {
+  return extractLabelled(html, "Déclencheur");
+}
+
+/**
+ * French "Conditions" is the label the module uses for the English
+ * "Requirements" paragraph (a prerequisite to using the ability) -- it is
+ * NOT the status-effect sense of "conditions" (frightened, prone, etc.).
+ * Do not repoint this at the condition glossary.
+ */
+export function extractRequirementsFr(html: string): string | null {
+  return extractLabelled(html, "Conditions");
+}

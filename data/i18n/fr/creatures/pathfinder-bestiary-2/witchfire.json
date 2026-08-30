@@ -3,27 +3,37 @@
     {
       "description": "<strong>Déclencheur</strong> Une créature porte une Frappe au corps-à-corps contre la sorcière de feu ou la touche.</p>\n<hr />\n<p><strong>Effet</strong> La sorcière de feu utilise sa Frappe de caresse de flammes ensorcelées contre la créature déclencheuse.</p>",
       "en": "Opportune Witchflame",
-      "name": "Flammes ensorcelées opportunistes"
+      "name": "Flammes ensorcelées opportunistes",
+      "requirements": null,
+      "trigger": "Une créature porte une Frappe au corps-à-corps contre la sorcière de feu ou la touche."
     },
     {
       "description": "<p><strong>Conditions</strong> Une créature qui se trouve dans un rayon de 9 mètres de la sorcière de feu est couverte de flammes ensorcelées.</p>\n<hr />\n<p><strong>Effet</strong> Les yeux et la bouche de la sorcière de feu produisent une lumière vive et les flammes ensorcelées qui enveloppent la créature brûlent temporairement avec bien plus d'intensité, lui infligeant @Damage[5d6[fire],5d6[void]]{5d6 dégâts de feu + 5d6 dégâts de vide} (@Check[fortitude|dc:28|basic]).</p>\n<p>La sorcière doit attendre [[/gmr 1d4 #Recharge Flammes ensorcelées incandescentes]]{1d4 rounds} avant de pouvoir utiliser de nouveau les flammes ensorcelées incandescentes.</p>",
       "en": "Witchflame Kindling",
-      "name": "Flammes ensorcelées incandescentes"
+      "name": "Flammes ensorcelées incandescentes",
+      "requirements": "Une créature qui se trouve dans un rayon de 9 mètres de la sorcière de feu est couverte de flammes ensorcelées.",
+      "trigger": null
     },
     {
       "description": "<p>La sorcière de feu ajoute Cauchemar, Assassin imaginaire, Calamité imaginaire et Convocation d'entité aux sorts de son cercle.</p>\n<p>Un cercle peut accueillir plusieurs sorcières de feu, mais il doit également inclure au moins une créature vivante capable de former le cercle. Ainsi, trois sorcières de feu ne peuvent pas former un cercle.</p>\n<hr />\n<p><p>Ce monstre peut former un cercle avec un minimum de deux autres créatures qui possèdent également la capacité cercle. Cela implique d'accomplir une cérémonie de 8 heures avec tous les membres escomptés du cercle. Après la formation du cercle, chacun de ses membres obtient les ajustements d’élite et ajuste son niveau en conséquence. Les membres du cercle peuvent savoir où se trouvent et dans quel état se trouvent les autres membres du cercle en dépensant une action unique qui possède le trait concentration. Ils peuvent également ressentir les choses qu’un autre membre du cercle ressent par une activité en deux actions qui possède le trait concentration.</p>\n<p>Les cercles accordent également des sorts et des rituels à leurs membres mais ils ne peuvent être lancés qu'avec la participation de trois membres du cercle qui ne se trouvent pas à plus de 9 m les uns des autres. Le membre d’un cercle peut contribuer à un sort de cercle grâce à une action unique d’incantation utilisant une unique action qui possède le trait concentration. Si deux membres d’un cercle ont contribué à ces actions au cours du round précédent, un troisième membre peut alors lancer un sort de cercle lors de son tour en accomplissant les actions d’incantation normales. Un cercle peut lancer ses sorts de cercle autant de fois qu’il le souhaite, mais il ne peut lancer qu’un seul sort de cercle par round. Tous les cercles confèrent à leurs membres le sort Métamorphose maudite au rang 8 et tous les sorts suivants, que le cercle peut lancer à tous les rangs jusqu’au rang 5 : Augure, Cadavre loquace, Charme, Clairaudience, Clairvoyance, Déguisement illusoire, Message onirique, Oeil éclaireur et Scène illusoire. Les créatures qui possèdent le pouvoir cercle confèrent également des sorts supplémentaires à tous les cercles qu’elles rejoignent. Un cercle peut également accomplir le rituel contrôle du climat avec un DD de 23 au lieu du DD normal.</p> \n<p>Si le départ ou la mort d’un membre du cercle en réduit le nombre à moins de trois membres, les membres restants conservent leurs ajustements d’élite pendant 24 heures mais, sans suffisamment de membres pour contribuer aux actions requises, ils ne peuvent plus lancer de sorts de cercle.</p></p>",
       "en": "Coven",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Void Healing",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Toute créature qui reçoit des dégâts de vide infligés par la Frappe d'une sorcière de feu doit faire un jet de @Check[will|dc:26].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée et est temporairement immunisée contre les flammes ensorcelées pendant 1 heure.</p>\n<p><strong>Succès</strong> La créature semble engloutie dans des flammes vertes. Ces flammes n'infligent aucun dégât mais, tant qu'elles brûlent, pendant 1 round, la créature ne peut pas être Masquée (les créatures Invisibles sont quant à elles Masquées au lieu d'être Indétectables) et gagne faiblesse contre le feu 5.</p>\n<p><strong>Échec</strong> Comme en cas de succès, mais l'effet est permanent jusqu'à ce qu'il soit dissipé.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la créature gagne faiblesse contre le feu 10.</p>\n<hr />\n<p>Effet : Flammes ensorcelées (Succès)</p>\n<p>Effet : Flammes ensorcelées (Échec)</p>\n<p>Effet : Flammes ensorcelées (Échec critique)</p>",
       "en": "Witchflame",
-      "name": "Flammes ensorcelées"
+      "name": "Flammes ensorcelées",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

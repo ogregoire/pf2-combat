@@ -3,37 +3,51 @@
     {
       "description": "<p><strong>Conditions</strong> Armag n'est pas Fatigué ni en rage.</p>\n<hr />\n<p><strong>Effet</strong> Armage se met en rage pendant 1 minute. En état de rage, il obtient un bonus de statut de +6 à ses jets de dégâts et subit une pénalité de statut de -1 à sa CA. Pendant sa rage, Armag obtient une réaction supplémentaire au début de son tour, mais il ne peut l'utiliser que pour effectuer une Frappe réactive. Dès que sa rage s'éteint, Armag est Fatigué.</p>\n<p>Effet : Rage</p>",
       "en": "Armag's Rage",
-      "name": "Rage d'Armag"
+      "name": "Rage d'Armag",
+      "requirements": "Armag n'est pas Fatigué ni en rage.",
+      "trigger": null
     },
     {
       "description": null,
       "en": "Attack of Opportunity",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Déclencheur</strong> Armag est Fatigué et obtient un succès critique avec une Frappe au corps-à-corps ou réduit une créature à 0 PV avec une Frappe au corps-à-corps.</p>\n<p><strong>Effet</strong> Armag puise dans ses réserves d'énergie furieuse. Il n'est plus Fatigué.</p>",
       "en": "Second Wind",
-      "name": "Second souffle"
+      "name": "Second souffle",
+      "requirements": null,
+      "trigger": "Armag est Fatigué et obtient un succès critique avec une Frappe au corps-à-corps ou réduit une créature à 0 PV avec une Frappe au corps-à-corps."
     },
     {
       "description": "<p><strong>Conditions</strong> La dernière action d'Armag était une Frappe réussie.</p>\n<p><strong>Effet</strong> La force de l'attaque précédente d'Armag fait reculer son ennemi. Il effectue un test d'@Check[athletics|defense:fortitude] contre le DD de Vigueur de sa cible.</p>\n<hr />\n<p><strong>Succès critique</strong> Armag gagne l'effet critique Pousser, puis l'effet critique Croc-en-jambe contre la cible.</p>\n<p><strong>Succès</strong> Armag gagne l'effet succès de Pousser, puis l'effet succès de Croc-en-jambe contre la cible.</p>\n<p><strong>Échec</strong> Armag repousse l'ennemi de 1,50 mètre.</p>",
       "en": "Awesome Blow",
-      "name": "Coup fabuleux"
+      "name": "Coup fabuleux",
+      "requirements": "La dernière action d'Armag était une Frappe réussie.",
+      "trigger": null
     },
     {
       "description": "<p>Armag Marche rapidement en avant et se penche pour essayer d'effectuer une Frappe avec une épaulette à piques contre une cible à la fin de ce mouvement. S'il obtient un coup critique sur la Frappe contre cette créature, cette dernière est renversée À terre.</p>",
       "en": "Shoulder Slam",
-      "name": "Coup d'épaule"
+      "name": "Coup d'épaule",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Sur un coup critique d'une Frappe d'épée longue, la cible perd son équilibre et devient Pris au dépourvu jusqu'au début du prochain tour d'Armag.</p>",
       "en": "Greatsword Critical Specialization",
-      "name": "Effet critique spécialisé d'Épée longue"
+      "name": "Effet critique spécialisé d'Épée longue",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Tant qu'Armag brandit <em>Ovinrbaane</em> et qu'il est en rage, la combinaison de la magie de l'épée et la conviction furieuse d'Armag qu'il est le vrai Armag, le protège de la mort. Lorsqu'il est en état mourant, ses yeux et la lame de l'épée versent des larmes de sang et brillent d'une lumière rouge. Tant que ces conditions sont réunies, il ne va pas au-delà de Mourant 3 et il ne tombe pas dans l'Inconscience. À la place, Armag devient Confus et continue à se battre. Si <em>Ovinrbaane</em> lui est arraché (comme par exemple avec un Désarmement réussi), ou si sa rage se termine alors qu'il est mourant, il meurt immédiatement indépendamment de la valeur de son état de mourant. S'il est guéri d'un Point de vie, son état Confus s'arrête immédiatement.</p>",
       "en": "No Time To Die",
-      "name": "La mort peut attendre"
+      "name": "La mort peut attendre",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

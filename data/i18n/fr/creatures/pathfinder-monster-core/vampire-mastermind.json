@@ -3,72 +3,100 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois par jour</p>\n<p><strong>Conditions</strong> Le maître vampire n'a pas encore agi lors de ce tour.</p>\n<p><strong>Effet</strong> Le maître vampire puise dans le pouvoir enfermé dans sa chevalière. Il peut alors lancer un sort préparé déjà lancé dans la journée, sans avoir à dépenser un emplacement de sort. Il doit tout de même Lancer le sort et remplir les autres conditions du sort.</p>",
       "en": "Drain Bonded Item",
-      "name": "Drain d'objet lié"
+      "name": "Drain d'objet lié",
+      "requirements": "Le maître vampire n'a pas encore agi lors de ce tour.",
+      "trigger": null
     },
     {
       "description": null,
       "en": "Mist Escape",
-      "name": "Fuite brumeuse"
+      "name": "Fuite brumeuse",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le vampire se transforme en l'une de ses formes animales ou revient à sa forme normale. La plupart des vampires peuvent se transformer en chauve-souris, mais d'autres peuvent se transformer en une créature différente comme un rat ou un loup.</p>\n<ul>\n<li><strong>Chauve-souris géante</strong> </li>\n<ul>\n<li><strong>Sens</strong> Écholocalisation 12 mètres</li>\n<li><strong>Vitesses</strong> 6 mètres, vol 9 mètres</li>\n<li><strong>Corps-à-corps</strong> Crocs +19, <strong>Dégâts</strong> @Damage[(2d8+9)[piercing]]{2d8+9 dégâts perforants}</li>\n</ul>\n</ul>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
       "en": "Change Shape",
-      "name": "Changement de forme"
+      "name": "Changement de forme",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Une créature Agrippée, Entravée, Inconsciente, Paralysée ou consentante est dans l'allonge du vampire.</p>\n<hr />\n<p><strong>Effet</strong> Le vampire enfonce ses crocs dans cette créature pour boire son sang. Pour cela, il doit réussir un test d'@Check[athletics|defense:fortitude] contre le DD de Vigueur de la victime si elle est Agrippée. Dans les autres cas, il y parvient automatiquement. La victime est Drainée 2 et le vampire récupère @Damage[10[healing]]{10 Points de vie}, les Points de vie excédentaires s'ajoutant sous forme de Points de vie temporaires. Boire le sang d'une créature déjà Drainée ne permet pas de récupérer davantage de Points de vie, mais la valeur de l'état Drainé de la victime augmente de 1, tuant la victime lorsqu'il atteint Drainé 5. Un vampire peut aussi boire du sang versé dans un récipient pour s'alimenter, mais cela ne lui rend pas de Point de vie.</p>\n<p>L'état Drainé de la victime se réduit de 1 par semaine. Une transfusion sanguine (qui requiert un test de @Check[medicine|dc:20|name:Transfusion] et assez de sang ou un donneur) réduit l'état Drainé de 1 au bout de 10 minutes.</p>",
       "en": "Drink Blood",
-      "name": "Boire le sang"
+      "name": "Boire le sang",
+      "requirements": "Une créature Agrippée, Entravée, Inconsciente, Paralysée ou consentante est dans l'allonge du vampire.",
+      "trigger": null
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Turn to Mist",
-      "name": "Se changer en brume"
+      "name": "Se changer en brume",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le maître vampire peut lancer Domination à volonté comme un sort inné divin. Pour cela, il doit regarder la victime dans les yeux, ce qui donne au sort le trait visuel (@Check[will|dc:26]). Une créature qui réussit est temporairement immunisée contre la Domination de ce vampire pendant 24 heures.</p>\n<p>La <em>Domination</em> prend fin si le vampire est complètement détruit, mais le réduire à 0 PV est insuffisant pour rompre le sort.</p></p>",
       "en": "Dominate",
-      "name": "Domination"
+      "name": "Domination",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Children of the Night",
-      "name": "Enfants de la nuit"
+      "name": "Enfants de la nuit",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Coffin Restoration",
-      "name": "Cercueil restaurateur"
+      "name": "Cercueil restaurateur",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Si une créature meurt après avoir été réduite à 0 Point de vie par Boire le sang, le vampire peut la changer en un serviteur vampire s'il lui donne un peu de son propre sang et qu'il enterre sa victime dans la terre pendant 3 nuits.</p>\n<p>Un serviteur vampire est obligé d'obéir à son créateur, mais si un vampire contrôle trop de serviteurs vampiriques en même temps (à la discrétion du MJ) ou si le serviteur est de niveau supérieur au vampire qui l'a créé, les serviteurs à forte personnalité peuvent s'affranchir en réussissant un jet de @Check[will|defense:will] contre le DD de Volonté du vampire.</p>",
       "en": "Create Servitor",
-      "name": "Création de serviteur"
+      "name": "Création de serviteur",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Fast Healing 10",
-      "name": "Guérison accélérée 10"
+      "name": "Guérison accélérée 10",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Si la réaction d'une créature devrait interrompre l'action d'incantation du maître vampire, ce dernier tente un @Check[flat|dc:15]. S'il le réussit, son action n'est pas interrompue.</p>",
       "en": "Steady Spellcasting",
-      "name": "Incantation fiable"
+      "name": "Incantation fiable",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Vampire Vulnerabilities",
-      "name": "Vulnérabilités des vampires"
+      "name": "Vulnérabilités des vampires",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Void Healing",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

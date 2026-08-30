@@ -3,52 +3,72 @@
     {
       "description": "<p><strong>Déclencheur</strong> Le dragon obtient un succès critique sur un jet de sauvegarde contre un sort ou un incantateur essayant de cibler le dragon obtient un échec critique à son jet d'attaque de sort.</p>\n<hr />\n<p><strong>Effet</strong> Le sort est renvoyé sur l'incantateur avec les effets de Renvoi de sort.</p>",
       "en": "Reflect Spell",
-      "name": "Sort renvoyé"
+      "name": "Sort renvoyé",
+      "requirements": null,
+      "trigger": "Le dragon obtient un succès critique sur un jet de sauvegarde contre un sort ou un incantateur essayant de cibler le dragon obtient un échec critique à son jet d'attaque de sort."
     },
     {
       "description": "<p><strong>Déclencheur</strong> Le dragon est ciblé par une attaque.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon dresse son aile et obtient un bonus de circonstances de +2 à sa CA contre l'attaque déclencheuse. Si le dragon est en vol, il descend de 3 mètres après la fin de l'attaque.</p>",
       "en": "Wing Deflection",
-      "name": "Déflection de l'aile"
+      "name": "Déflection de l'aile",
+      "requirements": null,
+      "trigger": "Le dragon est ciblé par une attaque."
     },
     {
       "description": "<p>Le dragon d'argent peut souffler de deux manières différentes.</p>\n<p>Le dragon ne peut utiliser son Souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>\n<ul>\n<li><strong>Froid</strong> (arcanique, froid) Le dragon souffle un nuage de froid qui inflige @Damage[20d6[cold]|options:area-damage]{20d6 dégâts de froid} dans un @Template[cone|distance:50]{cône de 15 mètres} (@Check[reflex|dc:42|basic|traits:arcane,cold|options:area-effect]).</li>\n<li><strong>Gaz paralysant</strong> (arcanique, mise hors de combat) Le dragon projette un souffle de gaz paralysant. Chaque créature dans un @Template[cone|distance:50]{cône de 15 mètres} doit réussir un jet de@Check[fortitude|dc:42|traits:arcane,incapacitation|options:area-effect]. En cas d'échec, la créature est Paralysée pendant 1 round (ou 3 rounds en cas d'échec critique).</li>\n</ul>",
       "en": "Breath Weapon",
-      "name": "Arme de souffle"
+      "name": "Arme de souffle",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le dragon d'argent effectue deux Frappes de griffes et une Frappe de queue dans n'importe quel ordre.</p>",
       "en": "Draconic Frenzy",
-      "name": "Frénésie draconique"
+      "name": "Frénésie draconique",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "+1 Status to All Saves vs. Magic",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le dragon d'argent peut fouler les nuages et la brume comme s'il était sur de la terre ferme.</p>",
       "en": "Cloud Walk",
-      "name": "Marche sur les nuages"
+      "name": "Marche sur les nuages",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>4,50 mètres. @Damage[3d6[cold]|options:area-damage]{3d6 dégâts de froid}</p>\n<p>Le dragon d'argent peut activer ou désactiver cette aura avec une action unique, qui possède le trait concentration et il peut choisir de ne pas affecter des alliés présents dans l'aura.</p>",
       "en": "Cold Aura",
-      "name": "Aura de froid"
+      "name": "Aura de froid",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le dragon recharge son Arme de souffle à chaque fois qu'il inflige un coup critique avec une Frappe.</p>",
       "en": "Draconic Momentum",
-      "name": "Impulsion draconique"
+      "name": "Impulsion draconique",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le dragon d'argent ignore l'état Masqué lié au brouillard et aux nuages.</p>",
       "en": "Fog Vision",
-      "name": "Vision malgré le brouillard"
+      "name": "Vision malgré le brouillard",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>27 mètres. @Check[will|dc:40|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

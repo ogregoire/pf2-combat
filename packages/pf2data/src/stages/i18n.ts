@@ -1,4 +1,5 @@
 import type { CreatureI18n } from "@pf2/schema";
+import { extractRequirementsFr, extractTriggerFr } from "../normalize/html.js";
 import { resolveLinks } from "../normalize/links.js";
 import { resolveLocalize, type LangTable } from "../normalize/localize.js";
 import type { ArchiveRecord } from "./archive.js";
@@ -75,6 +76,28 @@ function resolveFrench(html: string | null | undefined, lang: LangTable): string
 }
 
 /**
+ * Same two passes as `resolveFrench` (localize, then link references), but
+ * around one of the extractors above instead of around the whole
+ * description -- 537 French action descriptions carry a
+ * `<strong>Déclencheur</strong>` paragraph with the same structure as the
+ * English Trigger paragraph `normalizeActions` already pulls out, just with
+ * a translated label. Localizing BEFORE extracting mirrors the English
+ * pipeline (`extractTrigger(resolveLocalize(html, lang))` in
+ * normalize/actions.ts), in case a `@Localize` include ever lands inside
+ * the trigger/requirements paragraph itself.
+ */
+function resolveFrenchField(
+  html: string | null | undefined,
+  lang: LangTable,
+  extract: (html: string) => string | null,
+): string | null {
+  if (html === null || html === undefined) return null;
+  const extracted = extract(resolveLocalize(html, lang));
+  if (extracted === null) return null;
+  return resolveLinks(extracted).replace(STRAY_ENRICHER_AT, "");
+}
+
+/**
  * Builds a creature's French overlay by aligning Babele's per-item
  * translations (keyed by Foundry item id) to the SAME sorted
  * actions/attacks arrays the English creature already uses — by array
@@ -128,6 +151,12 @@ export function buildCreatureI18n(args: {
       en: action.name,
       name: items[action.foundryId]?.name ?? null,
       description: resolveFrench(items[action.foundryId]?.description, args.lang),
+      trigger: resolveFrenchField(items[action.foundryId]?.description, args.lang, extractTriggerFr),
+      requirements: resolveFrenchField(
+        items[action.foundryId]?.description,
+        args.lang,
+        extractRequirementsFr,
+      ),
     })),
     attacks: args.attacks.map((attack) => ({
       en: attack.name,

@@ -3,52 +3,72 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature avec un effet de sort actif et située à moins de 9 mètres de l'azuretzi ne parvient pas à résister au Toucher moqueur d'un autre azuretzi.</p>\n<hr />\n<p><strong>Effet</strong> L'azuretzi tente de contrer un effet de sort en cours sur la créature ciblée avec un test de @Check[thievery]. S'il réussit, il transfère l'effet de sort sur lui-même. La créature est ensuite temporairement immunisée contre Vol-sort pendant 24 heures.",
       "en": "Spell Pilfer",
-      "name": "Vol-sort"
+      "name": "Vol-sort",
+      "requirements": null,
+      "trigger": "Une créature avec un effet de sort actif et située à moins de 9 mètres de l'azuretzi ne parvient pas à résister au Toucher moqueur d'un autre azuretzi."
     },
     {
       "description": "<p>@Damage[(1d12+5)[bludgeoning]]{1d12+5 dégâts contondants}, @Check[fortitude|dc:21|basic]</p>\n<hr />\n<p><p>Le monstre inflige la quantité de dégâts indiquée à toutes les créatures qu'il a agrippées ou Entravées. Chacune d'entre elles peut faire un jet de Vigueur basique avec le DD indiqué.</p></p>",
       "en": "Constrict",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Comme pour Changement de forme mais un azuretzi peut prendre la forme d'une créature de taille Moyenne ou inférieure. Il peut se transformer en une créature spécifique qu'il peut voi, mais il doit réussir un test de @Check[perception|dc:25] ou la tentative est interrompue. L'azuretzi peut se transformer dans la même créature de nouveau sans un test mais il ne peut retenir les détails que d'une seule apparence en même temps. L'azuretzi peut Révoquer l'effet par une action gratuite pour reprendre sa forme normale.</p>",
       "en": "Mimic Form",
-      "name": "Imitation de forme"
+      "name": "Imitation de forme",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> L'azuretzi n'est pas déjà en train d'utiliser Toucher moqueur sur un sort</p>\n<hr />\n<p><strong>Effet</strong> L'azuretzi parodie le pouvoir magique d'une créature par le toucher. L'azuretzi doit faire un test de @Check[thievery|defense:will] contre le DD de Volonté de la cible.\n<hr />\n<p><strong>Succès critique</strong> L'azuretzi apprend tous les sorts de rang 3 ou inférieur qui sont disponibles eet en choisit un. L'azuretzi obtient ce sort comme un sort inné divin imité et il peut le lancer une fois comme un sort inné divin en utilisant son propre DD et son propre modificateur d'attaque de sorts. Le sort est perdu s'il n'est pas lancé dans les 24 heures. La créature touchée ne peut pas lancer le sort imité jusqu'à ce que l'azuretzi l'ait lancé ou que 24 heures ne se soient écoulées, selon ce qui se produit en premier</p>\n<p><strong>Succès</strong> Comme en cas de succès critique mais l'azuretzi n'a qu'une heure pour lancer le sort imité avant de le perdre et la créature touchée peut lancer son sort normalement.</p>\n<p><strong>Échec</strong> Comme en cas de succès critique mais l'azuretzi doit lancer le sort parodié avant la fin de son prochain tour ou le perdre et la créature touchée peut lancer son sort normalement.</p>\n<p><strong>Échec critique</strong> Le Toucher moqueur n'a aucun effet.</p>",
       "en": "Mocking Touch",
-      "name": "Toucher moqueur"
+      "name": "Toucher moqueur",
+      "requirements": "L'azuretzi n'est pas déjà en train d'utiliser Toucher moqueur sur un sort",
+      "trigger": null
     },
     {
       "description": null,
       "en": "+1 Status to All Saves vs. Magic",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Constant Spells",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Un azuretzi peut anticiper la très probable présence d'une créature grâce à une perception surnaturelle des probabilités chaotiques et de la chance. Cela lui octroie la capacité de percevoir les créatures à 9 mètres. Une créature sous l'effet de Voile de confidentialité ou qui est protégée contre les divinations et les prédictions ne peut être remarquée par Perception de l'entropie (sans test de contre).</p>",
       "en": "Entropy Sense",
-      "name": "Perception de l'entropie"
+      "name": "Perception de l'entropie",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Fast Healing 2",
-      "name": "Guérison accélérée 2"
+      "name": "Guérison accélérée 2",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Les organes vitaux d'un protéen changent constamment de forme et de position. Immédiatement après avoir subi des dégâts d'acide, d'électricité ou de son, il obtient une résistance 8 contre ce type de dégâts. Cet effet dure 1 heure ou jusqu'à la prochaine fois que le protéen subit des dégâts d'un autre type (auquel cas sa résistance change pour se conformer à ce nouveau type de dégâts).</p>\n<p>Le protéen est immunisé contre les effets de métamorphose à moins d'être une cible consentante. S'il est Aveugle ou Sourd, le protéen récupère automatiquement à la fin de son prochain tour alors que de nouveaux organes sensoriels poussent pour remplacer ceux qui ont été compromis.</p>\n<p>Effet : Anatomie protéenne</p>",
       "en": "Protean Anatomy",
-      "name": "Anatomie protéenne 8"
+      "name": "Anatomie protéenne 8",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

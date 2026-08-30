@@ -3,32 +3,44 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature marche au-dessus d'une momie des tourbières enterrée dans la boue ou la tourbe</p>\n<p><strong>Conditions</strong> L'initiative n'a pas encore été déterminée.</p>\n<hr />\n<p><strong>Effet</strong> La momie des tourbières remarque automatiquement la créature et Creuse avant de lancer le dé d'initiative.</p>",
       "en": "Rise Up",
-      "name": "Soulèvement"
+      "name": "Soulèvement",
+      "requirements": "L'initiative n'a pas encore été déterminée.",
+      "trigger": "Une créature marche au-dessus d'une momie des tourbières enterrée dans la boue ou la tourbe"
     },
     {
       "description": "<p>Cette affliction ne peut pas être réduite en dessous du stade 1 et ses dégâts ne peuvent pas être soignés tant que la créature n'est pas efficacement guérie par Affliction purifiée ou un effet similaire. L'affliction peut alors être soignée comme une maladie normale. Une créature tuée par la lèpre des marais se transforme en boue toxique et ne peut être ressuscitée sauf par le rituel Résurrection au rang 7 ou une magie similaire </p>\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:28]</p>\n<hr />\n<p><strong>Stade 1</strong> Porteur sans symptômes (1 minute)</p>\n<p><strong>Stade 2</strong> @Damage[3d6[void]]{3d6 dégâts de vide} et Maladroit 1 (1 jour)</p>",
       "en": "Bog Rot",
-      "name": "Lèpre des marais"
+      "name": "Lèpre des marais",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>9 mètres. Toute créature commençant son tour dans la zone sent ses poumons se remplir d'eau et doit réussir un jet de @Check[fortitude|dc:25] ou être incapable de parler ou de respirer. La créature peut quand même retenir son souffle et tenter un nouveau jet de sauvegarde à la fin de son tour.</p>\n<p>Une créature qui réussit est temporairement immunisée contre le Souffle de la tourbière pendant 24 heures.</p>",
       "en": "Breath of the Bog",
-      "name": "Souffle de la tourbière"
+      "name": "Souffle de la tourbière",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Les énergies nécromantiques reforment le corps d'un cultiste momie des tourbières à partir de la tourbe du marais en 1 semaine, sauf si les dégâts qui le détruisent sont des dégâts de vitalité. S'il est de nouveau détruit alors qu'il est en train de se reconstituer, le processus recommence depuis le début. Un PJ qui réussit un test de pour [[/act recall-knowledge skill=religion dc=26]], sait qu'accomplir le rituel Consécration là où un cultiste momie des tourbières a été détruit empêche sa reconstruction, de la même manière que des dégâts de vitalité.</p>",
       "en": "Rejuvenation",
-      "name": "Reconstruction"
+      "name": "Reconstruction",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Tremorsense (Imprecise) 30 feet",
-      "name": "Perception des vibrations 9 mètres (imprécise)"
+      "name": "Perception des vibrations 9 mètres (imprécise)",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Void Healing",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

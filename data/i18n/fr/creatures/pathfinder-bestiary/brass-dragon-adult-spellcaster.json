@@ -3,37 +3,51 @@
     {
       "description": "<p><strong>Fréquence</strong> Trois fois par jour.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon en appelle au vent du désert. Cela a le même effet que Bourrasque (@Check[fortitude|dc:30]) mais dans un @Template[cone|distance:60]{cône de 18 mètres}. Une créature qui obtient un échec à son jet de sauvegarde est également Aveuglée jusqu'à la fin de son prochain tour (ou pendant 1 minute en cas d'échec critique).</p>",
       "en": "Desert Wind",
-      "name": "Vent du désert"
+      "name": "Vent du désert",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Déclencheur</strong> Le dragon est ciblé par une attaque.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon dresse son aile et obtient un bonus de circonstances de +2 à sa CA contre l'attaque déclencheuse. Si le dragon est en vol, il descend de 3 mètres après la fin de l'attaque.</p>",
       "en": "Wing Deflection",
-      "name": "Déflection de l'aile"
+      "name": "Déflection de l'aile",
+      "requirements": null,
+      "trigger": "Le dragon est ciblé par une attaque."
     },
     {
       "description": "<p>Le dragon souffle une langue de feu qui inflige @Damage[12d6[fire]|options:area-damage]{12d6 dégâts de feu} sur une @Template[line|distance:80]{ligne de 24 mètres} (@Check[reflex|dc:32|basic|options:area-effect).</p>\n<p>Le dragon ne peut utiliser son Souffle pendant [[/gmr 1d4 #Recharger Souffle]]{1d4 rounds}.</p>",
       "en": "Breath Weapon",
-      "name": "Arme de souffle"
+      "name": "Arme de souffle",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "+1 Status to All Saves vs. Magic",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Constant Spells",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>27 mètres. @Check[will|dc:28|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Tremorsense (Imprecise) 30 feet",
-      "name": "Perception des vibrations 9 mètres (imprécis)"
+      "name": "Perception des vibrations 9 mètres (imprécis)",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

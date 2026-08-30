@@ -3,47 +3,65 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature dans l'allonge de la queue du dragon utilise une action de déplacement ou quitte une case au cours d'une action de déplacement qu'elle entreprend.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon effectue une Frappe de queue sur la créature avec une pénalité de -2. Si la Frappe touche, le dragon interrompt l'action de la créature.</p>",
       "en": "Twisting Tail",
-      "name": "Queue sinueuse"
+      "name": "Queue sinueuse",
+      "requirements": null,
+      "trigger": "Une créature dans l'allonge de la queue du dragon utilise une action de déplacement ou quitte une case au cours d'une action de déplacement qu'elle entreprend."
     },
     {
       "description": "<p>Le dragon effectue deux Frappes de griffes et une Frappe de corne dans l'ordre de son choix.</p>",
       "en": "Draconic Frenzy",
-      "name": "Frénésie draconique"
+      "name": "Frénésie draconique",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le dragon n'a pas déjà une créature empalée sur ses cornes.</p>\n<hr />\n<p><strong>Effet</strong> Le dragon tente d'étriper un ennemi. Il Marche rapidement, puis effectue une Frappe de corne. Si il touche, la cible est empalée sur la corne du dragon. La créature est Agrippée tant qu'elle est sur la corne (et peut tenter de S'Échapper normalement). Le dragon n'a pas besoin d'utiliser d'action supplémentaire pour maintenir agrippée la créature empalée. Si le dragon se déplace, il emporte la créature agrippée avec lui.</p>",
       "en": "Impaling Charge",
-      "name": "Charge empaleuse"
+      "name": "Charge empaleuse",
+      "requirements": "Le dragon n'a pas déjà une créature empalée sur ses cornes.",
+      "trigger": null
     },
     {
       "description": "<p>Le dragon crache un nuage toxique qui inflige @Damage[13d6[poison]|options:area-damage]{13d6 dégâts de poison} dans un @Template[cone|distance:50]{cône de 15 mètres} (@Check[fortitude|dc:31|basic|options:area-effect]).</p>\n<p>Il ne peut plus utiliser Souffle empoisonné pendant [[/gmr 1d4 #Recharger de Souffle empoisonné]]{1d4 rounds}.</p>",
       "en": "Poison Breath",
-      "name": "Souffle empoisonné"
+      "name": "Souffle empoisonné",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "+1 Status to All Saves vs. Primal",
-      "name": "Bonus de statut de +1 aux jets de sauvegarde contre le primordial"
+      "name": "Bonus de statut de +1 aux jets de sauvegarde contre le primordial",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le dragon recharge son Souffle empoisonné à chaque fois qu'il obtient un coup critique avec une Frappe.</p>",
       "en": "Draconic Momentum",
-      "name": "Impulsion draconique"
+      "name": "Impulsion draconique",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le dragon cornu ignore le terrain difficile provoqué par les plantes, tels que les fourrés, les lianes et les sous-bois. Même les plantes manipulées par magie n'entravent pas sa progression.</p>",
       "en": "Forest Passage",
-      "name": "Passage forestier"
+      "name": "Passage forestier",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>27 mètres. @Check[will|dc:31|options:area-effect,inflicts:frightened]</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le dragon cornu bénéficie toujours des avantages de Dissimuler ses traces en milieu naturel, même lorsqu'il se déplace à pleine vitesse.</p>",
       "en": "Trackless Journey",
-      "name": "Parcours sans traces"
+      "name": "Parcours sans traces",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

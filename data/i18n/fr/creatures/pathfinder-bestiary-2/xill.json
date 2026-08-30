@@ -3,32 +3,44 @@
     {
       "description": null,
       "en": "Attack of Opportunity",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Shield Block",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le xill porte deux Frappes de cimeterre contre une unique cible. Si les deux touchent, faites la somme de leurs dégâts avant d'appliquer les résistances et les faiblesses. Le xill applique normalement sa pénalité d'attaques multiples à ces Frappes.</p>",
       "en": "Double Slash",
-      "name": "Double taille"
+      "name": "Double taille",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le xill se trouve dans un espace adjacent à une créature Inconsciente, consentante, or Paralysée</p>\n<hr />\n<p><strong>Effet</strong> Le xill implante des œufs de xill dans la chair de la créature.</p>",
       "en": "Implant",
-      "name": "Implantation"
+      "name": "Implantation",
+      "requirements": "Le xill se trouve dans un espace adjacent à une créature Inconsciente, consentante, or Paralysée",
+      "trigger": null
     },
     {
       "description": "<p>L'état Nauséeux causé par les œufs de xill ne peut pas se dissiper naturellement tant que la maladie n'a pas été soignée ou qu'elle n'a pas achevé son évolution. Elle peut être soignée grâce à une opération de 10 minutes nécessitant de réussir un test de @Check[medicine|dc:26|name:Ôter les œufs Xill] qui inflige @Damage[4d6[slashing]]{4d6 dégâts tranchants} à l'hôte.</p>\n<hr />\n<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:24]</p>\n<p><strong>Durée maximale</strong> 24 heures</p>\n<p><strong>Stade 1</strong> Infesté sans symptômes (8 heures)</p>\n<p><strong>Stade 2</strong> Nauséeux 1 (8 heures)</p>\n<p><strong>Stade 3</strong> Nauséeux 2 (4 heures)</p>\n<p><strong>Stade 4</strong> Nauséeux 2 et @Damage[2d6[bleed]]{2d6 dégâts de saignement} tant que les larves de xills s'extraient du corps de l'hôte en creusant avant de disparaître immédiatement dans le Plan éthéré (1 heure)</p>",
       "en": "Xill Eggs",
-      "name": "Oeufs de xill"
+      "name": "Oeufs de xill",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une créature touchée par une Frappe de Morsure xill doit tenter un jet de @Check[fortitude|dc:24].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée et est temporairement immunisée contre la Paralysie xille pendant 1 minute.</p>\n<p><strong>Succès</strong> La créature est Ralentie 1 pendant 1 round.</p>\n<p><strong>Échec</strong> La créature est Paralysée pendant 1 round.</p>\n<p><strong>Échec critique</strong> La créature est Paralysée. À la fin de chacun de ses tours, elle peut tenter de se remettre grâce à un nouveau jet de sauvegarde dont le DD diminue cumulativement de 1 à chaque round.</p>",
       "en": "Xill Paralysis",
-      "name": "Paralysie xille"
+      "name": "Paralysie xille",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

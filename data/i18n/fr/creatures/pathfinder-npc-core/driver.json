@@ -3,32 +3,44 @@
     {
       "description": "<p><strong>Conditions</strong> Le pilote effectue une action de Pilotage avec un véhicule et déplace ce dernier pour qu'il soit adjacent à une créature.</p>\n<hr />\n<p><strong>Effet</strong> Toutes les créatures adjacentes au véhicule subissent ses dégâts de collision avec un jet de @Check[reflex|basic] contre le DD de collision du véhicule. Le véhicule continue ensuite son déplacement normalement après ce Choc latéral.</p>",
       "en": "Sideswipe",
-      "name": "Choc latéral"
+      "name": "Choc latéral",
+      "requirements": "Le pilote effectue une action de Pilotage avec un véhicule et déplace ce dernier pour qu'il soit adjacent à une créature.",
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le pilote conduit un véhicule.</p>\n<p><strong>Déclencheur</strong> Le pilote devrait subir des dégâts d'une attaque ou d'un effet nocif nécessitant un jet de Réflexes.</p>\n<hr />\n<p><strong>Effet</strong> Par un coup de volant rapide, le pilote interpose la masse du véhicule entre lui et la menace, faisant subir les dégâts au véhicule plutôt qu'au pilote.</p>",
       "en": "Vehicle Block",
-      "name": "Blocage de véhicule"
+      "name": "Blocage de véhicule",
+      "requirements": "Le pilote conduit un véhicule.",
+      "trigger": "Le pilote devrait subir des dégâts d'une attaque ou d'un effet nocif nécessitant un jet de Réflexes."
     },
     {
       "description": null,
       "en": "+6 Status to All Defenses While Driving",
-      "name": "Bonus de statut de +6 à toutes les défenses pendant le pilotage"
+      "name": "Bonus de statut de +6 à toutes les défenses pendant le pilotage",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Pour les rencontres impliquant le pilotage, le pilote est un défi de niveau 8.</p>",
       "en": "Driving Specialist",
-      "name": "Spécialiste du pilotage"
+      "name": "Spécialiste du pilotage",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Un pilote peut tenter un test de @Check[driving-lore]{Connaissance du pilotage} pour augmenter la Vitesse de déplacement d'un véhicule pour calculer la valeur pour une journée. Le DD est déterminé par le MJ mais est généralement basé le DD le plus élevé entre le DD de pilotage du véhicule ou la difficulté du terrain à traverser. En cas de succès, la Vitesse de déplacement du véhicule est augmentée de moitié.</p>",
       "en": "Express Driver",
-      "name": "Pilote express"
+      "name": "Pilote express",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le pilote bénéficie d'un bonus de circonstances de +10 à tout test de compétence lié au pilotage d'un véhicule, et est considéré comme étant maître dans cette compétence pour ces jets. Ce bonus s'applique également à tout test d'initiative lorsque le pilote conduit un véhicule.</p>",
       "en": "Skilled Driver",
-      "name": "Pilote qualifié"
+      "name": "Pilote qualifié",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

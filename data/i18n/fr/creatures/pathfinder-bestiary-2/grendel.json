@@ -3,47 +3,65 @@
     {
       "description": null,
       "en": "Improved Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Grendel obtient une réaction supplémentaire au début de chacun de ses tours qu'il ne peut utiliser que pour faire une Frappe réactive avec sa griffe. Une même action ne peut pas déclencher plus d'une Frappe réactive.</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
       "en": "Attack of Opportunity (Special)",
-      "name": "Frappe réactive (Spéciale)"
+      "name": "Frappe réactive (Spéciale)",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Ferocity",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Déclencheur</strong> Grendel devrait subir des dégâts persistants ou un des états suivants: Aveuglé, Maladroit, Confus, Contrôlé, Étourdi, Sourd, Condamné, Drainé, Affaibli, Fasciné, Fatigué, En fuite, Effrayé, Paralysé, Pétrifié, Nauséeux, Ralenti, Ébloui, ou Stupéfié</p>\n<hr />\n<p><strong>Effet</strong> Le Grendel n'est pas affecté par les dégâts persistants ou l'état ayant déclenché cette réaction.</p>",
       "en": "Unstoppable",
-      "name": "Impossible à arrêter"
+      "name": "Impossible à arrêter",
+      "requirements": null,
+      "trigger": "Grendel devrait subir des dégâts persistants ou un des états suivants: Aveuglé, Maladroit, Confus, Contrôlé, Étourdi, Sourd, Condamné, Drainé, Affaibli, Fasciné, Fatigué, En fuite, Effrayé, Paralysé, Pétrifié, Nauséeux, Ralenti, Ébloui, ou Stupéfié"
     },
     {
       "description": null,
       "en": "Throw Rock",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Grendel a agrippé une créature.</p>\n<hr />\n<p><strong>Effet</strong> Grendel effectue une Frappe de mâchoires infligeant des dégâts contondants contre la créature qu'il agrippe. Si elle touche, la créature subit @Damage[2d6[bleed]]{2d6 dégâts de saignement} et est Blessée 1 ou elle augmente son état Blessé de 1 si elle l'est déjà. Sur un coup critique, la créature est à la place Blessée 2 ou augmente son état Blessé de 2 si elle l'est déjà. Si une créature est tuée par Broyage avec les dents, Grendel récupère @Damage[40[healing]]{40 Points de vie}. Il s'agit d'un effet de guérison.</p>",
       "en": "Tooth Grind",
-      "name": "Broyage avec les dents"
+      "name": "Broyage avec les dents",
+      "requirements": "Grendel a agrippé une créature.",
+      "trigger": null
     },
     {
       "description": "<p>18 mètres. (@Check[will|dc:38|options:area-effect,inflicts:frightened])</p>\n<hr />\n<p><p>Une créature qui pénètre dans la zone d'effet doit faire un jet de Volonté.</p>\n<p>Quel que soit le résultat du jet de sauvegarde, la créature est temporairement immunisée contre la Présence terrifiante du monstre pendant 1 minute.</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée par la présence.</p>\n<p><strong>Succès</strong> La créature est Effrayée 1.</p>\n<p><strong>Échec</strong> La créature est Effrayée 2.</p>\n<p><strong>Échec critique</strong> La créature est Effrayée 4.</p></p>",
       "en": "Frightful Presence",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>La Frappe de poing de Grendel inflige @Damage[18[bludgeoning]]{18 dégâts contondants} en cas d'échec (mais aucun dégât en cas d'échec critique).</p>",
       "en": "Hands of the Murderer",
-      "name": "Mains du meurtrier"
+      "name": "Mains du meurtrier",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>L'ouïe de Grendel est un sens précis qui a une portée de 36 mètres.</p>",
       "en": "Keen Hearing",
-      "name": "Ouïe fine"
+      "name": "Ouïe fine",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

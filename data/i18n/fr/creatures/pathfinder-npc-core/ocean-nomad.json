@@ -3,27 +3,37 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature adjacente tente un test d'Athlétisme pour Nager</p>\n<hr />\n<p><strong>Effet</strong> Le nomade des mers choisit soit de soutenir le nageur, soit de le tirer vers les profondeurs. Augmentez ou diminuez le résultat du test d'Athlétisme d'un cran. Si le nomade des mers choisit de diminuer le résultat, la créature peut tenter un jet de @Check[fortitude|dc:24] pour annuler l'effet.</p>",
       "en": "Tidal Pressure",
-      "name": "Pression du nomade"
+      "name": "Pression du nomade",
+      "requirements": null,
+      "trigger": "Une créature adjacente tente un test d'Athlétisme pour Nager"
     },
     {
       "description": "<p><strong>Conditions</strong> La dernière action du nomade des mers était une Frappe au corps-à-corps réussie avec un trident</p>\n<hr />\n<p><strong>Effet</strong> Le nomade des mers tourne les pointes barbelées de son trident dans la blessure, infligeant @Damage[1d6[bleed]]{1d6 dégâts de saignement} à la cible.</p>",
       "en": "Stab and Twist",
-      "name": "Frapper et tordre"
+      "name": "Frapper et tordre",
+      "requirements": "La dernière action du nomade des mers était une Frappe au corps-à-corps réussie avec un trident",
+      "trigger": null
     },
     {
       "description": "<p>Toute embarcation pilotée par un nomade des mers obtient un bonus de circonstances de +3 mètres à sa Vitesse et réduit de moitié la distance minimale nécessaire pour tourner. Un nomade des mers ignore les terrains difficiles ou le sol instable provoqué par le mouvement d'un navire.</p>",
       "en": "Master Sailor",
-      "name": "Maître marin"
+      "name": "Maître marin",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Lorsque le nomade des mers réussit un test d'Athlétisme pour [[/act swim]]{Nager}, il devient un succès critique.</p>",
       "en": "Practiced Swimmer",
-      "name": "Nageur expérimenté"
+      "name": "Nageur expérimenté",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le nomade des mers peut retenir sa respiration pendant 10 minutes (100 rounds).</p>",
       "en": "Strong Lungs",
-      "name": "Poumons puissants"
+      "name": "Poumons puissants",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

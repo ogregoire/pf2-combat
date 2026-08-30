@@ -3,27 +3,37 @@
     {
       "description": "<p>Tentacule uniquement</p>\n<hr />\n<p><p><strong>Déclencheur</strong> Une créature dans l'allonge du monstre utilise une action de manipulation ou une action de déplacement, fait une attaque à distance ou quitte une case durant une action de déplacement qu'elle utilise.</p>\n<hr />\n<p><strong>Effet</strong> Le monstre tente une Frappe de corps-à-corps contre la créature déclencheuse. Si l'attaque est un coup critique et que le déclencheur était une action de manipulation, le monstre interrompt cette action. Cette Frappe n'est pas prise en compte pour calculer la pénalité d'attaques multiples du monstre et sa pénalité d'attaques multiples ne s'applique pas à cette Frappe.</p></p>",
       "en": "Attack of Opportunity (Tentacle Only)",
-      "name": "Frappe réactive (Tentacule uniquement)"
+      "name": "Frappe réactive (Tentacule uniquement)",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le tendricule a Gobé une créature, elle a subi des dégâts depuis la fin du dernier tour et le tendricule n'a pas encore utilisé une action ce tour-ci</p>\n<hr />\n<p><strong>Effet</strong> Le tendricule récupère @Damage[3d8[healing]]{3d8 Points de vie} et se remet des états Fatigué et Ralenti. S'il est Affaibli, il réduit l'intensité de cet état de 2.</p>",
       "en": "Rampant Growth",
-      "name": "Croissance effrénée"
+      "name": "Croissance effrénée",
+      "requirements": "Le tendricule a Gobé une créature, elle a subi des dégâts depuis la fin du dernier tour et le tendricule n'a pas encore utilisé une action ce tour-ci",
+      "trigger": null
     },
     {
       "description": "<p>Grande, @Damage[(2d10+7)[acid]]{2d10+7 dégâts d'acide} plus venin de tendricule, Rupture 14</p>\n<hr />\n<p><p>Le monstre tente d'avaler une créature de la taille indiquée qu'il a Saisie ou Entravée dans ses mâchoires ou sa bouche. Si une créature avalée est de la taille maximale indiquée, le monstre ne peut utiliser Gober de nouveau. Si la créature est plus petite que ce maximum, le monstre peut habituellement gober plus de créatures. Le MJ détermine ce maximum. Le monstre tente un test d'@Check[athletics|defense:reflex] opposée au DD de Réflexes de la créature. Si elle réussit, elle avale la créature. La bouche du monstre ou ses mâchoires n'agrippent plus une créature qu'elle a gobée, de sorte que le monstre est libre de l'utiliser pour Frapper ou Agripper de nouveau. Le monstre ne peut attaquer les créatures qu'il a gobée.</p>\n<p>Une créature gobée est Agrippée, Ralentie 1 et doit retenir son souffle ou commencer à suffoquer. La créature gobée subit le montant de dégâts indiqué lorsqu'elle est gobée pour la première fois et, à la fin de chacun de ses tours, tant qu'elle reste gobée. Si la victime S'Échappe de l'état Agrippé de cette capacité, elle sort à travers la bouche du monstre. Cela libère toute autre créature Agrippée dans la bouche du monstre ou dans ses mâchoires. Une créature gobée peut attaquer le monstre qui l'a gobée, mais uniquement avec des attaques à mains nues ou avec des armes d'Encombrement léger ou inférieur. La créature qui gobe est Prise au dépourvu contre l'attaque. Si le monstre subit des dégâts perforants ou tranchants supérieurs ou égaux à sa valeur de Rupture indiquée du fait d'une unique attaque ou d'un sort, la créature gobée se libère. Une créature qui se libère, soit en S'Échappant, soit en se libérant elle-même peut immédiatement respirer et sortir de l'espace du monstre qui la gobe.</p>\n<p>Effet : Engloutir et Gober</p>\n<p>Si le monstre meurt, une créature gobée peut être libérée par les créatures adjacentes au cadavre si elles passent un total d'actions combinées à tnracher dans le monstre avec une arme ou une attaque à mains nues qui infligent des dégâts perforants ou tranchants.</p></p>",
       "en": "Swallow Whole",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:21]</p>\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> Maladroit 2 (1 round)</p>\n<p><strong>Stade 2</strong> Maladroit 2 et Ralenti 2 (1 round)</p>\n<p><strong>Stade 3</strong> Paralysé (1 round)</p>",
       "en": "Tendriculos Venom",
-      "name": "Venin de tendricule"
+      "name": "Venin de tendricule",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

@@ -3,22 +3,30 @@
     {
       "description": "<p>Le nécromancien invoque deux entités morts-vivantes de taille Moyenne dans des emplacements vides différents, jusqu'à 9 mètres. Ces entités morts-vivantes peuvent prendre la forme de zombies, de squelettes ou de fantômes, au choix du nécromancien. Les entités bloquent le mouvement comme s'il s'agissait de créatures et peuvent être attaquées. Chaque entité possède 1 Point de vie et la même CA et les mêmes jets de sauvegarde que le nécromancien. Elles ne peuvent pas effectuer d'actions par elles-mêmes et se désagrègent si le nécromancien est réduit à 0 Point de vie. Le nécromancien peut disposer de quatre entités morts-vivantes à la fois. S'il en invoque une nouvelle, l'entité morte-vivante la plus ancienne se désagrège.</p>",
       "en": "Undead, Arise!",
-      "name": "Morts-vivants, levez-vous !"
+      "name": "Morts-vivants, levez-vous !",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le nécromancien a au moins une entité morte-vivante active.</p>\n<hr />\n<p><strong>Effet</strong> Le nécromancien ordonne à toutes ses entités morts-vivantes d'attaquer. Chaque entité peut Marcher rapidement jusqu'à 6 mètres vers une case vide et effectuer une Frappe. La Frappe a un modificateur d'attaque de [[/r 1d20+15 #Attaque]]{+15} et inflige @Damage[2d12[bludgeoning]|traits:magical]{2d12 dégâts contondants} (ou @Damage[2d12[spirit]|traits:magical]{2d12 dégâts spirituels} si l'entité est un esprit). La Frappe possède le trait magique et aucune pénalité d'attaques multiples ne s'applique.</p>",
       "en": "Undead, Attack!",
-      "name": "Morts-vivants, À l'attaque !"
+      "name": "Morts-vivants, À l'attaque !",
+      "requirements": "Le nécromancien a au moins une entité morte-vivante active.",
+      "trigger": null
     },
     {
       "description": "<p><strong>Prérequis</strong> Le nécromancien n'est pas Drainé et a au moins une entité morte-vivante active</p>\n<hr />\n<p><strong>Effet</strong> Le nécromancien surcharge ses entités mortes-vivantes d'énergie du vide, les faisant toutes exploser. Chaque entité est détruite, infligeant @Damage[4d12[void]|options:area-damage]{4d12 dégâts de vide} à chaque créature dans une @Template[type:emanation|distance:10]{émanation de 3 mètres} (@Check[fortitude|dc:23|basic|options:area-effect]). Une créature se trouvant dans plusieurs explosions à la fois ne subit des dégâts qu'une seule fois. Le nécromancien devient Drainé 1.</p>",
       "en": "Wave of Death",
-      "name": "Vague de morts"
+      "name": "Vague de morts",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le nécromancien émet une odeur pestilentielle dans une émanation de 1,50 mètre. Si une créature pénètre ou débute son tour dans cette aura, elle devient Nauséeuse 1.</p>",
       "en": "Stench of Decay",
-      "name": "Odeur de décomposition"
+      "name": "Odeur de décomposition",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

@@ -3,22 +3,30 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois toutes les 10 minutes</p>\n<p><strong>Conditions</strong> L'aéronaute se tient sur une surface horizontale</p>\n<hr />\n<p><strong>Effet</strong> L'aéronaute libère toute la puissance de ses propulseurs pour s'élancer dans les airs, infligeant @Damage[7d6[fire],7d6[bludgeoning]|options:area-damage]{7d6 dégâts de feu et 7d6 dégâts contondants} à toutes les créatures dans une @Template[type:emanation|distance:15]{émanation de 4,50 mètres} (@Check[reflex|dc:24|basic|options:area-effect]). L'aéronaute Vole deux fois, droit vers le haut.</p>",
       "en": "Explosive Liftoff",
-      "name": "Décollage explosif"
+      "name": "Décollage explosif",
+      "requirements": "L'aéronaute se tient sur une surface horizontale",
+      "trigger": null
     },
     {
       "description": "<p>L'aéronaute Vole deux fois, puis tente de faire un [[/act trip options=mid-air-collision]]{Croc-en-jambe} ou une [[/act shove options=mid-air-collision]]{Poussée} contre une autre créature volante. S'il obtient un succès sur son test d'Athlétisme, il obtient un succès critique à la place.</p>",
       "en": "Mid-air Collision",
-      "name": "Collision en vol"
+      "name": "Collision en vol",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>L'aéronaute Vole et effectue deux Frappes au corps-à-corps à n'importe quel moment pendant ce déplacement. Chaque Frappe doit cibler une créature différente. L'aéronaute peut renoncer aux Frappes au corps-à-corps pour effectuer à la place une Frappe avec son pistolet semi-automatique à n'importe quel moment pendant ce déplacement et Interagir pour sélectionner la chambre suivante de son pistolet. Ces actions peuvent être effectuées dans n'importe quel ordre. Toute Frappe effectuée dans le cadre de Mitraille propulsée inflige 2d6 dégâts supplémentaires et est pris en compte dans le calcul de la pénalité d'attaques multiples comme à l'ordinaire.</p>",
       "en": "Rocketing Strafe",
-      "name": "Mitraille propulsée"
+      "name": "Mitraille propulsée",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Lorsque l'aéronaute subit un coup critique infligeant des dégâts perforants ou de feu, il doit effectuer un @Check[flat|dc:5]. En cas d'échec, le réservoir de carburant explose, infligeant @Damage[6d6[fire]|options:area-damage]{6d6 dégâts de feu} à l'aéronaute et à toutes les créatures dans une @Template[type:emanation|distance:20]{émanation de 6 mètres}. L'aéronaute tombe À terre. L'aéronaute perd sa Vitesse de Vol et ne peut plus utiliser Décollage explosif, Collision en vol ou Mitraille propulsée jusqu'à ce qu'il répare son propulseur, ce qui nécessite du matériel d'artisan approprié et lui prend 2 heures.</p>",
       "en": "Fuel Tank Vulnerability",
-      "name": "Vulnérabilité du réservoir de carburant"
+      "name": "Vulnérabilité du réservoir de carburant",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

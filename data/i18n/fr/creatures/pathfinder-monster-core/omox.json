@@ -3,42 +3,58 @@
     {
       "description": "<p><strong>Déclencheur</strong> Une créature touche l'omox avec une arme de corps-à-corps.</p>\n<hr />\n<p><strong>Effet</strong> L'omox tente de [[/act disarm]]{Désarmer} la créature. En cas de succès critique, l'arme s'incorpore au corps de l'omox au lieu de tomber au sol. Pour récupérer l'arme, il faut en Désarmer l'omox.</p>",
       "en": "Absorb Weapon",
-      "name": "Absorption d'armes"
+      "name": "Absorption d'armes",
+      "requirements": null,
+      "trigger": "Une créature touche l'omox avec une arme de corps-à-corps."
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> L'omox a Agrippé ou Entravé une créature</p>\n<hr />\n<p><strong>Effet</strong> Le démon se répand sur la créature, la recouvrant d'un lisier acide et suintant. La créature doit réussir un jet de @Check[fortitude|dc:32] ou elle devient Aveugle et doit retenir sa respiration ou commencer à suffoquer. Ces effets durent tant que l'omox tient Agrippe ou Entrave la créature.</p>",
       "en": "Smother",
-      "name": "Étouffement"
+      "name": "Étouffement",
+      "requirements": "L'omox a Agrippé ou Entravé une créature",
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> L'omox se trouve dans une zone de liquide.</p>\n<hr />\n<p><strong>Effet</strong> L'omox se téléporte de son espace actuel vers un espace inoccupé contenant du liquide dans un rayon de 36 mètres.</p>",
       "en": "Liquid Leap",
-      "name": "Saut liquide"
+      "name": "Saut liquide",
+      "requirements": "L'omox se trouve dans une zone de liquide.",
+      "trigger": null
     },
     {
       "description": null,
       "en": "+1 Status to All Saves vs. Magic",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Un omox incarne la crasse et il trouve le concept même de propreté totalement abject. Un omox qui est sujet à un effet qui le lave, comme avec l'option nettoie du sort Prestidigitation, subit @Damage[2d6[mental]]{2d6 dégâts mentaux}. Il subit également ces dégâts la première fois à chaque round qu'une créature touchée par l'une de ses attaques dépense des actions pour nettoyer la crasse.</p>",
       "en": "Cleanly Vulnerability",
-      "name": "Vulnérabilité à la propreté"
+      "name": "Vulnérabilité à la propreté",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une créature touchée par une boule de lisier d'omox doit réussir un jet de @Check[reflex|dc:32] ou subir une pénalité de circonstances de -3 mètres à ses Vitesses pendant 1 minute ou jusqu'à ce qu'elle [[/act escape dc=35]]{S'échappe}. En cas d'échec critique, la créature est également Maladroite 1 pendant la même durée.</p>\n<p>Effet : Piège visqueux</p>",
       "en": "Slime Trap",
-      "name": "Piège visqueux"
+      "name": "Piège visqueux",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Telepathy 100 feet",
-      "name": "Télépathie 30 mètres"
+      "name": "Télépathie 30 mètres",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

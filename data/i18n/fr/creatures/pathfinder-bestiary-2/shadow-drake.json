@@ -3,32 +3,44 @@
     {
       "description": "<p><strong>Fréquence</strong> Trois fois par jour</p>\n<hr />\n<p><strong>Effet</strong> Le drake d'ombre Marche rapidement ou Vole deux fois.</p>",
       "en": "Speed Surge",
-      "name": "Vitesse augmentée"
+      "name": "Vitesse augmentée",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Déclencheur</strong> Une créature attaque le drake d'ombre alors qu'il se trouve dans une zone de lumière faible </p>\n<hr />\n<p><strong>Effet</strong> Le drake d'ombre dissimule un peu plus sa position. L'attaquant doit réussir un @Check[flat|dc:11] pour pouvoir affecter le drake d'ombre comme si ce dernier était Caché pour l'attaque ayant déclenché cet effet.</p>",
       "en": "Shadow Evade",
-      "name": "Évasion des ombres"
+      "name": "Évasion des ombres",
+      "requirements": null,
+      "trigger": "Une créature attaque le drake d'ombre alors qu'il se trouve dans une zone de lumière faible"
     },
     {
       "description": "<p>Le dragon porte deux Frappes de queue et une Frappe de mâchoire dans n'importe quel ordre.</p>",
       "en": "Draconic Frenzy",
-      "name": "Frénésie draconique"
+      "name": "Frénésie draconique",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Un drake d'ombre crache une sphère de liquide noir qui explose en un nuage d'ombres glaciales. Cette attaque a une portée de 12 mètres et provoque une @Template[burst|distance:5]{explosion de 1,50 mètre}. Les créatures dans l'explosion subissent @Damage[3d6[cold]|options:area-damage]{3d6 dégâts de froid} (@Check[reflex|dc:18|basic|options:area-effect]). L'explosion d'ombre souffle également les sources de lumière normale de la taille d'une torche, d'une lanterne ou plus petites et tente de contrer la lumière magique avec un modificateur de contre de tente de contrer la lumière magique avec un modificateur de [[/r 1d20+12 #Contrer la lumière]]{+10}.</p>\n<p>Le drake d'ombre ne peut utiliser de nouveau ce pouvoir avant [[/gmr 1d6 #Recharger Souffle d'ombre]]{1d6 rounds}.</p>",
       "en": "Shadow Breath",
-      "name": "Souffle d'ombre"
+      "name": "Souffle d'ombre",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Light Blindness",
-      "name": "Aveuglé par la lumière"
+      "name": "Aveuglé par la lumière",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>La forme du drake d'ombre se mêle et se fond aux ombres environnantes. Un drake d'ombre obtient une réaction supplémentaire à chaque round mais il ne peut l'utiliser que pour Évasion des ombres.</p>",
       "en": "Shadow Blend",
-      "name": "Fusion dans les ombres"
+      "name": "Fusion dans les ombres",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { extractTrigger, extractRequirements } from "../src/normalize/html.js";
+import {
+  extractTrigger,
+  extractRequirements,
+  extractTriggerFr,
+  extractRequirementsFr,
+} from "../src/normalize/html.js";
 
 const akiros = JSON.parse(
   readFileSync(
@@ -56,5 +61,40 @@ describe("M4: <hr/> boundary and entity decoding", () => {
     const html =
       "<p><strong>Trigger</strong> The foe&rsquo;s turn ends&mdash;it can&apos;t act.</p>";
     expect(extractTrigger(html)).toBe("The foe’s turn ends—it can't act.");
+  });
+});
+
+// Task 1 (French follow-ups): 537 French action descriptions carry the same
+// <strong>Déclencheur</strong>/<strong>Conditions</strong> paragraph
+// structure as the English Trigger/Requirements ones, with translated
+// labels -- these reuse extractLabelled rather than duplicating it.
+describe("extractTriggerFr / extractRequirementsFr", () => {
+  it("extracts a French trigger from a Déclencheur paragraph", () => {
+    expect(
+      extractTriggerFr(
+        "<p><strong>Déclencheur</strong> Le jabberwocky Vole ou fait une Frappe d'aile</p><hr /><p>…</p>",
+      ),
+    ).toBe("Le jabberwocky Vole ou fait une Frappe d'aile");
+  });
+
+  it("extracts French requirements from a Conditions paragraph", () => {
+    // French "Conditions" is the label for REQUIREMENTS (a prerequisite to
+    // use the action) -- not the status-effect sense of "conditions".
+    expect(
+      extractRequirementsFr(
+        "<p><strong>Conditions</strong> Le grand tertre est sous sa forme de monticule</p>",
+      ),
+    ).toBe("Le grand tertre est sous sa forme de monticule");
+  });
+
+  it("respects the <hr/> boundary, as the English extractor does", () => {
+    // A later paragraph reusing the label must not be picked up.
+    expect(
+      extractTriggerFr("<p>x</p><hr /><p><strong>Déclencheur</strong> nope</p>"),
+    ).toBeNull();
+  });
+
+  it("returns null when the label is absent", () => {
+    expect(extractTriggerFr("<p>Pas de déclencheur ici</p>")).toBeNull();
   });
 });

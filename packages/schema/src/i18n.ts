@@ -16,6 +16,14 @@ export const CreatureI18nSchema = z.object({
       en: z.string(),
       name: z.string().nullable(),
       description: z.string().nullable(),
+      /** Extracted from the French `<strong>Déclencheur</strong>` paragraph
+       * (`extractTriggerFr`), same shape as the English Trigger. */
+      trigger: z.string().nullable(),
+      /** Extracted from the French `<strong>Conditions</strong>` paragraph
+       * (`extractRequirementsFr`) -- "Conditions" here is French for
+       * REQUIREMENTS (a prerequisite to use the action), NOT the
+       * status-effect sense of "conditions". */
+      requirements: z.string().nullable(),
     }),
   ),
   attacks: z.array(

@@ -3,27 +3,37 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<p><strong>Conditions</strong> Une créature a infligé des dégâts au mime avec une Frappe d'arme depuis son tour précédent</p>\n<hr />\n<p><strong>Effet</strong> Le mime effectue un test de @Check[performance|against:perception]{Représentation} contre le DD de Perception de la créature qui l'a blessé, en mimant une attaque avec la même arme. En cas de succès, le mime inflige deux dés de dégâts à la créature, en utilisant le même type et la même taille de dé que la Frappe d'arme requise.</p>",
       "en": "Mimic Assault",
-      "name": "Assaut du mime"
+      "name": "Assaut du mime",
+      "requirements": "Une créature a infligé des dégâts au mime avec une Frappe d'arme depuis son tour précédent",
+      "trigger": null
     },
     {
       "description": "<p>Le mime utilise des mouvements exagérés pour reproduire l'un des effets suivants, qui persiste jusqu'à la fin de son prochain tour. Toute créature voyant cette capacité peut tenter de la percer à jour en réussissant un jet de @Check[will|dc:14]. Les créatures qui ont percé à jour sont temporairement immunisées contre la pantomime pendant 1 minute.</p>\n<p><em>Barrière</em> Le mime crée une section de mur invisible de @Template[square|distance:10]{3 mètres sur 3} adjacente à lui et dans son allonge. Le mur possède une CA 10, une Solidité 5 et 10 PV. Si le mime Maintient cet effet, il peut ajouter un mur supplémentaire de la même manière.</p>\n<p><em>Corde</em> Le mime tire sur une corde invisible, tentant de faire tomber ou d'attirer une créature dans un rayon de 4,50 mètres. Si la créature ne parvient pas à percer à jour la pantomime, le mime peut choisir de la faire tomber À terre ou de la déplacer de 1,50 mètre vers lui.</p>\n<p><em>Vent</em> Le mime crée une @Template[type:line|distance:30]{ligne de 9 mètres} de vent imaginaire. Les créatures qui ne percent pas à jour la pantomime considèrent cette zone comme un terrain difficile et, si elles y pénètrent ou y débutent leur tour, elles tombent À terre.</p>",
       "en": "Pantomime",
-      "name": "Pantomime"
+      "name": "Pantomime",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Pour les rencontres impliquant l'imitation ou la pantomime, le mime est un défi de niveau 6.</p>",
       "en": "Mimicry Specialist",
-      "name": "Spécialiste de l'imitation"
+      "name": "Spécialiste de l'imitation",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le mime obtient un bonus de circonstances de +1 aux tests de compétence pour effectuer des actions qu'il a vu une autre créature réaliser avec succès au cours de la dernière minute ou de +2 s'il a été témoin d'un succès critique à la place.</p>",
       "en": "Skill Mimicry",
-      "name": "Imitation de compétence"
+      "name": "Imitation de compétence",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le mime peut utiliser Représentation à la place de Diplomatie pour [[/act make-an-impression statistic=performance]]{Faire bonne impression}, à la place d'Intimidation pour [[/act demoralize statistic=performance]]{Démoraliser} et à la place de Duperie pour [[/act impersonate statistic=performance]]{Se faire passer pour}.</p>",
       "en": "Versatile Performance",
-      "name": "Polyvalence artistique"
+      "name": "Polyvalence artistique",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

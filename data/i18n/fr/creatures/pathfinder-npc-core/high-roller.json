@@ -3,27 +3,37 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois par heure</p>\n<p><strong>Conditions</strong> Le flambeur dispose d'au moins 16 cartes dans une main</p>\n<hr />\n<p><strong>Effet</strong> Le flambeur libère les cartes dans un @Template[type:cone|distance:30]{cône de 9 mètres}, infligeant @Damage[16d4[slashing]|options:area-damage]{16d4 dégâts tranchants} à toutes les créatures dans la zone avec un jet de @Check[reflex|dc:30|basic|options:area-effect]. Cette capacité épuise la totalité du jeu de cartes tenu.</p>",
       "en": "Royal Flush Flurry",
-      "name": "Déluge de quintes royales"
+      "name": "Déluge de quintes royales",
+      "requirements": "Le flambeur dispose d'au moins 16 cartes dans une main",
+      "trigger": null
     },
     {
       "description": "<p><strong>Déclencheur</strong> Une créature que le flambeur voit, obtient un échec critique à un test</p>\n<hr />\n<p><strong>Effet</strong> Le flambeur récupère la chance perdue par les autres. Il lance deux fois le prochain jet de d20 avant la fin de son prochain tour et conserve le meilleur résultat.</p>",
       "en": "Tip the Scales",
-      "name": "Faire pencher la balance"
+      "name": "Faire pencher la balance",
+      "requirements": null,
+      "trigger": "Une créature que le flambeur voit, obtient un échec critique à un test"
     },
     {
       "description": "<p><strong>Conditions</strong> La dernière action du flambeur était un succès critique</p>\n<hr />\n<p><strong>Effet</strong> Le flambeur peut soit effectuer deux fois l'action Marcher rapidement, soit tenter une Frappe qui inflige 4d6 dégâts de précision supplémentaires et inflige la moitié des dégâts en cas d'échec (mais pas en cas d'échec critique).</p>",
       "en": "Lucky Momentum",
-      "name": "Moment de chance"
+      "name": "Moment de chance",
+      "requirements": "La dernière action du flambeur était un succès critique",
+      "trigger": null
     },
     {
       "description": null,
       "en": "+4 to Sense Motive",
-      "name": "+4 pour Deviner les intentions"
+      "name": "+4 pour Deviner les intentions",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le flambeur considère tous les instruments de jeu, tels que les cartes (utilisées dans l'entrée Frappe du bloc de statistique), les dés, pièces et jetons, comme des armes de corps-à-corps avec un d4 comme dé de dégâts et les traits agile, finesse et jet 6 mètres. Le flambeur obtient un bonus d'objet de +1 aux jets d'attaque avec ces objets et inflige deux dés de dégâts. Le type de dégâts dépend de l'objet et est déterminé par le MJ.</p>",
       "en": "Gaming Arsenal",
-      "name": "Arsenal de jeu"
+      "name": "Arsenal de jeu",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

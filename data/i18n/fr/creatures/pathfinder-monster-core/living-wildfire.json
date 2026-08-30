@@ -3,17 +3,23 @@
     {
       "description": "<p><strong>Conditions</strong> La dernière action du furole vivant était une Frappe qui a infligé des dégâts de feu</p>\n<hr />\n<p><strong>Effet</strong> Le feu se propage, infligeant @Damage[3d6[fire]]{3d6 dégâts de feu} à chaque créature adjacente à cette cible (@Check[reflex|dc:19|basic]).</p>",
       "en": "Spreading Flames",
-      "name": "Propagation des flammes"
+      "name": "Propagation des flammes",
+      "requirements": "La dernière action du furole vivant était une Frappe qui a infligé des dégâts de feu",
+      "trigger": null
     },
     {
       "description": "<p>Lorsque le furole vivant meurt, il explose infligeant @Damage[3d6[fire]|options:area-damage]{3d6 dégâts de feu} à toutes les créatures dans une @Template[emanation|distance:10|traits:fire,damaging-effect]{émanation de 3 mètres} (@Check[reflex|dc:19|basic|options:area-effect] save).</p>",
       "en": "Explosion",
-      "name": "Explosion"
+      "name": "Explosion",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le furole vivant ignore l'état Masqué provoqué par la fumée.</p>",
       "en": "Smoke Vision",
-      "name": "Vision malgré la fumée"
+      "name": "Vision malgré la fumée",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

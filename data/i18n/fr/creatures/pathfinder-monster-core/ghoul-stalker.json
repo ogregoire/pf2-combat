@@ -3,37 +3,51 @@
     {
       "description": "<p><strong>Conditions</strong> La goule est adjacente au cadavre d'une créature morte depuis moins d'une heure.</p>\n<hr />\n<p><strong>Effet</strong> La goule dévore un morceau de chair du cadavre et récupère @Damage[1d6[healing]]{1d6 Points de vie}.</p>\n<p>Elle ne peut regagner des Points de vie qu'une seule fois à partir d'un cadavre donné.</p>",
       "en": "Consume Flesh",
-      "name": "Dévorer la chair"
+      "name": "Dévorer la chair",
+      "requirements": "La goule est adjacente au cadavre d'une créature morte depuis moins d'une heure.",
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Une créature Agrippée, Entravée, Inconsciente ou Paralysée se trouve dans l'allonge de la goule.</p>\n<p><strong>Effet</strong> La goule murmure à l'oreille de la créature de sombres pensées et de vils désirs. La créature doit effectuer un jet de sauvegarde contre la malédiction de la Faim interdite.</p>\n<p><strong>Faim interdite</strong> (Malédiction)</p>\n<p><strong>Jet de sauvegarde</strong> @Check[will|dc:17|traits:curse]</p>\n<p><strong>Stade 1</strong> Porteur sans symptômes (1 jour)</p>\n<p><strong>Stade 2</strong> @Damage[2d6[void]]{2d6 dégâts de vide} et la cible est Nauséeuse 1 jusqu'à ce qu'elle consomme de la viande crue (1 jour).</p>\n<p><strong>Stade 3</strong> Comme au stade 2</p>\n<p><strong>Stade 4</strong> Comme au stade 2 sauf si la cible a consommé de la viande crue au cours des dernières 24 heures, auquel cas elle subit @Damage[4d6[void]]{4d6 dégâts de vide} et devient Nauséeuse 2 jusqu'à ce qu'elle consomme de la viande crue</p>\n<p><strong>Stade 5</strong> Si la créature a mangé de la viande crue au cours des dernières 24 heures, elle meurt et se transforme en goule, sinon elle repasse au stade 4</p>",
       "en": "Ghoul Whispers",
-      "name": "Chuchotements de goule"
+      "name": "Chuchotements de goule",
+      "requirements": "Une créature Agrippée, Entravée, Inconsciente ou Paralysée se trouve dans l'allonge de la goule.",
+      "trigger": null
     },
     {
       "description": null,
       "en": "Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Swift Leap",
-      "name": "Bond rapide"
+      "name": "Bond rapide",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Modificateur de compétence [[/r 1d20+7]]{+7}</p>\n<hr />\n<p><strong>Fréquence</strong> Une fois par heure</p>\n<hr />\n<p><strong>Effet</strong> La goule fait appel à des connaissances qu'elle a acquises en ayant consommé une créature au cours des 7 derniers jours. La goule tente un test en utilisant une compétence dans laquelle la créature consommée était qualifiée (s'il n'est pas clair si la créature était qualifiée, c'est le MJ qui tranche). La goule est considérée comme qualifiée et utilise le modificateur de compétence élevé pour le niveau de la goule. Ce test prend le même nombre d'actions ou le même temps qu'à l'ordinaire.</p>\n<p>La goule peut apprendre automatiquement à la place un détail spécifique connu d'une créature qu'elle a consommée au cours des 7 derniers jours, comme l'emplacement d'un trésor Caché ou le nom d'un être cher. La goule ne peut utiliser cette compétence qu'une seule fois pour une créature donnée, quelle que soit la quantité de chair qu'elle en a consommé.</p>",
       "en": "Grave Knowledge",
-      "name": "Savoir issu de la tombe"
+      "name": "Savoir issu de la tombe",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>3 mètres. @Check[fortitude|dc:14|options:area-effect,inflicts:sickened,inflicts:slowed]</p>\n<hr />\n<p><p>Une créature qui pénètre dans l'aura ou débute son tour dans la zone doit réussir un jet de Vigueur ou être Nauséeuse 1 (plus Ralentie 1 tant qu'elle est nauséeuse sur un échec critique). Une créature qui obtient un succès sur son jet de sauvegarde ou récupère de son état Nauséeux est temporairement immunisée à toutes les auras de puanteur pendant 1 minute.</p></p>",
       "en": "Stench",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Void Healing",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

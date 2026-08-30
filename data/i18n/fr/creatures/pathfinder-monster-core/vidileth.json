@@ -3,47 +3,65 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Un vidileth peut prendre l'apparence d'un humanoïde de Grande, Moyenne ou Petite taille ou bien reprendre sa véritable forme. Tant qu'il a une forme humanoïde, la Vitesse du vidileth est de 9 mètres et il perd sa Vitesse de nage et son pouvoir de Lumière engourdissante. Si la forme humanoïde choisie n'a pas le trait aquatique, le vidileth perd également son propre trait aquatique. Sous sa forme humanoïde, le vidileth peut utiliser des armes ou effectuer une Frappe qui fonctionne comme son attaque de tentacule mais avec l'allonge de sa forme actuelle. Si la forme choisie est dotée de crocs ou de griffes, il peut également effectuer des Frappes de ce type.</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
       "en": "Change Shape",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> La dernière action du vidileth était une Frappe de griffe réussie.</p>\n<hr />\n<p><strong>Effet</strong> Le vidileth modifie la chair de la cible de manière brouillon. La cible doit effectuer un jet de @Check[fortitude|dc:34]. En cas d'échec, elle devient soit Maladroite 2, soit EAffaiblie 2, ou subit une pénalité de statut de -3 mètres à ses Vitesses, selon le libre choix du vidileth.",
       "en": "Shape Flesh",
-      "name": "Modeler la chair"
+      "name": "Modeler la chair",
+      "requirements": "La dernière action du vidileth était une Frappe de griffe réussie.",
+      "trigger": null
     },
     {
       "description": "<p>Le vidileth effectue Frappe de tentacules contre chaque créature dans son allonge. N'effectuez qu'un seul jet d'attaque et ne déterminez qu'une seule fois les dégâts pour toutes les cibles.</p>",
       "en": "Tentacle Flurry",
-      "name": "Déluge de tentacules"
+      "name": "Déluge de tentacules",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "+2 Status to All Saves vs. Magic",
-      "name": "Bonus de statut de +2 aux jets de sauvegarde contre la magie"
+      "name": "Bonus de statut de +2 aux jets de sauvegarde contre la magie",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Constant Spells",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Quand le vidileth effectue une Frappe de crocs contre une créature, la cible doit réussir un jet de @Check[will|dc:34] ou subir @Damage[3d6[mental]]{3d6 dégâts mentaux}. Le vidileth gagne des Points de vie temporaires égaux aux dégâts occasionnés et apprend certains des souvenirs de la victime (à l'appréciation du MJ).</p>",
       "en": "Consume Memories",
-      "name": "Absorption de mémoires"
+      "name": "Absorption de mémoires",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Quand un vidileth réussit à lancer le sort Domination sur une créature, le sort Suggestion se déclenche à la fin de la durée du sort <em>Domination</em>. Généralement, cette <em>Suggestion</em> pousse la cible à revenir auprès du vidileth pour que ce dernier puisse de nouveau lancer <em>Domination</em>. Cependant, s'il le souhaite, le vidileth peut définir d'autres ordres pour cette <em>Suggestion</em>.</p>",
       "en": "Delayed Suggestion",
-      "name": "Suggestion retardée"
+      "name": "Suggestion retardée",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le vidileth émet une faible lumière. Les créatures dans cette lumière doivent effectuer un jet de @Check[will|dc:34|options:area-effect,inflicts:stupefied]  chaque round. En cas d'échec, elles sont Stupéfiées 1 (ou la Lumière engourdissante augmente la valeur de leur état Stupéfié de 1 jusqu'à un maximum de 4)</p>",
       "en": "Numbing Lights",
-      "name": "Lumière engourdissante"
+      "name": "Lumière engourdissante",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une créature touchée par les tentacules du vidileth, doit effectuer un jet de @Check[will|dc:34]. Si elle le rate, elle est Ralentie 1 et Ralentie 2 en cas d'échec critique. À la fin de chaque tour de la victime, la valeur de la valeur de l'état Ralenti est réduite de 1.</p>",
       "en": "Thoughtlance",
-      "name": "Lance mentale"
+      "name": "Lance mentale",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

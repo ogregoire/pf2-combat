@@ -241,6 +241,134 @@ describe("buildCreatureI18n", () => {
       expect(out.publicNotes).toBeNull();
     });
   });
+
+  // Task 1 (French follow-ups): the Déclencheur/Conditions paragraphs live
+  // inside the SAME raw item description Babele already carries -- no new
+  // field, no new source. Fixture is the real forest-troll shape (trimmed).
+  describe("trigger and requirements extraction", () => {
+    it("extracts a French trigger from the item's Déclencheur paragraph", () => {
+      const table = makeBabeleTable({
+        "pf2e.pathfinder-monster-core.json": {
+          entries: {
+            "Forest Troll": {
+              name: "Troll des forêts",
+              items: {
+                "id-flailing": {
+                  name: "Lutte furieuse",
+                  description:
+                    "<p><strong>Déclencheur</strong> Le troll des forêts subit des dégâts d'électricité ou de feu</p>\n<hr />\n<p><strong>Effet</strong> Le troll effectue une Frappe.</p>",
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const out = buildCreatureI18n({
+        creatureName: "Forest Troll",
+        creatureFoundryId: "forest-troll-id",
+        ownPack: "pathfinder-monster-core",
+        actions: [{ name: "Furious Flailing", foundryId: "id-flailing" }],
+        attacks: [],
+        table,
+        lang: {},
+      })!;
+
+      expect(out.actions[0]!.trigger).toBe(
+        "Le troll des forêts subit des dégâts d'électricité ou de feu",
+      );
+      expect(out.actions[0]!.requirements).toBeNull();
+    });
+
+    it("extracts French requirements from the item's Conditions paragraph -- REQUIREMENTS, not status conditions", () => {
+      const table = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: {
+            "Grand Tertre": {
+              name: "Grand tertre",
+              items: {
+                "id-mound": {
+                  description:
+                    "<p><strong>Conditions</strong> Le grand tertre est sous sa forme de monticule</p>",
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const out = buildCreatureI18n({
+        creatureName: "Grand Tertre",
+        creatureFoundryId: "shambler-id",
+        ownPack: "pathfinder-bestiary",
+        actions: [{ name: "Mound Form", foundryId: "id-mound" }],
+        attacks: [],
+        table,
+        lang: {},
+      })!;
+
+      expect(out.actions[0]!.requirements).toBe("Le grand tertre est sous sa forme de monticule");
+      expect(out.actions[0]!.trigger).toBeNull();
+    });
+
+    it("resolves @UUID references inside the extracted trigger, same as the description", () => {
+      const table = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: {
+            Ankou: {
+              name: "Ankou FR",
+              items: {
+                "action-id": {
+                  description:
+                    "<p><strong>Déclencheur</strong> La cible est @UUID[Compendium.pf2e.conditionitems.Item.Off-Guard]{Pris au dépourvu}</p>",
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const out = buildCreatureI18n({
+        creatureName: "Ankou",
+        creatureFoundryId: "ankou-id",
+        ownPack: "pathfinder-bestiary",
+        actions: [{ name: "Dread", foundryId: "action-id" }],
+        attacks: [],
+        table,
+        lang: {},
+      })!;
+
+      expect(out.actions[0]!.trigger).toBe("La cible est Pris au dépourvu");
+    });
+
+    it("uses null, never the English text, when the item has no such paragraph", () => {
+      const table = makeBabeleTable({
+        "pf2e.pathfinder-bestiary.json": {
+          entries: {
+            Ankou: {
+              name: "Ankou FR",
+              items: {
+                "action-id": { description: "<p>Juste une description ordinaire.</p>" },
+              },
+            },
+          },
+        },
+      });
+
+      const out = buildCreatureI18n({
+        creatureName: "Ankou",
+        creatureFoundryId: "ankou-id-3",
+        ownPack: "pathfinder-bestiary",
+        actions: [{ name: "Dread", foundryId: "action-id" }],
+        attacks: [],
+        table,
+        lang: {},
+      })!;
+
+      expect(out.actions[0]!.trigger).toBeNull();
+      expect(out.actions[0]!.requirements).toBeNull();
+    });
+  });
 });
 
 describe("buildIndexI18n", () => {

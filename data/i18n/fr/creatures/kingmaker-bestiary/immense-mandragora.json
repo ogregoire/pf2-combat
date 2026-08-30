@@ -3,32 +3,44 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois par jour</p>\n<hr />\n<p><strong>Effet</strong> La mandragore pousse un cri perturbant. Chaque créature, autre qu'une mandragore, dans une @Template[emanation|distance:30]{émanation de 9 mètres} doit effectuer un jet de @Check[will|dc:42|options:area-effect,damaging-effect].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée.</p>\n<p><strong>Succès</strong> La créature est Nauséeuse 1 et subit @Damage[8d8[mental]|options:area-damage]{8d8 dégâts mentaux}.</p>\n<p><strong>Échec</strong> La créature est Nauséeuse 2 et subit @Damage[16d8[mental]|options:area-damage]{16d8 dégâts mentaux}.</p>\n<p><strong>Échec critique</strong> La créature est Nauséeuse 2, Ralentie 1 et subit @Damage[150[mental]|options:area-damage]{150 dégâts mentaux}. Tant que la créature reste Nauséeuse, la valeur de son état Ralenti ne peut être réduite en dessous de 1.</p>",
       "en": "Apocalyptic Shriek",
-      "name": "Cri apocalyptique"
+      "name": "Cri apocalyptique",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Improved Grab",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> L'immense mandragore a Agrippé une créature.</p>\n<hr />\n<p><strong>Effet</strong> L'immense mandragore absorbe le sang de la créature qu'elle a agrippée, infligeant  @Damage[12d6[untyped]]{12d6 dégâts}. Si la créature est un démon, une fée ou un ensorceleur, la mandragore gagne un nombre de Points de vie temporaires égal aux dégâts infligés. Une créature dont le sang a été absorbé par une mandragore est Drainée 2 jusqu'à ce qu'elle soit soignée de n'importe quel nombre de PV.</p>",
       "en": "Blood Drain",
-      "name": "Absorption de sang"
+      "name": "Absorption de sang",
+      "requirements": "L'immense mandragore a Agrippé une créature.",
+      "trigger": null
     },
     {
       "description": "<p>Une mandragore peut sentir les créatures avec du sang comme s'il s'agissait d'un sens imprécis à une distance de 9 mètres et elle peut sentir les démons, les fées et les ensorceleurs avec du sang comme s'il s'agissait d'un sens précis à une portée de 9 mètres.</p>",
       "en": "Blood Scent",
-      "name": "Perception du sang"
+      "name": "Perception du sang",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:42]</p>\n<p><strong>Durée maximale</strong> 6 rounds</p>\n<p><strong>Stade 1</strong> @Damage[4d6[poison]]{4d6 dégâts de poison} et Stupéfié 1 (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[4d6[poison]]{4d6 dégâts de poison}, Confus et Stupéfié 1 (1 round)</p>\n<p><strong>Stade 3</strong> @Damage[6d6[poison]]{6d6 dégâts de poison}, Confus, et Stupéfié 1 (1 round)</p>",
       "en": "Immense Mandragora Venom",
-      "name": "Venin d'immense mandragore"
+      "name": "Venin d'immense mandragore",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Quand une mandragore débute son tour dans une zone de ténèbres magiques, elle est Ralentie 1 durant ce tour.</p>",
       "en": "Vulnerability to Supernatural Darkness",
-      "name": "Vulnérabilité aux ténèbres surnaturelles"
+      "name": "Vulnérabilité aux ténèbres surnaturelles",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

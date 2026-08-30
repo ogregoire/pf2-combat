@@ -3,17 +3,23 @@
     {
       "description": "<p><strong>Fréquence</strong> Une fois par round</p>\n<hr />\n<p><strong>Effet</strong> Tout au long du combat, l'anéantisseur de monde expose inlassablement les raisons justifiant ses objectifs destructeurs et la futilité des efforts de ses ennemis pour l'arrêter. Il obtient un bonus de statut de +1 aux jets de Volonté et un bonus de statut de +2 aux jets de dégâts de ses sorts. Chaque fois qu'il utilise cette action à nouveau, ces bonus augmentent respectivement de 1 et 2. Le monologue prend fin (et les bonus sont perdus) si l'anéantisseur devient incapable d'agir ou de parler ou s'il termine son tour sans avoir utilisé cette action.</p>",
       "en": "Monologue",
-      "name": "Monologue"
+      "name": "Monologue",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Déclencheur</strong> L'anéantisseur de monde devrait être réduit à 0 PV</p>\n<p><strong>Conditions</strong> L'anéantisseur de monde a encore le sort Éruption volcanique disponible</p>\n<hr />\n<p><strong>Effet</strong> L'anéantisseur refuse de voir son rêve destructeur ne pas se réaliser. Il se stabilise à 1 PV juste assez longtemps pour lancer <em>Éruption volcanique</em>, centrée sur lui-même. Il meurt, consumé par l'éruption.</p>",
       "en": "Unyielding Purpose",
-      "name": "But inébranlable"
+      "name": "But inébranlable",
+      "requirements": "L'anéantisseur de monde a encore le sort Éruption volcanique disponible",
+      "trigger": "L'anéantisseur de monde devrait être réduit à 0 PV"
     },
     {
       "description": "<p>Si la prochaine action de l'anéantisseur consiste à Lancer un sort, ce sort ignore 20 points de résistance aux dégâts d'énergie. Cela s'applique à tous les dégâts infligés par le sort, y compris les dégâts persistants et ceux causés par un effet continu du sort. Les immunités des créatures ne sont pas affectées.</p>",
       "en": "Overwhelming Energy",
-      "name": "Énergie écrasante"
+      "name": "Énergie écrasante",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

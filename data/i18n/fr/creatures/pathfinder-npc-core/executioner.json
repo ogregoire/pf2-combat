@@ -3,17 +3,23 @@
     {
       "description": "<p>Le bourreau condamne à mort une unique créature qu'il peut voir. La première fois à chaque round où le bourreau Frappe la créature, la Frappe inflige 1d12 dégâts de précision supplémentaires.</p>\n<p>La créature reste condamnée à mort jusqu'à ce que le bourreau soit inconscient, qu'il condamne une autre créature à mort ou que la rencontre s'achève.</p>",
       "en": "Mark for Death",
-      "name": "Condamné à mort"
+      "name": "Condamné à mort",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Le bourreau effectue une Frappe au corps-à-corps. Si elle touche et inflige des dégâts, la cible est Effrayée 1 ou Effrayée 2 sur un coup critique.</p>",
       "en": "Intimidating Strike",
-      "name": "Frappe intimidante"
+      "name": "Frappe intimidante",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Le bourreau est adjacent à une créature mourante ou spécialement préparée pour recevoir le coup de grâce </p>\n<hr />\n<p><strong>Effet</strong> Le bourreau Frappe la créature avec sa grande hache. S'il touche, en plus de subir des dégâts, la cible doit effectuer un jet de @Check[fortitude|dc:23|options:inflicts:dying] ou se retrouver à 0 Point de Vie et devenir Mourante 1. Si la créature était déjà mourante (y compris si elle a été réduite à 0 Point de vie par les dégâts de la Frappe), la valeur de son état Mourant augmente de 1, en plus de toute augmentation liée à la Frappe. En cas d'échec critique, la créature meurt instantanément. Si la Frappe du bourreau est un coup critique, la cible diminue d'un cran le degré de succès de son jet de sauvegarde.</p>",
       "en": "Behead",
-      "name": "Décapitation"
+      "name": "Décapitation",
+      "requirements": "Le bourreau est adjacent à une créature mourante ou spécialement préparée pour recevoir le coup de grâce",
+      "trigger": null
     }
   ],
   "attacks": [

@@ -3,27 +3,37 @@
     {
       "description": "<p><strong>Conditions</strong> L'initiative n'a pas encore été déterminée.</p>\n<p><strong>Déclencheur</strong> Une créature touche la toile du rôdeur des toiles alors que celle-ci s'y trouve.</p>\n<hr />\n<p><strong>Effet</strong> Le rôdeur des toiles repère automatiquement la créature et Marche rapidement, Escalade ou Descend sur un fil de toile avant de faire son jet d'initiative.</p>",
       "en": "Spring upon Prey",
-      "name": "Bondir sur sa proie"
+      "name": "Bondir sur sa proie",
+      "requirements": "L'initiative n'a pas encore été déterminée.",
+      "trigger": "Une créature touche la toile du rôdeur des toiles alors que celle-ci s'y trouve."
     },
     {
       "description": "<p>Le rôdeur des toiles peut discuter avec les araignées. Cela fonctionne comme Communication avec les animaux.</p>",
       "en": "Spider Speak",
-      "name": "Langue des araignées"
+      "name": "Langue des araignées",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": null,
       "en": "Tremorsense (Imprecise) 30 feet (Creatures Touching its Web)",
-      "name": "Perception des vibrations (imprécis) 9 mètres (Créatures touchant sa toile)"
+      "name": "Perception des vibrations (imprécis) 9 mètres (Créatures touchant sa toile)",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Jet de sauvegarde</strong> @Check[fortitude|dc:19]</p>\n<hr />\n<p><strong>Durée maximale</strong> 10 rounds</p>\n<p><strong>Stade 1</strong> @Damage[1d6[poison]]{1d6 dégâts de poison} et Pris au dépourvu (1 round)</p>\n<p><strong>Stade 2</strong> @Damage[1d6[poison]]{1d6 dégâts de poison}, Pris au dépourvu et Ralenti 1 (1 round)</p>",
       "en": "Web Lurker Venom",
-      "name": "Venin de rôdeur des toiles"
+      "name": "Venin de rôdeur des toiles",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Une créature touchée par la toile d'un rôdeur des toiles est immobilisée et collée à la surface la plus proche jusqu'à ce qu'elle réussisse un test d'Acrobaties pour [[/act escape statistic=acrobatics dc=20]]{S'Échapper}</p>",
       "en": "Web Trap",
-      "name": "Piège de toile"
+      "name": "Piège de toile",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

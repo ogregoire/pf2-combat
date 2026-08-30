@@ -3,22 +3,30 @@
     {
       "description": "<p><strong>Déclencheur</strong> Le golem de verre est ciblé par un sort.</p>\n<hr />\n<p><strong>Effet</strong> Le golem de verre oriente sa surface réfléchissante magique pour renvoyer le sort à son incantateur. Il essaie de contrer le sort en tentant un test d'@Check[acrobatics] pour son test de contre. S'il réussit, l'effet est renvoyé sur l'incantateur.</p>",
       "en": "Spell Reflection",
-      "name": "Sort réfléchi"
+      "name": "Sort réfléchi",
+      "requirements": null,
+      "trigger": "Le golem de verre est ciblé par un sort."
     },
     {
       "description": "<p>Le golem de verre génère des vagues de luminosité scintillante qui diffusent une lumière vive dans une @Template[emanation|distance:60]{émanation de 18 mètres} (et une lumière faible sur les 18 mètres suivants). La lumière perdure jusqu'au début de son prochain tour après quoi le golem ne peut plus utiliser Éclat aveuglant pendant [[/gmr 1d4 1d4 #Recharge Éclat aveuglant]]{1d4 rounds}. Une créature dans la zone affectée par la lumière vive ou qui y pénètre doit tenter un jet de @Check[will|dc:23].</p>\n<hr />\n<p><strong>Succès</strong> La créature n'est pas affectée.</p>\n<p><strong>Échec</strong> La créature est Éblouie pendant 1 round.</p>\n<p><strong>Échec critique</strong> La créature est Aveuglée pendant 1 round puis elle est Éblouie pendant 4 rounds supplémentaires.</p>",
       "en": "Dazzling Brilliance",
-      "name": "Éclat aveuglant"
+      "name": "Éclat aveuglant",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Un golem est immunisé contre les sorts et les pouvoirs magiques autres que les siens mais chaque type de golem est affecté d'une manière spéciale par quelques formes de magie. Ces exceptions sont expliquées ci-après. S'il est indiqué plusieurs types de sorts (comme \"froid et eau\"), ils affectent tous le golem.</p>\n<ul>\n<li><strong>Blessé par le son</strong> Toute magie de ce type qui cible le golem lui inflige @Damage[6d6[untyped]]{6d6 dégâts} (ces dégâts n'ont aucun type) au lieu de l'effet habituel. Si le golem débute son tour dans une zone de magie de ce type ou s'il est affecté par un effet persistant de son, il subit @Damage[2d6[untyped]]{2d6 dégâts}.</li>\n<li><strong>Ralenti par le froid</strong> Toute magie de ce type qui le cible lui confère l'état Ralenti 1 pendant [[/r 2d6 #rounds]]{2d6 rounds} au lieu de l'effet normal. Si le golem débute son tour dans une zone de magie de type froid, il est Ralenti 1 pendant ce round..</li>\n<li><strong>Soigné par le feu</strong> Toute magie de ce type qui cible le golem lui fait perdre son état Ralenti et lui permet de récupérer un nombre de PV égal à la moitié des dégâts qu'aurait dû infliger le sort. Si le golem débute son tour dans une zone de magie de type feu, il obtient @Damage[2d6[healing]]{2d6 Points de vie}.</li>\n</ul>",
       "en": "Golem Antimagic",
-      "name": "Antimagie du golem"
+      "name": "Antimagie du golem",
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p>Un golem de verre est affecté par le sort Fracassement comme s'il était un objet non porté.</p>",
       "en": "Vulnerable to Shatter",
-      "name": "Vulnérable à Fracassement"
+      "name": "Vulnérable à Fracassement",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

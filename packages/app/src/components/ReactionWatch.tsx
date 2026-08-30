@@ -11,12 +11,16 @@ import type { Combatant } from "../state/types.js";
 /** One combatant's card in the reaction watch: name and reaction name(s)
  * resolved to French exactly like everywhere else — via `creatureId`, at
  * render, never trusted from `combatant.i18n` alone (see
- * `useCombatantI18n`). Reaction names are a positional subset of
- * `combatant.actions` (Task 6's alignment guarantee), so they're resolved
- * the same way ActionList resolves the full action list and then filtered
- * down to the reaction-cost entries, never matched by name. Trigger text
- * has no French counterpart in `CreatureI18n` at all — that's a data gap,
- * not a wiring one — so it stays in English regardless of `lang`. */
+ * `useCombatantI18n`). Reaction names AND trigger text are a positional
+ * subset of `combatant.actions` (Task 6's alignment guarantee), so they're
+ * resolved the same way ActionList resolves the full action list and then
+ * filtered down to the reaction-cost entries, never matched by name. Task 1
+ * (French follow-ups) extracts a French trigger from 537 creatures'
+ * `<strong>Déclencheur</strong>` paragraphs (`extractTriggerFr`), carried
+ * here via `resolveActions`; a reaction the overlay doesn't cover falls
+ * back to `combatant.reactions[index].trigger`, the English text baked in
+ * at add time (`AddCombatants`'s `toReactions`) -- same "French, else
+ * English, never blank" rule `pick` uses everywhere else. */
 function ReadyCombatantCard({
   combatant,
   onSpend,
@@ -31,9 +35,11 @@ function ReadyCombatantCard({
   const lang = useEncounter((s) => s.lang);
   const i18n = useCombatantI18n(combatant);
   const displayName = resolveCreatureName(combatant.name, i18n, lang);
-  const reactionNames = resolveActions(combatant.actions, i18n, lang, glossary)
-    .filter((a) => a.cost === "reaction")
-    .map((a) => a.name);
+  const reactions = resolveActions(combatant.actions, i18n, lang, glossary).filter(
+    (a) => a.cost === "reaction",
+  );
+  const reactionNames = reactions.map((a) => a.name);
+  const reactionTriggers = reactions.map((a) => a.trigger);
 
   return (
     <div
@@ -65,18 +71,21 @@ function ReadyCombatantCard({
           {t("SPENT_BUTTON")}
         </button>
       </div>
-      {combatant.reactions.map((r, index) => (
-        <div key={r.name}>
-          <div style={{ fontSize: "12px", color: "var(--info)", marginTop: "2px" }}>
-            {reactionNames[index] ?? r.name}
-          </div>
-          {r.trigger && (
-            <div style={{ fontSize: "11.5px", lineHeight: 1.45, color: "var(--text-faint)", marginTop: "4px" }}>
-              <span style={{ fontWeight: 600 }}>{t("TRIGGER_LABEL")}</span> {r.trigger}
+      {combatant.reactions.map((r, index) => {
+        const trigger = reactionTriggers[index] ?? r.trigger;
+        return (
+          <div key={r.name}>
+            <div style={{ fontSize: "12px", color: "var(--info)", marginTop: "2px" }}>
+              {reactionNames[index] ?? r.name}
             </div>
-          )}
-        </div>
-      ))}
+            {trigger && (
+              <div style={{ fontSize: "11.5px", lineHeight: 1.45, color: "var(--text-faint)", marginTop: "4px" }}>
+                <span style={{ fontWeight: 600 }}>{t("TRIGGER_LABEL")}</span> {trigger}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

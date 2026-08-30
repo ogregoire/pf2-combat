@@ -3,17 +3,23 @@
     {
       "description": "<p>Le baobhan sith peut se transformer en un grand corbeau, avec les effets de l'option aviaire du sort Forme aérienne</p>\n<hr />\n<p><p>Le monstre change de forme pour une durée indéterminée. Il peut de nouveau faire appel à cette action pour reprendre sa forme naturelle ou adopter une nouvelle forme. Sauf indication contraire, un monstre ne peut pas utiliser Changement de forme pour prendre l'apparence d'un individu précis. Le Changement de forme est considéré comme un déguisement pour Se faire passer pour en utilisant la compétence Duperie. La transformation du monstre lui permet de surmonter automatiquement les DD de Perception servant à déterminer s'il est bien un spécimen de l'ascendance ou du type de créature dont il a pris la forme et il obtient un bonus de statut de +4 à son DD de Duperie pour empêcher les autres de déjouer son déguisement. Le descriptif des pouvoirs de Changement de forme indique quelles formes le monstre peut revêtir. Le monstre ne gagne aucun des pouvoirs spéciaux de la nouvelle forme, seulement sa forme physique. Par exemple, pour chaque forme, il remplace ses Vitesses et Frappes d'origine et potentiellement ses sens ou sa taille. Tous ces changements sont indiqués dans son bloc de statistiques.</p></p>",
       "en": "Change Shape",
-      "name": null
+      "name": null,
+      "requirements": null,
+      "trigger": null
     },
     {
       "description": "<p><strong>Conditions</strong> Une créature en état de saignement se trouve dans l'allonge du baobhan sith</p>\n<hr />\n<p><strong>Effet</strong> Le baobhan sith tente de boire le sang coulant des blessures de la créature. Le baobhan sith effectue un test d'@Check[athletics|defense:fortitude] contre le DD de Vigueur de la cible. En cas de succès, la victime devient Drainée 1 et le baobhan sith regagne @Damage[10[healing]]{10 Points de vie}, tout Point de vie dépassant son total maximum est converti en PV temporaire.</p>\n<p>Boire le sang d'une victime qui est déjà Drainée ne restaure pas de PV, mais le baobhan sith peut augmenter la valeur de l'état Drainé de la victime de 1. L'état Drainé de la victime diminue de 1 par semaine. Une transfusion sanguine, qui requiert 10 minutes, un test réussi de @Check[medicine|dc:20] et une source suffisante de sang (ou un donneur) réduit l'état Drainé de 1.</p>",
       "en": "Drink Blood",
-      "name": "Boire le sang"
+      "name": "Boire le sang",
+      "requirements": "Une créature en état de saignement se trouve dans l'allonge du baobhan sith",
+      "trigger": null
     },
     {
       "description": "<p>Le baobhan sith se déhanche en rythme et Marche rapidement jusqu'à sa Vitesse. Chaque créature qui termine son mouvement à 9 mètres ou moins du baobhan sith doit effectuer un jet de @Check[will|dc:25].</p>\n<hr />\n<p><strong>Succès critique</strong> La créature n'est pas affectée et est temporairement immunisée à la Danse captivante pendant 24 heures.</p>\n<p><strong>Succès</strong> La créature est Ralentie 1 pendant 1 round et est temporairement immunisée à la Danse captivante pendant 24 heures.</p>\n<p><strong>Échec</strong> La créature est Fascinée et doit dépenser au moins 1 de ses actions à chacun de ses tours pour se rapprocher du baobhan sith aussi rapidement que possible, tout en évitant tout danger évident. Si la créature termine son mouvement ou son tour en étant adjacente à la fée, elle est Ralentie 1 jusqu'à la fin de son prochain tour.</p>\n<p><strong>Échec critique</strong> Comme en cas d'échec, mais la créature doit consacrer toutes ses actions à se rapprocher du baobhan sith et, si elle termine son mouvement ou son tour en étant adjacente à la fée, elle est Paralysée jusqu'à la fin de son prochain tour.</p>",
       "en": "Captivating Dance",
-      "name": "Danse captivante"
+      "name": "Danse captivante",
+      "requirements": null,
+      "trigger": null
     }
   ],
   "attacks": [

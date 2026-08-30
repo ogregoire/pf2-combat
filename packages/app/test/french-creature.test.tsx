@@ -55,13 +55,13 @@ const stagLordI18n: CreatureI18n = {
   name: "Seigneur Cerf",
   publicNotes: null,
   actions: [
-    { en: "Hunt Prey", name: "Chasser une proie", description: "<p>Désigne une unique proie.</p>" },
-    { en: "Unfair Aim", name: "Tir injuste", description: "<p>Tire sur une proie traquée.</p>" },
-    { en: "Dread Striker", name: "Frappeur d'effroi", description: "<p>Les créatures effrayées sont prises au dépourvu.</p>" },
-    { en: "Perpetual Hangover", name: "Éternellement alcoolisé.", description: "<p>Toujours nauséeux 1.</p>" },
+    { en: "Hunt Prey", name: "Chasser une proie", description: "<p>Désigne une unique proie.</p>", trigger: null, requirements: null },
+    { en: "Unfair Aim", name: "Tir injuste", description: "<p>Tire sur une proie traquée.</p>", trigger: null, requirements: null },
+    { en: "Dread Striker", name: "Frappeur d'effroi", description: "<p>Les créatures effrayées sont prises au dépourvu.</p>", trigger: null, requirements: null },
+    { en: "Perpetual Hangover", name: "Éternellement alcoolisé.", description: "<p>Toujours nauséeux 1.</p>", trigger: null, requirements: null },
     // Real data: this one has no French name at all (description still
     // present) — the untranslated position pick() must still fall through.
-    { en: "Sneak Attack", name: null, description: "<p>2d6 dégâts de précision supplémentaires.</p>" },
+    { en: "Sneak Attack", name: null, description: "<p>2d6 dégâts de précision supplémentaires.</p>", trigger: null, requirements: null },
   ],
   attacks: [
     { en: "Composite Longbow", name: "Arc long composite" },
@@ -116,13 +116,32 @@ const forestTrollI18n: CreatureI18n = {
   name: "Troll des forêts",
   publicNotes: null,
   actions: [
-    { en: "Furious Flailing", name: "Lutte furieuse", description: "<p><strong>Déclencheur</strong> Le troll des forêts subit des dégâts d'électricité ou de feu</p>" },
+    {
+      en: "Furious Flailing", name: "Lutte furieuse",
+      description: "<p><strong>Déclencheur</strong> Le troll des forêts subit des dégâts d'électricité ou de feu</p>",
+      // Task 1: extracted from the same Déclencheur paragraph above via
+      // extractTriggerFr — real data (data/i18n/fr/creatures/pathfinder-
+      // monster-core/forest-troll.json).
+      trigger: "Le troll des forêts subit des dégâts d'électricité ou de feu",
+      requirements: null,
+    },
     {
       en: "Rend", name: null,
       description:
         "<p>Griffe</p>\n<hr />\n<p><p>Une entrée d'Éventration indique une Frappe que possède le monstre.</p><p><strong>Conditions</strong> Au cours d'un même round, le monstre touche un même ennemi avec deux Frappes consécutives du type indiqué.</p></p>",
+      // The "Conditions" (Requirements) paragraph sits after the FIRST
+      // <hr/> (which follows the leading "Griffe" strike name) — same
+      // boundary rule as the English "Requirements" extractor, which also
+      // yields null here (see forestTrollSeed's own Rend action above), so
+      // this stays null in French too. Not a bug: parity with English.
+      trigger: null,
+      requirements: null,
     },
-    { en: "Chase Prey", name: "Poursuivre la proie", description: "<p>Se précipite puis effectue deux Frappes de griffes.</p>" },
+    {
+      en: "Chase Prey", name: "Poursuivre la proie",
+      description: "<p>Se précipite puis effectue deux Frappes de griffes.</p>",
+      trigger: null, requirements: null,
+    },
   ],
   attacks: [
     { en: "Claw", name: "Griffe" },
@@ -445,7 +464,7 @@ describe("creatures render in French", () => {
   // Finding 3 (final review): ReactionWatch rendered combatant and reaction
   // names in English regardless of `lang` — the one component Tasks 12/14's
   // sweep missed.
-  it("translates the combatant and reaction names in ReactionWatch; the trigger has no French counterpart and stays English", () => {
+  it("translates the combatant and reaction names in ReactionWatch", () => {
     useEncounter.getState().setLang("fr");
     useEncounter.getState().addCombatant({ ...forestTrollSeed, i18n: forestTrollI18n }, 19);
 
@@ -454,10 +473,58 @@ describe("creatures render in French", () => {
     expect(screen.getByText("Troll des forêts")).toBeTruthy();
     expect(screen.getByText("Lutte furieuse")).toBeTruthy();
     expect(screen.queryByText("Furious Flailing")).toBeNull();
-    // CreatureI18n carries no French trigger text at all — a data gap, not
-    // a wiring one — so it stays English even though everything around it
-    // is French.
-    expect(screen.getByText(/The forest troll takes electricity or fire damage/)).toBeTruthy();
+  });
+
+  // Task 1 (French follow-ups): the trigger — the text a GM reads to decide
+  // whether a reaction fires — used to have no French counterpart in
+  // `CreatureI18n` at all and stayed English regardless of `lang` (see the
+  // test above's earlier form). `extractTriggerFr` now pulls it out of the
+  // same `<strong>Déclencheur</strong>` paragraph the description already
+  // carries, so ReactionWatch's trigger line renders in French too.
+  it("renders the French trigger text in ReactionWatch, not the English one baked into combatant.reactions", () => {
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant({ ...forestTrollSeed, i18n: forestTrollI18n }, 19);
+
+    render(<ReactionWatch />);
+
+    expect(
+      screen.getByText("Le troll des forêts subit des dégâts d'électricité ou de feu"),
+    ).toBeTruthy();
+    expect(screen.queryByText(/The forest troll takes electricity or fire damage/)).toBeNull();
+  });
+
+  // A reaction the overlay has no trigger for (position aligned, but
+  // `trigger: null`) falls back to the English text baked into
+  // `combatant.reactions` at add time — same "French, else English, never
+  // blank" rule as everywhere else, not a blank trigger line.
+  // `combatant.reactions` is a denormalised COPY of the reaction-cost
+  // entries in `combatant.actions` (see forestTrollSeed's own comment) —
+  // resolveActions's `pick(fr.trigger, action.trigger)` already falls back
+  // to `action.trigger` (English) whenever the overlay has none, so the two
+  // arrays agree in every real case. `reactionTriggers[index] ?? r.trigger`
+  // exists purely as a safety net for when the two arrays disagree in
+  // length (stale/legacy data) — this pins that path directly, the same
+  // way `reactionNames[index] ?? r.name` already protects the name line.
+  it("falls back to combatant.reactions's own trigger when the resolved actions array doesn't reach that index", () => {
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant(
+      {
+        ...forestTrollSeed,
+        // A second reaction with no corresponding entry in `actions` at
+        // all -- reactionTriggers[1] is simply absent (`undefined`), not a
+        // translated-to-null value.
+        reactions: [
+          ...forestTrollSeed.reactions!,
+          { name: "Stray Reaction", trigger: "Untranslated stray trigger" },
+        ],
+        i18n: forestTrollI18n,
+      },
+      19,
+    );
+
+    render(<ReactionWatch />);
+
+    expect(screen.getByText("Untranslated stray trigger")).toBeTruthy();
   });
 
   it("also shows the French name in the turn-order list, not just the active panel", () => {
