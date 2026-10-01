@@ -116,6 +116,24 @@ describe("QuickAdd", () => {
     expect(combatants.every((c) => c.attacks.length === 1 && c.attacks[0]!.name === "Shortsword")).toBe(true);
     // 13 (the typed die result) + 5 (Goblin Warrior's Perception) = 18.
     expect(useEncounter.getState().encounter.entries.every((e) => e.initiative === 18)).toBe(true);
+    // A batch enters as one group — one entry, one turn — named by the
+    // creature's plural.
+    const order = useEncounter.getState().encounter.entries;
+    expect(order).toHaveLength(1);
+    expect(order[0]!.groupName).toBe("Goblin Warriors");
+    expect(order[0]!.combatantIds).toHaveLength(6);
+  });
+
+  it("adds a single creature ungrouped, since a group of one is just a row", async () => {
+    const user = userEvent.setup();
+    render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+    await user.type(screen.getByRole("combobox", { name: /quick add/i }), "1 goblin warrior 13");
+    await user.keyboard("{Enter}");
+
+    await waitFor(() => {
+      expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(1);
+    });
+    expect(useEncounter.getState().encounter.entries[0]!.groupName).toBeNull();
   });
 
   // A creature with no modifier on record (here: the creature record failed

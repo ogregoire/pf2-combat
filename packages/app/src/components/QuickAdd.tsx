@@ -7,6 +7,7 @@ import { format, useT, type StringKey } from "../i18n/index.js";
 import { parseAddCommand } from "../rules/parseAddCommand.js";
 import { rankMatches } from "../rules/rankMatches.js";
 import { totalInitiative } from "../rules/initiative.js";
+import { pluralize } from "../rules/plural.js";
 import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
 import { seedFromEntry } from "./AddCombatants.js";
@@ -119,6 +120,7 @@ export function QuickAdd({
   const listboxId = useId();
   const addCombatant = useEncounter((s) => s.addCombatant);
   const addMany = useEncounter((s) => s.addMany);
+  const group = useEncounter((s) => s.group);
   const lang = useEncounter((s) => s.lang);
   const players = useEncounter((s) => s.players);
   const combatants = useEncounter((s) => s.encounter.combatants);
@@ -207,8 +209,16 @@ export function QuickAdd({
         // unchanged. Same rule as the row popover's commitInitiative — see
         // rules/initiative.ts's totalInitiative, its one home.
         const committed = initiative === null ? null : totalInitiative(seed.kind, initiative, seed.initiativeModifier ?? null);
-        if (quantity === 1) addCombatant(seed, committed);
-        else addMany(seed, quantity, committed);
+        if (quantity === 1) {
+          addCombatant(seed, committed);
+        } else {
+          // A batch enters as one group — a wave of goblins acts on one
+          // initiative and takes one turn, which is what the GM typing
+          // "6 goblin warrior 13" means. Named by the plural of the creature
+          // in the language shown ("Goblin Warriors", "Guerriers gobelins").
+          const ids = addMany(seed, quantity, committed);
+          group(ids, pluralize(entry.name, quantity, lang), committed);
+        }
 
         setMessage(addedMessage(t, quantity, requestedQuantity, entry.name, committed));
         setQuery("");
