@@ -1429,3 +1429,22 @@ describe("initiative field in the row popover", () => {
     expect(field.value).toBe("19");
   });
 });
+
+describe("damage/heal summary placement", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("shows the last change below the amount field and the Damage/Heal buttons, not above", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant({ ...seed(), hp: { current: 20, max: 30 } }, 15);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    await user.type(screen.getByLabelText("amount"), "3");
+    await user.click(screen.getByRole("button", { name: /^Heal$/ }));
+
+    const summary = screen.getByText("20 → 23").parentElement as HTMLElement;
+    const heal = screen.getByRole("button", { name: /^Heal$/ });
+    // DOCUMENT_POSITION_FOLLOWING: the summary comes after the Heal button.
+    expect(heal.compareDocumentPosition(summary) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+});

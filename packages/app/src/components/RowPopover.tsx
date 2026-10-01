@@ -671,26 +671,6 @@ export function RowPopover({
         </div>
       )}
 
-      {lastChange && (
-        <div style={{ display: "flex", alignItems: "baseline", gap: "6px", flexWrap: "wrap" }}>
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "12px",
-              fontWeight: 600,
-              color: lastChange.delta < 0 ? "var(--danger)" : "var(--ok)",
-            }}
-          >
-            {lastChange.delta < 0 ? "−" : "+"}
-            {Math.abs(lastChange.delta)}
-          </span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>
-            {lastChange.before} → {lastChange.after}
-            {lastChange.reason ? ` (${lastChange.reason})` : ""}
-          </span>
-        </div>
-      )}
-
       {showSelector ? (
         <div>
           <div
@@ -806,6 +786,28 @@ export function RowPopover({
           {t("LABEL_HEAL")}
         </button>
       </div>
+
+      {/* The result of the last Damage/Heal, read in the order the GM acts:
+         type the amount, press the button, see what it did. */}
+      {lastChange && (
+        <div style={{ display: "flex", alignItems: "baseline", gap: "6px", flexWrap: "wrap" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "12px",
+              fontWeight: 600,
+              color: lastChange.delta < 0 ? "var(--danger)" : "var(--ok)",
+            }}
+          >
+            {lastChange.delta < 0 ? "−" : "+"}
+            {Math.abs(lastChange.delta)}
+          </span>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>
+            {lastChange.before} → {lastChange.after}
+            {lastChange.reason ? ` (${lastChange.reason})` : ""}
+          </span>
+        </div>
+      )}
 
       <div style={{ borderTop: "1px solid var(--border)", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
         <div style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
