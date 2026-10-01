@@ -22,7 +22,7 @@ export function CostPips({ cost }: { cost: Action["cost"] }): React.ReactElement
       <div style={{ display: "flex", gap: "3px" }}>
         {Array.from({ length: count }, (_, i) => (
           <svg key={i} data-testid="cost-pip" width="11" height="11" viewBox="0 0 12 12">
-            <path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="var(--accent-text)" />
+            <path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="var(--action)" />
           </svg>
         ))}
       </div>
@@ -203,9 +203,9 @@ export function ActionCard({
             fontWeight: 600,
             padding: "5px 10px",
             borderRadius: "3px",
-            border: "1px solid var(--border-strong)",
-            background: disabled ? "var(--panel)" : "var(--accent-bg)",
-            color: disabled ? "var(--text-faint)" : "var(--accent-text)",
+            border: `1px solid ${disabled ? "var(--border-strong)" : "var(--action)"}`,
+            background: disabled ? "var(--panel)" : "var(--action)",
+            color: disabled ? "var(--text-faint)" : "var(--action-text)",
             opacity: disabled ? 0.55 : 1,
             cursor: disabled ? "default" : "pointer",
             flexShrink: 0,

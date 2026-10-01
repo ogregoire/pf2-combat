@@ -11,14 +11,13 @@ function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `${n}`;
 }
 
-// The selected Strike's frame. Same values as CombatantRow's ACTIVE_* (kept
-// as literals there too, for the same reason: a handful of colour strings
-// shared by two small components isn't worth a module). Amber reads as "the
-// one in play" throughout the app; yellow means "targeted" and must stay
-// distinct from it.
-const SELECTED_BG = "oklch(0.27 0.030 55)";
-const SELECTED_BORDER = "oklch(0.70 0.15 55)";
-const SELECTED_RING = "0 0 0 1px oklch(0.44 0.08 55)";
+// The selected Strike's frame: the ink --select treatment every plain UI
+// selection uses (tabs, catalogue rows, the MAP rung). Deliberately not the
+// gold of "whose turn it is" nor the magenta of "targeted" — selecting a
+// Strike to read it has no game meaning, so it gets no hue.
+const SELECTED_BG = "var(--select-bg)";
+const SELECTED_BORDER = "var(--select)";
+const SELECTED_RING = "0 0 0 1px var(--select)";
 
 /**
  * A strike's damage line, one entry per damage component. The formula stays
@@ -91,12 +90,8 @@ export function StrikeCard({
         //
         // Selection used to be carried by the background alone: --panel-raised
         // to --panel-high is a 0.025 lightness step at near-zero chroma, which
-        // is hard to spot at a lit table and on a tablet. It now borrows the
-        // same amber "this is the one in play" language the active combatant
-        // uses in CombatantRow (ACTIVE_BG / ACTIVE_BORDER / ACTIVE_RING) —
-        // warm fill, accent border and a ring, so the selected Strike reads at
-        // a glance. Deliberately NOT the yellow of "targeted", which means a
-        // different thing; see CombatantRow's note on keeping the two apart.
+        // is hard to spot at a lit table and on a tablet. It now gets an ink
+        // border and ring (SELECTED_*), so the selected Strike reads at a glance.
         padding: "11px 14px",
         borderRadius: "4px",
         background: selected ? SELECTED_BG : "var(--panel-raised)",
@@ -119,8 +114,8 @@ export function StrikeCard({
                 fontWeight: rung === activeRung ? 600 : 400,
                 padding: rung === activeRung ? "2px 10px" : "3px 8px",
                 borderRadius: "3px",
-                color: rung === activeRung ? "var(--accent-text)" : "var(--text-faint)",
-                background: rung === activeRung ? "var(--accent-bg)" : "var(--bg)",
+                color: rung === activeRung ? "var(--select-text)" : "var(--text-faint)",
+                background: rung === activeRung ? "var(--select)" : "var(--bg)",
                 border: rung === activeRung ? "1px solid var(--border-strong)" : "none",
               }}
             >

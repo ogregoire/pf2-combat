@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 
-const ACTIVE_BORDER = "oklch(0.70 0.15 55)";
-const ACTIVE_BG = "oklch(0.27 0.030 55)";
-const ACTIVE_RING = "0 0 0 1px oklch(0.44 0.08 55)";
-const ACTIVE_INITIATIVE_COLOR = "oklch(0.86 0.12 60)";
+const ACTIVE_BORDER = "var(--turn)";
+const ACTIVE_BG = "var(--turn-bg)";
+const ACTIVE_RING = "0 0 0 1px var(--turn-ring)";
+const ACTIVE_INITIATIVE_COLOR = "var(--turn-text)";
 
 function ChainIcon(): React.ReactElement {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" style={{ flexShrink: 0, color: "oklch(0.52 0.09 200)" }}>
+    <svg width="12" height="12" viewBox="0 0 12 12" style={{ flexShrink: 0, color: "var(--info)" }}>
       <circle cx="3" cy="6" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.2"/>
       <circle cx="9" cy="6" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.2"/>
       <path d="M4.5 6h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
@@ -70,7 +70,7 @@ export function GroupHeader({
         padding: "6px 10px 5px",
         borderRadius: "4px 4px 0 0",
         background: active ? ACTIVE_BG : "var(--info-bg)",
-        borderLeft: `3px solid ${active ? ACTIVE_BORDER : "oklch(0.52 0.09 200)"}`,
+        borderLeft: `3px solid ${active ? ACTIVE_BORDER : "var(--info)"}`,
         boxShadow: active ? ACTIVE_RING : "none",
       }}
     >
@@ -113,7 +113,7 @@ export function GroupHeader({
             fontWeight: 600,
             width: "24px",
             textAlign: "right",
-            color: active ? ACTIVE_INITIATIVE_COLOR : "oklch(0.74 0.04 200)",
+            color: active ? ACTIVE_INITIATIVE_COLOR : "var(--info)",
             background: "transparent",
             border: "none",
             cursor: "pointer",
@@ -166,7 +166,7 @@ export function GroupHeader({
             fontSize: "12px",
             fontWeight: 600,
             letterSpacing: "0.03em",
-            color: "oklch(0.84 0.05 200)",
+            color: "var(--info)",
             background: "transparent",
             border: "none",
             cursor: "pointer",

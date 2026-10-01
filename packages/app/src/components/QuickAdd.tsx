@@ -53,7 +53,7 @@ const dropdownStyle: React.CSSProperties = {
   borderRadius: "4px",
   border: "1px solid var(--border-strong)",
   background: "var(--panel-raised)",
-  boxShadow: "0 6px 18px oklch(0.08 0.01 60 / 0.5)",
+  boxShadow: "0 6px 18px var(--shadow)",
   overflow: "hidden",
 };
 
@@ -64,7 +64,7 @@ function optionStyle(active: boolean): React.CSSProperties {
     gap: "8px",
     padding: "8px 10px",
     cursor: "pointer",
-    background: active ? "var(--accent-bg)" : "transparent",
+    background: active ? "var(--select-bg)" : "transparent",
   };
 }
 
@@ -360,7 +360,7 @@ export function QuickAdd({
                 ) : (
                   <>
                     <span style={{ fontSize: "14px", fontWeight: 600 }}>{option.entry.name}</span>
-                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--accent-text)" }}>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--text-dim)" }}>
                       {option.entry.level}
                     </span>
                     <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>{option.entry.book}</span>

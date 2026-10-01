@@ -30,7 +30,7 @@ export function DefensesPanel({ combatant }: { combatant: Combatant }): React.Re
         value={
           combatant.hp !== null ? (
             <>
-              <span style={{ color: "var(--accent-text)" }}>{combatant.hp.current}</span>{" "}
+              <span>{combatant.hp.current}</span>{" "}
               <span style={{ fontSize: "14px", color: "var(--text-faint)" }}>/ {combatant.hp.max}</span>
             </>
           ) : (

@@ -193,7 +193,7 @@ function Drawer({
 }): React.ReactElement {
   const t = useT();
   return (
-    <div style={{ position: "fixed", inset: 0, background: "oklch(0.08 0.01 60 / 0.6)", display: "flex", justifyContent: "flex-end", zIndex: 50 }}>
+    <div style={{ position: "fixed", inset: 0, background: "var(--scrim)", display: "flex", justifyContent: "flex-end", zIndex: 50 }}>
       <div
         style={{
           width: "min(760px, 100%)",
@@ -295,7 +295,7 @@ function TabBar({
               color: isActive ? "var(--text)" : "var(--text-dim)",
               background: isActive ? "var(--panel-raised)" : "transparent",
               border: "none",
-              borderBottom: `2px solid ${isActive ? "var(--accent)" : "transparent"}`,
+              borderBottom: `2px solid ${isActive ? "var(--select)" : "transparent"}`,
               cursor: "pointer",
             }}
           >
@@ -310,8 +310,8 @@ function TabBar({
                   minWidth: "16px",
                   padding: "1px 5px",
                   borderRadius: "999px",
-                  background: "var(--accent-bg)",
-                  color: "var(--accent-text)",
+                  background: "var(--select)",
+                  color: "var(--select-text)",
                   textAlign: "center",
                 }}
               >

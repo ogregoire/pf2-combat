@@ -1,24 +1,80 @@
+/*
+ * One light, white-based theme.
+ *
+ * Every colour in the app comes from here, and every hue below carries one
+ * meaning and only that meaning, so a glance at the colour tells the GM what
+ * it is about:
+ *
+ *   orange   --action   the action economy: cost pips, actions remaining,
+ *                       the Use button that spends them
+ *   gold     --turn     whose turn it is: the active row/group, Next when it
+ *                       is time to press it, "return to the current turn"
+ *   magenta  --target   the targeted combatant (a ring, so it can stack
+ *                       with --turn on the same row)
+ *   ink      --select   plain UI selection: the open tab, the selected
+ *                       strike or catalogue row, the MAP rung, primary
+ *                       buttons — no game meaning, so no hue
+ *   red      --danger   damage, low HP, over budget, destructive controls
+ *   green    --ok       healing, full HP, the XP award
+ *   teal     --info     initiative-order structure: groups, Delayed,
+ *                       reactions, "slot already passed" notices
+ *   purple   --cond     conditions
+ *   blue     --pc       a player character's row
+ *
+ * Damage-type identity colours live in components/damageTypes.tsx; they are
+ * a labelled categorical palette, not a status.
+ */
 :root {
-  --bg: oklch(0.16 0.012 60);
-  --panel: oklch(0.175 0.012 60);
-  --panel-raised: oklch(0.21 0.013 60);
-  --panel-high: oklch(0.235 0.016 60);
-  --border: oklch(0.30 0.015 60);
-  --border-strong: oklch(0.40 0.03 55);
-  --text: oklch(0.92 0.01 80);
-  --text-dim: oklch(0.72 0.012 75);
-  --text-faint: oklch(0.60 0.012 75);
-  --accent: oklch(0.70 0.15 55);
-  --accent-bg: oklch(0.27 0.030 55);
-  --accent-text: oklch(0.94 0.09 65);
-  --danger: oklch(0.62 0.16 28);
-  --danger-bg: oklch(0.34 0.11 28);
-  --ok: oklch(0.60 0.15 145);
-  --ok-bg: oklch(0.28 0.08 145);
-  --info: oklch(0.72 0.11 200);
-  --info-bg: oklch(0.22 0.025 200);
-  --cond: oklch(0.72 0.07 300);
-  --cond-bg: oklch(0.32 0.07 300);
+  /* Surfaces: white cards on a faintly warm paper ground. */
+  --bg: oklch(0.975 0.005 85);
+  --panel: oklch(0.955 0.007 85);
+  --panel-raised: oklch(1 0 0);
+  --panel-high: oklch(1 0 0);
+  --border: oklch(0.885 0.010 85);
+  --border-strong: oklch(0.74 0.014 80);
+  --ink: oklch(0.24 0.015 60);
+  --text: var(--ink);
+  --text-dim: oklch(0.44 0.015 60);
+  --text-faint: oklch(0.56 0.015 60);
+  --shadow: oklch(0.20 0.015 60 / 0.18);
+  --scrim: oklch(0.20 0.015 60 / 0.40);
+  --hp-track: oklch(0.90 0.008 85);
+
+  /* Action economy — orange. */
+  --action: oklch(0.56 0.17 45);
+  --action-bg: oklch(0.95 0.035 55);
+  --action-text: oklch(0.99 0.005 85);
+  --action-empty: oklch(0.78 0.012 85);
+
+  /* Whose turn it is — gold. */
+  --turn: oklch(0.70 0.15 85);
+  --turn-bg: oklch(0.965 0.045 90);
+  --turn-ring: oklch(0.82 0.10 88);
+  --turn-text: oklch(0.48 0.12 75);
+
+  /* The targeted combatant — magenta ring. */
+  --target: oklch(0.62 0.20 345);
+  --target-bg: oklch(0.955 0.03 345);
+
+  /* UI selection and primary buttons — ink. */
+  --select: var(--ink);
+  --select-bg: oklch(0.925 0.009 85);
+  --select-text: oklch(0.99 0.005 85);
+
+  /* Status. */
+  --danger: oklch(0.50 0.17 25);
+  --danger-bg: oklch(0.955 0.03 25);
+  --danger-border: oklch(0.70 0.12 25);
+  --ok: oklch(0.46 0.13 145);
+  --ok-bg: oklch(0.955 0.035 145);
+  --ok-border: oklch(0.68 0.10 145);
+  --info: oklch(0.44 0.11 200);
+  --info-bg: oklch(0.955 0.02 200);
+  --info-border: oklch(0.70 0.08 200);
+  --cond: oklch(0.42 0.11 300);
+  --cond-bg: oklch(0.955 0.025 300);
+  --pc: oklch(0.52 0.13 240);
+
   --font-display: Spectral, Georgia, serif;
   --font-ui: "IBM Plex Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;

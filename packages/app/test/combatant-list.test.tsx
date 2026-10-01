@@ -957,7 +957,7 @@ describe("CombatantList", () => {
     expect(memberRow.style.borderLeft).toBe("");
 
     const wrapper = memberRow.parentElement!.parentElement as HTMLElement;
-    expect(wrapper.style.borderLeft).toBe("3px solid oklch(0.34 0.04 200)");
+    expect(wrapper.style.borderLeft).toBe("3px solid var(--info)");
   });
 
   it("highlights the active combatant row distinctly from a non-active one", () => {

@@ -11,20 +11,19 @@ import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import type { Combatant } from "../state/types.js";
 
-const HP_TRACK = "oklch(0.28 0.02 30)";
-const GROUP_BG = "oklch(0.205 0.014 200)";
-// Deliberately not the ember/accent hue Main.dc.html uses for "whose turn it
-// is" (ACTIVE_* below) — the GM must tell "active" and "targeted" apart at a
+const HP_TRACK = "var(--hp-track)";
+const GROUP_BG = "var(--info-bg)";
+// Deliberately not the gold --turn hue (ACTIVE_* below) — the GM must tell "active" and "targeted" apart at a
 // glance, and they are frequently different combatants.
-const TARGET_RING = "oklch(0.80 0.15 95)";
+const TARGET_RING = "var(--target)";
 
-// Main.dc.html's active-row treatment: ember border-left, a warmer panel
-// background, a thin ring, and a warmer initiative colour (vs the muted
-// var(--text-dim), which is oklch(0.72 0.012 75)).
-const ACTIVE_BORDER = "oklch(0.70 0.15 55)";
-const ACTIVE_BG = "oklch(0.27 0.030 55)";
-const ACTIVE_RING = "0 0 0 1px oklch(0.44 0.08 55)";
-const ACTIVE_INITIATIVE_COLOR = "oklch(0.86 0.12 60)";
+// The active-row treatment, in the --turn gold from tokens.css: gold
+// border-left, a gold-tinted background, a thin ring, and a gold initiative
+// number (vs the muted var(--text-dim)).
+const ACTIVE_BORDER = "var(--turn)";
+const ACTIVE_BG = "var(--turn-bg)";
+const ACTIVE_RING = "0 0 0 1px var(--turn-ring)";
+const ACTIVE_INITIATIVE_COLOR = "var(--turn-text)";
 
 /** Layers the active-entry ring and the target ring as two concentric
  * shadows rather than letting one replace the other, so a combatant that is
@@ -152,7 +151,7 @@ function hpColor(current: number, max: number): string {
   const ratio = current / max;
   if (ratio >= 1) return "var(--ok)";
   if (ratio <= 0.25) return "var(--danger)";
-  return "var(--accent)";
+  return "var(--text-dim)";
 }
 
 /**
@@ -330,8 +329,8 @@ function StandaloneRow({
   const borderColor = active
     ? ACTIVE_BORDER
     : combatant.kind === "pc"
-      ? "oklch(0.55 0.10 240)"
-      : "oklch(0.38 0.015 60)";
+      ? "var(--pc)"
+      : "var(--border-strong)";
 
   // Dragging is desktop-only in practice (jsdom/touch don't drive native
   // HTML5 drag), and only meaningful once the caller (CombatantList) has

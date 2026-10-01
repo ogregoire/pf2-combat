@@ -163,7 +163,7 @@ describe("EncounterScreen", () => {
     render(<EncounterScreen />);
 
     const next = screen.getByRole("button", { name: /next combatant/i });
-    expect(next.style.background).not.toBe("var(--accent-bg)");
+    expect(next.style.background).not.toBe("var(--turn-bg)");
     expect(screen.getByText("3 actions")).toBeDefined();
 
     // Selecting the ability reveals its Use button; Use is what spends. The
@@ -176,7 +176,7 @@ describe("EncounterScreen", () => {
     await user.click(use);
 
     expect(screen.getByText("0 actions")).toBeDefined();
-    expect(next.style.background).toBe("var(--accent-bg)");
+    expect(next.style.background).toBe("var(--turn-bg)");
   });
 
   it("selects a target by clicking a combatant row and reaches the roll assistant", async () => {

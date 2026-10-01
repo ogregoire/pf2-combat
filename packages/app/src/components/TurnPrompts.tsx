@@ -107,8 +107,8 @@ export function TurnPrompts(): React.ReactElement | null {
                 fontWeight: 600,
                 padding: "1px 6px",
                 borderRadius: "2px",
-                background: "var(--accent-bg)",
-                color: "var(--accent-text)",
+                background: "var(--turn-bg)",
+                color: "var(--turn-text)",
               }}
             >
               {format(t("TO_RESOLVE_BADGE"), { n: startPrompts.length })}

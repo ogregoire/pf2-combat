@@ -27,9 +27,9 @@ export function NextButton({
           width: "100%",
           padding: "16px 12px",
           borderRadius: "5px",
-          border: "1px solid var(--border-strong)",
-          background: prominent ? "var(--accent-bg)" : "var(--panel-raised)",
-          color: prominent ? "var(--accent-text)" : "var(--text)",
+          border: `1px solid ${prominent ? "var(--turn)" : "var(--border-strong)"}`,
+          background: prominent ? "var(--turn-bg)" : "var(--panel-raised)",
+          color: "var(--text)",
           fontWeight: prominent ? 600 : 400,
           cursor: "pointer",
         }}
@@ -37,7 +37,7 @@ export function NextButton({
         {t("NEXT_COMBATANT_BUTTON")}
       </button>
       {unacknowledgedCount > 0 && (
-        <div style={{ textAlign: "center", marginTop: "6px", fontSize: "11.5px", color: "var(--accent-text)" }}>
+        <div style={{ textAlign: "center", marginTop: "6px", fontSize: "11.5px", color: "var(--turn-text)" }}>
           {format(t("UNACKNOWLEDGED_COUNT"), { n: unacknowledgedCount })}
         </div>
       )}

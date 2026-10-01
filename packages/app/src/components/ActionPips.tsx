@@ -2,8 +2,8 @@ import { format, useT } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
 import type { Combatant } from "../state/types.js";
 
-const PIP_FILLED = "oklch(0.80 0.14 60)";
-const PIP_EMPTY_STROKE = "oklch(0.40 0.02 60)";
+const PIP_FILLED = "var(--action)";
+const PIP_EMPTY_STROKE = "var(--action-empty)";
 const BASE_ACTIONS = 3;
 
 /** Derives the action-pool input from the combatant's own conditions —

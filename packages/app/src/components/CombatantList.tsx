@@ -69,8 +69,8 @@ function GroupBuilder({
           padding: "6px 10px",
           borderRadius: "3px",
           border: "1px solid var(--border-strong)",
-          background: "var(--accent-bg)",
-          color: "var(--accent-text)",
+          background: "var(--select)",
+          color: "var(--select-text)",
           cursor: "pointer",
           flexShrink: 0,
         }}
@@ -158,7 +158,7 @@ export function CombatantList({
   const chainIcon = (
     <svg width="12" height="12" viewBox="0 0 12 12" style={{ flexShrink: 0 }}>
       <path d="M3 4a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm-4.5 1.5h3"
-            fill="none" stroke="oklch(0.34 0.04 200)" strokeWidth="1" strokeLinecap="round"/>
+            fill="none" stroke="var(--info)" strokeWidth="1" strokeLinecap="round"/>
     </svg>
   );
 
@@ -229,7 +229,7 @@ export function CombatantList({
                 flexDirection: "column",
                 gap: "3px",
                 paddingLeft: "16px",
-                borderLeft: `3px solid ${isActive ? "oklch(0.70 0.15 55)" : "oklch(0.34 0.04 200)"}`,
+                borderLeft: `3px solid ${isActive ? "var(--turn)" : "var(--info)"}`,
               }}
             >
               {entry.combatantIds.map((id) => (

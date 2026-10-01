@@ -21,15 +21,15 @@ export interface DamageTypeStyle {
 
 /**
  * Physical damage carries no elemental identity, so it keeps the mockup's
- * neutral treatment (its piercing/slashing chips) rather than being given an
- * invented hue. The abstract buckets — precision, and the all/area/splash
+ * neutral, ink-based treatment (its piercing/slashing chips) rather than
+ * being given an invented hue. The abstract buckets — precision, and the all/area/splash
  * pseudo-types the dataset uses for blanket resistances — sit here too.
  */
 const NEUTRAL: DamageTypeStyle = {
-  border: "oklch(0.36 0.015 60)",
-  color: "oklch(0.76 0.012 75)",
-  activeBg: "oklch(0.34 0.03 60)",
-  activeBorder: "oklch(0.56 0.05 60)",
+  border: "var(--border-strong)",
+  color: "var(--text-dim)",
+  activeBg: "var(--select-bg)",
+  activeBorder: "var(--select)",
 };
 
 /**
@@ -38,19 +38,20 @@ const NEUTRAL: DamageTypeStyle = {
  * poison 140 → vitality 170 → sonic 195 → cold 230 → spirit 265 → void 285 →
  * mental 300 → force 320 → unholy 355 → bleed 25.
  *
- * The seven the mockup specifies (none, mental, poison, cold, electricity,
- * fire, piercing, slashing) keep its published values exactly; the rest are
- * built to the same recipe — border ~oklch(0.40 0.07 H), label ~oklch(0.78
- * 0.09 H) — so the row reads as one set.
+ * The mockup's hues (none, mental, poison, cold, electricity, fire, piercing,
+ * slashing) are kept; its dark-theme lightness is not, and every type is
+ * built to the same recipe — border oklch(0.70 0.09 H), label oklch(0.44
+ * 0.12 H), chosen fill oklch(0.93 0.05 H) with a oklch(0.50 0.13 H) border —
+ * so the row reads as one set on the white theme.
  */
 export const DAMAGE_TYPE_STYLE: Record<string, DamageTypeStyle> = {
   // The selector's opt-out, not a damage type: neutral by design, since
   // "None" means the GM is deliberately not applying IWR.
   none: {
-    border: "oklch(0.36 0.015 60)",
-    color: "oklch(0.95 0.01 80)",
-    activeBg: "oklch(0.38 0.03 60)",
-    activeBorder: "oklch(0.56 0.05 60)",
+    border: "var(--border-strong)",
+    color: "var(--text)",
+    activeBg: "var(--select-bg)",
+    activeBorder: "var(--select)",
   },
 
   bludgeoning: NEUTRAL,
@@ -63,88 +64,88 @@ export const DAMAGE_TYPE_STYLE: Record<string, DamageTypeStyle> = {
   "splash-damage": NEUTRAL,
 
   bleed: {
-    border: "oklch(0.40 0.09 25)",
-    color: "oklch(0.74 0.12 25)",
-    activeBg: "oklch(0.30 0.08 25)",
-    activeBorder: "oklch(0.54 0.11 25)",
+    border: "oklch(0.70 0.09 25)",
+    color: "oklch(0.44 0.12 25)",
+    activeBg: "oklch(0.93 0.05 25)",
+    activeBorder: "oklch(0.50 0.13 25)",
   },
   fire: {
-    border: "oklch(0.42 0.08 45)",
-    color: "oklch(0.78 0.10 45)",
-    activeBg: "oklch(0.30 0.07 45)",
-    activeBorder: "oklch(0.56 0.10 45)",
+    border: "oklch(0.70 0.09 45)",
+    color: "oklch(0.44 0.12 45)",
+    activeBg: "oklch(0.93 0.05 45)",
+    activeBorder: "oklch(0.50 0.13 45)",
   },
   holy: {
-    border: "oklch(0.44 0.06 85)",
-    color: "oklch(0.86 0.08 85)",
-    activeBg: "oklch(0.32 0.05 85)",
-    activeBorder: "oklch(0.58 0.08 85)",
+    border: "oklch(0.70 0.09 85)",
+    color: "oklch(0.44 0.12 85)",
+    activeBg: "oklch(0.93 0.05 85)",
+    activeBorder: "oklch(0.50 0.13 85)",
   },
   electricity: {
-    border: "oklch(0.42 0.07 95)",
-    color: "oklch(0.80 0.10 95)",
-    activeBg: "oklch(0.30 0.06 95)",
-    activeBorder: "oklch(0.56 0.09 95)",
+    border: "oklch(0.70 0.09 95)",
+    color: "oklch(0.44 0.12 95)",
+    activeBg: "oklch(0.93 0.05 95)",
+    activeBorder: "oklch(0.50 0.13 95)",
   },
   acid: {
-    border: "oklch(0.40 0.08 120)",
-    color: "oklch(0.79 0.11 120)",
-    activeBg: "oklch(0.29 0.07 120)",
-    activeBorder: "oklch(0.54 0.10 120)",
+    border: "oklch(0.70 0.09 120)",
+    color: "oklch(0.44 0.12 120)",
+    activeBg: "oklch(0.93 0.05 120)",
+    activeBorder: "oklch(0.50 0.13 120)",
   },
   poison: {
-    border: "oklch(0.40 0.07 140)",
-    color: "oklch(0.78 0.09 140)",
-    activeBg: "oklch(0.29 0.06 140)",
-    activeBorder: "oklch(0.54 0.09 140)",
+    border: "oklch(0.70 0.09 140)",
+    color: "oklch(0.44 0.12 140)",
+    activeBg: "oklch(0.93 0.05 140)",
+    activeBorder: "oklch(0.50 0.13 140)",
   },
   vitality: {
-    border: "oklch(0.40 0.06 170)",
-    color: "oklch(0.80 0.08 170)",
-    activeBg: "oklch(0.29 0.05 170)",
-    activeBorder: "oklch(0.54 0.08 170)",
+    border: "oklch(0.70 0.09 170)",
+    color: "oklch(0.44 0.12 170)",
+    activeBg: "oklch(0.93 0.05 170)",
+    activeBorder: "oklch(0.50 0.13 170)",
   },
   sonic: {
-    border: "oklch(0.40 0.06 195)",
-    color: "oklch(0.79 0.08 195)",
-    activeBg: "oklch(0.29 0.05 195)",
-    activeBorder: "oklch(0.54 0.08 195)",
+    border: "oklch(0.70 0.09 195)",
+    color: "oklch(0.44 0.12 195)",
+    activeBg: "oklch(0.93 0.05 195)",
+    activeBorder: "oklch(0.50 0.13 195)",
   },
   cold: {
-    border: "oklch(0.36 0.05 230)",
-    color: "oklch(0.76 0.07 230)",
-    activeBg: "oklch(0.28 0.05 230)",
-    activeBorder: "oklch(0.52 0.07 230)",
+    border: "oklch(0.70 0.09 230)",
+    color: "oklch(0.44 0.12 230)",
+    activeBg: "oklch(0.93 0.05 230)",
+    activeBorder: "oklch(0.50 0.13 230)",
   },
   spirit: {
-    border: "oklch(0.40 0.06 265)",
-    color: "oklch(0.78 0.08 265)",
-    activeBg: "oklch(0.29 0.06 265)",
-    activeBorder: "oklch(0.54 0.08 265)",
+    border: "oklch(0.70 0.09 265)",
+    color: "oklch(0.44 0.12 265)",
+    activeBg: "oklch(0.93 0.05 265)",
+    activeBorder: "oklch(0.50 0.13 265)",
   },
   void: {
-    border: "oklch(0.36 0.05 285)",
-    color: "oklch(0.70 0.06 285)",
-    activeBg: "oklch(0.26 0.05 285)",
-    activeBorder: "oklch(0.50 0.07 285)",
+    border: "oklch(0.70 0.09 285)",
+    color: "oklch(0.44 0.12 285)",
+    activeBg: "oklch(0.93 0.05 285)",
+    activeBorder: "oklch(0.50 0.13 285)",
   },
   mental: {
-    border: "oklch(0.40 0.06 300)",
-    color: "oklch(0.80 0.07 300)",
-    activeBg: "oklch(0.30 0.06 300)",
-    activeBorder: "oklch(0.54 0.08 300)",
+    border: "oklch(0.70 0.09 300)",
+    color: "oklch(0.44 0.12 300)",
+    activeBg: "oklch(0.93 0.05 300)",
+    activeBorder: "oklch(0.50 0.13 300)",
   },
   force: {
-    border: "oklch(0.42 0.08 320)",
-    color: "oklch(0.80 0.10 320)",
-    activeBg: "oklch(0.31 0.07 320)",
-    activeBorder: "oklch(0.56 0.09 320)",
+    border: "oklch(0.70 0.09 320)",
+    color: "oklch(0.44 0.12 320)",
+    activeBg: "oklch(0.93 0.05 320)",
+    activeBorder: "oklch(0.50 0.13 320)",
   },
   unholy: {
-    border: "oklch(0.40 0.09 355)",
-    color: "oklch(0.76 0.11 355)",
-    activeBg: "oklch(0.30 0.08 355)",
-    activeBorder: "oklch(0.54 0.10 355)",
+    border: "oklch(0.70 0.09 355)",
+    color: "oklch(0.44 0.12 355)",
+    activeBg: "oklch(0.93 0.05 355)",
+    activeBorder: "oklch(0.50 0.13 355)",
   },
 };
 

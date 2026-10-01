@@ -33,7 +33,7 @@ export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.
         <h1 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "28px", fontWeight: 600 }}>
           {name}
         </h1>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "var(--accent-text)" }}>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "var(--text-dim)" }}>
           {levelLabel(combatant, t)}
         </span>
       </div>

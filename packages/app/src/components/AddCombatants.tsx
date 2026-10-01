@@ -89,8 +89,8 @@ const rowStyle = (selected: boolean): React.CSSProperties => ({
   gap: "16px",
   padding: "13px 16px",
   borderRadius: "4px",
-  background: selected ? "var(--accent-bg)" : "var(--panel)",
-  border: `1px solid ${selected ? "var(--border-strong)" : "var(--border)"}`,
+  background: selected ? "var(--select-bg)" : "var(--panel)",
+  border: `1px solid ${selected ? "var(--select)" : "var(--border)"}`,
 });
 
 const addButtonStyle: React.CSSProperties = {
@@ -291,7 +291,7 @@ export function AddCombatants({
               <div style={{ width: "210px" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
                   <span style={{ fontSize: "15px", fontWeight: 600 }}>{entry.name}</span>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--accent-text)" }}>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>
                     {entry.level}
                   </span>
                 </div>
@@ -502,8 +502,8 @@ export function AddCombatants({
               padding: "10px 22px",
               borderRadius: "4px",
               border: "1px solid var(--border-strong)",
-              background: "var(--accent-bg)",
-              color: "var(--accent-text)",
+              background: "var(--select)",
+              color: "var(--select-text)",
               cursor: creatureLoading ? "default" : "pointer",
               opacity: creatureLoading ? 0.5 : 1,
             }}

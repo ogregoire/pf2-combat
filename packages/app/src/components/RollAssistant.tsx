@@ -110,7 +110,7 @@ export function RollAssistant({
       >
         <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>{t("TARGET_LABEL_CAPS")}</span>
         <span style={{ fontSize: "14px", fontWeight: 600 }}>{target.name}</span>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--accent-text)" }}>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>
           {target.ac !== null ? `${t("LABEL_AC")} ${target.ac}` : t("AC_UNKNOWN")}
         </span>
         <div style={{ flexGrow: 1 }} />
@@ -165,7 +165,7 @@ export function RollAssistant({
                     </span>
                   </div>
                 ))}
-                <div style={{ display: "flex", gap: "10px", padding: "7px 0 0", marginTop: "3px", borderTop: "1px solid var(--border)", color: "var(--accent-text)", fontSize: "15px" }} title={modifierBreakdown(resolution.ledger.applied)}>
+                <div style={{ display: "flex", gap: "10px", padding: "7px 0 0", marginTop: "3px", borderTop: "1px solid var(--border)", color: "var(--text)", fontSize: "15px" }} title={modifierBreakdown(resolution.ledger.applied)}>
                   <span style={{ width: "46px", textAlign: "right", fontWeight: 600 }}>{formatSigned(resolution.modifier)}</span>
                   <span style={{ fontSize: "12.5px", alignSelf: "center", color: "var(--text-dim)" }}>{t("TOTAL_ATTACK_MODIFIER")}</span>
                 </div>
@@ -174,7 +174,7 @@ export function RollAssistant({
               <div style={{ marginTop: "14px", padding: "13px 15px", borderRadius: "4px", background: "var(--bg)", border: "1px solid var(--border-strong)" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "10px" }}>
                   <span style={{ fontSize: "11px", letterSpacing: "0.08em", color: "var(--text-faint)" }}>{t("ROLL_LABEL")}</span>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "26px", fontWeight: 600, color: "var(--accent-text)" }}>{rollLine}</span>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "26px", fontWeight: 600, color: "var(--text)" }}>{rollLine}</span>
                   <span
                     style={{ fontSize: "12px", color: "var(--text-faint)" }}
                     title={resolution.acLedger.applied.length > 0 ? modifierBreakdown(resolution.acLedger.applied) : t("BASE_AC_TOOLTIP")}
@@ -236,8 +236,8 @@ export function RollAssistant({
                     padding: "9px 16px",
                     borderRadius: "4px",
                     border: "1px solid var(--border-strong)",
-                    background: "var(--accent-bg)",
-                    color: "var(--accent-text)",
+                    background: "var(--select)",
+                    color: "var(--select-text)",
                     cursor: "pointer",
                   }}
                 >

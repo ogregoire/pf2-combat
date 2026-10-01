@@ -147,8 +147,8 @@ function DelayControls(): React.ReactElement | null {
             })}
             style={{
               ...smallButton,
-              background: canReturn ? "var(--accent-bg)" : "var(--panel-raised)",
-              color: canReturn ? "var(--accent-text)" : "var(--text-faint)",
+              background: canReturn ? "var(--turn-bg)" : "var(--panel-raised)",
+              color: canReturn ? "var(--turn-text)" : "var(--text-faint)",
               cursor: canReturn ? "pointer" : "default",
             }}
           >
