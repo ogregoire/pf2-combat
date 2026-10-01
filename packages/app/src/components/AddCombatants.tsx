@@ -251,16 +251,13 @@ export function AddCombatants({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-      <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>
-        <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "22px", fontWeight: 600 }}>
-          {t("ADD_COMBATANTS_TITLE")}
-        </h2>
-        {running && (
-          <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>
-            {format(t("ENCOUNTER_RUNNING_ROUND"), { round })}
-          </span>
-        )}
-      </div>
+      {/* The dialog's own header already carries the title; only the
+         "encounter running" note is this panel's to show. */}
+      {running && (
+        <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>
+          {format(t("ENCOUNTER_RUNNING_ROUND"), { round })}
+        </span>
+      )}
 
       <input
         aria-label={t("SEARCH_CREATURES_ARIA")}

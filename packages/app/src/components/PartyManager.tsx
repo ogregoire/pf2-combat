@@ -85,10 +85,15 @@ const captionStyle: React.CSSProperties = {
   color: "var(--text-faint)",
 };
 
+/** Display button and input share one height, so swapping one for the
+ * other — the AC shield for a text box, say — never moves the row. */
+const FIELD_HEIGHT = "32px";
+
 const inputStyle: React.CSSProperties = {
   fontFamily: "var(--font-mono)",
   fontSize: "14px",
-  padding: "4px 6px",
+  height: FIELD_HEIGHT,
+  padding: "0 6px",
   borderRadius: "3px",
   border: "1px solid var(--select)",
   background: "var(--panel-raised)",
@@ -112,6 +117,7 @@ const iconButtonStyle: React.CSSProperties = {
   cursor: "pointer",
   flexShrink: 0,
   alignSelf: "center",
+  justifySelf: "center",
 };
 
 /** Values are monospaced and right-aligned in a fixed number of character
@@ -137,7 +143,8 @@ const displayButtonStyle: React.CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
   gap: "6px",
-  padding: "4px 6px",
+  height: FIELD_HEIGHT,
+  padding: "0 6px",
   margin: 0,
   borderRadius: "3px",
   border: "1px solid transparent",
@@ -267,16 +274,21 @@ function TrashIcon(): React.ReactElement {
 function PlayerRow({
   player: p,
   narrow,
+  startEditingName,
   onChange,
   onRemove,
 }: {
   player: Player;
   narrow: boolean;
+  /** A row for a character just added opens its Name field at once, so
+   * "Add character" leaves the GM typing the name rather than hunting for
+   * the new row. */
+  startEditingName: boolean;
   onChange: (patch: Partial<Player>) => void;
   onRemove: () => void;
 }): React.ReactElement {
   const t = useT();
-  const [editing, setEditing] = useState<FieldKey | null>(null);
+  const [editing, setEditing] = useState<FieldKey | null>(startEditingName ? "name" : null);
 
   const save = (key: "fortitude" | "reflex" | "will", label: string): React.ReactElement => (
     <InlineField
@@ -310,7 +322,11 @@ function PlayerRow({
         alignItems: "center",
         columnGap: "10px",
         rowGap: "2px",
-        padding: "6px 8px",
+        // No horizontal padding: a subgrid's padding eats into its first
+        // and last tracks, which squeezed the bin against the edge. The
+        // icon columns are 46px — 30px button plus 8px air each side — so
+        // the toggle and the bin sit at the same distance from their edges.
+        padding: "6px 0",
         borderRadius: "4px",
         border: "1px solid var(--border)",
         background: "var(--panel)",
@@ -359,7 +375,7 @@ function PlayerRow({
           editing={editing}
           setEditing={setEditing}
           inputWidth="44px"
-          display={<AcShield ac={p.ac} size={26} />}
+          display={<AcShield ac={p.ac} size={22} />}
         />
 
         <InlineField
@@ -437,20 +453,57 @@ export function PartyManager(): React.ReactElement {
   const setPlayers = useEncounter((s) => s.setPlayers);
   const clearPlayers = useEncounter((s) => s.clearPlayers);
   const narrow = useMediaQuery(NARROW_LAYOUT_QUERY);
+  const [newId, setNewId] = useState<string | null>(null);
 
   const update = (id: string, patch: Partial<Player>): void => {
     setPlayers(players.map((p) => (p.id === id ? { ...p, ...patch } : p)));
   };
 
+  const addCharacter = (): void => {
+    const added = emptyPlayer();
+    setNewId(added.id);
+    setPlayers([...players, added]);
+  };
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "20px", fontWeight: 600 }}>
-          {t("PARTY_TITLE")}
-        </h2>
+    // Fills the drawer's column and lets the roster, not the drawer, be the
+    // part that scrolls when the party outgrows the screen; the footer's
+    // Add/Clear controls stay put beneath it.
+    <div style={{ display: "flex", flexDirection: "column", gap: "12px", flex: "1 1 auto", minHeight: 0 }}>
+      {/* One grid for the whole roster, so its columns — toggle, name, AC,
+         level, HP, saves, bin — are sized once across every row and the
+         values line up down the list. Each row is a subgrid of it. */}
+      <div
+        data-testid="roster"
+        style={{
+          display: "grid",
+          gridTemplateColumns: narrow
+            ? "46px minmax(0, 1fr) auto auto auto 46px"
+            : "46px minmax(140px, 1fr) auto auto auto auto 46px",
+          rowGap: "8px",
+          alignItems: "center",
+          alignContent: "start",
+          overflowY: "auto",
+          minHeight: 0,
+          flex: "1 1 auto",
+        }}
+      >
+        {players.map((p) => (
+          <PlayerRow
+            key={p.id}
+            player={p}
+            narrow={narrow}
+            startEditingName={p.id === newId}
+            onChange={(patch) => update(p.id, patch)}
+            onRemove={() => setPlayers(players.filter((other) => other.id !== p.id))}
+          />
+        ))}
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
         <button
           type="button"
-          onClick={() => setPlayers([...players, emptyPlayer()])}
+          onClick={addCharacter}
           style={{
             fontFamily: "inherit",
             fontSize: "12.5px",
@@ -470,7 +523,7 @@ export function PartyManager(): React.ReactElement {
         {/* Empties the roster, and — since a cleared roster and a PC still
            sitting in the initiative order would disagree about who's
            playing — also removes any `kind: "pc"` combatant already in the
-           encounter (see clearPlayers in the store). */}
+           encounter (see clearPlayers in the store). Asks first, inline. */}
         <ConfirmButton
           label={t("CLEAR_PLAYERS_LABEL")}
           confirmMessage={format(t("CLEAR_PLAYERS_CONFIRM"), {
@@ -479,32 +532,8 @@ export function PartyManager(): React.ReactElement {
           })}
           onConfirm={clearPlayers}
           disabled={players.length === 0}
+          tone="danger"
         />
-      </div>
-
-      {/* One grid for the whole roster, so its columns — toggle, name, AC,
-         level, HP, saves, bin — are sized once across every row and the
-         values line up down the list. Each row is a subgrid of it. */}
-      <div
-        data-testid="roster"
-        style={{
-          display: "grid",
-          gridTemplateColumns: narrow
-            ? "30px minmax(0, 1fr) auto auto auto 30px"
-            : "30px minmax(140px, 1fr) auto auto auto auto 30px",
-          rowGap: "8px",
-          alignItems: "center",
-        }}
-      >
-        {players.map((p) => (
-          <PlayerRow
-            key={p.id}
-            player={p}
-            narrow={narrow}
-            onChange={(patch) => update(p.id, patch)}
-            onRemove={() => setPlayers(players.filter((other) => other.id !== p.id))}
-          />
-        ))}
       </div>
     </div>
   );

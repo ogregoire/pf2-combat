@@ -178,10 +178,12 @@ const headerButtonStyle: React.CSSProperties = {
   cursor: "pointer",
 };
 
-/** A right-anchored drawer over the whole screen, used for `<AddCombatants>`
- * and `<PartyManager>` — both are "supporting screens" per the design doc,
- * not panes of their own, so they surface on demand rather than taking
- * permanent space from the three-pane layout the mockup specifies. */
+/** A centred modal over the whole screen, used for `<AddCombatants>` and
+ * `<PartyManager>` — both are "supporting screens" per the design doc, not
+ * panes of their own, so they surface on demand rather than taking
+ * permanent space from the three-pane layout the mockup specifies. The
+ * panel itself does not scroll: it is a column, and whichever child wants
+ * to scroll (the roster, the catalogue) takes `flex: 1; minHeight: 0`. */
 function Drawer({
   title,
   onClose,
@@ -199,26 +201,50 @@ function Drawer({
     <div
       data-testid="drawer-scrim"
       onClick={onClose}
-      style={{ position: "fixed", inset: 0, background: "var(--scrim)", display: "flex", justifyContent: "flex-end", zIndex: 50 }}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "var(--scrim)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "24px",
+        zIndex: 50,
+      }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
           width: "min(760px, 100%)",
-          height: "100%",
+          maxHeight: "100%",
           background: "var(--bg)",
-          borderLeft: "1px solid var(--border)",
+          border: "1px solid var(--border-strong)",
+          borderRadius: "8px",
+          boxShadow: "0 16px 48px var(--shadow)",
           padding: "20px 24px",
-          overflowY: "auto",
           display: "flex",
           flexDirection: "column",
           gap: "16px",
+          minHeight: 0,
+          // Fallback for a child that has no scroll region of its own (the
+          // catalogue drawer): the panel scrolls. A child that does (the
+          // roster) shrinks to fit instead, and scrolls inside.
+          overflowY: "auto",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
           <span style={{ fontFamily: "var(--font-display)", fontSize: "18px", fontWeight: 600 }}>{title}</span>
-          <button type="button" aria-label={format(t("CLOSE_NAME_ARIA"), { name: title })} onClick={onClose} style={headerButtonStyle}>
-            {t("LABEL_CLOSE")}
+          <button
+            type="button"
+            aria-label={format(t("CLOSE_NAME_ARIA"), { name: title })}
+            title={t("LABEL_CLOSE")}
+            onClick={onClose}
+            style={{ ...headerButtonStyle, display: "inline-flex", alignItems: "center", justifyContent: "center", width: "28px", height: "28px", padding: 0 }}
+          >
+            {/* Two perpendicular strokes: a plain × with right angles, not a glyph. */}
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+              <path d="M2 2l10 10M12 2L2 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
           </button>
         </div>
         {children}

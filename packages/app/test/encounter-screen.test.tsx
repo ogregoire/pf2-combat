@@ -323,8 +323,8 @@ describe("drawer dismissal", () => {
     await user.click(screen.getByRole("button", { name: "Party" }));
     expect(screen.getByRole("button", { name: "Close Party" })).toBeDefined();
 
-    // Inside: the drawer's own heading. Nothing happens.
-    await user.click(screen.getByRole("heading", { name: "Party" }));
+    // Inside: the drawer's own title. Nothing happens.
+    await user.click(screen.getByText("Party", { selector: "span" }));
     expect(screen.getByRole("button", { name: "Close Party" })).toBeDefined();
 
     // Outside: the scrim itself.

@@ -236,8 +236,8 @@ describe("PartyManager", () => {
   it("captures AC and all three saves for a character, walking the fields with Tab", async () => {
     const user = userEvent.setup();
     render(<PartyManager />);
+    // Add character opens the new row's Name field itself; typing starts there.
     await user.click(screen.getByRole("button", { name: /add character/i }));
-    await user.click(screen.getByRole("button", { name: "Name" }));
     await user.keyboard("Valeria{Tab}21{Tab}4{Tab}{Tab}10{Tab}12{Tab}9");
 
     const player = useEncounter.getState().players[0]!;
@@ -251,8 +251,7 @@ describe("PartyManager", () => {
     const user = userEvent.setup();
     render(<PartyManager />);
     await user.click(screen.getByRole("button", { name: /add character/i }));
-    await user.click(screen.getByRole("button", { name: "Name" }));
-    await user.type(screen.getByRole("textbox", { name: "Name" }), "Kesten");
+    await user.keyboard("Kesten{Escape}");
     await user.click(screen.getByRole("button", { name: "HP" }));
     await user.type(screen.getByRole("textbox", { name: "HP" }), "37");
 

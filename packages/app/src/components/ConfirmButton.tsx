@@ -14,11 +14,16 @@ export function ConfirmButton({
   confirmMessage,
   onConfirm,
   disabled = false,
+  tone = "quiet",
 }: {
   label: string;
   confirmMessage: string;
   onConfirm: () => void;
   disabled?: boolean;
+  /** "danger" draws the resting button in red, for a control that sits on
+   * its own and must read as destructive before it is pressed; "quiet"
+   * (the default) is the muted look the turn manager's footer uses. */
+  tone?: "quiet" | "danger";
 }): React.ReactElement {
   const t = useT();
   const [confirming, setConfirming] = useState(false);
@@ -77,9 +82,10 @@ export function ConfirmButton({
         fontSize: "12px",
         padding: "5px 10px",
         borderRadius: "3px",
-        border: "1px solid var(--border)",
-        background: "var(--panel-raised)",
-        color: disabled ? "var(--text-faint)" : "var(--text-dim)",
+        border: `1px solid ${tone === "danger" && !disabled ? "var(--danger-border)" : "var(--border)"}`,
+        background: tone === "danger" && !disabled ? "var(--danger-bg)" : "var(--panel-raised)",
+        color: disabled ? "var(--text-faint)" : tone === "danger" ? "var(--danger)" : "var(--text-dim)",
+        fontWeight: tone === "danger" ? 600 : 400,
         cursor: disabled ? "default" : "pointer",
       }}
     >

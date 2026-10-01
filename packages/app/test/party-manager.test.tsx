@@ -187,6 +187,38 @@ describe("PartyManager row", () => {
     }
   });
 
+  it("opens the new character's Name field as soon as it is added", async () => {
+    const user = userEvent.setup();
+    render(<PartyManager />);
+    await user.click(screen.getByRole("button", { name: /add character/i }));
+    const name = screen.getByRole("textbox", { name: "Name" });
+    expect(document.activeElement).toBe(name);
+    await user.keyboard("Kesten");
+    expect(useEncounter.getState().players[0]!.name).toBe("Kesten");
+  });
+
+  it("keeps the row the same height whether the AC shows as a shield or an input", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([player()]);
+    render(<PartyManager />);
+    const shieldButton = screen.getByRole("button", { name: "AC" });
+    expect(shieldButton.style.height).toBe("32px");
+    await user.click(shieldButton);
+    expect(screen.getByRole("textbox", { name: "AC" }).style.height).toBe("32px");
+  });
+
+  it("scrolls the roster, not the drawer, with Add and Clear in a footer beneath it", () => {
+    useEncounter.getState().setPlayers([player()]);
+    render(<PartyManager />);
+    const roster = screen.getByTestId("roster");
+    expect(roster.style.overflowY).toBe("auto");
+    const add = screen.getByRole("button", { name: /add character/i });
+    const clear = screen.getByRole("button", { name: /clear characters/i });
+    expect(add.parentElement).toBe(clear.parentElement);
+    expect(roster.nextElementSibling).toBe(add.parentElement);
+    expect(clear.style.color).toBe("var(--danger)");
+  });
+
   it("removes the character from the bin", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([player()]);
