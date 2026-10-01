@@ -210,9 +210,10 @@ describe("EncounterScreen", () => {
 
     expect(screen.queryByText(/select a target/i)).toBeNull();
     expect(screen.getByText("1d20 + 8")).toBeDefined();
-    // Exact match: the roll box also has a "vs AC 17" span, and Bandit's own
-    // list row (a different pane) reads "AC 17" too.
-    expect(within(screen.getByTestId("active-combatant")).getByText("AC 17")).toBeDefined();
+    // The target box draws the AC as a number in a shield (AcShield), whose
+    // accessible name is the localised "AC 17" — the text itself appears
+    // only as the roll box's "vs AC 17" and in Bandit's own list row.
+    expect(within(screen.getByTestId("active-combatant")).getByRole("img", { name: "AC 17" })).toBeDefined();
 
     // Clicking the same row again clears the target.
     await user.click(list.getByText("Bandit"));

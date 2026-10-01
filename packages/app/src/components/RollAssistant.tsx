@@ -4,6 +4,7 @@ import { degreeTotalRanges, type Degree } from "../rules/degrees.js";
 import { resolveStrike } from "../rules/strike.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
+import { AcShield } from "./AcShield.js";
 
 function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `−${Math.abs(n)}`;
@@ -110,9 +111,11 @@ export function RollAssistant({
       >
         <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>{t("TARGET_LABEL_CAPS")}</span>
         <span style={{ fontSize: "14px", fontWeight: 600 }}>{target.name}</span>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>
-          {target.ac !== null ? `${t("LABEL_AC")} ${target.ac}` : t("AC_UNKNOWN")}
-        </span>
+        {target.ac !== null ? (
+          <AcShield ac={target.ac} size={24} />
+        ) : (
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>{t("AC_UNKNOWN")}</span>
+        )}
         <div style={{ flexGrow: 1 }} />
         <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>{t("RETARGET_HINT")}</span>
       </div>
