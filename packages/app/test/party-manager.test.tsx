@@ -3,13 +3,14 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { PartyManager } from "../src/components/PartyManager.js";
 import { useEncounter } from "../src/state/store.js";
+import type { Player } from "../src/state/types.js";
 
-describe("PartyManager clear players", () => {
+describe("PartyManager clear characters", () => {
   beforeEach(() => useEncounter.getState().reset());
 
   it("has nothing to clear with an empty roster", () => {
     render(<PartyManager />);
-    expect(screen.getByRole("button", { name: /clear players/i }).hasAttribute("disabled")).toBe(true);
+    expect(screen.getByRole("button", { name: /clear characters/i }).hasAttribute("disabled")).toBe(true);
   });
 
   it("asks for confirmation naming the player count before clearing", async () => {
@@ -20,8 +21,8 @@ describe("PartyManager clear players", () => {
     ]);
     render(<PartyManager />);
 
-    await user.click(screen.getByRole("button", { name: /clear players/i }));
-    expect(screen.getByText(/clear 2 players/i)).toBeDefined();
+    await user.click(screen.getByRole("button", { name: /clear characters/i }));
+    expect(screen.getByText(/clear 2 player characters/i)).toBeDefined();
     expect(useEncounter.getState().players).toHaveLength(2); // not yet cleared
 
     await user.click(screen.getByRole("button", { name: /confirm/i }));
@@ -35,10 +36,10 @@ describe("PartyManager clear players", () => {
     ]);
     render(<PartyManager />);
 
-    await user.click(screen.getByRole("button", { name: /clear players/i }));
+    await user.click(screen.getByRole("button", { name: /clear characters/i }));
     await user.click(screen.getByRole("button", { name: /cancel/i }));
     expect(useEncounter.getState().players).toHaveLength(1);
-    expect(screen.queryByText(/clear 1 player/i)).toBeNull();
+    expect(screen.queryByText(/clear 1 player character\?/i)).toBeNull();
   });
 
   it("also removes any of those players already sitting in the initiative order", async () => {
@@ -52,105 +53,106 @@ describe("PartyManager clear players", () => {
     );
     render(<PartyManager />);
 
-    await user.click(screen.getByRole("button", { name: /clear players/i }));
+    await user.click(screen.getByRole("button", { name: /clear characters/i }));
     await user.click(screen.getByRole("button", { name: /confirm/i }));
 
     expect(useEncounter.getState().encounter.combatants[pcId]).toBeUndefined();
   });
 });
 
-/**
- * The roster is `Player.initiativeModifier`'s only writable home: the row
- * popover only ever shows it as a reminder beside the initiative field, and
- * never writes it back (that field commits exactly what's typed, unmodified
- * — see RowPopover.tsx's commitInitiative). A GM who fat-fingered +50 had no
- * way back short of deleting the player and rebuilding them. The roster is
- * where a player's permanent numbers live, so the correction belongs here,
- * beside AC and the saves — the modifier only, not the per-fight initiative
- * roll (that stays in Quick add and the row popover).
- */
-describe("PartyManager initiative modifier", () => {
+describe("PartyManager row", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  const player = (initiativeModifier: number | null) => ({
-    id: "player1", name: "Valeria", level: 4, ac: 21,
-    saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier,
+  const player = (): Player => ({
+    id: "player1", name: "Valeria", level: 4, ac: 21, hp: 38,
+    saves: { fortitude: 10, reflex: 12, will: 9 }, present: true, initiativeModifier: null,
   });
-  const modifierOf = (): number | null => useEncounter.getState().players[0]!.initiativeModifier;
 
-  it("shows the saved modifier so the GM can see what was entered", () => {
-    useEncounter.getState().setPlayers([player(5)]);
+  it("shows every value as text, with no input open, until a field is clicked", () => {
+    useEncounter.getState().setPlayers([player()]);
     render(<PartyManager />);
-    expect((screen.getByLabelText("Initiative modifier") as HTMLInputElement).value).toBe("5");
+    expect(screen.queryByRole("textbox")).toBeNull();
+    expect(screen.getByText("Valeria")).toBeDefined();
+    expect(screen.getByRole("img", { name: "AC 21" })).toBeDefined();
+    expect(screen.getByText("+10")).toBeDefined();
+    expect(screen.getByText("+12")).toBeDefined();
+    expect(screen.getByText("+9")).toBeDefined();
   });
 
-  // The other half of the null/0 distinction: a stored 0 is a real +0 and
-  // must read back as "0". Blanking it (which is what the sibling fields do
-  // with a 0, to keep a fresh player's inputs empty) would show the same
-  // thing as "unknown" and invite the GM to retype a value they already set.
-  it("shows a stored +0 as 0, not as an empty (unknown) field", () => {
-    useEncounter.getState().setPlayers([player(0)]);
-    render(<PartyManager />);
-    expect((screen.getByLabelText("Initiative modifier") as HTMLInputElement).value).toBe("0");
-  });
-
-  it("corrects a fat-fingered modifier", async () => {
+  it("opens one input on click, edits it, and closes it on Escape", async () => {
     const user = userEvent.setup();
-    useEncounter.getState().setPlayers([player(50)]);
+    useEncounter.getState().setPlayers([player()]);
     render(<PartyManager />);
 
-    const field = screen.getByLabelText("Initiative modifier");
+    await user.click(screen.getByRole("button", { name: "AC" }));
+    const field = screen.getByRole("textbox", { name: "AC" });
+    expect(screen.getAllByRole("textbox")).toHaveLength(1);
     await user.clear(field);
-    await user.type(field, "5");
+    await user.type(field, "23");
+    expect(useEncounter.getState().players[0]!.ac).toBe(23);
 
-    expect(modifierOf()).toBe(5);
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("textbox")).toBeNull();
+    expect(screen.getByRole("img", { name: "AC 23" })).toBeDefined();
   });
 
-  it("captures a modifier for a player who has none yet", async () => {
+  it("moves to the next field on Enter and back on Shift+Tab", async () => {
     const user = userEvent.setup();
-    useEncounter.getState().setPlayers([player(null)]);
+    useEncounter.getState().setPlayers([player()]);
     render(<PartyManager />);
-    expect((screen.getByLabelText("Initiative modifier") as HTMLInputElement).value).toBe("");
 
-    await user.type(screen.getByLabelText("Initiative modifier"), "7");
-
-    expect(modifierOf()).toBe(7);
+    await user.click(screen.getByRole("button", { name: "Level" }));
+    await user.keyboard("{Enter}");
+    expect(screen.getByRole("textbox", { name: "HP" })).toBeDefined();
+    await user.keyboard("{Shift>}{Tab}{/Shift}");
+    expect(screen.getByRole("textbox", { name: "Level" })).toBeDefined();
   });
 
-  // Unlike the other numeric fields, blank here means "unknown", not 0 —
-  // same distinction HP already makes. A 0 would be a real +0 modifier and
-  // would show as one in the row popover's reminder, which is exactly the
-  // false signal this null/0 distinction exists to avoid.
-  it("treats a cleared field as unknown again, not as +0", async () => {
+  it("closes the last field on Enter instead of wrapping around", async () => {
     const user = userEvent.setup();
-    useEncounter.getState().setPlayers([player(5)]);
+    useEncounter.getState().setPlayers([player()]);
     render(<PartyManager />);
 
-    await user.clear(screen.getByLabelText("Initiative modifier"));
-
-    expect(modifierOf()).toBeNull();
+    await user.click(screen.getByRole("button", { name: "Will" }));
+    await user.keyboard("{Enter}");
+    expect(screen.queryByRole("textbox")).toBeNull();
   });
 
-  // jsdom does no layout, so this pins the two declarations rather than the
-  // outcome — but the outcome is what they exist for: the eighth field took
-  // the row past the width of the drawer it lives in, and with Name free to
-  // shrink to 0 it collapsed to a few pixels with its label overlapping
-  // LEVEL's. Caught in a browser; jsdom saw nothing wrong.
-  it("wraps the player row rather than shrinking the name field to nothing", () => {
-    useEncounter.getState().setPlayers([player(5)]);
+  // Players roll their own initiative; the roster only holds the permanent
+  // numbers the roll assistant needs. The modifier still exists on the
+  // Player record (the row popover's reminder reads it) — it just has no
+  // field here any more.
+  it("has no initiative modifier field, nor a per-player Initiative or Add-to-encounter control", () => {
+    useEncounter.getState().setPlayers([player()]);
     render(<PartyManager />);
-
-    const nameLabel = screen.getByLabelText("Name").closest("label")!;
-    expect(nameLabel.style.minWidth).toBe("140px");
-    expect((nameLabel.parentElement as HTMLElement).style.flexWrap).toBe("wrap");
-  });
-
-  // Task 6 deliberately moved adding a player to the encounter into Quick
-  // add. This field is the modifier and nothing else.
-  it("does not bring back the per-player Initiative field or Add-to-encounter button", () => {
-    useEncounter.getState().setPlayers([player(5)]);
-    render(<PartyManager />);
-    expect(screen.queryByLabelText("Initiative")).toBeNull();
+    expect(screen.queryByLabelText(/initiative/i)).toBeNull();
     expect(screen.queryByRole("button", { name: /add to encounter/i })).toBeNull();
+  });
+
+  // jsdom does no layout, so this pins the declarations rather than the
+  // outcome: the three saves sit in one non-wrapping block inside the
+  // wrapping field area, so they move to the next line together or not at
+  // all, and the bin sits outside that area, vertically centred.
+  it("keeps the three saves in one block and the bin outside the wrapping fields", () => {
+    useEncounter.getState().setPlayers([player()]);
+    render(<PartyManager />);
+
+    const saves = screen.getByTestId("saves-block");
+    expect(saves.style.flexWrap).toBe("nowrap");
+    const fields = saves.parentElement as HTMLElement;
+    expect(fields.style.flexWrap).toBe("wrap");
+
+    const bin = screen.getByRole("button", { name: "Remove Valeria" });
+    expect(bin.parentElement).toBe(fields.parentElement);
+    expect((bin.parentElement as HTMLElement).style.alignItems).toBe("center");
+    expect(bin.style.color).toBe("var(--danger)");
+  });
+
+  it("removes the character from the bin", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([player()]);
+    render(<PartyManager />);
+    await user.click(screen.getByRole("button", { name: "Remove Valeria" }));
+    expect(useEncounter.getState().players).toEqual([]);
   });
 });

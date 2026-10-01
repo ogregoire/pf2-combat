@@ -312,3 +312,23 @@ describe("EncounterScreen", () => {
     });
   });
 });
+
+describe("drawer dismissal", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("closes the Party drawer on a click outside it, but not on a click inside", async () => {
+    const user = userEvent.setup();
+    render(<EncounterScreen />);
+
+    await user.click(screen.getByRole("button", { name: "Party" }));
+    expect(screen.getByRole("button", { name: "Close Party" })).toBeDefined();
+
+    // Inside: the drawer's own heading. Nothing happens.
+    await user.click(screen.getByRole("heading", { name: "Party" }));
+    expect(screen.getByRole("button", { name: "Close Party" })).toBeDefined();
+
+    // Outside: the scrim itself.
+    await user.click(screen.getByTestId("drawer-scrim"));
+    expect(screen.queryByRole("button", { name: "Close Party" })).toBeNull();
+  });
+});

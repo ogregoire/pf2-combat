@@ -230,16 +230,15 @@ describe("AddCombatants", () => {
 describe("PartyManager", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("captures AC and all three saves for a player", async () => {
+  // Every field is plain text until clicked; the row then walks Name → AC →
+  // Level → HP → Fortitude → Reflex → Will on Tab (or Enter), opening each
+  // next field directly so a new character is filled in one pass.
+  it("captures AC and all three saves for a character, walking the fields with Tab", async () => {
     const user = userEvent.setup();
     render(<PartyManager />);
-    await user.click(screen.getByRole("button", { name: /add player/i }));
-    await user.type(screen.getByLabelText(/^name/i), "Valeria");
-    await user.type(screen.getByLabelText(/^level/i), "4");
-    await user.type(screen.getByLabelText(/^ac/i), "21");
-    await user.type(screen.getByLabelText(/fortitude/i), "10");
-    await user.type(screen.getByLabelText(/reflex/i), "12");
-    await user.type(screen.getByLabelText(/will/i), "9");
+    await user.click(screen.getByRole("button", { name: /add character/i }));
+    await user.click(screen.getByRole("button", { name: "Name" }));
+    await user.keyboard("Valeria{Tab}21{Tab}4{Tab}{Tab}10{Tab}12{Tab}9");
 
     const player = useEncounter.getState().players[0]!;
     expect(player).toMatchObject({
@@ -251,9 +250,11 @@ describe("PartyManager", () => {
   it("captures HP through the party roster's own field", async () => {
     const user = userEvent.setup();
     render(<PartyManager />);
-    await user.click(screen.getByRole("button", { name: /add player/i }));
-    await user.type(screen.getByLabelText(/^name/i), "Kesten");
-    await user.type(screen.getByLabelText(/^hp/i), "37");
+    await user.click(screen.getByRole("button", { name: /add character/i }));
+    await user.click(screen.getByRole("button", { name: "Name" }));
+    await user.type(screen.getByRole("textbox", { name: "Name" }), "Kesten");
+    await user.click(screen.getByRole("button", { name: "HP" }));
+    await user.type(screen.getByRole("textbox", { name: "HP" }), "37");
 
     expect(useEncounter.getState().players[0]!.hp).toBe(37);
   });

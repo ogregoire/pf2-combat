@@ -193,8 +193,16 @@ function Drawer({
 }): React.ReactElement {
   const t = useT();
   return (
-    <div style={{ position: "fixed", inset: 0, background: "var(--scrim)", display: "flex", justifyContent: "flex-end", zIndex: 50 }}>
+    // A click on the scrim — anywhere outside the panel — closes the drawer,
+    // same as the Close button. The panel stops propagation so clicks inside
+    // it (including on the gap between its cards) never reach the scrim.
+    <div
+      data-testid="drawer-scrim"
+      onClick={onClose}
+      style={{ position: "fixed", inset: 0, background: "var(--scrim)", display: "flex", justifyContent: "flex-end", zIndex: 50 }}
+    >
       <div
+        onClick={(e) => e.stopPropagation()}
         style={{
           width: "min(760px, 100%)",
           height: "100%",

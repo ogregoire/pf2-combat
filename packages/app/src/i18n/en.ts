@@ -20,8 +20,6 @@ export const STRINGS_EN = {
   LABEL_REFLEX: "Reflex",
   LABEL_WILL: "Will",
   LABEL_INITIATIVE: "Initiative",
-  LABEL_INITIATIVE_MODIFIER: "Init mod",
-  INITIATIVE_MODIFIER_ARIA: "Initiative modifier",
   LABEL_LEVEL: "Level",
   LABEL_NAME: "Name",
   LABEL_PRESENT: "Present",
@@ -98,11 +96,13 @@ export const STRINGS_EN = {
 
   // PartyManager.tsx
   PARTY_TITLE: "Party",
-  ADD_PLAYER_BUTTON: "Add player",
-  CLEAR_PLAYERS_LABEL: "Clear players",
+  ADD_PLAYER_BUTTON: "Add character",
+  CLEAR_PLAYERS_LABEL: "Clear characters",
   CLEAR_PLAYERS_CONFIRM: "Clear {n} {word}? Also removes any of them already in the initiative order.",
-  PLAYER_SINGULAR: "player",
-  PLAYER_PLURAL: "players",
+  PLAYER_SINGULAR: "player character",
+  PLAYER_PLURAL: "player characters",
+  CLICK_TO_EDIT_TITLE: "Click to edit",
+  NAME_UNSET_PLACEHOLDER: "Unnamed character",
 
   // PromptCard.tsx
   GOT_IT_BUTTON: "Got it",

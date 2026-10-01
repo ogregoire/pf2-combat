@@ -22,8 +22,6 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   LABEL_REFLEX: "Réflexes",
   LABEL_WILL: "Volonté",
   LABEL_INITIATIVE: "Initiative",
-  LABEL_INITIATIVE_MODIFIER: "Mod. init.",
-  INITIATIVE_MODIFIER_ARIA: "Modificateur d'initiative",
   LABEL_LEVEL: "Niveau",
   LABEL_NAME: "Nom",
   LABEL_PRESENT: "Présent",
@@ -100,11 +98,13 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
 
   // PartyManager.tsx
   PARTY_TITLE: "Groupe",
-  ADD_PLAYER_BUTTON: "Ajouter un joueur",
-  CLEAR_PLAYERS_LABEL: "Effacer les joueurs",
+  ADD_PLAYER_BUTTON: "Ajouter un personnage",
+  CLEAR_PLAYERS_LABEL: "Effacer les personnages",
   CLEAR_PLAYERS_CONFIRM: "Effacer {n} {word} ? Les retire aussi de l'ordre d'initiative s'ils y sont.",
-  PLAYER_SINGULAR: "joueur",
-  PLAYER_PLURAL: "joueurs",
+  PLAYER_SINGULAR: "personnage joueur",
+  PLAYER_PLURAL: "personnages joueurs",
+  CLICK_TO_EDIT_TITLE: "Cliquer pour modifier",
+  NAME_UNSET_PLACEHOLDER: "Personnage sans nom",
 
   // PromptCard.tsx
   GOT_IT_BUTTON: "Compris",

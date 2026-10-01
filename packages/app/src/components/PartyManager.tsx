@@ -1,6 +1,8 @@
+import { useEffect, useRef, useState } from "react";
 import { format, useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
+import { AcShield } from "./AcShield.js";
 import { ConfirmButton } from "./ConfirmButton.js";
 
 /** Local to this module — player ids never need to interleave with
@@ -33,6 +35,8 @@ function emptyPlayer(): Player {
     ac: 0,
     saves: { fortitude: 0, reflex: 0, will: 0 },
     present: true,
+    // Players roll their own initiative, so the roster has no field for
+    // this; it only ever gets filled in from the row popover's reminder.
     initiativeModifier: null,
   };
 }
@@ -61,25 +65,19 @@ function hpDisplay(hp: number | undefined): string {
   return hp === undefined ? "" : String(hp);
 }
 
-/** The initiative modifier makes the same distinction HP does, for a
- * sharper reason: `null` means "nobody has told the app this player's
- * modifier yet", which is also what tells the row popover to show no
- * reminder beside the initiative field, while 0 is a real +0 that would
- * show as one. So a blank field maps back to null, never to 0 — and a
- * stored 0 still shows as "0" rather than being blanked the way numDisplay
- * blanks a level of 0. */
-function modifierDisplay(mod: number | null): string {
-  return mod === null ? "" : String(mod);
+function formatSigned(n: number): string {
+  return n >= 0 ? `+${n}` : `${n}`;
 }
 
-function toNullableNumber(raw: string): number | null {
-  return raw.trim() === "" ? null : Number(raw) || 0;
+/** The editable fields of one row, in the order Tab and Enter walk them. */
+const FIELD_ORDER = ["name", "ac", "level", "hp", "fortitude", "reflex", "will"] as const;
+type FieldKey = (typeof FIELD_ORDER)[number];
+
+function nextField(key: FieldKey, direction: 1 | -1): FieldKey | null {
+  return FIELD_ORDER[FIELD_ORDER.indexOf(key) + direction] ?? null;
 }
 
-const fieldStyle: React.CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "3px",
+const captionStyle: React.CSSProperties = {
   fontSize: "10px",
   letterSpacing: "0.08em",
   textTransform: "uppercase",
@@ -89,12 +87,288 @@ const fieldStyle: React.CSSProperties = {
 const inputStyle: React.CSSProperties = {
   fontFamily: "var(--font-mono)",
   fontSize: "14px",
-  padding: "7px 8px",
+  padding: "4px 6px",
   borderRadius: "3px",
-  border: "1px solid var(--border-strong)",
-  background: "var(--bg)",
+  border: "1px solid var(--select)",
+  background: "var(--panel-raised)",
   color: "var(--text)",
+  outline: "none",
 };
+
+/** The at-rest face of a field: plain text in a borderless button, so the
+ * roster reads as a list of players rather than a form. Clicking (or
+ * focusing and pressing Enter) swaps it for the input. */
+const displayButtonStyle: React.CSSProperties = {
+  fontFamily: "inherit",
+  fontSize: "inherit",
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "6px",
+  padding: "4px 6px",
+  margin: 0,
+  borderRadius: "3px",
+  border: "1px solid transparent",
+  background: "transparent",
+  color: "var(--text)",
+  cursor: "text",
+  textAlign: "left",
+};
+
+/**
+ * One value of the player row, shown as text until clicked, then as an
+ * input until the GM leaves it. The row owns which field is open
+ * (`editing`), so that Enter and Tab from the input can open the next
+ * field directly rather than just dropping focus on it — the GM fills a
+ * new player in one pass without reaching for the mouse. Shift+Tab walks
+ * back; Escape and a click elsewhere close the field where it is.
+ *
+ * Edits commit on every keystroke, as the old always-on inputs did, so
+ * closing the field never loses anything.
+ */
+function InlineField({
+  fieldKey,
+  label,
+  value,
+  onChange,
+  editing,
+  setEditing,
+  display,
+  inputWidth,
+  mono = true,
+}: {
+  fieldKey: FieldKey;
+  label: string;
+  value: string;
+  onChange: (raw: string) => void;
+  editing: FieldKey | null;
+  setEditing: (next: FieldKey | null) => void;
+  /** What the field looks like at rest. */
+  display: React.ReactNode;
+  inputWidth: string;
+  mono?: boolean;
+}): React.ReactElement {
+  const t = useT();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const open = editing === fieldKey;
+
+  useEffect(() => {
+    if (open) inputRef.current?.select();
+  }, [open]);
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        aria-label={label}
+        title={t("CLICK_TO_EDIT_TITLE")}
+        onClick={() => setEditing(fieldKey)}
+        style={displayButtonStyle}
+      >
+        {display}
+      </button>
+    );
+  }
+
+  return (
+    <input
+      ref={inputRef}
+      autoFocus
+      aria-label={label}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      onBlur={() => {
+        // Only close if this is still the open field: a Tab/Enter that
+        // already opened the next field must not be undone by the blur
+        // that follows as this input unmounts.
+        if (editing === fieldKey) setEditing(null);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === "Tab") {
+          const next = nextField(fieldKey, e.shiftKey ? -1 : 1);
+          // Off either end of the row, a Tab keeps its native meaning and
+          // moves focus on out of the row; Enter simply closes the field.
+          if (next !== null || e.key === "Enter") e.preventDefault();
+          setEditing(next);
+        } else if (e.key === "Escape") {
+          setEditing(null);
+        }
+      }}
+      style={{ ...inputStyle, width: inputWidth, fontFamily: mono ? "var(--font-mono)" : "var(--font-ui)" }}
+    />
+  );
+}
+
+function TrashIcon(): React.ReactElement {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+      <path
+        d="M2.5 4h11M6.5 4V2.5h3V4M4 4l.7 9.5h6.6L12 4M6.5 6.5v5M9.5 6.5v5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function PlayerRow({
+  player: p,
+  onChange,
+  onRemove,
+}: {
+  player: Player;
+  onChange: (patch: Partial<Player>) => void;
+  onRemove: () => void;
+}): React.ReactElement {
+  const t = useT();
+  const [editing, setEditing] = useState<FieldKey | null>(null);
+
+  const save = (key: "fortitude" | "reflex" | "will", label: string): React.ReactElement => (
+    <InlineField
+      fieldKey={key}
+      label={label}
+      value={numDisplay(p.saves[key])}
+      onChange={(raw) => onChange({ saves: { ...p.saves, [key]: toNumber(raw) } })}
+      editing={editing}
+      setEditing={setEditing}
+      inputWidth="44px"
+      display={
+        <>
+          <span style={captionStyle}>{label}</span>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600 }}>{formatSigned(p.saves[key])}</span>
+        </>
+      }
+    />
+  );
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        padding: "6px 8px 6px 10px",
+        borderRadius: "4px",
+        border: "1px solid var(--border)",
+        background: "var(--panel)",
+      }}
+    >
+      {/* Everything but the bin lives in this wrapping block, so the bin
+         stays pinned to the row's right edge and its vertical middle no
+         matter how many lines the fields take. */}
+      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "2px 10px", flexGrow: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "2px", flexGrow: 1, minWidth: "140px" }}>
+          <InlineField
+            fieldKey="name"
+            label={t("LABEL_NAME")}
+            value={p.name}
+            onChange={(raw) => onChange({ name: raw })}
+            editing={editing}
+            setEditing={setEditing}
+            inputWidth="100%"
+            mono={false}
+            display={
+              p.name.trim() === "" ? (
+                <span style={{ fontSize: "15px", fontStyle: "italic", color: "var(--text-faint)" }}>{t("NAME_UNSET_PLACEHOLDER")}</span>
+              ) : (
+                <span style={{ fontSize: "15px", fontWeight: 600 }}>{p.name}</span>
+              )
+            }
+          />
+        </div>
+
+        <InlineField
+          fieldKey="ac"
+          label={t("LABEL_AC")}
+          value={numDisplay(p.ac)}
+          onChange={(raw) => onChange({ ac: toNumber(raw) })}
+          editing={editing}
+          setEditing={setEditing}
+          inputWidth="44px"
+          display={<AcShield ac={p.ac} size={26} />}
+        />
+
+        <InlineField
+          fieldKey="level"
+          label={t("LABEL_LEVEL")}
+          value={numDisplay(p.level)}
+          onChange={(raw) => onChange({ level: toNumber(raw) })}
+          editing={editing}
+          setEditing={setEditing}
+          inputWidth="44px"
+          display={
+            <>
+              <span style={captionStyle}>{t("LABEL_LEVEL")}</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600 }}>{p.level}</span>
+            </>
+          }
+        />
+
+        <InlineField
+          fieldKey="hp"
+          label={t("LABEL_HP")}
+          value={hpDisplay(p.hp)}
+          onChange={(raw) => onChange({ hp: toOptionalNumber(raw) })}
+          editing={editing}
+          setEditing={setEditing}
+          inputWidth="52px"
+          display={
+            <>
+              <span style={captionStyle}>{t("LABEL_HP")}</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, color: p.hp === undefined ? "var(--text-faint)" : "var(--text)" }}>
+                {p.hp === undefined ? "—" : p.hp}
+              </span>
+            </>
+          }
+        />
+
+        {/* The three saves are one block: they wrap to the next line
+           together or not at all, never splitting Will from Fortitude. */}
+        <div data-testid="saves-block" style={{ display: "flex", alignItems: "center", gap: "2px", flexWrap: "nowrap", flexShrink: 0 }}>
+          {save("fortitude", t("LABEL_FORTITUDE"))}
+          {save("reflex", t("LABEL_REFLEX"))}
+          {save("will", t("LABEL_WILL"))}
+        </div>
+
+        <label style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "var(--text-dim)", padding: "4px 6px", flexShrink: 0 }}>
+          <input
+            type="checkbox"
+            aria-label={t("LABEL_PRESENT")}
+            checked={p.present}
+            onChange={() => onChange({ present: !p.present })}
+          />
+          {t("LABEL_PRESENT")}
+        </label>
+      </div>
+
+      <button
+        type="button"
+        aria-label={format(t("REMOVE_NAME_ARIA"), { name: p.name.trim() === "" ? t("PLAYER_SINGULAR") : p.name })}
+        title={t("LABEL_REMOVE")}
+        onClick={onRemove}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "30px",
+          height: "30px",
+          padding: 0,
+          borderRadius: "3px",
+          border: "1px solid transparent",
+          background: "transparent",
+          color: "var(--danger)",
+          cursor: "pointer",
+          flexShrink: 0,
+          alignSelf: "center",
+        }}
+      >
+        <TrashIcon />
+      </button>
+    </div>
+  );
+}
 
 /** No mockup owns this panel — the GM doesn't own player sheets, but the
  * roll assistant needs a target's AC and three saves to compute anything
@@ -108,10 +382,6 @@ export function PartyManager(): React.ReactElement {
 
   const update = (id: string, patch: Partial<Player>): void => {
     setPlayers(players.map((p) => (p.id === id ? { ...p, ...patch } : p)));
-  };
-
-  const updateSave = (id: string, save: keyof Player["saves"], value: number): void => {
-    setPlayers(players.map((p) => (p.id === id ? { ...p, saves: { ...p.saves, [save]: value } } : p)));
   };
 
   return (
@@ -154,149 +424,14 @@ export function PartyManager(): React.ReactElement {
         />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         {players.map((p) => (
-          <div
+          <PlayerRow
             key={p.id}
-            style={{
-              display: "flex",
-              alignItems: "flex-end",
-              // Eight fields plus Present and Remove no longer fit one line
-              // in the drawer this panel lives in — without wrapping, the
-              // only flexible item (Name) is squeezed to a couple of pixels
-              // and the row becomes unusable. Wrapping puts the overflow on
-              // a second line inside the same card instead.
-              flexWrap: "wrap",
-              gap: "12px",
-              padding: "12px 14px",
-              borderRadius: "4px",
-              border: "1px solid var(--border)",
-              background: "var(--panel)",
-            }}
-          >
-            {/* flexGrow with no minWidth keeps a flex item's default min-width:
-               auto, which is its content's own intrinsic width — so it never
-               actually shrinks, and pushes the row wider than the drawer.
-               A floor rather than 0: Name is the one field that has to hold
-               a word, and letting it shrink without limit is what turned it
-               into a sliver when the eighth field arrived. Below this width
-               the row wraps instead (see flexWrap above). */}
-            <label style={{ ...fieldStyle, flexGrow: 1, minWidth: "140px" }}>
-              {t("LABEL_NAME")}
-              <input
-                aria-label={t("LABEL_NAME")}
-                value={p.name}
-                onChange={(e) => update(p.id, { name: e.target.value })}
-                style={{ ...inputStyle, fontFamily: "var(--font-ui)" }}
-              />
-            </label>
-
-            <label style={{ ...fieldStyle, width: "56px" }}>
-              {t("LABEL_LEVEL")}
-              <input
-                aria-label={t("LABEL_LEVEL")}
-                value={numDisplay(p.level)}
-                onChange={(e) => update(p.id, { level: toNumber(e.target.value) })}
-                style={inputStyle}
-              />
-            </label>
-
-            <label style={{ ...fieldStyle, width: "56px" }}>
-              {t("LABEL_AC")}
-              <input
-                aria-label={t("LABEL_AC")}
-                value={numDisplay(p.ac)}
-                onChange={(e) => update(p.id, { ac: toNumber(e.target.value) })}
-                style={inputStyle}
-              />
-            </label>
-
-            <label style={{ ...fieldStyle, width: "56px" }}>
-              {t("LABEL_HP")}
-              <input
-                aria-label={t("LABEL_HP")}
-                value={hpDisplay(p.hp)}
-                onChange={(e) => update(p.id, { hp: toOptionalNumber(e.target.value) })}
-                style={inputStyle}
-              />
-            </label>
-
-            {/* The roster is the only place this can be set or corrected —
-               the row popover only shows it as a reminder beside the
-               initiative field, never writes it back, so without a field
-               here a mistyped +50 was permanent short of deleting the
-               player. It sits with the other permanent numbers rather than
-               in the encounter, because that is what it is: the modifier
-               survives between fights, the roll doesn't. */}
-            <label style={{ ...fieldStyle, width: "64px" }}>
-              {t("LABEL_INITIATIVE_MODIFIER")}
-              <input
-                aria-label={t("INITIATIVE_MODIFIER_ARIA")}
-                value={modifierDisplay(p.initiativeModifier)}
-                onChange={(e) => update(p.id, { initiativeModifier: toNullableNumber(e.target.value) })}
-                style={inputStyle}
-              />
-            </label>
-
-            <label style={{ ...fieldStyle, width: "64px" }}>
-              {t("LABEL_FORTITUDE")}
-              <input
-                aria-label={t("LABEL_FORTITUDE")}
-                value={numDisplay(p.saves.fortitude)}
-                onChange={(e) => updateSave(p.id, "fortitude", toNumber(e.target.value))}
-                style={inputStyle}
-              />
-            </label>
-
-            <label style={{ ...fieldStyle, width: "64px" }}>
-              {t("LABEL_REFLEX")}
-              <input
-                aria-label={t("LABEL_REFLEX")}
-                value={numDisplay(p.saves.reflex)}
-                onChange={(e) => updateSave(p.id, "reflex", toNumber(e.target.value))}
-                style={inputStyle}
-              />
-            </label>
-
-            <label style={{ ...fieldStyle, width: "64px" }}>
-              {t("LABEL_WILL")}
-              <input
-                aria-label={t("LABEL_WILL")}
-                value={numDisplay(p.saves.will)}
-                onChange={(e) => updateSave(p.id, "will", toNumber(e.target.value))}
-                style={inputStyle}
-              />
-            </label>
-
-            <label style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "var(--text-dim)", paddingBottom: "7px" }}>
-              <input
-                type="checkbox"
-                aria-label={t("LABEL_PRESENT")}
-                checked={p.present}
-                onChange={() => update(p.id, { present: !p.present })}
-              />
-              {t("LABEL_PRESENT")}
-            </label>
-
-            <button
-              type="button"
-              aria-label={format(t("REMOVE_NAME_ARIA"), { name: p.name.trim() === "" ? t("PLAYER_SINGULAR") : p.name })}
-              onClick={() => setPlayers(players.filter((other) => other.id !== p.id))}
-              style={{
-                fontFamily: "inherit",
-                fontSize: "12px",
-                padding: "7px 10px",
-                borderRadius: "3px",
-                border: "1px solid var(--border)",
-                background: "var(--panel-raised)",
-                color: "var(--text-dim)",
-                cursor: "pointer",
-                marginBottom: "1px",
-              }}
-            >
-              {t("LABEL_REMOVE")}
-            </button>
-          </div>
+            player={p}
+            onChange={(patch) => update(p.id, patch)}
+            onRemove={() => setPlayers(players.filter((other) => other.id !== p.id))}
+          />
         ))}
       </div>
     </div>
