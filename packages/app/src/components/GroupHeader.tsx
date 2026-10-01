@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
+import { DragGrip } from "./CombatantRow.js";
 
 const ACTIVE_BORDER = "var(--turn)";
 const ACTIVE_BG = "var(--turn-bg)";
@@ -25,6 +26,7 @@ export function GroupHeader({
   initiativeBeforeDelay = null,
   memberCount,
   active = false,
+  draggable = false,
 }: {
   entryId: string;
   name: string;
@@ -36,6 +38,9 @@ export function GroupHeader({
   initiativeBeforeDelay?: number | null;
   memberCount: number;
   active?: boolean;
+  /** Whether the group's wrapper can be dragged (CombatantList decides);
+   * shows the grip that is the only place to start that drag from. */
+  draggable?: boolean;
 }): React.ReactElement {
   const t = useT();
   const [renaming, setRenaming] = useState(false);
@@ -75,6 +80,7 @@ export function GroupHeader({
       }}
     >
       <ChainIcon />
+      <DragGrip enabled={draggable} />
       {editingInit ? (
         <input
           autoFocus

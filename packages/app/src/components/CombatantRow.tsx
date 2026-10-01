@@ -127,21 +127,23 @@ function SelectCheckbox({
   );
 }
 
-/** Purely a visual affordance — "this row can be dragged" — since the whole
- * row is what's actually made `draggable` below (a real handle-only drag,
- * where only this glyph could start the gesture, would drag just the glyph
- * as the browser's default drag image; simpler to make the row itself the
- * handle and use this only to invite the gesture). `cursor: grab` lives
+/** The drag handle — the only place a drag can start from. The whole row
+ * is still the `draggable` element (so the browser's drag image is the
+ * row, not this glyph); CombatantList cancels any dragstart whose
+ * mousedown did not land on a `data-drag-handle`. `cursor: grab` lives
  * here rather than on the row so the rest of the row keeps its
  * click-to-target pointer cursor.
  *
  * `enabled: false` hides the glyph but keeps its box, so a row that can't
  * be dragged (an unrolled one — see `canDrag`) doesn't pull its initiative
  * and name a column's width to the left of every other row in the list. */
-function DragGrip({ enabled }: { enabled: boolean }): React.ReactElement {
+export function DragGrip({ enabled }: { enabled: boolean }): React.ReactElement {
   return (
     <span
       aria-hidden="true"
+      data-drag-handle={enabled ? "" : undefined}
+      // A mousedown here must not reach the row's click-to-target.
+      onClick={(e) => e.stopPropagation()}
       style={{
         flexShrink: 0,
         cursor: enabled ? "grab" : "default",
@@ -356,9 +358,7 @@ function StandaloneRow({
       data-active={active}
       data-targeted={targeted}
       style={{
-        // While this very row is being dragged, the list shows an empty
-        // slot in its place instead — the row itself leaves the flow.
-        display: drag?.hidden ? "none" : "flex",
+        display: "flex",
         alignItems: "center",
         gap: "10px",
         padding: "8px 10px",
@@ -677,7 +677,15 @@ export function CombatantRow({
   const popoverVisible = narrow ? tapOpen : hovered;
 
   return (
-    <div ref={wrapperRef} style={{ position: "relative" }} onMouseEnter={openPopover} onMouseLeave={scheduleClose}>
+    <div
+      ref={wrapperRef}
+      // While this very row is being dragged, the list shows an empty slot
+      // in its place; the wrapper leaves the flow entirely, or it would
+      // still claim one of the list's gaps and nudge every row below.
+      style={{ position: "relative", display: drag?.hidden ? "none" : undefined }}
+      onMouseEnter={openPopover}
+      onMouseLeave={scheduleClose}
+    >
       {grouped ? (
         <GroupMemberRow
           combatant={combatant}

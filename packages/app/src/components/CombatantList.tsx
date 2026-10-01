@@ -139,6 +139,11 @@ export function CombatantList({
   const [drag, setDrag] = useState<DragState | null>(null);
   const dragRef = useRef<DragState | null>(null);
   dragRef.current = drag;
+  // Whether the pointer went down on a drag handle (the ⠿ grip). The whole
+  // row stays the `draggable` element so the browser's drag image is the
+  // row, not the glyph — but a dragstart that did not begin on the grip is
+  // cancelled, so grabbing the name or the HP bar never starts a drag.
+  const armedRef = useRef(false);
 
   const slotAfter = (entryId: string): string | null => {
     const i = entries.findIndex((e) => e.id === entryId);
@@ -148,7 +153,13 @@ export function CombatantList({
   const startDrag = (e: React.DragEvent<HTMLElement>, entryId: string): void => {
     e.dataTransfer.setData("text/plain", entryId);
     e.dataTransfer.effectAllowed = "move";
-    setDrag({ entryId, height: e.currentTarget.offsetHeight, beforeId: slotAfter(entryId), hidden: false });
+    // The slot must take exactly the footprint the row gives up — box plus
+    // any vertical margins (a group header carries one) — or the rows
+    // below shift the moment the drag starts.
+    const style = getComputedStyle(e.currentTarget);
+    const height =
+      e.currentTarget.getBoundingClientRect().height + parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+    setDrag({ entryId, height, beforeId: slotAfter(entryId), hidden: false });
     // Chrome abandons a drag whose source leaves the layout during
     // dragstart, so the row only hides (and the slot only appears) a tick
     // later, once the browser has taken its drag image.
@@ -195,7 +206,17 @@ export function CombatantList({
         ? {}
         : {
             draggable: true,
-            onDragStart: (e: React.DragEvent<HTMLDivElement>) => startDrag(e, entry.id),
+            onMouseDown: (e: React.MouseEvent<HTMLDivElement>) => {
+              armedRef.current = (e.target as Element).closest("[data-drag-handle]") !== null;
+            },
+            onDragStart: (e: React.DragEvent<HTMLDivElement>) => {
+              if (!armedRef.current) {
+                e.preventDefault();
+                return;
+              }
+              armedRef.current = false;
+              startDrag(e, entry.id);
+            },
             onDragEnd: () => setDrag(null),
           }),
       onDragOver: (e: React.DragEvent<HTMLDivElement>) =>
@@ -294,6 +315,7 @@ export function CombatantList({
               initiativeBeforeDelay={entry.initiativeBeforeDelay}
               memberCount={entry.combatantIds.length}
               active={isActive}
+              draggable={rowDrag.props.draggable === true}
             />
             <div
               style={{

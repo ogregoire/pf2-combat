@@ -1391,6 +1391,8 @@ describe("dragging a row (the empty slot and the drop)", () => {
   // its own; pin it explicitly. The dragged row leaves the flow a tick
   // after dragstart (see CombatantList.startDrag), hence the await.
   async function dragStart(source: HTMLElement, dt: ReturnType<typeof dataTransfer>): Promise<void> {
+    // Only the grip arms a drag; a dragstart from anywhere else is cancelled.
+    fireEvent.mouseDown(source.querySelector("[data-drag-handle]")!);
     fireEvent.dragStart(source, { dataTransfer: dt });
     await act(() => new Promise((r) => setTimeout(r, 0)));
   }
@@ -1416,8 +1418,10 @@ describe("dragging a row (the empty slot and the drop)", () => {
 
     expect(screen.queryByTestId("drop-slot")).toBeNull();
     await dragStart(valeria, dt);
-    // The row has left the flow; the slot sits where it was (before Akiros).
-    expect(valeria.style.display).toBe("none");
+    // The row's wrapper has left the flow (not just the row inside it, or
+    // the wrapper would still claim a list gap); the slot sits where it
+    // was (before Akiros).
+    expect(valeria.parentElement!.style.display).toBe("none");
     expect(screen.getByTestId("drop-slot").nextElementSibling).toBe(rowOf("Akiros").parentElement);
 
     // Hovering Bran's lower half moves the slot to after Bran (the end).
@@ -1427,7 +1431,27 @@ describe("dragging a row (the empty slot and the drop)", () => {
     drop(bran, dt);
     expect(nameOrder()).toEqual(["Akiros", "Bran", "Valeria"]);
     expect(screen.queryByTestId("drop-slot")).toBeNull();
-    expect(rowOf("Valeria").style.display).not.toBe("none");
+    expect(rowOf("Valeria").parentElement!.style.display).not.toBe("none");
+  });
+
+  it("only starts a drag from the grip, never from the rest of the row", async () => {
+    useEncounter.getState().addCombatant(pc("Valeria"), 15);
+    useEncounter.getState().addCombatant(pc("Akiros"), 15);
+    render(<CombatantList />);
+    const valeria = rowOf("Valeria");
+    const dt = dataTransfer();
+
+    // Mouse down on the name, then dragstart: cancelled, no slot.
+    fireEvent.mouseDown(screen.getByText("Valeria"));
+    const ev = createEvent.dragStart(valeria, { dataTransfer: dt });
+    fireEvent(valeria, ev);
+    expect(ev.defaultPrevented).toBe(true);
+    await act(() => new Promise((r) => setTimeout(r, 0)));
+    expect(screen.queryByTestId("drop-slot")).toBeNull();
+
+    // From the grip: the drag starts.
+    await dragStart(valeria, dt);
+    expect(screen.getByTestId("drop-slot")).toBeDefined();
   });
 
   it("lets the upper of two tied PCs be dragged below the lower one", async () => {
