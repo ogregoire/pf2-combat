@@ -36,7 +36,9 @@ const containerStyle: React.CSSProperties = {
 const inputStyle: React.CSSProperties = {
   fontFamily: "var(--font-mono)",
   fontSize: "14px",
-  padding: "8px 10px",
+  width: "100%",
+  // Room on the left for the magnifier drawn over the field.
+  padding: "8px 10px 8px 32px",
   borderRadius: "4px",
   border: "1px solid var(--border-strong)",
   background: "var(--panel)",
@@ -296,6 +298,17 @@ export function QuickAdd({
       >
         {t("QUICK_ADD_LABEL")}
       </label>
+      <div style={{ position: "relative" }}>
+        <svg
+          aria-hidden="true"
+          width="15"
+          height="15"
+          viewBox="0 0 16 16"
+          style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "var(--text-faint)", pointerEvents: "none" }}
+        >
+          <circle cx="6.5" cy="6.5" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M10 10l4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
       <input
         id="quick-add-input"
         ref={inputRef}
@@ -317,6 +330,7 @@ export function QuickAdd({
         placeholder={t("QUICK_ADD_PLACEHOLDER")}
         style={inputStyle}
       />
+      </div>
 
       {message !== null && (
         <div role="status" style={{ fontSize: "12px", color: "var(--ok)" }}>

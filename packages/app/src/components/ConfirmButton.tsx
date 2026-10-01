@@ -21,16 +21,17 @@ export function ConfirmButton({
   onConfirm: () => void;
   disabled?: boolean;
   /** "danger" draws the resting button in red, for a control that sits on
-   * its own and must read as destructive before it is pressed; "quiet"
+   * its own and must read as destructive before it is pressed; "menu" is
+   * the same red as a borderless, full-width item inside a dropdown; "quiet"
    * (the default) is the muted look the turn manager's footer uses. */
-  tone?: "quiet" | "danger";
+  tone?: "quiet" | "danger" | "menu";
 }): React.ReactElement {
   const t = useT();
   const [confirming, setConfirming] = useState(false);
 
   if (confirming) {
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "8px", padding: tone === "menu" ? "6px 10px" : 0 }}>
         <span style={{ fontSize: "12px", color: "var(--danger)" }}>{confirmMessage}</span>
         <button
           type="button"
@@ -69,6 +70,33 @@ export function ConfirmButton({
           {t("LABEL_CANCEL")}
         </button>
       </div>
+    );
+  }
+
+  if (tone === "menu") {
+    return (
+      <button
+        type="button"
+        role="menuitem"
+        disabled={disabled}
+        onClick={() => setConfirming(true)}
+        style={{
+          fontFamily: "inherit",
+          fontSize: "13px",
+          fontWeight: 600,
+          display: "block",
+          width: "100%",
+          textAlign: "left",
+          padding: "8px 10px",
+          borderRadius: "3px",
+          border: "none",
+          background: "transparent",
+          color: disabled ? "var(--text-faint)" : "var(--danger)",
+          cursor: disabled ? "default" : "pointer",
+        }}
+      >
+        {label}
+      </button>
     );
   }
 

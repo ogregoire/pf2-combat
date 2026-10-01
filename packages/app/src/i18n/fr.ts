@@ -99,6 +99,7 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   // PartyManager.tsx
   MENU_ARIA: "Menu",
   LANGUAGE_LABEL: "Langue",
+  MORE_ACTIONS_ARIA: "Plus d'actions",
   PARTY_TITLE: "Groupe",
   ADD_PLAYER_BUTTON: "Ajouter un personnage",
   CLEAR_PLAYERS_LABEL: "Effacer les personnages",

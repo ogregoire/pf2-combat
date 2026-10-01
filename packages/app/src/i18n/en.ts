@@ -97,6 +97,7 @@ export const STRINGS_EN = {
   // PartyManager.tsx
   MENU_ARIA: "Menu",
   LANGUAGE_LABEL: "Language",
+  MORE_ACTIONS_ARIA: "More actions",
   PARTY_TITLE: "Party",
   ADD_PLAYER_BUTTON: "Add character",
   CLEAR_PLAYERS_LABEL: "Clear characters",

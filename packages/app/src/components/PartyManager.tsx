@@ -256,6 +256,84 @@ function CrossIcon(): React.ReactElement {
   );
 }
 
+function DotsIcon(): React.ReactElement {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+      <circle cx="4" cy="9" r="1.6" fill="currentColor" />
+      <circle cx="9" cy="9" r="1.6" fill="currentColor" />
+      <circle cx="14" cy="9" r="1.6" fill="currentColor" />
+    </svg>
+  );
+}
+
+/** The roster's overflow menu — a "⋯" button that drops down the actions
+ * too destructive or too rare to deserve a button of their own. Only
+ * "Clear characters" lives here for now. Closes on a click outside, on
+ * Escape, or once the action inside has run. */
+function OverflowMenu({ children }: { children: (close: () => void) => React.ReactNode }): React.ReactElement {
+  const t = useT();
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onDown = (e: MouseEvent): void => {
+      if (rootRef.current !== null && !rootRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent): void => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div ref={rootRef} style={{ position: "relative" }}>
+      <button
+        type="button"
+        aria-label={t("MORE_ACTIONS_ARIA")}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        title={t("MORE_ACTIONS_ARIA")}
+        onClick={() => setOpen((prev) => !prev)}
+        style={{
+          ...iconButtonStyle,
+          width: "34px",
+          height: "34px",
+          border: "1px solid var(--border-strong)",
+          background: "var(--panel-raised)",
+          color: "var(--text-dim)",
+        }}
+      >
+        <DotsIcon />
+      </button>
+      {open && (
+        <div
+          role="menu"
+          style={{
+            position: "absolute",
+            right: 0,
+            bottom: "calc(100% + 6px)",
+            minWidth: "240px",
+            padding: "4px",
+            borderRadius: "5px",
+            border: "1px solid var(--border-strong)",
+            background: "var(--panel-raised)",
+            boxShadow: "0 8px 24px var(--shadow)",
+            zIndex: 1,
+          }}
+        >
+          {children(() => setOpen(false))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function TrashIcon(): React.ReactElement {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
@@ -523,17 +601,25 @@ export function PartyManager(): React.ReactElement {
         {/* Empties the roster, and — since a cleared roster and a PC still
            sitting in the initiative order would disagree about who's
            playing — also removes any `kind: "pc"` combatant already in the
-           encounter (see clearPlayers in the store). Asks first, inline. */}
-        <ConfirmButton
-          label={t("CLEAR_PLAYERS_LABEL")}
-          confirmMessage={format(t("CLEAR_PLAYERS_CONFIRM"), {
-            n: players.length,
-            word: players.length === 1 ? t("PLAYER_SINGULAR") : t("PLAYER_PLURAL"),
-          })}
-          onConfirm={clearPlayers}
-          disabled={players.length === 0}
-          tone="danger"
-        />
+           encounter (see clearPlayers in the store). Behind the "⋯" so it
+           can't be hit by accident, and it still asks first, inline. */}
+        <OverflowMenu>
+          {(close) => (
+            <ConfirmButton
+              label={t("CLEAR_PLAYERS_LABEL")}
+              confirmMessage={format(t("CLEAR_PLAYERS_CONFIRM"), {
+                n: players.length,
+                word: players.length === 1 ? t("PLAYER_SINGULAR") : t("PLAYER_PLURAL"),
+              })}
+              onConfirm={() => {
+                close();
+                clearPlayers();
+              }}
+              disabled={players.length === 0}
+              tone="menu"
+            />
+          )}
+        </OverflowMenu>
       </div>
     </div>
   );

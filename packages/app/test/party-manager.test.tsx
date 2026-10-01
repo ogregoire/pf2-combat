@@ -8,9 +8,24 @@ import type { Player } from "../src/state/types.js";
 describe("PartyManager clear characters", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("has nothing to clear with an empty roster", () => {
+  it("has nothing to clear with an empty roster", async () => {
+    const user = userEvent.setup();
     render(<PartyManager />);
-    expect(screen.getByRole("button", { name: /clear characters/i }).hasAttribute("disabled")).toBe(true);
+    await user.click(screen.getByRole("button", { name: /more actions/i }));
+    expect(screen.getByRole("menuitem", { name: /clear characters/i }).hasAttribute("disabled")).toBe(true);
+  });
+
+  it("keeps Clear characters behind the ⋯ menu, which closes on a click outside", async () => {
+    const user = userEvent.setup();
+    render(<PartyManager />);
+    expect(screen.queryByRole("menuitem", { name: /clear characters/i })).toBeNull();
+    const dots = screen.getByRole("button", { name: /more actions/i });
+    expect(dots.getAttribute("aria-expanded")).toBe("false");
+    await user.click(dots);
+    expect(dots.getAttribute("aria-expanded")).toBe("true");
+    expect(screen.getByRole("menu")).toBeDefined();
+    await user.click(document.body);
+    expect(screen.queryByRole("menu")).toBeNull();
   });
 
   it("asks for confirmation naming the player count before clearing", async () => {
@@ -21,7 +36,8 @@ describe("PartyManager clear characters", () => {
     ]);
     render(<PartyManager />);
 
-    await user.click(screen.getByRole("button", { name: /clear characters/i }));
+    await user.click(screen.getByRole("button", { name: /more actions/i }));
+    await user.click(screen.getByRole("menuitem", { name: /clear characters/i }));
     expect(screen.getByText(/clear 2 player characters/i)).toBeDefined();
     expect(useEncounter.getState().players).toHaveLength(2); // not yet cleared
 
@@ -36,7 +52,8 @@ describe("PartyManager clear characters", () => {
     ]);
     render(<PartyManager />);
 
-    await user.click(screen.getByRole("button", { name: /clear characters/i }));
+    await user.click(screen.getByRole("button", { name: /more actions/i }));
+    await user.click(screen.getByRole("menuitem", { name: /clear characters/i }));
     await user.click(screen.getByRole("button", { name: /cancel/i }));
     expect(useEncounter.getState().players).toHaveLength(1);
     expect(screen.queryByText(/clear 1 player character\?/i)).toBeNull();
@@ -53,10 +70,12 @@ describe("PartyManager clear characters", () => {
     );
     render(<PartyManager />);
 
-    await user.click(screen.getByRole("button", { name: /clear characters/i }));
+    await user.click(screen.getByRole("button", { name: /more actions/i }));
+    await user.click(screen.getByRole("menuitem", { name: /clear characters/i }));
     await user.click(screen.getByRole("button", { name: /confirm/i }));
 
     expect(useEncounter.getState().encounter.combatants[pcId]).toBeUndefined();
+    expect(screen.queryByRole("menu")).toBeNull();
   });
 });
 
@@ -207,16 +226,18 @@ describe("PartyManager row", () => {
     expect(screen.getByRole("textbox", { name: "AC" }).style.height).toBe("32px");
   });
 
-  it("scrolls the roster, not the drawer, with Add and Clear in a footer beneath it", () => {
+  it("scrolls the roster, not the drawer, with Add and the ⋯ menu in a footer beneath it", async () => {
+    const user = userEvent.setup();
     useEncounter.getState().setPlayers([player()]);
     render(<PartyManager />);
     const roster = screen.getByTestId("roster");
     expect(roster.style.overflowY).toBe("auto");
     const add = screen.getByRole("button", { name: /add character/i });
-    const clear = screen.getByRole("button", { name: /clear characters/i });
-    expect(add.parentElement).toBe(clear.parentElement);
+    const dots = screen.getByRole("button", { name: /more actions/i });
+    expect(dots.parentElement!.parentElement).toBe(add.parentElement);
     expect(roster.nextElementSibling).toBe(add.parentElement);
-    expect(clear.style.color).toBe("var(--danger)");
+    await user.click(dots);
+    expect(screen.getByRole("menuitem", { name: /clear characters/i }).style.color).toBe("var(--danger)");
   });
 
   it("removes the character from the bin", async () => {
