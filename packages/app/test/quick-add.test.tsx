@@ -279,6 +279,24 @@ describe("QuickAdd", () => {
     expect(screen.queryByText(/capped/i)).toBeNull();
   });
 
+  it("takes a trailing number as a present player's initiative, as typed", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([
+      { id: "p1", name: "Valeros", level: 1, ac: 18, saves: { fortitude: 8, reflex: 5, will: 4 },
+        present: true, initiativeModifier: 6 },
+    ]);
+    render(<QuickAdd entries={[]} loadCreatureFn={async () => { throw new Error("no creature lookup in this test"); }} />);
+
+    const input = screen.getByLabelText("Quick add creatures");
+    await user.type(input, "valeros 23");
+    await screen.findByRole("option", { name: /Valeros/ });
+    await user.keyboard("{Enter}");
+
+    // 23 as reported, not 23 + the +6 modifier.
+    expect(useEncounter.getState().encounter.entries[0]!.initiative).toBe(23);
+    expect(screen.getByRole("status").textContent).toBe("added Valeros at 23");
+  });
+
   it("lists present players before any typing, and drops them once they are in the order", async () => {
     const user = userEvent.setup();
     useEncounter.getState().setPlayers([

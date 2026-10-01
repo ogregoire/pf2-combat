@@ -4,8 +4,28 @@ import { useT, type StringKey } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 
-function levelLabel(combatant: Combatant, t: (key: StringKey) => string): string {
-  return `${combatant.kind === "pc" ? t("PC_PREFIX") : t("CREATURE_PREFIX")} ${combatant.level}`;
+/** A human silhouette standing in for the "PC" word beside a player
+ * character's level. The accessible name keeps the localised prefix. */
+function PcIcon({ label }: { label: string }): React.ReactElement {
+  return (
+    <svg role="img" aria-label={label} width="18" height="18" viewBox="0 0 24 24" style={{ flexShrink: 0, alignSelf: "center" }}>
+      <circle cx="12" cy="6.5" r="4" fill="currentColor" />
+      <path d="M4 22c0-5 3.2-8.5 8-8.5s8 3.5 8 8.5z" fill="currentColor" />
+    </svg>
+  );
+}
+
+/** "Creature 6" for a monster; a silhouette and the bare level for a PC. */
+function LevelLabel({ combatant, t }: { combatant: Combatant; t: (key: StringKey) => string }): React.ReactElement {
+  if (combatant.kind === "pc") {
+    return (
+      <>
+        <PcIcon label={t("PC_PREFIX")} />
+        {combatant.level}
+      </>
+    );
+  }
+  return <>{`${t("CREATURE_PREFIX")} ${combatant.level}`}</>;
 }
 
 /** Main.dc.html's stat block header: name and level. The mockup also shows
@@ -33,8 +53,8 @@ export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.
         <h1 style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "28px", fontWeight: 600 }}>
           {name}
         </h1>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "var(--text-dim)" }}>
-          {levelLabel(combatant, t)}
+        <span style={{ display: "inline-flex", alignItems: "baseline", gap: "5px", fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "var(--text-dim)" }}>
+          <LevelLabel combatant={combatant} t={t} />
         </span>
       </div>
     </div>

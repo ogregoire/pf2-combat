@@ -213,7 +213,6 @@ export const STRINGS_EN = {
   UNROLLED_LABEL: "unrolled",
   INITIATIVE_VALUE_ARIA: "Initiative value",
   INITIATIVE_DIE_RESULT_ARIA: "Initiative die result",
-  SET_INITIATIVE_BUTTON: "Set initiative",
 
   // TurnManager.tsx
   CLEAR_ENEMIES_LABEL: "Clear enemies",

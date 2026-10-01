@@ -222,7 +222,10 @@ export function QuickAdd({
   // doesn't dictate a PC's initiative, the player rolls it themselves once
   // seated at the table, so there is no typed-initiative path to honor here
   // the way `commit` honors `parsed.initiative`.
-  const commitPlayer = (p: Player): void => {
+  // A trailing number in the command ("valeria 23") is the PC's initiative,
+  // taken as typed — the player reports their final total — same as the row
+  // popover's PC field (see rules/initiative.ts, totalInitiative).
+  const commitPlayer = (p: Player, initiative: number | null): void => {
     addCombatant(
       {
         kind: "pc",
@@ -234,10 +237,13 @@ export function QuickAdd({
         playerId: p.id,
         initiativeModifier: p.initiativeModifier,
       },
-      null,
+      initiative,
     );
 
-    setMessage(format(t("ADDED_PLAYER_MESSAGE"), { name: p.name }));
+    setMessage(
+      format(t("ADDED_PLAYER_MESSAGE"), { name: p.name }) +
+        (initiative !== null ? format(t("ADDED_AT_INITIATIVE"), { initiative }) : ""),
+    );
     setQuery("");
     setDismissed(false);
     setHighlightedIndex(0);
@@ -245,7 +251,7 @@ export function QuickAdd({
   };
 
   const commitOption = (option: QuickAddOption): void => {
-    if (option.kind === "player") commitPlayer(option.player);
+    if (option.kind === "player") commitPlayer(option.player, parsed.initiative);
     else commit(option.entry, parsed.quantity, parsed.requestedQuantity, parsed.initiative);
   };
 

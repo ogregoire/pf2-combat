@@ -708,7 +708,7 @@ describe("CombatantList", () => {
     await user.type(screen.getByLabelText("Initiative die result"), "15");
     expect(screen.getByText("15 + 11 = 26")).toBeDefined();
 
-    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    await user.keyboard("{Enter}");
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
     expect(entry!.initiative).toBe(26);
     expect(entry!.orderKey).toBe(26);
@@ -731,7 +731,7 @@ describe("CombatantList", () => {
     // silently added.
     expect(screen.getByText("14")).toBeDefined();
 
-    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    await user.keyboard("{Enter}");
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
     expect(entry!.initiative).toBe(14);
   });
@@ -761,7 +761,8 @@ describe("CombatantList", () => {
     // part of its textContent.
     expect(within(initiativeInput.parentElement!).queryByText(/\d/)).toBeNull();
 
-    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    // Leaving the field is what commits — no button to press.
+    await user.tab();
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
     expect(entry!.initiative).toBe(27);
     expect(entry!.orderKey).toBe(27);
@@ -786,7 +787,7 @@ describe("CombatantList", () => {
     expect(screen.queryByLabelText(/initiative modifier for/i)).toBeNull();
 
     await user.type(screen.getByLabelText("Initiative value"), "14");
-    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    await user.tab();
 
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
     expect(entry!.initiative).toBe(14);
@@ -804,7 +805,9 @@ describe("CombatantList", () => {
     render(<CombatantList />);
 
     await user.hover(screen.getByText("Stag Lord Bandit"));
-    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    await user.click(screen.getByLabelText("Initiative die result"));
+    await user.keyboard("{Enter}");
+    await user.tab();
 
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
     expect(entry!.initiative).toBeNull();
@@ -820,7 +823,9 @@ describe("CombatantList", () => {
     render(<CombatantList />);
 
     await user.hover(screen.getByText("Valeria"));
-    await user.click(screen.getByRole("button", { name: /set initiative/i }));
+    await user.click(screen.getByLabelText("Initiative value"));
+    await user.keyboard("{Enter}");
+    await user.tab();
 
     const entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
     expect(entry!.initiative).toBeNull();
@@ -1391,5 +1396,36 @@ describe("CombatantList", () => {
       s.addCombatant(seed({ name: "Wolf" }), 5);
       expect(names()).toEqual(["Valeros", "Ezren", "Goblin", "Goblin", "Wolf"]);
     });
+  });
+});
+
+describe("initiative field in the row popover", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("shows the entry's current initiative in the field, and commits on blur without a button", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant({ ...seed(), initiativeModifier: 11 }, 26);
+    render(<CombatantList />);
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+
+    const field = screen.getByLabelText("Initiative die result") as HTMLInputElement;
+    expect(field.value).toBe("26");
+    expect(screen.queryByRole("button", { name: /set initiative/i })).toBeNull();
+
+    // Leaving the untouched field re-adds nothing: 26 stays 26.
+    await user.click(field);
+    await user.tab();
+    let entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
+    expect(entry!.initiative).toBe(26);
+
+    // Typing replaces the shown value (it is selected on focus), and blur
+    // commits die + modifier.
+    await user.click(field);
+    await user.keyboard("8");
+    expect(screen.getByText("8 + 11 = 19")).toBeDefined();
+    await user.tab();
+    entry = useEncounter.getState().encounter.entries.find((e) => e.combatantIds.includes(id));
+    expect(entry!.initiative).toBe(19);
+    expect(field.value).toBe("19");
   });
 });

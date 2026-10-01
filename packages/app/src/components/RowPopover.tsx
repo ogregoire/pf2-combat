@@ -269,15 +269,15 @@ export function RowPopover({
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
-  // What the field means depends on `combatant.kind` (see commitInitiative):
-  // for a creature it's a d20 result the app totals with the creature's
-  // modifier, since the GM rolls a monster's initiative themselves; for a PC
-  // it's the party's already-reported final total, taken as-is, since a
-  // player reports their own number rather than a die the GM rolled. Either
-  // way this is not an editable view of the entry's current initiative (see
-  // the removed initiativeDraft comment history): there is nothing to seed
-  // it from, so it simply starts and stays blank between rolls.
-  const [initiativeDraft, setInitiativeDraft] = useState("");
+  // What a typed value means depends on `combatant.kind` (see
+  // commitInitiative): for a creature it's a d20 result the app totals with
+  // the creature's modifier, since the GM rolls a monster's initiative
+  // themselves; for a PC it's the party's already-reported final total,
+  // taken as-is. Until the GM types, the field shows the entry's current
+  // initiative so the number is visible where it is changed — `null` means
+  // untouched (show the committed value, commit nothing), a string is what
+  // the GM has typed and is what commits.
+  const [initiativeDraft, setInitiativeDraft] = useState<string | null>(null);
   // Which action the panel is currently set up for. Starts on "damage" (the
   // common case) so hovering alone still shows the selector for a creature
   // with relevant IWR. Healing has no damage type — DamagePopover.dc.html:
@@ -393,7 +393,9 @@ export function RowPopover({
   // predates `playerId`. Null means genuinely unknown.
   const knownModifier = player !== null ? player.initiativeModifier : combatant.initiativeModifier;
 
-  const initiativeValue = parseDraft(initiativeDraft);
+  const initiativeValue = initiativeDraft === null ? null : parseDraft(initiativeDraft);
+  const initiativeShown =
+    initiativeDraft !== null ? initiativeDraft : entry === undefined || entry.initiative === null ? "" : String(entry.initiative);
 
   // Only a creature's field sums with a modifier — the GM rolls a monster's
   // initiative themselves, so the field is a d20 result (see
@@ -409,6 +411,11 @@ export function RowPopover({
         ? String(initiativeValue)
         : `${initiativeValue} + ${knownModifier} = ${initiativeValue + knownModifier}`;
 
+  // Commits when the field is left — on blur, on Enter, or when the popover
+  // itself goes away with a value still typed (the GM moves the mouse off
+  // the row before tabbing out; React fires no blur on unmount, so the
+  // cleanup effect below does it through a ref). No "Set" button: typing a
+  // number and leaving is the whole gesture.
   const commitInitiative = (): void => {
     if (!entry || initiativeValue === null) return; // blank/non-numeric value: nothing to commit — see the field's own comment.
     // See rules/initiative.ts's totalInitiative for the kind split (creature
@@ -417,8 +424,11 @@ export function RowPopover({
     // same function rather than re-deriving it.
     const toCommit = totalInitiative(combatant.kind, initiativeValue, knownModifier);
     setInitiative(entry.id, toCommit);
-    setInitiativeDraft("");
+    setInitiativeDraft(null);
   };
+  const commitInitiativeRef = useRef(commitInitiative);
+  commitInitiativeRef.current = commitInitiative;
+  useEffect(() => () => commitInitiativeRef.current(), []);
 
   // One click in the pickable row applies a condition at its starting
   // value — 1 for anything valued (the smallest value that's actually
@@ -626,8 +636,19 @@ export function RowPopover({
               // names so the GM (or a screen reader) knows which is which —
               // see commitInitiative for why the two kinds differ.
               aria-label={combatant.kind === "creature" ? t("INITIATIVE_DIE_RESULT_ARIA") : t("INITIATIVE_VALUE_ARIA")}
-              value={initiativeDraft}
+              value={initiativeShown}
               onChange={(e) => setInitiativeDraft(e.target.value)}
+              // Select the shown value on focus so typing replaces it: for a
+              // creature the shown total is not a die result, and re-adding
+              // the modifier to it would be wrong.
+              onFocus={(e) => e.target.select()}
+              onBlur={commitInitiative}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  commitInitiative();
+                }
+              }}
               style={{
                 width: "44px",
                 fontFamily: "var(--font-mono)",
@@ -646,24 +667,6 @@ export function RowPopover({
                 {initiativeReadout}
               </span>
             )}
-            <div style={{ flexGrow: 1 }} />
-            <button
-              type="button"
-              onClick={commitInitiative}
-              style={{
-                fontFamily: "inherit",
-                fontSize: "12px",
-                fontWeight: 600,
-                padding: "6px 10px",
-                borderRadius: "3px",
-                border: "1px solid var(--border-strong)",
-                background: "var(--panel-raised)",
-                color: "var(--text)",
-                cursor: "pointer",
-              }}
-            >
-              {t("SET_INITIATIVE_BUTTON")}
-            </button>
           </div>
         </div>
       )}
