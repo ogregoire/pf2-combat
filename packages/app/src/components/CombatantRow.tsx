@@ -5,6 +5,7 @@ import { format, useT, type StringKey } from "../i18n/index.js";
 import { CONDITIONS, dyingMax } from "../rules/conditions.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
+import { dropPlacement } from "./dropPlacement.js";
 import { RowPopover } from "./RowPopover.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
@@ -320,7 +321,7 @@ function StandaloneRow({
   selected: boolean;
   onToggleSelect: () => void;
   entryId?: string;
-  onDropEntry?: (draggedEntryId: string) => void;
+  onDropEntry?: (draggedEntryId: string, placement: "before" | "after") => void;
 }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
@@ -368,7 +369,7 @@ function StandaloneRow({
         onDrop: (e: React.DragEvent<HTMLDivElement>) => {
           e.preventDefault();
           const draggedId = e.dataTransfer.getData("text/plain");
-          if (draggedId && draggedId !== entryId) onDropEntry!(draggedId);
+          if (draggedId && draggedId !== entryId) onDropEntry!(draggedId, dropPlacement(e, e.currentTarget));
         },
       }
     : {};
@@ -625,7 +626,7 @@ export function CombatantRow({
    * `onDropEntry`'s owner (CombatantList), which is the one that already
    * knows every entry's id. */
   entryId?: string;
-  onDropEntry?: (draggedEntryId: string) => void;
+  onDropEntry?: (draggedEntryId: string, placement: "before" | "after") => void;
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
   const [tapOpen, setTapOpen] = useState(false);

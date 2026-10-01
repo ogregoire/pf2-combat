@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { createEvent, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Creature } from "@pf2/schema";
 import { CombatantList } from "../src/components/CombatantList.js";
@@ -1446,5 +1446,63 @@ describe("damage/heal summary placement", () => {
     const heal = screen.getByRole("button", { name: /^Heal$/ });
     // DOCUMENT_POSITION_FOLLOWING: the summary comes after the Heal button.
     expect(heal.compareDocumentPosition(summary) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+});
+
+describe("dropping on the lower half of a row", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  const pc = (name: string) => ({
+    kind: "pc" as const, name, level: 4, ac: 21,
+    saves: { fortitude: 10, reflex: 12, will: 9 }, hp: { current: 40, max: 40 },
+  });
+
+  function drop(source: HTMLElement, target: HTMLElement, clientY: number): void {
+    const data = new Map<string, string>();
+    const dataTransfer = {
+      setData: (k: string, v: string) => data.set(k, v),
+      getData: (k: string) => data.get(k) ?? "",
+      effectAllowed: "",
+      dropEffect: "",
+    };
+    fireEvent.dragStart(source, { dataTransfer });
+    fireEvent.dragOver(target, { dataTransfer });
+    // jsdom has no DragEvent, so the fallback event carries no clientY of
+    // its own; pin it explicitly.
+    const dropEvent = createEvent.drop(target, { dataTransfer });
+    Object.defineProperty(dropEvent, "clientY", { value: clientY });
+    fireEvent(target, dropEvent);
+  }
+
+  // Tied PCs "decide between yourselves who goes first" (Player Core, Roll
+  // Initiative), so the GM must be able to put either one first. A drop
+  // used to mean only "before this row": dragging the upper PC onto the
+  // lower one was a no-op and the pair could never be swapped.
+  it("lets the upper of two tied PCs be dragged below the lower one", () => {
+    useEncounter.getState().addCombatant(pc("Valeria"), 15);
+    useEncounter.getState().addCombatant(pc("Akiros"), 15);
+    render(<CombatantList />);
+    const valeria = screen.getByRole("button", { name: "Target Valeria" });
+    const akiros = screen.getByRole("button", { name: "Target Akiros" });
+    akiros.getBoundingClientRect = () => ({ top: 100, height: 40, bottom: 140, left: 0, right: 0, width: 0, x: 0, y: 100, toJSON: () => ({}) });
+
+    drop(valeria, akiros, 135); // lower half → after Akiros
+
+    const names = useEncounter.getState().encounter.entries.map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names).toEqual(["Akiros", "Valeria"]);
+  });
+
+  it("still means 'before this row' when dropped on its upper half", () => {
+    useEncounter.getState().addCombatant(pc("Valeria"), 15);
+    useEncounter.getState().addCombatant(pc("Akiros"), 15);
+    render(<CombatantList />);
+    const valeria = screen.getByRole("button", { name: "Target Valeria" });
+    const akiros = screen.getByRole("button", { name: "Target Akiros" });
+    valeria.getBoundingClientRect = () => ({ top: 100, height: 40, bottom: 140, left: 0, right: 0, width: 0, x: 0, y: 100, toJSON: () => ({}) });
+
+    drop(akiros, valeria, 105); // upper half → before Valeria
+
+    const names = useEncounter.getState().encounter.entries.map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+    expect(names).toEqual(["Akiros", "Valeria"]);
   });
 });

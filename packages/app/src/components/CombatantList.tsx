@@ -4,6 +4,7 @@ import { loadCreature } from "../data/creatures.js";
 import { useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import { CombatantRow } from "./CombatantRow.js";
+import { dropPlacement } from "./dropPlacement.js";
 import { GroupHeader } from "./GroupHeader.js";
 import { QuickAdd } from "./QuickAdd.js";
 
@@ -100,14 +101,13 @@ function GroupBuilder({
 
 /** `onDragOver`/`onDrop` for anywhere a dragged entry can land: shared by
  * the group wrapper (a group is a drop target the same way a standalone
- * row is) and the end-of-list zone below (where `beforeEntryId` is null, so
- * a drag can reach the very last position — no row exists there to drop
- * on). Standalone rows get the equivalent pair from CombatantRow's own
- * `onDropEntry`, not this — they're also a drag *source*, which this isn't
- * asked to be. */
+ * row is) and the end-of-list zone below (where `onDropEntry` receives
+ * null, so a drag can reach the very last position — no row exists there
+ * to drop on). Standalone rows get the equivalent pair from CombatantRow's
+ * own `onDropEntry`, not this — they're also a drag *source*, which this
+ * isn't asked to be. */
 function dropTargetProps(
-  beforeEntryId: string | null,
-  moveEntry: (entryId: string, beforeEntryId: string | null) => void,
+  onDropEntry: (draggedId: string, placement: "before" | "after") => void,
 ): {
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (e: React.DragEvent) => void;
@@ -120,7 +120,7 @@ function dropTargetProps(
     onDrop: (e) => {
       e.preventDefault();
       const draggedId = e.dataTransfer.getData("text/plain");
-      if (draggedId && draggedId !== beforeEntryId) moveEntry(draggedId, beforeEntryId);
+      if (draggedId) onDropEntry(draggedId, dropPlacement(e, e.currentTarget as HTMLElement));
     },
   };
 }
@@ -177,6 +177,13 @@ export function CombatantList({
       {entries.map((entry, index) => {
         const isActive = index === activeEntryIndex;
 
+        // "After this entry" is "before the next one" to the store, or the
+        // very end when this is the last entry.
+        const dropAround = (draggedId: string, placement: "before" | "after"): void => {
+          const beforeId = placement === "before" ? entry.id : (entries[index + 1]?.id ?? null);
+          if (draggedId !== entry.id && draggedId !== beforeId) moveEntry(draggedId, beforeId);
+        };
+
         if (entry.groupName === null) {
           const id = entry.combatantIds[0];
           if (id === undefined) return null;
@@ -191,7 +198,7 @@ export function CombatantList({
               selected={selectedIds.includes(id)}
               onToggleSelect={() => toggleSelect(id)}
               entryId={entry.id}
-              onDropEntry={(draggedId) => moveEntry(draggedId, entry.id)}
+              onDropEntry={dropAround}
             />
           );
         }
@@ -212,7 +219,7 @@ export function CombatantList({
                     e.dataTransfer.effectAllowed = "move";
                   },
                 })}
-            {...dropTargetProps(entry.id, moveEntry)}
+            {...dropTargetProps(dropAround)}
           >
             <GroupHeader
               entryId={entry.id}
@@ -253,7 +260,7 @@ export function CombatantList({
          unstyled strip below the list that's droppable but not otherwise
          visible, so the GM can still drag something to the very end. */}
       {entries.length > 0 && (
-        <div aria-hidden="true" style={{ minHeight: "14px" }} {...dropTargetProps(null, moveEntry)} />
+        <div aria-hidden="true" style={{ minHeight: "14px" }} {...dropTargetProps((draggedId) => moveEntry(draggedId, null))} />
       )}
     </div>
   );
