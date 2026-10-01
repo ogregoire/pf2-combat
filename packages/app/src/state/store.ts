@@ -500,6 +500,83 @@ function nearestRolled(entries: Entry[], start: number, step: -1 | 1): Entry | u
   return undefined;
 }
 
+/** The order `entries` would have with `entryId` moved to sit before
+ * `beforeEntryId` (null: the very end), or null if either id is unknown. */
+function orderAfterMove(entries: Entry[], entryId: string, beforeEntryId: string | null): Entry[] | null {
+  const moved = entries.find((e) => e.id === entryId);
+  if (moved === undefined) return null;
+  const rest = entries.filter((e) => e.id !== entryId);
+  const target = beforeEntryId === null ? rest.length : rest.findIndex((e) => e.id === beforeEntryId);
+  if (target < 0) return null;
+  return [...rest.slice(0, target), moved, ...rest.slice(target)];
+}
+
+/** Whether `moved` may sit where it does in `order`, judged against its
+ * nearest neighbours that hold a place (rolled and not delayed): the one
+ * above must not have a lower initiative, the one below not a higher one,
+ * and inside a tie every creature acts before every PC ("if your result is
+ * tied with an enemy's result, the enemy goes first"). Only the moved
+ * entry is judged — an order that is already irregular elsewhere (a
+ * delayed entry dragged somewhere, say) must not freeze every other row. */
+function sitsLegally(order: Entry[], moved: Entry, combatants: Record<string, Combatant>): boolean {
+  const placed = order.filter((e) => e.id === moved.id || (e.initiative !== null && !e.delayed));
+  const i = placed.findIndex((e) => e.id === moved.id);
+  const above = placed[i - 1];
+  const below = placed[i + 1];
+  const pc = (e: Entry): boolean => isPcEntry(e, combatants);
+  if (above !== undefined) {
+    if (above.initiative! < moved.initiative!) return false;
+    if (above.initiative === moved.initiative && pc(above) && !pc(moved)) return false;
+  }
+  if (below !== undefined) {
+    if (below.initiative! > moved.initiative!) return false;
+    if (below.initiative === moved.initiative && pc(moved) && !pc(below)) return false;
+  }
+  return true;
+}
+
+/**
+ * Whether dragging `entryId` to sit before `beforeEntryId` (null: the very
+ * end) is allowed. A drag settles a tie, which the rules leave to the
+ * table ("if your result is tied with another PC's, you can decide between
+ * yourselves"); it never lets a 25 act after a 12, nor a PC ahead of a
+ * tied creature (see sitsLegally). Two exceptions: an unrolled entry is
+ * never movable, since the sort pins it to the top whatever a drag says;
+ * and a delayed entry may go anywhere, since it holds no place in the
+ * order and a drag is how the GM returns it to one. Dropping an entry
+ * back into its own slot is trivially allowed.
+ */
+export function canMoveEntry(
+  entries: Entry[],
+  combatants: Record<string, Combatant>,
+  entryId: string,
+  beforeEntryId: string | null,
+): boolean {
+  const moved = entries.find((e) => e.id === entryId);
+  if (moved === undefined || moved.initiative === null) return false;
+  if (beforeEntryId === entryId) return true;
+  const after = orderAfterMove(entries, entryId, beforeEntryId);
+  if (after === null) return false;
+  return moved.delayed || sitsLegally(after, moved, combatants);
+}
+
+/** Whether `entryId` has any allowed slot other than the one it is in — if
+ * not, offering the drag at all would only ever snap the row back. */
+export function hasLegalMove(entries: Entry[], combatants: Record<string, Combatant>, entryId: string): boolean {
+  const from = entries.findIndex((e) => e.id === entryId);
+  if (from < 0 || entries[from]!.initiative === null) return false;
+  const rolledIds = (order: Entry[]): string => order.filter((e) => e.initiative !== null).map((e) => e.id).join();
+  const before = rolledIds(entries);
+  const slots: (string | null)[] = [...entries.filter((e) => e.id !== entryId).map((e) => e.id), null];
+  return slots.some((slot) => {
+    if (!canMoveEntry(entries, combatants, entryId, slot)) return false;
+    // A slot among the unrolled block lands in the same place as the top of
+    // the rolled order; only count a slot that actually changes the order.
+    const after = orderAfterMove(entries, entryId, slot);
+    return after !== null && rolledIds(after) !== before;
+  });
+}
+
 function sortEntries(entries: Entry[], combatants: Record<string, Combatant>): void {
   entries.sort((a, b) => {
     if (a.initiative === null && b.initiative !== null) return -1;
@@ -984,6 +1061,12 @@ export const useEncounter = create<EncounterStore>()(
         const enc = state.encounter;
         const from = enc.entries.findIndex((e) => e.id === entryId);
         if (from < 0 || entryId === beforeEntryId) return;
+        // An illegal placement — one that would put a higher initiative
+        // below a lower one — is refused outright, not clamped: the UI
+        // (CombatantList) never offers such a slot, so reaching here with
+        // one means a stale or forged request, and silently landing the
+        // entry somewhere else would be worse than doing nothing.
+        if (!canMoveEntry(enc.entries, enc.combatants, entryId, beforeEntryId)) return;
 
         const activeEntryId = enc.entries[enc.activeEntryIndex]?.id ?? null;
 
@@ -995,13 +1078,6 @@ export const useEncounter = create<EncounterStore>()(
         // guess than last.
         const insertAt = target < 0 ? enc.entries.length : target;
 
-        // Same midpoint-between-neighbours placement returnFromDelay uses,
-        // and for the same reason: entries commonly share an initiative
-        // (addMany gives every member of a batch the same roll), so the key
-        // alone can't always separate two ties. Splicing `moved` into the
-        // array at the drop position *before* the stable re-sort below is
-        // what actually settles a tie in the GM's favour — the array
-        // position, not the number, decides who acts first among equals.
         // Nearest *rolled* neighbours, not simply adjacent ones — see
         // nearestRolled for why an unrolled entry is no place to measure
         // from. An unrolled entry always sits at the top of the list, so it
@@ -1009,32 +1085,36 @@ export const useEncounter = create<EncounterStore>()(
         // this is the common path, not an edge case.
         const above = nearestRolled(enc.entries, insertAt - 1, -1);
         const below = nearestRolled(enc.entries, insertAt, 1);
-        // The midpoint above only actually separates `moved` from both
-        // neighbours when they're distinct — sortEntries' own tie-break
-        // (AoN, "Roll Initiative": "If your result is tied with an enemy's
-        // result, the enemy goes first") settles anything still on
-        // `keyOf(a) === keyOf(b)` by kind, ignoring array position
-        // entirely. When `above` and `below` are themselves already tied,
-        // (keyOf(above) + keyOf(below)) / 2 computes that same shared key
-        // back, so `moved` would land tied with both — free for that
-        // tie-break to reassert itself and pull a dragged PC back below a
-        // tied creature it was just dropped in front of. There is no real
-        // number that sits strictly between two equal ones, so this can't
-        // preserve "between both neighbours" faithfully; it instead
-        // guarantees the one relationship the drop target actually names —
-        // moved sorts ahead of `below`, i.e. `beforeEntryId` — by treating
-        // the tied pair as if only `below` were there. The cost, only in
-        // this exact case, is that `moved` also leapfrogs whatever `above`
-        // shares that key with.
-        const bothTied = above !== undefined && below !== undefined && keyOf(above) === keyOf(below);
-        moved!.orderKey =
-          above !== undefined && below !== undefined && !bothTied
-            ? (keyOf(above) + keyOf(below)) / 2
-            : below !== undefined
-              ? keyOf(below) + 1
-              : above !== undefined
-                ? keyOf(above) - 1
-                : moved!.orderKey;
+        enc.entries.splice(insertAt, 0, moved!);
+
+        const inTie =
+          (above !== undefined && above.initiative === moved!.initiative) ||
+          (below !== undefined && below.initiative === moved!.initiative);
+        if (inTie) {
+          // Settling a tie — the only move allowed for an entry that holds
+          // a place (see canMoveEntry). The whole block of entries sharing
+          // the initiative is renumbered in its new array order, with keys
+          // kept within [initiative, initiative + 1) so none crosses the
+          // next initiative up. A midpoint between the two neighbours can't
+          // do this: when both share the key, no number sits between them.
+          const block = enc.entries.filter((e) => e.initiative === moved!.initiative);
+          block.forEach((e, rank) => {
+            e.orderKey = e.initiative! + (block.length - 1 - rank) / (block.length + 1);
+          });
+        } else {
+          // A delayed entry returning by drag, landing between two different
+          // initiatives: the same midpoint-between-neighbours placement
+          // returnFromDelay uses. Only `orderKey` moves — `initiative` is
+          // never touched, because a drag is a placement, not a re-roll.
+          moved!.orderKey =
+            above !== undefined && below !== undefined
+              ? (keyOf(above) + keyOf(below)) / 2
+              : below !== undefined
+                ? keyOf(below) + 1
+                : above !== undefined
+                  ? keyOf(above) - 1
+                  : moved!.orderKey;
+        }
 
         // An explicit GM placement is authoritative and retires every
         // pending automatic reposition — the same rule setInitiative and
@@ -1075,7 +1155,6 @@ export const useEncounter = create<EncounterStore>()(
           moved!.initiativeBeforeDelay = null;
         }
 
-        enc.entries.splice(insertAt, 0, moved!);
         sortEntries(enc.entries, enc.combatants);
 
         // Same identity-not-position rule as addCombatant/group/

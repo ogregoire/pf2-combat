@@ -910,10 +910,13 @@ describe("Delay", () => {
     expect(frightenedOn(id)).toBe(1);
   });
 
+  // All three tied, so the second drag — of an entry the first drag has
+  // already un-delayed, and which therefore holds a place again — is a
+  // legal tie-settling move rather than a refused one.
   it("does not resolve a dragged delayed turn twice when the drop is corrected from above to below", () => {
-    const id = add("Alpha", 20);
+    const id = add("Alpha", 15);
     add("Beta", 15);
-    add("Gamma", 10);
+    add("Gamma", 15);
     useEncounter.getState().addCondition(id, "frightened", 3);
     const alpha = entryIdOf("Alpha");
 

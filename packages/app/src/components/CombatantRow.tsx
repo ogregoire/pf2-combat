@@ -5,12 +5,21 @@ import { format, useT, type StringKey } from "../i18n/index.js";
 import { CONDITIONS, dyingMax } from "../rules/conditions.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
-import { dropPlacement } from "./dropPlacement.js";
 import { RowPopover } from "./RowPopover.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import type { Combatant } from "../state/types.js";
+
+/** What CombatantList hands a row that stands for an entry in the order:
+ * the native drag/drop handlers to spread on the row (`draggable` present
+ * only when the entry may actually be picked up), and whether the row is
+ * the one currently being dragged — in which case it hides, and the list
+ * shows an empty slot where it would land. */
+export interface RowDrag {
+  props: React.HTMLAttributes<HTMLDivElement> & { draggable?: boolean };
+  hidden: boolean;
+}
 
 const HP_TRACK = "var(--hp-track)";
 const GROUP_BG = "var(--info-bg)";
@@ -305,8 +314,7 @@ function StandaloneRow({
   onTap,
   selected,
   onToggleSelect,
-  entryId,
-  onDropEntry,
+  drag,
 }: {
   combatant: Combatant;
   initiative?: number | null;
@@ -320,8 +328,7 @@ function StandaloneRow({
   onTap: () => void;
   selected: boolean;
   onToggleSelect: () => void;
-  entryId?: string;
-  onDropEntry?: (draggedEntryId: string, placement: "before" | "after") => void;
+  drag?: RowDrag;
 }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
@@ -334,55 +341,24 @@ function StandaloneRow({
       : "var(--border-strong)";
 
   // Dragging is desktop-only in practice (jsdom/touch don't drive native
-  // HTML5 drag), and only meaningful once the caller (CombatantList) has
-  // handed down both the entry to carry and somewhere to deliver a drop —
-  // grouped members never get these, so they're simply not draggable.
-  const inTheOrder = entryId !== undefined && onDropEntry !== undefined;
-  // An unrolled row is pinned above every rolled one by sortEntries on
-  // `initiative === null` alone, whatever orderKey says (see the store).
-  // moveEntry would write the dropped position faithfully and the sort
-  // would then ignore it, so the row snaps back with nothing said. Better
-  // not to offer the gesture at all until the GM rolls. `undefined` — a
-  // caller that tracks no initiative at all — is not the same as null and
-  // stays draggable.
-  const canDrag = inTheOrder && initiative !== null;
-  const dragSourceProps = canDrag
-    ? {
-        draggable: true,
-        onDragStart: (e: React.DragEvent<HTMLDivElement>) => {
-          e.dataTransfer.setData("text/plain", entryId!);
-          e.dataTransfer.effectAllowed = "move";
-        },
-      }
-    : {};
-  // Still a drop *target* while unrolled: what can't be honoured is moving
-  // this row, not landing another one next to it.
-  const dropTargetProps = inTheOrder
-    ? {
-        // A drop only fires if dragover calls preventDefault — the
-        // browser's default for dragover is "reject this as a drop
-        // target".
-        onDragOver: (e: React.DragEvent<HTMLDivElement>) => {
-          e.preventDefault();
-          e.dataTransfer.dropEffect = "move";
-        },
-        onDrop: (e: React.DragEvent<HTMLDivElement>) => {
-          e.preventDefault();
-          const draggedId = e.dataTransfer.getData("text/plain");
-          if (draggedId && draggedId !== entryId) onDropEntry!(draggedId, dropPlacement(e, e.currentTarget));
-        },
-      }
-    : {};
+  // HTML5 drag), and only offered once the caller (CombatantList) has
+  // handed down the entry's drag wiring — grouped members never get it, so
+  // they're simply not draggable. The list owns the whole gesture (what is
+  // being dragged, where the empty slot sits, whether a slot is legal);
+  // this row only spreads the handlers it is given.
+  const inTheOrder = drag !== undefined;
+  const canDrag = inTheOrder && drag.props.draggable === true;
 
   return (
     <div
       {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}
-      {...dragSourceProps}
-      {...dropTargetProps}
+      {...(drag?.props ?? {})}
       data-active={active}
       data-targeted={targeted}
       style={{
-        display: "flex",
+        // While this very row is being dragged, the list shows an empty
+        // slot in its place instead — the row itself leaves the flow.
+        display: drag?.hidden ? "none" : "flex",
         alignItems: "center",
         gap: "10px",
         padding: "8px 10px",
@@ -602,8 +578,7 @@ export function CombatantRow({
   active = false,
   selected = false,
   onToggleSelect,
-  entryId,
-  onDropEntry,
+  drag,
 }: {
   id: string;
   initiative?: number | null;
@@ -619,14 +594,10 @@ export function CombatantRow({
    * care about grouping don't have to pass anything. */
   selected?: boolean;
   onToggleSelect?: () => void;
-  /** The entry this row can be dragged as, and where to deliver another
-   * entry dropped on it — both omitted (as for a grouped member, which has
-   * no entry of its own) means the row isn't draggable at all. Only
-   * `StandaloneRow` wires these; `moveEntry` itself is called by
-   * `onDropEntry`'s owner (CombatantList), which is the one that already
-   * knows every entry's id. */
-  entryId?: string;
-  onDropEntry?: (draggedEntryId: string, placement: "before" | "after") => void;
+  /** The drag wiring for the entry this row stands for — omitted for a
+   * grouped member, which has no entry of its own and so can't be dragged
+   * or dropped on. CombatantList builds it, and owns the whole gesture. */
+  drag?: RowDrag;
 }): React.ReactElement | null {
   const [hovered, setHovered] = useState(false);
   const [tapOpen, setTapOpen] = useState(false);
@@ -733,8 +704,7 @@ export function CombatantRow({
           onTap={onTap}
           selected={selected}
           onToggleSelect={onToggleSelect ?? (() => {})}
-          entryId={entryId}
-          onDropEntry={onDropEntry}
+          drag={drag}
         />
       )}
 

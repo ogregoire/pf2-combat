@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { createEvent, fireEvent, render, screen, within } from "@testing-library/react";
+import { act, createEvent, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Creature } from "@pf2/schema";
 import { CombatantList } from "../src/components/CombatantList.js";
@@ -1000,18 +1000,19 @@ describe("CombatantList", () => {
   describe("dragging an unrolled row", () => {
     it("does not make an unrolled row draggable, since the sort would snap it back", () => {
       useEncounter.getState().addCombatant(seed({ name: "Rolled" }), 20);
+      useEncounter.getState().addCombatant(seed({ name: "Twin" }), 20); // a tie, so Rolled has somewhere to go
       useEncounter.getState().addCombatant(seed({ name: "Unrolled" }), null);
       const { container } = render(<CombatantList />);
 
       expect(screen.getByRole("button", { name: "Target Unrolled" }).getAttribute("draggable")).not.toBe("true");
       expect(screen.getByRole("button", { name: "Target Rolled" }).getAttribute("draggable")).toBe("true");
-      expect(container.querySelectorAll('[draggable="true"]')).toHaveLength(1);
+      expect(container.querySelectorAll('[draggable="true"]')).toHaveLength(2);
 
       // The grip that invites the gesture goes with it — but its box stays,
       // or the unrolled row's initiative and name would sit a column to the
       // left of every other row.
       const grips = screen.getAllByText("⠿");
-      expect(grips.map((g) => g.style.visibility)).toEqual(["hidden", "visible"]); // unrolled sorts first
+      expect(grips.map((g) => g.style.visibility)).toEqual(["hidden", "visible", "visible"]); // unrolled sorts first
     });
 
     it("does not make an unrolled group header draggable either", () => {
@@ -1024,72 +1025,138 @@ describe("CombatantList", () => {
     });
   });
 
-  describe("moveEntry (drag to reorder)", () => {
-    it("moves an entry between two neighbours without touching any initiative", () => {
-      const s = useEncounter.getState();
-      s.addCombatant(seed({ name: "Alpha" }), 20);
-      s.addCombatant(seed({ name: "Beta" }), 15);
-      s.addCombatant(seed({ name: "Gamma" }), 10);
-      const [, , gamma] = useEncounter.getState().encounter.entries;
-
-      useEncounter.getState().moveEntry(gamma!.id, useEncounter.getState().encounter.entries[1]!.id);
-
-      const order = useEncounter.getState().encounter.entries
-        .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
-      expect(order).toEqual(["Alpha", "Gamma", "Beta"]);
-      expect(useEncounter.getState().encounter.entries.map((e) => e.initiative)).toEqual([20, 10, 15]);
+  describe("moveEntry (drag to settle a tie)", () => {
+    const nameOf = (e: { combatantIds: string[] }) =>
+      useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
+    const nameOrder = () => useEncounter.getState().encounter.entries.map(nameOf);
+    const pc = (name: string) => ({
+      kind: "pc" as const, name, level: 4, ac: 21,
+      saves: { fortitude: 10, reflex: 12, will: 9 }, hp: { current: 40, max: 40 },
     });
 
-    it("moves an entry to the very end of the order when beforeEntryId is null", () => {
+    it("moves an entry between two tied neighbours without touching any initiative", () => {
       const s = useEncounter.getState();
-      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Alpha" }), 15);
       s.addCombatant(seed({ name: "Beta" }), 15);
-      s.addCombatant(seed({ name: "Gamma" }), 10);
+      s.addCombatant(seed({ name: "Gamma" }), 15);
+      const [, beta, gamma] = useEncounter.getState().encounter.entries;
+
+      useEncounter.getState().moveEntry(gamma!.id, beta!.id);
+
+      expect(nameOrder()).toEqual(["Alpha", "Gamma", "Beta"]);
+      expect(useEncounter.getState().encounter.entries.map((e) => e.initiative)).toEqual([15, 15, 15]);
+    });
+
+    it("moves an entry to the very end of its tie when beforeEntryId is null", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Alpha" }), 15);
+      s.addCombatant(seed({ name: "Beta" }), 15);
+      s.addCombatant(seed({ name: "Gamma" }), 15);
       const [alpha] = useEncounter.getState().encounter.entries;
 
       useEncounter.getState().moveEntry(alpha!.id, null);
 
-      const order = useEncounter.getState().encounter.entries
-        .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
-      expect(order).toEqual(["Beta", "Gamma", "Alpha"]);
-      // Still untouched — a drag never rewrites the rolled number.
-      expect(useEncounter.getState().encounter.entries.map((e) => e.initiative)).toEqual([15, 10, 20]);
+      expect(nameOrder()).toEqual(["Beta", "Gamma", "Alpha"]);
     });
 
-    it("moves an entry to the very front of the order when dropped before the first entry", () => {
+    it("moves an entry to the front of its tie when dropped before the first entry", () => {
       const s = useEncounter.getState();
-      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Alpha" }), 15);
       s.addCombatant(seed({ name: "Beta" }), 15);
-      const gamma = s.addCombatant(seed({ name: "Gamma" }), 10);
-      const [alpha] = useEncounter.getState().encounter.entries;
+      s.addCombatant(seed({ name: "Gamma" }), 15);
+      const [alpha, , gamma] = useEncounter.getState().encounter.entries;
 
-      const gammaEntryId = useEncounter
-        .getState()
-        .encounter.entries.find((e) => e.combatantIds[0] === gamma)!.id;
-      useEncounter.getState().moveEntry(gammaEntryId, alpha!.id);
+      useEncounter.getState().moveEntry(gamma!.id, alpha!.id);
 
-      const order = useEncounter.getState().encounter.entries
-        .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
-      expect(order).toEqual(["Gamma", "Alpha", "Beta"]);
+      expect(nameOrder()).toEqual(["Gamma", "Alpha", "Beta"]);
+    });
+
+    it("keeps the settled order through later moves in the same tie, and keeps it below the next initiative up", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Lead" }), 16);
+      s.addCombatant(seed({ name: "Alpha" }), 15);
+      s.addCombatant(seed({ name: "Beta" }), 15);
+      s.addCombatant(seed({ name: "Gamma" }), 15);
+      const [, alpha, beta, gamma] = useEncounter.getState().encounter.entries;
+
+      useEncounter.getState().moveEntry(gamma!.id, beta!.id); // L A G B
+      useEncounter.getState().moveEntry(alpha!.id, null); // L G B A
+      expect(nameOrder()).toEqual(["Lead", "Gamma", "Beta", "Alpha"]);
+      useEncounter.getState().moveEntry(beta!.id, gamma!.id); // L B G A
+      expect(nameOrder()).toEqual(["Lead", "Beta", "Gamma", "Alpha"]);
+    });
+
+    // The rules fix the order between different results; a drag only ever
+    // settles a tie. 25 can never act after 12.
+    it("refuses to move an entry below a lower initiative or above a higher one", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "High" }), 25);
+      s.addCombatant(seed({ name: "Mid" }), 18);
+      s.addCombatant(seed({ name: "Low" }), 12);
+      const [high, mid, low] = useEncounter.getState().encounter.entries;
+
+      useEncounter.getState().moveEntry(high!.id, null);
+      useEncounter.getState().moveEntry(high!.id, low!.id);
+      useEncounter.getState().moveEntry(low!.id, high!.id);
+      useEncounter.getState().moveEntry(low!.id, mid!.id);
+      expect(nameOrder()).toEqual(["High", "Mid", "Low"]);
+      expect(useEncounter.getState().encounter.entries.map((e) => e.orderKey)).toEqual([25, 18, 12]);
+    });
+
+    // "If your result is tied with an enemy's result, the enemy goes first"
+    // — a tie between PCs and a creature is only free between the PCs.
+    it("keeps a tied creature above the tied PCs whichever way the drag goes", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Wolf" }), 15);
+      s.addCombatant(pc("Valeria"), 15);
+      s.addCombatant(pc("Akiros"), 15);
+      const [wolf, valeria, akiros] = useEncounter.getState().encounter.entries;
+      expect(nameOrder()).toEqual(["Wolf", "Valeria", "Akiros"]);
+
+      useEncounter.getState().moveEntry(wolf!.id, null); // creature below the PCs: no
+      expect(nameOrder()).toEqual(["Wolf", "Valeria", "Akiros"]);
+      useEncounter.getState().moveEntry(akiros!.id, wolf!.id); // PC above the creature: no
+      expect(nameOrder()).toEqual(["Wolf", "Valeria", "Akiros"]);
+      useEncounter.getState().moveEntry(akiros!.id, valeria!.id); // PC among PCs: yes
+      expect(nameOrder()).toEqual(["Wolf", "Akiros", "Valeria"]);
+    });
+
+    it("only makes rows draggable that have somewhere legal to go", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(seed({ name: "Unrolled" }), null);
+      s.addCombatant(seed({ name: "Lone" }), 20);
+      s.addCombatant(seed({ name: "Wolf" }), 15);
+      s.addCombatant(pc("Valeria"), 15);
+      s.addCombatant(pc("Akiros"), 15);
+      render(<CombatantList />);
+
+      const draggable = (name: string) =>
+        screen.getByRole("button", { name: `Target ${name}` }).getAttribute("draggable");
+      expect(draggable("Unrolled")).toBeNull();
+      expect(draggable("Lone")).toBeNull(); // no tie: nowhere else to be
+      expect(draggable("Wolf")).toBeNull(); // the only creature of its tie: always first
+      expect(draggable("Valeria")).toBe("true");
+      expect(draggable("Akiros")).toBe("true");
     });
 
     it("does not steal the active turn when a drag reorders entries around it", () => {
       const s = useEncounter.getState();
-      s.addCombatant(seed({ name: "Alpha" }), 20);
+      s.addCombatant(seed({ name: "Alpha" }), 15);
       const beta = s.addCombatant(seed({ name: "Beta" }), 15);
-      s.addCombatant(seed({ name: "Gamma" }), 10);
-      useEncounter.getState().nextTurn(); // Alpha -> Beta (active)
+      s.addCombatant(seed({ name: "Gamma" }), 15);
+      useEncounter.getState().nextTurn(); // Beta is active
       const [alpha] = useEncounter.getState().encounter.entries;
 
-      // Drag Alpha (not the active entry) to the end of the order — this
-      // must not hand the turn to whoever now sits at Beta's old index.
       useEncounter.getState().moveEntry(alpha!.id, null);
 
-      const enc = useEncounter.getState().encounter;
-      expect(enc.entries[enc.activeEntryIndex]!.combatantIds[0]).toBe(beta);
+      const st = useEncounter.getState().encounter;
+      expect(st.entries[st.activeEntryIndex]!.combatantIds[0]).toBe(beta);
     });
 
-    it("clears delayed on a dragged entry, since expiry depends on a delayed entry never moving", () => {
+    // A delayed entry holds no place, so a drag may return it anywhere —
+    // and must clear `delayed`, since expiry depends on a delayed entry
+    // never moving.
+    it("clears delayed on a dragged entry, which may land across initiatives since it holds no place", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Alpha" }), 20);
       s.addCombatant(seed({ name: "Beta" }), 15);
@@ -1097,13 +1164,9 @@ describe("CombatantList", () => {
       const alphaEntryId = useEncounter.getState().encounter.entries[0]!.id;
 
       useEncounter.getState().delay(alphaEntryId); // Alpha delays; Beta becomes active
-      expect(useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!.delayed).toBe(
-        true,
-      );
+      expect(useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!.delayed).toBe(true);
 
-      const gammaEntryId = useEncounter
-        .getState()
-        .encounter.entries.find((e) => e.combatantIds[0] === gamma)!.id;
+      const gammaEntryId = useEncounter.getState().encounter.entries.find((e) => e.combatantIds[0] === gamma)!.id;
       useEncounter.getState().moveEntry(alphaEntryId, gammaEntryId);
 
       const moved = useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!;
@@ -1111,12 +1174,13 @@ describe("CombatantList", () => {
       // The drag places it, but a drag never rewrites the rolled initiative
       // — unlike returning, which permanently changes it.
       expect(moved.initiative).toBe(20);
+      expect(nameOrder()).toEqual(["Beta", "Alpha", "Gamma"]);
     });
 
     it("does nothing when an entry is dropped onto itself", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Alpha" }), 20);
-      s.addCombatant(seed({ name: "Beta" }), 10);
+      s.addCombatant(seed({ name: "Beta" }), 20);
       const before = useEncounter.getState().encounter.entries.map((e) => e.id);
 
       useEncounter.getState().moveEntry(before[0]!, before[0]!);
@@ -1124,124 +1188,54 @@ describe("CombatantList", () => {
       expect(useEncounter.getState().encounter.entries.map((e) => e.id)).toEqual(before);
     });
 
-    /*
-     * An unrolled entry's orderKey is meaningless: sortEntries pins it above
-     * every rolled entry on `initiative === null` alone, whatever the key
-     * says, and it is usually 0 (from `orderKey: initiative ?? 0` at
-     * creation). Using one as a neighbour therefore measures the drop
-     * against a number that means nothing, and 0 is the worst possible
-     * one — it drags the computed key to the bottom of the order.
-     *
-     * Both tests below are the same bug seen from two sides, and neither is
-     * an edge case: an unrolled entry sits at the *top* of the list, so it
-     * is the neighbour of whatever the GM drops in the first slot.
-     */
-    it("treats a drop onto an unrolled row as the top of the rolled order, not the bottom", () => {
+    it("treats a drop onto an unrolled row as the top of the rolled order", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Unrolled" }), null);
       s.addCombatant(seed({ name: "Alpha" }), 20);
-      s.addCombatant(seed({ name: "Beta" }), 15);
-      s.addCombatant(seed({ name: "Gamma" }), 10);
-      const entries = useEncounter.getState().encounter.entries;
-      const nameOf = (e: { combatantIds: string[] }): string =>
-        useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
-      const unrolled = entries.find((e) => nameOf(e) === "Unrolled")!;
-      const gamma = entries.find((e) => nameOf(e) === "Gamma")!;
+      s.addCombatant(seed({ name: "Beta" }), 20);
+      const [unrolled, , beta] = useEncounter.getState().encounter.entries;
 
-      useEncounter.getState().moveEntry(gamma.id, unrolled.id);
+      useEncounter.getState().moveEntry(beta!.id, unrolled!.id);
 
-      expect(useEncounter.getState().encounter.entries.map(nameOf)).toEqual([
-        "Unrolled", "Gamma", "Alpha", "Beta",
-      ]);
-      // Still a placement, never a re-roll.
-      expect(useEncounter.getState().encounter.entries.map((e) => e.initiative)).toEqual([null, 10, 20, 15]);
-    });
-
-    it("does not measure a drop against an unrolled entry sitting above the target row", () => {
-      const s = useEncounter.getState();
-      s.addCombatant(seed({ name: "Unrolled" }), null);
-      s.addCombatant(seed({ name: "Alpha" }), 20);
-      s.addCombatant(seed({ name: "Beta" }), 15);
-      const entries = useEncounter.getState().encounter.entries;
-      const nameOf = (e: { combatantIds: string[] }): string =>
-        useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
-      const alpha = entries.find((e) => nameOf(e) === "Alpha")!;
-      const beta = entries.find((e) => nameOf(e) === "Beta")!;
-
-      // "Put Beta above Alpha" — Alpha is the first rolled row, so its only
-      // neighbour above is the unrolled entry.
-      useEncounter.getState().moveEntry(beta.id, alpha.id);
-
-      expect(useEncounter.getState().encounter.entries.map(nameOf)).toEqual(["Unrolled", "Beta", "Alpha"]);
+      expect(nameOrder()).toEqual(["Unrolled", "Beta", "Alpha"]);
+      expect(useEncounter.getState().encounter.entries.map((e) => e.initiative)).toEqual([null, 20, 20]);
     });
 
     it("does nothing when the dragged entry id no longer exists", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Alpha" }), 20);
       const before = useEncounter.getState().encounter.entries.map((e) => e.id);
-
       useEncounter.getState().moveEntry("no-such-entry", null);
-
       expect(useEncounter.getState().encounter.entries.map((e) => e.id)).toEqual(before);
     });
 
-    // sortEntries' null-first rule (an unrolled entry always leads,
-    // regardless of orderKey) is an existing invariant moveEntry must not
-    // let a drag defeat — the GM can adjudicate everything Delay doesn't
-    // cover, but "unrolled acts before anyone with a rolled initiative"
-    // isn't the GM's call to override with a drag any more than it is with
-    // a typed number.
-    it("keeps an unrolled entry sorted above every rolled entry even when dropped at the very end", () => {
+    it("keeps an unrolled entry above every rolled entry even when dropped at the very end", () => {
       const s = useEncounter.getState();
-      const unrolled = s.addCombatant(seed({ name: "Unrolled" }), null);
+      s.addCombatant(seed({ name: "Unrolled" }), null);
       s.addCombatant(seed({ name: "Alpha" }), 20);
       s.addCombatant(seed({ name: "Beta" }), 10);
-      const unrolledEntryId = useEncounter
-        .getState()
-        .encounter.entries.find((e) => e.combatantIds[0] === unrolled)!.id;
+      const unrolledEntryId = useEncounter.getState().encounter.entries[0]!.id;
 
       useEncounter.getState().moveEntry(unrolledEntryId, null);
 
-      const order = useEncounter.getState().encounter.entries
-        .map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
-      expect(order).toEqual(["Unrolled", "Alpha", "Beta"]);
+      expect(nameOrder()).toEqual(["Unrolled", "Alpha", "Beta"]);
     });
 
-    // Regression: a drag is a placement just as authoritative as a typed
-    // initiative or a Delay return — setInitiative and returnFromDelay both
-    // already retire any pending "act this round instead" restore when the
-    // GM places an entry by hand (see their own comments), and a drag is
-    // the most explicit placement of the three. Without clearing
-    // trueInitiative here, a dragged entry would sit exactly where the GM
-    // dropped it right up until the next round wrap, then silently jump to
-    // the typed value the GM never asked to see yet — the same failure
-    // Task 8 fixed for setInitiative, arriving through a new door.
     it("clears a pending 'act this round instead' restore when the entry is dragged, so a later round wrap can't silently move it", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Active" }), 20);
-      s.addCombatant(seed({ name: "Tail" }), 5);
+      s.addCombatant(seed({ name: "Tail" }), 12);
       // Mirrors AddCombatants' "act this round instead": the GM rolled 25,
-      // but the entry is slotted in at 12 (behind Active, ahead of Tail) so
-      // it still acts this round instead of waiting for the next one — 25
-      // is parked in trueInitiative for the next wrap to restore.
+      // but the entry is slotted in at 12 (tied with Tail) so it still acts
+      // this round instead of waiting for the next one — 25 is parked in
+      // trueInitiative for the next wrap to restore.
       const newcomerId = s.addCombatant(seed({ name: "Newcomer" }), 12, 25);
-      const newcomerEntryId = useEncounter
-        .getState()
-        .encounter.entries.find((e) => e.combatantIds[0] === newcomerId)!.id;
-      expect(
-        useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.trueInitiative,
-      ).toBe(25);
+      const newcomerEntryId = useEncounter.getState().encounter.entries.find((e) => e.combatantIds[0] === newcomerId)!.id;
+      expect(useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.trueInitiative).toBe(25);
 
-      // The GM instead drags Newcomer to the very end of the order.
+      // The GM drags Newcomer behind Tail.
       useEncounter.getState().moveEntry(newcomerEntryId, null);
-      expect(
-        useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.trueInitiative,
-      ).toBeNull();
-
-      const nameOrder = () =>
-        useEncounter
-          .getState()
-          .encounter.entries.map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+      expect(useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.trueInitiative).toBeNull();
       expect(nameOrder()).toEqual(["Active", "Tail", "Newcomer"]);
 
       // Active -> Tail -> Newcomer -> wraps to round 2.
@@ -1250,14 +1244,10 @@ describe("CombatantList", () => {
       useEncounter.getState().nextTurn();
 
       // If trueInitiative had survived the drag, this wrap would restore 25
-      // and re-sort Newcomer to the front — well above Active and Tail.
-      // It must instead stay exactly where the GM dropped it.
+      // and re-sort Newcomer to the front. It must stay where it was dropped.
       expect(nameOrder()).toEqual(["Active", "Tail", "Newcomer"]);
-      expect(
-        useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.initiative,
-      ).toBe(12);
+      expect(useEncounter.getState().encounter.entries.find((e) => e.id === newcomerEntryId)!.initiative).toBe(12);
     });
-
     // Regression: initiativeBeforeDelay is only ever meant to record the
     // number an entry held immediately before a *just-happened* Delay
     // return, so the row can show it struck through. It's possible to
@@ -1303,98 +1293,25 @@ describe("CombatantList", () => {
       expect(moved.initiative).toBe(15);
     });
 
-    // sortEntries now sorts a tied creature above a tied PC (AoN, "Roll
-    // Initiative": "If your result is tied with an enemy's result, the
-    // enemy goes first"). moveEntry's midpoint placement usually escapes an
-    // exact tie by landing strictly between two distinct neighbours, but
-    // dropping between two entries that are *already* tied with each other
-    // computes that same key back — (20 + 20) / 2 === 20 — which would
-    // otherwise leave the dragged PC tied with the creature it was dropped
-    // in front of, free for the tie-break to reassert itself and snap the
-    // PC back below it. moveEntry must guarantee separation in that case so
-    // the drag — "the GM's rules-free override for the turn order" per its
-    // own doc comment — actually sticks.
-    it("keeps a PC above a tied creature after a drag, even when the drop lands between two entries already tied with each other", () => {
+    // "If your result is tied with an enemy's result, the enemy goes first"
+    // — and a drag is no override of that: a PC dropped between two tied
+    // creatures, or in front of them, is refused outright.
+    it("refuses to drag a PC between or above creatures tied with it", () => {
       const s = useEncounter.getState();
-      s.addMany(seed({ name: "Goblin" }), 2, 20); // both goblins land tied at 20
+      s.addCombatant(seed({ name: "Goblin" }), 20);
+      s.addCombatant(seed({ name: "Goblin" }), 20);
       s.addCombatant(
-        seed({ kind: "pc", name: "Valeros", level: 4, ac: 21, saves: { fortitude: 9, reflex: 9, will: 6 } }),
+        { kind: "pc", name: "Valeros", level: 1, ac: 18, saves: { fortitude: 8, reflex: 5, will: 4 }, hp: { current: 20, max: 20 } },
         20,
       );
-      const nameOf = (e: { combatantIds: string[] }): string =>
-        useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
-      const names = () => useEncounter.getState().encounter.entries.map(nameOf);
-      // The tie-break already puts both goblins ahead of Valeros.
+      const names = () => useEncounter.getState().encounter.entries.map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+      const [first, second, valeros] = useEncounter.getState().encounter.entries;
       expect(names()).toEqual(["Goblin", "Goblin", "Valeros"]);
 
-      const secondGoblin = useEncounter.getState().encounter.entries[1]!;
-      const valerosEntry = useEncounter.getState().encounter.entries.find((e) => nameOf(e) === "Valeros")!;
-      // Drag Valeros to sit between the two goblins — above and below are
-      // both tied at 20, the exact collision described above. There is no
-      // real number strictly between two equal ones, so moveEntry honours
-      // the one relationship the drop target actually names — ahead of
-      // the second goblin, i.e. `beforeEntryId` — which here also means
-      // ahead of the first (they share its key too): Valeros ends up
-      // leading both, not merely wedged between them.
-      useEncounter.getState().moveEntry(valerosEntry.id, secondGoblin.id);
-      expect(names()).toEqual(["Valeros", "Goblin", "Goblin"]);
-
-      // A later re-sort (triggered by an unrelated add) must not let the
-      // tie-break undo the placement.
-      s.addCombatant(seed({ name: "Wolf" }), 5);
-      expect(names()).toEqual(["Valeros", "Goblin", "Goblin", "Wolf"]);
-    });
-
-    // Open question from the fix above: what happens when a *second*,
-    // independent drag lands on the exact same `below + 1` degenerate
-    // value the first one did? Both PCs end up genuinely tied with each
-    // other — not with either goblin — which is not itself a new problem:
-    // two tied PCs is the ordinary "you decide between yourselves" case
-    // (see sortEntries' own comment), settled by array/drag position same
-    // as any other same-kind tie, so the two dragged PCs simply keep the
-    // order they were dragged in rather than the goblins' kind disturbing
-    // either of them.
-    it("lets two separate drags into the same tied pair re-tie with each other, without disturbing either", () => {
-      const s = useEncounter.getState();
-      const [goblin1Id, goblin2Id] = s.addMany(seed({ name: "Goblin" }), 2, 20);
-      const valerosId = s.addCombatant(
-        seed({ kind: "pc", name: "Valeros", level: 4, ac: 21, saves: { fortitude: 9, reflex: 9, will: 6 } }),
-        20,
-      );
-      const ezrenId = s.addCombatant(
-        seed({ kind: "pc", name: "Ezren", level: 4, ac: 15, saves: { fortitude: 5, reflex: 5, will: 9 } }),
-        20,
-      );
-      const nameOf = (e: { combatantIds: string[] }): string =>
-        useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name;
-      const names = () => useEncounter.getState().encounter.entries.map(nameOf);
-      const entryFor = (combatantId: string) =>
-        useEncounter.getState().encounter.entries.find((e) => e.combatantIds[0] === combatantId)!;
-      // Both goblins ahead of both tied PCs; Valeros ahead of Ezren
-      // (insertion-stable, per the two-tied-PCs test above).
-      expect(names()).toEqual(["Goblin", "Goblin", "Valeros", "Ezren"]);
-
-      // Drag Valeros to sit between the two goblins — lands on below + 1
-      // (see the test above), leading both goblins.
-      useEncounter.getState().moveEntry(entryFor(valerosId).id, entryFor(goblin2Id).id);
-      expect(names()).toEqual(["Valeros", "Goblin", "Goblin", "Ezren"]);
-
-      // Now drag Ezren to the exact same spot — also lands on below + 1,
-      // which is the same numeric value Valeros already claimed: the two
-      // PCs are now tied with each other, not with either goblin.
-      useEncounter.getState().moveEntry(entryFor(ezrenId).id, entryFor(goblin2Id).id);
-
-      // Both PCs still lead both goblins, and the second drag doesn't
-      // disturb the first — Valeros (dragged first) keeps its place ahead
-      // of Ezren (dragged second), same stable rule as any other tied PC
-      // pair, and neither goblin gets pulled out of its own tied pair by
-      // the PCs' tie.
-      expect(names()).toEqual(["Valeros", "Ezren", "Goblin", "Goblin"]);
-      expect(entryFor(valerosId).orderKey).toBe(entryFor(ezrenId).orderKey);
-
-      // A later re-sort must not let anything reshuffle this.
-      s.addCombatant(seed({ name: "Wolf" }), 5);
-      expect(names()).toEqual(["Valeros", "Ezren", "Goblin", "Goblin", "Wolf"]);
+      useEncounter.getState().moveEntry(valeros!.id, second!.id);
+      expect(names()).toEqual(["Goblin", "Goblin", "Valeros"]);
+      useEncounter.getState().moveEntry(valeros!.id, first!.id);
+      expect(names()).toEqual(["Goblin", "Goblin", "Valeros"]);
     });
   });
 });
@@ -1449,60 +1366,112 @@ describe("damage/heal summary placement", () => {
   });
 });
 
-describe("dropping on the lower half of a row", () => {
+describe("dragging a row (the empty slot and the drop)", () => {
   beforeEach(() => useEncounter.getState().reset());
 
   const pc = (name: string) => ({
     kind: "pc" as const, name, level: 4, ac: 21,
     saves: { fortitude: 10, reflex: 12, will: 9 }, hp: { current: 40, max: 40 },
   });
+  const nameOrder = () =>
+    useEncounter.getState().encounter.entries.map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
+  const rect = (top: number, height: number) =>
+    () => ({ top, height, bottom: top + height, left: 0, right: 0, width: 0, x: 0, y: top, toJSON: () => ({}) });
 
-  function drop(source: HTMLElement, target: HTMLElement, clientY: number): void {
+  const dataTransfer = () => {
     const data = new Map<string, string>();
-    const dataTransfer = {
+    return {
       setData: (k: string, v: string) => data.set(k, v),
       getData: (k: string) => data.get(k) ?? "",
       effectAllowed: "",
       dropEffect: "",
     };
-    fireEvent.dragStart(source, { dataTransfer });
-    fireEvent.dragOver(target, { dataTransfer });
-    // jsdom has no DragEvent, so the fallback event carries no clientY of
-    // its own; pin it explicitly.
-    const dropEvent = createEvent.drop(target, { dataTransfer });
-    Object.defineProperty(dropEvent, "clientY", { value: clientY });
-    fireEvent(target, dropEvent);
+  };
+  // jsdom has no DragEvent, so the fallback event carries no clientY of
+  // its own; pin it explicitly. The dragged row leaves the flow a tick
+  // after dragstart (see CombatantList.startDrag), hence the await.
+  async function dragStart(source: HTMLElement, dt: ReturnType<typeof dataTransfer>): Promise<void> {
+    fireEvent.dragStart(source, { dataTransfer: dt });
+    await act(() => new Promise((r) => setTimeout(r, 0)));
   }
+  function dragOver(target: HTMLElement, dt: ReturnType<typeof dataTransfer>, clientY: number): void {
+    const ev = createEvent.dragOver(target, { dataTransfer: dt });
+    Object.defineProperty(ev, "clientY", { value: clientY });
+    fireEvent(target, ev);
+  }
+  function drop(target: HTMLElement, dt: ReturnType<typeof dataTransfer>): void {
+    fireEvent.drop(target, { dataTransfer: dt });
+  }
+  const rowOf = (name: string) => screen.getByRole("button", { name: `Target ${name}` });
 
-  // Tied PCs "decide between yourselves who goes first" (Player Core, Roll
-  // Initiative), so the GM must be able to put either one first. A drop
-  // used to mean only "before this row": dragging the upper PC onto the
-  // lower one was a no-op and the pair could never be swapped.
-  it("lets the upper of two tied PCs be dragged below the lower one", () => {
+  it("replaces the dragged row with an empty slot that moves to where the drop would land", async () => {
     useEncounter.getState().addCombatant(pc("Valeria"), 15);
     useEncounter.getState().addCombatant(pc("Akiros"), 15);
+    useEncounter.getState().addCombatant(pc("Bran"), 15);
     render(<CombatantList />);
-    const valeria = screen.getByRole("button", { name: "Target Valeria" });
-    const akiros = screen.getByRole("button", { name: "Target Akiros" });
-    akiros.getBoundingClientRect = () => ({ top: 100, height: 40, bottom: 140, left: 0, right: 0, width: 0, x: 0, y: 100, toJSON: () => ({}) });
+    const valeria = rowOf("Valeria");
+    const bran = rowOf("Bran");
+    bran.getBoundingClientRect = rect(200, 40);
+    const dt = dataTransfer();
 
-    drop(valeria, akiros, 135); // lower half → after Akiros
+    expect(screen.queryByTestId("drop-slot")).toBeNull();
+    await dragStart(valeria, dt);
+    // The row has left the flow; the slot sits where it was (before Akiros).
+    expect(valeria.style.display).toBe("none");
+    expect(screen.getByTestId("drop-slot").nextElementSibling).toBe(rowOf("Akiros").parentElement);
 
-    const names = useEncounter.getState().encounter.entries.map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
-    expect(names).toEqual(["Akiros", "Valeria"]);
+    // Hovering Bran's lower half moves the slot to after Bran (the end).
+    dragOver(bran, dt, 235);
+    expect(screen.getByTestId("drop-slot").previousElementSibling).toBe(bran.parentElement);
+
+    drop(bran, dt);
+    expect(nameOrder()).toEqual(["Akiros", "Bran", "Valeria"]);
+    expect(screen.queryByTestId("drop-slot")).toBeNull();
+    expect(rowOf("Valeria").style.display).not.toBe("none");
   });
 
-  it("still means 'before this row' when dropped on its upper half", () => {
+  it("lets the upper of two tied PCs be dragged below the lower one", async () => {
     useEncounter.getState().addCombatant(pc("Valeria"), 15);
     useEncounter.getState().addCombatant(pc("Akiros"), 15);
     render(<CombatantList />);
-    const valeria = screen.getByRole("button", { name: "Target Valeria" });
-    const akiros = screen.getByRole("button", { name: "Target Akiros" });
-    valeria.getBoundingClientRect = () => ({ top: 100, height: 40, bottom: 140, left: 0, right: 0, width: 0, x: 0, y: 100, toJSON: () => ({}) });
+    const akiros = rowOf("Akiros");
+    akiros.getBoundingClientRect = rect(100, 40);
+    const dt = dataTransfer();
 
-    drop(akiros, valeria, 105); // upper half → before Valeria
+    await dragStart(rowOf("Valeria"), dt);
+    dragOver(akiros, dt, 135); // lower half → after Akiros
+    drop(akiros, dt);
+    expect(nameOrder()).toEqual(["Akiros", "Valeria"]);
+  });
 
-    const names = useEncounter.getState().encounter.entries.map((e) => useEncounter.getState().encounter.combatants[e.combatantIds[0]!]!.name);
-    expect(names).toEqual(["Akiros", "Valeria"]);
+  it("still means 'before this row' when dropped on its upper half", async () => {
+    useEncounter.getState().addCombatant(pc("Valeria"), 15);
+    useEncounter.getState().addCombatant(pc("Akiros"), 15);
+    render(<CombatantList />);
+    const valeria = rowOf("Valeria");
+    valeria.getBoundingClientRect = rect(100, 40);
+    const dt = dataTransfer();
+
+    await dragStart(rowOf("Akiros"), dt);
+    dragOver(valeria, dt, 105); // upper half → before Valeria
+    drop(valeria, dt);
+    expect(nameOrder()).toEqual(["Akiros", "Valeria"]);
+  });
+
+  it("refuses the slot over a row of a different initiative, leaving the slot where it was", async () => {
+    useEncounter.getState().addCombatant(pc("Valeria"), 15);
+    useEncounter.getState().addCombatant(pc("Akiros"), 15);
+    useEncounter.getState().addCombatant(seed({ name: "Slow" }), 5);
+    render(<CombatantList />);
+    const slow = rowOf("Slow");
+    slow.getBoundingClientRect = rect(300, 40);
+    const dt = dataTransfer();
+
+    await dragStart(rowOf("Valeria"), dt);
+    dragOver(slow, dt, 335); // below Slow: illegal
+    expect(dt.dropEffect).toBe("none");
+    expect(screen.getByTestId("drop-slot").nextElementSibling).toBe(rowOf("Akiros").parentElement);
+    drop(slow, dt); // the drop lands in the slot, i.e. where it started
+    expect(nameOrder()).toEqual(["Valeria", "Akiros", "Slow"]);
   });
 });
