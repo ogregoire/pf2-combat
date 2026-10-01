@@ -1121,6 +1121,29 @@ describe("CombatantList", () => {
       expect(nameOrder()).toEqual(["Wolf", "Akiros", "Valeria"]);
     });
 
+    // The reported case: two PCs settled by a drag carry fractional keys,
+    // and a creature then given their initiative landed between them,
+    // since its bare key tied with only the lower PC. The sort now settles
+    // every tie block on every change, so the creature goes first.
+    it("puts a creature set to the PCs' initiative above both of them, even after a drag settled the PCs", () => {
+      const s = useEncounter.getState();
+      s.addCombatant(pc("Valeria"), 15);
+      s.addCombatant(pc("Akiros"), 15);
+      s.addCombatant(seed({ name: "Wolf" }), 9);
+      const [valeria, akiros, wolf] = useEncounter.getState().encounter.entries;
+
+      useEncounter.getState().moveEntry(akiros!.id, valeria!.id); // settle: Akiros first
+      expect(nameOrder()).toEqual(["Akiros", "Valeria", "Wolf"]);
+
+      useEncounter.getState().setInitiative(wolf!.id, 15);
+      expect(nameOrder()).toEqual(["Wolf", "Akiros", "Valeria"]);
+
+      // And a newcomer at the same initiative: creature first, PC last.
+      s.addCombatant(seed({ name: "Goblin" }), 15);
+      s.addCombatant(pc("Bran"), 15);
+      expect(nameOrder()).toEqual(["Wolf", "Goblin", "Akiros", "Valeria", "Bran"]);
+    });
+
     it("only makes rows draggable that have somewhere legal to go", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Unrolled" }), null);
@@ -1155,8 +1178,11 @@ describe("CombatantList", () => {
 
     // A delayed entry holds no place, so a drag may return it anywhere —
     // and must clear `delayed`, since expiry depends on a delayed entry
-    // never moving.
-    it("clears delayed on a dragged entry, which may land across initiatives since it holds no place", () => {
+    // never moving. Like a Delay return, it takes the initiative of the
+    // block it lands in (the entry above it), so the order stays legal and
+    // the row never shows a number its position contradicts; the old number
+    // is kept to show struck through.
+    it("clears delayed on a dragged entry, which joins the initiative of the block it lands in", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Alpha" }), 20);
       s.addCombatant(seed({ name: "Beta" }), 15);
@@ -1171,9 +1197,8 @@ describe("CombatantList", () => {
 
       const moved = useEncounter.getState().encounter.entries.find((e) => e.id === alphaEntryId)!;
       expect(moved.delayed).toBe(false);
-      // The drag places it, but a drag never rewrites the rolled initiative
-      // — unlike returning, which permanently changes it.
-      expect(moved.initiative).toBe(20);
+      expect(moved.initiative).toBe(15);
+      expect(moved.initiativeBeforeDelay).toBe(20);
       expect(nameOrder()).toEqual(["Beta", "Alpha", "Gamma"]);
     });
 

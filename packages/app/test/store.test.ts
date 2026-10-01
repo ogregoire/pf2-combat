@@ -43,12 +43,17 @@ describe("encounter store", () => {
     addCreature("Alpha", 20);
     addCreature("Beta", 20);
     const [alpha, beta] = useEncounter.getState().encounter.entries;
-    expect(alpha!.orderKey).toBe(20);
-    expect(beta!.orderKey).toBe(20);
+    // A tie block is settled into strictly decreasing keys within
+    // [initiative, initiative + 1) — see sortEntries — so Alpha sits above
+    // Beta by key, not merely by insertion order.
+    expect(alpha!.orderKey).toBeGreaterThan(beta!.orderKey!);
+    expect(alpha!.orderKey).toBeLessThan(21);
+    expect(beta!.orderKey).toBeGreaterThanOrEqual(20);
 
-    // Placed between them without touching either initiative.
+    // Beta pushed below the bare key a newcomer arrives with, without
+    // touching either initiative: Gamma lands between them.
     useEncounter.setState((st) => {
-      st.encounter.entries[1]!.orderKey = 19.5;
+      st.encounter.entries[1]!.orderKey = 19.9;
     });
     addCreature("Gamma", 20);
     const names = useEncounter.getState().encounter.entries

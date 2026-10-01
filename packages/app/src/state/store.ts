@@ -577,21 +577,49 @@ export function hasLegalMove(entries: Entry[], combatants: Record<string, Combat
   });
 }
 
+function compareEntries(a: Entry, b: Entry, combatants: Record<string, Combatant>): number {
+  if (a.initiative === null && b.initiative !== null) return -1;
+  if (a.initiative !== null && b.initiative === null) return 1;
+  const diff = keyOf(b) - keyOf(a);
+  if (diff !== 0) return diff;
+  // Exact tie: settle it by kind (creature before PC). Same-kind (PC/PC or
+  // creature/creature) falls through to 0, i.e. stable, decided by array
+  // position.
+  const aPc = isPcEntry(a, combatants);
+  const bPc = isPcEntry(b, combatants);
+  return aPc === bPc ? 0 : aPc ? 1 : -1;
+}
+
+/**
+ * Sorts, then settles every tie block so the order is legal whatever just
+ * changed — a typed initiative, a new combatant, a Delay return, a drag.
+ * Within one initiative, every creature acts before every PC ("if your
+ * result is tied with an enemy's result, the enemy goes first"), and
+ * inside each kind the GM's settled order (the array order the sort just
+ * produced) stands. The block is renumbered to strictly decreasing keys in
+ * [initiative, initiative + 1), so a later arrival with a bare `orderKey:
+ * initiative` lands at the bottom of its kind rather than in between two
+ * entries a drag had already separated — which is exactly how a creature
+ * set to the PCs' initiative once ended up between the two PCs.
+ */
 function sortEntries(entries: Entry[], combatants: Record<string, Combatant>): void {
-  entries.sort((a, b) => {
-    if (a.initiative === null && b.initiative !== null) return -1;
-    if (a.initiative !== null && b.initiative === null) return 1;
-    const diff = keyOf(b) - keyOf(a);
-    if (diff !== 0) return diff;
-    // Exact tie: settle it by kind (creature before PC), same for every
-    // entry regardless of `delayed` — see this function's own comment for
-    // why a delayed exemption here would be a correctness bug, not a
-    // convenience. Same-kind (PC/PC or creature/creature) falls through to
-    // 0, i.e. stable, decided by array position — unrelated to this rule.
-    const aPc = isPcEntry(a, combatants);
-    const bPc = isPcEntry(b, combatants);
-    return aPc === bPc ? 0 : aPc ? 1 : -1;
-  });
+  entries.sort((a, b) => compareEntries(a, b, combatants));
+
+  const blocks = new Map<number, Entry[]>();
+  for (const e of entries) {
+    if (e.initiative === null) continue;
+    const block = blocks.get(e.initiative);
+    if (block === undefined) blocks.set(e.initiative, [e]);
+    else block.push(e);
+  }
+  for (const [initiative, block] of blocks) {
+    const settled = [...block.filter((e) => !isPcEntry(e, combatants)), ...block.filter((e) => isPcEntry(e, combatants))];
+    settled.forEach((e, rank) => {
+      e.orderKey = initiative + (settled.length - 1 - rank) / (settled.length + 1);
+    });
+  }
+
+  entries.sort((a, b) => compareEntries(a, b, combatants));
 }
 
 interface EncounterStore {
@@ -1085,36 +1113,33 @@ export const useEncounter = create<EncounterStore>()(
         // this is the common path, not an edge case.
         const above = nearestRolled(enc.entries, insertAt - 1, -1);
         const below = nearestRolled(enc.entries, insertAt, 1);
-        enc.entries.splice(insertAt, 0, moved!);
 
-        const inTie =
-          (above !== undefined && above.initiative === moved!.initiative) ||
-          (below !== undefined && below.initiative === moved!.initiative);
-        if (inTie) {
-          // Settling a tie — the only move allowed for an entry that holds
-          // a place (see canMoveEntry). The whole block of entries sharing
-          // the initiative is renumbered in its new array order, with keys
-          // kept within [initiative, initiative + 1) so none crosses the
-          // next initiative up. A midpoint between the two neighbours can't
-          // do this: when both share the key, no number sits between them.
-          const block = enc.entries.filter((e) => e.initiative === moved!.initiative);
-          block.forEach((e, rank) => {
-            e.orderKey = e.initiative! + (block.length - 1 - rank) / (block.length + 1);
-          });
-        } else {
-          // A delayed entry returning by drag, landing between two different
-          // initiatives: the same midpoint-between-neighbours placement
-          // returnFromDelay uses. Only `orderKey` moves — `initiative` is
-          // never touched, because a drag is a placement, not a re-roll.
-          moved!.orderKey =
-            above !== undefined && below !== undefined
-              ? (keyOf(above) + keyOf(below)) / 2
-              : below !== undefined
-                ? keyOf(below) + 1
-                : above !== undefined
-                  ? keyOf(above) - 1
-                  : moved!.orderKey;
+        // A delayed entry holds no place, so a drag may return it anywhere
+        // (see canMoveEntry) — and, like returnFromDelay, returning
+        // "permanently changes your initiative": it joins the tie block it
+        // lands in, behind the entry above it, so the order stays legal and
+        // the row never shows a number its position contradicts. The old
+        // number is kept for the row to show struck through, as a Delay
+        // return does, but only when it actually changed.
+        const wasDelayed = moved!.delayed;
+        if (wasDelayed) {
+          const joined = above?.initiative ?? below?.initiative ?? moved!.initiative!;
+          moved!.initiativeBeforeDelay = joined !== moved!.initiative ? moved!.initiative : null;
+          moved!.initiative = joined;
         }
+
+        // Settling a tie — the only move allowed for an entry that holds a
+        // place. The whole block sharing the initiative is renumbered in its
+        // new array order (sortEntries then also puts creatures before PCs
+        // within it), with keys kept within [initiative, initiative + 1) so
+        // none crosses the next initiative up. A midpoint between the two
+        // neighbours can't do this: when both share the key, no number sits
+        // between them.
+        enc.entries.splice(insertAt, 0, moved!);
+        const block = enc.entries.filter((e) => e.initiative === moved!.initiative);
+        block.forEach((e, rank) => {
+          e.orderKey = e.initiative! + (block.length - 1 - rank) / (block.length + 1);
+        });
 
         // An explicit GM placement is authoritative and retires every
         // pending automatic reposition — the same rule setInitiative and
@@ -1142,18 +1167,10 @@ export const useEncounter = create<EncounterStore>()(
         // combatant acts, which is a return in every sense but the number —
         // and the number is deliberately left alone, unlike setInitiative,
         // because a drag never carries a new initiative to assign.
-        if (moved!.delayed) {
-          moved!.delayed = false;
-          // initiativeBeforeDelay is only meant to record the number this
-          // entry held immediately before a *just-happened* Delay return,
-          // so the row can show it struck through. delay() doesn't clear it
-          // on a second Delay, so an entry that returned once, delayed
-          // again, and is now dragged could still be carrying that old
-          // value — which this un-delay didn't produce and has nothing to
-          // do with. Left in place, it would resurface as a struck-through
-          // number the GM never asked to see.
-          moved!.initiativeBeforeDelay = null;
-        }
+        // (initiativeBeforeDelay was set above: the number this drag-return
+        // actually replaced, or null — never a stale record from an earlier
+        // return that delay() left behind.)
+        moved!.delayed = false;
 
         sortEntries(enc.entries, enc.combatants);
 

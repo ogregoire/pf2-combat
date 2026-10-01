@@ -1147,7 +1147,10 @@ describe("Delay", () => {
     useEncounter.getState().delay(late); // Beta is up
     useEncounter.getState().returnFromDelay(late);
     expect(entryOf(late).initiative).toBe(15);
-    expect(entryOf(late).orderKey).toBe(14);
+    // Behind Beta inside the 15 block: a lower key than Beta's, still ≥ 15.
+    const beta = entryIdOf("Beta");
+    expect(entryOf(late).orderKey).toBeLessThan(entryOf(beta).orderKey!);
+    expect(entryOf(late).orderKey).toBeGreaterThanOrEqual(15);
 
     useEncounter.getState().nextTurn(); // Late takes its returned turn
     useEncounter.getState().nextTurn(); // round wraps
@@ -1159,7 +1162,8 @@ describe("Delay", () => {
     expect(useEncounter.getState().encounter.round).toBe(2);
     const back = entryOf(late);
     expect(back.initiative).toBe(15);
-    expect(back.orderKey).toBe(14);
+    expect(back.orderKey).toBeLessThan(entryOf(beta).orderKey!);
+    expect(back.orderKey).toBeGreaterThanOrEqual(15);
     expect(back.trueInitiative).toBeNull();
     expect(back.initiativeBeforeDelay).toBe(18);
     expect(order()).toEqual(["Alpha", "Beta", "Late"]);
