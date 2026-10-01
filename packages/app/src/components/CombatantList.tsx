@@ -3,6 +3,7 @@ import type { Creature, IndexEntry } from "@pf2/schema";
 import { loadCreature } from "../data/creatures.js";
 import { useT } from "../i18n/index.js";
 import { canMoveEntry, hasLegalMove, useEncounter } from "../state/store.js";
+import type { Entry } from "../state/types.js";
 import { CombatantRow, type RowDrag } from "./CombatantRow.js";
 import { dropPlacement } from "./dropPlacement.js";
 import { GroupHeader } from "./GroupHeader.js";
