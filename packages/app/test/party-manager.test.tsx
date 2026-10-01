@@ -130,22 +130,61 @@ describe("PartyManager row", () => {
   });
 
   // jsdom does no layout, so this pins the declarations rather than the
-  // outcome: the three saves sit in one non-wrapping block inside the
-  // wrapping field area, so they move to the next line together or not at
-  // all, and the bin sits outside that area, vertically centred.
-  it("keeps the three saves in one block and the bin outside the wrapping fields", () => {
+  // outcome: the roster is one grid and each row a subgrid of it, so AC,
+  // Level, HP and the saves share columns down the list; the three saves
+  // are one non-wrapping block; the toggle and bin are the row's first and
+  // last cells, spanning its full height and vertically centred.
+  it("lays every row out on the roster's shared columns, saves as one block, bin last", () => {
     useEncounter.getState().setPlayers([player()]);
     render(<PartyManager />);
 
+    const roster = screen.getByTestId("roster");
+    expect(roster.style.display).toBe("grid");
+    const row = screen.getByTestId("player-row");
+    expect(row.parentElement).toBe(roster);
+    expect(row.style.gridTemplateColumns).toBe("subgrid");
+    expect(row.style.alignItems).toBe("center");
+
     const saves = screen.getByTestId("saves-block");
     expect(saves.style.flexWrap).toBe("nowrap");
-    const fields = saves.parentElement as HTMLElement;
-    expect(fields.style.flexWrap).toBe("wrap");
+    expect(saves.parentElement).toBe(row);
 
     const bin = screen.getByRole("button", { name: "Remove Valeria" });
-    expect(bin.parentElement).toBe(fields.parentElement);
-    expect((bin.parentElement as HTMLElement).style.alignItems).toBe("center");
+    expect(row.lastElementChild).toBe(bin);
+    expect(bin.style.gridRow).toBe("1 / -1");
     expect(bin.style.color).toBe("var(--danger)");
+  });
+
+  it("shows Present as a green check on the row's left, turning into a red cross when absent", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setPlayers([player()]);
+    render(<PartyManager />);
+
+    const toggle = screen.getByRole("checkbox", { name: "Present" });
+    expect(toggle.getAttribute("aria-checked")).toBe("true");
+    expect(toggle.style.color).toBe("var(--ok)");
+    // First cell of the row, spanning its full height, like the bin is last.
+    const row = toggle.parentElement as HTMLElement;
+    expect(row.firstElementChild).toBe(toggle);
+    expect(toggle.style.gridRow).toBe("1 / -1");
+    expect(row.lastElementChild).toBe(screen.getByRole("button", { name: "Remove Valeria" }));
+
+    await user.click(toggle);
+    expect(useEncounter.getState().players[0]!.present).toBe(false);
+    expect(toggle.getAttribute("aria-checked")).toBe("false");
+    expect(toggle.style.color).toBe("var(--danger)");
+  });
+
+  // Mono values sit right-aligned in fixed character cells so "+9" and
+  // "+10" occupy the same width and the fields after them stay put.
+  it("gives every numeric value a fixed, right-aligned width", () => {
+    useEncounter.getState().setPlayers([player()]);
+    render(<PartyManager />);
+    for (const text of ["+10", "+12", "+9", "4", "38"]) {
+      const el = screen.getByText(text) as HTMLElement;
+      expect(el.style.textAlign).toBe("right");
+      expect(el.style.width).toMatch(/^[23]ch$/);
+    }
   });
 
   it("removes the character from the bin", async () => {

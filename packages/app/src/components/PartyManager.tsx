@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { format, useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
+import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import { AcShield } from "./AcShield.js";
 import { ConfirmButton } from "./ConfirmButton.js";
 
@@ -94,6 +95,38 @@ const inputStyle: React.CSSProperties = {
   color: "var(--text)",
   outline: "none",
 };
+
+/** The Present toggle and the bin: borderless square icon buttons that sit
+ * outside the wrapping field area, one at each end of the row, vertically
+ * centred whatever the fields wrap to. */
+const iconButtonStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "30px",
+  height: "30px",
+  padding: 0,
+  borderRadius: "3px",
+  border: "1px solid transparent",
+  background: "transparent",
+  cursor: "pointer",
+  flexShrink: 0,
+  alignSelf: "center",
+};
+
+/** Values are monospaced and right-aligned in a fixed number of character
+ * cells, so "+9" and "+10" — or level 4 and level 12 — line up from one
+ * row to the next instead of nudging everything after them sideways. */
+function valueStyle(cells: number): React.CSSProperties {
+  return {
+    fontFamily: "var(--font-mono)",
+    fontSize: "14px",
+    fontWeight: 600,
+    width: `${cells}ch`,
+    textAlign: "right",
+    display: "inline-block",
+  };
+}
 
 /** The at-rest face of a field: plain text in a borderless button, so the
  * roster reads as a list of players rather than a form. Clicking (or
@@ -193,8 +226,26 @@ function InlineField({
           setEditing(null);
         }
       }}
-      style={{ ...inputStyle, width: inputWidth, fontFamily: mono ? "var(--font-mono)" : "var(--font-ui)" }}
+      style={{ ...inputStyle, width: inputWidth, fontFamily: mono ? "var(--font-mono)" : "var(--font-ui)", fontSize: mono ? "14px" : "17px" }}
     />
+  );
+}
+
+function CheckIcon(): React.ReactElement {
+  return (
+    <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true">
+      <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" strokeWidth="1.3" />
+      <path d="M4.5 8.2 7 10.6 11.6 5.6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function CrossIcon(): React.ReactElement {
+  return (
+    <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true">
+      <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" strokeWidth="1.3" />
+      <path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
   );
 }
 
@@ -215,10 +266,12 @@ function TrashIcon(): React.ReactElement {
 
 function PlayerRow({
   player: p,
+  narrow,
   onChange,
   onRemove,
 }: {
   player: Player;
+  narrow: boolean;
   onChange: (patch: Partial<Player>) => void;
   onRemove: () => void;
 }): React.ReactElement {
@@ -237,7 +290,7 @@ function PlayerRow({
       display={
         <>
           <span style={captionStyle}>{label}</span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600 }}>{formatSigned(p.saves[key])}</span>
+          <span style={valueStyle(3)}>{formatSigned(p.saves[key])}</span>
         </>
       }
     />
@@ -245,21 +298,40 @@ function PlayerRow({
 
   return (
     <div
+      data-testid="player-row"
       style={{
-        display: "flex",
+        // Columns come from the roster's grid (see PartyManager), so every
+        // row's AC, Level, HP and saves sit in the same columns whatever
+        // the names' lengths — a flex row wrapped its saves to a second
+        // line on a long name alone, and nothing lined up any more.
+        display: "grid",
+        gridTemplateColumns: "subgrid",
+        gridColumn: "1 / -1",
         alignItems: "center",
-        gap: "8px",
-        padding: "6px 8px 6px 10px",
+        columnGap: "10px",
+        rowGap: "2px",
+        padding: "6px 8px",
         borderRadius: "4px",
         border: "1px solid var(--border)",
         background: "var(--panel)",
       }}
     >
-      {/* Everything but the bin lives in this wrapping block, so the bin
-         stays pinned to the row's right edge and its vertical middle no
-         matter how many lines the fields take. */}
-      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "2px 10px", flexGrow: 1, minWidth: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "2px", flexGrow: 1, minWidth: "140px" }}>
+      {/* Present: a green check, or a red cross for a character sitting
+         this session out. A button in the checkbox role, so it still reads
+         and toggles as one. */}
+      <button
+        type="button"
+        role="checkbox"
+        aria-checked={p.present}
+        aria-label={t("LABEL_PRESENT")}
+        title={t("LABEL_PRESENT")}
+        onClick={() => onChange({ present: !p.present })}
+        style={{ ...iconButtonStyle, gridColumn: 1, gridRow: "1 / -1", color: p.present ? "var(--ok)" : "var(--danger)" }}
+      >
+        {p.present ? <CheckIcon /> : <CrossIcon />}
+      </button>
+
+      <div style={{ display: "flex", alignItems: "center", minWidth: 0 }}>
           <InlineField
             fieldKey="name"
             label={t("LABEL_NAME")}
@@ -271,9 +343,9 @@ function PlayerRow({
             mono={false}
             display={
               p.name.trim() === "" ? (
-                <span style={{ fontSize: "15px", fontStyle: "italic", color: "var(--text-faint)" }}>{t("NAME_UNSET_PLACEHOLDER")}</span>
+                <span style={{ fontSize: "17px", fontStyle: "italic", color: "var(--text-faint)" }}>{t("NAME_UNSET_PLACEHOLDER")}</span>
               ) : (
-                <span style={{ fontSize: "15px", fontWeight: 600 }}>{p.name}</span>
+                <span style={{ fontSize: "17px", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.name}</span>
               )
             }
           />
@@ -301,7 +373,7 @@ function PlayerRow({
           display={
             <>
               <span style={captionStyle}>{t("LABEL_LEVEL")}</span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600 }}>{p.level}</span>
+              <span style={valueStyle(2)}>{p.level}</span>
             </>
           }
         />
@@ -317,30 +389,29 @@ function PlayerRow({
           display={
             <>
               <span style={captionStyle}>{t("LABEL_HP")}</span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, color: p.hp === undefined ? "var(--text-faint)" : "var(--text)" }}>
+              <span style={{ ...valueStyle(3), color: p.hp === undefined ? "var(--text-faint)" : "var(--text)" }}>
                 {p.hp === undefined ? "—" : p.hp}
               </span>
             </>
           }
         />
 
-        {/* The three saves are one block: they wrap to the next line
-           together or not at all, never splitting Will from Fortitude. */}
-        <div data-testid="saves-block" style={{ display: "flex", alignItems: "center", gap: "2px", flexWrap: "nowrap", flexShrink: 0 }}>
-          {save("fortitude", t("LABEL_FORTITUDE"))}
-          {save("reflex", t("LABEL_REFLEX"))}
-          {save("will", t("LABEL_WILL"))}
-        </div>
-
-        <label style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "var(--text-dim)", padding: "4px 6px", flexShrink: 0 }}>
-          <input
-            type="checkbox"
-            aria-label={t("LABEL_PRESENT")}
-            checked={p.present}
-            onChange={() => onChange({ present: !p.present })}
-          />
-          {t("LABEL_PRESENT")}
-        </label>
+      {/* The three saves are one block: on a narrow screen the whole block
+         moves to a second line under the other fields, never splitting
+         Will from Fortitude; the toggle and the bin span both lines. */}
+      <div
+        data-testid="saves-block"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "2px",
+          flexWrap: "nowrap",
+          gridColumn: narrow ? "2 / 6" : undefined,
+        }}
+      >
+        {save("fortitude", t("LABEL_FORTITUDE"))}
+        {save("reflex", t("LABEL_REFLEX"))}
+        {save("will", t("LABEL_WILL"))}
       </div>
 
       <button
@@ -348,21 +419,7 @@ function PlayerRow({
         aria-label={format(t("REMOVE_NAME_ARIA"), { name: p.name.trim() === "" ? t("PLAYER_SINGULAR") : p.name })}
         title={t("LABEL_REMOVE")}
         onClick={onRemove}
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "30px",
-          height: "30px",
-          padding: 0,
-          borderRadius: "3px",
-          border: "1px solid transparent",
-          background: "transparent",
-          color: "var(--danger)",
-          cursor: "pointer",
-          flexShrink: 0,
-          alignSelf: "center",
-        }}
+        style={{ ...iconButtonStyle, gridColumn: -2, gridRow: "1 / -1", color: "var(--danger)" }}
       >
         <TrashIcon />
       </button>
@@ -379,6 +436,7 @@ export function PartyManager(): React.ReactElement {
   const players = useEncounter((s) => s.players);
   const setPlayers = useEncounter((s) => s.setPlayers);
   const clearPlayers = useEncounter((s) => s.clearPlayers);
+  const narrow = useMediaQuery(NARROW_LAYOUT_QUERY);
 
   const update = (id: string, patch: Partial<Player>): void => {
     setPlayers(players.map((p) => (p.id === id ? { ...p, ...patch } : p)));
@@ -424,11 +482,25 @@ export function PartyManager(): React.ReactElement {
         />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+      {/* One grid for the whole roster, so its columns — toggle, name, AC,
+         level, HP, saves, bin — are sized once across every row and the
+         values line up down the list. Each row is a subgrid of it. */}
+      <div
+        data-testid="roster"
+        style={{
+          display: "grid",
+          gridTemplateColumns: narrow
+            ? "30px minmax(0, 1fr) auto auto auto 30px"
+            : "30px minmax(140px, 1fr) auto auto auto auto 30px",
+          rowGap: "8px",
+          alignItems: "center",
+        }}
+      >
         {players.map((p) => (
           <PlayerRow
             key={p.id}
             player={p}
+            narrow={narrow}
             onChange={(patch) => update(p.id, patch)}
             onRemove={() => setPlayers(players.filter((other) => other.id !== p.id))}
           />
