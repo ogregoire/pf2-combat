@@ -46,10 +46,11 @@ describe("lang", () => {
     expect(useEncounter.getState().lang).toBe("fr");
   });
 
-  it("renders a toggle that switches the language", async () => {
+  it("switches the language from the app menu", async () => {
     const user = userEvent.setup();
     render(<EncounterScreen />);
-    await user.click(screen.getByRole("button", { name: /français/i }));
+    await user.click(screen.getByRole("button", { name: "Menu" }));
+    await user.click(screen.getByRole("radio", { name: /français/i }));
     expect(useEncounter.getState().lang).toBe("fr");
   });
 });

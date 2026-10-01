@@ -11,6 +11,7 @@ import { ActiveCombatant } from "./ActiveCombatant.js";
 import { AddCombatants } from "./AddCombatants.js";
 import { CombatantList } from "./CombatantList.js";
 import { NextButton } from "./NextButton.js";
+import { AppMenu } from "./AppMenu.js";
 import { PartyManager } from "./PartyManager.js";
 import { TurnManager, UnrolledNotice, remainingActionsFor } from "./TurnManager.js";
 import { activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
@@ -84,7 +85,7 @@ function XpBadge({
   );
 }
 
-function TopBar(): React.ReactElement {
+function TopBar({ onOpenParty }: { onOpenParty: () => void }): React.ReactElement {
   const t = useT();
   const name = useEncounter((s) => s.encounter.name);
   const combatants = useEncounter((s) => s.encounter.combatants);
@@ -112,6 +113,8 @@ function TopBar(): React.ReactElement {
         flexShrink: 0,
       }}
     >
+      <AppMenu onOpenParty={onOpenParty} />
+
       <div style={{ fontFamily: "var(--font-display)", fontSize: "19px", fontWeight: 600, letterSpacing: "0.01em" }}>
         {name}
       </div>
@@ -145,25 +148,7 @@ function TopBar(): React.ReactElement {
         <span style={{ color: "var(--text-faint)" }}>&mdash;</span>
         <span>{format(t("PARTY_LEVEL_LABEL"), { level: partyLevel })}</span>
       </div>
-
-      <LanguageToggle />
     </div>
-  );
-}
-
-/** Switches `lang` between English and French. Labeled with the language a
- * click switches TO, not the language currently shown — Tasks 12-14 are
- * what actually render French text; this toggle only sets the remembered
- * preference (see Task 9). */
-function LanguageToggle(): React.ReactElement {
-  const lang = useEncounter((s) => s.lang);
-  const setLang = useEncounter((s) => s.setLang);
-  const isFrench = lang === "fr";
-
-  return (
-    <button type="button" onClick={() => setLang(isFrench ? "en" : "fr")} style={headerButtonStyle}>
-      {isFrench ? "English" : "Français"}
-    </button>
   );
 }
 
@@ -255,25 +240,20 @@ function Drawer({
 
 type DrawerKind = "add" | "party" | null;
 
-/** The list pane's "Initiative" title plus its "+ Add"/"Party" controls —
- * factored out so both the desktop three-column layout and the narrow
- * List tab render the exact same header rather than two copies drifting
- * apart. */
-function CombatantListHeader({ onAdd, onParty }: { onAdd: () => void; onParty: () => void }): React.ReactElement {
+/** The list pane's "Initiative" title plus its "+ Add" control — factored
+ * out so both the desktop three-column layout and the narrow List tab
+ * render the exact same header rather than two copies drifting apart. The
+ * party roster is reached from the app menu (AppMenu), not from here. */
+function CombatantListHeader({ onAdd }: { onAdd: () => void }): React.ReactElement {
   const t = useT();
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px 10px" }}>
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
         {t("LABEL_INITIATIVE")}
       </div>
-      <div style={{ display: "flex", gap: "6px" }}>
-        <button type="button" onClick={onAdd} style={headerButtonStyle}>
-          {t("ADD_SHORT_BUTTON")}
-        </button>
-        <button type="button" onClick={onParty} style={headerButtonStyle}>
-          {t("PARTY_TITLE")}
-        </button>
-      </div>
+      <button type="button" onClick={onAdd} style={headerButtonStyle}>
+        {t("ADD_SHORT_BUTTON")}
+      </button>
     </div>
   );
 }
@@ -401,7 +381,7 @@ export function EncounterScreen({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100dvh", background: "var(--bg)", color: "var(--text)" }}>
-      <TopBar />
+      <TopBar onOpenParty={() => setDrawer("party")} />
 
       {narrow ? (
         <>
@@ -414,7 +394,7 @@ export function EncounterScreen({
           <div style={{ flexGrow: 1, minHeight: 0, overflowY: "auto", paddingBottom: "88px" }}>
             {activeTab === "list" && (
               <div data-testid="combatant-list" style={{ display: "flex", flexDirection: "column", background: "var(--panel)" }}>
-                <CombatantListHeader onAdd={() => setDrawer("add")} onParty={() => setDrawer("party")} />
+                <CombatantListHeader onAdd={() => setDrawer("add")} />
                 <CombatantList
                   quickAddEntries={catalog.status === "ready" ? catalog.entries : []}
                   loadCreatureFn={loadCreatureFn}
@@ -477,7 +457,7 @@ export function EncounterScreen({
               overflowY: "auto",
             }}
           >
-            <CombatantListHeader onAdd={() => setDrawer("add")} onParty={() => setDrawer("party")} />
+            <CombatantListHeader onAdd={() => setDrawer("add")} />
             <CombatantList
               quickAddEntries={catalog.status === "ready" ? catalog.entries : []}
               loadCreatureFn={loadCreatureFn}

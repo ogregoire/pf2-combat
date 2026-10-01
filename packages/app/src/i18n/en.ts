@@ -95,6 +95,8 @@ export const STRINGS_EN = {
   UNACKNOWLEDGED_COUNT: "{n} unacknowledged",
 
   // PartyManager.tsx
+  MENU_ARIA: "Menu",
+  LANGUAGE_LABEL: "Language",
   PARTY_TITLE: "Party",
   ADD_PLAYER_BUTTON: "Add character",
   CLEAR_PLAYERS_LABEL: "Clear characters",

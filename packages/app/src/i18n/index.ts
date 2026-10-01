@@ -23,6 +23,8 @@ export const ALLOWLIST = new Set<StringKey>([
   "REMASTER_BADGE",
   "GROUP_INITIATIVE_PLACEHOLDER",
   "ROUND_LABEL",
+  // "Menu" is the same word in both languages.
+  "MENU_ARIA",
   // "action"/"actions" is spelled the same in both languages, same rule as
   // ACTIONS_UNIT above — ActionCard's Use-button unit words.
   "USE_ACTION_UNIT_SINGULAR",

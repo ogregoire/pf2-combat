@@ -320,6 +320,7 @@ describe("drawer dismissal", () => {
     const user = userEvent.setup();
     render(<EncounterScreen />);
 
+    await user.click(screen.getByRole("button", { name: "Menu" }));
     await user.click(screen.getByRole("button", { name: "Party" }));
     expect(screen.getByRole("button", { name: "Close Party" })).toBeDefined();
 
@@ -330,5 +331,58 @@ describe("drawer dismissal", () => {
     // Outside: the scrim itself.
     await user.click(screen.getByTestId("drawer-scrim"));
     expect(screen.queryByRole("button", { name: "Close Party" })).toBeNull();
+  });
+});
+
+describe("app menu", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("keeps Party and the language out of the header until the burger is pressed", async () => {
+    const user = userEvent.setup();
+    render(<EncounterScreen />);
+    expect(screen.queryByRole("button", { name: "Party" })).toBeNull();
+    expect(screen.queryByRole("radio", { name: "English" })).toBeNull();
+
+    const burger = screen.getByRole("button", { name: "Menu" });
+    expect(burger.getAttribute("aria-expanded")).toBe("false");
+    await user.click(burger);
+    expect(burger.getAttribute("aria-expanded")).toBe("true");
+    expect(screen.getByRole("button", { name: "Party" })).toBeDefined();
+    expect(screen.getByRole("radio", { name: "English" }).getAttribute("aria-checked")).toBe("true");
+    expect(screen.getByRole("radio", { name: "Français" }).getAttribute("aria-checked")).toBe("false");
+  });
+
+  it("opens the party dialog from the menu and closes the menu behind it", async () => {
+    const user = userEvent.setup();
+    render(<EncounterScreen />);
+    await user.click(screen.getByRole("button", { name: "Menu" }));
+    await user.click(screen.getByRole("button", { name: "Party" }));
+    expect(screen.getByRole("button", { name: "Close Party" })).toBeDefined();
+    expect(screen.queryByRole("navigation", { name: "Menu" })).toBeNull();
+  });
+
+  it("closes on a click outside, and on Escape", async () => {
+    const user = userEvent.setup();
+    render(<EncounterScreen />);
+    await user.click(screen.getByRole("button", { name: "Menu" }));
+    await user.click(screen.getByTestId("menu-scrim"));
+    expect(screen.queryByRole("navigation", { name: "Menu" })).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: "Menu" }));
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("navigation", { name: "Menu" })).toBeNull();
+  });
+
+  it("draws a Union Flag for English, not a Stars and Stripes", async () => {
+    const user = userEvent.setup();
+    render(<EncounterScreen />);
+    await user.click(screen.getByRole("button", { name: "Menu" }));
+    const english = screen.getByRole("radio", { name: "English" });
+    const svg = english.querySelector("svg")!;
+    // The Union Flag's fixed construction: a navy field, white and red
+    // saltires, white and red crosses — no stars, no stripes.
+    expect(svg.innerHTML).toContain("#012169");
+    expect(svg.innerHTML).toContain("#C8102E");
+    expect(svg.innerHTML).not.toMatch(/#B22234|#3C3B6E/i);
   });
 });

@@ -97,6 +97,8 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   UNACKNOWLEDGED_COUNT: "{n} non validé(s)",
 
   // PartyManager.tsx
+  MENU_ARIA: "Menu",
+  LANGUAGE_LABEL: "Langue",
   PARTY_TITLE: "Groupe",
   ADD_PLAYER_BUTTON: "Ajouter un personnage",
   CLEAR_PLAYERS_LABEL: "Effacer les personnages",
