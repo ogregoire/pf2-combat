@@ -26,7 +26,12 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
   const narrow = useMediaQuery(NARROW_LAYOUT_QUERY);
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
-  const [selectedAttackIndex, setSelectedAttackIndex] = useState<number | null>(null);
+  // Tagged with the combatant it was made for: this component stays mounted
+  // as turns pass, and the index alone would select whatever Strike the next
+  // combatant has in the same slot.
+  const [selection, setSelection] = useState<{ combatantId: string; index: number } | null>(null);
+  const selectedAttackIndex =
+    combatant !== undefined && selection?.combatantId === combatant.id ? selection.index : null;
   const rawTarget = targetId !== null ? combatants[targetId] : undefined;
   // Both called unconditionally (Rules of Hooks) — results only used once
   // `combatant` is confirmed non-null below.
@@ -95,7 +100,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
           <ActionList
             combatant={combatant}
             selectedAttackIndex={selectedAttackIndex}
-            onSelectAttack={setSelectedAttackIndex}
+            onSelectAttack={(index) => setSelection({ combatantId: combatant.id, index })}
             fetchFn={fetchFn}
           />
         </div>

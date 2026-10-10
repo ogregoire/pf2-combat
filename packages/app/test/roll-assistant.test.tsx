@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { RollAssistant } from "../src/components/RollAssistant.js";
@@ -97,6 +97,24 @@ describe("RollAssistant", () => {
     await user.click(screen.getByRole("button", { name: /record strike/i }));
     expect(useEncounter.getState().encounter.combatants[sid]!.strikesMade).toBe(1);
     expect(screen.getByText("1d20 + 10")).toBeDefined();
+  });
+
+  it("does not carry the selected Strike over to the next combatant's turn", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(stagLord, 19);
+    useEncounter.getState().addCombatant(
+      { ...stagLord, name: "Bandit", attacks: [{ ...stagLord.attacks[0]!, name: "Shortsword", bonus: 9 }] },
+      12,
+    );
+    useEncounter.getState().setTarget(useEncounter.getState().addCombatant(target, 5));
+    render(<ActiveCombatant />);
+
+    await user.click(screen.getByRole("button", { name: /Longsword/ }));
+    expect(screen.getByText("1d20 + 15")).toBeDefined();
+
+    act(() => useEncounter.getState().nextTurn());
+    expect(screen.getByRole("heading", { name: "Bandit" })).toBeDefined();
+    expect(screen.queryByText("1d20 + 9")).toBeNull();
   });
 
   it("prompts for a target when none is selected", () => {
