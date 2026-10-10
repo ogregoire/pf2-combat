@@ -355,6 +355,29 @@ describe("TurnManager", () => {
     });
   });
 
+  // The reported case: Rigg Gargadilly's Can't Catch Me showed its trigger
+  // and nothing else — the effect was nowhere in the card.
+  it("unfolds a reaction to the rest of its rules text, without repeating the trigger", async () => {
+    const user = userEvent.setup();
+    const action = {
+      name: "Can't Catch Me", cost: "reaction" as const, traits: [], frequency: null, requirements: null, category: "defensive",
+      trigger: "The quickling is targeted by a Strike",
+      description: "<p><strong>Trigger</strong> The quickling is targeted by a Strike</p>\n<hr />\n<p><strong>Effect</strong> The quickling darts aside, gaining a +2 circumstance bonus to AC.</p>",
+    };
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Rigg Gargadilly", level: 7, ac: 26, saves: { fortitude: 12, reflex: 18, will: 13 },
+        hp: { current: 100, max: 100 }, reactions: [{ name: action.name, trigger: action.trigger }], actions: [action] },
+      20,
+    );
+    render(<TurnManager />);
+    expect(screen.queryByTestId("reaction-description")).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: "Can't Catch Me" }));
+    const text = screen.getByTestId("reaction-description").textContent!;
+    expect(text).toContain("Effect The quickling darts aside");
+    expect(text).not.toContain("targeted by a Strike");
+  });
+
   it("shows the reaction's name and trigger text", () => {
     useEncounter.getState().addCombatant(
       { kind: "creature", name: "Akiros Ismort", level: 3, ac: 18,

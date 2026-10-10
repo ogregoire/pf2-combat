@@ -3,7 +3,10 @@ import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
+import { useState } from "react";
 import { compareStrings } from "../rules/compare.js";
+import { renderMarkers } from "../rules/renderMarkers.js";
+import { withoutTrigger } from "../rules/reactionText.js";
 import { canReact } from "../rules/conditions.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import type { FetchFn } from "../data/catalog.js";
@@ -21,7 +24,9 @@ import type { Combatant } from "../state/types.js";
  * here via `resolveActions`; a reaction the overlay doesn't cover falls
  * back to `combatant.reactions[index].trigger`, the English text baked in
  * at add time (`toReactions` in data/seed.ts) -- same "French, else
- * English, never blank" rule `pick` uses everywhere else. */
+ * English, never blank" rule `pick` uses everywhere else. Each reaction
+ * unfolds to the rest of its rules text (the effect), the trigger staying
+ * on its own line above. */
 function ReadyCombatantCard({
   combatant,
   onSpend,
@@ -41,6 +46,8 @@ function ReadyCombatantCard({
   );
   const reactionNames = reactions.map((a) => a.name);
   const reactionTriggers = reactions.map((a) => a.trigger);
+  const reactionDescriptions = reactions.map((a) => a.description);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
     <div
@@ -74,15 +81,48 @@ function ReadyCombatantCard({
       </div>
       {combatant.reactions.map((r, index) => {
         const trigger = reactionTriggers[index] ?? r.trigger;
+        const rest = withoutTrigger(reactionDescriptions[index] ?? "");
+        const expanded = open === index;
         return (
           <div key={r.name}>
-            <div style={{ fontSize: "12px", color: "var(--info)", marginTop: "2px" }}>
+            <button
+              type="button"
+              aria-expanded={expanded}
+              disabled={rest === ""}
+              onClick={() => setOpen(expanded ? null : index)}
+              style={{
+                fontFamily: "inherit",
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+                padding: 0,
+                marginTop: "2px",
+                border: "none",
+                background: "none",
+                fontSize: "12px",
+                color: "var(--info)",
+                cursor: rest === "" ? "default" : "pointer",
+                textAlign: "left",
+              }}
+            >
+              {rest !== "" && (
+                <svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true" style={{ transform: expanded ? "rotate(90deg)" : "none", flexShrink: 0 }}>
+                  <path d="M3 1.5 7 5 3 8.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
               {reactionNames[index] ?? r.name}
-            </div>
+            </button>
             {trigger && (
               <div style={{ fontSize: "11.5px", lineHeight: 1.45, color: "var(--text-faint)", marginTop: "4px" }}>
                 <span style={{ fontWeight: 600 }}>{t("TRIGGER_LABEL")}</span> {trigger}
               </div>
+            )}
+            {expanded && (
+              <div
+                data-testid="reaction-description"
+                style={{ fontSize: "11.5px", lineHeight: 1.45, color: "var(--text-dim)", marginTop: "4px" }}
+                dangerouslySetInnerHTML={{ __html: renderMarkers(rest, lang) }}
+              />
             )}
           </div>
         );
