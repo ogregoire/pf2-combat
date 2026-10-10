@@ -204,6 +204,22 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   DAMAGE_TYPE_NAME_ALL_DAMAGE: "tous les dégâts",
   DAMAGE_TYPE_NAME_AREA_DAMAGE: "dégâts de zone",
   DAMAGE_TYPE_NAME_SPLASH_DAMAGE: "dégâts d'éclaboussure",
+  IWR_NAME_COLD_IRON: "fer froid",
+  IWR_NAME_SILVER: "argent",
+  IWR_NAME_ADAMANTINE: "adamantium",
+  IWR_NAME_AXE_VULNERABILITY: "haches",
+  IWR_NAME_WATER: "eau",
+  IWR_NAME_SALT: "sel",
+  IWR_NAME_SALT_WATER: "eau salée",
+  IWR_NAME_VORPAL: "vorpale",
+  IWR_NAME_CRITICAL_HITS: "coups critiques",
+  IWR_NAME_EARTH: "terre",
+  IWR_NAME_AIR: "air",
+  IWR_NAME_METAL: "métal",
+  IWR_NAME_WOOD: "bois",
+  IWR_NAME_ALCHEMICAL: "alchimique",
+  IWR_NAME_SPELLS: "sorts",
+  IWR_NAME_PROTEAN_ANATOMY: "anatomie protéenne",
   // Not full PF2 prose ("X dégâts de [type] persistants") — that would need
   // a preposition and elision (de/d') this compact badge format has never
   // carried in either language (English drops "damage" the same way: "2d6

@@ -311,6 +311,33 @@ describe("CombatantList", () => {
     expect(screen.getByRole("group", { name: "damage type" }).textContent).toContain("holy");
   });
 
+  // The reported defect: The Dancing Lady's cold-iron weakness 10 never
+  // showed — the selector kept damage types only, and cold iron is a
+  // material, so 113 creatures' cold-iron weaknesses were invisible.
+  it("offers a material weakness (cold iron) and applies it, in French too", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setLang("fr");
+    const id = useEncounter.getState().addCombatant(
+      seed({
+        name: "The Dancing Lady",
+        hp: { current: 30, max: 30 },
+        iwr: loadCreatureIwr("kingmaker-bestiary/the-dancing-lady.json"),
+      }),
+      19,
+    );
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("The Dancing Lady"));
+    await user.click(screen.getByRole("button", { name: "fer froid 10" }));
+    const amount = screen.getByLabelText("montant");
+    await user.clear(amount);
+    await user.type(amount, "5");
+    await user.click(screen.getByRole("button", { name: "Dégâts" }));
+
+    // 5 cold-iron damage + weakness 10 -> 15 taken.
+    expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(15);
+  });
+
   it("applies resistance for the selected damage type instead of dropping it", async () => {
     const user = userEvent.setup();
     const id = useEncounter.getState().addCombatant(

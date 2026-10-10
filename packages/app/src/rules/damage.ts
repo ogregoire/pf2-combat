@@ -4,10 +4,10 @@ import { STRINGS_FR } from "../i18n/fr.js";
 
 /**
  * PF2 damage types — the subset of IWR entries a damage roll can actually
- * be. The test: does picking this change the number? Materials (cold-iron,
- * silver, ...) are exceptions on a physical resistance, not their own
- * damage type, and conditions (paralyzed, disease, ...) can't be affected
- * by any damage type at all — neither belongs here.
+ * be. Materials (cold-iron, silver, ...) are not damage types — they are
+ * qualifiers a weakness or resistance can key on (IWR_QUALIFIER_NAME_KEY) —
+ * and conditions (paralyzed, disease, ...) can't be affected by any damage
+ * type at all; neither belongs here.
  */
 export const DAMAGE_TYPES = new Set([
   "bludgeoning", "piercing", "slashing",
@@ -53,6 +53,34 @@ export const DAMAGE_TYPE_NAME_KEY: Record<string, StringKey> = {
 };
 
 /**
+ * What else a weakness or resistance can key on besides a damage type: the
+ * weapon's material (cold iron, silver), its element (water, earth), or the
+ * nature of the hit (critical hits, spells). None is a damage type a roll
+ * deals, but each changes the number when the hit has it — a cold-iron
+ * blade adds a fey's cold-iron weakness — so the popover offers them
+ * alongside the damage types. These are the ones the dataset carries; one
+ * it doesn't list here still shows, under its raw slug.
+ */
+export const IWR_QUALIFIER_NAME_KEY: Record<string, StringKey> = {
+  "cold-iron": "IWR_NAME_COLD_IRON",
+  silver: "IWR_NAME_SILVER",
+  adamantine: "IWR_NAME_ADAMANTINE",
+  "axe-vulnerability": "IWR_NAME_AXE_VULNERABILITY",
+  water: "IWR_NAME_WATER",
+  salt: "IWR_NAME_SALT",
+  "salt-water": "IWR_NAME_SALT_WATER",
+  vorpal: "IWR_NAME_VORPAL",
+  "critical-hits": "IWR_NAME_CRITICAL_HITS",
+  earth: "IWR_NAME_EARTH",
+  air: "IWR_NAME_AIR",
+  metal: "IWR_NAME_METAL",
+  wood: "IWR_NAME_WOOD",
+  alchemical: "IWR_NAME_ALCHEMICAL",
+  spells: "IWR_NAME_SPELLS",
+  "protean-anatomy": "IWR_NAME_PROTEAN_ANATOMY",
+};
+
+/**
  * A damage type's display name for `lang`. The dataset carries damage types
  * as free strings (see relevantDamageTypes' own comment on that), so a type
  * outside DAMAGE_TYPE_NAME_KEY — an upstream one this table doesn't know
@@ -61,7 +89,7 @@ export const DAMAGE_TYPE_NAME_KEY: Record<string, StringKey> = {
  * unrecognised type.
  */
 export function damageTypeName(type: string, lang: "en" | "fr"): string {
-  const key = DAMAGE_TYPE_NAME_KEY[type];
+  const key = DAMAGE_TYPE_NAME_KEY[type] ?? IWR_QUALIFIER_NAME_KEY[type];
   if (key === undefined) return type;
   return (lang === "fr" ? STRINGS_FR : STRINGS_EN)[key];
 }
@@ -90,9 +118,13 @@ function combinedLabel(weakness: number | undefined, resistance: number | undefi
 }
 
 /**
- * Filters a creature's IWR down to damage-type entries only — many creatures
- * carry condition immunities (disease, paralyzed, unconscious) that a
- * damage type cannot affect, so those are never relevant here.
+ * The IWR entries a hit can trigger. Immunities are filtered down to damage
+ * types — many creatures carry condition immunities (disease, paralyzed,
+ * unconscious) that no hit can affect. Weaknesses and resistances are all
+ * kept: every one the dataset carries keys on something a hit can have,
+ * whether a damage type or a qualifier (IWR_QUALIFIER_NAME_KEY). They used
+ * to be filtered to damage types too, which silently dropped the cold-iron
+ * weakness of over a hundred fey and demons.
  *
  * Deduped by type: the dataset can carry a weakness and a resistance to the
  * same type on one creature (Bog Mummy Cultist: weakness cold 10, resistance
@@ -109,13 +141,13 @@ export function relevantDamageTypes(iwr: Iwr | null): RelevantType[] {
 
   const byType = new Map<string, { weakness?: number; resistance?: number }>();
   for (const w of iwr.weaknesses) {
-    if (!DAMAGE_TYPES.has(w.type) || immuneTypes.has(w.type)) continue;
+    if (immuneTypes.has(w.type)) continue;
     const entry = byType.get(w.type) ?? {};
     if (entry.weakness === undefined) entry.weakness = w.value; // first entry wins on a same-type dupe
     byType.set(w.type, entry);
   }
   for (const r of iwr.resistances) {
-    if (!DAMAGE_TYPES.has(r.type) || immuneTypes.has(r.type)) continue;
+    if (immuneTypes.has(r.type)) continue;
     const entry = byType.get(r.type) ?? {};
     if (entry.resistance === undefined) entry.resistance = r.value;
     byType.set(r.type, entry);

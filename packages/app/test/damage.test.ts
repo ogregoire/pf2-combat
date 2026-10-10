@@ -89,6 +89,19 @@ describe("relevantDamageTypes", () => {
     expect(relevantDamageTypes(iwr)).toEqual([{ type: "fire", label: "IMM" }]);
   });
 
+  it("keeps material weaknesses and resistances, but not condition immunities", () => {
+    const iwr: Iwr = {
+      immunities: ["paralyzed", "fire"],
+      weaknesses: [{ type: "cold-iron", value: 10 }],
+      resistances: [{ type: "silver", value: 5 }],
+    };
+    expect(relevantDamageTypes(iwr)).toEqual([
+      { type: "cold-iron", label: "10" },
+      { type: "fire", label: "IMM" },
+      { type: "silver", label: "5" },
+    ]);
+  });
+
   it("keeps the plain numeric label when only one of weakness/resistance is present", () => {
     const iwr: Iwr = { immunities: [], weaknesses: [{ type: "cold", value: 5 }], resistances: [] };
     expect(relevantDamageTypes(iwr)).toEqual([{ type: "cold", label: "5" }]);
