@@ -10,12 +10,13 @@ import {
   buildSpellsI18n,
   buildGlossaryI18n,
   buildTraitsI18n,
+  buildVocabularyI18n,
 } from "../src/stages/i18n.js";
 import { loadBabele, type BabeleTable } from "../src/stages/babele.js";
 import { loadArchive } from "../src/stages/archive.js";
-import { buildTraits, scanTraits } from "../src/stages/reference.js";
+import { buildTraits, scanTraits, scanVocabulary } from "../src/stages/reference.js";
 import type { SpellCopy, SpellDetailSource } from "../src/stages/spells.js";
-import type { SpellDetail } from "@pf2/schema";
+import type { SpellDetail, Vocabulary } from "@pf2/schema";
 
 /**
  * Fixtures build a REAL `BabeleTable` via `loadBabele` against temp files,
@@ -1342,5 +1343,61 @@ describe("buildSpellsI18n", () => {
       ["veil", { kind: "embedded", copies: [copy("pathfinder-bestiary/shaitan", "Shaitan", "s1")] }],
     ]);
     expect(buildSpellsI18n([detail("veil")], sources, makeBabeleTable({}), {})).toEqual({});
+  });
+});
+
+describe("buildVocabularyI18n", () => {
+  const attribute = (name: string) => ({ name, short: name.slice(0, 3) });
+  const english: Vocabulary = {
+    languages: { aklo: "Aklo", grippli: "Tripkee" },
+    senses: { "low-light-vision": "Low-Light Vision" },
+    acuities: { imprecise: "Imprecise" },
+    skills: { athletics: "Athletics", stealth: "Stealth" },
+    speeds: { fly: "Fly", "ice-burrow": "Ice Burrow" },
+    attributes: {
+      str: attribute("Strength"),
+      dex: attribute("Dexterity"),
+      con: attribute("Constitution"),
+      int: attribute("Intelligence"),
+      wis: attribute("Wisdom"),
+      cha: attribute("Charisma"),
+    },
+    sizes: { tiny: "Tiny" },
+    rarities: { common: "Common" },
+  };
+  // Real French shapes: the module keys the Tripkee language `tripkee`, and
+  // names skills (Piloting) the English table does not have.
+  const frLang = {
+    "PF2E.Actor.Creature.Language.aklo": "Aklo",
+    "PF2E.Actor.Creature.Language.tripkee": "Tripkee",
+    "PF2E.Actor.Creature.Sense.Type.LowLightVision": "Vision nocturne",
+    "PF2E.Actor.Creature.Sense.Acuity.Imprecise": "imprécis",
+    "PF2E.Skill.Athletics": "Athlétisme",
+    "PF2E.Skill.Piloting": "Pilotage",
+    "PF2E.Actor.Speed.Type.Fly": "Vol",
+    "PF2E.ActorSizeTiny": "Très petite",
+    "PF2E.TraitCommon": "Courant",
+    "PF2E.AbilityStr": "Force",
+    "PF2E.AbilityId.str": "For",
+    "PF2E.AbilityId.dex": "Dex",
+  };
+
+  it("joins by the English slugs and omits every slug with no French name", () => {
+    const out = buildVocabularyI18n(english, scanVocabulary(frLang));
+    expect(out.languages).toEqual({ aklo: "Aklo" });
+    expect(out.senses).toEqual({ "low-light-vision": "Vision nocturne" });
+    expect(out.acuities).toEqual({ imprecise: "imprécis" });
+    expect(out.skills).toEqual({ athletics: "Athlétisme" });
+    // `ice-burrow` is the English build's title-cased fallback; no French.
+    expect(out.speeds).toEqual({ fly: "Vol" });
+    expect(out.sizes).toEqual({ tiny: "Très petite" });
+    expect(out.rarities).toEqual({ common: "Courant" });
+  });
+
+  it("keeps an attribute only when both its name and short form are translated", () => {
+    // `dex` has a French short form but no full name.
+    expect(buildVocabularyI18n(english, scanVocabulary(frLang)).attributes).toEqual({
+      str: { name: "Force", short: "For" },
+    });
   });
 });

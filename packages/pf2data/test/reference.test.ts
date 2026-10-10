@@ -3,10 +3,13 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { resolveLocalize } from "../src/normalize/localize.js";
+import type { Creature } from "@pf2/schema";
 import {
   buildConditions,
   buildStandardActions,
   buildTraits,
+  buildVocabulary,
+  scanVocabulary,
 } from "../src/stages/reference.js";
 
 describe("resolveLocalize", () => {
@@ -267,5 +270,86 @@ describe("buildStandardActions", () => {
 
   it("reads no directory at all when config has no actions-kind pack", () => {
     expect(buildStandardActions("/nonexistent", {}, [])).toEqual([]);
+  });
+});
+
+/** The twelve attribute keys `buildVocabulary` refuses to do without. */
+const ATTRIBUTE_LANG: Record<string, string> = {
+  "PF2E.AbilityStr": "Strength",
+  "PF2E.AbilityDex": "Dexterity",
+  "PF2E.AbilityCon": "Constitution",
+  "PF2E.AbilityInt": "Intelligence",
+  "PF2E.AbilityWis": "Wisdom",
+  "PF2E.AbilityCha": "Charisma",
+  "PF2E.AbilityId.str": "Str",
+  "PF2E.AbilityId.dex": "Dex",
+  "PF2E.AbilityId.con": "Con",
+  "PF2E.AbilityId.int": "Int",
+  "PF2E.AbilityId.wis": "Wis",
+  "PF2E.AbilityId.cha": "Cha",
+};
+
+describe("scanVocabulary", () => {
+  it("takes languages by their lowercase slug key, never the PascalCase UI strings beside them", () => {
+    const v = scanVocabulary({
+      "PF2E.Actor.Creature.Language.aklo": "Aklo",
+      "PF2E.Actor.Creature.Language.elder-thing": "Elder Thing",
+      "PF2E.Actor.Creature.Language.grippli": "Tripkee",
+      "PF2E.Actor.Creature.Language.CommonLanguage": "Common ({language})",
+      "PF2E.Actor.Creature.Language.Plural": "Languages",
+    });
+    expect(v.languages).toEqual({ aklo: "Aklo", "elder-thing": "Elder Thing", grippli: "Tripkee" });
+  });
+
+  it("slugs PascalCase keys like a trait and leaves out each family's Label", () => {
+    const v = scanVocabulary({
+      "PF2E.Actor.Creature.Sense.Type.LowLightVision": "Low-Light Vision",
+      "PF2E.Actor.Creature.Sense.Type.SeeInvisibility": "See the Unseen",
+      "PF2E.Actor.Creature.Sense.Acuity.Imprecise": "Imprecise",
+      "PF2E.Actor.Creature.Sense.Acuity.Label": "Acuity",
+      "PF2E.Skill.Athletics": "Athletics",
+      "PF2E.Actor.Speed.Type.Land": "Land",
+      "PF2E.Actor.Speed.Type.Label": "{type} Speed",
+      "PF2E.ActorSizeGargantuan": "Gargantuan",
+    });
+    expect(v.senses).toEqual({ "low-light-vision": "Low-Light Vision", "see-invisibility": "See the Unseen" });
+    expect(v.acuities).toEqual({ imprecise: "Imprecise" });
+    expect(v.skills).toEqual({ athletics: "Athletics" });
+    expect(v.speeds).toEqual({ land: "Land" });
+    expect(v.sizes).toEqual({ gargantuan: "Gargantuan" });
+  });
+
+  it("looks rarities up among the trait names for the four creature rarities only", () => {
+    const v = scanVocabulary({ "PF2E.TraitUnique": "Unique", "PF2E.TraitAgile": "Agile" });
+    expect(v.rarities).toEqual({ unique: "Unique" });
+  });
+
+  it("keeps a missing attribute half as null", () => {
+    const v = scanVocabulary({ "PF2E.AbilityStr": "Force" });
+    expect(v.attributes.str).toEqual({ name: "Force", short: null });
+    expect(v.attributes.cha).toEqual({ name: null, short: null });
+  });
+});
+
+describe("buildVocabulary", () => {
+  const withSpeeds = (...types: string[]): Creature =>
+    ({ speeds: types.map((type) => ({ type, value: 20 })) }) as Creature;
+
+  it("names each attribute and its short form", () => {
+    expect(buildVocabulary(ATTRIBUTE_LANG, []).attributes.str).toEqual({ name: "Strength", short: "Str" });
+  });
+
+  it("throws when an attribute has no English short form", () => {
+    const { "PF2E.AbilityId.wis": _wis, ...lang } = ATTRIBUTE_LANG;
+    expect(() => buildVocabulary(lang, [])).toThrow(/wis has no PF2E\.AbilityId\.wis/);
+  });
+
+  it("title-cases a speed a creature uses with no lang key, and only speeds", () => {
+    const v = buildVocabulary(
+      { ...ATTRIBUTE_LANG, "PF2E.Actor.Speed.Type.Fly": "Fly" },
+      [withSpeeds("land", "fly", "ice-burrow")],
+    );
+    expect(v.speeds).toEqual({ fly: "Fly", land: "Land", "ice-burrow": "Ice Burrow" });
+    expect(v.languages).toEqual({});
   });
 });

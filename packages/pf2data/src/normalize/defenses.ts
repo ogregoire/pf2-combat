@@ -100,14 +100,37 @@ const valued = (
     .map((e) => ({ type: e.type, value: e.value ?? 0, ...extrasOf(e) }))
     .sort((a, b) => compareStrings(a.type, b.type));
 
+/**
+ * Stray skill keys upstream carries beside the real one. Eldritch Emeritus
+ * (NPC Core) has an `intimidate` at the same +30 as its `intimidation`. An
+ * alias is folded into its skill, and never overrides a value the real key
+ * already gives, so every skill key stays one of `vocabulary.json`'s.
+ */
+const SKILL_ALIASES: Record<string, string> = { intimidate: "intimidation" };
+
+/**
+ * `otherSpeeds[].type` is free text on a few legacy actors: Blizzardborn's
+ * "Ice Burrow" is the speed Icewyrm spells "ice-burrow", and Thanadaemon has
+ * an "Air Walk". Slugified so every speed type has the same shape as "fly"
+ * or "burrow" -- a key into `vocabulary.json`, where those two are named.
+ */
+function speedTypeSlug(type: string): string {
+  return type.trim().toLowerCase().replace(/\s+/g, "-");
+}
+
 export function normalizeDefenses(system: unknown): Defenses {
   const s = SystemSchema.parse(system);
 
   const skills: Record<string, number> = {};
-  for (const name of Object.keys(s.skills).sort()) {
+  const names = Object.keys(s.skills).sort();
+  // Real keys first, aliases second, so an alias only fills a gap.
+  const isAlias = (name: string): boolean => Object.hasOwn(SKILL_ALIASES, name);
+  for (const name of [...names.filter((n) => !isAlias(n)), ...names.filter(isAlias)]) {
     const base = s.skills[name]!.base;
     if (base === null) continue;
-    skills[name] = base;
+    const skill = isAlias(name) ? SKILL_ALIASES[name]! : name;
+    if (Object.hasOwn(skills, skill)) continue;
+    skills[skill] = base;
   }
 
   const abilityMods: Record<string, number> = {};
@@ -141,9 +164,9 @@ export function normalizeDefenses(system: unknown): Defenses {
       ...(s.attributes.speed.value === null
         ? []
         : [{ type: "land", value: s.attributes.speed.value }]),
-      ...[...s.attributes.speed.otherSpeeds].sort((a, b) =>
-        compareStrings(a.type, b.type),
-      ),
+      ...s.attributes.speed.otherSpeeds
+        .map((x) => ({ type: speedTypeSlug(x.type), value: x.value }))
+        .sort((a, b) => compareStrings(a.type, b.type)),
     ],
   };
 }

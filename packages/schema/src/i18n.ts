@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { VocabularySchema } from "./reference.js";
 
 /**
  * A creature's French overlay: translated fields aligned to the SAME sorted
@@ -78,3 +79,15 @@ export const SpellI18nSchema = z.object({
 });
 
 export type SpellI18n = z.infer<typeof SpellI18nSchema>;
+
+/**
+ * `i18n/fr/vocabulary.json`: the `vocabulary.json` shape with French names,
+ * keyed by the SAME slugs. A slug with no French name is OMITTED, never
+ * given the English one -- and so is an attribute missing either its full
+ * name or its short form, since the stat block shows both.
+ */
+export const VocabularyI18nSchema = VocabularySchema.extend({
+  attributes: VocabularySchema.shape.attributes.partial(),
+});
+
+export type VocabularyI18n = z.infer<typeof VocabularyI18nSchema>;

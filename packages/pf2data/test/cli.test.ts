@@ -124,6 +124,32 @@ function seedFrenchCache(
   return frCacheDir;
 }
 
+/**
+ * An upstream `en.json` for a mocked checkout: the vocabulary keys the Stag
+ * Lord and Nyrissa fixtures need (`buildVocabulary` throws without the six
+ * attributes, and `verifyVocabulary` fails on any slug a creature uses with
+ * no name), plus whatever `extra` a test adds. Flat dotted keys, so an
+ * `extra` with its own nested `PF2E` object cannot overwrite them.
+ */
+function enLang(extra: Record<string, unknown> = {}): string {
+  const lang: Record<string, unknown> = {};
+  for (const slug of ["aklo", "common", "draconic", "elven", "fey", "gnomish", "hallit", "jotun", "skald"]) {
+    lang[`PF2E.Actor.Creature.Language.${slug}`] = slug[0]!.toUpperCase() + slug.slice(1);
+  }
+  lang["PF2E.Actor.Creature.Sense.Type.Darkvision"] = "Darkvision";
+  for (const skill of ["Acrobatics", "Arcana", "Athletics", "Deception", "Diplomacy", "Intimidation", "Nature", "Religion", "Stealth", "Survival"]) {
+    lang[`PF2E.Skill.${skill}`] = skill;
+  }
+  for (const speed of ["Land", "Climb", "Fly"]) lang[`PF2E.Actor.Speed.Type.${speed}`] = speed;
+  lang["PF2E.ActorSizeMedium"] = "Medium";
+  lang["PF2E.TraitUnique"] = "Unique";
+  for (const [id, name] of Object.entries({ str: "Strength", dex: "Dexterity", con: "Constitution", int: "Intelligence", wis: "Wisdom", cha: "Charisma" })) {
+    lang[`PF2E.Ability${id[0]!.toUpperCase()}${id.slice(1)}`] = name;
+    lang[`PF2E.AbilityId.${id}`] = name.slice(0, 3);
+  }
+  return JSON.stringify({ ...lang, ...extra });
+}
+
 describe("runCli", () => {
   it("verify never refetches when no dataset has been generated", () => {
     const deps: CliDeps = {
@@ -193,7 +219,7 @@ describe("runCli", () => {
     // down itself. This config has no "conditions"-kind pack, so
     // buildConditions reads no directory and none needs to exist here.
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
-    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), enLang());
 
     const { run } = recordingGit();
     const deps: CliDeps = { dataDir, cacheDir, frCacheDir: seedFrenchCache(), configPath, runGit: run };
@@ -240,7 +266,7 @@ describe("runCli", () => {
     );
 
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
-    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), enLang());
 
     const { run } = recordingGit();
     const deps: CliDeps = { dataDir, cacheDir, frCacheDir: seedFrenchCache(), configPath, runGit: run };
@@ -281,7 +307,7 @@ describe("runCli", () => {
     writeFileSync(join(packDir, "the-stag-lord.json"), fixture);
 
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
-    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), enLang());
 
     const { run } = recordingGit();
     const frCacheDir = seedFrenchCache();
@@ -327,7 +353,7 @@ describe("runCli", () => {
     // Deliberately do NOT create packs/renamed-away-bestiary: this simulates
     // upstream renaming or removing the pack directory between pinned SHAs.
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
-    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), enLang());
 
     const { run } = recordingGit();
     const deps: CliDeps = { dataDir, cacheDir, frCacheDir: seedFrenchCache(), configPath, runGit: run };
@@ -465,9 +491,75 @@ describe("runCli", () => {
     );
     expect(index["kingmaker-bestiary/the-stag-lord"]).toBe("Seigneur Cerf");
 
-    for (const file of ["conditions.json", "glossary.json", "traits.json", "actions.json"]) {
+    for (const file of ["conditions.json", "glossary.json", "traits.json", "actions.json", "vocabulary.json"]) {
       expect(existsSync(join(dataDir, "i18n", "fr", file))).toBe(true);
     }
+  });
+
+  it("update writes vocabulary.json and its French overlay, keyed by the English slugs", () => {
+    const { deps, dataDir } = seededDeps();
+    const frCacheDir = seedFrenchCache(null, {
+      PF2E: {
+        Skill: { Athletics: "Athlétisme", Piloting: "Pilotage" },
+        AbilityStr: "Force",
+        AbilityId: { str: "For", dex: "Dex" },
+      },
+    });
+    const out: string[] = [];
+    const exit = runCli(["update", "--latest"], { out: (x) => out.push(x), err: () => {}, isTty: false }, { ...deps, frCacheDir });
+    expect(exit).toBe(10);
+
+    const vocabulary = JSON.parse(readFileSync(join(dataDir, "vocabulary.json"), "utf8"));
+    expect(vocabulary.languages).toEqual({ aklo: "Aklo", common: "Common", draconic: "Draconic", elven: "Elven", fey: "Fey", gnomish: "Gnomish", hallit: "Hallit", jotun: "Jotun", skald: "Skald" });
+    expect(vocabulary.attributes.str).toEqual({ name: "Strength", short: "Str" });
+    expect(vocabulary.sizes).toEqual({ medium: "Medium" });
+
+    const french = JSON.parse(readFileSync(join(dataDir, "i18n", "fr", "vocabulary.json"), "utf8"));
+    // Piloting is in the French table only; Dex has no French full name.
+    expect(french.skills).toEqual({ athletics: "Athlétisme" });
+    expect(french.attributes).toEqual({ str: { name: "Force", short: "For" } });
+    expect(french.languages).toEqual({});
+
+    const summary = JSON.parse(out.join(""));
+    expect(summary.frenchVocabulary.skills).toEqual({ translated: 1, total: 10 });
+    expect(runCli(["verify"], silentIo(), { ...deps, frCacheDir })).toBe(0);
+  });
+
+  it("update and verify both fail when a slug a creature uses has no vocabulary entry", () => {
+    const { deps, dataDir, cacheDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const vocabularyPath = join(dataDir, "vocabulary.json");
+    const vocabulary = JSON.parse(readFileSync(vocabularyPath, "utf8"));
+    delete vocabulary.skills.stealth;
+    writeFileSync(vocabularyPath, JSON.stringify(vocabulary));
+    const errLines: string[] = [];
+    expect(runCli(["verify"], { out: () => {}, err: (x) => errLines.push(x), isTty: true }, deps)).toBe(20);
+    expect(errLines.join("")).toContain('skills "stealth" has no entry in vocabulary.json (used by kingmaker-bestiary/the-stag-lord)');
+
+    rmSync(vocabularyPath);
+    expect(runCli(["verify"], silentIo(), deps)).toBe(20);
+
+    // An upstream lang table that stops naming a used skill fails the update
+    // itself, before anything is written.
+    const lang = JSON.parse(enLang()) as Record<string, string>;
+    delete lang["PF2E.Skill.Stealth"];
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), JSON.stringify(lang));
+    expect(runCli(["update"], silentIo(), deps)).toBe(20);
+    expect(existsSync(vocabularyPath)).toBe(false);
+  });
+
+  it("verify fails when i18n/fr/vocabulary.json names a slug vocabulary.json does not carry", () => {
+    const { deps, dataDir } = seededDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const path = join(dataDir, "i18n", "fr", "vocabulary.json");
+    const french = JSON.parse(readFileSync(path, "utf8"));
+    french.skills.piloting = "Pilotage";
+    writeFileSync(path, JSON.stringify(french));
+    const errLines: string[] = [];
+    expect(runCli(["verify"], { out: () => {}, err: (x) => errLines.push(x), isTty: true }, deps)).toBe(20);
+    expect(errLines.join("")).toContain('translates skills "piloting"');
   });
 
   it("update pins frRef and frRepo in the manifest", () => {
@@ -766,7 +858,7 @@ describe("runCli", () => {
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
     writeFileSync(
       join(cacheDir, "static", "lang", "en.json"),
-      JSON.stringify({ PF2E: { Glossary: { Trap: "<p>ENGLISH glossary text.</p>" } } }),
+      enLang({ PF2E: { Glossary: { Trap: "<p>ENGLISH glossary text.</p>" } } }),
     );
 
     const frCacheDir = seedFrenchCache(
@@ -943,7 +1035,7 @@ describe("runCli", () => {
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
     writeFileSync(
       join(cacheDir, "static", "lang", "en.json"),
-      JSON.stringify({ PF2E: { Shared: { Key: "<p>ENGLISH PROSE</p>" } } }),
+      enLang({ PF2E: { Shared: { Key: "<p>ENGLISH PROSE</p>" } } }),
     );
 
     const frCacheDir = tmpDir("pf2data-fr-cache-");
@@ -1082,7 +1174,7 @@ describe("runCli", () => {
       ),
     );
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
-    writeFileSync(join(cacheDir, "static", "lang", "en.json"), "{}");
+    writeFileSync(join(cacheDir, "static", "lang", "en.json"), enLang());
 
     // `PF2E.Nowhere.At.All` is in neither lang table, so the marker survives
     // both passes -- exactly what a future upstream key rename looks like.
@@ -1273,7 +1365,7 @@ describe("runCli", () => {
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
     writeFileSync(
       join(cacheDir, "static", "lang", "en.json"),
-      JSON.stringify({
+      enLang({
         PF2E: { NPC: { Abilities: { Glossary: { ChangeShape: "<p>x</p>", ConstantSpells: "<p>y</p>" } } } },
       }),
     );

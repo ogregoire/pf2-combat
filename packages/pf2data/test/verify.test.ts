@@ -9,6 +9,8 @@ import {
   verifyI18n,
   verifyI18nMarkup,
   verifySpellsI18n,
+  verifyVocabulary,
+  verifyVocabularyI18n,
 } from "../src/stages/verify.js";
 
 const stagLord = normalizeCreature(
@@ -564,5 +566,100 @@ describe("verifySpellsI18n", () => {
     expect(
       verifySpellsI18n(new Set(["a"]), { a: { ...fr, description: "@UUID[Compendium.pf2e.x.Item.y]" } }),
     ).toEqual(["i18n: i18n/fr/spells/a.json contains an unresolved @UUID reference"]);
+  });
+});
+
+describe("verifyVocabulary", () => {
+  const attribute = (name: string) => ({ name, short: name.slice(0, 3) });
+  // Exactly the Stag Lord's slugs.
+  const vocabulary = () => ({
+    languages: { common: "Common" },
+    senses: {},
+    acuities: {},
+    skills: { acrobatics: "Acrobatics", athletics: "Athletics", intimidation: "Intimidation", stealth: "Stealth", survival: "Survival" },
+    speeds: { land: "Land" },
+    attributes: {
+      str: attribute("Strength"),
+      dex: attribute("Dexterity"),
+      con: attribute("Constitution"),
+      int: attribute("Intelligence"),
+      wis: attribute("Wisdom"),
+      cha: attribute("Charisma"),
+    },
+    sizes: { medium: "Medium" },
+    rarities: { unique: "Unique" },
+  });
+
+  it("passes when every slug the creatures use has an entry", () => {
+    expect(verifyVocabulary(vocabulary(), [stagLord])).toEqual([]);
+  });
+
+  it("names the missing slug, its category and the first creature using it", () => {
+    const v = vocabulary();
+    delete (v.skills as Record<string, string>).stealth;
+    v.rarities = {} as typeof v.rarities;
+    expect(verifyVocabulary(v, [stagLord])).toEqual([
+      'vocabulary: skills "stealth" has no entry in vocabulary.json (used by kingmaker-bestiary/the-stag-lord)',
+      'vocabulary: rarities "unique" has no entry in vocabulary.json (used by kingmaker-bestiary/the-stag-lord)',
+    ]);
+  });
+
+  it("checks a sense's acuity, but not a null one", () => {
+    const seeing = { ...stagLord, senses: [{ type: "scent", acuity: "imprecise", range: 30 }, { type: "darkvision", acuity: null, range: null }] };
+    const v = { ...vocabulary(), senses: { scent: "Scent", darkvision: "Darkvision" } };
+    expect(verifyVocabulary(v, [seeing])).toEqual([
+      'vocabulary: acuities "imprecise" has no entry in vocabulary.json (used by kingmaker-bestiary/the-stag-lord)',
+    ]);
+  });
+
+  it("fails on a vocabulary missing an attribute", () => {
+    const v = vocabulary();
+    delete (v.attributes as Partial<typeof v.attributes>).cha;
+    expect(verifyVocabulary(v, [stagLord]).join(" ")).toMatch(/schema: vocabulary\.json: .*attributes\.cha/);
+  });
+});
+
+describe("verifyVocabularyI18n", () => {
+  const english = {
+    languages: { common: "Common" },
+    senses: {},
+    acuities: {},
+    skills: { athletics: "Athletics" },
+    speeds: {},
+    attributes: Object.fromEntries(
+      ["str", "dex", "con", "int", "wis", "cha"].map((id) => [id, { name: id, short: id }]),
+    ),
+    sizes: {},
+    rarities: {},
+  };
+  const french = (overrides: Record<string, unknown> = {}) => ({
+    languages: { common: "Commun" },
+    senses: {},
+    acuities: {},
+    skills: {},
+    speeds: {},
+    attributes: { str: { name: "Force", short: "For" } },
+    sizes: {},
+    rarities: {},
+    ...overrides,
+  });
+
+  it("passes a subset of the English keys, with attributes left out", () => {
+    expect(verifyVocabularyI18n(english, french())).toEqual([]);
+  });
+
+  it("fails on a key the English category does not have", () => {
+    expect(verifyVocabularyI18n(english, french({ skills: { piloting: "Pilotage" } }))).toEqual([
+      'i18n: i18n/fr/vocabulary.json translates skills "piloting", which vocabulary.json does not have',
+    ]);
+  });
+
+  it("fails on an attribute with only half its names, and on unresolved markup", () => {
+    expect(
+      verifyVocabularyI18n(english, french({ attributes: { str: { name: "Force" } } })).join(" "),
+    ).toMatch(/is invalid/);
+    expect(
+      verifyVocabularyI18n(english, french({ languages: { common: "@UUID[Compendium.pf2e.x.Item.y]" } })),
+    ).toEqual(["i18n: i18n/fr/vocabulary.json contains an unresolved @UUID reference"]);
   });
 });

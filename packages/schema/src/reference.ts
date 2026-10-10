@@ -82,8 +82,49 @@ export const SpellDetailSchema = z.object({
   description: z.string(),
 });
 
+/** The six attribute slugs, as `Creature.abilityMods` keys them. */
+export const AttributeSlugSchema = z.enum(["str", "dex", "con", "int", "wis", "cha"]);
+
+/** An attribute's full name ("Strength") and the three-letter form the
+ * rulebook prints in a stat block ("Str"). */
+export const AttributeNameSchema = z.object({
+  name: z.string(),
+  short: z.string(),
+});
+
+const VocabularyRecordSchema = z.record(z.string(), z.string());
+
+/**
+ * `vocabulary.json`: display names for the slugs a creature record stores
+ * its stat-block fields as -- `languages`, `senses[].type`,
+ * `senses[].acuity`, `skills` keys, `speeds[].type`, `abilityMods` keys,
+ * `size` and `rarity` -- each `slug -> English name`, from upstream's
+ * `static/lang/en.json`. Every slug any creature uses has an entry
+ * (`pf2data verify` checks it); a category may also carry slugs no creature
+ * uses today.
+ */
+export const VocabularySchema = z.object({
+  languages: VocabularyRecordSchema,
+  senses: VocabularyRecordSchema,
+  acuities: VocabularyRecordSchema,
+  skills: VocabularyRecordSchema,
+  speeds: VocabularyRecordSchema,
+  attributes: z.object({
+    str: AttributeNameSchema,
+    dex: AttributeNameSchema,
+    con: AttributeNameSchema,
+    int: AttributeNameSchema,
+    wis: AttributeNameSchema,
+    cha: AttributeNameSchema,
+  }),
+  sizes: VocabularyRecordSchema,
+  rarities: VocabularyRecordSchema,
+});
+
 export type Condition = z.infer<typeof ConditionSchema>;
 export type GlossaryEntry = z.infer<typeof GlossaryEntrySchema>;
 export type Trait = z.infer<typeof TraitSchema>;
 export type StandardAction = z.infer<typeof StandardActionSchema>;
 export type SpellDetail = z.infer<typeof SpellDetailSchema>;
+export type AttributeSlug = z.infer<typeof AttributeSlugSchema>;
+export type Vocabulary = z.infer<typeof VocabularySchema>;

@@ -8,7 +8,10 @@ import {
   StandardActionSchema,
   SpellDetailSchema,
   SpellI18nSchema,
+  VocabularyI18nSchema,
+  VocabularySchema,
   type BookCatalogEntry,
+  type Creature,
   type Condition,
   type GlossaryEntry,
   type CreatureI18n,
@@ -17,6 +20,7 @@ import {
   type SpellDetail,
   type StandardAction,
   type Trait,
+  type Vocabulary,
 } from "@pf2/schema";
 import { buildIndexes } from "./index.js";
 import { EXCLUDED_STANDARD_ACTIONS } from "./reference.js";
@@ -190,6 +194,80 @@ export function verifySpellsI18n(
     }
     problems.push(...verifyI18nMarkup(label, parsed.data));
   }
+  return problems;
+}
+
+/**
+ * `vocabulary.json` against the creatures it names: it must parse, and every
+ * slug a creature stores a stat-block field as -- language, sense type and
+ * acuity, skill, speed type, attribute, size, rarity -- must have an English
+ * name, or the app has nothing to print but the slug. One failure per
+ * missing slug, naming the first creature (by id) that uses it. Creatures
+ * that fail their own schema are skipped: `verifyDataset` reports those.
+ */
+export function verifyVocabulary(vocabulary: unknown, creatures: unknown[]): string[] {
+  const parsed = VocabularySchema.safeParse(vocabulary);
+  if (!parsed.success) {
+    return [`schema: vocabulary.json: ${parsed.error.issues[0]?.message ?? "invalid"} (at ${parsed.error.issues[0]?.path.join(".") ?? "?"})`];
+  }
+  const v = parsed.data;
+
+  const uses = (c: Creature): [keyof Vocabulary, string[]][] => [
+    ["languages", c.languages],
+    ["senses", c.senses.map((x) => x.type)],
+    ["acuities", c.senses.flatMap((x) => (x.acuity === null ? [] : [x.acuity]))],
+    ["skills", Object.keys(c.skills)],
+    ["speeds", c.speeds.map((x) => x.type)],
+    ["attributes", Object.keys(c.abilityMods)],
+    ["sizes", [c.size]],
+    ["rarities", [c.rarity]],
+  ];
+
+  const missing = new Map<string, string>();
+  const ordered = creatures
+    .map((raw) => CreatureSchema.safeParse(raw))
+    .flatMap((r) => (r.success ? [r.data] : []))
+    .sort((a, b) => compareStrings(a.id, b.id));
+  for (const c of ordered) {
+    for (const [category, slugs] of uses(c)) {
+      for (const slug of slugs) {
+        if (Object.hasOwn(v[category], slug)) continue;
+        const key = `${category} "${slug}"`;
+        if (!missing.has(key)) missing.set(key, c.id);
+      }
+    }
+  }
+  return [...missing].map(
+    ([key, id]) => `vocabulary: ${key} has no entry in vocabulary.json (used by ${id})`,
+  );
+}
+
+/**
+ * `i18n/fr/vocabulary.json` against the English vocabulary: it must parse,
+ * and every key must be one `vocabulary.json` has in the same category -- a
+ * French name for a slug the English side does not carry is one the app can
+ * never look up, the sign of a slug derivation drifting between the two
+ * builds. Plus the usual markup check.
+ */
+export function verifyVocabularyI18n(english: unknown, french: unknown): string[] {
+  const label = "i18n/fr/vocabulary.json";
+  const parsed = VocabularyI18nSchema.safeParse(french);
+  if (!parsed.success) {
+    return [`i18n: ${label} is invalid: ${parsed.error.issues[0]?.message ?? "invalid"} (at ${parsed.error.issues[0]?.path.join(".") ?? "?"})`];
+  }
+  const englishParsed = VocabularySchema.safeParse(english);
+  // An invalid English vocabulary is `verifyVocabulary`'s failure to report.
+  if (!englishParsed.success) return verifyI18nMarkup(label, parsed.data);
+
+  const problems: string[] = [];
+  for (const category of Object.keys(parsed.data) as (keyof Vocabulary)[]) {
+    for (const slug of Object.keys(parsed.data[category])) {
+      if (!Object.hasOwn(englishParsed.data[category], slug)) {
+        problems.push(`i18n: ${label} translates ${category} "${slug}", which vocabulary.json does not have`);
+      }
+    }
+  }
+  problems.push(...verifyI18nMarkup(label, parsed.data));
   return problems;
 }
 

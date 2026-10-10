@@ -1,10 +1,16 @@
-import type { CreatureI18n, SpellDetail, SpellI18n } from "@pf2/schema";
+import type {
+  CreatureI18n,
+  SpellDetail,
+  SpellI18n,
+  Vocabulary,
+  VocabularyI18n,
+} from "@pf2/schema";
 import { extractRequirementsFr, extractTriggerFr } from "../normalize/html.js";
 import { resolveLinks } from "../normalize/links.js";
 import { resolveLocalize, type LangTable } from "../normalize/localize.js";
 import type { ArchiveRecord } from "./archive.js";
 import type { BabeleEntry, BabeleTable } from "./babele.js";
-import type { ScannedTrait } from "./reference.js";
+import type { ScannedTrait, ScannedVocabulary, VocabularyCategory } from "./reference.js";
 import type { SpellDetailSource } from "./spells.js";
 import { baseSpellName } from "../normalize/spellcasting.js";
 
@@ -391,6 +397,54 @@ export function buildTraitsI18n(
   }
 
   return out;
+}
+
+/**
+ * Vocabulary overlay: the same slugs as `vocabulary.json`, with French names
+ * from the module's `lang/fr.json`, through the SAME `scanVocabulary` the
+ * English build uses -- the traits approach, joined by slug, never by
+ * display name.
+ *
+ * Only English slugs are kept: the French table also names things upstream's
+ * English table does not (`Skill.Computers`, `Skill.Piloting`, 57 more
+ * languages). A slug with no French name is OMITTED, never echoed in English
+ * -- including the title-cased speeds `buildVocabulary` makes up (`Ice
+ * Burrow`, `Air Walk`), which no French table names. An attribute is kept
+ * only when the table has both its name and its short form.
+ *
+ * The one language gap today is `grippli`: the French table has moved that
+ * key to the remaster's `tripkee`, which the pinned English table does not
+ * carry yet. Joining the two would be a hand-made alias, so it stays out.
+ */
+export function buildVocabularyI18n(
+  english: Vocabulary,
+  french: ScannedVocabulary,
+): VocabularyI18n {
+  const pick = (category: VocabularyCategory): Record<string, string> => {
+    const out: Record<string, string> = {};
+    for (const slug of Object.keys(english[category])) {
+      const name = french[category][slug];
+      if (name !== undefined) out[slug] = name;
+    }
+    return out;
+  };
+
+  const attributes: VocabularyI18n["attributes"] = {};
+  for (const id of Object.keys(english.attributes) as (keyof Vocabulary["attributes"])[]) {
+    const { name, short } = french.attributes[id];
+    if (name !== null && short !== null) attributes[id] = { name, short };
+  }
+
+  return {
+    languages: pick("languages"),
+    senses: pick("senses"),
+    acuities: pick("acuities"),
+    skills: pick("skills"),
+    speeds: pick("speeds"),
+    attributes,
+    sizes: pick("sizes"),
+    rarities: pick("rarities"),
+  };
 }
 
 /**

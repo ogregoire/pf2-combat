@@ -1,7 +1,17 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
-import type { Condition, GlossaryEntry, StandardAction, Trait } from "@pf2/schema";
+import {
+  AttributeSlugSchema,
+  CreatureSchema,
+  type AttributeSlug,
+  type Condition,
+  type Creature,
+  type GlossaryEntry,
+  type StandardAction,
+  type Trait,
+  type Vocabulary,
+} from "@pf2/schema";
 import { walkPack } from "../io/walk.js";
 import { describeItem, itemHasType } from "../normalize/item.js";
 import { resolveLinks } from "../normalize/links.js";
@@ -222,8 +232,9 @@ const TRAIT_NAME_PREFIX = "PF2E.Trait";
  * -> `splash-10`: a hyphen before every internal uppercase letter and before
  * every letter-to-digit boundary, then lowercased. Checked against the real
  * 426-key list before relying on it — no acronyms, only one digit-bearing
- * suffix (Splash10), no collisions. */
-function slugFromTraitDescriptionKey(suffix: string): string {
+ * suffix (Splash10), no collisions. The vocabulary keys below
+ * (`Sense.Type.LowLightVision` -> `low-light-vision`) go through it too. */
+function slugFromPascalCase(suffix: string): string {
   return suffix
     .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
     .replace(/([A-Za-z])(\d)/g, "$1-$2")
@@ -274,7 +285,7 @@ export function scanTraits(lang: LangTable): ScannedTrait[] {
     if (suffix === "") continue;
 
     traits.push({
-      slug: slugFromTraitDescriptionKey(suffix),
+      slug: slugFromPascalCase(suffix),
       name: lang[`${TRAIT_NAME_PREFIX}${suffix}`] ?? null,
       description: resolveLinks(resolveLocalize(description, lang)),
     });
@@ -289,4 +300,139 @@ export function buildTraits(lang: LangTable): Trait[] {
     name: t.name ?? titleCaseFromSlug(t.slug),
     description: t.description,
   }));
+}
+
+/** The vocabulary categories that are plain `slug -> name` records. */
+export type VocabularyCategory = Exclude<keyof Vocabulary, "attributes">;
+
+/**
+ * The lang-table families behind the scanned vocabulary categories: every
+ * key directly under `prefix`. Languages are keyed by their slug itself
+ * (`Language.aklo`, `Language.elder-thing`), so only an all-lowercase suffix
+ * counts -- the PascalCase siblings (`CommonLanguage`, `Plural`,
+ * `DetailsPlaceholder`) are UI strings. Everything else is keyed in
+ * PascalCase and slugged like a trait (`Sense.Type.SeeInvisibility` ->
+ * `see-invisibility`), with each family's `Label` key left out.
+ */
+const VOCABULARY_FAMILIES: Record<
+  Exclude<VocabularyCategory, "rarities">,
+  { prefix: string; slug: (suffix: string) => string | null }
+> = {
+  languages: { prefix: "PF2E.Actor.Creature.Language.", slug: languageSlug },
+  senses: { prefix: "PF2E.Actor.Creature.Sense.Type.", slug: pascalSlug },
+  acuities: { prefix: "PF2E.Actor.Creature.Sense.Acuity.", slug: pascalSlug },
+  skills: { prefix: "PF2E.Skill.", slug: pascalSlug },
+  speeds: { prefix: "PF2E.Actor.Speed.Type.", slug: pascalSlug },
+  sizes: { prefix: "PF2E.ActorSize", slug: pascalSlug },
+};
+
+function languageSlug(suffix: string): string | null {
+  return /^[a-z]+(?:-[a-z]+)*$/.test(suffix) ? suffix : null;
+}
+
+function pascalSlug(suffix: string): string | null {
+  if (!/^[A-Z][A-Za-z]*$/.test(suffix) || suffix === "Label") return null;
+  return slugFromPascalCase(suffix);
+}
+
+/** `str` -> `Str`, the casing both attribute key families use. */
+function capitalize(slug: string): string {
+  return slug[0]!.toUpperCase() + slug.slice(1);
+}
+
+/**
+ * One lang table's vocabulary, before the English build fills or rejects
+ * its gaps. Attributes keep a missing half as `null` rather than dropping
+ * the attribute: English must have both and throws, French omits the
+ * attribute -- see `buildVocabulary` and `buildVocabularyI18n`.
+ */
+export type ScannedVocabulary = Record<VocabularyCategory, Record<string, string>> & {
+  attributes: Record<AttributeSlug, { name: string | null; short: string | null }>;
+};
+
+/**
+ * The single scan behind both vocabulary outputs -- the English
+ * `buildVocabulary` below and the French overlay in `stages/i18n.ts` --
+ * for the same reason `scanTraits` is one function: the overlay is joined
+ * to the English vocabulary BY SLUG, so both sides must derive slugs the
+ * same way.
+ *
+ * Rarities have no key family of their own (`PF2E.TraitUnique` sits among
+ * every other trait name), so they are looked up for the four slugs
+ * `Creature.rarity` allows. Attributes are looked up for the six
+ * `abilityMods` keys: `PF2E.AbilityStr` for the name, `PF2E.AbilityId.str`
+ * for the short form ("Str"; "For" in French).
+ */
+export function scanVocabulary(lang: LangTable): ScannedVocabulary {
+  const scanned = {
+    languages: {},
+    senses: {},
+    acuities: {},
+    skills: {},
+    speeds: {},
+    sizes: {},
+    rarities: {},
+  } as Record<VocabularyCategory, Record<string, string>>;
+
+  for (const [key, name] of Object.entries(lang)) {
+    for (const [category, family] of Object.entries(VOCABULARY_FAMILIES)) {
+      if (!key.startsWith(family.prefix)) continue;
+      const slug = family.slug(key.slice(family.prefix.length));
+      if (slug !== null) scanned[category as VocabularyCategory][slug] = name;
+    }
+  }
+
+  for (const rarity of CreatureSchema.shape.rarity.options) {
+    const name = lang[`PF2E.Trait${capitalize(rarity)}`];
+    if (name !== undefined) scanned.rarities[rarity] = name;
+  }
+
+  const attributes = {} as ScannedVocabulary["attributes"];
+  for (const id of AttributeSlugSchema.options) {
+    attributes[id] = {
+      name: lang[`PF2E.Ability${capitalize(id)}`] ?? null,
+      short: lang[`PF2E.AbilityId.${id}`] ?? null,
+    };
+  }
+
+  return { ...scanned, attributes };
+}
+
+/**
+ * `vocabulary.json`: display names for the slugs a creature's stat block is
+ * stored as, from `static/lang/en.json` via `scanVocabulary` -- every slug
+ * upstream names in each family, not just the ones today's creatures use
+ * (119 languages to the 49 in use), like `buildTraits`.
+ *
+ * Speeds are the one category upstream leaves open: a speed's `type` is
+ * free text on a legacy actor (see `speedTypeSlug` in normalize/defenses.ts),
+ * so a speed some creature uses with no lang key -- `ice-burrow`,
+ * `air-walk` -- gets a title-cased slug, as a trait with no name key does.
+ * Every other category is closed upstream, so a creature slug with no lang
+ * key is left missing for `verifyVocabulary` to report.
+ *
+ * Throws when an attribute lacks either English name: there are only six and
+ * the stat block always shows them.
+ */
+export function buildVocabulary(lang: LangTable, creatures: Creature[]): Vocabulary {
+  const { attributes: scannedAttributes, ...scanned } = scanVocabulary(lang);
+
+  for (const creature of creatures) {
+    for (const speed of creature.speeds) {
+      scanned.speeds[speed.type] ??= titleCaseFromSlug(speed.type);
+    }
+  }
+
+  const attributes = {} as Vocabulary["attributes"];
+  for (const id of AttributeSlugSchema.options) {
+    const { name, short } = scannedAttributes[id];
+    if (name === null || short === null) {
+      throw new Error(
+        `attribute ${id} has no ${name === null ? `PF2E.Ability${capitalize(id)}` : `PF2E.AbilityId.${id}`} in the lang table`,
+      );
+    }
+    attributes[id] = { name, short };
+  }
+
+  return { ...scanned, attributes };
 }

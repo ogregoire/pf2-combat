@@ -165,4 +165,38 @@ describe("normalizeDefenses", () => {
     });
     expect(d.skills).toEqual({ stealth: 14 });
   });
+
+  it("folds the stray intimidate key into intimidation, never over the real value", () => {
+    const both = normalizeDefenses({
+      ...baseSystem,
+      skills: { intimidate: { base: 31 }, intimidation: { base: 30 } },
+    });
+    expect(both.skills).toEqual({ intimidation: 30 });
+
+    const aliasOnly = normalizeDefenses({ ...baseSystem, skills: { intimidate: { base: 12 } } });
+    expect(aliasOnly.skills).toEqual({ intimidation: 12 });
+  });
+
+  it("slugs a free-text speed type", () => {
+    const d = normalizeDefenses({
+      ...baseSystem,
+      attributes: {
+        ...baseSystem.attributes,
+        speed: {
+          value: 25,
+          otherSpeeds: [
+            { type: "Ice Burrow", value: 20 },
+            { type: "Air Walk", value: 25 },
+            { type: "ice-burrow", value: 20 },
+          ],
+        },
+      },
+    });
+    expect(d.speeds).toEqual([
+      { type: "land", value: 25 },
+      { type: "air-walk", value: 25 },
+      { type: "ice-burrow", value: 20 },
+      { type: "ice-burrow", value: 20 },
+    ]);
+  });
 });

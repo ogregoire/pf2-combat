@@ -14,6 +14,8 @@ describe("renderSchemaDoc", () => {
       "traits.json",
       "actions.json",
       "i18n/fr/actions.json",
+      "vocabulary.json",
+      "i18n/fr/vocabulary.json",
       "spells/<slug>.json",
       "i18n/fr/spells/<slug>.json",
     ]) {

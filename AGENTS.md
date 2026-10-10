@@ -12,7 +12,8 @@ five books: `pathfinder-monster-core` (492), `pathfinder-bestiary-2` (331),
 (176). `data/` is 28 MB on disk (`data/index/` is 472 KB). `conditions.json` has
 43 entries (12 valued); `glossary.json` has 447 entries; `actions.json` has the 51
 standard actions (24 basic, 27 skill); `spells/` has one file per spell a
-creature casts (536). Upstream is pinned to
+creature casts (536); `vocabulary.json` names the stat-block slugs
+(languages, senses, skills, speeds, attributes, sizes, rarities). Upstream is pinned to
 `4cbdaa37d6c33e9519561bae2c59a23e0288cbce`.
 
 ## Updating the data
