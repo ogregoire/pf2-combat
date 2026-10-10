@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Attack } from "@pf2/schema";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { degreeTotalRanges, type Degree } from "../rules/degrees.js";
@@ -67,7 +67,8 @@ function ordinal(t: (key: StringKey) => string, strikesMade: number): string {
  * read straight off `resolveStrike`, never re-derived. The target is chosen
  * here, through TargetPicker, which lists every candidate with its
  * defences; with no target there's nothing to compute against, so the
- * picker's button stands in for the whole assistant. */
+ * picker stands in for the whole assistant, opening as the pointer
+ * enters the zone. */
 export function RollAssistant({
   combatant,
   target,
@@ -82,15 +83,44 @@ export function RollAssistant({
   const lang = useEncounter((s) => s.lang);
   const t = useT();
   const [picking, setPicking] = useState(false);
+  // Moving the pointer from the zone onto a candidate inside it is one
+  // continuous hover, but jsdom/user-event report it as a leave then an
+  // enter (no relatedTarget) — the same quirk CombatantRow absorbs. The
+  // close waits a tick and an immediate re-enter cancels it.
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (closeTimer.current !== null) clearTimeout(closeTimer.current);
+  }, []);
+  const cancelClose = (): void => {
+    if (closeTimer.current !== null) clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
 
   if (!target || picking) {
+    // With no target yet, the whole zone opens the list on hover, and
+    // leaving it closes the list again; a click (and a tap, where there is
+    // no hover) still opens it too. Once a target is chosen the zone shows
+    // the to-hit box instead, and Change reopens the list.
     return (
-      <TargetPicker
-        attackerId={combatant.id}
-        open={picking}
-        onOpen={() => setPicking(true)}
-        onClose={() => setPicking(false)}
-      />
+      <div
+        data-testid="target-zone"
+        onMouseEnter={() => {
+          cancelClose();
+          if (!target) setPicking(true);
+        }}
+        onMouseLeave={() => {
+          cancelClose();
+          closeTimer.current = setTimeout(() => setPicking(false), 0);
+        }}
+        style={{ minHeight: "100%" }}
+      >
+        <TargetPicker
+          attackerId={combatant.id}
+          open={picking}
+          onOpen={() => setPicking(true)}
+          onClose={() => setPicking(false)}
+        />
+      </div>
     );
   }
 

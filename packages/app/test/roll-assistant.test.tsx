@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { act, render, screen, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { RollAssistant } from "../src/components/RollAssistant.js";
@@ -130,6 +130,23 @@ describe("RollAssistant", () => {
     expect(picker.getAllByRole("button", { name: /^Target / }).map((b) => b.getAttribute("aria-label"))).toEqual([
       "Target Valeria",
     ]);
+  });
+
+  it("opens the target list when the pointer enters the zone, and closes it on leaving", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(stagLord, 19);
+    useEncounter.getState().addCombatant(target, 15);
+    render(<ActiveCombatant />);
+
+    await user.hover(screen.getByTestId("target-zone"));
+    expect(screen.getByRole("group", { name: "Choose a target" })).toBeDefined();
+    await user.unhover(screen.getByTestId("target-zone"));
+    await waitFor(() => expect(screen.queryByRole("group", { name: "Choose a target" })).toBeNull());
+
+    await user.hover(screen.getByTestId("target-zone"));
+    await user.click(screen.getByRole("button", { name: "Target Valeria" }));
+    expect(screen.queryByRole("group", { name: "Choose a target" })).toBeNull();
+    expect(screen.getByText("TARGET")).toBeDefined();
   });
 
   describe("target order", () => {
