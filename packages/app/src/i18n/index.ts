@@ -29,6 +29,9 @@ export const ALLOWLIST = new Set<StringKey>([
   "IWR_NAME_AIR",
   // "Normal", the elite/weak control's middle option, likewise.
   "ADJUSTMENT_NORMAL",
+  // Unit abbreviations shared by both languages ("10 min", "1 h").
+  "CAST_TIME_MINUTES",
+  "CAST_TIME_HOURS",
   // "action"/"actions" is spelled the same in both languages, same rule as
   // ACTIONS_UNIT above — ActionCard's Use-button unit words.
   "USE_ACTION_UNIT_SINGULAR",

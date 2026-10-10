@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { adjustedLevel, shiftStats, type AdjustmentKind } from "../rules/adjustment.js";
-import type { Action, Attack, CreatureI18n } from "@pf2/schema";
+import type { Action, Attack, CreatureI18n, Spellcasting } from "@pf2/schema";
 import {
   applyEndOfTurn,
   dyingMax,
@@ -34,6 +34,8 @@ export interface CombatantSeed {
   attacks?: Attack[];
   /** Populated from the creature record when added from the dataset. */
   actions?: Action[];
+  /** Populated from the creature record when added from the dataset. */
+  spellcasting?: Spellcasting[];
   /** Populated from the creature record's `perception` when added from the
    * dataset, or carried over from `Player.initiativeModifier` for a PC. */
   initiativeModifier?: number | null;
@@ -113,6 +115,8 @@ function makeCombatant(id: string, seed: CombatantSeed): Combatant {
     reactions: seed.reactions ?? [],
     attacks: seed.attacks ?? [],
     actions: seed.actions ?? [],
+    spellcasting: seed.spellcasting ?? [],
+    spellUses: {},
     i18n: seed.i18n ?? null,
     conditions: [],
     strikesMade: 0,
@@ -651,6 +655,10 @@ interface EncounterStore {
   resetStrikes(id: string): void;
   spendActions(id: string, cost: number): void;
   setReactionSpent(id: string, spent: boolean): void;
+  /** Spends one cast from a spell's pool (rules/spells.ts's `CastLimit.key`)
+   * — or, with `-1`, takes one back. The actions or reaction the cast costs
+   * are spent separately, through spendActions/setReactionSpent. */
+  spendSpell(id: string, key: string, delta?: 1 | -1): void;
   setTarget(id: string | null): void;
   /** Makes a creature elite or weak, or normal again with `null` — any
    * current adjustment comes off first, so elite → weak is one call. */
@@ -999,6 +1007,16 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         const c = state.encounter.combatants[id];
         if (c) c.reactionSpent = spent;
+      }),
+
+    spendSpell: (id, key, delta = 1) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (!c) return;
+        const uses = (c.spellUses ??= {});
+        const next = Math.max(0, (uses[key] ?? 0) + delta);
+        if (next === 0) delete uses[key];
+        else uses[key] = next;
       }),
 
     setTarget: (id) =>

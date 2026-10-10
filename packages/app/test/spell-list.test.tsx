@@ -1,0 +1,108 @@
+import { beforeEach, describe, expect, it } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import type { CreatureI18n, Spellcasting } from "@pf2/schema";
+import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
+import { useEncounter } from "../src/state/store.js";
+
+type Spell = Spellcasting["spells"][number];
+const spell = (over: Partial<Spell>): Spell => ({
+  name: "Spell", rank: 1, cost: "2", cantrip: false, frequency: null, uses: null, prepared: 0, ...over,
+});
+
+const spellcasting: Spellcasting[] = [
+  {
+    name: "Occult Spontaneous Spells", tradition: "occult", preparation: "spontaneous", dc: 25, attack: 17,
+    slots: [{ rank: 3, max: 1 }], focusPoints: null,
+    spells: [spell({ name: "Enthrall", rank: 3 }), spell({ name: "Haste", rank: 3, cost: "1 to 3" })],
+  },
+  {
+    name: "Primal Innate Spells", tradition: "primal", preparation: "innate", dc: 24, attack: 16,
+    slots: [], focusPoints: null,
+    spells: [
+      spell({ name: "Tongues (Constant)", rank: 5, frequency: "constant" }),
+      spell({ name: "Entangle", rank: 2 }),
+    ],
+  },
+];
+
+const add = (i18n: CreatureI18n | null = null): string =>
+  useEncounter.getState().addCombatant(
+    { kind: "creature", name: "Grigori", level: 6, ac: 22, saves: { fortitude: 10, reflex: 14, will: 12 },
+      hp: { current: 90, max: 90 }, spellcasting, i18n },
+    20,
+  );
+const rowOf = (name: string) => within(screen.getAllByTestId("spell-row").find((r) => r.textContent!.includes(name))!);
+
+describe("SpellList", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("lists every entry's spells in one section, highest rank first, with each entry's DC and attack", () => {
+    add();
+    render(<ActiveCombatant />);
+    const list = within(screen.getByTestId("spell-list"));
+    expect(list.getByText(/DC 25, attack \+17/).textContent).toContain("DC 25");
+    expect(list.getByText(/DC 24, attack \+16/)).toBeDefined();
+    expect(screen.getAllByTestId("spell-row").map((r) => r.textContent!.match(/^[A-Za-z ()]+?(?=rank)/)?.[0])).toEqual([
+      "Tongues (Constant)", "Haste", "Enthrall", "Entangle",
+    ]);
+  });
+
+  it("spends the slot and the actions on a cast, the rank's last slot closing every spell of that rank", async () => {
+    const user = userEvent.setup();
+    const id = add();
+    render(<ActiveCombatant />);
+
+    await user.click(rowOf("Enthrall").getByRole("button", { name: "Cast Enthrall with 2 actions" }));
+    const c = useEncounter.getState().encounter.combatants[id]!;
+    expect(c.actionsSpent).toBe(2);
+    expect(rowOf("Enthrall").getByText("0/1 rank-3 slots")).toBeDefined();
+    // Haste shares the rank-3 slot: none left for it either.
+    expect((rowOf("Haste").getByRole("button", { name: "Cast Haste with 1 actions" }) as HTMLButtonElement).disabled).toBe(true);
+
+    // Taking the cast back reopens the slot.
+    await user.click(rowOf("Enthrall").getByRole("button", { name: "Take back a cast of Enthrall" }));
+    expect(rowOf("Enthrall").getByText("1/1 rank-3 slots")).toBeDefined();
+  });
+
+  it("offers one button per action count for a ranged cost, and none beyond the actions left", async () => {
+    const user = userEvent.setup();
+    const id = add();
+    useEncounter.getState().spendActions(id, 2);
+    render(<ActiveCombatant />);
+    const haste = rowOf("Haste");
+    expect((haste.getByRole("button", { name: "Cast Haste with 1 actions" }) as HTMLButtonElement).disabled).toBe(false);
+    expect((haste.getByRole("button", { name: "Cast Haste with 2 actions" }) as HTMLButtonElement).disabled).toBe(true);
+    await user.click(haste.getByRole("button", { name: "Cast Haste with 1 actions" }));
+    expect(useEncounter.getState().encounter.combatants[id]!.actionsSpent).toBe(3);
+  });
+
+  it("casts an innate spell once a day when no count is stated, and never casts a constant one", async () => {
+    const user = userEvent.setup();
+    add();
+    render(<ActiveCombatant />);
+    expect(rowOf("Tongues").queryByRole("button", { name: /^Cast/ })).toBeNull();
+    expect(rowOf("Tongues").getByText("constant")).toBeDefined();
+
+    await user.click(rowOf("Entangle").getByRole("button", { name: "Cast Entangle with 2 actions" }));
+    expect(rowOf("Entangle").getByText("0/1 per day")).toBeDefined();
+    expect((rowOf("Entangle").getByRole("button", { name: "Cast Entangle with 2 actions" }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it("names the spells in French from the overlay, by position", () => {
+    useEncounter.getState().setLang("fr");
+    add({
+      name: "Grigori", publicNotes: null, actions: [], attacks: [],
+      spells: [
+        { en: "Enthrall", name: "Discours captivant" },
+        { en: "Haste", name: "Rapidité" },
+        { en: "Tongues (Constant)", name: "Don des langues (constant)" },
+        { en: "Entangle", name: "Enchevêtrement" },
+      ],
+    });
+    render(<ActiveCombatant />);
+    expect(screen.getByText("Discours captivant")).toBeDefined();
+    expect(screen.getByText("Don des langues (constant)")).toBeDefined();
+    expect(screen.getByText("Sorts")).toBeDefined();
+  });
+});

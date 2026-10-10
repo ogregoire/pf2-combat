@@ -77,6 +77,18 @@ describe("setAdjustment", () => {
     expect(c.adjustment).toBeUndefined();
   });
 
+  it("moves spell DCs and spell attacks by 2 too", () => {
+    const id = useEncounter.getState().addCombatant(
+      { ...ogre, spellcasting: [{ name: "Primal Innate Spells", tradition: "primal", preparation: "innate",
+        dc: 20, attack: 12, slots: [], focusPoints: null, spells: [] }] },
+      10,
+    );
+    useEncounter.getState().setAdjustment(id, "weak");
+    expect(get(id).spellcasting![0]).toMatchObject({ dc: 18, attack: 10 });
+    useEncounter.getState().setAdjustment(id, null);
+    expect(get(id).spellcasting![0]).toMatchObject({ dc: 20, attack: 12 });
+  });
+
   it("leaves a PC alone", () => {
     const id = useEncounter.getState().addCombatant(
       { kind: "pc", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, hp: null },

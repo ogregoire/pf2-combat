@@ -1,4 +1,4 @@
-import type { Action, Attack, CreatureI18n } from "@pf2/schema";
+import type { Action, Attack, CreatureI18n, Spellcasting } from "@pf2/schema";
 import type { AppliedCondition } from "../rules/conditions.js";
 import type { Iwr } from "../rules/damage.js";
 import type { Adjustment } from "../rules/adjustment.js";
@@ -31,6 +31,13 @@ export interface Combatant {
   reactions: { name: string; trigger: string }[];
   attacks: Attack[];
   actions: Action[];
+  /** Denormalised from the creature record, like `attacks`. Optional: a
+   * combatant persisted before spells were carried has none. */
+  spellcasting?: Spellcasting[];
+  /** Casts spent so far, by pool (rules/spells.ts's `CastLimit.key`): a
+   * spontaneous rank's slots, a prepared copy, an innate spell's daily
+   * uses, the shared Focus Point pool. Absent until the first cast. */
+  spellUses?: Record<string, number>;
   /**
    * The French overlay for this creature, IF a caller already seeded one
    * directly into the store — used by tests, never by production code:

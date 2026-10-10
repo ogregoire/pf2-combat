@@ -50,9 +50,10 @@ export function addToFormula(formula: string, n: number): string {
 /**
  * Moves a creature's stats by one adjustment, in place: `sign` +1 applies
  * `kind`, −1 takes it back off. AC, saves, Perception (its initiative
- * modifier) and every Strike's attack bonus move by 2, and so does each
- * Strike's first damage entry; Hit Points by `hpDelta`, max and current
- * together so damage already taken stays taken. Level is not touched here
+ * modifier), every Strike's attack bonus and every spell DC and spell
+ * attack move by 2, and so does each Strike's first damage entry; Hit
+ * Points by `hpDelta`, max and current together so damage already taken
+ * stays taken. Level is not touched here
  * — the caller sets it from `baseLevel`, since it can't be stepped back.
  *
  * Not adjusted: DCs and damage inside ability text, which is free-form
@@ -72,6 +73,9 @@ export function shiftStats(c: Combatant, kind: AdjustmentKind, baseLevel: number
     bonus: a.bonus + step,
     damage: a.damage.map((d, i) => (i === 0 ? { ...d, formula: addToFormula(d.formula, step) } : d)),
   }));
+  if (c.spellcasting) {
+    c.spellcasting = c.spellcasting.map((e) => ({ ...e, dc: e.dc + step, attack: e.attack + step }));
+  }
   if (c.hp !== null) {
     const delta = hpDelta(baseLevel, kind) * sign;
     const max = Math.max(1, c.hp.max + delta);

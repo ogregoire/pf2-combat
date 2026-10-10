@@ -53,11 +53,12 @@ function EncounterControls(): React.ReactElement {
  * pinned NextButton, which is reachable from every tab — the guard has to
  * be explained everywhere a Next control is, not just on the Turn tab. */
 export function UnrolledNotice(): React.ReactElement | null {
+  const t = useT();
   const unrolled = useEncounter((s) => unrolledCount(s.encounter));
   if (unrolled === 0) return null;
   return (
     <span style={{ fontSize: "11.5px", color: "var(--danger)", textAlign: "center" }}>
-      {unrolled} combatant{unrolled === 1 ? " has" : "s have"} no initiative
+      {format(t(unrolled === 1 ? "UNROLLED_NOTICE_SINGULAR" : "UNROLLED_NOTICE_PLURAL"), { n: unrolled })}
     </span>
   );
 }

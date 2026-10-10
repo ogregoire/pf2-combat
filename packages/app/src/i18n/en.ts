@@ -150,6 +150,34 @@ export const STRINGS_EN = {
   NO_DAMAGE: "no damage",
   RECORD_STRIKE_BUTTON: "Record strike",
 
+  // SpellList.tsx
+  SPELLS_HEADING: "Spells",
+  SPELL_RANK: "rank {rank}",
+  SPELL_CANTRIP: "cantrip {rank}",
+  SPELL_AT_WILL: "at will",
+  SPELL_CONSTANT: "constant",
+  SPELL_PER_DAY: "{left}/{max} per day",
+  SPELL_SLOTS: "{left}/{max} rank-{rank} slots",
+  SPELL_PREPARED: "{left}/{max} prepared",
+  SPELL_FOCUS: "{left}/{max} Focus Points",
+  CAST_BUTTON: "Cast",
+  CAST_WITH_ACTIONS_ARIA: "Cast {name} with {n} actions",
+  CAST_NAME_ARIA: "Cast {name}",
+  UNDO_CAST_ARIA: "Take back a cast of {name}",
+  SPELL_ENTRY_SUMMARY: "DC {dc}, attack {attack}",
+  FOCUS_POINTS_LABEL: "Focus Points {left}/{max}",
+  TRADITION_ARCANE: "arcane",
+  TRADITION_DIVINE: "divine",
+  TRADITION_OCCULT: "occult",
+  TRADITION_PRIMAL: "primal",
+  PREPARATION_INNATE: "innate",
+  PREPARATION_SPONTANEOUS: "spontaneous",
+  PREPARATION_PREPARED: "prepared",
+  PREPARATION_FOCUS: "focus",
+  CAST_TIME_MINUTES: "{n} min",
+  CAST_TIME_HOURS: "{n} h",
+  CAST_TIME_DAYS: "{n} d",
+
   // RowPopover.tsx
   // Stepper's +/- aria-labels, {name} being the condition's own already-
   // localised display name (conditionDisplayName) — wrapping it in a
@@ -235,6 +263,8 @@ export const STRINGS_EN = {
   RESET_ENCOUNTER_CONFIRM: "Reset the encounter? Clears all {n} {word} and returns to round 1. Players are kept.",
   COMBATANT_WORD_SINGULAR: "combatant",
   COMBATANT_WORD_PLURAL: "combatants",
+  UNROLLED_NOTICE_SINGULAR: "{n} combatant has no initiative",
+  UNROLLED_NOTICE_PLURAL: "{n} combatants have no initiative",
   STRIKES_THIS_TURN_LABEL: "STRIKES THIS TURN",
   RESET_STRIKES_ARIA: "Reset strikes this turn",
   RESET_BUTTON: "reset",

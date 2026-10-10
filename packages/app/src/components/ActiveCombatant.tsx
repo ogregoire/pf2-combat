@@ -4,6 +4,7 @@ import { resolveAttacks, resolveCreatureName } from "../data/i18nOverlay.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useEncounter } from "../state/store.js";
 import type { FetchFn } from "../data/catalog.js";
+import { SpellList } from "./SpellList.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
 import { TurnEconomy } from "./TurnEconomy.js";
 import { ActionList } from "./ActionList.js";
@@ -104,6 +105,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
             onSelectAttack={(index) => setSelection({ combatantId: combatant.id, index })}
             fetchFn={fetchFn}
           />
+          <SpellList combatant={combatant} />
         </div>
       </div>
 

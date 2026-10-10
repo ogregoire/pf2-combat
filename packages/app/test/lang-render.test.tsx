@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { ActionPips } from "../src/components/ActionPips.js";
 import { NextButton } from "../src/components/NextButton.js";
 import { RollAssistant } from "../src/components/RollAssistant.js";
+import { UnrolledNotice } from "../src/components/TurnManager.js";
 import { useEncounter } from "../src/state/store.js";
 
 /**
@@ -21,6 +22,16 @@ describe("chrome copy in French", () => {
   beforeEach(() => {
     useEncounter.getState().reset();
     useEncounter.getState().setLang("fr");
+  });
+
+  it("says in French why Next refuses, while someone has no initiative", () => {
+    useEncounter.getState().setLang("fr");
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Loup", level: 1, ac: 15, saves: { fortitude: 5, reflex: 6, will: 2 }, hp: { current: 10, max: 10 } },
+      null,
+    );
+    render(<UnrolledNotice />);
+    expect(screen.getByText("1 combattant sans initiative")).toBeDefined();
   });
 
   it("renders NextButton's label and unacknowledged count in French", () => {
