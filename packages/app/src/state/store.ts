@@ -1373,3 +1373,18 @@ export const useEncounter = create<EncounterStore>()(
     },
   })),
 );
+
+function activeCombatantId(enc: Encounter): string | undefined {
+  return enc.entries[enc.activeEntryIndex]?.combatantIds[0];
+}
+
+// A target belongs to the turn that chose it: whenever the acting combatant
+// changes — Next, Delay, the active one removed — the next one starts with
+// no target. One rule here rather than a reset in every action that can
+// move the turn. Skipped when there was no active combatant before (an
+// empty encounter, or one just loaded), so a restored target survives.
+useEncounter.subscribe((state, prev) => {
+  const before = activeCombatantId(prev.encounter);
+  if (before === undefined || state.encounter.targetId === null) return;
+  if (activeCombatantId(state.encounter) !== before) useEncounter.getState().setTarget(null);
+});

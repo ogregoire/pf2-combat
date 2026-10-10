@@ -1015,3 +1015,35 @@ describe("encounter store", () => {
     expect(after.conditions.find((c) => c.slug === "dying")!.value).toBe(1);
   });
 });
+
+describe("the target belongs to the turn that chose it", () => {
+  beforeEach(reset);
+
+  it("clears the target when the turn passes to the next combatant", () => {
+    addCreature("First", 20);
+    const second = addCreature("Second", 10);
+    useEncounter.getState().setTarget(second);
+    useEncounter.getState().nextTurn();
+    expect(useEncounter.getState().encounter.targetId).toBeNull();
+  });
+
+  it("clears it when the active combatant delays", () => {
+    addCreature("First", 20);
+    const second = addCreature("Second", 10);
+    useEncounter.getState().setTarget(second);
+    const active = useEncounter.getState().encounter.entries[0]!;
+    useEncounter.getState().delay(active.id);
+    expect(useEncounter.getState().encounter.targetId).toBeNull();
+  });
+
+  it("keeps it while the same combatant is still acting", () => {
+    const first = addCreature("First", 20);
+    const second = addCreature("Second", 10);
+    useEncounter.getState().setTarget(second);
+    // An add, damage and a condition all leave the turn where it is.
+    addCreature("Newcomer", 5);
+    useEncounter.getState().applyDamage(second, 3);
+    useEncounter.getState().addCondition(first, "frightened", 1);
+    expect(useEncounter.getState().encounter.targetId).toBe(second);
+  });
+});
