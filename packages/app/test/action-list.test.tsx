@@ -207,11 +207,11 @@ describe("ActionList — Strikes merged into the action list", () => {
     // No separate "Strikes" panel/heading remains.
     expect(screen.queryByText("Strikes")).toBeNull();
 
-    // The "STRIKES THIS TURN" counter and its reset control moved to
-    // TurnManager (beside "actions remaining") — ActionList no longer
-    // renders either, so the two can't duplicate.
-    expect(screen.queryByText("STRIKES THIS TURN")).toBeNull();
-    expect(screen.queryByRole("button", { name: /^reset$/i })).toBeNull();
+    // The "STRIKES THIS TURN" counter and its reset control live once, in
+    // the turn strip beside "actions remaining" (TurnEconomy) — ActionList
+    // doesn't render its own, so the two can't duplicate.
+    expect(screen.getAllByText("STRIKES THIS TURN")).toHaveLength(1);
+    expect(screen.getAllByRole("button", { name: /reset strikes this turn/i })).toHaveLength(1);
 
     // The 2-action ability leads (cost order), the Strike follows as a
     // 1-action item — both are plain buttons in the same list.

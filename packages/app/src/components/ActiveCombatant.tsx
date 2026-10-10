@@ -5,6 +5,7 @@ import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useEncounter } from "../state/store.js";
 import type { FetchFn } from "../data/catalog.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
+import { TurnEconomy } from "./TurnEconomy.js";
 import { ActionList } from "./ActionList.js";
 import { RollAssistant } from "./RollAssistant.js";
 import { activeCombatantOf } from "./TurnPrompts.js";
@@ -83,6 +84,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
         }}
       >
         <StatBlockHeader combatant={combatant} />
+        <TurnEconomy combatant={combatant} narrow={narrow} />
         <div
           style={{
             flexGrow: 1,

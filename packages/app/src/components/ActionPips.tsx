@@ -17,10 +17,11 @@ function poolInputFor(combatant: Combatant): { slowed: number; stunned: number; 
   };
 }
 
-/** The three (or more, if quickened) action-economy pips in the right pane —
- * Main.dc.html's "ACTIONS REMAINING" block. Pip count is the greater of the
- * base 3 and the pool total, so a reduced pool still shows the lost pips as
- * empty rather than shrinking the row. */
+/** The three (or more, if quickened) action-economy pips — Main.dc.html's
+ * "ACTIONS REMAINING" block, laid out as one row in the centre pane's turn
+ * strip (TurnEconomy), beside the actions they are spent on. Pip count is
+ * the greater of the base 3 and the pool total, so a reduced pool still
+ * shows the lost pips as empty rather than shrinking the row. */
 export function ActionPips({ combatant }: { combatant: Combatant }): React.ReactElement {
   const t = useT();
   const pool = actionPool(poolInputFor(combatant));
@@ -29,26 +30,26 @@ export function ActionPips({ combatant }: { combatant: Combatant }): React.React
   const pips = Array.from({ length: pipCount }, (_, i) => i < remaining);
 
   return (
-    <div>
-      <div style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)", marginBottom: "8px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+      <div style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>
         {t("ACTIONS_REMAINING_HEADING")}
       </div>
-      <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
+      <div style={{ display: "flex", gap: "5px" }}>
         {pips.map((filled, i) => (
           <span key={i} data-testid="action-pip">
             {filled ? (
-              <svg data-testid="action-pip-filled" width="30" height="30" viewBox="0 0 12 12">
+              <svg data-testid="action-pip-filled" width="22" height="22" viewBox="0 0 12 12">
                 <path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill={PIP_FILLED} />
               </svg>
             ) : (
-              <svg width="30" height="30" viewBox="0 0 12 12">
+              <svg width="22" height="22" viewBox="0 0 12 12">
                 <path d="M6 0.6 11.4 6 6 11.4 0.6 6Z" fill="none" stroke={PIP_EMPTY_STROKE} strokeWidth="1.1" />
               </svg>
             )}
           </span>
         ))}
       </div>
-      <div style={{ textAlign: "center", marginTop: "8px", fontSize: "11px", color: "var(--text-dim)" }}>
+      <div style={{ fontSize: "11px", color: "var(--text-dim)" }}>
         {pool.reasons.length > 0
           ? format(t("ACTIONS_REMAINING_OF_TOTAL"), { remaining, total: pipCount, reasons: pool.reasons.join(", ") })
           : `${remaining} ${t("ACTIONS_UNIT")}`}

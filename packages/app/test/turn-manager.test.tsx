@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { CombatantList } from "../src/components/CombatantList.js";
+import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { TurnManager } from "../src/components/TurnManager.js";
 import { useEncounter } from "../src/state/store.js";
 
@@ -16,11 +17,14 @@ const add = (name: string, init: number): string =>
 describe("TurnManager", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("shows three action pips, and no round counter — that heads the initiative list", () => {
+  // Both moved out: the round heads the initiative list, the pips and the
+  // Strike count sit in the centre pane with the actions they are spent on.
+  it("shows no round counter, action pips or Strike count", () => {
     add("a", 20);
     render(<TurnManager />);
-    expect(screen.getAllByTestId("action-pip")).toHaveLength(3);
     expect(screen.queryByText("ROUND")).toBeNull();
+    expect(screen.queryAllByTestId("action-pip")).toHaveLength(0);
+    expect(screen.queryByTestId("strikes-this-turn")).toBeNull();
   });
 
   it("refuses to advance the turn while a combatant has no initiative, and says how many", async () => {
@@ -41,11 +45,12 @@ describe("TurnManager", () => {
     expect(screen.getByText(/1 combatant has no initiative/i)).toBeDefined();
   });
 
-  it("shows strikes made this turn beside the action pips", () => {
+  it("shows strikes made this turn beside the action pips, in the centre pane", () => {
     const id = add("a", 20);
-    render(<TurnManager />);
+    render(<ActiveCombatant />);
+    expect(screen.getAllByTestId("action-pip")).toHaveLength(3);
     expect(screen.getByTestId("strikes-this-turn").textContent).toContain("0");
-    // Siblings in the turn panel, not off in the actions list.
+    // Siblings in one turn strip, not off in the actions list.
     expect(screen.getByTestId("strikes-this-turn").parentElement!.contains(screen.getAllByTestId("action-pip")[0]!)).toBe(true);
 
     act(() => useEncounter.getState().recordStrike(id));
@@ -59,7 +64,7 @@ describe("TurnManager", () => {
       useEncounter.getState().recordStrike(id);
       useEncounter.getState().recordStrike(id);
     });
-    render(<TurnManager />);
+    render(<ActiveCombatant />);
     expect(screen.getByTestId("strikes-this-turn").textContent).toContain("2");
 
     await user.click(screen.getByRole("button", { name: /reset strikes this turn/i }));
@@ -71,7 +76,7 @@ describe("TurnManager", () => {
   it("reduces the pips when the active combatant is slowed", () => {
     const id = add("a", 20);
     useEncounter.getState().addCondition(id, "slowed", 1);
-    render(<TurnManager />);
+    render(<ActiveCombatant />);
     expect(screen.getAllByTestId("action-pip-filled")).toHaveLength(2);
   });
 
@@ -146,7 +151,13 @@ describe("TurnManager", () => {
     const user = userEvent.setup();
     const id = add("a", 20);
     useEncounter.getState().addCondition(id, "stunned", 2);
-    render(<TurnManager />);
+    // The prompt lives in the turn manager, the pips in the centre pane.
+    render(
+      <>
+        <ActiveCombatant />
+        <TurnManager />
+      </>,
+    );
 
     expect(screen.getAllByTestId("action-pip-filled")).toHaveLength(1); // 3 - stunned 2
 

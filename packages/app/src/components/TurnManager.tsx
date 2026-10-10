@@ -3,7 +3,6 @@ import { actionPool } from "../rules/actions.js";
 import { unrolledCount, useEncounter } from "../state/store.js";
 import type { Combatant, Entry } from "../state/types.js";
 import type { FetchFn } from "../data/catalog.js";
-import { ActionPips } from "./ActionPips.js";
 import { ConfirmButton } from "./ConfirmButton.js";
 import { NextButton } from "./NextButton.js";
 import { ReactionWatch } from "./ReactionWatch.js";
@@ -174,7 +173,7 @@ export function remainingActionsFor(combatant: Combatant): number {
   return Math.max(0, pool.total - combatant.actionsSpent);
 }
 
-/** The right-pane turn manager — Main.dc.html's pips/Next/reactions
+/** The right-pane turn manager — Main.dc.html's Next/reactions
  * plus TurnAssistant.dc.html's start/end prompts, merged into one panel
  * since both describe the same sidebar. Reads the encounter store directly,
  * same as CombatantList. `showNextButton` defaults to true (desktop,
@@ -182,7 +181,9 @@ export function remainingActionsFor(combatant: Combatant): number {
  * its own single NextButton to the bottom of the screen instead — without
  * this, the Turn tab would show two Next buttons at once. */
 // The round counter is not here: it heads the initiative list
-// (EncounterScreen's CombatantListHeader), beside the order it counts.
+// (EncounterScreen's CombatantListHeader), beside the order it counts. Nor
+// are the action pips and Strike count: they sit in the centre pane
+// (TurnEconomy), with the actions they are spent on.
 export function TurnManager({
   showNextButton = true,
   fetchFn,
@@ -192,50 +193,12 @@ export function TurnManager({
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const combatants = useEncounter((s) => s.encounter.combatants);
   const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
-  const resetStrikes = useEncounter((s) => s.resetStrikes);
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   const unacknowledgedCount = combatant ? unacknowledgedCountFor(combatant, acknowledgedPrompts) : 0;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, minHeight: 0, padding: "16px 14px", gap: "16px" }}>
-      {combatant && <ActionPips combatant={combatant} />}
-
-      {/* Turn-economy state belongs together with the action pips, not
-         buried in the actions list. The reset control lives here too — the
-         old ActionList.tsx chip that carried it is gone, so this is now
-         resetStrikes' only UI entry point; the GM needs it the moment a
-         miscounted Strike would otherwise keep feeding the wrong MAP rung
-         to the roll assistant. Small and secondary (a correction, not a
-         primary action), never bigger than the count itself. */}
-      {combatant && (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }} data-testid="strikes-this-turn">
-          <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>
-            {t("STRIKES_THIS_TURN_LABEL")}
-          </span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600 }}>
-            {combatant.strikesMade}
-          </span>
-          <button
-            type="button"
-            aria-label={t("RESET_STRIKES_ARIA")}
-            onClick={() => resetStrikes(combatant.id)}
-            style={{
-              fontFamily: "inherit",
-              fontSize: "10px",
-              padding: "1px 6px",
-              borderRadius: "3px",
-              border: "1px solid var(--border)",
-              background: "var(--panel-raised)",
-              color: "var(--text-faint)",
-              cursor: "pointer",
-            }}
-          >
-            {t("RESET_BUTTON")}
-          </button>
-        </div>
-      )}
-
       <TurnPrompts />
 
       {/* showNextButton also gates UnrolledNotice: on the narrow layout
