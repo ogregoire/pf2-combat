@@ -105,7 +105,17 @@ function HpBar({
   );
 }
 
-const SAVE_NAME_KEYS = { F: "LABEL_FORTITUDE", R: "LABEL_REFLEX", W: "LABEL_WILL" } as const;
+type Save = "fortitude" | "reflex" | "will";
+
+/** The save's full name (hover, screen reader) and its short form (the
+ * visible label: "F"/"R"/"W" in English, "Vig"/"Réf"/"Vol" in French, as
+ * the French stat blocks print them). Both go through the catalogue — the
+ * short form used to be a hardcoded English letter. */
+const SAVE_KEYS = {
+  fortitude: { name: "LABEL_FORTITUDE", short: "SAVE_SHORT_FORTITUDE" },
+  reflex: { name: "LABEL_REFLEX", short: "SAVE_SHORT_REFLEX" },
+  will: { name: "LABEL_WILL", short: "SAVE_SHORT_WILL" },
+} as const;
 
 /** Programmatic, not a concatenated literal "+", so a zero or negative save
  * (none exist in the dataset today, but nothing here should assume that
@@ -120,12 +130,12 @@ function formatSigned(n: number): string {
  * instead of hover. The letter is bold, the value regular weight, with a
  * tight gap between them (not a full word space) so the pair reads as one
  * unit rather than two words. */
-function SaveUnit({ letter, value }: { letter: keyof typeof SAVE_NAME_KEYS; value: number }): React.ReactElement {
+function SaveUnit({ save, value }: { save: Save; value: number }): React.ReactElement {
   const t = useT();
-  const saveName = t(SAVE_NAME_KEYS[letter]);
+  const saveName = t(SAVE_KEYS[save].name);
   return (
     <span title={saveName} aria-label={`${saveName} ${formatSigned(value)}`} style={{ whiteSpace: "nowrap" }}>
-      <span style={{ fontWeight: 700 }}>{letter}</span>
+      <span style={{ fontWeight: 700 }}>{t(SAVE_KEYS[save].short)}</span>
       <span style={{ marginLeft: "2px" }}>{formatSigned(value)}</span>
     </span>
   );
@@ -137,11 +147,11 @@ function Saves({ saves }: { saves: Combatant["saves"] }): React.ReactElement {
   if (saves === null) return <span>—</span>;
   return (
     <span style={{ whiteSpace: "nowrap" }}>
-      <SaveUnit letter="F" value={saves.fortitude} />
+      <SaveUnit save="fortitude" value={saves.fortitude} />
       {", "}
-      <SaveUnit letter="R" value={saves.reflex} />
+      <SaveUnit save="reflex" value={saves.reflex} />
       {", "}
-      <SaveUnit letter="W" value={saves.will} />
+      <SaveUnit save="will" value={saves.will} />
     </span>
   );
 }

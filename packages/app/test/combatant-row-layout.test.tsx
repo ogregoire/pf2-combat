@@ -98,6 +98,18 @@ describe("DefenseSummary saves", () => {
     expect(will.getAttribute("aria-label")).toBe("Will +4");
   });
 
+  // The reported defect: in French the target picker read "F +6, R +7,
+  // W +4" — the hover named the save in French, but the visible letter was
+  // a hardcoded English one.
+  it("abbreviates the saves the French way (Vig, Réf, Vol) when lang is fr", () => {
+    useEncounter.getState().setLang("fr");
+    renderSummary();
+
+    const line = screen.getByTitle("Vigueur").parentElement as HTMLElement;
+    expect(line.textContent).toBe("Vig+6, Réf+7, Vol+4");
+    expect(screen.getByTitle("Réflexes").getAttribute("aria-label")).toBe("Réflexes +7");
+  });
+
   it("separates the three units with a real comma and a space", () => {
     renderSummary();
 
