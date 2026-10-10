@@ -325,6 +325,39 @@ export function buildGlossaryI18n(
 }
 
 /**
+ * The Babele file stem for upstream's `actions` pack -- its Foundry
+ * compendium id is `actionspf2e` (the same alias `PACK_ALIASES` in
+ * normalize/links.ts maps back to `actions`).
+ */
+export const ACTIONS_BABELE_PACK = "actionspf2e";
+
+/**
+ * Standard-action name/slug pairs -> French name+description, read from
+ * `pf2e.actionspf2e.json` ONLY. Babele keys that file by English name, so the
+ * upstream English `name` is the join key, but scoped to that one file:
+ * `lookup` would classify it as kind "other" and fall back across every
+ * other "other" file -- feats, spells, equipment -- where a same-named entry
+ * would either bleed in or make `lookup` throw on a disagreement that has
+ * nothing to do with actions. Keyed by OUR slug, like `buildConditionsI18n`.
+ * Untranslated entries are OMITTED, never echoed in English.
+ */
+export function buildStandardActionsI18n(
+  defs: { slug: string; name: string }[],
+  table: BabeleTable,
+  lang: LangTable,
+): ReferenceI18n {
+  const entries = table.byPack.get(ACTIONS_BABELE_PACK);
+  const out: ReferenceI18n = {};
+  for (const def of defs) {
+    const found = entries?.get(def.name);
+    if (found) {
+      out[def.slug] = { name: found.name, description: resolveFrench(found.description, lang) };
+    }
+  }
+  return out;
+}
+
+/**
  * Trait overlay: our slug -> French name/description, for the traits we
  * actually ship. Unlike conditions and glossary entries, traits do not come
  * from Babele at all -- they come from the module's own `lang/fr.json`, via

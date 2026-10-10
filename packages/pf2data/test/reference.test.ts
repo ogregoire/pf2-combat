@@ -3,7 +3,11 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { resolveLocalize } from "../src/normalize/localize.js";
-import { buildConditions, buildTraits } from "../src/stages/reference.js";
+import {
+  buildConditions,
+  buildStandardActions,
+  buildTraits,
+} from "../src/stages/reference.js";
 
 describe("resolveLocalize", () => {
   it("substitutes a localization key with its text", () => {
@@ -153,5 +157,115 @@ describe("buildTraits", () => {
       "PF2E.TraitDescriptionMagical": "m",
     };
     expect(buildTraits(lang).map((t) => t.slug)).toEqual(["agile", "magical", "zealous"]);
+  });
+});
+
+describe("buildStandardActions", () => {
+  const tmpDirs: string[] = [];
+  afterAll(() => {
+    for (const dir of tmpDirs) rmSync(dir, { recursive: true, force: true });
+  });
+
+  /** One upstream `action` item, shaped like `packs/actions/<folder>/*.json`. */
+  const item = (
+    name: string,
+    actionType: string,
+    actions: number | null,
+    extra: { traits?: string[]; description?: string; slug?: string } = {},
+  ): unknown => ({
+    name,
+    type: "action",
+    system: {
+      ...(extra.slug !== undefined ? { slug: extra.slug } : {}),
+      actionType: { value: actionType },
+      actions: { value: actions },
+      description: { value: extra.description ?? `<p>${name}.</p>` },
+      traits: { value: extra.traits ?? [] },
+    },
+  });
+
+  /** Lays out an `actions` pack: `{ "basic-actions/stride": item, ... }`. */
+  function seedPack(files: Record<string, unknown>): string {
+    const packsDir = mkdtempSync(join(tmpdir(), "standard-actions-"));
+    tmpDirs.push(packsDir);
+    for (const [path, content] of Object.entries(files)) {
+      const abs = join(packsDir, "actions", `${path}.json`);
+      mkdirSync(join(abs, ".."), { recursive: true });
+      writeFileSync(abs, JSON.stringify(content));
+    }
+    // Both folders always exist upstream; a fixture that only seeds one
+    // still needs the other to be walkable.
+    mkdirSync(join(packsDir, "actions", "basic-actions"), { recursive: true });
+    mkdirSync(join(packsDir, "actions", "skill-actions"), { recursive: true });
+    return packsDir;
+  }
+
+  it("keeps actions, reactions and free actions; drops passives, Delay and Strike", () => {
+    const packsDir = seedPack({
+      "basic-actions/stride": item("Stride", "action", 1, { traits: ["move"] }),
+      "basic-actions/aid": item("Aid", "reaction", null),
+      "basic-actions/release": item("Release", "free", null, { traits: ["manipulate"] }),
+      "basic-actions/delay": item("Delay", "free", null),
+      "basic-actions/strike": item("Strike", "action", 1, { traits: ["attack"] }),
+      "skill-actions/high-jump": item("High Jump", "action", 2, { traits: ["move"] }),
+      "skill-actions/earn-income": item("Earn Income", "passive", null, { traits: ["downtime"] }),
+      // Loose at the pack root, like the ~790 class and archetype actions:
+      // never read.
+      "a-challenge-for-heroes": item("A Challenge for Heroes", "action", 1),
+    });
+
+    expect(buildStandardActions(packsDir, {}, ["actions"])).toEqual([
+      { slug: "aid", name: "Aid", cost: "reaction", category: "basic", traits: [], description: "<p>Aid.</p>" },
+      { slug: "high-jump", name: "High Jump", cost: "2", category: "skill", traits: ["move"], description: "<p>High Jump.</p>" },
+      { slug: "release", name: "Release", cost: "free", category: "basic", traits: ["manipulate"], description: "<p>Release.</p>" },
+      { slug: "stride", name: "Stride", cost: "1", category: "basic", traits: ["move"], description: "<p>Stride.</p>" },
+    ]);
+  });
+
+  it("prefers upstream's system.slug over the file stem", () => {
+    const packsDir = seedPack({
+      "basic-actions/take-cover-old": item("Take Cover", "action", 1, { slug: "take-cover" }),
+    });
+    expect(buildStandardActions(packsDir, {}, ["actions"]).map((a) => a.slug)).toEqual([
+      "take-cover",
+    ]);
+  });
+
+  it("resolves @Localize then @UUID in the description, like creature actions", () => {
+    const packsDir = seedPack({
+      "basic-actions/escape": item("Escape", "action", 1, {
+        description: "<p>@Localize[PF2E.Key]</p>",
+      }),
+    });
+    const lang = { "PF2E.Key": "You stop being @UUID[Compendium.pf2e.conditionitems.Item.Grabbed]." };
+    expect(buildStandardActions(packsDir, lang, ["actions"])[0]!.description).toBe(
+      "<p>You stop being Grabbed.</p>",
+    );
+  });
+
+  it("throws on an item that fails validation instead of silently dropping it", () => {
+    const packsDir = seedPack({
+      "skill-actions/shove": { name: "Shove", type: "action", system: { actionType: { value: "action" } } },
+    });
+    expect(() => buildStandardActions(packsDir, {}, ["actions"])).toThrow(
+      /actions\/skill-actions\/shove.*failed validation/,
+    );
+  });
+
+  it("throws on an action with no 1-3 action count -- there is no passive cost to fall back to", () => {
+    const packsDir = seedPack({ "basic-actions/stride": item("Stride", "action", null) });
+    expect(() => buildStandardActions(packsDir, {}, ["actions"])).toThrow(/no 1-3 action count/);
+  });
+
+  it("throws when two folders yield the same slug", () => {
+    const packsDir = seedPack({
+      "basic-actions/climb": item("Climb", "action", 1),
+      "skill-actions/climb": item("Climb", "action", 1),
+    });
+    expect(() => buildStandardActions(packsDir, {}, ["actions"])).toThrow(/"climb" appears twice/);
+  });
+
+  it("reads no directory at all when config has no actions-kind pack", () => {
+    expect(buildStandardActions("/nonexistent", {}, [])).toEqual([]);
   });
 });

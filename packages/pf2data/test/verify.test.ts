@@ -40,9 +40,20 @@ const baseInput = () => {
     conditions: [],
     glossary: [],
     traits: [],
+    actions: [],
     manifest: manifest(),
   };
 };
+
+const standardAction = (overrides: Record<string, unknown> = {}): Record<string, unknown> => ({
+  slug: "stride",
+  name: "Stride",
+  cost: "1",
+  category: "basic",
+  traits: ["move"],
+  description: "<p>You move up to your Speed.</p>",
+  ...overrides,
+});
 
 describe("verifyDataset", () => {
   it("passes on a consistent dataset", () => {
@@ -68,6 +79,7 @@ describe("verifyDataset", () => {
       conditions: [],
       glossary: [],
       traits: [],
+      actions: [],
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -84,6 +96,7 @@ describe("verifyDataset", () => {
       conditions: [],
       glossary: [],
       traits: [],
+      actions: [],
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -100,6 +113,7 @@ describe("verifyDataset", () => {
       conditions: [],
       glossary: [],
       traits: [],
+      actions: [],
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -217,8 +231,48 @@ describe("verifyDataset", () => {
       { slug: "grab", name: "Grab", cost: "1", traits: [], description: "<p>...</p>" },
     ];
     input.traits = [{ slug: "agile", name: "Agile", description: "<p>...</p>" }];
+    input.actions = [standardAction()];
     const result = verifyDataset(input);
     expect(result.ok).toBe(true);
+  });
+
+  it("fails when a standard action does not validate against its schema", () => {
+    const input = baseInput();
+    // `passive` is a creature-action cost, never a standard-action one.
+    input.actions = [standardAction({ cost: "passive" })];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/schema: action stride/);
+  });
+
+  it("fails when an unresolved @UUID reference remains in a standard action", () => {
+    const input = baseInput();
+    input.actions = [
+      standardAction({ description: "<p>@UUID[Compendium.pf2e.conditionitems.Item.Prone]</p>" }),
+    ];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/links: action stride.*@UUID/);
+  });
+
+  it("fails when two standard actions share a slug -- the French overlay's key", () => {
+    const input = baseInput();
+    input.actions = [standardAction(), standardAction({ name: "Stride Again" })];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/actions: slug stride appears twice/);
+  });
+
+  it("fails when Delay or Strike is emitted as a standard action", () => {
+    const input = baseInput();
+    input.actions = [
+      standardAction({ slug: "delay", name: "Delay", cost: "free" }),
+      standardAction({ slug: "strike", name: "Strike" }),
+    ];
+    const result = verifyDataset(input);
+    expect(result.ok).toBe(false);
+    expect(result.failures.join(" ")).toMatch(/actions: delay is excluded/);
+    expect(result.failures.join(" ")).toMatch(/actions: strike is excluded/);
   });
 });
 

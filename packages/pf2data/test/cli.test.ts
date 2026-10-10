@@ -383,6 +383,7 @@ describe("runCli", () => {
       ["conditions.json", (dataDir) => join(dataDir, "conditions.json")],
       ["glossary.json", (dataDir) => join(dataDir, "glossary.json")],
       ["traits.json", (dataDir) => join(dataDir, "traits.json")],
+      ["actions.json", (dataDir) => join(dataDir, "actions.json")],
       ["SCHEMA.md", (dataDir) => join(dataDir, "SCHEMA.md")],
       ["index/kingmaker-bestiary.json", (dataDir) => join(dataDir, "index", "kingmaker-bestiary.json")],
     ];
@@ -464,7 +465,7 @@ describe("runCli", () => {
     );
     expect(index["kingmaker-bestiary/the-stag-lord"]).toBe("Seigneur Cerf");
 
-    for (const file of ["conditions.json", "glossary.json", "traits.json"]) {
+    for (const file of ["conditions.json", "glossary.json", "traits.json", "actions.json"]) {
       expect(existsSync(join(dataDir, "i18n", "fr", file))).toBe(true);
     }
   });
@@ -713,7 +714,7 @@ describe("runCli", () => {
     expect(errLines.join("")).toContain("i18n/fr/index/");
   });
 
-  it.each(["conditions.json", "glossary.json", "traits.json"])(
+  it.each(["conditions.json", "glossary.json", "traits.json", "actions.json"])(
     "verify fails when %s is missing",
     (file) => {
       const { deps, dataDir } = seededDeps();
@@ -881,6 +882,7 @@ describe("runCli", () => {
           { name: "kingmaker-bestiary", kind: "creatures" },
           { name: "conditions", kind: "conditions" },
           { name: "bestiary-ability-glossary-srd", kind: "glossary" },
+          { name: "actions", kind: "actions" },
         ],
       }),
     );
@@ -921,6 +923,23 @@ describe("runCli", () => {
       }),
     );
 
+    const basicActionsDir = join(cacheDir, "packs", "actions", "basic-actions");
+    mkdirSync(basicActionsDir, { recursive: true });
+    mkdirSync(join(cacheDir, "packs", "actions", "skill-actions"), { recursive: true });
+    writeFileSync(
+      join(basicActionsDir, "stride.json"),
+      JSON.stringify({
+        name: "Stride",
+        type: "action",
+        system: {
+          actionType: { value: "action" },
+          actions: { value: 1 },
+          description: { value: "<p>en</p>" },
+          traits: { value: ["move"] },
+        },
+      }),
+    );
+
     mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
     writeFileSync(
       join(cacheDir, "static", "lang", "en.json"),
@@ -949,6 +968,10 @@ describe("runCli", () => {
     writeFileSync(
       join(babeleDir, "pf2e.bestiary-ability-glossary-srd.json"),
       JSON.stringify({ entries: { Grab: { name: "Agrippement", description: localized } } }),
+    );
+    writeFileSync(
+      join(babeleDir, "pf2e.actionspf2e.json"),
+      JSON.stringify({ entries: { Stride: { name: "Marcher rapidement", description: localized } } }),
     );
     mkdirSync(join(frCacheDir, "lang"), { recursive: true });
     writeFileSync(
@@ -990,6 +1013,47 @@ describe("runCli", () => {
     expect(glossary).toContain("Agrippement");
     expect(glossary).toContain("PROSE FRANÇAISE");
     expect(glossary).not.toContain("ENGLISH PROSE");
+  });
+
+  it("buildStandardActionsI18n is handed the FRENCH lang table, not the English one", () => {
+    const { deps, dataDir } = bilingualDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    const actions = readFr(dataDir, "actions.json");
+    expect(actions).toContain("Marcher rapidement");
+    expect(actions).toContain("PROSE FRANÇAISE");
+    expect(actions).not.toContain("ENGLISH PROSE");
+
+    // ...and the English list itself is written and reported.
+    const english = JSON.parse(readFileSync(join(dataDir, "actions.json"), "utf8"));
+    expect(english).toEqual([
+      {
+        slug: "stride",
+        name: "Stride",
+        cost: "1",
+        category: "basic",
+        traits: ["move"],
+        description: "<p>en</p>",
+      },
+    ]);
+  });
+
+  it("verify fails when i18n/fr/actions.json translates a slug actions.json does not carry", () => {
+    const { deps, dataDir } = bilingualDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    expect(runCli(["verify"], silentIo(), deps)).toBe(0);
+
+    writeFileSync(
+      join(dataDir, "i18n", "fr", "actions.json"),
+      JSON.stringify({ "renamed-away": { name: "Disparu", description: null } }),
+    );
+    const errLines: string[] = [];
+    const exit = runCli(
+      ["verify"],
+      { out: () => {}, err: (x) => errLines.push(x), isTty: true },
+      deps,
+    );
+    expect(exit).toBe(20);
+    expect(errLines.join("")).toContain('translates "renamed-away"');
   });
 
   it("update REFUSES to write when a creature overlay keeps an unresolvable marker", () => {

@@ -6,6 +6,7 @@ import {
   buildCreatureI18n,
   buildIndexI18n,
   buildConditionsI18n,
+  buildStandardActionsI18n,
   buildGlossaryI18n,
   buildTraitsI18n,
 } from "../src/stages/i18n.js";
@@ -1163,3 +1164,63 @@ function resolveFrenchProbe(html: string): string {
     lang: {},
   })!.actions[0]!.description!;
 }
+
+describe("buildStandardActionsI18n", () => {
+  // Real shapes from the module's `pf2e.actionspf2e.json`, keyed by English
+  // name like every Babele file.
+  const actions = [
+    { slug: "shove", name: "Shove" },
+    { slug: "escape", name: "Escape" },
+    { slug: "stride", name: "Stride" },
+  ];
+
+  it("keys the overlay by our slug and resolves links with the FRENCH lang table", () => {
+    const table = makeBabeleTable({
+      "pf2e.actionspf2e.json": {
+        entries: {
+          Shove: { name: "Pousser", description: "<p>@Localize[PF2E.Key]</p>" },
+          Escape: {
+            name: "S'échapper",
+            description:
+              "<p>Vous êtes @UUID[Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei]{Agrippé}.</p>",
+          },
+        },
+      },
+    });
+
+    expect(buildStandardActionsI18n(actions, table, { "PF2E.Key": "Texte français" })).toEqual({
+      shove: { name: "Pousser", description: "<p>Texte français</p>" },
+      escape: { name: "S'échapper", description: "<p>Vous êtes Agrippé.</p>" },
+    });
+  });
+
+  it("omits an untranslated action and uses null for a name-only one, never English", () => {
+    const table = makeBabeleTable({
+      "pf2e.actionspf2e.json": { entries: { Shove: { name: "Pousser" } } },
+    });
+
+    const out = buildStandardActionsI18n(actions, table, {});
+    expect(out).toEqual({ shove: { name: "Pousser", description: null } });
+    expect(out).not.toHaveProperty("stride");
+  });
+
+  it("reads pf2e.actionspf2e.json only, never a same-named entry in another file", () => {
+    // `lookup("other", ...)` would search feats, spells and equipment too --
+    // this "Stride" is a feat-pack entry and must not become the action's
+    // French name, nor make two disagreeing files throw.
+    const table = makeBabeleTable({
+      "pf2e.actionspf2e.json": { entries: { Shove: { name: "Pousser" } } },
+      "pf2e.feats-srd.json": {
+        entries: { Stride: { name: "Don sans rapport" }, Shove: { name: "Autre chose" } },
+      },
+    });
+
+    expect(buildStandardActionsI18n(actions, table, {})).toEqual({
+      shove: { name: "Pousser", description: null },
+    });
+  });
+
+  it("returns an empty overlay when the actions Babele file is absent", () => {
+    expect(buildStandardActionsI18n(actions, makeBabeleTable({}), {})).toEqual({});
+  });
+});

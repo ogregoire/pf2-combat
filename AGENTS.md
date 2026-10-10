@@ -10,7 +10,8 @@ The committed dataset holds 1450 creatures (763 remaster / 687 legacy) across
 five books: `pathfinder-monster-core` (492), `pathfinder-bestiary-2` (331),
 `pathfinder-npc-core` (270), `kingmaker-bestiary` (181), `pathfinder-bestiary`
 (176). `data/` is 23 MB on disk (`data/index/` is 472 KB). `conditions.json` has
-43 entries (12 valued); `glossary.json` has 447 entries. Upstream is pinned to
+43 entries (12 valued); `glossary.json` has 447 entries; `actions.json` has the 51
+standard actions (24 basic, 27 skill). Upstream is pinned to
 `4cbdaa37d6c33e9519561bae2c59a23e0288cbce`.
 
 ## Updating the data

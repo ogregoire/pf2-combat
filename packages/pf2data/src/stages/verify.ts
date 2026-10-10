@@ -5,15 +5,18 @@ import {
   ConditionSchema,
   GlossaryEntrySchema,
   TraitSchema,
+  StandardActionSchema,
   type BookCatalogEntry,
   type Condition,
   type GlossaryEntry,
   type CreatureI18n,
   type IndexEntry,
   type Manifest,
+  type StandardAction,
   type Trait,
 } from "@pf2/schema";
 import { buildIndexes } from "./index.js";
+import { EXCLUDED_STANDARD_ACTIONS } from "./reference.js";
 import { compareStrings } from "../util.js";
 
 const ALIGNMENT_TRAITS = new Set([
@@ -31,6 +34,7 @@ export interface VerifyInput {
   conditions: unknown[];
   glossary: unknown[];
   traits: unknown[];
+  actions: unknown[];
   manifest: Manifest;
 }
 
@@ -225,6 +229,17 @@ export function verifyDataset(input: VerifyInput): VerifyResult {
     parsedTraits.push(result.data);
   }
 
+  const parsedActions: StandardAction[] = [];
+  for (const raw of input.actions) {
+    const result = StandardActionSchema.safeParse(raw);
+    if (!result.success) {
+      const slug = (raw as { slug?: string }).slug ?? "<unknown>";
+      failures.push(`schema: action ${slug}: ${result.error.issues[0]?.message ?? "invalid"}`);
+      continue;
+    }
+    parsedActions.push(result.data);
+  }
+
   // 2. book counts match index lengths
   for (const book of parsedBooks) {
     const entries = parsedIndexes[book.pack];
@@ -305,6 +320,16 @@ export function verifyDataset(input: VerifyInput): VerifyResult {
     }
   }
 
+  for (const a of parsedActions) {
+    const json = JSON.stringify(a);
+    if (json.includes("@UUID[")) {
+      failures.push(`links: action ${a.slug} contains an unresolved @UUID reference`);
+    }
+    if (json.includes("@Localize[")) {
+      failures.push(`links: action ${a.slug} contains an unresolved @Localize reference`);
+    }
+  }
+
   // 7. a book's `mixed` flag matches whether its creatures actually share one
   // source (book/license/remaster) -- catches a future regression to the
   // "first creature wins" bug this flag exists to surface.
@@ -324,6 +349,17 @@ export function verifyDataset(input: VerifyInput): VerifyResult {
       failures.push(
         `books: ${book.pack} mixed flag is ${book.mixed} but source uniformity says ${actuallyMixed}`,
       );
+    }
+  }
+
+  // 8. standard actions are unique by slug (the French overlay's key) and
+  // never include the ones the app models itself.
+  const actionSlugs = new Set<string>();
+  for (const a of parsedActions) {
+    if (actionSlugs.has(a.slug)) failures.push(`actions: slug ${a.slug} appears twice`);
+    actionSlugs.add(a.slug);
+    if (EXCLUDED_STANDARD_ACTIONS.has(a.slug)) {
+      failures.push(`actions: ${a.slug} is excluded from the standard actions but was emitted`);
     }
   }
 

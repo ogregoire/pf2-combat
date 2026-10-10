@@ -1,8 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
-import type { Condition, GlossaryEntry, Trait } from "@pf2/schema";
+import type { Condition, GlossaryEntry, StandardAction, Trait } from "@pf2/schema";
 import { walkPack } from "../io/walk.js";
+import { describeItem, itemHasType } from "../normalize/item.js";
 import { resolveLinks } from "../normalize/links.js";
 import { resolveLocalize, type LangTable } from "../normalize/localize.js";
 import { compareStrings } from "../util.js";
@@ -91,6 +92,127 @@ export function buildGlossary(
   }
 
   return entries.sort((a, b) => compareStrings(a.slug, b.slug));
+}
+
+const StandardActionItemSchema = z.object({
+  name: z.string(),
+  type: z.literal("action"),
+  system: z.object({
+    slug: z.string().nullish(),
+    actionType: z.object({
+      value: z.enum(["action", "reaction", "free", "passive"]),
+    }),
+    actions: z.object({ value: z.number().nullable() }).optional(),
+    description: z.object({ value: z.string().default("") }),
+    traits: z.object({ value: z.array(z.string()).default([]) }).optional(),
+  }),
+});
+
+/**
+ * The two folders of upstream's `actions` pack that hold PF2's standard
+ * actions, keyed by the subdirectory Foundry's pack extractor writes each
+ * folder to ("Basic Actions" -> `basic-actions/`, "Skill Actions" ->
+ * `skill-actions/`), so selection is by a stable path segment, never by the
+ * folder's display name. The rest of the pack -- ~790 class, archetype and
+ * ancestry actions -- sits loose at the pack root and is never read.
+ */
+export const STANDARD_ACTION_FOLDERS: Record<StandardAction["category"], string> = {
+  basic: "basic-actions",
+  skill: "skill-actions",
+};
+
+/**
+ * Basic actions the app already models on its own: Delay is the initiative
+ * tracker's Delay control, and Strike is each creature's own list of Strikes
+ * with their real bonuses -- a generic "Strike" row next to them would only
+ * duplicate them without the numbers.
+ */
+export const EXCLUDED_STANDARD_ACTIONS = new Set(["delay", "strike"]);
+
+/**
+ * PF2's standard actions (Stride, Step, Shove, Demoralize, Raise a Shield,
+ * ...) from the `basic-actions/` and `skill-actions/` folders of each
+ * `actions`-kind pack -- 51 of their 74 items at the pinned SHA (24 basic,
+ * 27 skill). Dropped: every `passive` entry (21, all skill actions: Earn
+ * Income, Treat Wounds, Coerce, ... -- exploration and downtime activities
+ * Foundry types as passive, not usable in an encounter) and the two
+ * `EXCLUDED_STANDARD_ACTIONS`.
+ *
+ * Unlike `buildGlossary`, a file that fails validation THROWS rather than
+ * being skipped: every file in these two folders is meant to be an action,
+ * so a skip would silently delete Shove from the list with no report line.
+ * So does a non-passive `action` with no 1-3 action count -- there is no
+ * `"passive"` cost to fall back to here.
+ *
+ * Descriptions get the same treatment as creature actions: `@Localize`
+ * first, then link resolution.
+ */
+export function buildStandardActions(
+  packsDir: string,
+  lang: LangTable,
+  packs: string[],
+): StandardAction[] {
+  const actions: StandardAction[] = [];
+
+  for (const pack of packs) {
+    for (const [category, folder] of Object.entries(STANDARD_ACTION_FOLDERS) as [
+      StandardAction["category"],
+      string,
+    ][]) {
+      for (const file of walkPack(join(packsDir, pack, folder))) {
+        const raw: unknown = JSON.parse(readFileSync(file.absolutePath, "utf8"));
+        const where = `${pack}/${folder}/${file.slug}`;
+        const parsed = StandardActionItemSchema.safeParse(raw);
+        if (!parsed.success) {
+          throw new Error(
+            itemHasType(raw, "action")
+              ? `standard action ${where} (${describeItem(raw)}) failed validation: ${
+                  parsed.error.issues[0]?.message ?? "invalid"
+                } (at ${parsed.error.issues[0]?.path.join(".") ?? "?"})`
+              : `standard action ${where} is not an action item`,
+          );
+        }
+        const { name, system } = parsed.data;
+
+        const kind = system.actionType.value;
+        if (kind === "passive") continue;
+        const slug = system.slug ? system.slug : file.slug;
+        if (EXCLUDED_STANDARD_ACTIONS.has(slug)) continue;
+
+        let cost: StandardAction["cost"];
+        if (kind !== "action") {
+          cost = kind;
+        } else {
+          const n = system.actions?.value;
+          if (n !== 1 && n !== 2 && n !== 3) {
+            throw new Error(
+              `standard action ${where} is an action with no 1-3 action count (got ${String(n)})`,
+            );
+          }
+          cost = String(n) as StandardAction["cost"];
+        }
+
+        actions.push({
+          slug,
+          name,
+          cost,
+          category,
+          traits: [...(system.traits?.value ?? [])].sort(compareStrings),
+          description: resolveLinks(resolveLocalize(system.description.value, lang)),
+        });
+      }
+    }
+  }
+
+  actions.sort((a, b) => compareStrings(a.slug, b.slug));
+  // The French overlay is keyed by slug, so two actions sharing one would
+  // have one silently take the other's translation.
+  for (let i = 1; i < actions.length; i++) {
+    if (actions[i]!.slug === actions[i - 1]!.slug) {
+      throw new Error(`standard action slug "${actions[i]!.slug}" appears twice`);
+    }
+  }
+  return actions;
 }
 
 const TRAIT_DESCRIPTION_PREFIX = "PF2E.TraitDescription";

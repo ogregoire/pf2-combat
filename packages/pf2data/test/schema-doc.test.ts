@@ -12,6 +12,8 @@ describe("renderSchemaDoc", () => {
       "conditions.json",
       "glossary.json",
       "traits.json",
+      "actions.json",
+      "i18n/fr/actions.json",
     ]) {
       expect(doc).toContain(path);
     }

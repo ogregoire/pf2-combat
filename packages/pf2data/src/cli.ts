@@ -6,6 +6,7 @@ import {
   CreatureI18nSchema,
   CreatureSchema,
   ManifestSchema,
+  StandardActionsI18nSchema,
   type Creature,
   type CreatureI18n,
   type IndexEntry,
@@ -19,7 +20,13 @@ import { buildIndexes } from "./stages/index.js";
 import { verifyDataset, verifyI18n, verifyI18nMarkup } from "./stages/verify.js";
 import { diffDataset, fieldCoverage, frenchCoverage, statusOf, type ChangeStatus } from "./report.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
-import { buildConditions, buildGlossary, buildTraits, scanTraits } from "./stages/reference.js";
+import {
+  buildConditions,
+  buildGlossary,
+  buildStandardActions,
+  buildTraits,
+  scanTraits,
+} from "./stages/reference.js";
 import { loadBabele } from "./stages/babele.js";
 import { loadArchive } from "./stages/archive.js";
 import {
@@ -27,6 +34,7 @@ import {
   buildCreatureI18n,
   buildGlossaryI18n,
   buildIndexI18n,
+  buildStandardActionsI18n,
   buildTraitsI18n,
 } from "./stages/i18n.js";
 import { renderSchemaDoc } from "./docs/schema-doc.js";
@@ -116,6 +124,7 @@ interface OnDiskDataset {
   conditions: unknown[];
   glossary: unknown[];
   traits: unknown[];
+  actions: unknown[];
 }
 
 /** Reads the committed dataset for `verify`. A corrupt file (bad JSON) is
@@ -128,6 +137,7 @@ function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset 
     conditions: [],
     glossary: [],
     traits: [],
+    actions: [],
   };
   if (manifest === null) return empty;
 
@@ -140,6 +150,7 @@ function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset 
   const conditions = readJson("conditions.json", []) as unknown[];
   const glossary = readJson("glossary.json", []) as unknown[];
   const traits = readJson("traits.json", []) as unknown[];
+  const actions = readJson("actions.json", []) as unknown[];
 
   const indexes: Record<string, unknown[]> = {};
   const creatures: unknown[] = [];
@@ -156,14 +167,14 @@ function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset 
     }
   }
 
-  return { creatures, books, indexes, conditions, glossary, traits };
+  return { creatures, books, indexes, conditions, glossary, traits, actions };
 }
 
 interface OnDiskFiles {
   /** creature id -> raw file text */
   creatures: Map<string, string>;
   /** relative path (books.json, index/<pack>.json, conditions.json,
-   * glossary.json, traits.json, SCHEMA.md) -> raw file text */
+   * glossary.json, traits.json, actions.json, SCHEMA.md) -> raw file text */
   others: Map<string, string>;
 }
 
@@ -187,6 +198,7 @@ function readOnDiskFiles(manifest: Manifest | null, dataDir: string): OnDiskFile
   tryReadOther("conditions.json");
   tryReadOther("glossary.json");
   tryReadOther("traits.json");
+  tryReadOther("actions.json");
   tryReadOther("SCHEMA.md");
 
   for (const pack of manifest.packs) {
@@ -254,12 +266,18 @@ function readOnDiskI18n(dataDir: string): Map<string, string> {
  * in place; only removing the subdirectory (or everything under it) removes
  * the directory entry, which is exactly the distinction this needs.
  *
- * `index/`, `conditions.json`, `glossary.json` and `traits.json` have no
- * such per-item exception at all -- none of those are per-creature, and
- * none has a legitimate absent state in a checked-in dataset, so a missing
- * one is always a failure. */
+ * `index/`, `conditions.json`, `glossary.json`, `traits.json` and
+ * `actions.json` have no such per-item exception at all -- none of those are
+ * per-creature, and none has a legitimate absent state in a checked-in
+ * dataset, so a missing one is always a failure.
+ *
+ * `actions.json` is also schema-checked and its keys checked against the
+ * committed English `actions` slugs: it is keyed by slug, so a key no English
+ * action carries is a translation the app can never show -- the sign of an
+ * upstream rename the two files disagree about. */
 function verifyOnDiskI18n(
   creatures: unknown[],
+  actions: unknown[],
   dataDir: string,
   manifest: Manifest,
   config: Pf2DataConfig,
@@ -318,15 +336,29 @@ function verifyOnDiskI18n(
     );
   }
 
-  for (const file of ["conditions.json", "glossary.json", "traits.json"]) {
+  for (const file of ["conditions.json", "glossary.json", "traits.json", "actions.json"]) {
     const path = join(dataDir, I18N_ROOT, "fr", file);
     if (!existsSync(path)) {
       problems.push(`i18n: ${I18N_ROOT}/fr/${file} is missing`);
       continue;
     }
-    problems.push(
-      ...verifyI18nMarkup(`${I18N_ROOT}/fr/${file}`, JSON.parse(readFileSync(path, "utf8"))),
-    );
+    const value: unknown = JSON.parse(readFileSync(path, "utf8"));
+    problems.push(...verifyI18nMarkup(`${I18N_ROOT}/fr/${file}`, value));
+
+    if (file !== "actions.json") continue;
+    const overlay = StandardActionsI18nSchema.safeParse(value);
+    if (!overlay.success) {
+      problems.push(
+        `i18n: ${I18N_ROOT}/fr/${file} is invalid: ${overlay.error.issues[0]?.message ?? "invalid"}`,
+      );
+      continue;
+    }
+    const slugs = new Set(actions.map((a) => (a as { slug?: unknown }).slug));
+    for (const slug of Object.keys(overlay.data)) {
+      if (!slugs.has(slug)) {
+        problems.push(`i18n: ${I18N_ROOT}/fr/${file} translates "${slug}", which is not a standard action`);
+      }
+    }
   }
 
   return problems;
@@ -378,11 +410,18 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     // readDataset/readOnDiskFiles fall back to [] for an absent file, so a
     // DELETED emitted file (as opposed to one that never existed) has to be
     // caught here, before that fallback can mask it -- see N2. Every file
-    // the manifest implies should exist: the four fixed top-level files, and
+    // the manifest implies should exist: the fixed top-level files, and
     // an index for every pack the manifest lists that is actually a
     // creatures-kind pack (the only kind that ever gets an index file).
     const missingFiles: string[] = [];
-    for (const relPath of ["books.json", "conditions.json", "glossary.json", "traits.json", "SCHEMA.md"]) {
+    for (const relPath of [
+      "books.json",
+      "conditions.json",
+      "glossary.json",
+      "traits.json",
+      "actions.json",
+      "SCHEMA.md",
+    ]) {
       if (!existsSync(join(dataDir, relPath))) missingFiles.push(relPath);
     }
     const creaturePacks = new Set(
@@ -415,6 +454,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
       conditions: onDisk.conditions,
       glossary: onDisk.glossary,
       traits: onDisk.traits,
+      actions: onDisk.actions,
       manifest,
     });
 
@@ -423,7 +463,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     // separate files that can drift apart between runs, and a position that
     // no longer names the action it translates would otherwise ship as a
     // quietly mistranslated Strike.
-    const failures = [...result.failures, ...verifyOnDiskI18n(onDisk.creatures, dataDir, manifest, config)];
+    const failures = [...result.failures, ...verifyOnDiskI18n(onDisk.creatures, onDisk.actions, dataDir, manifest, config)];
     for (const failure of failures) io.err(`${failure}\n`);
     const ok = failures.length === 0;
     if (ok) io.err("dataset verified\n");
@@ -480,12 +520,16 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
 
   const conditionPacks = config.packs.filter((p) => p.kind === "conditions").map((p) => p.name);
   const glossaryPacks = config.packs.filter((p) => p.kind === "glossary").map((p) => p.name);
+  const actionPacks = config.packs.filter((p) => p.kind === "actions").map((p) => p.name);
 
-  let conditions, glossary, traits;
+  let conditions, glossary, traits, actions;
   try {
     conditions = buildConditions(fetched.packsDir, lang, conditionPacks);
     glossary = buildGlossary(fetched.packsDir, lang, glossaryPacks);
     traits = buildTraits(lang);
+    // Throws on a standard action that fails validation rather than dropping
+    // it -- that is upstream drift, reported like any other upstream error.
+    actions = buildStandardActions(fetched.packsDir, lang, actionPacks);
   } catch (error) {
     io.err(`upstream error: ${(error as Error).message}\n`);
     emit({ command: command.name, error: (error as Error).message });
@@ -535,7 +579,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   // at all -- never an English echo -- and shows up in the coverage report.
   const creatureI18n = new Map<string, CreatureI18n>();
   let indexI18n: Record<string, Record<string, string>>;
-  let conditionsI18n, glossaryI18n, traitsI18n;
+  let conditionsI18n, glossaryI18n, traitsI18n, actionsI18n;
   try {
     for (const creature of creatures) {
       const items = normalized.items.get(creature.id);
@@ -575,6 +619,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     conditionsI18n = buildConditionsI18n(conditions, babele, frLang);
     glossaryI18n = buildGlossaryI18n(glossary, babele, frLang);
     traitsI18n = buildTraitsI18n(traits.map((t) => t.slug), scanTraits(frLang));
+    actionsI18n = buildStandardActionsI18n(actions, babele, frLang);
   } catch (error) {
     // `lookup` throws when two same-kind Babele files disagree about a name.
     // That is an upstream inconsistency, not a defect in our dataset.
@@ -604,6 +649,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     ...verifyI18nMarkup("i18n/fr/conditions.json", conditionsI18n),
     ...verifyI18nMarkup("i18n/fr/glossary.json", glossaryI18n),
     ...verifyI18nMarkup("i18n/fr/traits.json", traitsI18n),
+    ...verifyI18nMarkup("i18n/fr/actions.json", actionsI18n),
   );
   if (i18nProblems.length > 0) {
     for (const problem of i18nProblems) io.err(`${problem}\n`);
@@ -625,6 +671,14 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   const actionDescriptionCoverage = fieldCoverage(allActions.map((a) => a.description));
   const spellNameCoverage = fieldCoverage(
     [...creatureI18n.values()].flatMap((overlay) => overlay.spells.map((s) => s.name)),
+  );
+  // Standard actions: an untranslated one is OMITTED from the overlay, so the
+  // name count is measured against the English list, not the overlay's size.
+  const standardActionNameCoverage = fieldCoverage(
+    actions.map((a) => actionsI18n[a.slug]?.name ?? null),
+  );
+  const standardActionDescriptionCoverage = fieldCoverage(
+    actions.map((a) => actionsI18n[a.slug]?.description ?? null),
   );
 
   const schemaDoc = renderSchemaDoc();
@@ -648,6 +702,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     conditions,
     glossary,
     traits,
+    actions,
     manifest: nextManifest,
   });
 
@@ -671,7 +726,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   // Two diffs: `creatureDiff` is the documented, agent-facing "what changed"
   // report (creature ids only). `otherDiff` covers every other emitted file
   // (index/<pack>.json, books.json, conditions.json, glossary.json,
-  // traits.json, SCHEMA.md) plus the manifest's own non-generatedAt fields, purely to
+  // traits.json, actions.json, SCHEMA.md) plus the manifest's own non-generatedAt fields, purely to
   // decide the change status -- see C3 and N3. Without the manifest fields
   // here, a change to `upstreamRef` or `toolVersion` alone (every other
   // emitted file byte-identical) reported "unchanged" and exit 0.
@@ -690,6 +745,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   nextOtherRaw.set("conditions.json", stableStringify(conditions));
   nextOtherRaw.set("glossary.json", stableStringify(glossary));
   nextOtherRaw.set("traits.json", stableStringify(traits));
+  nextOtherRaw.set("actions.json", stableStringify(actions));
   nextOtherRaw.set("SCHEMA.md", schemaDoc);
   nextOtherRaw.set("manifest.json", stableStringify(withoutGeneratedAt(nextManifest)));
   if (manifest !== null) {
@@ -712,6 +768,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   nextI18n.set(`${I18N_ROOT}/fr/conditions.json`, conditionsI18n);
   nextI18n.set(`${I18N_ROOT}/fr/glossary.json`, glossaryI18n);
   nextI18n.set(`${I18N_ROOT}/fr/traits.json`, traitsI18n);
+  nextI18n.set(`${I18N_ROOT}/fr/actions.json`, actionsI18n);
   const nextI18nRaw = new Map(
     [...nextI18n].map(([relPath, value]) => [relPath, stableStringify(value)] as const),
   );
@@ -748,6 +805,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   writeJson(join(dataDir, "conditions.json"), conditions);
   writeJson(join(dataDir, "glossary.json"), glossary);
   writeJson(join(dataDir, "traits.json"), traits);
+  writeJson(join(dataDir, "actions.json"), actions);
   for (const relPath of i18nDiff.removed) {
     rmSync(join(dataDir, ...relPath.split("/")), { force: true });
   }
@@ -777,6 +835,10 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
       `${actionDescriptionCoverage.translated}/${actionDescriptionCoverage.total} descriptions translated\n`,
   );
   io.err(`french spells: ${spellNameCoverage.translated}/${spellNameCoverage.total} names translated\n`);
+  io.err(
+    `french standard actions: ${standardActionNameCoverage.translated}/${standardActionNameCoverage.total} names, ` +
+      `${standardActionDescriptionCoverage.translated}/${standardActionDescriptionCoverage.total} descriptions translated\n`,
+  );
   emit({
     command: "update",
     ok: true,
@@ -789,6 +851,9 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     frenchActionNames: actionNameCoverage,
     frenchActionDescriptions: actionDescriptionCoverage,
     frenchSpellNames: spellNameCoverage,
+    standardActionCount: actions.length,
+    frenchStandardActionNames: standardActionNameCoverage,
+    frenchStandardActionDescriptions: standardActionDescriptionCoverage,
     ...creatureDiff,
   });
 

@@ -44,3 +44,20 @@ export const CreatureI18nSchema = z.object({
 });
 
 export type CreatureI18n = z.infer<typeof CreatureI18nSchema>;
+
+/**
+ * `i18n/fr/actions.json`: OUR standard-action slug -> French name and
+ * description. Keyed by slug, never by name, like the conditions and glossary
+ * overlays. An action with no French entry at all is OMITTED; `description`
+ * is `null` when the entry is translated by name only -- never the English
+ * text standing in for a missing translation.
+ */
+export const StandardActionsI18nSchema = z.record(
+  z.string(),
+  z.object({
+    name: z.string(),
+    description: z.string().nullable(),
+  }),
+);
+
+export type StandardActionsI18n = z.infer<typeof StandardActionsI18nSchema>;
