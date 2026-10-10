@@ -2,6 +2,9 @@ import { useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { ActionPips } from "./ActionPips.js";
+import { NextButton } from "./NextButton.js";
+import { UnrolledNotice, remainingActionsFor } from "./TurnManager.js";
+import { unacknowledgedCountFor } from "./TurnPrompts.js";
 
 /** The active combatant's turn economy, in the centre pane under its name:
  * the actions it has left and the Strikes it has made this turn (which set
@@ -9,10 +12,16 @@ import { ActionPips } from "./ActionPips.js";
  * action list right below, so they sit with it rather than in the turn
  * manager. The reset control is resetStrikes' only UI entry point — the GM
  * needs it the moment a miscounted Strike would keep feeding the wrong MAP
- * rung to the roll assistant; small and secondary, a correction. */
+ * rung to the roll assistant; small and secondary, a correction.
+ *
+ * The Next button ends the strip, right beside the actions it is the
+ * natural follow-up to (it lights up once none are left), with the notice
+ * saying why it refuses while someone has no initiative. Desktop only: the
+ * narrow layout pins its own Next button to the bottom of every tab. */
 export function TurnEconomy({ combatant, narrow }: { combatant: Combatant; narrow: boolean }): React.ReactElement {
   const t = useT();
   const resetStrikes = useEncounter((s) => s.resetStrikes);
+  const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
   return (
     <div
       style={{
@@ -49,6 +58,16 @@ export function TurnEconomy({ combatant, narrow }: { combatant: Combatant; narro
           {t("RESET_BUTTON")}
         </button>
       </div>
+      {!narrow && (
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "10px" }}>
+          <UnrolledNotice />
+          <NextButton
+            compact
+            unacknowledgedCount={unacknowledgedCountFor(combatant, acknowledgedPrompts)}
+            actionsRemaining={remainingActionsFor(combatant)}
+          />
+        </div>
+      )}
     </div>
   );
 }

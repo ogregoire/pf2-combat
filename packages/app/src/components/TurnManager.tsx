@@ -4,9 +4,8 @@ import { unrolledCount, useEncounter } from "../state/store.js";
 import type { Combatant, Entry } from "../state/types.js";
 import type { FetchFn } from "../data/catalog.js";
 import { ConfirmButton } from "./ConfirmButton.js";
-import { NextButton } from "./NextButton.js";
 import { ReactionWatch } from "./ReactionWatch.js";
-import { TurnPrompts, activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
+import { TurnPrompts } from "./TurnPrompts.js";
 
 /** Two of the app's three destructive clearing actions live here, next to
  * the round counter whose state they affect — "clear enemies" keeps the
@@ -82,10 +81,8 @@ function entryLabel(entry: Entry, combatants: Record<string, Combatant>, t: (key
  * creature's turn"), which is also the exact condition under which the store
  * action would refuse.
  *
- * Rendered outside TurnManager's `showNextButton` gate on purpose: that flag
- * exists because the narrow layout pins its own single Next button to the
- * bottom of the screen, and that pinned bar carries Next only. Gating these
- * on it as well would leave the narrow layout with no way to Delay at all.
+ * The narrow layout's pinned bottom bar carries Next only, so these stay
+ * here, where both layouts reach them.
  */
 function DelayControls(): React.ReactElement | null {
   const t = useT();
@@ -174,47 +171,19 @@ export function remainingActionsFor(combatant: Combatant): number {
   return Math.max(0, pool.total - combatant.actionsSpent);
 }
 
-/** The right-pane turn manager — Main.dc.html's Next/reactions
- * plus TurnAssistant.dc.html's start/end prompts, merged into one panel
- * since both describe the same sidebar. Reads the encounter store directly,
- * same as CombatantList. `showNextButton` defaults to true (desktop,
- * unchanged); EncounterScreen's narrow layout passes false because it pins
- * its own single NextButton to the bottom of the screen instead — without
- * this, the Turn tab would show two Next buttons at once. */
-// The round counter is not here: it heads the initiative list
-// (EncounterScreen's CombatantListHeader), beside the order it counts. Nor
-// are the action pips and Strike count: they sit in the centre pane
-// (TurnEconomy), with the actions they are spent on.
-export function TurnManager({
-  showNextButton = true,
-  fetchFn,
-}: { showNextButton?: boolean; fetchFn?: FetchFn } = {}): React.ReactElement {
-  const t = useT();
-  const entries = useEncounter((s) => s.encounter.entries);
-  const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
-  const combatants = useEncounter((s) => s.encounter.combatants);
-  const acknowledgedPrompts = useEncounter((s) => s.encounter.acknowledgedPrompts);
-
-  const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
-  const unacknowledgedCount = combatant ? unacknowledgedCountFor(combatant, acknowledgedPrompts) : 0;
-
+/** The right-pane turn manager — Main.dc.html's reactions plus
+ * TurnAssistant.dc.html's start/end prompts, merged into one panel since
+ * both describe the same sidebar. Reads the encounter store directly, same
+ * as CombatantList. */
+// Not here: the round counter heads the initiative list (EncounterScreen's
+// CombatantListHeader), beside the order it counts; the action pips, Strike
+// count and Next button sit in the centre pane's turn strip (TurnEconomy),
+// with the actions they follow on from — and the narrow layout pins its own
+// Next button to the bottom of every tab.
+export function TurnManager({ fetchFn }: { fetchFn?: FetchFn } = {}): React.ReactElement {
   return (
     <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, minHeight: 0, padding: "16px 14px", gap: "16px" }}>
       <TurnPrompts />
-
-      {/* showNextButton also gates UnrolledNotice: on the narrow layout
-         (showNextButton=false) the pinned bar's own Next button already
-         carries this message (see EncounterScreen) — showing it here too
-         would just repeat it while that Next button sits off-screen below. */}
-      {showNextButton && (
-        <>
-          <NextButton
-            unacknowledgedCount={unacknowledgedCount}
-            actionsRemaining={combatant ? remainingActionsFor(combatant) : undefined}
-          />
-          <UnrolledNotice />
-        </>
-      )}
 
       <DelayControls />
 

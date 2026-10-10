@@ -6,6 +6,16 @@ import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { TurnManager } from "../src/components/TurnManager.js";
 import { useEncounter } from "../src/state/store.js";
 
+// Next lives in the centre pane's turn strip; prompts, Delay and reactions
+// in the turn manager — tests that end a turn need both.
+const renderPanes = () =>
+  render(
+    <>
+      <ActiveCombatant />
+      <TurnManager />
+    </>,
+  );
+
 const add = (name: string, init: number): string =>
   useEncounter.getState().addCombatant(
     { kind: "creature", name, level: 1, ac: 15,
@@ -25,6 +35,15 @@ describe("TurnManager", () => {
     expect(screen.queryByText("ROUND")).toBeNull();
     expect(screen.queryAllByTestId("action-pip")).toHaveLength(0);
     expect(screen.queryByTestId("strikes-this-turn")).toBeNull();
+    expect(screen.queryByRole("button", { name: /next combatant/i })).toBeNull();
+  });
+
+  it("puts Next in the centre pane's turn strip, beside the actions remaining", () => {
+    add("a", 20);
+    render(<ActiveCombatant />);
+    const strip = screen.getByTestId("strikes-this-turn").parentElement!;
+    expect(strip.contains(screen.getByRole("button", { name: /next combatant/i }))).toBe(true);
+    expect(strip.contains(screen.getAllByTestId("action-pip")[0]!)).toBe(true);
   });
 
   it("refuses to advance the turn while a combatant has no initiative, and says how many", async () => {
@@ -36,7 +55,7 @@ describe("TurnManager", () => {
         hp: { current: 20, max: 20 } },
       null,
     );
-    render(<TurnManager />);
+    renderPanes();
 
     const before = useEncounter.getState().encounter.activeEntryIndex;
     await user.click(screen.getByRole("button", { name: /next combatant/i }));
@@ -137,7 +156,7 @@ describe("TurnManager", () => {
     const id = add("a", 20);
     add("b", 10);
     useEncounter.getState().addCondition(id, "frightened", 2);
-    render(<TurnManager />);
+    renderPanes();
 
     await user.click(screen.getByRole("button", { name: /got it/i }));
     await user.click(screen.getByRole("button", { name: /next combatant/i }));
@@ -187,7 +206,7 @@ describe("TurnManager", () => {
   it("keeps Next enabled but shows the outstanding count", () => {
     const id = add("a", 20);
     useEncounter.getState().addCondition(id, "dying", 1);
-    render(<TurnManager />);
+    renderPanes();
     const next = screen.getByRole("button", { name: /next combatant/i });
     expect(next.hasAttribute("disabled")).toBe(false);
     expect(screen.getByText(/1 unacknowledged/i)).toBeDefined();
@@ -197,7 +216,7 @@ describe("TurnManager", () => {
     const user = userEvent.setup();
     add("a", 20);
     add("b", 10);
-    render(<TurnManager />);
+    renderPanes();
     await user.click(screen.getByRole("button", { name: /next combatant/i }));
     expect(useEncounter.getState().encounter.activeEntryIndex).toBe(1);
   });
@@ -215,7 +234,7 @@ describe("TurnManager", () => {
     add("b", 10);
     useEncounter.getState().addCondition(id, "frightened", 2);
     useEncounter.getState().addCondition(id, "persistent-damage", 0, "1d6");
-    render(<TurnManager />);
+    renderPanes();
 
     const hpBefore = useEncounter.getState().encounter.combatants[id]!.hp!.current;
     await user.click(screen.getByRole("button", { name: /next combatant/i }));
@@ -235,7 +254,7 @@ describe("TurnManager", () => {
     const id = add("a", 20);
     add("b", 10);
     useEncounter.getState().addCondition(id, "frightened", 1);
-    render(<TurnManager />);
+    renderPanes();
 
     await user.click(screen.getByRole("button", { name: /next combatant/i }));
 
@@ -388,7 +407,7 @@ describe("TurnManager", () => {
     ]);
     add("a", 20);
     add("b", 10);
-    render(<TurnManager />);
+    renderPanes();
     await user.click(screen.getByRole("button", { name: /next combatant/i }));
 
     await user.click(screen.getByRole("button", { name: /reset encounter/i }));
@@ -1149,7 +1168,7 @@ describe("Delay", () => {
     add("Alpha", 20);
     add("Beta", 15);
     add("Gamma", 10);
-    render(<TurnManager />);
+    renderPanes();
 
     await user.click(screen.getByRole("button", { name: /^delay$/i }));
     expect(entryOf(entryIdOf("Alpha")).delayed).toBe(true);
@@ -1173,7 +1192,7 @@ describe("Delay", () => {
         saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
       null,
     );
-    render(<TurnManager />);
+    renderPanes();
 
     expect(screen.getByRole("button", { name: /^delay$/i }).hasAttribute("disabled")).toBe(true);
   });

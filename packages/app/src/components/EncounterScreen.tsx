@@ -419,10 +419,9 @@ export function EncounterScreen({
 
             {activeTab === "turn" && (
               <div data-testid="turn-manager" style={{ display: "flex", flexDirection: "column", minHeight: 0, background: "var(--panel)" }}>
-                {/* showNextButton=false: the pinned bar below is this
-                   layout's single NextButton — TurnManager's own one is
-                   desktop-only, so the Turn tab doesn't show two. */}
-                <TurnManager showNextButton={false} fetchFn={fetchFn} />
+                {/* The pinned bar below is this layout's single
+                   NextButton; the centre pane's own is desktop-only. */}
+                <TurnManager fetchFn={fetchFn} />
               </div>
             )}
           </div>
