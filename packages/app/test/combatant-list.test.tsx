@@ -43,6 +43,23 @@ describe("CombatantList", () => {
     expect(screen.queryByTitle("Fortitude")).toBeNull();
   });
 
+  it("makes a creature elite from its popover, and badges the row and counts its new level", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(seed(), 19);
+    render(<CombatantList />);
+
+    await user.hover(screen.getByText("Stag Lord Bandit"));
+    const control = within(screen.getByRole("group", { name: "Elite or weak" }));
+    expect(control.getByRole("button", { name: "Normal" }).getAttribute("aria-pressed")).toBe("true");
+    await user.click(control.getByRole("button", { name: "Elite" }));
+
+    expect(control.getByRole("button", { name: "Elite" }).getAttribute("aria-pressed")).toBe("true");
+    expect(useEncounter.getState().encounter.combatants[id]!.ac).toBe(17);
+    const row = within(screen.getByRole("group", { name: "Stag Lord Bandit" }));
+    expect(row.getByText("Elite")).toBeDefined();
+    expect(row.getByText("2")).toBeDefined(); // level 0 elite is level 2
+  });
+
   it("renders condition chips", () => {
     const id = useEncounter.getState().addCombatant(seed(), 19);
     useEncounter.getState().addCondition(id, "frightened", 2);

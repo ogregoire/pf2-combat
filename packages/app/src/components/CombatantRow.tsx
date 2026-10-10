@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
+import { AdjustmentBadge } from "./AdjustmentBadge.js";
 import { ConditionChips } from "./DefenseSummary.js";
 import { RowPopover } from "./RowPopover.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
@@ -241,6 +242,7 @@ function StandaloneRow({
             {displayName}
           </span>
           <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
+          <AdjustmentBadge combatant={combatant} />
         </div>
 
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
@@ -306,6 +308,7 @@ function GroupMemberRow({
             {displayName}
           </span>
           <span style={{ fontSize: "10.5px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
+          <AdjustmentBadge combatant={combatant} />
         </div>
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
       </div>

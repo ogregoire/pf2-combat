@@ -27,6 +27,8 @@ export const ALLOWLIST = new Set<StringKey>([
   "MENU_ARIA",
   // "air", the element a resistance can key on, is the same word too.
   "IWR_NAME_AIR",
+  // "Normal", the elite/weak control's middle option, likewise.
+  "ADJUSTMENT_NORMAL",
   // "action"/"actions" is spelled the same in both languages, same rule as
   // ACTIONS_UNIT above — ActionCard's Use-button unit words.
   "USE_ACTION_UNIT_SINGULAR",

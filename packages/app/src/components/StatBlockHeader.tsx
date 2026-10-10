@@ -3,6 +3,7 @@ import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useT, type StringKey } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
+import { AdjustmentBadge } from "./AdjustmentBadge.js";
 
 /** A human silhouette standing in for the "PC" word beside a player
  * character's level. The accessible name keeps the localised prefix. */
@@ -56,6 +57,7 @@ export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.
         <span style={{ display: "inline-flex", alignItems: "baseline", gap: "5px", fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "var(--text-dim)" }}>
           <LevelLabel combatant={combatant} t={t} />
         </span>
+        <AdjustmentBadge combatant={combatant} size={11} />
       </div>
     </div>
   );

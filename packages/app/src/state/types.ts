@@ -1,6 +1,7 @@
 import type { Action, Attack, CreatureI18n } from "@pf2/schema";
 import type { AppliedCondition } from "../rules/conditions.js";
 import type { Iwr } from "../rules/damage.js";
+import type { Adjustment } from "../rules/adjustment.js";
 
 export interface Player {
   id: string;
@@ -64,6 +65,10 @@ export interface Combatant {
    * modifier entered mid-fight be written back, and lets Quick add know who
    * is already in the order. */
   playerId?: string;
+  /** Set while a creature is elite or weak (GM Core). Its stats above
+   * already carry the adjustment; this records which one, and the printed
+   * level to take it back off from. Absent for a normal creature. */
+  adjustment?: Adjustment;
 }
 
 export interface Entry {

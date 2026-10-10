@@ -260,6 +260,7 @@ export function RowPopover({
   const setInitiative = useEncounter((s) => s.setInitiative);
   const addCondition = useEncounter((s) => s.addCondition);
   const removeCondition = useEncounter((s) => s.removeCondition);
+  const setAdjustment = useEncounter((s) => s.setAdjustment);
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
@@ -587,6 +588,41 @@ export function RowPopover({
           {t("LABEL_REMOVE")}
         </button>
       </div>
+
+      {combatant.kind === "creature" && (
+        // Beside the name, since it changes what the creature *is*: GM
+        // Core's elite/weak adjustment, applied to its stats by the store.
+        <div role="group" aria-label={t("ADJUSTMENT_GROUP_ARIA")} style={{ display: "flex", gap: "4px" }}>
+          {([
+            ["weak", "ADJUSTMENT_WEAK"],
+            [null, "ADJUSTMENT_NORMAL"],
+            ["elite", "ADJUSTMENT_ELITE"],
+          ] as const).map(([kind, label]) => {
+            const pressed = (combatant.adjustment?.kind ?? null) === kind;
+            return (
+              <button
+                key={label}
+                type="button"
+                aria-pressed={pressed}
+                onClick={() => setAdjustment(combatantId, kind)}
+                style={{
+                  fontFamily: "inherit",
+                  fontSize: "11px",
+                  fontWeight: pressed ? 600 : 400,
+                  padding: "3px 9px",
+                  borderRadius: "3px",
+                  border: `1px solid ${pressed ? "var(--select)" : "var(--border)"}`,
+                  background: pressed ? "var(--select)" : "var(--panel-raised)",
+                  color: pressed ? "var(--select-text)" : "var(--text-dim)",
+                  cursor: "pointer",
+                }}
+              >
+                {t(label)}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       {entry && (
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>

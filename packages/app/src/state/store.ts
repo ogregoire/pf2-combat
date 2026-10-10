@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+import { adjustedLevel, shiftStats, type AdjustmentKind } from "../rules/adjustment.js";
 import type { Action, Attack, CreatureI18n } from "@pf2/schema";
 import {
   applyEndOfTurn,
@@ -646,6 +647,9 @@ interface EncounterStore {
   spendActions(id: string, cost: number): void;
   setReactionSpent(id: string, spent: boolean): void;
   setTarget(id: string | null): void;
+  /** Makes a creature elite or weak, or normal again with `null` — any
+   * current adjustment comes off first, so elite → weak is one call. */
+  setAdjustment(id: string, kind: AdjustmentKind | null): void;
   nextTurn(): void;
   /** Delay (Player Core p. 416) for the entry whose turn it currently is:
    * fires its end-of-turn effects immediately and hands the turn on, leaving
@@ -974,6 +978,22 @@ export const useEncounter = create<EncounterStore>()(
     setTarget: (id) =>
       set((state) => {
         state.encounter.targetId = id;
+      }),
+
+    setAdjustment: (id, kind) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (!c || c.kind !== "creature") return;
+        if (c.adjustment) {
+          shiftStats(c, c.adjustment.kind, c.adjustment.baseLevel, -1);
+          c.level = c.adjustment.baseLevel;
+          delete c.adjustment;
+        }
+        if (kind === null) return;
+        const baseLevel = c.level;
+        shiftStats(c, kind, baseLevel, 1);
+        c.level = adjustedLevel(baseLevel, kind);
+        c.adjustment = { kind, baseLevel };
       }),
 
     nextTurn: () =>
