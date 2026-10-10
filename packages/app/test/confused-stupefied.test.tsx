@@ -71,6 +71,7 @@ describe("confused in the app", () => {
       </>,
     );
     await user.click(within(screen.getByTestId("active-actions")).getByText("Attack of Opportunity"));
+    await user.click(screen.getByRole("button", { name: /^spells/i }));
     expect((screen.getByRole("button", { name: "Use reaction" }) as HTMLButtonElement).disabled).toBe(true);
     expect((screen.getByRole("button", { name: "Cast Feather Fall" }) as HTMLButtonElement).disabled).toBe(true);
     expect((screen.getByRole("button", { name: "Delay" }) as HTMLButtonElement).disabled).toBe(true);
@@ -105,10 +106,11 @@ describe("confused in the app", () => {
 describe("stupefied in the app", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("lowers the spell DC and attack shown, and warns about the flat check to cast", () => {
+  it("lowers the spell DC and attack shown, and warns about the flat check to cast", async () => {
     const id = add("Grigori", 20, { spellcasting });
     useEncounter.getState().addCondition(id, "stupefied", 2);
     render(<ActiveCombatant />);
+    await userEvent.setup().click(screen.getByRole("button", { name: /^spells/i }));
     expect(screen.getByText(/DC 23, attack \+15/)).toBeDefined();
     expect(screen.getByTestId("stupefied-cast-warning").textContent).toContain("DC 7 flat check");
   });

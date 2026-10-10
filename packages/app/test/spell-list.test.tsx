@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { CreatureI18n, Spellcasting } from "@pf2/schema";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
@@ -32,14 +32,19 @@ const add = (i18n: CreatureI18n | null = null): string =>
       hp: { current: 90, max: 90 }, spellcasting, i18n },
     20,
   );
+// The Spells section starts folded.
+const unfold = async (): Promise<void> => {
+  await userEvent.setup().click(await screen.findByRole("button", { name: /^(spells|sorts)/i }));
+};
 const rowOf = (name: string) => within(screen.getAllByTestId("spell-row").find((r) => r.textContent!.includes(name))!);
 
 describe("SpellList", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("lists every entry's spells in one section, highest rank first, with each entry's DC and attack", () => {
+  it("lists every entry's spells in one section, highest rank first, with each entry's DC and attack", async () => {
     add();
     render(<ActiveCombatant />);
+    await unfold();
     const list = within(screen.getByTestId("spell-list"));
     expect(list.getByText(/DC 25, attack \+17/).textContent).toContain("DC 25");
     expect(list.getByText(/DC 24, attack \+16/)).toBeDefined();
@@ -52,6 +57,7 @@ describe("SpellList", () => {
     const user = userEvent.setup();
     const id = add();
     render(<ActiveCombatant />);
+    await unfold();
 
     await user.click(rowOf("Enthrall").getByRole("button", { name: "Cast Enthrall with 2 actions" }));
     const c = useEncounter.getState().encounter.combatants[id]!;
@@ -70,6 +76,7 @@ describe("SpellList", () => {
     const id = add();
     useEncounter.getState().spendActions(id, 2);
     render(<ActiveCombatant />);
+    await unfold();
     const haste = rowOf("Haste");
     expect((haste.getByRole("button", { name: "Cast Haste with 1 actions" }) as HTMLButtonElement).disabled).toBe(false);
     expect((haste.getByRole("button", { name: "Cast Haste with 2 actions" }) as HTMLButtonElement).disabled).toBe(true);
@@ -81,6 +88,7 @@ describe("SpellList", () => {
     const user = userEvent.setup();
     add();
     render(<ActiveCombatant />);
+    await unfold();
     expect(rowOf("Tongues").queryByRole("button", { name: /^Cast/ })).toBeNull();
     expect(rowOf("Tongues").getByText("constant")).toBeDefined();
 
@@ -89,7 +97,7 @@ describe("SpellList", () => {
     expect((rowOf("Entangle").getByRole("button", { name: "Cast Entangle with 2 actions" }) as HTMLButtonElement).disabled).toBe(true);
   });
 
-  it("names the spells in French from the overlay, by position", () => {
+  it("names the spells in French from the overlay, by position", async () => {
     useEncounter.getState().setLang("fr");
     add({
       name: "Grigori", publicNotes: null, actions: [], attacks: [],
@@ -101,9 +109,10 @@ describe("SpellList", () => {
       ],
     });
     render(<ActiveCombatant />);
+    await unfold();
     expect(screen.getByText("Discours captivant")).toBeDefined();
     expect(screen.getByText("Don des langues (constant)")).toBeDefined();
-    expect(screen.getByText("Sorts")).toBeDefined();
+    expect(screen.getByRole("button", { name: /^Sorts/ })).toBeDefined();
   });
 
   // The reported defect: a creature added before spells were carried (the
@@ -125,9 +134,27 @@ describe("SpellList", () => {
         ? new Response(JSON.stringify({ spellcasting: [spellcasting[1]] }))
         : new Response("[]");
     render(<ActiveCombatant fetchFn={fetchFn} />);
+    await unfold();
 
     expect(await screen.findByText("Entangle")).toBeDefined();
     // Elite, so the backfilled DC carries the +2 like every other stat.
     expect(useEncounter.getState().encounter.combatants[id]!.spellcasting![0]!.dc).toBe(26);
+  });
+
+  it("starts folded, unfolds on demand, and folds again when the turn passes", async () => {
+    const user = userEvent.setup();
+    add();
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Second", level: 1, ac: 15, saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 9, max: 9 }, spellcasting },
+      10,
+    );
+    render(<ActiveCombatant />);
+    const fold = screen.getByRole("button", { name: /^spells/i });
+    expect(fold.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.queryAllByTestId("spell-row")).toHaveLength(0);
+    await user.click(fold);
+    expect(screen.getAllByTestId("spell-row")).toHaveLength(4);
+    act(() => useEncounter.getState().nextTurn());
+    expect(screen.queryAllByTestId("spell-row")).toHaveLength(0);
   });
 });

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Spellcasting } from "@pf2/schema";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
@@ -6,6 +7,7 @@ import { resolveModifiers } from "../rules/modifiers.js";
 import { castsLeft, focusPool, FOCUS_KEY, spellRows, type SpellCost, type SpellRow } from "../rules/spells.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
+import { FoldHeading } from "./FoldHeading.js";
 import { remainingActionsFor } from "./TurnManager.js";
 
 const TRADITION_KEY: Record<string, StringKey> = {
@@ -196,7 +198,8 @@ function SpellRowView({
   );
 }
 
-/** The active creature's spells, in their own section under its actions:
+/** The active creature's spells, in their own folded section under its
+ * actions — unfolded on demand:
  * every spellcasting entry's spells in one list, highest rank first, then
  * the most actions (see rules/spells.ts's spellRows). Above it, each entry's
  * DC and spell attack, and the Focus Point pool when there is one. Casting
@@ -207,6 +210,14 @@ export function SpellList({ combatant }: { combatant: Combatant }): React.ReactE
   const t = useT();
   const lang = useEncounter((s) => s.lang);
   const i18n = useCombatantI18n(combatant);
+  // Folded by default, like the standard actions, and folded again when the
+  // turn passes to someone else.
+  const [open, setOpen] = useState(false);
+  const [turnOf, setTurnOf] = useState(combatant.id);
+  if (turnOf !== combatant.id) {
+    setTurnOf(combatant.id);
+    setOpen(false);
+  }
   const spellcasting = combatant.spellcasting ?? [];
   if (spellcasting.length === 0) return null;
 
@@ -221,41 +232,43 @@ export function SpellList({ combatant }: { combatant: Combatant }): React.ReactE
 
   return (
     <div data-testid="spell-list">
-      <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)", marginBottom: "6px" }}>
-        {t("SPELLS_HEADING")}
-      </div>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 14px", marginBottom: "8px", fontSize: "11.5px", color: "var(--text-dim)" }}>
-        {spellcasting.map((entry, i) => (
-          <span
-            key={i}
-            title={spellMods.applied.map((m) => `${m.value} ${m.source}`).join(", ") || undefined}
-            style={spellMods.total !== 0 ? { color: "var(--danger)" } : undefined}
-          >
-            <span style={{ fontWeight: 600, color: "var(--text-dim)" }}>{entryLabel(entry, t)}</span>{" "}
-            {format(t("SPELL_ENTRY_SUMMARY"), { dc: entry.dc + spellMods.total, attack: signed(entry.attack + spellMods.total) })}
-          </span>
-        ))}
-        {pool > 0 && <span data-testid="focus-points">{format(t("FOCUS_POINTS_LABEL"), { left: Math.max(0, focusLeft), max: pool })}</span>}
-      </div>
-      {castDc !== null && (
-        <div
-          data-testid="stupefied-cast-warning"
-          style={{ marginBottom: "8px", padding: "6px 10px", borderRadius: "4px", background: "var(--danger-bg)", color: "var(--danger)", fontSize: "12px" }}
-        >
-          {format(t("STUPEFIED_CAST_WARNING"), { dc: castDc })}
+      <FoldHeading label={t("SPELLS_HEADING")} open={open} onToggle={() => setOpen((o) => !o)} count={rows.length} />
+      {open && (
+        <div style={{ marginTop: "6px" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 14px", marginBottom: "8px", fontSize: "11.5px", color: "var(--text-dim)" }}>
+            {spellcasting.map((entry, i) => (
+              <span
+                key={i}
+                title={spellMods.applied.map((m) => `${m.value} ${m.source}`).join(", ") || undefined}
+                style={spellMods.total !== 0 ? { color: "var(--danger)" } : undefined}
+              >
+                <span style={{ fontWeight: 600, color: "var(--text-dim)" }}>{entryLabel(entry, t)}</span>{" "}
+                {format(t("SPELL_ENTRY_SUMMARY"), { dc: entry.dc + spellMods.total, attack: signed(entry.attack + spellMods.total) })}
+              </span>
+            ))}
+            {pool > 0 && <span data-testid="focus-points">{format(t("FOCUS_POINTS_LABEL"), { left: Math.max(0, focusLeft), max: pool })}</span>}
+          </div>
+          {castDc !== null && (
+            <div
+              data-testid="stupefied-cast-warning"
+              style={{ marginBottom: "8px", padding: "6px 10px", borderRadius: "4px", background: "var(--danger-bg)", color: "var(--danger)", fontSize: "12px" }}
+            >
+              {format(t("STUPEFIED_CAST_WARNING"), { dc: castDc })}
+            </div>
+          )}
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+            {rows.map((row) => (
+              <SpellRowView
+                key={`${row.entryIndex}:${row.spellIndex}`}
+                combatant={combatant}
+                row={row}
+                name={nameOf(row)}
+                showEntry={spellcasting.length > 1}
+              />
+            ))}
+          </div>
         </div>
       )}
-      <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-        {rows.map((row) => (
-          <SpellRowView
-            key={`${row.entryIndex}:${row.spellIndex}`}
-            combatant={combatant}
-            row={row}
-            name={nameOf(row)}
-            showEntry={spellcasting.length > 1}
-          />
-        ))}
-      </div>
     </div>
   );
 }
