@@ -126,4 +126,24 @@ describe("useCombatantI18n", () => {
 
     await waitFor(() => expect(second.result.current).toEqual(overlay));
   });
+
+  // The bug: the fetched overlay sat in state untagged, so when the same hook
+  // instance moved on to a PC (no creatureId, so no new fetch), it kept
+  // returning the previous creature's overlay — the PC's header read as the
+  // creature's French name.
+  it("drops a fetched overlay once the hook moves on to a different combatant", async () => {
+    useEncounter.getState().setLang("fr");
+    const fetchFn = async (): Promise<CreatureI18n | null> => overlay;
+    type Props = { combatant: { i18n: CreatureI18n | null; creatureId?: string } };
+    const { result, rerender } = renderHook(({ combatant }: Props) => useCombatantI18n(combatant, fetchFn), {
+      initialProps: { combatant: { i18n: null, creatureId: "pack/then-pc" } } as Props,
+    });
+    await waitFor(() => expect(result.current).toEqual(overlay));
+
+    rerender({ combatant: { i18n: null, creatureId: undefined } });
+    expect(result.current).toBeNull();
+
+    rerender({ combatant: { i18n: null, creatureId: "pack/other-creature" } });
+    expect(result.current).toBeNull();
+  });
 });

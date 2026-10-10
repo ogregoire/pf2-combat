@@ -59,7 +59,12 @@ export function useCombatantI18n(
   fetchFn: (id: string) => Promise<CreatureI18n | null> = loadCreatureI18n,
 ): CreatureI18n | null {
   const lang = useEncounter((s) => s.lang);
-  const [fetched, setFetched] = useState<CreatureI18n | null>(null);
+  // Tagged with the creature it was fetched for: the hook instance outlives
+  // any one combatant (ActiveCombatant keeps the same instance as turns
+  // pass), so an untagged result would carry the previous creature's
+  // overlay — and its French name — onto whoever is active next, most
+  // visibly a PC, which has no creatureId and so never fetches over it.
+  const [fetched, setFetched] = useState<{ creatureId: string; i18n: CreatureI18n | null } | null>(null);
   const creatureId = combatant.creatureId;
   const needsFetch = combatant.i18n == null && lang === "fr" && creatureId !== undefined;
 
@@ -68,7 +73,7 @@ export function useCombatantI18n(
     let cancelled = false;
     cachedFetch(creatureId, fetchFn)
       .then((i18n) => {
-        if (!cancelled) setFetched(i18n);
+        if (!cancelled) setFetched({ creatureId, i18n });
       })
       .catch(() => {
         // Not cached (see cachedFetch) — this render just falls back to
@@ -80,5 +85,5 @@ export function useCombatantI18n(
     };
   }, [needsFetch, creatureId, fetchFn]);
 
-  return combatant.i18n ?? fetched;
+  return combatant.i18n ?? (needsFetch && fetched?.creatureId === creatureId ? fetched.i18n : null);
 }
