@@ -157,6 +157,14 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   STANDARD_ACTIONS_BASIC: "ACTIONS DE BASE",
   STANDARD_ACTIONS_SKILL: "ACTIONS DE COMPÉTENCE",
 
+  // CreatureDetails.tsx
+  STATBLOCK_PERCEPTION: "Perception",
+  STATBLOCK_LANGUAGES: "Langues",
+  STATBLOCK_SKILLS: "Compétences",
+  STATBLOCK_SPEED: "Vitesse",
+  STATBLOCK_ITEMS: "Objets",
+  STATBLOCK_ADJUSTED_NOTE: "La Perception et les compétences incluent l’ajustement de {step}.",
+
   // SpellList.tsx
   SPELLS_HEADING: "Sorts",
   SPELL_RANK: "rang {rank}",

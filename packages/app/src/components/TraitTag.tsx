@@ -18,12 +18,22 @@ import { splitTraitValue, stripHtml, type TraitInfo } from "../rules/traitInfo.j
  * no French name for this slug) keeps the original slug-derived label
  * unchanged, so English rendering is untouched byte-for-byte.
  */
-export function TraitTag({ trait, glossary }: { trait: string; glossary: Map<string, TraitInfo> }): React.ReactElement {
+export function TraitTag({
+  trait,
+  glossary,
+  label: givenLabel,
+}: {
+  trait: string;
+  glossary: Map<string, TraitInfo>;
+  /** A display name from elsewhere — a creature's size and rarity are named
+   * by the vocabulary, which the trait glossary doesn't cover in French. */
+  label?: string;
+}): React.ReactElement {
   const lang = useEncounter((s) => s.lang);
   const { base, value } = splitTraitValue(trait);
   const info = glossary.get(base);
   const label =
-    lang === "fr" && info?.name ? `${info.name}${value ? ` ${value}` : ""}` : trait.replace(/-/g, " ");
+    givenLabel ?? (lang === "fr" && info?.name ? `${info.name}${value ? ` ${value}` : ""}` : trait.replace(/-/g, " "));
 
   return (
     <span

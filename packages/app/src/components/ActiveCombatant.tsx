@@ -5,6 +5,7 @@ import { resolveAttacks, resolveCreatureName } from "../data/i18nOverlay.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { spellcastingIsStale, useEncounter } from "../state/store.js";
 import type { FetchFn } from "../data/catalog.js";
+import { CreatureDetails } from "./CreatureDetails.js";
 import { SpellList } from "./SpellList.js";
 import { StandardActions } from "./StandardActions.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
@@ -105,7 +106,9 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
           ...(narrow ? { flexShrink: 0 } : { overflow: "hidden" }),
         }}
       >
-        <StatBlockHeader combatant={combatant} />
+        <StatBlockHeader combatant={combatant}>
+          <CreatureDetails combatant={combatant} fetchFn={fetchFn} />
+        </StatBlockHeader>
         <TurnEconomy combatant={combatant} narrow={narrow} />
         <div
           style={{

@@ -29,6 +29,8 @@ export const ALLOWLIST = new Set<StringKey>([
   "IWR_NAME_AIR",
   // "Normal", the elite/weak control's middle option, likewise.
   "ADJUSTMENT_NORMAL",
+  // "Perception" is the same word in French.
+  "STATBLOCK_PERCEPTION",
   // Unit abbreviations shared by both languages ("10 min", "1 h").
   "CAST_TIME_MINUTES",
   "CAST_TIME_HOURS",

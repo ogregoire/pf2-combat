@@ -43,7 +43,7 @@ function LevelLabel({ combatant, t }: { combatant: Combatant; t: (key: StringKey
  * translated this" from "the French name is identical to the English"
  * (Manticore, Ankou, Belker genuinely ARE the French names), so no marker
  * is drawn — one would fire exactly where English is already correct. */
-export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.ReactElement {
+export function StatBlockHeader({ combatant, children }: { combatant: Combatant; children?: React.ReactNode }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
   const i18n = useCombatantI18n(combatant);
@@ -59,6 +59,7 @@ export function StatBlockHeader({ combatant }: { combatant: Combatant }): React.
         </span>
         <AdjustmentBadge combatant={combatant} size={11} />
       </div>
+      {children}
     </div>
   );
 }

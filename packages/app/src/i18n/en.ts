@@ -155,6 +155,14 @@ export const STRINGS_EN = {
   STANDARD_ACTIONS_BASIC: "BASIC ACTIONS",
   STANDARD_ACTIONS_SKILL: "SKILL ACTIONS",
 
+  // CreatureDetails.tsx
+  STATBLOCK_PERCEPTION: "Perception",
+  STATBLOCK_LANGUAGES: "Languages",
+  STATBLOCK_SKILLS: "Skills",
+  STATBLOCK_SPEED: "Speed",
+  STATBLOCK_ITEMS: "Items",
+  STATBLOCK_ADJUSTED_NOTE: "Perception and skills include the {step} adjustment.",
+
   // SpellList.tsx
   SPELLS_HEADING: "Spells",
   SPELL_RANK: "rank {rank}",
