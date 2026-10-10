@@ -1,5 +1,6 @@
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { actionPool } from "../rules/actions.js";
+import { canDelayOrReady } from "../rules/conditions.js";
 import { unrolledCount, useEncounter } from "../state/store.js";
 import type { Combatant, Entry } from "../state/types.js";
 import type { FetchFn } from "../data/catalog.js";
@@ -95,6 +96,11 @@ function DelayControls(): React.ReactElement | null {
 
   const activeEntry = entries[activeEntryIndex];
   const delayedEntries = entries.filter((e) => e.delayed);
+  // Confused and Fleeing: "you can't Delay or Ready". Any member of the
+  // acting entry under either holds the whole entry back.
+  const delayAllowed =
+    activeEntry === undefined ||
+    activeEntry.combatantIds.every((id) => canDelayOrReady(combatants[id]?.conditions ?? []));
   if (!activeEntry && delayedEntries.length === 0) return null;
 
   const smallButton: React.CSSProperties = {
@@ -119,8 +125,8 @@ function DelayControls(): React.ReactElement | null {
         <button
           type="button"
           onClick={() => delay(activeEntry.id)}
-          disabled={unrolled > 0}
-          title={unrolled > 0 ? t("DELAY_DISABLED_TITLE") : undefined}
+          disabled={unrolled > 0 || !delayAllowed}
+          title={unrolled > 0 ? t("DELAY_DISABLED_TITLE") : !delayAllowed ? t("DELAY_FORBIDDEN_TITLE") : undefined}
           style={{
             ...smallButton,
             color: unrolled > 0 ? "var(--text-faint)" : "var(--text)",

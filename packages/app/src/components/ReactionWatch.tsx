@@ -4,6 +4,7 @@ import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { compareStrings } from "../rules/compare.js";
+import { canReact } from "../rules/conditions.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import type { FetchFn } from "../data/catalog.js";
 import type { Combatant } from "../state/types.js";
@@ -200,8 +201,10 @@ export function ReactionWatch({ fetchFn }: { fetchFn?: FetchFn } = {}): React.Re
   // Delay is a property of the *entry*, so a group that Delays takes every
   // one of its members' reactions with it.
   const delayedIds = new Set(entries.filter((e) => e.delayed).flatMap((e) => e.combatantIds));
+  // Someone who can't react at all (confused, unconscious...) isn't "ready",
+  // whatever their reaction count says.
   const available = Object.values(combatants)
-    .filter((c) => !c.defeated && !c.reactionSpent && !delayedIds.has(c.id))
+    .filter((c) => !c.defeated && !c.reactionSpent && !delayedIds.has(c.id) && canReact(c.conditions))
     .sort((a, b) => compareStrings(a.name, b.name));
   const readyPlayers = available.filter((c) => c.kind === "pc");
   const readyMonsters = available.filter((c) => c.kind === "creature" && c.reactions.length > 0);

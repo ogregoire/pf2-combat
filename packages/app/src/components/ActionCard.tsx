@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Action } from "@pf2/schema";
 import { format, useT } from "../i18n/index.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
+import { useEncounter } from "../state/store.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { TraitTag } from "./TraitTag.js";
 
@@ -70,6 +71,7 @@ function FoldArrow({ expanded }: { expanded: boolean }): React.ReactElement {
 
 function PassiveCard({ action, glossary }: { action: Action; glossary: Map<string, TraitInfo> }): React.ReactElement {
   const t = useT();
+  const lang = useEncounter((s) => s.lang);
   const [expanded, setExpanded] = useState(false);
   return (
     <button
@@ -98,7 +100,7 @@ function PassiveCard({ action, glossary }: { action: Action; glossary: Map<strin
           <TraitRow traits={action.traits} glossary={glossary} />
           <div
             style={{ marginTop: "4px", fontSize: "12px", color: "var(--text-dim)" }}
-            dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
+            dangerouslySetInnerHTML={{ __html: renderMarkers(action.description, lang) }}
           />
         </>
       )}
@@ -127,6 +129,7 @@ export function ActionCard({
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
   const t = useT();
+  const lang = useEncounter((s) => s.lang);
   if (action.cost === "passive") return <PassiveCard action={action} glossary={glossary} />;
 
   const cost = action.cost === "1" || action.cost === "2" || action.cost === "3" ? Number(action.cost) : 0;
@@ -188,7 +191,7 @@ export function ActionCard({
             <TraitRow traits={action.traits} glossary={glossary} />
             <div
               style={{ marginTop: "6px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" }}
-              dangerouslySetInnerHTML={{ __html: renderMarkers(action.description) }}
+              dangerouslySetInnerHTML={{ __html: renderMarkers(action.description, lang) }}
             />
           </>
         )}

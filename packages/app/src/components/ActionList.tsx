@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Action } from "@pf2/schema";
 import { resolveActions, resolveAttacks } from "../data/i18nOverlay.js";
 import { useT } from "../i18n/index.js";
+import { canReact } from "../rules/conditions.js";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
 import { useEncounter } from "../state/store.js";
@@ -96,7 +97,7 @@ export function ActionList({
   function spendSpec(action: Action): { disabled: boolean; onUse: (() => void) | undefined } {
     if (action.cost === "reaction") {
       return {
-        disabled: combatant.reactionSpent,
+        disabled: combatant.reactionSpent || !canReact(combatant.conditions),
         onUse: () => setReactionSpent(combatant.id, true),
       };
     }

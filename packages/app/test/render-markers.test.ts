@@ -146,3 +146,37 @@ describe("renderMarkers", () => {
     expect(new Set(RENDERED_MARKER_FAMILIES)).toEqual(RENDERED_MARKERS);
   });
 });
+
+// The reported defect: French prose carries the same markers, and they all
+// rendered in English — "vous pouvez tenter un DC 11 flat check pour
+// récupérer de votre confusion" in the Confus tooltip.
+describe("renderMarkers in French", () => {
+  it("renders checks the way the French rulebooks print them", () => {
+    expect(renderMarkers("@Check[flat|dc:11]", "fr")).toBe("test nu DD 11");
+    expect(renderMarkers("@Check[will|dc:20|basic]", "fr")).toBe("jet de Volonté basique DD 20");
+    expect(renderMarkers("@Check[reflex|dc:18]", "fr")).toBe("jet de Réflexes DD 18");
+    expect(renderMarkers("@Check[athletics|dc:22]", "fr")).toBe("test d'Athlétisme DD 22");
+    expect(renderMarkers("@Check[deception|dc:22]", "fr")).toBe("test de Duperie DD 22");
+  });
+
+  it("renders damage with the type first, then its category, in French", () => {
+    expect(renderMarkers("@Damage[2d6[fire]]", "fr")).toBe("2d6 feu");
+    expect(renderMarkers("@Damage[1d6[persistent,fire]]", "fr")).toBe("1d6 feu persistant");
+  });
+
+  it("renders areas in metres", () => {
+    expect(renderMarkers("@Template[cone|distance:30]", "fr")).toBe("cône de 9 m");
+    expect(renderMarkers("@Template[burst|distance:5]", "fr")).toBe("explosion de 1,5 m");
+  });
+
+  it("keeps the source's own label, which French text often supplies", () => {
+    expect(renderMarkers("@Check[flat|dc:11]{test nu}", "fr")).toBe("test nu");
+  });
+});
+
+// Stupefied's flat check: `dc:resolve(5+@item.badge.value)` has no number
+// to print — it used to leave the whole raw marker on screen.
+it("renders a check with a computed DC as a check with no DC", () => {
+  expect(renderMarkers("a @Check[flat|showDC:all|dc:resolve(5+@item.badge.value)] with a DC equal to 5 + your stupefied value"))
+    .toBe("a flat check with a DC equal to 5 + your stupefied value");
+});

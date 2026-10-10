@@ -5,9 +5,16 @@ import { loadActionsI18n, pick, type ReferenceI18n } from "../data/i18nOverlay.j
 import { compareLocalized } from "../rules/compare.js";
 import { useEncounter } from "../state/store.js";
 
+export interface StandardActionItem {
+  /** The upstream slug — the only stable key: French names collide
+   * ("Voler" is both Fly and Steal). */
+  slug: string;
+  action: Action;
+}
+
 export interface StandardActionGroups {
-  basic: Action[];
-  skill: Action[];
+  basic: StandardActionItem[];
+  skill: StandardActionItem[];
 }
 
 /** A standard action in the shape ActionCard renders. */
@@ -41,11 +48,14 @@ export function useStandardActions(fetchFn?: FetchFn): StandardActionGroups {
     Promise.all([loadStandardActions(fetchFn), lang === "fr" ? loadActionsI18n(fetchFn) : Promise.resolve(null)])
       .then(([actions, fr]) => {
         if (cancelled) return;
-        const byName = (a: Action, b: Action): number => compareLocalized(a.name, b.name, lang);
-        setGroups({
-          basic: actions.filter((a) => a.category === "basic").map((a) => toAction(a, fr)).sort(byName),
-          skill: actions.filter((a) => a.category === "skill").map((a) => toAction(a, fr)).sort(byName),
-        });
+        const byName = (a: StandardActionItem, b: StandardActionItem): number =>
+          compareLocalized(a.action.name, b.action.name, lang);
+        const items = (category: StandardAction["category"]): StandardActionItem[] =>
+          actions
+            .filter((a) => a.category === category)
+            .map((a) => ({ slug: a.slug, action: toAction(a, fr) }))
+            .sort(byName);
+        setGroups({ basic: items("basic"), skill: items("skill") });
       })
       .catch(() => {
         if (!cancelled) setGroups({ basic: [], skill: [] });

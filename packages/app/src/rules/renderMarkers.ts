@@ -12,7 +12,17 @@
  * rare doubly-nested formula — is left in the output untouched, verbatim,
  * rather than silently dropped or half-rendered. That keeps a new upstream
  * marker shape diagnosable (it just shows up raw) instead of invisible.
+ *
+ * The generated text follows `lang`: French text carries the very same
+ * markers (about 2,000 checks, 1,600 damage rolls and 700 areas across the
+ * French creature overlays), and rendering them in English left "vous
+ * pouvez tenter un DC 11 flat check" in the middle of French prose. French
+ * reads the way the French rulebooks print it: "test nu DD 11", "jet de
+ * Volonté basique DD 20", "2d6 feu persistant", "cône de 9 m".
  */
+import { damageTypeName } from "./damage.js";
+
+type Lang = "en" | "fr";
 
 /** The marker families this renderer knows how to turn into plain text —
  * the single source for the regex below, and exported so a test can assert
@@ -74,7 +84,29 @@ function titleCase(text: string): string {
 
 const SAVE_TYPES = new Set(["will", "fortitude", "reflex"]);
 
-function renderCheck(parts: string[]): string | null {
+const FR_SAVES: Record<string, string> = { fortitude: "Vigueur", reflex: "Réflexes", will: "Volonté" };
+
+const FR_SKILLS: Record<string, string> = {
+  acrobatics: "Acrobaties", arcana: "Arcanes", athletics: "Athlétisme", crafting: "Artisanat",
+  deception: "Duperie", diplomacy: "Diplomatie", intimidation: "Intimidation", lore: "Connaissance",
+  medicine: "Médecine", nature: "Nature", occultism: "Occultisme", performance: "Représentation",
+  religion: "Religion", society: "Société", stealth: "Discrétion", survival: "Survie",
+  thievery: "Vol", perception: "Perception",
+};
+
+/** "test de Duperie", "test d'Athlétisme" — French elides "de" before a vowel. */
+function frTestOf(name: string): string {
+  return /^[aeiouhéè]/i.test(name) ? `test d'${name}` : `test de ${name}`;
+}
+
+function renderCheckFr(type: string, dc: number | null, basic: boolean): string {
+  const dcPart = dc !== null ? ` DD ${dc}` : "";
+  if (SAVE_TYPES.has(type)) return `jet de ${FR_SAVES[type]}${basic ? " basique" : ""}${dcPart}`;
+  if (type === "flat") return `test nu${dcPart}`;
+  return `${frTestOf(FR_SKILLS[type] ?? titleCase(type))}${dcPart}`;
+}
+
+function renderCheck(parts: string[], lang: Lang): string | null {
   const type = stripTypePrefix((parts[0] ?? "").trim());
   if (type === "") return null;
 
@@ -84,13 +116,20 @@ function renderCheck(parts: string[]): string | null {
     const p = raw.trim();
     if (p === "basic" || p === "basic:true") basic = true;
     else if (p.startsWith("dc:")) {
-      const n = Number(p.slice("dc:".length));
+      const raw = p.slice("dc:".length);
+      // A computed DC (stupefied's `resolve(5+@item.badge.value)`) has no
+      // number to print; the prose around it always states it ("a DC equal
+      // to 5 + your stupefied value"), so it renders as a check with no DC.
+      // Anything else that isn't a number stays visible, as before.
+      if (raw.startsWith("resolve(")) continue;
+      const n = Number(raw);
       if (!Number.isFinite(n)) return null;
       dc = n;
     }
     // options, traits, defense, name, against, showDC — ignored gracefully.
   }
 
+  if (lang === "fr") return renderCheckFr(type, dc, basic);
   const isSave = SAVE_TYPES.has(type);
   const suffix = isSave ? "save" : "check";
   const typeLabel = isSave ? type[0]!.toUpperCase() + type.slice(1) : type === "flat" ? "flat" : titleCase(type);
@@ -102,7 +141,21 @@ function stripEnclosingParens(formula: string): string {
   return formula.startsWith("(") && formula.endsWith(")") ? formula.slice(1, -1).trim() : formula;
 }
 
-function renderDamageComponent(raw: string): string | null {
+const FR_DAMAGE_CATEGORY: Record<string, string> = {
+  persistent: "persistant",
+  splash: "d'éclaboussure",
+  precision: "de précision",
+};
+
+/** French puts the type first and the category after it — "1d6 feu
+ * persistant" where English reads "1d6 persistent fire". */
+function frDamageTags(tags: string[]): string {
+  const types = tags.filter((t) => !(t in FR_DAMAGE_CATEGORY)).map((t) => damageTypeName(t, "fr"));
+  const categories = tags.filter((t) => t in FR_DAMAGE_CATEGORY).map((t) => FR_DAMAGE_CATEGORY[t]!);
+  return [...types, ...categories].join(" ");
+}
+
+function renderDamageComponent(raw: string, lang: Lang): string | null {
   const comp = raw.trim();
   const m = /^(.*)\[([^[\]]*)\]$/.exec(comp);
   if (!m) {
@@ -119,23 +172,33 @@ function renderDamageComponent(raw: string): string | null {
     .map((t) => t.trim())
     .filter((t) => t.length > 0);
   if (tags.length === 0) return null;
-  return `${formula} ${tags.join(" ")}`.trim();
+  return `${formula} ${lang === "fr" ? frDamageTags(tags) : tags.join(" ")}`.trim();
 }
 
-function renderDamage(parts: string[]): string | null {
+function renderDamage(parts: string[], lang: Lang): string | null {
   const formulaPart = (parts[0] ?? "").trim();
   if (formulaPart === "") return null;
   const components = splitTopLevel(formulaPart, ",");
   const rendered: string[] = [];
   for (const comp of components) {
-    const r = renderDamageComponent(comp);
+    const r = renderDamageComponent(comp, lang);
     if (r === null) return null;
     rendered.push(r);
   }
   return rendered.join(" plus ");
 }
 
-function renderTemplate(parts: string[]): string | null {
+const FR_SHAPES: Record<string, string> = {
+  burst: "explosion", cone: "cône", line: "ligne", emanation: "émanation",
+  cube: "cube", square: "carré", cylinder: "cylindre", rect: "rectangle",
+};
+
+/** Feet to the French rulebooks' metres: every 5 feet is 1,5 m. */
+function frMetres(feet: number): string {
+  return `${String(Math.round(feet * 0.3 * 10) / 10).replace(".", ",")} m`;
+}
+
+function renderTemplate(parts: string[], lang: Lang): string | null {
   const shape = stripTypePrefix((parts[0] ?? "").trim());
   if (shape === "") return null;
   let distance: number | null = null;
@@ -148,10 +211,11 @@ function renderTemplate(parts: string[]): string | null {
     }
   }
   if (distance === null) return null;
+  if (lang === "fr") return `${FR_SHAPES[shape] ?? shape} de ${frMetres(distance)}`;
   return `${distance}-foot ${shape}`;
 }
 
-export function renderMarkers(html: string): string {
+export function renderMarkers(html: string, lang: Lang = "en"): string {
   let result = "";
   let i = 0;
   MARKER_START.lastIndex = 0;
@@ -189,9 +253,9 @@ export function renderMarkers(html: string): string {
 
     const parts = splitTopLevel(inner, "|");
     let generated: string | null;
-    if (kind === "Check") generated = renderCheck(parts);
-    else if (kind === "Damage") generated = renderDamage(parts);
-    else generated = renderTemplate(parts);
+    if (kind === "Check") generated = renderCheck(parts, lang);
+    else if (kind === "Damage") generated = renderDamage(parts, lang);
+    else generated = renderTemplate(parts, lang);
 
     if (label !== null) result += label;
     else if (generated !== null) result += generated;

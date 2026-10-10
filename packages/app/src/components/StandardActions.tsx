@@ -1,9 +1,9 @@
 import { useState } from "react";
-import type { Action } from "@pf2/schema";
 import type { FetchFn } from "../data/catalog.js";
-import { useStandardActions } from "../hooks/useStandardActions.js";
+import { useStandardActions, type StandardActionItem } from "../hooks/useStandardActions.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useT, type StringKey } from "../i18n/index.js";
+import { canDelayOrReady, canReact } from "../rules/conditions.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { ActionCard } from "./ActionCard.js";
@@ -68,14 +68,17 @@ export function StandardActions({ combatant, fetchFn }: { combatant: Combatant; 
 
   const remaining = remainingActionsFor(combatant);
 
-  const card = (action: Action, group: string): React.ReactElement => {
-    const key = `${group}:${action.name}`;
+  const card = ({ slug, action }: StandardActionItem): React.ReactElement => {
+    const key = slug;
     const n = action.cost === "1" || action.cost === "2" || action.cost === "3" ? Number(action.cost) : 0;
+    // Confused and Fleeing forbid Ready; Confused (and anything that can't
+    // act) forbids every reaction.
+    const forbidden = slug === "ready" && !canDelayOrReady(combatant.conditions);
     const spec =
       action.cost === "reaction"
-        ? { disabled: combatant.reactionSpent, onUse: () => setReactionSpent(combatant.id, true) }
+        ? { disabled: combatant.reactionSpent || !canReact(combatant.conditions), onUse: () => setReactionSpent(combatant.id, true) }
         : n > 0
-          ? { disabled: n > remaining, onUse: () => spendActions(combatant.id, n) }
+          ? { disabled: forbidden || n > remaining, onUse: () => spendActions(combatant.id, n) }
           : { disabled: false, onUse: undefined };
     return (
       <ActionCard
@@ -91,10 +94,10 @@ export function StandardActions({ combatant, fetchFn }: { combatant: Combatant; 
     );
   };
 
-  const group = (labelKey: StringKey, actions: Action[], id: string): React.ReactElement => (
+  const group = (labelKey: StringKey, items: StandardActionItem[]): React.ReactElement => (
     <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
       <div style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)", marginTop: "4px" }}>{t(labelKey)}</div>
-      {actions.map((a) => card(a, id))}
+      {items.map(card)}
     </div>
   );
 
@@ -103,8 +106,8 @@ export function StandardActions({ combatant, fetchFn }: { combatant: Combatant; 
       <FoldHeading label={t("STANDARD_ACTIONS_HEADING")} open={open} onToggle={() => setOpen((o) => !o)} count={basic.length + skill.length} />
       {open && (
         <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "6px" }}>
-          {basic.length > 0 && group("STANDARD_ACTIONS_BASIC", basic, "basic")}
-          {skill.length > 0 && group("STANDARD_ACTIONS_SKILL", skill, "skill")}
+          {basic.length > 0 && group("STANDARD_ACTIONS_BASIC", basic)}
+          {skill.length > 0 && group("STANDARD_ACTIONS_SKILL", skill)}
         </div>
       )}
     </div>

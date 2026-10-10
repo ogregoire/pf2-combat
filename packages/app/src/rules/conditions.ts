@@ -10,7 +10,9 @@ export type Selector =
   | "reflex"
   | "will"
   | "perception"
-  | "skill";
+  | "skill"
+  /** Spell attack modifiers and spell DCs — the Spells section's. */
+  | "spell";
 
 export type ConditionSlug =
   | "off-guard" | "frightened" | "sickened" | "clumsy" | "enfeebled"
@@ -37,8 +39,9 @@ export interface ConditionDef {
 // "All your checks and DCs" (data/conditions.json, frightened/sickened) — AC
 // is a DC, so it belongs here. An earlier review praised its omission as
 // correct; that was wrong (see task C3).
+// Spell attacks and spell DCs are checks and DCs too ("spell").
 const ALL_CHECKS: Selector[] = [
-  "melee-attack", "ranged-attack", "ac", "fortitude", "reflex", "will", "perception", "skill",
+  "melee-attack", "ranged-attack", "ac", "fortitude", "reflex", "will", "perception", "skill", "spell",
 ];
 
 const status = (value: number, source: string): Modifier => ({
@@ -86,11 +89,14 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   }),
   stupefied: def({
     slug: "stupefied", name: "Stupefied", valued: true,
-    // PF2e stupefied applies to Int/Wis/Cha-based checks and DCs, which
-    // includes Will saves AND Perception checks (Perception uses Wisdom).
-    // The brief's reference implementation scoped this to ["will"] only,
-    // dropping Perception — corrected here; see task-5-report.md.
-    affects: (v) => ({ selectors: ["will", "perception"], mod: status(v, `stupefied ${v}`) }),
+    // "Intelligence-, Wisdom-, and Charisma-based rolls and DCs, including
+    // Will saving throws, spell attack modifiers, spell DCs, and skill
+    // checks that use these attribute modifiers" — Will, Perception
+    // (Wisdom), and spells. Skill checks aren't split by attribute here, so
+    // the skill half isn't modelled. The spell half was missing until the
+    // app showed spells; the flat check to cast (DC 5 + value) is
+    // `stupefiedCastDc` below.
+    affects: (v) => ({ selectors: ["will", "perception", "spell"], mod: status(v, `stupefied ${v}`) }),
   }),
   drained: def({
     slug: "drained", name: "Drained", valued: true,
@@ -540,4 +546,29 @@ export function applyEndOfTurn(
   }
 
   return { conditions, persistentDamage };
+}
+
+/**
+ * Whether a combatant can use a reaction at all, whatever it has left.
+ * Confused says it outright ("you can't Delay, Ready, or use reactions");
+ * Unconscious, Paralyzed and Petrified can't act, and a reaction is an
+ * action. Implied conditions count too (dying -> unconscious).
+ */
+export function canReact(applied: AppliedCondition[]): boolean {
+  const blocking: ConditionSlug[] = ["confused", "unconscious", "paralyzed", "petrified"];
+  return !expandImplied(applied).some((c) => blocking.includes(c.slug));
+}
+
+/** Whether a combatant may Delay or Ready: Confused and Fleeing both say
+ * "you can't Delay or Ready". */
+export function canDelayOrReady(applied: AppliedCondition[]): boolean {
+  return !applied.some((c) => c.slug === "confused" || c.slug === "fleeing");
+}
+
+/** Stupefied: "Any time you attempt to Cast a Spell while stupefied, the
+ * spell is disrupted unless you succeed at a flat check with a DC equal to
+ * 5 + your stupefied value." Null when not stupefied. */
+export function stupefiedCastDc(applied: AppliedCondition[]): number | null {
+  const stupefied = applied.find((c) => c.slug === "stupefied");
+  return stupefied ? 5 + stupefied.value : null;
 }

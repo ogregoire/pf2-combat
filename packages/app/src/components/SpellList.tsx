@@ -1,6 +1,8 @@
 import type { Spellcasting } from "@pf2/schema";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
+import { canReact, conditionModifiers, stupefiedCastDc } from "../rules/conditions.js";
+import { resolveModifiers } from "../rules/modifiers.js";
 import { castsLeft, focusPool, FOCUS_KEY, spellRows, type SpellCost, type SpellRow } from "../rules/spells.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
@@ -139,7 +141,7 @@ function SpellRowView({
         );
       });
     } else if (row.cost.kind === "reaction") {
-      const disabled = exhausted || combatant.reactionSpent;
+      const disabled = exhausted || combatant.reactionSpent || !canReact(combatant.conditions);
       controls = (
         <button type="button" aria-label={format(t("CAST_NAME_ARIA"), { name })} disabled={disabled} onClick={() => cast("reaction")} style={castButtonStyle(disabled)}>
           {t("CAST_BUTTON")}
@@ -209,6 +211,9 @@ export function SpellList({ combatant }: { combatant: Combatant }): React.ReactE
   if (spellcasting.length === 0) return null;
 
   const rows = spellRows(spellcasting);
+  // Frightened, sickened and stupefied all lower spell attacks and DCs.
+  const spellMods = resolveModifiers(conditionModifiers(combatant.conditions, "spell"));
+  const castDc = stupefiedCastDc(combatant.conditions);
   const pool = focusPool(spellcasting);
   const focusLeft = pool - (combatant.spellUses?.[FOCUS_KEY] ?? 0);
   const nameOf = (row: SpellRow): string =>
@@ -221,13 +226,25 @@ export function SpellList({ combatant }: { combatant: Combatant }): React.ReactE
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 14px", marginBottom: "8px", fontSize: "11.5px", color: "var(--text-dim)" }}>
         {spellcasting.map((entry, i) => (
-          <span key={i}>
-            <span style={{ fontWeight: 600 }}>{entryLabel(entry, t)}</span>{" "}
-            {format(t("SPELL_ENTRY_SUMMARY"), { dc: entry.dc, attack: signed(entry.attack) })}
+          <span
+            key={i}
+            title={spellMods.applied.map((m) => `${m.value} ${m.source}`).join(", ") || undefined}
+            style={spellMods.total !== 0 ? { color: "var(--danger)" } : undefined}
+          >
+            <span style={{ fontWeight: 600, color: "var(--text-dim)" }}>{entryLabel(entry, t)}</span>{" "}
+            {format(t("SPELL_ENTRY_SUMMARY"), { dc: entry.dc + spellMods.total, attack: signed(entry.attack + spellMods.total) })}
           </span>
         ))}
         {pool > 0 && <span data-testid="focus-points">{format(t("FOCUS_POINTS_LABEL"), { left: Math.max(0, focusLeft), max: pool })}</span>}
       </div>
+      {castDc !== null && (
+        <div
+          data-testid="stupefied-cast-warning"
+          style={{ marginBottom: "8px", padding: "6px 10px", borderRadius: "4px", background: "var(--danger-bg)", color: "var(--danger)", fontSize: "12px" }}
+        >
+          {format(t("STUPEFIED_CAST_WARNING"), { dc: castDc })}
+        </div>
+      )}
       <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
         {rows.map((row) => (
           <SpellRowView

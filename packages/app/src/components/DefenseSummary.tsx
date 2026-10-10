@@ -1,6 +1,7 @@
 import { useEncounter } from "../state/store.js";
 import { useT } from "../i18n/index.js";
-import { CONDITIONS, dyingMax } from "../rules/conditions.js";
+import { CONDITIONS, conditionModifiers, dyingMax, type Selector } from "../rules/conditions.js";
+import { resolveModifiers } from "../rules/modifiers.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
@@ -107,6 +108,15 @@ function HpBar({
 
 type Save = "fortitude" | "reflex" | "will";
 
+/** A defence as it stands under the combatant's conditions — a confused or
+ * prone target is off-guard (AC −2), a stupefied one has a lower Will save
+ * — with what moved it, for the hover text. The roll assistant already
+ * rolled against the adjusted AC; this list used to show the printed one. */
+function adjusted(combatant: Combatant, selector: Selector): { total: number; why: string } {
+  const result = resolveModifiers(conditionModifiers(combatant.conditions, selector));
+  return { total: result.total, why: result.applied.map((m) => `${m.value} ${m.source}`).join(", ") };
+}
+
 /** The save's full name (hover, screen reader) and its short form (the
  * visible label: "F"/"R"/"W" in English, "Vig"/"Réf"/"Vol" in French, as
  * the French stat blocks print them). Both go through the catalogue — the
@@ -130,11 +140,15 @@ function formatSigned(n: number): string {
  * instead of hover. The letter is bold, the value regular weight, with a
  * tight gap between them (not a full word space) so the pair reads as one
  * unit rather than two words. */
-function SaveUnit({ save, value }: { save: Save; value: number }): React.ReactElement {
+function SaveUnit({ save, value, why = "" }: { save: Save; value: number; why?: string }): React.ReactElement {
   const t = useT();
   const saveName = t(SAVE_KEYS[save].name);
   return (
-    <span title={saveName} aria-label={`${saveName} ${formatSigned(value)}`} style={{ whiteSpace: "nowrap" }}>
+    <span
+      title={why ? `${saveName} (${why})` : saveName}
+      aria-label={`${saveName} ${formatSigned(value)}`}
+      style={{ whiteSpace: "nowrap", color: why ? "var(--danger)" : undefined }}
+    >
       <span style={{ fontWeight: 700 }}>{t(SAVE_KEYS[save].short)}</span>
       <span style={{ marginLeft: "2px" }}>{formatSigned(value)}</span>
     </span>
@@ -143,15 +157,20 @@ function SaveUnit({ save, value }: { save: Save; value: number }): React.ReactEl
 
 /** ", " (a real comma, then a space) between units — not flex gap, which
  * only spaces them apart without the comma the brief asked for. */
-function Saves({ saves }: { saves: Combatant["saves"] }): React.ReactElement {
+function Saves({ combatant }: { combatant: Combatant }): React.ReactElement {
+  const saves = combatant.saves;
   if (saves === null) return <span>—</span>;
+  const unit = (save: Save): React.ReactElement => {
+    const { total, why } = adjusted(combatant, save);
+    return <SaveUnit save={save} value={saves[save] + total} why={why} />;
+  };
   return (
     <span style={{ whiteSpace: "nowrap" }}>
-      <SaveUnit save="fortitude" value={saves.fortitude} />
+      {unit("fortitude")}
       {", "}
-      <SaveUnit save="reflex" value={saves.reflex} />
+      {unit("reflex")}
       {", "}
-      <SaveUnit save="will" value={saves.will} />
+      {unit("will")}
     </span>
   );
 }
@@ -167,12 +186,19 @@ export function DefenseSummary({ combatant }: { combatant: Combatant }): React.R
     <div style={{ display: "flex", flexDirection: "column", gap: "5px", minWidth: 0 }}>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         {combatant.ac !== null ? (
-          <AcShield ac={combatant.ac} size={20} />
+          (() => {
+            const { total, why } = adjusted(combatant, "ac");
+            return (
+              <span title={why || undefined} style={{ display: "inline-flex" }}>
+                <AcShield ac={combatant.ac + total} size={20} />
+              </span>
+            );
+          })()
         ) : (
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>{t("AC_UNKNOWN")}</span>
         )}
         <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)", letterSpacing: "-0.01em" }}>
-          <Saves saves={combatant.saves} />
+          <Saves combatant={combatant} />
         </span>
       </div>
       {combatant.hp !== null && (

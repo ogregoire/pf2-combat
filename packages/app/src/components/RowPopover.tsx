@@ -815,6 +815,26 @@ export function RowPopover({
         </div>
       )}
 
+      {/* Confused: "Each time you take damage from an attack or spell, you
+         can attempt a DC 11 flat check to recover." Raised right where the
+         damage was just applied; the GM knows whether it came from an
+         attack or spell, and ends the condition from here on a success. */}
+      {lastChange && lastChange.delta < 0 && combatant.conditions.some((c) => c.slug === "confused") && (
+        <div
+          data-testid="confused-recovery"
+          style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", padding: "6px 9px", borderRadius: "3px", background: "var(--info-bg)", fontSize: "11.5px", color: "var(--info)" }}
+        >
+          <span style={{ flexGrow: 1 }}>{t("CONFUSED_RECOVERY_PROMPT")}</span>
+          <button
+            type="button"
+            onClick={() => removeCondition(combatantId, "confused")}
+            style={{ fontFamily: "inherit", fontSize: "11px", padding: "3px 8px", borderRadius: "3px", border: "1px solid var(--border-strong)", background: "var(--panel)", color: "var(--info)", cursor: "pointer" }}
+          >
+            {t("CONFUSED_RECOVERED_BUTTON")}
+          </button>
+        </div>
+      )}
+
       <div style={{ borderTop: "1px solid var(--border)", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
         <div style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-faint)" }}>
           {t("ADD_CONDITION_HEADING")}

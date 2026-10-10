@@ -1,4 +1,5 @@
 import { useEncounter } from "../state/store.js";
+import { renderMarkers } from "../rules/renderMarkers.js";
 import { splitTraitValue, stripHtml, type TraitInfo } from "../rules/traitInfo.js";
 
 /**
@@ -26,7 +27,9 @@ export function TraitTag({ trait, glossary }: { trait: string; glossary: Map<str
 
   return (
     <span
-      title={info ? stripHtml(info.description) : undefined}
+      // Markers rendered first: a tooltip used to show raw
+      // `@Check[flat|dc:11]` text, which a `title` can't hide.
+      title={info ? stripHtml(renderMarkers(info.description, lang)) : undefined}
       style={{
         fontSize: "10px",
         letterSpacing: "0.05em",
