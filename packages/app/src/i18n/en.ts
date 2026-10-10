@@ -118,6 +118,8 @@ export const STRINGS_EN = {
   SPENT_BUTTON: "Spent",
   TRIGGER_LABEL: "Trigger",
   PLAYER_REACTION_SPEND_ARIA: "{name} uses their reaction",
+  REACTIONS_USED_HEADING: "USED",
+  REACTION_UNDO_ARIA: "Give {name} their reaction back",
 
   // RollAssistant.tsx
   DEGREE_CRITICAL_SUCCESS: "critical hit",

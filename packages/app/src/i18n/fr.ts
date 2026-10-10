@@ -120,6 +120,8 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   SPENT_BUTTON: "Utilisée",
   TRIGGER_LABEL: "Déclencheur",
   PLAYER_REACTION_SPEND_ARIA: "{name} utilise sa réaction",
+  REACTIONS_USED_HEADING: "UTILISÉES",
+  REACTION_UNDO_ARIA: "Rendre sa réaction à {name}",
 
   // RollAssistant.tsx
   DEGREE_CRITICAL_SUCCESS: "coup critique",

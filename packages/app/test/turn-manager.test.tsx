@@ -282,6 +282,10 @@ describe("TurnManager", () => {
 
     expect(screen.getByText("0 ready")).toBeDefined();
     expect(useEncounter.getState().encounter.combatants[id]!.reactionSpent).toBe(true);
+
+    // A monster's spend can be undone the same way.
+    await user.click(screen.getByRole("button", { name: "Give Akiros Ismort their reaction back" }));
+    expect(screen.getByText("1 ready")).toBeDefined();
   });
 
   describe("players in the ready list", () => {
@@ -319,7 +323,14 @@ describe("TurnManager", () => {
       expect(useEncounter.getState().encounter.combatants[valeria]!.reactionSpent).toBe(true);
       expect(screen.queryByRole("button", { name: "Valeria uses their reaction" })).toBeNull();
 
-      // Valeria's own turn gives it back.
+      // Listed as used, where one click undoes the spend.
+      const usedList = within(screen.getByTestId("reactions-used"));
+      await user.click(usedList.getByRole("button", { name: "Give Valeria their reaction back" }));
+      expect(useEncounter.getState().encounter.combatants[valeria]!.reactionSpent).toBe(false);
+      expect(screen.queryByTestId("reactions-used")).toBeNull();
+
+      // Spent again, Valeria's own turn gives it back.
+      await user.click(screen.getByRole("button", { name: "Valeria uses their reaction" }));
       act(() => useEncounter.getState().nextTurn());
       expect(screen.getByRole("button", { name: "Valeria uses their reaction" })).toBeDefined();
     });

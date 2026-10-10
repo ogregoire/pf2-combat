@@ -93,7 +93,8 @@ function ReadyCombatantCard({
 /** A player who still has a reaction this round: the name alone — the GM
  * doesn't track which reactions the players have, only whether each has
  * used theirs. The whole row is the control: clicking it spends the
- * reaction, which takes the player off the list until their next turn. */
+ * reaction, which moves the player to the used list beneath (where one
+ * more click undoes it) until their next turn. */
 function ReadyPlayerRow({ combatant, onSpend }: { combatant: Combatant; onSpend: () => void }): React.ReactElement {
   const t = useT();
   const label = format(t("PLAYER_REACTION_SPEND_ARIA"), { name: combatant.name });
@@ -119,6 +120,46 @@ function ReadyPlayerRow({ combatant, onSpend }: { combatant: Combatant; onSpend:
       }}
     >
       {combatant.name}
+    </button>
+  );
+}
+
+/** A combatant whose reaction is used: its name with an undo arrow. One
+ * click gives the reaction back — for a mis-click, or a reaction the table
+ * decides didn't happen after all. */
+function UsedReactionChip({ combatant, onUndo }: { combatant: Combatant; onUndo: () => void }): React.ReactElement {
+  const t = useT();
+  const lang = useEncounter((s) => s.lang);
+  const i18n = useCombatantI18n(combatant);
+  const name = resolveCreatureName(combatant.name, i18n, lang);
+  const label = format(t("REACTION_UNDO_ARIA"), { name });
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      onClick={onUndo}
+      style={{
+        fontFamily: "inherit",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "5px",
+        fontSize: "11.5px",
+        color: "var(--text-dim)",
+        padding: "3px 8px",
+        borderRadius: "3px",
+        border: "1px solid var(--border)",
+        background: "var(--panel)",
+        textDecoration: "line-through",
+        cursor: "pointer",
+      }}
+    >
+      {name}
+      {/* A counter-clockwise arrow: undo. */}
+      <svg width="11" height="11" viewBox="0 0 16 16" aria-hidden="true" style={{ flexShrink: 0 }}>
+        <path d="M5 3 2 6l3 3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2.5 6H10a4 4 0 0 1 0 8H7" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
     </button>
   );
 }
@@ -165,6 +206,11 @@ export function ReactionWatch({ fetchFn }: { fetchFn?: FetchFn } = {}): React.Re
   const readyPlayers = available.filter((c) => c.kind === "pc");
   const readyMonsters = available.filter((c) => c.kind === "creature" && c.reactions.length > 0);
   const readyCount = readyPlayers.length + readyMonsters.length;
+  // Who has used their reaction since their last turn — listed under the
+  // ready ones so a mis-click can be taken back, one click each.
+  const used = Object.values(combatants)
+    .filter((c) => !c.defeated && c.reactionSpent && !delayedIds.has(c.id) && (c.kind === "pc" || c.reactions.length > 0))
+    .sort((a, b) => (a.kind === b.kind ? compareStrings(a.name, b.name) : a.kind === "pc" ? -1 : 1));
 
   return (
     <div
@@ -209,6 +255,19 @@ export function ReactionWatch({ fetchFn }: { fetchFn?: FetchFn } = {}): React.Re
             glossary={glossary}
           />
         ))}
+
+        {used.length > 0 && (
+          <div data-testid="reactions-used" style={{ marginTop: "6px", flexShrink: 0 }}>
+            <div style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)", marginBottom: "6px" }}>
+              {t("REACTIONS_USED_HEADING")}
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+              {used.map((c) => (
+                <UsedReactionChip key={c.id} combatant={c} onUndo={() => setReactionSpent(c.id, false)} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
