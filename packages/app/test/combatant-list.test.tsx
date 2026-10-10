@@ -31,16 +31,16 @@ function loadCreatureIwr(relPath: string): Iwr {
 describe("CombatantList", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("shows initiative, name, HP, AC and saves", () => {
+  // The list says whose turn it is and in what order; HP, AC and saves
+  // belong to the roll assistant's target picker, not the rows.
+  it("shows initiative and name, and no HP, AC or saves", () => {
     useEncounter.getState().addCombatant(seed(), 19);
     render(<CombatantList />);
     expect(screen.getByText("19")).toBeDefined();
     expect(screen.getByText("Stag Lord Bandit")).toBeDefined();
-    expect(screen.getByText("16/16")).toBeDefined();
-    expect(screen.getByText(/AC 15/)).toBeDefined();
-    expect(screen.getByTitle("Fortitude").textContent).toBe("F+6");
-    expect(screen.getByTitle("Reflex").textContent).toBe("R+7");
-    expect(screen.getByTitle("Will").textContent).toBe("W+4");
+    expect(screen.queryByText("16/16")).toBeNull();
+    expect(screen.queryByText(/AC 15/)).toBeNull();
+    expect(screen.queryByTitle("Fortitude")).toBeNull();
   });
 
   it("renders condition chips", () => {
@@ -972,8 +972,8 @@ describe("CombatantList", () => {
     useEncounter.getState().addCombatant(seed({ name: "Follower" }), 10);
     render(<CombatantList />);
 
-    const activeRow = screen.getByRole("button", { name: "Target Leader" });
-    const otherRow = screen.getByRole("button", { name: "Target Follower" });
+    const activeRow = screen.getByRole("group", { name: "Leader" });
+    const otherRow = screen.getByRole("group", { name: "Follower" });
 
     expect(activeRow.getAttribute("data-active")).toBe("true");
     expect(otherRow.getAttribute("data-active")).toBe("false");
@@ -985,7 +985,7 @@ describe("CombatantList", () => {
     useEncounter.getState().setTarget(id);
     render(<CombatantList />);
 
-    const row = screen.getByRole("button", { name: "Target Leader" });
+    const row = screen.getByRole("group", { name: "Leader" });
     expect(row.getAttribute("data-active")).toBe("true");
     expect(row.getAttribute("data-targeted")).toBe("true");
     // Two layered shadows, not one replacing the other.
@@ -1004,8 +1004,8 @@ describe("CombatantList", () => {
       useEncounter.getState().addCombatant(seed({ name: "Unrolled" }), null);
       const { container } = render(<CombatantList />);
 
-      expect(screen.getByRole("button", { name: "Target Unrolled" }).getAttribute("draggable")).not.toBe("true");
-      expect(screen.getByRole("button", { name: "Target Rolled" }).getAttribute("draggable")).toBe("true");
+      expect(screen.getByRole("group", { name: "Unrolled" }).getAttribute("draggable")).not.toBe("true");
+      expect(screen.getByRole("group", { name: "Rolled" }).getAttribute("draggable")).toBe("true");
       expect(container.querySelectorAll('[draggable="true"]')).toHaveLength(2);
 
       // The grip that invites the gesture goes with it — but its box stays,
@@ -1154,7 +1154,7 @@ describe("CombatantList", () => {
       render(<CombatantList />);
 
       const draggable = (name: string) =>
-        screen.getByRole("button", { name: `Target ${name}` }).getAttribute("draggable");
+        screen.getByRole("group", { name }).getAttribute("draggable");
       expect(draggable("Unrolled")).toBeNull();
       expect(draggable("Lone")).toBeNull(); // no tie: nowhere else to be
       expect(draggable("Wolf")).toBeNull(); // the only creature of its tie: always first
@@ -1429,7 +1429,7 @@ describe("dragging a row (the empty slot and the drop)", () => {
   function drop(target: HTMLElement, dt: ReturnType<typeof dataTransfer>): void {
     fireEvent.drop(target, { dataTransfer: dt });
   }
-  const rowOf = (name: string) => screen.getByRole("button", { name: `Target ${name}` });
+  const rowOf = (name: string) => screen.getByRole("group", { name });
 
   it("replaces the dragged row with an empty slot that moves to where the drop would land", async () => {
     useEncounter.getState().addCombatant(pc("Valeria"), 15);

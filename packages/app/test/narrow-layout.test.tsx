@@ -146,7 +146,7 @@ describe("EncounterScreen narrow layout", () => {
     expect(useEncounter.getState().encounter.combatants[id]!.hp!.current).toBe(15);
   });
 
-  it("targets through the popover's explicit Target control, not the row tap, on a narrow screen", async () => {
+  it("targets from the Active tab's picker, not from the row or its popover, on a narrow screen", async () => {
     const user = userEvent.setup();
     stubMatchMedia(true);
     add("Alpha", 20);
@@ -155,11 +155,15 @@ describe("EncounterScreen narrow layout", () => {
 
     const list = within(screen.getByTestId("combatant-list"));
     await user.click(list.getByText("Bandit"));
-    // Tapping the row only opens its popover — it must not also set the
-    // target the way the desktop row-click does.
+    // Tapping the row only opens its popover, which carries no Target
+    // control any more.
     expect(useEncounter.getState().encounter.targetId).toBeNull();
+    expect(screen.queryByRole("button", { name: "Target" })).toBeNull();
+    await user.click(screen.getByRole("button", { name: "Close" }));
 
-    await user.click(screen.getByRole("button", { name: "Target" }));
+    await user.click(screen.getByRole("tab", { name: "Active" }));
+    await user.click(screen.getByRole("button", { name: "Select a target" }));
+    await user.click(screen.getByRole("button", { name: "Target Bandit" }));
     expect(useEncounter.getState().encounter.targetId).not.toBeNull();
   });
 

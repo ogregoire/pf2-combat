@@ -117,6 +117,30 @@ describe("RollAssistant", () => {
     expect(screen.queryByText("1d20 + 9")).toBeNull();
   });
 
+  it("lists only living, non-attacking combatants in the target picker", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().addCombatant(stagLord, 19);
+    useEncounter.getState().addCombatant(target, 15);
+    const fallen = useEncounter.getState().addCombatant({ ...stagLord, name: "Fallen", hp: { current: 5, max: 5 } }, 10);
+    useEncounter.getState().applyDamage(fallen, 5);
+    render(<ActiveCombatant />);
+
+    await user.click(screen.getByRole("button", { name: "Select a target" }));
+    const picker = within(screen.getByRole("group", { name: "Choose a target" }));
+    expect(picker.getAllByRole("button", { name: /^Target / }).map((b) => b.getAttribute("aria-label"))).toEqual([
+      "Target Valeria",
+    ]);
+  });
+
+  // The centre pane is what the active combatant can do; its AC, HP and
+  // saves are the defensive side and are not shown there.
+  it("shows no defences strip for the active combatant", () => {
+    useEncounter.getState().addCombatant(stagLord, 19);
+    render(<ActiveCombatant />);
+    expect(screen.queryByText("HIT POINTS")).toBeNull();
+    expect(screen.queryByText("FORTITUDE")).toBeNull();
+  });
+
   it("prompts for a target when none is selected", () => {
     useEncounter.getState().addCombatant(stagLord, 19);
     render(<ActiveCombatant />);

@@ -559,8 +559,8 @@ describe("creatures render in French", () => {
 
     render(<CombatantList />);
 
-    expect(screen.getByRole("button", { name: /Seigneur Cerf/ })).toBeTruthy();
-    expect(screen.queryByRole("button", { name: /The Stag Lord/ })).toBeNull();
+    expect(screen.getByRole("group", { name: /Seigneur Cerf/ })).toBeTruthy();
+    expect(screen.queryByRole("group", { name: /The Stag Lord/ })).toBeNull();
   });
 
   it("names the combatant in French in the popover's own header and its Remove button's aria-label", async () => {

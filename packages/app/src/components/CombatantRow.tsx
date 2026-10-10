@@ -2,12 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
-import { CONDITIONS, dyingMax } from "../rules/conditions.js";
-import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
-import { compareLocalized } from "../rules/compare.js";
+import { ConditionChips } from "./DefenseSummary.js";
 import { RowPopover } from "./RowPopover.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
-import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import type { Combatant } from "../state/types.js";
 
@@ -21,7 +18,6 @@ export interface RowDrag {
   hidden: boolean;
 }
 
-const HP_TRACK = "var(--hp-track)";
 const GROUP_BG = "var(--info-bg)";
 // Deliberately not the gold --turn hue (ACTIVE_* below) — the GM must tell "active" and "targeted" apart at a
 // glance, and they are frequently different combatants.
@@ -46,65 +42,38 @@ function combinedRing(active: boolean, targeted: boolean): string {
   return layers.length > 0 ? layers.join(", ") : "none";
 }
 
-/** Handles both the click-to-target toggle and Enter/Space activation, since
- * every row is now a keyboard-reachable target picker, not a bare div — on
- * desktop. On a narrow screen the row's tap instead opens the popover
- * (`onTap`): there's no hover there, so tapping is the only way in, and the
- * row's click can't do both jobs at once. Targeting moves into an explicit
- * "Target" control inside the popover (RowPopover) in that case, which is
- * why this becomes a disclosure control (aria-expanded) rather than a
- * pressed toggle (aria-pressed) when narrow. */
-function targetRowProps(
+/** On a narrow screen there's no hover, so the row's tap is the only way
+ * into its popover: the row becomes a disclosure control (aria-expanded).
+ * On desktop the popover opens on hover and the row itself does nothing on
+ * click — targeting lives in the roll assistant's target picker, not here. */
+function rowProps(
   displayName: string,
-  targeted: boolean,
-  onToggleTarget: () => void,
   narrow: boolean,
   open: boolean,
   onTap: () => void,
   t: (key: StringKey) => string,
-): {
-  role: "button";
-  tabIndex: number;
-  "aria-pressed"?: boolean;
-  "aria-expanded"?: boolean;
-  "aria-label": string;
-  onClick: () => void;
-  onKeyDown: (e: React.KeyboardEvent) => void;
-} {
-  if (narrow) {
-    return {
-      role: "button",
-      tabIndex: 0,
-      "aria-expanded": open,
-      "aria-label": format(t("SHOW_ACTIONS_ARIA"), { name: displayName }),
-      onClick: onTap,
-      onKeyDown: (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onTap();
-        }
-      },
-    };
-  }
+): React.HTMLAttributes<HTMLDivElement> {
+  // Not interactive on desktop, but still named, so assistive tech (and
+  // tests) can tell one row from another.
+  if (!narrow) return { role: "group", "aria-label": displayName };
   return {
     role: "button",
     tabIndex: 0,
-    "aria-pressed": targeted,
-    "aria-label": format(t("TARGET_NAME_ARIA"), { name: displayName }),
-    onClick: onToggleTarget,
+    "aria-expanded": open,
+    "aria-label": format(t("SHOW_ACTIONS_ARIA"), { name: displayName }),
+    onClick: onTap,
     onKeyDown: (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        onToggleTarget();
+        onTap();
       }
     },
   };
 }
 
 /** The multi-select checkbox that feeds CombatantList's group builder.
- * Rendered inside the row's own click-to-target div, so its own click (and
- * the label click that would otherwise re-trigger it) must not bubble up
- * and toggle the target instead. */
+ * Rendered inside the row, which opens its popover on tap when narrow, so
+ * its own click must not bubble up and open the popover too. */
 function SelectCheckbox({
   name,
   checked,
@@ -131,8 +100,7 @@ function SelectCheckbox({
  * is still the `draggable` element (so the browser's drag image is the
  * row, not this glyph); CombatantList cancels any dragstart whose
  * mousedown did not land on a `data-drag-handle`. `cursor: grab` lives
- * here rather than on the row so the rest of the row keeps its
- * click-to-target pointer cursor.
+ * here rather than on the row, so only the grip reads as draggable.
  *
  * `enabled: false` hides the glyph but keeps its box, so a row that can't
  * be dragged (an unrolled one — see `canDrag`) doesn't pull its initiative
@@ -142,7 +110,7 @@ export function DragGrip({ enabled }: { enabled: boolean }): React.ReactElement 
     <span
       aria-hidden="true"
       data-drag-handle={enabled ? "" : undefined}
-      // A mousedown here must not reach the row's click-to-target.
+      // A tap here must not reach the row's tap-to-open (narrow).
       onClick={(e) => e.stopPropagation()}
       style={{
         flexShrink: 0,
@@ -158,151 +126,14 @@ export function DragGrip({ enabled }: { enabled: boolean }): React.ReactElement 
   );
 }
 
-function hpColor(current: number, max: number): string {
-  if (max <= 0) return "var(--text-faint)";
-  const ratio = current / max;
-  if (ratio >= 1) return "var(--ok)";
-  if (ratio <= 0.25) return "var(--danger)";
-  return "var(--text-dim)";
-}
-
-/**
- * Dying is the one condition whose value is measured against a threshold:
- * reaching `dyingMax` (4, less the doomed value) is death, so the chip shows
- * "DYING 2/3" rather than a bare "DYING 2". Without the cap, a PC one point
- * from dead looks exactly like one three points away, and the row flips
- * silently to DEFEATED — the cap was computed in the store and rendered
- * nowhere, which is why it needs the whole condition list here and not just
- * this condition's own value: the number comes from doomed.
- *
- * Every other valued condition keeps its plain value; none of them has a
- * ceiling that means anything.
- */
-function conditionLabel(
-  c: Combatant["conditions"][number],
-  conditions: Combatant["conditions"],
-  glossary: Map<string, TraitInfo>,
-  lang: "en" | "fr",
-): string {
-  const def = CONDITIONS[c.slug];
-  const name = conditionDisplayName(c.slug, glossary, lang).toUpperCase();
-  if (!def.valued) return name;
-  if (c.slug === "dying") return `${name} ${c.value}/${dyingMax(conditions)}`;
-  return `${name} ${c.value}`;
-}
-
-/** Same French condition name RowPopover's own picker/chip resolve
- * (`conditionDisplayName`, shared via rules/traitInfo.js) — otherwise a
- * combatant could show "FRIGHTENED 2" here and "EFFRAYÉ 2" the moment its
- * popover opens, two languages for the one applied condition at once. */
-function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactElement | null {
-  const lang = useEncounter((s) => s.lang);
-  const glossary = useTraitGlossary();
-  if (combatant.conditions.length === 0) return null;
-  // Alphabetical in the displayed language, same rule and same
-  // `compareLocalized` mechanism as RowPopover's own applied-condition
-  // group — this is the row's own always-visible rendering of the identical
-  // `combatant.conditions` data (the GM reads this one across the whole
-  // list without opening any popover), so it gets the same fix rather than
-  // staying in insertion order.
-  const sorted = [...combatant.conditions].sort((a, b) =>
-    compareLocalized(conditionDisplayName(a.slug, glossary, lang), conditionDisplayName(b.slug, glossary, lang), lang),
-  );
-  return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginTop: "5px" }}>
-      {sorted.map((c) => (
-        <span
-          key={c.slug}
-          style={{
-            fontSize: "10px",
-            letterSpacing: "0.04em",
-            padding: "1px 5px",
-            borderRadius: "2px",
-            background: "var(--cond-bg)",
-            color: "var(--cond)",
-          }}
-        >
-          {conditionLabel(c, combatant.conditions, glossary, lang)}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function HpBar({
-  current,
-  max,
-  width,
-  height = 5,
-}: {
-  current: number;
-  max: number;
-  /** Fixed width, per Main.dc.html's grouped-member bars (`width: 46px`).
-   * Omit it to grow and fill the row instead, per Main.dc.html's
-   * standalone-row bar (`flex-grow: 1`) — the bar yields space to the
-   * `{current}/{max}` number beside it rather than demanding the full
-   * line and shoving that number into the AC/saves column. */
-  width?: string;
-  height?: number;
-}): React.ReactElement {
-  const pct = max > 0 ? Math.min(100, Math.max(0, (current / max) * 100)) : 0;
-  const sizing =
-    width !== undefined ? { width, flexShrink: 0 } : { flexGrow: 1, flexShrink: 1, minWidth: 0 };
-  return (
-    <div style={{ ...sizing, height: `${height}px`, borderRadius: "3px", background: HP_TRACK, overflow: "hidden" }}>
-      <div style={{ width: `${pct}%`, height: "100%", background: hpColor(current, max) }} />
-    </div>
-  );
-}
-
 function levelLabel(combatant: Combatant, t: (key: StringKey) => string): string {
   return combatant.kind === "pc" ? `${t("PC_PREFIX")} ${combatant.level}` : `${combatant.level}`;
 }
 
-const SAVE_NAME_KEYS = { F: "LABEL_FORTITUDE", R: "LABEL_REFLEX", W: "LABEL_WILL" } as const;
-
-/** Programmatic, not a concatenated literal "+", so a zero or negative save
- * (none exist in the dataset today, but nothing here should assume that
- * stays true) still renders correctly. */
-function formatSigned(n: number): string {
-  return n >= 0 ? `+${n}` : `${n}`;
-}
-
-/** One "F +6" unit: `title` names the save on hover (works without any JS
- * state, per the brief) and `aria-label` gives it an accessible name that
- * includes the signed value too, for anyone relying on a screen reader
- * instead of hover. The letter is bold, the value regular weight, with a
- * tight gap between them (not a full word space) so the pair reads as one
- * unit rather than two words. */
-function SaveUnit({ letter, value }: { letter: keyof typeof SAVE_NAME_KEYS; value: number }): React.ReactElement {
-  const t = useT();
-  const saveName = t(SAVE_NAME_KEYS[letter]);
-  return (
-    <span title={saveName} aria-label={`${saveName} ${formatSigned(value)}`} style={{ whiteSpace: "nowrap" }}>
-      <span style={{ fontWeight: 700 }}>{letter}</span>
-      <span style={{ marginLeft: "2px" }}>{formatSigned(value)}</span>
-    </span>
-  );
-}
-
-/** ", " (a real comma, then a space) between units — not flex gap, which
- * only spaces them apart without the comma the brief asked for. */
-function Saves({ saves }: { saves: Combatant["saves"] }): React.ReactElement {
-  if (saves === null) return <span>—</span>;
-  return (
-    <span style={{ whiteSpace: "nowrap" }}>
-      <SaveUnit letter="F" value={saves.fortitude} />
-      {", "}
-      <SaveUnit letter="R" value={saves.reflex} />
-      {", "}
-      <SaveUnit letter="W" value={saves.will} />
-    </span>
-  );
-}
-
-/** Standalone anatomy (ungrouped combatants and PCs): initiative, name, HP
- * bar with current/max, AC + the three saves right-aligned in mono,
- * condition chips beneath. Matches Main.dc.html's non-grouped rows. */
+/** Standalone anatomy (ungrouped combatants and PCs): initiative, name and
+ * level, condition chips beneath. The list says whose turn it is and in what
+ * order; HP, AC and saves are the defensive side and live in the roll
+ * assistant's target picker (DefenseSummary), not here. */
 function StandaloneRow({
   combatant,
   initiative,
@@ -310,7 +141,6 @@ function StandaloneRow({
   initiativeBeforeDelay,
   active,
   targeted,
-  onToggleTarget,
   narrow,
   open,
   onTap,
@@ -324,7 +154,6 @@ function StandaloneRow({
   initiativeBeforeDelay: number | null;
   active: boolean;
   targeted: boolean;
-  onToggleTarget: () => void;
   narrow: boolean;
   open: boolean;
   onTap: () => void;
@@ -353,7 +182,7 @@ function StandaloneRow({
 
   return (
     <div
-      {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}
+      {...rowProps(displayName, narrow, open, onTap, t)}
       {...(drag?.props ?? {})}
       data-active={active}
       data-targeted={targeted}
@@ -367,7 +196,7 @@ function StandaloneRow({
         background: active ? ACTIVE_BG : "var(--panel-raised)",
         opacity: combatant.defeated ? 0.42 : 1,
         boxShadow: combinedRing(active, targeted),
-        cursor: "pointer",
+        cursor: narrow ? "pointer" : "default",
       }}
     >
       <SelectCheckbox name={displayName} checked={selected} onToggle={onToggleSelect} />
@@ -414,61 +243,25 @@ function StandaloneRow({
           <span style={{ fontSize: "11px", color: "var(--text-faint)" }}>{levelLabel(combatant, t)}</span>
         </div>
 
-        {!combatant.defeated && combatant.hp !== null && (
-          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "5px" }}>
-            <HpBar current={combatant.hp.current} max={combatant.hp.max} />
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "11px",
-                color: "var(--text-dim)",
-                flexShrink: 0,
-                whiteSpace: "nowrap",
-              }}
-            >
-              {combatant.hp.current}/{combatant.hp.max}
-            </span>
-          </div>
-        )}
-
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
       </div>
 
-      {combatant.defeated ? (
+      {combatant.defeated && (
         <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{t("DEFEATED_BADGE")}</span>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-            gap: "2px",
-            fontFamily: "var(--font-mono)",
-            fontSize: "11px",
-          }}
-        >
-          <span style={{ color: "var(--text)" }}>{combatant.ac !== null ? `${t("LABEL_AC")} ${combatant.ac}` : "—"}</span>
-          <span style={{ color: "var(--text-faint)", letterSpacing: "-0.01em" }}>
-            <Saves saves={combatant.saves} />
-          </span>
-        </div>
       )}
     </div>
   );
 }
 
-/** Grouped-member anatomy, matching Main.dc.html's indented group rows: the
- * HP bar beside the name (not stacked below it), and AC only — no saves;
- * those only fit next to a standalone row's stacked initiative/AC column,
- * and the mockup omits them for members. No per-row initiative either —
- * it's shared on the GroupHeader. The left border in the group's colour
+/** Grouped-member anatomy, matching Main.dc.html's indented group rows: name,
+ * level and conditions, like a standalone row but with no per-row initiative
+ * — it's shared on the GroupHeader. The left border in the group's colour
  * belongs to the group wrapper (CombatantList.tsx), not each member row —
  * the mockup only draws it once. */
 function GroupMemberRow({
   combatant,
   active,
   targeted,
-  onToggleTarget,
   narrow,
   open,
   onTap,
@@ -478,7 +271,6 @@ function GroupMemberRow({
   combatant: Combatant;
   active: boolean;
   targeted: boolean;
-  onToggleTarget: () => void;
   narrow: boolean;
   open: boolean;
   onTap: () => void;
@@ -491,7 +283,7 @@ function GroupMemberRow({
   const displayName = resolveCreatureName(combatant.name, i18n, lang);
   return (
     <div
-      {...targetRowProps(displayName, targeted, onToggleTarget, narrow, open, onTap, t)}
+      {...rowProps(displayName, narrow, open, onTap, t)}
       data-active={active}
       data-targeted={targeted}
       style={{
@@ -503,7 +295,7 @@ function GroupMemberRow({
         background: active ? ACTIVE_BG : GROUP_BG,
         opacity: combatant.defeated ? 0.42 : 1,
         boxShadow: combinedRing(active, targeted),
-        cursor: "pointer",
+        cursor: narrow ? "pointer" : "default",
       }}
     >
       <SelectCheckbox name={displayName} checked={selected} onToggle={onToggleSelect} />
@@ -518,46 +310,8 @@ function GroupMemberRow({
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
       </div>
 
-      {combatant.defeated ? (
+      {combatant.defeated && (
         <span style={{ fontSize: "9.5px", letterSpacing: "0.06em", color: "var(--text-faint)" }}>{t("DEFEATED_BADGE")}</span>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            flexGrow: 1,
-            minWidth: 0,
-          }}
-        >
-          {combatant.hp !== null && (
-            <>
-              <HpBar current={combatant.hp.current} max={combatant.hp.max} />
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
-                  color: "var(--text-dim)",
-                  flexShrink: 0,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {combatant.hp.current}/{combatant.hp.max}
-              </span>
-            </>
-          )}
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              color: "var(--text-faint)",
-              flexShrink: 0,
-              whiteSpace: "nowrap",
-            }}
-          >
-            {combatant.ac !== null ? `${t("LABEL_AC")} ${combatant.ac}` : "—"}
-          </span>
-        </div>
       )}
     </div>
   );
@@ -606,7 +360,6 @@ export function CombatantRow({
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const combatant = useEncounter((s) => s.encounter.combatants[id]);
   const targetId = useEncounter((s) => s.encounter.targetId);
-  const setTarget = useEncounter((s) => s.setTarget);
   const narrow = useMediaQuery(NARROW_LAYOUT_QUERY);
 
   useEffect(() => () => {
@@ -633,13 +386,9 @@ export function CombatantRow({
 
   if (!combatant) return null;
 
-  // mockups/TurnAssistant.dc.html: "click any combatant to retarget".
-  // Clicking the current target again clears it, so the GM can deselect.
-  // On desktop this is still the row's own click; on narrow the row's tap
-  // opens the popover instead (below), so RowPopover exposes this same
-  // toggle as an explicit "Target" control there.
+  // Targeting is chosen in the roll assistant's target picker; the row only
+  // shows the ring, so the GM can still find the target in the order.
   const targeted = targetId === id;
-  const toggleTarget = (): void => setTarget(targeted ? null : id);
 
   // The pointer moving from the row's name onto a control inside the
   // popover is a single continuous hover as far as the user is concerned,
@@ -691,7 +440,6 @@ export function CombatantRow({
           combatant={combatant}
           active={active}
           targeted={targeted}
-          onToggleTarget={toggleTarget}
           narrow={narrow}
           open={tapOpen}
           onTap={onTap}
@@ -706,7 +454,6 @@ export function CombatantRow({
           initiativeBeforeDelay={initiativeBeforeDelay}
           active={active}
           targeted={targeted}
-          onToggleTarget={toggleTarget}
           narrow={narrow}
           open={tapOpen}
           onTap={onTap}
@@ -721,8 +468,6 @@ export function CombatantRow({
           combatantId={id}
           narrow={narrow}
           anchor={anchor}
-          targeted={targeted}
-          onToggleTarget={toggleTarget}
           onClose={closeTapPopover}
         />
       )}

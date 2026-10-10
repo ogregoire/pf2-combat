@@ -6,8 +6,8 @@ import { useT } from "../i18n/index.js";
  * stat, so the label needs no translation — but the accessible name keeps
  * the localised "AC 25" so a screen reader (and a test) still reads it.
  *
- * Only RollAssistant's target box uses it so far; the stat block header,
- * the list rows and the popover still spell the label out.
+ * DefenseSummary (the target picker and target box) uses it; the
+ * popover and the add screens still spell the label out.
  */
 export function AcShield({ ac, size = 28 }: { ac: number; size?: number }): React.ReactElement {
   const t = useT();

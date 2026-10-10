@@ -179,7 +179,7 @@ describe("EncounterScreen", () => {
     expect(next.style.background).toBe("var(--turn-bg)");
   });
 
-  it("selects a target by clicking a combatant row and reaches the roll assistant", async () => {
+  it("selects a target from the roll assistant's picker, which lists each candidate's defences", async () => {
     const user = userEvent.setup();
     useEncounter.getState().addCombatant(
       { kind: "creature", name: "Archer", level: 1, ac: 15,
@@ -197,27 +197,38 @@ describe("EncounterScreen", () => {
     );
     render(<EncounterScreen />);
 
-    // Archer is active with no target yet — the roll assistant is stuck on
-    // its placeholder, which is exactly the gap the reviewer caught.
-    expect(screen.getByText(/select a target/i)).toBeDefined();
-
-    // Bandit is not the active combatant, so its name is unambiguous — click
-    // its row (not a hover) to set it as the target.
+    // Clicking a row in the initiative list no longer targets anything —
+    // targeting lives in the roll assistant.
     const list = within(screen.getByTestId("combatant-list"));
     await user.click(list.getByText("Bandit"));
+    expect(useEncounter.getState().encounter.targetId).toBeNull();
+
+    // Archer is active with no target yet: the picker's button stands in for
+    // the assistant. Opening it lists Bandit with its defences, and never the
+    // attacker itself.
+    await user.click(screen.getByRole("button", { name: "Select a target" }));
+    const picker = within(screen.getByRole("group", { name: "Choose a target" }));
+    expect(picker.queryByRole("button", { name: "Target Archer" })).toBeNull();
+    const bandit = within(picker.getByRole("button", { name: "Target Bandit" }));
+    expect(bandit.getByRole("img", { name: "AC 17" })).toBeDefined();
+    expect(bandit.getByText("16/16")).toBeDefined();
+    expect(bandit.getByTitle("Fortitude").textContent).toBe("F+5");
+
+    await user.click(picker.getByRole("button", { name: "Target Bandit" }));
+    expect(screen.queryByRole("group", { name: "Choose a target" })).toBeNull();
 
     await user.click(screen.getByRole("button", { name: /Shortbow/ }));
-
-    expect(screen.queryByText(/select a target/i)).toBeNull();
     expect(screen.getByText("1d20 + 8")).toBeDefined();
-    // The target box draws the AC as a number in a shield (AcShield), whose
-    // accessible name is the localised "AC 17" — the text itself appears
-    // only as the roll box's "vs AC 17" and in Bandit's own list row.
     expect(within(screen.getByTestId("active-combatant")).getByRole("img", { name: "AC 17" })).toBeDefined();
 
-    // Clicking the same row again clears the target.
-    await user.click(list.getByText("Bandit"));
-    expect(screen.getByText(/select a target/i)).toBeDefined();
+    // Change reopens the picker; Cancel keeps the target.
+    await user.click(screen.getByRole("button", { name: "Change" }));
+    await user.click(screen.getByRole("button", { name: "Cancel" }));
+    expect(screen.getByText("1d20 + 8")).toBeDefined();
+
+    // Clearing goes back to the picker's button.
+    await user.click(screen.getByRole("button", { name: "Clear target" }));
+    expect(screen.getByRole("button", { name: "Select a target" })).toBeDefined();
   });
 
   describe("the add-a-creature loop, against injected fake fetches", () => {

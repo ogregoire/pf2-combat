@@ -53,7 +53,8 @@ describe("chrome copy in French", () => {
     render(<RollAssistant combatant={combatant} target={target} attack={attack} />);
 
     expect(screen.getByText("CIBLE")).toBeDefined();
-    expect(screen.getByText("cliquez sur un combattant pour recibler")).toBeDefined();
+    expect(screen.getByRole("button", { name: "Changer" })).toBeDefined();
+    expect(screen.getByRole("button", { name: "Retirer la cible" })).toBeDefined();
     expect(screen.getByText("touché")).toBeDefined();
     expect(screen.getByText("coup critique")).toBeDefined();
     expect(screen.getByText("raté")).toBeDefined();

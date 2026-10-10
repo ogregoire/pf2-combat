@@ -224,23 +224,19 @@ function clampShellTop(desiredTop: number, panelHeight: number, viewportHeight: 
  * The row popover. On desktop it's the hover popover: rendered by
  * CombatantRow while the pointer is inside the row-plus-popover wrapper —
  * see CombatantRow for the mouseenter/mouseleave handling that keeps it open
- * across the gap. `narrow`/`targeted`/`onToggleTarget`/`onClose` are all
- * unused there (and default away) so that call site's behaviour is
- * unchanged.
+ * across the gap. `narrow`/`onClose` are both unused there (and default
+ * away).
  *
  * On a narrow screen there's no hover, so CombatantRow instead opens this on
- * tap and passes `narrow`. The row's own click no longer sets the target
- * there (see CombatantRow — a tap opens this popover instead), so the
- * popover carries an explicit Target control in its place; a full-screen
- * backdrop behind the panel is what "tap elsewhere" dismisses against, and
- * doubles as `onClose` for the panel's own Close button.
+ * tap and passes `narrow`; a full-screen backdrop behind the panel is what
+ * "tap elsewhere" dismisses against, and doubles as `onClose` for the
+ * panel's own Close button. Targeting is not here on either layout — it is
+ * the roll assistant's target picker.
  */
 export function RowPopover({
   combatantId,
   narrow = false,
   anchor = null,
-  targeted = false,
-  onToggleTarget,
   onClose,
 }: {
   combatantId: string;
@@ -250,8 +246,6 @@ export function RowPopover({
    * so it has no layout relationship to the row and must be placed from a
    * measurement. Null before the first measurement. */
   anchor?: DOMRect | null;
-  targeted?: boolean;
-  onToggleTarget?: () => void;
   onClose?: () => void;
 }): React.ReactElement | null {
   const t = useT();
@@ -525,36 +519,13 @@ export function RowPopover({
   const panel = (
     <div
       ref={panelRef}
-      // The row beneath this popover is click-to-target on desktop. The
-      // popover isn't a DOM descendant of the row (CombatantRow renders it
-      // as a sibling), so a click here wouldn't reach the row's handler
-      // anyway — stopping propagation here is defensive, per the brief,
-      // against that structure ever changing. On narrow it also keeps a tap
-      // on the panel itself from reaching the full-screen backdrop's
-      // onClose below.
+      // Keeps a tap on the panel itself from reaching the full-screen
+      // backdrop's onClose below (narrow).
       onClick={(e) => e.stopPropagation()}
       style={panelStyle}
     >
       {narrow && (
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <button
-            type="button"
-            aria-pressed={targeted}
-            onClick={onToggleTarget}
-            style={{
-              fontFamily: "inherit",
-              fontSize: "12.5px",
-              fontWeight: 600,
-              padding: "9px 14px",
-              borderRadius: "4px",
-              border: `1px solid ${targeted ? "var(--target)" : "var(--border-strong)"}`,
-              background: targeted ? "var(--target-bg)" : "var(--panel-raised)",
-              color: "var(--text)",
-              cursor: "pointer",
-            }}
-          >
-            {targeted ? t("LABEL_TARGETED") : t("LABEL_TARGET")}
-          </button>
           <div style={{ flexGrow: 1 }} />
           <button
             type="button"

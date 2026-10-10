@@ -1,10 +1,11 @@
+import { useState } from "react";
 import type { Attack } from "@pf2/schema";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { degreeTotalRanges, type Degree } from "../rules/degrees.js";
 import { resolveStrike } from "../rules/strike.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
-import { AcShield } from "./AcShield.js";
+import { TargetBox, TargetPicker } from "./TargetPicker.js";
 
 function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `−${Math.abs(n)}`;
@@ -61,10 +62,12 @@ function ordinal(t: (key: StringKey) => string, strikesMade: number): string {
   return t(ORDINAL_KEYS[Math.min(strikesMade, ORDINAL_KEYS.length - 1)]!);
 }
 
-/** TurnAssistant.dc.html's right column: target, modifier ledger, roll line
- * and the four-row outcome ladder — all read straight off `resolveStrike`,
- * never re-derived. With no target selected there's nothing to compute
- * against, so this prompts for one instead of rendering a broken assistant. */
+/** TurnAssistant.dc.html's right column, the defensive side of the turn:
+ * target, modifier ledger, roll line and the four-row outcome ladder — all
+ * read straight off `resolveStrike`, never re-derived. The target is chosen
+ * here, through TargetPicker, which lists every candidate with its
+ * defences; with no target there's nothing to compute against, so the
+ * picker's button stands in for the whole assistant. */
 export function RollAssistant({
   combatant,
   target,
@@ -78,47 +81,22 @@ export function RollAssistant({
   const spendActions = useEncounter((s) => s.spendActions);
   const lang = useEncounter((s) => s.lang);
   const t = useT();
+  const [picking, setPicking] = useState(false);
 
-  if (!target) {
+  if (!target || picking) {
     return (
-      <div
-        style={{
-          padding: "14px 16px",
-          borderRadius: "5px",
-          background: "var(--panel-high)",
-          border: "1px solid var(--border)",
-          fontSize: "13px",
-          color: "var(--text-dim)",
-        }}
-      >
-        {t("SELECT_TARGET_MSG")}
-      </div>
+      <TargetPicker
+        attackerId={combatant.id}
+        open={picking}
+        onOpen={() => setPicking(true)}
+        onClose={() => setPicking(false)}
+      />
     );
   }
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          padding: "10px 14px",
-          borderRadius: "5px",
-          background: "var(--panel-raised)",
-          border: "1px solid var(--border)",
-        }}
-      >
-        <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)" }}>{t("TARGET_LABEL_CAPS")}</span>
-        <span style={{ fontSize: "14px", fontWeight: 600 }}>{target.name}</span>
-        {target.ac !== null ? (
-          <AcShield ac={target.ac} size={24} />
-        ) : (
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>{t("AC_UNKNOWN")}</span>
-        )}
-        <div style={{ flexGrow: 1 }} />
-        <span style={{ fontSize: "11.5px", color: "var(--text-faint)" }}>{t("RETARGET_HINT")}</span>
-      </div>
+      <TargetBox target={target} onChange={() => setPicking(true)} />
 
       {!attack ? (
         <div style={{ padding: "14px 16px", borderRadius: "5px", background: "var(--panel-high)", border: "1px solid var(--border)", fontSize: "13px", color: "var(--text-dim)" }}>

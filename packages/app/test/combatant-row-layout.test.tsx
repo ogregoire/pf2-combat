@@ -1,21 +1,21 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { CombatantList } from "../src/components/CombatantList.js";
+import { DefenseSummary } from "../src/components/DefenseSummary.js";
 import { useEncounter } from "../src/state/store.js";
 
-// Regression coverage for a real-use layout bug: the standalone row's HP
-// bar was `width: "100%"` + `flexShrink: 0` inside a flex row shared with
-// the `{current}/{max}` text, so the bar claimed the whole line and shoved
-// the number out past the row, overlapping the AC/saves column to its
-// right (see CombatantRow.tsx's HpBar and StandaloneRow).
+// Regression coverage for a real-use layout bug: the HP bar was
+// `width: "100%"` + `flexShrink: 0` inside a flex row shared with the
+// `{current}/{max}` text, so the bar claimed the whole line and shoved the
+// number out past its box. The bar and the saves now live in DefenseSummary
+// (the roll assistant's target picker and target box), not the list rows.
 //
 // jsdom performs no real layout (no flexbox measurement, no overlap
 // detection), so these tests can't assert pixels don't collide. Instead
 // they pin the *style contract* that prevents the collision in a real
 // browser: the bar grows and is allowed to shrink (flex-grow: 1,
 // flex-shrink: 1, min-width: 0) while the number next to it refuses to
-// shrink or wrap (flex-shrink: 0, white-space: nowrap) — matching
-// mockups/Main.dc.html's standalone-row bar (`flex-grow: 1`).
+// shrink or wrap (flex-shrink: 0, white-space: nowrap).
 
 const seed = (over = {}) => ({
   kind: "creature" as const, name: "Stag Lord Bandit", level: 0, ac: 15,
@@ -23,12 +23,17 @@ const seed = (over = {}) => ({
   hp: { current: 16, max: 16 }, ...over,
 });
 
-describe("CombatantRow HP bar layout", () => {
+function renderSummary(over = {}, width?: string): void {
+  const id = useEncounter.getState().addCombatant(seed(over), 19);
+  const combatant = useEncounter.getState().encounter.combatants[id]!;
+  render(width ? <div style={{ width }}><DefenseSummary combatant={combatant} /></div> : <DefenseSummary combatant={combatant} />);
+}
+
+describe("DefenseSummary HP bar layout", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("standalone row: HP bar grows/shrinks and the HP number stays fixed and unwrapped", () => {
-    useEncounter.getState().addCombatant(seed(), 19);
-    render(<CombatantList />);
+  it("HP bar grows/shrinks and the HP number stays fixed and unwrapped", () => {
+    renderSummary();
 
     const hpText = screen.getByText("16/16");
     expect(hpText.style.flexShrink).toBe("0");
@@ -44,48 +49,25 @@ describe("CombatantRow HP bar layout", () => {
     expect(bar.style.width).toBe("");
   });
 
-  it("grouped member row: HP bar grows like ungrouped rows", () => {
-    const a = useEncounter.getState().addCombatant(seed({ name: "Akiros", hp: { current: 16, max: 16 } }), 20);
-    const b = useEncounter.getState().addCombatant(seed({ name: "Dovan", hp: { current: 18, max: 30 } }), 10);
-    useEncounter.getState().group([a, b], "Gate Watch", 15);
-    render(<CombatantList />);
-
-    const hpText = screen.getByText("18/30");
-    const bar = hpText.previousElementSibling as HTMLElement;
-    // Grouped members now have flexible width like standalone rows
-    expect(bar.style.flexGrow).toBe("1");
-    expect(bar.style.flexShrink).toBe("1");
-  });
-
-  it("holds together with the widest realistic values (The Stag Lord: HP 110/110, AC 23, saves 15/16/9) in the 340px combatant list", () => {
-    useEncounter.getState().addCombatant(
-      seed({
+  it("holds together with the widest realistic values (The Stag Lord: HP 110/110, AC 23, saves 15/16/9) in the 380px roll assistant column", () => {
+    renderSummary(
+      {
         name: "The Stag Lord",
         level: 6,
         ac: 23,
         saves: { fortitude: 15, reflex: 16, will: 9 },
         hp: { current: 110, max: 110 },
-      }),
-      19,
-    );
-    render(
-      <div style={{ width: "340px" }}>
-        <CombatantList />
-      </div>,
+      },
+      "380px",
     );
 
-    // All of these must render as single, whole, unbroken text nodes —
-    // if the bar had crowded the number, "110/110" would still be present
-    // as text (jsdom doesn't clip), so the real assertion is the style
-    // contract above; this just confirms the worst-case row renders
-    // without throwing and without truncating any of the numbers.
     const hpText = screen.getByText("110/110");
     expect(hpText.style.flexShrink).toBe("0");
     expect(hpText.style.whiteSpace).toBe("nowrap");
-    expect(screen.getByText("AC 23")).toBeDefined();
-    // Letter and value are separate elements now (bold letter, regular
-    // value) — the style contract jsdom can check is that the whole saves
-    // line refuses to wrap, same reasoning as the HP number above.
+    expect(screen.getByRole("img", { name: "AC 23" })).toBeDefined();
+    // Letter and value are separate elements (bold letter, regular value) —
+    // the style contract jsdom can check is that the whole saves line
+    // refuses to wrap, same reasoning as the HP number above.
     expect(screen.getByTitle("Fortitude").textContent).toBe("F+15");
     expect(screen.getByTitle("Reflex").textContent).toBe("R+16");
     expect(screen.getByTitle("Will").textContent).toBe("W+9");
@@ -94,12 +76,11 @@ describe("CombatantRow HP bar layout", () => {
   });
 });
 
-describe("CombatantRow saves", () => {
+describe("DefenseSummary saves", () => {
   beforeEach(() => useEncounter.getState().reset());
 
   it("labels each save with a bold initial, a signed value, and names the full save on hover via title", () => {
-    useEncounter.getState().addCombatant(seed(), 19);
-    render(<CombatantList />);
+    renderSummary();
 
     const fort = screen.getByTitle("Fortitude");
     expect(fort.textContent).toBe("F+6");
@@ -118,8 +99,7 @@ describe("CombatantRow saves", () => {
   });
 
   it("separates the three units with a real comma and a space", () => {
-    useEncounter.getState().addCombatant(seed(), 19);
-    render(<CombatantList />);
+    renderSummary();
 
     const line = screen.getByTitle("Fortitude").parentElement as HTMLElement;
     expect(line.textContent).toBe("F+6, R+7, W+4");

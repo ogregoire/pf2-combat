@@ -5,12 +5,12 @@ import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useEncounter } from "../state/store.js";
 import type { FetchFn } from "../data/catalog.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
-import { DefensesPanel } from "./DefensesPanel.js";
 import { ActionList } from "./ActionList.js";
 import { RollAssistant } from "./RollAssistant.js";
 import { activeCombatantOf } from "./TurnPrompts.js";
 
-/** The centre pane of Main.dc.html (stat block, defences, strikes, actions)
+/** The centre pane of Main.dc.html (stat block, strikes, actions — what the
+ * active combatant can do; its defences are not shown here)
  * combined with the roll assistant column of TurnAssistant.dc.html, the way
  * TurnManager already merges its own two source mockups. The active
  * combatant is derived the same way TurnPrompts derives it: the first
@@ -83,7 +83,6 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
         }}
       >
         <StatBlockHeader combatant={combatant} />
-        <DefensesPanel combatant={combatant} />
         <div
           style={{
             flexGrow: 1,
