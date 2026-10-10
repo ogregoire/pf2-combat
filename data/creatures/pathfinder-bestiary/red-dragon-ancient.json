@@ -300,25 +300,46 @@
     {
       "attack": 34,
       "dc": 42,
+      "focusPoints": null,
       "name": "Arcane Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
-          "name": "Suggestion (At Will)",
-          "rank": 4
-        },
-        {
-          "name": "Wall of Fire (At Will)",
-          "rank": 4
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Detect Magic",
-          "rank": 1
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "1 minute",
+          "frequency": null,
           "name": "Read Aura",
-          "rank": 1
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": "at-will",
+          "name": "Wall of Fire (At Will)",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Suggestion (At Will)",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
         }
       ],
       "tradition": "arcane"

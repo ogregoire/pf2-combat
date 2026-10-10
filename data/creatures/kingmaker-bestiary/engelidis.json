@@ -123,6 +123,7 @@
     {
       "attack": 26,
       "dc": 39,
+      "focusPoints": null,
       "name": "Arcane Spontaneous Spells",
       "preparation": "spontaneous",
       "slots": [
@@ -161,100 +162,220 @@
       ],
       "spells": [
         {
-          "name": "Discern Location",
-          "rank": 8
-        },
-        {
-          "name": "Power Word Stun",
-          "rank": 8
-        },
-        {
-          "name": "Mask of Terror",
-          "rank": 7
-        },
-        {
-          "name": "Power Word Blind",
-          "rank": 7
-        },
-        {
-          "name": "Chain Lightning",
-          "rank": 6
-        },
-        {
-          "name": "Mislead",
-          "rank": 6
-        },
-        {
-          "name": "Cone of Cold",
-          "rank": 5
-        },
-        {
-          "name": "Telekinetic Haul",
-          "rank": 5
-        },
-        {
-          "name": "Dimension Door",
-          "rank": 4
-        },
-        {
-          "name": "Fly",
-          "rank": 4
-        },
-        {
-          "name": "Clairaudience",
-          "rank": 3
-        },
-        {
-          "name": "Lightning Bolt",
-          "rank": 3
-        },
-        {
-          "name": "Dispel Magic",
-          "rank": 2
-        },
-        {
-          "name": "Humanoid Form",
-          "rank": 2
-        },
-        {
-          "name": "Invisibility",
-          "rank": 2
-        },
-        {
-          "name": "Misdirection",
-          "rank": 2
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Detect Magic",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Discern Location",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Ghost Sound",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
-          "name": "Illusory Disguise",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Mage Hand",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
           "name": "Message",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
-          "name": "Ray of Enfeeblement",
-          "rank": 1
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
+          "name": "Power Word Stun",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
-          "name": "Sanctuary",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Telekinetic Projectile",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mask of Terror",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
+          "name": "Power Word Blind",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Chain Lightning",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mislead",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Cone of Cold",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Telekinetic Haul",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dimension Door",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fly",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Clairaudience",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Illusory Disguise",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Lightning Bolt",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Humanoid Form",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Invisibility",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Misdirection",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Ray of Enfeeblement",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Sanctuary",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "arcane"

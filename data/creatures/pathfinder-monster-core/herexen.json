@@ -161,13 +161,44 @@
     {
       "attack": 10,
       "dc": 18,
+      "focusPoints": 1,
       "name": "Cleric Domain Spells",
       "preparation": "focus",
       "slots": [],
       "spells": [
         {
+          "cantrip": false,
+          "cost": "reaction",
+          "frequency": null,
           "name": "Death's Call",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 10,
+      "dc": 18,
+      "focusPoints": null,
+      "name": "Divine Prepared Spells",
+      "preparation": "prepared",
+      "slots": [
+        {
+          "max": 4,
           "rank": 1
+        }
+      ],
+      "spells": [
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Harm",
+          "prepared": 4,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "divine"

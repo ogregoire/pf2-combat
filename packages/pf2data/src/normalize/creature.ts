@@ -21,6 +21,9 @@ const ActorSchema = z.object({
       publicNotes: z.string().default(""),
     }),
     traits: z.unknown(),
+    resources: z
+      .object({ focus: z.object({ max: z.number().nullish() }).nullish() })
+      .nullish(),
   }),
 });
 
@@ -40,7 +43,8 @@ const NON_GEAR_TYPES = new Set([
 ]);
 
 /** A creature's Foundry item ids, aligned to `Creature.actions`/`.attacks`
- * by array position. `CreatureSchema.parse` strips `foundryId` off both
+ * -- and to its spells flattened across `Creature.spellcasting` in output
+ * order -- by array position. `CreatureSchema.parse` strips `foundryId` off both
  * arrays -- deliberately, since only the French overlay needs them -- so they
  * are returned beside the creature instead, out of the SAME normalisation
  * pass. A second pass could in principle sort differently; `verifyI18n`
@@ -49,6 +53,9 @@ const NON_GEAR_TYPES = new Set([
 export interface CreatureItemIds {
   actions: { name: string; foundryId: string }[];
   attacks: { name: string; foundryId: string }[];
+  /** One per spell ROW, so a prepared spell held at two ranks carries the
+   * same foundry id twice. */
+  spells: { name: string; foundryId: string }[];
 }
 
 export interface NormalizedCreature {
@@ -98,6 +105,11 @@ export function normalizeCreatureWithItems(
 
   const attacks = normalizeAttacks(actor.items);
 
+  const spellcasting = normalizeSpellcasting(actor.items, {
+    level: actor.system.details.level.value,
+    focusMax: actor.system.resources?.focus?.max ?? null,
+  });
+
   const creature = CreatureSchema.parse({
     id: `${pack}/${slug}`,
     foundryId: actor._id,
@@ -110,7 +122,7 @@ export function normalizeCreatureWithItems(
     ...defenses,
     attacks,
     actions,
-    spellcasting: normalizeSpellcasting(actor.items),
+    spellcasting,
     gear,
     publicNotes: resolveLinks(resolveLocalize(actor.system.details.publicNotes, lang)),
   } satisfies Creature);
@@ -120,6 +132,9 @@ export function normalizeCreatureWithItems(
     items: {
       actions: actions.map((a) => ({ name: a.name, foundryId: a.foundryId })),
       attacks: attacks.map((a) => ({ name: a.name, foundryId: a.foundryId })),
+      spells: spellcasting.flatMap((e) =>
+        e.spells.map((s) => ({ name: s.name, foundryId: s.foundryId })),
+      ),
     },
   };
 }

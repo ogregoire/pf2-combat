@@ -280,25 +280,377 @@
     {
       "attack": 34,
       "dc": 42,
+      "focusPoints": null,
       "name": "Arcane Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
-          "name": "Suggestion (At Will)",
-          "rank": 4
-        },
-        {
-          "name": "Wall of Fire (At Will)",
-          "rank": 4
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Detect Magic",
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Read Aura",
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": "at-will",
+          "name": "Wall of Fire (At Will)",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Suggestion (At Will)",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        }
+      ],
+      "tradition": "arcane"
+    },
+    {
+      "attack": 36,
+      "dc": 42,
+      "focusPoints": null,
+      "name": "Arcane Prepared Spells",
+      "preparation": "prepared",
+      "slots": [
+        {
+          "max": 5,
+          "rank": 0
+        },
+        {
+          "max": 3,
           "rank": 1
         },
         {
-          "name": "Read Aura",
-          "rank": 1
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        },
+        {
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 3,
+          "rank": 6
+        },
+        {
+          "max": 3,
+          "rank": 7
+        },
+        {
+          "max": 3,
+          "rank": 8
+        },
+        {
+          "max": 2,
+          "rank": 9
+        }
+      ],
+      "spells": [
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Chill Touch",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Daze",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fiery Body",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mage Hand",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
+          "name": "Message",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Prismatic Sphere",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Sigil",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Discern Location",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mind Blank",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Prismatic Wall",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Prismatic Spray",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Resist Energy",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Reverse Gravity",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Teleport",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Wall of Force",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Cloak of Colors",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Command",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Tongues",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Crushing Despair",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Invisibility",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Stoneskin",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Grease",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Haste",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mind Reading",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Comprehend Language",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Resist Energy",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "See Invisibility",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Charm",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Ray of Enfeeblement",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
+          "name": "True Strike",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "arcane"

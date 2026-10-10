@@ -283,29 +283,386 @@
     {
       "attack": 32,
       "dc": 42,
+      "focusPoints": null,
       "name": "Primal Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
           "name": "Wind Walk",
-          "rank": 8
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
           "name": "Cloudkill",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Gust of Wind (At Will)",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Solid Fog",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": "at-will",
+          "name": "Wall of Wind (At Will)",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        }
+      ],
+      "tradition": "primal"
+    },
+    {
+      "attack": 36,
+      "dc": 41,
+      "focusPoints": null,
+      "name": "Primal Prepared Spells",
+      "preparation": "prepared",
+      "slots": [
+        {
+          "max": 5,
+          "rank": 0
+        },
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        },
+        {
+          "max": 3,
           "rank": 5
         },
         {
-          "name": "Gust of Wind (At Will)",
-          "rank": 4
+          "max": 3,
+          "rank": 6
         },
         {
-          "name": "Solid Fog",
-          "rank": 4
+          "max": 3,
+          "rank": 7
         },
         {
-          "name": "Wall of Wind (At Will)",
-          "rank": 4
+          "max": 3,
+          "rank": 8
+        },
+        {
+          "max": 2,
+          "rank": 9
+        }
+      ],
+      "spells": [
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dancing Lights",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Detect Magic",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Electric Arc",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Heal",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Prestidigitation",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Read Aura",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Storm of Vengeance",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Moment of Renewal",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Punishing Winds",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Energy Aegis",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Plane Shift",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Unfettered Pack",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Heal",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Slow",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "True Seeing",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Banishment",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Death Ward",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Passwall",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Freedom of Movement",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Hallucinatory Terrain",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Speak with Plants",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Earthbind",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Haste",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Stinking Cloud",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Animal Messenger",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Faerie Fire",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Speak with Animals",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "reaction",
+          "frequency": null,
+          "name": "Feather Fall",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Negate Aroma",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Shocking Grasp",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "primal"

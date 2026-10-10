@@ -162,25 +162,46 @@
     {
       "attack": 30,
       "dc": 37,
+      "focusPoints": 3,
       "name": "Occult Focus Spells",
       "preparation": "focus",
       "slots": [],
       "spells": [
         {
-          "name": "Inspire Heroics",
-          "rank": 4
-        },
-        {
+          "cantrip": false,
+          "cost": "reaction",
+          "frequency": null,
           "name": "Counter Performance",
-          "rank": 1
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
           "name": "Inspire Courage",
-          "rank": 1
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "free",
+          "frequency": null,
+          "name": "Inspire Heroics",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "free",
+          "frequency": null,
           "name": "Lingering Composition",
-          "rank": 1
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
         }
       ],
       "tradition": "occult"
@@ -188,6 +209,7 @@
     {
       "attack": 30,
       "dc": 37,
+      "focusPoints": null,
       "name": "Occult Spontaneous Spells",
       "preparation": "spontaneous",
       "slots": [
@@ -226,120 +248,265 @@
       ],
       "spells": [
         {
-          "name": "Maze",
-          "rank": 8
-        },
-        {
-          "name": "Scintillating Pattern",
-          "rank": 8
-        },
-        {
-          "name": "Uncontrollable Dance",
-          "rank": 8
-        },
-        {
-          "name": "Duplicate Foe",
-          "rank": 7
-        },
-        {
-          "name": "Prismatic Spray",
-          "rank": 7
-        },
-        {
-          "name": "Dominate",
-          "rank": 6
-        },
-        {
-          "name": "Teleport",
-          "rank": 6
-        },
-        {
-          "name": "Sending",
-          "rank": 5
-        },
-        {
-          "name": "Subconscious Suggestion",
-          "rank": 5
-        },
-        {
-          "name": "Tongues",
-          "rank": 5
-        },
-        {
-          "name": "Fly",
-          "rank": 4
-        },
-        {
-          "name": "Private Sanctum",
-          "rank": 4
-        },
-        {
-          "name": "Mind Reading",
-          "rank": 3
-        },
-        {
-          "name": "Vampiric Touch",
-          "rank": 3
-        },
-        {
-          "name": "Dispel Magic",
-          "rank": 2
-        },
-        {
-          "name": "Invisibility",
-          "rank": 2
-        },
-        {
-          "name": "Mirror Image",
-          "rank": 2
-        },
-        {
-          "name": "Sound Burst",
-          "rank": 2
-        },
-        {
-          "name": "Telekinetic Maneuver",
-          "rank": 2
-        },
-        {
-          "name": "Charm",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Daze",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
-          "name": "Illusory Object",
-          "rank": 1
-        },
-        {
-          "name": "Item Facade",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Mage Hand",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Maze",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
           "name": "Message",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Prestidigitation",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "1 minute",
+          "frequency": null,
           "name": "Read Aura",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Scintillating Pattern",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Uncontrollable Dance",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Duplicate Foe",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Prismatic Spray",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Tongues",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dominate",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Sound Burst",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Teleport",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Illusory Object",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Sending",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Subconscious Suggestion",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fly",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Invisibility",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Private Sanctum",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Item Facade",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mind Reading",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Vampiric Touch",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mirror Image",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Telekinetic Maneuver",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Charm",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
           "name": "Soothe",
-          "rank": 1
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
           "name": "Unseen Servant",
-          "rank": 1
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "occult"

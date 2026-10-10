@@ -315,21 +315,37 @@
     {
       "attack": 21,
       "dc": 29,
+      "focusPoints": null,
       "name": "Divine Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
-          "name": "Truespeech (Constant)",
-          "rank": 5
-        },
-        {
-          "name": "Holy Light (At Will)",
-          "rank": 3
-        },
-        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
           "name": "Heal",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "constant",
+          "name": "Truespeech (Constant)",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Holy Light (At Will)",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
         }
       ],
       "tradition": "divine"

@@ -161,6 +161,7 @@
     {
       "attack": 36,
       "dc": 41,
+      "focusPoints": null,
       "name": "Occult Spontaneous Spells",
       "preparation": "spontaneous",
       "slots": [
@@ -207,172 +208,382 @@
       ],
       "spells": [
         {
-          "name": "Time Stop",
-          "rank": 10
-        },
-        {
-          "name": "Overwhelming Presence",
-          "rank": 9
-        },
-        {
-          "name": "Telepathic Demand",
-          "rank": 9
-        },
-        {
-          "name": "Unfathomable Song",
-          "rank": 9
-        },
-        {
-          "name": "Maze",
-          "rank": 8
-        },
-        {
-          "name": "Scintillating Pattern",
-          "rank": 8
-        },
-        {
-          "name": "Uncontrollable Dance",
-          "rank": 8
-        },
-        {
-          "name": "Mask of Terror",
-          "rank": 7
-        },
-        {
-          "name": "Visions of Danger",
-          "rank": 7
-        },
-        {
-          "name": "Warp Mind",
-          "rank": 7
-        },
-        {
-          "name": "Feeblemind",
-          "rank": 6
-        },
-        {
-          "name": "Spirit Blast",
-          "rank": 6
-        },
-        {
-          "name": "True Seeing",
-          "rank": 6
-        },
-        {
-          "name": "Black Tentacles",
-          "rank": 5
-        },
-        {
-          "name": "Crushing Despair",
-          "rank": 5
-        },
-        {
-          "name": "Synesthesia",
-          "rank": 5
-        },
-        {
-          "name": "Tongues",
-          "rank": 5
-        },
-        {
-          "name": "Confusion",
-          "rank": 4
-        },
-        {
-          "name": "Confusion",
-          "rank": 4
-        },
-        {
-          "name": "Fly",
-          "rank": 4
-        },
-        {
-          "name": "Read Omens",
-          "rank": 4
-        },
-        {
-          "name": "Telepathy",
-          "rank": 4
-        },
-        {
-          "name": "Enthrall",
-          "rank": 3
-        },
-        {
-          "name": "Hypercognition",
-          "rank": 3
-        },
-        {
-          "name": "Slow",
-          "rank": 3
-        },
-        {
-          "name": "Slow",
-          "rank": 3
-        },
-        {
-          "name": "Vampiric Touch",
-          "rank": 3
-        },
-        {
-          "name": "Death Knell",
-          "rank": 2
-        },
-        {
-          "name": "Hideous Laughter",
-          "rank": 2
-        },
-        {
-          "name": "See Invisibility",
-          "rank": 2
-        },
-        {
-          "name": "Touch of Idiocy",
-          "rank": 2
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Chill Touch",
-          "rank": 1
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
-          "name": "Color Spray",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Dancing Lights",
-          "rank": 1
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Daze",
-          "rank": 1
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
-          "name": "Magic Missile",
-          "rank": 1
-        },
-        {
-          "name": "Magic Missile",
-          "rank": 1
-        },
-        {
-          "name": "Mending",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Prestidigitation",
-          "rank": 1
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
-          "name": "Ray of Enfeeblement",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "1 minute",
+          "frequency": null,
           "name": "Read Aura",
-          "rank": 1
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Time Stop",
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Magic Missile",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Overwhelming Presence",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Telepathic Demand",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Unfathomable Song",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mask of Terror",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Maze",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Scintillating Pattern",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Uncontrollable Dance",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Magic Missile",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Spirit Blast",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Visions of Danger",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Warp Mind",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Confusion",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Feeblemind",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Slow",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "True Seeing",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Black Tentacles",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Crushing Despair",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Synesthesia",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Tongues",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Confusion",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fly",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Read Omens",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Telepathy",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Enthrall",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
+          "name": "Hypercognition",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Slow",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Vampiric Touch",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Death Knell",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Hideous Laughter",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "See Invisibility",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Touch of Idiocy",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Color Spray",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Mending",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Ray of Enfeeblement",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
           "name": "Spider Sting",
-          "rank": 1
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "occult"
@@ -380,21 +591,37 @@
     {
       "attack": 36,
       "dc": 41,
+      "focusPoints": 3,
       "name": "Sorcerer Bloodline Spells",
       "preparation": "focus",
       "slots": [],
       "spells": [
         {
-          "name": "Unusual Anatomy",
-          "rank": 5
-        },
-        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
           "name": "Aberrant Whispers",
-          "rank": 3
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
           "name": "Tentacular Limbs",
-          "rank": 1
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
+          "name": "Unusual Anatomy",
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         }
       ],
       "tradition": "occult"

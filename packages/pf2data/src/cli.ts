@@ -546,6 +546,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
         ownPack: creature.id.slice(0, creature.id.indexOf("/")),
         actions: items.actions,
         attacks: items.attacks,
+        spells: items.spells,
         table: babele,
         lang: frLang,
         archive,
@@ -622,6 +623,9 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   const allActions = [...creatureI18n.values()].flatMap((overlay) => overlay.actions);
   const actionNameCoverage = fieldCoverage(allActions.map((a) => a.name));
   const actionDescriptionCoverage = fieldCoverage(allActions.map((a) => a.description));
+  const spellNameCoverage = fieldCoverage(
+    [...creatureI18n.values()].flatMap((overlay) => overlay.spells.map((s) => s.name)),
+  );
 
   const schemaDoc = renderSchemaDoc();
 
@@ -772,6 +776,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     `french actions: ${actionNameCoverage.translated}/${actionNameCoverage.total} names, ` +
       `${actionDescriptionCoverage.translated}/${actionDescriptionCoverage.total} descriptions translated\n`,
   );
+  io.err(`french spells: ${spellNameCoverage.translated}/${spellNameCoverage.total} names translated\n`);
   emit({
     command: "update",
     ok: true,
@@ -783,6 +788,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     french: coverage,
     frenchActionNames: actionNameCoverage,
     frenchActionDescriptions: actionDescriptionCoverage,
+    frenchSpellNames: spellNameCoverage,
     ...creatureDiff,
   });
 

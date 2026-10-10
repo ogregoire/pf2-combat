@@ -24,6 +24,13 @@ describe("renderSchemaDoc", () => {
     }
   });
 
+  it("documents the spellcasting fields and the spells overlay", () => {
+    const doc = renderSchemaDoc();
+    for (const field of ["focusPoints", "frequency", "uses", "prepared", "cantrip", "spells-srd"]) {
+      expect(doc).toContain(field);
+    }
+  });
+
   it("documents the exit codes", () => {
     const doc = renderSchemaDoc();
     expect(doc).toContain("10");

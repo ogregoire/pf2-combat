@@ -371,6 +371,98 @@ describe("buildCreatureI18n", () => {
   });
 });
 
+describe("buildCreatureI18n spells", () => {
+  // Spells are aligned by position to the creature's spells FLATTENED across
+  // its spellcasting entries -- a prepared spell held at two ranks is two
+  // rows with the same foundry id, so two overlay entries.
+  const table = makeBabeleTable({
+    "pf2e.pathfinder-monster-core.json": {
+      entries: {
+        "Naiad Queen": {
+          name: "Reine naïade",
+          items: { "id-tongues": { name: "Don des langues (constant)" } },
+        },
+      },
+    },
+    "pf2e.spells-srd.json": {
+      entries: {
+        Fear: { name: "Terreur" },
+        Tongues: { name: "Don des langues" },
+        "Charm (At Will)": { name: "must never be reached by a parenthetical name" },
+      },
+    },
+  });
+  const archive = makeArchiveTable({
+    "pathfinder-monster-core": {
+      "naiad-queen-id":
+        "Name: Naiad Queen\nNom: Reine naïade\n\n" +
+        "ID: id-sleep\nName: Sleep (At Will)\nNom: Sommeil (à volonté)\n",
+    },
+  });
+
+  const out = buildCreatureI18n({
+    creatureName: "Naiad Queen",
+    creatureFoundryId: "naiad-queen-id",
+    ownPack: "pathfinder-monster-core",
+    actions: [],
+    attacks: [],
+    spells: [
+      { name: "Fear", foundryId: "id-fear" },
+      { name: "Fear", foundryId: "id-fear" },
+      { name: "Tongues (Constant)", foundryId: "id-tongues" },
+      { name: "Sleep (At Will)", foundryId: "id-sleep" },
+      { name: "Charm (At Will)", foundryId: "id-charm" },
+      { name: "Finger of Death", foundryId: "id-fod" },
+    ],
+    table,
+    lang: {},
+    archive,
+  })!;
+
+  it("keeps one overlay entry per spell row, recording the English name", () => {
+    expect(out.spells.map((s) => s.en)).toEqual([
+      "Fear",
+      "Fear",
+      "Tongues (Constant)",
+      "Sleep (At Will)",
+      "Charm (At Will)",
+      "Finger of Death",
+    ]);
+  });
+
+  it("prefers the creature's own Babele item, which keeps the qualifier", () => {
+    expect(out.spells[2]!.name).toBe("Don des langues (constant)");
+  });
+
+  it("falls back to the archive item, merged exactly like an action", () => {
+    expect(out.spells[3]!.name).toBe("Sommeil (à volonté)");
+  });
+
+  it("falls back to spells-srd by exact English name for a plain name", () => {
+    expect(out.spells[0]!.name).toBe("Terreur");
+    expect(out.spells[1]!.name).toBe("Terreur");
+  });
+
+  it("never consults spells-srd for a parenthetical name, and never echoes English", () => {
+    expect(out.spells[4]!.name).toBeNull();
+    expect(out.spells[5]!.name).toBeNull();
+  });
+
+  it("defaults to no spells for a caller that passes none", () => {
+    expect(
+      buildCreatureI18n({
+        creatureName: "Naiad Queen",
+        creatureFoundryId: "naiad-queen-id",
+        ownPack: "pathfinder-monster-core",
+        actions: [],
+        attacks: [],
+        table,
+        lang: {},
+      })!.spells,
+    ).toEqual([]);
+  });
+});
+
 describe("buildIndexI18n", () => {
   it("emits an id -> french name map for the search index", () => {
     const table = makeBabeleTable({

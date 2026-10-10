@@ -210,33 +210,64 @@
     {
       "attack": 19,
       "dc": 27,
+      "focusPoints": null,
       "name": "Divine Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
-          "name": "Truespeech (Constant)",
-          "rank": 5
-        },
-        {
-          "name": "Translocate (At Will)",
-          "rank": 4
-        },
-        {
-          "name": "Share Life",
-          "rank": 2
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Divine Lance",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
           "name": "Message",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "constant",
+          "name": "Truespeech (Constant)",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Translocate (At Will)",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Share Life",
+          "prepared": 0,
+          "rank": 2,
+          "uses": 3
+        },
+        {
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
           "name": "Sure Strike",
-          "rank": 1
+          "prepared": 0,
+          "rank": 1,
+          "uses": 3
         }
       ],
       "tradition": "divine"

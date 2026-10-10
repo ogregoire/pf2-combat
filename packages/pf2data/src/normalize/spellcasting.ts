@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { compareStrings } from "../util.js";
+import { describeItem, itemHasType } from "./item.js";
 
 const EntryItemSchema = z.object({
   _id: z.string(),
@@ -7,23 +8,69 @@ const EntryItemSchema = z.object({
   type: z.literal("spellcastingEntry"),
   system: z.object({
     prepared: z.object({ value: z.string() }),
+    // Every slot shape upstream actually uses, in one schema:
+    //  - spontaneous/innate: `{ max, value }`;
+    //  - prepared: `{ max, prepared: [{ id }] }`, with NO `value`. Requiring
+    //    `value` here once silently dropped every prepared entry (140 across
+    //    the five books, e.g. the adult adamantine dragon spellcaster's
+    //    "Primal Prepared Spells");
+    //  - `max` as a STRING ("4") on 4 Bestiary 2 / Monster Core spontaneous
+    //    entries (bone prophet, lunar naga, suli dune dancer, worm that walks
+    //    cultist), hence the coercion -- those were silently dropped too;
+    //  - no `max` at all on one slot whose every reference is `{ id: null }`
+    //    (greater herexen's slot1), hence the default.
+    // `value` and each reference's `expended` are upstream PLAY state (slots
+    // spent, spells cast) and deliberately not read: the dataset describes a
+    // creature at the start of an encounter.
     slots: z
-      .record(z.object({ max: z.number(), value: z.number() }))
+      .record(
+        z.object({
+          max: z.coerce.number().default(0),
+          prepared: z
+            .array(z.object({ id: z.string().nullish() }))
+            .default([]),
+        }),
+      )
       .default({}),
     spelldc: z.object({ dc: z.number(), value: z.number() }),
     tradition: z.object({ value: z.string() }),
+    autoHeightenLevel: z
+      .object({ value: z.number().nullish() })
+      .nullish(),
   }),
 });
 
 const SpellItemSchema = z.object({
+  _id: z.string(),
   name: z.string(),
   type: z.literal("spell"),
   system: z.object({
     level: z.object({ value: z.number() }),
-    location: z.object({ value: z.string().nullish() }),
+    location: z.object({
+      value: z.string().nullish(),
+      heightenedLevel: z.number().nullish(),
+      uses: z.object({ max: z.number().nullish() }).nullish(),
+    }),
     ritual: z.unknown().nullish(),
+    time: z.object({ value: z.string() }),
+    traits: z.object({ value: z.array(z.string()).default([]) }),
   }),
 });
+
+type SpellItem = z.infer<typeof SpellItemSchema>;
+
+export interface SpellcastingSpell {
+  /** Stripped by `CreatureSchema.parse`; carried for the French overlay's
+   * per-item Babele join, exactly like `NormalizedAttack.foundryId`. */
+  foundryId: string;
+  name: string;
+  rank: number;
+  cost: string;
+  cantrip: boolean;
+  frequency: "at-will" | "constant" | null;
+  uses: number | null;
+  prepared: number;
+}
 
 export interface SpellcastingEntry {
   name: string;
@@ -32,15 +79,78 @@ export interface SpellcastingEntry {
   dc: number;
   attack: number;
   slots: { rank: number; max: number }[];
-  spells: { name: string; rank: number }[];
+  focusPoints: number | null;
+  spells: SpellcastingSpell[];
 }
 
-export function normalizeSpellcasting(items: unknown[]): SpellcastingEntry[] {
-  const entries = new Map<string, SpellcastingEntry>();
+/** What a spellcasting entry needs from the actor around it, rather than
+ * from its own item. */
+export interface SpellcastingActor {
+  level: number;
+  /** `system.resources.focus.max`, absent on 2 of the 56 focus entries'
+   * creatures (NPC Core's avuncular professor and gourd leshy witch). */
+  focusMax: number | null;
+}
+
+/**
+ * The innate "(At Will)"/"(Constant)" markers live only in the spell's NAME
+ * upstream -- 523 at-will and 234 constant spells, in free-form
+ * parentheticals such as "(At Will, Self Only)", "(At will) (Self only)" or
+ * "(Constant, Trees Only)", and once hyphenated (NPC Core's fiend caller,
+ * "Sending (At-Will)"). Only the parenthetical is searched, so a spell whose
+ * own name happened to contain the words could not match; the word
+ * boundaries keep "(Self plus Willing Rider)" from matching either.
+ */
+function frequencyOf(name: string): SpellcastingSpell["frequency"] {
+  const open = name.indexOf("(");
+  if (open === -1) return null;
+  const qualifier = name.slice(open);
+  if (/\bat[ -]will\b/i.test(qualifier)) return "at-will";
+  if (/constant/i.test(qualifier)) return "constant";
+  return null;
+}
+
+/**
+ * A cantrip -- and a focus spell, under the same PF2 rule ("cantrips and
+ * focus spells are automatically heightened to half your level rounded
+ * up") -- is always cast at the entry's heightening rank: the entry's own
+ * `autoHeightenLevel` when upstream sets it (108 entries), else half the
+ * creature's level rounded up, minimum 1. The item's own `level` is its
+ * base rank and says nothing about its effective one: left alone, 74 of
+ * the 90 non-cantrip focus spells sat at their base rank (Nyrissa's Fey
+ * Glamour at 5, not 12).
+ */
+function cantripRank(entry: z.infer<typeof EntryItemSchema>, actor: SpellcastingActor): number {
+  return (
+    entry.system.autoHeightenLevel?.value ?? Math.max(1, Math.ceil(actor.level / 2))
+  );
+}
+
+export function normalizeSpellcasting(
+  items: unknown[],
+  actor: SpellcastingActor,
+): SpellcastingEntry[] {
+  const entries = new Map<
+    string,
+    { item: z.infer<typeof EntryItemSchema>; out: SpellcastingEntry; spells: SpellItem[] }
+  >();
 
   for (const item of items) {
     const parsed = EntryItemSchema.safeParse(item);
-    if (!parsed.success) continue;
+    if (!parsed.success) {
+      // See normalizeActions: a wrong-TYPE item is expected and skipped, a
+      // `spellcastingEntry` that fails validation is upstream drift and must
+      // be loud -- a safeParse + continue here is exactly how every prepared
+      // entry went missing without a single report line.
+      if (itemHasType(item, "spellcastingEntry")) {
+        throw new Error(
+          `spellcastingEntry item ${describeItem(item)} failed validation: ${
+            parsed.error.issues[0]?.message ?? "invalid"
+          } (at ${parsed.error.issues[0]?.path.join(".") ?? "?"})`,
+        );
+      }
+      continue;
+    }
     const { _id, name, system } = parsed.data;
 
     const slots = Object.entries(system.slots)
@@ -51,20 +161,35 @@ export function normalizeSpellcasting(items: unknown[]): SpellcastingEntry[] {
       .filter((s) => Number.isFinite(s.rank) && s.max > 0)
       .sort((a, b) => a.rank - b.rank);
 
+    const preparation = system.prepared.value;
     entries.set(_id, {
-      name,
-      tradition: system.tradition.value,
-      preparation: system.prepared.value,
-      dc: system.spelldc.dc,
-      attack: system.spelldc.value,
-      slots,
+      item: parsed.data,
       spells: [],
+      out: {
+        name,
+        tradition: system.tradition.value,
+        preparation,
+        dc: system.spelldc.dc,
+        attack: system.spelldc.value,
+        slots,
+        focusPoints: preparation === "focus" ? actor.focusMax : null,
+        spells: [],
+      },
     });
   }
 
   for (const item of items) {
     const parsed = SpellItemSchema.safeParse(item);
-    if (!parsed.success) continue;
+    if (!parsed.success) {
+      if (itemHasType(item, "spell")) {
+        throw new Error(
+          `spell item ${describeItem(item)} failed validation: ${
+            parsed.error.issues[0]?.message ?? "invalid"
+          } (at ${parsed.error.issues[0]?.path.join(".") ?? "?"})`,
+        );
+      }
+      continue;
+    }
     // Rituals are not cast from a spellcasting entry: upstream gives them a
     // populated `ritual` block, a cast time in days, and a null location.
     // Skipping them explicitly means a null location on a NON-ritual spell
@@ -73,19 +198,60 @@ export function normalizeSpellcasting(items: unknown[]): SpellcastingEntry[] {
     if (ritual !== null && ritual !== undefined) continue;
     const owner = parsed.data.system.location.value;
     if (owner === null || owner === undefined) continue;
-    const entry = entries.get(owner);
-    if (entry === undefined) continue;
-    entry.spells.push({
-      name: parsed.data.name,
-      rank: parsed.data.system.level.value,
+    entries.get(owner)?.spells.push(parsed.data);
+  }
+
+  for (const { item: entry, out, spells } of entries.values()) {
+    const row = (spell: SpellItem, rank: number, prepared: number): SpellcastingSpell => ({
+      foundryId: spell._id,
+      name: spell.name,
+      rank,
+      cost: spell.system.time.value,
+      cantrip: spell.system.traits.value.includes("cantrip"),
+      frequency: frequencyOf(spell.name),
+      uses: spell.system.location.uses?.max ?? null,
+      prepared,
     });
+
+    if (out.preparation === "prepared") {
+      // A prepared caster's spell ITEMS are its repertoire; what it can cast
+      // is what its slots reference -- the same item once per rank it is
+      // prepared at (56 item/rank pairs are prepared more than once, e.g. two
+      // castings of the same rank-1 spell). An item no slot references is not
+      // castable and is omitted (12 today, all on Kingmaker's Vordakai).
+      // `{ id: null }` is an empty slot position, not a spell.
+      const byId = new Map(spells.map((s) => [s._id, s]));
+      const counts = new Map<string, { spell: SpellItem; rank: number; prepared: number }>();
+      for (const [slotKey, slot] of Object.entries(entry.system.slots)) {
+        const slotRank = Number.parseInt(slotKey.replace("slot", ""), 10);
+        if (!Number.isFinite(slotRank)) continue;
+        const rank = slotRank === 0 ? cantripRank(entry, actor) : slotRank;
+        for (const ref of slot.prepared) {
+          const spell = ref.id ? byId.get(ref.id) : undefined;
+          if (spell === undefined) continue;
+          const pair = `${spell._id}\0${rank}`;
+          const hit = counts.get(pair);
+          if (hit) hit.prepared += 1;
+          else counts.set(pair, { spell, rank, prepared: 1 });
+        }
+      }
+      out.spells = [...counts.values()].map((c) => row(c.spell, c.rank, c.prepared));
+    } else {
+      out.spells = spells.map((spell) =>
+        row(
+          spell,
+          spell.system.traits.value.includes("cantrip") || spell.system.traits.value.includes("focus")
+            ? cantripRank(entry, actor)
+            : (spell.system.location.heightenedLevel ?? spell.system.level.value),
+          0,
+        ),
+      );
+    }
+
+    out.spells.sort((a, b) => b.rank - a.rank || compareStrings(a.name, b.name));
   }
 
-  for (const entry of entries.values()) {
-    entry.spells.sort(
-      (a, b) => b.rank - a.rank || compareStrings(a.name, b.name),
-    );
-  }
-
-  return [...entries.values()].sort((a, b) => compareStrings(a.name, b.name));
+  return [...entries.values()]
+    .map((e) => e.out)
+    .sort((a, b) => compareStrings(a.name, b.name));
 }

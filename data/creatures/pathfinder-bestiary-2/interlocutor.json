@@ -201,6 +201,7 @@
     {
       "attack": 23,
       "dc": 33,
+      "focusPoints": null,
       "name": "Divine Innate Spells",
       "preparation": "innate",
       "slots": [
@@ -223,24 +224,49 @@
       ],
       "spells": [
         {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
           "name": "Plane Shift (Self only) (To the Universe or Netherworld only)",
-          "rank": 7
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
         },
         {
-          "name": "Breath of Life",
-          "rank": 5
-        },
-        {
-          "name": "Restoration",
-          "rank": 4
-        },
-        {
-          "name": "Heal",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Stabilize",
-          "rank": 1
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "reaction",
+          "frequency": null,
+          "name": "Breath of Life",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Heal",
+          "prepared": 0,
+          "rank": 4,
+          "uses": 2
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Restoration",
+          "prepared": 0,
+          "rank": 4,
+          "uses": 2
         }
       ],
       "tradition": "divine"

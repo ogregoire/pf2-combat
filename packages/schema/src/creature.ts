@@ -43,7 +43,34 @@ export const SpellcastingSchema = z.object({
   dc: z.number(),
   attack: z.number(),
   slots: z.array(z.object({ rank: z.number(), max: z.number() })),
-  spells: z.array(z.object({ name: z.string(), rank: z.number() })),
+  /** Focus entries only: the creature's focus pool max (actor
+   * `system.resources.focus.max`), `null` when upstream doesn't state it (2
+   * of 56 focus entries today), and `null` on every non-focus entry. */
+  focusPoints: z.number().nullable(),
+  spells: z.array(
+    z.object({
+      /** Upstream item name, unchanged -- keeps "(At Will)", "(Constant)",
+       * "(Self Only)" and the like. */
+      name: z.string(),
+      /** Effective rank: a cantrip's is its entry's heightening rank, a
+       * prepared spell's is the slot rank it is prepared in, anything else
+       * is its `heightenedLevel` or else its base level. */
+      rank: z.number(),
+      /** Raw upstream cast time: "1", "2", "3", "1 to 3", "reaction",
+       * "free", "10 minutes", ... -- long cast times are kept, not dropped. */
+      cost: z.string(),
+      cantrip: z.boolean(),
+      /** Parsed from the name's parenthetical; `null` for an ordinary
+       * spell. */
+      frequency: z.enum(["at-will", "constant"]).nullable(),
+      /** Innate per-day count (`location.uses.max`), else `null`. */
+      uses: z.number().nullable(),
+      /** Prepared entries: how many slots hold this spell at this rank (a
+       * spell prepared at two ranks is two rows). 0 for every other
+       * preparation. */
+      prepared: z.number(),
+    }),
+  ),
 });
 
 export const SaveSchema = z.object({

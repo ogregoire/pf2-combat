@@ -155,6 +155,10 @@ export function buildCreatureI18n(args: {
   ownPack: string;
   actions: { name: string; foundryId: string }[];
   attacks: { name: string; foundryId: string }[];
+  /** The creature's spells flattened across its spellcasting entries, in
+   * output order -- see `spellName`. Optional so every existing
+   * caller/fixture without spells keeps working. */
+  spells?: { name: string; foundryId: string }[];
   table: BabeleTable;
   /** The FRENCH lang table, for `@Localize` resolution. See `resolveFrench`. */
   lang: LangTable;
@@ -191,7 +195,39 @@ export function buildCreatureI18n(args: {
       const merged = mergedItem(items[attack.foundryId], archiveItems[attack.foundryId]);
       return { en: attack.name, name: merged.name ?? null };
     }),
+    spells: (args.spells ?? []).map((spell) => ({
+      en: spell.name,
+      name: spellName(
+        spell,
+        mergedItem(items[spell.foundryId], archiveItems[spell.foundryId]),
+        args.table,
+      ),
+    })),
   };
+}
+
+/**
+ * A spell's French name, from the most specific source that has one:
+ *  1. the creature's OWN Babele entry for that item (merged with the archive
+ *     exactly like an action), which is the only source that translates a
+ *     creature-specific name such as "Dimension Door (At Will)";
+ *  2. otherwise the shared `spells-srd` Babele pack, by exact English name --
+ *     but only for a name with NO parenthetical. "Tongues (Constant)" is not
+ *     a key there, and translating just the "Tongues" part would silently
+ *     drop the "(Constant)" qualifier from the French name;
+ *  3. otherwise `null`, never the English name.
+ * Together they name 6723 of the 6724 spell rows in the five books; the one
+ * gap is the ancient umbral dragon spellcaster's "Finger of Death", a legacy
+ * spell `spells-srd` no longer carries under that name.
+ */
+function spellName(
+  spell: { name: string },
+  merged: { name?: string },
+  table: BabeleTable,
+): string | null {
+  if (merged.name !== undefined) return merged.name;
+  if (spell.name.includes("(")) return null;
+  return table.byPack.get("spells-srd")?.get(spell.name)?.name ?? null;
 }
 
 /**

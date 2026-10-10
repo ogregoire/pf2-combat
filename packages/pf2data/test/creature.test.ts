@@ -144,3 +144,36 @@ describe("normalizeCreatureWithItems", () => {
     for (const action of items.actions) expect(ids.has(action.foundryId)).toBe(true);
   });
 });
+
+describe("normalizeCreatureWithItems spells", () => {
+  // Same escape hatch as actions/attacks, for the French spells overlay:
+  // one id per spell ROW, flattened across entries in output order.
+  const raw = load("nyrissa");
+  const { creature, items } = normalizeCreatureWithItems(
+    raw,
+    "kingmaker-bestiary",
+    "nyrissa",
+    GLOSSARY_LANG,
+  );
+
+  it("aligns spell ids to the flattened spellcasting entries", () => {
+    expect(items.spells.map((s) => s.name)).toEqual(
+      creature.spellcasting.flatMap((e) => e.spells.map((s) => s.name)),
+    );
+    expect(items.spells).toHaveLength(57);
+  });
+
+  it("finds each spell id back in the source actor", () => {
+    const ids = new Set(raw.items.map((i: { _id: string }) => i._id));
+    for (const spell of items.spells) expect(ids.has(spell.foundryId)).toBe(true);
+  });
+
+  it("strips the ids from the emitted creature", () => {
+    expect(JSON.stringify(creature.spellcasting)).not.toContain("foundryId");
+  });
+
+  it("reads the focus pool off the actor's resources", () => {
+    const focus = creature.spellcasting.find((e) => e.preparation === "focus")!;
+    expect(focus.focusPoints).toBe(3);
+  });
+});

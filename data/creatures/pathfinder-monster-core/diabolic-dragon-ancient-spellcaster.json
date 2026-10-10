@@ -289,33 +289,395 @@
     {
       "attack": 32,
       "dc": 40,
+      "focusPoints": null,
       "name": "Divine Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
-          "name": "Falling Stars (Fire Only)",
-          "rank": 9
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Ignition",
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
-          "name": "Interplanar Teleport (At Will, Self Only)",
-          "rank": 7
-        },
-        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
           "name": "Divine Immolation (At Will)",
-          "rank": 5
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
         },
         {
-          "name": "Summon Fiend (Phistophilus Only, At Will)",
-          "rank": 5
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Falling Stars (Fire Only)",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": "at-will",
           "name": "Wall of Fire (At Will)",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": "at-will",
+          "name": "Summon Fiend (Phistophilus Only, At Will)",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": "at-will",
+          "name": "Interplanar Teleport (At Will, Self Only)",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 38,
+      "dc": 42,
+      "focusPoints": null,
+      "name": "Divine Prepared Spells",
+      "preparation": "prepared",
+      "slots": [
+        {
+          "max": 5,
+          "rank": 0
+        },
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
           "rank": 4
         },
         {
-          "name": "Ignition",
-          "rank": 1
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 3,
+          "rank": 6
+        },
+        {
+          "max": 3,
+          "rank": 7
+        },
+        {
+          "max": 3,
+          "rank": 8
+        },
+        {
+          "max": 3,
+          "rank": 9
+        }
+      ],
+      "spells": [
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Detect Magic",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Divine Lance",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Harm",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Massacre",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
+          "name": "Message",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Sigil",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Void Warp",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Wails of the Damned",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Canticle of Everlasting Grief",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Execute",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Pinpoint",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Eclipse Burst",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Planar Seal",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Truespeech",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Banishment",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Blessed Boundary",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dominate",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Sending",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Translocate",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Truespeech",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispelling Globe",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Divine Wrath",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Planar Tether",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Blindness",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Chilling Darkness",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Harm",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "reaction",
+          "frequency": null,
+          "name": "Blood Vendetta",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Darkness",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Translate",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Command",
+          "prepared": 2,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fear",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "divine"

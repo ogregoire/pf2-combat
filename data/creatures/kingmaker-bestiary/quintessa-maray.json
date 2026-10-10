@@ -140,17 +140,28 @@
     {
       "attack": 22,
       "dc": 30,
+      "focusPoints": 2,
       "name": "Bard Composition Spells",
       "preparation": "focus",
       "slots": [],
       "spells": [
         {
-          "name": "Inspire Heroics",
-          "rank": 4
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
+          "name": "Inspire Courage",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         },
         {
-          "name": "Inspire Courage",
-          "rank": 1
+          "cantrip": false,
+          "cost": "free",
+          "frequency": null,
+          "name": "Inspire Heroics",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         }
       ],
       "tradition": "occult"
@@ -158,6 +169,7 @@
     {
       "attack": 22,
       "dc": 30,
+      "focusPoints": null,
       "name": "Bard Spontaneous Spells",
       "preparation": "spontaneous",
       "slots": [
@@ -188,92 +200,202 @@
       ],
       "spells": [
         {
-          "name": "Feeblemind",
-          "rank": 6
-        },
-        {
-          "name": "Spirit Blast",
-          "rank": 6
-        },
-        {
-          "name": "Hallucination",
-          "rank": 5
-        },
-        {
-          "name": "Sending",
-          "rank": 5
-        },
-        {
-          "name": "Subconscious Suggestion",
-          "rank": 5
-        },
-        {
-          "name": "Confusion",
-          "rank": 4
-        },
-        {
-          "name": "Dimension Door",
-          "rank": 4
-        },
-        {
-          "name": "Glibness",
-          "rank": 4
-        },
-        {
-          "name": "Haste",
-          "rank": 3
-        },
-        {
-          "name": "Mind Reading",
-          "rank": 3
-        },
-        {
-          "name": "Vampiric Touch",
-          "rank": 3
-        },
-        {
-          "name": "Dispel Magic",
-          "rank": 2
-        },
-        {
-          "name": "Invisibility",
-          "rank": 2
-        },
-        {
-          "name": "Mirror Image",
-          "rank": 2
-        },
-        {
-          "name": "Charm",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Dancing Lights",
-          "rank": 1
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Feeblemind",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Ghost Sound",
-          "rank": 1
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Prestidigitation",
-          "rank": 1
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
           "name": "Shield",
-          "rank": 1
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         },
         {
-          "name": "Sleep",
-          "rank": 1
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Spirit Blast",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         },
         {
-          "name": "Soothe",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Telekinetic Projectile",
-          "rank": 1
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Hallucination",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Sending",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Subconscious Suggestion",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Confusion",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dimension Door",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Glibness",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Haste",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mind Reading",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Vampiric Touch",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Invisibility",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mirror Image",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Charm",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Sleep",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Soothe",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "occult"

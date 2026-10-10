@@ -9,8 +9,8 @@ import { compareStrings } from "../util.js";
 
 export interface NormalizeResult {
   creatures: Creature[];
-  /** creature id -> the Foundry item ids behind its actions/attacks, which
-   * `CreatureSchema.parse` strips from the creature itself. The French
+  /** creature id -> the Foundry item ids behind its actions/attacks/spells,
+   * which `CreatureSchema.parse` strips from the creature itself. The French
    * overlay joins Babele's per-item translations on these. */
   items: Map<string, CreatureItemIds>;
   failures: string[];

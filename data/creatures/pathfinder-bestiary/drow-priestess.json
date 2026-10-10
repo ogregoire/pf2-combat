@@ -166,37 +166,196 @@
     {
       "attack": 9,
       "dc": 17,
+      "focusPoints": null,
       "name": "Divine Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
-          "name": "Levitate",
-          "rank": 3
-        },
-        {
-          "name": "Darkness",
-          "rank": 2
-        },
-        {
-          "name": "Darkness (At Will)",
-          "rank": 2
-        },
-        {
-          "name": "Dispel Magic",
-          "rank": 2
-        },
-        {
-          "name": "Faerie Fire (At Will)",
-          "rank": 2
-        },
-        {
-          "name": "Command (At Will)",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Dancing Lights",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Darkness",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Levitate",
+          "prepared": 0,
+          "rank": 3,
+          "uses": 3
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": "at-will",
+          "name": "Darkness (At Will)",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Faerie Fire (At Will)",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Command (At Will)",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 13,
+      "dc": 21,
+      "focusPoints": null,
+      "name": "Divine Prepared Spells",
+      "preparation": "prepared",
+      "slots": [
+        {
+          "max": 5,
+          "rank": 0
+        },
+        {
+          "max": 3,
           "rank": 1
+        },
+        {
+          "max": 5,
+          "rank": 2
+        }
+      ],
+      "spells": [
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Detect Magic",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
+          "name": "Guidance",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Harm",
+          "prepared": 3,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Know Direction",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Read Aura",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Silence",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Spiritual Weapon",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Stabilize",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Bless",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Command",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fear",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "divine"

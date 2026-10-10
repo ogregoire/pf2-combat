@@ -291,25 +291,355 @@
     {
       "attack": 31,
       "dc": 39,
+      "focusPoints": null,
       "name": "Primal Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
           "name": "Dominate",
-          "rank": 6
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Charm (At Will)",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
           "name": "Suggestion",
-          "rank": 4
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
           "name": "Entangling Flora (At Will)",
+          "prepared": 0,
+          "rank": 2,
+          "uses": 1
+        }
+      ],
+      "tradition": "primal"
+    },
+    {
+      "attack": 33,
+      "dc": 39,
+      "focusPoints": null,
+      "name": "Primal Prepared Spells",
+      "preparation": "prepared",
+      "slots": [
+        {
+          "max": 5,
+          "rank": 0
+        },
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
           "rank": 2
         },
         {
-          "name": "Charm (At Will)",
-          "rank": 1
+          "max": 4,
+          "rank": 3
+        },
+        {
+          "max": 3,
+          "rank": 4
+        },
+        {
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 3,
+          "rank": 6
+        },
+        {
+          "max": 3,
+          "rank": 7
+        },
+        {
+          "max": 2,
+          "rank": 8
+        }
+      ],
+      "spells": [
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Desiccate",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Detect Magic",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Know the Way",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Light",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Punishing Winds",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Read Aura",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Tangle Vine",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Execute",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mask of Terror",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Veil of Privacy",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Field of Life",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Tangling Creepers",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Truesight",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Toxic Cloud",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Veil of Privacy",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Hydraulic Torrent",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mountain Resilience",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Unfettered Movement",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Slow",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Veil of Privacy",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Wall of Thorns",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Humanoid Form",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "One with Plants",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Sound Body",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Gust of Wind",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Vanishing Tracks",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Ventriloquism",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "primal"

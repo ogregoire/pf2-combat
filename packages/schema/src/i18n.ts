@@ -2,9 +2,9 @@ import { z } from "zod";
 
 /**
  * A creature's French overlay: translated fields aligned to the SAME sorted
- * arrays `Creature.actions`/`.attacks` already use, by position — never by
- * name, since some creatures carry two Strikes of the same English name
- * (e.g. a melee and a thrown Dagger). `null` means no French translation
+ * arrays `Creature.actions`/`.attacks` (and its flattened spells) already
+ * use, by position — never by name, since some creatures carry two Strikes
+ * of the same English name (e.g. a melee and a thrown Dagger). `null` means no French translation
  * exists for that field; the app decides the fallback, so a gap is never
  * hidden by copying the English text in.
  */
@@ -27,6 +27,15 @@ export const CreatureI18nSchema = z.object({
     }),
   ),
   attacks: z.array(
+    z.object({
+      en: z.string(),
+      name: z.string().nullable(),
+    }),
+  ),
+  /** Aligned by position to the creature's spells FLATTENED across its
+   * `spellcasting` entries (entries in order, each entry's spells in order).
+   * A spell prepared at two ranks appears twice there, so twice here. */
+  spells: z.array(
     z.object({
       en: z.string(),
       name: z.string().nullable(),

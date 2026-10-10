@@ -305,21 +305,37 @@
     {
       "attack": 42,
       "dc": 46,
+      "focusPoints": 3,
       "name": "Arcane Focus Spells",
       "preparation": "focus",
       "slots": [],
       "spells": [
         {
-          "name": "Fey Glamour",
-          "rank": 5
-        },
-        {
-          "name": "Fey Disappearance",
-          "rank": 3
-        },
-        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
           "name": "Faerie Dust",
-          "rank": 1
+          "prepared": 0,
+          "rank": 12,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
+          "name": "Fey Disappearance",
+          "prepared": 0,
+          "rank": 12,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fey Glamour",
+          "prepared": 0,
+          "rank": 12,
+          "uses": null
         }
       ],
       "tradition": "arcane"
@@ -327,6 +343,7 @@
     {
       "attack": 42,
       "dc": 46,
+      "focusPoints": null,
       "name": "Arcane Spontaneous Spells",
       "preparation": "spontaneous",
       "slots": [
@@ -373,176 +390,391 @@
       ],
       "spells": [
         {
-          "name": "Wish",
-          "rank": 10
-        },
-        {
-          "name": "Disjunction",
-          "rank": 9
-        },
-        {
-          "name": "Discern Location",
-          "rank": 8
-        },
-        {
-          "name": "Maze",
-          "rank": 8
-        },
-        {
-          "name": "Uncontrollable Dance",
-          "rank": 8
-        },
-        {
-          "name": "Contingency",
-          "rank": 7
-        },
-        {
-          "name": "Plane Shift",
-          "rank": 7
-        },
-        {
-          "name": "Prismatic Spray",
-          "rank": 7
-        },
-        {
-          "name": "Project Image",
-          "rank": 7
-        },
-        {
-          "name": "Baleful Polymorph",
-          "rank": 6
-        },
-        {
-          "name": "Chain Lightning",
-          "rank": 6
-        },
-        {
-          "name": "Disintegrate",
-          "rank": 6
-        },
-        {
-          "name": "Dominate",
-          "rank": 6
-        },
-        {
-          "name": "Flesh to Stone",
-          "rank": 6
-        },
-        {
-          "name": "Mislead",
-          "rank": 6
-        },
-        {
-          "name": "Teleport",
-          "rank": 6
-        },
-        {
-          "name": "True Seeing",
-          "rank": 6
-        },
-        {
-          "name": "False Vision",
-          "rank": 5
-        },
-        {
-          "name": "Mind Probe",
-          "rank": 5
-        },
-        {
-          "name": "Sending",
-          "rank": 5
-        },
-        {
-          "name": "Tongues",
-          "rank": 5
-        },
-        {
-          "name": "Freedom of Movement",
-          "rank": 4
-        },
-        {
-          "name": "Outcast's Curse",
-          "rank": 4
-        },
-        {
-          "name": "Private Sanctum",
-          "rank": 4
-        },
-        {
-          "name": "Shape Stone",
-          "rank": 4
-        },
-        {
-          "name": "Hypnotic Pattern",
-          "rank": 3
-        },
-        {
-          "name": "Meld into Stone",
-          "rank": 3
-        },
-        {
-          "name": "Mind Reading",
-          "rank": 3
-        },
-        {
-          "name": "Shrink Item",
-          "rank": 3
-        },
-        {
-          "name": "Dispel Magic",
-          "rank": 2
-        },
-        {
-          "name": "Glitterdust",
-          "rank": 2
-        },
-        {
-          "name": "Mirror Image",
-          "rank": 2
-        },
-        {
-          "name": "Telekinetic Maneuver",
-          "rank": 2
-        },
-        {
-          "name": "Touch of Idiocy",
-          "rank": 2
-        },
-        {
-          "name": "Color Spray",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Detect Magic",
-          "rank": 1
+          "prepared": 0,
+          "rank": 12,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Electric Arc",
-          "rank": 1
+          "prepared": 0,
+          "rank": 12,
+          "uses": null
         },
         {
-          "name": "Fear",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Mage Hand",
-          "rank": 1
+          "prepared": 0,
+          "rank": 12,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
           "name": "Message",
-          "rank": 1
+          "prepared": 0,
+          "rank": 12,
+          "uses": null
         },
         {
-          "name": "Ray of Enfeeblement",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
           "name": "Shield",
-          "rank": 1
+          "prepared": 0,
+          "rank": 12,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Wish",
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Contingency",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Disintegrate",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Disjunction",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dominate",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Teleport",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Chain Lightning",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Discern Location",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Maze",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Uncontrollable Dance",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Plane Shift",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Prismatic Spray",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Project Image",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Baleful Polymorph",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Flesh to Stone",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mislead",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "True Seeing",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "False Vision",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Mind Probe",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Sending",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Tongues",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Freedom of Movement",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Outcast's Curse",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Private Sanctum",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Shape Stone",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Hypnotic Pattern",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Meld into Stone",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mind Reading",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Shrink Item",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Glitterdust",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mirror Image",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Telekinetic Maneuver",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Touch of Idiocy",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Color Spray",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fear",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Ray of Enfeeblement",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1",
+          "frequency": null,
           "name": "True Strike",
-          "rank": 1
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "arcane"
@@ -550,53 +782,109 @@
     {
       "attack": 42,
       "dc": 46,
+      "focusPoints": null,
       "name": "Primal Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
-          "name": "Nature's Enmity",
-          "rank": 9
-        },
-        {
-          "name": "Horrid Wilting",
-          "rank": 8
-        },
-        {
-          "name": "Regenerate",
-          "rank": 7
-        },
-        {
-          "name": "Tree Stride",
-          "rank": 5
-        },
-        {
-          "name": "Speak with Plants (Constant)",
-          "rank": 4
-        },
-        {
-          "name": "Wall of Thorns",
-          "rank": 3
-        },
-        {
-          "name": "Restore Senses (At Will)",
-          "rank": 2
-        },
-        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "constant",
           "name": "Speak with Animals (Constant)",
-          "rank": 2
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
-          "name": "Tree Shape",
-          "rank": 2
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "constant",
+          "name": "Speak with Plants (Constant)",
+          "prepared": 0,
+          "rank": 10,
+          "uses": null
         },
         {
-          "name": "Charm",
-          "rank": 1
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Nature's Enmity",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Regenerate",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Tree Stride",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
           "name": "Heal",
-          "rank": 1
+          "prepared": 0,
+          "rank": 8,
+          "uses": 3
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Horrid Wilting",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Wall of Thorns",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Charm",
+          "prepared": 0,
+          "rank": 7,
+          "uses": 3
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Restore Senses (At Will)",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Tree Shape",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
         }
       ],
       "tradition": "primal"

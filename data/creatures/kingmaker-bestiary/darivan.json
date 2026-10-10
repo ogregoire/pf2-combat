@@ -151,6 +151,7 @@
     {
       "attack": 21,
       "dc": 29,
+      "focusPoints": null,
       "name": "Primal Spontaneous Spells",
       "preparation": "spontaneous",
       "slots": [
@@ -177,128 +178,283 @@
       ],
       "spells": [
         {
-          "name": "Cone of Cold",
-          "rank": 5
-        },
-        {
-          "name": "Crushing Despair",
-          "rank": 5
-        },
-        {
-          "name": "Passwall",
-          "rank": 5
-        },
-        {
-          "name": "Wall of Stone",
-          "rank": 5
-        },
-        {
-          "name": "Air Walk",
-          "rank": 4
-        },
-        {
-          "name": "Shape Stone",
-          "rank": 4
-        },
-        {
-          "name": "Speak with Plants",
-          "rank": 4
-        },
-        {
-          "name": "Vital Beacon",
-          "rank": 4
-        },
-        {
-          "name": "Weapon Storm",
-          "rank": 4
-        },
-        {
-          "name": "Animal Vision",
-          "rank": 3
-        },
-        {
-          "name": "Blindness",
-          "rank": 3
-        },
-        {
-          "name": "Slow",
-          "rank": 3
-        },
-        {
-          "name": "Barkskin",
-          "rank": 2
-        },
-        {
-          "name": "Calm Emotions",
-          "rank": 2
-        },
-        {
-          "name": "Create Food",
-          "rank": 2
-        },
-        {
-          "name": "Dispel Magic",
-          "rank": 2
-        },
-        {
-          "name": "Entangle",
-          "rank": 2
-        },
-        {
-          "name": "Glitterdust",
-          "rank": 2
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Acid Splash",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
-          "name": "Charm",
-          "rank": 1
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Cone of Cold",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Crushing Despair",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Detect Magic",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Electric Arc",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
-          "name": "Fear",
-          "rank": 1
-        },
-        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
           "name": "Heal",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
-          "name": "Longstrider",
-          "rank": 1
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Passwall",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
-          "name": "Pass Without Trace",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Prestidigitation",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Ray of Frost",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
-          "name": "Shocking Grasp",
-          "rank": 1
-        },
-        {
-          "name": "Spider Sting",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Tanglefoot",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Wall of Stone",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Air Walk",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Shape Stone",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Speak with Plants",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Vital Beacon",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Weapon Storm",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Animal Vision",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Blindness",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Shocking Grasp",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Slow",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Barkskin",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Calm Emotions",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 hour",
+          "frequency": null,
+          "name": "Create Food",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Entangle",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Glitterdust",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Charm",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fear",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Longstrider",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Pass Without Trace",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Spider Sting",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "primal"
@@ -306,13 +462,19 @@
     {
       "attack": 21,
       "dc": 29,
+      "focusPoints": 1,
       "name": "Sorcerer Bloodline Spells",
       "preparation": "focus",
       "slots": [],
       "spells": [
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
           "name": "Nymph's Token",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         }
       ],
       "tradition": "occult"

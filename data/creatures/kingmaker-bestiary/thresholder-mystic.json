@@ -158,17 +158,368 @@
     {
       "attack": 30,
       "dc": 38,
+      "focusPoints": 2,
       "name": "Divine Focus Spells",
       "preparation": "focus",
       "slots": [],
       "spells": [
         {
+          "cantrip": false,
+          "cost": "reaction",
+          "frequency": null,
+          "name": "Delay Consequence",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
           "name": "Stasis",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        }
+      ],
+      "tradition": "divine"
+    },
+    {
+      "attack": 30,
+      "dc": 39,
+      "focusPoints": null,
+      "name": "Divine Prepared Spells",
+      "preparation": "prepared",
+      "slots": [
+        {
+          "max": 5,
+          "rank": 0
+        },
+        {
+          "max": 3,
+          "rank": 1
+        },
+        {
+          "max": 3,
+          "rank": 2
+        },
+        {
+          "max": 3,
+          "rank": 3
+        },
+        {
+          "max": 3,
           "rank": 4
         },
         {
-          "name": "Delay Consequence",
-          "rank": 1
+          "max": 3,
+          "rank": 5
+        },
+        {
+          "max": 3,
+          "rank": 6
+        },
+        {
+          "max": 3,
+          "rank": 7
+        },
+        {
+          "max": 3,
+          "rank": 8
+        },
+        {
+          "max": 8,
+          "rank": 9
+        }
+      ],
+      "spells": [
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Daze",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Disrupt Undead",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Forbidding Ward",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
+          "name": "Guidance",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Harm",
+          "prepared": 6,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1",
+          "frequency": null,
+          "name": "Message",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Overwhelming Presence",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Telepathic Demand",
+          "prepared": 1,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Dispel Magic",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Heal",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Spirit Blast",
+          "prepared": 1,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Crisis of Faith",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Divine Decree",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Eclipse Burst",
+          "prepared": 1,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Blade Barrier",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 to 3",
+          "frequency": null,
+          "name": "Heal",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "True Seeing",
+          "prepared": 1,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Prying Eye",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Sending",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Tongues",
+          "prepared": 1,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Air Walk",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Discern Lies",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Silence",
+          "prepared": 1,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Blindness",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Dream Message",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Locate",
+          "prepared": 1,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Darkness",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Deafness",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Silence",
+          "prepared": 1,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Bless",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Command",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Sanctuary",
+          "prepared": 1,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "divine"

@@ -229,8 +229,8 @@ describe("verifyI18n", () => {
   // mistranslated Strike.
   it("fails when an overlay position's English name disagrees with the creature", () => {
     const problems = verifyI18n(
-      { id: "p/c", actions: [{ name: "Rend" }], attacks: [] },
-      { name: "X", publicNotes: null, actions: [{ en: "Grab", name: "Agripper", description: null }], attacks: [] },
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [], spellcasting: [] },
+      { name: "X", publicNotes: null, actions: [{ en: "Grab", name: "Agripper", description: null }], attacks: [], spells: [] },
     );
     expect(problems).toHaveLength(1);
     expect(problems[0]).toMatch(/Rend/);
@@ -241,27 +241,57 @@ describe("verifyI18n", () => {
     // Creature has 2 actions, overlay has 1 -- an upstream reorder or a dropped
     // item. Index-keying is only safe while the lengths agree.
     expect(verifyI18n(
-      { id: "p/c", actions: [{ name: "Rend" }, { name: "Grab" }], attacks: [] },
-      { name: "X", publicNotes: null, actions: [{ en: "Rend", name: null, description: null }], attacks: [] },
+      { id: "p/c", actions: [{ name: "Rend" }, { name: "Grab" }], attacks: [], spellcasting: [] },
+      { name: "X", publicNotes: null, actions: [{ en: "Rend", name: null, description: null }], attacks: [], spells: [] },
     )).toHaveLength(1);
   });
 
   it("passes for an aligned overlay", () => {
     expect(verifyI18n(
-      { id: "p/c", actions: [{ name: "Rend" }], attacks: [{ name: "Claw" }] },
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [{ name: "Claw" }], spellcasting: [] },
       { name: "X", publicNotes: null,
         actions: [{ en: "Rend", name: "Déchiqueter", description: null }],
-        attacks: [{ en: "Claw", name: "Griffe" }] },
+        attacks: [{ en: "Claw", name: "Griffe" }], spells: [] },
     )).toEqual([]);
   });
 
   it("fails when an attack position's English name disagrees, naming the creature", () => {
     const problems = verifyI18n(
-      { id: "kingmaker-bestiary/the-stag-lord", actions: [], attacks: [{ name: "Longsword" }] },
-      { name: "Seigneur Cerf", publicNotes: null, actions: [], attacks: [{ en: "Composite Longbow", name: "Arc long composite" }] },
+      { id: "kingmaker-bestiary/the-stag-lord", actions: [], attacks: [{ name: "Longsword" }], spellcasting: [] },
+      { name: "Seigneur Cerf", publicNotes: null, actions: [], attacks: [{ en: "Composite Longbow", name: "Arc long composite" }], spells: [] },
     );
     expect(problems).toHaveLength(1);
     expect(problems[0]).toMatch(/kingmaker-bestiary\/the-stag-lord/);
+  });
+
+  it("checks spells FLATTENED across entries, position for position", () => {
+    const creature = {
+      id: "p/c",
+      actions: [],
+      attacks: [],
+      spellcasting: [
+        { spells: [{ name: "Fireball" }] },
+        { spells: [{ name: "Shield" }, { name: "Shield" }] },
+      ],
+    };
+    const overlay = (names: string[]) => ({
+      name: "X",
+      publicNotes: null,
+      actions: [],
+      attacks: [],
+      spells: names.map((en) => ({ en, name: null })),
+    });
+    expect(verifyI18n(creature, overlay(["Fireball", "Shield", "Shield"]))).toEqual([]);
+
+    const swapped = verifyI18n(creature, overlay(["Shield", "Fireball", "Shield"]));
+    expect(swapped).toHaveLength(2);
+    expect(swapped[0]).toMatch(/spells\[0\] is "Fireball"/);
+
+    // A prepared spell listed at two ranks is two rows; losing one is a
+    // length mismatch, not a quietly shifted translation.
+    expect(verifyI18n(creature, overlay(["Fireball", "Shield"]))[0]).toMatch(
+      /overlay has 2 spells but the creature has 3/,
+    );
   });
 });
 
@@ -271,7 +301,7 @@ describe("unresolved Foundry markup in French output", () => {
   // the GM reads the marker literally.
   it("verifyI18n reports an unresolved @UUID in an overlay", () => {
     const problems = verifyI18n(
-      { id: "p/c", actions: [{ name: "Rend" }], attacks: [] },
+      { id: "p/c", actions: [{ name: "Rend" }], attacks: [], spellcasting: [] },
       {
         name: "X",
         publicNotes: null,
@@ -281,6 +311,7 @@ describe("unresolved Foundry markup in French output", () => {
           description: "<p>Voir @UUID[Compendium.pf2e.actionspf2e.Item.BlAOM2X92SI6HMtJ]{Cherchez}.</p>",
         }],
         attacks: [],
+        spells: [],
       },
     );
     expect(problems).toHaveLength(1);
@@ -290,12 +321,13 @@ describe("unresolved Foundry markup in French output", () => {
 
   it("verifyI18n reports an unresolved @Localize in an overlay", () => {
     const problems = verifyI18n(
-      { id: "p/c", actions: [], attacks: [] },
+      { id: "p/c", actions: [], attacks: [], spellcasting: [] },
       {
         name: "X",
         publicNotes: "@Localize[PF2E.NPC.Abilities.Glossary.Grab]",
         actions: [],
         attacks: [],
+        spells: [],
       },
     );
     expect(problems).toHaveLength(1);

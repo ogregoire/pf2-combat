@@ -202,6 +202,7 @@
     {
       "attack": 34,
       "dc": 42,
+      "focusPoints": null,
       "name": "Occult Spontaneous Spells",
       "preparation": "spontaneous",
       "slots": [
@@ -244,168 +245,373 @@
       ],
       "spells": [
         {
-          "name": "Foresight",
-          "rank": 9
-        },
-        {
-          "name": "Overwhelming Presence",
-          "rank": 9
-        },
-        {
-          "name": "Telepathic Demand",
-          "rank": 9
-        },
-        {
-          "name": "Canticle of Everlasting Grief",
-          "rank": 8
-        },
-        {
-          "name": "Quandary",
-          "rank": 8
-        },
-        {
-          "name": "Spirit Song",
-          "rank": 8
-        },
-        {
-          "name": "Uncontrollable Dance",
-          "rank": 8
-        },
-        {
-          "name": "Mask of Terror",
-          "rank": 7
-        },
-        {
-          "name": "Project Image",
-          "rank": 7
-        },
-        {
-          "name": "Mislead",
-          "rank": 6
-        },
-        {
-          "name": "Repulsion",
-          "rank": 6
-        },
-        {
-          "name": "Truesight",
-          "rank": 6
-        },
-        {
-          "name": "Zealous Conviction",
-          "rank": 6
-        },
-        {
-          "name": "Dreaming Potential",
-          "rank": 5
-        },
-        {
-          "name": "Hallucination",
-          "rank": 5
-        },
-        {
-          "name": "Scouting Eye",
-          "rank": 5
-        },
-        {
-          "name": "Sending",
-          "rank": 5
-        },
-        {
-          "name": "Synesthesia",
-          "rank": 5
-        },
-        {
-          "name": "Truespeech",
-          "rank": 5
-        },
-        {
-          "name": "Wave of Despair",
-          "rank": 5
-        },
-        {
-          "name": "Confusion",
-          "rank": 4
-        },
-        {
-          "name": "Fly",
-          "rank": 4
-        },
-        {
-          "name": "Honeyed Words",
-          "rank": 4
-        },
-        {
-          "name": "Translocate",
-          "rank": 4
-        },
-        {
-          "name": "Dream Message",
-          "rank": 3
-        },
-        {
-          "name": "Hypnotize",
-          "rank": 3
-        },
-        {
-          "name": "Levitate",
-          "rank": 3
-        },
-        {
-          "name": "Augury",
-          "rank": 2
-        },
-        {
-          "name": "Darkvision",
-          "rank": 2
-        },
-        {
-          "name": "See the Unseen",
-          "rank": 2
-        },
-        {
-          "name": "Status",
-          "rank": 2
-        },
-        {
-          "name": "Alarm",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Daze",
-          "rank": 1
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Detect Magic",
-          "rank": 1
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
         },
         {
-          "name": "Fear",
-          "rank": 1
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Foresight",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
         },
         {
-          "name": "Ill Omen",
-          "rank": 1
-        },
-        {
-          "name": "Illusory Disguise",
-          "rank": 1
-        },
-        {
-          "name": "Illusory Object",
-          "rank": 1
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Light",
-          "rank": 1
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Overwhelming Presence",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "1 minute",
+          "frequency": null,
           "name": "Read Aura",
-          "rank": 1
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Synesthesia",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Telekinetic Hand",
-          "rank": 1
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Telepathic Demand",
+          "prepared": 0,
+          "rank": 9,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Canticle of Everlasting Grief",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Quandary",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Spirit Song",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Uncontrollable Dance",
+          "prepared": 0,
+          "rank": 8,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mask of Terror",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Project Image",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Truespeech",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Wave of Despair",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Mislead",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Repulsion",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Truesight",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Zealous Conviction",
+          "prepared": 0,
+          "rank": 6,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Dreaming Potential",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Hallucination",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Scouting Eye",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": null,
+          "name": "Sending",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Confusion",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fly",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Honeyed Words",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Translocate",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Dream Message",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Hypnotize",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Illusory Disguise",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Levitate",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Augury",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Darkvision",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "See the Unseen",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Status",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Alarm",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fear",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Ill Omen",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Illusory Object",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "occult"

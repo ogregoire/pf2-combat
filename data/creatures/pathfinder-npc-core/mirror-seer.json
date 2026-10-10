@@ -202,6 +202,7 @@
     {
       "attack": 21,
       "dc": 29,
+      "focusPoints": null,
       "name": "Occult Spontaneous Spells",
       "preparation": "spontaneous",
       "slots": [
@@ -232,88 +233,193 @@
       ],
       "spells": [
         {
-          "name": "Scrying",
-          "rank": 6
-        },
-        {
-          "name": "Illusory Scene",
-          "rank": 5
-        },
-        {
-          "name": "Shadow Blast",
-          "rank": 5
-        },
-        {
-          "name": "Clairvoyance",
-          "rank": 4
-        },
-        {
-          "name": "Detect Scrying",
-          "rank": 4
-        },
-        {
-          "name": "Peaceful Bubble",
-          "rank": 4
-        },
-        {
-          "name": "Clairaudience",
-          "rank": 3
-        },
-        {
-          "name": "Hypnotize",
-          "rank": 3
-        },
-        {
-          "name": "Locate",
-          "rank": 3
-        },
-        {
-          "name": "Invisibility",
-          "rank": 2
-        },
-        {
-          "name": "Revealing Light",
-          "rank": 2
-        },
-        {
-          "name": "Status",
-          "rank": 2
-        },
-        {
-          "name": "Alarm",
-          "rank": 1
-        },
-        {
-          "name": "Daze",
-          "rank": 1
-        },
-        {
-          "name": "Fear",
-          "rank": 1
-        },
-        {
-          "name": "Figment",
-          "rank": 1
-        },
-        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
           "name": "Illusory Disguise (Self Only)",
-          "rank": 1
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
         },
         {
-          "name": "Item Facade",
-          "rank": 1
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Scrying",
+          "prepared": 0,
+          "rank": 7,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Daze",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
+          "name": "Figment",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Illusory Scene",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Prestidigitation",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Shadow Blast",
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Telekinetic Projectile",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
         },
         {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Void Warp",
-          "rank": 1
+          "prepared": 0,
+          "rank": 5,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Clairvoyance",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Detect Scrying",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Peaceful Bubble",
+          "prepared": 0,
+          "rank": 4,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "1 minute",
+          "frequency": null,
+          "name": "Clairaudience",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Hypnotize",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Locate",
+          "prepared": 0,
+          "rank": 3,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Invisibility",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Revealing Light",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Status",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "10 minutes",
+          "frequency": null,
+          "name": "Alarm",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Fear",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": null,
+          "name": "Item Facade",
+          "prepared": 0,
+          "rank": 1,
+          "uses": null
         }
       ],
       "tradition": "occult"

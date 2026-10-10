@@ -40,11 +40,12 @@ export interface VerifyResult {
 }
 
 /** The slice of a creature `verifyI18n` needs: its id and the English names of
- * its sorted actions/attacks, in the order the overlay indexes them. */
+ * its sorted actions/attacks/spells, in the order the overlay indexes them. */
 export interface I18nSubject {
   id: string;
   actions: { name: string }[];
   attacks: { name: string }[];
+  spellcasting: { spells: { name: string }[] }[];
 }
 
 // `[A-Za-z]*`, not `+`: a bare `@[` has no family name at all and would
@@ -117,7 +118,7 @@ export function verifyI18n(creature: I18nSubject, overlay: CreatureI18n): string
   const problems: string[] = verifyI18nMarkup(creature.id, overlay);
 
   const check = (
-    field: "actions" | "attacks",
+    field: "actions" | "attacks" | "spells",
     english: { name: string }[],
     french: { en: string }[],
   ): void => {
@@ -139,6 +140,13 @@ export function verifyI18n(creature: I18nSubject, overlay: CreatureI18n): string
 
   check("actions", creature.actions, overlay.actions);
   check("attacks", creature.attacks, overlay.attacks);
+  // Spells are flattened across entries, the same way `normalizeCreature`
+  // flattens their foundry ids for `buildCreatureI18n`.
+  check(
+    "spells",
+    creature.spellcasting.flatMap((e) => e.spells),
+    overlay.spells,
+  );
 
   return problems;
 }

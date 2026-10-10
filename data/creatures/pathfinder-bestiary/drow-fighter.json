@@ -202,21 +202,37 @@
     {
       "attack": 6,
       "dc": 14,
+      "focusPoints": null,
       "name": "Divine Innate Spells",
       "preparation": "innate",
       "slots": [],
       "spells": [
         {
-          "name": "Darkness (At Will)",
-          "rank": 2
-        },
-        {
-          "name": "Faerie Fire (At Will)",
-          "rank": 2
-        },
-        {
+          "cantrip": true,
+          "cost": "2",
+          "frequency": null,
           "name": "Dancing Lights",
-          "rank": 1
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "3",
+          "frequency": "at-will",
+          "name": "Darkness (At Will)",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
+        },
+        {
+          "cantrip": false,
+          "cost": "2",
+          "frequency": "at-will",
+          "name": "Faerie Fire (At Will)",
+          "prepared": 0,
+          "rank": 2,
+          "uses": null
         }
       ],
       "tradition": "divine"

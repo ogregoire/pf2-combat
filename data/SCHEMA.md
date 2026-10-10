@@ -32,11 +32,41 @@ Defences: `ac`, `acDetails` (e.g. "25 with shield raised", or `null`), `hp`, `hp
 
 Other statistics: `perception`, `senses` (`{ type, acuity, range }`, e.g. `{ type: "scent", acuity: "imprecise", range: 30 }`; `acuity`/`range` are `null` when upstream doesn't specify them), `languages`, `skills`, `abilityMods`, `speeds`.
 
-Combat: `attacks` (`name`, `kind`, `bonus`, `damage` (`{ formula, type, category }`, `category` is `"persistent"`, `"splash"`, `"precision"` or `null`), `traits`, `effects` (attack-effect slugs like `"grab"`, `"poison"`)), `actions` (`name`, `cost`, `category`, `traits`, `trigger`, `requirements`, `frequency`, `description`), `spellcasting` (`name`, `tradition`, `preparation`, `dc`, `attack`, `slots`, `spells`).
+Combat: `attacks` (`name`, `kind`, `bonus`, `damage` (`{ formula, type, category }`, `category` is `"persistent"`, `"splash"`, `"precision"` or `null`), `traits`, `effects` (attack-effect slugs like `"grab"`, `"poison"`)), `actions` (`name`, `cost`, `category`, `traits`, `trigger`, `requirements`, `frequency`, `description`), `spellcasting` (`name`, `tradition`, `preparation`, `dc`, `attack`, `slots`, `focusPoints`, `spells` -- see below).
 
 Reference: `gear`, `publicNotes`.
 
-`cost` is one of `1`, `2`, `3`, `reaction`, `free`, `passive`.
+An action's `cost` is one of `1`, `2`, `3`, `reaction`, `free`, `passive`.
+
+### Spellcasting
+
+Each entry: `preparation` is upstream's own value (`innate`, `spontaneous`,
+`prepared` or `focus`); `slots` is `{ rank, max }` per rank with at least
+one slot (rank 0 = cantrips, on prepared entries); `focusPoints` is the
+creature's focus pool max on a `focus` entry, `null` when upstream doesn't
+state one, and always `null` on every other preparation.
+
+Each spell: `name` (upstream's, unchanged -- qualifiers like "(At Will)" or
+"(Self Only)" stay in it), `rank`, `cost`, `cantrip`, `frequency`,
+`uses`, `prepared`.
+
+- `rank` is the EFFECTIVE rank: a cantrip's is its entry's
+  `autoHeightenLevel`, else half the creature's level rounded up (minimum
+  1); a prepared spell's is the slot rank it is prepared in; anything else
+  is the spell's heightened rank, else its base rank.
+- `cost` is upstream's raw cast time, NOT the action-cost enum above:
+  `"1"`, `"2"`, `"3"`, `"1 to 3"`, `"1 or 2"`, `"1 to 2"`,
+  `"reaction"`, `"free"`, or a duration such as `"1 minute"`,
+  `"10 minutes"`, `"1 hour"`, `"1 day"`. Long casts are kept.
+- `frequency` is `"at-will"` or `"constant"` when the name's
+  parenthetical says so, else `null`. `uses` is an innate spell's per-day
+  count, else `null`.
+- On a `prepared` entry the spell list is what the SLOTS hold, not the
+  repertoire: one row per (spell, rank) pair, `prepared` counting how many
+  slots hold it at that rank. A spell prepared at two ranks is two rows; a
+  spell no slot holds is omitted. `prepared` is `0` on every other
+  preparation.
+- Rituals are never listed. Spells sort by rank descending, then name.
 
 ## French overlay (`i18n/fr/`)
 
@@ -46,7 +76,8 @@ present with an English or `null` value.
 
 `i18n/fr/creatures/<pack>/<slug>.json` | one `CreatureI18n` per creature:
 `name`, `publicNotes` (nullable), `actions` (array of `{ en, name, description }`),
-`attacks` (array of `{ en, name }`). `actions`/`attacks` are index-aligned to
+`attacks` (array of `{ en, name }`), `spells` (array of `{ en, name }`).
+`actions`/`attacks` are index-aligned to
 the SAME `creatures/<pack>/<slug>.json` arrays, never name-keyed -- 156
 creatures carry two Strikes with the same English name (a melee and a thrown
 Dagger, Hatchet or Spear), so a name join would silently collapse them onto
@@ -56,6 +87,14 @@ live creature file at the same array position on every run, because a
 position-based join has no other way to notice that either array's order
 drifted between builds -- a silent mismatch would misattribute one action's
 French translation to a different action.
+
+`spells` is aligned the same way to the creature's spells FLATTENED across
+its `spellcasting` entries (entries in file order, each entry's spells in
+file order), so a prepared spell listed at two ranks appears twice. A spell's
+French `name` comes from the creature's own Babele entry for that item, else
+from the shared `spells-srd` Babele pack by exact English name -- the
+latter only for a name with no parenthetical, since translating "Tongues" for
+"Tongues (Constant)" would drop the qualifier -- else `null`.
 
 `i18n/fr/conditions.json` and `i18n/fr/glossary.json` | both
 `Record<slug, { name, description | null }>`, keyed by OUR slug (never
