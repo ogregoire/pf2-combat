@@ -117,6 +117,7 @@ export const STRINGS_EN = {
   READY_COUNT: "{n} ready",
   SPENT_BUTTON: "Spent",
   TRIGGER_LABEL: "Trigger",
+  PLAYER_REACTION_SPEND_ARIA: "{name} uses their reaction",
 
   // RollAssistant.tsx
   DEGREE_CRITICAL_SUCCESS: "critical hit",

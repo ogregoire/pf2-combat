@@ -119,6 +119,7 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   READY_COUNT: "{n} prête(s)",
   SPENT_BUTTON: "Utilisée",
   TRIGGER_LABEL: "Déclencheur",
+  PLAYER_REACTION_SPEND_ARIA: "{name} utilise sa réaction",
 
   // RollAssistant.tsx
   DEGREE_CRITICAL_SUCCESS: "coup critique",

@@ -90,14 +90,50 @@ function ReadyCombatantCard({
   );
 }
 
+/** A player who still has a reaction this round: the name alone — the GM
+ * doesn't track which reactions the players have, only whether each has
+ * used theirs. The whole row is the control: clicking it spends the
+ * reaction, which takes the player off the list until their next turn. */
+function ReadyPlayerRow({ combatant, onSpend }: { combatant: Combatant; onSpend: () => void }): React.ReactElement {
+  const t = useT();
+  const label = format(t("PLAYER_REACTION_SPEND_ARIA"), { name: combatant.name });
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      onClick={onSpend}
+      style={{
+        fontFamily: "inherit",
+        textAlign: "left",
+        fontSize: "12.5px",
+        fontWeight: 600,
+        color: "var(--text)",
+        padding: "7px 10px",
+        borderRadius: "4px",
+        border: "1px solid var(--border)",
+        borderLeft: "3px solid var(--pc)",
+        background: "var(--panel-raised)",
+        cursor: "pointer",
+        flexShrink: 0,
+      }}
+    >
+      {combatant.name}
+    </button>
+  );
+}
+
 /** Main.dc.html's "REACTIONS READY" list — every non-defeated combatant who
  * hasn't spent their reaction yet, so the GM can see who might interrupt.
+ * Players come first, as bare names (ReadyPlayerRow): their reactions
+ * aren't on record, but whether they have used one is what the GM tracks.
+ * Monsters follow, each with its reaction's name and trigger.
  * The mockup pairs each entry with the reaction's name and trigger text;
  * `Combatant.reactions` (denormalised from the creature record, same as
  * `iwr`) carries that. A reaction with no trigger text shows its name alone
  * rather than inventing a trigger; a combatant with no known reactions at
  * all has nothing to watch for, so it's excluded rather than listed with
- * nothing under its name — `setReactionSpent` previously had no call site,
+ * nothing under its name (players aside, above) — `setReactionSpent` previously had no call site,
  * so this list also never shrank when a reaction was actually used.
  *
  * A combatant whose entry is Delayed is excluded outright: RAW (Player Core
@@ -123,9 +159,12 @@ export function ReactionWatch({ fetchFn }: { fetchFn?: FetchFn } = {}): React.Re
   // Delay is a property of the *entry*, so a group that Delays takes every
   // one of its members' reactions with it.
   const delayedIds = new Set(entries.filter((e) => e.delayed).flatMap((e) => e.combatantIds));
-  const ready = Object.values(combatants)
-    .filter((c) => !c.defeated && !c.reactionSpent && !delayedIds.has(c.id) && c.reactions.length > 0)
+  const available = Object.values(combatants)
+    .filter((c) => !c.defeated && !c.reactionSpent && !delayedIds.has(c.id))
     .sort((a, b) => compareStrings(a.name, b.name));
+  const readyPlayers = available.filter((c) => c.kind === "pc");
+  const readyMonsters = available.filter((c) => c.kind === "creature" && c.reactions.length > 0);
+  const readyCount = readyPlayers.length + readyMonsters.length;
 
   return (
     <div
@@ -142,7 +181,7 @@ export function ReactionWatch({ fetchFn }: { fetchFn?: FetchFn } = {}): React.Re
         <span style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--info)" }}>{t("REACTIONS_READY_HEADING")}</span>
         <div style={{ flexGrow: 1 }} />
         <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)" }}>
-          {format(t("READY_COUNT"), { n: ready.length })}
+          {format(t("READY_COUNT"), { n: readyCount })}
         </span>
       </div>
 
@@ -158,7 +197,10 @@ export function ReactionWatch({ fetchFn }: { fetchFn?: FetchFn } = {}): React.Re
           paddingRight: "4px",
         }}
       >
-        {ready.map((c) => (
+        {readyPlayers.map((c) => (
+          <ReadyPlayerRow key={c.id} combatant={c} onSpend={() => setReactionSpent(c.id, true)} />
+        ))}
+        {readyMonsters.map((c) => (
           <ReadyCombatantCard
             key={c.id}
             combatant={c}

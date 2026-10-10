@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { act, render, screen } from "@testing-library/react";
+import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { CombatantList } from "../src/components/CombatantList.js";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
@@ -282,6 +282,47 @@ describe("TurnManager", () => {
 
     expect(screen.getByText("0 ready")).toBeDefined();
     expect(useEncounter.getState().encounter.combatants[id]!.reactionSpent).toBe(true);
+  });
+
+  describe("players in the ready list", () => {
+    const pc = (name: string, initiative: number): string =>
+      useEncounter.getState().addCombatant(
+        { kind: "pc", name, level: 3, ac: 18, saves: { fortitude: 8, reflex: 9, will: 7 }, hp: null },
+        initiative,
+      );
+
+    it("lists every player with a reaction left, by name alone, ahead of the monsters", () => {
+      pc("Valeria", 25);
+      pc("Akiros", 22);
+      useEncounter.getState().addCombatant(
+        { kind: "creature", name: "Bandit", level: 1, ac: 15,
+          saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 },
+          reactions: [{ name: "No Escape", trigger: "An adjacent foe moves away." }] },
+        10,
+      );
+      render(<TurnManager />);
+
+      expect(screen.getByText("3 ready")).toBeDefined();
+      const list = within(screen.getByTestId("reaction-scroll"));
+      const firstTwo = list.getAllByRole("button").slice(0, 2).map((b) => b.getAttribute("aria-label"));
+      expect(firstTwo).toEqual(["Akiros uses their reaction", "Valeria uses their reaction"]);
+      expect(list.getByText("No Escape")).toBeDefined();
+    });
+
+    it("spends a player's reaction on a click of the name, until their next turn", async () => {
+      const user = userEvent.setup();
+      pc("First", 30);
+      const valeria = pc("Valeria", 20);
+      render(<TurnManager />);
+
+      await user.click(screen.getByRole("button", { name: "Valeria uses their reaction" }));
+      expect(useEncounter.getState().encounter.combatants[valeria]!.reactionSpent).toBe(true);
+      expect(screen.queryByRole("button", { name: "Valeria uses their reaction" })).toBeNull();
+
+      // Valeria's own turn gives it back.
+      act(() => useEncounter.getState().nextTurn());
+      expect(screen.getByRole("button", { name: "Valeria uses their reaction" })).toBeDefined();
+    });
   });
 
   it("shows the reaction's name and trigger text", () => {
