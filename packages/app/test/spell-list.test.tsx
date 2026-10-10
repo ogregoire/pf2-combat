@@ -105,4 +105,29 @@ describe("SpellList", () => {
     expect(screen.getByText("Don des langues (constant)")).toBeDefined();
     expect(screen.getByText("Sorts")).toBeDefined();
   });
+
+  // The reported defect: a creature added before spells were carried (the
+  // Dancing Lady, saved in the GM's encounter) showed no Spells section,
+  // while one added afterwards did.
+  it("reads the spells back from the creature record for a combatant saved before spells existed", async () => {
+    const id = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "The Dancing Lady", creatureId: "kingmaker-bestiary/the-dancing-lady", level: 8, ac: 28,
+        saves: { fortitude: 13, reflex: 19, will: 16 }, hp: { current: 135, max: 135 } },
+      20,
+    );
+    useEncounter.getState().setAdjustment(id, "elite");
+    // What a saved combatant from before looks like: no field at all.
+    useEncounter.setState((s) => {
+      delete s.encounter.combatants[id]!.spellcasting;
+    });
+    const fetchFn = async (url: string): Promise<Response> =>
+      url.includes("creatures/kingmaker-bestiary/the-dancing-lady.json")
+        ? new Response(JSON.stringify({ spellcasting: [spellcasting[1]] }))
+        : new Response("[]");
+    render(<ActiveCombatant fetchFn={fetchFn} />);
+
+    expect(await screen.findByText("Entangle")).toBeDefined();
+    // Elite, so the backfilled DC carries the +2 like every other stat.
+    expect(useEncounter.getState().encounter.combatants[id]!.spellcasting![0]!.dc).toBe(26);
+  });
 });

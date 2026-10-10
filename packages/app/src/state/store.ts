@@ -659,6 +659,11 @@ interface EncounterStore {
    * — or, with `-1`, takes one back. The actions or reaction the cast costs
    * are spent separately, through spendActions/setReactionSpent. */
   spendSpell(id: string, key: string, delta?: 1 | -1): void;
+  /** Fills in the spells of a combatant saved before spells were carried
+   * (its `spellcasting` is absent, not empty), read back from its creature
+   * record — with any elite/weak adjustment applied, like the rest of its
+   * stats. A no-op once the combatant has spells, or an explicit none. */
+  backfillSpellcasting(id: string, spellcasting: Spellcasting[]): void;
   setTarget(id: string | null): void;
   /** Makes a creature elite or weak, or normal again with `null` — any
    * current adjustment comes off first, so elite → weak is one call. */
@@ -1007,6 +1012,14 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         const c = state.encounter.combatants[id];
         if (c) c.reactionSpent = spent;
+      }),
+
+    backfillSpellcasting: (id, spellcasting) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (!c || c.spellcasting !== undefined) return;
+        const step = c.adjustment ? (c.adjustment.kind === "elite" ? 2 : -2) : 0;
+        c.spellcasting = spellcasting.map((e) => ({ ...e, dc: e.dc + step, attack: e.attack + step }));
       }),
 
     spendSpell: (id, key, delta = 1) =>

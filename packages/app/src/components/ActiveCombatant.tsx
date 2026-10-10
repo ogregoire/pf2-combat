@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { loadCreature } from "../data/creatures.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
 import { resolveAttacks, resolveCreatureName } from "../data/i18nOverlay.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
@@ -38,6 +39,24 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
   // Both called unconditionally (Rules of Hooks) — results only used once
   // `combatant` is confirmed non-null below.
   const combatantI18n = useCombatantI18n(combatant ?? { i18n: null, creatureId: undefined });
+  // A combatant saved before spells were carried has no `spellcasting` at
+  // all (not an empty list): read it back from the creature record once it
+  // is the one acting, so its Spells section isn't silently missing.
+  const backfillSpellcasting = useEncounter((s) => s.backfillSpellcasting);
+  const missingSpellsFor = combatant?.spellcasting === undefined ? combatant?.creatureId : undefined;
+  const combatantId = combatant?.id;
+  useEffect(() => {
+    if (missingSpellsFor === undefined || combatantId === undefined) return;
+    let cancelled = false;
+    loadCreature(missingSpellsFor, fetchFn)
+      .then((creature) => {
+        if (!cancelled) backfillSpellcasting(combatantId, creature.spellcasting);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [missingSpellsFor, combatantId, fetchFn, backfillSpellcasting]);
   const targetI18n = useCombatantI18n(rawTarget ?? { i18n: null, creatureId: undefined });
 
   if (!combatant) return null;
