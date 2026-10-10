@@ -48,6 +48,12 @@ export function useSpellDetail(
 
   useEffect(() => {
     if (!enabled) return;
+    // A row from an older save may still lack its slug until the creature
+    // record refreshes it — never ask for `spells/undefined.json`.
+    if (!slug) {
+      setState("error");
+      return;
+    }
     let cancelled = false;
     setState("loading");
     Promise.all([

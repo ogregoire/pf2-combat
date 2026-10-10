@@ -1,9 +1,10 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { act, render, screen, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { CreatureI18n, Spellcasting } from "@pf2/schema";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { useEncounter } from "../src/state/store.js";
+import { __resetSpellDetailCacheForTests } from "../src/hooks/useSpellDetail.js";
 
 type Spell = Spellcasting["spells"][number];
 const spell = (over: Partial<Spell>): Spell => ({
@@ -36,7 +37,10 @@ const add = (i18n: CreatureI18n | null = null): string =>
 const rowOf = (name: string) => within(screen.getAllByTestId("spell-row").find((r) => r.textContent!.includes(name))!);
 
 describe("SpellList", () => {
-  beforeEach(() => useEncounter.getState().reset());
+  beforeEach(() => {
+    useEncounter.getState().reset();
+    __resetSpellDetailCacheForTests();
+  });
 
   it("lists every entry's spells in one section, highest rank first, with each entry's DC and attack", async () => {
     add();
@@ -161,5 +165,36 @@ describe("SpellList", () => {
     // Casting from the folded row doesn't unfold it.
     await user.click(within(screen.getAllByTestId("spell-row").find((r) => r.textContent!.includes("Entangle"))!).getByRole("button", { name: /^Lancer/ }));
     expect(screen.getAllByTestId("spell-details")).toHaveLength(1);
+  });
+
+  // The reported defect: "Le texte de ce sort n’a pas pu être chargé" on a
+  // creature saved before spell rows carried the slug their text is
+  // fetched by.
+  it("refreshes spells saved without slugs from the creature record, keeping casts spent", async () => {
+    const user = userEvent.setup();
+    const id = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Grigori", creatureId: "kingmaker-bestiary/grigori", level: 7, ac: 22,
+        saves: { fortitude: 10, reflex: 14, will: 12 }, hp: { current: 90, max: 90 }, spellcasting },
+      20,
+    );
+    useEncounter.getState().spendSpell(id, "0:rank3");
+    useEncounter.setState((s) => {
+      for (const e of s.encounter.combatants[id]!.spellcasting!) for (const sp of e.spells) delete (sp as { slug?: string }).slug;
+    });
+    const fetchFn = async (url: string): Promise<Response> => {
+      if (url.includes("creatures/kingmaker-bestiary/grigori.json")) return new Response(JSON.stringify({ spellcasting }));
+      if (url.endsWith("data/spells/enthrall.json"))
+        return new Response(JSON.stringify({ slug: "enthrall", name: "Enthrall", rank: 3, cantrip: false, traits: [], traditions: [],
+          cost: "2", range: null, area: null, targets: null, defense: null, duration: null, sustained: false, description: "<p>Your words fascinate.</p>" }));
+      return new Response("[]");
+    };
+    render(<ActiveCombatant fetchFn={fetchFn} />);
+
+    await screen.findByText("Enthrall");
+    await waitFor(() => expect(useEncounter.getState().encounter.combatants[id]!.spellcasting![0]!.spells[0]!.slug).toBe("enthrall"));
+    expect(useEncounter.getState().encounter.combatants[id]!.spellUses).toEqual({ "0:rank3": 1 });
+    const enthrallRow = screen.getAllByTestId("spell-row").find((r) => r.textContent!.includes("Enthrall"))!;
+    await user.click(within(enthrallRow).getByRole("button", { expanded: false }));
+    expect((await screen.findByTestId("spell-details")).textContent).toContain("Your words fascinate.");
   });
 });
