@@ -240,20 +240,29 @@ function Drawer({
 
 type DrawerKind = "add" | "party" | null;
 
-/** The list pane's "Initiative" title plus its "+ Add" control — factored
- * out so both the desktop three-column layout and the narrow List tab
- * render the exact same header rather than two copies drifting apart. The
- * party roster is reached from the app menu (AppMenu), not from here. */
+/** The list pane's head: the round counter, the "+ Add" control and the
+ * "Initiative" title — factored out so both the desktop three-column layout
+ * and the narrow List tab render the exact same header rather than two
+ * copies drifting apart. The round sits here, at the top of the order it
+ * counts, rather than in the turn manager. The party roster is reached from
+ * the app menu (AppMenu), not from here. */
 function CombatantListHeader({ onAdd }: { onAdd: () => void }): React.ReactElement {
   const t = useT();
+  const round = useEncounter((s) => s.encounter.round);
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px 10px" }}>
+    <div style={{ padding: "12px 14px 10px", display: "flex", flexDirection: "column", gap: "8px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div data-testid="round-counter" style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+          <span style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--text-faint)" }}>{t("ROUND_LABEL")}</span>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "28px", fontWeight: 600, lineHeight: 1 }}>{round}</span>
+        </div>
+        <button type="button" onClick={onAdd} style={headerButtonStyle}>
+          {t("ADD_SHORT_BUTTON")}
+        </button>
+      </div>
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
         {t("LABEL_INITIATIVE")}
       </div>
-      <button type="button" onClick={onAdd} style={headerButtonStyle}>
-        {t("ADD_SHORT_BUTTON")}
-      </button>
     </div>
   );
 }

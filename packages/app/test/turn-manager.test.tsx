@@ -16,11 +16,11 @@ const add = (name: string, init: number): string =>
 describe("TurnManager", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("shows the round and three action pips", () => {
+  it("shows three action pips, and no round counter — that heads the initiative list", () => {
     add("a", 20);
     render(<TurnManager />);
-    expect(screen.getByText("1")).toBeDefined();
     expect(screen.getAllByTestId("action-pip")).toHaveLength(3);
+    expect(screen.queryByText("ROUND")).toBeNull();
   });
 
   it("refuses to advance the turn while a combatant has no initiative, and says how many", async () => {

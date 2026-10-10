@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { BookCatalogEntry, Creature, IndexEntry } from "@pf2/schema";
 import type { FetchFn } from "../src/data/catalog.js";
@@ -20,6 +20,22 @@ describe("EncounterScreen", () => {
     expect(screen.getByTestId("combatant-list")).toBeDefined();
     expect(screen.getByTestId("active-combatant")).toBeDefined();
     expect(screen.getByTestId("turn-manager")).toBeDefined();
+  });
+
+  it("shows the round at the top of the initiative list, and counts it up as the order wraps", () => {
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Solo", level: 1, ac: 15,
+        saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 20, max: 20 } },
+      20,
+    );
+    render(<EncounterScreen />);
+
+    const list = within(screen.getByTestId("combatant-list"));
+    expect(list.getByTestId("round-counter").textContent).toBe("ROUND1");
+    expect(within(screen.getByTestId("turn-manager")).queryByText("ROUND")).toBeNull();
+
+    act(() => useEncounter.getState().nextTurn());
+    expect(list.getByTestId("round-counter").textContent).toBe("ROUND2");
   });
 
   it("does not let the turn-manager pane itself scroll — only its reaction list does", () => {

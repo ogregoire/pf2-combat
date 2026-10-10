@@ -174,19 +174,20 @@ export function remainingActionsFor(combatant: Combatant): number {
   return Math.max(0, pool.total - combatant.actionsSpent);
 }
 
-/** The right-pane turn manager — Main.dc.html's round/pips/Next/reactions
+/** The right-pane turn manager — Main.dc.html's pips/Next/reactions
  * plus TurnAssistant.dc.html's start/end prompts, merged into one panel
  * since both describe the same sidebar. Reads the encounter store directly,
  * same as CombatantList. `showNextButton` defaults to true (desktop,
  * unchanged); EncounterScreen's narrow layout passes false because it pins
  * its own single NextButton to the bottom of the screen instead — without
  * this, the Turn tab would show two Next buttons at once. */
+// The round counter is not here: it heads the initiative list
+// (EncounterScreen's CombatantListHeader), beside the order it counts.
 export function TurnManager({
   showNextButton = true,
   fetchFn,
 }: { showNextButton?: boolean; fetchFn?: FetchFn } = {}): React.ReactElement {
   const t = useT();
-  const round = useEncounter((s) => s.encounter.round);
   const entries = useEncounter((s) => s.encounter.entries);
   const activeEntryIndex = useEncounter((s) => s.encounter.activeEntryIndex);
   const combatants = useEncounter((s) => s.encounter.combatants);
@@ -198,13 +199,6 @@ export function TurnManager({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, minHeight: 0, padding: "16px 14px", gap: "16px" }}>
-      <div style={{ textAlign: "center" }}>
-        <div style={{ fontSize: "10px", letterSpacing: "0.12em", color: "var(--text-faint)" }}>{t("ROUND_LABEL")}</div>
-        <div style={{ fontFamily: "var(--font-mono)", fontSize: "40px", fontWeight: 600, lineHeight: 1.05, marginTop: "2px" }}>
-          {round}
-        </div>
-      </div>
-
       {combatant && <ActionPips combatant={combatant} />}
 
       {/* Turn-economy state belongs together with the action pips, not
