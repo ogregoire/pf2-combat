@@ -64,11 +64,23 @@ function Candidate({ combatant, onPick }: { combatant: Combatant; onPick: () => 
   );
 }
 
+/** Who the attacker most likely means first: the other side. A PC sees the
+ * monsters first, a monster the PCs. Monsters run by level, highest first —
+ * the biggest threat, or the boss, at the top; PCs keep initiative order.
+ * Ties keep initiative order too (the sort is stable over `candidates`,
+ * which arrive in it). */
+export function orderTargets(candidates: Combatant[], attackerKind: Combatant["kind"]): Combatant[] {
+  const monsters = candidates.filter((c) => c.kind === "creature").sort((a, b) => b.level - a.level);
+  const pcs = candidates.filter((c) => c.kind === "pc");
+  return attackerKind === "pc" ? [...monsters, ...pcs] : [...pcs, ...monsters];
+}
+
 /** The roll assistant's way to choose a target. Closed, it is a single
  * "Select a target" button; open, it lists everyone who can be targeted —
- * in initiative order, without the attacker or the defeated — each with its
- * defensive stats, so the GM picks a target by how hurt and how well
- * defended it is. Picking one sets the encounter's target and closes. */
+ * the attacker's opponents first (see orderTargets), without the attacker
+ * or the defeated — each with its defensive stats, so the GM picks a target
+ * by how hurt and how well defended it is. Picking one sets the encounter's
+ * target and closes. */
 export function TargetPicker({
   attackerId,
   open,
@@ -97,10 +109,13 @@ export function TargetPicker({
     );
   }
 
-  const candidates = entries
-    .flatMap((e) => e.combatantIds)
-    .map((id) => combatants[id])
-    .filter((c): c is Combatant => c !== undefined && c.id !== attackerId && !c.defeated);
+  const candidates = orderTargets(
+    entries
+      .flatMap((e) => e.combatantIds)
+      .map((id) => combatants[id])
+      .filter((c): c is Combatant => c !== undefined && c.id !== attackerId && !c.defeated),
+    combatants[attackerId]?.kind ?? "creature",
+  );
 
   return (
     <div role="group" aria-label={t("TARGET_PICKER_HEADING")} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

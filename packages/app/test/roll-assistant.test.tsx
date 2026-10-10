@@ -132,6 +132,37 @@ describe("RollAssistant", () => {
     ]);
   });
 
+  describe("target order", () => {
+    const pc = (name: string) => ({ ...target, name });
+    const monster = (name: string, level: number) => ({ ...stagLord, name, level });
+    const listed = async () => {
+      const user = userEvent.setup();
+      render(<ActiveCombatant />);
+      await user.click(screen.getByRole("button", { name: "Select a target" }));
+      return within(screen.getByRole("group", { name: "Choose a target" }))
+        .getAllByRole("button", { name: /^Target / })
+        .map((b) => b.getAttribute("aria-label")!.replace("Target ", ""));
+    };
+
+    it("puts the monsters first for a PC, highest level first, then the other PCs", async () => {
+      useEncounter.getState().addCombatant(pc("Active PC"), 30);
+      useEncounter.getState().addCombatant(pc("Ally"), 25);
+      useEncounter.getState().addCombatant(monster("Minion", 1), 20);
+      useEncounter.getState().addCombatant(monster("Boss", 8), 15);
+      useEncounter.getState().addCombatant(monster("Lieutenant", 4), 10);
+      expect(await listed()).toEqual(["Boss", "Lieutenant", "Minion", "Ally"]);
+    });
+
+    it("puts the PCs first for a monster, then the other monsters, highest level first", async () => {
+      useEncounter.getState().addCombatant(monster("Active Monster", 3), 30);
+      useEncounter.getState().addCombatant(monster("Minion", 1), 25);
+      useEncounter.getState().addCombatant(pc("Valeria"), 20);
+      useEncounter.getState().addCombatant(monster("Boss", 8), 15);
+      useEncounter.getState().addCombatant(pc("Akiros"), 10);
+      expect(await listed()).toEqual(["Valeria", "Akiros", "Boss", "Minion"]);
+    });
+  });
+
   // The centre pane is what the active combatant can do; its AC, HP and
   // saves are the defensive side and are not shown there.
   it("shows no defences strip for the active combatant", () => {
