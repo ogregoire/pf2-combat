@@ -1,0 +1,112 @@
+import { useState } from "react";
+import type { Action } from "@pf2/schema";
+import type { FetchFn } from "../data/catalog.js";
+import { useStandardActions } from "../hooks/useStandardActions.js";
+import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
+import { useT, type StringKey } from "../i18n/index.js";
+import { useEncounter } from "../state/store.js";
+import type { Combatant } from "../state/types.js";
+import { ActionCard } from "./ActionCard.js";
+import { remainingActionsFor } from "./TurnManager.js";
+
+function FoldHeading({ label, open, onToggle, count }: { label: string; open: boolean; onToggle: () => void; count: number }): React.ReactElement {
+  return (
+    <button
+      type="button"
+      aria-expanded={open}
+      onClick={onToggle}
+      style={{
+        fontFamily: "inherit",
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        width: "100%",
+        padding: "4px 0",
+        border: "none",
+        background: "none",
+        cursor: "pointer",
+        fontSize: "11px",
+        letterSpacing: "0.09em",
+        textTransform: "uppercase",
+        color: "var(--text-faint)",
+        textAlign: "left",
+      }}
+    >
+      <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style={{ transform: open ? "rotate(90deg)" : "none", flexShrink: 0 }}>
+        <path d="M3 1.5 7 5 3 8.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      {label}
+      <span style={{ fontFamily: "var(--font-mono)", letterSpacing: 0 }}>{count}</span>
+    </button>
+  );
+}
+
+/**
+ * PF2's standard actions — the basic actions anyone can take (Stride, Step,
+ * Raise a Shield, ...) and the encounter skill actions (Shove, Trip,
+ * Demoralize, ...) — above the active combatant's own abilities, folded to
+ * a single line so they don't push those down. Folded by default, and every action in it folded too: the GM knows these by name,
+ * so each card shows its Use button while folded, spending the action (or
+ * the reaction) straight away; unfolding a card is only for its rules text.
+ * Folds again whenever the turn passes to someone else.
+ */
+export function StandardActions({ combatant, fetchFn }: { combatant: Combatant; fetchFn?: FetchFn }): React.ReactElement | null {
+  const t = useT();
+  const { basic, skill } = useStandardActions(fetchFn);
+  const glossary = useTraitGlossary(fetchFn);
+  const spendActions = useEncounter((s) => s.spendActions);
+  const setReactionSpent = useEncounter((s) => s.setReactionSpent);
+  const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
+  const [turnOf, setTurnOf] = useState(combatant.id);
+  if (turnOf !== combatant.id) {
+    setTurnOf(combatant.id);
+    setOpen(false);
+    setExpanded(null);
+  }
+  if (basic.length + skill.length === 0) return null;
+
+  const remaining = remainingActionsFor(combatant);
+
+  const card = (action: Action, group: string): React.ReactElement => {
+    const key = `${group}:${action.name}`;
+    const n = action.cost === "1" || action.cost === "2" || action.cost === "3" ? Number(action.cost) : 0;
+    const spec =
+      action.cost === "reaction"
+        ? { disabled: combatant.reactionSpent, onUse: () => setReactionSpent(combatant.id, true) }
+        : n > 0
+          ? { disabled: n > remaining, onUse: () => spendActions(combatant.id, n) }
+          : { disabled: false, onUse: undefined };
+    return (
+      <ActionCard
+        key={key}
+        action={action}
+        disabled={spec.disabled}
+        selected={expanded === key}
+        onSelect={() => setExpanded((prev) => (prev === key ? null : key))}
+        onUse={spec.onUse}
+        useWhileCollapsed
+        glossary={glossary}
+      />
+    );
+  };
+
+  const group = (labelKey: StringKey, actions: Action[], id: string): React.ReactElement => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+      <div style={{ fontSize: "10px", letterSpacing: "0.09em", color: "var(--text-faint)", marginTop: "4px" }}>{t(labelKey)}</div>
+      {actions.map((a) => card(a, id))}
+    </div>
+  );
+
+  return (
+    <div data-testid="standard-actions">
+      <FoldHeading label={t("STANDARD_ACTIONS_HEADING")} open={open} onToggle={() => setOpen((o) => !o)} count={basic.length + skill.length} />
+      {open && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "6px" }}>
+          {basic.length > 0 && group("STANDARD_ACTIONS_BASIC", basic, "basic")}
+          {skill.length > 0 && group("STANDARD_ACTIONS_SKILL", skill, "skill")}
+        </div>
+      )}
+    </div>
+  );
+}

@@ -1,4 +1,4 @@
-import type { BookCatalogEntry, Condition, GlossaryEntry, IndexEntry, Trait } from "@pf2/schema";
+import type { BookCatalogEntry, Condition, GlossaryEntry, IndexEntry, StandardAction, Trait } from "@pf2/schema";
 import { compareStrings } from "../rules/compare.js";
 
 export type FetchFn = (url: string) => Promise<Response>;
@@ -19,6 +19,13 @@ export function loadBooks(fetchFn: FetchFn = defaultFetch): Promise<BookCatalogE
 
 export function loadIndex(pack: string, fetchFn: FetchFn = defaultFetch): Promise<IndexEntry[]> {
   return getJson<IndexEntry[]>(`index/${pack}.json`, fetchFn);
+}
+
+/** PF2's standard actions — the basic actions (Stride, Step, Raise a
+ * Shield, ...) and the encounter skill actions (Shove, Demoralize, ...) —
+ * that any combatant can take, for the centre pane's standard actions list. */
+export function loadStandardActions(fetchFn: FetchFn = defaultFetch): Promise<StandardAction[]> {
+  return getJson<StandardAction[]>("actions.json", fetchFn);
 }
 
 /** The monster-ability glossary (Grab, Attack of Opportunity, ...) — one of

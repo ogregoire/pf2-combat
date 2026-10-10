@@ -67,6 +67,11 @@ export function loadGlossaryI18n(fetchFn: FetchFn = defaultFetch): Promise<Refer
   return getJson<ReferenceI18n>("i18n/fr/glossary.json", fetchFn);
 }
 
+/** slug -> French name/description for the standard actions (actions.json). */
+export function loadActionsI18n(fetchFn: FetchFn = defaultFetch): Promise<ReferenceI18n> {
+  return getJson<ReferenceI18n>("i18n/fr/actions.json", fetchFn);
+}
+
 export function loadTraitsI18n(fetchFn: FetchFn = defaultFetch): Promise<TraitsI18n> {
   return getJson<TraitsI18n>("i18n/fr/traits.json", fetchFn);
 }

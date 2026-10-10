@@ -152,6 +152,11 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   NO_DAMAGE: "aucun dégât",
   RECORD_STRIKE_BUTTON: "Enregistrer la frappe",
 
+  // StandardActions.tsx
+  STANDARD_ACTIONS_HEADING: "Actions standard",
+  STANDARD_ACTIONS_BASIC: "ACTIONS DE BASE",
+  STANDARD_ACTIONS_SKILL: "ACTIONS DE COMPÉTENCE",
+
   // SpellList.tsx
   SPELLS_HEADING: "Sorts",
   SPELL_RANK: "rang {rank}",

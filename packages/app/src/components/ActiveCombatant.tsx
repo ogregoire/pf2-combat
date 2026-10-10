@@ -6,6 +6,7 @@ import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useEncounter } from "../state/store.js";
 import type { FetchFn } from "../data/catalog.js";
 import { SpellList } from "./SpellList.js";
+import { StandardActions } from "./StandardActions.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
 import { TurnEconomy } from "./TurnEconomy.js";
 import { ActionList } from "./ActionList.js";
@@ -118,6 +119,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
             gap: "18px",
           }}
         >
+          <StandardActions combatant={combatant} fetchFn={fetchFn} />
           <ActionList
             combatant={combatant}
             selectedAttackIndex={selectedAttackIndex}

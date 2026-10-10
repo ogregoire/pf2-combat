@@ -150,6 +150,11 @@ export const STRINGS_EN = {
   NO_DAMAGE: "no damage",
   RECORD_STRIKE_BUTTON: "Record strike",
 
+  // StandardActions.tsx
+  STANDARD_ACTIONS_HEADING: "Standard actions",
+  STANDARD_ACTIONS_BASIC: "BASIC ACTIONS",
+  STANDARD_ACTIONS_SKILL: "SKILL ACTIONS",
+
   // SpellList.tsx
   SPELLS_HEADING: "Spells",
   SPELL_RANK: "rank {rank}",

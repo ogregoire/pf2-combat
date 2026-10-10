@@ -112,6 +112,7 @@ export function ActionCard({
   selected = false,
   onSelect,
   onUse,
+  useWhileCollapsed = false,
   glossary,
 }: {
   action: Action;
@@ -119,6 +120,10 @@ export function ActionCard({
   selected?: boolean;
   onSelect?: () => void;
   onUse?: () => void;
+  /** Show the Use button on the folded card too, not only once expanded —
+   * the standard actions list, where the GM knows Stride or Shove by name
+   * and just wants to spend the action. */
+  useWhileCollapsed?: boolean;
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
   const t = useT();
@@ -188,7 +193,7 @@ export function ActionCard({
           </>
         )}
       </div>
-      {selected && onUse && (
+      {(selected || useWhileCollapsed) && onUse && (
         <button
           type="button"
           disabled={disabled}
