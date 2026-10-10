@@ -14,6 +14,8 @@ describe("renderSchemaDoc", () => {
       "traits.json",
       "actions.json",
       "i18n/fr/actions.json",
+      "spells/<slug>.json",
+      "i18n/fr/spells/<slug>.json",
     ]) {
       expect(doc).toContain(path);
     }
@@ -31,6 +33,30 @@ describe("renderSchemaDoc", () => {
     for (const field of ["focusPoints", "frequency", "uses", "prepared", "cantrip", "spells-srd"]) {
       expect(doc).toContain(field);
     }
+  });
+
+  it("documents the spell row slug and every spell detail field", () => {
+    const doc = renderSchemaDoc();
+    const section = doc.slice(doc.indexOf("## Spell details"), doc.indexOf("## French overlay"));
+    for (const field of [
+      "slug",
+      "rank",
+      "cantrip",
+      "traits",
+      "traditions",
+      "cost",
+      "range",
+      "area",
+      "targets",
+      "defense",
+      "duration",
+      "sustained",
+      "description",
+    ]) {
+      expect(section).toContain(`\`${field}\``);
+    }
+    expect(doc).toContain("system.slug");
+    expect(doc).toContain("pf2e.spells-srd.json");
   });
 
   it("documents the exit codes", () => {

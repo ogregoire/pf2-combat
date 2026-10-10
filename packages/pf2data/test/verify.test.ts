@@ -4,7 +4,12 @@ import { fileURLToPath } from "node:url";
 import type { Manifest } from "@pf2/schema";
 import { normalizeCreature } from "../src/normalize/creature.js";
 import { buildIndexes } from "../src/stages/index.js";
-import { verifyDataset, verifyI18n, verifyI18nMarkup } from "../src/stages/verify.js";
+import {
+  verifyDataset,
+  verifyI18n,
+  verifyI18nMarkup,
+  verifySpellsI18n,
+} from "../src/stages/verify.js";
 
 const stagLord = normalizeCreature(
   JSON.parse(
@@ -41,6 +46,7 @@ const baseInput = () => {
     glossary: [],
     traits: [],
     actions: [],
+    spells: {} as Record<string, unknown>,
     manifest: manifest(),
   };
 };
@@ -80,6 +86,7 @@ describe("verifyDataset", () => {
       glossary: [],
       traits: [],
       actions: [],
+      spells: {},
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -97,6 +104,7 @@ describe("verifyDataset", () => {
       glossary: [],
       traits: [],
       actions: [],
+      spells: {},
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -114,6 +122,7 @@ describe("verifyDataset", () => {
       glossary: [],
       traits: [],
       actions: [],
+      spells: {},
       manifest: manifest(),
     });
     expect(result.ok).toBe(false);
@@ -454,5 +463,106 @@ describe("verifyI18nMarkup catches a reference with no @-prefix", () => {
     expect(
       verifyI18nMarkup("x", { d: "@Check[reflex|dc:20] @Damage[2d6] @Template[emanation|distance:500]" }),
     ).toEqual([]);
+  });
+});
+
+describe("verifyDataset: spell details", () => {
+  const caster = {
+    ...stagLord,
+    spellcasting: [
+      {
+        name: "Arcane Innate Spells",
+        tradition: "arcane",
+        preparation: "innate",
+        dc: 20,
+        attack: 12,
+        slots: [],
+        focusPoints: null,
+        spells: [
+          {
+            name: "Fireball (At Will)",
+            slug: "fireball",
+            rank: 3,
+            cost: "2",
+            cantrip: false,
+            frequency: "at-will" as const,
+            uses: null,
+            prepared: 0,
+          },
+        ],
+      },
+    ],
+  };
+  const fireball = (overrides: Record<string, unknown> = {}): Record<string, unknown> => ({
+    slug: "fireball",
+    name: "Fireball",
+    rank: 3,
+    cantrip: false,
+    traits: ["fire"],
+    traditions: ["arcane"],
+    cost: "2",
+    range: "500 feet",
+    area: { type: "burst", value: 20 },
+    targets: null,
+    defense: { save: "reflex", basic: true },
+    duration: null,
+    sustained: false,
+    description: "<p>@Damage[6d6[fire]] in a @Template[burst|distance:20].</p>",
+    ...overrides,
+  });
+  const input = (spells: Record<string, unknown>) => {
+    const build = buildIndexes([caster]);
+    return { ...baseInput(), creatures: [caster], books: build.books, indexes: build.indexes, spells };
+  };
+
+  it("passes when every row's slug has its details file", () => {
+    const result = verifyDataset(input({ fireball: fireball() }));
+    expect(result.failures).toEqual([]);
+  });
+
+  it("fails when a row's slug has no details file", () => {
+    const result = verifyDataset(input({}));
+    expect(result.failures.join(" ")).toMatch(/"Fireball \(At Will\)" has slug "fireball" but no spells\/fireball.json/);
+  });
+
+  it("fails on a details file no creature references", () => {
+    const result = verifyDataset(input({ fireball: fireball(), orphan: fireball({ slug: "orphan" }) }));
+    expect(result.failures).toEqual(["spells: spells/orphan.json is referenced by no creature"]);
+  });
+
+  it("fails when a file's name and its slug disagree", () => {
+    const result = verifyDataset(input({ fireball: fireball(), other: fireball() }));
+    expect(result.failures.join(" ")).toMatch(/spells\/other.json carries slug "fireball"/);
+  });
+
+  it("fails on a details file that does not validate", () => {
+    const result = verifyDataset(input({ fireball: fireball({ defense: { save: "ac", basic: false } }) }));
+    expect(result.failures.join(" ")).toMatch(/schema: spell fireball/);
+  });
+
+  it("fails on unresolved markup in English spell text, beyond @UUID and @Localize", () => {
+    const result = verifyDataset(input({ fireball: fireball({ description: "<p>@Embed[x]</p>" }) }));
+    expect(result.failures).toEqual(["links: spell fireball contains an unresolved @Embed reference"]);
+  });
+});
+
+describe("verifySpellsI18n", () => {
+  const fr = { name: "Boule de feu", description: null, range: "150 mètres", targets: null, duration: null };
+
+  it("passes for a well-formed overlay of an English slug", () => {
+    expect(verifySpellsI18n(new Set(["fireball"]), { fireball: fr })).toEqual([]);
+  });
+
+  it("fails on an overlay for a slug with no English details", () => {
+    expect(verifySpellsI18n(new Set(), { fireball: fr })).toEqual([
+      'i18n: i18n/fr/spells/fireball.json translates "fireball", which has no spells/fireball.json',
+    ]);
+  });
+
+  it("fails on an invalid overlay and on unresolved markup", () => {
+    expect(verifySpellsI18n(new Set(["a"]), { a: { name: "A" } }).join(" ")).toMatch(/is invalid/);
+    expect(
+      verifySpellsI18n(new Set(["a"]), { a: { ...fr, description: "@UUID[Compendium.pf2e.x.Item.y]" } }),
+    ).toEqual(["i18n: i18n/fr/spells/a.json contains an unresolved @UUID reference"]);
   });
 });

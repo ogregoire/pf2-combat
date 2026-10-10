@@ -36,6 +36,14 @@ export const AttackSchema = z.object({
   effects: z.array(z.string()),
 });
 
+/**
+ * A spell's key into `spells/<slug>.json`, so it doubles as a file name: the
+ * pattern keeps it to lowercase ASCII words joined by single hyphens. Every
+ * slug the five books reference already has that shape -- the compendium's
+ * one accented file stem (`déjà-vu`) is not referenced by any creature.
+ */
+export const SpellSlugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+
 export const SpellcastingSchema = z.object({
   name: z.string(),
   tradition: z.string(),
@@ -52,6 +60,11 @@ export const SpellcastingSchema = z.object({
       /** Upstream item name, unchanged -- keeps "(At Will)", "(Constant)",
        * "(Self Only)" and the like. */
       name: z.string(),
+      /** The key into `spells/<slug>.json`: the spell item's own
+       * `system.slug`, else its compendium source's slug, else its
+       * slugified base name. Shared by every creature carrying the same
+       * spell, whatever qualifier its `name` adds. */
+      slug: SpellSlugSchema,
       /** Effective rank: a cantrip's is its entry's heightening rank, a
        * prepared spell's is the slot rank it is prepared in, anything else
        * is its `heightenedLevel` or else its base level. */

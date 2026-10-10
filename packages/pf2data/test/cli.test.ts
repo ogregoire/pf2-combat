@@ -1217,4 +1217,149 @@ describe("runCli", () => {
     );
     expect(overlay.name).toBe("Seigneur Cerf (Babele)");
   });
+
+  // --- Spell details -----------------------------------------------------
+
+  /** Nyrissa (57 castable spells) in a real kingmaker pack, a `spells` pack
+   * holding only her Wish -- under its real compendium id, so Wish comes from
+   * the compendium and every other spell from her embedded copies -- and
+   * French files for one of each. */
+  function spellDeps(): { deps: CliDeps; dataDir: string } {
+    const dataDir = tmpDir("pf2data-data-");
+    const cacheDir = tmpDir("pf2data-cache-");
+    const configDir = tmpDir("pf2data-config-");
+    const configPath = join(configDir, "pf2data.config.json");
+    writeFileSync(
+      configPath,
+      JSON.stringify({
+        upstream: { repo: "https://example.invalid/pf2e", branch: "master" },
+        french: { repo: "https://example.invalid/pf2e-fr", branch: "master" },
+        packs: [
+          { name: "kingmaker-bestiary", kind: "creatures" },
+          { name: "spells", kind: "spells" },
+        ],
+      }),
+    );
+
+    const packDir = join(cacheDir, "packs", "kingmaker-bestiary");
+    mkdirSync(packDir, { recursive: true });
+    writeFileSync(
+      join(packDir, "nyrissa.json"),
+      readFileSync(fileURLToPath(new URL("./fixtures/nyrissa.json", import.meta.url)), "utf8"),
+    );
+    const spellDir = join(cacheDir, "packs", "spells", "10th-rank");
+    mkdirSync(spellDir, { recursive: true });
+    writeFileSync(
+      join(spellDir, "wish.json"),
+      JSON.stringify({
+        _id: "6dDtGIUerazSHIOu",
+        name: "Wish",
+        type: "spell",
+        system: {
+          level: { value: 10 },
+          traits: { traditions: ["arcane"], value: ["concentrate", "manipulate"] },
+          time: { value: "3" },
+          range: { value: "" },
+          area: null,
+          target: { value: "" },
+          defense: null,
+          duration: { sustained: false, value: "" },
+          description: { value: "<p>COMPENDIUM TEXT</p>" },
+        },
+      }),
+    );
+    // Nyrissa's two glossary includes, which `verifyDataset` refuses to
+    // ship unresolved.
+    mkdirSync(join(cacheDir, "static", "lang"), { recursive: true });
+    writeFileSync(
+      join(cacheDir, "static", "lang", "en.json"),
+      JSON.stringify({
+        PF2E: { NPC: { Abilities: { Glossary: { ChangeShape: "<p>x</p>", ConstantSpells: "<p>y</p>" } } } },
+      }),
+    );
+
+    const frCacheDir = seedFrenchCache({
+      Nyrissa: { name: "Nyrissa", items: { pkEZBx89oNG5nBKe: { name: "Disjonction (À volonté)" } } },
+    });
+    writeFileSync(
+      join(frCacheDir, "babele", "vf", "fr", "pf2e.spells-srd.json"),
+      JSON.stringify({ entries: { Wish: { name: "Souhait", description: "<p>FR</p>" } } }),
+    );
+
+    const { run } = recordingGit();
+    return { deps: { dataDir, cacheDir, frCacheDir, configPath, runGit: run }, dataDir };
+  }
+
+  const readJson = (...parts: string[]): unknown => JSON.parse(readFileSync(join(...parts), "utf8"));
+
+  it("writes one details file per referenced slug, compendium first, with its French overlay", () => {
+    const { deps, dataDir } = spellDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    const creature = readJson(dataDir, "creatures", "kingmaker-bestiary", "nyrissa.json") as {
+      spellcasting: { spells: { slug: string }[] }[];
+    };
+    const slugs = new Set(creature.spellcasting.flatMap((e) => e.spells.map((s) => s.slug)));
+    expect(new Set(readdirSync(join(dataDir, "spells")).map((f) => f.replace(/\.json$/, "")))).toEqual(slugs);
+
+    expect(readJson(dataDir, "spells", "wish.json")).toMatchObject({
+      name: "Wish",
+      rank: 10,
+      description: "<p>COMPENDIUM TEXT</p>",
+    });
+    expect(readJson(dataDir, "spells", "disjunction.json")).toMatchObject({ name: "Disjunction" });
+    expect(readJson(dataDir, "i18n", "fr", "spells", "wish.json")).toEqual({
+      name: "Souhait",
+      description: "<p>FR</p>",
+      range: null,
+      targets: null,
+      duration: null,
+    });
+    expect(readJson(dataDir, "i18n", "fr", "spells", "disjunction.json")).toMatchObject({
+      name: "Disjonction",
+      description: null,
+    });
+    expect(existsSync(join(dataDir, "i18n", "fr", "spells", "maze.json"))).toBe(false);
+
+    expect(runCli(["update"], silentIo(), deps)).toBe(0);
+    expect(runCli(["verify"], silentIo(), deps)).toBe(0);
+  });
+
+  it("reports spell detail counts and French coverage in the JSON summary", () => {
+    const { deps } = spellDeps();
+    const out: string[] = [];
+    expect(runCli(["update", "--latest"], { out: (x) => out.push(x), err: () => {}, isTty: false }, deps)).toBe(10);
+    const summary = JSON.parse(out.join(""));
+    expect(summary.spellDetails).toMatchObject({ compendium: 1, embedded: summary.spellDetailCount - 1 });
+    expect(summary.frenchSpellDetails.names).toEqual({ translated: 2, total: summary.spellDetailCount });
+  });
+
+  it("verify fails when a referenced details file is deleted, and update deletes a stale one", () => {
+    const { deps, dataDir } = spellDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+
+    rmSync(join(dataDir, "spells", "wish.json"));
+    const errLines: string[] = [];
+    expect(runCli(["verify"], { out: () => {}, err: (x) => errLines.push(x), isTty: true }, deps)).toBe(20);
+    expect(errLines.join("")).toContain("no spells/wish.json");
+
+    writeFileSync(join(dataDir, "spells", "stale.json"), "{}");
+    writeFileSync(join(dataDir, "i18n", "fr", "spells", "stale.json"), "{}");
+    expect(runCli(["update"], silentIo(), deps)).toBe(10);
+    expect(existsSync(join(dataDir, "spells", "wish.json"))).toBe(true);
+    expect(existsSync(join(dataDir, "spells", "stale.json"))).toBe(false);
+    expect(existsSync(join(dataDir, "i18n", "fr", "spells", "stale.json"))).toBe(false);
+  });
+
+  it("verify fails on a French spell file whose slug has no English details", () => {
+    const { deps, dataDir } = spellDeps();
+    expect(runCli(["update", "--latest"], silentIo(), deps)).toBe(10);
+    writeFileSync(
+      join(dataDir, "i18n", "fr", "spells", "renamed-away.json"),
+      JSON.stringify({ name: "Disparu", description: null, range: null, targets: null, duration: null }),
+    );
+    const errLines: string[] = [];
+    expect(runCli(["verify"], { out: () => {}, err: (x) => errLines.push(x), isTty: true }, deps)).toBe(20);
+    expect(errLines.join("")).toContain('translates "renamed-away"');
+  });
 });

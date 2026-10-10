@@ -1,10 +1,12 @@
-import type { CreatureI18n } from "@pf2/schema";
+import type { CreatureI18n, SpellDetail, SpellI18n } from "@pf2/schema";
 import { extractRequirementsFr, extractTriggerFr } from "../normalize/html.js";
 import { resolveLinks } from "../normalize/links.js";
 import { resolveLocalize, type LangTable } from "../normalize/localize.js";
 import type { ArchiveRecord } from "./archive.js";
 import type { BabeleEntry, BabeleTable } from "./babele.js";
 import type { ScannedTrait } from "./reference.js";
+import type { SpellDetailSource } from "./spells.js";
+import { baseSpellName } from "../normalize/spellcasting.js";
 
 /**
  * Retired-module fallback, keyed by `Creature.foundryId` -- Task 17. Foundry
@@ -386,6 +388,107 @@ export function buildTraitsI18n(
     const found = bySlug.get(slug);
     if (!found) continue;
     out[slug] = { name: found.name, description: found.description };
+  }
+
+  return out;
+}
+
+/**
+ * One creature item's French name/description, through the same two-level
+ * lookup `buildCreatureI18n` uses: the creature's Babele entry (own pack
+ * first) or its archive record, then that item by Foundry id, Babele's field
+ * winning over the archive's per field.
+ */
+function creatureItemFrench(args: {
+  creatureName: string;
+  creatureFoundryId: string;
+  ownPack: string;
+  foundryId: string;
+  table: BabeleTable;
+  archive?: ArchiveTable;
+}): { name?: string; description?: string } {
+  const entry =
+    args.table.lookup("creature", args.ownPack, args.creatureName) ??
+    fromArchive(args.archive, args.creatureFoundryId);
+  const archiveItems = args.archive?.get(args.creatureFoundryId)?.items ?? {};
+  return mergedItem(entry?.items?.[args.foundryId], archiveItems[args.foundryId]);
+}
+
+/** The Babele file stem for upstream's `spells` pack, whose Foundry
+ * compendium id is `spells-srd` (`PACK_ALIASES` in normalize/links.ts). */
+export const SPELLS_BABELE_PACK = "spells-srd";
+
+/**
+ * Spell details -> French, keyed by OUR slug, one file each. Never searched
+ * by name across Babele files; each source is the one that translates THAT
+ * text:
+ *  - a compendium-sourced detail is looked up in `pf2e.spells-srd.json` ONLY,
+ *    by the compendium spell's English name (Babele's key). That file also
+ *    translates `range`, `target` and `duration`; each is taken only when
+ *    the English detail has the field at all, so a French value can never
+ *    appear where the English one is `null`;
+ *  - an embedded detail is the creature's own copy, so its French is that
+ *    creature item's translation (the copy the detail was built from first,
+ *    then the slug's other copies), with the creature-side qualifier cut
+ *    off the name the same way `baseSpellName` cuts the English one
+ *    ("Voile (À volonté)" -> "Voile"). Creature item translations carry no
+ *    range, target or duration, so those stay `null`. Not `spells-srd`: it
+ *    is keyed by the remaster's names, and a legacy spell's English name
+ *    (Dimension Door, Dancing Lights) is not in it.
+ * A slug with no French name is OMITTED. A missing description, range,
+ * target or duration is `null`, never the English text.
+ */
+export function buildSpellsI18n(
+  details: SpellDetail[],
+  sources: ReadonlyMap<string, SpellDetailSource>,
+  table: BabeleTable,
+  lang: LangTable,
+  archive?: ArchiveTable,
+): Record<string, SpellI18n> {
+  const srd = table.byPack.get(SPELLS_BABELE_PACK);
+  const out: Record<string, SpellI18n> = {};
+
+  for (const detail of details) {
+    const source = sources.get(detail.slug);
+    if (source === undefined) throw new Error(`spell ${detail.slug} has no recorded source`);
+
+    if (source.kind === "compendium") {
+      const found = srd?.get(source.name) as
+        | (BabeleEntry & { range?: string; target?: string; duration?: string })
+        | undefined;
+      if (!found) continue;
+      const field = (english: string | null, french: string | undefined): string | null =>
+        english === null ? null : resolveFrench(french, lang);
+      out[detail.slug] = {
+        name: found.name,
+        description: resolveFrench(found.description, lang),
+        range: field(detail.range, found.range),
+        targets: field(detail.targets, found.target),
+        duration: field(detail.duration, found.duration),
+      };
+      continue;
+    }
+
+    for (const copy of source.copies) {
+      const merged = creatureItemFrench({
+        creatureName: copy.creatureName,
+        creatureFoundryId: copy.creatureFoundryId,
+        ownPack: copy.creatureId.slice(0, copy.creatureId.indexOf("/")),
+        foundryId: copy.foundryId,
+        table,
+        archive,
+      });
+      const name = merged.name === undefined ? "" : baseSpellName(merged.name);
+      if (name === "") continue;
+      out[detail.slug] = {
+        name,
+        description: resolveFrench(merged.description, lang),
+        range: null,
+        targets: null,
+        duration: null,
+      };
+      break;
+    }
   }
 
   return out;

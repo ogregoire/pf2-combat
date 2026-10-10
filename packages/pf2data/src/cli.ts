@@ -17,7 +17,7 @@ import { writeJson, stableStringify } from "./io/write.js";
 import { fetchFrench, fetchUpstream, type RunGit } from "./stages/fetch.js";
 import { normalizePacks } from "./stages/normalize.js";
 import { buildIndexes } from "./stages/index.js";
-import { verifyDataset, verifyI18n, verifyI18nMarkup } from "./stages/verify.js";
+import { verifyDataset, verifyI18n, verifyI18nMarkup, verifySpellsI18n } from "./stages/verify.js";
 import { diffDataset, fieldCoverage, frenchCoverage, statusOf, type ChangeStatus } from "./report.js";
 import { loadGlossaryLang } from "./normalize/localize.js";
 import {
@@ -28,12 +28,19 @@ import {
   scanTraits,
 } from "./stages/reference.js";
 import { loadBabele } from "./stages/babele.js";
+import {
+  buildSpellDetails,
+  compendiumSpellSlugs,
+  loadCompendiumSpells,
+  type SpellCopy,
+} from "./stages/spells.js";
 import { loadArchive } from "./stages/archive.js";
 import {
   buildConditionsI18n,
   buildCreatureI18n,
   buildGlossaryI18n,
   buildIndexI18n,
+  buildSpellsI18n,
   buildStandardActionsI18n,
   buildTraitsI18n,
 } from "./stages/i18n.js";
@@ -109,6 +116,24 @@ const DEFAULT_DEPS: CliDeps = {
  * translation. */
 const I18N_ROOT = "i18n";
 
+/** `spells/<slug>.json`, one per distinct slug the creatures reference. Owned
+ * wholesale like `I18N_ROOT`, for the same reason: a spell no creature casts
+ * any more must lose its file, not linger as an orphan `verify` rejects. */
+const SPELLS_ROOT = "spells";
+
+/** Every `<slug>.json` directly under `dir`, parsed, keyed by slug. Absent
+ * directory -> empty: whether that is acceptable is for `verifyDataset` to
+ * decide from the creatures' spell rows, not for the reader. */
+function readSlugFiles(dir: string): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  if (!existsSync(dir)) return out;
+  for (const name of readdirSync(dir).sort()) {
+    if (!name.endsWith(".json")) continue;
+    out[name.slice(0, -".json".length)] = JSON.parse(readFileSync(join(dir, name), "utf8"));
+  }
+  return out;
+}
+
 /** A corrupt on-disk manifest is a verification failure (exit 20), not an
  * uncaught crash: JSON.parse and ManifestSchema.parse both throw on bad
  * input. */
@@ -125,6 +150,7 @@ interface OnDiskDataset {
   glossary: unknown[];
   traits: unknown[];
   actions: unknown[];
+  spells: Record<string, unknown>;
 }
 
 /** Reads the committed dataset for `verify`. A corrupt file (bad JSON) is
@@ -138,6 +164,7 @@ function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset 
     glossary: [],
     traits: [],
     actions: [],
+    spells: {},
   };
   if (manifest === null) return empty;
 
@@ -167,7 +194,9 @@ function readDataset(manifest: Manifest | null, dataDir: string): OnDiskDataset 
     }
   }
 
-  return { creatures, books, indexes, conditions, glossary, traits, actions };
+  const spells = readSlugFiles(join(dataDir, SPELLS_ROOT));
+
+  return { creatures, books, indexes, conditions, glossary, traits, actions, spells };
 }
 
 interface OnDiskFiles {
@@ -216,13 +245,15 @@ function readOnDiskFiles(manifest: Manifest | null, dataDir: string): OnDiskFile
   return { creatures, others };
 }
 
-/** Every emitted French file currently on disk, keyed by its path relative to
- * `dataDir` (`i18n/fr/creatures/<pack>/<slug>.json`, ...). Read as raw text
- * for the same reason the creature files are: the comparison that decides
- * "changed" has to be byte-for-byte against what `writeJson` would produce. */
-function readOnDiskI18n(dataDir: string): Map<string, string> {
+/** Every emitted file currently on disk under one wholly-owned tree
+ * (`I18N_ROOT`, `SPELLS_ROOT`), keyed by its path relative to `dataDir`
+ * (`i18n/fr/creatures/<pack>/<slug>.json`, `spells/<slug>.json`, ...). Read
+ * as raw text for the same reason the creature files are: the comparison
+ * that decides "changed" has to be byte-for-byte against what `writeJson`
+ * would produce. */
+function readOnDiskTree(dataDir: string, tree: string): Map<string, string> {
   const files = new Map<string, string>();
-  const root = join(dataDir, I18N_ROOT);
+  const root = join(dataDir, tree);
   if (!existsSync(root)) return files;
 
   const visit = (dir: string): void => {
@@ -278,6 +309,7 @@ function readOnDiskI18n(dataDir: string): Map<string, string> {
 function verifyOnDiskI18n(
   creatures: unknown[],
   actions: unknown[],
+  spells: Record<string, unknown>,
   dataDir: string,
   manifest: Manifest,
   config: Pf2DataConfig,
@@ -360,6 +392,15 @@ function verifyOnDiskI18n(
       }
     }
   }
+
+  // Per-spell files, keyed by slug: a missing one is an untranslated spell,
+  // but the whole directory missing while English details exist is the
+  // French spells being gone, like a missing creature pack directory above.
+  const spellsDir = join(dataDir, I18N_ROOT, "fr", "spells");
+  if (Object.keys(spells).length > 0 && !existsSync(spellsDir)) {
+    problems.push(`i18n: ${I18N_ROOT}/fr/spells/ is missing`);
+  }
+  problems.push(...verifySpellsI18n(new Set(Object.keys(spells)), readSlugFiles(spellsDir)));
 
   return problems;
 }
@@ -455,6 +496,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
       glossary: onDisk.glossary,
       traits: onDisk.traits,
       actions: onDisk.actions,
+      spells: onDisk.spells,
       manifest,
     });
 
@@ -463,7 +505,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     // separate files that can drift apart between runs, and a position that
     // no longer names the action it translates would otherwise ship as a
     // quietly mistranslated Strike.
-    const failures = [...result.failures, ...verifyOnDiskI18n(onDisk.creatures, onDisk.actions, dataDir, manifest, config)];
+    const failures = [...result.failures, ...verifyOnDiskI18n(onDisk.creatures, onDisk.actions, onDisk.spells, dataDir, manifest, config)];
     for (const failure of failures) io.err(`${failure}\n`);
     const ok = failures.length === 0;
     if (ok) io.err("dataset verified\n");
@@ -498,13 +540,32 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     return EXIT.upstreamError;
   }
 
+  // Loaded BEFORE normalization, which falls back to a compendium spell's
+  // slug for a spell item with no `system.slug` of its own. A spells pack
+  // that is missing or holds a non-spell is an upstream error, like a
+  // missing creature pack.
+  const spellPacks = config.packs.filter((p) => p.kind === "spells").map((p) => p.name);
+  let compendiumSpells;
+  try {
+    compendiumSpells = loadCompendiumSpells(fetched.packsDir, spellPacks);
+  } catch (error) {
+    io.err(`upstream error: ${(error as Error).message}\n`);
+    emit({ command: command.name, error: (error as Error).message });
+    return EXIT.upstreamError;
+  }
+
   // Any throw escaping normalizePacks itself (as opposed to a per-creature
   // failure, which is caught internally and reported via `.failures`) means
   // a pack directory is missing or unreadable -- e.g. upstream renamed or
   // removed a pack. That is an upstream problem, not a verification one.
   let normalized;
   try {
-    normalized = normalizePacks(fetched.packsDir, config, lang);
+    normalized = normalizePacks(
+      fetched.packsDir,
+      config,
+      lang,
+      compendiumSpellSlugs(compendiumSpells),
+    );
   } catch (error) {
     io.err(`upstream error: ${(error as Error).message}\n`);
     emit({ command: command.name, error: (error as Error).message });
@@ -522,7 +583,20 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   const glossaryPacks = config.packs.filter((p) => p.kind === "glossary").map((p) => p.name);
   const actionPacks = config.packs.filter((p) => p.kind === "actions").map((p) => p.name);
 
-  let conditions, glossary, traits, actions;
+  // One copy per creature spell row, in creature-id then row order -- the
+  // order `buildSpellDetails` breaks ties between embedded variants in.
+  const spellCopies: SpellCopy[] = creatures.flatMap((creature) =>
+    (normalized.items.get(creature.id)?.spells ?? []).map((spell) => ({
+      creatureId: creature.id,
+      creatureName: creature.name,
+      creatureFoundryId: creature.foundryId,
+      foundryId: spell.foundryId,
+      slug: spell.slug,
+      item: spell.item,
+    })),
+  );
+
+  let conditions, glossary, traits, actions, spellDetails;
   try {
     conditions = buildConditions(fetched.packsDir, lang, conditionPacks);
     glossary = buildGlossary(fetched.packsDir, lang, glossaryPacks);
@@ -530,6 +604,8 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     // Throws on a standard action that fails validation rather than dropping
     // it -- that is upstream drift, reported like any other upstream error.
     actions = buildStandardActions(fetched.packsDir, lang, actionPacks);
+    // Throws on a referenced spell (compendium or embedded) it cannot read.
+    spellDetails = buildSpellDetails(spellCopies, compendiumSpells, lang);
   } catch (error) {
     io.err(`upstream error: ${(error as Error).message}\n`);
     emit({ command: command.name, error: (error as Error).message });
@@ -579,7 +655,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   // at all -- never an English echo -- and shows up in the coverage report.
   const creatureI18n = new Map<string, CreatureI18n>();
   let indexI18n: Record<string, Record<string, string>>;
-  let conditionsI18n, glossaryI18n, traitsI18n, actionsI18n;
+  let conditionsI18n, glossaryI18n, traitsI18n, actionsI18n, spellsI18n;
   try {
     for (const creature of creatures) {
       const items = normalized.items.get(creature.id);
@@ -620,6 +696,13 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     glossaryI18n = buildGlossaryI18n(glossary, babele, frLang);
     traitsI18n = buildTraitsI18n(traits.map((t) => t.slug), scanTraits(frLang));
     actionsI18n = buildStandardActionsI18n(actions, babele, frLang);
+    spellsI18n = buildSpellsI18n(
+      spellDetails.details,
+      spellDetails.sources,
+      babele,
+      frLang,
+      archive,
+    );
   } catch (error) {
     // `lookup` throws when two same-kind Babele files disagree about a name.
     // That is an upstream inconsistency, not a defect in our dataset.
@@ -650,6 +733,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     ...verifyI18nMarkup("i18n/fr/glossary.json", glossaryI18n),
     ...verifyI18nMarkup("i18n/fr/traits.json", traitsI18n),
     ...verifyI18nMarkup("i18n/fr/actions.json", actionsI18n),
+    ...verifySpellsI18n(new Set(spellDetails.details.map((d) => d.slug)), spellsI18n),
   );
   if (i18nProblems.length > 0) {
     for (const problem of i18nProblems) io.err(`${problem}\n`);
@@ -681,6 +765,24 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     actions.map((a) => actionsI18n[a.slug]?.description ?? null),
   );
 
+  // Spell details: an untranslated spell is OMITTED, so every count is
+  // measured against the English details, like the standard actions above.
+  const spellFr = spellDetails.details.map((d) => spellsI18n[d.slug]);
+  const spellDetailCoverage = {
+    names: fieldCoverage(spellFr.map((t) => t?.name ?? null)),
+    descriptions: fieldCoverage(spellFr.map((t) => t?.description ?? null)),
+    // Only details that HAVE the English field can be translated at all.
+    ranges: fieldCoverage(
+      spellDetails.details.filter((d) => d.range !== null).map((d) => spellsI18n[d.slug]?.range ?? null),
+    ),
+    targets: fieldCoverage(
+      spellDetails.details.filter((d) => d.targets !== null).map((d) => spellsI18n[d.slug]?.targets ?? null),
+    ),
+    durations: fieldCoverage(
+      spellDetails.details.filter((d) => d.duration !== null).map((d) => spellsI18n[d.slug]?.duration ?? null),
+    ),
+  };
+
   const schemaDoc = renderSchemaDoc();
 
   const nextManifest: Manifest = {
@@ -703,6 +805,7 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     glossary,
     traits,
     actions,
+    spells: Object.fromEntries(spellDetails.details.map((d) => [d.slug, d])),
     manifest: nextManifest,
   });
 
@@ -714,9 +817,11 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
 
   let onDisk: OnDiskFiles;
   let onDiskI18n: Map<string, string>;
+  let onDiskSpells: Map<string, string>;
   try {
     onDisk = readOnDiskFiles(manifest, dataDir);
-    onDiskI18n = readOnDiskI18n(dataDir);
+    onDiskI18n = readOnDiskTree(dataDir, I18N_ROOT);
+    onDiskSpells = readOnDiskTree(dataDir, SPELLS_ROOT);
   } catch (error) {
     io.err(`verification failed: corrupt dataset: ${(error as Error).message}\n`);
     emit({ command: command.name, ok: false, failures: [`dataset: ${(error as Error).message}`] });
@@ -769,13 +874,28 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   nextI18n.set(`${I18N_ROOT}/fr/glossary.json`, glossaryI18n);
   nextI18n.set(`${I18N_ROOT}/fr/traits.json`, traitsI18n);
   nextI18n.set(`${I18N_ROOT}/fr/actions.json`, actionsI18n);
+  for (const [slug, overlay] of Object.entries(spellsI18n)) {
+    nextI18n.set(`${I18N_ROOT}/fr/${SPELLS_ROOT}/${slug}.json`, overlay);
+  }
   const nextI18nRaw = new Map(
     [...nextI18n].map(([relPath, value]) => [relPath, stableStringify(value)] as const),
   );
   const i18nDiff = diffDataset(onDiskI18n, nextI18nRaw);
 
+  // Spell details grow and shrink with the creatures' spell lists, so they
+  // get the same own-map treatment as the French tree.
+  const nextSpells = new Map(
+    spellDetails.details.map((d) => [`${SPELLS_ROOT}/${d.slug}.json`, d] as const),
+  );
+  const spellsDiff = diffDataset(
+    onDiskSpells,
+    new Map([...nextSpells].map(([relPath, value]) => [relPath, stableStringify(value)] as const)),
+  );
+
   const otherFilesChanged =
-    statusOf(otherDiff) === "updated" || statusOf(i18nDiff) === "updated";
+    statusOf(otherDiff) === "updated" ||
+    statusOf(i18nDiff) === "updated" ||
+    statusOf(spellsDiff) === "updated";
   const status: ChangeStatus =
     statusOf(creatureDiff) === "updated" || otherFilesChanged ? "updated" : "unchanged";
 
@@ -806,6 +926,12 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
   writeJson(join(dataDir, "glossary.json"), glossary);
   writeJson(join(dataDir, "traits.json"), traits);
   writeJson(join(dataDir, "actions.json"), actions);
+  for (const relPath of spellsDiff.removed) {
+    rmSync(join(dataDir, ...relPath.split("/")), { force: true });
+  }
+  for (const [relPath, value] of nextSpells) {
+    writeJson(join(dataDir, ...relPath.split("/")), value);
+  }
   for (const relPath of i18nDiff.removed) {
     rmSync(join(dataDir, ...relPath.split("/")), { force: true });
   }
@@ -839,6 +965,20 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     `french standard actions: ${standardActionNameCoverage.translated}/${standardActionNameCoverage.total} names, ` +
       `${standardActionDescriptionCoverage.translated}/${standardActionDescriptionCoverage.total} descriptions translated\n`,
   );
+  const spellStats = spellDetails.stats;
+  io.err(
+    `spells: ${spellDetails.details.length} details (${spellStats.compendium} compendium, ${spellStats.embedded} embedded); ` +
+      `${spellStats.differingCopies}/${spellStats.compendiumCopies} creature copies differ from their compendium text, ` +
+      `${spellStats.renamedCopies} copies of renamed legacy spells, ` +
+      `${spellStats.heighteningOnly} heighten only via system.heightening\n`,
+  );
+  io.err(
+    `french spell details: ${spellDetailCoverage.names.translated}/${spellDetailCoverage.names.total} names, ` +
+      `${spellDetailCoverage.descriptions.translated}/${spellDetailCoverage.descriptions.total} descriptions, ` +
+      `${spellDetailCoverage.ranges.translated}/${spellDetailCoverage.ranges.total} ranges, ` +
+      `${spellDetailCoverage.targets.translated}/${spellDetailCoverage.targets.total} targets, ` +
+      `${spellDetailCoverage.durations.translated}/${spellDetailCoverage.durations.total} durations translated\n`,
+  );
   emit({
     command: "update",
     ok: true,
@@ -854,6 +994,9 @@ export function runCli(argv: string[], io: CliIo, deps: CliDeps = DEFAULT_DEPS):
     standardActionCount: actions.length,
     frenchStandardActionNames: standardActionNameCoverage,
     frenchStandardActionDescriptions: standardActionDescriptionCoverage,
+    spellDetailCount: spellDetails.details.length,
+    spellDetails: spellStats,
+    frenchSpellDetails: spellDetailCoverage,
     ...creatureDiff,
   });
 

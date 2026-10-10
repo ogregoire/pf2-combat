@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { normalizeSpellcasting } from "../src/normalize/spellcasting.js";
+import {
+  baseSpellName,
+  compendiumSpellId,
+  normalizeSpellcasting,
+  sluggify,
+} from "../src/normalize/spellcasting.js";
 
 function load(name: string) {
   return JSON.parse(
@@ -320,5 +325,87 @@ describe("normalizeSpellcasting: entries", () => {
       LEVEL_5,
     );
     expect(out!.spells.map((s) => s.name)).toEqual(["Kept"]);
+  });
+});
+
+describe("normalizeSpellcasting: slug", () => {
+  const withSource = (
+    base: ReturnType<typeof spell>,
+    extra: { slug?: string | null; compendiumSource?: string; sourceId?: string },
+  ) => ({
+    ...base,
+    ...(extra.compendiumSource === undefined
+      ? {}
+      : { _stats: { compendiumSource: extra.compendiumSource } }),
+    ...(extra.sourceId === undefined ? {} : { flags: { core: { sourceId: extra.sourceId } } }),
+    system: { ...base.system, slug: extra.slug ?? null },
+  });
+  const compendium = new Map([["TRANSLOCATEid0001", "translocate"]]);
+  const slugOf = (item: unknown): string =>
+    normalizeSpellcasting([entry("i", "innate"), item], LEVEL_5, compendium)[0]!.spells[0]!.slug;
+
+  it("prefers the item's own system.slug, even over a compendium source that disagrees", () => {
+    // 980 legacy items: "dimension-door" sourced from what is now Translocate.
+    const item = withSource(spell("a", "Dimension Door (At Will)", "i"), {
+      slug: "dimension-door",
+      compendiumSource: "Compendium.pf2e.spells-srd.Item.TRANSLOCATEid0001",
+    });
+    expect(slugOf(item)).toBe("dimension-door");
+  });
+
+  it("falls back to the compendium source's slug, by id", () => {
+    const item = withSource(spell("a", "Translocate (Self Only)", "i"), {
+      compendiumSource: "Compendium.pf2e.spells-srd.Item.TRANSLOCATEid0001",
+    });
+    expect(slugOf(item)).toBe("translocate");
+  });
+
+  it("reads the pre-V12 flags.core.sourceId as the same link", () => {
+    const item = withSource(spell("a", "Whatever", "i"), {
+      sourceId: "Compendium.pf2e.spells-srd.Item.TRANSLOCATEid0001",
+    });
+    expect(slugOf(item)).toBe("translocate");
+  });
+
+  it("else slugifies the base name, qualifier cut off", () => {
+    const item = withSource(spell("a", "Nature's Enmity (At Will)", "i"), {
+      compendiumSource: "Compendium.pf2e.spells-srd.Item.unknownId0000000",
+    });
+    expect(slugOf(item)).toBe("natures-enmity");
+  });
+
+  it("carries the slug and the raw item on every row, prepared repeats included", () => {
+    const prepared = normalizeSpellcasting(
+      [
+        entry("p", "prepared", { slot1: { max: 2, prepared: [{ id: "a" }, { id: "a" }] }, slot2: { max: 1, prepared: [{ id: "a" }] } }),
+        withSource(spell("a", "Fear", "p"), { slug: "fear" }),
+      ],
+      LEVEL_5,
+    )[0]!.spells;
+    expect(prepared.map((s) => s.slug)).toEqual(["fear", "fear"]);
+    expect((prepared[0]!.item as { _id: string })._id).toBe("a");
+  });
+});
+
+describe("spell name helpers", () => {
+  it("baseSpellName cuts everything from the first parenthetical", () => {
+    expect(baseSpellName("Dimension Door (At Will)")).toBe("Dimension Door");
+    expect(baseSpellName("Fly (At will) (Self only)")).toBe("Fly");
+    expect(baseSpellName("Voile (À volonté)")).toBe("Voile");
+    expect(baseSpellName("Teleport")).toBe("Teleport");
+  });
+
+  it("sluggify matches upstream's file stems", () => {
+    expect(sluggify("Nature's Enmity")).toBe("natures-enmity");
+    expect(sluggify("Wall of Force")).toBe("wall-of-force");
+    expect(sluggify("Blood Vendetta  ")).toBe("blood-vendetta");
+  });
+
+  it("compendiumSpellId reads only spells-srd sources", () => {
+    expect(compendiumSpellId("Compendium.pf2e.spells-srd.Item.6dDtGIUerazSHIOu")).toBe(
+      "6dDtGIUerazSHIOu",
+    );
+    expect(compendiumSpellId("Compendium.pf2e.feats-srd.Item.6dDtGIUerazSHIOu")).toBeNull();
+    expect(compendiumSpellId(null)).toBeNull();
   });
 });

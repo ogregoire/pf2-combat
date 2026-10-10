@@ -6,12 +6,15 @@ import {
   GlossaryEntrySchema,
   TraitSchema,
   StandardActionSchema,
+  SpellDetailSchema,
+  SpellI18nSchema,
   type BookCatalogEntry,
   type Condition,
   type GlossaryEntry,
   type CreatureI18n,
   type IndexEntry,
   type Manifest,
+  type SpellDetail,
   type StandardAction,
   type Trait,
 } from "@pf2/schema";
@@ -35,6 +38,9 @@ export interface VerifyInput {
   glossary: unknown[];
   traits: unknown[];
   actions: unknown[];
+  /** `spells/<slug>.json` contents keyed by the FILE's slug, so a file whose
+   * name disagrees with its own `slug` field is caught too. */
+  spells: Record<string, unknown>;
   manifest: Manifest;
 }
 
@@ -83,6 +89,12 @@ export const RENDERED_MARKERS = new Set(["Check", "Damage", "Template"]);
  * Anything the English dataset does not carry is unresolved by definition.
  */
 export function verifyI18nMarkup(label: string, value: unknown): string[] {
+  return unresolvedMarkup("i18n", label, value);
+}
+
+/** The check behind `verifyI18nMarkup`, with the failure prefix as a
+ * parameter: spell details apply the same allow-list to ENGLISH text. */
+function unresolvedMarkup(prefix: string, label: string, value: unknown): string[] {
   const json = JSON.stringify(value);
 
   const unresolved = new Set<string>();
@@ -94,12 +106,12 @@ export function verifyI18nMarkup(label: string, value: unknown): string[] {
     .sort(compareStrings)
     .map((family) =>
       family === ""
-        ? `i18n: ${label} contains an unresolved @[ marker`
-        : `i18n: ${label} contains an unresolved @${family} reference`,
+        ? `${prefix}: ${label} contains an unresolved @[ marker`
+        : `${prefix}: ${label} contains an unresolved @${family} reference`,
     );
 
   if (BARE_REFERENCE_PATTERN.test(json)) {
-    problems.push(`i18n: ${label} contains an unresolved compendium reference`);
+    problems.push(`${prefix}: ${label} contains an unresolved compendium reference`);
   }
 
   return problems;
@@ -152,6 +164,32 @@ export function verifyI18n(creature: I18nSubject, overlay: CreatureI18n): string
     overlay.spells,
   );
 
+  return problems;
+}
+
+/**
+ * `i18n/fr/spells/<slug>.json`, keyed by file slug: every overlay must parse,
+ * name a slug that has an English `spells/<slug>.json` (a translation for a
+ * spell no creature references any more is one the app can never show), and
+ * carry no unresolved markup.
+ */
+export function verifySpellsI18n(
+  englishSlugs: ReadonlySet<string>,
+  overlays: Record<string, unknown>,
+): string[] {
+  const problems: string[] = [];
+  for (const slug of Object.keys(overlays).sort(compareStrings)) {
+    const label = `i18n/fr/spells/${slug}.json`;
+    const parsed = SpellI18nSchema.safeParse(overlays[slug]);
+    if (!parsed.success) {
+      problems.push(`i18n: ${label} is invalid: ${parsed.error.issues[0]?.message ?? "invalid"}`);
+      continue;
+    }
+    if (!englishSlugs.has(slug)) {
+      problems.push(`i18n: ${label} translates "${slug}", which has no spells/${slug}.json`);
+    }
+    problems.push(...verifyI18nMarkup(label, parsed.data));
+  }
   return problems;
 }
 
@@ -238,6 +276,20 @@ export function verifyDataset(input: VerifyInput): VerifyResult {
       continue;
     }
     parsedActions.push(result.data);
+  }
+
+  const parsedSpells: SpellDetail[] = [];
+  for (const [fileSlug, raw] of Object.entries(input.spells)) {
+    const result = SpellDetailSchema.safeParse(raw);
+    if (!result.success) {
+      failures.push(`schema: spell ${fileSlug}: ${result.error.issues[0]?.message ?? "invalid"}`);
+      continue;
+    }
+    if (result.data.slug !== fileSlug) {
+      failures.push(`spells: spells/${fileSlug}.json carries slug "${result.data.slug}"`);
+      continue;
+    }
+    parsedSpells.push(result.data);
   }
 
   // 2. book counts match index lengths
@@ -361,6 +413,30 @@ export function verifyDataset(input: VerifyInput): VerifyResult {
     if (EXCLUDED_STANDARD_ACTIONS.has(a.slug)) {
       failures.push(`actions: ${a.slug} is excluded from the standard actions but was emitted`);
     }
+  }
+
+  // 9. every creature spell row's slug has a details file, and every details
+  // file is referenced by some row -- the app fetches `spells/<slug>.json`
+  // straight off the row, so a dangling slug is a fold that cannot open.
+  const spellSlugs = new Set(parsedSpells.map((s) => s.slug));
+  const referenced = new Set<string>();
+  for (const c of parsed) {
+    for (const entry of c.spellcasting) {
+      for (const spell of entry.spells) {
+        referenced.add(spell.slug);
+        if (!spellSlugs.has(spell.slug)) {
+          failures.push(`spells: ${c.id}: "${spell.name}" has slug "${spell.slug}" but no spells/${spell.slug}.json`);
+        }
+      }
+    }
+  }
+  for (const s of parsedSpells) {
+    if (!referenced.has(s.slug)) {
+      failures.push(`spells: spells/${s.slug}.json is referenced by no creature`);
+    }
+    // The same allow-list the French overlays get: spell text is upstream's
+    // raw Foundry markup, exactly what that check exists for.
+    failures.push(...unresolvedMarkup("links", `spell ${s.slug}`, s));
   }
 
   return { ok: failures.length === 0, failures };

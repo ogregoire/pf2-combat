@@ -3,7 +3,7 @@ import { z } from "zod";
 
 export const PackConfigSchema = z.object({
   name: z.string().min(1),
-  kind: z.enum(["creatures", "conditions", "glossary", "features", "actions"]),
+  kind: z.enum(["creatures", "conditions", "glossary", "features", "actions", "spells"]),
 });
 
 export const Pf2DataConfigSchema = z.object({

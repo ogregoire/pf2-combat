@@ -54,8 +54,10 @@ export interface CreatureItemIds {
   actions: { name: string; foundryId: string }[];
   attacks: { name: string; foundryId: string }[];
   /** One per spell ROW, so a prepared spell held at two ranks carries the
-   * same foundry id twice. */
-  spells: { name: string; foundryId: string }[];
+   * same foundry id twice. `slug` and the raw upstream `item` feed
+   * `buildSpellDetails`, which needs the creature's own copy of a spell the
+   * compendium does not carry. */
+  spells: { name: string; foundryId: string; slug: string; item: unknown }[];
 }
 
 export interface NormalizedCreature {
@@ -68,15 +70,19 @@ export function normalizeCreature(
   pack: string,
   slug: string,
   lang: LangTable,
+  compendiumSpellSlugs?: ReadonlyMap<string, string>,
 ): Creature {
-  return normalizeCreatureWithItems(raw, pack, slug, lang).creature;
+  return normalizeCreatureWithItems(raw, pack, slug, lang, compendiumSpellSlugs).creature;
 }
 
+/** `compendiumSpellSlugs`: compendium spell id -> slug, forwarded to
+ * `normalizeSpellcasting`. */
 export function normalizeCreatureWithItems(
   raw: unknown,
   pack: string,
   slug: string,
   lang: LangTable,
+  compendiumSpellSlugs?: ReadonlyMap<string, string>,
 ): NormalizedCreature {
   const actor = ActorSchema.parse(raw);
   const traits = normalizeTraits(actor.system.traits, `${pack}/${slug} (${actor.name})`);
@@ -108,7 +114,7 @@ export function normalizeCreatureWithItems(
   const spellcasting = normalizeSpellcasting(actor.items, {
     level: actor.system.details.level.value,
     focusMax: actor.system.resources?.focus?.max ?? null,
-  });
+  }, compendiumSpellSlugs);
 
   const creature = CreatureSchema.parse({
     id: `${pack}/${slug}`,
@@ -133,7 +139,7 @@ export function normalizeCreatureWithItems(
       actions: actions.map((a) => ({ name: a.name, foundryId: a.foundryId })),
       attacks: attacks.map((a) => ({ name: a.name, foundryId: a.foundryId })),
       spells: spellcasting.flatMap((e) =>
-        e.spells.map((s) => ({ name: s.name, foundryId: s.foundryId })),
+        e.spells.map((s) => ({ name: s.name, foundryId: s.foundryId, slug: s.slug, item: s.item })),
       ),
     },
   };

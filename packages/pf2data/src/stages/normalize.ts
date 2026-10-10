@@ -21,10 +21,13 @@ export interface NormalizeResult {
 // here: it propagates to the caller, which treats it as an upstream error
 // rather than a per-creature verification failure. Only normalizeCreature's
 // per-file failures are caught and collected below.
+/** `compendiumSpellSlugs`: compendium spell id -> slug, for spell rows whose
+ * item has no `system.slug` -- see `normalizeSpellcasting`. */
 export function normalizePacks(
   packsDir: string,
   config: Pf2DataConfig,
   lang: LangTable,
+  compendiumSpellSlugs?: ReadonlyMap<string, string>,
 ): NormalizeResult {
   const creatures: Creature[] = [];
   const items = new Map<string, CreatureItemIds>();
@@ -36,7 +39,13 @@ export function normalizePacks(
       const raw: unknown = JSON.parse(readFileSync(file.absolutePath, "utf8"));
       if ((raw as { type?: string }).type !== "npc") continue;
       try {
-        const normalized = normalizeCreatureWithItems(raw, pack.name, file.slug, lang);
+        const normalized = normalizeCreatureWithItems(
+          raw,
+          pack.name,
+          file.slug,
+          lang,
+          compendiumSpellSlugs,
+        );
         creatures.push(normalized.creature);
         items.set(normalized.creature.id, normalized.items);
       } catch (error) {

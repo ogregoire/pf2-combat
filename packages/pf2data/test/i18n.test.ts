@@ -7,12 +7,15 @@ import {
   buildIndexI18n,
   buildConditionsI18n,
   buildStandardActionsI18n,
+  buildSpellsI18n,
   buildGlossaryI18n,
   buildTraitsI18n,
 } from "../src/stages/i18n.js";
 import { loadBabele, type BabeleTable } from "../src/stages/babele.js";
 import { loadArchive } from "../src/stages/archive.js";
 import { buildTraits, scanTraits } from "../src/stages/reference.js";
+import type { SpellCopy, SpellDetailSource } from "../src/stages/spells.js";
+import type { SpellDetail } from "@pf2/schema";
 
 /**
  * Fixtures build a REAL `BabeleTable` via `loadBabele` against temp files,
@@ -1222,5 +1225,122 @@ describe("buildStandardActionsI18n", () => {
 
   it("returns an empty overlay when the actions Babele file is absent", () => {
     expect(buildStandardActionsI18n(actions, makeBabeleTable({}), {})).toEqual({});
+  });
+});
+
+describe("buildSpellsI18n", () => {
+  const detail = (slug: string, overrides: Partial<SpellDetail> = {}): SpellDetail => ({
+    slug,
+    name: slug,
+    rank: 3,
+    cantrip: false,
+    traits: [],
+    traditions: [],
+    cost: "2",
+    range: "500 feet",
+    area: null,
+    targets: "1 creature",
+    defense: null,
+    duration: "1 minute",
+    sustained: false,
+    description: "<p>en</p>",
+    ...overrides,
+  });
+  const copy = (creatureId: string, creatureName: string, foundryId: string): SpellCopy => ({
+    creatureId,
+    creatureName,
+    creatureFoundryId: `${creatureName}-actor`,
+    foundryId,
+    slug: "x",
+    item: {},
+  });
+
+  it("translates a compendium spell from spells-srd by its English name, every field resolved", () => {
+    const table = makeBabeleTable({
+      "pf2e.spells-srd.json": {
+        entries: {
+          Fireball: {
+            name: "Boule de feu",
+            description: "<p>@Localize[PF2E.Key] @UUID[Compendium.pf2e.conditionitems.Item.x]{Pris au dépourvu}</p>",
+            range: "150 mètres",
+            target: "1 créature",
+            duration: "1 minute",
+          },
+        },
+      },
+    });
+    const sources = new Map<string, SpellDetailSource>([["fireball", { kind: "compendium", name: "Fireball" }]]);
+    expect(buildSpellsI18n([detail("fireball")], sources, table, { "PF2E.Key": "Texte" })).toEqual({
+      fireball: {
+        name: "Boule de feu",
+        description: "<p>Texte Pris au dépourvu</p>",
+        range: "150 mètres",
+        targets: "1 créature",
+        duration: "1 minute",
+      },
+    });
+  });
+
+  it("keeps a field null when Babele lacks it, or when the ENGLISH field is null -- never English", () => {
+    const table = makeBabeleTable({
+      "pf2e.spells-srd.json": {
+        entries: { Fireball: { name: "Boule de feu", range: "150 mètres", target: "?" } },
+      },
+    });
+    const sources = new Map<string, SpellDetailSource>([["fireball", { kind: "compendium", name: "Fireball" }]]);
+    const out = buildSpellsI18n([detail("fireball", { targets: null })], sources, table, {});
+    expect(out.fireball).toEqual({
+      name: "Boule de feu",
+      description: null,
+      range: "150 mètres",
+      targets: null,
+      duration: null,
+    });
+  });
+
+  it("omits a compendium spell spells-srd does not carry, even when another file has the name", () => {
+    const table = makeBabeleTable({
+      "pf2e.feats-srd.json": { entries: { Fireball: { name: "Don sans rapport" } } },
+    });
+    const sources = new Map<string, SpellDetailSource>([["fireball", { kind: "compendium", name: "Fireball" }]]);
+    expect(buildSpellsI18n([detail("fireball")], sources, table, {})).toEqual({});
+  });
+
+  it("translates an embedded spell from the creature's own item, qualifier cut, falling back across copies", () => {
+    const table = makeBabeleTable({
+      "pf2e.pathfinder-bestiary.json": {
+        entries: {
+          Shaitan: { name: "Shaitan", items: {} },
+          "Alghollthu Master": {
+            name: "Maître alghollthu",
+            items: { vEiL: { name: "Voile (À volonté)", description: "<p>fr</p>" } },
+          },
+        },
+      },
+      // A legacy name is not a spells-srd key, and must not be looked up there.
+      "pf2e.spells-srd.json": { entries: { Veil: { name: "WRONG" } } },
+    });
+    const sources = new Map<string, SpellDetailSource>([
+      [
+        "veil",
+        {
+          kind: "embedded",
+          copies: [
+            copy("pathfinder-bestiary/shaitan", "Shaitan", "s1"),
+            copy("pathfinder-bestiary/alghollthu-master", "Alghollthu Master", "vEiL"),
+          ],
+        },
+      ],
+    ]);
+    expect(buildSpellsI18n([detail("veil")], sources, table, {})).toEqual({
+      veil: { name: "Voile", description: "<p>fr</p>", range: null, targets: null, duration: null },
+    });
+  });
+
+  it("omits an embedded spell no copy translates", () => {
+    const sources = new Map<string, SpellDetailSource>([
+      ["veil", { kind: "embedded", copies: [copy("pathfinder-bestiary/shaitan", "Shaitan", "s1")] }],
+    ]);
+    expect(buildSpellsI18n([detail("veil")], sources, makeBabeleTable({}), {})).toEqual({});
   });
 });

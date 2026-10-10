@@ -61,3 +61,20 @@ export const StandardActionsI18nSchema = z.record(
 );
 
 export type StandardActionsI18n = z.infer<typeof StandardActionsI18nSchema>;
+
+/**
+ * `i18n/fr/spells/<slug>.json`: one spell's French text, for a slug that has
+ * a `spells/<slug>.json`. The file is OMITTED when there is no French name at
+ * all. Every other field is `null` when its source has no translation for it
+ * -- never the English text standing in -- and `range`/`targets`/`duration`
+ * are also `null` whenever the English field itself is.
+ */
+export const SpellI18nSchema = z.object({
+  name: z.string(),
+  description: z.string().nullable(),
+  range: z.string().nullable(),
+  targets: z.string().nullable(),
+  duration: z.string().nullable(),
+});
+
+export type SpellI18n = z.infer<typeof SpellI18nSchema>;

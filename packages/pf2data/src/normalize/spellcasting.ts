@@ -44,7 +44,16 @@ const SpellItemSchema = z.object({
   _id: z.string(),
   name: z.string(),
   type: z.literal("spell"),
+  // Where the item was copied from: `_stats.compendiumSource` on all 6835
+  // sourced spell items in the five books, the older `flags.core.sourceId`
+  // on none of them today -- read as a fallback all the same, since it is
+  // the same link under its pre-V12 name.
+  _stats: z.object({ compendiumSource: z.string().nullish() }).nullish(),
+  flags: z
+    .object({ core: z.object({ sourceId: z.string().nullish() }).nullish() })
+    .nullish(),
   system: z.object({
+    slug: z.string().nullish(),
     level: z.object({ value: z.number() }),
     location: z.object({
       value: z.string().nullish(),
@@ -63,7 +72,12 @@ export interface SpellcastingSpell {
   /** Stripped by `CreatureSchema.parse`; carried for the French overlay's
    * per-item Babele join, exactly like `NormalizedAttack.foundryId`. */
   foundryId: string;
+  /** The raw upstream item, also stripped by `CreatureSchema.parse`:
+   * `buildSpellDetails` falls back to it for a spell the compendium does
+   * not carry. */
+  item: unknown;
   name: string;
+  slug: string;
   rank: number;
   cost: string;
   cantrip: boolean;
@@ -110,6 +124,54 @@ function frequencyOf(name: string): SpellcastingSpell["frequency"] {
   return null;
 }
 
+/** `Compendium.pf2e.spells-srd.Item.<id>` -> `<id>`; `null` for a source in
+ * any other pack (or none). */
+const SPELLS_SRD_SOURCE = /^Compendium\.pf2e\.spells-srd\.Item\.([A-Za-z0-9]+)$/;
+
+export function compendiumSpellId(source: string | null | undefined): string | null {
+  if (source === null || source === undefined) return null;
+  return SPELLS_SRD_SOURCE.exec(source)?.[1] ?? null;
+}
+
+/** "Dimension Door (At Will)" -> "Dimension Door": everything from the first
+ * parenthetical on is a creature-side qualifier (see `frequencyOf`), never
+ * part of a spell's own name -- no compendium spell's name contains one. */
+export function baseSpellName(name: string): string {
+  const open = name.indexOf("(");
+  return (open === -1 ? name : name.slice(0, open)).trim();
+}
+
+/** Upstream's own `sluggify` for ASCII names: lowercase, apostrophes
+ * dropped, every other run of non-alphanumerics a single hyphen. */
+export function sluggify(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * A spell row's key into `spells/<slug>.json`, from the most authoritative
+ * source that has one:
+ *  1. the item's own `system.slug` -- set on every non-ritual spell item in
+ *     the five books today;
+ *  2. the slug of the compendium spell it was copied from, by id;
+ *  3. its base name, slugified.
+ * The item's own slug outranks its compendium source deliberately: 980 items
+ * on legacy creatures point at a compendium id the remaster has since renamed
+ * ("dimension-door" items sourced from what is now Translocate), and the
+ * legacy row has to keep the legacy spell's key.
+ */
+function spellSlug(spell: SpellItem, compendiumSlugs: ReadonlyMap<string, string>): string {
+  if (spell.system.slug) return spell.system.slug;
+  const id = compendiumSpellId(
+    spell._stats?.compendiumSource ?? spell.flags?.core?.sourceId,
+  );
+  const fromCompendium = id === null ? undefined : compendiumSlugs.get(id);
+  return fromCompendium ?? sluggify(baseSpellName(spell.name));
+}
+
 /**
  * A cantrip -- and a focus spell, under the same PF2 rule ("cantrips and
  * focus spells are automatically heightened to half your level rounded
@@ -126,9 +188,15 @@ function cantripRank(entry: z.infer<typeof EntryItemSchema>, actor: Spellcasting
   );
 }
 
+/**
+ * `compendiumSlugs` maps a compendium spell id to its slug, for the rare item
+ * with no `system.slug` of its own -- see `spellSlug`. Empty by default: no
+ * castable spell item in the five books lacks one today.
+ */
 export function normalizeSpellcasting(
   items: unknown[],
   actor: SpellcastingActor,
+  compendiumSlugs: ReadonlyMap<string, string> = new Map(),
 ): SpellcastingEntry[] {
   const entries = new Map<
     string,
@@ -178,6 +246,9 @@ export function normalizeSpellcasting(
     });
   }
 
+  // Parsed item -> the raw one it came from: zod strips every key the schema
+  // does not name, and the details fallback needs the whole item.
+  const raw = new Map<SpellItem, unknown>();
   for (const item of items) {
     const parsed = SpellItemSchema.safeParse(item);
     if (!parsed.success) {
@@ -198,13 +269,16 @@ export function normalizeSpellcasting(
     if (ritual !== null && ritual !== undefined) continue;
     const owner = parsed.data.system.location.value;
     if (owner === null || owner === undefined) continue;
+    raw.set(parsed.data, item);
     entries.get(owner)?.spells.push(parsed.data);
   }
 
   for (const { item: entry, out, spells } of entries.values()) {
     const row = (spell: SpellItem, rank: number, prepared: number): SpellcastingSpell => ({
       foundryId: spell._id,
+      item: raw.get(spell),
       name: spell.name,
+      slug: spellSlug(spell, compendiumSlugs),
       rank,
       cost: spell.system.time.value,
       cantrip: spell.system.traits.value.includes("cantrip"),
