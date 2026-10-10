@@ -2,18 +2,15 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { IndexEntry } from "@pf2/schema";
-import { AddCombatants } from "../src/components/AddCombatants.js";
 import { QuickAdd } from "../src/components/QuickAdd.js";
-import { searchCreatures } from "../src/data/catalog.js";
 import type { IndexI18n } from "../src/data/i18nOverlay.js";
 import { parseAddCommand } from "../src/rules/parseAddCommand.js";
 import { rankMatches } from "../src/rules/rankMatches.js";
 import { useEncounter } from "../src/state/store.js";
 
 /**
- * The two search paths (`rankMatches` for QuickAdd, `searchCreatures` for
- * AddCombatants) both need to match a French query against a French name,
- * ignoring the accents nobody types at speed, without disturbing English
+ * The search (`rankMatches`, behind QuickAdd) needs to match a French query
+ * against a French name, ignoring the accents nobody types at speed, without disturbing English
  * search. Real ids/names throughout — pulled from data/index/*.json and
  * data/i18n/fr/index/*.json — except where a test is purely about the
  * ranking algorithm's tiering, which follows rank-matches.test.ts's own
@@ -80,22 +77,12 @@ describe("fold-based matching (pure)", () => {
     expect(out.map((e) => e.name)).toEqual([STAG_LORD_FR]);
   });
 
-  it("searchCreatures finds an accented name from an unaccented query", () => {
-    const out = searchCreatures([entry({ id: "x/quatoid", name: QUATOID_FR })], "elementaire");
-    expect(out.map((e) => e.name)).toContain(QUATOID_FR);
-  });
-
   // Both the candidate name AND the query must be folded — an already
   // diacritic-free candidate ("elementaire") no longer contains an
   // ACCENTED query ("Élémentaire") unless the query is folded too. This
   // catches a folder that only strips the candidate's accents.
   it("rankMatches also folds an accented query, not just the candidate name", () => {
     const out = rankMatches([entry({ id: "x/quatoid", name: QUATOID_FR })], "Élémentaire");
-    expect(out.map((e) => e.name)).toContain(QUATOID_FR);
-  });
-
-  it("searchCreatures also folds an accented query, not just the candidate name", () => {
-    const out = searchCreatures([entry({ id: "x/quatoid", name: QUATOID_FR })], "Élémentaire");
     expect(out.map((e) => e.name)).toContain(QUATOID_FR);
   });
 
@@ -107,13 +94,6 @@ describe("fold-based matching (pure)", () => {
     const aardvark = entry({ id: "x/aardvark", name: "Aardvark (Génie)" });
     const genie = entry({ id: "x/genie", name: "Génie" });
     const out = rankMatches([aardvark, genie], "genie");
-    expect(out.map((e) => e.name)).toEqual(["Génie", "Aardvark (Génie)"]);
-  });
-
-  it("searchCreatures ranks a hit on the name proper ahead of a hit confined to the qualifier", () => {
-    const aardvark = entry({ id: "x/aardvark", name: "Aardvark (Génie)" });
-    const genie = entry({ id: "x/genie", name: "Génie" });
-    const out = searchCreatures([aardvark, genie], "genie");
     expect(out.map((e) => e.name)).toEqual(["Génie", "Aardvark (Génie)"]);
   });
 
@@ -137,42 +117,6 @@ describe("parseAddCommand needs no change for French input", () => {
   });
 });
 
-describe("AddCombatants searches in the active language", () => {
-  beforeEach(() => useEncounter.getState().reset());
-
-  it("searches English names when lang is en", async () => {
-    const user = userEvent.setup();
-    render(<AddCombatants entries={[quatoidEn, stagLordEn]} loadIndexI18nFn={loadIndexI18nFn} />);
-    await user.type(screen.getByLabelText(/search/i), "stag lord");
-    expect(screen.getByText("The Stag Lord")).toBeDefined();
-    expect(screen.queryByText(QUATOID_FR)).toBeNull();
-  });
-
-  it("searches French names, ignoring accents, when lang is fr", async () => {
-    const user = userEvent.setup();
-    useEncounter.getState().setLang("fr");
-    render(<AddCombatants entries={[quatoidEn, stagLordEn]} loadIndexI18nFn={loadIndexI18nFn} />);
-    await user.type(screen.getByRole("textbox"), "elementaire");
-    expect(await screen.findByText(QUATOID_FR)).toBeDefined();
-    expect(screen.queryByText("Quatoid")).toBeNull();
-  });
-
-  it("distinguishes the two creatures both called Serpent de mer, showing level and book", async () => {
-    const user = userEvent.setup();
-    useEncounter.getState().setLang("fr");
-    render(<AddCombatants entries={[seaSerpentEn, seaSnakeEn]} loadIndexI18nFn={loadIndexI18nFn} />);
-    await user.type(screen.getByRole("textbox"), "serpent de mer");
-
-    const rows = await screen.findAllByText(SEA_SERPENT_FR);
-    expect(rows).toHaveLength(2);
-
-    const listItems = rows.map((el) => el.closest("div")!.parentElement!.parentElement!);
-    const texts = listItems.map((el) => el.textContent ?? "");
-    expect(texts.some((t) => t.includes("12") && t.includes("Pathfinder Monster Core"))).toBe(true);
-    expect(texts.some((t) => t.includes("0") && t.includes("Pathfinder Bestiary 2"))).toBe(true);
-  });
-});
-
 describe("QuickAdd searches in the active language", () => {
   beforeEach(() => useEncounter.getState().reset());
 
@@ -191,5 +135,20 @@ describe("QuickAdd searches in the active language", () => {
     await user.type(screen.getByRole("combobox", { name: /quick add/i }), "quatoid");
     const listbox = await screen.findByRole("listbox");
     expect(within(listbox).getByText("Quatoid")).toBeDefined();
+  });
+
+  it("distinguishes the two creatures both called Serpent de mer, showing level and book", async () => {
+    const user = userEvent.setup();
+    useEncounter.getState().setLang("fr");
+    render(<QuickAdd entries={[seaSerpentEn, seaSnakeEn]} loadIndexI18nFn={loadIndexI18nFn} />);
+    await user.type(screen.getByRole("combobox"), "serpent de mer");
+
+    const listbox = await screen.findByRole("listbox");
+    const options = await within(listbox).findAllByRole("option");
+    expect(options).toHaveLength(2);
+    const texts = options.map((el) => el.textContent ?? "");
+    expect(texts.every((t) => t.includes(SEA_SERPENT_FR))).toBe(true);
+    expect(texts.some((t) => t.includes("12") && t.includes("Pathfinder Monster Core"))).toBe(true);
+    expect(texts.some((t) => t.includes("0") && t.includes("Pathfinder Bestiary 2"))).toBe(true);
   });
 });

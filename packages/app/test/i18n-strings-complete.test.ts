@@ -59,8 +59,6 @@ const COMPONENTS_DIR = resolve(SRC_ROOT, "components");
 const ALLOWLIST: Record<string, string> = {
   "&mdash;": "HTML entity for an em dash used as a bare visual separator " +
     "(EncounterScreen.tsx's XP-not-yet-available state) — a punctuation mark, not copy to translate.",
-  "&minus;": "HTML entity for a minus sign used as a step-button glyph " +
-    "(AddCombatants.tsx's quantity stepper) — a symbol, not copy to translate.",
   "X": "Variable-value glyph on a pickable valued condition's tag " +
     "(RowPopover.tsx's PickableConditionButton) — a placeholder mark for " +
     "\"this condition takes a number\", not an English word to translate.",

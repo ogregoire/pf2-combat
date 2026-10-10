@@ -10,9 +10,9 @@
  * a D20") — so it always commits exactly as typed, modifier or not.
  *
  * The single place this rule lives: the row popover's own commitInitiative
- * (RowPopover.tsx) was the original, and Quick add and the + Add drawer
- * both call through here instead of re-deriving it, so the three places a
- * GM types an initiative can't drift apart.
+ * (RowPopover.tsx) was the original, and Quick add calls through here
+ * instead of re-deriving it, so the places a GM types an initiative can't
+ * drift apart.
  */
 export function totalInitiative(kind: "pc" | "creature", typed: number, modifier: number | null): number {
   return kind === "creature" && modifier !== null ? typed + modifier : typed;

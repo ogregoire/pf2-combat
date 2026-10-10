@@ -316,18 +316,14 @@ describe("EncounterScreen", () => {
       return Promise.reject(new Error(`unexpected fetch: ${url}`));
     };
 
-    it("loads books, finds a creature by search, and adds it with populated attacks and saves", async () => {
+    it("loads books, finds a creature in the quick-add bar, and adds it with populated attacks and saves", async () => {
       const user = userEvent.setup();
       render(<EncounterScreen fetchFn={fakeFetch} loadCreatureFn={async () => creature} />);
 
-      await user.click(screen.getByRole("button", { name: "+ Add" }));
-      await waitFor(() => expect(screen.getByLabelText(/search/i)).toBeDefined());
-
-      await user.type(screen.getByLabelText(/search/i), "goblin");
-      expect(screen.getByText("Test Goblin")).toBeDefined();
-
-      await user.click(screen.getByRole("button", { name: /add test goblin/i }));
-      await user.click(screen.getByRole("button", { name: /^add 1 test goblin$/i }));
+      // No separate + Add button: the quick-add bar is the way in.
+      expect(screen.queryByRole("button", { name: "+ Add" })).toBeNull();
+      await user.type(screen.getByRole("combobox", { name: /quick add/i }), "goblin");
+      await user.click(await screen.findByRole("option", { name: /test goblin/i }));
 
       await waitFor(() => {
         const combatants = Object.values(useEncounter.getState().encounter.combatants);

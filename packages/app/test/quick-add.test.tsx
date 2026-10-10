@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Creature, IndexEntry } from "@pf2/schema";
 import { QuickAdd } from "../src/components/QuickAdd.js";
@@ -384,5 +384,73 @@ describe("QuickAdd", () => {
     expect(combatant.level).toBe(3);
     expect(combatant.hp).toEqual({ current: 32, max: 32 });
     expect(combatant.initiativeModifier).toBe(4);
+  });
+
+  // Ported from the old + Add drawer: a mid-round add whose slot has passed would wait a whole round.
+  describe("act this round instead", () => {
+    const valeria = (initiative: number) =>
+      useEncounter.getState().addCombatant(
+        { kind: "pc", name: "Valeria", level: 4, ac: 21, saves: { fortitude: 10, reflex: 12, will: 9 }, hp: null },
+        initiative,
+      );
+    const creatureEntry = () =>
+      useEncounter.getState().encounter.entries.find((e) =>
+        e.combatantIds.some((id) => useEncounter.getState().encounter.combatants[id]!.kind === "creature"),
+      )!;
+
+    it("offers it when the totalled initiative has passed, and slots the newcomer right after the active turn", async () => {
+      const user = userEvent.setup();
+      valeria(20);
+      render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+      // 18 rolled + Perception 5 = 23, above Valeria's 20: already passed.
+      await user.type(screen.getByRole("combobox", { name: /quick add/i }), "goblin warrior 18");
+      await user.keyboard("{Enter}");
+
+      expect(await screen.findByText(/slot 23 has passed/i)).toBeDefined();
+      await user.click(screen.getByRole("button", { name: /act this round instead/i }));
+
+      const enc = useEncounter.getState().encounter;
+      expect(creatureEntry().trueInitiative).toBe(23);
+      expect(creatureEntry().initiative).toBe(19);
+      // Valeria is still the one acting, and the goblin comes right after.
+      expect(enc.entries[enc.activeEntryIndex]!.combatantIds.map((id) => enc.combatants[id]!.name)).toEqual(["Valeria"]);
+      expect(enc.entries[enc.activeEntryIndex + 1]!.id).toBe(creatureEntry().id);
+      expect(screen.queryByText(/has passed/i)).toBeNull();
+    });
+
+    it("does not offer it when the totalled initiative still falls below the active entry's", async () => {
+      const user = userEvent.setup();
+      valeria(30);
+      render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+      await user.type(screen.getByRole("combobox", { name: /quick add/i }), "goblin warrior 18");
+      await user.keyboard("{Enter}");
+
+      await waitFor(() => expect(creatureEntry()).toBeDefined());
+      expect(screen.queryByText(/has passed/i)).toBeNull();
+    });
+
+    it("moves a whole batch, which entered as one group", async () => {
+      const user = userEvent.setup();
+      valeria(20);
+      render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+      await user.type(screen.getByRole("combobox", { name: /quick add/i }), "3 goblin warrior 18");
+      await user.keyboard("{Enter}");
+
+      await user.click(await screen.findByRole("button", { name: /act this round instead/i }));
+      expect(creatureEntry().combatantIds).toHaveLength(3);
+      expect(creatureEntry().trueInitiative).toBe(23);
+    });
+
+    it("withdraws the offer once the turn moves on", async () => {
+      const user = userEvent.setup();
+      valeria(20);
+      render(<QuickAdd entries={entries} loadCreatureFn={loadCreatureFn} />);
+      await user.type(screen.getByRole("combobox", { name: /quick add/i }), "goblin warrior 18");
+      await user.keyboard("{Enter}");
+      expect(await screen.findByText(/slot 23 has passed/i)).toBeDefined();
+
+      act(() => useEncounter.getState().nextTurn());
+      expect(screen.queryByText(/has passed/i)).toBeNull();
+    });
   });
 });

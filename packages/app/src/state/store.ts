@@ -39,8 +39,8 @@ export interface CombatantSeed {
   initiativeModifier?: number | null;
   /** Set for a `kind: "pc"` seed: which roster player this combatant is. */
   playerId?: string;
-  /** A French overlay to seed directly — production callers (AddCombatants,
-   * QuickAdd) never set this; overlays are resolved at render time instead.
+  /** A French overlay to seed directly — production callers (QuickAdd)
+   * never set this; overlays are resolved at render time instead.
    * See `Combatant.i18n`. */
   i18n?: CreatureI18n | null;
 }
@@ -637,6 +637,11 @@ interface EncounterStore {
   ): string[];
   removeCombatant(id: string): void;
   setInitiative(entryId: string, initiative: number): void;
+  /** For an entry added mid-round whose slot has already passed: lowers it
+   * to act right after the current turn, this round, and parks its real
+   * initiative in `trueInitiative` for the round wrap to restore. A no-op
+   * unless the entry really does sit before the active one. */
+  actThisRound(entryId: string): void;
   applyDamage(id: string, amount: number, damageType?: string): void;
   applyHealing(id: string, amount: number): void;
   // `value` is the new absolute value for every slug except "dying", where it's the amount to add (see this method's own comment below).
@@ -814,6 +819,27 @@ export const useEncounter = create<EncounterStore>()(
 
         const idx = pinnedEntryId === null ? -1 : enc.entries.findIndex((e) => e.id === pinnedEntryId);
         enc.activeEntryIndex = idx >= 0 ? idx : 0;
+      }),
+
+    actThisRound: (entryId) =>
+      set((state) => {
+        const enc = state.encounter;
+        const index = enc.entries.findIndex((e) => e.id === entryId);
+        const entry = enc.entries[index];
+        const active = enc.entries[enc.activeEntryIndex];
+        if (!entry || !active || index >= enc.activeEntryIndex) return;
+        if (entry.initiative === null || active.initiative === null) return;
+        // One below the active initiative rather than equal to it: a tie
+        // block settles creatures ahead of PCs (sortEntries), so a creature
+        // slotted level with an active PC would land back before it — its
+        // turn passed all over again. One below always falls after the
+        // whole active block, and still this round.
+        entry.trueInitiative = entry.initiative;
+        entry.initiative = active.initiative - 1;
+        entry.orderKey = entry.initiative;
+        const activeEntryId = active.id;
+        sortEntries(enc.entries, enc.combatants);
+        enc.activeEntryIndex = enc.entries.findIndex((e) => e.id === activeEntryId);
       }),
 
     setInitiative: (entryId, initiative) =>

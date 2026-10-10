@@ -1125,14 +1125,14 @@ describe("Delay", () => {
 
   // The two tests below cover Delay's interaction with Entry.trueInitiative —
   // the *other* mechanism in this store that rewrites an initiative at a
-  // round wrap ("act this round instead", see AddCombatants). Delay and that
+  // round wrap ("act this round instead", see QuickAdd). Delay and that
   // feature both move numbers around at wrap time, and they were written a
   // task apart, so this is exactly the seam where each one silently undoes
   // the other.
   it("keeps a returned initiative through the next round wrap, even with an 'act this round' restore still pending", () => {
     add("Alpha", 20);
     add("Beta", 15);
-    // Added mid-round the way AddCombatants does it: a lowered slot so the
+    // Added mid-round the old drawer's way: a lowered slot so the
     // turn order still reaches them today, with the GM's real typed value
     // parked for the wrap to restore.
     useEncounter.getState().addCombatant(

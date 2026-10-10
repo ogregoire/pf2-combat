@@ -41,7 +41,7 @@ export function __resetCombatantI18nCacheForTests(): void {
  * A combatant's French overlay, resolved from its `creatureId` rather than
  * trusted from `combatant.i18n` alone. `combatant.i18n` is authoritative
  * when it is already populated (a caller seeding the store directly, e.g.
- * tests) — but a combatant added through AddCombatants/QuickAdd while
+ * tests) — but a combatant added through QuickAdd while
  * `lang` was "en", or one persisted from before overlays existed, carries
  * no overlay, with nothing else to re-fetch it. This hook closes that gap:
  * whenever `lang` is "fr" and `combatant.i18n` is still absent, it fetches

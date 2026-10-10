@@ -415,8 +415,7 @@ export function RowPopover({
     if (!entry || initiativeValue === null) return; // blank/non-numeric value: nothing to commit — see the field's own comment.
     // See rules/initiative.ts's totalInitiative for the kind split (creature
     // d20-result-plus-modifier vs. PC reported-total-as-typed) — this is the
-    // rule's original call site; Quick add and the + Add drawer reuse the
-    // same function rather than re-deriving it.
+    // rule's original call site; Quick add reuses the same function rather than re-deriving it.
     const toCommit = totalInitiative(combatant.kind, initiativeValue, knownModifier);
     setInitiative(entry.id, toCommit);
     setInitiativeDraft(null);

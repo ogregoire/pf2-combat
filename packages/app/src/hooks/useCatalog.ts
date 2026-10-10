@@ -9,11 +9,11 @@ export type CatalogState =
 
 /**
  * Loads every book's index on mount and merges them through
- * `resolveCollisions`, so `AddCombatants` has a full catalog to search the
+ * `resolveCollisions`, so QuickAdd has a full catalog to search the
  * moment the screen opens — no per-book enable/disable control exists yet
  * (deferred, like `<GroupBuilder>`), so all books load by default. `fetchFn`
  * is injectable for tests, the same pattern `catalog.ts` and
- * `AddCombatants`'s own `loadCreatureFn` already use.
+ * QuickAdd's own `loadCreatureFn` already use.
  */
 export function useCatalog(fetchFn?: FetchFn): CatalogState {
   const [state, setState] = useState<CatalogState>({ status: "loading" });

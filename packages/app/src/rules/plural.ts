@@ -54,8 +54,8 @@ function firstPrepositionIndex(words: string[]): number {
 }
 
 /**
- * French pluralisation is genuinely irregular; this only ever renders a
- * button label (AddCombatants's Add button), not prose, so predictable
+ * French pluralisation is genuinely irregular; this only ever names a
+ * quick-add batch's group ("Goblin Warriors"), not prose, so predictable
  * beats clever. A parenthesised qualifier ("Jann (Génie)") is carved off
  * first and left untouched.
  *

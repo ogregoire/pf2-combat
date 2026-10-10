@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  loadBooks, loadIndex, resolveCollisions, searchCreatures,
+  loadBooks, loadIndex, resolveCollisions,
 } from "../src/data/catalog.js";
 import type { IndexEntry } from "@pf2/schema";
 
@@ -58,26 +58,3 @@ describe("resolveCollisions", () => {
   });
 });
 
-describe("searchCreatures", () => {
-  const set = [
-    entry({ slug: "troll", name: "Troll" }),
-    entry({ id: "x/forest-troll", slug: "forest-troll", name: "Forest Troll" }),
-    entry({ id: "x/goblin-warrior", slug: "goblin-warrior", name: "Goblin Warrior" }),
-  ];
-
-  it("matches case-insensitively on name", () => {
-    expect(searchCreatures(set, "TROLL").map((e) => e.slug)).toEqual([
-      "forest-troll", "troll",
-    ]);
-  });
-
-  it("returns everything for an empty query", () => {
-    expect(searchCreatures(set, "  ")).toHaveLength(3);
-  });
-
-  it("returns results sorted by name deterministically", () => {
-    expect(searchCreatures(set, "o").map((e) => e.name)).toEqual([
-      "Forest Troll", "Goblin Warrior", "Troll",
-    ]);
-  });
-});

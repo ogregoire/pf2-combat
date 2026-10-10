@@ -1294,7 +1294,7 @@ describe("CombatantList", () => {
       const s = useEncounter.getState();
       s.addCombatant(seed({ name: "Active" }), 20);
       s.addCombatant(seed({ name: "Tail" }), 12);
-      // Mirrors AddCombatants' "act this round instead": the GM rolled 25,
+      // Mirrors QuickAdd's "act this round instead": the GM rolled 25,
       // but the entry is slotted in at 12 (tied with Tail) so it still acts
       // this round instead of waiting for the next one — 25 is parked in
       // trueInitiative for the next wrap to restore.

@@ -10,7 +10,7 @@ import { totalInitiative } from "../rules/initiative.js";
 import { pluralize } from "../rules/plural.js";
 import { useEncounter } from "../state/store.js";
 import type { Player } from "../state/types.js";
-import { seedFromEntry } from "./AddCombatants.js";
+import { seedFromEntry } from "../data/seed.js";
 
 /** A dropdown row is either a present player not yet in the order, or a
  * catalog creature. Player rows are built here rather than reusing
@@ -21,7 +21,7 @@ type QuickAddOption = { kind: "player"; player: Player } | { kind: "creature"; e
 
 // The busiest 3-character prefix matches 44 creatures; rendering all of them
 // in a dropdown is noise, not help — cap the list and say how many are
-// hidden, same convention as AddCombatants's RESULT_CAP.
+// hidden.
 const DROPDOWN_CAP = 8;
 const MIN_QUERY_LENGTH = 3;
 const MESSAGE_TIMEOUT_MS = 3500;
@@ -92,12 +92,14 @@ function addedMessage(
  * A single-line command parser for adding combatants: "6 goblin warrior 13"
  * adds six Goblin Warriors at initiative 13, in one line instead of the
  * drawer's open → search → select → adjust quantity → type initiative →
- * confirm → close sequence. Always visible above `<CombatantList>`; the
- * drawer (`<AddCombatants>`) remains for browsing.
+ * confirm → close sequence. Always visible above `<CombatantList>`, and
+ * the only way to add a combatant — the old drawer is gone.
  *
  * Adding reuses `seedFromEntry` — the one place that denormalises `iwr`,
- * `reactions`, `attacks` and `actions` off the full `Creature` record — so a
- * combatant added here carries exactly what the drawer's flow carries.
+ * `reactions`, `attacks` and `actions` off the full `Creature` record.
+ *
+ * An add whose slot the turn has already passed would wait for next round;
+ * the bar says so and offers "act this round instead" (store.actThisRound).
  */
 export function QuickAdd({
   entries,
@@ -124,6 +126,15 @@ export function QuickAdd({
   const lang = useEncounter((s) => s.lang);
   const players = useEncounter((s) => s.players);
   const combatants = useEncounter((s) => s.encounter.combatants);
+  const actThisRound = useEncounter((s) => s.actThisRound);
+  const round = useEncounter((s) => s.encounter.round);
+  const activeEntryId = useEncounter((s) => s.encounter.entries[s.encounter.activeEntryIndex]?.id ?? null);
+  // The last add, when it landed before the active entry: its turn this
+  // round has passed. Offered until acted on, the next add, or the turn
+  // moving on — keyed on the active entry's id, not its index, since the
+  // add itself shifts the index while leaving the same entry active.
+  const [passed, setPassed] = useState<{ entryId: string; slot: number } | null>(null);
+  useEffect(() => setPassed(null), [round, activeEntryId]);
 
   // The catalog's own index files are English-only; the French names come
   // from a per-pack overlay (see i18nOverlay.js) fetched and merged here,
@@ -193,6 +204,20 @@ export function QuickAdd({
 
   const optionId = (index: number): string => `${listboxId}-option-${index}`;
 
+  // Read straight from the store, not from this render's snapshot: the add
+  // that just happened is not in it yet.
+  const offerIfPassed = (combatantId: string): void => {
+    const enc = useEncounter.getState().encounter;
+    const index = enc.entries.findIndex((e) => e.combatantIds.includes(combatantId));
+    const entry = enc.entries[index];
+    const active = enc.entries[enc.activeEntryIndex];
+    setPassed(
+      entry && entry.initiative !== null && active?.initiative != null && index < enc.activeEntryIndex
+        ? { entryId: entry.id, slot: entry.initiative }
+        : null,
+    );
+  };
+
   const commit = (entry: IndexEntry, quantity: number, requestedQuantity: number, initiative: number | null): void => {
     // `entry` is the localized (French-named, when `lang` is "fr") dropdown
     // entry — the seed must carry the RAW one instead, so the stored name
@@ -210,7 +235,7 @@ export function QuickAdd({
         // rules/initiative.ts's totalInitiative, its one home.
         const committed = initiative === null ? null : totalInitiative(seed.kind, initiative, seed.initiativeModifier ?? null);
         if (quantity === 1) {
-          addCombatant(seed, committed);
+          offerIfPassed(addCombatant(seed, committed));
         } else {
           // A batch enters as one group — a wave of goblins acts on one
           // initiative and takes one turn, which is what the GM typing
@@ -218,6 +243,7 @@ export function QuickAdd({
           // in the language shown ("Goblin Warriors", "Guerriers gobelins").
           const ids = addMany(seed, quantity, committed);
           group(ids, pluralize(entry.name, quantity, lang), committed);
+          offerIfPassed(ids[0]!);
         }
 
         setMessage(addedMessage(t, quantity, requestedQuantity, entry.name, committed));
@@ -236,7 +262,7 @@ export function QuickAdd({
   // taken as typed — the player reports their final total — same as the row
   // popover's PC field (see rules/initiative.ts, totalInitiative).
   const commitPlayer = (p: Player, initiative: number | null): void => {
-    addCombatant(
+    const id = addCombatant(
       {
         kind: "pc",
         name: p.name,
@@ -249,6 +275,7 @@ export function QuickAdd({
       },
       initiative,
     );
+    offerIfPassed(id);
 
     setMessage(
       format(t("ADDED_PLAYER_MESSAGE"), { name: p.name }) +
@@ -351,6 +378,44 @@ export function QuickAdd({
       {message !== null && (
         <div role="status" style={{ fontSize: "12px", color: "var(--ok)" }}>
           {message}
+        </div>
+      )}
+
+      {passed !== null && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "8px",
+            padding: "7px 10px",
+            borderRadius: "4px",
+            background: "var(--info-bg)",
+            border: "1px solid var(--border-strong)",
+          }}
+        >
+          <span style={{ fontSize: "12px", color: "var(--info)" }}>
+            {format(t("SLOT_PASSED_PREFIX"), { slot: passed.slot })} <strong>{t("NEXT_ROUND_BOLD")}</strong>
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              actThisRound(passed.entryId);
+              setPassed(null);
+            }}
+            style={{
+              fontFamily: "inherit",
+              fontSize: "11.5px",
+              padding: "3px 9px",
+              borderRadius: "3px",
+              border: "1px solid var(--border-strong)",
+              background: "var(--panel)",
+              color: "var(--info)",
+              cursor: "pointer",
+            }}
+          >
+            {t("ACT_THIS_ROUND_BUTTON")}
+          </button>
         </div>
       )}
 

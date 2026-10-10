@@ -8,7 +8,6 @@ import { format, useT } from "../i18n/index.js";
 import { encounterXp, partyLevelFor } from "../rules/xp.js";
 import { unrolledCount, useEncounter } from "../state/store.js";
 import { ActiveCombatant } from "./ActiveCombatant.js";
-import { AddCombatants } from "./AddCombatants.js";
 import { CombatantList } from "./CombatantList.js";
 import { NextButton } from "./NextButton.js";
 import { AppMenu } from "./AppMenu.js";
@@ -163,12 +162,12 @@ const headerButtonStyle: React.CSSProperties = {
   cursor: "pointer",
 };
 
-/** A centred modal over the whole screen, used for `<AddCombatants>` and
- * `<PartyManager>` — both are "supporting screens" per the design doc, not
- * panes of their own, so they surface on demand rather than taking
- * permanent space from the three-pane layout the mockup specifies. The
- * panel itself does not scroll: it is a column, and whichever child wants
- * to scroll (the roster, the catalogue) takes `flex: 1; minHeight: 0`. */
+/** A centred modal over the whole screen, used for `<PartyManager>` — a
+ * "supporting screen" per the design doc, not a pane of its own, so it
+ * surfaces on demand rather than taking permanent space from the three-pane
+ * layout the mockup specifies. The panel itself does not scroll: it is a
+ * column, and whichever child wants to scroll (the roster) takes
+ * `flex: 1; minHeight: 0`. */
 function Drawer({
   title,
   onClose,
@@ -238,28 +237,30 @@ function Drawer({
   );
 }
 
-type DrawerKind = "add" | "party" | null;
+type DrawerKind = "party" | null;
 
-/** The list pane's head: the round counter, the "+ Add" control and the
- * "Initiative" title — factored out so both the desktop three-column layout
- * and the narrow List tab render the exact same header rather than two
- * copies drifting apart. The round sits here, at the top of the order it
- * counts, rather than in the turn manager. The party roster is reached from
- * the app menu (AppMenu), not from here. */
-function CombatantListHeader({ onAdd }: { onAdd: () => void }): React.ReactElement {
+/** The list pane's head: the round counter and the "Initiative" title —
+ * factored out so both the desktop three-column layout and the narrow List
+ * tab render the exact same header rather than two copies drifting apart.
+ * The round sits here, at the top of the order it counts, rather than in
+ * the turn manager. Combatants are added through the quick-add bar below
+ * it; the party roster is reached from the app menu (AppMenu). A catalog
+ * that failed to load is said here, since the bar would otherwise just
+ * never match anything. */
+function CombatantListHeader({ catalogError }: { catalogError: string | null }): React.ReactElement {
   const t = useT();
   const round = useEncounter((s) => s.encounter.round);
   return (
     <div style={{ padding: "12px 14px 10px", display: "flex", flexDirection: "column", gap: "8px" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div data-testid="round-counter" style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-          <span style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--text-faint)" }}>{t("ROUND_LABEL")}</span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "28px", fontWeight: 600, lineHeight: 1 }}>{round}</span>
-        </div>
-        <button type="button" onClick={onAdd} style={headerButtonStyle}>
-          {t("ADD_SHORT_BUTTON")}
-        </button>
+      <div data-testid="round-counter" style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+        <span style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--text-faint)" }}>{t("ROUND_LABEL")}</span>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "28px", fontWeight: 600, lineHeight: 1 }}>{round}</span>
       </div>
+      {catalogError !== null && (
+        <p role="alert" style={{ margin: 0, color: "var(--danger)", fontSize: "12px" }}>
+          {format(t("CATALOG_ERROR_PREFIX"), { message: catalogError })}
+        </p>
+      )}
       <div style={{ fontSize: "11px", letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--text-faint)" }}>
         {t("LABEL_INITIATIVE")}
       </div>
@@ -349,10 +350,9 @@ function TabBar({
 }
 
 /** Assembles Main.dc.html's whole screen: the top bar, the three panes each
- * carrying the `data-testid` its own tests key off, and the "+ Add"/"Party"
- * controls that surface `<AddCombatants>` and `<PartyManager>` in a drawer —
- * without this the deployed app would have no way to put a creature or a
- * player into the encounter. The creature catalog loads once, on mount, via
+ * carrying the `data-testid` its own tests key off, and the Party drawer
+ * (`<PartyManager>`, opened from the app menu). Combatants enter through the
+ * list's quick-add bar. The creature catalog loads once, on mount, via
  * `useCatalog`; `fetchFn`/`loadCreatureFn` are injectable so tests can drive
  * the whole add-a-creature loop against fake data instead of the network.
  *
@@ -403,7 +403,7 @@ export function EncounterScreen({
           <div style={{ flexGrow: 1, minHeight: 0, overflowY: "auto", paddingBottom: "88px" }}>
             {activeTab === "list" && (
               <div data-testid="combatant-list" style={{ display: "flex", flexDirection: "column", background: "var(--panel)" }}>
-                <CombatantListHeader onAdd={() => setDrawer("add")} />
+                <CombatantListHeader catalogError={catalog.status === "error" ? catalog.message : null} />
                 <CombatantList
                   quickAddEntries={catalog.status === "ready" ? catalog.entries : []}
                   loadCreatureFn={loadCreatureFn}
@@ -466,7 +466,7 @@ export function EncounterScreen({
               overflowY: "auto",
             }}
           >
-            <CombatantListHeader onAdd={() => setDrawer("add")} />
+            <CombatantListHeader catalogError={catalog.status === "error" ? catalog.message : null} />
             <CombatantList
               quickAddEntries={catalog.status === "ready" ? catalog.entries : []}
               loadCreatureFn={loadCreatureFn}
@@ -497,18 +497,6 @@ export function EncounterScreen({
             <TurnManager fetchFn={fetchFn} />
           </div>
         </div>
-      )}
-
-      {drawer === "add" && (
-        <Drawer title={t("ADD_COMBATANTS_TITLE")} onClose={() => setDrawer(null)}>
-          {catalog.status === "loading" && <p style={{ color: "var(--text-faint)", fontSize: "13px" }}>{t("LOADING_BOOKS_MSG")}</p>}
-          {catalog.status === "error" && (
-            <p style={{ color: "var(--danger)", fontSize: "13px" }}>
-              {format(t("CATALOG_ERROR_PREFIX"), { message: catalog.message })}
-            </p>
-          )}
-          {catalog.status === "ready" && <AddCombatants entries={catalog.entries} loadCreatureFn={loadCreatureFn} />}
-        </Drawer>
       )}
 
       {drawer === "party" && (

@@ -11,7 +11,7 @@ export function fold(s: string): string {
  * The name before its first parenthesised qualifier ("Jann (Génie)" ->
  * "Jann", "Quatoïde (Élémentaire, eau)" -> "Quatoïde"), trimmed. A name with
  * no qualifier is returned unchanged. A hit confined to the qualifier must
- * never outrank a hit on this — see rankMatches/searchCreatures.
+ * never outrank a hit on this — see rankMatches.
  */
 export function namePart(name: string): string {
   const idx = name.indexOf("(");

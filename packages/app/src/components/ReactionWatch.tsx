@@ -19,7 +19,7 @@ import type { Combatant } from "../state/types.js";
  * `<strong>Déclencheur</strong>` paragraphs (`extractTriggerFr`), carried
  * here via `resolveActions`; a reaction the overlay doesn't cover falls
  * back to `combatant.reactions[index].trigger`, the English text baked in
- * at add time (`AddCombatants`'s `toReactions`) -- same "French, else
+ * at add time (`toReactions` in data/seed.ts) -- same "French, else
  * English, never blank" rule `pick` uses everywhere else. */
 function ReadyCombatantCard({
   combatant,

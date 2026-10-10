@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { totalInitiative } from "../src/rules/initiative.js";
 
 // The one rule for every place a GM types an initiative (row popover, Quick
-// add, the + Add drawer): a creature's typed number is a d20 result the GM
+// add): a creature's typed number is a d20 result the GM
 // just rolled, so it's totalled with the creature's own modifier; a PC's is
 // already the party's reported final total, so it always commits as typed.
 describe("totalInitiative", () => {

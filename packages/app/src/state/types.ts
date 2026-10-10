@@ -34,7 +34,7 @@ export interface Combatant {
   /**
    * The French overlay for this creature, IF a caller already seeded one
    * directly into the store — used by tests, never by production code:
-   * AddCombatants/QuickAdd no longer fetch an overlay at add time at all
+   * QuickAdd no longer fetches an overlay at add time at all
    * (that used to depend on `lang` being "fr" at the moment of adding,
    * which meant a combatant added in English could never become French
    * later). `null` for every PC, and for essentially every creature added
@@ -81,7 +81,7 @@ export interface Entry {
   groupName: string | null;
   /**
    * Set only while a combatant added mid-round is acting this round instead
-   * of waiting for the next one ("act this round instead" in AddCombatants):
+   * of waiting for the next one ("act this round instead" in QuickAdd):
    * `initiative` is temporarily lowered so turn order reaches them today,
    * and the GM's real typed value is parked here rather than overwritten.
    * Restored into `initiative` (and cleared) the next time the round wraps.

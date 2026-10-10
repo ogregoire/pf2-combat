@@ -3,7 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Creature, CreatureI18n, IndexEntry } from "@pf2/schema";
 import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
-import { AddCombatants } from "../src/components/AddCombatants.js";
+import { QuickAdd } from "../src/components/QuickAdd.js";
 import { CombatantList } from "../src/components/CombatantList.js";
 import { ReactionWatch } from "../src/components/ReactionWatch.js";
 import { __resetCombatantI18nCacheForTests } from "../src/hooks/useCombatantI18n.js";
@@ -77,7 +77,7 @@ const forestTrollSeed: CombatantSeed = {
   ac: 20,
   saves: { fortitude: 17, reflex: 11, will: 7 },
   hp: { current: 125, max: 125 },
-  // Denormalised from actions[0] below, same as AddCombatants's toReactions
+  // Denormalised from actions[0] below, same as data/seed.ts's toReactions
   // — real creatures only carry one array, but Combatant.reactions is what
   // ReactionWatch actually reads.
   reactions: [{ name: "Furious Flailing", trigger: "The forest troll takes electricity or fire damage" }],
@@ -150,7 +150,7 @@ const forestTrollI18n: CreatureI18n = {
 };
 
 // Catalog-side fixtures for the two tests that go through the real add
-// path (AddCombatants), not a hand-seeded store — same forest troll, id
+// path (QuickAdd), not a hand-seeded store — same forest troll, id
 // matching forestTrollSeed/forestTrollI18n above.
 const forestTrollEntry: IndexEntry = {
   id: "pathfinder-monster-core/forest-troll",
@@ -202,7 +202,7 @@ const forestTrollCreature: Creature = {
 
 /** Stubs the global `fetch` `useCombatantI18n` falls back to when no
  * `fetchFn` is injected — the per-creature overlay is now resolved at
- * render, from `creatureId`, never fetched by AddCombatants itself. */
+ * render, from `creatureId`, never fetched by QuickAdd itself. */
 function stubForestTrollOverlayFetch(): void {
   vi.stubGlobal("fetch", (url: string) => {
     if (url.includes("i18n/fr/creatures/pathfinder-monster-core/forest-troll.json")) {
@@ -365,9 +365,9 @@ describe("creatures render in French", () => {
 
   // Finding 1 (final review): this used to hand-seed the store with an
   // ENGLISH name plus an overlay — a state the production add path could
-  // never produce, since `AddCombatants` stored whatever name the
-  // (possibly localised) search result carried. Goes through the real
-  // `<AddCombatants>` flow instead, so it fails the way the bug actually
+  // never produce, since the add flow stored whatever name the (possibly
+  // localised) search result carried. Goes through the real `<QuickAdd>`
+  // flow instead, so it fails the way the bug actually
   // failed: added while French is on, the list shows the French name, but
   // what gets stored — and what English mode falls back to — must be the
   // English one.
@@ -376,7 +376,7 @@ describe("creatures render in French", () => {
     useEncounter.getState().setLang("fr");
     const user = userEvent.setup();
     const { unmount } = render(
-      <AddCombatants
+      <QuickAdd
         entries={[forestTrollEntry]}
         loadCreatureFn={async () => forestTrollCreature}
         loadIndexI18nFn={async (pack) =>
@@ -386,9 +386,9 @@ describe("creatures render in French", () => {
     );
 
     // The search result renders French — the GM picks it by its French name.
-    await user.click(await screen.findByRole("button", { name: /ajouter troll des forêts/i }));
-    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
-    await user.click(await screen.findByRole("button", { name: /ajouter 1 troll des forêts/i }));
+    await user.type(screen.getByRole("combobox"), "troll des forets");
+    await user.click(await screen.findByRole("option", { name: /troll des forêts/i }));
+    await waitFor(() => expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(1));
 
     // What's actually stored is the ENGLISH name — the bug this guards was
     // storing the French one shown in the list above.
@@ -407,7 +407,7 @@ describe("creatures render in French", () => {
     expect(screen.queryByRole("button", { name: /Griffe/ })).toBeNull();
   });
 
-  // Finding 2 (final review): AddCombatants/QuickAdd used to fetch the
+  // Finding 2 (final review): the add flows used to fetch the
   // overlay only when `lang` was already "fr" at add time, so a combatant
   // added in English never became French on a later toggle. The overlay is
   // now resolved at render, from `creatureId` (see useCombatantI18n), so
@@ -416,12 +416,12 @@ describe("creatures render in French", () => {
     stubForestTrollOverlayFetch();
     const user = userEvent.setup();
     const { unmount } = render(
-      <AddCombatants entries={[forestTrollEntry]} loadCreatureFn={async () => forestTrollCreature} />,
+      <QuickAdd entries={[forestTrollEntry]} loadCreatureFn={async () => forestTrollCreature} />,
     );
 
-    await user.click(screen.getByRole("button", { name: /add forest troll/i }));
-    await waitFor(() => expect(screen.queryByTestId("creature-loading")).toBeNull());
-    await user.click(screen.getByRole("button", { name: /^add 1 forest troll$/i }));
+    await user.type(screen.getByRole("combobox"), "forest troll");
+    await user.click(await screen.findByRole("option", { name: /forest troll/i }));
+    await waitFor(() => expect(Object.keys(useEncounter.getState().encounter.combatants)).toHaveLength(1));
 
     const combatant = Object.values(useEncounter.getState().encounter.combatants)[0]!;
     expect(combatant.name).toBe("Forest Troll");

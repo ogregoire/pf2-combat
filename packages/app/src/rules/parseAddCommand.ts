@@ -11,8 +11,7 @@ export interface AddCommand {
 const INTEGER = /^-?\d+$/;
 
 /** A single stray digit (`500 goblin warrior 13`) must not be able to spawn
- * 500 combatants in one keystroke — the drawer's `+` button made that a
- * 500-click mistake; QuickAdd must not turn it into a one-keystroke one.
+ * 500 combatants in one keystroke.
  * The largest Kingmaker set-pieces stay comfortably under this. */
 export const MAX_ADD_QUANTITY = 30;
 

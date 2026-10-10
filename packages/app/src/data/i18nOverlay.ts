@@ -44,7 +44,7 @@ export function loadIndexI18n(pack: string, fetchFn: FetchFn = defaultFetch): Pr
 /**
  * Fetches and merges the index overlay for every pack referenced by
  * `entries` (the segment of each id before its first "/"), so a catalog
- * merged across multiple books — as AddCombatants/QuickAdd receive it — ends
+ * merged across multiple books — as QuickAdd receives it — ends
  * up with one `id -> French name` record covering all of them. A pack whose
  * overlay fails to load (e.g. none exists) contributes nothing rather than
  * failing the whole merge, the same "untranslated is normal" stance as
@@ -143,8 +143,8 @@ export function resolveAttacks(attacks: Attack[], i18n: CreatureI18n | null, lan
  * Applies a merged pack index overlay (`IndexI18n`, id -> French name) onto
  * a list of catalog entries: the French name when `lang` is "fr" and the
  * overlay has one for that id, the original name otherwise — the same rule
- * as `resolveCreatureName`. Used to localise AddCombatants/QuickAdd's
- * catalog before it reaches `rankMatches`/`searchCreatures`, so the GM
+ * as `resolveCreatureName`. Used to localise QuickAdd's catalog
+ * before it reaches `rankMatches`, so the GM
  * searches — and sees — whichever language they're reading from.
  */
 export function localizeEntries(entries: IndexEntry[], indexI18n: IndexI18n, lang: "en" | "fr"): IndexEntry[] {
