@@ -4,7 +4,7 @@ import { castLimit, castsLeft, focusPool, spellCost, spellRows } from "../src/ru
 
 type Spell = Spellcasting["spells"][number];
 const spell = (over: Partial<Spell> = {}): Spell => ({
-  name: "Fireball", rank: 3, cost: "2", cantrip: false, frequency: null, uses: null, prepared: 0, ...over,
+  name: "Fireball", slug: "fireball", rank: 3, cost: "2", cantrip: false, frequency: null, uses: null, prepared: 0, ...over,
 });
 const entry = (over: Partial<Spellcasting> = {}): Spellcasting => ({
   name: "Arcane Spontaneous Spells", tradition: "arcane", preparation: "spontaneous", dc: 25, attack: 17,

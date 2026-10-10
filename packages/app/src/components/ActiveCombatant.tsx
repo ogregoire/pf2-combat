@@ -126,7 +126,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
             onSelectAttack={(index) => setSelection({ combatantId: combatant.id, index })}
             fetchFn={fetchFn}
           />
-          <SpellList combatant={combatant} />
+          <SpellList combatant={combatant} fetchFn={fetchFn} />
         </div>
       </div>
 

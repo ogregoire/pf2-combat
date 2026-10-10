@@ -13,8 +13,8 @@ const spellcasting: Spellcasting[] = [{
   name: "Occult Spontaneous Spells", tradition: "occult", preparation: "spontaneous", dc: 25, attack: 17,
   slots: [{ rank: 1, max: 3 }], focusPoints: null,
   spells: [
-    { name: "Fear", rank: 1, cost: "2", cantrip: false, frequency: null, uses: null, prepared: 0 },
-    { name: "Feather Fall", rank: 1, cost: "reaction", cantrip: false, frequency: null, uses: null, prepared: 0 },
+    { name: "Fear", slug: "fear", rank: 1, cost: "2", cantrip: false, frequency: null, uses: null, prepared: 0 },
+    { name: "Feather Fall", slug: "feather-fall", rank: 1, cost: "reaction", cantrip: false, frequency: null, uses: null, prepared: 0 },
   ],
 }];
 
@@ -71,7 +71,6 @@ describe("confused in the app", () => {
       </>,
     );
     await user.click(within(screen.getByTestId("active-actions")).getByText("Attack of Opportunity"));
-    await user.click(screen.getByRole("button", { name: /^spells/i }));
     expect((screen.getByRole("button", { name: "Use reaction" }) as HTMLButtonElement).disabled).toBe(true);
     expect((screen.getByRole("button", { name: "Cast Feather Fall" }) as HTMLButtonElement).disabled).toBe(true);
     expect((screen.getByRole("button", { name: "Delay" }) as HTMLButtonElement).disabled).toBe(true);
@@ -110,7 +109,6 @@ describe("stupefied in the app", () => {
     const id = add("Grigori", 20, { spellcasting });
     useEncounter.getState().addCondition(id, "stupefied", 2);
     render(<ActiveCombatant />);
-    await userEvent.setup().click(screen.getByRole("button", { name: /^spells/i }));
     expect(screen.getByText(/DC 23, attack \+15/)).toBeDefined();
     expect(screen.getByTestId("stupefied-cast-warning").textContent).toContain("DC 7 flat check");
   });

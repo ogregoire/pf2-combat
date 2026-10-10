@@ -7,7 +7,8 @@ import { useEncounter } from "../src/state/store.js";
 
 type Spell = Spellcasting["spells"][number];
 const spell = (over: Partial<Spell>): Spell => ({
-  name: "Spell", rank: 1, cost: "2", cantrip: false, frequency: null, uses: null, prepared: 0, ...over,
+  name: "Spell", rank: 1, cost: "2", cantrip: false, frequency: null, uses: null, prepared: 0,
+  slug: (over.name ?? "Spell").replace(/ \(.*\)$/, "").toLowerCase().replace(/ /g, "-"), ...over,
 });
 
 const spellcasting: Spellcasting[] = [
@@ -32,10 +33,6 @@ const add = (i18n: CreatureI18n | null = null): string =>
       hp: { current: 90, max: 90 }, spellcasting, i18n },
     20,
   );
-// The Spells section starts folded.
-const unfold = async (): Promise<void> => {
-  await userEvent.setup().click(await screen.findByRole("button", { name: /^(spells|sorts)/i }));
-};
 const rowOf = (name: string) => within(screen.getAllByTestId("spell-row").find((r) => r.textContent!.includes(name))!);
 
 describe("SpellList", () => {
@@ -44,7 +41,6 @@ describe("SpellList", () => {
   it("lists every entry's spells in one section, highest rank first, with each entry's DC and attack", async () => {
     add();
     render(<ActiveCombatant />);
-    await unfold();
     const list = within(screen.getByTestId("spell-list"));
     expect(list.getByText(/DC 25, attack \+17/).textContent).toContain("DC 25");
     expect(list.getByText(/DC 24, attack \+16/)).toBeDefined();
@@ -57,7 +53,6 @@ describe("SpellList", () => {
     const user = userEvent.setup();
     const id = add();
     render(<ActiveCombatant />);
-    await unfold();
 
     await user.click(rowOf("Enthrall").getByRole("button", { name: "Cast Enthrall with 2 actions" }));
     const c = useEncounter.getState().encounter.combatants[id]!;
@@ -76,7 +71,6 @@ describe("SpellList", () => {
     const id = add();
     useEncounter.getState().spendActions(id, 2);
     render(<ActiveCombatant />);
-    await unfold();
     const haste = rowOf("Haste");
     expect((haste.getByRole("button", { name: "Cast Haste with 1 actions" }) as HTMLButtonElement).disabled).toBe(false);
     expect((haste.getByRole("button", { name: "Cast Haste with 2 actions" }) as HTMLButtonElement).disabled).toBe(true);
@@ -88,7 +82,6 @@ describe("SpellList", () => {
     const user = userEvent.setup();
     add();
     render(<ActiveCombatant />);
-    await unfold();
     expect(rowOf("Tongues").queryByRole("button", { name: /^Cast/ })).toBeNull();
     expect(rowOf("Tongues").getByText("constant")).toBeDefined();
 
@@ -109,10 +102,9 @@ describe("SpellList", () => {
       ],
     });
     render(<ActiveCombatant />);
-    await unfold();
     expect(screen.getByText("Discours captivant")).toBeDefined();
     expect(screen.getByText("Don des langues (constant)")).toBeDefined();
-    expect(screen.getByRole("button", { name: /^Sorts/ })).toBeDefined();
+    expect(screen.getByText("Sorts")).toBeDefined();
   });
 
   // The reported defect: a creature added before spells were carried (the
@@ -134,27 +126,40 @@ describe("SpellList", () => {
         ? new Response(JSON.stringify({ spellcasting: [spellcasting[1]] }))
         : new Response("[]");
     render(<ActiveCombatant fetchFn={fetchFn} />);
-    await unfold();
 
     expect(await screen.findByText("Entangle")).toBeDefined();
     // Elite, so the backfilled DC carries the +2 like every other stat.
     expect(useEncounter.getState().encounter.combatants[id]!.spellcasting![0]!.dc).toBe(26);
   });
 
-  it("starts folded, unfolds on demand, and folds again when the turn passes", async () => {
+  it("shows each spell folded, and its full rules text — French where translated — once unfolded", async () => {
     const user = userEvent.setup();
+    useEncounter.getState().setLang("fr");
     add();
-    useEncounter.getState().addCombatant(
-      { kind: "creature", name: "Second", level: 1, ac: 15, saves: { fortitude: 5, reflex: 5, will: 5 }, hp: { current: 9, max: 9 }, spellcasting },
-      10,
-    );
-    render(<ActiveCombatant />);
-    const fold = screen.getByRole("button", { name: /^spells/i });
-    expect(fold.getAttribute("aria-expanded")).toBe("false");
-    expect(screen.queryAllByTestId("spell-row")).toHaveLength(0);
-    await user.click(fold);
-    expect(screen.getAllByTestId("spell-row")).toHaveLength(4);
-    act(() => useEncounter.getState().nextTurn());
-    expect(screen.queryAllByTestId("spell-row")).toHaveLength(0);
+    const fetchFn = async (url: string): Promise<Response> => {
+      if (url.endsWith("data/spells/enthrall.json"))
+        return new Response(JSON.stringify({
+          slug: "enthrall", name: "Enthrall", rank: 3, cantrip: false, traits: ["auditory", "concentrate"], traditions: ["occult"],
+          cost: "2", range: "120 feet", area: null, targets: "all creatures in range", defense: { save: "will", basic: false },
+          duration: "sustained", sustained: true, description: "<p>Your words fascinate your targets. @Check[will|dc:20]</p>",
+        }));
+      if (url.endsWith("data/i18n/fr/spells/enthrall.json"))
+        return new Response(JSON.stringify({ name: "Discours captivant", description: "<p>Vos paroles fascinent vos cibles. @Check[will|dc:20]</p>", range: null, targets: "toutes les créatures à portée", duration: null }));
+      return new Response("[]");
+    };
+    render(<ActiveCombatant fetchFn={fetchFn} />);
+    expect(screen.queryByTestId("spell-details")).toBeNull();
+
+    const enthrallRow = screen.getAllByTestId("spell-row").find((r) => r.textContent!.includes("Enthrall"))!;
+    await user.click(within(enthrallRow).getByRole("button", { expanded: false }));
+    const text = (await screen.findByTestId("spell-details")).textContent!;
+    expect(text).toContain("Vos paroles fascinent vos cibles. jet de Volonté DD 20");
+    expect(text).toContain("Portée 36 m"); // no French range: converted from 120 feet
+    expect(text).toContain("Cibles toutes les créatures à portée");
+    expect(text).toContain("Défense Volonté");
+
+    // Casting from the folded row doesn't unfold it.
+    await user.click(within(screen.getAllByTestId("spell-row").find((r) => r.textContent!.includes("Entangle"))!).getByRole("button", { name: /^Lancer/ }));
+    expect(screen.getAllByTestId("spell-details")).toHaveLength(1);
   });
 });
