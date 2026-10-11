@@ -6,6 +6,7 @@ import { AdjustmentBadge } from "./AdjustmentBadge.js";
 import { ConditionChips } from "./DefenseSummary.js";
 import { SustainChips } from "./SustainChips.js";
 import { EffectChips } from "./Effects.js";
+import { AuraChips } from "./Auras.js";
 import { RowPopover } from "./RowPopover.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
@@ -250,6 +251,7 @@ function StandaloneRow({
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
         {!combatant.defeated && <SustainChips combatant={combatant} />}
         {!combatant.defeated && <EffectChips combatant={combatant} />}
+        {!combatant.defeated && <AuraChips combatant={combatant} />}
       </div>
 
       {combatant.defeated && (
@@ -317,6 +319,7 @@ function GroupMemberRow({
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
         {!combatant.defeated && <SustainChips combatant={combatant} />}
         {!combatant.defeated && <EffectChips combatant={combatant} />}
+        {!combatant.defeated && <AuraChips combatant={combatant} />}
       </div>
 
       {combatant.defeated && (

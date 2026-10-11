@@ -4,7 +4,7 @@ import type { FetchFn } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useVocabulary } from "../hooks/useVocabulary.js";
-import { useT, type StringKey } from "../i18n/index.js";
+import { format, useT, type StringKey } from "../i18n/index.js";
 import { compareLocalized } from "../rules/compare.js";
 import { CHECKS, skillChecks, type Selector } from "../rules/conditions.js";
 import { modifiersFor } from "../rules/effects.js";
@@ -14,6 +14,8 @@ import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { TraitTag } from "./TraitTag.js";
 import { deltaColor } from "./deltaTone.js";
+import { useAuras } from "./Auras.js";
+import { recallKnowledge } from "../rules/recallKnowledge.js";
 import { hover, modifiersHover } from "./HoverCard.js";
 
 const ATTRIBUTES = ["str", "dex", "con", "int", "wis", "cha"] as const;
@@ -50,6 +52,7 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
   const glossary = useTraitGlossary(fetchFn);
   const [creature, setCreature] = useState<Creature | null>(null);
   const creatureId = combatant.creatureId;
+  const auraList = useAuras(combatant);
 
   useEffect(() => {
     setCreature(null);
@@ -88,6 +91,8 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
   const speeds = (creature.speeds ?? []).map((s) =>
     s.type === "land" ? formatDistance(s.value, lang) : `${vocab.name("speeds", s.type).toLowerCase()} ${formatDistance(s.value, lang)}`,
   );
+  // Its level as it stands (elite/weak) sets the DC; rarity raises it.
+  const recall = recallKnowledge(combatant.level, creature.rarity, creature.traits ?? []);
   // Rarity and size are named by the vocabulary; the rest by the trait glossary.
   const chips: { trait: string; label?: string }[] = [
     ...(creature.rarity && creature.rarity !== "common" ? [{ trait: creature.rarity, label: vocab.name("rarities", creature.rarity) }] : []),
@@ -138,6 +143,23 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
         </div>
       )}
       {speeds.length > 0 && <Line label={label("STATBLOCK_SPEED")}>{speeds.join(", ")}</Line>}
+      {auraList.length > 0 && (
+        <Line label={label("STATBLOCK_AURAS")}>
+          {auraList.map((a, i) => (
+            <span key={a.name}>
+              {i > 0 && ", "}
+              <span {...hover(a.hover)} style={{ textDecoration: "underline dotted", textUnderlineOffset: "2px", cursor: "help" }}>
+                {a.name}
+              </span>
+              {a.radius ? ` ${a.radius}` : ""}
+            </span>
+          ))}
+        </Line>
+      )}
+      <Line label={label("STATBLOCK_RECALL")}>
+        {format(t("STATBLOCK_RECALL_DC"), { dc: recall.dc })}
+        {recall.skills.length > 0 && ` (${recall.skills.map((s) => vocab.name("skills", s)).join(", ")})`}
+      </Line>
       {gear.length > 0 && <Line label={label("STATBLOCK_ITEMS")}>{gear.join(", ")}</Line>}
       {step !== 0 && (
         <div style={{ fontSize: "11px", color: "var(--text-faint)" }}>
