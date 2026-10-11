@@ -1,8 +1,8 @@
 import { addToFormula } from "./adjustment.js";
+import { modifiersFor, type CustomEffect } from "./effects.js";
 import {
   acOverride,
   CHECKS,
-  conditionModifiers,
   strikeChecks,
   strikeDamageChecks,
   type AppliedCondition,
@@ -109,6 +109,9 @@ export interface StrikeInput {
   strikesMade: number;
   attackerConditions: AppliedCondition[];
   targetConditions: AppliedCondition[];
+  /** Bonuses and penalties that aren't conditions (rules/effects.ts). */
+  attackerEffects?: CustomEffect[];
+  targetEffects?: CustomEffect[];
   targetAc: number;
   damage: StrikeDamageEntry[];
   /** The Strike's own traits — read here only for deadly-dX/fatal-dX. */
@@ -201,7 +204,7 @@ export const ATTACK_BONUS_SOURCE = "attack bonus";
 export function resolveStrike(input: StrikeInput): StrikeResolution {
   const attackMods: Modifier[] = [
     { value: input.bonus, type: "untyped", source: ATTACK_BONUS_SOURCE },
-    ...conditionModifiers(input.attackerConditions, strikeChecks({ kind: input.kind, traits: input.traits ?? [] })),
+    ...modifiersFor({ conditions: input.attackerConditions, effects: input.attackerEffects }, strikeChecks({ kind: input.kind, traits: input.traits ?? [] })),
   ];
   const map = mapPenalty(input.strikesMade, input.agile);
   if (map !== 0) {
@@ -211,7 +214,7 @@ export function resolveStrike(input: StrikeInput): StrikeResolution {
 
   const acMods: Modifier[] = [
     { value: input.targetAc, type: "untyped", source: "target AC" },
-    ...conditionModifiers(input.targetConditions, CHECKS.ac),
+    ...modifiersFor({ conditions: input.targetConditions, effects: input.targetEffects }, CHECKS.ac),
   ];
   // Petrified sets AC 9 outright: the target's own AC and every modifier on
   // it give way.
@@ -228,7 +231,7 @@ export function resolveStrike(input: StrikeInput): StrikeResolution {
   // Enfeebled lowers Strength-based damage: the Strike's own damage entry
   // takes it, before a critical hit doubles it.
   const damageLedger = resolveModifiers(
-    conditionModifiers(input.attackerConditions, strikeDamageChecks({ kind: input.kind, traits: input.traits ?? [] })),
+    modifiersFor({ conditions: input.attackerConditions, effects: input.attackerEffects }, strikeDamageChecks({ kind: input.kind, traits: input.traits ?? [] })),
   );
   const damageInput =
     damageLedger.total === 0

@@ -2,6 +2,7 @@ import type { Action, Attack, CreatureI18n, Spellcasting } from "@pf2/schema";
 import type { AppliedCondition } from "../rules/conditions.js";
 import type { Iwr } from "../rules/damage.js";
 import type { Adjustment } from "../rules/adjustment.js";
+import type { CustomEffect } from "../rules/effects.js";
 
 export interface Player {
   id: string;
@@ -41,6 +42,9 @@ export interface Combatant {
   /** What the combatant is concentrating on: the spells and abilities it
    * Sustains. Absent until the first one. */
   sustaining?: SustainedEffect[];
+  /** Bonuses and penalties that aren't conditions: cover, a raised shield,
+   * a buff (rules/effects.ts). Absent until the first. */
+  effects?: CustomEffect[];
   /** Uses spent of abilities with a stated frequency ("1/day", "1/round"),
    * by ability name. Per-round and per-turn ones clear at the start of the
    * combatant's turn. Absent until the first. */
@@ -194,6 +198,14 @@ export type EndOfTurnEvent =
     }
   /** A Sustained effect its user didn't Sustain this turn: it ends. */
   | { kind: "sustain-ended"; combatantId: string; name: string; effect: SustainedEffect }
+  /** A timed condition or effect has run its course. */
+  | {
+      kind: "expired";
+      combatantId: string;
+      name: string;
+      condition?: { slug: AppliedCondition["slug"]; value: number };
+      effect?: string;
+    }
   /** An ability recharging is usable again, as its user's turn starts. */
   | { kind: "recharged"; combatantId: string; name: string; ability: string; actionIndex: number };
 

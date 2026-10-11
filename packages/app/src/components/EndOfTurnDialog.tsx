@@ -4,6 +4,7 @@ import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
 import { useAbilityName, useSustainedName } from "../hooks/useSustainedName.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
+import { CONDITIONS } from "../rules/conditions.js";
 import { useEncounter } from "../state/store.js";
 import type { EndOfTurnEvent } from "../state/types.js";
 import { hover } from "./HoverCard.js";
@@ -56,6 +57,17 @@ export function EndOfTurnDialog(): React.ReactElement | null {
     }
     if (e.kind === "sustain-ended") return <SustainEndedLine event={e} />;
     if (e.kind === "recharged") return <RechargedLine event={e} />;
+    if (e.kind === "expired") {
+      const what = e.condition ? (
+        <span key="what" {...hover(conditionTooltip(e.condition.slug, CONDITIONS[e.condition.slug].valued ? e.condition.value : null))} style={{ textDecoration: "underline dotted", textUnderlineOffset: "2px", cursor: "help" }}>
+          {conditionDisplayName(e.condition.slug, glossary, lang)}
+          {CONDITIONS[e.condition.slug].valued ? ` ${e.condition.value}` : ""}
+        </span>
+      ) : (
+        e.effect ?? ""
+      );
+      return formatParts(t("TURN_EXPIRED"), { name: e.name, what });
+    }
     return (
       <>
         <span>{format(t("END_OF_TURN_PERSISTENT_DAMAGE"), { name: e.name, rolled: e.rolled, formula: e.formula })}</span>

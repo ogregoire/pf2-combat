@@ -11,9 +11,11 @@ import {
   onHealedAboveZero,
   woundedOnRecover,
   type ConditionSlug,
+  type Expiry,
 } from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
 import { abilityLimit } from "../rules/abilityLimits.js";
+import type { CustomEffect } from "../rules/effects.js";
 import { rollFormula } from "../rules/dice.js";
 import type { Combatant, Encounter, EndOfTurnEvent, Entry, Player, SustainedEffect } from "./types.js";
 
@@ -51,6 +53,8 @@ export interface CombatantSeed {
 }
 
 let combatantSeq = 0;
+/** Disambiguates effect ids made in the same millisecond. */
+let effectSeq = 0;
 let entrySeq = 0;
 
 function nextCombatantId(): string {
@@ -388,8 +392,31 @@ function endTurnEffects(enc: Encounter, entry: Entry): EndOfTurnEvent[] {
  */
 function settleEndOfTurn(enc: Encounter, entry: Entry): EndOfTurnEvent[] {
   if (entry.endOfTurnResolvedRound === enc.round) return [];
-  const events = endTurnEffects(enc, entry);
+  const events = [...endTurnEffects(enc, entry), ...expireTimed(enc, entry.combatantIds, "end")];
   entry.endOfTurnResolvedRound = enc.round;
+  return events;
+}
+
+/**
+ * Ends the timed conditions and effects due as `anchors`' turns start or
+ * end (`at`) — on whoever carries them — and says so. Taking drained or
+ * doomed off this way has the same fallout as the × does.
+ */
+function expireTimed(enc: Encounter, anchors: string[], at: Expiry["at"]): EndOfTurnEvent[] {
+  const events: EndOfTurnEvent[] = [];
+  const due = (e: Expiry | undefined): boolean => e !== undefined && e.at === at && anchors.includes(e.combatantId) && e.round <= enc.round;
+  for (const c of Object.values(enc.combatants)) {
+    for (const cond of c.conditions.filter((x) => due(x.expires))) {
+      events.push({ kind: "expired", combatantId: c.id, name: c.name, condition: { slug: cond.slug, value: cond.value } });
+      c.conditions = c.conditions.filter((x) => x !== cond);
+      if (cond.slug === "drained") applyDrainedChange(c, cond.value, 0);
+      if (cond.slug === "doomed") settleDoomedDeath(c);
+    }
+    for (const effect of (c.effects ?? []).filter((x) => due(x.expires))) {
+      events.push({ kind: "expired", combatantId: c.id, name: c.name, effect: effect.label });
+    }
+    if (c.effects) c.effects = c.effects.filter((x) => !due(x.expires));
+  }
   return events;
 }
 
@@ -502,6 +529,7 @@ function advanceTurn(enc: Encounter): EndOfTurnEvent[] {
   enc.acknowledgedPrompts = enc.acknowledgedPrompts.filter(
     (pid) => !active.combatantIds.some((cid) => pid.startsWith(`${cid}:`)),
   );
+  events.push(...expireTimed(enc, active.combatantIds, "start"));
   return events;
 }
 
@@ -755,6 +783,11 @@ interface EncounterStore {
   useAbility(id: string, name: string, limit: { counted: boolean; recharge: string | null }, rng?: () => number): void;
   /** Takes a use back: one use returned, any recharge cancelled. */
   restoreAbility(id: string, name: string): void;
+  /** Adds a bonus or penalty that isn't a condition (rules/effects.ts). */
+  addEffect(id: string, effect: Omit<CustomEffect, "id">): void;
+  removeEffect(id: string, effectId: string): void;
+  /** Sets when a condition or effect ends on its own; null: it doesn't. */
+  setExpiry(id: string, what: { condition: ConditionSlug } | { effect: string }, expires: Expiry | null): void;
   /** Refreshes the spells of a combatant saved by an older version of the
    * app — none at all (before spells were carried), or rows without the
    * `slug` their details file is fetched by — from its creature record,
@@ -1160,6 +1193,30 @@ export const useEncounter = create<EncounterStore>()(
           const rolled = /^\d+$/.test(recharge) ? Number(recharge) : (rollFormula(recharge, rng) ?? 1);
           (c.cooldowns ??= {})[name] = { readyRound: state.encounter.round + Math.max(1, rolled), rolled: Math.max(1, rolled) };
         }
+      }),
+
+    addEffect: (id, effect) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (!c) return;
+        effectSeq += 1;
+        (c.effects ??= []).push({ ...effect, id: `fx${Date.now().toString(36)}${effectSeq}` });
+      }),
+
+    removeEffect: (id, effectId) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (c?.effects) c.effects = c.effects.filter((e) => e.id !== effectId);
+      }),
+
+    setExpiry: (id, what, expires) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (!c) return;
+        const target = "condition" in what ? c.conditions.find((x) => x.slug === what.condition) : c.effects?.find((x) => x.id === what.effect);
+        if (!target) return;
+        if (expires) target.expires = expires;
+        else delete target.expires;
       }),
 
     restoreAbility: (id, name) =>

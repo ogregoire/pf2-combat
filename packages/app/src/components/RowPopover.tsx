@@ -5,6 +5,8 @@ import { format, useT, type StringKey } from "../i18n/index.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
+import { DurationSelect } from "./Durations.js";
+import { EffectsSection } from "./Effects.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
@@ -268,6 +270,7 @@ export function RowPopover({
   const addCondition = useEncounter((s) => s.addCondition);
   const removeCondition = useEncounter((s) => s.removeCondition);
   const setAdjustment = useEncounter((s) => s.setAdjustment);
+  const setExpiry = useEncounter((s) => s.setExpiry);
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
@@ -864,10 +867,13 @@ export function RowPopover({
               return (
                 <div
                   key={c.slug}
-                  {...hover(conditionTooltip(c.slug, c.value, { combatant, formula: c.formula }))}
+                  {...hover(conditionTooltip(c.slug, c.value, { combatant, formula: c.formula, expires: c.expires }))}
                   style={{
                     fontFamily: "inherit",
                     display: "inline-flex",
+                    flexWrap: "wrap",
+                    maxWidth: "100%",
+                    boxSizing: "border-box",
                     alignItems: "center",
                     gap: "6px",
                     fontSize: "10.5px",
@@ -906,6 +912,11 @@ export function RowPopover({
                       }}
                     />
                   )}
+                  <DurationSelect
+                    value={c.expires}
+                    label={format(t("DURATION_ARIA"), { name })}
+                    onChange={(x) => setExpiry(combatantId, { condition: c.slug }, x)}
+                  />
                   <button
                     type="button"
                     aria-label={format(t("REMOVE_NAME_ARIA"), { name })}
@@ -957,6 +968,8 @@ export function RowPopover({
             ))}
         </div>
       </div>
+
+      <EffectsSection combatant={combatant} />
     </div>
   );
 

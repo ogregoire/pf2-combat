@@ -144,6 +144,8 @@ export function RollAssistant({
             strikesMade: combatant.strikesMade,
             attackerConditions: combatant.conditions,
             targetConditions: target.conditions,
+            attackerEffects: combatant.effects,
+            targetEffects: target.effects,
             targetAc: target.ac!,
             damage: attack.damage.map((d) => ({ formula: d.formula, type: d.type, category: d.category })),
             traits: attack.traits,

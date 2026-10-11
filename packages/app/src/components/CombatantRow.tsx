@@ -5,6 +5,7 @@ import { format, useT, type StringKey } from "../i18n/index.js";
 import { AdjustmentBadge } from "./AdjustmentBadge.js";
 import { ConditionChips } from "./DefenseSummary.js";
 import { SustainChips } from "./SustainChips.js";
+import { EffectChips } from "./Effects.js";
 import { RowPopover } from "./RowPopover.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { NARROW_LAYOUT_QUERY, useMediaQuery } from "../hooks/useMediaQuery.js";
@@ -248,6 +249,7 @@ function StandaloneRow({
 
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
         {!combatant.defeated && <SustainChips combatant={combatant} />}
+        {!combatant.defeated && <EffectChips combatant={combatant} />}
       </div>
 
       {combatant.defeated && (
@@ -314,6 +316,7 @@ function GroupMemberRow({
         </div>
         {!combatant.defeated && <ConditionChips combatant={combatant} />}
         {!combatant.defeated && <SustainChips combatant={combatant} />}
+        {!combatant.defeated && <EffectChips combatant={combatant} />}
       </div>
 
       {combatant.defeated && (

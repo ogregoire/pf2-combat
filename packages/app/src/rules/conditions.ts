@@ -26,7 +26,9 @@ export type Selector =
   | "spell-dc"
   | `${Attribute}-based`
   /** Strength-based damage: melee Strikes, thrown and propulsive weapons. */
-  | "str-damage";
+  | "str-damage"
+  /** Every Strike's damage. */
+  | "damage";
 
 /** Each check's selectors. Spells answer to their casting attribute, which
  * upstream states for 10 of 696 NPC entries (all Wisdom or Charisma);
@@ -78,7 +80,7 @@ export function strikeDamageChecks(attack: StrikeLike): Selector[] {
   const thrown = attack.traits.some((t) => t === "thrown" || t.startsWith("thrown-"));
   const strength =
     attack.kind === "melee" || (thrown && !attack.traits.includes("splash")) || attack.traits.includes("propulsive");
-  return strength ? ["str-damage"] : [];
+  return strength ? ["damage", "str-damage"] : ["damage"];
 }
 
 export type ConditionSlug =
@@ -381,6 +383,18 @@ export interface AppliedCondition {
   value: number;
   /** Dice formula for persistent damage (e.g. "2d6") — see the ruling above. */
   formula?: string;
+  /** When it ends on its own, if it does (see rules/effects.ts's Expiry). */
+  expires?: Expiry;
+}
+
+/** When a timed condition or effect ends: at the start or the end of the
+ * turn of `combatantId` (whose turn it was when it was set — usually the
+ * creature causing it) in `round`. PF2 counts durations in rounds from the
+ * start of the turn of the creature that created the effect. */
+export interface Expiry {
+  round: number;
+  combatantId: string;
+  at: "start" | "end";
 }
 
 /**

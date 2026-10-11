@@ -1,6 +1,7 @@
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { conditionEffects, type Effect } from "../rules/conditionEffects.js";
-import { CONDITIONS, dyingMax, type AppliedCondition, type Attribute, type ConditionSlug } from "../rules/conditions.js";
+import { CONDITIONS, dyingMax, type AppliedCondition, type Attribute, type ConditionSlug, type Expiry } from "../rules/conditions.js";
+import { useDescribeExpiry } from "../components/Durations.js";
 import { conditionDisplayName, plainParagraphs } from "../rules/traitInfo.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
 import { useEncounter } from "../state/store.js";
@@ -20,6 +21,8 @@ export interface ConditionTooltipOptions {
   combatant?: Combatant;
   /** Persistent damage's dice. */
   formula?: string;
+  /** When it ends on its own. */
+  expires?: Expiry;
 }
 
 /**
@@ -33,6 +36,7 @@ export function useConditionTooltip(): (slug: ConditionSlug, value: number | nul
   const t = useT();
   const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary();
+  const describeExpiry = useDescribeExpiry();
 
   const effectLabel = (e: Effect): string => {
     const target = e.target;
@@ -83,6 +87,8 @@ export function useConditionTooltip(): (slug: ConditionSlug, value: number | nul
           break;
         default: break;
       }
+      const ends = describeExpiry(options.expires);
+      if (ends) lines.push(ends);
       if (def.implies && def.implies.length > 0) {
         lines.push(format(t("COND_TIP_INCLUDES"), { list: def.implies.map((s) => conditionDisplayName(s, glossary, lang)).join(", ") }));
       }

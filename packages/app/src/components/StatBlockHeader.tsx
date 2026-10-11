@@ -6,6 +6,7 @@ import type { Combatant } from "../state/types.js";
 import { AdjustmentBadge } from "./AdjustmentBadge.js";
 import { ConditionChips } from "./DefenseSummary.js";
 import { SustainChips } from "./SustainChips.js";
+import { EffectChips } from "./Effects.js";
 
 /** A human silhouette standing in for the "PC" word beside a player
  * character's level. The accessible name keeps the localised prefix. */
@@ -66,6 +67,7 @@ export function StatBlockHeader({ combatant, children }: { combatant: Combatant;
       <div data-testid="statblock-conditions">
         <ConditionChips combatant={combatant} />
         <SustainChips combatant={combatant} />
+        <EffectChips combatant={combatant} />
       </div>
       {children}
     </div>

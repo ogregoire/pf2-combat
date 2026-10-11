@@ -69,7 +69,7 @@ export function ConditionChips({ combatant }: { combatant: Combatant }): React.R
       {sorted.map((c) => (
         <span
           key={c.slug}
-          {...hover(tooltip(c.slug, c.value, { combatant, formula: c.formula }))}
+          {...hover(tooltip(c.slug, c.value, { combatant, formula: c.formula, expires: c.expires }))}
           style={{
             cursor: "help",
             fontSize: "10px",
