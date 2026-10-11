@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { format, useT } from "../i18n/index.js";
+import { format, formatParts, useT } from "../i18n/index.js";
+import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
 import { useSustainedName } from "../hooks/useSustainedName.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
@@ -25,6 +26,7 @@ export function EndOfTurnDialog(): React.ReactElement | null {
   const report = useEncounter((s) => s.endOfTurnReport);
   const dismissEndOfTurnReport = useEncounter((s) => s.dismissEndOfTurnReport);
   const glossary = useTraitGlossary();
+  const conditionTooltip = useConditionTooltip();
   const ok = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -35,10 +37,14 @@ export function EndOfTurnDialog(): React.ReactElement | null {
 
   const line = (e: EndOfTurnEvent): React.ReactNode => {
     if (e.kind === "decreased") {
-      const condition = conditionDisplayName(e.slug, glossary, lang);
+      const condition = (
+        <span key="condition" title={conditionTooltip(e.slug, e.to === 0 ? null : e.to)} style={{ textDecoration: "underline dotted", textUnderlineOffset: "2px", cursor: "help" }}>
+          {conditionDisplayName(e.slug, glossary, lang)}
+        </span>
+      );
       return e.to === 0
-        ? format(t("END_OF_TURN_CONDITION_ENDS"), { name: e.name, condition })
-        : format(t("END_OF_TURN_CONDITION_DECREASES"), { name: e.name, condition, from: e.from, to: e.to });
+        ? formatParts(t("END_OF_TURN_CONDITION_ENDS"), { name: e.name, condition })
+        : formatParts(t("END_OF_TURN_CONDITION_DECREASES"), { name: e.name, condition, from: String(e.from), to: String(e.to) });
     }
     if (e.kind === "sustain-ended") return <SustainEndedLine event={e} />;
     return (

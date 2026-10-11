@@ -6,6 +6,7 @@ import { canReact, CHECKS, conditionModifiers, stupefiedCastDc } from "../rules/
 import { resolveModifiers } from "../rules/modifiers.js";
 import { castsLeft, focusPool, FOCUS_KEY, spellRows, type SpellCost, type SpellRow } from "../rules/spells.js";
 import { useEncounter } from "../state/store.js";
+import { useRulesHtml } from "../hooks/useRulesHtml.js";
 import type { Combatant } from "../state/types.js";
 import type { FetchFn } from "../data/catalog.js";
 import { loadSpellDetail, useSpellDetail } from "../hooks/useSpellDetail.js";
@@ -109,6 +110,7 @@ function frRange(range: string): string {
 export function SpellDetails({ slug, glossary, fetchFn }: { slug: string; glossary: Map<string, TraitInfo>; fetchFn?: FetchFn }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
+  const rulesHtml = useRulesHtml();
   const loaded = useSpellDetail(slug, true, fetchFn);
   const boxStyle: React.CSSProperties = { marginTop: "8px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" };
   if (loaded === "loading") return <div style={boxStyle}>{t("SPELL_DETAILS_LOADING")}</div>;
@@ -148,7 +150,7 @@ export function SpellDetails({ slug, glossary, fetchFn }: { slug: string; glossa
           ))}
         </div>
       )}
-      <div dangerouslySetInnerHTML={{ __html: renderMarkers(fr_?.description ?? detail.description, lang) }} />
+      <div dangerouslySetInnerHTML={{ __html: rulesHtml(fr_?.description ?? detail.description) }} />
     </div>
   );
 }

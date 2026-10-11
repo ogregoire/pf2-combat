@@ -1,6 +1,13 @@
-import { format, useT } from "../i18n/index.js";
+import { Fragment } from "react";
+import { formatParts, useT } from "../i18n/index.js";
+import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
+import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { actionPool } from "../rules/actions.js";
+import type { ConditionSlug } from "../rules/conditions.js";
+import { conditionDisplayName } from "../rules/traitInfo.js";
+import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
+import { deltaColor } from "./deltaTone.js";
 
 const PIP_FILLED = "var(--action)";
 const PIP_EMPTY_STROKE = "var(--action-empty)";
@@ -24,7 +31,16 @@ function poolInputFor(combatant: Combatant): { slowed: number; stunned: number; 
  * shows the lost pips as empty rather than shrinking the row. */
 export function ActionPips({ combatant }: { combatant: Combatant }): React.ReactElement {
   const t = useT();
-  const pool = actionPool(poolInputFor(combatant));
+  const lang = useEncounter((s) => s.lang);
+  const glossary = useTraitGlossary();
+  const tooltip = useConditionTooltip();
+  const input = poolInputFor(combatant);
+  const pool = actionPool(input);
+  // What changed the pool, named in the display language and hoverable:
+  // the larger of slowed and stunned (they don't stack), and quickened.
+  const reasons: { slug: ConditionSlug; value: number | null }[] = [];
+  if (pool.lost > 0) reasons.push(input.stunned >= input.slowed ? { slug: "stunned", value: input.stunned } : { slug: "slowed", value: input.slowed });
+  if (input.quickened) reasons.push({ slug: "quickened", value: null });
   const remaining = Math.max(0, pool.total - combatant.actionsSpent);
   const pipCount = Math.max(BASE_ACTIONS, pool.total);
   const pips = Array.from({ length: pipCount }, (_, i) => i < remaining);
@@ -50,8 +66,29 @@ export function ActionPips({ combatant }: { combatant: Combatant }): React.React
         ))}
       </div>
       <div style={{ fontSize: "11px", color: "var(--text-dim)" }}>
-        {pool.reasons.length > 0
-          ? format(t("ACTIONS_REMAINING_OF_TOTAL"), { remaining, total: pipCount, reasons: pool.reasons.join(", ") })
+        {reasons.length > 0
+          ? formatParts(t("ACTIONS_REMAINING_OF_TOTAL"), {
+              remaining: String(remaining),
+              // The turn's total against the usual 3: green above, red below.
+              total: (
+                <span key="total" style={{ color: deltaColor(pool.total - BASE_ACTIONS), fontWeight: 600 }}>
+                  {pool.total}
+                </span>
+              ),
+              reasons: (
+                <Fragment key="reasons">
+                  {reasons.map((r, i) => (
+                    <Fragment key={r.slug}>
+                      {i > 0 && ", "}
+                      <span title={tooltip(r.slug, r.value)} style={{ cursor: "help" }}>
+                        {conditionDisplayName(r.slug, glossary, lang).toLowerCase()}
+                        {r.value !== null ? ` ${r.value}` : ""}
+                      </span>
+                    </Fragment>
+                  ))}
+                </Fragment>
+              ),
+            })
           : `${remaining} ${t("ACTIONS_UNIT")}`}
       </div>
     </div>

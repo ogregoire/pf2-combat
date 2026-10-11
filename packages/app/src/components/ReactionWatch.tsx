@@ -2,10 +2,10 @@ import { resolveActions, resolveCreatureName } from "../data/i18nOverlay.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useEncounter } from "../state/store.js";
+import { useRulesHtml } from "../hooks/useRulesHtml.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { useState } from "react";
 import { compareStrings } from "../rules/compare.js";
-import { renderMarkers } from "../rules/renderMarkers.js";
 import { withoutTrigger } from "../rules/reactionText.js";
 import { canReact } from "../rules/conditions.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
@@ -39,6 +39,7 @@ function ReadyCombatantCard({
   glossary: Map<string, TraitInfo>;
 }): React.ReactElement {
   const lang = useEncounter((s) => s.lang);
+  const rulesHtml = useRulesHtml();
   const i18n = useCombatantI18n(combatant);
   const displayName = resolveCreatureName(combatant.name, i18n, lang);
   const reactions = resolveActions(combatant.actions, i18n, lang, glossary).filter(
@@ -121,7 +122,7 @@ function ReadyCombatantCard({
               <div
                 data-testid="reaction-description"
                 style={{ fontSize: "11.5px", lineHeight: 1.45, color: "var(--text-dim)", marginTop: "4px" }}
-                dangerouslySetInnerHTML={{ __html: renderMarkers(rest, lang) }}
+                dangerouslySetInnerHTML={{ __html: rulesHtml(rest) }}
               />
             )}
           </div>

@@ -7,6 +7,7 @@ import { compareLocalized } from "../rules/compare.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import type { Combatant } from "../state/types.js";
 import { AcShield } from "./AcShield.js";
+import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
 import { deltaColor } from "./deltaTone.js";
 
 const HP_TRACK = "var(--hp-track)";
@@ -50,6 +51,7 @@ function conditionLabel(
 export function ConditionChips({ combatant }: { combatant: Combatant }): React.ReactElement | null {
   const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary();
+  const tooltip = useConditionTooltip();
   if (combatant.conditions.length === 0) return null;
   // Alphabetical in the displayed language, same rule and same
   // `compareLocalized` mechanism as RowPopover's own applied-condition
@@ -65,7 +67,9 @@ export function ConditionChips({ combatant }: { combatant: Combatant }): React.R
       {sorted.map((c) => (
         <span
           key={c.slug}
+          title={tooltip(c.slug, c.value, { combatant, formula: c.formula })}
           style={{
+            cursor: "help",
             fontSize: "10px",
             letterSpacing: "0.04em",
             padding: "1px 5px",

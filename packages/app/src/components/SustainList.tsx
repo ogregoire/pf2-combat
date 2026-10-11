@@ -5,8 +5,8 @@ import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useSustainedName } from "../hooks/useSustainedName.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { format, useT } from "../i18n/index.js";
-import { renderMarkers } from "../rules/renderMarkers.js";
 import { useEncounter } from "../state/store.js";
+import { useRulesHtml } from "../hooks/useRulesHtml.js";
 import type { Combatant, SustainedEffect } from "../state/types.js";
 import { castButtonStyle, SpellDetails } from "./SpellList.js";
 import { remainingActionsFor } from "./TurnManager.js";
@@ -50,6 +50,7 @@ function SustainCard({
 }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
+  const rulesHtml = useRulesHtml();
   const sustainEffect = useEncounter((s) => s.sustainEffect);
   const stopSustaining = useEncounter((s) => s.stopSustaining);
   const glossary = useTraitGlossary(fetchFn);
@@ -116,7 +117,7 @@ function SustainCard({
       {open && action && (
         <div
           style={{ marginTop: "8px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" }}
-          dangerouslySetInnerHTML={{ __html: renderMarkers(action.description, lang) }}
+          dangerouslySetInnerHTML={{ __html: rulesHtml(action.description) }}
         />
       )}
     </div>

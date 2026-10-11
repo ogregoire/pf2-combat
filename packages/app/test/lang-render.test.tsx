@@ -118,7 +118,8 @@ describe("chrome copy in French", () => {
 
     // With one action lost to slowed 1, the reasons branch — not the plain
     // "N actions" branch — is what renders.
-    expect(screen.getByText(/2 sur 3/)).toBeDefined();
-    expect(screen.queryByText(/\bof\b/)).toBeNull();
+    // The total is the turn's real pool, 2 (in red), not the 3 pips drawn.
+    expect(document.body.textContent).toContain("2 sur 2");
+    expect(document.body.textContent).not.toMatch(/\bof\b/);
   });
 });

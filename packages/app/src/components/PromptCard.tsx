@@ -7,7 +7,16 @@ import type { Prompt } from "../rules/prompts.js";
  * is the only way a card leaves the screen; nothing here auto-dismisses,
  * including prompts the app already applied (autoApplied), because the
  * click is the GM's record that they saw the number change. */
-export function PromptCard({ prompt, onAcknowledge }: { prompt: Prompt; onAcknowledge: () => void }): React.ReactElement {
+export function PromptCard({
+  prompt,
+  onAcknowledge,
+  badgeTitle,
+}: {
+  prompt: Prompt;
+  onAcknowledge: () => void;
+  /** The condition's hover text (useConditionTooltip). */
+  badgeTitle?: string;
+}): React.ReactElement {
   const t = useT();
   return (
     <div
@@ -20,6 +29,7 @@ export function PromptCard({ prompt, onAcknowledge }: { prompt: Prompt; onAcknow
     >
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <span
+          title={badgeTitle}
           style={{
             fontSize: "10px",
             fontWeight: 600,

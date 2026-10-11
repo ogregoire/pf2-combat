@@ -4,6 +4,7 @@ import { actionPool } from "../rules/actions.js";
 import { promptsFor, type Prompt } from "../rules/prompts.js";
 import type { Combatant, Entry } from "../state/types.js";
 import { PromptCard } from "./PromptCard.js";
+import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
 
 /** The active combatant — first member of the active entry. Groups share a
  * single turn, so this stands in for "whose turn it is" the same way the
@@ -46,6 +47,7 @@ export function TurnPrompts(): React.ReactElement | null {
   const acknowledgePrompt = useEncounter((s) => s.acknowledgePrompt);
   const removeCondition = useEncounter((s) => s.removeCondition);
   const spendActions = useEncounter((s) => s.spendActions);
+  const conditionTooltip = useConditionTooltip();
 
   const combatant = activeCombatantOf(entries, activeEntryIndex, combatants);
   if (!combatant) return null;
@@ -85,6 +87,11 @@ export function TurnPrompts(): React.ReactElement | null {
     acknowledgePrompt(prompt.id);
   };
 
+  const badgeTitle = (p: Prompt): string => {
+    const applied = combatant.conditions.find((c) => c.slug === p.slug);
+    return conditionTooltip(p.slug, applied?.value ?? null, { combatant, formula: applied?.formula });
+  };
+
   const startPrompts = unacknowledged(
     promptsFor({ combatantId: combatant.id, conditions: combatant.conditions, timing: "start" }, lang),
     acknowledgedPrompts,
@@ -115,7 +122,7 @@ export function TurnPrompts(): React.ReactElement | null {
             </span>
           </div>
           {startPrompts.map((p) => (
-            <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} />
+            <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} badgeTitle={badgeTitle(p)} />
           ))}
         </div>
       )}
@@ -139,7 +146,7 @@ export function TurnPrompts(): React.ReactElement | null {
             })}
           </span>
           {endPrompts.map((p) => (
-            <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} />
+            <PromptCard key={p.id} prompt={p} onAcknowledge={() => handleAcknowledge(p)} badgeTitle={badgeTitle(p)} />
           ))}
         </div>
       )}

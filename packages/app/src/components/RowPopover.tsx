@@ -4,6 +4,7 @@ import { useEncounter } from "../state/store.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
+import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
@@ -68,15 +69,19 @@ function PickableConditionButton({
   name,
   valued,
   onClick,
+  title,
 }: {
   name: string;
   valued: boolean;
   onClick: () => void;
+  /** The condition's rules text, on hover. */
+  title?: string;
 }): React.ReactElement {
   return (
     <button
       type="button"
       aria-label={name}
+      title={title}
       onClick={onClick}
       style={{
         fontFamily: "inherit",
@@ -251,6 +256,7 @@ export function RowPopover({
   const t = useT();
   const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary();
+  const conditionTooltip = useConditionTooltip();
   const combatant = useEncounter((s) => s.encounter.combatants[combatantId]);
   const entry = useEncounter((s) => s.encounter.entries.find((e) => e.combatantIds.includes(combatantId)));
   const players = useEncounter((s) => s.players);
@@ -857,6 +863,7 @@ export function RowPopover({
               return (
                 <div
                   key={c.slug}
+                  title={conditionTooltip(c.slug, c.value, { combatant, formula: c.formula })}
                   style={{
                     fontFamily: "inherit",
                     display: "inline-flex",
@@ -943,6 +950,7 @@ export function RowPopover({
                 key={def.slug}
                 name={name}
                 valued={def.valued}
+                title={conditionTooltip(def.slug, null)}
                 onClick={() => applyCondition(def.slug)}
               />
             ))}

@@ -18,6 +18,8 @@ export type { StringKey };
  */
 export const ALLOWLIST = new Set<StringKey>([
   "OK_BUTTON",
+  "ATTRIBUTE_CON",
+  "ATTRIBUTE_INT",
   "LABEL_INITIATIVE",
   "ACTIONS_HEADING",
   "ACTIONS_UNIT",
