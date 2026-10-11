@@ -4,6 +4,7 @@ import { CONDITIONS, dyingMax, type AppliedCondition, type Attribute, type Condi
 import { useDescribeExpiry } from "../components/Durations.js";
 import { conditionDisplayName, plainParagraphs } from "../rules/traitInfo.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
+import { damageTypeName } from "../rules/damage.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { useTraitGlossary } from "./useTraitGlossary.js";
@@ -19,8 +20,9 @@ export interface ConditionTooltipOptions {
   /** The combatant carrying it: drained's Hit Points need its level, dying
    * its doomed. */
   combatant?: Combatant;
-  /** Persistent damage's dice. */
+  /** Persistent damage's dice, and its type. */
   formula?: string;
+  damageType?: string;
   /** When it ends on its own. */
   expires?: Expiry;
 }
@@ -83,7 +85,11 @@ export function useConditionTooltip(): (slug: ConditionSlug, value: number | nul
         case "doomed": lines.push(format(t("COND_TIP_DIES_AT"), { max: Math.max(0, 4 - v) })); break;
         case "wounded": lines.push(format(t("COND_TIP_WOUNDED"), { value: v })); break;
         case "persistent-damage":
-          lines.push(format(t("COND_TIP_PERSISTENT"), { formula: options.formula ?? t("PROMPT_PERSISTENT_DAMAGE_FORMULA_FALLBACK") }));
+          lines.push(format(t("COND_TIP_PERSISTENT"), {
+            formula: options.formula
+              ? `${options.formula}${options.damageType ? ` ${damageTypeName(options.damageType, lang)}` : ""}`
+              : t("PROMPT_PERSISTENT_DAMAGE_FORMULA_FALLBACK"),
+          }));
           break;
         default: break;
       }

@@ -11,7 +11,9 @@ import { conditionDisplayName } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
 import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { applyIwr, damageTypeName, relevantDamageTypes, type Iwr } from "../rules/damage.js";
-import { CONDITIONS, PICKABLE_CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
+import { damageTaken, shieldHardness } from "../rules/damageTaken.js";
+import { useCreatureRecord } from "../hooks/useCreatureRecord.js";
+import { canReact, CONDITIONS, PICKABLE_CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
 import { totalInitiative } from "../rules/initiative.js";
 import { hover } from "./HoverCard.js";
@@ -68,6 +70,10 @@ function DamageTypeButton({
  * clicked. `aria-label` pins the accessible name to the bare condition name
  * regardless of that suffix, so existing exact-name queries (both tests and
  * any future ones) keep working. */
+/** The types persistent damage comes in (Player Core: bleed, fire, acid,
+ * poison, and the rest of the energy types). */
+const PERSISTENT_TYPES = ["bleed", "fire", "acid", "cold", "electricity", "poison", "sonic", "mental", "force", "spirit", "vitality", "void", "piercing", "slashing", "bludgeoning"];
+
 function PickableConditionButton({
   name,
   valued,
@@ -271,6 +277,9 @@ export function RowPopover({
   const removeCondition = useEncounter((s) => s.removeCondition);
   const setAdjustment = useEncounter((s) => s.setAdjustment);
   const setExpiry = useEncounter((s) => s.setExpiry);
+  const setTempHp = useEncounter((s) => s.setTempHp);
+  const [shieldBlock, setShieldBlock] = useState(false);
+  const record = useCreatureRecord(combatant?.kind === "creature" ? combatant.creatureId : undefined);
 
   const [damageType, setDamageType] = useState("none");
   const [amount, setAmount] = useState("");
@@ -332,27 +341,35 @@ export function RowPopover({
   if (!combatant) return null;
 
   const displayName = resolveCreatureName(combatant.name, i18n, lang);
+  // Shield Block: for a creature with the reaction, its reaction unspent
+  // and able to react; the shield's Hardness from its gear.
+  const hasShieldBlock = combatant.actions.some((a) => /^shield block/i.test(a.name));
+  const canBlock = hasShieldBlock && !combatant.reactionSpent && canReact(combatant.conditions);
+  const shieldHardnessValue = shieldHardness(record?.gear ?? []) ?? 5;
   const relevant = relevantDamageTypes(combatant.iwr);
   const showSelector = intent === "damage" && relevant.length > 0;
 
+  const blockHardness = shieldBlock && canBlock ? shieldHardnessValue : 0;
   const handleDamage = (): void => {
     setIntent("damage");
     const value = Number(amount);
     // The selected type used to be dropped here entirely — IWR (including
-    // immunity reducing the hit to nothing) is resolved in the store.
+    // immunity reducing the hit to nothing) is resolved in the store, then
+    // Hardness (petrified, a Shield Block) and temporary Hit Points.
     if (Number.isFinite(value) && value > 0 && combatant.hp !== null) {
       const before = combatant.hp.current;
-      const applied = applyIwr(value, damageType, combatant.iwr);
-      const after = Math.max(0, before - applied);
-      applyDamage(combatantId, value, damageType);
-      setLastChange({
-        delta: -applied,
-        before,
-        after,
-        reason: applied !== value ? describeIwrAdjustment(t, value, damageType, combatant.iwr, lang) : undefined,
-      });
+      const taken = damageTaken(combatant, value, damageType, blockHardness);
+      const after = Math.max(0, before - taken.fromHp);
+      applyDamage(combatantId, value, damageType, blockHardness || undefined);
+      const reasons = [
+        taken.afterIwr !== value ? describeIwrAdjustment(t, value, damageType, combatant.iwr, lang) : null,
+        taken.hardness > 0 ? format(t("DAMAGE_HARDNESS_REASON"), { n: taken.hardness }) : null,
+        taken.fromTemp > 0 ? format(t("DAMAGE_TEMP_REASON"), { n: taken.fromTemp }) : null,
+      ].filter(Boolean);
+      setLastChange({ delta: -taken.fromHp, before, after, reason: reasons.length > 0 ? reasons.join(", ") : undefined });
     }
     setDamageType("none");
+    setShieldBlock(false);
   };
 
   const handleHeal = (): void => {
@@ -563,6 +580,7 @@ export function RowPopover({
         {combatant.hp !== null && (
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-dim)" }}>
             {combatant.hp.current}/{combatant.hp.max}
+            {combatant.hp.temp ? <span style={{ color: "var(--info)" }}>{` ${format(t("TEMP_HP_SUFFIX"), { n: combatant.hp.temp })}`}</span> : null}
           </span>
         )}
         {entry && (
@@ -803,6 +821,40 @@ export function RowPopover({
         </button>
       </div>
 
+      {combatant.hp !== null && (
+        <div style={{ display: "flex", alignItems: "center", gap: "7px", flexWrap: "wrap", fontSize: "11.5px" }}>
+          <button
+            type="button"
+            onClick={() => {
+              const value = Number(amount);
+              if (Number.isFinite(value) && value > 0) setTempHp(combatantId, value);
+            }}
+            style={{ fontFamily: "inherit", fontSize: "11.5px", padding: "4px 9px", borderRadius: "3px", border: "1px solid var(--info-border)", background: "var(--info-bg)", color: "var(--info)", cursor: "pointer" }}
+          >
+            {t("TEMP_HP_BUTTON")}
+          </button>
+          {combatant.hp.temp ? (
+            <span style={{ color: "var(--info)" }}>
+              {format(t("TEMP_HP_SUFFIX"), { n: combatant.hp.temp })}{" "}
+              <button
+                type="button"
+                aria-label={t("TEMP_HP_CLEAR_ARIA")}
+                onClick={() => setTempHp(combatantId, 0)}
+                style={{ fontFamily: "inherit", fontSize: "10.5px", padding: "1px 5px", borderRadius: "3px", border: "1px solid var(--border)", background: "var(--panel-raised)", color: "var(--text-dim)", cursor: "pointer" }}
+              >
+                ×
+              </button>
+            </span>
+          ) : null}
+          {hasShieldBlock && (
+            <label style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: canBlock ? "var(--text)" : "var(--text-faint)" }}>
+              <input type="checkbox" checked={shieldBlock && canBlock} disabled={!canBlock} onChange={(e) => setShieldBlock(e.target.checked)} />
+              {format(t("SHIELD_BLOCK_LABEL"), { n: shieldHardnessValue })}
+            </label>
+          )}
+        </div>
+      )}
+
       {/* The result of the last Damage/Heal, read in the order the GM acts:
          type the amount, press the button, see what it did. */}
       {lastChange && (
@@ -867,7 +919,7 @@ export function RowPopover({
               return (
                 <div
                   key={c.slug}
-                  {...hover(conditionTooltip(c.slug, c.value, { combatant, formula: c.formula, expires: c.expires }))}
+                  {...hover(conditionTooltip(c.slug, c.value, { combatant, formula: c.formula, damageType: c.damageType, expires: c.expires }))}
                   style={{
                     fontFamily: "inherit",
                     display: "inline-flex",
@@ -911,6 +963,21 @@ export function RowPopover({
                         color: "var(--text)",
                       }}
                     />
+                  )}
+                  {c.slug === "persistent-damage" && (
+                    <select
+                      aria-label={t("PERSISTENT_DAMAGE_TYPE_ARIA")}
+                      value={c.damageType ?? "none"}
+                      onChange={(e) => addCondition(combatantId, "persistent-damage", 0, c.formula, e.target.value === "none" ? "" : e.target.value)}
+                      style={{ fontFamily: "inherit", fontSize: "11px", padding: "3px 2px", borderRadius: "3px", border: "1px solid var(--border-strong)", background: "var(--bg)", color: "var(--text)" }}
+                    >
+                      <option value="none">{t("SAVE_DAMAGE_UNTYPED")}</option>
+                      {PERSISTENT_TYPES.map((d) => (
+                        <option key={d} value={d}>
+                          {damageTypeName(d, lang)}
+                        </option>
+                      ))}
+                    </select>
                   )}
                   <DurationSelect
                     value={c.expires}

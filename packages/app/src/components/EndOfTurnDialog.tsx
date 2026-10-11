@@ -5,6 +5,7 @@ import { useAbilityName, useSustainedName } from "../hooks/useSustainedName.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
 import { CONDITIONS } from "../rules/conditions.js";
+import { damageTypeName } from "../rules/damage.js";
 import { useEncounter } from "../state/store.js";
 import type { EndOfTurnEvent } from "../state/types.js";
 import { hover } from "./HoverCard.js";
@@ -70,7 +71,7 @@ export function EndOfTurnDialog(): React.ReactElement | null {
     }
     return (
       <>
-        <span>{format(t("END_OF_TURN_PERSISTENT_DAMAGE"), { name: e.name, rolled: e.rolled, formula: e.formula })}</span>
+        <span>{format(t("END_OF_TURN_PERSISTENT_DAMAGE"), { name: e.name, rolled: e.rolled, formula: e.damageType ? `${e.formula} ${damageTypeName(e.damageType, lang)}` : e.formula })}</span>
         {e.hp && (
           <span style={{ color: "var(--danger)", fontFamily: "var(--font-mono)", fontSize: "12px" }}>
             {format(t("END_OF_TURN_HP"), { before: e.hp.before, after: e.hp.after })}

@@ -24,7 +24,9 @@ export interface Combatant {
   name: string;
   creatureId?: string;
   label?: string;
-  hp: { current: number; max: number } | null;
+  /** `temp`: temporary Hit Points, lost before the others; they don't
+   * stack (a new grant keeps the higher). */
+  hp: { current: number; max: number; temp?: number } | null;
   ac: number | null;
   saves: { fortitude: number; reflex: number; will: number } | null;
   level: number;
@@ -203,6 +205,7 @@ export type EndOfTurnEvent =
       combatantId: string;
       name: string;
       formula: string;
+      damageType?: string;
       rolled: number;
       /** Hit Points either side of the damage; null for a combatant whose
        * HP the app doesn't track (a PC). */

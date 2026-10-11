@@ -13,7 +13,8 @@ import {
   type ConditionSlug,
   type Expiry,
 } from "../rules/conditions.js";
-import { applyIwr, type Iwr } from "../rules/damage.js";
+import { type Iwr } from "../rules/damage.js";
+import { damageTaken } from "../rules/damageTaken.js";
 import { abilityLimit } from "../rules/abilityLimits.js";
 import type { CustomEffect } from "../rules/effects.js";
 import { rollFormula } from "../rules/dice.js";
@@ -288,9 +289,12 @@ function applyDyingGain(c: Combatant, amount: number): void {
  * `defeated` on a hit that dealt nothing is harmless either way, but there's
  * no reason to run the branch at all when nothing changed.
  */
-function dealDamage(c: Combatant, amount: number, damageType?: string): void {
+function dealDamage(c: Combatant, amount: number, damageType?: string, shieldHardness = 0): void {
   if (c.hp === null) return;
-  const applied = applyIwr(amount, damageType ?? "none", c.iwr);
+  const taken = damageTaken(c, amount, damageType ?? "none", shieldHardness);
+  if (taken.fromTemp > 0) c.hp.temp = (c.hp.temp ?? 0) - taken.fromTemp;
+  if (c.hp.temp === 0) delete c.hp.temp;
+  const applied = taken.fromHp;
   c.hp.current = Math.max(0, c.hp.current - applied);
   if (applied === 0 || c.hp.current !== 0) return;
   if (c.kind === "pc") {
@@ -359,14 +363,12 @@ function endTurnEffects(enc: Encounter, entry: Entry): EndOfTurnEvent[] {
     const persistent = conditions.find((x) => x.slug === "persistent-damage");
     if (persistent) {
       const hpBefore = c.hp?.current ?? null;
-      // Persistent damage carries no damage type (see
-      // AppliedCondition.formula's own comment), so it goes through
-      // dealDamage exactly as an untyped ("none") hit would — IWR is
-      // deliberately not applied, same as applyDamage's own default.
-      if (persistentDamage > 0) dealDamage(c, persistentDamage);
+      // Typed persistent damage (persistent fire, bleed…) meets the
+      // creature's resistances and weaknesses like any hit; untyped, none.
+      if (persistentDamage > 0) dealDamage(c, persistentDamage, persistent.damageType);
       events.push({
         kind: "persistent-damage", combatantId: c.id, name: c.name,
-        formula: persistent.formula ?? "", rolled: persistentDamage,
+        formula: persistent.formula ?? "", damageType: persistent.damageType, rolled: persistentDamage,
         hp: hpBefore === null || c.hp === null ? null : { before: hpBefore, after: c.hp.current },
         down: hpBefore !== null && hpBefore > 0 && c.hp?.current === 0,
       });
@@ -760,10 +762,16 @@ interface EncounterStore {
    * initiative in `trueInitiative` for the round wrap to restore. A no-op
    * unless the entry really does sit before the active one. */
   actThisRound(entryId: string): void;
-  applyDamage(id: string, amount: number, damageType?: string): void;
+  /** `shieldHardness`: a Shield Block — its Hardness comes off the hit,
+   * and the reaction is spent. */
+  applyDamage(id: string, amount: number, damageType?: string, shieldHardness?: number): void;
+  /** Grants temporary Hit Points; they don't stack, the higher stays. 0
+   * clears them. */
+  setTempHp(id: string, amount: number): void;
   applyHealing(id: string, amount: number): void;
   // `value` is the new absolute value for every slug except "dying", where it's the amount to add (see this method's own comment below).
-  addCondition(id: string, slug: ConditionSlug, value: number, formula?: string): void;
+  /** `damageType`: persistent damage's type; kept as is when left out. */
+  addCondition(id: string, slug: ConditionSlug, value: number, formula?: string, damageType?: string): void;
   removeCondition(id: string, slug: ConditionSlug): void;
   recordStrike(id: string): void;
   resetStrikes(id: string): void;
@@ -1041,11 +1049,20 @@ export const useEncounter = create<EncounterStore>()(
         }
       }),
 
-    applyDamage: (id, amount, damageType) =>
+    applyDamage: (id, amount, damageType, shieldHardness) =>
       set((state) => {
         const c = state.encounter.combatants[id];
         if (!c) return;
-        dealDamage(c, amount, damageType);
+        dealDamage(c, amount, damageType, shieldHardness);
+        if (shieldHardness) c.reactionSpent = true;
+      }),
+
+    setTempHp: (id, amount) =>
+      set((state) => {
+        const hp = state.encounter.combatants[id]?.hp;
+        if (!hp) return;
+        if (amount <= 0) delete hp.temp;
+        else hp.temp = Math.max(hp.temp ?? 0, amount);
       }),
 
     applyHealing: (id, amount) =>
@@ -1082,7 +1099,7 @@ export const useEncounter = create<EncounterStore>()(
         if (!c.defeated) c.conditions = onHealedAboveZero(c.conditions);
       }),
 
-    addCondition: (id, slug, value, formula) =>
+    addCondition: (id, slug, value, formula, damageType) =>
       set((state) => {
         const c = state.encounter.combatants[id];
         if (!c) return;
@@ -1100,8 +1117,10 @@ export const useEncounter = create<EncounterStore>()(
         if (existing) {
           existing.value = value;
           existing.formula = formula;
+          if (damageType) existing.damageType = damageType;
+          else if (damageType === "") delete existing.damageType;
         } else {
-          c.conditions.push({ slug, value, formula });
+          c.conditions.push({ slug, value, formula, ...(damageType ? { damageType } : {}) });
         }
         if (slug === "drained") applyDrainedChange(c, before, value);
         // Doomed alone is fatal — it needs no dying condition present at

@@ -3,7 +3,8 @@ import { resolveCreatureName } from "../data/i18nOverlay.js";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { CHECKS } from "../rules/conditions.js";
-import { applyIwr, damageTypeName, DAMAGE_TYPES } from "../rules/damage.js";
+import { damageTypeName, DAMAGE_TYPES } from "../rules/damage.js";
+import { damageTaken } from "../rules/damageTaken.js";
 import { degreeOf, type Degree } from "../rules/degrees.js";
 import { rollFormula } from "../rules/dice.js";
 import { modifiersFor } from "../rules/effects.js";
@@ -98,7 +99,8 @@ function SaveDialogBody({ request }: { request: SaveRequest }): React.ReactEleme
   };
   const damageFor = (c: Combatant, degree: Degree | null): number | null => {
     if (!basic || amount === null || degree === null) return null;
-    return applyIwr(basicSaveDamage(amount, degree), damageType, c.iwr);
+    const taken = damageTaken(c, basicSaveDamage(amount, degree), damageType);
+    return taken.fromTemp + taken.fromHp;
   };
   const targets = ordered.filter((c) => selected.has(c.id));
   const rollAll = (): void => {

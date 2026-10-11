@@ -383,6 +383,9 @@ export interface AppliedCondition {
   value: number;
   /** Dice formula for persistent damage (e.g. "2d6") — see the ruling above. */
   formula?: string;
+  /** Persistent damage's type ("fire", "bleed"…), so resistances and
+   * weaknesses apply to it; untyped when absent. */
+  damageType?: string;
   /** When it ends on its own, if it does (see rules/effects.ts's Expiry). */
   expires?: Expiry;
 }

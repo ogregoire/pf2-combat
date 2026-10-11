@@ -1,5 +1,5 @@
 import { useEncounter } from "../state/store.js";
-import { useT } from "../i18n/index.js";
+import { format, useT } from "../i18n/index.js";
 import { acOverride, CHECKS, CONDITIONS, dyingMax } from "../rules/conditions.js";
 import { modifiersFor } from "../rules/effects.js";
 import { resolveModifiers, type Modifier } from "../rules/modifiers.js";
@@ -8,9 +8,11 @@ import { compareLocalized } from "../rules/compare.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import type { Combatant } from "../state/types.js";
 import { AcShield } from "./AcShield.js";
+import { damageTypeName } from "../rules/damage.js";
 import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
 import { deltaColor } from "./deltaTone.js";
 import { hover, modifiersHover } from "./HoverCard.js";
+import { EffectChips } from "./Effects.js";
 
 const HP_TRACK = "var(--hp-track)";
 function hpColor(current: number, max: number): string {
@@ -41,6 +43,9 @@ function conditionLabel(
 ): string {
   const def = CONDITIONS[c.slug];
   const name = conditionDisplayName(c.slug, glossary, lang).toUpperCase();
+  if (c.slug === "persistent-damage" && c.formula) {
+    return `${name} ${c.formula}${c.damageType ? ` ${damageTypeName(c.damageType, lang).toUpperCase()}` : ""}`;
+  }
   if (!def.valued) return name;
   if (c.slug === "dying") return `${name} ${c.value}/${dyingMax(conditions)}`;
   return `${name} ${c.value}`;
@@ -69,7 +74,7 @@ export function ConditionChips({ combatant }: { combatant: Combatant }): React.R
       {sorted.map((c) => (
         <span
           key={c.slug}
-          {...hover(tooltip(c.slug, c.value, { combatant, formula: c.formula, expires: c.expires }))}
+          {...hover(tooltip(c.slug, c.value, { combatant, formula: c.formula, damageType: c.damageType, expires: c.expires }))}
           style={{
             cursor: "help",
             fontSize: "10px",
@@ -217,10 +222,12 @@ export function DefenseSummary({ combatant }: { combatant: Combatant }): React.R
           <HpBar current={combatant.hp.current} max={combatant.hp.max} />
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-dim)", flexShrink: 0, whiteSpace: "nowrap" }}>
             {combatant.hp.current}/{combatant.hp.max}
+            {combatant.hp.temp ? <span style={{ color: "var(--info)" }}>{` ${format(t("TEMP_HP_SUFFIX"), { n: combatant.hp.temp })}`}</span> : null}
           </span>
         </div>
       )}
       <ConditionChips combatant={combatant} />
+      <EffectChips combatant={combatant} />
     </div>
   );
 }
