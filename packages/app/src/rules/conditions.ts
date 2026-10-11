@@ -440,6 +440,40 @@ function expandImplied(applied: AppliedCondition[]): AppliedCondition[] {
   return expanded;
 }
 
+/** Whether `slug` applies, directly or through what another condition
+ * implies (invisible brings undetected, unconscious blinded…). */
+export function hasCondition(applied: AppliedCondition[], slug: ConditionSlug): boolean {
+  return expandImplied(applied).some((c) => c.slug === slug);
+}
+
+/**
+ * The flat check an attacker must pass before a Strike or a targeted spell
+ * can affect its target (Player Core, Detecting Creatures): DC 5 against a
+ * concealed target — or any target, for a dazzled attacker; DC 11 against a
+ * hidden or undetected one — or any, for a blinded attacker (both "if
+ * vision is your only precise sense", which this assumes). The higher
+ * applies. Null when none does.
+ */
+export function targetingFlatCheck(
+  attacker: AppliedCondition[],
+  target: AppliedCondition[],
+): { dc: number; reason: ConditionSlug } | null {
+  const reasons: { dc: number; reason: ConditionSlug }[] = [];
+  if (hasCondition(target, "undetected")) reasons.push({ dc: 11, reason: "undetected" });
+  if (hasCondition(target, "hidden")) reasons.push({ dc: 11, reason: "hidden" });
+  if (hasCondition(attacker, "blinded")) reasons.push({ dc: 11, reason: "blinded" });
+  if (hasCondition(target, "concealed")) reasons.push({ dc: 5, reason: "concealed" });
+  if (hasCondition(attacker, "dazzled")) reasons.push({ dc: 5, reason: "dazzled" });
+  return reasons[0] ?? null;
+}
+
+/** Whether the target is off-guard to this attacker because it can't see
+ * it: "a creature you're hidden from (or undetected by) is off-guard to
+ * you". */
+export function attackerUnseen(attacker: AppliedCondition[]): boolean {
+  return hasCondition(attacker, "hidden") || hasCondition(attacker, "undetected");
+}
+
 /**
  * The dying value at which a combatant dies, per data/conditions.json,
  * doomed: "The Dying value at which you die is reduced by your doomed

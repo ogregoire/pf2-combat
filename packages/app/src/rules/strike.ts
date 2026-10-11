@@ -2,7 +2,9 @@ import { addToFormula } from "./adjustment.js";
 import { modifiersFor, type CustomEffect } from "./effects.js";
 import {
   acOverride,
+  attackerUnseen,
   CHECKS,
+  targetingFlatCheck,
   strikeChecks,
   strikeDamageChecks,
   type AppliedCondition,
@@ -140,6 +142,9 @@ export interface StrikeResolution {
   /** What the attacker's conditions do to the Strike's damage (enfeebled). */
   damageLedger: ModifierResult;
   outcomes: StrikeOutcome[];
+  /** A flat check to pass first, or the Strike misses (concealed, hidden,
+   * undetected; a dazzled or blinded attacker). */
+  flatCheck: { dc: number; reason: ConditionSlug } | null;
 }
 
 /**
@@ -214,6 +219,8 @@ export function resolveStrike(input: StrikeInput): StrikeResolution {
 
   const acMods: Modifier[] = [
     { value: input.targetAc, type: "untyped", source: "target AC" },
+    // An attacker the target can't see catches it off-guard.
+    ...(attackerUnseen(input.attackerConditions) ? [{ value: -2, type: "circumstance" as const, source: "off-guard (attacker unseen)" }] : []),
     ...modifiersFor({ conditions: input.targetConditions, effects: input.targetEffects }, CHECKS.ac),
   ];
   // Petrified sets AC 9 outright: the target's own AC and every modifier on
@@ -262,5 +269,6 @@ export function resolveStrike(input: StrikeInput): StrikeResolution {
     };
   });
 
-  return { modifier, ledger, effectiveAc, acLedger, damageLedger, outcomes };
+  const flatCheck = targetingFlatCheck(input.attackerConditions, input.targetConditions);
+  return { modifier, ledger, effectiveAc, acLedger, damageLedger, outcomes, flatCheck };
 }

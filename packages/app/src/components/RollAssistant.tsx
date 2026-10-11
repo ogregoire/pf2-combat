@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import type { Attack } from "@pf2/schema";
-import { format, useT, type StringKey } from "../i18n/index.js";
+import { format, formatParts, useT, type StringKey } from "../i18n/index.js";
 import { degreeTotalRanges, type Degree } from "../rules/degrees.js";
 import { ATTACK_BONUS_SOURCE, resolveStrike } from "../rules/strike.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { TargetBox, TargetPicker } from "./TargetPicker.js";
 import { SkillActionsPanel } from "./SkillActionsPanel.js";
+import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
+import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
+import { conditionDisplayName } from "../rules/traitInfo.js";
 import type { FetchFn } from "../data/catalog.js";
 import { hover, modifiersHover } from "./HoverCard.js";
 import { deltaColor } from "./deltaTone.js";
@@ -85,6 +88,8 @@ export function RollAssistant({
   const spendActions = useEncounter((s) => s.spendActions);
   const lang = useEncounter((s) => s.lang);
   const t = useT();
+  const glossary = useTraitGlossary();
+  const conditionTooltip = useConditionTooltip();
   const [picking, setPicking] = useState(false);
   // Moving the pointer from the zone onto a candidate inside it is one
   // continuous hover, but jsdom/user-event report it as a leave then an
@@ -201,6 +206,22 @@ export function RollAssistant({
                     {format(t("VS_AC_TEMPLATE"), { ac: resolution.effectiveAc })}
                   </span>
                 </div>
+                {resolution.flatCheck && (
+                  <div
+                    data-testid="flat-check"
+                    style={{ marginTop: "8px", padding: "6px 9px", borderRadius: "3px", background: "var(--info-bg)", color: "var(--info)", fontSize: "12px" }}
+                  >
+                    {formatParts(t("FLAT_CHECK_NOTICE"), {
+                      dc: String(resolution.flatCheck.dc),
+                      reason: (
+                        <span key="reason" {...hover(conditionTooltip(resolution.flatCheck.reason, null))} style={{ textDecoration: "underline dotted", textUnderlineOffset: "2px", cursor: "help" }}>
+                          {conditionDisplayName(resolution.flatCheck.reason, glossary, lang).toLowerCase()}
+                        </span>
+                      ),
+                      who: ["dazzled", "blinded"].includes(resolution.flatCheck.reason) ? t("FLAT_CHECK_ATTACKER") : t("FLAT_CHECK_TARGET"),
+                    })}
+                  </div>
+                )}
 
                 <div
                   style={{
