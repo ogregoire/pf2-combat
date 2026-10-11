@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { conditionEffects } from "../src/rules/conditionEffects.js";
 import {
+  acOverride,
   CHECKS,
   CONDITIONS,
   conditionModifiers,
@@ -90,6 +92,7 @@ const EXPECTED: Record<ConditionSlug, Partial<Record<Check, number>>> = {
   slowed: {}, stunned: {}, quickened: {}, immobilized: {}, dazzled: {},
   // Deafened's −2 Perception is for initiative only, which the GM rolls.
   deafened: {},
+  // Petrified sets AC 9 outright — no modifier; see the test below.
   doomed: {}, wounded: {}, "persistent-damage": {}, petrified: {}, fleeing: {},
   invisible: {}, concealed: {}, hidden: {}, undetected: {}, broken: {},
   controlled: {}, cursebound: {}, observed: {}, unnoticed: {},
@@ -110,6 +113,18 @@ describe("every condition's bonus or malus, check by check", () => {
       expect(actual).toEqual(EXPECTED[slug]);
     });
   }
+
+  it("sets a petrified target's AC to 9, whatever its own AC and other conditions", () => {
+    const r = resolveStrike({
+      bonus: 10, kind: "melee", agile: false, strikesMade: 0, attackerConditions: [],
+      targetConditions: [{ slug: "petrified", value: 0 }, { slug: "off-guard", value: 0 }, { slug: "frightened", value: 2 }],
+      targetAc: 25, damage: [{ formula: "1d6", type: "bludgeoning" }],
+    });
+    expect(r.effectiveAc).toBe(9);
+    expect(acOverride([{ slug: "petrified", value: 0 }])).toBe(9);
+    expect(acOverride([{ slug: "frightened", value: 1 }])).toBeNull();
+    expect(conditionEffects([{ slug: "petrified", value: 0 }])).toEqual([{ target: { kind: "ac" }, value: 9, set: true }]);
+  });
 
   it("lowers a melee Strike's damage under enfeebled, before a critical hit doubles it", () => {
     const r = resolveStrike({

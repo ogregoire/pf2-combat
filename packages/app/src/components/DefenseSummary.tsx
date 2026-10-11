@@ -1,6 +1,6 @@
 import { useEncounter } from "../state/store.js";
 import { useT } from "../i18n/index.js";
-import { CHECKS, CONDITIONS, conditionModifiers, dyingMax } from "../rules/conditions.js";
+import { acOverride, CHECKS, CONDITIONS, conditionModifiers, dyingMax } from "../rules/conditions.js";
 import { resolveModifiers } from "../rules/modifiers.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
@@ -192,7 +192,9 @@ export function DefenseSummary({ combatant }: { combatant: Combatant }): React.R
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         {combatant.ac !== null ? (
           (() => {
-            const { total, why } = adjusted(combatant, "ac");
+            // Petrified replaces the AC with an object's 9.
+            const setAc = acOverride(combatant.conditions);
+            const { total, why } = setAc === null ? adjusted(combatant, "ac") : { total: setAc - combatant.ac, why: "petrified: AC 9" };
             return (
               <span title={why || undefined} style={{ display: "inline-flex" }}>
                 <AcShield ac={combatant.ac + total} size={20} color={deltaColor(total)} />

@@ -76,7 +76,7 @@ export function useConditionTooltip(): (slug: ConditionSlug, value: number | nul
       const v = value ?? 0;
       const applied: AppliedCondition = { slug, value: v, formula: options.formula };
       const effects = conditionEffects([applied]);
-      if (effects.length > 0) lines.push(effects.map((e) => `${effectLabel(e)} ${signed(e.value)}`).join(" · "));
+      if (effects.length > 0) lines.push(effects.map((e) => `${effectLabel(e)} ${e.set ? e.value : signed(e.value)}`).join(" · "));
       const plural = (n: number): string => (n === 1 ? "" : "s");
       const level = options.combatant?.level;
       switch (slug) {

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
-import { ConditionChips } from "../src/components/DefenseSummary.js";
+import { ConditionChips, DefenseSummary } from "../src/components/DefenseSummary.js";
 import { annotateConditions } from "../src/rules/annotateConditions.js";
 import { conditionEffects } from "../src/rules/conditionEffects.js";
 import { CONDITIONS, type ConditionSlug } from "../src/rules/conditions.js";
@@ -72,6 +72,22 @@ describe("a condition chip's hover text", () => {
     const drained = screen.getByText("DRAINED 1").getAttribute("title")!;
     expect(drained).toContain("Fortitude −1");
     expect(drained).toContain("Lost 3 HP and max HP (3 × 1)");
+  });
+});
+
+describe("a petrified target", () => {
+  beforeEach(() => useEncounter.getState().reset());
+
+  it("shows AC 9 in red, and says so on hover", () => {
+    const id = useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Ogre", level: 3, ac: 17, saves: { fortitude: 12, reflex: 6, will: 5 }, hp: { current: 50, max: 50 } },
+      10,
+    );
+    useEncounter.getState().addCondition(id, "petrified", 0);
+    render(<DefenseSummary combatant={useEncounter.getState().encounter.combatants[id]!} />);
+    const shield = screen.getByRole("img", { name: "AC 9" });
+    expect(shield.querySelector("text")!.getAttribute("fill")).toBe("var(--danger)");
+    expect(screen.getByText("PETRIFIED").getAttribute("title")).toContain("AC 9");
   });
 });
 

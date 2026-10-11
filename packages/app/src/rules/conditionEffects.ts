@@ -1,4 +1,5 @@
 import {
+  acOverride,
   CHECKS,
   conditionModifiers,
   skillChecks,
@@ -30,6 +31,9 @@ export type EffectTarget =
 export interface Effect {
   target: EffectTarget;
   value: number;
+  /** `value` is the score itself, set outright (petrified's AC 9), not a
+   * modifier on it. */
+  set?: true;
 }
 
 const ATTRIBUTES: Attribute[] = ["str", "dex", "con", "int", "wis", "cha"];
@@ -67,11 +71,13 @@ export function conditionEffects(conditions: AppliedCondition[]): Effect[] {
     if (value !== 0) effects.push({ target, value });
   };
 
+  const setAc = acOverride(conditions);
   const checks = [v.ac, v.fortitude, v.reflex, v.will, v.perception, v.str, v.dex, v.spellAttack, v.spellDc, ...skills.map((s) => s.value)];
-  if (checks.every((x) => x === checks[0]) && checks[0] !== 0) {
+  if (setAc === null && checks.every((x) => x === checks[0]) && checks[0] !== 0) {
     push({ kind: "all" }, checks[0]!);
   } else {
-    push({ kind: "ac" }, v.ac);
+    if (setAc !== null) effects.push({ target: { kind: "ac" }, value: setAc, set: true });
+    else push({ kind: "ac" }, v.ac);
     if (v.fortitude === v.reflex && v.reflex === v.will) push({ kind: "saves" }, v.will);
     else for (const save of ["fortitude", "reflex", "will"] as const) push({ kind: "save", save }, v[save]);
     push({ kind: "perception" }, v.perception);

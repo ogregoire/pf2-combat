@@ -259,10 +259,10 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   }),
   petrified: def({
     // "You can't act, nor can you sense anything. You become an object with
-    // ... AC 9, Hardness 8..." — these replace your stats outright rather
-    // than modify them, which the additive Modifier system here can't
-    // express (it adds deltas to an existing score, not overrides it).
-    // Nothing in the text grants Off-Guard or any other condition.
+    // ... AC 9, Hardness 8..." — AC 9 replaces the creature's AC outright
+    // rather than modifying it, so it isn't a Modifier: `acOverride` below
+    // carries it. Hardness 8 isn't modelled. Nothing in the text grants
+    // Off-Guard or any other condition.
     slug: "petrified", name: "Petrified", valued: false, affects: () => null,
   }),
   fleeing: def({
@@ -611,6 +611,15 @@ export function applyEndOfTurn(
   }
 
   return { conditions, persistentDamage };
+}
+
+/** An AC a condition sets outright, replacing the creature's and every
+ * modifier on it: petrified's "AC 9" — an object's, which no penalty to a
+ * creature reaches. Null when none applies. */
+export const PETRIFIED_AC = 9;
+
+export function acOverride(applied: AppliedCondition[]): number | null {
+  return expandImplied(applied).some((c) => c.slug === "petrified") ? PETRIFIED_AC : null;
 }
 
 /**

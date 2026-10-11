@@ -1,5 +1,6 @@
 import { addToFormula } from "./adjustment.js";
 import {
+  acOverride,
   CHECKS,
   conditionModifiers,
   strikeChecks,
@@ -212,7 +213,13 @@ export function resolveStrike(input: StrikeInput): StrikeResolution {
     { value: input.targetAc, type: "untyped", source: "target AC" },
     ...conditionModifiers(input.targetConditions, CHECKS.ac),
   ];
-  const acLedger = resolveModifiers(acMods);
+  // Petrified sets AC 9 outright: the target's own AC and every modifier on
+  // it give way.
+  const setAc = acOverride(input.targetConditions);
+  const acLedger =
+    setAc === null
+      ? resolveModifiers(acMods)
+      : { total: setAc, applied: [{ value: setAc, type: "untyped" as const, source: "petrified (AC 9)" }], suppressed: [] };
 
   const modifier = ledger.total;
   const effectiveAc = acLedger.total;
