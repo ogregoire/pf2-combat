@@ -364,6 +364,7 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   END_OF_TURN_DOWN: "à terre",
   END_OF_TURN_FLAT_CHECK: "Test nu DD 15 : sur 15 ou plus, les dégâts persistants prennent fin.",
   OK_BUTTON: "OK",
+  ABILITY_DC_HOVER: "Ses DD",
   FLAT_CHECK_NOTICE: "D’abord un test nu DD {dc} ({who} {reason}) : sur un échec, la Frappe rate.",
   FLAT_CHECK_TARGET: "cible",
   FLAT_CHECK_ATTACKER: "attaquant",

@@ -5,6 +5,7 @@ import { useT } from "../i18n/index.js";
 import { canReact } from "../rules/conditions.js";
 import { isSustainable } from "../rules/sustain.js";
 import { abilityLimit, rechargeFormula } from "../rules/abilityLimits.js";
+import { abilityDcShift } from "../rules/abilityDc.js";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
 import { useEncounter } from "../state/store.js";
@@ -153,6 +154,8 @@ export function ActionList({
     };
   }
 
+  // The DCs its abilities print, moved by elite/weak and its conditions.
+  const dcShift = abilityDcShift(combatant, t("ABILITY_DC_HOVER"), (k) => t(k === "elite" ? "ADJUSTMENT_ELITE" : "ADJUSTMENT_WEAK"));
   const items = buildActionList(actions, attacks, lang);
   const activatable = items.filter((i) => i.kind === "strike" || i.action.cost !== "passive");
   const passives = items.filter((i) => i.kind === "action" && i.action.cost === "passive");
@@ -169,6 +172,7 @@ export function ActionList({
         onUse={onUse}
         glossary={glossary}
         parentName={parentName}
+        dcShift={dcShift}
       />
     );
   }
@@ -183,7 +187,7 @@ export function ActionList({
         <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "6px" }}>
           {passives.map((item) =>
             item.kind === "action" ? (
-              <ActionCard key={item.action.name} action={item.action} disabled={false} glossary={glossary} />
+              <ActionCard key={item.action.name} action={item.action} disabled={false} glossary={glossary} dcShift={dcShift} />
             ) : null,
           )}
         </div>
@@ -220,6 +224,7 @@ export function ActionList({
                 onUse={onUse}
                 glossary={glossary}
                 usage={usage}
+                dcShift={dcShift}
               />
               {item.children.map((child) => renderChild(child, item.action.name))}
             </div>

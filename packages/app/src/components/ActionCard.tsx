@@ -5,6 +5,7 @@ import { useEncounter } from "../state/store.js";
 import { useRulesHtml } from "../hooks/useRulesHtml.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { TraitTag } from "./TraitTag.js";
+import type { DcShift } from "../rules/renderMarkers.js";
 import { hover } from "./HoverCard.js";
 
 function ReactionIcon(): React.ReactElement {
@@ -70,7 +71,7 @@ function FoldArrow({ expanded }: { expanded: boolean }): React.ReactElement {
   );
 }
 
-function PassiveCard({ action, glossary }: { action: Action; glossary: Map<string, TraitInfo> }): React.ReactElement {
+function PassiveCard({ action, glossary, dcShift }: { action: Action; glossary: Map<string, TraitInfo>; dcShift?: DcShift | null }): React.ReactElement {
   const t = useT();
   const rulesHtml = useRulesHtml();
   const [expanded, setExpanded] = useState(false);
@@ -101,7 +102,7 @@ function PassiveCard({ action, glossary }: { action: Action; glossary: Map<strin
           <TraitRow traits={action.traits} glossary={glossary} />
           <div
             style={{ marginTop: "4px", fontSize: "12px", color: "var(--text-dim)" }}
-            dangerouslySetInnerHTML={{ __html: rulesHtml(action.description) }}
+            dangerouslySetInnerHTML={{ __html: rulesHtml(action.description, dcShift) }}
           />
         </>
       )}
@@ -183,6 +184,7 @@ export function ActionCard({
   useWhileCollapsed = false,
   glossary,
   usage,
+  dcShift,
 }: {
   action: Action;
   disabled: boolean;
@@ -197,10 +199,12 @@ export function ActionCard({
   /** Its frequency and recharge, tracked; without it, the frequency is
    * shown as written. */
   usage?: AbilityUsage;
+  /** Its creature's DCs as they stand (elite/weak, conditions). */
+  dcShift?: DcShift | null;
 }): React.ReactElement {
   const t = useT();
   const rulesHtml = useRulesHtml();
-  if (action.cost === "passive") return <PassiveCard action={action} glossary={glossary} />;
+  if (action.cost === "passive") return <PassiveCard action={action} glossary={glossary} dcShift={dcShift} />;
 
   const cost = action.cost === "1" || action.cost === "2" || action.cost === "3" ? Number(action.cost) : 0;
   const isExpanded = selected;
@@ -262,7 +266,7 @@ export function ActionCard({
             <TraitRow traits={action.traits} glossary={glossary} />
             <div
               style={{ marginTop: "6px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" }}
-              dangerouslySetInnerHTML={{ __html: rulesHtml(action.description) }}
+              dangerouslySetInnerHTML={{ __html: rulesHtml(action.description, dcShift) }}
             />
           </>
         )}
@@ -310,6 +314,7 @@ export function ChildActionRow({
   onUse,
   glossary,
   parentName,
+  dcShift,
 }: {
   action: Action;
   disabled: boolean;
@@ -318,6 +323,7 @@ export function ChildActionRow({
   onUse?: () => void;
   glossary: Map<string, TraitInfo>;
   parentName?: string;
+  dcShift?: DcShift | null;
 }): React.ReactElement {
   const actionWithParent: Action = parentName
     ? { ...action, name: `${action.name} (${parentName})` }
@@ -334,6 +340,7 @@ export function ChildActionRow({
           onSelect={onSelect}
           onUse={onUse}
           glossary={glossary}
+          dcShift={dcShift}
         />
       </div>
     </div>

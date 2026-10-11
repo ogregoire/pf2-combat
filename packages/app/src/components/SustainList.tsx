@@ -7,6 +7,7 @@ import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { format, useT } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import { useRulesHtml } from "../hooks/useRulesHtml.js";
+import { abilityDcShift } from "../rules/abilityDc.js";
 import type { Combatant, SustainedEffect } from "../state/types.js";
 import { castButtonStyle, SpellDetails } from "./SpellList.js";
 import { remainingActionsFor } from "./TurnManager.js";
@@ -117,7 +118,7 @@ function SustainCard({
       {open && action && (
         <div
           style={{ marginTop: "8px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" }}
-          dangerouslySetInnerHTML={{ __html: rulesHtml(action.description) }}
+          dangerouslySetInnerHTML={{ __html: rulesHtml(action.description, abilityDcShift(combatant, t("ABILITY_DC_HOVER"), (k) => t(k === "elite" ? "ADJUSTMENT_ELITE" : "ADJUSTMENT_WEAK"))) }}
         />
       )}
     </div>

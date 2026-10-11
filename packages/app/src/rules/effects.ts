@@ -10,7 +10,7 @@ export const EFFECT_TARGETS: EffectTarget[] = [
 ];
 
 const SELECTORS: Record<EffectTarget, Selector[]> = {
-  all: ["attack", "ac", "saving-throw", "perception", "skill", "spell-attack", "spell-dc"],
+  all: ["attack", "ac", "saving-throw", "perception", "skill", "spell-attack", "spell-dc", "class-dc"],
   ac: ["ac"],
   saves: ["saving-throw"],
   fortitude: ["fortitude"],

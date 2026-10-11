@@ -28,7 +28,9 @@ export type Selector =
   /** Strength-based damage: melee Strikes, thrown and propulsive weapons. */
   | "str-damage"
   /** Every Strike's damage. */
-  | "damage";
+  | "damage"
+  /** The DCs a creature's abilities print ("DC 28 Will save"). */
+  | "class-dc";
 
 /** Each check's selectors. Spells answer to their casting attribute, which
  * upstream states for 10 of 696 NPC entries (all Wisdom or Charisma);
@@ -108,7 +110,7 @@ export interface ConditionDef {
 // "All your checks and DCs" (data/conditions.json, frightened/sickened;
 // Foundry's "all") — AC is a DC, and so are spell DCs. Not damage.
 const ALL_CHECKS: Selector[] = [
-  "attack", "ac", "saving-throw", "perception", "skill", "spell-attack", "spell-dc",
+  "attack", "ac", "saving-throw", "perception", "skill", "spell-attack", "spell-dc", "class-dc",
 ];
 
 const status = (value: number, source: string): Modifier => ({

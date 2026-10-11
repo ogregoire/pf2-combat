@@ -331,6 +331,7 @@ export const STRINGS_EN = {
   END_OF_TURN_DOWN: "down",
   END_OF_TURN_FLAT_CHECK: "DC 15 flat check: on 15 or more, the persistent damage ends.",
   OK_BUTTON: "OK",
+  ABILITY_DC_HOVER: "Its DCs",
   FLAT_CHECK_NOTICE: "First a DC {dc} flat check ({who} {reason}): on a failure, the Strike misses.",
   FLAT_CHECK_TARGET: "target",
   FLAT_CHECK_ATTACKER: "attacker",

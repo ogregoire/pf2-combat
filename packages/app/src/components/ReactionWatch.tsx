@@ -3,6 +3,7 @@ import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useEncounter } from "../state/store.js";
 import { useRulesHtml } from "../hooks/useRulesHtml.js";
+import { abilityDcShift } from "../rules/abilityDc.js";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { useState } from "react";
 import { compareStrings } from "../rules/compare.js";
@@ -122,7 +123,7 @@ function ReadyCombatantCard({
               <div
                 data-testid="reaction-description"
                 style={{ fontSize: "11.5px", lineHeight: 1.45, color: "var(--text-dim)", marginTop: "4px" }}
-                dangerouslySetInnerHTML={{ __html: rulesHtml(rest) }}
+                dangerouslySetInnerHTML={{ __html: rulesHtml(rest, abilityDcShift(combatant, t("ABILITY_DC_HOVER"), (k) => t(k === "elite" ? "ADJUSTMENT_ELITE" : "ADJUSTMENT_WEAK"))) }}
               />
             )}
           </div>

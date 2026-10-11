@@ -99,14 +99,14 @@ function frTestOf(name: string): string {
   return /^[aeiouhéè]/i.test(name) ? `test d'${name}` : `test de ${name}`;
 }
 
-function renderCheckFr(type: string, dc: number | null, basic: boolean): string {
+function renderCheckFr(type: string, dc: number | string | null, basic: boolean): string {
   const dcPart = dc !== null ? ` DD ${dc}` : "";
   if (SAVE_TYPES.has(type)) return `jet de ${FR_SAVES[type]}${basic ? " basique" : ""}${dcPart}`;
   if (type === "flat") return `test nu${dcPart}`;
   return `${frTestOf(FR_SKILLS[type] ?? titleCase(type))}${dcPart}`;
 }
 
-function renderCheck(parts: string[], lang: Lang): string | null {
+function renderCheck(parts: string[], lang: Lang, dcShift?: DcShift): string | null {
   const type = stripTypePrefix((parts[0] ?? "").trim());
   if (type === "") return null;
 
@@ -129,11 +129,12 @@ function renderCheck(parts: string[], lang: Lang): string | null {
     // options, traits, defense, name, against, showDC — ignored gracefully.
   }
 
-  if (lang === "fr") return renderCheckFr(type, dc, basic);
+  const shown: number | string | null = dc !== null && dcShift && dcShift.value !== 0 && type !== "flat" ? shiftedDc(dc, dcShift) : dc;
+  if (lang === "fr") return renderCheckFr(type, shown, basic);
   const isSave = SAVE_TYPES.has(type);
   const suffix = isSave ? "save" : "check";
   const typeLabel = isSave ? type[0]!.toUpperCase() + type.slice(1) : type === "flat" ? "flat" : titleCase(type);
-  const dcPart = dc !== null ? `${basic ? "basic " : ""}DC ${dc} ` : "";
+  const dcPart = shown !== null ? `${basic ? "basic " : ""}DC ${shown} ` : "";
   return `${dcPart}${typeLabel} ${suffix}`;
 }
 
@@ -220,11 +221,27 @@ function renderTemplate(parts: string[], lang: Lang): string | null {
  * the bare formula when there's none. */
 const INLINE_ROLL = /\[\[\/\w*r\s+([^\]#]+?)(?:\s*#[^\]]*)?\]\](?:\{([^}]*)\})?/g;
 
-export function renderMarkers(html: string, lang: Lang = "en"): string {
-  return renderFamilies(html.replace(INLINE_ROLL, (_m, formula: string, label: string | undefined) => label ?? formula.trim()), lang);
+/** A creature's ability DCs moved by its elite/weak step and conditions
+ * (rules/abilityDc.ts): `value` added to every DC but a flat check's, the
+ * new number drawn green or red with `hover` as its hover text. */
+export interface DcShift {
+  value: number;
+  hover: string;
 }
 
-function renderFamilies(html: string, lang: Lang): string {
+const escapeAttr = (s: string): string => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+/** The shifted DC as markup: the number, coloured, with its hover text. */
+export function shiftedDc(dc: number, shift: DcShift): string {
+  const color = shift.value > 0 ? "var(--ok)" : "var(--danger)";
+  return `<span data-hover="${escapeAttr(shift.hover)}" style="color: ${color}; font-weight: 600">${dc + shift.value}</span>`;
+}
+
+export function renderMarkers(html: string, lang: Lang = "en", dcShift?: DcShift): string {
+  return renderFamilies(html.replace(INLINE_ROLL, (_m, formula: string, label: string | undefined) => label ?? formula.trim()), lang, dcShift);
+}
+
+function renderFamilies(html: string, lang: Lang, dcShift?: DcShift): string {
   let result = "";
   let i = 0;
   MARKER_START.lastIndex = 0;
@@ -262,7 +279,7 @@ function renderFamilies(html: string, lang: Lang): string {
 
     const parts = splitTopLevel(inner, "|");
     let generated: string | null;
-    if (kind === "Check") generated = renderCheck(parts, lang);
+    if (kind === "Check") generated = renderCheck(parts, lang, dcShift);
     else if (kind === "Damage") generated = renderDamage(parts, lang);
     else generated = renderTemplate(parts, lang);
 
