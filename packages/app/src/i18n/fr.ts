@@ -364,4 +364,15 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   END_OF_TURN_DOWN: "à terre",
   END_OF_TURN_FLAT_CHECK: "Test nu DD 15 : sur 15 ou plus, les dégâts persistants prennent fin.",
   OK_BUTTON: "OK",
+  END_OF_TURN_SUSTAIN_ENDED: "{name} : {effect} prend fin — il n’a pas été maintenu",
+  // SustainList.tsx, SustainChips.tsx
+  SUSTAINING_HEADING: "Maintenu",
+  SUSTAIN_KIND_SPELL: "sort",
+  SUSTAIN_KIND_ABILITY: "capacité",
+  SUSTAINED_THIS_TURN: "Maintenu ce tour",
+  SUSTAIN_OR_IT_ENDS: "À Maintenir, sinon il prend fin avec ce tour",
+  SUSTAIN_BUTTON: "Maintenir",
+  SUSTAIN_ARIA: "Maintenir {name} (1 action)",
+  STOP_SUSTAINING_ARIA: "Cesser de maintenir {name}",
+  SUSTAINING_CHIP: "Maintient {effect}",
 };

@@ -3,6 +3,7 @@ import type { Action } from "@pf2/schema";
 import { resolveActions, resolveAttacks } from "../data/i18nOverlay.js";
 import { useT } from "../i18n/index.js";
 import { canReact } from "../rules/conditions.js";
+import { isSustainable } from "../rules/sustain.js";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
 import { useEncounter } from "../state/store.js";
@@ -48,6 +49,7 @@ export function ActionList({
   fetchFn?: FetchFn;
 }): React.ReactElement | null {
   const spendActions = useEncounter((s) => s.spendActions);
+  const startSustaining = useEncounter((s) => s.startSustaining);
   const setReactionSpent = useEncounter((s) => s.setReactionSpent);
   const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary(fetchFn);
@@ -95,15 +97,33 @@ export function ActionList({
    * spend and it gets no Use button (`onUse: undefined`).
    */
   function spendSpec(action: Action): { disabled: boolean; onUse: (() => void) | undefined } {
+    // Using an ability its text lets the creature Sustain starts Sustaining
+    // it (read from the English record: `actions` may be the French one).
+    const index = actions.indexOf(action);
+    const original = index >= 0 ? combatant.actions[index] : undefined;
+    const sustain = (): void => {
+      if (original && isSustainable(original.description)) {
+        startSustaining(combatant.id, { kind: "action", name: original.name, actionIndex: index });
+      }
+    };
     if (action.cost === "reaction") {
       return {
         disabled: combatant.reactionSpent || !canReact(combatant.conditions),
-        onUse: () => setReactionSpent(combatant.id, true),
+        onUse: () => {
+          setReactionSpent(combatant.id, true);
+          sustain();
+        },
       };
     }
     const cost = costValue(action.cost);
     if (cost === 0) return { disabled: false, onUse: undefined };
-    return { disabled: cost > remaining, onUse: () => spendActions(combatant.id, cost) };
+    return {
+      disabled: cost > remaining,
+      onUse: () => {
+        spendActions(combatant.id, cost);
+        sustain();
+      },
+    };
   }
 
   const items = buildActionList(actions, attacks, lang);

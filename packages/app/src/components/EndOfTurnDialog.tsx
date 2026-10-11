@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { format, useT } from "../i18n/index.js";
+import { useSustainedName } from "../hooks/useSustainedName.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
 import { useEncounter } from "../state/store.js";
@@ -7,10 +8,17 @@ import type { EndOfTurnEvent } from "../state/types.js";
 
 /**
  * What conditions did as a turn ended — frightened going down, persistent
- * damage rolled and dealt — in a dialog the GM closes with OK, so nothing
+ * damage rolled and dealt, an effect not Sustained ending — in a dialog the GM closes with OK, so nothing
  * the app changed on its own goes by unseen. The store opens it (Next,
  * Delay) only when something happened.
  */
+function SustainEndedLine({ event }: { event: Extract<EndOfTurnEvent, { kind: "sustain-ended" }> }): React.ReactElement {
+  const t = useT();
+  const combatant = useEncounter((s) => s.encounter.combatants[event.combatantId]);
+  const nameOf = useSustainedName(combatant);
+  return <>{format(t("END_OF_TURN_SUSTAIN_ENDED"), { name: event.name, effect: nameOf(event.effect) })}</>;
+}
+
 export function EndOfTurnDialog(): React.ReactElement | null {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
@@ -32,6 +40,7 @@ export function EndOfTurnDialog(): React.ReactElement | null {
         ? format(t("END_OF_TURN_CONDITION_ENDS"), { name: e.name, condition })
         : format(t("END_OF_TURN_CONDITION_DECREASES"), { name: e.name, condition, from: e.from, to: e.to });
     }
+    if (e.kind === "sustain-ended") return <SustainEndedLine event={e} />;
     return (
       <>
         <span>{format(t("END_OF_TURN_PERSISTENT_DAMAGE"), { name: e.name, rolled: e.rolled, formula: e.formula })}</span>

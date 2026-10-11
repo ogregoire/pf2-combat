@@ -38,6 +38,9 @@ export interface Combatant {
    * spontaneous rank's slots, a prepared copy, an innate spell's daily
    * uses, the shared Focus Point pool. Absent until the first cast. */
   spellUses?: Record<string, number>;
+  /** What the combatant is concentrating on: the spells and abilities it
+   * Sustains. Absent until the first one. */
+  sustaining?: SustainedEffect[];
   /**
    * The French overlay for this creature, IF a caller already seeded one
    * directly into the store — used by tests, never by production code:
@@ -144,6 +147,28 @@ export interface Entry {
   endOfTurnResolvedRound: number | null;
 }
 
+/**
+ * A spell or ability its user keeps going by Sustaining it (Player Core,
+ * Sustain: 1 action, concentrate — the effect lasts until the end of the
+ * user's next turn). Cast or Sustained this turn, it lasts through the end
+ * of the next one; a turn that ends without Sustaining it ends it.
+ */
+export interface SustainedEffect {
+  /** `${kind}:${name}` — one entry per spell or ability. */
+  id: string;
+  kind: "spell" | "action";
+  /** The English name, as the creature record has it. */
+  name: string;
+  /** A spell: its details file, and its row in the French overlay's
+   * flattened spell list. */
+  slug?: string;
+  flatIndex?: number;
+  /** An ability: its position in `Combatant.actions`. */
+  actionIndex?: number;
+  /** Cast or Sustained during the user's current turn. */
+  sustainedThisTurn: boolean;
+}
+
 /** Something a condition did as a turn ended — what the end-of-turn
  * dialog lists, one line each. */
 export type EndOfTurnEvent =
@@ -159,7 +184,9 @@ export type EndOfTurnEvent =
       hp: { before: number; after: number } | null;
       /** Dropped to 0 by it: dying for a PC, dead otherwise. */
       down: boolean;
-    };
+    }
+  /** A Sustained effect its user didn't Sustain this turn: it ends. */
+  | { kind: "sustain-ended"; combatantId: string; name: string; effect: SustainedEffect };
 
 export interface Encounter {
   name: string;

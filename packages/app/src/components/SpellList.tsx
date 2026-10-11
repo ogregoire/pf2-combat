@@ -8,7 +8,7 @@ import { castsLeft, focusPool, FOCUS_KEY, spellRows, type SpellCost, type SpellR
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import type { FetchFn } from "../data/catalog.js";
-import { useSpellDetail } from "../hooks/useSpellDetail.js";
+import { loadSpellDetail, useSpellDetail } from "../hooks/useSpellDetail.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
@@ -76,7 +76,7 @@ const badgeStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
-function castButtonStyle(disabled: boolean): React.CSSProperties {
+export function castButtonStyle(disabled: boolean): React.CSSProperties {
   return {
     fontFamily: "inherit",
     fontSize: "11px",
@@ -106,7 +106,7 @@ function frRange(range: string): string {
  * area, targets, defense and duration on one line, then the full text.
  * Fetched on first unfold (useSpellDetail); French where the overlay has
  * it, field by field. */
-function SpellDetails({ slug, glossary, fetchFn }: { slug: string; glossary: Map<string, TraitInfo>; fetchFn?: FetchFn }): React.ReactElement {
+export function SpellDetails({ slug, glossary, fetchFn }: { slug: string; glossary: Map<string, TraitInfo>; fetchFn?: FetchFn }): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
   const loaded = useSpellDetail(slug, true, fetchFn);
@@ -180,6 +180,7 @@ function SpellRowView({
   const spendSpell = useEncounter((s) => s.spendSpell);
   const spendActions = useEncounter((s) => s.spendActions);
   const setReactionSpent = useEncounter((s) => s.setReactionSpent);
+  const startSustaining = useEncounter((s) => s.startSustaining);
   const uses = combatant.spellUses ?? {};
   const left = castsLeft(row.limit, uses);
   const spent = row.limit.kind === "limited" ? (uses[row.limit.key] ?? 0) : 0;
@@ -190,6 +191,15 @@ function SpellRowView({
     if (row.limit.kind === "limited") spendSpell(combatant.id, row.limit.key);
     if (actions === "reaction") setReactionSpent(combatant.id, true);
     else if (typeof actions === "number") spendActions(combatant.id, actions);
+    // A sustained spell starts being Sustained: its details say so.
+    const { slug } = row.spell;
+    if (slug) {
+      loadSpellDetail(slug, fetchFn)
+        .then((detail) => {
+          if (detail.sustained) startSustaining(combatant.id, { kind: "spell", name: row.spell.name, slug, flatIndex: row.flatIndex });
+        })
+        .catch(() => {});
+    }
   };
 
   let limitText: string | null = null;

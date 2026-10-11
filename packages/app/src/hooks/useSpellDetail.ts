@@ -27,6 +27,11 @@ function cached<T>(path: string, fetchFn: FetchFn): Promise<T> {
   return p;
 }
 
+/** A spell's details, through the same cache the rows read. */
+export function loadSpellDetail(slug: string, fetchFn: FetchFn = defaultFetch): Promise<SpellDetail> {
+  return cached<SpellDetail>(`spells/${slug}.json`, fetchFn);
+}
+
 /** Test-only: forget every cached spell. */
 export function __resetSpellDetailCacheForTests(): void {
   cache.clear();

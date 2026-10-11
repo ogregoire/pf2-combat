@@ -13,7 +13,7 @@ import {
   type ConditionSlug,
 } from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
-import type { Combatant, Encounter, EndOfTurnEvent, Entry, Player } from "./types.js";
+import type { Combatant, Encounter, EndOfTurnEvent, Entry, Player, SustainedEffect } from "./types.js";
 
 export type Lang = "en" | "fr";
 
@@ -341,6 +341,15 @@ function endTurnEffects(enc: Encounter, entry: Entry): EndOfTurnEvent[] {
       events.push({ kind: "decreased", combatantId: c.id, name: c.name, slug: before.slug, from: before.value, to });
     }
     c.conditions = conditions;
+    // An effect not Sustained this turn ends with it; one that was runs on
+    // to the end of the next turn, when it needs Sustaining again.
+    if (c.sustaining) {
+      for (const effect of c.sustaining) {
+        if (!effect.sustainedThisTurn) events.push({ kind: "sustain-ended", combatantId: c.id, name: c.name, effect: { ...effect } });
+      }
+      c.sustaining = c.sustaining.filter((e) => e.sustainedThisTurn);
+      for (const effect of c.sustaining) effect.sustainedThisTurn = false;
+    }
     const persistent = conditions.find((x) => x.slug === "persistent-damage");
     if (persistent) {
       const hpBefore = c.hp?.current ?? null;
@@ -716,6 +725,14 @@ interface EncounterStore {
    * — or, with `-1`, takes one back. The actions or reaction the cast costs
    * are spent separately, through spendActions/setReactionSpent. */
   spendSpell(id: string, key: string, delta?: 1 | -1): void;
+  /** Starts Sustaining a spell just cast or an ability just used — or, for
+   * one already Sustained, counts the new casting as this turn's. */
+  startSustaining(id: string, effect: Omit<SustainedEffect, "id" | "sustainedThisTurn">): void;
+  /** The Sustain action: one action, and the effect runs on to the end of
+   * the combatant's next turn. */
+  sustainEffect(id: string, effectId: string): void;
+  /** Ends a Sustained effect early: dismissed, or concentration broken. */
+  stopSustaining(id: string, effectId: string): void;
   /** Refreshes the spells of a combatant saved by an older version of the
    * app — none at all (before spells were carried), or rows without the
    * `slug` their details file is fetched by — from its creature record,
@@ -1088,6 +1105,31 @@ export const useEncounter = create<EncounterStore>()(
         if (!c || !spellcastingIsStale(c)) return;
         const step = c.adjustment ? (c.adjustment.kind === "elite" ? 2 : -2) : 0;
         c.spellcasting = spellcasting.map((e) => ({ ...e, dc: e.dc + step, attack: e.attack + step }));
+      }),
+
+    startSustaining: (id, effect) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (!c) return;
+        const effectId = `${effect.kind}:${effect.name}`;
+        const list = (c.sustaining ??= []);
+        const existing = list.find((e) => e.id === effectId);
+        if (existing) existing.sustainedThisTurn = true;
+        else list.push({ ...effect, id: effectId, sustainedThisTurn: true });
+      }),
+
+    sustainEffect: (id, effectId) =>
+      set((state) => {
+        const effect = state.encounter.combatants[id]?.sustaining?.find((e) => e.id === effectId);
+        if (!effect || effect.sustainedThisTurn) return;
+        effect.sustainedThisTurn = true;
+        state.encounter.combatants[id]!.actionsSpent += 1;
+      }),
+
+    stopSustaining: (id, effectId) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (c?.sustaining) c.sustaining = c.sustaining.filter((e) => e.id !== effectId);
       }),
 
     spendSpell: (id, key, delta = 1) =>

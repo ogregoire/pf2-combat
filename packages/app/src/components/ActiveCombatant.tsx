@@ -7,6 +7,7 @@ import { spellcastingIsStale, useEncounter } from "../state/store.js";
 import type { FetchFn } from "../data/catalog.js";
 import { CreatureDetails } from "./CreatureDetails.js";
 import { SpellList } from "./SpellList.js";
+import { SustainList } from "./SustainList.js";
 import { StandardActions } from "./StandardActions.js";
 import { StatBlockHeader } from "./StatBlockHeader.js";
 import { TurnEconomy } from "./TurnEconomy.js";
@@ -123,6 +124,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
             gap: "18px",
           }}
         >
+          <SustainList combatant={combatant} fetchFn={fetchFn} />
           <StandardActions combatant={combatant} fetchFn={fetchFn} />
           <ActionList
             combatant={combatant}
