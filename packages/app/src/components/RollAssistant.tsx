@@ -228,7 +228,7 @@ export function RollAssistant({
                             <RangeCell low={r.low} high={r.high} natOne={natOne} natTwenty={natTwenty} />
                           </span>
                           <span style={{ background: "var(--panel-raised)", fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)", padding: "8px 11px 8px 0" }}>
-                            {o.damage ?? t("NO_DAMAGE")}
+                            <span style={{ color: o.damage ? deltaColor(resolution.damageLedger.total) : undefined }}>{o.damage ?? t("NO_DAMAGE")}</span>
                           </span>
                         </div>
                       );

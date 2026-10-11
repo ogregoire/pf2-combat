@@ -296,6 +296,27 @@ function dealDamage(c: Combatant, amount: number, damageType?: string): void {
 }
 
 /**
+ * Drained's Hit Points (Player Core, Drained): gaining it, or a higher
+ * value, loses Hit Points equal to the creature's level (at least 1) times
+ * the gain, and lowers maximum HP by as much; a lower value gives the
+ * maximum back but not the Hit Points. `before`/`after` are the drained
+ * values either side of the change (0 for none). Losing them to 0 HP is
+ * the same event as damage reaching 0 — dying for a PC, dead otherwise —
+ * though no damage was dealt, so resistances never touch it.
+ */
+function applyDrainedChange(c: Combatant, before: number, after: number): void {
+  if (c.hp === null || after === before) return;
+  const loss = Math.max(1, c.level) * (after - before);
+  c.hp.max = Math.max(1, c.hp.max - loss);
+  const was = c.hp.current;
+  if (loss > 0) c.hp.current = Math.max(0, c.hp.current - loss);
+  c.hp.current = Math.min(c.hp.current, c.hp.max);
+  if (was === 0 || c.hp.current !== 0) return;
+  if (c.kind === "pc") applyDyingGain(c, 1);
+  else c.defeated = true;
+}
+
+/**
  * Fires the end-of-turn condition hooks for every combatant in `entry` and
  * lands any persistent damage. Pulled out of `nextTurn` because Delay is the
  * second caller: RAW, "any persistent damage or other negative effects that
@@ -954,12 +975,14 @@ export const useEncounter = create<EncounterStore>()(
           return;
         }
         const existing = c.conditions.find((cond) => cond.slug === slug);
+        const before = existing?.value ?? 0;
         if (existing) {
           existing.value = value;
           existing.formula = formula;
         } else {
           c.conditions.push({ slug, value, formula });
         }
+        if (slug === "drained") applyDrainedChange(c, before, value);
         // Doomed alone is fatal — it needs no dying condition present at
         // all, unlike the dying branch above, so it's settled here rather
         // than folded into it. `settleDoomedDeath` runs in both directions
@@ -990,7 +1013,9 @@ export const useEncounter = create<EncounterStore>()(
           c.conditions = woundedOnRecover(c.conditions);
           return;
         }
+        const removed = c.conditions.find((cond) => cond.slug === slug);
         c.conditions = c.conditions.filter((cond) => cond.slug !== slug);
+        if (slug === "drained" && removed) applyDrainedChange(c, removed.value, 0);
         // Taking doomed off raises the dying cap back up, which can lift a
         // death doomed itself caused — the same settle addCondition does,
         // for the x button rather than the stepper. Deliberately not frozen

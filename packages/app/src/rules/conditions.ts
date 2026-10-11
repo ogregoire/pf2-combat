@@ -2,17 +2,84 @@ import { compareStrings } from "./compare.js";
 import { rollFormula, type Rng } from "./dice.js";
 import type { Modifier } from "./modifiers.js";
 
+export type Attribute = "str" | "dex" | "con" | "int" | "wis" | "cha";
+
+/**
+ * What a condition's modifier names, after Foundry pf2e's own selectors
+ * (the FlatModifier rules on its condition items, the dataset's source):
+ * a check answers to several — a Reflex save is "reflex", "saving-throw"
+ * and "dex-based" at once — and a condition applies when it names any of
+ * them. The `CHECKS` table and the strike/skill helpers below list each
+ * check's selectors, mirroring Foundry's statistic domains.
+ */
 export type Selector =
-  | "melee-attack"
-  | "ranged-attack"
+  /** Every attack roll: Strikes and spell attacks (prone). */
+  | "attack"
   | "ac"
+  | "saving-throw"
   | "fortitude"
   | "reflex"
   | "will"
   | "perception"
   | "skill"
-  /** Spell attack modifiers and spell DCs — the Spells section's. */
-  | "spell";
+  | "spell-attack"
+  | "spell-dc"
+  | `${Attribute}-based`
+  /** Strength-based damage: melee Strikes, thrown and propulsive weapons. */
+  | "str-damage";
+
+/** Each check's selectors. Spells answer to their casting attribute, which
+ * upstream states for 10 of 696 NPC entries (all Wisdom or Charisma);
+ * Foundry reads the rest as Charisma. Only stupefied ever names a casting
+ * attribute, and it names all three mental ones, so Charisma for every
+ * entry is exact. */
+export const CHECKS = {
+  ac: ["ac", "dex-based"],
+  fortitude: ["fortitude", "saving-throw", "con-based"],
+  reflex: ["reflex", "saving-throw", "dex-based"],
+  will: ["will", "saving-throw", "wis-based"],
+  perception: ["perception", "wis-based"],
+  spellAttack: ["attack", "spell-attack", "cha-based"],
+  spellDc: ["spell-dc", "cha-based"],
+} as const satisfies Record<string, readonly Selector[]>;
+
+/** Player Core's skill attributes. Lore skills are Intelligence. */
+const SKILL_ATTRIBUTES: Record<string, Attribute> = {
+  acrobatics: "dex", arcana: "int", athletics: "str", crafting: "int", deception: "cha",
+  diplomacy: "cha", intimidation: "cha", medicine: "wis", nature: "wis", occultism: "int",
+  performance: "cha", religion: "wis", society: "int", stealth: "dex", survival: "wis",
+  thievery: "dex",
+};
+
+export function skillChecks(slug: string): Selector[] {
+  return ["skill", `${SKILL_ATTRIBUTES[slug] ?? "int"}-based`];
+}
+
+interface StrikeLike {
+  kind: string;
+  traits: string[];
+}
+
+/** The attribute a creature's Strike attacks with, as Foundry reads an NPC
+ * attack: melee is Strength, finesse melee Dexterity; ranged is Dexterity,
+ * brutal ranged Strength. Clumsy and enfeebled follow it. */
+export function strikeAttribute(attack: StrikeLike): Attribute {
+  if (attack.kind === "melee") return attack.traits.includes("finesse") ? "dex" : "str";
+  return attack.traits.includes("brutal") ? "str" : "dex";
+}
+
+export function strikeChecks(attack: StrikeLike): Selector[] {
+  return ["attack", `${strikeAttribute(attack)}-based`];
+}
+
+/** A Strike adds Strength to damage in melee, thrown (unless splash) and
+ * propulsive — the damage enfeebled lowers. */
+export function strikeDamageChecks(attack: StrikeLike): Selector[] {
+  const thrown = attack.traits.some((t) => t === "thrown" || t.startsWith("thrown-"));
+  const strength =
+    attack.kind === "melee" || (thrown && !attack.traits.includes("splash")) || attack.traits.includes("propulsive");
+  return strength ? ["str-damage"] : [];
+}
 
 export type ConditionSlug =
   | "off-guard" | "frightened" | "sickened" | "clumsy" | "enfeebled"
@@ -36,12 +103,10 @@ export interface ConditionDef {
   implies?: ConditionSlug[];
 }
 
-// "All your checks and DCs" (data/conditions.json, frightened/sickened) — AC
-// is a DC, so it belongs here. An earlier review praised its omission as
-// correct; that was wrong (see task C3).
-// Spell attacks and spell DCs are checks and DCs too ("spell").
+// "All your checks and DCs" (data/conditions.json, frightened/sickened;
+// Foundry's "all") — AC is a DC, and so are spell DCs. Not damage.
 const ALL_CHECKS: Selector[] = [
-  "melee-attack", "ranged-attack", "ac", "fortitude", "reflex", "will", "perception", "skill", "spell",
+  "attack", "ac", "saving-throw", "perception", "skill", "spell-attack", "spell-dc",
 ];
 
 const status = (value: number, source: string): Modifier => ({
@@ -74,33 +139,30 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   }),
   clumsy: def({
     slug: "clumsy", name: "Clumsy", valued: true,
-    // PF2e clumsy is Dex-based, which includes AC, Reflex, and ranged
-    // attack rolls (per data/conditions.json) — not melee.
-    affects: (v) => ({
-      selectors: ["ac", "reflex", "ranged-attack"],
-      mod: status(v, `clumsy ${v}`),
-    }),
+    // "Dexterity-based rolls and DCs, including AC, Reflex saves, ranged
+    // attack rolls, and skill checks using Acrobatics, Stealth, and
+    // Thievery" — and a finesse melee Strike, which attacks with Dexterity.
+    affects: (v) => ({ selectors: ["dex-based"], mod: status(v, `clumsy ${v}`) }),
   }),
   enfeebled: def({
     slug: "enfeebled", name: "Enfeebled", valued: true,
-    // PF2e enfeebled is Str-based, which includes Strength-based melee
-    // attack rolls (per data/conditions.json) — not ranged.
-    affects: (v) => ({ selectors: ["melee-attack"], mod: status(v, `enfeebled ${v}`) }),
+    // "Strength-based rolls and DCs, including Strength-based melee attack
+    // rolls, Strength-based damage rolls, and Athletics checks".
+    affects: (v) => ({ selectors: ["str-based", "str-damage"], mod: status(v, `enfeebled ${v}`) }),
   }),
   stupefied: def({
     slug: "stupefied", name: "Stupefied", valued: true,
     // "Intelligence-, Wisdom-, and Charisma-based rolls and DCs, including
     // Will saving throws, spell attack modifiers, spell DCs, and skill
-    // checks that use these attribute modifiers" — Will, Perception
-    // (Wisdom), and spells. Skill checks aren't split by attribute here, so
-    // the skill half isn't modelled. The spell half was missing until the
-    // app showed spells; the flat check to cast (DC 5 + value) is
-    // `stupefiedCastDc` below.
-    affects: (v) => ({ selectors: ["will", "perception", "spell"], mod: status(v, `stupefied ${v}`) }),
+    // checks that use these attribute modifiers" — Perception is Wisdom.
+    // The flat check to cast (DC 5 + value) is `stupefiedCastDc` below.
+    affects: (v) => ({ selectors: ["int-based", "wis-based", "cha-based"], mod: status(v, `stupefied ${v}`) }),
   }),
   drained: def({
     slug: "drained", name: "Drained", valued: true,
-    affects: (v) => ({ selectors: ["fortitude"], mod: status(v, `drained ${v}`) }),
+    // "Constitution-based rolls and DCs, such as Fortitude saves". The Hit
+    // Points it takes are the store's (`applyDrainedChange`).
+    affects: (v) => ({ selectors: ["con-based"], mod: status(v, `drained ${v}`) }),
   }),
   slowed: def({
     slug: "slowed", name: "Slowed", valued: true,
@@ -115,10 +177,8 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   }),
   prone: def({
     slug: "prone", name: "Prone", valued: false,
-    affects: () => ({
-      selectors: ["melee-attack", "ranged-attack"],
-      mod: circumstance(2, "prone"),
-    }),
+    // "−2 circumstance penalty to attack rolls" — spell attacks included.
+    affects: () => ({ selectors: ["attack"], mod: circumstance(2, "prone") }),
     implies: ["off-guard"],
   }),
   grabbed: def({
@@ -133,7 +193,11 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
     slug: "immobilized", name: "Immobilized", valued: false, affects: () => null,
   }),
   blinded: def({
-    slug: "blinded", name: "Blinded", valued: false, affects: () => null,
+    slug: "blinded", name: "Blinded", valued: false,
+    // "If vision is your only precise sense, you take a −4 status penalty
+    // to Perception checks" — Foundry applies it unconditionally, and so
+    // does this: a creature with another precise sense is the GM's call.
+    affects: () => ({ selectors: ["perception"], mod: status(4, "blinded") }),
     // No `implies: ["off-guard"]` here, deliberately. Blinded's own text in
     // data/conditions.json never mentions off-guard; a blinded creature
     // reaches off-guard only because it can't see, so its targets are
@@ -148,7 +212,7 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
   fatigued: def({
     slug: "fatigued", name: "Fatigued", valued: false,
     affects: () => ({
-      selectors: ["ac", "fortitude", "reflex", "will"],
+      selectors: ["ac", "saving-throw"],
       mod: status(1, "fatigued"),
     }),
   }),
@@ -256,10 +320,7 @@ export const CONDITIONS: Record<ConditionSlug, ConditionDef> = {
     // your Speeds" from the same sentence isn't modelled — this app has no
     // notion of Speed.
     slug: "encumbered", name: "Encumbered", valued: false,
-    affects: () => ({
-      selectors: ["ac", "reflex", "ranged-attack"],
-      mod: status(1, "encumbered (clumsy 1)"),
-    }),
+    affects: () => ({ selectors: ["dex-based"], mod: status(1, "encumbered (clumsy 1)") }),
   }),
   fascinated: def({
     // "You take a -2 status penalty to Perception and skill checks" is a
@@ -470,15 +531,19 @@ export function onHealedAboveZero(conditions: AppliedCondition[]): AppliedCondit
   return woundedOnRecover(conditions).filter((c) => c.slug !== "unconscious");
 }
 
+/** The modifiers `applied` puts on a check answering to `selectors` (one,
+ * or a check's list from `CHECKS` and the helpers above) — each condition
+ * once, however many of them it names. */
 export function conditionModifiers(
   applied: AppliedCondition[],
-  selector: Selector,
+  selectors: Selector | readonly Selector[],
 ): Modifier[] {
+  const wanted: readonly Selector[] = typeof selectors === "string" ? [selectors] : selectors;
   const mods: Modifier[] = [];
   for (const c of expandImplied(applied)) {
     const effect = CONDITIONS[c.slug].affects(c.value);
     if (effect === null) continue;
-    if (!effect.selectors.includes(selector)) continue;
+    if (!effect.selectors.some((x) => wanted.includes(x))) continue;
     mods.push(effect.mod);
   }
   return mods.sort((a, b) => compareStrings(a.source, b.source));

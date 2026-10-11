@@ -6,7 +6,7 @@ import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useVocabulary } from "../hooks/useVocabulary.js";
 import { useT, type StringKey } from "../i18n/index.js";
 import { compareLocalized } from "../rules/compare.js";
-import { conditionModifiers, type Selector } from "../rules/conditions.js";
+import { CHECKS, conditionModifiers, skillChecks, type Selector } from "../rules/conditions.js";
 import { formatDistance } from "../rules/distance.js";
 import { resolveModifiers } from "../rules/modifiers.js";
 import { useEncounter } from "../state/store.js";
@@ -66,7 +66,7 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
   if (combatant.kind !== "creature" || creature === null) return null;
 
   const step = combatant.adjustment ? (combatant.adjustment.kind === "elite" ? 2 : -2) : 0;
-  const adjusted = (base: number, selector: Selector): { value: number; delta: number; why: string } => {
+  const adjusted = (base: number, selector: readonly Selector[]): { value: number; delta: number; why: string } => {
     const mods = resolveModifiers(conditionModifiers(combatant.conditions, selector));
     return { value: base + step + mods.total, delta: mods.total, why: mods.applied.map((m) => `${m.value} ${m.source}`).join(", ") };
   };
@@ -81,7 +81,7 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
     return `${vocab.name("senses", s.type)}${extra.length > 0 ? ` (${extra.join(", ")})` : ""}`;
   });
   const skills = Object.entries(creature.skills ?? {})
-    .map(([slug, value]) => ({ name: vocab.name("skills", slug), value }))
+    .map(([slug, value]) => ({ slug, name: vocab.name("skills", slug), value }))
     .sort((a, b) => compareLocalized(a.name, b.name, lang));
   const speeds = (creature.speeds ?? []).map((s) =>
     s.type === "land" ? formatDistance(s.value, lang) : `${vocab.name("speeds", s.type).toLowerCase()} ${formatDistance(s.value, lang)}`,
@@ -108,7 +108,7 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
       )}
       {typeof creature.perception === "number" && (
         <Line label={label("STATBLOCK_PERCEPTION")}>
-          {number(adjusted(creature.perception, "perception"))}
+          {number(adjusted(creature.perception, CHECKS.perception))}
           {senses.length > 0 && `; ${senses.join(", ")}`}
         </Line>
       )}
@@ -120,7 +120,7 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
           {skills.map((s, i) => (
             <span key={s.name}>
               {i > 0 && ", "}
-              {s.name} {number(adjusted(s.value, "skill"))}
+              {s.name} {number(adjusted(s.value, skillChecks(s.slug)))}
             </span>
           ))}
         </Line>

@@ -1,5 +1,6 @@
 import type { Attack } from "@pf2/schema";
-import { conditionModifiers, type AppliedCondition } from "../rules/conditions.js";
+import { conditionModifiers, strikeChecks, strikeDamageChecks, type AppliedCondition } from "../rules/conditions.js";
+import { addToFormula } from "../rules/adjustment.js";
 import { damageTypeName } from "../rules/damage.js";
 import { mapLadder } from "../rules/map.js";
 import { resolveModifiers } from "../rules/modifiers.js";
@@ -28,15 +29,20 @@ const SELECTED_RING = "0 0 0 1px var(--select)";
  * and glyph from the same table the damage popover's selector uses, so a
  * strike's fire component and the creature's fire resistance read alike.
  */
-function DamageLine({ attack }: { attack: Attack }): React.ReactElement {
+/** `delta` is what the attacker's conditions do to the Strike's own damage
+ * entry (enfeebled): it moves the first formula, drawn green or red. */
+function DamageLine({ attack, delta = 0, why = "" }: { attack: Attack; delta?: number; why?: string }): React.ReactElement {
   const lang = useEncounter((s) => s.lang);
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
       {attack.damage.map((d, i) => (
         <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: "5px" }}>
           {i > 0 && <span style={{ color: "var(--text-faint)" }}>+</span>}
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: "var(--text-dim)" }}>
-            {d.formula}
+          <span
+            title={i === 0 && why ? why : undefined}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: (i === 0 ? deltaColor(delta) : undefined) ?? "var(--text-dim)" }}
+          >
+            {i === 0 && delta !== 0 ? addToFormula(d.formula, delta) : d.formula}
           </span>
           <span
             style={{
@@ -82,7 +88,8 @@ export function StrikeCard({
   conditions?: AppliedCondition[];
 }): React.ReactElement {
   const agile = attack.traits.includes("agile");
-  const mods = resolveModifiers(conditionModifiers(conditions, attack.kind === "melee" ? "melee-attack" : "ranged-attack"));
+  const mods = resolveModifiers(conditionModifiers(conditions, strikeChecks(attack)));
+  const damageMods = resolveModifiers(conditionModifiers(conditions, strikeDamageChecks(attack)));
   const why = mods.applied.map((m) => `${m.value} ${m.source}`).join(", ");
   const tone = deltaTone(mods.total);
   const ladder = mapLadder(attack.bonus + mods.total, agile);
@@ -144,7 +151,7 @@ export function StrikeCard({
             </span>
           ))}
         </div>
-        <DamageLine attack={attack} />
+        <DamageLine attack={attack} delta={damageMods.total} why={damageMods.applied.map((m) => `${m.value} ${m.source}`).join(", ")} />
       </div>
       {attack.traits.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginTop: "6px" }}>

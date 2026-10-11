@@ -13,9 +13,24 @@ import {
   woundedOnRecover,
   type AppliedCondition,
   type ConditionSlug,
-  type Selector,
+  CHECKS,
+  skillChecks,
+  strikeChecks,
 } from "../src/rules/conditions.js";
 import { resolveModifiers, type Modifier } from "../src/rules/modifiers.js";
+
+/** The checks these tests name, as the selector lists the app passes. */
+const SEL = {
+  ac: CHECKS.ac,
+  fortitude: CHECKS.fortitude,
+  reflex: CHECKS.reflex,
+  will: CHECKS.will,
+  perception: CHECKS.perception,
+  skill: skillChecks("athletics"),
+  "melee-attack": strikeChecks({ kind: "melee", traits: [] }),
+  "ranged-attack": strikeChecks({ kind: "ranged", traits: [] }),
+};
+type Selector = keyof typeof SEL;
 
 /** Replays a fixed sequence of [0, 1) values, one per die — see dice.test.ts. */
 function fakeRng(values: number[]): () => number {
@@ -103,7 +118,12 @@ describe("condition catalogue — numeric encodings pinned against the dataset",
     },
     {
       slug: "unconscious", selector: "perception",
-      expectedMods: [{ value: -4, type: "status", source: "unconscious" }],
+      // Unconscious implies blinded, whose own −4 to Perception is the
+      // same status type: the two don't stack (resolveModifiers keeps one).
+      expectedMods: [
+        { value: -4, type: "status", source: "blinded" },
+        { value: -4, type: "status", source: "unconscious" },
+      ],
     },
     {
       slug: "unconscious", selector: "reflex",
@@ -136,7 +156,7 @@ describe("condition catalogue — numeric encodings pinned against the dataset",
   it.each(numericEncodings)(
     "$slug on $selector matches data/conditions.json exactly",
     ({ slug, selector, expectedMods }) => {
-      expect(conditionModifiers([{ slug, value: 0 }], selector)).toEqual(expectedMods);
+      expect(conditionModifiers([{ slug, value: 0 }], SEL[selector])).toEqual(expectedMods);
     },
   );
 
@@ -153,7 +173,7 @@ describe("condition catalogue — numeric encodings pinned against the dataset",
   ];
 
   it.each(unaffectedSelectors)("$slug leaves $selector untouched", ({ slug, selector }) => {
-    expect(conditionModifiers([{ slug, value: 0 }], selector)).toEqual([]);
+    expect(conditionModifiers([{ slug, value: 0 }], SEL[selector])).toEqual([]);
   });
 
   // Every `implies` link added for the widened set, pinned against the
@@ -176,17 +196,17 @@ describe("condition catalogue — numeric encodings pinned against the dataset",
 
 describe("conditionModifiers", () => {
   it("gives off-guard a -2 circumstance penalty to AC only", () => {
-    expect(conditionModifiers([{ slug: "off-guard", value: 0 }], "ac")).toEqual([
+    expect(conditionModifiers([{ slug: "off-guard", value: 0 }], SEL["ac"])).toEqual([
       { value: -2, type: "circumstance", source: "off-guard" },
     ]);
-    expect(conditionModifiers([{ slug: "off-guard", value: 0 }], "melee-attack")).toEqual([]);
+    expect(conditionModifiers([{ slug: "off-guard", value: 0 }], SEL["melee-attack"])).toEqual([]);
   });
 
   it("applies frightened to every check", () => {
     for (const sel of [
       "melee-attack", "ranged-attack", "fortitude", "reflex", "will", "perception",
     ] as const) {
-      expect(conditionModifiers([{ slug: "frightened", value: 2 }], sel)).toEqual([
+      expect(conditionModifiers([{ slug: "frightened", value: 2 }], SEL[sel])).toEqual([
         { value: -2, type: "status", source: "frightened 2" },
       ]);
     }
@@ -197,84 +217,82 @@ describe("conditionModifiers", () => {
       [
         { slug: "sickened", value: 1 },
         { slug: "frightened", value: 2 },
-      ],
-      "melee-attack",
+      ], SEL["melee-attack"],
     );
     expect(resolveModifiers(mods).total).toBe(-2);
   });
 
   it("applies clumsy to AC and Reflex but not Will", () => {
     const c = [{ slug: "clumsy" as const, value: 2 }];
-    expect(conditionModifiers(c, "ac")).toHaveLength(1);
-    expect(conditionModifiers(c, "reflex")).toHaveLength(1);
-    expect(conditionModifiers(c, "will")).toEqual([]);
+    expect(conditionModifiers(c, SEL["ac"])).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["reflex"])).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["will"])).toEqual([]);
   });
 
   it("applies drained to Fortitude only", () => {
     const c = [{ slug: "drained" as const, value: 1 }];
-    expect(conditionModifiers(c, "fortitude")).toHaveLength(1);
-    expect(conditionModifiers(c, "reflex")).toEqual([]);
+    expect(conditionModifiers(c, SEL["fortitude"])).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["reflex"])).toEqual([]);
   });
 
   it("gives prone a -2 circumstance to both melee and ranged attacks", () => {
-    expect(conditionModifiers([{ slug: "prone", value: 0 }], "melee-attack")).toEqual([
+    expect(conditionModifiers([{ slug: "prone", value: 0 }], SEL["melee-attack"])).toEqual([
       { value: -2, type: "circumstance", source: "prone" },
     ]);
-    expect(conditionModifiers([{ slug: "prone", value: 0 }], "ranged-attack")).toEqual([
+    expect(conditionModifiers([{ slug: "prone", value: 0 }], SEL["ranged-attack"])).toEqual([
       { value: -2, type: "circumstance", source: "prone" },
     ]);
   });
 
   it("applies fatigued to AC and every save", () => {
     const c = [{ slug: "fatigued" as const, value: 0 }];
-    expect(conditionModifiers(c, "ac")).toHaveLength(1);
-    expect(conditionModifiers(c, "will")).toHaveLength(1);
-    expect(conditionModifiers(c, "melee-attack")).toEqual([]);
+    expect(conditionModifiers(c, SEL["ac"])).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["will"])).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["melee-attack"])).toEqual([]);
   });
 
   it("splits the attack selector: enfeebled penalises melee only", () => {
     const c = [{ slug: "enfeebled" as const, value: 2 }];
-    expect(conditionModifiers(c, "melee-attack")).toHaveLength(1);
-    expect(conditionModifiers(c, "ranged-attack")).toEqual([]);
+    expect(conditionModifiers(c, SEL["melee-attack"])).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["ranged-attack"])).toEqual([]);
   });
 
   it("splits the attack selector: clumsy penalises ranged only", () => {
     const c = [{ slug: "clumsy" as const, value: 2 }];
-    expect(conditionModifiers(c, "ranged-attack")).toHaveLength(1);
-    expect(conditionModifiers(c, "melee-attack")).toEqual([]);
+    expect(conditionModifiers(c, SEL["ranged-attack"])).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["melee-attack"])).toEqual([]);
   });
 
   it("frightened penalises both melee and ranged attacks", () => {
     const c = [{ slug: "frightened" as const, value: 2 }];
-    expect(conditionModifiers(c, "melee-attack")).toHaveLength(1);
-    expect(conditionModifiers(c, "ranged-attack")).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["melee-attack"])).toHaveLength(1);
+    expect(conditionModifiers(c, SEL["ranged-attack"])).toHaveLength(1);
   });
 
   it("penalises AC too — frightened/sickened apply to all checks and DCs, and AC is a DC", () => {
-    expect(conditionModifiers([{ slug: "frightened", value: 2 }], "ac")).toEqual([
+    expect(conditionModifiers([{ slug: "frightened", value: 2 }], SEL["ac"])).toEqual([
       { value: -2, type: "status", source: "frightened 2" },
     ]);
-    expect(conditionModifiers([{ slug: "sickened", value: 1 }], "ac")).toEqual([
+    expect(conditionModifiers([{ slug: "sickened", value: 1 }], SEL["ac"])).toEqual([
       { value: -1, type: "status", source: "sickened 1" },
     ]);
   });
 
   it("expands prone/grabbed/restrained through `implies` into an off-guard AC penalty", () => {
-    expect(conditionModifiers([{ slug: "prone", value: 0 }], "ac")).toEqual([
+    expect(conditionModifiers([{ slug: "prone", value: 0 }], SEL["ac"])).toEqual([
       { value: -2, type: "circumstance", source: "off-guard" },
     ]);
-    expect(conditionModifiers([{ slug: "grabbed", value: 0 }], "ac")).toEqual([
+    expect(conditionModifiers([{ slug: "grabbed", value: 0 }], SEL["ac"])).toEqual([
       { value: -2, type: "circumstance", source: "off-guard" },
     ]);
-    expect(conditionModifiers([{ slug: "restrained", value: 0 }], "ac")).toEqual([
+    expect(conditionModifiers([{ slug: "restrained", value: 0 }], SEL["ac"])).toEqual([
       { value: -2, type: "circumstance", source: "off-guard" },
     ]);
   });
 
   it("does not double the off-guard penalty when it's both explicit and implied", () => {
     const mods = conditionModifiers(
-      [{ slug: "prone", value: 0 }, { slug: "off-guard", value: 0 }],
-      "ac",
+      [{ slug: "prone", value: 0 }, { slug: "off-guard", value: 0 }], SEL["ac"],
     );
     expect(mods).toHaveLength(1);
     expect(mods[0]).toEqual({ value: -2, type: "circumstance", source: "off-guard" });
@@ -287,12 +305,12 @@ describe("conditionModifiers", () => {
     // never were. A dying combatant's AC came out 2 points too generous
     // (missing off-guard's -2) versus applying `unconscious` directly for
     // the same table state.
-    const dyingAc = conditionModifiers([{ slug: "dying", value: 1 }], "ac");
+    const dyingAc = conditionModifiers([{ slug: "dying", value: 1 }], SEL["ac"]);
     expect(dyingAc).toEqual([
       { value: -2, type: "circumstance", source: "off-guard" },
       { value: -4, type: "status", source: "unconscious" },
     ]);
-    expect(dyingAc).toEqual(conditionModifiers([{ slug: "unconscious", value: 0 }], "ac"));
+    expect(dyingAc).toEqual(conditionModifiers([{ slug: "unconscious", value: 0 }], SEL["ac"]));
   });
 
   it("keeps a multi-hop chain idempotent against an explicit condition at any depth", () => {
@@ -300,8 +318,7 @@ describe("conditionModifiers", () => {
     // off-guard). Applying it explicitly alongside dying must still not
     // double its -2 circumstance penalty.
     const mods = conditionModifiers(
-      [{ slug: "dying", value: 1 }, { slug: "off-guard", value: 0 }],
-      "ac",
+      [{ slug: "dying", value: 1 }, { slug: "off-guard", value: 0 }], SEL["ac"],
     );
     expect(mods.filter((m) => m.source === "off-guard")).toHaveLength(1);
   });
@@ -311,8 +328,7 @@ describe("conditionModifiers", () => {
       [
         { slug: "frightened", value: 1 },
         { slug: "fatigued", value: 0 },
-      ],
-      "will",
+      ], SEL["will"],
     );
     expect(mods.map((m) => m.source)).toEqual(["fatigued", "frightened 1"]);
   });

@@ -6,7 +6,7 @@ import { ActiveCombatant } from "../src/components/ActiveCombatant.js";
 import { CombatantList } from "../src/components/CombatantList.js";
 import { DefenseSummary } from "../src/components/DefenseSummary.js";
 import { TurnManager } from "../src/components/TurnManager.js";
-import { canDelayOrReady, canReact, conditionModifiers, stupefiedCastDc } from "../src/rules/conditions.js";
+import { canDelayOrReady, canReact, CHECKS, conditionModifiers, stupefiedCastDc } from "../src/rules/conditions.js";
 import { useEncounter } from "../src/state/store.js";
 
 const spellcasting: Spellcasting[] = [{
@@ -44,14 +44,14 @@ describe("rules", () => {
 
   it("stupefied lowers Will, Perception and spells, and sets the flat check to cast", () => {
     const stupefied = [{ slug: "stupefied" as const, value: 2 }];
-    for (const s of ["will", "perception", "spell"] as const) expect(conditionModifiers(stupefied, s).map((m) => m.value)).toEqual([-2]);
-    expect(conditionModifiers(stupefied, "fortitude")).toEqual([]);
+    for (const s of ["will", "perception", "spellAttack", "spellDc"] as const) expect(conditionModifiers(stupefied, CHECKS[s]).map((m) => m.value)).toEqual([-2]);
+    expect(conditionModifiers(stupefied, CHECKS.fortitude)).toEqual([]);
     expect(stupefiedCastDc(stupefied)).toBe(7);
     expect(stupefiedCastDc([])).toBeNull();
   });
 
   it("frightened lowers spell DCs and attacks like every other check", () => {
-    expect(conditionModifiers([{ slug: "frightened", value: 1 }], "spell").map((m) => m.value)).toEqual([-1]);
+    for (const s of ["spellAttack", "spellDc"] as const) expect(conditionModifiers([{ slug: "frightened", value: 1 }], CHECKS[s]).map((m) => m.value)).toEqual([-1]);
   });
 });
 
@@ -109,7 +109,7 @@ describe("stupefied in the app", () => {
     const id = add("Grigori", 20, { spellcasting });
     useEncounter.getState().addCondition(id, "stupefied", 2);
     render(<ActiveCombatant />);
-    expect(screen.getByText(/DC 23, attack \+15/)).toBeDefined();
+    expect(screen.getByTestId("spell-list").textContent).toContain("DC 23, attack +15");
     expect(screen.getByTestId("stupefied-cast-warning").textContent).toContain("DC 7 flat check");
   });
 

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import type { Spellcasting } from "@pf2/schema";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
-import { format, useT, type StringKey } from "../i18n/index.js";
-import { canReact, conditionModifiers, stupefiedCastDc } from "../rules/conditions.js";
+import { format, formatParts, useT, type StringKey } from "../i18n/index.js";
+import { canReact, CHECKS, conditionModifiers, stupefiedCastDc } from "../rules/conditions.js";
 import { resolveModifiers } from "../rules/modifiers.js";
 import { castsLeft, focusPool, FOCUS_KEY, spellRows, type SpellCost, type SpellRow } from "../rules/spells.js";
 import { useEncounter } from "../state/store.js";
@@ -317,8 +317,11 @@ export function SpellList({ combatant, fetchFn }: { combatant: Combatant; fetchF
   if (spellcasting.length === 0) return null;
 
   const rows = spellRows(spellcasting);
-  // Frightened, sickened and stupefied all lower spell attacks and DCs.
-  const spellMods = resolveModifiers(conditionModifiers(combatant.conditions, "spell"));
+  // Frightened, sickened and stupefied lower spell attacks and DCs; prone
+  // lowers the attack only.
+  const dcMods = resolveModifiers(conditionModifiers(combatant.conditions, CHECKS.spellDc));
+  const attackMods = resolveModifiers(conditionModifiers(combatant.conditions, CHECKS.spellAttack));
+  const why = (mods: typeof dcMods): string | undefined => mods.applied.map((m) => `${m.value} ${m.source}`).join(", ") || undefined;
   const castDc = stupefiedCastDc(combatant.conditions);
   const pool = focusPool(spellcasting);
   const focusLeft = pool - (combatant.spellUses?.[FOCUS_KEY] ?? 0);
@@ -332,13 +335,20 @@ export function SpellList({ combatant, fetchFn }: { combatant: Combatant; fetchF
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 14px", marginBottom: "8px", fontSize: "11.5px", color: "var(--text-dim)" }}>
         {spellcasting.map((entry, i) => (
-          <span
-            key={i}
-            title={spellMods.applied.map((m) => `${m.value} ${m.source}`).join(", ") || undefined}
-            style={{ color: deltaColor(spellMods.total) }}
-          >
-            <span style={{ fontWeight: 600, color: "var(--text-dim)" }}>{entryLabel(entry, t)}</span>{" "}
-            {format(t("SPELL_ENTRY_SUMMARY"), { dc: entry.dc + spellMods.total, attack: signed(entry.attack + spellMods.total) })}
+          <span key={i}>
+            <span style={{ fontWeight: 600 }}>{entryLabel(entry, t)}</span>{" "}
+            {formatParts(t("SPELL_ENTRY_SUMMARY"), {
+              dc: (
+                <span key="dc" title={why(dcMods)} style={{ color: deltaColor(dcMods.total) }}>
+                  {entry.dc + dcMods.total}
+                </span>
+              ),
+              attack: (
+                <span key="attack" title={why(attackMods)} style={{ color: deltaColor(attackMods.total) }}>
+                  {signed(entry.attack + attackMods.total)}
+                </span>
+              ),
+            })}
           </span>
         ))}
         {pool > 0 && <span data-testid="focus-points">{format(t("FOCUS_POINTS_LABEL"), { left: Math.max(0, focusLeft), max: pool })}</span>}

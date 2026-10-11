@@ -1,9 +1,9 @@
 import { useEncounter } from "../state/store.js";
 import { STRINGS_EN, type StringKey } from "./en.js";
-import { format } from "./format.js";
+import { format, formatParts } from "./format.js";
 import { STRINGS_FR } from "./fr.js";
 
-export { STRINGS_EN, STRINGS_FR, format };
+export { STRINGS_EN, STRINGS_FR, format, formatParts };
 export type { StringKey };
 
 /**

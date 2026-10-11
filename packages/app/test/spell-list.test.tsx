@@ -46,8 +46,9 @@ describe("SpellList", () => {
     add();
     render(<ActiveCombatant />);
     const list = within(screen.getByTestId("spell-list"));
-    expect(list.getByText(/DC 25, attack \+17/).textContent).toContain("DC 25");
-    expect(list.getByText(/DC 24, attack \+16/)).toBeDefined();
+    const summary = screen.getByTestId("spell-list").textContent!;
+    expect(summary).toContain("DC 25, attack +17");
+    expect(summary).toContain("DC 24, attack +16");
     expect(screen.getAllByTestId("spell-row").map((r) => r.textContent!.match(/^[A-Za-z ()]+?(?=rank)/)?.[0])).toEqual([
       "Tongues (Constant)", "Haste", "Enthrall", "Entangle",
     ]);

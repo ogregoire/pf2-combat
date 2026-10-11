@@ -1,6 +1,6 @@
 import { useEncounter } from "../state/store.js";
 import { useT } from "../i18n/index.js";
-import { CONDITIONS, conditionModifiers, dyingMax, type Selector } from "../rules/conditions.js";
+import { CHECKS, CONDITIONS, conditionModifiers, dyingMax } from "../rules/conditions.js";
 import { resolveModifiers } from "../rules/modifiers.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
@@ -113,8 +113,8 @@ type Save = "fortitude" | "reflex" | "will";
  * prone target is off-guard (AC −2), a stupefied one has a lower Will save
  * — with what moved it, for the hover text. The roll assistant already
  * rolled against the adjusted AC; this list used to show the printed one. */
-function adjusted(combatant: Combatant, selector: Selector): { total: number; why: string } {
-  const result = resolveModifiers(conditionModifiers(combatant.conditions, selector));
+function adjusted(combatant: Combatant, check: keyof typeof CHECKS): { total: number; why: string } {
+  const result = resolveModifiers(conditionModifiers(combatant.conditions, CHECKS[check]));
   return { total: result.total, why: result.applied.map((m) => `${m.value} ${m.source}`).join(", ") };
 }
 

@@ -1047,3 +1047,31 @@ describe("the target belongs to the turn that chose it", () => {
     expect(useEncounter.getState().encounter.targetId).toBe(second);
   });
 });
+
+describe("drained takes Hit Points", () => {
+  beforeEach(() => useEncounter.getState().reset());
+  const add = (): string =>
+    useEncounter.getState().addCombatant(
+      { kind: "creature", name: "Ogre", level: 3, ac: 17, saves: { fortitude: 12, reflex: 6, will: 5 }, hp: { current: 50, max: 50 } },
+      10,
+    );
+  const hp = (id: string) => useEncounter.getState().encounter.combatants[id]!.hp!;
+
+  it("loses level × value HP and max HP on gaining it; a lower value gives back the max only", () => {
+    const id = add();
+    useEncounter.getState().addCondition(id, "drained", 2);
+    expect(hp(id)).toEqual({ current: 44, max: 44 });
+    useEncounter.getState().addCondition(id, "drained", 1);
+    expect(hp(id)).toEqual({ current: 44, max: 47 });
+    useEncounter.getState().removeCondition(id, "drained");
+    expect(hp(id)).toEqual({ current: 44, max: 50 });
+  });
+
+  it("kills a creature it drops to 0", () => {
+    const id = add();
+    useEncounter.getState().applyDamage(id, 47);
+    useEncounter.getState().addCondition(id, "drained", 1);
+    expect(hp(id).current).toBe(0);
+    expect(useEncounter.getState().encounter.combatants[id]!.defeated).toBe(true);
+  });
+});

@@ -10,3 +10,13 @@
 export function format(template: string, vars: Record<string, string | number>): string {
   return template.replace(/\{(\w+)\}/g, (whole, key: string) => (key in vars ? String(vars[key]) : whole));
 }
+
+/** `format`, for a template whose substitutions are elements — a number
+ * drawn in its own colour, say: the template's text and the values, in
+ * order, ready to render as children. */
+export function formatParts<T>(template: string, vars: Record<string, T>): (string | T)[] {
+  return template.split(/(\{\w+\})/).map((part) => {
+    const key = /^\{(\w+)\}$/.exec(part)?.[1];
+    return key !== undefined && key in vars ? vars[key]! : part;
+  });
+}

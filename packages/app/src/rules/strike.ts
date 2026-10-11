@@ -1,4 +1,12 @@
-import { conditionModifiers, type AppliedCondition, type ConditionSlug } from "./conditions.js";
+import { addToFormula } from "./adjustment.js";
+import {
+  CHECKS,
+  conditionModifiers,
+  strikeChecks,
+  strikeDamageChecks,
+  type AppliedCondition,
+  type ConditionSlug,
+} from "./conditions.js";
 import { damageTypeName } from "./damage.js";
 import { dieBands, type Degree } from "./degrees.js";
 import { mapPenalty } from "./map.js";
@@ -125,6 +133,8 @@ export interface StrikeResolution {
   ledger: ModifierResult;
   effectiveAc: number;
   acLedger: ModifierResult;
+  /** What the attacker's conditions do to the Strike's damage (enfeebled). */
+  damageLedger: ModifierResult;
   outcomes: StrikeOutcome[];
 }
 
@@ -190,10 +200,7 @@ export const ATTACK_BONUS_SOURCE = "attack bonus";
 export function resolveStrike(input: StrikeInput): StrikeResolution {
   const attackMods: Modifier[] = [
     { value: input.bonus, type: "untyped", source: ATTACK_BONUS_SOURCE },
-    ...conditionModifiers(
-      input.attackerConditions,
-      input.kind === "melee" ? "melee-attack" : "ranged-attack",
-    ),
+    ...conditionModifiers(input.attackerConditions, strikeChecks({ kind: input.kind, traits: input.traits ?? [] })),
   ];
   const map = mapPenalty(input.strikesMade, input.agile);
   if (map !== 0) {
@@ -203,13 +210,23 @@ export function resolveStrike(input: StrikeInput): StrikeResolution {
 
   const acMods: Modifier[] = [
     { value: input.targetAc, type: "untyped", source: "target AC" },
-    ...conditionModifiers(input.targetConditions, "ac"),
+    ...conditionModifiers(input.targetConditions, CHECKS.ac),
   ];
   const acLedger = resolveModifiers(acMods);
 
   const modifier = ledger.total;
   const effectiveAc = acLedger.total;
   const bands = dieBands(modifier, effectiveAc);
+
+  // Enfeebled lowers Strength-based damage: the Strike's own damage entry
+  // takes it, before a critical hit doubles it.
+  const damageLedger = resolveModifiers(
+    conditionModifiers(input.attackerConditions, strikeDamageChecks({ kind: input.kind, traits: input.traits ?? [] })),
+  );
+  const damageInput =
+    damageLedger.total === 0
+      ? input
+      : { ...input, damage: input.damage.map((d, i) => (i === 0 ? { ...d, formula: addToFormula(d.formula, damageLedger.total) } : d)) };
 
   const precisionActive =
     input.precision !== undefined &&
@@ -230,10 +247,10 @@ export function resolveStrike(input: StrikeInput): StrikeResolution {
       dieFrom: band === null ? null : band.from,
       dieTo: band === null ? null : band.to,
       damage: hits
-        ? damageText(input, degree === "critical-success", precisionActive)
+        ? damageText(damageInput, degree === "critical-success", precisionActive)
         : null,
     };
   });
 
-  return { modifier, ledger, effectiveAc, acLedger, outcomes };
+  return { modifier, ledger, effectiveAc, acLedger, damageLedger, outcomes };
 }
