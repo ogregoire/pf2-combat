@@ -331,6 +331,8 @@ export const STRINGS_EN = {
   END_OF_TURN_DOWN: "down",
   END_OF_TURN_FLAT_CHECK: "DC 15 flat check: on 15 or more, the persistent damage ends.",
   OK_BUTTON: "OK",
+  SKILL_ACTIONS_HEADING: "Skill actions against the target",
+  SKILL_VS: "vs",
   SAVE_DIALOG_TITLE: "Saving throw",
   SAVE_DIALOG_TITLE_FOR: "Saving throw — {label}",
   SAVE_TYPE_ARIA: "Save",

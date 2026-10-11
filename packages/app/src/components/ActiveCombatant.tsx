@@ -156,7 +156,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
         }
       >
         <SaveButton casterId={combatant.id} />
-        <RollAssistant combatant={combatant} target={target} attack={attack} />
+        <RollAssistant combatant={combatant} target={target} attack={attack} fetchFn={fetchFn} />
       </div>
     </div>
   );

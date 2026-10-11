@@ -364,6 +364,8 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   END_OF_TURN_DOWN: "à terre",
   END_OF_TURN_FLAT_CHECK: "Test nu DD 15 : sur 15 ou plus, les dégâts persistants prennent fin.",
   OK_BUTTON: "OK",
+  SKILL_ACTIONS_HEADING: "Actions de compétence contre la cible",
+  SKILL_VS: "contre",
   SAVE_DIALOG_TITLE: "Jet de sauvegarde",
   SAVE_DIALOG_TITLE_FOR: "Jet de sauvegarde — {label}",
   SAVE_TYPE_ARIA: "Sauvegarde",

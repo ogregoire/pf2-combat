@@ -6,6 +6,8 @@ import { ATTACK_BONUS_SOURCE, resolveStrike } from "../rules/strike.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { TargetBox, TargetPicker } from "./TargetPicker.js";
+import { SkillActionsPanel } from "./SkillActionsPanel.js";
+import type { FetchFn } from "../data/catalog.js";
 import { hover, modifiersHover } from "./HoverCard.js";
 import { deltaColor } from "./deltaTone.js";
 
@@ -72,10 +74,12 @@ export function RollAssistant({
   combatant,
   target,
   attack,
+  fetchFn,
 }: {
   combatant: Combatant;
   target: Combatant | undefined;
   attack: Attack | undefined;
+  fetchFn?: FetchFn;
 }): React.ReactElement {
   const recordStrike = useEncounter((s) => s.recordStrike);
   const spendActions = useEncounter((s) => s.spendActions);
@@ -263,6 +267,7 @@ export function RollAssistant({
           );
         })()
       )}
+      <SkillActionsPanel combatant={combatant} target={target} fetchFn={fetchFn} />
     </div>
   );
 }

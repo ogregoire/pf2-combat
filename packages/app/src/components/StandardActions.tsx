@@ -24,6 +24,9 @@ export function StandardActions({ combatant, fetchFn }: { combatant: Combatant; 
   const { basic, skill } = useStandardActions(fetchFn);
   const glossary = useTraitGlossary(fetchFn);
   const spendActions = useEncounter((s) => s.spendActions);
+  const recordStrike = useEncounter((s) => s.recordStrike);
+  const addEffect = useEncounter((s) => s.addEffect);
+  const round = useEncounter((s) => s.encounter.round);
   const setReactionSpent = useEncounter((s) => s.setReactionSpent);
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -47,7 +50,23 @@ export function StandardActions({ combatant, fetchFn }: { combatant: Combatant; 
       action.cost === "reaction"
         ? { disabled: combatant.reactionSpent || !canReact(combatant.conditions), onUse: () => setReactionSpent(combatant.id, true) }
         : n > 0
-          ? { disabled: forbidden || n > remaining, onUse: () => spendActions(combatant.id, n) }
+          ? {
+              disabled: forbidden || n > remaining,
+              onUse: () => {
+                spendActions(combatant.id, n);
+                // An attack (Trip, Grapple, Shove…) counts toward the
+                // multiple attack penalty like a Strike.
+                if (action.traits.includes("attack")) recordStrike(combatant.id);
+                // Raise a Shield and Take Cover put their AC bonus on.
+                if (slug === "raise-a-shield") {
+                  addEffect(combatant.id, {
+                    label: t("EFFECT_RAISED_SHIELD"), value: 2, type: "circumstance", targets: ["ac"],
+                    expires: { round: round + 1, combatantId: combatant.id, at: "start" },
+                  });
+                }
+                if (slug === "take-cover") addEffect(combatant.id, { label: t("EFFECT_COVER"), value: 2, type: "circumstance", targets: ["ac"] });
+              },
+            }
           : { disabled: false, onUse: undefined };
     return (
       <ActionCard
