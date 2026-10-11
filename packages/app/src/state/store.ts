@@ -4,6 +4,7 @@ import { adjustedLevel, shiftStats, type AdjustmentKind } from "../rules/adjustm
 import type { Action, Attack, CreatureI18n, Spellcasting } from "@pf2/schema";
 import {
   applyEndOfTurn,
+  CONDITIONS,
   dyingMax,
   dyingOnGain,
   onDroppedToZero,
@@ -12,7 +13,7 @@ import {
   type ConditionSlug,
 } from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
-import type { Combatant, Encounter, Entry, Player } from "./types.js";
+import type { Combatant, Encounter, EndOfTurnEvent, Entry, Player } from "./types.js";
 
 export type Lang = "en" | "fr";
 
@@ -328,18 +329,35 @@ function applyDrainedChange(c: Combatant, before: number, after: number): void {
  * which never runs it. The other half is `settleEndOfTurn` below — call
  * that, not this, from anywhere a turn ends.
  */
-function endTurnEffects(enc: Encounter, entry: Entry): void {
+function endTurnEffects(enc: Encounter, entry: Entry): EndOfTurnEvent[] {
+  const events: EndOfTurnEvent[] = [];
   for (const cid of entry.combatantIds) {
     const c = enc.combatants[cid];
     if (!c) continue;
     const { conditions, persistentDamage } = applyEndOfTurn(c.conditions);
+    for (const before of c.conditions) {
+      if (CONDITIONS[before.slug].endOfTurn !== "decrement") continue;
+      const to = conditions.find((x) => x.slug === before.slug)?.value ?? 0;
+      events.push({ kind: "decreased", combatantId: c.id, name: c.name, slug: before.slug, from: before.value, to });
+    }
     c.conditions = conditions;
-    // Persistent damage carries no damage type (see AppliedCondition.formula's
-    // own comment), so it goes through dealDamage exactly as an untyped
-    // ("none") hit would — IWR is deliberately not applied, same as
-    // applyDamage's own default.
-    if (persistentDamage > 0) dealDamage(c, persistentDamage);
+    const persistent = conditions.find((x) => x.slug === "persistent-damage");
+    if (persistent) {
+      const hpBefore = c.hp?.current ?? null;
+      // Persistent damage carries no damage type (see
+      // AppliedCondition.formula's own comment), so it goes through
+      // dealDamage exactly as an untyped ("none") hit would — IWR is
+      // deliberately not applied, same as applyDamage's own default.
+      if (persistentDamage > 0) dealDamage(c, persistentDamage);
+      events.push({
+        kind: "persistent-damage", combatantId: c.id, name: c.name,
+        formula: persistent.formula ?? "", rolled: persistentDamage,
+        hp: hpBefore === null || c.hp === null ? null : { before: hpBefore, after: c.hp.current },
+        down: hpBefore !== null && hpBefore > 0 && c.hp?.current === 0,
+      });
+    }
   }
+  return events;
 }
 
 /**
@@ -357,10 +375,16 @@ function endTurnEffects(enc: Encounter, entry: Entry): void {
  * correcting it back below — where the boolean this replaced lost the fact
  * it needed, three times running (see the field's own comment).
  */
-function settleEndOfTurn(enc: Encounter, entry: Entry): void {
-  if (entry.endOfTurnResolvedRound === enc.round) return;
-  endTurnEffects(enc, entry);
+function settleEndOfTurn(enc: Encounter, entry: Entry): EndOfTurnEvent[] {
+  if (entry.endOfTurnResolvedRound === enc.round) return [];
+  const events = endTurnEffects(enc, entry);
   entry.endOfTurnResolvedRound = enc.round;
+  return events;
+}
+
+/** Opens the end-of-turn dialog on what just happened — when anything did. */
+function showEndOfTurn(state: { endOfTurnReport: EndOfTurnEvent[] | null }, events: EndOfTurnEvent[]): void {
+  if (events.length > 0) state.endOfTurnReport = events;
 }
 
 /**
@@ -658,6 +682,10 @@ function sortEntries(entries: Entry[], combatants: Record<string, Combatant>): v
 
 interface EncounterStore {
   encounter: Encounter;
+  /** What conditions did as the last turn ended, until the GM presses OK
+   * on the dialog listing it. Not part of the saved encounter. */
+  endOfTurnReport: EndOfTurnEvent[] | null;
+  dismissEndOfTurnReport(): void;
   players: Player[];
   lang: Lang;
   setLang(lang: Lang): void;
@@ -737,8 +765,14 @@ interface EncounterStore {
 export const useEncounter = create<EncounterStore>()(
   immer((set, get) => ({
     encounter: emptyEncounter(),
+    endOfTurnReport: null,
     players: [],
     lang: "en",
+
+    dismissEndOfTurnReport: () =>
+      set((state) => {
+        state.endOfTurnReport = null;
+      }),
 
     setLang: (lang) =>
       set((state) => {
@@ -1097,7 +1131,7 @@ export const useEncounter = create<EncounterStore>()(
         // ENDING — the one still active, before advanceTurn moves off it —
         // not the entry about to become active.
         const endingEntry = enc.entries[enc.activeEntryIndex];
-        if (endingEntry) settleEndOfTurn(enc, endingEntry);
+        if (endingEntry) showEndOfTurn(state, settleEndOfTurn(enc, endingEntry));
 
         advanceTurn(enc);
       }),
@@ -1115,7 +1149,7 @@ export const useEncounter = create<EncounterStore>()(
         const entry = enc.entries[enc.activeEntryIndex];
         if (!entry || entry.id !== entryId || entry.delayed) return;
 
-        settleEndOfTurn(enc, entry);
+        showEndOfTurn(state, settleEndOfTurn(enc, entry));
         // Nothing about the entry's position changes here. It keeps its
         // initiative and orderKey (and so its place in the list) until it
         // either returns — which rewrites both — or the order comes back
@@ -1425,6 +1459,7 @@ export const useEncounter = create<EncounterStore>()(
     resetEncounter: () =>
       set((state) => {
         state.encounter = emptyEncounter();
+        state.endOfTurnReport = null;
       }),
 
     reset: () => {
@@ -1432,6 +1467,7 @@ export const useEncounter = create<EncounterStore>()(
       entrySeq = 0;
       set((state) => {
         state.encounter = emptyEncounter();
+        state.endOfTurnReport = null;
         state.players = [];
         state.lang = "en";
       });

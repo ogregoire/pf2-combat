@@ -322,6 +322,15 @@ export const STRINGS_EN = {
   TABS_ARIA_LABEL: "Encounter panes",
 
   // rules/prompts.ts (start/end-of-turn notifications, TurnPrompts.tsx)
+  // EndOfTurnDialog.tsx
+  END_OF_TURN_TITLE: "End of turn",
+  END_OF_TURN_CONDITION_DECREASES: "{name}: {condition} {from} → {to}",
+  END_OF_TURN_CONDITION_ENDS: "{name}: {condition} ends",
+  END_OF_TURN_PERSISTENT_DAMAGE: "{name} takes {rolled} persistent damage ({formula})",
+  END_OF_TURN_HP: "HP {before} → {after}",
+  END_OF_TURN_DOWN: "down",
+  END_OF_TURN_FLAT_CHECK: "DC 15 flat check: on 15 or more, the persistent damage ends.",
+  OK_BUTTON: "OK",
   PROMPT_RECOVERY_TITLE: "Recovery check",
   PROMPT_RECOVERY_COMPUTATION: "1d20 flat check vs DC {dc}",
   PROMPT_RECOVERY_DERIVATION: "DC 10 + {name} {value} = {dc}",

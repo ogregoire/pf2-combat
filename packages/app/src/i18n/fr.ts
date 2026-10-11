@@ -355,4 +355,13 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   PROMPT_PERSISTENT_DAMAGE_FORMULA_FALLBACK: "les dégâts persistants",
   PROMPT_PERSISTENT_DAMAGE_ENDS: "l'état se termine",
   PROMPT_PERSISTENT_DAMAGE_CONTINUES: "il persiste",
+  // EndOfTurnDialog.tsx
+  END_OF_TURN_TITLE: "Fin du tour",
+  END_OF_TURN_CONDITION_DECREASES: "{name} : {condition} {from} → {to}",
+  END_OF_TURN_CONDITION_ENDS: "{name} : {condition} prend fin",
+  END_OF_TURN_PERSISTENT_DAMAGE: "{name} subit {rolled} dégâts persistants ({formula})",
+  END_OF_TURN_HP: "PV {before} → {after}",
+  END_OF_TURN_DOWN: "à terre",
+  END_OF_TURN_FLAT_CHECK: "Test nu DD 15 : sur 15 ou plus, les dégâts persistants prennent fin.",
+  OK_BUTTON: "OK",
 };

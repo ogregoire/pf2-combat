@@ -14,6 +14,7 @@ import { AppMenu } from "./AppMenu.js";
 import { PartyManager } from "./PartyManager.js";
 import { TurnManager, UnrolledNotice, remainingActionsFor } from "./TurnManager.js";
 import { activeCombatantOf, unacknowledgedCountFor } from "./TurnPrompts.js";
+import { EndOfTurnDialog } from "./EndOfTurnDialog.js";
 
 /** Main.dc.html's top bar: encounter name, two XP readouts, and the
  * present/party-level readout. Difficulty badges are out of scope for phase 1
@@ -503,6 +504,7 @@ export function EncounterScreen({
           <PartyManager />
         </Drawer>
       )}
+      <EndOfTurnDialog />
     </div>
   );
 }

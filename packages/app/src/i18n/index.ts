@@ -17,6 +17,7 @@ export type { StringKey };
  * was never done.
  */
 export const ALLOWLIST = new Set<StringKey>([
+  "OK_BUTTON",
   "LABEL_INITIATIVE",
   "ACTIONS_HEADING",
   "ACTIONS_UNIT",

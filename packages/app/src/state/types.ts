@@ -144,6 +144,23 @@ export interface Entry {
   endOfTurnResolvedRound: number | null;
 }
 
+/** Something a condition did as a turn ended — what the end-of-turn
+ * dialog lists, one line each. */
+export type EndOfTurnEvent =
+  | { kind: "decreased"; combatantId: string; name: string; slug: AppliedCondition["slug"]; from: number; to: number }
+  | {
+      kind: "persistent-damage";
+      combatantId: string;
+      name: string;
+      formula: string;
+      rolled: number;
+      /** Hit Points either side of the damage; null for a combatant whose
+       * HP the app doesn't track (a PC). */
+      hp: { before: number; after: number } | null;
+      /** Dropped to 0 by it: dying for a PC, dead otherwise. */
+      down: boolean;
+    };
+
 export interface Encounter {
   name: string;
   round: number;
