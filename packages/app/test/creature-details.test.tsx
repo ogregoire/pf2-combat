@@ -64,6 +64,11 @@ describe("CreatureDetails", () => {
     render(<ActiveCombatant fetchFn={fetchFn} />);
     await waitFor(() => expect(screen.getByTestId("creature-details").textContent).toContain("Perception +16"));
     expect(screen.getByTestId("creature-details").textContent).toContain("Stealth +18");
+    // Frightened leaves Perception below its value (red); the elite step in
+    // the note is a bonus (green).
+    expect(screen.getByText("+16").style.color).toBe("var(--danger)");
+    const spans = [...screen.getByTestId("creature-details").querySelectorAll("span")].filter((s) => s.textContent === "+2");
+    expect(spans.some((s) => s.style.color === "var(--ok)")).toBe(true);
   });
 
   it("reads in French, with distances in metres, falling back to English names", async () => {

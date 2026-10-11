@@ -4,7 +4,7 @@ import type { FetchFn } from "../data/catalog.js";
 import { loadCreature } from "../data/creatures.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useVocabulary } from "../hooks/useVocabulary.js";
-import { format, useT, type StringKey } from "../i18n/index.js";
+import { useT, type StringKey } from "../i18n/index.js";
 import { compareLocalized } from "../rules/compare.js";
 import { conditionModifiers, type Selector } from "../rules/conditions.js";
 import { formatDistance } from "../rules/distance.js";
@@ -12,6 +12,7 @@ import { resolveModifiers } from "../rules/modifiers.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { TraitTag } from "./TraitTag.js";
+import { deltaColor } from "./deltaTone.js";
 
 const ATTRIBUTES = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
@@ -65,12 +66,12 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
   if (combatant.kind !== "creature" || creature === null) return null;
 
   const step = combatant.adjustment ? (combatant.adjustment.kind === "elite" ? 2 : -2) : 0;
-  const adjusted = (base: number, selector: Selector): { value: number; why: string } => {
+  const adjusted = (base: number, selector: Selector): { value: number; delta: number; why: string } => {
     const mods = resolveModifiers(conditionModifiers(combatant.conditions, selector));
-    return { value: base + step + mods.total, why: mods.applied.map((m) => `${m.value} ${m.source}`).join(", ") };
+    return { value: base + step + mods.total, delta: mods.total, why: mods.applied.map((m) => `${m.value} ${m.source}`).join(", ") };
   };
-  const number = ({ value, why }: { value: number; why: string }): React.ReactElement => (
-    <span title={why || undefined} style={why ? { color: "var(--danger)" } : undefined}>
+  const number = ({ value, delta, why }: { value: number; delta: number; why: string }): React.ReactElement => (
+    <span title={why || undefined} style={{ color: deltaColor(delta) }}>
       {signed(value)}
     </span>
   );
@@ -138,7 +139,17 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
       {gear.length > 0 && <Line label={label("STATBLOCK_ITEMS")}>{gear.join(", ")}</Line>}
       {step !== 0 && (
         <div style={{ fontSize: "11px", color: "var(--text-faint)" }}>
-          {format(t("STATBLOCK_ADJUSTED_NOTE"), { step: signed(step) })}
+          {/* The elite/weak step is a bonus or a malus: green or red. */}
+          {(() => {
+            const [before, after = ""] = t("STATBLOCK_ADJUSTED_NOTE").split("{step}");
+            return (
+              <>
+                {before}
+                <span style={{ color: deltaColor(step), fontWeight: 600 }}>{signed(step)}</span>
+                {after}
+              </>
+            );
+          })()}
         </div>
       )}
     </div>

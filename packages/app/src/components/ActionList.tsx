@@ -153,6 +153,7 @@ export function ActionList({
                   activeRung={activeRung}
                   onSelect={() => onSelectAttack(item.index)}
                   glossary={glossary}
+                  conditions={combatant.conditions}
                 />
                 {item.children.map((child) => renderChild(child, item.attack.name))}
               </div>

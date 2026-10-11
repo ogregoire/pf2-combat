@@ -183,9 +183,13 @@ const damageText = (
   return parts.join(" + ");
 };
 
+/** The ledger line carrying the Strike's own bonus — the base every other
+ * line moves. */
+export const ATTACK_BONUS_SOURCE = "attack bonus";
+
 export function resolveStrike(input: StrikeInput): StrikeResolution {
   const attackMods: Modifier[] = [
-    { value: input.bonus, type: "untyped", source: "attack bonus" },
+    { value: input.bonus, type: "untyped", source: ATTACK_BONUS_SOURCE },
     ...conditionModifiers(
       input.attackerConditions,
       input.kind === "melee" ? "melee-attack" : "ranged-attack",

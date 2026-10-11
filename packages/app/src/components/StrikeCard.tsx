@@ -1,11 +1,14 @@
 import type { Attack } from "@pf2/schema";
+import { conditionModifiers, type AppliedCondition } from "../rules/conditions.js";
 import { damageTypeName } from "../rules/damage.js";
 import { mapLadder } from "../rules/map.js";
+import { resolveModifiers } from "../rules/modifiers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { useEncounter } from "../state/store.js";
 import { CostPips } from "./ActionCard.js";
 import { TraitTag } from "./TraitTag.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
+import { deltaColor, deltaTone } from "./deltaTone.js";
 
 function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `${n}`;
@@ -67,15 +70,22 @@ export function StrikeCard({
   activeRung,
   onSelect,
   glossary,
+  conditions = [],
 }: {
   attack: Attack;
   selected: boolean;
   activeRung: number;
   onSelect: () => void;
   glossary: Map<string, TraitInfo>;
+  /** The attacker's conditions: the ladder shows the bonus they leave —
+   * frightened 1 turns +12/+7/+2 into +11/+6/+1, in red. */
+  conditions?: AppliedCondition[];
 }): React.ReactElement {
   const agile = attack.traits.includes("agile");
-  const ladder = mapLadder(attack.bonus, agile);
+  const mods = resolveModifiers(conditionModifiers(conditions, attack.kind === "melee" ? "melee-attack" : "ranged-attack"));
+  const why = mods.applied.map((m) => `${m.value} ${m.source}`).join(", ");
+  const tone = deltaTone(mods.total);
+  const ladder = mapLadder(attack.bonus + mods.total, agile);
 
   return (
     <button
@@ -108,15 +118,26 @@ export function StrikeCard({
           {ladder.map((bonus, rung) => (
             <span
               key={rung}
+              title={why || undefined}
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: rung === activeRung ? "17px" : "13px",
                 fontWeight: rung === activeRung ? 600 : 400,
                 padding: rung === activeRung ? "2px 10px" : "3px 8px",
                 borderRadius: "3px",
-                color: rung === activeRung ? "var(--select-text)" : "var(--text-faint)",
-                background: rung === activeRung ? "var(--select)" : "var(--bg)",
-                border: rung === activeRung ? "1px solid var(--border-strong)" : "none",
+                // A moved bonus can't stay white-on-ink: the active rung takes
+                // the tone's tinted chip instead, size and weight still marking it.
+                ...(tone === null
+                  ? {
+                      color: rung === activeRung ? "var(--select-text)" : "var(--text-faint)",
+                      background: rung === activeRung ? "var(--select)" : "var(--bg)",
+                      border: rung === activeRung ? "1px solid var(--border-strong)" : "none",
+                    }
+                  : {
+                      color: deltaColor(mods.total),
+                      background: rung === activeRung ? `var(--${tone}-bg)` : "var(--bg)",
+                      border: rung === activeRung ? `1px solid var(--${tone}-border)` : "none",
+                    }),
               }}
             >
               {formatSigned(bonus)}

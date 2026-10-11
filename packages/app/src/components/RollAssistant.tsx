@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import type { Attack } from "@pf2/schema";
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { degreeTotalRanges, type Degree } from "../rules/degrees.js";
-import { resolveStrike } from "../rules/strike.js";
+import { ATTACK_BONUS_SOURCE, resolveStrike } from "../rules/strike.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { TargetBox, TargetPicker } from "./TargetPicker.js";
+import { deltaColor } from "./deltaTone.js";
 
 function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `−${Math.abs(n)}`;
@@ -164,7 +165,10 @@ export function RollAssistant({
               <div style={{ marginTop: "12px", display: "flex", flexDirection: "column", gap: "3px", fontFamily: "var(--font-mono)", fontSize: "12.5px" }}>
                 {resolution.ledger.applied.map((m) => (
                   <div key={m.source} style={{ display: "flex", gap: "10px", padding: "4px 0" }} title={`${m.source}: ${formatSigned(m.value)}`}>
-                    <span style={{ width: "46px", textAlign: "right", fontWeight: 600 }}>{formatSigned(m.value)}</span>
+                    {/* The Strike's own bonus is the base the others move: it
+                        stays ink. Every other line is a bonus (green) or a
+                        malus (red). */}
+                    <span style={{ width: "46px", textAlign: "right", fontWeight: 600, color: m.source === ATTACK_BONUS_SOURCE ? undefined : deltaColor(m.value) }}>{formatSigned(m.value)}</span>
                     <span style={{ color: "var(--text-dim)" }}>{m.source}</span>
                   </div>
                 ))}
@@ -177,7 +181,7 @@ export function RollAssistant({
                   </div>
                 ))}
                 <div style={{ display: "flex", gap: "10px", padding: "7px 0 0", marginTop: "3px", borderTop: "1px solid var(--border)", color: "var(--text)", fontSize: "15px" }} title={modifierBreakdown(resolution.ledger.applied)}>
-                  <span style={{ width: "46px", textAlign: "right", fontWeight: 600 }}>{formatSigned(resolution.modifier)}</span>
+                  <span style={{ width: "46px", textAlign: "right", fontWeight: 600, color: deltaColor(resolution.modifier - attack.bonus) }}>{formatSigned(resolution.modifier)}</span>
                   <span style={{ fontSize: "12.5px", alignSelf: "center", color: "var(--text-dim)" }}>{t("TOTAL_ATTACK_MODIFIER")}</span>
                 </div>
               </div>
@@ -185,9 +189,9 @@ export function RollAssistant({
               <div style={{ marginTop: "14px", padding: "13px 15px", borderRadius: "4px", background: "var(--bg)", border: "1px solid var(--border-strong)" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "10px" }}>
                   <span style={{ fontSize: "11px", letterSpacing: "0.08em", color: "var(--text-faint)" }}>{t("ROLL_LABEL")}</span>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "26px", fontWeight: 600, color: "var(--text)" }}>{rollLine}</span>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "26px", fontWeight: 600, color: deltaColor(resolution.modifier - attack.bonus) ?? "var(--text)" }}>{rollLine}</span>
                   <span
-                    style={{ fontSize: "12px", color: "var(--text-faint)" }}
+                    style={{ fontSize: "12px", color: deltaColor(resolution.effectiveAc - target.ac!) ?? "var(--text-faint)" }}
                     title={resolution.acLedger.applied.length > 0 ? modifierBreakdown(resolution.acLedger.applied) : t("BASE_AC_TOOLTIP")}
                   >
                     {format(t("VS_AC_TEMPLATE"), { ac: resolution.effectiveAc })}

@@ -9,7 +9,7 @@ import { useT } from "../i18n/index.js";
  * DefenseSummary (the target picker and target box) uses it; the
  * popover and the add screens still spell the label out.
  */
-export function AcShield({ ac, size = 28 }: { ac: number; size?: number }): React.ReactElement {
+export function AcShield({ ac, size = 28, color = "var(--text)" }: { ac: number; size?: number; color?: string }): React.ReactElement {
   const t = useT();
   return (
     <svg
@@ -23,7 +23,7 @@ export function AcShield({ ac, size = 28 }: { ac: number; size?: number }): Reac
       <path
         d="M12 1.2 L21.8 4.8 V13 C21.8 19.6 17.6 24.6 12 26.8 C6.4 24.6 2.2 19.6 2.2 13 V4.8 Z"
         fill="var(--panel-raised)"
-        stroke="var(--text)"
+        stroke={color}
         strokeWidth="1.5"
         strokeLinejoin="round"
       />
@@ -35,7 +35,7 @@ export function AcShield({ ac, size = 28 }: { ac: number; size?: number }): Reac
         fontFamily="var(--font-mono)"
         fontSize={ac >= 100 ? 8.5 : 11}
         fontWeight="600"
-        fill="var(--text)"
+        fill={color}
       >
         {ac}
       </text>

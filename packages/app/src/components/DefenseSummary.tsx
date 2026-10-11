@@ -7,6 +7,7 @@ import { compareLocalized } from "../rules/compare.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import type { Combatant } from "../state/types.js";
 import { AcShield } from "./AcShield.js";
+import { deltaColor } from "./deltaTone.js";
 
 const HP_TRACK = "var(--hp-track)";
 function hpColor(current: number, max: number): string {
@@ -140,14 +141,14 @@ function formatSigned(n: number): string {
  * instead of hover. The letter is bold, the value regular weight, with a
  * tight gap between them (not a full word space) so the pair reads as one
  * unit rather than two words. */
-function SaveUnit({ save, value, why = "" }: { save: Save; value: number; why?: string }): React.ReactElement {
+function SaveUnit({ save, value, delta = 0, why = "" }: { save: Save; value: number; delta?: number; why?: string }): React.ReactElement {
   const t = useT();
   const saveName = t(SAVE_KEYS[save].name);
   return (
     <span
       title={why ? `${saveName} (${why})` : saveName}
       aria-label={`${saveName} ${formatSigned(value)}`}
-      style={{ whiteSpace: "nowrap", color: why ? "var(--danger)" : undefined }}
+      style={{ whiteSpace: "nowrap", color: deltaColor(delta) }}
     >
       <span style={{ fontWeight: 700 }}>{t(SAVE_KEYS[save].short)}</span>
       <span style={{ marginLeft: "2px" }}>{formatSigned(value)}</span>
@@ -162,7 +163,7 @@ function Saves({ combatant }: { combatant: Combatant }): React.ReactElement {
   if (saves === null) return <span>—</span>;
   const unit = (save: Save): React.ReactElement => {
     const { total, why } = adjusted(combatant, save);
-    return <SaveUnit save={save} value={saves[save] + total} why={why} />;
+    return <SaveUnit save={save} value={saves[save] + total} delta={total} why={why} />;
   };
   return (
     <span style={{ whiteSpace: "nowrap" }}>
@@ -190,7 +191,7 @@ export function DefenseSummary({ combatant }: { combatant: Combatant }): React.R
             const { total, why } = adjusted(combatant, "ac");
             return (
               <span title={why || undefined} style={{ display: "inline-flex" }}>
-                <AcShield ac={combatant.ac + total} size={20} />
+                <AcShield ac={combatant.ac + total} size={20} color={deltaColor(total)} />
               </span>
             );
           })()

@@ -14,6 +14,7 @@ import { renderMarkers } from "../rules/renderMarkers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { TraitTag } from "./TraitTag.js";
 import { remainingActionsFor } from "./TurnManager.js";
+import { deltaColor } from "./deltaTone.js";
 
 const TRADITION_KEY: Record<string, StringKey> = {
   arcane: "TRADITION_ARCANE",
@@ -334,7 +335,7 @@ export function SpellList({ combatant, fetchFn }: { combatant: Combatant; fetchF
           <span
             key={i}
             title={spellMods.applied.map((m) => `${m.value} ${m.source}`).join(", ") || undefined}
-            style={spellMods.total !== 0 ? { color: "var(--danger)" } : undefined}
+            style={{ color: deltaColor(spellMods.total) }}
           >
             <span style={{ fontWeight: 600, color: "var(--text-dim)" }}>{entryLabel(entry, t)}</span>{" "}
             {format(t("SPELL_ENTRY_SUMMARY"), { dc: entry.dc + spellMods.total, attack: signed(entry.attack + spellMods.total) })}
