@@ -13,6 +13,7 @@ import { StatBlockHeader } from "./StatBlockHeader.js";
 import { TurnEconomy } from "./TurnEconomy.js";
 import { ActionList } from "./ActionList.js";
 import { RollAssistant } from "./RollAssistant.js";
+import { SaveButton } from "./SaveButton.js";
 import { activeCombatantOf } from "./TurnPrompts.js";
 
 /** The centre pane of Main.dc.html (stat block, strikes, actions — what the
@@ -154,6 +155,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
               }
         }
       >
+        <SaveButton casterId={combatant.id} />
         <RollAssistant combatant={combatant} target={target} attack={attack} />
       </div>
     </div>

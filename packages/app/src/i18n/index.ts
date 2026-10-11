@@ -18,6 +18,9 @@ export type { StringKey };
  */
 export const ALLOWLIST = new Set<StringKey>([
   "OK_BUTTON",
+  "SAVE_COL_CHANCES",
+  "SAVE_COL_ROLL",
+  "SAVE_SUCCESS_SHORT",
   "EFFECT_TYPE_ARIA",
   "ABILITY_USES_LEFT",
   "ATTRIBUTE_CON",

@@ -180,6 +180,20 @@ export interface SustainedEffect {
   sustainedThisTurn: boolean;
 }
 
+/** What the saving-throw dialog opens on: a spell's save, or a blank one
+ * for anything the GM reads off a sheet. */
+export interface SaveRequest {
+  /** Who forces the save — left out of the targets. */
+  casterId: string | null;
+  /** What forces it, as shown ("Fireball"). */
+  label?: string;
+  save: "fortitude" | "reflex" | "will";
+  dc: number | null;
+  basic: boolean;
+  damageFormula?: string;
+  damageType?: string;
+}
+
 /** Something a condition did as a turn ended — what the end-of-turn
  * dialog lists, one line each. */
 export type EndOfTurnEvent =

@@ -11,6 +11,7 @@ import { useRulesHtml } from "../hooks/useRulesHtml.js";
 import type { Combatant } from "../state/types.js";
 import type { FetchFn } from "../data/catalog.js";
 import { loadSpellDetail, useSpellDetail } from "../hooks/useSpellDetail.js";
+import { firstDamage } from "../rules/saves.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
@@ -109,10 +110,23 @@ function frRange(range: string): string {
  * area, targets, defense and duration on one line, then the full text.
  * Fetched on first unfold (useSpellDetail); French where the overlay has
  * it, field by field. */
-export function SpellDetails({ slug, glossary, fetchFn }: { slug: string; glossary: Map<string, TraitInfo>; fetchFn?: FetchFn }): React.ReactElement {
+export function SpellDetails({
+  slug,
+  glossary,
+  fetchFn,
+  saveContext,
+}: {
+  slug: string;
+  glossary: Map<string, TraitInfo>;
+  fetchFn?: FetchFn;
+  /** For a spell with a save: who casts it, its DC as adjusted, its name —
+   * what the "Saves…" button opens the saving-throw dialog with. */
+  saveContext?: { casterId: string; dc: number; label: string };
+}): React.ReactElement {
   const t = useT();
   const lang = useEncounter((s) => s.lang);
   const rulesHtml = useRulesHtml();
+  const openSaveDialog = useEncounter((s) => s.openSaveDialog);
   const loaded = useSpellDetail(slug, true, fetchFn);
   const boxStyle: React.CSSProperties = { marginTop: "8px", fontSize: "12.5px", lineHeight: 1.5, color: "var(--text-dim)" };
   if (loaded === "loading") return <div style={boxStyle}>{t("SPELL_DETAILS_LOADING")}</div>;
@@ -153,6 +167,26 @@ export function SpellDetails({ slug, glossary, fetchFn }: { slug: string; glossa
         </div>
       )}
       <div dangerouslySetInnerHTML={{ __html: rulesHtml(fr_?.description ?? detail.description) }} />
+      {saveContext && detail.defense && (
+        <button
+          type="button"
+          onClick={() => {
+            const damage = firstDamage(detail.description);
+            openSaveDialog({
+              casterId: saveContext.casterId,
+              label: saveContext.label,
+              save: detail.defense!.save as "fortitude" | "reflex" | "will",
+              dc: saveContext.dc,
+              basic: detail.defense!.basic,
+              damageFormula: damage?.formula,
+              damageType: damage?.type,
+            });
+          }}
+          style={{ marginTop: "8px", fontFamily: "inherit", fontSize: "12px", padding: "5px 10px", borderRadius: "3px", border: "1px solid var(--border-strong)", background: "var(--panel-raised)", color: "var(--text)", cursor: "pointer" }}
+        >
+          {t("SPELL_SAVES_BUTTON")}
+        </button>
+      )}
     </div>
   );
 }
@@ -301,7 +335,14 @@ function SpellRowView({
         {/* The controls cast (or undo) without unfolding the row. */}
         <div onClick={(e) => e.stopPropagation()} style={{ display: "flex", gap: "4px", flexShrink: 0 }}>{controls}</div>
       </div>
-      {expanded && <SpellDetails slug={row.spell.slug} glossary={glossary} fetchFn={fetchFn} />}
+      {expanded && (
+        <SpellDetails
+          slug={row.spell.slug}
+          glossary={glossary}
+          fetchFn={fetchFn}
+          saveContext={{ casterId: combatant.id, label: name, dc: row.entry.dc + resolveModifiers(modifiersFor(combatant, CHECKS.spellDc)).total }}
+        />
+      )}
     </div>
   );
 }

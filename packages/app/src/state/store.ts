@@ -17,7 +17,7 @@ import { applyIwr, type Iwr } from "../rules/damage.js";
 import { abilityLimit } from "../rules/abilityLimits.js";
 import type { CustomEffect } from "../rules/effects.js";
 import { rollFormula } from "../rules/dice.js";
-import type { Combatant, Encounter, EndOfTurnEvent, Entry, Player, SustainedEffect } from "./types.js";
+import type { Combatant, Encounter, EndOfTurnEvent, Entry, Player, SaveRequest, SustainedEffect } from "./types.js";
 
 export type Lang = "en" | "fr";
 
@@ -739,6 +739,10 @@ interface EncounterStore {
    * on the dialog listing it. Not part of the saved encounter. */
   endOfTurnReport: EndOfTurnEvent[] | null;
   dismissEndOfTurnReport(): void;
+  /** The saving-throw dialog's request while it's open. Not saved. */
+  saveRequest: SaveRequest | null;
+  openSaveDialog(request: SaveRequest): void;
+  closeSaveDialog(): void;
   players: Player[];
   lang: Lang;
   setLang(lang: Lang): void;
@@ -838,7 +842,18 @@ export const useEncounter = create<EncounterStore>()(
   immer((set, get) => ({
     encounter: emptyEncounter(),
     endOfTurnReport: null,
+    saveRequest: null,
     players: [],
+
+    openSaveDialog: (request) =>
+      set((state) => {
+        state.saveRequest = request;
+      }),
+
+    closeSaveDialog: () =>
+      set((state) => {
+        state.saveRequest = null;
+      }),
     lang: "en",
 
     dismissEndOfTurnReport: () =>
@@ -1605,6 +1620,7 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         state.encounter = emptyEncounter();
         state.endOfTurnReport = null;
+        state.saveRequest = null;
       }),
 
     reset: () => {
@@ -1613,6 +1629,7 @@ export const useEncounter = create<EncounterStore>()(
       set((state) => {
         state.encounter = emptyEncounter();
         state.endOfTurnReport = null;
+        state.saveRequest = null;
         state.players = [];
         state.lang = "en";
       });
