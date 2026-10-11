@@ -6,13 +6,15 @@ import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { useVocabulary } from "../hooks/useVocabulary.js";
 import { useT, type StringKey } from "../i18n/index.js";
 import { compareLocalized } from "../rules/compare.js";
-import { CHECKS, conditionModifiers, skillChecks, type Selector } from "../rules/conditions.js";
+import { CHECKS, skillChecks, type Selector } from "../rules/conditions.js";
+import { modifiersFor } from "../rules/effects.js";
 import { formatDistance } from "../rules/distance.js";
-import { resolveModifiers } from "../rules/modifiers.js";
+import { resolveModifiers, type Modifier } from "../rules/modifiers.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { TraitTag } from "./TraitTag.js";
 import { deltaColor } from "./deltaTone.js";
+import { hover, modifiersHover } from "./HoverCard.js";
 
 const ATTRIBUTES = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
@@ -66,12 +68,12 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
   if (combatant.kind !== "creature" || creature === null) return null;
 
   const step = combatant.adjustment ? (combatant.adjustment.kind === "elite" ? 2 : -2) : 0;
-  const adjusted = (base: number, selector: readonly Selector[]): { value: number; delta: number; why: string } => {
-    const mods = resolveModifiers(conditionModifiers(combatant.conditions, selector));
-    return { value: base + step + mods.total, delta: mods.total, why: mods.applied.map((m) => `${m.value} ${m.source}`).join(", ") };
+  const adjusted = (base: number, selector: readonly Selector[]): { value: number; delta: number; mods: Modifier[] } => {
+    const mods = resolveModifiers(modifiersFor(combatant, selector));
+    return { value: base + step + mods.total, delta: mods.total, mods: mods.applied };
   };
-  const number = ({ value, delta, why }: { value: number; delta: number; why: string }): React.ReactElement => (
-    <span title={why || undefined} style={{ color: deltaColor(delta) }}>
+  const number = ({ value, delta, mods }: { value: number; delta: number; mods: Modifier[] }, name: string): React.ReactElement => (
+    <span {...hover(modifiersHover(`${name} ${signed(value)}`, mods))} style={{ color: deltaColor(delta) }}>
       {signed(value)}
     </span>
   );
@@ -108,7 +110,7 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
       )}
       {typeof creature.perception === "number" && (
         <Line label={label("STATBLOCK_PERCEPTION")}>
-          {number(adjusted(creature.perception, CHECKS.perception))}
+          {number(adjusted(creature.perception, CHECKS.perception), label("STATBLOCK_PERCEPTION"))}
           {senses.length > 0 && `; ${senses.join(", ")}`}
         </Line>
       )}
@@ -120,7 +122,7 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
           {skills.map((s, i) => (
             <span key={s.name}>
               {i > 0 && ", "}
-              {s.name} {number(adjusted(s.value, skillChecks(s.slug)))}
+              {s.name} {number(adjusted(s.value, skillChecks(s.slug)), s.name)}
             </span>
           ))}
         </Line>

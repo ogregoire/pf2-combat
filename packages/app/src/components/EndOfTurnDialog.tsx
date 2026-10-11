@@ -6,6 +6,7 @@ import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
 import { useEncounter } from "../state/store.js";
 import type { EndOfTurnEvent } from "../state/types.js";
+import { hover } from "./HoverCard.js";
 
 /**
  * What conditions did as a turn ended — frightened going down, persistent
@@ -38,7 +39,7 @@ export function EndOfTurnDialog(): React.ReactElement | null {
   const line = (e: EndOfTurnEvent): React.ReactNode => {
     if (e.kind === "decreased") {
       const condition = (
-        <span key="condition" title={conditionTooltip(e.slug, e.to === 0 ? null : e.to)} style={{ textDecoration: "underline dotted", textUnderlineOffset: "2px", cursor: "help" }}>
+        <span key="condition" {...hover(conditionTooltip(e.slug, e.to === 0 ? null : e.to))} style={{ textDecoration: "underline dotted", textUnderlineOffset: "2px", cursor: "help" }}>
           {conditionDisplayName(e.slug, glossary, lang)}
         </span>
       );

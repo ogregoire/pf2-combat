@@ -1,5 +1,6 @@
 import { useT } from "../i18n/index.js";
 import type { Prompt } from "../rules/prompts.js";
+import { hover } from "./HoverCard.js";
 
 /** One acknowledgeable prompt — TurnAssistant.dc.html's card anatomy: a
  * condition badge, the title, the computation/derivation the GM needs, any
@@ -29,7 +30,7 @@ export function PromptCard({
     >
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <span
-          title={badgeTitle}
+          {...hover(badgeTitle)}
           style={{
             fontSize: "10px",
             fontWeight: 600,

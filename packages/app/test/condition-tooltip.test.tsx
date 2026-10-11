@@ -34,8 +34,8 @@ describe("annotateConditions", () => {
 
   it("marks conditions named in rules text, with their value, leaving markup alone", () => {
     const html = annotateConditions('<p>The target is <strong>Frightened 2</strong> and flat-footed.</p><a title="Frightened">x</a>', "en", nameOf, tip);
-    expect(html).toContain('title="frightened:2"');
-    expect(html).toContain('data-condition="off-guard" title="off-guard:null"');
+    expect(html).toContain('data-hover="frightened:2"');
+    expect(html).toContain('data-condition="off-guard" data-hover="off-guard:null"');
     expect(html).toContain('<a title="Frightened">');
   });
 
@@ -47,7 +47,7 @@ describe("annotateConditions", () => {
   it("reads French, feminine and plural forms included", () => {
     const fr = (slug: ConditionSlug): string => (slug === "frightened" ? "Effrayé" : CONDITIONS[slug].name);
     const html = annotateConditions("La cible est effrayée 1.", "fr", fr, tip);
-    expect(html).toContain('title="frightened:1"');
+    expect(html).toContain('data-hover="frightened:1"');
     expect(html).toContain(">effrayée 1</span>");
   });
 });
@@ -63,13 +63,13 @@ describe("a condition chip's hover text", () => {
     useEncounter.getState().addCondition(id, "frightened", 2);
     useEncounter.getState().addCondition(id, "drained", 1);
     render(<ConditionChips combatant={useEncounter.getState().encounter.combatants[id]!} />);
-    const frightened = screen.getByText("FRIGHTENED 2").getAttribute("title")!;
+    const frightened = screen.getByText("FRIGHTENED 2").getAttribute("data-hover")!;
     expect(frightened.split("\n").slice(0, 3)).toEqual([
       "Frightened 2",
       "All checks and DCs −2",
       "Goes down by 1 at the end of each of its turns",
     ]);
-    const drained = screen.getByText("DRAINED 1").getAttribute("title")!;
+    const drained = screen.getByText("DRAINED 1").getAttribute("data-hover")!;
     expect(drained).toContain("Fortitude −1");
     expect(drained).toContain("Lost 3 HP and max HP (3 × 1)");
   });
@@ -87,7 +87,7 @@ describe("a petrified target", () => {
     render(<DefenseSummary combatant={useEncounter.getState().encounter.combatants[id]!} />);
     const shield = screen.getByRole("img", { name: "AC 9" });
     expect(shield.querySelector("text")!.getAttribute("fill")).toBe("var(--danger)");
-    expect(screen.getByText("PETRIFIED").getAttribute("title")).toContain("AC 9");
+    expect(screen.getByText("PETRIFIED").getAttribute("data-hover")).toContain("AC 9");
   });
 });
 

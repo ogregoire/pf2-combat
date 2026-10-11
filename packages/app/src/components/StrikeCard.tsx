@@ -1,15 +1,17 @@
 import type { Attack } from "@pf2/schema";
-import { conditionModifiers, strikeChecks, strikeDamageChecks, type AppliedCondition } from "../rules/conditions.js";
+import { strikeChecks, strikeDamageChecks } from "../rules/conditions.js";
+import { modifiersFor, type ModifierSources } from "../rules/effects.js";
 import { addToFormula } from "../rules/adjustment.js";
 import { damageTypeName } from "../rules/damage.js";
 import { mapLadder } from "../rules/map.js";
-import { resolveModifiers } from "../rules/modifiers.js";
+import { resolveModifiers, type Modifier } from "../rules/modifiers.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { useEncounter } from "../state/store.js";
 import { CostPips } from "./ActionCard.js";
 import { TraitTag } from "./TraitTag.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
 import { deltaColor, deltaTone } from "./deltaTone.js";
+import { hover, modifiersHover } from "./HoverCard.js";
 
 function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `${n}`;
@@ -31,7 +33,7 @@ const SELECTED_RING = "0 0 0 1px var(--select)";
  */
 /** `delta` is what the attacker's conditions do to the Strike's own damage
  * entry (enfeebled): it moves the first formula, drawn green or red. */
-function DamageLine({ attack, delta = 0, why = "" }: { attack: Attack; delta?: number; why?: string }): React.ReactElement {
+function DamageLine({ attack, delta = 0, mods = [] }: { attack: Attack; delta?: number; mods?: Modifier[] }): React.ReactElement {
   const lang = useEncounter((s) => s.lang);
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
@@ -39,7 +41,7 @@ function DamageLine({ attack, delta = 0, why = "" }: { attack: Attack; delta?: n
         <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: "5px" }}>
           {i > 0 && <span style={{ color: "var(--text-faint)" }}>+</span>}
           <span
-            title={i === 0 && why ? why : undefined}
+            {...hover(i === 0 ? modifiersHover(addToFormula(d.formula, delta), mods) : null)}
             style={{ fontFamily: "var(--font-mono)", fontSize: "13px", color: (i === 0 ? deltaColor(delta) : undefined) ?? "var(--text-dim)" }}
           >
             {i === 0 && delta !== 0 ? addToFormula(d.formula, delta) : d.formula}
@@ -76,21 +78,20 @@ export function StrikeCard({
   activeRung,
   onSelect,
   glossary,
-  conditions = [],
+  modifiers = { conditions: [] },
 }: {
   attack: Attack;
   selected: boolean;
   activeRung: number;
   onSelect: () => void;
   glossary: Map<string, TraitInfo>;
-  /** The attacker's conditions: the ladder shows the bonus they leave —
+  /** What the attacker carries: the ladder shows the bonus it leaves —
    * frightened 1 turns +12/+7/+2 into +11/+6/+1, in red. */
-  conditions?: AppliedCondition[];
+  modifiers?: ModifierSources;
 }): React.ReactElement {
   const agile = attack.traits.includes("agile");
-  const mods = resolveModifiers(conditionModifiers(conditions, strikeChecks(attack)));
-  const damageMods = resolveModifiers(conditionModifiers(conditions, strikeDamageChecks(attack)));
-  const why = mods.applied.map((m) => `${m.value} ${m.source}`).join(", ");
+  const mods = resolveModifiers(modifiersFor(modifiers, strikeChecks(attack)));
+  const damageMods = resolveModifiers(modifiersFor(modifiers, strikeDamageChecks(attack)));
   const tone = deltaTone(mods.total);
   const ladder = mapLadder(attack.bonus + mods.total, agile);
 
@@ -125,7 +126,7 @@ export function StrikeCard({
           {ladder.map((bonus, rung) => (
             <span
               key={rung}
-              title={why || undefined}
+              {...hover(modifiersHover(`${attack.name} ${formatSigned(bonus)}`, mods.applied))}
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: rung === activeRung ? "17px" : "13px",
@@ -151,7 +152,7 @@ export function StrikeCard({
             </span>
           ))}
         </div>
-        <DamageLine attack={attack} delta={damageMods.total} why={damageMods.applied.map((m) => `${m.value} ${m.source}`).join(", ")} />
+        <DamageLine attack={attack} delta={damageMods.total} mods={damageMods.applied} />
       </div>
       {attack.traits.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginTop: "6px" }}>

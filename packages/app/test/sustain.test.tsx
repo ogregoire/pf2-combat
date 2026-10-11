@@ -70,7 +70,7 @@ describe("Sustain", () => {
     expect((within(card).getByRole("button", { name: "Sustain Enthrall (1 action)" }) as HTMLButtonElement).disabled).toBe(true);
     await user.click(within(card).getByRole("button", { expanded: false }));
     expect((await within(card).findByTestId("spell-details")).textContent).toContain("Your words fascinate");
-    expect(screen.getByTestId("sustain-chip").textContent).toBe("Sustaining Enthrall");
+    expect(screen.getAllByTestId("sustain-chip").map((c) => c.textContent)).toEqual(["Sustaining Enthrall", "Sustaining Enthrall"]);
 
     await user.click(within(card).getByRole("button", { name: "Stop sustaining Enthrall" }));
     expect(screen.queryByTestId("sustain-card")).toBeNull();

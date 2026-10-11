@@ -6,15 +6,13 @@ import { ATTACK_BONUS_SOURCE, resolveStrike } from "../rules/strike.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { TargetBox, TargetPicker } from "./TargetPicker.js";
+import { hover, modifiersHover } from "./HoverCard.js";
 import { deltaColor } from "./deltaTone.js";
 
 function formatSigned(n: number): string {
   return n >= 0 ? `+${n}` : `−${Math.abs(n)}`;
 }
 
-function modifierBreakdown(applied: Array<{ value: number; source: string }>): string {
-  return applied.map((m) => `${formatSigned(m.value)}: ${m.source}`).join("\n");
-}
 
 const DEGREE_LABEL_KEY: Record<Degree, StringKey> = {
   "critical-success": "DEGREE_CRITICAL_SUCCESS",
@@ -180,7 +178,7 @@ export function RollAssistant({
                     </span>
                   </div>
                 ))}
-                <div style={{ display: "flex", gap: "10px", padding: "7px 0 0", marginTop: "3px", borderTop: "1px solid var(--border)", color: "var(--text)", fontSize: "15px" }} title={modifierBreakdown(resolution.ledger.applied)}>
+                <div style={{ display: "flex", gap: "10px", padding: "7px 0 0", marginTop: "3px", borderTop: "1px solid var(--border)", color: "var(--text)", fontSize: "15px" }} {...hover(modifiersHover(`${t("TOTAL_ATTACK_MODIFIER")} ${formatSigned(resolution.modifier)}`, resolution.ledger.applied))}>
                   <span style={{ width: "46px", textAlign: "right", fontWeight: 600, color: deltaColor(resolution.modifier - attack.bonus) }}>{formatSigned(resolution.modifier)}</span>
                   <span style={{ fontSize: "12.5px", alignSelf: "center", color: "var(--text-dim)" }}>{t("TOTAL_ATTACK_MODIFIER")}</span>
                 </div>
@@ -192,7 +190,7 @@ export function RollAssistant({
                   <span style={{ fontFamily: "var(--font-mono)", fontSize: "26px", fontWeight: 600, color: deltaColor(resolution.modifier - attack.bonus) ?? "var(--text)" }}>{rollLine}</span>
                   <span
                     style={{ fontSize: "12px", color: deltaColor(resolution.effectiveAc - target.ac!) ?? "var(--text-faint)" }}
-                    title={resolution.acLedger.applied.length > 0 ? modifierBreakdown(resolution.acLedger.applied) : t("BASE_AC_TOOLTIP")}
+                    {...hover(modifiersHover(format(t("VS_AC_TEMPLATE"), { ac: resolution.effectiveAc }), resolution.acLedger.applied) ?? t("BASE_AC_TOOLTIP"))}
                   >
                     {format(t("VS_AC_TEMPLATE"), { ac: resolution.effectiveAc })}
                   </span>

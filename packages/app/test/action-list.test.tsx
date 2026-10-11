@@ -313,8 +313,8 @@ describe("ActionList — Strikes merged into the action list", () => {
     );
     render(<ActiveCombatant fetchFn={fetchFn} />);
 
-    await waitFor(() => expect(screen.getByText("GRAB").title).toBe("The monster can grab."));
-    expect(screen.getByText("UNARMED").title).toBe("");
+    await waitFor(() => expect(screen.getByText("GRAB").getAttribute("data-hover")).toBe("Grab\n\nThe monster can grab."));
+    expect(screen.getByText("UNARMED").getAttribute("data-hover")).toBeNull();
   });
 });
 

@@ -117,7 +117,9 @@ describe("stupefied in the app", () => {
     const id = add("Bandit", 20);
     useEncounter.getState().addCondition(id, "stupefied", 2);
     render(<DefenseSummary combatant={get(id)} />);
-    expect(screen.getByTitle(/Will \(-2 stupefied 2\)/).textContent).toBe("W+4");
-    expect(screen.getByTitle("Fortitude").textContent).toBe("F+9");
+    const will = screen.getByLabelText(/^Will /);
+    expect(will.textContent).toBe("W+4");
+    expect(will.getAttribute("data-hover")).toBe("Will +4\n−2 stupefied 2");
+    expect(screen.getByLabelText(/^Fortitude /).textContent).toBe("F+9");
   });
 });

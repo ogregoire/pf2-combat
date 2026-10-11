@@ -1,7 +1,7 @@
 import { format, useT, type StringKey } from "../i18n/index.js";
 import { conditionEffects, type Effect } from "../rules/conditionEffects.js";
 import { CONDITIONS, dyingMax, type AppliedCondition, type Attribute, type ConditionSlug } from "../rules/conditions.js";
-import { conditionDisplayName } from "../rules/traitInfo.js";
+import { conditionDisplayName, plainParagraphs } from "../rules/traitInfo.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
@@ -13,21 +13,6 @@ const ATTRIBUTE_KEY: Record<Attribute, StringKey> = {
 const SAVE_KEY = { fortitude: "LABEL_FORTITUDE", reflex: "LABEL_REFLEX", will: "LABEL_WILL" } as const;
 
 const signed = (n: number): string => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
-
-/** A description as plain text for a `title`: paragraphs kept as lines. */
-function plainText(html: string): string {
-  return html
-    .replace(/<\/p>\s*<p>|<br\s*\/?>/gi, "\n")
-    .replace(/<[^>]+>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&amp;/g, "&")
-    .replace(/[ \t]+/g, " ")
-    .trim();
-}
 
 export interface ConditionTooltipOptions {
   /** The combatant carrying it: drained's Hit Points need its level, dying
@@ -103,7 +88,7 @@ export function useConditionTooltip(): (slug: ConditionSlug, value: number | nul
       }
     }
     const description = glossary.get(slug)?.description;
-    if (description) lines.push("", plainText(renderMarkers(description, lang)));
+    if (description) lines.push("", plainParagraphs(renderMarkers(description, lang)));
     return lines.join("\n");
   };
 }

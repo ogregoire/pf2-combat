@@ -2,7 +2,8 @@ import { useState } from "react";
 import type { Spellcasting } from "@pf2/schema";
 import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { format, formatParts, useT, type StringKey } from "../i18n/index.js";
-import { canReact, CHECKS, conditionModifiers, stupefiedCastDc } from "../rules/conditions.js";
+import { canReact, CHECKS, stupefiedCastDc } from "../rules/conditions.js";
+import { modifiersFor } from "../rules/effects.js";
 import { resolveModifiers } from "../rules/modifiers.js";
 import { castsLeft, focusPool, FOCUS_KEY, spellRows, type SpellCost, type SpellRow } from "../rules/spells.js";
 import { useEncounter } from "../state/store.js";
@@ -16,6 +17,7 @@ import type { TraitInfo } from "../rules/traitInfo.js";
 import { TraitTag } from "./TraitTag.js";
 import { remainingActionsFor } from "./TurnManager.js";
 import { deltaColor } from "./deltaTone.js";
+import { hover, modifiersHover } from "./HoverCard.js";
 
 const TRADITION_KEY: Record<string, StringKey> = {
   arcane: "TRADITION_ARCANE",
@@ -331,9 +333,8 @@ export function SpellList({ combatant, fetchFn }: { combatant: Combatant; fetchF
   const rows = spellRows(spellcasting);
   // Frightened, sickened and stupefied lower spell attacks and DCs; prone
   // lowers the attack only.
-  const dcMods = resolveModifiers(conditionModifiers(combatant.conditions, CHECKS.spellDc));
-  const attackMods = resolveModifiers(conditionModifiers(combatant.conditions, CHECKS.spellAttack));
-  const why = (mods: typeof dcMods): string | undefined => mods.applied.map((m) => `${m.value} ${m.source}`).join(", ") || undefined;
+  const dcMods = resolveModifiers(modifiersFor(combatant, CHECKS.spellDc));
+  const attackMods = resolveModifiers(modifiersFor(combatant, CHECKS.spellAttack));
   const castDc = stupefiedCastDc(combatant.conditions);
   const pool = focusPool(spellcasting);
   const focusLeft = pool - (combatant.spellUses?.[FOCUS_KEY] ?? 0);
@@ -351,12 +352,12 @@ export function SpellList({ combatant, fetchFn }: { combatant: Combatant; fetchF
             <span style={{ fontWeight: 600 }}>{entryLabel(entry, t)}</span>{" "}
             {formatParts(t("SPELL_ENTRY_SUMMARY"), {
               dc: (
-                <span key="dc" title={why(dcMods)} style={{ color: deltaColor(dcMods.total) }}>
+                <span key="dc" {...hover(modifiersHover(`${t("COND_FX_SPELL_DC")} ${entry.dc + dcMods.total}`, dcMods.applied))} style={{ color: deltaColor(dcMods.total) }}>
                   {entry.dc + dcMods.total}
                 </span>
               ),
               attack: (
-                <span key="attack" title={why(attackMods)} style={{ color: deltaColor(attackMods.total) }}>
+                <span key="attack" {...hover(modifiersHover(`${t("COND_FX_SPELL_ATTACK")} ${signed(entry.attack + attackMods.total)}`, attackMods.applied))} style={{ color: deltaColor(attackMods.total) }}>
                   {signed(entry.attack + attackMods.total)}
                 </span>
               ),

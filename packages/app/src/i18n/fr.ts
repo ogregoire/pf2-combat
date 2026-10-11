@@ -364,6 +364,7 @@ export const STRINGS_FR: Record<keyof typeof STRINGS_EN, string> = {
   END_OF_TURN_DOWN: "à terre",
   END_OF_TURN_FLAT_CHECK: "Test nu DD 15 : sur 15 ou plus, les dégâts persistants prennent fin.",
   OK_BUTTON: "OK",
+  PETRIFIED_AC_NOTE: "Pétrifié : la CA 9 d’un objet, quoi qu’il s’applique d’autre",
   // useConditionTooltip.ts — a condition's hover text
   COND_FX_ALL: "Tous les tests et DD",
   COND_FX_SAVES: "Jets de sauvegarde",

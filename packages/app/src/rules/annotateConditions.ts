@@ -16,7 +16,7 @@ const escapeAttr = (s: string): string =>
 
 /**
  * Marks every condition a rules text names — "Frightened 2", "off-guard",
- * "effrayé 1" — with a hover `title` from `tooltipFor`, given its value
+ * "effrayé 1" — with hover text (`data-hover`, see HoverCard) from `tooltipFor`, given its value
  * when the text states one. Only text between tags is read, so markup and
  * attributes are never touched. `nameOf` gives a condition's name in the
  * text's language; French matches feminine and plural forms too
@@ -51,7 +51,7 @@ export function annotateConditions(
         if (!slug) return match;
         if (AMBIGUOUS.has(slug) && name[0] === lower(name[0]!)) return match;
         const title = tooltipFor(slug, value === undefined ? null : Number(value));
-        return `<span class="condition-ref" data-condition="${slug}" title="${escapeAttr(title)}" style="text-decoration: underline dotted; text-underline-offset: 2px; cursor: help">${match}</span>`;
+        return `<span class="condition-ref" data-condition="${slug}" data-hover="${escapeAttr(title)}" style="text-decoration: underline dotted; text-underline-offset: 2px; cursor: help">${match}</span>`;
       });
     })
     .join("");

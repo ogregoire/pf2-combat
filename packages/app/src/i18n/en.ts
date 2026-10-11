@@ -331,6 +331,7 @@ export const STRINGS_EN = {
   END_OF_TURN_DOWN: "down",
   END_OF_TURN_FLAT_CHECK: "DC 15 flat check: on 15 or more, the persistent damage ends.",
   OK_BUTTON: "OK",
+  PETRIFIED_AC_NOTE: "Petrified: an object's AC 9, whatever else applies",
   // useConditionTooltip.ts — a condition's hover text
   COND_FX_ALL: "All checks and DCs",
   COND_FX_SAVES: "Saves",

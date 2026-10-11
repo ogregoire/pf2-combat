@@ -4,6 +4,8 @@ import { useT, type StringKey } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { AdjustmentBadge } from "./AdjustmentBadge.js";
+import { ConditionChips } from "./DefenseSummary.js";
+import { SustainChips } from "./SustainChips.js";
 
 /** A human silhouette standing in for the "PC" word beside a player
  * character's level. The accessible name keeps the localised prefix. */
@@ -58,6 +60,12 @@ export function StatBlockHeader({ combatant, children }: { combatant: Combatant;
           <LevelLabel combatant={combatant} t={t} />
         </span>
         <AdjustmentBadge combatant={combatant} size={11} />
+      </div>
+      {/* What the combatant is under right now, each hoverable for exactly
+          what it does — the same chips its initiative row carries. */}
+      <div data-testid="statblock-conditions">
+        <ConditionChips combatant={combatant} />
+        <SustainChips combatant={combatant} />
       </div>
       {children}
     </div>

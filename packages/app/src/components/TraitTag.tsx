@@ -1,6 +1,7 @@
 import { useEncounter } from "../state/store.js";
 import { renderMarkers } from "../rules/renderMarkers.js";
-import { splitTraitValue, stripHtml, type TraitInfo } from "../rules/traitInfo.js";
+import { plainParagraphs, splitTraitValue, type TraitInfo } from "../rules/traitInfo.js";
+import { hover } from "./HoverCard.js";
 
 /**
  * One trait/keyword chip. `whiteSpace: nowrap` on the tag plus `flexWrap:
@@ -38,8 +39,8 @@ export function TraitTag({
   return (
     <span
       // Markers rendered first: a tooltip used to show raw
-      // `@Check[flat|dc:11]` text, which a `title` can't hide.
-      title={info ? stripHtml(renderMarkers(info.description, lang)) : undefined}
+      // `@Check[flat|dc:11]` text.
+      {...hover(info ? `${label.charAt(0).toUpperCase()}${label.slice(1)}\n\n${plainParagraphs(renderMarkers(info.description, lang))}` : null)}
       style={{
         fontSize: "10px",
         letterSpacing: "0.05em",

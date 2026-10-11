@@ -8,6 +8,7 @@ import { conditionDisplayName } from "../rules/traitInfo.js";
 import { useEncounter } from "../state/store.js";
 import type { Combatant } from "../state/types.js";
 import { deltaColor } from "./deltaTone.js";
+import { hover } from "./HoverCard.js";
 
 const PIP_FILLED = "var(--action)";
 const PIP_EMPTY_STROKE = "var(--action-empty)";
@@ -80,7 +81,7 @@ export function ActionPips({ combatant }: { combatant: Combatant }): React.React
                   {reasons.map((r, i) => (
                     <Fragment key={r.slug}>
                       {i > 0 && ", "}
-                      <span title={tooltip(r.slug, r.value)} style={{ cursor: "help" }}>
+                      <span {...hover(tooltip(r.slug, r.value))} style={{ cursor: "help" }}>
                         {conditionDisplayName(r.slug, glossary, lang).toLowerCase()}
                         {r.value !== null ? ` ${r.value}` : ""}
                       </span>

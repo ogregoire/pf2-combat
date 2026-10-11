@@ -12,6 +12,7 @@ import { applyIwr, damageTypeName, relevantDamageTypes, type Iwr } from "../rule
 import { CONDITIONS, PICKABLE_CONDITIONS, type ConditionSlug } from "../rules/conditions.js";
 import { DamageTypeIcon, damageTypeStyle } from "./damageTypes.js";
 import { totalInitiative } from "../rules/initiative.js";
+import { hover } from "./HoverCard.js";
 
 /**
  * One chip in the damage-type row. Each carries its own type's colour and
@@ -81,7 +82,7 @@ function PickableConditionButton({
     <button
       type="button"
       aria-label={name}
-      title={title}
+      {...hover(title)}
       onClick={onClick}
       style={{
         fontFamily: "inherit",
@@ -863,7 +864,7 @@ export function RowPopover({
               return (
                 <div
                   key={c.slug}
-                  title={conditionTooltip(c.slug, c.value, { combatant, formula: c.formula })}
+                  {...hover(conditionTooltip(c.slug, c.value, { combatant, formula: c.formula }))}
                   style={{
                     fontFamily: "inherit",
                     display: "inline-flex",

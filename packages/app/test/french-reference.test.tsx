@@ -314,7 +314,7 @@ describe("conditions, traits and the glossary render in French", () => {
     render(<ActiveCombatant fetchFn={fetchFn} />);
 
     const tag = await screen.findByText("SOPHISTICATION");
-    expect(tag.title).toMatch(/^Les actions avec le trait/);
+    expect(tag.getAttribute("data-hover")).toMatch(/\n\nLes actions avec le trait/);
   });
 
   it("keeps the English trait text when French has none", async () => {
@@ -334,7 +334,7 @@ describe("conditions, traits and the glossary render in French", () => {
     render(<ActiveCombatant fetchFn={fetchFn} />);
 
     const tag = await screen.findByText("TRIPKEE");
-    expect(tag.title).toMatch(/^Tripkees are/);
+    expect(tag.getAttribute("data-hover")).toMatch(/\n\nTripkees are/);
   });
 
   it("states start-of-turn notifications in French", async () => {

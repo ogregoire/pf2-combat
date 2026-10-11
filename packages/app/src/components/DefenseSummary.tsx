@@ -1,7 +1,8 @@
 import { useEncounter } from "../state/store.js";
 import { useT } from "../i18n/index.js";
-import { acOverride, CHECKS, CONDITIONS, conditionModifiers, dyingMax } from "../rules/conditions.js";
-import { resolveModifiers } from "../rules/modifiers.js";
+import { acOverride, CHECKS, CONDITIONS, dyingMax } from "../rules/conditions.js";
+import { modifiersFor } from "../rules/effects.js";
+import { resolveModifiers, type Modifier } from "../rules/modifiers.js";
 import { conditionDisplayName, type TraitInfo } from "../rules/traitInfo.js";
 import { compareLocalized } from "../rules/compare.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
@@ -9,6 +10,7 @@ import type { Combatant } from "../state/types.js";
 import { AcShield } from "./AcShield.js";
 import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
 import { deltaColor } from "./deltaTone.js";
+import { hover, modifiersHover } from "./HoverCard.js";
 
 const HP_TRACK = "var(--hp-track)";
 function hpColor(current: number, max: number): string {
@@ -67,7 +69,7 @@ export function ConditionChips({ combatant }: { combatant: Combatant }): React.R
       {sorted.map((c) => (
         <span
           key={c.slug}
-          title={tooltip(c.slug, c.value, { combatant, formula: c.formula })}
+          {...hover(tooltip(c.slug, c.value, { combatant, formula: c.formula }))}
           style={{
             cursor: "help",
             fontSize: "10px",
@@ -117,9 +119,9 @@ type Save = "fortitude" | "reflex" | "will";
  * prone target is off-guard (AC −2), a stupefied one has a lower Will save
  * — with what moved it, for the hover text. The roll assistant already
  * rolled against the adjusted AC; this list used to show the printed one. */
-function adjusted(combatant: Combatant, check: keyof typeof CHECKS): { total: number; why: string } {
-  const result = resolveModifiers(conditionModifiers(combatant.conditions, CHECKS[check]));
-  return { total: result.total, why: result.applied.map((m) => `${m.value} ${m.source}`).join(", ") };
+function adjusted(combatant: Combatant, check: keyof typeof CHECKS): { total: number; mods: Modifier[] } {
+  const result = resolveModifiers(modifiersFor(combatant, CHECKS[check]));
+  return { total: result.total, mods: result.applied };
 }
 
 /** The save's full name (hover, screen reader) and its short form (the
@@ -145,12 +147,12 @@ function formatSigned(n: number): string {
  * instead of hover. The letter is bold, the value regular weight, with a
  * tight gap between them (not a full word space) so the pair reads as one
  * unit rather than two words. */
-function SaveUnit({ save, value, delta = 0, why = "" }: { save: Save; value: number; delta?: number; why?: string }): React.ReactElement {
+function SaveUnit({ save, value, delta = 0, mods = [] }: { save: Save; value: number; delta?: number; mods?: Modifier[] }): React.ReactElement {
   const t = useT();
   const saveName = t(SAVE_KEYS[save].name);
   return (
     <span
-      title={why ? `${saveName} (${why})` : saveName}
+      {...hover(modifiersHover(`${saveName} ${formatSigned(value)}`, mods) ?? `${saveName} ${formatSigned(value)}`)}
       aria-label={`${saveName} ${formatSigned(value)}`}
       style={{ whiteSpace: "nowrap", color: deltaColor(delta) }}
     >
@@ -166,8 +168,8 @@ function Saves({ combatant }: { combatant: Combatant }): React.ReactElement {
   const saves = combatant.saves;
   if (saves === null) return <span>—</span>;
   const unit = (save: Save): React.ReactElement => {
-    const { total, why } = adjusted(combatant, save);
-    return <SaveUnit save={save} value={saves[save] + total} delta={total} why={why} />;
+    const { total, mods } = adjusted(combatant, save);
+    return <SaveUnit save={save} value={saves[save] + total} delta={total} mods={mods} />;
   };
   return (
     <span style={{ whiteSpace: "nowrap" }}>
@@ -194,9 +196,11 @@ export function DefenseSummary({ combatant }: { combatant: Combatant }): React.R
           (() => {
             // Petrified replaces the AC with an object's 9.
             const setAc = acOverride(combatant.conditions);
-            const { total, why } = setAc === null ? adjusted(combatant, "ac") : { total: setAc - combatant.ac, why: "petrified: AC 9" };
+            const { total, mods } =
+              setAc === null ? adjusted(combatant, "ac") : { total: setAc - combatant.ac, mods: [{ value: setAc, type: "untyped" as const, source: "petrified: AC 9" }] };
+            const label = `${t("LABEL_AC")} ${combatant.ac + total}`;
             return (
-              <span title={why || undefined} style={{ display: "inline-flex" }}>
+              <span {...hover(setAc !== null ? `${label}\n${t("PETRIFIED_AC_NOTE")}` : modifiersHover(label, mods))} style={{ display: "inline-flex" }}>
                 <AcShield ac={combatant.ac + total} size={20} color={deltaColor(total)} />
               </span>
             );

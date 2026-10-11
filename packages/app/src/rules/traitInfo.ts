@@ -110,6 +110,25 @@ export function splitTraitValue(slug: string): { base: string; value: string | n
   return { base: slug, value: null };
 }
 
+/** A description as plain text, one paragraph per line — the body of a
+ * hover card. */
+export function plainParagraphs(html: string): string {
+  return html
+    .replace(/<\/p>\s*<p>|<br\s*\/?>|<\/li>\s*<li>|<hr\s*\/?>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, "&")
+    .replace(/[ \t]+/g, " ")
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .join("\n");
+}
+
 /** Plain-text rendering of a glossary/condition description for use in a
  * native `title` attribute, which can't render markup. */
 export function stripHtml(html: string): string {

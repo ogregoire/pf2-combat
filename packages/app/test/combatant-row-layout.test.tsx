@@ -68,10 +68,10 @@ describe("DefenseSummary HP bar layout", () => {
     // Letter and value are separate elements (bold letter, regular value) —
     // the style contract jsdom can check is that the whole saves line
     // refuses to wrap, same reasoning as the HP number above.
-    expect(screen.getByTitle("Fortitude").textContent).toBe("F+15");
-    expect(screen.getByTitle("Reflex").textContent).toBe("R+16");
-    expect(screen.getByTitle("Will").textContent).toBe("W+9");
-    const savesLine = screen.getByTitle("Fortitude").parentElement as HTMLElement;
+    expect(screen.getByLabelText(/^Fortitude /).textContent).toBe("F+15");
+    expect(screen.getByLabelText(/^Reflex /).textContent).toBe("R+16");
+    expect(screen.getByLabelText(/^Will /).textContent).toBe("W+9");
+    const savesLine = screen.getByLabelText(/^Fortitude /).parentElement as HTMLElement;
     expect(savesLine.style.whiteSpace).toBe("nowrap");
   });
 });
@@ -79,21 +79,21 @@ describe("DefenseSummary HP bar layout", () => {
 describe("DefenseSummary saves", () => {
   beforeEach(() => useEncounter.getState().reset());
 
-  it("labels each save with a bold initial, a signed value, and names the full save on hover via title", () => {
+  it("labels each save with a bold initial, a signed value, and names the full save on hover", () => {
     renderSummary();
 
-    const fort = screen.getByTitle("Fortitude");
+    const fort = screen.getByLabelText(/^Fortitude /);
     expect(fort.textContent).toBe("F+6");
     expect(fort.getAttribute("aria-label")).toBe("Fortitude +6");
     const fortLetter = fort.firstElementChild as HTMLElement;
     expect(fortLetter.textContent).toBe("F");
     expect(fortLetter.style.fontWeight).toBe("700");
 
-    const reflex = screen.getByTitle("Reflex");
+    const reflex = screen.getByLabelText(/^Reflex /);
     expect(reflex.textContent).toBe("R+7");
     expect(reflex.getAttribute("aria-label")).toBe("Reflex +7");
 
-    const will = screen.getByTitle("Will");
+    const will = screen.getByLabelText(/^Will /);
     expect(will.textContent).toBe("W+4");
     expect(will.getAttribute("aria-label")).toBe("Will +4");
   });
@@ -105,15 +105,15 @@ describe("DefenseSummary saves", () => {
     useEncounter.getState().setLang("fr");
     renderSummary();
 
-    const line = screen.getByTitle("Vigueur").parentElement as HTMLElement;
+    const line = screen.getByLabelText(/^Vigueur /).parentElement as HTMLElement;
     expect(line.textContent).toBe("Vig+6, Réf+7, Vol+4");
-    expect(screen.getByTitle("Réflexes").getAttribute("aria-label")).toBe("Réflexes +7");
+    expect(screen.getByLabelText(/^Réflexes /).getAttribute("aria-label")).toBe("Réflexes +7");
   });
 
   it("separates the three units with a real comma and a space", () => {
     renderSummary();
 
-    const line = screen.getByTitle("Fortitude").parentElement as HTMLElement;
+    const line = screen.getByLabelText(/^Fortitude /).parentElement as HTMLElement;
     expect(line.textContent).toBe("F+6, R+7, W+4");
   });
 });

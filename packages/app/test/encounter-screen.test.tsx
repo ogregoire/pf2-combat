@@ -228,7 +228,7 @@ describe("EncounterScreen", () => {
     const bandit = within(picker.getByRole("button", { name: "Target Bandit" }));
     expect(bandit.getByRole("img", { name: "AC 17" })).toBeDefined();
     expect(bandit.getByText("16/16")).toBeDefined();
-    expect(bandit.getByTitle("Fortitude").textContent).toBe("F+5");
+    expect(bandit.getByLabelText(/^Fortitude /).textContent).toBe("F+5");
 
     await user.click(picker.getByRole("button", { name: "Target Bandit" }));
     expect(screen.queryByRole("group", { name: "Choose a target" })).toBeNull();
