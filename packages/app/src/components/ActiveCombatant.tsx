@@ -107,9 +107,9 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
           ...(narrow ? { flexShrink: 0 } : { overflow: "hidden" }),
         }}
       >
-        <StatBlockHeader combatant={combatant}>
-          <CreatureDetails combatant={combatant} fetchFn={fetchFn} />
-        </StatBlockHeader>
+        {/* Name, then the turn's controls — actions left, Strikes, Next —
+            fixed above everything that scrolls, the stat block included. */}
+        <StatBlockHeader combatant={combatant} />
         <TurnEconomy combatant={combatant} narrow={narrow} />
         <div
           style={{
@@ -124,6 +124,7 @@ export function ActiveCombatant({ fetchFn }: { fetchFn?: FetchFn } = {}): React.
             gap: "18px",
           }}
         >
+          <CreatureDetails combatant={combatant} fetchFn={fetchFn} />
           <SustainList combatant={combatant} fetchFn={fetchFn} />
           <StandardActions combatant={combatant} fetchFn={fetchFn} />
           <ActionList

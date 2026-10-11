@@ -98,7 +98,7 @@ export function CreatureDetails({ combatant, fetchFn }: { combatant: Combatant; 
   const label = (key: StringKey): string => t(key);
 
   return (
-    <div data-testid="creature-details" style={{ ...fontStyle, display: "flex", flexDirection: "column", gap: "2px", marginTop: "8px" }}>
+    <div data-testid="creature-details" style={{ ...fontStyle, display: "flex", flexDirection: "column", gap: "2px" }}>
       {chips.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginBottom: "4px" }}>
           {chips.map(({ trait, label: chipLabel }) => (
