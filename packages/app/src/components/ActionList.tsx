@@ -4,6 +4,7 @@ import { resolveActions, resolveAttacks } from "../data/i18nOverlay.js";
 import { useT } from "../i18n/index.js";
 import { canReact } from "../rules/conditions.js";
 import { isSustainable } from "../rules/sustain.js";
+import { abilityLimit, rechargeFormula } from "../rules/abilityLimits.js";
 import { actionPool } from "../rules/actions.js";
 import { buildActionList } from "../rules/actionLayout.js";
 import { useEncounter } from "../state/store.js";
@@ -11,7 +12,7 @@ import { useCombatantI18n } from "../hooks/useCombatantI18n.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import type { FetchFn } from "../data/catalog.js";
 import type { Combatant } from "../state/types.js";
-import { ActionCard, ChildActionRow } from "./ActionCard.js";
+import { ActionCard, ChildActionRow, type AbilityUsage } from "./ActionCard.js";
 import { StrikeCard } from "./StrikeCard.js";
 
 function poolInputFor(combatant: Combatant): { slowed: number; stunned: number; quickened: boolean } {
@@ -50,6 +51,9 @@ export function ActionList({
 }): React.ReactElement | null {
   const spendActions = useEncounter((s) => s.spendActions);
   const startSustaining = useEncounter((s) => s.startSustaining);
+  const useAbility = useEncounter((s) => s.useAbility);
+  const restoreAbility = useEncounter((s) => s.restoreAbility);
+  const round = useEncounter((s) => s.encounter.round);
   const setReactionSpent = useEncounter((s) => s.setReactionSpent);
   const lang = useEncounter((s) => s.lang);
   const glossary = useTraitGlossary(fetchFn);
@@ -96,33 +100,56 @@ export function ActionList({
    * A free action has no pool and no per-round cap, so there is nothing to
    * spend and it gets no Use button (`onUse: undefined`).
    */
-  function spendSpec(action: Action): { disabled: boolean; onUse: (() => void) | undefined } {
+  function spendSpec(action: Action): { disabled: boolean; onUse: (() => void) | undefined; usage?: AbilityUsage } {
     // Using an ability its text lets the creature Sustain starts Sustaining
-    // it (read from the English record: `actions` may be the French one).
+    // it; one with a frequency counts a use, one that recharges rolls its
+    // rounds (all read from the English record: `actions` may be French).
     const index = actions.indexOf(action);
     const original = index >= 0 ? combatant.actions[index] : undefined;
-    const sustain = (): void => {
-      if (original && isSustainable(original.description)) {
+    const limit = original ? abilityLimit(original) : null;
+    const recharge = original ? rechargeFormula(original.description) : null;
+    const used = original ? (combatant.abilityUses?.[original.name] ?? 0) : 0;
+    const cooldown = original ? (combatant.cooldowns?.[original.name] ?? null) : null;
+    const recharging = cooldown !== null && cooldown.readyRound > round;
+    const exhausted = limit !== null && used >= limit.max;
+    const usage: AbilityUsage | undefined =
+      original && (limit || recharge)
+        ? {
+            limit: limit && { left: Math.max(0, limit.max - used), max: limit.max, per: limit.per },
+            recharge,
+            cooldown: recharging ? cooldown : null,
+            onRestore: used > 0 || recharging ? () => restoreAbility(combatant.id, original.name) : undefined,
+          }
+        : undefined;
+    const blocked = exhausted || recharging;
+    const used_ = (): void => {
+      if (!original) return;
+      if (limit || recharge) useAbility(combatant.id, original.name, { counted: limit !== null, recharge });
+      if (isSustainable(original.description)) {
         startSustaining(combatant.id, { kind: "action", name: original.name, actionIndex: index });
       }
     };
     if (action.cost === "reaction") {
       return {
-        disabled: combatant.reactionSpent || !canReact(combatant.conditions),
+        disabled: blocked || combatant.reactionSpent || !canReact(combatant.conditions),
         onUse: () => {
           setReactionSpent(combatant.id, true);
-          sustain();
+          used_();
         },
+        usage,
       };
     }
     const cost = costValue(action.cost);
-    if (cost === 0) return { disabled: false, onUse: undefined };
+    // A free action costs nothing, so it gets a Use button only to count a
+    // limited use or start a recharge.
+    if (cost === 0) return { disabled: blocked, onUse: usage ? used_ : undefined, usage };
     return {
-      disabled: cost > remaining,
+      disabled: blocked || cost > remaining,
       onUse: () => {
         spendActions(combatant.id, cost);
-        sustain();
+        used_();
       },
+      usage,
     };
   }
 
@@ -180,7 +207,7 @@ export function ActionList({
             );
           }
 
-          const { disabled, onUse } = spendSpec(item.action);
+          const { disabled, onUse, usage } = spendSpec(item.action);
           return (
             <div key={item.action.name} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
               <ActionCard
@@ -192,6 +219,7 @@ export function ActionList({
                 }
                 onUse={onUse}
                 glossary={glossary}
+                usage={usage}
               />
               {item.children.map((child) => renderChild(child, item.action.name))}
             </div>

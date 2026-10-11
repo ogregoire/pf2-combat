@@ -13,6 +13,8 @@ import {
   type ConditionSlug,
 } from "../rules/conditions.js";
 import { applyIwr, type Iwr } from "../rules/damage.js";
+import { abilityLimit } from "../rules/abilityLimits.js";
+import { rollFormula } from "../rules/dice.js";
 import type { Combatant, Encounter, EndOfTurnEvent, Entry, Player, SustainedEffect } from "./types.js";
 
 export type Lang = "en" | "fr";
@@ -402,7 +404,8 @@ function showEndOfTurn(state: { endOfTurnReport: EndOfTurnEvent[] | null }, even
  * end-of-turn hooks: both callers (`nextTurn` and `delay`) have already
  * settled the outgoing turn their own way before calling this.
  */
-function advanceTurn(enc: Encounter): void {
+function advanceTurn(enc: Encounter): EndOfTurnEvent[] {
+  const events: EndOfTurnEvent[] = [];
   let nextIndex = enc.activeEntryIndex + 1;
   if (nextIndex >= enc.entries.length) {
     nextIndex = 0;
@@ -443,7 +446,7 @@ function advanceTurn(enc: Encounter): void {
   enc.activeEntryIndex = nextIndex;
 
   const active = enc.entries[nextIndex];
-  if (!active) return;
+  if (!active) return events;
 
   // Arriving back at a delayed entry's own slot is what "Delay an entire
   // round without returning" means — the order has come all the way round to
@@ -482,11 +485,24 @@ function advanceTurn(enc: Encounter): void {
       c.strikesMade = 0;
       c.actionsSpent = 0;
       c.reactionSpent = false;
+      // A 1/round or 1/turn ability comes back as the turn starts; one
+      // recharging is ready once its round comes round.
+      if (c.abilityUses) {
+        for (const a of c.actions) if (abilityLimit(a)?.resetsEachTurn) delete c.abilityUses[a.name];
+      }
+      if (c.cooldowns) {
+        for (const [ability, cd] of Object.entries(c.cooldowns)) {
+          if (cd.readyRound > enc.round) continue;
+          delete c.cooldowns[ability];
+          events.push({ kind: "recharged", combatantId: c.id, name: c.name, ability, actionIndex: c.actions.findIndex((a) => a.name === ability) });
+        }
+      }
     }
   }
   enc.acknowledgedPrompts = enc.acknowledgedPrompts.filter(
     (pid) => !active.combatantIds.some((cid) => pid.startsWith(`${cid}:`)),
   );
+  return events;
 }
 
 /**
@@ -733,6 +749,12 @@ interface EncounterStore {
   sustainEffect(id: string, effectId: string): void;
   /** Ends a Sustained effect early: dismissed, or concentration broken. */
   stopSustaining(id: string, effectId: string): void;
+  /** Uses an ability with a limit: counts a use against its frequency, and
+   * for one that recharges, rolls `recharge` for the rounds until it's
+   * usable again. */
+  useAbility(id: string, name: string, limit: { counted: boolean; recharge: string | null }, rng?: () => number): void;
+  /** Takes a use back: one use returned, any recharge cancelled. */
+  restoreAbility(id: string, name: string): void;
   /** Refreshes the spells of a combatant saved by an older version of the
    * app — none at all (before spells were carried), or rows without the
    * `slug` their details file is fetched by — from its creature record,
@@ -1126,6 +1148,31 @@ export const useEncounter = create<EncounterStore>()(
         state.encounter.combatants[id]!.actionsSpent += 1;
       }),
 
+    useAbility: (id, name, { counted, recharge }, rng) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (!c) return;
+        if (counted) {
+          const uses = (c.abilityUses ??= {});
+          uses[name] = (uses[name] ?? 0) + 1;
+        }
+        if (recharge) {
+          const rolled = /^\d+$/.test(recharge) ? Number(recharge) : (rollFormula(recharge, rng) ?? 1);
+          (c.cooldowns ??= {})[name] = { readyRound: state.encounter.round + Math.max(1, rolled), rolled: Math.max(1, rolled) };
+        }
+      }),
+
+    restoreAbility: (id, name) =>
+      set((state) => {
+        const c = state.encounter.combatants[id];
+        if (!c) return;
+        if (c.abilityUses?.[name]) {
+          c.abilityUses[name] -= 1;
+          if (c.abilityUses[name] === 0) delete c.abilityUses[name];
+        }
+        if (c.cooldowns) delete c.cooldowns[name];
+      }),
+
     stopSustaining: (id, effectId) =>
       set((state) => {
         const c = state.encounter.combatants[id];
@@ -1173,9 +1220,8 @@ export const useEncounter = create<EncounterStore>()(
         // ENDING — the one still active, before advanceTurn moves off it —
         // not the entry about to become active.
         const endingEntry = enc.entries[enc.activeEntryIndex];
-        if (endingEntry) showEndOfTurn(state, settleEndOfTurn(enc, endingEntry));
-
-        advanceTurn(enc);
+        const ended = endingEntry ? settleEndOfTurn(enc, endingEntry) : [];
+        showEndOfTurn(state, [...ended, ...advanceTurn(enc)]);
       }),
 
     delay: (entryId) =>
@@ -1191,7 +1237,7 @@ export const useEncounter = create<EncounterStore>()(
         const entry = enc.entries[enc.activeEntryIndex];
         if (!entry || entry.id !== entryId || entry.delayed) return;
 
-        showEndOfTurn(state, settleEndOfTurn(enc, entry));
+        const ended = settleEndOfTurn(enc, entry);
         // Nothing about the entry's position changes here. It keeps its
         // initiative and orderKey (and so its place in the list) until it
         // either returns — which rewrites both — or the order comes back
@@ -1202,7 +1248,7 @@ export const useEncounter = create<EncounterStore>()(
         // that function's own comment for why that was never actually a
         // promise this flag needed to keep.
         entry.delayed = true;
-        advanceTurn(enc);
+        showEndOfTurn(state, [...ended, ...advanceTurn(enc)]);
       }),
 
     returnFromDelay: (entryId) =>

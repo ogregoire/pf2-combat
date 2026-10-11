@@ -1,10 +1,11 @@
 import { useState } from "react";
 import type { Action } from "@pf2/schema";
-import { format, useT } from "../i18n/index.js";
+import { format, useT, type StringKey } from "../i18n/index.js";
 import { useEncounter } from "../state/store.js";
 import { useRulesHtml } from "../hooks/useRulesHtml.js";
 import type { TraitInfo } from "../rules/traitInfo.js";
 import { TraitTag } from "./TraitTag.js";
+import { hover } from "./HoverCard.js";
 
 function ReactionIcon(): React.ReactElement {
   return (
@@ -108,6 +109,71 @@ function PassiveCard({ action, glossary }: { action: Action; glossary: Map<strin
   );
 }
 
+const PER_KEY: Record<string, StringKey> = {
+  day: "ABILITY_PER_DAY", round: "ABILITY_PER_ROUND", turn: "ABILITY_PER_TURN", PT1H: "ABILITY_PER_HOUR",
+  PT10M: "ABILITY_PER_10_MINUTES", PT1M: "ABILITY_PER_MINUTE", P1W: "ABILITY_PER_WEEK", P1M: "ABILITY_PER_MONTH", P1Y: "ABILITY_PER_YEAR",
+};
+
+/** How much of an ability's limit is left, and whether it's recharging —
+ * the badges on its card. */
+export interface AbilityUsage {
+  /** A stated frequency: uses left of `max`, per `per`. */
+  limit: { left: number; max: number; per: string } | null;
+  /** The rounds a recharge takes ("1d4"), when it has one. */
+  recharge: string | null;
+  /** Recharging now: usable again from `readyRound`. */
+  cooldown: { readyRound: number; rolled: number } | null;
+  /** Takes the last use back (a misclick, a use that didn't happen). */
+  onRestore?: () => void;
+}
+
+function UsageBadges({ usage, name }: { usage: AbilityUsage; name: string }): React.ReactElement {
+  const t = useT();
+  const badge = (tone: "plain" | "danger"): React.CSSProperties => ({
+    fontSize: "10px",
+    letterSpacing: "0.04em",
+    padding: "2px 6px",
+    borderRadius: "2px",
+    background: tone === "danger" ? "var(--danger-bg)" : "var(--border)",
+    color: tone === "danger" ? "var(--danger)" : "var(--text-dim)",
+    whiteSpace: "nowrap",
+  });
+  const { limit, recharge, cooldown, onRestore } = usage;
+  return (
+    <>
+      {limit && (
+        <span data-testid="ability-limit" style={badge(limit.left === 0 ? "danger" : "plain")}>
+          {format(t("ABILITY_USES_LEFT"), { left: limit.left, max: limit.max, per: PER_KEY[limit.per] ? t(PER_KEY[limit.per]!) : limit.per })}
+        </span>
+      )}
+      {cooldown ? (
+        <span data-testid="ability-cooldown" style={badge("danger")}>
+          {format(t("ABILITY_RECHARGING"), { round: cooldown.readyRound, rolled: cooldown.rolled })}
+        </span>
+      ) : (
+        recharge && <span style={badge("plain")}>{format(t("ABILITY_RECHARGES"), { formula: recharge })}</span>
+      )}
+      {onRestore && (
+        <button
+          type="button"
+          aria-label={format(t("RESTORE_ABILITY_ARIA"), { name })}
+          {...hover(format(t("RESTORE_ABILITY_ARIA"), { name }))}
+          onClick={(e) => {
+            e.stopPropagation();
+            onRestore();
+          }}
+          style={{ fontFamily: "inherit", padding: "2px 5px", borderRadius: "3px", border: "1px solid var(--border)", background: "var(--panel-raised)", color: "var(--text-dim)", cursor: "pointer", lineHeight: 0 }}
+        >
+          <svg width="11" height="11" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M5 3 2 6l3 3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M2.5 6H10a4 4 0 0 1 0 8H7" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+        </button>
+      )}
+    </>
+  );
+}
+
 export function ActionCard({
   action,
   disabled,
@@ -116,6 +182,7 @@ export function ActionCard({
   onUse,
   useWhileCollapsed = false,
   glossary,
+  usage,
 }: {
   action: Action;
   disabled: boolean;
@@ -127,6 +194,9 @@ export function ActionCard({
    * and just wants to spend the action. */
   useWhileCollapsed?: boolean;
   glossary: Map<string, TraitInfo>;
+  /** Its frequency and recharge, tracked; without it, the frequency is
+   * shown as written. */
+  usage?: AbilityUsage;
 }): React.ReactElement {
   const t = useT();
   const rulesHtml = useRulesHtml();
@@ -171,7 +241,8 @@ export function ActionCard({
           <FoldArrow expanded={isExpanded} />
           <CostPips cost={action.cost} />
           <span style={{ fontWeight: 600 }}>{action.name}</span>
-          {action.frequency && (
+          {usage && <UsageBadges usage={usage} name={action.name} />}
+          {!usage && action.frequency && (
             <span
               style={{
                 fontSize: "10px",
@@ -222,7 +293,9 @@ export function ActionCard({
         >
           {cost > 0
             ? format(t("USE_ACTIONS_BUTTON"), { cost, unit: cost === 1 ? t("USE_ACTION_UNIT_SINGULAR") : t("USE_ACTION_UNIT_PLURAL") })
-            : t("USE_REACTION_BUTTON")}
+            : action.cost === "reaction"
+              ? t("USE_REACTION_BUTTON")
+              : t("USE_FREE_BUTTON")}
         </button>
       )}
     </div>

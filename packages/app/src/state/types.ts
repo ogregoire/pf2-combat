@@ -41,6 +41,13 @@ export interface Combatant {
   /** What the combatant is concentrating on: the spells and abilities it
    * Sustains. Absent until the first one. */
   sustaining?: SustainedEffect[];
+  /** Uses spent of abilities with a stated frequency ("1/day", "1/round"),
+   * by ability name. Per-round and per-turn ones clear at the start of the
+   * combatant's turn. Absent until the first. */
+  abilityUses?: Record<string, number>;
+  /** Abilities recharging ("can't use again for 1d4 rounds"), by name:
+   * usable again from `readyRound`, `rolled` rounds after being used. */
+  cooldowns?: Record<string, { readyRound: number; rolled: number }>;
   /**
    * The French overlay for this creature, IF a caller already seeded one
    * directly into the store — used by tests, never by production code:
@@ -186,7 +193,9 @@ export type EndOfTurnEvent =
       down: boolean;
     }
   /** A Sustained effect its user didn't Sustain this turn: it ends. */
-  | { kind: "sustain-ended"; combatantId: string; name: string; effect: SustainedEffect };
+  | { kind: "sustain-ended"; combatantId: string; name: string; effect: SustainedEffect }
+  /** An ability recharging is usable again, as its user's turn starts. */
+  | { kind: "recharged"; combatantId: string; name: string; ability: string; actionIndex: number };
 
 export interface Encounter {
   name: string;

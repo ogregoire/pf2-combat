@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { format, formatParts, useT } from "../i18n/index.js";
 import { useConditionTooltip } from "../hooks/useConditionTooltip.js";
-import { useSustainedName } from "../hooks/useSustainedName.js";
+import { useAbilityName, useSustainedName } from "../hooks/useSustainedName.js";
 import { useTraitGlossary } from "../hooks/useTraitGlossary.js";
 import { conditionDisplayName } from "../rules/traitInfo.js";
 import { useEncounter } from "../state/store.js";
@@ -19,6 +19,13 @@ function SustainEndedLine({ event }: { event: Extract<EndOfTurnEvent, { kind: "s
   const combatant = useEncounter((s) => s.encounter.combatants[event.combatantId]);
   const nameOf = useSustainedName(combatant);
   return <>{format(t("END_OF_TURN_SUSTAIN_ENDED"), { name: event.name, effect: nameOf(event.effect) })}</>;
+}
+
+function RechargedLine({ event }: { event: Extract<EndOfTurnEvent, { kind: "recharged" }> }): React.ReactElement {
+  const t = useT();
+  const combatant = useEncounter((s) => s.encounter.combatants[event.combatantId]);
+  const abilityName = useAbilityName(combatant);
+  return <>{format(t("TURN_START_RECHARGED"), { name: event.name, ability: abilityName(event.actionIndex, event.ability) })}</>;
 }
 
 export function EndOfTurnDialog(): React.ReactElement | null {
@@ -48,6 +55,7 @@ export function EndOfTurnDialog(): React.ReactElement | null {
         : formatParts(t("END_OF_TURN_CONDITION_DECREASES"), { name: e.name, condition, from: String(e.from), to: String(e.to) });
     }
     if (e.kind === "sustain-ended") return <SustainEndedLine event={e} />;
+    if (e.kind === "recharged") return <RechargedLine event={e} />;
     return (
       <>
         <span>{format(t("END_OF_TURN_PERSISTENT_DAMAGE"), { name: e.name, rolled: e.rolled, formula: e.formula })}</span>

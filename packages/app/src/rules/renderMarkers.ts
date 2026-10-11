@@ -215,7 +215,16 @@ function renderTemplate(parts: string[], lang: Lang): string | null {
   return `${distance}-foot ${shape}`;
 }
 
+/** Foundry's inline rolls — `[[/gmr 1d4 #Recharge Breath Weapon]]{1d4
+ * rounds}`, 300-odd recharges and durations — read as their label, or as
+ * the bare formula when there's none. */
+const INLINE_ROLL = /\[\[\/\w*r\s+([^\]#]+?)(?:\s*#[^\]]*)?\]\](?:\{([^}]*)\})?/g;
+
 export function renderMarkers(html: string, lang: Lang = "en"): string {
+  return renderFamilies(html.replace(INLINE_ROLL, (_m, formula: string, label: string | undefined) => label ?? formula.trim()), lang);
+}
+
+function renderFamilies(html: string, lang: Lang): string {
   let result = "";
   let i = 0;
   MARKER_START.lastIndex = 0;

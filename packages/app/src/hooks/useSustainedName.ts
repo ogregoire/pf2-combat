@@ -20,3 +20,16 @@ export function useSustainedName(combatant: Combatant | undefined): (effect: Sus
     return effect.name;
   };
 }
+
+/** Names one of a combatant's abilities, by its position in
+ * `Combatant.actions`, in the display language; `fallback` (the English
+ * name) when it can't. */
+export function useAbilityName(combatant: Combatant | undefined): (index: number, fallback: string) => string {
+  const lang = useEncounter((s) => s.lang);
+  const glossary = useTraitGlossary();
+  const i18n = useCombatantI18n(combatant ?? { i18n: null, creatureId: undefined });
+  return (index, fallback) => {
+    if (lang !== "fr" || !combatant || index < 0) return fallback;
+    return resolveActions(combatant.actions, i18n, lang, glossary)[index]?.name ?? fallback;
+  };
+}
