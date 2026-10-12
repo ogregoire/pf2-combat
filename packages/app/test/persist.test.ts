@@ -163,3 +163,29 @@ describe("migrate", () => {
     expect(out.encounter.combatants.c1!.initiativeModifier).not.toBeUndefined();
   });
 });
+
+describe("migrate keeps a combatant's live state", () => {
+  it("passes conditions, effects, temp HP, Sustains, ability uses and cooldowns through a save", () => {
+    const combatant = {
+      id: "c1",
+      initiativeModifier: 7,
+      hp: { current: 40, max: 60, temp: 5 },
+      conditions: [
+        { slug: "frightened", value: 2, expires: { round: 3, combatantId: "c1", at: "end" } },
+        { slug: "persistent-damage", value: null, formula: "2d6", damageType: "fire" },
+      ],
+      effects: [{ id: "e1", label: "Cover", value: 2, type: "circumstance", targets: ["ac"] }],
+      sustaining: [{ kind: "spell", name: "Fear", round: 2 }],
+      spellUses: { "innate:fear": 1 },
+      abilityUses: { "Breath Weapon": 1 },
+      cooldowns: { "Breath Weapon": { readyRound: 5, rolled: 3 } },
+      adjustment: "elite",
+    };
+    const raw = {
+      schemaVersion: SCHEMA_VERSION,
+      encounter: { combatants: { c1: combatant }, entries: [] },
+    };
+    const out = migrate(raw) as { encounter: { combatants: Record<string, unknown> } };
+    expect(out.encounter.combatants.c1).toEqual(combatant);
+  });
+});
